@@ -200,16 +200,17 @@
     </div>
 
     <div class="row mt-5">
+    
         <div class="col-md-6">
-            <a href="/plans?type=auto_cover">
-                <img class="img-fluid" src="https://www.autozone.com/cdn/images/B2C/US/media/FY22/P10/SplitBlocks/_fy22p10-2s-theme-tools-d.jpg" alt="" srcset="">
-            </a>
+            <div style="height: 250px;" class="bg-dark h-35 d-flex justify-content-center align-items-center text-white">
+               <a  class="text-white bold fs-1" href="/plans?type=auto_cover">AUTO COVER</a>
+            </div>
         </div>
 
         <div class="col-md-6">
-            <a href="/checkout?type=auto_cover">
-                <img class="img-fluid" src="https://www.autozone.com/cdn/images/B2C/US/media/FY22/P10/SplitBlocks/_fy22p10-2s-theme-tools-d.jpg" alt="" srcset="">
-            </a>
+            <div style="height: 250px;" class="bg-dark h-35 d-flex justify-content-center align-items-center text-white">
+               <a  class="text-white bold fs-1" href="/checkout?type=auto_cover">BUY NOW PAY LATER</a>
+            </div>
         </div>
     </div>
 
