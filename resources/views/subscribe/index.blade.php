@@ -3,13 +3,13 @@
 @section('content')
 <div class="container-fluid px-0">
    <div class="row">
-      <div class="col-xl-4 col-lg-4 py-4">
-         <a href="/">
+      <div class="col-xl-5  col-lg-4 py-4">
+         <a class="px-5" href="/">
             <img src="/images/logo/autofactor_logo.png" alt="" srcset="">
          </a>
              
-         <div class="card card-plain">
-            <div class="card-header">
+         <div class="card px-4 card-plain">
+            <div class="card-header ">
                <h4 class="font-weight-bolder">Sign Up</h4>
                <p class="mb-0">Enter your email and password to subscribe</p>
             </div>
@@ -47,7 +47,7 @@
 
         
       </div>
-      <div style="background-image: url('/images/utils/sign-in-background-img.jpeg'); background-size: cover; height: 100vh !important;"  class="col-12  col-md-8  position-relative bg-gradient-primary h-100  px-7 border-radius-lg d-flex flex-column justify-content-center">
+      <div style="background-image: url('/images/utils/sign-in-background-img.jpeg'); background-size: cover; height: 100vh !important;"  class="col-12  col-md-7  position-relative bg-gradient-primary h-100  px-7 border-radius-lg d-flex flex-column justify-content-center">
                <h3 class="text-white mb-4"> Chosen plan </h3>
                <div class="card mb-3">
                   <div class="form-check mt-3 mb-2"">
