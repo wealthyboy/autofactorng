@@ -110,7 +110,7 @@
                         </figure>
                         <div class="product-details">
                             <div class="product-title">
-                                <a href="#">17 Inch Rim</a>
+                                <a href="#">Motor Oil</a>
                             </div>
                             <div class="price-box">
                                <span title="" class="product-price  bold">₦890,000</span>
@@ -128,7 +128,7 @@
                         </figure>
                         <div class="product-details">
                             <div class="product-title">
-                                <a href="#">17 Inch Rim</a>
+                                <a href="#">Walnut Wall</a>
                             </div>
                             <div class="price-box">
                                <span title="" class="product-price  bold">₦890,000</span>
@@ -165,7 +165,7 @@
                         </figure>
                         <div class="product-details">
                             <div class="product-title">
-                                <a href="#">17 Inch Rim</a>
+                                <a href="#">Tires Collection</a>
                             </div>
                             <div class="price-box">
                                <span title="" class="product-price  bold">₦890,000</span>
@@ -184,7 +184,7 @@
                         </figure>
                         <div class="product-details">
                             <div class="product-title">
-                                <a href="#">17 Inch Rim</a>
+                                <a href="#">Car Engine</a>
                             </div>
                             <div class="price-box">
                                 <span title="" class="product-price  bold">₦890,000</span>
