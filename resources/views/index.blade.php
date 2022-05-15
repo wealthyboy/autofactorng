@@ -209,7 +209,7 @@
 
         <div class="col-md-6">
             <div style="height: 250px;" class="bg-dark h-35 d-flex justify-content-center align-items-center text-white">
-               <a  class="text-white bold fs-1" href="/checkout?type=auto_cover">BUY NOW PAY LATER</a>
+               <a  class="text-white bold fs-1" href="/buy-now-pay-later?type=auto_cover">BUY NOW PAY LATER</a>
             </div>
         </div>
     </div>

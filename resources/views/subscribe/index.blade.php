@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-<div class="container">
+<div class="container-fluid px-0">
    <div class="row">
       <div class="col-xl-4 col-lg-4 py-4">
          <a href="/">
@@ -47,8 +47,7 @@
 
         
       </div>
-      <div class="col-8 ">
-         <div class="position-relative bg-gradient-primary h-100  px-7 border-radius-lg d-flex flex-column justify-content-center" style="background-image: url('/images/utils/sign-in-background-img.jpeg'); background-size: cover; height: 100vh !important;" loading="lazy">
+      <div style="background-image: url('/images/utils/sign-in-background-img.jpeg'); background-size: cover; height: 100vh !important;"  class="col-12  col-md-8  position-relative bg-gradient-primary h-100  px-7 border-radius-lg d-flex flex-column justify-content-center">
                <h3 class="text-white mb-4"> Chosen plan </h3>
                <div class="card mb-3">
                   <div class="form-check mt-3 mb-2"">

@@ -20,5 +20,5 @@ Route::get('/',       [App\Http\Controllers\HomeController::class, 'index'])->na
 Route::get('/plans',      [App\Http\Controllers\Plans\PlansController::class, 'index'])->name('plans');
 Route::get('/subscribe',  [App\Http\Controllers\Subscribe\SubscribeController::class, 'index'])->name('subscribe');
 Route::get('/checkout',   [App\Http\Controllers\Checkout\CheckoutController::class, 'index'])->name('checkout');
-
+Route::get('/buy-now-pay-later',   [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index'])->name('buy');
 
