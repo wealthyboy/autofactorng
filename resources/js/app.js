@@ -4,9 +4,24 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+import $ from "jquery";
 
-window.Vue = require('vue').default;
+require("./core/popper.min.js");
+
+require("./bootstrap");
+
+require("owl.carousel");
+
+import "slick-carousel/slick/slick";
+
+require("./core/bootstrap.min.js");
+require("./plugins/perfect-scrollbar.min.js");
+require("./plugins/prism.min.js");
+require("./plugins/highlight.min.js");
+require("./plugins/parallax.min.js");
+require("./material-kit.min.js?v=3.0.2");
+
+window.Vue = require("vue").default;
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,7 +34,10 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component(
+    "example-component",
+    require("./components/ExampleComponent.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,5 +46,32 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    el: '#app',
+    el: "#app",
+});
+
+$(".menu-nav-btn").on("click", function () {
+    let open = $(".menu-open");
+    let close = $(".menu-close");
+
+    if (open.hasClass("d-none")) {
+        open.removeClass("d-none");
+        close.addClass("d-none");
+        $(".overlay").addClass("d-none");
+    } else {
+        open.addClass("d-none");
+        close.removeClass("d-none");
+        $(".overlay").removeClass("d-none");
+    }
+});
+
+$(".overlay").on("click", function () {
+    let self = $(this);
+    self.addClass("d-none");
+    let open = $(".menu-open");
+    open.removeClass("d-none");
+    $(".menu-close").addClass("d-none");
+});
+
+$("#buy_now_pay_later").on("click", function () {
+    $(".buy_now_pay_later").removeClass("d-none");
 });
