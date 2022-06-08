@@ -59,7 +59,7 @@
                <li class="nav-item">
                   <a href="/admin" class="nav-link text-white"  role="button">
                   <i class="material-symbols-outlined opacity-10">dashboard</i>
-                  <span class="nav-link-text ms-2 ps-1">Dashboards</span>
+                  <span class="nav-link-text ms-2 ps-1">Dashboard</span>
                   </a>
                  
                </li>
