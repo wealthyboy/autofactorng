@@ -256,18 +256,8 @@ if (document.getElementById('choices-gender')) {
 
       var d = new Date();
       var monthArray = new Array();
-      monthArray[0] = "January";
-      monthArray[1] = "February";
-      monthArray[2] = "March";
-      monthArray[3] = "April";
-      monthArray[4] = "May";
-      monthArray[5] = "June";
-      monthArray[6] = "July";
-      monthArray[7] = "August";
-      monthArray[8] = "September";
-      monthArray[9] = "October";
-      monthArray[10] = "November";
-      monthArray[11] = "December";
+      monthArray[0] = "Toyota
+ 
       for (m = 0; m <= 11; m++) {
         var optn = document.createElement("OPTION");
         optn.text = monthArray[m];
