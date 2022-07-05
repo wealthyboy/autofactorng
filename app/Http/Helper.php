@@ -36,6 +36,10 @@ class Helper{
     }
 
 
+    public static function years() {
+        return array_reverse(range(1995, date('Y') + 1));
+    }
+
     function make_active ($link) { 
         foreach ( $this->my_link () as $pages) { 
             if ( strtolower($pages) == strtolower($link)) { 

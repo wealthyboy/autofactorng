@@ -1,0 +1,112 @@
+@extends('admin.layouts.app')
+@section('content')
+<div class="row">
+  <div class="col-md-7">  
+    <div class="card">
+        <div class="card-header p-3 pt-2">
+          <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
+              <i class="material-symbols-outlined">filter_alt</i>
+          </div>
+          <h6 class="mb-0">Edit Location</h6>
+        </div>
+        <div class="card-body pt-0">
+          <form action="{{ route('location.update',['location'=>$location->id]) }}" method="post" enctype="multipart/form-data" id="form-category">
+           @csrf
+            @method('PATCH')
+            <div class="row">
+                <div class="col-sm-12 col-12">
+                  <div class="input-group input-group-outline">
+                    <label class="form-label"> Name</label>
+                    <input 
+                        type="text" 
+                        class="form-control"                                     
+                        value="{{ $location->name }}"
+                        name="name"
+                    >
+                  </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="">
+                  <div class="row mt-3">
+                      <div class="col-sm-12 col-5">
+                        <select class="form-control border" name="parent_id" id="parent\_id">
+                            <option  value="">--Choose Parent--</option>
+                            @foreach($locations as $loc)
+                                @if($location->parent_id ==  $loc->id )
+                                    <option class="" value="{{ $loc->id }}" selected="selected">{{ $loc->name }} </option>                                        
+                                    @include('includes.children_options',['obj'=>$location,'space'=>'&nbsp;&nbsp;'])
+                                @else
+                                    <option class="" value="{{ $loc->id }}" >{{ $loc->name }} </option>
+                                    @include('includes.children_options',['model' => $location,'obj'=>$location,'space'=>'&nbsp;&nbsp;'])
+                                @endif
+                            @endforeach
+                        </select>
+                      </div>
+                    
+                  </div>
+                </div>
+            </div>
+
+
+           
+
+           
+            <div class="d-flex justify-content-end mt-4">
+                <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>
+
+  <div class="col-md-5">
+      <div class="card">   
+            <div class="card-header p-3 pt-2">
+                <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
+                    <i class="material-symbols-outlined">list</i>
+                </div>
+                <h6 class="mb-0">Location</h6>
+            </div>              
+            <form action="{{ route('location.destroy',['location'=>1]) }}" method="post" enctype="multipart/form-data" id="form-location">
+                @csrf
+                @method('DELETE')
+            <div class="material-datatables">
+                <div class="well well-sm pb-5" style="height: 350px; background-color: #fff; color: black; overflow: auto;">
+
+                    @foreach($locations as $location)
+                      <div class="parent" value="{{ $location->id }}">
+                      
+                      <div class="form-check ">
+                          <input  class="form-check-input" value="{{ $location->id }}" type="checkbox" name="selected[]" >
+                          <label  class="custom-control-label" for="">
+                              <span role="button"> {{ $location->name }}</span> 
+                                <a href="{{ route('location.edit',['attribute'=>$location->id]) }}">
+                                <i class="fa fa-pencil"></i> Edit</a>
+                          </label>
+                      </div> 
+                      @include('includes.children',['obj'=>$location,'space'=>'&nbsp;&nbsp;','model' => 'location','url' => 'location'])
+                       </div>
+                    @endforeach  
+                </div>
+            </div>
+        </form>
+        </div><!--  end card  -->
+    </div>
+</div>
+@endsection
+@section('inline-scripts')
+
+   var parent_id = document.getElementById('parent_id');
+   setTimeout(function () {
+      const example = new Choices(parent_id);
+   }, 1);
+   
+@stop
+
+
+
+
+
+

@@ -1,446 +1,345 @@
 @extends('admin.layouts.app')
-@section('pagespecificstyles')
-@stop
 @section('content')
-<div class="row">
-   <div class="col-sm-12">
-      @include('admin.errors.errors')
-      <!--      Wizard container        -->
-      <div class="wizard-container">
-         <div class="card wizard-card" data-color="rose" id="wizardProfile">
-         <form enctype="multipart/form-data" action="{{ route('products.update',['product'=>$product->id])  }}" method="post">
-               @method('PATCH')
+<form action="{{ route('products.store') }}" class="" method="post" enctype="multipart/form-data" id="form-category">
+   @csrf
+   <div class="row">
+      <div class="col-md-8">
+         <div class="card">
+            <div class="card-header p-3 pt-2">
+               <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
+                  <i class="material-symbols-outlined">filter_alt</i>
+               </div>
+               <h6 class="mb-0">Add Product</h6>
+            </div>
+            <div class="card-body pt-0">
                @csrf
-               <!--  You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
-               <div class="wizard-header">
-                  <h3 class="wizard-title">
-                     Edit Product
-                  </h3>
-               </div>
-               <div class="wizard-navigation">
-                  <ul>
-                     <li><a href="wizard.html#ProductData" data-toggle="tab">Product Data</a></li>
-                     <li><a href="wizard.html#RelatedProducts" data-toggle="tab">Related Products</a></li>
-                     <li><a href="wizard.html#ProductVariations" data-toggle="tab">Product Variation</a></li>
-                  </ul>
-               </div>
-
-               <div class="tab-content">
-                  
-                  <div class="tab-pane" id="ProductData">
-                     <h4 class="info-text">Enter Products Details</h4>
-                     <div class="row">
-                        <div class="col-md-8">
-                           <div class="row">
-                              <div class="col-md-7">
-                                 <div class="form-group label-floating ">
-                                    <label class="control-label">Product Name</label>
-                                    <input  required="true" type="text" value="{{ isset($product) ? $product->product_name : old('product_name') }}" name="product_name" class="form-control" >
-                                    <span class="material-input"></span>
-                                 </div>
-                              </div>
-
-                              <div class="col-md-5">
-                                 <div class="form-group label-floating">
-                                    <label class="control-label">Brands</label>
-                                    <select name="brand_id" class="form-control">
-                                       <option  >Choose One</option>
-                                        @foreach($brands as $brand) 
-                                             @if( $product->brand_id == $brand->id)
-                                                <option value="{{ $brand->id }}" selected> {{ $brand->brand_name }} </option>
-                                                @else
-                                                <option value="{{ $brand->id }}"> {{ $brand->brand_name }} </option>
-                                             @endif
-                                        @endforeach
-                                    </select>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-
-                           <div class="col-md-12">
-                              <div class="form-group label-floating is-empty">
-                              <label class="control-label">Meta Tile</label>
-                              <input  required="true" name="meta_title" data-msg="" value="{{ isset($product) ? $product->meta_title : old('meta_title') }}" class="form-control" type="text">
-                              <span class="material-input"></span>
-                              </div>
-                           </div>
-
-                           <div class="col-md-12">
-                              <div class="form-group label-floating is-empty">
-                                 <label class="control-label">Meta Keywords</label>
-                                 <input  required="true" name="meta_keywords" data-msg="" value="{{ isset($product) ? $product->meta_keywords : old('meta_keywords') }}" class="form-control" type="text">
-                                 <span class="material-input"></span>
-                              </div>
-                           </div>
-
-                           </div>
-
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <div class="form-group">
-                                       <label class="control-label"> Meta description </label>
-                                       <textarea name="meta_description" 
-                                       id="" class="form-control" rows="10">{{ isset($product) ? $product->meta_description : old('meta_description') }}</textarea>
-                                 </div>
-                              </div>
-                           </div>
-                           
-                          <div class="row">
-                              <div class="col-md-12">
-                                 <div class="form-group">
-                                    <label>Description</label>
-                                    <div class="form-group ">
-                                       <label class="control-label"> Enter description here</label>
-                                       <textarea name="description" 
-                                       id="description" class="form-control" rows="50">{{ isset($product) ? $product->description : old('description') }}</textarea>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-6">
-                                  <legend>  
-                                    Enable/Disable
-                                  </legend>
-                                  <div class="togglebutton">
-                                    <label>
-                                    <input {{ $product->allow == 1 ? 'checked' : ''}}  name="allow"  value="1" type="checkbox">
-                                    Enable/Disable
-                                    </label>
-                                 </div>
-                              </div>
-                              
-                               <div class="col-md-6">
-                                  <legend>  
-                                    Featured Product
-                                  </legend>
-                                  <div class="togglebutton">
-                                    <label>
-                                        <input {{ $product->featured == 1 ? 'checked' : '' }} name="featured_product"  value="1" type="checkbox" >
-                                      Yes/No
-                                    </label>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="clearfix"></div>
-                        </div>
-                        <div class="col-md-4">
-                           <label>Catgeories</label>
-                           <div class="well well-sm" style="height: 250px; background-color: #fff; color: black; overflow: auto;">
-                              @foreach($categories as $category)
-                                 <div class="parent" value="{{ $category->id }}">
-                                       <div class="checkbox">
-                                          <label>
-                                             <input type="checkbox" 
-                                             {{ $category->check($product->categories , $category->id) ? 'checked' : '' }} 
-                                             value="{{ $category->id }}" name="category_id[]" >
-                                             {{ $category->name }}  
-                                          </label>
-                                       </div>   
-                                       @include('includes.product_categories_children',['obj'=>$category,'space'=>'&nbsp;&nbsp;','model' => 'category','url' => 'category'])
-                                 </div>
-                              @endforeach
-                             
-                           </div>
-                           <h4>Meta Fields  </h4>
-                           
-                           @foreach($meta_attributes as $meta_attribute)
-                              <div class="form-group ">
-                                 <label class="control-label ">{{ $meta_attribute->name }}</label>
-                                 <select name="meta_fields[{{ $meta_attribute->id }}]" class="form-control"  title="Choose {{ $meta_attribute->name }}" data-style="select-with-transition" title="{{ $meta_attribute->name }}" data-size="7">
-                                 <option value="" selected="selected"> Choose One</option>
-                                    @foreach($meta_attribute->children as $meta_attribute) 
-                                       @foreach($product->meta_fields as $meta_field) 
-                                          @if($meta_field->name ==  $meta_attribute->name )
-                                             <?php  $metas[] = $meta_attribute->id  ?>
-                                             <option   value="{{ $meta_attribute->id }}" selected>{{ $meta_attribute->name }} </option>
-                                          @endif
-                                       @endforeach
-                                       @if (in_array($meta_attribute->id,$metas))
-                                         @continue;
-                                       @endif 
-                                       <option   value="{{ $meta_attribute->id }}">{{ $meta_attribute->name }} </option>
-                                    @endforeach
-                                 </select>
-                              </div>
-                           @endforeach
-                        </div>
+               <div class="row">
+                  <div class="col-sm-6 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Product Name</label>
+                        <input 
+                           type="text" 
+                           class="form-control"                                     
+                           name="product_name"
+                           >
                      </div>
                   </div>
-                  <div class="tab-pane" id="RelatedProducts">
-                     <h4 class="info-text">Related Products</h4>
-                        <div class="row p-attr">
-                              <div class="col-md-6">
-                                <div class="form-group label-floating is-empty">
-                                    <label class="control-label">Search</label>
-                                    <input name="search_products"   type="text" value="" class="search_products form-control" >
-                                       <div class="search_product">
-                                             <table id="datatables" class="table table-striped table-shopping table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                                                <tbody id="related_products"></tbody>
-                                             </table>
-                                       </div>
-                                    <span class="material-input"></span>
-                                 </div>
-                              </div>
-                              
-                              <div class="col-sm-12">
-                                 <table id="datatables" class="table table-striped table-shopping table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
-                                    <thead>
-                                       <tr>
-                                          <td>
-                                             <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" />
-                                                </label>
-                                             </div>
-                                          </td>
-                                          <td class="text-left"> Product Name</td>
-                                          <td class="text-left"> Sort Order</td>
-                                          <td class="text-left"> Action</td>
-                                       </tr>
-                                    </thead>
-                                       <tbody class="related_products">
-                                          @foreach($product->related_products as $related_product) 
-                                             <tr class="">
-                                                <td class="">
-                                                      <div class="checkbox">
-                                                         <label>
-                                                            <input type="checkbox" name="selected[]" value="" />
-                                                         </label>
-                                                      </div>
-                                                </td>
-                                                <td class="text-left p">
-                                                   <a class="#" href="#"> {{ optional($related_product->product_variation)->name }}</a>
-                                                   <input type="hidden" name="related_products[{{ $related_product->id }}]" value="{{ $related_product->related_id }}" id="" />
-                                                </td>
-                                                <td class="text-left">
-                                                   <input type="number" class="d-none" name="sort_order[{{ $related_product->id }}]" value="" id="" />
-                                                </td>
-                                                <td class="text-left"><a  class="remove_related_product"  href="/admin/delete/{{ $related_product->id }}/related_products"><i class="fa fa-trash"></i> Delete</a></td>
-                                             </tr>
-                                          @endforeach 
-                                       </tbody>  
-                                 </table>
-                              </div>
-                              
-                           </div>
-                        <hr/>
+                  <div class="col-sm-3 col-12">
+                     <div class="input-group input-group-outline">
+                     <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="brand_id" id="">
+                            <option  value="">--Brand--</option>
+                            @foreach($brands as $brand)
+                                <option class="" value="{{ $brand->id }}" >{{ $brand->name  }} </option>
+                            @endforeach
+                        </select>
+                     </div>
+                  </div>
 
-                  </div>
-                  <div class="tab-pane" id="ProductVariations">
-                     <h4 class="info-text">Product Variation</h4>
-                        <div class="col-md-12">
-                           <h4>Product Type </h4>
-                           <div class="form-group">
-                              <label class="control-label">Product Type</label>
-                              <select name="type" id="product-type" class="form-control"  required="true" title="Please select product type"  title="" data-size="7">
-                                 <option value="">Choose One</option>
-                                 <option {{ $product->product_type == 'simple' ? 'selected' : '' }}    value="simple">Simple</option>
-                                 <option  {{ $product->product_type == 'variable' ? 'selected' : '' }} value="variable">Variable</option>
-                              </select>
-                           </div>
-                        </div>
-                        <div class="simple-product   {{ $product->product_type == 'variable' ? 'hide' : '' }}">
-                           <div class="row">
-                              <div class="col-sm-3">
-                                 <div class="row">
-                                    <div  class="  text-center">
-                                    </div>
-                                    <div   class="col-md-12 col-sm-6 col-xs-6">
-                                       <div id="j-drop" class=" j-drop">
-                                          <input accept="image/*"   onchange="getFile(this,'image','Product',false)" class="upload_input"   data-msg="Upload  your image" type="file"  name="img"  />
-                                          <div   class="{{ optional($product)->images ? 'hide' : '' }} upload-text"> 
-                                             <a   class="" href="#">
-                                                <img class="" src="/backend/img/upload_icon.png">
-                                                <b>Click to upload image</b> 
-                                             </a>
-                                          </div>
-                                          <div id="j-details"  class="j-details">
-                                             <div id="{{ $product->id }}" class="j-complete">
-                                                   <div class="j-preview">
-                                                      <img class="img-thumnail" src="{{ $product->image }}">
-                                                      <div id="remove_image" class="remove_image remove-image">
-                                                         <a class="remove-image" data-mode="edit" data-randid="{{ $product->id }}"  data-id="{{ $product->id }}" data-url="{{ $product->image }}" href="#">Remove</a> 
-                                                      </div>
-                                                      <input type="hidden" class="file_upload_input stored_image_url" value="{{ $product->image }}" name="image">
-                                                   </div>
-                                                </div>
-                                          </div>
+                  <div class="col-sm-3 col-5">
+                        <select class="form-control" name="category_id" id="parent_id">
+                            <option  value="">--Choose One--</option>
+                            @foreach($categories as $category)
+                                <option class="" value="{{ $category->id }}" >{{ $category->name }} </option>
+                                @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
+                            @endforeach
+                        </select>
+                      </div>
 
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="col-sm-9">
-                                 <div class="row">
-                                    
-                                    <div   class="col-md-12 col-sm-6 col-xs-6">
-                                       <div id="j-drop" class=" j-drop">
-                                          <input accept="image/*"   onchange="getFile(this,'images[]','Image')" class="upload_input" data-msg="Upload  your image" type="file"  name="img"  />
-                                          <div   class=" upload-text {{ optional($product->default_variation)->images->count() ? 'hide' : '' }}"> 
-                                             <a   class="" href="#">
-                                                <img class="" src="/backend/img/upload_icon.png">
-                                                <b>Click on anywhere to upload image</b> 
-                                             </a>
-                                          </div>
-                                          <div id="j-details"  class="j-details j-activate">
-                                                
-                                             @if(optional($product->default_variation)->images->count())
-                                             @foreach($product->default_variation->images as $image)
-                                                <div id="{{ $image->id }}" class="j-complete">
-                                                   <div class="j-preview">
-                                                      <img class="img-thumnail" src="{{ $image->image }}">
-                                                      <div id="remove_image" class="remove_image remove-image">
-                                                         <a class="remove-image"  data-randid="{{ $image->id }}" data-model="Image" data-type="complete"  data-id="{{ $image->id }}" data-url="{{ $image->image }}" href="#">Remove</a>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                             @endforeach
-                                             @endif
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-1">
-                                 <div class="form-group is-empty">
-                                    <label class="control-label">Quantity</label>
-                                    <input name="quantity"  type="number" required="true"  value="{{ optional($product_variant)->quantity }}"  class="form-control">
-                                    <span class="material-input"></span>
-                                 </div>
-                              </div>
-                              <div class="col-md-2">
-                                 <div class="form-group  is-empty">
-                                    <label class="control-label">Price</label>
-                                    <input name="price"  required="true" type="text" value="{{ isset($product) ? $product->price : old('price') }}" class="form-control">
-                                    <span class="material-input"></span>
-                                 </div>
-                              </div>
-                              <div class="col-md-2">
-                                 <div class="form-group  is-empty">
-                                    <label class="control-label">Sale Price</label>
-                                    <input name="sale_price"   value="{{ $product->sale_price }}"  class="form-control" type="text">
-                                    <span class="material-input"></span>
-                                 </div>
-                              </div>
-                              <div class="col-md-3">
-                                 <div class="form-group">
-                                    <label class="control-label">Start Date</label>
-                                    <input class="form-control  pull-right" name="sale_price_starts" value="{{   $product->sale_price_starts ? date('Y') .'-'.  optional($product->sale_price_starts)->format('m-d') : '' }}" id="datepicker" type="date">
-                                    <span class="material-input"></span>
-                                 </div>
-                              </div>
-                              <div class="col-md-4">
-                                 <div class="form-group">
-                                    <label class="control-label">End Date</label>
-                                    <input class="form-control  pull-right" name="sale_price_expires" value="{{   $product->sale_price_expires ? date('Y') .'-'.  optional($product->sale_price_expires)->format('m-d') : '' }}" id="datepicker" type="date">
-                                    <span class="material-input"></span>
-                                 </div>
-                              </div>
-                           </div>
-                           <div class="row">
-                              <div class="col-md-3">
-                                 <div class="form-group  is-empty">
-                                    <label class="control-label">Weight</label>
-                                    <input name="weight"   type="text" value="{{ isset($product) ? $product->weight : old('weight') }}" class="form-control">
-                                    <span class="material-input"></span>
-                                 </div>
-                              </div>
-                              <div class="col-md-3">
-                                 <div class="form-group  is-empty">
-                                    <label class="control-label">Length</label>
-                                    <input name="length"   type="text" value="{{ isset($product) ? $product->length : old('length') }}" class="form-control" >
-                                    <span class="material-input"></span>
-                                 </div>
-                              </div>
-                              <div class="col-md-3">
-                                 <div class="form-group is-empty">
-                                    <label class="control-label">Width</label>
-                                    <input name="width"      value="{{ isset($product) ? $product->width : old('width') }}"  class="form-control" type="text">
-                                    <span class="material-input"></span>
-                                 </div>
-                              </div>
-                              <div class="col-md-3">
-                                 <div class="form-group is-empty">
-                                    <label class="control-label">Height</label>
-                                    <input name="height" value="{{ isset($product) ? $product->height : old('height') }}"  class="form-control" type="text">
-                                    <span class="material-input"></span>
-                                 </div>
-                              </div>
-                           </div>
-                           
-                           <div class="col-md-12">
-                              <legend>  
-                                  Gift Card
-                              </legend>
-                              <div class="togglebutton">
-                              <label>
-                              <input {{ optional($product->default_variation)->is_gift_card == 1 ? 'checked' : ''}}   name="is_gift_card"  value="1" type="checkbox" >
-                                 Gift Card
-                              </label>
-                              </div>
-                           </div>
-                        </div><!--simple-product-->
-                        <div class="row p-attr  variable-product {{ $product->product_type == 'simple' ? 'hide' : '' }}">
-                           @if($product_attributes->count())
-                           <div class="col-sm-9">
-                              @foreach($product_attributes as $product_attribute)
-                                 <div class="col-md-3 col-sm-6 col-xs-6">
-                                    <div class="form-group label-floating">
-                                       <label class="control-label">{{ $product_attribute->name }}</label>
-                                       <select name="#" class="form-control product-attributes"  title="Choose {{ $product_attribute->name }}" data-style="select-with-transition"  data-size="7">
-                                          <option  value="" selected>Select</option>
-                                          <option   value="{{ $product_attribute->id }}">&nbsp;&nbsp;&nbsp;{{ $product_attribute->name }} </option>
-                                       </select>
-                                    </div>
-                                 </div>
-                              @endforeach
-                           </div>
-                           <label class="col-md-3  col-xs-12 col-xs-12">
-                              <button type="button"  id="product-attribute-add" class="btn btn-round btn-primary">
-                                 Add Variation
-                                 <span class="btn-label btn-label-right">
-                                    <i class="fa fa-plus"></i>
-                                 </span>
-                              </button>
-                           </label>
-                           @else
-                              <div class="col-sm-7">
-                                 No attributes set. Go Products > attributes and set your attributes.
-                              </div>
-                           @endif
-                        </div>
-                        @include('admin.products.edit_variation')
+                  
                </div>
-               <div class="wizard-footer">
-                  <div class="pull-right">
-                     <input type='button' class='btn btn-next btn-fill btn-rose btn-round btn-wd' name='next' value='Next' />
-                     <input type='submit' class='btn btn-finish btn-fill btn-rose   btn-round  btn-wd' name='finish' value='Finish' />
+              
+               <div class="row mt-3">
+                  <div class="col-sm-4 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Engine</label>
+                        <input 
+                           type="text" 
+                           class="form-control"                                     
+                           name="engine"
+                           >
+                     </div>
                   </div>
-                  <div class="pull-left">
-                     <input type='button' class='btn btn-previous btn-fill btn-primary  btn-round  btn-wd' name='previous' value='Previous' />
+                 
+
+                  <div class="col-sm-4 col-12">
+                     <div class="input-group input-group-outline">
+                     <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="year_from" id="">
+                            <option  value="">--Year from--</option>
+                            @foreach($years as $year)
+                                <option class="" value="{{ $year }}" >{{ $year }} </option>
+                            @endforeach
+                        </select>
+                     </div>
+                     
                   </div>
-                  <div class="clearfix"></div>
+                  <div class="col-sm-4 col-12">
+                     <div class="input-group input-group-outline">
+                     <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="year_to" id="">
+                            <option  value="">--Year to--</option>
+                            @foreach($years as $year)
+                                <option class="" value="{{ $year }}" >{{ $year }} </option>
+                            @endforeach
+                        </select>
+                     </div>
+                     
+                  </div>
+                 
                </div>
-            </form>
+
+               <div class="row mt-3">
+                  <div class="col-sm-3 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Price</label>
+                        <input 
+                           type="number" 
+                           class="form-control"                                     
+                           name="price"
+                           >
+                     </div>
+                  </div>
+
+                  <div class="col-sm-3 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label">Sale  Price</label>
+                        <input 
+                           type="number" 
+                           class="form-control"                                     
+                           name="sale_price"
+                           >
+                     </div>
+                  </div>
+                  <div class="col-sm-3 col-12">
+                  <div class="input-group input-group-outline">
+                    <label class="form-label">Sales Start  Date</label>
+                      <input name="sale_price_start" class="form-control datetimepicker" type="text" data-input>
+                    </div>
+                  </div>
+                  <div class="col-sm-3 col-12">
+                    <div class="input-group input-group-outline">
+                      <label class="form-label">Sales End  Date</label>
+                      <input name="sale_price_ends"  class="form-control datetimepicker" type="text" data-input>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row mt-3">
+                  <div class="col-sm-6 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Generic Name</label>
+                        <input 
+                           type="text" 
+                           class="form-control"                                     
+                           name="generic_name"
+                           >
+                     </div>
+                  </div>
+
+                  <div class="col-sm-6 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Rim Size</label>
+                        <input 
+                           type="number" 
+                           class="form-control"                                     
+                           name="rim_size"
+                           >
+                     </div>
+                  </div>
+              </div>
+
+              <div class="row mt-3">
+                  <div class="col-sm-4 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Product Radius</label>
+                        <input 
+                           type="number" 
+                           class="form-control"                                     
+                           name="product_radius"
+                           >
+                     </div>
+                  </div>
+
+                  <div class="col-sm-4 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Product Width</label>
+                        <input 
+                           type="number" 
+                           class="form-control"                                     
+                           name="product_width"
+                           >
+                     </div>
+                  </div>
+
+                  <div class="col-sm-4 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Product Height</label>
+                        <input 
+                           type="number" 
+                           class="form-control"                                     
+                           name="product_height"
+                           >
+                     </div>
+                  </div>
+              </div>
+
+               
+               <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Meta Title</label>
+                        <input type="text" class="form-control"                                     
+                           name="meta_title"
+                           >
+                     </div>
+                  </div>
+               </div>
+               <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label">Keywords</label>
+                        <input type="text" class="form-control" name="keywords">
+
+                        <input type="hidden" class="images" name="images">
+
+                     </div>
+                  </div>
+               </div>
+               <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                  <label class="form-label">Meta Description</label>
+                     <div class="input-group input-group-outline">
+                        <textarea type="text" class="form-control"                                     
+                           name="meta_description"
+                           rows="8"
+                           >
+                           Shop for Optima AGM Yellow Top Battery DH6 Group Size H6/LN3 800 CCA with confidence at Autofactor.com. Parts are just part of what we do. Get yours online today and pick up in store.
+                        </textarea>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                    <label class="form-label">Description</label>
+
+                     <div class="input-group input-group-outline">
+                        <textarea type="text" class="form-control"                                     
+                           name="description"
+                           rows="8"
+                           >
+                        </textarea>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                    <label class="form-label">Physical Description</label>
+
+                     <div class="input-group input-group-outline">
+                        <textarea type="text" class="form-control"                                     
+                           name="physical_description"
+                           rows="8"
+                           >
+                        </textarea>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-12">
+                  <label class="form-control mb-0"></label>
+                  <div action="/file-upload" class="form-control border dropzone" id="dropzone"></div>
+               </div>
+               <div class="d-flex justify-content-end mt-4">
+                  <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
+               </div>
+            </div>
          </div>
       </div>
-      <!-- wizard container -->
+      <div class="col-md-4">
+         <!--  end card  -->
+         <div class="card mt-4">
+            <div class="card-header p-3 pt-2">
+               <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
+                  <i class="material-symbols-outlined">list</i>
+               </div>
+               <h6 class="mb-0">Attributes</h6>
+            </div>
+            <div class="material-datatables">
+               <div class="well well-sm pb-5" style="height: 250px; background-color: #fff; color: black; overflow: auto;">
+                @foreach($attributes as $attribute)
+                  <div class="parent" value="{{ $attribute->id }}">
+                      
+                      <div class="form-check ">
+                          <input  class="form-check-input" value="{{ $attribute->id }}" type="checkbox" name="selected[]" >
+                          <label  class="custom-control-label" for="">
+                              <span role="button">{{ $attribute->name }}</span> 
+                                <a href="{{ route('attributes.edit',['attribute'=>$attribute->id]) }}">
+                                <i class="fa fa-pencil"></i> Edit</a>
+                          </label>
+                      </div> 
+                      @include('includes.children',['obj'=>$attribute,'space'=>'&nbsp;&nbsp;','model' => 'attributes','url' => 'attribute'])
+                  </div>
+                  @endforeach  
+               </div>
+            </div>
+         </div>
+      </div>
    </div>
-</div>
+</form>
 @endsection
-@section('page-scripts')
-<script src="{{ asset('ckeditor/ckeditor.js?version='.mt_rand(1000000, 9999999)) }}"></script>
-<script src="{{ asset('backend/js/products.js?version='.mt_rand(1000000, 9999999)) }}"></script>
-@stop
 @section('inline-scripts')
-$(document).ready(function() {
-   CKEDITOR.replace('description',{
-        height: '400px'
-   })
+
+if (document.getElementById('choices-gender')) {
+   var gender = document.getElementById('choices-gender');
+   const example = new Choices(gender);
+}
+if (document.getElementById('choices-language')) {
+   var language = document.getElementById('choices-language');
+   const example = new Choices(language);
+}
+if (document.getElementById('choices-skills')) {
+   var skills = document.getElementById('choices-skills');
+   const example = new Choices(skills, {
+      delimiter: ',',
+      editItems: true,
+      maxItemCount: 5,
+      removeItemButton: true,
+      addItems: true
+   });
+}
+var parent_id = document.getElementById('parent_id');
+setTimeout(function () {
+   const example = new Choices(parent_id);
+}, 1);
+
+if (document.querySelector('.datetimepicker')) {
+      flatpickr('.datetimepicker', {
+        allowInput: true
+      }); // flatpickr
+    }
+
+Dropzone.autoDiscover = false;
+var drop = document.getElementById('dropzone')
+let imgs = []
+
+var myDropzone = new Dropzone(drop, {
+   url: "/admin/upload/image?folder=products",
+   addRemoveLinks: true,
+   acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
+   paramName: 'file',
+   maxFiles: 10,
+   sending: function(file, xhr, formData) {
+     formData.append("_token", "{{ csrf_token() }}");
+   },
+  success(file, res, formData) {
+         imgs.push(res.path)
+         console.log(imgs)
+     $('.images').val(imgs)
+  },
+   headers: {
+      'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
+   }
 });
 @stop
-

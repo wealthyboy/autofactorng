@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Admin\Permission;
 
-use App\Permission;
-use App\Activity;
+use App\Models\Permission;
+use App\Models\Activity;
+use App\Models\User;
+use App\Models\UserPermission;
 use Illuminate\Http\Request;
-use App\User;
-use App\UserPermission;
+
 use App\Http\Controllers\Controller;
 
 
@@ -17,7 +18,7 @@ class PermissionsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('admin');
+       // $this->middleware('admin');
     }
     /**
      * Display a listing of the resource.
@@ -38,10 +39,10 @@ class PermissionsController extends Controller
      */
     public function create()
     {   
-
         //Check if user has Permission 2 code for create
         //User::canTakeAction(2);
-        return view('admin.permissions.create');
+        $permissions = Permission::$types;
+        return view('admin.permissions.create', compact('permissions'));
     }
 
     /**
@@ -56,9 +57,7 @@ class PermissionsController extends Controller
         $this->validate($request,[
             'name'=>'required|unique:permissions,name',
         ]);
-        if($request->name == 'Super User' && !User::isSuperUser()){
-           return redirect('/permission-denied');       
-        }
+       
         $permission = new Permission();
         $permission->name=$request->name;
         $permission->code=implode('',$request->code);
@@ -91,8 +90,9 @@ class PermissionsController extends Controller
     {
         //
         User::canTakeAction(3);
-        $permission = Permission::find($id);
-        return view('admin.permissions.edit',compact('permission'));
+        $permission  = Permission::find($id);
+        $permissions = Permission::$types;
+        return view('admin.permissions.edit',compact('permission','permissions'));
     }
 
     /**
@@ -113,8 +113,6 @@ class PermissionsController extends Controller
         $permission->save();
         //Log Activity
         //(new Activity)->Log("Updated  {$request->name} permission");
-        $flash = app( 'App\Http\Flash' );
-        $flash->success( "Success", "Updated" );
         return redirect()->route('permissions.index');
 
     }

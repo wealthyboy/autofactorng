@@ -15,7 +15,7 @@ class CreateVouchersTable extends Migration
     {
         Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->unsigned();;
+            $table->integer('user_id')->unsigned()->nullable();
             $table->string('code')->unique();
             $table->string('amount');
             $table->integer('from_value')->length(11)->nullable();
@@ -23,7 +23,7 @@ class CreateVouchersTable extends Migration
             $table->boolean('valid')->default(true);
             $table->integer('category_id')->unsigned()->nullable();
             $table->integer('product_id')->unsigned()->nullable();
-             $table->string('type')->nullable();
+            $table->string('type')->nullable();
             $table->timestamp('expires')->nullable(); 
             $table->timestamps();
         });

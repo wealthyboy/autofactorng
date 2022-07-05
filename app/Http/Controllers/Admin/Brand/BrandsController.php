@@ -39,12 +39,12 @@ class BrandsController extends Controller
 	
 	public function store(Request $request)
     {   
+
 		$this->validate($request, [
-			'brand_name' => 'required|unique:brands',
+			'name' => 'required|unique:brands',
 		]);
+
 		Brand::Insert($request->except('_token'));
-		$flash = app('App\Http\Flash');
-		$flash->success("Success","Created");
 		return redirect()->route('brands.index') ; 
 	}
 	
@@ -56,7 +56,7 @@ class BrandsController extends Controller
 	
 	public function destroy(Request $request,$id)
     {     
-		User::canTakeAction(5);
+		//User::canTakeAction(5);
 		$rules = array(
 				'_token' => 'required',
 		);
@@ -68,8 +68,7 @@ class BrandsController extends Controller
 			->withInput();
 		}
 		Brand::destroy($request->selected);  	
-		$flash = app('App\Http\Flash');
-		$flash->success("Success","Deleted");
+	
 		return redirect()->back();
     		 
 	}

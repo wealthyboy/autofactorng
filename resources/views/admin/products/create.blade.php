@@ -1,297 +1,345 @@
 @extends('admin.layouts.app')
-
 @section('content')
-<div class="row">
-
-    
-    <div class="card">
-
-    <div class="card-header p-3 pt-2">
-    <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
-        <i class="material-symbols-outlined">filter_alt</i>
-    </div>
-    <h6 class="mb-0">Add Product</h6>
-    </div>
-
-     <div class="card-body pt-0">
-     <div class="row">
-            <div class="col-sm-4 col-12">
-                <label class="form-label">Category</label>
-                
-                <select class="form-control" name="choices-gender" id="choices-gender">
-                    <option value=""> Category</option>
-                    <option value="3">Spare Parts</option>
-                    <option value="5">Servicing Parts</option>
-                    <option value="6">Accessories</option>
-                    <option value="7">Car Care/Tools &amp; Multimedia</option>
-                    <option value="8">Grille Guards</option>
-                    <option value="9">Tyres</option>
-                    <option value="10">Wheels</option>
-                    <option value="11">Lubricants/Fluids</option>
-                    <option value="12">Batteries</option>
-                        
-                        
-                </select>
+<form action="{{ route('products.store') }}" class="" method="post" enctype="multipart/form-data" id="form-category">
+   @csrf
+   <div class="row">
+      <div class="col-md-8">
+         <div class="card">
+            <div class="card-header p-3 pt-2">
+               <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
+                  <i class="material-symbols-outlined">filter_alt</i>
+               </div>
+               <h6 class="mb-0">Add Product</h6>
             </div>
-            <div class="col-sm-4 col-12">
-                <div class="input-group input-group-static">
-                    <label>Product Name</label>
-                    <input type="text" class="form-control" placeholder="Product Name">
-                </div>
-            </div>
-
-            <div class="col-sm-4 col-12">
-                <div class="input-group input-group-static">
-                    <label>Part Number</label>
-                    <input type="text" class="form-control" placeholder="Part Number">
-                </div>
-            </div>
-
-           
-        </div>
-        <div class="row">
-            <div class="">
-                <div class="row">
-                    <div class="col-sm-3 col-5">
-                    <label class="form-label mt-4 ms-0">Make </label>
-                    <select class="form-control" name="choices-month" id="choices-month"></select>
-                    </div>
-                    <div class="col-sm-3 col-3">
-                    <label class="form-label mt-4 ms-0">Model </label>
-                    <select class="form-control" name="choices-day" id="choices-day"></select>
-                    </div>
-                    <div class="col-sm-3 col-4">
-                    <label class="form-label mt-4 ms-0">Year</label>
-                    <select class="form-control" name="choices-year" id="choices-year"></select>
-                    </div>
-                    <div class="col-sm-3 col-4">
-                      <div class="input-group input-group-static">
-                          <label class="mt-4">Engine</label>
-                          <input type="email" class="form-control" placeholder="Engine">
-                      </div>
+            <div class="card-body pt-0">
+               @csrf
+               <div class="row">
+                  <div class="col-sm-6 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Product Name</label>
+                        <input 
+                           type="text" 
+                           class="form-control"                                     
+                           name="product_name"
+                           >
+                     </div>
                   </div>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-4 mb-3">
-            <div class="col-3">
-                <div class="input-group input-group-static">
-                    <label>Rim</label>
-                    <input type="email" class="form-control" placeholder="rim">
-                </div>
-            </div>
+                  <div class="col-sm-3 col-12">
+                     <div class="input-group input-group-outline">
+                     <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="brand_id" id="">
+                            <option  value="">--Brand--</option>
+                            @foreach($brands as $brand)
+                                <option class="" value="{{ $brand->id }}" >{{ $brand->name  }} </option>
+                            @endforeach
+                        </select>
+                     </div>
+                  </div>
 
-            <div class="col-3">
-                <div class="input-group input-group-static">
-                    <label>Height</label>
-                    <input type="email" class="form-control" placeholder="Height">
-                </div>
-            </div>
+                  <div class="col-sm-3 col-5">
+                        <select class="form-control" name="category_id" id="parent_id">
+                            <option  value="">--Choose One--</option>
+                            @foreach($categories as $category)
+                                <option class="" value="{{ $category->id }}" >{{ $category->name }} </option>
+                                @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
+                            @endforeach
+                        </select>
+                      </div>
 
-            <div class="col-3">
-                <div class="input-group input-group-static">
-                    <label>Width</label>
-                    <input type="email" class="form-control" placeholder="Width">
-                </div>
-            </div>
-            <div class="col-3">
-                <div class="input-group input-group-static">
-                    <label>Amphere</label>
-                    <input type="email" class="form-control" placeholder="Amphere">
-                </div>
-            </div>
-        </div>
+                  
+               </div>
+              
+               <div class="row mt-3">
+                  <div class="col-sm-4 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Engine</label>
+                        <input 
+                           type="text" 
+                           class="form-control"                                     
+                           name="engine"
+                           >
+                     </div>
+                  </div>
+                 
 
-          <div class="col-12">
-          <label class="mt-4"> Description</label>
-              <div id="editor">
-                  <p>Hello World!</p>
-                  <p>Some initial <strong>bold</strong> text</p>
-                  <p><br></p>
+                  <div class="col-sm-4 col-12">
+                     <div class="input-group input-group-outline">
+                     <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="year_from" id="">
+                            <option  value="">--Year from--</option>
+                            @foreach($years as $year)
+                                <option class="" value="{{ $year }}" >{{ $year }} </option>
+                            @endforeach
+                        </select>
+                     </div>
+                     
+                  </div>
+                  <div class="col-sm-4 col-12">
+                     <div class="input-group input-group-outline">
+                     <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="year_to" id="">
+                            <option  value="">--Year to--</option>
+                            @foreach($years as $year)
+                                <option class="" value="{{ $year }}" >{{ $year }} </option>
+                            @endforeach
+                        </select>
+                     </div>
+                     
+                  </div>
+                 
+               </div>
+
+               <div class="row mt-3">
+                  <div class="col-sm-3 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Price</label>
+                        <input 
+                           type="number" 
+                           class="form-control"                                     
+                           name="price"
+                           >
+                     </div>
+                  </div>
+
+                  <div class="col-sm-3 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label">Sale  Price</label>
+                        <input 
+                           type="number" 
+                           class="form-control"                                     
+                           name="sale_price"
+                           >
+                     </div>
+                  </div>
+                  <div class="col-sm-3 col-12">
+                  <div class="input-group input-group-outline">
+                    <label class="form-label">Sales Start  Date</label>
+                      <input name="sale_price_start" class="form-control datetimepicker" type="text" data-input>
+                    </div>
+                  </div>
+                  <div class="col-sm-3 col-12">
+                    <div class="input-group input-group-outline">
+                      <label class="form-label">Sales End  Date</label>
+                      <input name="sale_price_ends"  class="form-control datetimepicker" type="text" data-input>
+                    </div>
+                  </div>
               </div>
-        </div>
 
-        <div class="input-group input-group-dynamic mt-4 border">
-            <label class="form-label"></label>
-            <form action="/file-upload" class="form-control dropzone" id="dropzone">
-              <div class="fallback">
-                  <input name="file" type="file" multiple />
+              <div class="row mt-3">
+                  <div class="col-sm-6 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Generic Name</label>
+                        <input 
+                           type="text" 
+                           class="form-control"                                     
+                           name="generic_name"
+                           >
+                     </div>
+                  </div>
+
+                  <div class="col-sm-6 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Rim Size</label>
+                        <input 
+                           type="number" 
+                           class="form-control"                                     
+                           name="rim_size"
+                           >
+                     </div>
+                  </div>
               </div>
-            </form>
-        </div>
-      
-        <div class="d-flex justify-content-end mt-4">
-            <button type="button" name="button" class="btn btn-light m-0">Back</button>
-            <button type="button" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
-        </div>
-    </div>
-</div>
+
+              <div class="row mt-3">
+                  <div class="col-sm-4 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Product Radius</label>
+                        <input 
+                           type="number" 
+                           class="form-control"                                     
+                           name="product_radius"
+                           >
+                     </div>
+                  </div>
+
+                  <div class="col-sm-4 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Product Width</label>
+                        <input 
+                           type="number" 
+                           class="form-control"                                     
+                           name="product_width"
+                           >
+                     </div>
+                  </div>
+
+                  <div class="col-sm-4 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Product Height</label>
+                        <input 
+                           type="number" 
+                           class="form-control"                                     
+                           name="product_height"
+                           >
+                     </div>
+                  </div>
+              </div>
+
+               
+               <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Meta Title</label>
+                        <input type="text" class="form-control"                                     
+                           name="meta_title"
+                           >
+                     </div>
+                  </div>
+               </div>
+               <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label">Keywords</label>
+                        <input type="text" class="form-control" name="keywords">
+
+                        <input type="hidden" class="images" name="images">
+
+                     </div>
+                  </div>
+               </div>
+               <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                  <label class="form-label">Meta Description</label>
+                     <div class="input-group input-group-outline">
+                        <textarea type="text" class="form-control"                                     
+                           name="meta_description"
+                           rows="8"
+                           >
+                           Shop for Optima AGM Yellow Top Battery DH6 Group Size H6/LN3 800 CCA with confidence at Autofactor.com. Parts are just part of what we do. Get yours online today and pick up in store.
+                        </textarea>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                    <label class="form-label">Description</label>
+
+                     <div class="input-group input-group-outline">
+                        <textarea type="text" class="form-control"                                     
+                           name="description"
+                           rows="8"
+                           >
+                        </textarea>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                    <label class="form-label">Physical Description</label>
+
+                     <div class="input-group input-group-outline">
+                        <textarea type="text" class="form-control"                                     
+                           name="physical_description"
+                           rows="8"
+                           >
+                        </textarea>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-12">
+                  <label class="form-control mb-0"></label>
+                  <div action="/file-upload" class="form-control border dropzone" id="dropzone"></div>
+               </div>
+               <div class="d-flex justify-content-end mt-4">
+                  <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-4">
+         <!--  end card  -->
+         <div class="card mt-4">
+            <div class="card-header p-3 pt-2">
+               <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
+                  <i class="material-symbols-outlined">list</i>
+               </div>
+               <h6 class="mb-0">Attributes</h6>
+            </div>
+            <div class="material-datatables">
+               <div class="well well-sm pb-5" style="height: 250px; background-color: #fff; color: black; overflow: auto;">
+                @foreach($attributes as $attribute)
+                  <div class="parent" value="{{ $attribute->id }}">
+                      
+                      <div class="form-check ">
+                          <input  class="form-check-input" value="{{ $attribute->id }}" type="checkbox" name="selected[]" >
+                          <label  class="custom-control-label" for="">
+                              <span role="button">{{ $attribute->name }}</span> 
+                                <a href="{{ route('attributes.edit',['attribute'=>$attribute->id]) }}">
+                                <i class="fa fa-pencil"></i> Edit</a>
+                          </label>
+                      </div> 
+                      @include('includes.children',['obj'=>$attribute,'space'=>'&nbsp;&nbsp;','model' => 'attributes','url' => 'attribute'])
+                  </div>
+                  @endforeach  
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</form>
 @endsection
 @section('inline-scripts')
 
 if (document.getElementById('choices-gender')) {
-      var gender = document.getElementById('choices-gender');
-      const example = new Choices(gender);
-    }
+   var gender = document.getElementById('choices-gender');
+   const example = new Choices(gender);
+}
+if (document.getElementById('choices-language')) {
+   var language = document.getElementById('choices-language');
+   const example = new Choices(language);
+}
+if (document.getElementById('choices-skills')) {
+   var skills = document.getElementById('choices-skills');
+   const example = new Choices(skills, {
+      delimiter: ',',
+      editItems: true,
+      maxItemCount: 5,
+      removeItemButton: true,
+      addItems: true
+   });
+}
+var parent_id = document.getElementById('parent_id');
+setTimeout(function () {
+   const example = new Choices(parent_id);
+}, 1);
 
-    if (document.getElementById('choices-language')) {
-      var language = document.getElementById('choices-language');
-      const example = new Choices(language);
-    }
-
-    if (document.getElementById('choices-skills')) {
-      var skills = document.getElementById('choices-skills');
-      const example = new Choices(skills, {
-        delimiter: ',',
-        editItems: true,
-        maxItemCount: 5,
-        removeItemButton: true,
-        addItems: true
-      });
-    }
-
-    if (document.getElementById('choices-year')) {
-      var year = document.getElementById('choices-year');
-      setTimeout(function() {
-        const example = new Choices(year);
-      }, 1);
-
-      for (y = 1900; y <= 2020; y++) {
-        var optn = document.createElement("OPTION");
-        optn.text = y;
-        optn.value = y;
-
-        if (y == 2020) {
-          optn.selected = true;
-        }
-
-        year.options.add(optn);
-      }
-    }
-
-    if (document.getElementById('choices-day')) {
-      var day = document.getElementById('choices-day');
-      setTimeout(function() {
-        const example = new Choices(day);
-      }, 1);
-
-
-      for (y = 1; y <= 31; y++) {
-        var optn = document.createElement("OPTION");
-        optn.text = y;
-        optn.value = y;
-
-        if (y == 1) {
-          optn.selected = true;
-        }
-
-        day.options.add(optn);
-      }
-
-    }
-
-    if (document.getElementById('choices-month')) {
-      var month = document.getElementById('choices-month');
-      setTimeout(function() {
-        const example = new Choices(month);
-      }, 1);
-
-      var d = new Date();
-      var monthArray = new Array();
-      monthArray[0] = "Toyota";
-      
-      for (m = 0; m <= 11; m++) {
-        var optn = document.createElement("OPTION");
-        optn.text = monthArray[m];
-        // server side month start from one
-        optn.value = (m + 1);
-        // if june selected
-        if (m == 1) {
-          optn.selected = true;
-        }
-        month.options.add(optn);
-      }
-    }
-
-    function visible() {
-      var elem = document.getElementById('profileVisibility');
-      if (elem) {
-        if (elem.innerHTML == "Switch to visible") {
-          elem.innerHTML = "Switch to invisible"
-        } else {
-          elem.innerHTML = "Switch to visible"
-        }
-      }
-    }
-
-    var openFile = function(event) {
-      var input = event.target;
-
-      // Instantiate FileReader
-      var reader = new FileReader();
-      reader.onload = function() {
-        imageFile = reader.result;
-
-        document.getElementById("imageChange").innerHTML = '<img width="200" src="' + imageFile + '" class="rounded-circle w-100 shadow" />';
-      };
-      reader.readAsDataURL(input.files[0]);
-    };
-
-
-    if (document.getElementById('editor')) {
-      var quill = new Quill('#editor', {
-        theme: 'snow' // Specify theme in configuration
-      });
-    }
-
-    if (document.getElementById('choices-multiple-remove-button')) {
-      var element = document.getElementById('choices-multiple-remove-button');
-      const example = new Choices(element, {
-        removeItemButton: true
-      });
-
-      example.setChoices(
-        [{
-            value: 'One',
-            label: 'Label One',
-            disabled: true
-          },
-          {
-            value: 'Two',
-            label: 'Label Two',
-            selected: true
-          },
-          {
-            value: 'Three',
-            label: 'Label Three'
-          },
-        ],
-        'value',
-        'label',
-        false,
-      );
-    }
-
-    if (document.querySelector('.datetimepicker')) {
+if (document.querySelector('.datetimepicker')) {
       flatpickr('.datetimepicker', {
         allowInput: true
       }); // flatpickr
     }
 
-    Dropzone.autoDiscover = false;
-    var drop = document.getElementById('dropzone')
-    var myDropzone = new Dropzone(drop, {
-      url: "/file/post",
-      addRemoveLinks: true
+Dropzone.autoDiscover = false;
+var drop = document.getElementById('dropzone')
+let imgs = []
 
-    });
-
-
+var myDropzone = new Dropzone(drop, {
+   url: "/admin/upload/image?folder=products",
+   addRemoveLinks: true,
+   acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
+   paramName: 'file',
+   maxFiles: 10,
+   sending: function(file, xhr, formData) {
+     formData.append("_token", "{{ csrf_token() }}");
+   },
+  success(file, res, formData) {
+         imgs.push(res.path)
+         console.log(imgs)
+     $('.images').val(imgs)
+  },
+   headers: {
+      'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
+   }
+});
 @stop
-
-
-
-
-
-
-

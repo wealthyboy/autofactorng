@@ -6,7 +6,10 @@ mix.js("resources/js/app.js", "public/js")
     .sourceMaps();
 
 mix.styles(
-    ["resources/admin_assets/css/material-dashboard.min-v=3.0.3.css"],
+    [
+        "resources/admin_assets/css/material-dashboard.min-v=3.0.3.css",
+        "resources/admin_assets/css/custom.css"
+    ],
     "public/css/admin.css"
 );
 

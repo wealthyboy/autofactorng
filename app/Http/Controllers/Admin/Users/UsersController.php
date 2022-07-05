@@ -7,14 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Http\Flash;
+use App\Models\Permission;
 use App\Models\State;
 use App\Models\User;
-
-
-
 use Illuminate\Support\Facades\Validator;
-use App\Permission;
-
 
 class UsersController extends Controller
 {
@@ -36,11 +32,9 @@ class UsersController extends Controller
 	/* display all users in the database */
 	public function edit(Request $request,$id){
 		User::canTakeAction(1);
-
 		$user = User::find($id);
-		$states = State::all();
 		$permissions =\DB::table('permissions')->get();
-	    return view('admin.users.edit', compact('states','permissions','user'));  
+	    return view('admin.users.edit', compact('permissions','user'));  
 	}
 	
 
@@ -58,10 +52,9 @@ class UsersController extends Controller
 
     
 	public function create(Request $request){
-		User::canTakeAction(1);
-		$states = State::all();
+		//User::canTakeAction(1);
 		$permissions =Permission::get(); 
-		return view('admin.auth.register',compact('permissions','states')); 	
+		return view('admin.auth.register',compact('permissions')); 	
     }
 	
 
@@ -70,7 +63,7 @@ class UsersController extends Controller
 		 
 		$this->validate($request, [
 			'first_name' => 'required|max:255',
-			'email'        => 'required|email|max:255',
+			'email'      => 'required|email|max:255',
 		]);
 
 		$user  = User::find($id);

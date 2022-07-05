@@ -25,7 +25,9 @@
             <div class="card-body px-0 pb-0">
             <div class="table-responsive">
                 <form action="{{ route('brands.destroy',['brand' => 1]) }}" method="post" enctype="multipart/form-data" id="form-brand">
-                    <table class="table table-flush" id="products-list">
+                    @csrf
+                    @method('DELETE')
+                    <table class="table table-flush" id="brand-list">
                         <thead class="thead-light">
                             <tr>
                             <th class="text-left">
@@ -47,21 +49,19 @@
                             <tr>
                                 <td>
                                     <div class="form-check  p-3 pb-0">
-                                        <input class="form-check-input" type="checkbox" id="customCheck5">
+                                        <input class="form-check-input" value="{{ $brand->id }}" name="selected[]" type="checkbox" id="customCheck5">
                                     </div>
                                 </td>
                                 <td>
                                     <div class="d-flex">
-
-                                        <img class="w-10 ms-3" src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/fendi-coat.jpg" alt="fendi">
+                                        <img class="w-10 ms-3" src="{{ $brand->image }}" alt="fendi">
                                         <h6 class="ms-3 my-auto"> {{ $brand->name }}</h6>
                                     </div>
                                 </td>
                             
                                 <td class="text-sm">
-                                  
                                     <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Delete product">
-                                    <i class="material-symbols-outlined text-secondary position-relative text-lg">delete</i>
+                                       <span class="ms-3 my-auto"> Edit</span>
                                     </a>
                                 </td>
                             </tr>

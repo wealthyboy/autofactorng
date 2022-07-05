@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Admin\Shipping;
 
 use Illuminate\Http\Request;
-use App\Shipping;
+use App\Models\Shipping;
+use App\Models\Activity;
+use App\Models\User;
+use App\Models\Location;
 use App\Http\Controllers\Controller;
-
-use App\Activity;
 use App\Http\Helper;
-use App\User;
-
-use App\Location;
 use Illuminate\Validation\Rule;
 
 
@@ -34,9 +32,9 @@ class ShippingController extends Controller
         //
 
         //$s = Shipping::find(274)->delete();
-        $shippings = Shipping::parents()->get();
+       // $shippings = Shipping::parents()->get();
         $locations = Location::parents()->get();
-        return view('admin.shipping.index',compact('locations','shippings'));
+        return view('admin.shipping.index',compact('locations'));
     }
 
     /**

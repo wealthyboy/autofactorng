@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::group(['prefix' => 'admin'], function() {
+Route::group(['prefix' => 'admin'], function(){
 
     Route::get('/','Admin\HomeCtrl@index')->name('admin_home');
     Route::get('/maintainance/mode', 'Admin\Live\LiveController@index')->name('maintainance');
@@ -23,14 +23,27 @@ Route::group(['prefix' => 'admin'], function() {
     Route::get('activities','Admin\Activity\ActivityController@index');
     Route::get('reports','Admin\Account\AccountsController@index');
     Route::get('account/filter','Admin\Account\AccountsController@index')->name('filter_sales');
-    Route::get('customers',  'Admin\Users\UsersController@customers')->name('customers');
+    Route::resource('customers', 'Admin\Customers\CustomersController',['name'=>'customers']);
+    Route::get('orders/invoice/{id}','Admin\Orders\OrdersController@invoice')->name('order.invoice');
+    Route::get('orders/dispatch/{id}','Admin\Orders\OrdersController@dispatchNote')->name('order.dispatch.note');
+    
     Route::resource('permissions','Admin\Permission\PermissionsController',['names'=>'permissions']);
+
+    Route::post('upload/image','Admin\Image\ImagesController@store');
+    Route::post('delete/image','Admin\Image\ImagesController@undo');
+
+    Route::post('upload','Admin\Uploads\UploadsController@store');
+    Route::get('delete/upload','Admin\Uploads\UploadsController@destroy');
 
 
     Route::resource('users',  'Admin\Users\UsersController',['names'=>'admin.users']);
+    
 
     Route::resource('banners', 'Admin\Design\BannersController',['names' =>'banners']);
     Route::resource('pages','Information\InformationController',['name' => 'pages']);
+    Route::resource('settings','Admin\Settings\SettingsController',['names' => 'settings']);
+
+
 
 
 
@@ -47,7 +60,6 @@ Route::group(['prefix' => 'admin'], function() {
     Route::resource('orders','Admin\Orders\OrdersController',['names' => 'admin.orders']);
     Route::resource('brands', 'Admin\Brand\BrandsController',['names' =>'brands']);
 
-
 });
 
 
@@ -59,3 +71,7 @@ Route::get('/subscribe',  [App\Http\Controllers\Subscribe\SubscribeController::c
 Route::get('/checkout',   [App\Http\Controllers\Checkout\CheckoutController::class, 'index'])->name('checkout');
 Route::get('/buy-now-pay-later',   [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index'])->name('buy');
 
+Route::post('webhook/payment',     'WebHook\WebHookController@payment');
+Route::post('contact/store',        'Contact\ContactController@store');
+
+Route::post('webhook/github',      'WebHook\WebHookController@gitHub');

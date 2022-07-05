@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin\Image;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Image;
-use App\SystemSetting;
+use App\Models\Image;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -13,21 +13,13 @@ class ImagesController extends Controller
 {
     protected $settings;
 
-    protected $folders = ['products','attributes','category','reviews','banners','blog','uploads'];
+    protected $folders = ['products','attributes','category','reviews','banners','blog','uploads','brands'];
     
     public function __construct()
     {	  
-	  $this->settings =  SystemSetting::first();
+	  $this->settings =  Setting::first();
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        
-    }
+    
 
    
 
@@ -48,27 +40,8 @@ class ImagesController extends Controller
         return response()->json(['path'=>$path]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -124,11 +97,10 @@ class ImagesController extends Controller
 
             $path = $request->file('file')->store('images/'.$request->folder);
             $file = basename($path);
-            $path =  public_path('images/'. $request->folder .'/'.$file);
-            
+            $path = public_path('images/'. $request->folder .'/'.$file);
             if ($request->folder == 'products'){
 
-                $img  = \Image::make($path)->fit($this->settings->products_items_size_w, $this->settings->products_items_size_h)->save(
+                $img  = \Image::make($path)->fit(400, 400)->save(
                     public_path('images/products/m/'.$file)
                 );
                 $canvas = \Image::canvas(106, 145);

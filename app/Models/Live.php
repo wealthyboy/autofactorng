@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Live extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['make_live'];
+
 }

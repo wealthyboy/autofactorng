@@ -3,80 +3,55 @@
 @section('content')
 
 <div class="row">
-        <div class="col-md-10">
-            @include('admin.errors.errors')
-            <div class="card">
-                <form id="" action="{{ route('permissions.store') }}" method="post">
-                    @csrf
-                    <div class="card-content">
-                        <h4 class="card-title">Permissions</h4>
-                        <div class="form-group label-floating">
-                            <label class="control-label">
-                                Permissions
-                                <small>*</small>
-                            </label>
-                            <input class="form-control"
-                                   name="name"
-                                   type="text"
-                                   required="true"
-                             />
-                        </div>
-
-                            <div class="checkbox ">
-                                <label>
-                                    <input value="1" type="checkbox" name="code[]" >
-                                    Account
-                                    </label>
-                            </div>
-
-                            <div class="checkbox ">
-                                <label>
-                                    <input value="2" type="checkbox" name="code[]">
-                                    Create 
-                                    </label>
-                            </div>
-                            
-                            
-
-                            <div class="checkbox">
-                                <label>
-                                    <input value="3"  type="checkbox" name="code[]"  checked="checked">
-                                    Read
-                                </label>
-                            </div>
-                            
-                            <div class="checkbox ">
-                                <label>
-                                    <input value="4" type="checkbox" name="code[]" >
-                                    Update
-                                </label>
-                            </div>
-                            
-                            <div class="checkbox ">
-                                <label>
-                                    <input  value="5" type="checkbox" name="code[]" >
-                                    Delete
-                                </label>
-                            </div>
-                            
-                        <div class="form-footer text-right">
-                            <button type="submit" class="btn btn-rose btn-round  btn-fill">Submit</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        </div>
+   <div class="col-md-6">
+      <div class="card mt-4" id="password">
+         <div class="card-header">
+            <h5>Add Permission</h5>
+         </div>
+         <div class="card-body pt-0">
+            <form id="" action="{{ route('permissions.store') }}" method="post">
+               @csrf
+               <div class="input-group input-group-outline">
+                  <label class="form-label">Permissions</label>
+                  <input type="text" class="form-control"                                     
+                     name="name"
+                     >
+               </div>
+               <div class="mt-3">
+                  @foreach($permissions as $key => $value)
+                  <div class="form-check pl-0 p-0">
+                     <label  class="custom-control-label" for="{{ $value }}">
+                     <input   class="form-check-input" name="code[]" value="{{ $value }}"  id="{{ $value }}" type="checkbox">
+                     <span role="button">{{ $key }}</span> 
+                     </label>
+                  </div>
+                  @endforeach
+               </div>
+               <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Save</button>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
 
 
 @endsection
 
-@section('pagespecificscripts')
-@stop
 @section('inline-scripts')
-$(document).ready(function() {
-});
+Dropzone.autoDiscover = false;
+    var drop = document.getElementById('dropzone')
+    var myDropzone = new Dropzone(drop, {
+      url: "/file/post",
+      addRemoveLinks: true,
+      muliple: false
+    });
 @stop
+
+
+
+
+
+
 
 
 

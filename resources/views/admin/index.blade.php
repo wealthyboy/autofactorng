@@ -11,7 +11,7 @@
                <div class="col-7 text-start">
                   <p class="text-sm mb-1 text-capitalize font-weight-bold">Sales</p>
                   <h5 class="font-weight-bolder mb-0">
-                     ₦130,220
+                     ₦0
                   </h5>
                </div>
                <div class="col-5">
@@ -37,7 +37,7 @@
                <div class="col-7 text-start">
                   <p class="text-sm mb-1 text-capitalize font-weight-bold">Customers</p>
                   <h5 class="font-weight-bolder mb-0">
-                     3.200
+                     0
                   </h5>
                </div>
                <div class="col-5">
@@ -63,7 +63,7 @@
                <div class="col-7 text-start">
                   <p class="text-sm mb-1 text-capitalize font-weight-bold">Avg. Revenue Today</p>
                   <h5 class="font-weight-bolder mb-0">
-                  ₦171.200
+                  ₦0
                   </h5>
                </div>
                <div class="col-5">

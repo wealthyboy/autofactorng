@@ -4,16 +4,20 @@ namespace App\Http\Controllers\Admin\Attributes;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Activity;
-use App\Http\Helper;
-use App\User;
-use App\Attribute;
+use App\Models\Activity;
+use App\Models\AttributeYear;
+
+use App\Models\User;
+use App\Models\Attribute;
 use Illuminate\Validation\Rule;
+use App\Http\Helper;
+
 
 class AttributesController extends Controller
 {
     public function __construct()
     {
+        
     }
     
     
@@ -24,8 +28,9 @@ class AttributesController extends Controller
      */
     public function index()
     {
-        $product_attributes = Attribute::parents()->get(); 
-        return view('admin.product_attributes.index',compact('product_attributes'));
+        $attributes = Attribute::parents()->get(); 
+        $types = Attribute::$types;
+        return view('admin.attributes.index',compact('attributes','types'));
     }
 
 
@@ -62,30 +67,29 @@ class AttributesController extends Controller
                 ],
             ]);
         }
-        $product_attribute = new Attribute;
-        $product_attribute->name = $request->name;
-        $product_attribute->sort_order = $request->sort_order;
-        $product_attribute->color_code = $request->color_code;
-        $product_attribute->image = $request->image;
-        $product_attribute->slug = str_slug($request->name, '_');
-        $product_attribute->parent_id  = $request->parent_id ? $request->parent_id : null;
-        $product_attribute->type  = $request->type ? $request->type : null;
-        $product_attribute->save();
-        (new Activity)->Log("Created a new attribute called {$request->name}");
+        $attribute = new Attribute;
+        $attribute->name = $request->name;
+        $attribute->sort_order = $request->sort_order;
+        $attribute->slug = str_slug($request->name, '_');
+        $attribute->parent_id  = $request->parent_id ? $request->parent_id : null;
+        $attribute->type  = $request->type;
+        $attribute->save();
+
+        if (!empty($request->years)) {
+            foreach ($request->years as $key => $year) {
+                $attribute_year =  new AttributeYear;
+                $attribute_year->year = $year;
+                $attribute_year->attribute_id = $attribute->id;
+                $attribute_year->save();
+            }
+           
+        }
+
+        //(new Activity)->Log("Created a new attribute called {$request->name}");
         return redirect()->back();
     }
 
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -95,10 +99,12 @@ class AttributesController extends Controller
      */
     public function edit($id)
     {
-        User::canTakeAction(4);
+       // User::canTakeAction(4);
         $attr = Attribute::find($id);
-        $product_attributes = Attribute::parents()->get();       
-        return view('admin.product_attributes.edit',compact('product_attributes','attr'));
+        $attributes = Attribute::parents()->get();   
+        $types = Attribute::$types;
+        $years =  $attr->attribute_years->pluck('year')->toArray();    
+        return view('admin.attributes.edit',compact('attributes','attr','types','years'));
     }
 
     /**
@@ -109,36 +115,45 @@ class AttributesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
-    {
-        $product_attribute = Attribute::find($id);
-        if( $request->filled('parent_id') ) {
-            $this->validate($request,[
-                'name'=>[
-                    'required',
-                        Rule::unique('attributes')->where(function ($query) use ($request) {
-                        $query->where('parent_id', '=', $request->parent_id);
-                        })->ignore($id)
-                    ],
-            ]);
-        } 
-        $this->validate($request,[
-            'name'=>[
-                'required',
-                    Rule::unique('attributes')->ignore($id) 
-                ],
-        ]);
+    {   
 
-        $product_attribute->name=$request->name;
-        $product_attribute->sort_order = $request->sort_order;
-        $product_attribute->parent_id  = $request->parent_id ? $request->parent_id : null;
-        $product_attribute->color_code = $request->color_code;
-        $product_attribute->image = $request->image;
-        $product_attribute->slug = str_slug($request->name, '_');
+        $attribute = Attribute::find($id);
+        // if( $request->filled('parent_id') ) {
+        //     $this->validate($request,[
+        //         'name'=>[
+        //             'required',
+        //                 Rule::unique('attributes')->where(function ($query) use ($request) {
+        //                  $query->where('parent_id', '=', $request->parent_id);
+        //                 })->ignore($id)
+        //             ],
+        //     ]);
+        // } 
+        // $this->validate($request,[
+        //     'name'=>[
+        //         'required',
+        //             Rule::unique('attributes')->ignore($id) 
+        //         ],
+        // ]);
 
-        $product_attribute->type  = $request->type ? $request->type : null;
-        $product_attribute->save();
+        $attribute->name = $request->name;
+        $attribute->sort_order = $request->sort_order;
+        $attribute->slug = str_slug($request->name, '_');
+        $attribute->parent_id  = $request->parent_id ? $request->parent_id : null;
+        $attribute->type  = $request->type;
+        $attribute->save();
+
+        $years =  $attribute->attribute_years()->delete();    
+        if (!empty($request->years)) {
+            foreach ($request->years as $key => $year) {
+                $attribute_year =  new AttributeYear;
+                $attribute_year->year = $year;
+                $attribute_year->attribute_id = $attribute->id;
+                $attribute_year->save();
+            }
+           
+        }
         //Log Activity
-        (new Activity)->Log("Updated  Attribute {$request->name} ");
+       // (new Activity)->Log("Updated  Attribute {$request->name} ");
         return redirect()->action('Admin\Attributes\AttributesController@index');
     
     }

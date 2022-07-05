@@ -17,11 +17,16 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
-            $table->decimal('price',12,2);
+            $table->biginteger('price');
             $table->integer('brand_id')->nullable();
             $table->integer('make')->nullable();
             $table->string('model')->nullable();
+            $table->string('generic_name')->nullable();
+            $table->string('rim_size')->nullable();
+            $table->string('radius')->nullable();
             $table->bigInteger('year')->nullable();
+            $table->bigInteger('year_from')->nullable();
+            $table->bigInteger('year_to')->nullable();
             $table->string('keywords')->nullable();
             $table->string('title')->nullable();
             $table->text('meta_description')->nullable();

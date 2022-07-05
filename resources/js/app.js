@@ -49,7 +49,15 @@ const app = new Vue({
     el: "#app",
 });
 
-$(".menu-nav-btn").on("click", function () {
+$().ready(function() {
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+    });
+});
+
+$(".menu-nav-btn").on("click", function() {
     let open = $(".menu-open");
     let close = $(".menu-close");
 
@@ -64,7 +72,7 @@ $(".menu-nav-btn").on("click", function () {
     }
 });
 
-$(".overlay").on("click", function () {
+$(".overlay").on("click", function() {
     let self = $(this);
     self.addClass("d-none");
     let open = $(".menu-open");
@@ -72,6 +80,6 @@ $(".overlay").on("click", function () {
     $(".menu-close").addClass("d-none");
 });
 
-$("#buy_now_pay_later").on("click", function () {
+$("#buy_now_pay_later").on("click", function() {
     $(".buy_now_pay_later").removeClass("d-none");
 });

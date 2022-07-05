@@ -17,10 +17,14 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->nullable();
+            $table->integer('sort_order')->nullable();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->string('keywords')->nullable();
             $table->string('title')->nullable();
+            $table->string('banner_image')->nullable();
+            $table->string('text_color')->nullable();
+            $table->string('image_custom_link')->nullable();
             $table->text('meta_description')->nullable();
             $table->string('link')->nullable();
             $table->boolean('is_active')->nullable();

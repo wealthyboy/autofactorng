@@ -38,7 +38,7 @@ class OrdersController extends Controller{
 
     public function invoice($id){
         $order     =  Order::find($id);
-        $system_settings = SystemSetting::first();
+        $system_settings = Setting::first();
 		$sub_total = $this->subTotal($order);
         return view('admin.orders.invoice',compact('sub_total','order','system_settings'));
     }

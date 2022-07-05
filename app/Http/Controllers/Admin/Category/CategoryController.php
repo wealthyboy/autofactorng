@@ -31,9 +31,7 @@ class CategoryController extends Controller
      */
     public function index()
     {    
-        
-        $categories = Category::get();
-        //$product_attributes = Attribute::parents()->get();        
+        $categories = Category::parents()->get();
         return view('admin.category.index',compact('categories'));
     }
 
@@ -44,7 +42,7 @@ class CategoryController extends Controller
      */
     public function create()
     {   
-        User::canTakeAction(2);
+       //s User::canTakeAction(2);
         return view('admin.category.create');
     }
 
@@ -102,7 +100,7 @@ class CategoryController extends Controller
         $category->description=$request->description;
         $category->parent_id  = $request->parent_id;
         $category->save();
-        (new Activity)->Log("Created a new category called {$request->name}");
+       // (new Activity)->Log("Created a new category called {$request->name}");
         return redirect()->back();
     }
 
@@ -140,11 +138,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        User::canTakeAction(4);
+       // User::canTakeAction(4);
         $cat = Category::find($id);
         $categories = Category::parents()->get();
-        $product_attributes = Attribute::parents()->get();        
-        return view('admin.category.edit',compact('cat','product_attributes','categories'));
+        return view('admin.category.edit',compact('cat','categories'));
     }
 
     /**
@@ -200,7 +197,7 @@ class CategoryController extends Controller
         $category->slug=$slug;
         $category->save();    
         //Log Activity
-        (new Activity)->Log("Updated  Category {$request->name} ");
+       // (new Activity)->Log("Updated  Category {$request->name} ");
 
         return redirect()->action('Admin\Category\CategoryController@index');
     }

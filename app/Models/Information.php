@@ -4,8 +4,34 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasChildren;
+use App\Traits\ImageFiles;
 
 class Information extends Model
 {
-    use HasFactory;
+
+    use HasFactory, HasChildren,ImageFiles;
+
+	
+    protected $fillable=['user_id','title','description'];
+
+    public $folder = 'blog';
+    
+    public $appends = [
+        'link',		
+        'image_m',
+    ];
+	
+	protected $table = 'information';
+
+    public function getLinkAttribute()
+    {
+        return $this->custom_link !== null ? $this->custom_link : '/pages/'.$this->slug;
+    }
+
+    public function comments() {
+        return $this->morphMany(Comment::class,'commentable');
+    }
 }
+
+

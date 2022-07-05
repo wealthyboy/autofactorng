@@ -1,123 +1,109 @@
-
 @extends('admin.layouts.app')
-
 @section('content')
+<div class="row">
+  <div class="col-md-7">  
+    <div class="card">
+        <div class="card-header p-3 pt-2">
+          <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
+              <i class="material-symbols-outlined">list</i>
+          </div>
+          <h6 class="mb-0">Edit </h6>
+        </div>
+        <div class="card-body pt-0">
+        <form  action="{{ route('category.update',['category' => $cat->id ]) }}" method="post">
 
-   <div class="row">
-   <form  action="{{ route('category.update',['category' => $cat->id ]) }}" method="post">
-       
-        <div class="col-md-8">
-            @include('errors.errors')
-            <div class="card">
-                   @csrf
-                   @method('PATCH')
-                    <div class="card-content">
-                        <h4 class="card-title">Edit Category</h4>
-                        <div class="form-group label-floating">
-                            <label class="control-label">
-                              Name
-                                <small>*</small>
-                            </label>
-                            <input class="form-control"
-                                   name="name"
-                                   type="text"
-                                   value="{{ $cat->name }}"
-                                   required="true"
-                             />
-                        </div>
+            @csrf
+            @method('PATCH')
+          <div class="row">
+              <div class="col-sm-12 col-12">
+                <div class="input-group input-group-outline">
+                  <label class="form-label"> Name</label>
+                    <input 
+                        class="form-control"
+                        name="name"
+                        type="text"
+                        value="{{ $cat->name }}"
+                        required="true"
+                    />
+                </div>
+              </div>
+              
+          </div>
+          <div class="row mt-3">
+              <div class="col-sm-12 col-12">
+                <div class="input-group input-group-outline">
+                  <label class="form-label"> Sort order</label>
+                 
+                    <input 
+                        class="form-control"
+                        name="sort_order"
+                        type="text"
+                        value="{{ $cat->sort_order }}"
+                    />
+                </div>
+              </div>
+          </div>
 
-                        <div class="form-group label-floating">
-                            <label class="control-label">
-                              Sort Order
-                            </label>
-                            <input class="form-control"
-                                   name="sort_order"
-                                   type="text"
-                                   value="{{ $cat->sort_order }}"
-                             />
-                        </div>
+          <div class="row mt-3">
+              <div class="col-sm-12 col-12">
+                <div class="input-group input-group-outline">
+                    <label class="form-label"> Custom  Link</label>
+                    <input type="text" 
+                        class="form-control"                                     
+                        name="custom_link"
+                        type="text"
+                        value="{{ $cat->link }}"
+                      >
+                </div>
+              </div>
+          </div>
 
-                        <div class="form-group label-floating">
-                            <label class="control-label">
-                                Image link
-                            </label>
-                            <input class="form-control"
-                                   name="image_custom_link"
-                                   type="text"
-                                   value="{{ $cat->image_custom_link }}"      
-                            />
-                        </div>
-
-
-                        <div class="form-group label-floating">
-                            <label class="control-label">
-                                Custom link
-                            </label>
-                            <input class="form-control"
-                                name="link"
-                                type="text"
-                                value="{{ $cat->link }}"      
-  
-                            />
-                        </div>
-
-                        <div class="form-group label-floating">
-                            <label class="control-label">
-                                Text color
-                            </label>
-                            <input class="form-control"
-                                name="text_color"
-                                type="text"  
-                                value="{{ $cat->text_color }}"      
-
-                            />
-                        </div>
-
-                        <div class="form-group label-floating">
-                            <label class="control-label">
-                                Meta Title
-                            </label>
-                            <input class="form-control"
-                                name="title"
-                                type="text" 
-                                value="{{ $cat->title }}" 
-                            />
-                        </div>
-
-                        <div class="form-group label-floating">
-                            <label class="control-label">
-                                Keywords
-                            </label>
-                            <input class="form-control"
-                                name="keywords"
-                                type="text" 
-                                value="{{ $cat->keywords }}" 
-                            />
-                        </div>
+          <div class="row mt-3">
+              <div class="col-sm-12 col-12">
+                <div class="input-group input-group-outline">
+                  <label class="form-label"> Meta Title</label>
+                  <input type="text" class="form-control"                                     
+                      name="meta_title"
+                      >
+                </div>
+              </div>
+          </div>
 
 
-                        <div class="form-group">
-                            <label>Meta Description</label>
-                            <div class="form-group ">
-                                <label class="control-label"> </label>
-                                <textarea name="meta_description" id="description" class="form-control"  rows="7">{{ $cat->meta_description }}</textarea>
-                            </div>
-                        </div>
+          <div class="row mt-3">
+              <div class="col-sm-12 col-12">
+                <div class="input-group input-group-outline">
+                  <label class="form-label">Keywords</label>
+                  <input type="text" class="form-control"                                     
+                        name="keywords"
+                        type="text" 
+                        value="{{ $cat->keywords }}"
+                      >
+                </div>
+              </div>
+          </div>
 
-                        <div class="form-group">
-                            <label>Description</label>
-                            <div class="form-group ">
-                                <label class="control-label"> </label>
-                                <textarea name="description" 
-                                id="description" class="form-control"  rows="7">{{ $cat->description }}</textarea>
-                            </div>
-                        </div>
+         
 
-
-                        <div class="form-group ">
-                            <label class="control-label"></label>
-                            <select name="parent_id" class="form-control">
-                            <option  value="">--Choose One--</option>
+          <div class="row mt-3">
+              <div class="col-sm-12 col-12">
+                <div class="input-group input-group-outline">
+                  <label class="form-label">Description</label>
+                  <textarea type="text" class="form-control"                                     
+                      name="meta_description"
+                      rows="8"
+                      onfocus="focused(this)" onfocusout="defocused(this)"
+                    >{{ $cat->description }}</textarea>
+                </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="">
+                <div class="row">
+                    <div class="col-sm-12 col-5">
+                      <label class="form-label mt-4 ms-0">Parent </label>
+                      <select class="form-control" name="parent_id" id="parent_id">
+                           <option  value="">--Choose One--</option>
                                 @foreach($categories as $category)
                                    @if($cat->parent_id ==  $category->id )
                                         <option class="" value="{{ $category->id }}" selected="selected">{{ $category->name }} </option>                                        
@@ -128,75 +114,66 @@
                                         @include('includes.children_options',['model' => $cat,'obj'=>$category,'space'=>'&nbsp;&nbsp;'])
                                     @endif
                                 @endforeach
-                                
-                            </select>
-                        </div>
-
-
-                        <h4 class="info-text">Upload Image Here</h4>
-                            <div class="">
-                                <div id="m_image"  class="uploadloaded_image text-center mb-3">
-                                    <div class="upload-text {{ $cat->image !== null  ?  'hide' : '' }}"> 
-                                         
-                                            <a class="activate-file" href="#">
-                                            <img src="{{ asset('backend/img/upload_icon.png') }}">
-                                            <b>Add Image </b> 
-                                            </a>
-                                    </div>
-                                    <div id="remove_image" class="remove_image {{ $cat->image !== null  ?  '' : 'hide' }}">
-                                        <a class="delete_image" data-id="{{ $cat->id }}" href="#">Remove</a> 
-                                    </div>
-
-                                    <input accept="image/*"  class="upload_input" data-msg="Upload  your image" type="file" id="file_upload_input" name="category_image"  />
-                                    <input type="hidden"  class="file_upload_input  stored_image" value="{{ $cat->image }}" name="image">
-                                    @if ( $cat->image )
-                                       <img id="stored_image" class="img-thumnail" src="{{ $cat->image }}" alt="">
-                                    @endif
-                                    
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-12">
-                                <legend></legend>
-                                <div class="togglebutton">
-                                    <label>
-                                        <input name="is_active"  value="1" type="checkbox"  {{ $cat->is_active ? 'checked' : ''}}>
-                                        Enable/Disable
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="form-footer text-right">
-                                <button type="submit" class="btn btn-rose btn-round  btn-fill">Submit</button>
-                            </div>
+                      </select>
                     </div>
-            </div>
-        </div>
-       
-   
-    </form>
+                   
+                </div>
+              </div>
+          </div>
 
+          <div class="col-12">
+            <label class="form-control mb-0"></label>
+            <div action="/file-upload" class="form-control border dropzone" id="dropzone"></div>
+            </div>
+          
+          
+          
+          
+            <div class="d-flex justify-content-end mt-4">
+                <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
+            </div>
+          </form>
+        </div>
+    </div>
+  </div>
+
+ 
 </div>
 @endsection
-
 @section('inline-scripts')
-$(document).ready(function() {
-	let activateFileExplorer = 'a.activate-file';
-    let delete_image = 'a.delete_image';
-    var main_file = $("input#file_upload_input");
-    Img.initUploadImage({
-        url:'/admin/upload/image?folder=category',
-        activator: activateFileExplorer,
-        inputFile: main_file,
-    });
+if (document.getElementById('choices-gender')) {
+   var gender = document.getElementById('choices-gender');
+   const example = new Choices(gender);
+}
+if (document.getElementById('choices-language')) {
+   var language = document.getElementById('choices-language');
+   const example = new Choices(language);
+}
+if (document.getElementById('choices-skills')) {
+   var skills = document.getElementById('choices-skills');
+   const example = new Choices(skills, {
+      delimiter: ',',
+      editItems: true,
+      maxItemCount: 5,
+      removeItemButton: true,
+      addItems: true
+   });
+}
+   var parent_id = document.getElementById('parent_id');
+   setTimeout(function () {
+      const example = new Choices(parent_id);
+   }, 1);
+   
 
-    Img.deleteImage({
-        url:'/admin/category/delete/image',
-        activator: delete_image,
-        inputFile: main_file,
 
-    });
+Dropzone.autoDiscover = false;
+var drop = document.getElementById('dropzone')
+var myDropzone = new Dropzone(drop, {
+   url: "/admin/upload/image?folder=category",
+   addRemoveLinks: true,
+   uploadMultiple: false,
+   maxFiles: 1,
+
 });
 @stop
 

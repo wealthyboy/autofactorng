@@ -50,12 +50,9 @@ class VouchersController  extends Controller
 
 		]);
 		$voucher->code     = $request->code;
-		$voucher->user_id  = \Auth::user()->id;
+		$voucher->user_id  = optional(\Auth::user())->id;
 		$voucher->amount   = $request->discount;
 		$voucher->type   = $request->type;
-		$voucher->full_name   = $request->full_name;
-
-
 		$voucher->expires  = Helper::getFormatedDate($request->expiry);
 		$voucher->from_value = $request->has('from_value') ? $request->from_value : null;
 		$voucher->category_id = $request->has('category') ? $request->category : null;
@@ -97,11 +94,10 @@ class VouchersController  extends Controller
 
 
 		$coupon->code     =  $request->code; 
-		$coupon->user_id  = \Auth::user()->id;
+		$coupon->user_id  = optional(\Auth::user())->id;
 		$coupon->amount   = $request->discount;
 		$coupon->type     = $request->type;
 		$coupon->expires  = Helper::getFormatedDate($request->expiry);
-		$coupon->full_name   = $request->full_name;
 
 		$coupon->from_value = $request->has('from_value') ? $request->from_value : null;
 		//$coupon->category_id = $request->has('category') ? $request->category : null;
