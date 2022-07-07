@@ -26,7 +26,8 @@ Route::group(['prefix' => 'admin'], function(){
     Route::resource('customers', 'Admin\Customers\CustomersController',['name'=>'customers']);
     Route::get('orders/invoice/{id}','Admin\Orders\OrdersController@invoice')->name('order.invoice');
     Route::get('orders/dispatch/{id}','Admin\Orders\OrdersController@dispatchNote')->name('order.dispatch.note');
-    
+    //Route::post('register','Admin\Users\UsersController@create')->name('create.admin.users');
+
     Route::resource('permissions','Admin\Permission\PermissionsController',['names'=>'permissions']);
 
     Route::post('upload/image','Admin\Image\ImagesController@store');

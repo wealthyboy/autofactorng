@@ -63,7 +63,7 @@ class PermissionsController extends Controller
         $permission->code=implode('',$request->code);
         $permission->save();
         // Log Activity
-        $activity->Log(" Created new permission called {$request->name}");
+       // $activity->Log(" Created new permission called {$request->name}");
         return redirect()->route('permissions.index');
         
 

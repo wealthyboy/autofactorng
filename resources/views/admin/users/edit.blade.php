@@ -36,7 +36,6 @@
                   <label class="form-label mt-4 ms-0"> </label>
                   <select class="form-control" name="permission_id" id="">
                      <option  value="">--Choose Permission--</option>
-                     @foreach($permissions as $permission )
                      <option value="">Select Permission</option>
                      @foreach($permissions as $permission )
                      @if(null !== $user->users_permission && $permission->id == $user->users_permission->permission->id)
@@ -44,7 +43,6 @@
                      @else
                      <option value="{{ $permission->id }}">{{ $permission->name }}</option>
                      @endif 
-                     @endforeach
                      @endforeach
                   </select>
                </div>

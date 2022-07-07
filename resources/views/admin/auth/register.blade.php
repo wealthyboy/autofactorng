@@ -19,7 +19,7 @@
                   <div class="col-sm-6 col-4">
                      <div class="input-group input-group-outline ">
                         <label class="form-label">Last Name</label>
-                        <input type="number"  name="last_name" class="form-control" placeholder="">
+                        <input type="text"  name="last_name" class="form-control" placeholder="">
                      </div>
                   </div>
                </div>

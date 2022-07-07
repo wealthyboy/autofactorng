@@ -97,6 +97,7 @@
                            type="number" 
                            class="form-control"                                     
                            name="price"
+                           required
                            >
                      </div>
                   </div>

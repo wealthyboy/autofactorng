@@ -11,13 +11,13 @@ use App\Http\Helper;
 trait ImageFiles 
 {
 
-    protected $setting;
+    //protected $setting;
 
-    public function __construct() {
+    //public function __construct() {
 
-        $this->setting = Setting::first();
+       //$this->setting = Setting::first();
         
-    }
+    //}
 
 
     public function getImageToShowAttribute()

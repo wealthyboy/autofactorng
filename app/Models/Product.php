@@ -11,7 +11,6 @@ class Product extends Model
     use HasFactory, ImageFiles;
 
     protected $fillable = [
-
         'name',
         'slug',
         'price',
@@ -41,7 +40,6 @@ class Product extends Model
         'allow',
         'featured',
         'has_variants'
-        
     ];
 
 
@@ -70,12 +68,10 @@ class Product extends Model
         return $this->belongsToMany(Category::class)->withPivot('category_id');
 	}
 
-
     public function category()
     {
         return $this->belongsToMany(Category::class);
 	}
-
 
     public function related_products()
     {

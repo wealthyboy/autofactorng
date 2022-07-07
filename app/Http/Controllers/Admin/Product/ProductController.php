@@ -89,33 +89,28 @@ class ProductController extends Controller
     public function store(Request $request,Product $product)
     {   
 
-        // $this->validate($request,[
-        //     "category_id"  => "required|array",
-        //     'product_name'=>[
-        //         'required',
-        //             Rule::unique('products')->where(function ($query) use ($request) {
-        //                 $query->where('deleted_at','=',null);
-        //             }) 
-        //     ],
-        // ]);
+        $this->validate($request,[
+            "category_id"  => "required",
+            "image"  => "required",
+        ]);
 
-        //dd($request->all());
 
-        $data = $request->all();
+        $data = $request->except('_token');
+
         $data['quantity'] = 1;
-
+        $category     = Category::find($request->category_id);
+        $name         = $request->filled('product_name')  ? $request->product_name : $category->name;
+        $data['name'] = $name;
+        $data['slug'] = str_slug($name);
         $product = Product::create($data);
-        $parent  = Category::find($request->category_id);
 
-        if (null !== $parent->parent_id) {
-            $product->categories()->sync([$request->category_id, $parent->parent_id]);
+        if (null !== $category->parent_id) {
+            $product->categories()->sync([$request->category_id, $category->parent_id]);
         } else {
             $product->categories()->sync([$request->category_id]);
         }
 
-
         $product->attributes()->sync($request->attribute_id);
-
         $data = json_encode($product->toArray());
 
         if ( !empty($request->images) ) {
@@ -127,7 +122,7 @@ class ProductController extends Controller
             }
         } 
 
-       // (new Activity)->Log("Edited a product ", "{$data}");
+        //(new Activity)->Log("Added a product ", "{$data}");
         return \Redirect::to('/admin/products');
     }
 

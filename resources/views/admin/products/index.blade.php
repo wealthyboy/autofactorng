@@ -13,113 +13,7 @@
     </div>
 
      <div class="card-body pt-0">
-        <div class="row">
-           <div class="col-sm-3 col-5">
-              <select class="form-control" name="category_id" id="parent_id">
-                  <option  value="">--Choose One--</option>
-                  @foreach($categories as $category)
-                      <option class="" value="{{ $category->id }}" >{{ $category->name }} </option>
-                      @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
-                  @endforeach
-              </select>
-            </div>
-            <div class="col-sm-3 col-12">
-                <div class="input-group input-group-outline">
-                    <label class="form-label">Product Name</label>
-                    <input name="name" type="text" class="form-control" placeholder="">
-                </div>
-            </div>
-
-            <div class="col-sm-3 col-4">
-              <div class="input-group input-group-outline">
-                  <label class="form-label">Engine Number</label>
-                  <input type="number"  name="engine_number" class="form-control" placeholder="">
-              </div>
-            </div>
-
-            <div class="col-sm-3 col-12">
-                <div class="input-group input-group-outline">
-                    <label class="form-label">Part Number</label>
-                    <input type="number" name="part_number"  class="form-control" placeholder="">
-                </div>
-            </div>
-
-           
-        </div>
-        <div class="row mt-3">
-            <div class="">
-                <div class="row">
-                   <div class="col-sm-4 col-12">
-                      <div class="input-group input-group-outline">
-                        <label class="form-label mt-4 ms-0"> </label>
-                        <select class="form-control" name="year_to" id="">
-                            <option  value="">--Make--</option>
-                            @foreach($years as $year)
-                                <option class="" value="{{ $year }}" >{{ $year }} </option>
-                            @endforeach
-                        </select>
-                      </div>
-                   </div>
-                    <div class="col-sm-4 col-12">
-                      <div class="input-group input-group-outline">
-                        <label class="form-label mt-4 ms-0"> </label>
-                        <select class="form-control" name="year_from" id="">
-                            <option  value="">--Year to--</option>
-                            @foreach($years as $year)
-                                <option class="" value="{{ $year }}" >{{ $year }} </option>
-                            @endforeach
-                        </select>
-                      </div>
-                    </div>
-                    <div class="col-sm-4 col-12">
-                      <div class="input-group input-group-outline">
-                        <label class="form-label mt-4 ms-0"> </label>
-                        <select class="form-control" name="year_to" id="">
-                            <option  value="">--Year to--</option>
-                            @foreach($years as $year)
-                                <option class="" value="{{ $year }}" >{{ $year }} </option>
-                            @endforeach
-                        </select>
-                      </div>
-                     
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="row mt-4 mb-3">
-            <div class="col-3">
-                <div class="input-group input-group-outline">
-                    <label class="form-label">Rim</label>
-                    <input type="text" class="form-control" placeholder="">
-                </div>
-            </div>
-
-           
-
-            <div class="col-3">
-                <div class="input-group input-group-outline">
-                    <label class="form-label">Height</label>
-                    <input type="text" name="height" class="form-control" placeholder="">
-                </div>
-            </div>
-
-            <div class="col-3">
-                <div class="input-group input-group-outline">
-                    <label class="form-label">Width</label>
-                    <input type="text" name="width" class="form-control" placeholder="">
-                </div>
-            </div>
-
-            <div class="col-3">
-                <div class="input-group input-group-outline">
-                    <label class="form-label">Amphere</label>
-                    <input type="text"  name="amphere" class="form-control" placeholder="">
-                </div>
-            </div>
-        </div>
-        
-        <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-2 mb-0">Search</button>
+        @include('admin.includes.product_search')
      </div>
 </div>
 
@@ -138,19 +32,7 @@
             </div>
         </div>
 
-        <div class="results">
-        {!! __('Showing') !!}
-        @if ($products->firstItem())
-            <span class="font-medium">{{ $products->firstItem() }}</span>
-            {!! __('to') !!}
-            <span class="font-medium">{{ $products->lastItem() }}</span>
-        @else
-            {{ $products->count() }}
-        @endif
-        {!! __('of') !!}
-        <span class="font-medium">{{ $products->total() }}</span>
-        {!! __('results') !!}
-        </div>
+        
     </div>
 
   <div class="table-responsive mt-5">
@@ -197,7 +79,7 @@
 
             <td>
                 <div class="d-flex  flex-column justify-content-center">
-                  <h6 class="mb-0 text-xs">Product name</h6>
+                  <h6 class="mb-0 text-xs">{{ $product->name }}</h6>
                   <p class="text-xs text-secondary mb-0">0 orders</p>
                 </div>
             </td>

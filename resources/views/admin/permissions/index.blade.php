@@ -35,11 +35,7 @@
                   </thead>
                   <tbody>
                     @foreach($permissions as $permission)
-                    @if(!Auth::user()->isSuperUser() )
-                        @if($permission->name == 'Super User')
-                            @continue
-                        @endif
-                    @endif
+                   
                      <tr>
                         <td>
                            <div class="d-flex align-items-center">

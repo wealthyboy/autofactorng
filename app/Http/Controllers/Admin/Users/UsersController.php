@@ -31,7 +31,7 @@ class UsersController extends Controller
 	
 	/* display all users in the database */
 	public function edit(Request $request,$id){
-		User::canTakeAction(1);
+		//User::canTakeAction(1);
 		$user = User::find($id);
 		$permissions =\DB::table('permissions')->get();
 	    return view('admin.users.edit', compact('permissions','user'));  
@@ -54,7 +54,32 @@ class UsersController extends Controller
 	public function create(Request $request){
 		//User::canTakeAction(1);
 		$permissions =Permission::get(); 
-		return view('admin.auth.register',compact('permissions')); 	
+		return view('admin.users.create',compact('permissions')); 	
+    }
+
+
+	protected function store(Request $request)
+    {      
+		 
+		$this->validate($request, [
+			'email'      => 'required|email|max:255',
+		]);
+
+		$user  =new  User;
+		$user->name =$request->first_name;
+		$user->last_name =$request->last_name;
+		$user->email=$request->email;
+		$user->type='Admin';
+		$user->password = $request->has('password') ? bcrypt($request->password) : $user->password ;
+		$user->save();
+
+		//dd($request->permission_id);
+
+		$user->users_permission()->update([
+			'permission_id'=>$request->permission_id
+		]);
+		
+		return redirect('/admin/users');	  
     }
 	
 
@@ -62,7 +87,6 @@ class UsersController extends Controller
     {      
 		 
 		$this->validate($request, [
-			'first_name' => 'required|max:255',
 			'email'      => 'required|email|max:255',
 		]);
 

@@ -32,7 +32,6 @@
                      </div>
                      <hr class="dark horizontal my-0">
                      <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+55% </span>than lask week</p>
                      </div>
                   </div>
                </div>
@@ -41,7 +40,7 @@
                      <div class="card-header p-3 pt-2">
                         
                         <div class="text-end pt-1">
-                           <p class="text-sm mb-0 text-capitalize">New Users</p>
+                           <p class="text-sm mb-0 text-capitalize">Today's Sales Total</p>
                            <h5 class="mb-0">
                               744
                            </h5>
@@ -49,7 +48,6 @@
                      </div>
                      <hr class="dark horizontal my-0">
                      <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than yesterday</p>
                      </div>
                   </div>
                </div>
@@ -58,7 +56,7 @@
                      <div class="card-header p-3 pt-2">
                         
                         <div class="text-end pt-1">
-                           <p class="text-sm mb-0 text-capitalize">Sessions</p>
+                           <p class="text-sm mb-0 text-capitalize">Items Sold Today</p>
                            <h5 class="mb-0">
                               1,414
                            </h5>
@@ -66,7 +64,6 @@
                      </div>
                      <hr class="dark horizontal my-0">
                      <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-danger text-sm font-weight-bolder">-2% </span>just updated</p>
                      </div>
                   </div>
                </div>
@@ -75,7 +72,7 @@
                      <div class="card-header p-3 pt-2">
                        
                         <div class="text-end pt-1">
-                           <p class="text-sm mb-0 text-capitalize">Pages/Session</p>
+                           <p class="text-sm mb-0 text-capitalize">All Sales</p>
                            <h5 class="mb-0">
                               1.76
                            </h5>
@@ -83,7 +80,6 @@
                      </div>
                      <hr class="dark horizontal my-0">
                      <div class="card-footer p-3">
-                        <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than lask month</p>
                      </div>
                   </div>
                </div>
@@ -92,19 +88,19 @@
                <div class="col-lg-12 col-md-12">
                   <div class="card">
                      <div class="card-header pb-0 p-3">
-                        <h6 class="mb-0">Traffic channels</h6>
+                        <h6 class="mb-0">Sales</h6>
                         <div class="d-flex align-items-center">
                            <span class="badge badge-md badge-dot me-4">
                            <i class="bg-primary"></i>
-                           <span class="text-dark text-xs">Organic search</span>
+                           <span class="text-dark text-xs"></span>
                            </span>
                            <span class="badge badge-md badge-dot me-4">
                            <i class="bg-dark"></i>
-                           <span class="text-dark text-xs">Referral</span>
+                           <span class="text-dark text-xs"></span>
                            </span>
                            <span class="badge badge-md badge-dot me-4">
                            <i class="bg-info"></i>
-                           <span class="text-dark text-xs">Social media</span>
+                           <span class="text-dark text-xs"></span>
                            </span>
                         </div>
                      </div>
