@@ -90,8 +90,8 @@ class ProductController extends Controller
     {   
 
         $this->validate($request,[
-            "category_id"  => "required",
-            "image"  => "required",
+          //  "category_id"  => "required",
+           //"image"  => "required",
         ]);
 
 
