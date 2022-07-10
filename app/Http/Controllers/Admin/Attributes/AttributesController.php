@@ -104,7 +104,8 @@ class AttributesController extends Controller
     {
        // User::canTakeAction(4);
         $attr = Attribute::find($id);
-        $attributes = Attribute::parents()->get();   
+        $attributes = Attribute::parents()->where('type','!=','Engine')->get(); 
+ 
         $engines = Attribute::where('type','Engine')->get();   
 
         $types = Attribute::$types;
