@@ -170,7 +170,7 @@ class AttributesController extends Controller
     public function destroy(Request $request)
     {
         //
-        User::canTakeAction(5);
+       // User::canTakeAction(5);
         $rules = array (
             '_token' => 'required' 
         );
@@ -180,7 +180,7 @@ class AttributesController extends Controller
             return \Redirect::back ()->withErrors ( $validator )->withInput ();
         }
         $count = count($request->selected);
-        (new Activity)->Log("Deleted  {$count} Products");
+       // (new Activity)->Log("Deleted  {$count} Products");
         Attribute::destroy( $request->selected );
         return redirect()->back();
     }

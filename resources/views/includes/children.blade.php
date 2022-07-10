@@ -2,7 +2,7 @@
     <div class="children" value="{{ $obj->id }}">
 
         <div class="form-check">
-            <input  class="form-check-input" value="{{ $obj->id }}" type="checkbox" id="customCheck5">
+            <input  name="selected[]"  class="form-check-input" value="{{ $obj->id }}" type="checkbox" id="customCheck5">
             <label  class="custom-control-label" for="customCheck1">
                 <span role="button">{{ $obj->name }}</span>
                 <a href="{{ route($model.'.edit',[$url => $obj->id]) }}">

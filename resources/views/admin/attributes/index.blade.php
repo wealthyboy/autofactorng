@@ -10,7 +10,7 @@
           <h6 class="mb-0">Add Attributes</h6>
         </div>
         <div class="card-body pt-0">
-          <form action="{{ route('attributes.store') }}" method="post" enctype="multipart/form-data" id="form-category">
+          <form action="{{ route('attributes.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-sm-12 col-12">
@@ -134,14 +134,30 @@
             <div class="card-header p-3 pt-2">
                 <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
                     <i class="material-symbols-outlined">list</i>
-
                 </div>
                 <h6 class="mb-0">Attributes</h6>
-            </div>  
+            </div> 
+            
+            <div class="d-flex justify-content-between p-2">
+                    <div class="parent" value="">
+                        <div class="form-check ">
+                            <label  class="custom-control-label" for="delete">
+                                <input  class="form-check-input" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" type="checkbox" id="delete" name="optionsCheckboxes" >
+                                <span role="button" class="mt-4">Select All</span> 
+                            </label>
+                        </div> 
+                    </div>
+
+                    <div  class="mr-3">
+                        <a href="javascript:void(0)" onclick="confirm('Are you sure?') ? $('#form-attributes').submit() : false;" rel="tooltip" title="Remove" class="btn btn-outline-primary btn-sm mb-0">
+                            <i class="material-icons"></i> Delete
+                        </a>
+                    </div>
+                </div>
             <div class="clearfix"></div> 
             
 
-            <form action="{{ route('category.destroy',['category'=>1]) }}" method="post" enctype="multipart/form-data" id="form-categories">
+            <form action="{{ route('attributes.destroy',['attribute'=>1]) }}" method="post" enctype="multipart/form-data" id="form-attributes">
             @csrf
             @method('DELETE')
             <div class="material-datatables">
