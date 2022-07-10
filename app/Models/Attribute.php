@@ -19,7 +19,8 @@ class Attribute extends Model
         'Model',
         'Year',
         'Ampere-Hour(AH)',
-        'Brand'
+        'Brand',
+        'Engine'
     ];
 
 
