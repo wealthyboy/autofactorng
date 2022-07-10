@@ -30,8 +30,7 @@ class AttributesController extends Controller
     {
         $attributes = Attribute::parents()->get(); 
         $types = Attribute::$types;
-        $engines = Attribute::where('type','Engine')->get();   
-
+        $engines = Attribute::where('type','Engine')->get();
         return view('admin.attributes.index',compact('attributes','types','engines'));
     }
 
