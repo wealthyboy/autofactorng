@@ -14,7 +14,7 @@
          <div class="col-sm-12 col-12">
             <div class="input-group input-group-outline">
                <label class="form-label">Order</label>
-               <input name="name" type="text" class="form-control" placeholder="">
+               <input name="q" type="text" class="form-control" placeholder="">
             </div>
          </div>
       </div>

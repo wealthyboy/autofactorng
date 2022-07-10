@@ -36,15 +36,20 @@
             <div class="row">
                 <div class="">
                   <div class="row mt-3">
-                      <div class="col-sm-12 col-5">
-                        <select class="form-control border" name="parent_id" id="parent\_id">
-                            <option  value="">--Choose Parent--</option>
-                            @foreach($attributes as $attribute)
+                    <div class="col-sm-12 col-12">
+                        <div class="input-group input-group-outline">
+                        <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="year_to" id="">
+                        <option  value="">--Choose Parent--</option>
+                          @foreach($attributes as $attribute)
                                 <option class="" value="{{ $attribute->id }}" >{{ $attribute->name }} </option>
                                 @include('includes.children_options',['obj'=>$attribute,'space'=>'&nbsp;&nbsp;'])
                             @endforeach
                         </select>
-                      </div>
+                        </div>
+                        
+                    </div>
+                     
                     
                   </div>
                 </div>
@@ -54,16 +59,21 @@
             <div class="row">
                 <div class="">
                     <div class="row mt-3">
-                        <div class="col-sm-12 col-5">
-                            <select class="form-control border pl-2" required name="type" id="type">
-                                <option  value="">--Choose Type--</option>
+                        
+                    <div class="col-sm-12 col-12">
+                        <div class="input-group input-group-outline">
+                        <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="year_to" id="">
+                        <option  value="">--Choose Type--</option>
                                 @foreach($types as $type)
                                     <option class="" value="{{ $type }}" >{{ $type }} </option>
                                 @endforeach
-                            </select>
+                        </select>
                         </div>
-                    
+                        
                     </div>
+                    </div>
+                    
                 </div>
             </div>
 

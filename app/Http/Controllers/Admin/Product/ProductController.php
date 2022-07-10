@@ -143,6 +143,30 @@ class ProductController extends Controller
     }
 
 
+    public function search(Request $request){
+        $filtered_array = $request->only(['q', 'field']);
+		if (empty( $filtered_array['q'] ) )  { 
+			return redirect('/errors');
+		}
+		if($request->has('q')){
+			$filtered_array = array_filter($filtered_array);
+            $query = Product::whereHas('categories', function( $query ) use ( $filtered_array ){
+                $query->where('categories.name','like','%' .$filtered_array['q'] . '%')
+                    ->orWhere('products.product_name', 'like', '%' .$filtered_array['q'] . '%')
+                    ->orWhere('products.sku', 'like', '%' .$filtered_array['q'] . '%');
+            })->orWhereHas('variants', function( $query ) use ( $filtered_array ){
+                $query->where('product_variations.name', 'like', '%' .$filtered_array['q'] . '%')
+                ->orWhere('product_variations.sku', 'like', '%' .$filtered_array['q'] . '%');
+            });
+        }
+			
+        $products = $query->groupBy('products.id')->paginate(10);
+        $products->appends(request()->all());
+
+        return view('admin.products.index',compact('products'));  
+    }
+
+
     public function acMessage($product){
 
         $data =null;;
