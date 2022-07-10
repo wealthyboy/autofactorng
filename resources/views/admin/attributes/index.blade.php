@@ -59,7 +59,7 @@
                         <label class="form-label mt-4 ms-0"> </label>
                         <select class="form-control" name="parent_id" id="">
                         <option  value="">--Choose Parent--</option>
-                          @foreach($attributes as $attribute)
+                          @foreach($parents as $attribute)
                                 <option class="" value="{{ $attribute->id }}" >{{ $attribute->name }} </option>
                                 @include('includes.children_options',['obj'=>$attribute,'space'=>'&nbsp;&nbsp;'])
                             @endforeach
