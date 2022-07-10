@@ -30,7 +30,9 @@ class AttributesController extends Controller
     {
         $attributes = Attribute::parents()->get(); 
         $types = Attribute::$types;
-        return view('admin.attributes.index',compact('attributes','types'));
+        $engines = Attribute::where('type','Engine')->get();   
+
+        return view('admin.attributes.index',compact('attributes','types','engines'));
     }
 
 
@@ -102,9 +104,11 @@ class AttributesController extends Controller
        // User::canTakeAction(4);
         $attr = Attribute::find($id);
         $attributes = Attribute::parents()->get();   
+        $engines = Attribute::where('type','Engine')->get();   
+
         $types = Attribute::$types;
         $years =  $attr->attribute_years->pluck('year')->toArray();    
-        return view('admin.attributes.edit',compact('attributes','attr','types','years'));
+        return view('admin.attributes.edit',compact('attributes','attr','types','years','engines'));
     }
 
     /**
