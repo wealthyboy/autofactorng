@@ -50,17 +50,23 @@ trait ImageFiles
     }
 
 
-    public function m_path(){
-        $image = basename($this->images[0]->image);
-        return  asset('images/'.$this->folder.'/m/'.$image);
+    public function m_path()
+    {   
+        if ($this->images->count()) {
+            $image = basename($this->images[0]->image);
+            return  asset('images/'.$this->folder.'/m/'.$image);
+        }
+        return '/images/utils/No_image_available.svg.png';
     }
 
 
-    public function imageSize($size){
-        if ( $this->image ) { 
+    public function imageSize($size)
+    {   
+        if ($this->images->count()) {
             $image = basename($this->images[0]->image);
             return asset('images/'.$this->folder.'/'. $size .'/'.$image);
         }
+        return '/images/utils/No_image_available.svg.png';
     }
 
 

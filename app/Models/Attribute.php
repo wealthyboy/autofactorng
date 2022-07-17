@@ -20,7 +20,7 @@ class Attribute extends Model
         'Year',
         'Ampere-Hour(AH)',
         'Brand',
-        'Engine'
+        
     ];
 
 
@@ -40,6 +40,13 @@ class Attribute extends Model
     {
         return $this->belongsTo(Attribute::class,'parent_id','id');
     }
+
+
+    public function engines()
+    {
+        return $this->belongsToMany(Engine::class);
+    }
+
 
     public function products()
     {

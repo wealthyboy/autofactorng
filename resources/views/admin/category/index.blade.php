@@ -136,7 +136,7 @@
                         <i class="fa fa-pencil"></i> Link</a> 
                         </label>
                      </div>
-                     @include('includes.children',['obj'=>$category,'space'=>'&nbsp;&nbsp;','model' => 'category','url' => 'category'])
+                     @include('includes.children',['obj'=>$category,'space'=>'&nbsp;&nbsp;','model' => 'category','url' => 'category', 'name' => 'category_id'])
                   </div>
                   @endforeach  
                </div>

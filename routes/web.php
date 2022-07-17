@@ -26,6 +26,10 @@ Route::group(['prefix' => 'admin'], function(){
     Route::resource('customers', 'Admin\Customers\CustomersController',['name'=>'customers']);
     Route::get('orders/invoice/{id}','Admin\Orders\OrdersController@invoice')->name('order.invoice');
     Route::get('orders/dispatch/{id}','Admin\Orders\OrdersController@dispatchNote')->name('order.dispatch.note');
+    Route::resource('location','Admin\Location\LocationController',['names'=>'location']);
+    Route::resource('engines','Admin\Engines\EnginesController',['names'=>'engines']);
+
+
     //Route::post('register','Admin\Users\UsersController@create')->name('create.admin.users');
 
     Route::resource('permissions','Admin\Permission\PermissionsController',['names'=>'permissions']);

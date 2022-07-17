@@ -68,7 +68,7 @@
 }
 
 @media (prefers-reduced-motion:no-preference) {
-    :root {
+     :root {
         scroll-behavior: smooth
     }
 }
@@ -31531,6 +31531,10 @@ text {
 .parent .children {
     margin-left: 20px;
 }
+
+.year {
+    margin-top: -11px;
+}
 /* ul.dropdown-menu.inner li:first-child{
     visibility: hidden;
  } */
@@ -31771,4 +31775,8 @@ div.items input[type="file"] {
 
 .parent .children {
     margin-left: 20px;
+}
+
+.year {
+    margin-top: -11px;
 }

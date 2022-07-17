@@ -43,7 +43,7 @@ class LocationController extends Controller
      */
     public function create()
     {   
-        User::canTakeAction(2);
+       // User::canTakeAction(2);
         return view('admin.location.create');
     }
 
@@ -91,7 +91,7 @@ class LocationController extends Controller
         $location->name = $request->name;
         $location->parent_id     = $request->parent_id;
         $location->save();
-        (new Activity)->Log("Created a new Location called {$request->name}");
+        //(new Activity)->Log("Created a new Location called {$request->name}");
         return redirect()->back();
     }
 
@@ -116,7 +116,7 @@ class LocationController extends Controller
     public function edit($id)
     {
         //
-        User::canTakeAction(4);
+       // User::canTakeAction(4);
         $location = Location::find($id);
         $locations = Location::parents()->get();
         return view('admin.location.edit',compact('location','locations'));
@@ -159,7 +159,7 @@ class LocationController extends Controller
         $location->parent_id     = $request->parent_id;
         $location->save();
         //Log Activity
-        (new Activity)->Log("Updated  Location {$request->name} ");
+       // (new Activity)->Log("Updated  Location {$request->name} ");
         return redirect()->action('Admin\Location\LocationController@index');
     
     }
@@ -173,7 +173,7 @@ class LocationController extends Controller
     public function destroy(Request $request,$id)
     {
         //
-        User::canTakeAction(5);
+       // User::canTakeAction(5);
         $rules = array (
                 '_token' => 'required' 
         );
@@ -183,7 +183,7 @@ class LocationController extends Controller
             return \Redirect::back ()->withErrors ( $validator )->withInput ();
         }
         $count = count($request->selected);
-        (new Activity)->Log("Deleted  {$count} Products");
+       // (new Activity)->Log("Deleted  {$count} Products");
         Location::destroy( $request->selected );
         return redirect()->back();
 

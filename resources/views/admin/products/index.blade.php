@@ -69,8 +69,8 @@
               <div class="d-flex">
                 
                   <figure itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
-                    <a href="{{ $product->images[0]->image }}" itemprop="contentUrl" data-size="500x600">
-                       <img class="w-100 min-height-100 max-height-100 border-radius-lg shadow" src="{{ $product->images[0]->image }}" alt="Image description">
+                    <a href="{{ $product->image_to_show_m  }}" itemprop="contentUrl" data-size="500x600">
+                       <img class="w-100 min-height-100 max-height-100 border-radius-lg shadow" src="{{ $product->image_m }}" alt="Image description">
                     </a>
                   </figure>
               
@@ -79,17 +79,17 @@
 
             <td>
                 <div class="d-flex  flex-column justify-content-center">
-                  <h6 class="mb-0 text-xs">{{ $product->name }}</h6>
+                  <h6 class="mb-0 text-xs">{{ $product->name }} </h6>
                   <p class="text-xs text-secondary mb-0">0 orders</p>
                 </div>
             </td>
 
             
             <td>
-              <p class="text-xs font-weight-bold mb-0">{{ $product->category[0]->name }}</p>
+              <p class="text-xs font-weight-bold mb-0">{{ $product->category_name }}</p>
             </td>
             <td class="align-middle text-center text-sm">
-              ₦{{ $product->price }}
+              ₦{{ number_format($product->price) }}
             </td>
             <td class="align-middle text-center">
               <span class="badge badge-sm badge-success">Online</span>

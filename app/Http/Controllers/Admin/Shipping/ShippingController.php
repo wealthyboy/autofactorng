@@ -32,9 +32,9 @@ class ShippingController extends Controller
         //
 
         //$s = Shipping::find(274)->delete();
-       // $shippings = Shipping::parents()->get();
+        $shippings = Shipping::get();
         $locations = Location::parents()->get();
-        return view('admin.shipping.index',compact('locations'));
+        return view('admin.shipping.index',compact('locations','shippings'));
     }
 
     /**
@@ -44,7 +44,7 @@ class ShippingController extends Controller
      */
     public function create()
     {   
-        User::canTakeAction(2);
+        //User::canTakeAction(2);
         return view('admin.shipping.create');
     }
 
@@ -62,44 +62,20 @@ class ShippingController extends Controller
     public function store(Request $request)
     {   
          //
-        if( $request->filled('parent_id') ){
-            $this->validate($request,[
-                'name'=>[
-                    'required',
-                      Rule::unique('shippings')->where(function ($query) use ($request) {
-                        $query->where('parent_id','!=',null)
-                        ->where('parent_id',$request->parent_id);
-                      })
-                      
-                   ],
-            ]);
-
-        } else {
-            $slug= str_slug($request->name);
-            //define validation 
-            $this->validate($request,[
-                'name'=>[
-                    'required',
-                      Rule::unique('shippings')->where(function ($query) {
-                        $query->where('parent_id','=',null);
-                      })
-                      
-                ],
-            ]);
-        }
+        
        
         $shipping = new Shipping;
         $shipping->name = $request->name;
-        $shipping->description = $request->description;
+        //$shipping->description = $request->description;
         $shipping->price = $request->price;
         $shipping->location_id = $request->location_id;
-        $shipping->sort_order=$request->sort_order;
-        $shipping->parent_id     = $request->parent_id;
+       // $shipping->sort_order=$request->sort_order;
+       // $shipping->parent_id     = $request->parent_id;
         $shipping->save();
 
-        $shipping->locations()->sync([$request->location_id]);
+        //$shipping->locations()->sync([$request->location_id]);
 
-        (new Activity)->Log("Created a new Shipping called {$request->name}");
+       // (new Activity)->Log("Created a new Shipping called {$request->name}");
         return redirect()->back();
     }
 
@@ -124,12 +100,11 @@ class ShippingController extends Controller
     public function edit($id)
     {
         //
-        User::canTakeAction(4);
+       // User::canTakeAction(4);
 
         $shipping = Shipping::find($id);
-        $shippings = Shipping::parents()->get();
         $locations = Location::parents()->get();
-        return view('admin.shipping.edit',compact('locations','shippings','shipping'));
+        return view('admin.shipping.edit',compact('locations','shipping'));
     }
 
     /**
@@ -144,39 +119,23 @@ class ShippingController extends Controller
         //
 
         $shipping = Shipping::find($id);
-        if( $request->filled('parent_id') ) {
-            $shippingId = Shipping::find($request->parent_id);
-            $this->validate($request,[
-                'name'=>[
-                    'required',
-                        Rule::unique('shippings')->where(function ($query) use ($request,$shipping) {
-                        $query->where('parent_id', '=', $request->parent_id);
-                        })->ignore($id)
-                        
-                    ],
-            ]);
+       
 
-        } 
-
-        $this->validate($request,[
-            'name'=>[
-                'required',
-                    Rule::unique('shippings')->where(function ($query) use ($id) {
-                    $query->where('parent_id','=',null);
-                })->ignore($id)
-                    
-                ],
-        ]);
+        // $this->validate($request,[
+        //     'name'=>[
+        //         'required', 
+        //         ],
+        // ]);
 
         $shipping->name        = $request->name;
-        $shipping->description = $request->description;
+       // $shipping->description = $request->description;
         $shipping->price       = $request->price;
         $shipping->location_id = $request->location_id;
-        $shipping->sort_order  = $request->sort_order;
-        $shipping->parent_id   = $request->parent_id;
+       // $shipping->sort_order  = $request->sort_order;
+        //$shipping->parent_id   = $request->parent_id;
         $shipping->save();
         //Log Activity
-        (new Activity)->Log("Updated  Shipping {$request->name} ");
+       // (new Activity)->Log("Updated  Shipping {$request->name} ");
         return redirect()->action('Admin\Shipping\ShippingController@index');
         
     }
@@ -190,7 +149,7 @@ class ShippingController extends Controller
     public function destroy(Request $request)
     {
         //
-        User::canTakeAction(5);
+       // User::canTakeAction(5);
         $rules = array (
                 '_token' => 'required' 
         );
@@ -202,7 +161,7 @@ class ShippingController extends Controller
         }
 
         $count = count($request->selected);
-        (new Activity)->Log("Deleted  {$count} Products");
+       // (new Activity)->Log("Deleted  {$count} Products");
         Shipping::destroy( $request->selected );
         return redirect()->back();
      

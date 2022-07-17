@@ -9,5 +9,15 @@ use App\Traits\HasChildren;
 
 class Shipping extends Model
 {
-    use HasFactory; //HasChildren;
+    use HasFactory, HasChildren;
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
+    
+    public function locations()
+    {
+        return $this->belongsToMany(Shipping::class);
+    }
 }

@@ -1,98 +1,72 @@
 
+
+
 @extends('admin.layouts.app')
 @section('content')
 <div class="row">
-    <div class="col-md-10">
-        @include('errors.errors')
-        <div class="card">
-            <div class="card-content">
-                <h4 class="card-title">Vouchers</h4>
+  <div class="col-md-7">  
+    <div class="card">
+        <div class="card-header p-3 pt-2">
+          <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
+              <i class="material-symbols-outlined">filter_alt</i>
+          </div>
+          <h6 class="mb-0">Add Shipping</h6>
+        </div>
+        <div class="card-body pt-0">
             <form action="{{ route('shipping.update',['shipping' => $shipping->id]) }}" method="post" enctype="multipart/form-data" id="form-shipping">
                 @csrf
                 @method('PATCH')
-                <div class="form-group label-floating">
-                    <label class="control-label">
-                        Name
-                        <small>*</small>
-                    </label>
-                    <input class="form-control"
-                        name="name"
-                        type="text"                 
-                        required="true"
-                        value="{{ $shipping->name ?? old('name') }}"
-                    />
+            <div class="row mt-3">
+                <div class="col-sm-12 col-12">
+                  <div class="input-group input-group-outline">
+                    <label class="form-label"> Price</label>
+                    <input type="text" 
+                           required 
+                           class="form-control" 
+                           name="price"
+                           value="{{ $shipping->price ?? old('price') }}"
+                        >
+                  </div>
                 </div>
-                <div class="form-group label-floating">
-                    <label class="control-label">
-                        Sort Order
-                    </label>
-                    <input class="form-control"
-                        name="sort_order"
-                        type="number"
-                        value="{{ $shipping->sort_order ?? old('sort_order') }}"
-                    />
-                </div>
-                <div class="form-group label-floating">
-                    <label class="control-label">
-                        Price
-                    </label>
-                    <input class="form-control"
-                        name="price"
-                        type="number" 
-                        value="{{ $shipping->price ?? old('price') }}"
-                    />
-                </div>
-                <div class="form-group">
-                    <label class="control-label"></label>
-                    <select name="location_id" class="form-control">
-                    <option  value="">--Choose One--</option>
-                        @foreach($locations as $loc)
-                            @if($shipping->location_id == $loc->id)
-                                <option  value="{{ $loc->id }}" selected="selected">{{ $loc->name }} </option>                                        
-                            @else
-                                <option  value="{{ $loc->id }}" >{{ $loc->name }} </option>
-                                @foreach($loc->children as $obj)
-                                    @if( $shipping->location_id == $obj->id)
-                                    <option  value="{{ $obj->id }}" selected="selected">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $obj->name }} </option>
-                                    @continue
-                                @endif
-                                    <option class="" value="{{  $obj->id }}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ $obj->name }} </option>
-                                @endforeach
-                            @endif
-                        @endforeach 
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="control-label"></label>
-                    <select name="parent_id" class="form-control">
-                    <option  value="">--Choose One--</option>
-                        @foreach($shippings as $ship)
-                            @if($shipping->parent_id == $ship->id )
-                                <option  value="{{ $ship->id }}" selected="selected">{{ $ship->name }} </option>                                        
-                                @include('includes.children_options',['obj'=>$ship,'space'=>'&nbsp;&nbsp;'])
-                            @else
-                                <option  value="{{ $ship->id }}" >{{ $ship->name }} </option>
-                                @include('includes.children_options',['model' => $shipping,'obj'=>$shipping,'space'=>'&nbsp;&nbsp;'])
-                            @endif
-                        @endforeach
-                    </select>
-                </div>
-                <div class="form-footer text-right">
-                    <button type="submit" class="btn btn-rose btn-round  btn-fill">Submit</button>
-                </div>
-            </form>
             </div>
+
+            <div class="row">
+                <div class="">
+                    <div class="row mt-3">
+                        <div class="col-sm-12 col-12">
+                            <div class="input-group input-group-outline">
+                                <label class="form-label mt-4 ms-0"> </label>
+                                <select required class="form-control" name="location_id" id="">
+                                    <option  value="">--Choose Type--</option>
+                                    @foreach($locations as $location)
+                                      <option class="" value="{{ $location->id }}" >{{ $location->name }} </option>
+                                    @endforeach 
+                                </select>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+          
+            <div class="d-flex justify-content-end mt-4">
+                <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
+            </div>
+          </form>
         </div>
     </div>
+  </div>
+
+ 
 </div>
-
-
 @endsection
-
 @section('inline-scripts')
-$(document).ready(function() {
+   var parent_id = document.getElementById('parent_id');
+   setTimeout(function () {
+      const example = new Choices(parent_id);
+   }, 1);
    
-});
 @stop
 
 

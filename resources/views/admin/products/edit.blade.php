@@ -1,15 +1,16 @@
 @extends('admin.layouts.app')
 @section('content')
-<form action="{{ route('products.store') }}" class="" method="post" enctype="multipart/form-data" id="form-category">
+<form action="{{ route('products.update',['product'=>$product->id])  }}" class="" method="post" enctype="multipart/form-data" id="form-category">
+   @method('PATCH') 
    @csrf
    <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-7">
          <div class="card">
             <div class="card-header p-3 pt-2">
                <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
                   <i class="material-symbols-outlined">filter_alt</i>
                </div>
-               <h6 class="mb-0">Add Product</h6>
+               <h6 class="mb-0">Edit Product</h6>
             </div>
             <div class="card-body pt-0">
                @csrf
@@ -21,131 +22,67 @@
                            type="text" 
                            class="form-control"                                     
                            name="product_name"
+                           value="{{ isset($product) ? $product->product_name : old('product_name') }}"
                            >
                      </div>
                   </div>
-                  <div class="col-sm-3 col-12">
+                  <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
                      <label class="form-label mt-4 ms-0"> </label>
                         <select class="form-control" name="brand_id" id="">
                             <option  value="">--Brand--</option>
-                            @foreach($brands as $brand)
-                                <option class="" value="{{ $brand->id }}" >{{ $brand->name  }} </option>
-                            @endforeach
+                             @foreach($brands as $brand) 
+                                 @if( $product->brand_id == $brand->id)
+                                    <option value="{{ $brand->id }}" selected> {{ $brand->name }} </option>
+                                    @else
+                                    <option value="{{ $brand->id }}"> {{ $brand->name }} </option>
+                                 @endif
+                              @endforeach
                         </select>
                      </div>
                   </div>
-
-                  <div class="col-sm-3 col-5">
-                        <select class="form-control" name="category_id" id="parent_id">
-                            <option  value="">--Choose One--</option>
-                            @foreach($categories as $category)
-                                <option class="" value="{{ $category->id }}" >{{ $category->name }} </option>
-                                @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
-                            @endforeach
-                        </select>
-                      </div>
 
                   
                </div>
-              
-               <div class="row mt-3">
-                  <div class="col-sm-4 col-12">
-                     <div class="input-group input-group-outline">
-                        <label class="form-label"> Engine</label>
-                        <input 
-                           type="text" 
-                           class="form-control"                                     
-                           name="engine"
-                           >
-                     </div>
-                  </div>
-                 
-
-                  <div class="col-sm-4 col-12">
-                     <div class="input-group input-group-outline">
-                     <label class="form-label mt-4 ms-0"> </label>
-                        <select class="form-control" name="year_from" id="">
-                            <option  value="">--Year from--</option>
-                            @foreach($years as $year)
-                                <option class="" value="{{ $year }}" >{{ $year }} </option>
-                            @endforeach
-                        </select>
-                     </div>
-                     
-                  </div>
-                  <div class="col-sm-4 col-12">
-                     <div class="input-group input-group-outline">
-                     <label class="form-label mt-4 ms-0"> </label>
-                        <select class="form-control" name="year_to" id="">
-                            <option  value="">--Year to--</option>
-                            @foreach($years as $year)
-                                <option class="" value="{{ $year }}" >{{ $year }} </option>
-                            @endforeach
-                        </select>
-                     </div>
-                     
-                  </div>
-                 
-               </div>
 
                <div class="row mt-3">
-                  <div class="col-sm-3 col-12">
+                  <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Price</label>
                         <input 
                            type="number" 
                            class="form-control"                                     
                            name="price"
+                           required
+                           value="{{ isset($product) ? $product->price : old('price') }}"
+
+
                            >
                      </div>
                   </div>
 
-                  <div class="col-sm-3 col-12">
+                  <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Sale  Price</label>
                         <input 
                            type="number" 
                            class="form-control"                                     
                            name="sale_price"
-                           >
+                           value="{{ isset($product) ? $product->sale_price : old('sale_price') }}"
+                        >
                      </div>
                   </div>
-                  <div class="col-sm-3 col-12">
+                  <div class="col-sm-6 col-12 mt-3">
                   <div class="input-group input-group-outline">
                     <label class="form-label">Sales Start  Date</label>
-                      <input name="sale_price_start" class="form-control datetimepicker" type="text" data-input>
+                      <input name="sale_price_starts" value="{{ $product->sale_price_starts  }}" class="form-control datetimepicker" type="text" data-input>
                     </div>
                   </div>
-                  <div class="col-sm-3 col-12">
+                  <div class="col-sm-6 col-12 mt-3">
                     <div class="input-group input-group-outline">
                       <label class="form-label">Sales End  Date</label>
-                      <input name="sale_price_ends"  class="form-control datetimepicker" type="text" data-input>
+                      <input name="sale_price_ends"  value="{{ $product->sale_price_ends  }}" class="form-control datetimepicker" type="text" data-input>
                     </div>
-                  </div>
-              </div>
-
-              <div class="row mt-3">
-                  <div class="col-sm-6 col-12">
-                     <div class="input-group input-group-outline">
-                        <label class="form-label"> Generic Name</label>
-                        <input 
-                           type="text" 
-                           class="form-control"                                     
-                           name="generic_name"
-                           >
-                     </div>
-                  </div>
-
-                  <div class="col-sm-6 col-12">
-                     <div class="input-group input-group-outline">
-                        <label class="form-label"> Rim Size</label>
-                        <input 
-                           type="number" 
-                           class="form-control"                                     
-                           name="rim_size"
-                           >
-                     </div>
                   </div>
               </div>
 
@@ -156,8 +93,10 @@
                         <input 
                            type="number" 
                            class="form-control"                                     
-                           name="product_radius"
-                           >
+                           name="radius"
+                           value="{{ isset($product) ? $product->radius : old('product_radius') }}"
+
+                        >
                      </div>
                   </div>
 
@@ -167,8 +106,9 @@
                         <input 
                            type="number" 
                            class="form-control"                                     
-                           name="product_width"
-                           >
+                           name="width"
+                           value="{{ isset($product) ? $product->width : old('width') }}"
+                        >
                      </div>
                   </div>
 
@@ -178,8 +118,9 @@
                         <input 
                            type="number" 
                            class="form-control"                                     
-                           name="product_height"
-                           >
+                           name="height"
+                           value="{{ isset($product) ? $product->height : old('height') }}"
+                        >
                      </div>
                   </div>
               </div>
@@ -191,7 +132,8 @@
                         <label class="form-label"> Meta Title</label>
                         <input type="text" class="form-control"                                     
                            name="meta_title"
-                           >
+                           value="{{ isset($product) ? $product->title : old('meta_title') }}"
+                        >
                      </div>
                   </div>
                </div>
@@ -199,7 +141,12 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Keywords</label>
-                        <input type="text" class="form-control" name="keywords">
+                        <input 
+                           type="text" 
+                           class="form-control" 
+                           name="keywords"
+                           value="{{ isset($product) ? $product->keywords : old('keywords') }}"
+                        >
 
                         <input type="hidden" class="images" name="images">
 
@@ -214,7 +161,7 @@
                            name="meta_description"
                            rows="8"
                            >
-                           Shop for Optima AGM Yellow Top Battery DH6 Group Size H6/LN3 800 CCA with confidence at Autofactor.com. Parts are just part of what we do. Get yours online today and pick up in store.
+                           {{ isset($product) ? $product->meta_description : old('meta_description') }}
                         </textarea>
                      </div>
                   </div>
@@ -229,6 +176,7 @@
                            name="description"
                            rows="8"
                            >
+                           {{ isset($product) ? $product->description : old('description') }}
                         </textarea>
                      </div>
                   </div>
@@ -240,24 +188,101 @@
 
                      <div class="input-group input-group-outline">
                         <textarea type="text" class="form-control"                                     
-                           name="physical_description"
+                           name="phy_desc"
                            rows="8"
+                           id="phy_description"
                            >
+                           {{ isset($product) ? $product->phy_desc : old('phy_desc') }}
                         </textarea>
                      </div>
                   </div>
                </div>
+
+              
                <div class="col-12">
                   <label class="form-control mb-0"></label>
                   <div action="/file-upload" class="form-control border dropzone" id="dropzone"></div>
                </div>
+
+               <hr class="horizontal dark">
+               
+
+               <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" id="heavy_item" checked="">
+                  <label class="form-check-label" for="heavy_item">Heavy Item</label>
+               </div>
+
+               <div class="row mt-3 ">
+                  <div class="col-sm-12 mb-3 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Price</label>
+                        <input 
+                           type="number" 
+                           class="form-control"                                     
+                           name="large_item_shipping_price"
+                           value="{{ isset($product) ? $product->large_item_shipping_price : old('large_item_shipping_price') }}"
+                        >
+                     </div>
+                  </div>
+                <h6>Lagos</h6>
+                <div class="col-sm-4 col-12">
+                  <div class="input-group input-group-outline">
+                    <label class="form-label"> </label>
+                    <select name="condition[lagos][tag]" id="" class="form-control">
+                        <option value="quantity">Quantity</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-12">
+                  <div class="input-group input-group-outline">
+                    <label class="form-label"> </label>
+                    <select name="condition[lagos][condition]" id="" class="form-control">
+                        <option value=">">is greater than</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label">Price</label>
+                        <input type="text" class="form-control" value="{{ optional($product->heavy_item_lagos)->value }}" name="condition[lagos][value]">
+                     </div>
+                </div>
+
+                <h6 class="my-3">Outside Lagos</h6>
+
+                <div class="col-sm-4 col-12">
+                  <div class="input-group input-group-outline">
+                    <label class="form-label"> </label>
+                    <select name="condition[out_side_lagos][tag]" id="" class="form-control">
+                        <option value="quantity">Quantity</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-12">
+                  <div class="input-group input-group-outline">
+                    <label class="form-label"> </label>
+                    <select name="condition[out_side_lagos][condition]" id="" class="form-control">
+                        <option value=">">is greater than</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-4 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label">Price</label>
+                        <input type="text" class="form-control" value="{{ optional($product->heavy_item_outside_lagos)->value }}" name="condition[out_side_lagos][value]">
+                     </div>
+                </div>
+        
+            </div>
+
+ 
                <div class="d-flex justify-content-end mt-4">
                   <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
                </div>
             </div>
          </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-5">
          <!--  end card  -->
          <div class="card mt-4">
             <div class="card-header p-3 pt-2">
@@ -272,14 +297,53 @@
                   <div class="parent" value="{{ $attribute->id }}">
                       
                       <div class="form-check ">
-                          <input  class="form-check-input" value="{{ $attribute->id }}" type="checkbox" name="selected[]" >
-                          <label  class="custom-control-label" for="">
+                          <label  class="custom-control-label" for="{{ $attribute->id }}">
+                             <input  
+                                 class="form-check-input" 
+                                 value="{{ $attribute->id }}" 
+                                 {{ $helper->check($product->attributes, $attribute->id) }} 
+                                 type="checkbox" id="{{ $attribute->id }}" 
+                                 name="attribute_id[]" 
+                              >
                               <span role="button">{{ $attribute->name }}</span> 
                                 <a href="{{ route('attributes.edit',['attribute'=>$attribute->id]) }}">
                                 <i class="fa fa-pencil"></i> Edit</a>
                           </label>
                       </div> 
-                      @include('includes.children',['obj'=>$attribute,'space'=>'&nbsp;&nbsp;','model' => 'attributes','url' => 'attribute'])
+                      @include('includes.edit_children',[ 'collections' => $product->attributes, 'obj'=>$attribute,'space'=>'&nbsp;&nbsp;','model' => 'attributes','url' => 'attribute','year' => true, 'name' => 'attribute_id'])
+                  </div>
+                  @endforeach  
+               </div>
+            </div>
+         </div>
+
+         <div class="card mt-4">
+            <div class="card-header p-3 pt-2">
+               <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
+                  <i class="material-symbols-outlined">list</i>
+               </div>
+               <h6 class="mb-0">Categories</h6>
+            </div>
+            <div class="material-datatables">
+               <div class="well well-sm pb-5" style="height: 250px; background-color: #fff; color: black; overflow: auto;">
+                @foreach($categories as $category)
+                  <div class="parent" value="{{ $category->id }}">
+                      
+                      <div class="form-check ">
+                          <input  
+                              class="form-check-input" 
+                              {{ $helper->check($product->categories, $category->id) }} 
+                              value="{{ $category->id }}" 
+                              type="checkbox" 
+                              name="category_id[]"
+                           >
+                          <label  class="custom-control-label" for="">
+                              <span role="button">{{ $category->name }}</span> 
+                                <a href="{{ route('category.edit',['category'=>$category->id]) }}">
+                                <i class="fa fa-pencil"></i> Edit</a>
+                          </label>
+                      </div> 
+                      @include('includes.edit_children',[ 'collections' => $product->categories, 'obj'=>$category,'space'=>'&nbsp;&nbsp;','model' => 'category','url' => 'category','name' => 'category_id'])
                   </div>
                   @endforeach  
                </div>
@@ -289,30 +353,33 @@
    </div>
 </form>
 @endsection
+@section('page-scripts')
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+@stop
 @section('inline-scripts')
+CKEDITOR.replace('phy_description',{
+        height: '200px',
+        toolbar: [
+         '/',
+         { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
+         { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },
+         { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+         '/',
+         { name: 'styles', items: [ 'Format', 'Font', 'FontSize' ] },
+         { name: 'others', items: [ '-' ] },
+      ]
+})
 
-if (document.getElementById('choices-gender')) {
-   var gender = document.getElementById('choices-gender');
-   const example = new Choices(gender);
-}
-if (document.getElementById('choices-language')) {
-   var language = document.getElementById('choices-language');
-   const example = new Choices(language);
-}
-if (document.getElementById('choices-skills')) {
-   var skills = document.getElementById('choices-skills');
-   const example = new Choices(skills, {
-      delimiter: ',',
-      editItems: true,
-      maxItemCount: 5,
-      removeItemButton: true,
-      addItems: true
-   });
-}
-var parent_id = document.getElementById('parent_id');
-setTimeout(function () {
-   const example = new Choices(parent_id);
-}, 1);
+   if (document.getElementById('editor')) {
+      var quill = new Quill('#editor', {
+        theme: 'snow' // Specify theme in configuration
+      });
+   }
+
+
+
+
+
 
 if (document.querySelector('.datetimepicker')) {
       flatpickr('.datetimepicker', {
@@ -333,13 +400,16 @@ var myDropzone = new Dropzone(drop, {
    sending: function(file, xhr, formData) {
      formData.append("_token", "{{ csrf_token() }}");
    },
-  success(file, res, formData) {
+   success(file, res, formData) {
          imgs.push(res.path)
          console.log(imgs)
      $('.images').val(imgs)
-  },
-   headers: {
-      'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
-   }
+   },
+   
 });
+
+@foreach($product->images as $image)
+  
+@endforeach
+
 @stop

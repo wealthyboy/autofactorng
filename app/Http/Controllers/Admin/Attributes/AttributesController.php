@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use App\Models\AttributeYear;
+use App\Models\Engine;
 
 use App\Models\User;
 use App\Models\Attribute;
@@ -30,9 +31,8 @@ class AttributesController extends Controller
     {
         $parents = Attribute::parents()->where('type','!=','Engine')->get(); 
         $attributes = Attribute::parents()->get(); 
-
         $types = Attribute::$types;
-        $engines = Attribute::where('type','Engine')->get();
+        $engines = Engine::get();
         return view('admin.attributes.index',compact('attributes','types','engines','parents'));
     }
 
@@ -74,9 +74,12 @@ class AttributesController extends Controller
         $attribute->name = $request->name;
         $attribute->sort_order = $request->sort_order;
         $attribute->slug = str_slug($request->name, '_');
-        $attribute->parent_id  = $request->parent_id ? $request->parent_id : null;
-        $attribute->type  = $request->type;
+        $attribute->parent_id = $request->parent_id ? $request->parent_id : null;
+        $attribute->type = $request->type;
         $attribute->save();
+        if (!empty($request->engine_id)) {
+            $attribute->engines()->sync($request->engine_id);
+        }
 
         if (!empty($request->years)) {
             foreach ($request->years as $key => $year) {
@@ -104,12 +107,10 @@ class AttributesController extends Controller
     {
        // User::canTakeAction(4);
         $attr = Attribute::find($id);
-        $attributes = Attribute::parents()->where('type','!=','Engine')->get(); 
- 
-        $engines = Attribute::where('type','Engine')->get();   
-
+        $attributes = Attribute::parents()->get(); 
+        $engines = Engine::get();
         $types = Attribute::$types;
-        $years =  $attr->attribute_years->pluck('year')->toArray();    
+        $years = $attr->attribute_years->pluck('year')->toArray();    
         return view('admin.attributes.edit',compact('attributes','attr','types','years','engines'));
     }
 
@@ -147,6 +148,15 @@ class AttributesController extends Controller
         $attribute->parent_id  = $request->parent_id ? $request->parent_id : null;
         $attribute->type  = $request->type;
         $attribute->save();
+
+        // if (!empty($request->engine_id)) {
+        //     foreach ($request->engine_id as $engine_id) {
+        //         $attribute_engine = new AttributeEngine;
+        //         $attribute_engine->engine_id = $engine_id;
+        //         $attribute_engine->attribute_id = $attribute->id;
+        //         $attribute_engine->save();
+        //     }
+        // }
 
         $years =  $attribute->attribute_years()->delete();    
         if (!empty($request->years)) {

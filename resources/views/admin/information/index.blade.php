@@ -76,16 +76,12 @@
                                 @endforeach
                             </select>
                         </div>
-
                         <div class="col-sm-12 col-5">
                            <label class="form-label mt-4 ms-0">Same Page </label>
                            <select class="form-control" name="parent_id" id="parent_id">
                               <option  value="">--Choose One--</option>
                            </select>
                         </div>
-
-
-                        
                      </div>
                   </div>
                </div>

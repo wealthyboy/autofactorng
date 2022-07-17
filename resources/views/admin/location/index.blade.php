@@ -21,18 +21,25 @@
                 </div>
             </div>
             
+            
+
             <div class="row">
                 <div class="">
                   <div class="row mt-3">
-                      <div class="col-sm-12 col-5">
-                        <select class="form-control border" name="parent_id" id="parent\_id">
+                    <div class="col-sm-12 col-12">
+                        <div class="input-group input-group-outline">
+                        <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="parent_id" id="">
                             <option  value="">--Choose Parent--</option>
                             @foreach($locations as $location)
                                 <option class="" value="{{ $location->id }}" >{{ $location->name }} </option>
                                 @include('includes.children_options',['obj'=>$location,'space'=>'&nbsp;&nbsp;'])
                             @endforeach
                         </select>
-                      </div>
+                        </div>
+                        
+                    </div>
+                     
                     
                   </div>
                 </div>
@@ -66,7 +73,7 @@
                           <input  class="form-check-input" value="{{ $location->id }}" type="checkbox" name="selected[]" >
                           <label  class="custom-control-label" for="">
                               <span role="button"> {{ $location->name }}</span> 
-                                <a href="{{ route('location.edit',['attribute'=>$location->id]) }}">
+                                <a href="{{ route('location.edit',['location'=>$location->id]) }}">
                                 <i class="fa fa-pencil"></i> Edit</a>
                           </label>
                       </div> 

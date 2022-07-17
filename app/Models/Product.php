@@ -15,18 +15,12 @@ class Product extends Model
         'slug',
         'price',
         'brand_id',
-        'make',
-        'model',
         'generic_name',
         'rim_size',
         'radius',
-        'year',
-        'year_from',
-        'year_to',
         'keywords',
         'title',
         'meta_description',
-        'engine',
         'weight',
         'height',
         'width',
@@ -39,33 +33,38 @@ class Product extends Model
         'quantity',
         'allow',
         'featured',
-        'has_variants'
+        'has_variants',
+        'phy_desc',
+        'product_name',
+        'large_item_shipping_price',
+        'sale_price_starts',
+        'sale_price_ends'
     ];
+
+    public $folder = 'products';
 
 
     public $appends = [
-		'image_to_show_m',
+		'image_m','category_name',
 	];
 
-
     public function attributes(){
-        return $this->belongsToMany(Attribute::class)
-        ->groupBy('attribute_id')
-        ->withPivot('attribute_id')
-        ->withPivot('parent_id')
-        ->withPivot('id');	
+        return $this->belongsToMany(Attribute::class);
     }
-
 
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
 	}
 
-
     public function categories()
     {
         return $this->belongsToMany(Category::class)->withPivot('category_id');
+	}
+
+    public function engines()
+    {
+        return $this->belongsToMany(Engine::class)->withPivot('engine_id');
 	}
 
     public function category()
@@ -77,6 +76,34 @@ class Product extends Model
     {
         return $this->hasMany(RelatedProduct::class);
 	}
+
+
+    public function product_years()
+    {
+        return $this->hasMany(ProductYear::class);
+	}
+
+    public function product_rates()
+    {
+        return $this->hasMany(ShippingRate::class);
+	}
+
+    public function getCategoryNameAttribute()
+    {
+        return $this->categories()->orderBy('id','DESC')->first()->name;
+	}
+
+    public function heavy_item_lagos()
+    {
+        return $this->hasOne(ShippingRate::class)->where('is_lagos', true);
+	}
+
+
+    public function heavy_item_outside_lagos()
+    {
+        return $this->hasOne(ShippingRate::class)->where('is_lagos', false);
+	}
+
 
     
 

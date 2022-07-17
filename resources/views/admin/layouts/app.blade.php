@@ -94,7 +94,7 @@
                   <i class="material-symbols-outlined">inventory_2</i>
                   <span class="nav-link-text ms-2 ps-1">Products</span>
                   </a>
-                  <div class="collapse  {{ $helper->active_link(['brands','products','reviews','category','discounts','attributes','vouchers']) ? 'show' : ''}}" id="ecommerceExamples">
+                  <div class="collapse  {{ $helper->active_link(['brands','engines','products','reviews','category','discounts','attributes','vouchers']) ? 'show' : ''}}" id="ecommerceExamples">
                      <ul class="nav ">
 
                         <li class="nav-item ">
@@ -119,6 +119,13 @@
                         </li>
 
                         <li class="nav-item ">
+                           <a class="nav-link text-white {{ $helper->active_link(['engines']) }}"  href="{{ route('engines.index') }}">
+                              <span class="sidenav-mini-icon"> E </span>
+                              <span class="sidenav-normal  ms-2  ps-1"> Engines <b class="caret"></b></span>
+                           </a>
+                        </li>
+
+                        <li class="nav-item ">
                            <a class="nav-link text-white {{ $helper->active_link(['products']) }}"  href="{{ route('products.index') }}">
                               <span class="sidenav-mini-icon"> P </span>
                               <span class="sidenav-normal  ms-2  ps-1"> Products <b class="caret"></b></span>
@@ -139,16 +146,15 @@
                            </a>
                         </li>
 
-                        
+      
                      </ul>
                   </div>
                </li>
 
                <li class=" nav-item">
                   <a class="nav-link text-white {{ $helper->active_link(['orders']) }}" href="{{ route('admin.orders.index') }}">
-                  <i class="material-symbols-outlined opacity-10">shopping_cart</i>
-      
-                  <span class="nav-link-text ms-2 ps-1"> Orders </span>
+                     <i class="material-symbols-outlined opacity-10">shopping_cart</i>
+                     <span class="nav-link-text ms-2 ps-1"> Orders </span>
                   </a>
                </li>
 
@@ -226,6 +232,12 @@
                            <a class="nav-link text-white  {{ $helper->active_link(['permissions']) }}" href="{{ route('permissions.index') }}">
                            <span class="sidenav-mini-icon"> P </span>
                            <span class="sidenav-normal  ms-2  ps-1"> Permissions </span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link text-white  {{ $helper->active_link(['location']) }}" href="{{ route('location.index') }}">
+                           <span class="sidenav-mini-icon"> P </span>
+                           <span class="sidenav-normal  ms-2  ps-1"> Location </span>
                            </a>
                         </li>
                         <li class="nav-item ">

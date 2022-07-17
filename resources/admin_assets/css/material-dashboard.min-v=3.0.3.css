@@ -68,7 +68,7 @@
 }
 
 @media (prefers-reduced-motion:no-preference) {
-    :root {
+     :root {
         scroll-behavior: smooth
     }
 }
@@ -31530,4 +31530,8 @@ text {
 
 .parent .children {
     margin-left: 20px;
+}
+
+.year {
+    margin-top: -11px;
 }

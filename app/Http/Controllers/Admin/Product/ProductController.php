@@ -12,14 +12,13 @@ use App\Models\Product;
 use App\Models\Activity;
 use App\Models\Category;
 use App\Models\Attribute;
+use App\Models\ProductYear;
 use App\Http\Helper;
 use Illuminate\Http\Request;
-
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
-
-
-
+use App\Models\Shipping;
+use App\Models\ShippingRate;
 
 class ProductController extends Controller
 {
@@ -44,6 +43,7 @@ class ProductController extends Controller
         $years      = Helper::years();
         $products   = Product::with('categories')
                            ->orderBy('created_at','desc')->paginate(4);
+
         return view('admin.products.index',compact('products','brands','categories','attributes','years'));
     }
 
@@ -77,7 +77,8 @@ class ProductController extends Controller
         $categories = Category::parents()->get();
         $attributes = Attribute::parents()->orderBy('sort_order','asc')->get();
         $years      = Helper::years();
-        return view('admin.products.create',compact('brands','categories','attributes','years'));
+        $helper = new Helper;
+        return view('admin.products.create',compact('brands','categories','attributes','years','helper'));
     }
 
     /**
@@ -90,27 +91,61 @@ class ProductController extends Controller
     {   
 
         $this->validate($request,[
-          //  "category_id"  => "required",
-           //"image"  => "required",
+            //"category_id" => "required",
+            //"image" => "required",
         ]);
 
 
         $data = $request->except('_token');
-
+        $brand = Brand::find($request->brand_id);
         $data['quantity'] = 1;
-        $category     = Category::find($request->category_id);
-        $name         = $request->filled('product_name')  ? $request->product_name : $category->name;
+        $category = Category::find($request->category_id);
+        $name = $request->filled('brand_id')  ? $brand->name .' '.$request->product_name  : $request->product_name;
         $data['name'] = $name;
+        $data['product_name'] = $request->product_name;
         $data['slug'] = str_slug($name);
         $product = Product::create($data);
 
-        if (null !== $category->parent_id) {
-            $product->categories()->sync([$request->category_id, $category->parent_id]);
-        } else {
-            $product->categories()->sync([$request->category_id]);
+        if (!empty($request->category_id)) {
+            $product->categories()->sync($request->category_id);
         }
 
-        $product->attributes()->sync($request->attribute_id);
+        if (!empty($request->engine_id)) {
+            $product->engines()->sync($request->engine_id);
+        }
+
+        if (!empty($request->attribute_id)) {
+            $product->attributes()->sync($request->attribute_id);
+        }
+
+       
+        foreach( $request->condition as $state => $values) {
+            $shipping_rate = new ShippingRate;
+            foreach ($values as $key => $value) {
+                $shipping_rate->{$key} = $value;
+                $shipping_rate->product_id = $product->id;
+                $shipping_rate->is_lagos = $state == 'lagos' ? 1 :0;
+                $shipping_rate->save();
+            }
+        }
+
+        
+
+        foreach( $request->year_from as $attribute_id => $year) {
+            $product_year = new ProductYear;
+            $product_year->attribute_id = $attribute_id;
+            $product_year->product_id = $product->id;
+            $product_year->year_from = $year;
+            $product_year->save();
+        }
+
+        foreach( $request->year_to as $attribute_id => $year) {
+            $product_year = ProductYear::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->first();
+            $product_year->year_to = $year;
+            $product_year->save();
+        }
+
+    
         $data = json_encode($product->toArray());
 
         if ( !empty($request->images) ) {
@@ -132,18 +167,24 @@ class ProductController extends Controller
      *
      * return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
         //User::canTakeAction(2);
-        $brands     = Brand::all();
+        $brands = Brand::all();
+        $product = Product::find($id);
         $categories = Category::parents()->get();
         $attributes = Attribute::parents()->orderBy('sort_order','asc')->get();
-        $years      = Helper::years();
-        return view('admin.products.edit',compact('brands','categories','attributes','years'));
+        $years = Helper::years();
+        $helper = new Helper;
+        $year_from = $product->product_years->pluck('year_from')->toArray();
+        $year_to = $product->product_years->pluck('year_to')->toArray();
+        return view('admin.products.edit',compact('product','brands','categories','year_from','year_to','attributes','years','helper'));
     }
 
 
-    public function search(Request $request){
+    public function search(Request $request) 
+    {
+
         $filtered_array = $request->only(['q', 'field']);
 		if (empty( $filtered_array['q'] ) )  { 
 			return redirect('/errors');
@@ -162,7 +203,6 @@ class ProductController extends Controller
 			
         $products = $query->groupBy('products.id')->paginate(10);
         $products->appends(request()->all());
-
         return view('admin.products.index',compact('products'));  
     }
 
@@ -177,7 +217,6 @@ class ProductController extends Controller
             $data .= 'Qty: '. $product_variation->quantity . '<br/>';
             $data .= 'Price: '. $product_variation->price . '<br/>';
             $data .= 'Sale Price: '. $product_variation->sale_price . '<br/>';
- 
             $data .= '</p>';
         }
 
@@ -186,46 +225,87 @@ class ProductController extends Controller
 
 
 
-    public function buildAttributes(Request $request,$edit = null,$new = null){
-        $names  = [];
-        $meta_fields = [];
-        if( !empty($request->product_attributes) ){
-            foreach ($request->product_attributes  as $key => $attributes) {
-                $names[] = Attribute::find($attributes)->pluck('name')->toArray();
-            }
-            $names = array_shift($names);
+    public function update(Request $request,$id){
+        
+        $this->validate($request,[
+            //"category_id" => "required",
+            //"image" => "required",
+        ]);
+
+
+        $data = $request->except('_token');
+        $brand = Brand::find($request->brand_id);
+        $data['quantity'] = 1;
+        $category = Category::find($request->category_id);
+        $name = $request->filled('brand_id')  ? $brand->name .' '.$request->product_name  : $request->product_name;
+        $data['name'] = $name;
+        $data['slug'] = str_slug($name);
+        $product = Product::find($id);
+        $product->update($data);
+        
+        if (!empty($request->category_id)) {
+            $product->categories()->sync($request->category_id);
         }
-        return  $names;
+
+        if (!empty($request->engine_id)) {
+            $product->engines()->sync($request->engine_id);
+        }
+
+        if (!empty($request->attribute_id)) {
+            $product->attributes()->sync($request->attribute_id);
+        }
+
+        //Delete prwvious record
+        if (null !== $product->product_rates) {
+            $product->product_rates()->delete();
+        }
+
+        foreach( $request->condition as $state => $values) {
+            $shipping_rate = new ShippingRate;
+            foreach ($values as $key => $value) {
+                $shipping_rate->{$key} = $value;
+                $shipping_rate->product_id = $product->id;
+                $shipping_rate->is_lagos = $state == 'lagos' ? 1 :0;
+                $shipping_rate->save();
+            }
+        }
+
+        //Delete prwvious record
+        if (null !== $product->product_years) {
+            $product->product_years()->delete();
+        }
+
+        foreach( $request->year_from as $attribute_id => $year) {
+            $product_year = new ProductYear;
+            $product_year->attribute_id = $attribute_id;
+            $product_year->product_id = $product->id;
+            $product_year->year_from = $year;
+            $product_year->save();
+        }
+
+        foreach( $request->year_to as $attribute_id => $year) {
+            $product_year = ProductYear::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->first();
+            $product_year->year_to = $year;
+            $product_year->save();
+        }
+
+
+        $data = json_encode($product->toArray());
+
+        if ( !empty($request->images) ) {
+            $images =  $request->images;
+            $images = explode(',',$images);
+            foreach ( $images as $image) {
+                $images = new Image(['image' => $image]);
+                $product->images()->save($images);
+            }
+        } 
+
+        //(new Activity)->Log("Added a product ", "{$data}");
+        return \Redirect::to('/admin/products');
     }
 
 
-   
-
-
-
-     public function destroyVariation(Request $request,$product_variation_id)
-     {
-        $product_variation_values = ProductVariationValue::whereIn('product_variation_id',[$product_variation_id])->get();
-        foreach ($product_variation_values as $product_variation_value) {
-            $product_variation_value->product->attributes()->detach([$product_variation_value->attribute_id]);
-        }
-        $product_variation = ProductVariation::find($product_variation_id);
-        $product = $product_variation->product;
-        ProductVariation::destroy( $product_variation_id );
-        if (!$product->variants->count()){
-           $product->has_variants = false;
-           $product->save();
-        }
-        return response('done',200);
-     }
-
-     public function destroyRelatedProduct(Request $request,$id)
-     {
-        RelatedProduct::destroy( $id );
-        return response('done',200);
-     }
-
-   
 
     /**
      * Remove the specified resource from storage.
