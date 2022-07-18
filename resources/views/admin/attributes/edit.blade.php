@@ -42,9 +42,9 @@
                         <option  value="">--Choose Parent--</option>
                         @foreach($attributes as $attribute)
                             @if($attr->parent_id == $attribute->id)
-                                <option class="" value="{{  $attribute->id }}" selected="selected">{{ $attribute->name }} </option>
+                                <option  value="{{ $attribute->id }}" selected="selected">{{ $attribute->name }} </option>
                             @else
-                                <option class="" value="{{  $attribute->id }}">{{ $attribute->name }}  </option>
+                                <option class="" value="{{ $attribute->id }}">{{ $attribute->name }}  </option>
                                 @include('includes.product_attr',['attribute'=>$attribute])
                             @endif
                         @endforeach
@@ -59,7 +59,7 @@
                     <div class="col-sm-12 col-12">
                         <div class="input-group input-group-outline">
                         <label class="form-label mt-4 ms-0"> </label>
-                        <select class="form-control" name="parent_id" id="">
+                        <select class="form-control" name="type" id="">
                         <option  value="">--Choose Type--</option>
                         @foreach($types as $type)
                                 <option class="" value="{{ $type }}"  {{ $attr->type == $type ? 'selected' : null}} >{{ $type }} </option>
@@ -150,10 +150,7 @@
 @section('inline-scripts')
 
 
-   var parent_id = document.getElementById('parent_id');
-   setTimeout(function () {
-      const example = new Choices(parent_id);
-   }, 1);
+ 
    
 @stop
 

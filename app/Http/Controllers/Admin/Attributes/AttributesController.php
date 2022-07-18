@@ -126,7 +126,7 @@ class AttributesController extends Controller
      */
     public function update(Request $request,$id)
     {   
-
+        //dd($request->all());
         $attribute = Attribute::find($id);
         // if( $request->filled('parent_id') ) {
         //     $this->validate($request,[
