@@ -90,7 +90,7 @@ class Product extends Model
 
     public function getCategoryNameAttribute()
     {
-        return $this->categories()->orderBy('id','DESC')->first()->name;
+        return optional(optional($this->categories()->orderBy('id','DESC'))->first())->name;
 	}
 
     public function heavy_item_lagos()

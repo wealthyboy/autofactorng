@@ -146,7 +146,7 @@ class ProductController extends Controller
         }
 
     
-        $data = json_encode($product->toArray());
+       // $data = json_encode($product->toArray());
 
         if ( !empty($request->images) ) {
             $images =  $request->images;
