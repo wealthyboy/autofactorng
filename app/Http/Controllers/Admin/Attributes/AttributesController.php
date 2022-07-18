@@ -47,6 +47,7 @@ class AttributesController extends Controller
     public function store(Request $request)
     {   
          //
+        // dd($request->all());
         if(  $request->filled('parent_id') ){
             $this->validate($request,[
                 'name'=>[
@@ -82,6 +83,8 @@ class AttributesController extends Controller
             $attribute->engines()->sync($request->engine_id);
         }
 
+        //dd($attribute->engines);
+
         if (!empty($request->years)) {
             foreach ($request->years as $key => $year) {
                 $attribute_year =  new AttributeYear;
@@ -91,6 +94,11 @@ class AttributesController extends Controller
             }
            
         }
+
+        dd(true);
+
+       // dd($attribute->engines);
+
 
         //(new Activity)->Log("Created a new attribute called {$request->name}");
         return redirect()->back();
@@ -151,6 +159,10 @@ class AttributesController extends Controller
         $attribute->parent_id  = $request->parent_id ? $request->parent_id : null;
         $attribute->type  = $request->type;
         $attribute->save();
+
+        if (!empty($request->engine_id)) {
+            $attribute->engines()->sync($request->engine_id);
+        }
 
         // if (!empty($request->engine_id)) {
         //     foreach ($request->engine_id as $engine_id) {

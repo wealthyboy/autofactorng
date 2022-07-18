@@ -55,7 +55,7 @@
 
             </div>
 
-            @if (null !== $obj->engines)
+            @if (isset($engine) && $engine && null !== $obj->engines)
                 @foreach($obj->engines as $engine)
                 <div class="children" value="{{ $engine->id }}">
                     <div class="d-flex">

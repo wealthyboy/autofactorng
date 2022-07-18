@@ -119,7 +119,7 @@
                         <div class="parent" value="">
                         <div class="form-check ">
                             <label  class="custom-control-label" for="{{ $engine->id }}">
-                                <input  class="form-check-input" value="{{ $engine->id }}" id="{{ $engine->id }}"   type="checkbox" name="engine_id[]"  >
+                                <input  class="form-check-input" value="{{ $engine->id }}" id="{{ $engine->id }}"  {{  $attr->engines->contains('id', $engine->id) ? 'checked' : '' }}  type="checkbox" name="engine_id[]"  >
                                 <span role="button" class="mt-4">{{ $engine->name }}</span> 
                             </label>
                         </div> 
