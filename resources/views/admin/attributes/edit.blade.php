@@ -91,14 +91,14 @@
                     </div>
 
                     <div class="well well-sm pb-5 border" style="height: 300px; background-color: #fff; color: black; overflow: auto;">
-                    @foreach(array_reverse(range(1995, date('Y') + 1)) as $year)
+                       @foreach($helper->years() as $year)
                         <div class="parent" value="">
-                        <div class="form-check ">
-                            <label  class="custom-control-label" for="{{ $year }}">
-                                <input  class="form-check-input" value="{{ $year }}" id="{{ $year }}"  {{  in_array($year, $years) ? 'checked' : '' }} type="checkbox" name="years[]"  >
-                                <span role="button" class="mt-4">{{ $year }}</span> 
-                            </label>
-                        </div> 
+                            <div class="form-check ">
+                                <label  class="custom-control-label" for="{{ $year }}">
+                                    <input  class="form-check-input" value="{{ $year }}" id="{{ $year }}"  {{  in_array($year, $years) ? 'checked' : '' }} type="checkbox" name="years[]"  >
+                                    <span role="button" class="mt-4">{{ $year }}</span> 
+                                </label>
+                            </div> 
                         </div>
                         @endforeach  
                     </div>

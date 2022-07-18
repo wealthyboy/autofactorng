@@ -85,14 +85,14 @@
 
                  @foreach($shippings as $shipping)
                     <div class="parent" value="{{ $shipping->id }}">
-                      <div class="form-check ">
-                          <label  class="custom-control-label" for="{{ optional($shipping->location)->name }}">
-                            <input  class="form-check-input" value="{{ $shipping->id }}" type="checkbox" id="{{ optional($shipping->location)->name }}" name="selected[]" >
-                              <span role="button">{{ $shipping->location->name }}</span> 
-                                  <a href="{{ route('shipping.edit',['shipping'=>$shipping->id]) }}">
-                                  <i class="fa fa-pencil"></i> Edit</a>
-                          </label>
-                      </div> 
+                        <div class="form-check ">
+                            <label  class="custom-control-label" for="{{ optional($shipping->location)->name }}">
+                               <input  class="form-check-input" value="{{ $shipping->id }}" type="checkbox" id="{{ optional($shipping->location)->name }}" name="selected[]" >
+                                <span role="button">{{ optional($shipping->location)->name }} - {{ number_format($shipping->price) }}</span> 
+                                <a href="{{ route('shipping.edit',['shipping'=>$shipping->id]) }}">
+                                <i class="fa fa-pencil"></i> Edit</a>
+                            </label>
+                        </div> 
                     </div>
                   @endforeach  
                 </div>

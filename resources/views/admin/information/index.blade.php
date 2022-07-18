@@ -15,11 +15,11 @@
                <div class="row">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> Title</label>
+                        <label class="form-label"> Name</label>
                         <input 
                            type="text" 
                            class="form-control"                                     
-                           name="title"
+                           name="name"
                            >
                      </div>
                   </div>
@@ -58,33 +58,42 @@
                      </div>
                   </div>
                </div>
-              
-               <div class="row">
-                  <div class="">
-                     <div class="row">
-                        <div class="col-sm-12 col-5">
-                            <label class="form-label mt-4 ms-0">Parent </label>
-                            <select class="form-control" name="parent_id" id="parent_id">
-                              <option  value="">--Choose One--</option>
-                                @foreach($pages as $page)
-                                    @if($page->isParent())
-                                        <option class="" value="{{ $page->id }}" >{{ $page->title }} </option>
-                                        @foreach($page->children as $page)
-                                            <option class="" value="{{ $page->id }}" >&nbsp;&nbsp;&nbsp;{{ $page->title }} </option>
-                                        @endforeach
-                                    @endif
-                                @endforeach
-                            </select>
+
+               <div class="row mt-3">
+                    <div class="col-sm-12 col-12">
+                        <div class="input-group input-group-outline">
+                        <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="parent_id" id="">
+                        <option  value="">--Choose Parent--</option>
+                           
+                           @foreach($pages as $page)
+                                <option class="" value="{{ $page->id }}" >{{ $page->name }} </option>
+                                @include('includes.children_options',['obj'=>$page,'space'=>'&nbsp;&nbsp;'])
+                            @endforeach
+                        </select>
                         </div>
-                        <div class="col-sm-12 col-5">
-                           <label class="form-label mt-4 ms-0">Same Page </label>
-                           <select class="form-control" name="parent_id" id="parent_id">
-                              <option  value="">--Choose One--</option>
+                        
+                    </div>
+                </div>
+                
+
+
+            
+                <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                     <div class="input-group input-group-outline">
+                           <label class="form-label mt-4 ms-0"> </label>
+                           <select class="form-control" name="type" id="">
+                              <option  value="">--Same Page--</option>
+                              <option class="" value="yes">Yes </option>
+                              <option class="" value="no" >No</option>
+
                            </select>
-                        </div>
                      </div>
                   </div>
-               </div>
+                </div>
+              
+               
 
                <div class="row">
                   <div class="col-md-12">
@@ -107,39 +116,7 @@
       </div>
    </div>
    <div class="col-md-5">
-      <div class="card">
-         <div class="card-header p-3 pt-2">
-            <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
-               <i class="material-symbols-outlined">list</i>
-            </div>
-            <h6 class="mb-0">Pages</h6>
-         </div>
-         <div class="clearfix"></div>
-         <form action="{{ route('pages.destroy',['page'=>1]) }}" method="post" enctype="multipart/form-data" id="form-categories">
-            @csrf
-            @method('DELETE')
-            <div class="material-datatables">
-               <div class="well well-sm pb-5" style="height: 350px; background-color: #fff; color: black; overflow: auto;">
-                  @foreach($pages as $page)
-                  <div class="parent" value="{{ $page->id }}">
-                     <div class="form-check ">
-                        <input  class="form-check-input" value="{{ $page->id }}" type="checkbox" name="selected[]" >
-                        <label  class="custom-control-label" for="">
-                        <span role="button">{{ $page->name }}</span> 
-                        <a href="{{ route('pages.edit',['page'=>$page->id]) }}">
-                        <i class="fa fa-pencil"></i> Edit</a>
-                        <a href="/products/{{ $page->slug }}">
-                        <i class="fa fa-pencil"></i> Link</a> 
-                        </label>
-                     </div>
-                     @include('includes.children',['obj'=>$page,'space'=>'&nbsp;&nbsp;','model' => 'page','url' => 'pages'])
-                  </div>
-                  @endforeach  
-               </div>
-            </div>
-         </form>
-      </div>
-      <!--  end card  -->
+        @include('admin._partials.children', ['name' => 'selected', 'collections' => $pages, 'year' =>false, 'title' => 'pages' , 'single_name' => 'page'])
    </div>
 </div>
 @endsection

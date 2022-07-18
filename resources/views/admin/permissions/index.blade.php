@@ -13,20 +13,21 @@
                <h5 class="mb-0">Permissions</h5>
                <div class="form-check">
                   <label  class="custom-control-label" for="w">
-                     <input  onclick="$('input[name*=\'years[]\']').prop('checked', this.checked)" class="form-check-input" value="" id="w" type="checkbox" name=""  >
+                     <input  onclick="$('input[name*=\'selected[]\']').prop('checked', this.checked)" class="form-check-input" value="" id="w" type="checkbox" name="">
                      <span role="button">All</span> 
                   </label>
                </div>
             </div>
          </div>
          <div class="table-responsive">
-            <form action="{{ route('permissions.destroy',['permission' => 1]) }}" method="post" enctype="multipart/form-data" id="form-vouchers">
+            <form action="{{ route('permissions.destroy',['permission' => 1]) }}" method="post" enctype="multipart/form-data" id="form-permissions">
                @method('DELETE')
                @csrf
                <table class="table table-flush" id="datatable-search">
                   <thead class="thead-light">
                      <tr>
-                        <th class="text-left">
+                        <th class="text">
+                              
                         </th>
                         <th>Permission</th>
                         <th>Access</th>
@@ -40,7 +41,7 @@
                         <td>
                            <div class="d-flex align-items-center">
                               <div class="form-check">
-                                 <input class="form-check-input" name="years[]" value="{{ $permission->id }}" type="checkbox" id="customCheck1">
+                                 <input class="form-check-input" name="selected[]" value="{{ $permission->id }}" type="checkbox" id="customCheck1">
                               </div>
                            </div>
                         </td>
@@ -53,7 +54,7 @@
                            </div>
                         </td>
                         <td class="text-xs font-weight-normal">
-                           <a href="{{ route('permissions.edit',['permission'=>1]) }}" data-bs-toggle="tooltip" data-bs-original-title="Edit">
+                           <a href="{{ route('permissions.edit',['permission'=> $permission->id ]) }}" data-bs-toggle="tooltip" data-bs-original-title="Edit">
                                 <i class="material-symbols-outlined text-secondary position-relative text-lg">edit</i>
                              </a>
                         </td>

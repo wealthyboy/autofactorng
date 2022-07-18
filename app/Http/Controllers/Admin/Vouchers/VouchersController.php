@@ -35,7 +35,7 @@ class VouchersController  extends Controller
 
 	
 	public function edit(Request $request,$id) {
-		User::canTakeAction(4); 
+		//User::canTakeAction(4); 
 		$voucher = Voucher::find($id);    
 		return view('admin.vouchers.edit',compact('id','voucher'));
 	}
@@ -53,7 +53,7 @@ class VouchersController  extends Controller
 		$voucher->user_id  = optional(\Auth::user())->id;
 		$voucher->amount   = $request->discount;
 		$voucher->type   = $request->type;
-		$voucher->expires  = Helper::getFormatedDate($request->expiry);
+		$voucher->expires  = $request->expires;
 		$voucher->from_value = $request->has('from_value') ? $request->from_value : null;
 		$voucher->category_id = $request->has('category') ? $request->category : null;
 		$voucher->status =$request->status;
@@ -97,8 +97,7 @@ class VouchersController  extends Controller
 		$coupon->user_id  = optional(\Auth::user())->id;
 		$coupon->amount   = $request->discount;
 		$coupon->type     = $request->type;
-		$coupon->expires  = Helper::getFormatedDate($request->expiry);
-
+		$coupon->expires  = $request->expires;
 		$coupon->from_value = $request->has('from_value') ? $request->from_value : null;
 		//$coupon->category_id = $request->has('category') ? $request->category : null;
 		$coupon->status =$request->status;

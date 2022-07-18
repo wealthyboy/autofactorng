@@ -89,7 +89,7 @@ class PermissionsController extends Controller
     public function edit($id)
     {
         //
-        User::canTakeAction(3);
+       // User::canTakeAction(3);
         $permission  = Permission::find($id);
         $permissions = Permission::$types;
         return view('admin.permissions.edit',compact('permission','permissions'));
@@ -136,7 +136,7 @@ class PermissionsController extends Controller
             return \Redirect::back ()->withErrors ( $validator )->withInput ();
         }
         
-        (new Activity)->Log("Deleted a permission");
+       // (new Activity)->Log("Deleted a permission");
         Permission::destroy( $request->selected );
         return redirect()->back();	
     }

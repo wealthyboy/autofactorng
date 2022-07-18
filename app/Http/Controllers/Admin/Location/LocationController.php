@@ -32,7 +32,6 @@ class LocationController extends Controller
     {
         //
         $locations = Location::parents()->get();
-
         return view('admin.location.index',compact('locations'));
     }
 
@@ -61,6 +60,8 @@ class LocationController extends Controller
     public function store(Request $request)
     {   
          //
+
+       // dd($request->all());
         if( $request->filled('parent_id') ){
             $this->validate($request,[
                 'name'=>[
@@ -89,7 +90,7 @@ class LocationController extends Controller
        
         $location = new Location;
         $location->name = $request->name;
-        $location->parent_id     = $request->parent_id;
+        $location->parent_id  = $request->parent_id;
         $location->save();
         //(new Activity)->Log("Created a new Location called {$request->name}");
         return redirect()->back();

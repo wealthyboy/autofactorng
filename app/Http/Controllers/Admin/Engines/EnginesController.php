@@ -35,6 +35,21 @@ class EnginesController extends Controller
 	
 	public function edit(Request $request ,$id)
     {   
+		$engine = Engine::find($id);
+		return view('admin.engines.edit',compact('engine'));
+	}
+
+
+	public function update(Request $request, $id)
+    {    
+
+		$this->validate($request, [
+			//'name' => 'required|unique:brands',
+		]);
+
+		$engine = Engine::find($id);
+		$engine->update($request->all());
+		return redirect()->route('engines.index'); 
 	}
 	
 	

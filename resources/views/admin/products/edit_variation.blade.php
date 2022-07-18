@@ -5,6 +5,7 @@
             <div class="col-md-9 col-xs-9 col-sm-9">
             <input name="edit_variation"  value="1"   class="" type="hidden">
                 <div class="row">
+                    {{ $product->images }}
                     @foreach($product_attributes as $product_attribute)
                         <?php  $variantion_value = $product_attribute
                                     ->variation_value()

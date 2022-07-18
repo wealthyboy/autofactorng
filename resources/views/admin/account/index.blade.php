@@ -26,7 +26,7 @@
                         <div class="text-end pt-1">
                            <p class="text-sm mb-0 text-capitalize">Users</p>
                            <h5 class="mb-0">
-                              930
+                              0
                            </h5>
                         </div>
                      </div>
@@ -42,7 +42,7 @@
                         <div class="text-end pt-1">
                            <p class="text-sm mb-0 text-capitalize">Today's Sales Total</p>
                            <h5 class="mb-0">
-                              744
+                              0
                            </h5>
                         </div>
                      </div>
@@ -58,7 +58,7 @@
                         <div class="text-end pt-1">
                            <p class="text-sm mb-0 text-capitalize">Items Sold Today</p>
                            <h5 class="mb-0">
-                              1,414
+                              0
                            </h5>
                         </div>
                      </div>
@@ -74,7 +74,7 @@
                         <div class="text-end pt-1">
                            <p class="text-sm mb-0 text-capitalize">All Sales</p>
                            <h5 class="mb-0">
-                              1.76
+                              0
                            </h5>
                         </div>
                      </div>

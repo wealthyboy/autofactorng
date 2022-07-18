@@ -59,11 +59,27 @@
                     <i class="material-symbols-outlined">list</i>
                 </div>
                 <h6 class="mb-0">Locations</h6>
-            </div>              
+            </div>  
+            <div class="d-flex justify-content-between p-2">
+                <div class="parent" value="">
+                    <div class="form-check ">
+                        <label  class="custom-control-label" for="delete">
+                            <input  class="form-check-input" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" type="checkbox" id="delete" name="optionsCheckboxes" >
+                            <span role="button" class="mt-4">Select All</span> 
+                        </label>
+                    </div> 
+                </div>
+
+                <div  class="mr-3">
+                    <a href="javascript:void(0)" onclick="confirm('Are you sure?') ? $('#form-location').submit() : false;" rel="tooltip" title="Remove" class="btn btn-outline-primary btn-sm mb-0">
+                        <i class="material-icons"></i> Delete
+                    </a>
+                </div>
+            </div>            
             <form action="{{ route('location.destroy',['location'=>1]) }}" method="post" enctype="multipart/form-data" id="form-location">
                 @csrf
                 @method('DELETE')
-            <div class="material-datatables">
+             <div class="material-datatables">
                 <div class="well well-sm pb-5" style="height: 350px; background-color: #fff; color: black; overflow: auto;">
 
                     @foreach($locations as $location)
@@ -77,7 +93,7 @@
                                 <i class="fa fa-pencil"></i> Edit</a>
                           </label>
                       </div> 
-                      @include('includes.children',['obj'=>$location,'space'=>'&nbsp;&nbsp;','model' => 'location','url' => 'location'])
+                      @include('includes.children',['obj'=>$location,'space'=>'&nbsp;&nbsp;','model' => 'location','url' => 'location', 'name' => 'selected'])
                        </div>
                     @endforeach  
                 </div>

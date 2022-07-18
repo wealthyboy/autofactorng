@@ -29,7 +29,7 @@
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline mt-3">
                         <label class="form-label">Image Alt tag</label>
-                        <input type="text" value="{{ $banner->img_alt }}" class="form-control" name="image_alt_tag">
+                        <input type="text" value="{{ $banner->img_alt }}" class="form-control" name="img_alt">
                      </div>
                   </div>
 
@@ -44,6 +44,8 @@
                <div class="input-group input-group-outline mt-3">
                   <label class="form-label">Link</label>
                   <input type="text" value="{{ $banner->link }}" class="form-control" name="link">
+                  <input type="hidden" class="images" value="{{ $banner->image }}" name="image">
+
                </div>
 
                <div class="input-group input-group-outline mt-3">
@@ -84,12 +86,27 @@
 @endsection
 @section('inline-scripts')
 Dropzone.autoDiscover = false;
-   var drop = document.getElementById('dropzone')
-   var myDropzone = new Dropzone(drop, {
-   url: "/file/post",
+var drop = document.getElementById('dropzone')
+let imgs = []
+
+var myDropzone = new Dropzone(drop, {
+   url: "/admin/upload/image?folder=banners",
    addRemoveLinks: true,
-   muliple: false
- });
+   acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
+   paramName: 'file',
+   maxFiles: 1,
+   sending: function(file, xhr, formData) {
+     formData.append("_token", "{{ csrf_token() }}");
+   },
+  success(file, res, formData) {
+         imgs.push(res.path)
+         console.log(imgs)
+     $('.images').val(imgs)
+  },
+   headers: {
+      'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
+   }
+});
 @stop
 
 

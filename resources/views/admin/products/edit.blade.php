@@ -3,6 +3,7 @@
 <form action="{{ route('products.update',['product'=>$product->id])  }}" class="" method="post" enctype="multipart/form-data" id="form-category">
    @method('PATCH') 
    @csrf
+
    <div class="row">
       <div class="col-md-7">
          <div class="card">
@@ -13,7 +14,7 @@
                <h6 class="mb-0">Edit Product</h6>
             </div>
             <div class="card-body pt-0">
-               @csrf
+               
                <div class="row">
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
@@ -355,6 +356,9 @@
 @endsection
 @section('page-scripts')
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script>
+ 
+</script>
 @stop
 @section('inline-scripts')
 CKEDITOR.replace('phy_description',{
@@ -387,11 +391,11 @@ if (document.querySelector('.datetimepicker')) {
       }); // flatpickr
     }
 
-Dropzone.autoDiscover = false;
+    Dropzone.autoDiscover = false;
 var drop = document.getElementById('dropzone')
 let imgs = []
 
-var myDropzone = new Dropzone(drop, {
+let myDropZone = new Dropzone(drop, {
    url: "/admin/upload/image?folder=products",
    addRemoveLinks: true,
    acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
@@ -403,13 +407,28 @@ var myDropzone = new Dropzone(drop, {
    success(file, res, formData) {
          imgs.push(res.path)
          console.log(imgs)
-     $('.images').val(imgs)
+      $('.images').val(imgs)
    },
-   
+
 });
 
+
+
 @foreach($product->images as $image)
-  
+
+myDropZone.emit('addedfile', {
+   id: {{  $image->id }},
+   name: '{{ $image->image }}',
+   size: 12833
+})
+
+myDropZone.emit("thumbnail", {
+   id: {{  $image->id }},
+   name: '{{ $image->image }}',
+   size: 12833
+
+},  'http://auto.test/images/products/oLEEqcY6akZrixKXR3HPcFqLAfjDvoHAgN1nZUpB.png');
+
 @endforeach
 
 @stop

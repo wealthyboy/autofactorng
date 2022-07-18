@@ -60,7 +60,7 @@
                                 </td>
                             
                                 <td class="text-sm">
-                                    <a href="javascript:;" data-bs-toggle="tooltip" data-bs-original-title="Delete product">
+                                    <a href="{{ route('brands.edit',['brand' => $brand->id ]) }}" data-bs-toggle="tooltip" data-bs-original-title="Edit">
                                        <span class="ms-3 my-auto"> Edit</span>
                                     </a>
                                 </td>

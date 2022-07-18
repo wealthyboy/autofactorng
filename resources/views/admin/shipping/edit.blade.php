@@ -16,43 +16,47 @@
             <form action="{{ route('shipping.update',['shipping' => $shipping->id]) }}" method="post" enctype="multipart/form-data" id="form-shipping">
                 @csrf
                 @method('PATCH')
-            <div class="row mt-3">
-                <div class="col-sm-12 col-12">
-                  <div class="input-group input-group-outline">
-                    <label class="form-label"> Price</label>
-                    <input type="text" 
-                           required 
-                           class="form-control" 
-                           name="price"
-                           value="{{ $shipping->price ?? old('price') }}"
-                        >
-                  </div>
+                <div class="row mt-3">
+                    <div class="col-sm-12 col-12">
+                      <div class="input-group input-group-outline">
+                        <label class="form-label"> Price</label>
+                        <input type="text" 
+                              required 
+                              class="form-control" 
+                              name="price"
+                              value="{{ $shipping->price ?? old('price') }}"
+                            >
+                      </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="">
-                    <div class="row mt-3">
-                        <div class="col-sm-12 col-12">
-                            <div class="input-group input-group-outline">
-                                <label class="form-label mt-4 ms-0"> </label>
-                                <select required class="form-control" name="location_id" id="">
-                                    <option  value="">--Choose Type--</option>
-                                    @foreach($locations as $location)
-                                      <option class="" value="{{ $location->id }}" >{{ $location->name }} </option>
-                                    @endforeach 
-                                </select>
-                                
+                <div class="row">
+                    <div class="">
+                        <div class="row mt-3">
+                            <div class="col-sm-12 col-12">
+                                <div class="input-group input-group-outline">
+                                    <label class="form-label mt-4 ms-0"> </label>
+                                    <select required class="form-control" name="location_id" id="">
+                                        <option  value="">--Choose Type--</option>
+                                        @foreach($locations as $location)
+                                          @if( $shipping->location_id == $location->id)
+                                            <option value="{{ $location->id }}" selected> {{ $location->name }} </option>
+                                                @else
+                                            <option value="{{ $location->id }}"> {{ $location->name }} </option>
+                                          @endif
+                                        @endforeach 
+                                    </select>
+                                    
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
           
-            <div class="d-flex justify-content-end mt-4">
-                <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
-            </div>
+                <div class="d-flex justify-content-end mt-4">
+                    <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
+                </div>
           </form>
         </div>
     </div>

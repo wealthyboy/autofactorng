@@ -10,7 +10,7 @@ use App\Traits\ImageFiles;
 class Information extends Model
 {
 
-    use HasFactory, HasChildren,ImageFiles;
+    use HasFactory, HasChildren, ImageFiles;
 
 	
     protected $fillable=['user_id','title','description'];
@@ -18,20 +18,27 @@ class Information extends Model
     public $folder = 'blog';
     
     public $appends = [
-        'link',		
+        'clink',		
         'image_m',
     ];
 	
 	protected $table = 'information';
 
-    public function getLinkAttribute()
+    public function getCLinkAttribute()
     {
-        return $this->custom_link !== null ? $this->custom_link : '/pages/'.$this->slug;
+        return $this->link !== null ? $this->link : '/pages/'.$this->slug;
     }
 
     public function comments() {
         return $this->morphMany(Comment::class,'commentable');
     }
+
+
+    public function children()
+    {
+        return $this->hasMany(Information::class,'parent_id','id')->orderBy('sort_order','asc');
+    }
+
 }
 
 

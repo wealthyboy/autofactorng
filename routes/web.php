@@ -33,24 +33,16 @@ Route::group(['prefix' => 'admin'], function(){
     //Route::post('register','Admin\Users\UsersController@create')->name('create.admin.users');
 
     Route::resource('permissions','Admin\Permission\PermissionsController',['names'=>'permissions']);
-
     Route::post('upload/image','Admin\Image\ImagesController@store');
     Route::post('delete/image','Admin\Image\ImagesController@undo');
-
     Route::post('upload','Admin\Uploads\UploadsController@store');
     Route::get('delete/upload','Admin\Uploads\UploadsController@destroy');
-
-
     Route::resource('users',  'Admin\Users\UsersController',['names'=>'admin.users']);
     
 
     Route::resource('banners', 'Admin\Design\BannersController',['names' =>'banners']);
-    Route::resource('pages','Information\InformationController',['name' => 'pages']);
+    Route::resource('pages','Admin\Information\InformationController',['names' => 'pages']);
     Route::resource('settings','Admin\Settings\SettingsController',['names' => 'settings']);
-
-
-
-
 
     Route::resource('shipping','Admin\Shipping\ShippingController',['names'=>'shipping']);
     Route::resource('location','Admin\Location\LocationController',['names'=>'location']);
@@ -78,5 +70,4 @@ Route::get('/buy-now-pay-later',   [App\Http\Controllers\BuyNowPayLater\BuyNowPa
 
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');
 Route::post('contact/store',        'Contact\ContactController@store');
-
 Route::post('webhook/github',      'WebHook\WebHookController@gitHub');

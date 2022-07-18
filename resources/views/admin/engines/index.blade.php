@@ -59,7 +59,7 @@
                                 </td>
                             
                                 <td class="text-sm">
-                                    <a href="javascript:;">
+                                    <a href="{{ route('engines.edit',['engine' => $engine->id ]) }}">
                                        <span class="ms-3 my-auto"> Edit</span>
                                     </a>
                                 </td>

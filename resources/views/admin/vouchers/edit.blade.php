@@ -28,8 +28,8 @@
                   </div>
                   <div class="col-sm-4 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label">Expires</label>
-                        <input name="expires" value=""  class="form-control datetimepicker" type="text" data-input>
+                        <label class="form-label">Expires </label>
+                        <input name="expires" value="{{ $voucher->expires }}"  class="form-control datetimepicker" type="text" data-input>
                      </div>
                   </div>
                </div>
@@ -47,8 +47,8 @@
                               <label class="form-label mt-4 ms-0"> </label>
                               <select class="form-control" name="type" id="">
                                  <option  value="">--Choose Type--</option>
-                                 <option  value="specific user">One User</option>
-                                 <option  value="general">Multiple User</option>
+                                 <option  {{ $voucher->type == 'specific user' ? 'selected' : '' }} value="specific user">One User</option>
+                                 <option  {{ $voucher->type == 'general' ? 'selected' : '' }} value="general">Multiple User</option>
                               </select>
                            </div>
                         </div>

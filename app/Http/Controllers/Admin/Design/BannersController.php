@@ -54,16 +54,19 @@ class BannersController extends Controller
             'sort_order' => 'required',
             'image'=>'required',
         ]);
+        
         $banner->title = $request->title;
         $banner->link  = $request->link;
         $banner->col   = $request->col_width;
+        $banner->sm_col_width   = $request->sm_col_width;
+        $banner->md_col_width  = $request->md_col_width;
+        $banner->class         = $request->class;
+        $banner->type   = $request->type;
+        $banner->use_text   = $request->use_text ? 1 : 0;
+        $banner->description   = $request->description;
         $banner->image   = $request->image;
-        $banner->device   = $request->device;
-
-        $banner->img_alt = $request->img_alt;
-
-        
         $banner->sort_order = $request->sort_order;
+        $banner->mobile_sort_order = $request->mobile_sort_order;
         $banner->save();
         return redirect()->route('banners.index');
     	
@@ -111,12 +114,17 @@ class BannersController extends Controller
         ] );
         
         $banner->title = $request->title;
-        $banner->link = $request->link;
-        $banner->sort_order = $request->sort_order;
+        $banner->link  = $request->link;
         $banner->col   = $request->col_width;
+        $banner->sm_col_width   = $request->sm_col_width;
+        $banner->md_col_width  = $request->md_col_width;
+        $banner->class         = $request->class;
+        $banner->type   = $request->type;
+        $banner->use_text   = $request->use_text ? 1 : 0;
+        $banner->description   = $request->description;
         $banner->image   = $request->image;
-        $banner->img_alt = $request->img_alt;
-        $banner->device   = $request->device;
+        $banner->sort_order = $request->sort_order;
+        $banner->mobile_sort_order = $request->mobile_sort_order;
 
         $banner->save();
         // $flash = app( 'App\Http\flash' );

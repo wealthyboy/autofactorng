@@ -178,6 +178,7 @@ class ProductController extends Controller
         $helper = new Helper;
         $year_from = $product->product_years->pluck('year_from')->toArray();
         $year_to = $product->product_years->pluck('year_to')->toArray();
+
         return view('admin.products.edit',compact('product','brands','categories','year_from','year_to','attributes','years','helper'));
     }
 

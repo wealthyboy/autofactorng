@@ -6,29 +6,22 @@
     <div class="col-md-6">
         <div class="card mt-4" id="password">
             <div class="card-header">
-                <h5>Add Brand</h5>
+                <h5>Edit</h5>
             </div>
             <div class="card-body pt-0">
-                <form id="" action="{{ route('brands.store') }}" method="post">
-                    @csrf 
+                <form id="" action="{{ route('engines.update',['engine' => $engine->id]) }}" method="post">
+                    @csrf
+                    @method('PATCH')
                     <div class="input-group input-group-outline">
-                        <label class="form-label">Brand Name</label>
+                        <label class="form-label">Engine Name</label>
                         <input type="text" class="form-control"                                     
                             name="name"
+                            value="{{ $engine->name }}"
+                            required
                             >
                     </div>
 
-                    <input 
-                           type="hidden" 
-                           class="image"                                     
-                           name="image"
-                           >
-                    <div class="row mt-3">
-                        <div class="col-12">
-                            <label class="form-control mb-0"></label>
-                            <div action="/file-upload" class="form-control border dropzone" id="dropzone"></div>
-                        </div>
-                    </div>
+    
                     <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Save</button>
                 </form>
             </div>

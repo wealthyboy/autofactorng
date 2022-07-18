@@ -10,4 +10,9 @@ use App\Traits\HasChildren;
 class Location extends Model
 {
     use HasFactory, HasChildren;
+
+    public function children()
+    {
+        return $this->hasMany(Location::class,'parent_id','id');
+    }
 }

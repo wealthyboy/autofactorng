@@ -24,6 +24,8 @@ class BrandsController extends Controller
     public function __construct()
     {
     }
+
+
     public function index()
     {    
         $brands =  Brand::orderBy('name','asc')->get();
@@ -39,11 +41,9 @@ class BrandsController extends Controller
 	
 	public function store(Request $request)
     {   
-
 		$this->validate($request, [
 			'name' => 'required|unique:brands',
 		]);
-
 		Brand::Insert($request->except('_token'));
 		return redirect()->route('brands.index') ; 
 	}
@@ -51,6 +51,21 @@ class BrandsController extends Controller
 	
 	public function edit(Request $request ,$id)
     {   
+		$brand = Brand::find($id);
+		return view('admin.brands.edit',compact('brand'));
+	}
+
+
+	public function update(Request $request, $id)
+    {    
+
+		$this->validate($request, [
+			//'name' => 'required|unique:brands',
+		]);
+
+		$brand = Brand::find($id);
+		$brand->update($request->all());
+		return redirect()->route('brands.index'); 
 	}
 	
 	
@@ -69,8 +84,7 @@ class BrandsController extends Controller
 		}
 		Brand::destroy($request->selected);  	
 	
-		return redirect()->back();
-    		 
+		return redirect()->back();	 
 	}
 	
 	

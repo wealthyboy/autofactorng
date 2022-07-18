@@ -65,7 +65,7 @@
                         <input type="text" class="form-control"                                     
                            name="keywords"
                            >
-                           <input type="hidden" class="image"                                     
+                        <input type="hidden" class="image"                                     
                            name="image"
                            >
                      </div>
@@ -83,19 +83,17 @@
                      </div>
                   </div>
                </div>
-               <div class="row">
-                  <div class="">
-                     <div class="row">
-                        <div class="col-sm-12 col-5">
-                           <label class="form-label mt-4 ms-0">Parent </label>
-                           <select class="form-control" name="parent_id" id="parent_id">
-                              <option  value="">--Choose One--</option>
-                              @foreach($categories as $category)
-                              <option class="" value="{{ $category->id }}" >{{ $category->name }} </option>
-                              @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
-                              @endforeach
-                           </select>
-                        </div>
+               <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="parent_id" id="">
+                           <option  value="">--Choose Parent--</option>
+                           @foreach($categories as $category)
+                           <option class="" value="{{ $category->id }}" >{{ $category->name }} </option>
+                           @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
+                           @endforeach
+                        </select>
                      </div>
                   </div>
                </div>
@@ -193,5 +191,5 @@ success(file, res, formData) {
    $('.image').val(imgs)
 },
 
-});;
+});
 @stop

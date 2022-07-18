@@ -11,7 +11,7 @@ class Permission extends Model
 
     public static $types = [
         'Account' => 1,
-        'Create2' => 2,
+        'Create' => 2,
         'Read'    => 3,
         'Update'  => 4,
         'Delete'  => 5, 

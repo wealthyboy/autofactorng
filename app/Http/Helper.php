@@ -37,7 +37,7 @@ class Helper{
 
 
     public static function years() {
-        return array_reverse(range(1995, date('Y') + 1));
+        return array_reverse(range(1995, date('Y')));
     }
 
 

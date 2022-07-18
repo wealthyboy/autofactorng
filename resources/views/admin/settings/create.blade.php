@@ -136,6 +136,12 @@
                                         class="form-control"                                     
                                         name="products_items_size_w" value="{{  null !== $setting ? $setting->products_items_size_w : old('products_items_size_w')  }}"
                                     >
+                                    <input 
+                                        type="hidden" 
+                                        class="image"                                     
+                                        name="image" 
+
+                                     >
                                 </div>
                             </div>
                            
@@ -182,15 +188,26 @@
 @endsection
 @section('inline-scripts')
 
-var parent_id = document.getElementById('parent_id');
-setTimeout(function () {
-const example = new Choices(parent_id);
-}, 1);
 Dropzone.autoDiscover = false;
-    var drop = document.getElementById('dropzone')
-    var myDropzone = new Dropzone(drop, {
-      url: "/file/post",
-      addRemoveLinks: true,
-      muliple: false
-    });
+let drop = document.getElementById('dropzone')
+
+
+let imgs = []
+
+var myDropzone = new Dropzone(drop, {
+url: "/admin/upload/image?folder=category",
+addRemoveLinks: true,
+acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
+paramName: 'file',
+maxFiles: 1,
+sending: function (file, xhr, formData) {
+   formData.append("_token", "{{ csrf_token() }}");
+},
+success(file, res, formData) {
+   imgs.push(res.path)
+   console.log(imgs)
+   $('.image').val(imgs)
+},
+
+});
 @stop

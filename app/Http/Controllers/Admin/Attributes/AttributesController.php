@@ -33,7 +33,8 @@ class AttributesController extends Controller
         $attributes = Attribute::parents()->get(); 
         $types = Attribute::$types;
         $engines = Engine::get();
-        return view('admin.attributes.index',compact('attributes','types','engines','parents'));
+        $helper = new Helper;
+        return view('admin.attributes.index',compact('attributes','helper','types','engines','parents'));
     }
 
 
@@ -110,8 +111,10 @@ class AttributesController extends Controller
         $attributes = Attribute::parents()->get(); 
         $engines = Engine::get();
         $types = Attribute::$types;
-        $years = $attr->attribute_years->pluck('year')->toArray();    
-        return view('admin.attributes.edit',compact('attributes','attr','types','years','engines'));
+        $years = $attr->attribute_years->pluck('year')->toArray();  
+        $helper = new Helper;
+  
+        return view('admin.attributes.edit',compact('attributes','helper','attr','types','years','engines'));
     }
 
     /**

@@ -50,16 +50,11 @@ class SettingsController extends Controller
 		$settings = Setting::find($id); 
 		$file_logo = '';
 		$logo = '';	
-	
-		if ( $request->file('image') )  { 
-			$file_logo = $request->file('image');
-			$logo      =  !empty($file_logo->getClientOriginalName()) ?  time().$file_logo->getClientOriginalName() :  '' ;
-			$file_logo->move('images/logo',$logo);
-			$settings->store_logo = $logo;
-		    $settings->store_icon =  $logo;
-		}
 
-		$settings->image =  null;
+		
+	
+		
+		$settings->store_logo = $request->image;
 		$settings->store_name                   =$request->store_name;
 		$settings->address                      =$request->address;
 		$settings->store_email                  =$request->store_email;
@@ -83,11 +78,8 @@ class SettingsController extends Controller
 		$settings->twitter_link                 =$request->twitter_link;
 		$settings->youtube_link                 =$request->youtube_link;
 		$settings->shipping_is_free  = $request->shipping_is_free ? 1 : 0;
-
 		//$settings->max_file_size                =$request->max_file_size;
 		$settings->save();
-		$flash = app('App\Http\Flash');
-		$flash->success("Success","Inserted");
 		return \Redirect::to('/admin/settings');
     }
 	
@@ -105,9 +97,7 @@ class SettingsController extends Controller
 		}
 
 		//dd($request->all());
-		$settings->store_logo = $logo;
-		$settings->store_icon =  $logo;
-		$settings->image =  null;
+		$settings->store_logo = $request->image;
 		$settings->store_name                   =$request->store_name;
 		$settings->address                      =$request->address;
 		$settings->store_email                  =$request->store_email;

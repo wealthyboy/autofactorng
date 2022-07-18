@@ -16,12 +16,12 @@
                <div class="row">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> Title</label>
+                        <label class="form-label"> Name</label>
                         <input 
                            type="text" 
                            class="form-control"                                     
-                           name="title"
-                           value="{{ $information->title }}"
+                           name="name"
+                           value="{{ $information->name }}"
                            >
                      </div>
                   </div>
@@ -46,8 +46,8 @@
                         <input 
                            type="text" 
                            class="form-control"                                     
-                           name="custom_link"
-                           value="{{ $information->custom_link }}"
+                           name="link"
+                           value="{{ $information->link }}"
 
                            >
                      </div>
@@ -65,42 +65,44 @@
                   </div>
                </div>
               
-               <div class="row">
-                  <div class="">
-                     <div class="row">
-                        <div class="col-sm-12 col-5">
-                            <label class="form-label mt-4 ms-0">Parent </label>
-                            <select class="form-control" name="parent_id" id="parent_id">
-                              <option  value="">--Choose One--</option>
-                              @foreach($pages as $page)
-
-                              @if($information->parent_id == $page->id)
-                                 <option class="" value="{{  $page->id }}" selected="selected">{{ $page->title }} </option>
-                                 @continue
-                              @endif
-
-                              @if($page->isParent())
-                                 <option class="" value="{{ $page->id }}">{{ $page->title }} </option>
-                              @else
-                                 <option class="" value="{{ $page->id }}">&nbsp;&nbsp;&nbsp;{{ $page->title }} </option>
-                              @endif
-
-                              @endforeach
-                            </select>
+               <div class="row mt-3">
+                    <div class="col-sm-12 col-12">
+                        <div class="input-group input-group-outline">
+                        <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="parent_id" id="">
+                        <option  value="">--Choose Parent--</option>
+                        @foreach($pages as $page)
+                            @if($information->parent_id == $page->id)
+                                <option class="" value="{{  $page->id }}" selected="selected">{{ $page->name }} </option>
+                            @else
+                                <option class="" value="{{  $page->id }}">{{ $page->name }}  </option>
+                                @include('includes.product_attr',['attribute'=>$page])
+                            @endif
+                        @endforeach
+                           
+                           
+                        </select>
                         </div>
-
-                        <div class="col-sm-12 col-5">
-                           <label class="form-label mt-4 ms-0">Same Page </label>
-                           <select class="form-control" name="parent_id" id="parent_id">
-                              <option  value="">--Choose One--</option>
-                           </select>
-                        </div>
-
-
                         
+                    </div>
+                </div>
+                
+
+
+            
+                <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                     <div class="input-group input-group-outline">
+                           <label class="form-label mt-4 ms-0"> </label>
+                           <select class="form-control" name="type" id="">
+                              <option  value="">--Same Page--</option>
+                              <option {{ $information->same_page ? 'selected' : '' }} value="yes">Yes </option>
+                              <option {{ !$information->same_page ? 'selected' : '' }} value="no" >No</option>
+
+                           </select>
                      </div>
                   </div>
-               </div>
+                </div>
 
                <div class="row">
                   <div class="col-md-12">

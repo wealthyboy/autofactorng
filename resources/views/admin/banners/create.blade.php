@@ -20,7 +20,7 @@
                   <div class="col-sm-6 col-4">
                      <div class="input-group input-group-outline ">
                         <label class="form-label">Sort Order</label>
-                        <input type="number"  name="sort_order" class="form-control" placeholder="">
+                        <input type="number"  name="sort_order" class="form-control">
                      </div>
                   </div>
                </div>
@@ -29,7 +29,7 @@
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline mt-3">
                         <label class="form-label">Image Alt tag</label>
-                        <input type="text" class="form-control" name="image_alt_tag">
+                        <input type="text" class="form-control" name="img_alt">
                      </div>
                   </div>
 
@@ -44,6 +44,8 @@
                <div class="input-group input-group-outline mt-3">
                   <label class="form-label">Link</label>
                   <input type="text" class="form-control" name="link">
+                  <input type="hidden" class="images" name="image">
+
                </div>
 
                <div class="input-group input-group-outline mt-3">
@@ -68,7 +70,9 @@
                <div class="row mt-3">
                   <div class="col-12">
                         <label class="form-control mb-0"></label>
-                        <div action="/file-upload" class="form-control border dropzone" id="dropzone"></div>
+                        <div action="/file-upload" class="form-control border dropzone" id="dropzone">
+                        
+                        </div>
                   </div>
                </div>
                <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-4 mb-0">Submit</button>
@@ -80,12 +84,27 @@
 @endsection
 @section('inline-scripts')
 Dropzone.autoDiscover = false;
-   var drop = document.getElementById('dropzone')
-   var myDropzone = new Dropzone(drop, {
-   url: "/file/post",
+var drop = document.getElementById('dropzone')
+let imgs = []
+
+var myDropzone = new Dropzone(drop, {
+   url: "/admin/upload/image?folder=banners",
    addRemoveLinks: true,
-   muliple: false
- });
+   acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
+   paramName: 'file',
+   maxFiles: 1,
+   sending: function(file, xhr, formData) {
+     formData.append("_token", "{{ csrf_token() }}");
+   },
+  success(file, res, formData) {
+         imgs.push(res.path)
+         console.log(imgs)
+     $('.images').val(imgs)
+  },
+   headers: {
+      'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
+   }
+});
 @stop
 
 
