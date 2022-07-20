@@ -38,7 +38,6 @@ Route::group(['prefix' => 'admin'], function(){
     Route::post('upload','Admin\Uploads\UploadsController@store');
     Route::get('delete/upload','Admin\Uploads\UploadsController@destroy');
     Route::resource('users',  'Admin\Users\UsersController',['names'=>'admin.users']);
-    
 
     Route::resource('banners', 'Admin\Design\BannersController',['names' =>'banners']);
     Route::resource('pages','Admin\Information\InformationController',['names' => 'pages']);
@@ -51,12 +50,11 @@ Route::group(['prefix' => 'admin'], function(){
     Route::resource('rates','Admin\CurrencyRates\CurrencyRatesController',['name'=>'rates']);
     Route::resource('vouchers','Admin\Vouchers\VouchersController',['names'=>'vouchers']);
     Route::resource('products','Admin\Product\ProductController',['names' => 'products']);
-    Route::resource('category','Admin\Category\CategoryController',['names'=>'category']);
+    Route::resource('category','Admin\Category\CategoryController',['name'=>'category']);
     Route::post('category/delete/image','Admin\Category\CategoryController@undo');
     Route::resource('reviews',  'Admin\Reviews\ReviewsController',['names' => 'reviews']);
     Route::resource('orders','Admin\Orders\OrdersController',['names' => 'admin.orders']);
     Route::resource('brands', 'Admin\Brand\BrandsController',['names' =>'brands']);
-
 });
 
 

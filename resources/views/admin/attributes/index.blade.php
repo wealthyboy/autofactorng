@@ -117,7 +117,7 @@
   </div>
 
   <div class="col-md-5">
-    @include('admin._partials.children', ['name' => 'selected', 'collections' => $attributes, 'year' =>false, 'title' => 'attributes' , 'single_name' => 'attribute', 'engine' =>false])
+    @include('admin._partials.children', ['name' => 'selected', 'collections' => $attributes, 'year' =>false, 'title' => 'attributes' , 'single_name' => 'attribute', 'engine' =>false, 'route'=> 'attributes' ])
 </div>
 @endsection
 @section('inline-scripts')

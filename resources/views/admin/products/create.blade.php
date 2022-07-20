@@ -155,6 +155,7 @@
                         <textarea type="text" class="form-control"                                     
                            name="description"
                            rows="8"
+                           id="desc"
                            >
                         </textarea>
                      </div>
@@ -365,6 +366,14 @@
          theme: 'snow' // Specify theme in configuration
       });
    }
+
+   const textarea = document.getElementById('desc');
+
+   const end = textarea.value.length;
+
+   // ✅ Move focus to End of textarea
+   textarea.setSelectionRange(end, end);
+   textarea.focus();
 
 
    if (document.querySelector('.datetimepicker')) {

@@ -116,7 +116,7 @@
       </div>
    </div>
    <div class="col-md-5">
-        @include('admin._partials.children', ['name' => 'selected', 'collections' => $pages, 'year' =>false, 'title' => 'pages' , 'single_name' => 'page'])
+        @include('admin._partials.children', ['name' => 'selected', 'collections' => $pages, 'year' =>false, 'title' => 'pages' , 'single_name' => 'page', 'route' => 'pages'])
    </div>
 </div>
 @endsection

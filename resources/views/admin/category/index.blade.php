@@ -109,66 +109,11 @@
       </div>
    </div>
    <div class="col-md-5">
-      <div class="card">
-         <div class="card-header p-3 pt-2">
-            <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
-               <i class="material-symbols-outlined">list</i>
-            </div>
-            <h6 class="mb-0">Categories</h6>
-         </div>
-         <div class="clearfix"></div>
-         <form action="{{ route('category.destroy',['category'=>1]) }}" method="post" enctype="multipart/form-data" id="form-categories">
-            @csrf
-            @method('DELETE')
-            <div class="material-datatables">
-               <div class="well well-sm pb-5" style="height: 350px; background-color: #fff; color: black; overflow: auto;">
-                  @foreach($categories as $category)
-                  <div class="parent" value="{{ $category->id }}">
-                     <div class="form-check ">
-                        <input  class="form-check-input" value="{{ $category->id }}" type="checkbox" name="selected[]" >
-                        <label  class="custom-control-label" for="">
-                        <span role="button">{{ $category->name }}</span> 
-                        <a href="{{ route('category.edit',['category'=>$category->id]) }}">
-                        <i class="fa fa-pencil"></i> Edit</a>
-                        <a href="/products/{{ $category->slug }}">
-                        <i class="fa fa-pencil"></i> Link</a> 
-                        </label>
-                     </div>
-                     @include('includes.children',['obj'=>$category,'space'=>'&nbsp;&nbsp;','model' => 'category','url' => 'category', 'name' => 'category_id'])
-                  </div>
-                  @endforeach  
-               </div>
-            </div>
-         </form>
-      </div>
-      <!--  end card  -->
+      @include('admin._partials.children', ['name' => 'selected', 'collections' => $categories, 'year' =>false, 'title' => 'categories' , 'single_name' => 'category', 'engine' =>false, 'route'=> 'category' ])
    </div>
 </div>
 @endsection
 @section('inline-scripts')
-if (document.getElementById('choices-gender')) {
-
-var gender = document.getElementById('choices-gender');
-const example = new Choices(gender);
-}
-if (document.getElementById('choices-language')) {
-var language = document.getElementById('choices-language');
-const example = new Choices(language);
-}
-if (document.getElementById('choices-skills')) {
-var skills = document.getElementById('choices-skills');
-const example = new Choices(skills, {
-   delimiter: ',',
-   editItems: true,
-   maxItemCount: 5,
-   removeItemButton: true,
-   addItems: true
-});
-}
-var parent_id = document.getElementById('parent_id');
-setTimeout(function () {
-const example = new Choices(parent_id);
-}, 1);
 
 Dropzone.autoDiscover = false;
 let drop = document.getElementById('dropzone')
