@@ -54,7 +54,9 @@
                                 </td>
                                 <td>
                                     <div class="d-flex">
+                                        @if($brand->image)
                                         <img class="w-10 ms-3" src="{{ $brand->image }}" alt="fendi">
+                                        @endif
                                         <h6 class="ms-3 my-auto"> {{ $brand->name }}</h6>
                                     </div>
                                 </td>
