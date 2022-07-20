@@ -21,7 +21,6 @@ mix.scripts(
         "resources/admin_assets/js/plugins/smooth-scrollbar.min.js",
         "resources/admin_assets/js/plugins/choices.min.js",
         "resources/admin_assets/js/plugins/dragula/dragula.min.js",
-        // "resources/admin_assets/js/plugins/jkanban/jkanban.js",
         "resources/admin_assets/js/plugins/smooth-scrollbar.min.js",
         "resources/admin_assets/js/plugins/choices.min.js",
         "resources/admin_assets/js/plugins/dropzone.min.js",
@@ -29,6 +28,7 @@ mix.scripts(
         "resources/admin_assets/js/plugins/flatpickr.min.js",
         "resources/admin_assets/js/plugins/datatables.js",
         "resources/admin_assets/js/material-dashboard.min-v=3.0.3.js",
+
     ],
     "public/js/dashboard.js"
 );

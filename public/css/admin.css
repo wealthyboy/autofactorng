@@ -31528,13 +31528,7 @@ text {
     }
 }
 
-.parent .children {
-    margin-left: 20px;
-}
 
-.year {
-    margin-top: -11px;
-}
 /* ul.dropdown-menu.inner li:first-child{
     visibility: hidden;
  } */
@@ -31775,6 +31769,368 @@ div.items input[type="file"] {
 
 .parent .children {
     margin-left: 20px;
+}
+
+.parent .children {
+    margin-left: 20px;
+}
+
+.year {
+    margin-top: -11px;
+}
+.parent .children {
+    margin-left: 20px;
+}
+
+.img-upload {
+    margin: 0 auto;
+    border: 2px solid red;
+    position: relative;
+}
+
+#m_image {
+    position: relative;
+    border: 6px dotted #eee;
+    width: 200px;
+    height: 220px;
+    opacity: 2
+}
+
+#m_image_tn {
+    position: relative;
+    border: 6px dotted #eee;
+    width: 150px;
+    height: 170px;
+    opacity: 2
+}
+
+.uploadloaded_image {
+    margin: 0 auto;
+}
+
+.uploadloaded_image .upload-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 18px;
+}
+
+.uploadloaded_image .upload-text a {
+    color: #333;
+    display: inline-block;
+    width: 100%;
+}
+
+.uploadloaded_image .upload-text img {
+    max-width: 70px;
+    max-height: 70px;
+    display: block;
+    margin: 0 auto;
+}
+
+.uploadloaded_image img#stored_image {
+    object-fit: cover;
+    max-height: 100%;
+    width: 100%;
+    display: block;
+}
+
+img.upload_spinner {
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 32px;
+    height: 32px;
+}
+
+.uploadloaded_image .remove_image {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.7);
+    /* Black see-through */
+    width: 100%;
+    transition: .5s ease;
+    opacity: 1;
+    color: white;
+    padding: 5px;
+    left: 0;
+    text-align: center;
+    z-index: 5;
+}
+
+.uploadloaded_image .remove_image a {
+    color: #fff;
+}
+
+div.slick-div {
+    margin-bottom: 10px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+div.items-ad {
+    position: relative;
+    width: 150px;
+    height: 170px;
+    border: 6px dotted #eee;
+    margin-right: 9px;
+    cursor: pointer;
+}
+
+.variations-header.clearfix {
+    border-top: 2px solid #d0c6c6ab;
+    border-bottom: 2px solid #d0c6c6ab;
+}
+
+.variation-panel {
+    border-top: 1px solid #ece7e7;
+    border-bottom: 1px solid#ece7e7;
+    padding-top: 10px;
+}
+
+.close-panel {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.parent .children {
+    margin-left: 20px;
+}
+
+.custom-hidden {
+    display: none;
+}
+
+.img-upload {
+    margin: 0 auto;
+    border: 2px solid red;
+    position: relative;
+}
+
+.j-drop {
+    position: relative;
+    cursor: pointer !important;
+    border: 6px dotted #eee;
+    width: auto;
+    min-height: 250px;
+    opacity: 2
+}
+
+.uploadloaded_image,
+#j-drop {
+    margin: 0 auto;
+}
+
+.uploadloaded_image .upload-text,
+#j-drop .upload-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 12px;
+    width: 100%;
+}
+
+.uploadloaded_image .upload-text a,
+#j-drop .upload-text a {
+    color: #333;
+    display: inline-block;
+    width: 100%;
+}
+
+.uploadloaded_image .upload-text img,
+#j-drop .upload-text img {
+    max-width: 65px;
+    max-height: 60px;
+    display: block;
+    margin: 0 auto;
+}
+
+.uploadloaded_image img#stored_image {
+    object-fit: cover;
+    max-height: 100%;
+    width: 100%;
+    display: block;
+}
+
+.j-details {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    cursor: pointer !important;
+}
+
+.j-complete {
+    position: relative;
+    z-index: 5;
+}
+
+
+/* 
+.j-complete.j-no-multiple{
+  z-index: 0;
+  cursor: pointer;
+} */
+
+.j-drop .j-complete .j-preview {
+    position: relative;
+    max-height: 170px;
+    max-width: 170px;
+    overflow: hidden;
+    margin: 5px 5px 20px 10px;
+    border-radius: 10px;
+    z-index: 2;
+    cursor: pointer;
+}
+
+
+/* #j-drop .j-complete  .j-preview.j-no-multiple {
+  z-index: 0;
+  cursor: pointer;
+} */
+
+.j-drop .j-complete .j-preview.loading {
+    position: relative;
+    height: 170px;
+    width: 170px;
+    overflow: hidden;
+    margin: 5px 5px 20px 10px;
+    z-index: 2;
+}
+
+p.loading {
+    height: 30px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.loading,
+.j-preview.loading {
+    border-radius: 10px;
+    border: 1px solid #eee;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: rgb(116, 110, 110);
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 1000px 104px;
+}
+
+@keyframes placeHolderShimmer {
+    0% {
+        background-position: -468px 0
+    }
+    100% {
+        background-position: 468px 0
+    }
+}
+
+.j-drop .j-preview img {
+    object-fit: cover;
+    max-height: 100%;
+    width: 100%;
+    display: block;
+    z-index: 5;
+    cursor: pointer;
+}
+
+#j-drop .j-preview .progress {
+    z-index: 1;
+    top: 70px;
+    left: 0%;
+    width: 100%;
+    position: absolute;
+}
+
+.imgoverlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    transition: .5s ease;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.7);
+    /* Black see-through */
+}
+
+.j-complete .remove_image {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.7);
+    /* Black see-through */
+    width: 100%;
+    transition: height .5s ease;
+    opacity: 0;
+    color: #ffffff;
+    padding: 5px;
+    left: 0;
+    text-align: center;
+    z-index: 5;
+    cursor: pointer;
+}
+
+.j-complete .remove_image a {
+    color: #ffffff !important;
+}
+
+.j-preview:hover .remove_image {
+    opacity: 1;
+}
+
+.uploadloaded_image .remove_image a {
+    color: #fff;
+}
+
+div.slick-div {
+    margin-bottom: 10px;
+    margin-top: 30px;
+    width: 100%;
+}
+
+input.upload_input {
+    cursor: pointer !important;
+    display: block;
+    filter: alpha(opacity=0);
+    font-size: 10px;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    text-align: right;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.uploadloaded_image #main_image-error {
+    position: absolute;
+    width: 100%;
+    top: 8px;
+    right: 20px;
+}
+
+label.error {
+    color: red;
+    display: block;
+    margin: 0 auto;
+}
+
+.hide {
+    display: none;
 }
 
 .year {

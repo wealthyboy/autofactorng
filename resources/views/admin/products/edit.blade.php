@@ -201,17 +201,39 @@
 
               
                <div class="col-12">
-                  <label class="form-control mb-0"></label>
-                  <div action="/file-upload" class="form-control border dropzone" id="dropzone"></div>
+                  <div id="j-drop" class="j-activate j-drop">
+                  <input accept="image/*"   onchange="getFile(this,'images[]','Image')" class="upload_input" data-msg="Upload  your image" type="file"  name="img"  />
+                     <div   class=" upload-text {{ $product->images->count() ||  $product->image ? 'hide' : ''}}"> 
+                        <a   class="j-activate" href="#">
+                              <img class="" src="/store/img/upload_icon.png">
+                              <b>Click on anywhere to upload image</b> 
+                        </a>
+                     </div>
+                     <div id="j-details"  class="j-details">
+                        @if($product->images->count())
+                              @foreach($product->images as $image)
+                              <div id="{{ $image->id }}" class="j-complete">
+                                 <div class="j-preview">
+                                    <img class="img-thumnail" src="{{ $image->image }}">
+                                    <div id="remove_image" class="remove_image remove-image">
+                                          <a class="remove-image"  data-id="{{ $image->id }}" data-randid="{{ $image->id }}" data-model="Image" data-type="complete"  data-url="{{ $image->image }}" href="#">Remove</a>
+                                    </div>
+                                 </div>
+                              </div>
+                              @endforeach
+                        @endif
+                     </div>
+                  </div> 
                </div>
+               
 
                <hr class="horizontal dark">
                
 
                <div class="form-check form-switch">
-               <input class="form-check-input"  name="condition_is_present" value="1" {{  $product->condition_is_present ? 'checked' : ''}} type="checkbox" id="heavy_item">
-                  <label class="form-check-label" for="heavy_item">Heavy Item</label>
-               </div>
+                  <input class="form-check-input"  name="condition_is_present" value="1" {{  $product->condition_is_present ? 'checked' : ''}} type="checkbox" id="heavy_item">
+                     <label class="form-check-label" for="heavy_item">Heavy Item</label>
+                  </div>
 
                <div id="large-items" class="row mt-3 {{  $product->condition_is_present ? '' : 'd-none'}}">
                   
@@ -374,6 +396,7 @@
 @endsection
 @section('page-scripts')
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('backend/products.js') }}"></script>
 @stop
 @section('inline-scripts')
    CKEDITOR.replace('phy_description',{
@@ -401,43 +424,7 @@
       }); // flatpickr
    }
 
-   Dropzone.autoDiscover = false;
-   var drop = document.getElementById('dropzone')
-   let imgs = []
-
-   let myDropZone = new Dropzone(drop, {
-      url: "/admin/upload/image?folder=products",
-      addRemoveLinks: true,
-      acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
-      paramName: 'file',
-      maxFiles: 10,
-      sending: function(file, xhr, formData) {
-      formData.append("_token", "{{ csrf_token() }}");
-      },
-      success(file, res, formData) {
-            imgs.push(res.path)
-            console.log(imgs)
-         $('.images').val(imgs)
-      },
-
-   });
-
-   @foreach($product->images as $image)
-
-      myDropZone.emit('addedfile', {
-         id: {{  $image->id }},
-         name: '{{ $image->image }}',
-         size: 12833
-      })
-
-      myDropZone.emit("thumbnail", {
-         id: {{  $image->id }},
-         name: '{{ $image->image }}',
-         size: 12833
-
-      },  'http://auto.test/images/products/oLEEqcY6akZrixKXR3HPcFqLAfjDvoHAgN1nZUpB.png');
-
-   @endforeach
+   
 
    $('#heavy_item').on('click', function() {
       console.log(true)

@@ -178,8 +178,7 @@
 
               
                <div class="col-12">
-                  <label class="form-control mb-0"></label>
-                  <div action="/file-upload" class="form-control border dropzone" id="dropzone"></div>
+                  @include('admin.products.product_images') 
                </div>
 
                <hr class="horizontal dark">
@@ -342,6 +341,9 @@
 @endsection
 @section('page-scripts')
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('backend/products.js') }}"></script>
+
+
 @stop
 @section('inline-scripts')
    CKEDITOR.replace('phy_description',{
@@ -369,28 +371,6 @@
          allowInput: true
       }); // flatpickr
    }
-
-   Dropzone.autoDiscover = false;
-   var drop = document.getElementById('dropzone')
-   let imgs = []
-
-   var myDropzone = new Dropzone(drop, {
-      url: "/admin/upload/image?folder=products",
-      addRemoveLinks: true,
-      acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
-      paramName: 'file',
-      maxFiles: 10,
-      sending: function(file, xhr, formData) {
-      formData.append("_token", "{{ csrf_token() }}");
-      },
-      success(file, res, formData) {
-         imgs.push(res.path)
-         $('.images').val(imgs)
-      },
-      headers: {
-         'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
-      }
-   });
 
    $('#heavy_item').on('click', function() {
       console.log(true)

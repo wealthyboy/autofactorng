@@ -158,7 +158,6 @@ class ProductController extends Controller
 
         if ( !empty($request->images) ) {
             $images =  $request->images;
-            $images = explode(',',$images);
             foreach ( $images as $image) {
                 $images = new Image(['image' => $image]);
                 $product->images()->save($images);
@@ -316,7 +315,6 @@ class ProductController extends Controller
 
         if ( !empty($request->images) ) {
             $images =  $request->images;
-            $images = explode(',',$images);
             foreach ( $images as $image) {
                 $images = new Image(['image' => $image]);
                 $product->images()->save($images);
