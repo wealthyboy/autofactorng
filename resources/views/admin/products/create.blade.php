@@ -296,11 +296,9 @@
                <div class="well well-sm pb-5" style="height: 250px; background-color: #fff; color: black; overflow: auto;">
                 @foreach($attributes as $attribute)
                   <div class="parent" value="{{ $attribute->id }}">
-                      
                       <div class="form-check ">
                           <label  class="custom-control-label" for="{{ $attribute->id }}">
                              <input  class="form-check-input" value="{{ $attribute->id }}" type="checkbox" id="{{ $attribute->id }}" name="attribute_id[]" >
-
                               <span role="button">{{ $attribute->name }}</span> 
                                 <a href="{{ route('attributes.edit',['attribute'=>$attribute->id]) }}">
                                 <i class="fa fa-pencil"></i> Edit</a>
@@ -323,14 +321,13 @@
             <div class="material-datatables">
                <div class="well well-sm pb-5" style="height: 250px; background-color: #fff; color: black; overflow: auto;">
                 @foreach($categories as $category)
-                  <div class="parent" value="{{ $category->id }}">
-                      
+                  <div class="parent">
                      <div class="form-check ">
-                        <input  class="form-check-input" value="{{ $category->id }}" type="checkbox" name="category_id[]" >
-                        <label  class="custom-control-label" for="">
+                        <label  class="custom-control-label" for="category-{{ $category->id }}">
+                           <input id="ategory-{{ $category->id }}"  class="form-check-input" value="{{ $category->id }}" type="checkbox" name="category_id[]">
                            <span role="button">{{ $category->name }}</span> 
-                              <a href="{{ route('category.edit',['category'=>$category->id]) }}">
-                              <i class="fa fa-pencil"></i> Edit</a>
+                           <a href="{{ route('category.edit',['category'=>$category->id]) }}">
+                           <i class="fa fa-pencil"></i> Edit</a>
                         </label>
                      </div> 
                      @include('includes.children',['obj'=>$category,'space'=>'&nbsp;&nbsp;','model' => 'category','url' => 'category','name' => 'category_id'])
@@ -347,9 +344,9 @@
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 @stop
 @section('inline-scripts')
-CKEDITOR.replace('phy_description',{
-        height: '200px',
-        toolbar: [
+   CKEDITOR.replace('phy_description',{
+      height: '200px',
+      toolbar: [
          '/',
          { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
          { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },
@@ -358,49 +355,46 @@ CKEDITOR.replace('phy_description',{
          { name: 'styles', items: [ 'Format', 'Font', 'FontSize' ] },
          { name: 'others', items: [ '-' ] },
       ]
-})
+   })
 
-if (document.getElementById('editor')) {
+   if (document.getElementById('editor')) {
       var quill = new Quill('#editor', {
-        theme: 'snow' // Specify theme in configuration
+         theme: 'snow' // Specify theme in configuration
       });
-    }
-
-
-if (document.querySelector('.datetimepicker')) {
-      flatpickr('.datetimepicker', {
-        allowInput: true
-      }); // flatpickr
-    }
-
-Dropzone.autoDiscover = false;
-var drop = document.getElementById('dropzone')
-let imgs = []
-
-var myDropzone = new Dropzone(drop, {
-   url: "/admin/upload/image?folder=products",
-   addRemoveLinks: true,
-   acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
-   paramName: 'file',
-   maxFiles: 10,
-   sending: function(file, xhr, formData) {
-     formData.append("_token", "{{ csrf_token() }}");
-   },
-  success(file, res, formData) {
-         imgs.push(res.path)
-         console.log(imgs)
-     $('.images').val(imgs)
-  },
-   headers: {
-      'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
    }
 
-   
-});
 
-$('#heavy_item').on('click', function() {
-   console.log(true)
-   var element = document.getElementById("large-items");
-   element.classList.toggle("d-none");
-})
+   if (document.querySelector('.datetimepicker')) {
+      flatpickr('.datetimepicker', {
+         allowInput: true
+      }); // flatpickr
+   }
+
+   Dropzone.autoDiscover = false;
+   var drop = document.getElementById('dropzone')
+   let imgs = []
+
+   var myDropzone = new Dropzone(drop, {
+      url: "/admin/upload/image?folder=products",
+      addRemoveLinks: true,
+      acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
+      paramName: 'file',
+      maxFiles: 10,
+      sending: function(file, xhr, formData) {
+      formData.append("_token", "{{ csrf_token() }}");
+      },
+      success(file, res, formData) {
+         imgs.push(res.path)
+         $('.images').val(imgs)
+      },
+      headers: {
+         'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
+      }
+   });
+
+   $('#heavy_item').on('click', function() {
+      console.log(true)
+      var element = document.getElementById("large-items");
+      element.classList.toggle("d-none");
+   })
 @stop

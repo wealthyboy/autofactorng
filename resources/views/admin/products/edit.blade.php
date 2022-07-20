@@ -347,14 +347,16 @@
                   <div class="parent" value="{{ $category->id }}">
                       
                       <div class="form-check ">
-                          <input  
-                              class="form-check-input" 
-                              {{ $helper->check($product->categories, $category->id) }} 
-                              value="{{ $category->id }}" 
-                              type="checkbox" 
-                              name="category_id[]"
-                           >
-                          <label  class="custom-control-label" for="">
+                         
+                          <label  class="custom-control-label" for="cat-{{ $category->id }}">
+                              <input  
+                                 class="form-check-input" 
+                                 {{ $helper->check($product->categories, $category->id) }} 
+                                 value="{{ $category->id }}" 
+                                 type="checkbox" 
+                                 id="cat-{{ $category->id }}"
+                                 name="category_id[]"
+                              >
                               <span role="button">{{ $category->name }}</span> 
                                 <a href="{{ route('category.edit',['category'=>$category->id]) }}">
                                 <i class="fa fa-pencil"></i> Edit</a>
