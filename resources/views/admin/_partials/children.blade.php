@@ -24,8 +24,6 @@
                 </div>
             </div>
             <div class="clearfix"></div> 
-            
-
             <form action="{{ route($route.'.destroy',[$single_name=>1]) }}" method="post" enctype="multipart/form-data" id="form-{{$title}}">
                 @csrf
                 @method('DELETE')
