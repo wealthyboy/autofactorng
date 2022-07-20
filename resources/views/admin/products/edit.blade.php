@@ -372,9 +372,6 @@
 @endsection
 @section('page-scripts')
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-<script>
- 
-</script>
 @stop
 @section('inline-scripts')
    CKEDITOR.replace('phy_description',{
