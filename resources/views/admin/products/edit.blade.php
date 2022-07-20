@@ -251,6 +251,8 @@
                     <label class="form-label"> </label>
                     <select name="condition[lagos][condition]" id="" class="form-control">
                         <option value=">">is greater than</option>
+                        <option value="=">Equal to</option>
+
                     </select>
                   </div>
                 </div>
@@ -290,6 +292,8 @@
                     <label class="form-label"> </label>
                     <select name="condition[out_side_lagos][condition]" id="" class="form-control">
                         <option value=">">is greater than</option>
+                        <option value="=">Equal to</option>
+
                     </select>
                   </div>
                 </div>
