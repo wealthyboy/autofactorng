@@ -73,8 +73,9 @@
                </div>
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
+                     <label class="form-label">Meta Description</label>
+
                      <div class="input-group input-group-outline">
-                        <label class="form-label">Meta Description</label>
                         <textarea type="text" class="form-control"                                     
                            name="meta_description"
                            rows="8"
