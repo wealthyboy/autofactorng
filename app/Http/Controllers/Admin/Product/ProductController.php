@@ -241,8 +241,6 @@ class ProductController extends Controller
             //"image" => "required",
         ]);
 
-        //dd($request->all());
-
         $data = $request->except('_token');
         $brand = Brand::find($request->brand_id);
         $data['quantity'] = 1;
@@ -258,8 +256,8 @@ class ProductController extends Controller
         }
 
         //Delete prwvious record
-        if (null !== $product->engines) {
-            $product->engines()->delete();
+        if (null !== $product->product_engines) {
+            $product->product_engines()->delete();
         }
 
         if ( !empty($request->engine_id) ) {

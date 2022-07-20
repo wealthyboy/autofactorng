@@ -69,6 +69,11 @@ class Product extends Model
         return $this->belongsToMany(Engine::class)->withPivot('attribute_id');
 	}
 
+    public function product_engines()
+    {
+        return $this->hasMany(EngineProduct::class);
+	}
+
     public function category()
     {
         return $this->belongsToMany(Category::class);

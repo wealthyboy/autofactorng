@@ -377,80 +377,73 @@
 </script>
 @stop
 @section('inline-scripts')
-CKEDITOR.replace('phy_description',{
-        height: '200px',
-        toolbar: [
-         '/',
-         { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
-         { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },
-         { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-         '/',
-         { name: 'styles', items: [ 'Format', 'Font', 'FontSize' ] },
-         { name: 'others', items: [ '-' ] },
-      ]
-})
+   CKEDITOR.replace('phy_description',{
+         height: '200px',
+         toolbar: [
+            '/',
+            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
+            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },
+            { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+            '/',
+            { name: 'styles', items: [ 'Format', 'Font', 'FontSize' ] },
+            { name: 'others', items: [ '-' ] },
+         ]
+   })
 
    if (document.getElementById('editor')) {
       var quill = new Quill('#editor', {
-        theme: 'snow' // Specify theme in configuration
+         theme: 'snow' // Specify theme in configuration
       });
    }
 
-
-
-
-
-
-if (document.querySelector('.datetimepicker')) {
+   if (document.querySelector('.datetimepicker')) {
       flatpickr('.datetimepicker', {
-        allowInput: true
+         allowInput: true
       }); // flatpickr
-    }
+   }
 
-    Dropzone.autoDiscover = false;
-var drop = document.getElementById('dropzone')
-let imgs = []
+   Dropzone.autoDiscover = false;
+   var drop = document.getElementById('dropzone')
+   let imgs = []
 
-let myDropZone = new Dropzone(drop, {
-   url: "/admin/upload/image?folder=products",
-   addRemoveLinks: true,
-   acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
-   paramName: 'file',
-   maxFiles: 10,
-   sending: function(file, xhr, formData) {
-     formData.append("_token", "{{ csrf_token() }}");
-   },
-   success(file, res, formData) {
-         imgs.push(res.path)
-         console.log(imgs)
-      $('.images').val(imgs)
-   },
+   let myDropZone = new Dropzone(drop, {
+      url: "/admin/upload/image?folder=products",
+      addRemoveLinks: true,
+      acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
+      paramName: 'file',
+      maxFiles: 10,
+      sending: function(file, xhr, formData) {
+      formData.append("_token", "{{ csrf_token() }}");
+      },
+      success(file, res, formData) {
+            imgs.push(res.path)
+            console.log(imgs)
+         $('.images').val(imgs)
+      },
 
-});
+   });
 
+   @foreach($product->images as $image)
 
+      myDropZone.emit('addedfile', {
+         id: {{  $image->id }},
+         name: '{{ $image->image }}',
+         size: 12833
+      })
 
-@foreach($product->images as $image)
+      myDropZone.emit("thumbnail", {
+         id: {{  $image->id }},
+         name: '{{ $image->image }}',
+         size: 12833
 
-myDropZone.emit('addedfile', {
-   id: {{  $image->id }},
-   name: '{{ $image->image }}',
-   size: 12833
-})
+      },  'http://auto.test/images/products/oLEEqcY6akZrixKXR3HPcFqLAfjDvoHAgN1nZUpB.png');
 
-myDropZone.emit("thumbnail", {
-   id: {{  $image->id }},
-   name: '{{ $image->image }}',
-   size: 12833
+   @endforeach
 
-},  'http://auto.test/images/products/oLEEqcY6akZrixKXR3HPcFqLAfjDvoHAgN1nZUpB.png');
-
-@endforeach
-
-$('#heavy_item').on('click', function() {
-   console.log(true)
-   var element = document.getElementById("large-items");
-   element.classList.toggle("d-none");
-})
+   $('#heavy_item').on('click', function() {
+      console.log(true)
+      var element = document.getElementById("large-items");
+      element.classList.toggle("d-none");
+   })
 
 @stop
