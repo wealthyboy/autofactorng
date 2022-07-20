@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class EngineProduct extends Model
 {
     use HasFactory;
+
+    protected $table = 'engine_product';
 }

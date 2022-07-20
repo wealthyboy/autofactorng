@@ -38,7 +38,9 @@ class Product extends Model
         'product_name',
         'large_item_shipping_price',
         'sale_price_starts',
-        'sale_price_ends'
+        'condition_is_present',
+        'sale_price_ends',
+
     ];
 
     public $folder = 'products';
@@ -64,7 +66,7 @@ class Product extends Model
 
     public function engines()
     {
-        return $this->belongsToMany(Engine::class)->withPivot('engine_id');
+        return $this->belongsToMany(Engine::class)->withPivot('attribute_id');
 	}
 
     public function category()
@@ -103,9 +105,6 @@ class Product extends Model
     {
         return $this->hasOne(ShippingRate::class)->where('is_lagos', false);
 	}
-
-
-    
 
 }
 

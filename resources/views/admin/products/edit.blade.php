@@ -209,24 +209,14 @@
                
 
                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" id="heavy_item" checked="">
+               <input class="form-check-input"  name="condition_is_present" value="1" {{  $product->condition_is_present ? 'checked' : ''}} type="checkbox" id="heavy_item">
                   <label class="form-check-label" for="heavy_item">Heavy Item</label>
                </div>
 
-               <div class="row mt-3 ">
-                  <div class="col-sm-12 mb-3 col-12">
-                     <div class="input-group input-group-outline">
-                        <label class="form-label"> Price</label>
-                        <input 
-                           type="number" 
-                           class="form-control"                                     
-                           name="large_item_shipping_price"
-                           value="{{ isset($product) ? $product->large_item_shipping_price : old('large_item_shipping_price') }}"
-                        >
-                     </div>
-                  </div>
+               <div id="large-items" class="row mt-3 {{  $product->condition_is_present ? '' : 'd-none'}}">
+                  
                 <h6>Lagos</h6>
-                <div class="col-sm-4 col-12">
+                <div class="col-sm-3 col-12">
                   <div class="input-group input-group-outline">
                     <label class="form-label"> </label>
                     <select name="condition[lagos][tag]" id="" class="form-control">
@@ -234,7 +224,7 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-sm-4 col-12">
+                <div class="col-sm-3 col-12">
                   <div class="input-group input-group-outline">
                     <label class="form-label"> </label>
                     <select name="condition[lagos][condition]" id="" class="form-control">
@@ -242,16 +232,30 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-sm-4 col-12">
+                <div class="col-sm-3 col-12">
+                  <div class="input-group input-group-outline">
+                    <label class="form-label"> </label>
+                    <select name="condition[lagos][tag_value]" id="" class="form-control">
+                        @for($i = 1; $i < 6; $i++)
+                           @if ($i ==  optional($product->heavy_item_lagos)->tag_value)
+                              <option value="{{ $i }}" selected>{{ $i }}</option>
+                           @else
+                              <option value="{{ $i }}">{{ $i }}</option>
+                           @endif
+                        @endfor
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Price</label>
-                        <input type="text" class="form-control" value="{{ optional($product->heavy_item_lagos)->value }}" name="condition[lagos][value]">
+                        <input type="text" class="form-control" value="{{ optional($product->heavy_item_lagos)->price }}" name="condition[lagos][price]">
                      </div>
                 </div>
 
                 <h6 class="my-3">Outside Lagos</h6>
 
-                <div class="col-sm-4 col-12">
+                <div class="col-sm-3 col-12">
                   <div class="input-group input-group-outline">
                     <label class="form-label"> </label>
                     <select name="condition[out_side_lagos][tag]" id="" class="form-control">
@@ -259,7 +263,7 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-sm-4 col-12">
+                <div class="col-sm-3 col-12">
                   <div class="input-group input-group-outline">
                     <label class="form-label"> </label>
                     <select name="condition[out_side_lagos][condition]" id="" class="form-control">
@@ -267,10 +271,22 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-sm-4 col-12">
+                <div class="col-sm-3 col-12">
+                  <div class="input-group input-group-outline">
+                    <label class="form-label"> </label>
+                    <select name="condition[out_side_lagos][tag_value]" id="" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Price</label>
-                        <input type="text" class="form-control" value="{{ optional($product->heavy_item_outside_lagos)->value }}" name="condition[out_side_lagos][value]">
+                        <input type="text" class="form-control" value="{{ optional($product->heavy_item_outside_lagos)->price }}" name="condition[out_side_lagos][price]">
                      </div>
                 </div>
         
@@ -430,5 +446,11 @@ myDropZone.emit("thumbnail", {
 },  'http://auto.test/images/products/oLEEqcY6akZrixKXR3HPcFqLAfjDvoHAgN1nZUpB.png');
 
 @endforeach
+
+$('#heavy_item').on('click', function() {
+   console.log(true)
+   var element = document.getElementById("large-items");
+   element.classList.toggle("d-none");
+})
 
 @stop

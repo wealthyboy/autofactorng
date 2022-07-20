@@ -41,8 +41,16 @@ class Helper{
     }
 
 
-    public function check($collections, $id)
-    {
+    public function check($collections, $id, $pivot = false, $eid = null)
+    {   
+        if ( $pivot) {
+            foreach($collections as $collection){
+                if(null !== $collection->pivot->attribute_id && $collection->pivot->attribute_id == $id  && $collection->pivot->engine_id == $eid){
+                    return 'checked';
+                }
+            }
+            return false;
+        }
         return $collections->contains('id', $id) ? 'checked' : '';
     }
 

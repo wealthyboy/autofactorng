@@ -17,8 +17,9 @@ use App\Http\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
-use App\Models\Shipping;
+use App\Models\EngineProduct;
 use App\Models\ShippingRate;
+
 
 class ProductController extends Controller
 {
@@ -95,7 +96,6 @@ class ProductController extends Controller
             //"image" => "required",
         ]);
 
-
         $data = $request->except('_token');
         $brand = Brand::find($request->brand_id);
         $data['quantity'] = 1;
@@ -110,15 +110,23 @@ class ProductController extends Controller
             $product->categories()->sync($request->category_id);
         }
 
-        if (!empty($request->engine_id)) {
-            $product->engines()->sync($request->engine_id);
+        if ( !empty($request->engine_id) ) {
+            $data = [];
+            foreach ($request->engine_id as $key => $engines) {
+                foreach ($engines as $engine) {
+                  $e =  new EngineProduct;
+                  $e->product_id =$product->id ;
+                  $e->engine_id = $engine;
+                  $e->attribute_id = $key ;
+                  $e->save();
+                }
+            }
         }
 
         if (!empty($request->attribute_id)) {
             $product->attributes()->sync($request->attribute_id);
         }
 
-       
         foreach( $request->condition as $state => $values) {
             $shipping_rate = new ShippingRate;
             foreach ($values as $key => $value) {
@@ -233,6 +241,7 @@ class ProductController extends Controller
             //"image" => "required",
         ]);
 
+        //dd($request->all());
 
         $data = $request->except('_token');
         $brand = Brand::find($request->brand_id);
@@ -248,8 +257,22 @@ class ProductController extends Controller
             $product->categories()->sync($request->category_id);
         }
 
-        if (!empty($request->engine_id)) {
-            $product->engines()->sync($request->engine_id);
+        //Delete prwvious record
+        if (null !== $product->engines) {
+            $product->engines()->delete();
+        }
+
+        if ( !empty($request->engine_id) ) {
+            $data = [];
+            foreach ($request->engine_id as $key => $engines) {
+                foreach ($engines as $engine) {
+                  $e =  new EngineProduct;
+                  $e->product_id =$product->id ;
+                  $e->engine_id = $engine;
+                  $e->attribute_id = $key ;
+                  $e->save();
+                }
+            }
         }
 
         if (!empty($request->attribute_id)) {
@@ -300,7 +323,9 @@ class ProductController extends Controller
                 $images = new Image(['image' => $image]);
                 $product->images()->save($images);
             }
-        } 
+        }
+        
+
 
         //(new Activity)->Log("Added a product ", "{$data}");
         return \Redirect::to('/admin/products');

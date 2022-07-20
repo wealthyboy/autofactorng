@@ -3,8 +3,8 @@
         <div class="children" value="{{ $obj->id }}">
             <div class="d-flex">
                 <div class="form-check">
-                    <label  class="custom-control-label" for="attr-{{ $obj->id }}">
-                        <input  class="form-check-input" value="{{ $obj->id }}"  type="checkbox" id="attr-{{ $obj->id }}" name="{{$name}}[]" >
+                    <label  class="custom-control-label" for="{{ $obj->name }}-{{ $obj->id }}">
+                        <input  class="form-check-input" value="{{ $obj->id }}"  type="checkbox" id="{{ $obj->name }}-{{ $obj->id }}" name="{{$name}}[]" >
                         <span role="button">{{ $obj->name }}</span>
                         <a href="{{ route($model.'.edit',[$url => $obj->id]) }}">
                             <i class="fa fa-pencil"></i> 
@@ -60,13 +60,13 @@
                 <div class="children" value="{{ $engine->id }}">
                     <div class="d-flex">
                         <div class="form-check">
-                            <label  class="custom-control-label" for="attr-{{ $engine->id }}">
+                            <label  class="custom-control-label" for="{{ $obj->name }}-{{ $engine->id }}">
                                 <input  
                                     class="form-check-input" 
                                     value="{{ $engine->id }}" 
                                     type="checkbox" 
-                                    id="attr-{{ $engine->id }}" 
-                                    name="engine_id[]" 
+                                    id="{{ $obj->name }}-{{ $engine->id }}" 
+                                    name="engine_id[{{ $obj->id }}][]" 
                                 >
                                 <span role="button">{{ $engine->name }}</span>
                             </label>

@@ -21,6 +21,7 @@
                            type="text" 
                            class="form-control"                                     
                            name="product_name"
+                           value="{{ old('product_name') }}"
                            >
                      </div>
                   </div>
@@ -141,8 +142,7 @@
                            name="meta_description"
                            rows="8"
                            >
-                           Shop for Optima AGM Yellow Top Battery DH6 Group Size H6/LN3 800 CCA with confidence at Autofactor.com. Parts are just part of what we do. Get yours online today and pick up in store.
-                        </textarea>
+                           Shop for Genuine Parts with Confidence. You Have The Cars. We Have Parts.                        </textarea>
                      </div>
                   </div>
                </div>
@@ -186,12 +186,12 @@
                
 
                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" id="heavy_item" checked="">
-                  <label class="form-check-label" for="heavy_item">Heavy Item</label>
+                  <input class="form-check-input"  name="condition_is_present" value="1" type="checkbox" id="heavy_item">
+                  <label class="form-check-label" for="heavy_item">Heavy/Large Item</label>
                </div>
 
-               <div class="row mt-3 ">
-                  <div class="col-sm-12 mb-3 col-12">
+               <div id="large-items" class="row mt-3 d-none">
+                  <!-- <div class="col-sm-12 mb-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Price</label>
                         <input 
@@ -200,9 +200,9 @@
                            name="large_item_shipping_price"
                            >
                      </div>
-                  </div>
+                  </div> -->
                 <h6>Lagos</h6>
-                <div class="col-sm-4 col-12">
+                <div class="col-sm-3 col-12">
                   <div class="input-group input-group-outline">
                     <label class="form-label"> </label>
                     <select name="condition[lagos][tag]" id="" class="form-control">
@@ -210,25 +210,36 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-sm-4 col-12">
+                <div class="col-sm-3 col-12">
                   <div class="input-group input-group-outline">
                     <label class="form-label"> </label>
-                    
                     <select name="condition[lagos][condition]" id="" class="form-control">
-                        <option value=">">is greater than</option>
+                        <option value=">">greater than</option>
                     </select>
                   </div>
                 </div>
-                <div class="col-sm-4 col-12">
+                <div class="col-sm-3 col-12">
+                  <div class="input-group input-group-outline">
+                    <label class="form-label"> </label>
+                    <select name="condition[lagos][tag_value]" id="" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Price</label>
-                        <input type="text" class="form-control" name="condition[lagos][value]">
+                        <input type="text" class="form-control" name="condition[lagos][price]">
                      </div>
                 </div>
 
                 <h6 class="my-3">Outside Lagos</h6>
 
-                <div class="col-sm-4 col-12">
+                <div class="col-sm-3 col-12">
                   <div class="input-group input-group-outline">
                     <label class="form-label"> </label>
                     <select name="condition[out_side_lagos][tag]" id="" class="form-control">
@@ -236,7 +247,7 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-sm-4 col-12">
+                <div class="col-sm-3 col-12">
                   <div class="input-group input-group-outline">
                     <label class="form-label"> </label>
                     <select name="condition[out_side_lagos][condition]" id="" class="form-control">
@@ -244,10 +255,22 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-sm-4 col-12">
+                <div class="col-sm-3 col-12">
+                  <div class="input-group input-group-outline">
+                    <label class="form-label"> </label>
+                    <select name="condition[out_side_lagos][tag_value]" id="" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Price</label>
-                        <input type="text" class="form-control" name="condition[out_side_lagos][value]">
+                        <input type="text" class="form-control" name="condition[out_side_lagos][price]">
                      </div>
                 </div>
         
@@ -302,15 +325,15 @@
                 @foreach($categories as $category)
                   <div class="parent" value="{{ $category->id }}">
                       
-                      <div class="form-check ">
-                          <input  class="form-check-input" value="{{ $category->id }}" type="checkbox" name="category_id[]" >
-                          <label  class="custom-control-label" for="">
-                              <span role="button">{{ $category->name }}</span> 
-                                <a href="{{ route('category.edit',['category'=>$category->id]) }}">
-                                <i class="fa fa-pencil"></i> Edit</a>
-                          </label>
-                      </div> 
-                      @include('includes.children',['obj'=>$category,'space'=>'&nbsp;&nbsp;','model' => 'category','url' => 'category','name' => 'category_id'])
+                     <div class="form-check ">
+                        <input  class="form-check-input" value="{{ $category->id }}" type="checkbox" name="category_id[]" >
+                        <label  class="custom-control-label" for="">
+                           <span role="button">{{ $category->name }}</span> 
+                              <a href="{{ route('category.edit',['category'=>$category->id]) }}">
+                              <i class="fa fa-pencil"></i> Edit</a>
+                        </label>
+                     </div> 
+                     @include('includes.children',['obj'=>$category,'space'=>'&nbsp;&nbsp;','model' => 'category','url' => 'category','name' => 'category_id'])
                   </div>
                   @endforeach  
                </div>
@@ -344,13 +367,6 @@ if (document.getElementById('editor')) {
     }
 
 
-
-
-var parent_id = document.getElementById('parent_id');
-setTimeout(function () {
-   const example = new Choices(parent_id);
-}, 1);
-
 if (document.querySelector('.datetimepicker')) {
       flatpickr('.datetimepicker', {
         allowInput: true
@@ -378,5 +394,13 @@ var myDropzone = new Dropzone(drop, {
    headers: {
       'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
    }
+
+   
 });
+
+$('#heavy_item').on('click', function() {
+   console.log(true)
+   var element = document.getElementById("large-items");
+   element.classList.toggle("d-none");
+})
 @stop
