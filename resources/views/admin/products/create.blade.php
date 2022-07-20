@@ -306,7 +306,7 @@
                                 <i class="fa fa-pencil"></i> Edit</a>
                           </label>
                       </div> 
-                      @include('includes.children',['obj'=>$attribute,'space'=>'&nbsp;&nbsp;','model' => 'attributes','url' => 'attribute','year' => true, 'name' => 'attribute_id','engine' => true, 'route' => 'attributes']])
+                      @include('includes.children',['obj'=>$attribute,'space'=>'&nbsp;&nbsp;','model' => 'attributes','url' => 'attribute','year' => true, 'name' => 'attribute_id','engine' => true, 'route' => 'attributes'])
                   </div>
                   @endforeach  
                </div>
