@@ -44,9 +44,6 @@ class ProductController extends Controller
         $years      = Helper::years();
         $products   = Product::with('categories')
                            ->orderBy('created_at','desc')->paginate(4);
-
-       
-
         return view('admin.products.index',compact('products','brands','categories','attributes','years'));
     }
 

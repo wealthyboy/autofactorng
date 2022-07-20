@@ -95,8 +95,6 @@ class AttributesController extends Controller
            
         }
 
-        dd(true);
-
        // dd($attribute->engines);
 
 
