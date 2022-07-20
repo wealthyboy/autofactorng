@@ -370,13 +370,13 @@
                       
                       <div class="form-check ">
                          
-                          <label  class="custom-control-label" for="cat-{{ $category->id }}">
+                          <label  class="custom-control-label" for="{{ $category->name }}-{{ $category->id }}">
                               <input  
                                  class="form-check-input" 
                                  {{ $helper->check($product->categories, $category->id) }} 
                                  value="{{ $category->id }}" 
                                  type="checkbox" 
-                                 id="cat-{{ $category->id }}"
+                                 id="{{ $category->name }}-{{ $category->id }}"
                                  name="category_id[]"
                               >
                               <span role="button">{{ $category->name }}</span> 

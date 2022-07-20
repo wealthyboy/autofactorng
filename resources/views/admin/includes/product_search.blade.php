@@ -1,4 +1,4 @@
-<form action="/products/search" class="" method="post">
+<form action="{{  route('products.index') }}" class="" method="get">
    @csrf
     <div class="row">
         <div class="col-sm-3 col-5">

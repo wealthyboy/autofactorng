@@ -214,6 +214,7 @@
                     <label class="form-label"> </label>
                     <select name="condition[lagos][condition]" id="" class="form-control">
                         <option value=">">greater than</option>
+                        <option value="=">Equal to</option>
                     </select>
                   </div>
                 </div>
@@ -251,6 +252,7 @@
                     <label class="form-label"> </label>
                     <select name="condition[out_side_lagos][condition]" id="" class="form-control">
                         <option value=">">is greater than</option>
+                        <option value="=">Equal to</option>
                     </select>
                   </div>
                 </div>
@@ -322,8 +324,8 @@
                 @foreach($categories as $category)
                   <div class="parent">
                      <div class="form-check ">
-                        <label  class="custom-control-label" for="category-{{ $category->id }}">
-                           <input id="ategory-{{ $category->id }}"  class="form-check-input" value="{{ $category->id }}" type="checkbox" name="category_id[]">
+                        <label  class="custom-control-label" for="{{ $category->name }}-{{ $category->id }}">
+                           <input id="{{ $category->name }}-{{ $category->id }}"  class="form-check-input" value="{{ $category->id }}" type="checkbox" name="category_id[]">
                            <span role="button">{{ $category->name }}</span> 
                            <a href="{{ route('category.edit',['category'=>$category->id]) }}">
                            <i class="fa fa-pencil"></i> Edit</a>
@@ -350,7 +352,6 @@
       height: '200px',
       toolbar: [
          '/',
-         { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
          { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },
          { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
          '/',

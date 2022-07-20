@@ -45,6 +45,18 @@ class ProductController extends Controller
         $products   = Product::with('categories')
                            ->orderBy('created_at','desc')->paginate(4);
 
+        if($request->has('q')){
+            $filtered_array = array_filter($filtered_array);
+            $query = Product::whereHas('categories', function( $query ) use ( $filtered_array ){
+                $query->where('categories.name','like','%' .$filtered_array['q'] . '%')
+                    ->orWhere('products.product_name', 'like', '%' .$filtered_array['q'] . '%')
+                    ->orWhere('products.sku', 'like', '%' .$filtered_array['q'] . '%');
+            })->orWhereHas('variants', function( $query ) use ( $filtered_array ){
+                $query->where('product_variations.name', 'like', '%' .$filtered_array['q'] . '%')
+                ->orWhere('product_variations.sku', 'like', '%' .$filtered_array['q'] . '%');
+            });
+        }
+
         return view('admin.products.index',compact('products','brands','categories','attributes','years'));
     }
 
@@ -215,10 +227,10 @@ class ProductController extends Controller
     }
 
 
-    public function acMessage($product){
+    public function acMessage($product)
+    {
 
-        $data =null;;
-
+        $data =null;
         foreach( $product->product_variations as $product_variation ) {
             $data  = '<p>';
             $data .= 'Name: '. $product_variation->name  .' <br/>';
@@ -227,7 +239,6 @@ class ProductController extends Controller
             $data .= 'Sale Price: '. $product_variation->sale_price . '<br/>';
             $data .= '</p>';
         }
-
         return $data;
     }
 
@@ -292,7 +303,8 @@ class ProductController extends Controller
         }
 
         //Delete prwvious record
-        if (null !== $product->product_years) {
+        if (null !== $product->product_years) 
+        {
             $product->product_years()->delete();
         }
 
