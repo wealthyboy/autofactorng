@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Admin\Discounts;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Category;
-use App\Discount;
-use App\DiscountProduct;
+use App\Models\Category;
+use App\Models\Discount;
+use App\Models\DiscountProduct;
+use App\Models\Activity;
+use App\Models\User;
 use App\Http\Helper;
 use Illuminate\Validation\Rule;
-use App\Activity;
-use App\User;
+
 
 
 class DiscountsController extends Controller
@@ -51,19 +52,12 @@ class DiscountsController extends Controller
             'expires'=>'required',
         ]);
 
-        $products = Category::find($request->category_id)->products;
         $discount = Discount::create([
             'category_id' => $request->category_id,
-            'percentage_off' => $request->percentage_discount,
-            'expires'=> Helper::getFormatedDate($request->expires)
+            'amount' => $request->percentage_discount,
+            'expires'=> $request->expires
         ]);
-        foreach ($products as $product) {
-            $sale_price = Helper::getPercentageDiscount($request->percentage_discount,$product->price);
-            $discount->discount_products()->create([
-                'product_id' => $product->id,
-                'sale_price' => $sale_price,
-            ]);
-        }
+        
         return redirect()->route('discounts.index');
     }
 
@@ -75,7 +69,7 @@ class DiscountsController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -101,6 +95,7 @@ class DiscountsController extends Controller
     public function update(Request $request, $id)
     {
         $discount = Discount::find($id);
+        
         $this->validate($request,[
             'category_id'=>[
                 'required',
@@ -110,11 +105,11 @@ class DiscountsController extends Controller
             'expires'=>'required',
         ]);
         $discount->category_id = $request->category_id;
-        $discount->percentage_off = $request->percentage_discount;
-        $discount->expires = Helper::getFormatedDate($request->expires);
+        $discount->amount = $request->percentage_discount;
+        $discount->expires = $request->expires;
         $discount->save();
         //Log Activity
-        (new Activity)->Log("Updated  Discount {$request->category_id} ");
+        //(new Activity)->Log("Updated  Discount {$request->category_id} ");
         return redirect()->route('discounts.index');
     }
 
@@ -126,7 +121,7 @@ class DiscountsController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        User::canTakeAction(5);
+        //User::canTakeAction(5);
 
         $rules = array (
                 '_token' => 'required' 
@@ -137,16 +132,9 @@ class DiscountsController extends Controller
             return \Redirect::back ()->withErrors ( $validator )->withInput ();
         }
         $count = count($request->selected);
-        (new Activity)->Log("Deleted  {$count} Products");
+        //(new Activity)->Log("Deleted  {$count} Products");
         Discount::destroy( $request->selected );
 
-        DiscountProduct::whereIn('discount_id',$request->selected)->delete();
         return redirect()->back();
-        
-
-        // $category =  Discount::find( $request->id );
-        // (new Activity)->Log("Deleted  {$category->name} Discounts");
-        // $category->delete();
-        // return redirect()->back();
     }
 }

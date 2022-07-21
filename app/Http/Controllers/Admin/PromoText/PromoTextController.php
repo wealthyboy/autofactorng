@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin\PromoText;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\PromoText;
+use App\Models\PromoText;
 
 class PromoTextController extends Controller
 {   
     public function __construct()
     {
-        $this->middleware('admin');
+       // $this->middleware('admin');
     }
     /**
      * Display a listing of the resource.

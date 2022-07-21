@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Uploads;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\SystemSetting;
+use App\Models\Setting;
 
 class UploadsController extends Controller
 {
@@ -14,7 +14,7 @@ class UploadsController extends Controller
     
     public function __construct()
     {	  
-	  $this->settings =  SystemSetting::first();
+	  $this->settings =  Setting::first();
     }
     /**
      * Display a listing of the resource.

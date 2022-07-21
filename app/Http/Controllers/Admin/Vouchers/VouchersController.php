@@ -43,6 +43,7 @@ class VouchersController  extends Controller
 	public function update(Request $request,$id){
 			
 		$voucher = Voucher::find($id);
+
 		$this->validate($request, [
 			'code'      => 'required|unique:vouchers,code,'.$id,
 			'discount'  => 'required',
@@ -56,6 +57,7 @@ class VouchersController  extends Controller
 		$voucher->expires  = $request->expires;
 		$voucher->from_value = $request->has('from_value') ? $request->from_value : null;
 		$voucher->category_id = $request->has('category') ? $request->category : null;
+		$voucher->is_fixed = $request->is_fixed ? 1 : 0;
 		$voucher->status =$request->status;
 		$voucher->save(); 
 		return redirect('admin/vouchers');
@@ -85,6 +87,8 @@ class VouchersController  extends Controller
 	public function store(Request $request) {
 
 		$coupon = new Voucher();
+
+		//dd($request->all());
 		//VALIDATE NEW RECORDS
 		$this->validate($request, [
 			'code'      => 'required|unique:vouchers|max:150',
@@ -99,7 +103,7 @@ class VouchersController  extends Controller
 		$coupon->type     = $request->type;
 		$coupon->expires  = $request->expires;
 		$coupon->from_value = $request->has('from_value') ? $request->from_value : null;
-		//$coupon->category_id = $request->has('category') ? $request->category : null;
+		$coupon->is_fixed = $request->is_fixed ? 1 : 0;
 		$coupon->status =$request->status;
 		$coupon->save(); 			
 		return redirect('admin/vouchers');	

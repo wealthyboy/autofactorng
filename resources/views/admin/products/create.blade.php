@@ -12,6 +12,7 @@
                <h6 class="mb-0">Add Product</h6>
             </div>
             <div class="card-body pt-0">
+               @include('errors.errors')
                @csrf
                <div class="row">
                   <div class="col-sm-6 col-12">
@@ -167,7 +168,7 @@
                     <label class="form-label">Physical Description</label>
 
                      <div class="input-group input-group-outline">
-                        <textarea type="text" class="form-control"                                     
+                        <textarea style="width: 100%;" type="text" class="form-control"                                     
                            name="phy_desc"
                            rows="8"
                            id="phy_description"
@@ -191,16 +192,7 @@
                </div>
 
                <div id="large-items" class="row mt-3 d-none">
-                  <!-- <div class="col-sm-12 mb-3 col-12">
-                     <div class="input-group input-group-outline">
-                        <label class="form-label"> Price</label>
-                        <input 
-                           type="number" 
-                           class="form-control"                                     
-                           name="large_item_shipping_price"
-                           >
-                     </div>
-                  </div> -->
+                  
                 <h6>Lagos</h6>
                 <div class="col-sm-3 col-12">
                   <div class="input-group input-group-outline">
@@ -238,45 +230,87 @@
                      </div>
                 </div>
 
-                <h6 class="my-3">Outside Lagos</h6>
-
-                <div class="col-sm-3 col-12">
-                  <div class="input-group input-group-outline">
-                    <label class="form-label"> </label>
-                    <select name="condition[out_side_lagos][tag]" id="" class="form-control">
-                        <option value="quantity">Quantity</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-sm-3 col-12">
-                  <div class="input-group input-group-outline">
-                    <label class="form-label"> </label>
-                    <select name="condition[out_side_lagos][condition]" id="" class="form-control">
-                        <option value=">">is greater than</option>
-                        <option value="=">Equal to</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-sm-3 col-12">
-                  <div class="input-group input-group-outline">
-                    <label class="form-label"> </label>
-                    <select name="condition[out_side_lagos][tag_value]" id="" class="form-control">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-sm-3 col-12">
+                <div class=" my-3">
+                  <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label">Price</label>
-                        <input type="text" class="form-control" name="condition[out_side_lagos][price]">
+                     <label class="form-label"> </label>
+                     <select name="condition[lagos][tag]" id="" class="form-control">
+                           <option value="quantity">Quantity</option>
+                     </select>
                      </div>
+                  </div>
+                  <div class="col-sm-3 col-12">
+                     <div class="input-group input-group-outline">
+                     <label class="form-label"> </label>
+                     <select name="condition[lagos][condition]" id="" class="form-control">
+                           <option value=">">greater than</option>
+                           <option value="=">Equal to</option>
+                     </select>
+                     </div>
+                  </div>
+                  <div class="col-sm-3 col-12">
+                     <div class="input-group input-group-outline">
+                     <label class="form-label"> </label>
+                     <select name="condition[lagos][tag_value]" id="" class="form-control">
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="4">4</option>
+                           <option value="5">5</option>
+                     </select>
+                     </div>
+                  </div>
+                  <div class="col-sm-3 col-12">
+                        <div class="input-group input-group-outline">
+                           <label class="form-label">Price</label>
+                           <input type="text" class="form-control" name="condition[lagos][price]">
+                        </div>
+                  </div>
                 </div>
+
+                <div class="row">
+                  
+                </div>
+
+                 <h6 class="my-3">Outside Lagos</h6>
+
+                  <div class="col-sm-3 col-12">
+                     <div class="input-group input-group-outline">
+                     <label class="form-label"> </label>
+                     <select name="condition[out_side_lagos][tag]" id="" class="form-control">
+                           <option value="quantity">Quantity</option>
+                     </select>
+                     </div>
+                  </div>
+                  <div class="col-sm-3 col-12">
+                     <div class="input-group input-group-outline">
+                     <label class="form-label"> </label>
+                     <select name="condition[out_side_lagos][condition]" id="" class="form-control">
+                           <option value=">">is greater than</option>
+                           <option value="=">Equal to</option>
+                     </select>
+                     </div>
+                  </div>
+                  <div class="col-sm-3 col-12">
+                     <div class="input-group input-group-outline">
+                     <label class="form-label"> </label>
+                     <select name="condition[out_side_lagos][tag_value]" id="" class="form-control">
+                           <option value="1">1</option>
+                           <option value="2">2</option>
+                           <option value="3">3</option>
+                           <option value="4">4</option>
+                           <option value="5">5</option>
+                     </select>
+                     </div>
+                  </div>
+                  <div class="col-sm-3 col-12">
+                        <div class="input-group input-group-outline">
+                           <label class="form-label">Price</label>
+                           <input type="text" class="form-control" name="condition[out_side_lagos][price]">
+                        </div>
+                  </div>
         
-            </div>
+               </div>
 
  
                <div class="d-flex justify-content-end mt-4">
@@ -345,8 +379,6 @@
 @section('page-scripts')
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script src="{{ asset('backend/products.js') }}"></script>
-
-
 @stop
 @section('inline-scripts')
    CKEDITOR.replace('phy_description',{

@@ -64,6 +64,16 @@
                         </div>
                      </div>
                   </div>
+
+                  <div class="form-check my-3 mb-3">
+                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio2">
+                     <label class="custom-control-label"  {{ !$voucher->is_fixed ? 'checked' : null }}  name="is_fixed" value="0"  role="button"   for="customRadio2">Percentage</label>
+                  </div>
+
+                  <div class="form-check">
+                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio1">
+                     <label class="custom-control-label" name="is_fixed"  {{ $voucher->is_fixed ? 'checked' : null }}  checked value="1" role="button" for="customRadio1">Fixed</label>
+                  </div>
                </div>
                <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-4 mb-0">Submit</button>
             </form>

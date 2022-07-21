@@ -10,19 +10,21 @@
             <h6 class="mb-0">Add Voucher</h6>
          </div>
          <div class="card-body pt-0">
+            @include('errors.errors')
+
             <form action="{{ route('vouchers.store') }}" method="post">
                @csrf
                <div class="row mt-3">
                   <div class="col-sm-4 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Coupon Code</label>
-                        <input name="code" type="code" class="form-control" placeholder="">
+                        <input name="code" type="code" class="form-control" >
                      </div>
                   </div>
                   <div class="col-sm-4 col-4">
                      <div class="input-group input-group-outline">
-                        <label class="form-label">Discount (in %)</label>
-                        <input type="number"  name="discount" class="form-control" placeholder="">
+                        <label class="form-label">Discount</label>
+                        <input type="number"  name="discount" class="form-control">
                      </div>
                   </div>
                   <div class="col-sm-4 col-12">
@@ -63,6 +65,17 @@
                         </div>
                      </div>
                   </div>
+
+                  <div class="form-check  my-3 mb-3">
+                     <input class="form-check-input" type="radio" name="is_fixed" checked value="1" id="customRadio2">
+                     <label class="custom-control-label"   role="button"   for="customRadio2" checked>Percentage</label>
+                  </div>
+
+                  <div class="form-check">
+                     <input class="form-check-input" type="radio" name="is_fixed"  value="1" id="customRadio1">
+                     <label class="custom-control-label"  role="button" for="customRadio1">Fixed</label>
+                  </div>
+    
                </div>
                <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-4 mb-0">Submit</button>
             </form>

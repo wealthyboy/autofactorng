@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Promo;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Promo;
+use App\Models\Promo;
 
 class PromoController extends Controller
 {
@@ -15,7 +15,7 @@ class PromoController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin');
+       // $this->middleware('admin');
     }
     /**
      * Display a listing of the resource.
@@ -45,8 +45,11 @@ class PromoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        Promo::Insert($request->except('_token'));
+    {   
+        $promo = new Promo;
+        $promo->bgcolor = $request->background_color;
+        $promo->is_active = $request->is_active ? 1 : 0;
+        $promo->save();
         return redirect('admin/promos'); 
     }
 
@@ -84,7 +87,7 @@ class PromoController extends Controller
     {
 		$promo = Promo::find($id);
         $promo->background_color = $request->background_color;
-        $promo->make_live = $request->make_live;
+        $promo->is_active = $request->is_active ? 1: 0;
 		$promo->save();
         return redirect('admin/promos'); 
     }

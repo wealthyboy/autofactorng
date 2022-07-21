@@ -112,6 +112,13 @@
                         </li>
 
                         <li class="nav-item ">
+                           <a class="nav-link text-white {{ $helper->active_link(['discounts']) }}"  href="{{ route('discounts.index') }}">
+                              <span class="sidenav-mini-icon"> C </span>
+                              <span class="sidenav-normal  ms-2  ps-1"> Discounts <b class="caret"></b></span>
+                           </a>
+                        </li>
+
+                        <li class="nav-item ">
                            <a class="nav-link text-white  {{ $helper->active_link(['category']) }}"  href="{{ route('category.index') }}">
                               <span class="sidenav-mini-icon"> C </span>
                               <span class="sidenav-normal  ms-2  ps-1"> Categories <b class="caret"></b></span>
@@ -188,11 +195,11 @@
                
                
                <li class="nav-item">
-                  <a data-bs-toggle="collapse" href="a#design" class="nav-link text-white  {{ $helper->active_link(['banners','pages']) }}" aria-controls="design" role="button" aria-expanded="false">
+                  <a data-bs-toggle="collapse" href="a#design" class="nav-link text-white  {{ $helper->active_link(['banners','pages','promos']) }}" aria-controls="design" role="button" aria-expanded="false">
                   <i class="material-symbols-outlined">padding</i>
                   <span class="nav-link-text ms-2 ps-1">Design</span>
                   </a>
-                  <div class="collapse {{ $helper->active_link(['banners','pages']) ? 'show' : '' }}" id="design">
+                  <div class="collapse {{ $helper->active_link(['banners','pages','promos']) ? 'show' : '' }}" id="design">
                      <ul class="nav ">
                        
                         <li class="nav-item ">
@@ -209,8 +216,12 @@
                            </a>
                         </li>
 
-            
-                                             
+                        <li class="nav-item ">
+                           <a class="nav-link text-white {{ $helper->active_link(['promos']) }}" href="{{ route('promos.index') }}" >
+                           <span class="sidenav-mini-icon"> P </span>
+                           <span class="sidenav-normal  ms-2  ps-1"> Promo Text </span>
+                           </a>
+                        </li>                   
                      </ul>
                   </div>
                </li>
@@ -240,12 +251,7 @@
                            <span class="sidenav-normal  ms-2  ps-1"> Location </span>
                            </a>
                         </li>
-                        <li class="nav-item ">
-                           <a class="nav-link text-white {{ $helper->active_link(['location']) }}" href="{{ route('location.index') }}">
-                           <span class="sidenav-mini-icon"> S </span>
-                           <span class="sidenav-normal  ms-2  ps-1"> Country/States </span>
-                           </a>
-                        </li>
+                        
                         <li class="nav-item ">
                            <a class="nav-link text-white   {{ $helper->active_link(['shipping']) }}" href="{{ route('shipping.index') }}" >
                            <span class="sidenav-mini-icon"> S </span>

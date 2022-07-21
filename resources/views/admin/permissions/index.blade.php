@@ -6,7 +6,7 @@
       <div class="card">
          <div class="card-header">
             <div class="alert alert-info text-white">
-                <span><strong>Code:  1 Account ,2 Create , 3 Read , 4 Update ,5 Delete, 6 Reports, 7 Users, 8 Activity </strong></span>
+                <span><strong>Code:  1 Account ,2 Create , 3 Read , 4 Update ,5 Delete, 6 Reports, 7 Users, 8 Activity, 9 Enable/Disble</strong></span>
             </div>
             <div class="d-flex align-items-center justify-content-between">
                

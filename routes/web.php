@@ -55,6 +55,14 @@ Route::group(['prefix' => 'admin'], function(){
     Route::resource('reviews',  'Admin\Reviews\ReviewsController',['names' => 'reviews']);
     Route::resource('orders','Admin\Orders\OrdersController',['names' => 'admin.orders']);
     Route::resource('brands', 'Admin\Brand\BrandsController',['names' =>'brands']);
+    Route::resource('promos', 'Admin\Promo\PromoController',['names'=> 'promos']);
+    Route::get('promo-text/create/{id}', 'Admin\PromoText\PromoTextController@create')->name('create.promo.text');
+    Route::get('promo-text/edit/{id}', 'Admin\PromoText\PromoTextController@edit')->name('edit_promo_text');
+    Route::post('promo-text/edit/{id}', 'Admin\PromoText\PromoTextController@update');
+    Route::post('promo-text/create/{id}', 'Admin\PromoText\PromoTextController@store');
+    Route::get('promo-text/delete/{id}', 'Admin\PromoText\PromoTextController@destroy')->name('delete.promo.text');
+    Route::resource('discounts','Admin\Discounts\DiscountsController',['names' => 'discounts']);
+
 });
 
 
@@ -67,5 +75,5 @@ Route::get('/checkout',   [App\Http\Controllers\Checkout\CheckoutController::cla
 Route::get('/buy-now-pay-later',   [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index'])->name('buy');
 
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');
-Route::post('contact/store',        'Contact\ContactController@store');
+//Route::post('contact/store',        'Contact\ContactController@store');
 Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
