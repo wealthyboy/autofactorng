@@ -18,7 +18,7 @@
                   <div class="col-sm-4 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Discount</label>
-                        <input name="percentage_discount" type="text" class="form-control" >
+                        <input name="percentage_discount" type="number" class="form-control" >
                      </div>
                   </div>
                   
