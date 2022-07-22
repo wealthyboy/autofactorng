@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
-<form action="{{ route('products.store') }}" class="" method="post" enctype="multipart/form-data" id="form-category">
+<form action="{{ route('products.store') }}" class="" method="post" enctype="multipart/form-data" id="form-product">
    @csrf
    <div class="row">
       <div class="col-md-7">
@@ -191,13 +191,13 @@
                   <label class="form-check-label" for="heavy_item">Heavy/Large Item</label>
                </div>
 
-               <div id="large-items" class="row mt-3 d-none">
+               <div id="large-items" class="row mt-3 d-none large-items dup-lagos">
                   
                 <h6>Lagos</h6>
                 <div class="col-sm-3 col-12">
                   <div class="input-group input-group-outline">
                     <label class="form-label"> </label>
-                    <select name="condition[lagos][tag]" id="" class="form-control">
+                    <select name="condition[lagos][tag][]" id="" class="form-control">
                         <option value="quantity">Quantity</option>
                     </select>
                   </div>
@@ -205,7 +205,7 @@
                 <div class="col-sm-3 col-12">
                   <div class="input-group input-group-outline">
                     <label class="form-label"> </label>
-                    <select name="condition[lagos][condition]" id="" class="form-control">
+                    <select name="condition[lagos][condition][]" id="" class="form-control">
                         <option value=">">greater than</option>
                         <option value="=">Equal to</option>
                     </select>
@@ -214,7 +214,7 @@
                 <div class="col-sm-3 col-12">
                   <div class="input-group input-group-outline">
                     <label class="form-label"> </label>
-                    <select name="condition[lagos][tag_value]" id="" class="form-control">
+                    <select name="condition[lagos][tag_value][]" id="" class="form-control">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -226,32 +226,41 @@
                 <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Price</label>
-                        <input type="text" class="form-control" name="condition[lagos][price]">
+                        <input type="text" class="form-control" name="condition[lagos][price][]">
                      </div>
                 </div>
+               </div>
 
-                <div class=" my-3">
+               
+
+               <div class="row large-items my-3 d-none">
+                  <button onclick="addRowLagos();" id="add-more-lagos" class="btn btn-outline-primary btn-sm mb-0" type="button">Add more</button>
+               </div>
+
+
+               <div class="row large-items  d-none dup-out-lagos">
+                  <h6 class="my-3">Outside Lagos</h6>
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
-                     <label class="form-label"> </label>
-                     <select name="condition[lagos][tag]" id="" class="form-control">
+                        <label class="form-label"> </label>
+                        <select name="condition[out_side_lagos][tag][]" id="" class="form-control">
                            <option value="quantity">Quantity</option>
-                     </select>
+                        </select>
+                     </div>
+                  </div>
+                  <div class="col-sm-3 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> </label>
+                        <select name="condition[out_side_lagos][condition][]" id="" class="form-control">
+                              <option value=">">is greater than</option>
+                              <option value="=">Equal to</option>
+                        </select>
                      </div>
                   </div>
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                      <label class="form-label"> </label>
-                     <select name="condition[lagos][condition]" id="" class="form-control">
-                           <option value=">">greater than</option>
-                           <option value="=">Equal to</option>
-                     </select>
-                     </div>
-                  </div>
-                  <div class="col-sm-3 col-12">
-                     <div class="input-group input-group-outline">
-                     <label class="form-label"> </label>
-                     <select name="condition[lagos][tag_value]" id="" class="form-control">
+                     <select name="condition[out_side_lagos][tag_value][]" id="" class="form-control">
                            <option value="1">1</option>
                            <option value="2">2</option>
                            <option value="3">3</option>
@@ -263,53 +272,13 @@
                   <div class="col-sm-3 col-12">
                         <div class="input-group input-group-outline">
                            <label class="form-label">Price</label>
-                           <input type="text" class="form-control" name="condition[lagos][price]">
+                           <input type="text" class="form-control" name="condition[out_side_lagos][price][]">
                         </div>
                   </div>
-                </div>
+               </div>
 
-                <div class="row">
-                  
-                </div>
-
-                 <h6 class="my-3">Outside Lagos</h6>
-
-                  <div class="col-sm-3 col-12">
-                     <div class="input-group input-group-outline">
-                     <label class="form-label"> </label>
-                     <select name="condition[out_side_lagos][tag]" id="" class="form-control">
-                           <option value="quantity">Quantity</option>
-                     </select>
-                     </div>
-                  </div>
-                  <div class="col-sm-3 col-12">
-                     <div class="input-group input-group-outline">
-                     <label class="form-label"> </label>
-                     <select name="condition[out_side_lagos][condition]" id="" class="form-control">
-                           <option value=">">is greater than</option>
-                           <option value="=">Equal to</option>
-                     </select>
-                     </div>
-                  </div>
-                  <div class="col-sm-3 col-12">
-                     <div class="input-group input-group-outline">
-                     <label class="form-label"> </label>
-                     <select name="condition[out_side_lagos][tag_value]" id="" class="form-control">
-                           <option value="1">1</option>
-                           <option value="2">2</option>
-                           <option value="3">3</option>
-                           <option value="4">4</option>
-                           <option value="5">5</option>
-                     </select>
-                     </div>
-                  </div>
-                  <div class="col-sm-3 col-12">
-                        <div class="input-group input-group-outline">
-                           <label class="form-label">Price</label>
-                           <input type="text" class="form-control" name="condition[out_side_lagos][price]">
-                        </div>
-                  </div>
-        
+               <div class="row large-items my-3 d-none">
+                  <button onclick="addRowOutSideLagos();" class="btn btn-outline-primary btn-sm mb-0" id="add-more-lagos" type="button">Add more</button>
                </div>
 
  
@@ -333,8 +302,8 @@
                 @foreach($attributes as $attribute)
                   <div class="parent" value="{{ $attribute->id }}">
                       <div class="form-check ">
-                          <label  class="custom-control-label" for="{{ $attribute->id }}">
-                             <input  class="form-check-input" value="{{ $attribute->id }}" type="checkbox" id="{{ $attribute->id }}" name="attribute_id[]" >
+                          <label  class="custom-control-label" for="{{ $attribute->name }}-{{ $attribute->id }}">
+                             <input required class="form-check-input parent-attr" value="{{ $attribute->id }}" type="checkbox" id="{{ $attribute->name }}-{{ $attribute->id }}" name="attribute_id[]" >
                               <span role="button">{{ $attribute->name }}</span> 
                                 <a href="{{ route('attributes.edit',['attribute'=>$attribute->id]) }}">
                                 <i class="fa fa-pencil"></i> Edit</a>
@@ -399,15 +368,6 @@
       });
    }
 
-   const textarea = document.getElementById('desc');
-
-   const end = textarea.value.length;
-
-   // ✅ Move focus to End of textarea
-   textarea.setSelectionRange(end, end);
-   textarea.focus();
-
-
    if (document.querySelector('.datetimepicker')) {
       flatpickr('.datetimepicker', {
          allowInput: true
@@ -415,8 +375,128 @@
    }
 
    $('#heavy_item').on('click', function() {
-      console.log(true)
-      var element = document.getElementById("large-items");
-      element.classList.toggle("d-none");
+      var elements = document.getElementsByClassName("large-items");
+      for (let i=0; i < elements.length; i++) {
+        elements[i].classList.toggle('d-none')
+      }
    })
+
+   var row = 0;
+
+function addRowLagos() {
+   let html = '<div id="row-' + row + '" class="row dup-lagos my-3 ">';                                 
+      html += '<div class="col-sm-3">';
+      html += '<div class="input-group input-group-outline">';
+      html += '<label class="form-label"> </label>';
+      html += ' <select name="condition[lagos][tag][]" id="" class="form-control">';
+      html += '<option value="quantity">Quantity</option>';
+      html += '</select>';
+      html += '</div>';
+      html += '</div>';
+      html += '<div class="col-sm-3">';
+      html += '<div class="input-group input-group-outline">';
+      html += '<label class="form-label"> </label>';
+      html += '<select name="condition[lagos][condition][]" id="" class="form-control">';
+      html += '<option value=">">greater than</option>';
+      html += '<option value="=">Equal to</option>';
+      html += '</select>';
+      html += '</div>';
+      html += '</div>';
+      html += '<div class="col-sm-2">';
+      html += '<div class="input-group input-group-outline">';
+      html += '<label class="form-label"> </label>';
+      html += '<select name="condition[lagos][tag_value][]" id="" class="form-control">';
+      html += '<option value="1">1</option>';
+      html += '<option value="2">2</option>';
+      html += '<option value="3">3</option>';
+      html += '<option value="4">4</option>';
+      html += '<option value="5">5</option>';
+      html += '</select>';
+      html += '</div>';
+      html += '</div>';
+      html += '<div class="col-sm-3">';
+      html += '<div class="input-group input-group-outline">';
+      html += '<label class="form-label">Price</label>';
+      html += '<input type="text" class="form-control" name="condition[lagos][price][]">';
+      html += '</div>';
+      html += '</div>';
+      html += '<div class="col-sm-1">';
+      html += '<button onclick="$(\'#row-' + row + '\').remove();"  class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button" ><i class="fa fa-trash"></i> </button>';
+      html += '</div>';
+      html += '</div>';
+      $("div.dup-lagos:last").after(html);
+      row++;
+}
+
+
+var out_row = 0;
+
+function addRowOutSideLagos() {
+   let html = '<div id="out-row-' + out_row + '" class="row dup-lagos my-3 ">';                                 
+      html += '<div class="col-sm-3">';
+      html += '<div class="input-group input-group-outline">';
+      html += '<label class="form-label"> </label>';
+      html += ' <select name="condition[out_side_lagos][tag][]" id="" class="form-control">';
+      html += '<option value="quantity">Quantity</option>';
+      html += '</select>';
+      html += '</div>';
+      html += '</div>';
+      html += '<div class="col-sm-3">';
+      html += '<div class="input-group input-group-outline">';
+      html += '<label class="form-label"> </label>';
+      html += '<select name="condition[out_side_lagos][condition][]" id="" class="form-control">';
+      html += '<option value=">">greater than</option>';
+      html += '<option value="=">Equal to</option>';
+      html += '</select>';
+      html += '</div>';
+      html += '</div>';
+      html += '<div class="col-sm-2">';
+      html += '<div class="input-group input-group-outline">';
+      html += '<label class="form-label"> </label>';
+      html += '<select name="condition[out_side_lagos][tag_value][]" id="" class="form-control">';
+      html += '<option value="1">1</option>';
+      html += '<option value="2">2</option>';
+      html += '<option value="3">3</option>';
+      html += '<option value="4">4</option>';
+      html += '<option value="5">5</option>';
+      html += '</select>';
+      html += '</div>';
+      html += '</div>';
+      html += '<div class="col-sm-3">';
+      html += '<div class="input-group input-group-outline">';
+      html += '<label class="form-label">Price</label>';
+      html += '<input type="text" class="form-control" name="condition[out_side_lagos][price][]">';
+      html += '</div>';
+      html += '</div>';
+      html += '<div class="col-sm-1">';
+      html += '<button onclick="$(\'#out-row-' + out_row + '\').remove();"  class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button" ><i class="fa fa-trash"></i> </button>';
+      html += '</div>';
+      html += '</div>';
+      $("div.dup-out-lagos:last").after(html);
+      out_row++;
+}
+
+   
+   
+
+   $(document).find('.remove-section-lagos').on('click',function(e) {
+      console.log(true)
+      let self = $(this);
+         console.log(self.parent().parent())
+   })
+
+   $('#form-product').on('submit', function() {
+      let parent = $(".parent-attr");
+   
+      parent.each(function(i, e) {
+         let p = $(this)
+            if ( !p.prop('checked') ) {
+                alert("");
+            }
+      });
+
+      //return false;
+   })
+
+   
 @stop

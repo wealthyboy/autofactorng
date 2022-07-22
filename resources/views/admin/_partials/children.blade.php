@@ -29,15 +29,14 @@
                 @method('DELETE')
                 <div class="material-datatables">
                     <div class="well well-sm pb-5" style="height: 350px; background-color: #fff; color: black; overflow: auto;">
-
                     @foreach($collections as $collection)
                         <div class="parent" value="{{ $collection->id }}">
-                        <div class="form-check ">
+                        <div class="form-check">
                             <label  class="custom-control-label" for="attr-{{ $collection->id }}">
-                                <input  class="form-check-input" value="{{ $collection->id }}" type="checkbox" id="attr-{{ $collection->id }}" name="selected[]" >
+                                <input class="form-check-input " value="{{ $collection->id }}" type="checkbox" id="attr-{{ $collection->id }}" name="selected[]" >
                                 <span role="button">{{ $collection->name }}</span> 
-                                    <a href="{{ route($route.'.edit',[$single_name =>$collection->id]) }}">
-                                    <i class="fa fa-pencil"></i> Edit</a>
+                                <a href="{{ route($route.'.edit',[$single_name =>$collection->id]) }}">
+                                <i class="fa fa-pencil"></i> Edit</a>
                             </label>
                         </div> 
                         @include('includes.children',['obj'=>$collection,'space'=>'&nbsp;&nbsp;','model' => $title,'url' => $single_name, 'year' => $year, 'name' => $name, 'route' => $route ])

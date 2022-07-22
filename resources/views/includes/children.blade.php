@@ -4,7 +4,7 @@
             <div class="d-flex">
                 <div class="form-check">
                     <label  class="custom-control-label" for="{{ $obj->name }}-{{ $obj->id }}">
-                        <input  class="form-check-input" value="{{ $obj->id }}"  type="checkbox" id="{{ $obj->name }}-{{ $obj->id }}" name="{{$name}}[]" >
+                        <input  class="form-check-input {{ $obj->name }}" value="{{ $obj->id }}"  type="checkbox" id="{{ $obj->name }}-{{ $obj->id }}" name="{{$name}}[]" >
                         <span role="button">{{ $obj->name }}</span>
                         <a href="{{ route($route.'.edit',[$url => $obj->id]) }}">
                             <i class="fa fa-pencil"></i> 

@@ -95,6 +95,8 @@ class ProductController extends Controller
             //"image" => "required",
         ]);
 
+       // dd($request->all());
+
         $data = $request->except('_token');
         $brand = Brand::find($request->brand_id);
         $data['quantity'] = 1;
@@ -127,12 +129,17 @@ class ProductController extends Controller
         }
 
         foreach( $request->condition as $state => $values) {
-            $shipping_rate = new ShippingRate;
-            foreach ($values as $key => $value) {
-                $shipping_rate->{$key} = $value;
-                $shipping_rate->product_id = $product->id;
-                $shipping_rate->is_lagos = $state == 'lagos' ? 1 :0;
-                $shipping_rate->save();
+
+            foreach ($values as $key => $vs) {
+              
+                foreach ($vs as $k => $v) {
+                    $shipping_rate = new ShippingRate;
+                    $shipping_rate->tag = $values[];
+                    $shipping_rate->tag_value = $v;
+                    $shipping_rate->product_id = $product->id;
+                    $shipping_rate->is_lagos = $state == 'lagos' ? 1 :0;
+                    $shipping_rate->save();
+                }
             }
         }
 
@@ -162,6 +169,8 @@ class ProductController extends Controller
                 $product->images()->save($images);
             }
         } 
+
+        //dd($request->all());
 
         //(new Activity)->Log("Added a product ", "{$data}");
         return \Redirect::to('/admin/products');
