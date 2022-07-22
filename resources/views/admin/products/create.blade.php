@@ -153,7 +153,7 @@
                     <label class="form-label">Description</label>
 
                      <div class="input-group input-group-outline">
-                        <textarea type="text" class="form-control"                                     
+                        <textarea type="text" class="form-control focus"                                     
                            name="description"
                            rows="8"
                            id="desc"
@@ -352,13 +352,11 @@
 @section('inline-scripts')
    CKEDITOR.replace('phy_description',{
       height: '200px',
+      width: '100%',
       toolbar: [
          '/',
-         { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },
-         { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
+         { name: 'paragraph', groups: [ 'list', 'indent',  ], items: [ 'BulletedList' ] },
          '/',
-         { name: 'styles', items: [ 'Format', 'Font', 'FontSize' ] },
-         { name: 'others', items: [ '-' ] },
       ]
    })
 
@@ -367,5 +365,10 @@
          theme: 'snow' // Specify theme in configuration
       });
    }
+
+   let el = document.querySelector(".focus");
+     el.addEventListener("focus", () => {
+     el.setSelectionRange(-1, -1);
+   });
 
 @stop
