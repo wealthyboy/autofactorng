@@ -102,13 +102,13 @@ class Product extends Model
 
     public function heavy_item_lagos()
     {
-        return $this->hasOne(ShippingRate::class)->where('is_lagos', true);
+        return $this->hasMany(ShippingRate::class)->where('is_lagos', true);
 	}
 
 
     public function heavy_item_outside_lagos()
     {
-        return $this->hasOne(ShippingRate::class)->where('is_lagos', false);
+        return $this->hasMany(ShippingRate::class)->where('is_lagos', false);
 	}
 
 }

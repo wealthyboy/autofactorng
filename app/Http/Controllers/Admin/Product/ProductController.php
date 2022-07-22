@@ -128,22 +128,30 @@ class ProductController extends Controller
             $product->attributes()->sync($request->attribute_id);
         }
 
-        foreach( $request->condition as $state => $values) {
+        //dd($request->condition['lagos']);
 
-            foreach ($values as $key => $vs) {
-              
-                foreach ($vs as $k => $v) {
-                    $shipping_rate = new ShippingRate;
-                    $shipping_rate->tag = $values[];
-                    $shipping_rate->tag_value = $v;
-                    $shipping_rate->product_id = $product->id;
-                    $shipping_rate->is_lagos = $state == 'lagos' ? 1 :0;
-                    $shipping_rate->save();
-                }
-            }
+
+        foreach( $request->condition['lagos']['tag'] as $key => $value) {
+            $shipping_rate = new ShippingRate;
+            $shipping_rate->tag = $request->condition['lagos']['tag'][$key];
+            $shipping_rate->condition = $request->condition['lagos']['condition'][$key];
+            $shipping_rate->price =  $request->condition['lagos']['price'][$key];
+            $shipping_rate->tag_value =  $request->condition['lagos']['tag_value'][$key];;
+            $shipping_rate->product_id = $product->id;
+            $shipping_rate->is_lagos = 1;
+            $shipping_rate->save();
         }
 
-        
+        foreach( $request->condition['out_side_lagos']['tag'] as $key => $value) {
+            $shipping_rate = new ShippingRate;
+            $shipping_rate->tag = $request->condition['out_side_lagos']['tag'][$key];
+            $shipping_rate->condition = $request->condition['out_side_lagos']['condition'][$key];
+            $shipping_rate->price =  $request->condition['out_side_lagos']['price'][$key];
+            $shipping_rate->tag_value =  $request->condition['out_side_lagos']['tag_value'][$key];;
+            $shipping_rate->product_id = $product->id;
+            $shipping_rate->is_lagos = 0;
+            $shipping_rate->save();
+        }
 
         foreach( $request->year_from as $attribute_id => $year) {
             $product_year = new ProductYear;
@@ -169,8 +177,6 @@ class ProductController extends Controller
                 $product->images()->save($images);
             }
         } 
-
-        //dd($request->all());
 
         //(new Activity)->Log("Added a product ", "{$data}");
         return \Redirect::to('/admin/products');
@@ -288,16 +294,28 @@ class ProductController extends Controller
             $product->product_rates()->delete();
         }
 
-        foreach( $request->condition as $state => $values) {
+        foreach( $request->condition['lagos']['tag'] as $key => $value) {
             $shipping_rate = new ShippingRate;
-            foreach ($values as $key => $value) {
-                $shipping_rate->{$key} = $value;
-                $shipping_rate->product_id = $product->id;
-                $shipping_rate->is_lagos = $state == 'lagos' ? 1 :0;
-                $shipping_rate->save();
-            }
+            $shipping_rate->tag = $request->condition['lagos']['tag'][$key];
+            $shipping_rate->condition = $request->condition['lagos']['condition'][$key];
+            $shipping_rate->price =  $request->condition['lagos']['price'][$key];
+            $shipping_rate->tag_value =  $request->condition['lagos']['tag_value'][$key];;
+            $shipping_rate->product_id = $product->id;
+            $shipping_rate->is_lagos = 1;
+            $shipping_rate->save();
         }
 
+
+        foreach( $request->condition['out_side_lagos']['tag'] as $key => $value) {
+            $shipping_rate = new ShippingRate;
+            $shipping_rate->tag = $request->condition['out_side_lagos']['tag'][$key];
+            $shipping_rate->condition = $request->condition['out_side_lagos']['condition'][$key];
+            $shipping_rate->price =  $request->condition['out_side_lagos']['price'][$key];
+            $shipping_rate->tag_value =  $request->condition['out_side_lagos']['tag_value'][$key];;
+            $shipping_rate->product_id = $product->id;
+            $shipping_rate->is_lagos = 0;
+            $shipping_rate->save();
+        }
         //Delete prwvious record
         if (null !== $product->product_years) 
         {

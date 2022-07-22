@@ -232,93 +232,114 @@
 
                <div class="form-check form-switch">
                   <input class="form-check-input"  name="condition_is_present" value="1" {{  $product->condition_is_present ? 'checked' : ''}} type="checkbox" id="heavy_item">
-                     <label class="form-check-label" for="heavy_item">Heavy Item</label>
-                  </div>
+                  <label class="form-check-label" for="heavy_item">Heavy Item</label>
+               </div>
 
-               <div id="large-items" class="row mt-3 {{  $product->condition_is_present ? '' : 'd-none'}}">
-                  
-                <h6>Lagos</h6>
-                <div class="col-sm-3 col-12">
-                  <div class="input-group input-group-outline">
-                    <label class="form-label"> </label>
-                    <select name="condition[lagos][tag]" id="" class="form-control">
-                        <option value="quantity">Quantity</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-sm-3 col-12">
-                  <div class="input-group input-group-outline">
-                    <label class="form-label"> </label>
-                    <select name="condition[lagos][condition]" id="" class="form-control">
-                        <option value=">">is greater than</option>
-                        <option value="=">Equal to</option>
+               
 
-                    </select>
-                  </div>
-                </div>
-                <div class="col-sm-3 col-12">
-                  <div class="input-group input-group-outline">
-                    <label class="form-label"> </label>
-                    <select name="condition[lagos][tag_value]" id="" class="form-control">
-                        @for($i = 1; $i < 6; $i++)
-                           @if ($i ==  optional($product->heavy_item_lagos)->tag_value)
-                              <option value="{{ $i }}" selected>{{ $i }}</option>
-                           @else
-                              <option value="{{ $i }}">{{ $i }}</option>
-                           @endif
-                        @endfor
-                    </select>
-                  </div>
-                </div>
-                <div class="col-sm-3 col-12">
-                     <div class="input-group input-group-outline">
-                        <label class="form-label">Price</label>
-                        <input type="text" class="form-control" value="{{ optional($product->heavy_item_lagos)->price }}" name="condition[lagos][price]">
+               @foreach($product->heavy_item_lagos as $key => $heavy_item)
+                  <div  id="row-{{ $heavy_item->id }}" class="row large-items dup-lagos my-3 ">
+                     <div class="col-sm-3">
+                        <div class="input-group input-group-outline">
+                           <label class="form-label"> </label> 
+                           <select name="condition[lagos][tag][]" id="" class="form-control">
+                              <option value="quantity">Quantity</option>
+                           </select>
+                        </div>
                      </div>
-                </div>
-
-                <h6 class="my-3">Outside Lagos</h6>
-
-                <div class="col-sm-3 col-12">
-                  <div class="input-group input-group-outline">
-                    <label class="form-label"> </label>
-                    <select name="condition[out_side_lagos][tag]" id="" class="form-control">
-                        <option value="quantity">Quantity</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-sm-3 col-12">
-                  <div class="input-group input-group-outline">
-                    <label class="form-label"> </label>
-                    <select name="condition[out_side_lagos][condition]" id="" class="form-control">
-                        <option value=">">is greater than</option>
-                        <option value="=">Equal to</option>
-
-                    </select>
-                  </div>
-                </div>
-                <div class="col-sm-3 col-12">
-                  <div class="input-group input-group-outline">
-                    <label class="form-label"> </label>
-                    <select name="condition[out_side_lagos][tag_value]" id="" class="form-control">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-sm-3 col-12">
-                     <div class="input-group input-group-outline">
-                        <label class="form-label">Price</label>
-                        <input type="text" class="form-control" value="{{ optional($product->heavy_item_outside_lagos)->price }}" name="condition[out_side_lagos][price]">
+                     <div class="col-sm-3">
+                        <div class="input-group input-group-outline">
+                           <label class="form-label"> </label>
+                           <select name="condition[lagos][condition][]" id="" class="form-control">
+                              <option value=">">greater than</option>
+                              <option value="=">Equal to</option>
+                           </select>
+                        </div>
                      </div>
-                </div>
-        
-            </div>
+                     <div class="col-sm-2">
+                        <div class="input-group input-group-outline">
+                           <label class="form-label"> </label>
+                           <select name="condition[lagos][tag_value][]" id="" class="form-control">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-sm-3">
+                        <div class="input-group input-group-outline">
+                           <label class="form-label"></label>
+                           <input type="text" class="form-control" value="{{ $heavy_item->price }}" placeholder="Price" name="condition[lagos][price][]">
+                        </div>
+                     </div>
+                     @if($key != 0)
+                     <div class="col-sm-1"><button data-id="{{  $heavy_item->id }}" onclick="$('#row-{{ $heavy_item->id }}').remove();" class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button"><i class="fa fa-trash" aria-hidden="true"></i> </button></div>
+                     @endif
+                  </div>
+               @endforeach
 
- 
+
+
+               <div class="row button-lagos large-items my-3 {{  $product->condition_is_present ? '' : 'd-none' }}">
+                  <button onclick="addRowLagos();" id="add-more-lagos" class="btn btn-outline-primary btn-sm mb-0" type="button">Add more</button>
+               </div>
+
+
+
+               @foreach($product->heavy_item_outside_lagos as $key => $heavy_item)
+                  <div  id="out_row-{{  $heavy_item->id }}" class="row large-items dup-out-lagos my-3 ">
+                     <div class="col-sm-3">
+                        <div class="input-group input-group-outline">
+                           <label class="form-label"> </label> 
+                           <select name="condition[out_side_lagos][tag][]" id="" class="form-control">
+                              <option value="quantity">Quantity</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-sm-3">
+                        <div class="input-group input-group-outline">
+                           <label class="form-label"> </label>
+                           <select name="condition[out_side_lagos][condition][]" id="" class="form-control">
+                              <option value=">">greater than</option>
+                              <option value="=">Equal to</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-sm-2">
+                        <div class="input-group input-group-outline">
+                           <label class="form-label"> </label>
+                           <select name="condition[out_side_lagos][tag_value][]" id="" class="form-control">
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">3</option>
+                              <option value="4">4</option>
+                              <option value="5">5</option>
+                           </select>
+                        </div>
+                     </div>
+                     <div class="col-sm-3">
+                        <div class="input-group input-group-outline">
+                           <label class="form-label"></label>
+                           <input type="text" class="form-control" value="{{ $heavy_item->price }}" placeholder="Price" name="condition[out_side_lagos][price][]">
+                        </div>
+                     </div>
+                     @if($key != 0)
+                     <div class="col-sm-1">
+                        <button data-id="{{  $heavy_item->id }}" onclick="$('#out_row-{{  $heavy_item->id }}').remove();" class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+                     </div>
+                     @endif
+                  </div>
+               @endforeach
+
+               <div class="row large-items  d-none dup-out-lagos"></div>
+
+
+               <div class="row large-items my-3 {{  $product->condition_is_present ? '' : 'd-none' }}">
+                  <button onclick="addRowOutSideLagos();" class="btn btn-outline-primary btn-sm mb-0" id="add-more-lagos" type="button">Add more</button>
+               </div>
+
                <div class="d-flex justify-content-end mt-4">
                   <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
                </div>
@@ -427,13 +448,4 @@
          allowInput: true
       }); // flatpickr
    }
-
-   
-
-   $('#heavy_item').on('click', function() {
-      console.log(true)
-      var element = document.getElementById("large-items");
-      element.classList.toggle("d-none");
-   })
-
 @stop
