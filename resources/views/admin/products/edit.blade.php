@@ -424,18 +424,7 @@
 <script src="{{ asset('backend/products.js') }}"></script>
 @stop
 @section('inline-scripts')
-   CKEDITOR.replace('phy_description',{
-         height: '200px',
-         toolbar: [
-            '/',
-            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
-            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl' ] },
-            { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-            '/',
-            { name: 'styles', items: [ 'Format', 'Font', 'FontSize' ] },
-            { name: 'others', items: [ '-' ] },
-         ]
-   })
+   
 
    if (document.getElementById('editor')) {
       var quill = new Quill('#editor', {

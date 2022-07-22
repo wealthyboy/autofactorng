@@ -350,15 +350,7 @@
 <script src="{{ asset('backend/products.js') }}"></script>
 @stop
 @section('inline-scripts')
-   CKEDITOR.replace('phy_description',{
-      height: '200px',
-      width: '100%',
-      toolbar: [
-         '/',
-         { name: 'paragraph', groups: [ 'list', 'indent',  ], items: [ 'BulletedList' ] },
-         '/',
-      ]
-   })
+   
 
    if (document.getElementById('editor')) {
       var quill = new Quill('#editor', {
