@@ -285,6 +285,16 @@ CKEDITOR.replace('phy_description', {
     ]
 })
 
+CKEDITOR.replace('desc', {
+    height: '200px',
+    width: '100%',
+    toolbar: [
+        '/',
+        { name: 'paragraph', groups: ['list', 'indent', ], items: ['BulletedList'] },
+        '/',
+    ]
+})
+
 
 var row = 0;
 
