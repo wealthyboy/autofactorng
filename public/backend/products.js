@@ -152,24 +152,9 @@ $(document).ready(function() {
     })
 
 
-    $(document).on('click', '.open-close-panel', function(e) {
-        e.preventDefault()
-        $(this).parent().next().toggleClass('hide')
-        if ($(this).html() == '<i class="fa fa-plus"></i> Expand') {
-            $(this).html('<i class="fa fa-minus"></i> Hide')
-            return
-        }
 
-        if ($(this).html() == '<i class="fa fa-minus"></i> Hide') {
-            $(this).html('<i class="fa fa-plus"></i> Expand')
-            return
-        }
-    })
 
-    $(document).on('click', '.remove-panel', function(e) {
-        e.preventDefault()
-        $(this).parent().parent('.variation-panel').remove();
-    })
+
 
     $(document).on('click', '.delete-panel', function(e) {
         e.preventDefault()
@@ -260,10 +245,10 @@ $(document).ready(function() {
         parent.each(function(i, e) {
             let p = $(this)
             if (!p.prop('checked')) {
-                alert("");
+                alert("ok");
             }
         });
-        //return false;
+        return false;
     })
 
 

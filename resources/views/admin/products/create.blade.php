@@ -303,7 +303,7 @@
                   <div class="parent" value="{{ $attribute->id }}">
                       <div class="form-check ">
                           <label  class="custom-control-label" for="{{ $attribute->name }}-{{ $attribute->id }}">
-                             <input required class="form-check-input parent-attr" value="{{ $attribute->id }}" type="checkbox" id="{{ $attribute->name }}-{{ $attribute->id }}" name="attribute_id[]" >
+                             <input  class="form-check-input parent-attr" value="{{ $attribute->id }}" type="checkbox" id="{{ $attribute->name }}-{{ $attribute->id }}" name="attribute_id[]" >
                               <span role="button">{{ $attribute->name }}</span> 
                                 <a href="{{ route('attributes.edit',['attribute'=>$attribute->id]) }}">
                                 <i class="fa fa-pencil"></i> Edit</a>
