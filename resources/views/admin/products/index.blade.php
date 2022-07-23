@@ -130,12 +130,11 @@ setTimeout(function () {
 }, 1);
 
 $('#show-panel').on('click', function(e) {
-        e.preventDefault();
-        console.log(e)
-        var element = document.getElementById("search-panel");
-        element.classList.toggle('hide')
-
-    })
+    e.preventDefault();
+    console.log(e)
+    var element = document.getElementById("search-panel");
+    element.classList.toggle('hide')
+})
 
 
 @stop
