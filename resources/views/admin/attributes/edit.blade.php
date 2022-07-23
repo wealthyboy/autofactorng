@@ -60,7 +60,7 @@
                         <div class="input-group input-group-outline">
                         <label class="form-label mt-4 ms-0"> </label>
                         <select class="form-control" name="type" id="">
-                        <option  value="">--Choose Type--</option>
+                        <option  required value="">--Choose Type--</option>
                         @foreach($types as $type)
                                 <option class="" value="{{ $type }}"  {{ $attr->type == $type ? 'selected' : null}} >{{ $type }} </option>
                             @endforeach

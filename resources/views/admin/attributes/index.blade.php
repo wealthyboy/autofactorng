@@ -16,7 +16,7 @@
                 <div class="col-sm-12 col-12">
                   <div class="input-group input-group-outline">
                     <label class="form-label"> Name</label>
-                    <input type="text" class="form-control"   name="name">
+                    <input required type="text" class="form-control"   name="name">
                   </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     <div class="col-sm-12 col-12">
                         <div class="input-group input-group-outline">
                             <label class="form-label mt-4 ms-0"> </label>
-                            <select class="form-control" name="type" id="">
+                            <select required class="form-control" name="type" id="">
                             <option  value="">--Choose Type--</option>
                                 @foreach($types as $type)
                                     <option class="" value="{{ $type }}" >{{ $type }} </option>

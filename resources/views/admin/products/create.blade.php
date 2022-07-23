@@ -236,7 +236,9 @@
                
 
                <div class="row button-lagos large-items my-3 d-none">
-                  <button onclick="addRowLagos();" id="add-more-lagos" class="btn btn-outline-primary btn-sm mb-0" type="button">Add more</button>
+                  <div class=" d-flex justify-content-end">
+                     <button onclick="addRowLagos();" id="add-more-lagos" type="button" class="btn btn-outline-secondary">+Add more</button>
+                  </div>
                </div>
 
 
@@ -279,8 +281,11 @@
                   </div>
                </div>
 
-               <div class="row large-items my-3 d-none">
-                  <button onclick="addRowOutSideLagos();" class="btn btn-outline-primary btn-sm mb-0" id="add-more-lagos" type="button">Add more</button>
+
+               <div class="row button-lagos large-items my-3 d-none">
+                  <div class=" d-flex justify-content-end">
+                     <button onclick="addRowOutSideLagos();" id="add-more-out-sidelagos" type="button" class="btn btn-outline-secondary">+Add more</button>
+                  </div>
                </div>
 
  
