@@ -217,7 +217,6 @@
 
                                  </div>
                               </div>
-                              <input class=""  name="images[]" value="{{ $image->image }}" type="hidden" id="">
 
                               @endforeach
                         @endif
