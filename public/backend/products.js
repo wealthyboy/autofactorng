@@ -227,9 +227,6 @@ $(document).ready(function() {
     })
 
     $('#form-product').on('submit', function() {
-        let parent = $(".parent-attr");
-        let parent_name = $(".parent-attr").data('name');
-        let make_name = $("." + parent_name);
         let self = $(this)
         let button = $('#submit-product-form-button')
         let buttonSpinner = $('#submit-product-form-button .spinner-border')
@@ -239,7 +236,7 @@ $(document).ready(function() {
         bText.text('Saving....');
 
         $.ajax({
-            type: "POST",
+            type: self.data('method'),
             url: self.attr('action'),
             data: self.serialize()
         }).done(function(response) {

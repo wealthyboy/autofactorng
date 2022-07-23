@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
-<form action="{{ route('products.store') }}" class="" method="post" enctype="multipart/form-data" id="form-product">
+<form action="{{ route('products.store') }}" class="" method="post" data-method="POST" enctype="multipart/form-data" id="form-product">
    @csrf
    <div class="row">
       <div class="col-md-7">
@@ -290,10 +290,7 @@
                      <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                     <span id="submit-product-form-text">Submit</span>
                   </button>
-                  <!-- <button class="btn btn-primary btn-sm mb-2" type="button" disabled>
-                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                     Loading...
-                   </button> -->
+                 
                </div>
             </div>
          </div>

@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
-<form action="{{ route('products.update',['product'=>$product->id])  }}" class="" method="post" enctype="multipart/form-data" id="form-category">
+<form action="{{ route('products.update',['product'=>$product->id])  }}" class="" method="post" data-method="POST" enctype="multipart/form-data" id="form-product">
    @method('PATCH') 
    @csrf
 
@@ -341,7 +341,10 @@
                </div>
 
                <div class="d-flex justify-content-end mt-4">
-                  <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
+                  <button type="submit" name="button" id="submit-product-form-button" class="btn bg-gradient-dark m-0 ms-2">
+                     <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                     <span id="submit-product-form-text">Submit</span>
+                  </button>
                </div>
             </div>
          </div>
