@@ -135,21 +135,7 @@ function getFile(e, name, model = null, multiple = true) {
 $(document).ready(function() {
 
     localStorage.setItem('allow_variation', true)
-    $("#product-attribute-add").on('click', function(e) {
-        var values = [];
-        $(".product-attributes").each(function() {
-            values.push($(this).val())
-        });
-        var payLoad = { 'attribute_ids': values };
-        $.ajax({
-            type: "POST",
-            url: "/admin/load-attributes",
-            data: payLoad,
-        }).done(function(response) {
-            //  s.initFormExtendedDatetimepickers()
-            $(".p-attr").last().after(response)
-        })
-    })
+
 
 
 
@@ -242,10 +228,33 @@ $(document).ready(function() {
 
     $('#form-product').on('submit', function() {
         let parent = $(".parent-attr");
+        let parent_name = $(".parent-attr").data('name');
+        let make_name = $("." + parent_name);
+        let self = $(this)
+
+        $.ajax({
+            type: "POST",
+            url: self.attr('action'),
+            data: self.serialize()
+        }).done(function(response) {
+            console.log(response);
+        });
+
+        return false;
+
         parent.each(function(i, e) {
             let p = $(this)
             if (!p.prop('checked')) {
-                alert("ok");
+                alert("not chc");
+                // return false
+            }
+        });
+
+        make_name.each(function(i, e) {
+            let p = $(this)
+            if (!p.prop('checked')) {
+                alert("No make");
+                //return false
             }
         });
         return false;

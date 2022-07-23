@@ -22,7 +22,7 @@ trait ImageFiles
 
     public function getImageToShowAttribute()
     {   
-        return $this->image;
+        return optional(optional($this->images)->first())->image;
     }
 
 

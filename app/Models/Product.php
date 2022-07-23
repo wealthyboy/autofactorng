@@ -47,7 +47,9 @@ class Product extends Model
 
 
     public $appends = [
-		'image_m','category_name',
+		'image_m',
+        'category_name',
+        'image_to_show'
 	];
 
     public function attributes(){

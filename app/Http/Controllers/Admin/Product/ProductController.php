@@ -19,6 +19,8 @@ use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\Models\EngineProduct;
 use App\Models\ShippingRate;
+use Illuminate\Support\Facades\Validator;
+
 
 
 class ProductController extends Controller
@@ -91,11 +93,11 @@ class ProductController extends Controller
     {   
 
         $this->validate($request,[
-            //"category_id" => "required",
-            //"image" => "required",
+            'category_id' => 'required',
+            'product_name' => 'required',
+            'images' => 'required',
         ]);
 
-       // dd($request->all());
 
         $data = $request->except('_token');
         $brand = Brand::find($request->brand_id);
@@ -179,7 +181,7 @@ class ProductController extends Controller
         } 
 
         //(new Activity)->Log("Added a product ", "{$data}");
-        return \Redirect::to('/admin/products');
+        return response()->json($product);
     }
 
 
@@ -248,10 +250,7 @@ class ProductController extends Controller
 
     public function update(Request $request,$id){
         
-        $this->validate($request,[
-            //"category_id" => "required",
-            //"image" => "required",
-        ]);
+     
 
         $data = $request->except('_token');
         $brand = Brand::find($request->brand_id);

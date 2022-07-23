@@ -68,9 +68,9 @@
             <td>
               <div class="d-flex">
                 
-                  <figure itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
-                    <a href="{{ $product->image_to_show_m  }}" itemprop="contentUrl" data-size="500x600">
-                       <img class="w-100 min-height-100 max-height-100 border-radius-lg shadow" src="{{ $product->image_m }}" alt="Image description">
+                  <figure class="avatar avatar-xl position-relative" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+                    <a href="{{ $product->image_to_show }}" itemprop="contentUrl" data-size="500x600">
+                       <img class="border-radius-lg shadow" src="{{ $product->image_to_show_m }}" alt="Image description">
                     </a>
                   </figure>
               

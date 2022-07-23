@@ -143,10 +143,13 @@
                            name="meta_description"
                            rows="8"
                            >
-                           Shop for Genuine Parts with Confidence. You Have The Cars. We Have Parts.                        </textarea>
+                           Shop for Genuine Parts with Confidence. You Have The Cars. We Have Parts.
+                        </textarea>
                      </div>
                   </div>
                </div>
+
+               {{ old('images') }}
 
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
@@ -303,7 +306,7 @@
                   <div class="parent" value="{{ $attribute->id }}">
                       <div class="form-check ">
                           <label  class="custom-control-label" for="{{ $attribute->name }}-{{ $attribute->id }}">
-                             <input  class="form-check-input parent-attr" value="{{ $attribute->id }}" type="checkbox" id="{{ $attribute->name }}-{{ $attribute->id }}" name="attribute_id[]" >
+                             <input data-name="{{ $attribute->name }}" class="form-check-input parent-attr" value="{{ $attribute->id }}" type="checkbox" id="{{ $attribute->name }}-{{ $attribute->id }}" name="attribute_id[]" >
                               <span role="button">{{ $attribute->name }}</span> 
                                 <a href="{{ route('attributes.edit',['attribute'=>$attribute->id]) }}">
                                 <i class="fa fa-pencil"></i> Edit</a>
