@@ -231,32 +231,28 @@ $(document).ready(function() {
         let parent_name = $(".parent-attr").data('name');
         let make_name = $("." + parent_name);
         let self = $(this)
+        let button = $('#submit-product-form-button')
+        let buttonSpinner = $('#submit-product-form-button .spinner-border')
+        button.attr('disabled', true)
+        buttonSpinner.removeClass('d-none')
+        let bText = $('#submit-product-form-text')
+        bText.text('Saving....');
 
         $.ajax({
             type: "POST",
             url: self.attr('action'),
             data: self.serialize()
         }).done(function(response) {
-            console.log(response);
+            window.location.replace('/admin/products');
+        }).catch(function(xhr, status, error) {
+            // error handling
+            button.attr('disabled', false)
+            buttonSpinner.addClass('d-none')
+            let bText = $('#submit-product-form-text')
+            bText.text('Submit');
+            console.log(xhr.responseJSON.errors)
         });
 
-        return false;
-
-        parent.each(function(i, e) {
-            let p = $(this)
-            if (!p.prop('checked')) {
-                alert("not chc");
-                // return false
-            }
-        });
-
-        make_name.each(function(i, e) {
-            let p = $(this)
-            if (!p.prop('checked')) {
-                alert("No make");
-                //return false
-            }
-        });
         return false;
     })
 

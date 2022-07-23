@@ -286,7 +286,14 @@
 
  
                <div class="d-flex justify-content-end mt-4">
-                  <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
+                  <button type="submit" name="button" id="submit-product-form-button" class="btn bg-gradient-dark m-0 ms-2">
+                     <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    <span id="submit-product-form-text">Submit</span>
+                  </button>
+                  <!-- <button class="btn btn-primary btn-sm mb-2" type="button" disabled>
+                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                     Loading...
+                   </button> -->
                </div>
             </div>
          </div>
