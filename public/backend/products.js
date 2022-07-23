@@ -218,8 +218,6 @@ $(document).ready(function() {
 
 
 
-
-
     $(document).find('.remove-section-lagos').on('click', function(e) {
         console.log(true)
         let self = $(this);

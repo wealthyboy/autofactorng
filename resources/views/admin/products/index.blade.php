@@ -5,14 +5,22 @@
     @include('admin.includes.top',['add'=>true,'name' => 'Products', 'export' => true])
     <div class="card mb-3">
 
-    <div class="card-header p-3 pt-2">
-      <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
-          <i class="material-symbols-outlined">filter_alt</i>
-      </div>
-    <h6 class="mb-0">FIlter</h6>
+    <div class="card-header d-flex justify-content-between p-3 pt-2">
+        <div>
+          <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
+              <i class="material-symbols-outlined">filter_alt</i>
+          </div>
+          <h6 class="mb-0">FIlter</h6>
+        </div>
+
+        <div>
+          <a id="show-panel" href="#">Open/Close panel</a>
+        </div>
+        
+      
     </div>
 
-     <div class="card-body pt-0">
+     <div id="search-panel" class="card-body pt-0 hide">
         @include('admin.includes.product_search')
      </div>
 </div>
@@ -120,6 +128,14 @@ var parent_id = document.getElementById('parent_id');
 setTimeout(function () {
    const example = new Choices(parent_id);
 }, 1);
+
+$('#show-panel').on('click', function(e) {
+        e.preventDefault();
+        console.log(e)
+        var element = document.getElementById("search-panel");
+        element.classList.toggle('hide')
+
+    })
 
 
 @stop
