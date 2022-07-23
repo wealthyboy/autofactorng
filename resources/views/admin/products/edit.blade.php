@@ -161,9 +161,7 @@
                         <textarea type="text" class="form-control"                                     
                            name="meta_description"
                            rows="8"
-                           >
-                           {{ isset($product) ? $product->meta_description : old('meta_description') }}
-                        </textarea>
+                           >{{ isset($product) ? $product->meta_description : old('meta_description') }}</textarea>
                      </div>
                   </div>
                </div>
@@ -176,9 +174,7 @@
                         <textarea type="text" class="form-control"                                     
                            name="description"
                            rows="8"
-                           >
-                           {{ isset($product) ? $product->description : old('description') }}
-                        </textarea>
+                           >{{ isset($product) ? $product->description : old('description') }}</textarea>
                      </div>
                   </div>
                </div>

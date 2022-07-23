@@ -135,6 +135,7 @@
                      </div>
                   </div>
                </div>
+
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                   <label class="form-label">Meta Description</label>
@@ -142,29 +143,25 @@
                         <textarea type="text" class="form-control"                                     
                            name="meta_description"
                            rows="8"
-                           >
-                           Shop for Genuine Parts with Confidence. You Have The Cars. We Have Parts.
-                        </textarea>
+                           >Shop for Genuine Parts with Confidence. You Have The Cars. We Have Parts.</textarea>
                      </div>
                   </div>
                </div>
-
-               {{ old('images') }}
-
+                       
+               
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                     <label class="form-label">Description</label>
-
                      <div class="input-group input-group-outline">
-                        <textarea type="text" class="form-control focus"                                     
+                        <textarea type="text" class="form-control"                                     
                            name="description"
                            rows="8"
-                           id="desc"
-                           >
-                        </textarea>
+                           >{{ isset($product) ? $product->description : old('description') }}</textarea>
                      </div>
                   </div>
                </div>
+
+              
 
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
@@ -180,6 +177,8 @@
                      </div>
                   </div>
                </div>
+
+               
 
               
                <div class="col-12">
@@ -369,5 +368,16 @@
      el.addEventListener("focus", () => {
      el.setSelectionRange(-1, -1);
    });
+
+   document.getElementById('desc').addEventListener('click', boldText);
+
+   function boldText() {
+   var txtarea = document.getElementById("desc");
+   var start = txtarea.selectionStart;
+   var end = txtarea.selectionEnd;
+   var sel = txtarea.value.substring(start, end);
+   txtarea.focus();
+   txtarea.selectionEnd= end + 10;
+   }
 
 @stop
