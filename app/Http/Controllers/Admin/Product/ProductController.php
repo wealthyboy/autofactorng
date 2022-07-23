@@ -91,13 +91,25 @@ class ProductController extends Controller
      */
     public function store(Request $request,Product $product)
     {   
-
+        
         $this->validate($request,[
             'category_id' => 'required',
             'product_name' => 'required',
             'images' => 'required',
             'attribute_id' => 'required',
         ]);
+
+
+        // if (!empty($request->attribute_id)) {
+        //     $attributes = Attribute::whereIn('id',$request->attribute_id)->where('parent_id', null)->get();
+
+        //     if () {
+
+        //     }
+        //    return $attributes;
+        // }
+
+       // dd($attributes);
 
 
         $data = $request->except('_token');
@@ -253,7 +265,12 @@ class ProductController extends Controller
 
     public function update(Request $request,$id){
         
-     
+        $this->validate($request,[
+            'category_id' => 'required',
+            'product_name' => 'required',
+            'images' => 'required',
+            'attribute_id' => 'required',
+        ]);
 
         $data = $request->except('_token');
         $brand = Brand::find($request->brand_id);
@@ -355,7 +372,7 @@ class ProductController extends Controller
 
 
         //(new Activity)->Log("Added a product ", "{$data}");
-        return \Redirect::to('/admin/products');
+        return response()->json($product);
     }
 
 

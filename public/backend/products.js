@@ -319,7 +319,7 @@ function addRowLagos() {
     html += '<div class="col-sm-3">';
     html += '<div class="input-group input-group-outline">';
     html += '<label class="form-label"></label>';
-    html += '<input type="text" class="form-control" placeholder="Price" name="condition[lagos][price][]">';
+    html += '<input type="text" class="form-control" required placeholder="Price" name="condition[lagos][price][]">';
     html += '</div>';
     html += '</div>';
     html += '<div class="col-sm-1">';
@@ -367,7 +367,7 @@ function addRowOutSideLagos() {
     html += '<div class="col-sm-3">';
     html += '<div class="input-group input-group-outline">';
     html += '<label class="form-label"></label>';
-    html += '<input type="text" class="form-control" placeholder="Price" name="condition[out_side_lagos][price][]">';
+    html += '<input type="text" class="form-control" placeholder="Price" required name="condition[out_side_lagos][price][]">';
     html += '</div>';
     html += '</div>';
     html += '<div class="col-sm-1">';

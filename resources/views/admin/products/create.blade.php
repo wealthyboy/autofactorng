@@ -228,7 +228,7 @@
                 <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Price</label>
-                        <input type="text" class="form-control" name="condition[lagos][price][]">
+                        <input type="text" class="form-control"  name="condition[lagos][price][]">
                      </div>
                 </div>
                </div>
@@ -369,20 +369,8 @@
       });
    }
 
-   let el = document.querySelector(".focus");
-     el.addEventListener("focus", () => {
-     el.setSelectionRange(-1, -1);
-   });
+  
 
-   document.getElementById('desc').addEventListener('click', boldText);
-
-   function boldText() {
-   var txtarea = document.getElementById("desc");
-   var start = txtarea.selectionStart;
-   var end = txtarea.selectionEnd;
-   var sel = txtarea.value.substring(start, end);
-   txtarea.focus();
-   txtarea.selectionEnd= end + 10;
-   }
+   
 
 @stop

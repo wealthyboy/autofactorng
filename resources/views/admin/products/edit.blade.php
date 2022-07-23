@@ -214,8 +214,11 @@
                                     <div id="remove_image" class="remove_image remove-image">
                                           <a class="remove-image"  data-id="{{ $image->id }}" data-randid="{{ $image->id }}" data-model="Image" data-type="complete"  data-url="{{ $image->image }}" href="#">Remove</a>
                                     </div>
+
                                  </div>
                               </div>
+                              <input class=""  name="images[]" value="{{ $image->image }}" type="hidden" id="">
+
                               @endforeach
                         @endif
                      </div>

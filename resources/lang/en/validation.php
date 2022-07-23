@@ -142,8 +142,26 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'category_name' => [
+            'unique' => 'Category name already exists',
+        ],
+        'category_id' => [
+            'unique' => 'Category  already exists',
+        ],
+        'category_id' => [
+            'required' => 'Please add 1 or more categories ',
+        ],
+        'attribute_name' => [
+            'unique' => 'Category name already exists',
+        ],
+        'attribute_id' => [
+            'unique' => 'Category  already exists',
+        ],
+        'attribute_id' => [
+            'required' => 'Please add make/model/year/engine',
+        ],
+        'images' => [
+            'required' => 'Upload ypur images',
         ],
     ],
 
