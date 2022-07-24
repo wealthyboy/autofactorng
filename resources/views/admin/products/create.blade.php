@@ -22,9 +22,12 @@
                            type="text" 
                            class="form-control"                                     
                            name="product_name"
-                           value="{{ old('product_name') }}"
-                           >
+                           required
+                           id="product_name"
+                           data-msg="Upload  your image"
+                        >
                      </div>
+                     <div></div>
                   </div>
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
@@ -156,6 +159,7 @@
                         <textarea type="text" class="form-control"                                     
                            name="description"
                            rows="8"
+                           required
                            >{{ isset($product) ? $product->description : old('description') }}</textarea>
                      </div>
                   </div>
@@ -308,8 +312,11 @@
                </div>
                <h6 class="mb-0">Attributes</h6>
             </div>
+
             <div class="material-datatables">
                <div class="well well-sm pb-5" style="height: 250px; background-color: #fff; color: black; overflow: auto;">
+               <div class="attribute fw-bold  text-sm text-danger px-4 "></div>
+
                 @foreach($attributes as $attribute)
                   <div class="parent" value="{{ $attribute->id }}">
                       <div class="form-check ">
@@ -335,12 +342,14 @@
                <h6 class="mb-0">Categories</h6>
             </div>
             <div class="material-datatables">
+               <div class="categories fw-bold  text-sm text-danger px-4 "></div>
+
                <div class="well well-sm pb-5" style="height: 250px; background-color: #fff; color: black; overflow: auto;">
                 @foreach($categories as $category)
                   <div class="parent">
                      <div class="form-check ">
                         <label  class="custom-control-label" for="{{ $category->name }}-{{ $category->id }}">
-                           <input id="{{ $category->name }}-{{ $category->id }}"  class="form-check-input" value="{{ $category->id }}" type="checkbox" name="category_id[]">
+                           <input id="{{ $category->name }}-{{ $category->id }}"  class="form-check-input category_parent" value="{{ $category->id }}" type="checkbox" name="category_id[]">
                            <span role="button">{{ $category->name }}</span> 
                            <a href="{{ route('category.edit',['category'=>$category->id]) }}">
                            <i class="fa fa-pencil"></i> Edit</a>
@@ -355,22 +364,33 @@
       </div>
    </div>
 </form>
+
+
+
+<!-- <div class="toast fade  p-2 mt-2 bg-gradient-danger  show  toast-container position-fixed p-3 top-0 end-0" role="alert" aria-live="assertive" id="infoToast" aria-atomic="true">
+<div class="toast-header bg-transparent border-0">
+<i class="material-icons-outlined text-white me-2">
+notifications
+</i>
+<ul>
+   <li style="padding-left: 5px;"> &nbsp;&nbsp;<i class="fa fa-exclamation-circle"></i>         
+      <span class="text-sm text-white">  </span>
+   </li>
+   
+</ul>
+
+<i class="fas fa-times text-md text-white ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"></i>
+</div>
+
+</div> -->
 @endsection
 @section('page-scripts')
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
 <script src="{{ asset('backend/products.js') }}"></script>
 @stop
 @section('inline-scripts')
-   
 
-   if (document.getElementById('editor')) {
-      var quill = new Quill('#editor', {
-         theme: 'snow' // Specify theme in configuration
-      });
-   }
-
-  
-
-   
 
 @stop

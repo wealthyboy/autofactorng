@@ -1,19 +1,19 @@
 @if (optional($obj)->children)
-    @foreach($obj->children->sortBy('name') as $obj)
+    @foreach($obj->children->sortBy('name') as $ob)
         <div class="children" value="{{ $obj->id }}">
             <div class="d-flex">
                 <div class="form-check">
-                    <label  class="custom-control-label" for="{{ $obj->name }}-{{ $obj->id }}">
-                        <input  class="form-check-input" value="{{ $obj->id }}" {{ $helper->check($collections, $obj->id) }} type="checkbox" id="{{ $obj->name }}-{{ $obj->id }}" name="{{$name}}[]" >
-                        <span role="button">{{ $obj->name }}</span>
-                        <a href="{{ route($model.'.edit',[$url => $obj->id]) }}">
+                    <label  class="custom-control-label" for="{{ $ob->name }}-{{ $ob->id }}">
+                        <input  class="form-check-input {{ $obj->name }}" value="{{ $ob->id }}" {{ $helper->check($collections, $ob->id) }} type="checkbox" id="{{ $ob->name }}-{{ $ob->id }}" name="{{$name}}[]" >
+                        <span role="button">{{ $ob->name }}</span>
+                        <a href="{{ route($model.'.edit',[$url => $ob->id]) }}">
                             <i class="fa fa-pencil"></i> 
                             Edit
                         </a>
 
                         @if(isset($link))
                         |
-                        <a  href="{{ config('app.url') }}/products/{{ $obj->slug }}">
+                        <a  href="{{ config('app.url') }}/products/{{ $ob->slug }}">
                            <i class="fa fa-external-link" aria-hidden="true"></i>Link
                         </a> 
                         @endif
@@ -24,14 +24,14 @@
 
 
                 @if (isset($year) && $year)
-                    @if(null !== $obj->attribute_years))
-                        @foreach($product->product_years->where('attribute_id', $obj->id) as $year)     
+                    @if(null !== $ob->attribute_years))
+                        @foreach($product->product_years->where('attribute_id', $ob->id) as $year)     
                             <div class="col-sm-3 ml-3 col-12">
                                 <div class="input-group input-group-dynamic">
                                     <label class="form-label "> </label>
-                                    <select class="form-control mx-3 year" name="year_from[{{ $obj->id }}]" id="">
+                                    <select class="form-control mx-3 year" name="year_from[{{ $ob->id }}]" id="">
                                         <option  value="">--Year from--</option>
-                                        @foreach($obj->attribute_years as $attribute_year)
+                                        @foreach($ob->attribute_years as $attribute_year)
                                             <option   {{ $year->year_from == $attribute_year->year? 'selected' : '' }} value="{{ $attribute_year->year }}">{{ $attribute_year->year }} </option>
                                         @endforeach
                                     </select>
@@ -41,9 +41,9 @@
                             <div class="col-sm-3 ml-3 col-12">
                                 <div class="input-group input-group-dynamic">
                                     <label class="form-label "> </label>
-                                    <select class="form-control mx-3 year" name="year_to[{{ $obj->id }}]" id="">
+                                    <select class="form-control mx-3 year" name="year_to[{{ $ob->id }}]" id="">
                                         <option  value="">--Year to--</option>
-                                        @foreach($obj->attribute_years as $attribute_year)
+                                        @foreach($ob->attribute_years as $attribute_year)
                                             <option   {{ $year->year_to == $attribute_year->year? 'selected' : '' }} value="{{ $attribute_year->year }}">{{ $attribute_year->year }} </option>
                                         @endforeach
                                     </select>
@@ -55,19 +55,19 @@
                 @endif
             </div>
 
-            @if (null !== $obj->engines)
-                @foreach($obj->engines as $engine)
+            @if (null !== $ob->engines)
+                @foreach($ob->engines as $engine)
                     <div class="children">
                         <div class="d-flex">
                             <div class="form-check">
-                                <label  class="custom-control-label" for="{{ $obj->name }}-{{ $engine->id }}">
+                                <label  class="custom-control-label" for="{{ $ob->name }}-{{ $engine->id }}">
                                     <input  
                                         class="form-check-input" 
                                         value="{{ $engine->id }}" 
                                         type="checkbox" 
-                                        id="{{ $obj->name }}-{{ $engine->id }}" 
-                                        name="engine_id[{{ $obj->id }}][]" 
-                                        {{ $helper->check($product->engines, $obj->id, true, $engine->id) }} 
+                                        id="{{ $ob->name }}-{{ $engine->id }}" 
+                                        name="engine_id[{{ $ob->id }}][]" 
+                                        {{ $helper->check($product->engines, $ob->id, true, $engine->id) }} 
 
                                     >
                                     <span role="button">{{ $engine->name }}</span>
@@ -77,7 +77,9 @@
                     </div>
                 @endforeach
             @endif
-            @include('includes.children',['obj'=>$obj])
+            @include('includes.children',['obj'=>$ob])
         </div>
     @endforeach
 @endif
+
+

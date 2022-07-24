@@ -201,8 +201,8 @@
                   <input accept="image/*"   onchange="getFile(this,'images[]','Image')" class="upload_input" data-msg="Upload  your image" type="file"  name="img"  />
                      <div   class=" upload-text {{ $product->images->count() ||  $product->image ? 'hide' : ''}}"> 
                         <a   class="j-activate" href="#">
-                              <img class="" src="/store/img/upload_icon.png">
-                              <b>Click on anywhere to upload image</b> 
+                           <img class="" src="/images/utils/upload_icon.png">
+                           <b>Click on anywhere to upload image</b> 
                         </a>
                      </div>
                      <div id="j-details"  class="j-details">
@@ -333,7 +333,6 @@
 
                <div class="row large-items  d-none dup-out-lagos"></div>
 
-
                <div class="row large-items my-3 {{  $product->condition_is_present ? '' : 'd-none' }}">
                   <button onclick="addRowOutSideLagos();" class="btn btn-outline-primary btn-sm mb-0" id="add-more-lagos" type="button">Add more</button>
                </div>
@@ -358,17 +357,20 @@
             </div>
             <div class="material-datatables">
                <div class="well well-sm pb-5" style="height: 250px; background-color: #fff; color: black; overflow: auto;">
+               <div class="attribute fw-bold  text-sm text-danger px-4 "></div>
+
                 @foreach($attributes as $attribute)
                   <div class="parent" value="{{ $attribute->id }}">
                       
                       <div class="form-check ">
                           <label  class="custom-control-label" for="{{ $attribute->id }}">
                              <input  
-                                 class="form-check-input" 
+                                 class="form-check-input parent-attr" 
                                  value="{{ $attribute->id }}" 
                                  {{ $helper->check($product->attributes, $attribute->id) }} 
                                  type="checkbox" id="{{ $attribute->id }}" 
                                  name="attribute_id[]" 
+                                 data-name="{{ $attribute->name }}"
                               >
                               <span role="button">{{ $attribute->name }}</span> 
                                 <a href="{{ route('attributes.edit',['attribute'=>$attribute->id]) }}">
@@ -390,6 +392,8 @@
                <h6 class="mb-0">Categories</h6>
             </div>
             <div class="material-datatables">
+               <div class="categories fw-bold  text-sm text-danger px-4 "></div>
+
                <div class="well well-sm pb-5" style="height: 250px; background-color: #fff; color: black; overflow: auto;">
                 @foreach($categories as $category)
                   <div class="parent" value="{{ $category->id }}">

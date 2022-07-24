@@ -8,9 +8,9 @@
     <div class="card-header d-flex justify-content-between p-3 pt-2">
         <div>
           <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
-              <i class="material-symbols-outlined">filter_alt</i>
+              <i class="material-symbols-outlined">filter_alt</i>         
+
           </div>
-          <h6 class="mb-0">FIlter</h6>
         </div>
 
         <div>
@@ -43,7 +43,7 @@
         
     </div>
 
-  <div class="table-responsive mt-5">
+  <div class="table-responsive mt-1">
     <form action="{{ route('products.destroy',['product' => 1]) }}" method="post" enctype="multipart/form-data" id="form-products">
       @csrf
       @method('DELETE')

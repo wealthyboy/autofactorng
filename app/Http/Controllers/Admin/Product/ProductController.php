@@ -91,25 +91,49 @@ class ProductController extends Controller
      */
     public function store(Request $request,Product $product)
     {   
-        
-        $this->validate($request,[
+    
+
+        $validator = Validator::make($request->all(), [
             'category_id' => 'required',
             'product_name' => 'required',
             'images' => 'required',
             'attribute_id' => 'required',
         ]);
+ 
+        
+        $data = [];
+        $attr = [];
+        if (!empty($request->attribute_id)) {
+            $attributes = Attribute::whereIn('id',$request->attribute_id)->where('parent_id', null)->get();
+            if (null == $attributes) {
+                $data[] = 'You need to add at least 1 make for your upload';
+            } else {
+                foreach ($attributes as $key => $attribute) {
+                    if ($attribute->children->containsOneItem($request->attribute_id)) {
+                        $data[] = 'No model for '.$attribute->name;
+                    }
+                }
+            }
 
+            if ( !empty( $request->year_from ) ) {
+                foreach( $request->year_from as $attribute_id => $year) {
+                    $attr[] = $attribute_id;
+                }
+            }
+        }
 
-        // if (!empty($request->attribute_id)) {
-        //     $attributes = Attribute::whereIn('id',$request->attribute_id)->where('parent_id', null)->get();
+        if ($validator->fails()) {
+            $validator->errors()->add(
+                'extras', $data
+            );
+            return response()->json(array(
+                'success' => false,
+                'errors' => $validator->getMessageBag()->toArray()
+        
+            ), 400);
+        }
 
-        //     if () {
-
-        //     }
-        //    return $attributes;
-        // }
-
-       // dd($attributes);
+       //dd($attributes);
 
 
         $data = $request->except('_token');

@@ -134,14 +134,6 @@ function getFile(e, name, model = null, multiple = true) {
 
 $(document).ready(function() {
 
-    localStorage.setItem('allow_variation', true)
-
-
-
-
-
-
-
     $(document).on('click', '.delete-panel', function(e) {
         e.preventDefault()
         $(this).parent().parent('.variation-panel').remove();
@@ -152,55 +144,6 @@ $(document).ready(function() {
 
         });
     })
-
-    $(".search_products").on('input', function(e) {
-        var $self = $(this),
-            payLoad = { 'product_name': $self.val() }
-        $.ajax({
-            type: "GET",
-            url: "/admin/related/products",
-            data: payLoad,
-        }).done(function(response) {
-            $("#related_products").html('').append(response)
-        });
-    })
-
-    $(document).on('click', '.add_product', function(e) {
-        e.preventDefault()
-        $(this).parentsUntil('tbody').clone().appendTo(".related_products");
-        $(this).parentsUntil('tbody').remove()
-        $("tbody.related_products").children('.p').remove()
-        $("tbody.related_products td").children('input.d-none').removeClass('hide')
-    })
-
-    $(document).on('click', '.remove_related_product', function(e) {
-        e.preventDefault()
-        $(this).parentsUntil('tbody').remove()
-        e.preventDefault()
-        $(this).parent().parent('.variation-panel').remove();
-        $.ajax({
-            type: "delete",
-            url: $(this).attr('href'),
-        }).done(function(response) {
-
-        });
-    })
-
-    $("#product-type").on('change', function() {
-        $self = $(this)
-        if ($self.val() === 'simple') {
-            $(".simple-product").removeClass('hide')
-            $(".variable-product").addClass('hide')
-            $(".variable-products").addClass('hide')
-
-        } else {
-            $(".simple-product").addClass('hide')
-            $(".variable-product").removeClass('hide')
-            $(".variable-products").removeClass('hide')
-
-        }
-    })
-
 
     if (document.querySelector('.datetimepicker')) {
         flatpickr('.datetimepicker', {
@@ -215,9 +158,6 @@ $(document).ready(function() {
         }
     })
 
-
-
-
     $(document).find('.remove-section-lagos').on('click', function(e) {
         console.log(true)
         let self = $(this);
@@ -225,6 +165,72 @@ $(document).ready(function() {
     })
 
     $('#form-product').on('submit', function() {
+
+        // $.validator.addMethod("oneormorecheckedmaterials", function(value, element) {
+        //     return $('.input_materials:checked').length > 0;
+        // }, "Atleast 1 must be selected");
+
+        // // Code for the Validator
+        // var $validator = $('#form-product').validate({
+        //     errorPlacement: function(error, element) {
+        //         error.addClass('')
+        //     },
+        //     rules: {
+        //         product_name: {
+        //             required: true,
+        //             minlength: 3
+        //         },
+
+        //         pimages: {
+        //             required: true,
+        //             // accept: "image/*",
+        //             // extension: "jpeg|png|jpg|gif"
+        //         },
+
+        //         description: {
+        //             required: true,
+        //             minlength: 15
+        //         },
+
+        //         'category_id[]': {
+        //             required: true,
+        //         },
+
+        //     },
+        //     submitHandler: function(form) {
+        // $(".text-danger").remove();
+        let messages = {}
+        let parent_attr = $('.parent-attr')
+        if (parent_attr.is(':checked')) {
+            //at least one is checked
+            let pName = parent_attr.data('name');
+            let model = $('.' + pName)
+            if (!model.is(':checked')) {
+                messages['attribute'] = 'Enter model and year range for each Car Selected';
+            } else {
+                let y = model.data('name');
+                let year = $('.' + y)
+                if (year.val() == '') {
+                    messages['attribute'] = 'Enter model and year range for each Car Selected';
+                }
+            }
+        } else {
+            messages['attribute'] = 'Enter make/model and year range for each Car '
+        }
+
+        if (!$('input[name="category_id[]"]').is(':checked')) {
+            messages['categories'] = 'Add categories : Always add parent/child of any category'
+        }
+
+        if (!jQuery.isEmptyObject(messages)) {
+            $('html,body').animate({ scrollTop: 0 }, 'slow');
+            for (const i in messages) {
+                const element = messages[i];
+                $('.' + i).text(element)
+            }
+            return false;
+        }
+
         let self = $(this)
         let button = $('#submit-product-form-button')
         let buttonSpinner = $('#submit-product-form-button .spinner-border')
@@ -232,7 +238,7 @@ $(document).ready(function() {
         buttonSpinner.removeClass('d-none')
         let bText = $('#submit-product-form-text')
         bText.text('Saving....');
-
+        $(".text-danger").remove();
         $.ajax({
             type: self.data('method'),
             url: self.attr('action'),
@@ -248,6 +254,8 @@ $(document).ready(function() {
             console.log(xhr.responseJSON.errors)
         });
 
+        //     },
+        // });
         return false;
     })
 
@@ -270,17 +278,6 @@ CKEDITOR.replace('phy_description', {
     ]
 })
 
-// CKEDITOR.replace('desc', {
-//     height: '200px',
-//     width: '100%',
-//     toolbar: [
-//         '/',
-//         { name: 'paragraph', groups: ['list', 'indent', ], items: ['BulletedList'] },
-//         '/',
-//     ]
-// })
-
-
 var row = 0;
 
 function addRowLagos() {
@@ -288,7 +285,7 @@ function addRowLagos() {
     html += '<div class="col-sm-3">';
     html += '<div class="input-group input-group-outline">';
     html += '<label class="form-label"> </label>';
-    html += ' <select name="condition[lagos][tag][]" id="" class="form-control">';
+    html += '<select name="condition[lagos][tag][]" id="" class="form-control">';
     html += '<option value="quantity">Quantity</option>';
     html += '</select>';
     html += '</div>';
