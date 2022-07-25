@@ -278,6 +278,7 @@
                   </div>
                @endforeach
 
+               <div class="row large-items  d-none dup-lagos"></div>
 
 
                <div class="row button-lagos large-items my-3 {{  $product->condition_is_present ? '' : 'd-none' }}">
