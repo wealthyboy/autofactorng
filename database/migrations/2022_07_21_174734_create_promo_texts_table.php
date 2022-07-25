@@ -17,7 +17,7 @@ class CreatePromoTextsTable extends Migration
             $table->id();
             $table->string('bgcolor')->nullable();
             $table->integer('promo_id')->nullable();
-            $table->string('promo')->nullable();
+            //$table->string('promo')->nullable();
             $table->timestamps();
         });
     }
