@@ -18,7 +18,7 @@
                <div class="row mt-3">
                   <div class="col-sm-4 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label">Discount</label>
+                     <label class="form-label">Discount (in %)</label>
                         <input value="{{ $discount->amount }}"  name="percentage_discount" type="text" class="form-control" >
                      </div>
                   </div>
