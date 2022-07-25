@@ -60,13 +60,14 @@
                 <div class="children" value="{{ $engine->id }}">
                     <div class="d-flex">
                         <div class="form-check">
-                            <label  class="custom-control-label" for="{{ $ob->name }}-{{ $engine->id }}">
+                            <label  class="custom-control-label " for="{{ $ob->name }}-{{ $engine->id }}">
                                 <input  
-                                    class="form-check-input  {{ $ob->name }}" 
+                                    class="form-check-input  engine-{{ $ob->name }}" 
                                     value="{{ $engine->id }}" 
                                     type="checkbox" 
                                     id="{{ $ob->name }}-{{ $engine->id }}" 
                                     name="engine_id[{{ $ob->id }}][]" 
+                                    data-name="{{ $ob->name }}"
                                 >
                                 <span role="button">{{ $engine->name }}</span>
                             </label>
