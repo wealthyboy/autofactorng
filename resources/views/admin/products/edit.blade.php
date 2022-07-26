@@ -95,7 +95,6 @@
                            type="text" 
                            class="form-control"                                     
                            name="volts"
-                           required
                            id="voltage"
                            value="12"
                            readonly
