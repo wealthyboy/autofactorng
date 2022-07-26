@@ -4,7 +4,7 @@
             <div class="d-flex">
                 <div class="form-check">
                     <label  class="custom-control-label" for="{{ $ob->name }}-{{ $ob->id }}">
-                        <input  class="form-check-input {{ $obj->name }}"  data-name="{{ $ob->name }}" value="{{ $ob->id }}" {{ $helper->check($collections, $ob->id) }} type="checkbox" id="{{ $ob->name }}-{{ $ob->id }}" name="{{$name}}[]" >
+                        <input  class="form-check-input {{ $obj->name }}  {{ $obj->name == 'Spare Parts' || $obj->name == 'Servicing Parts'  ? 'no-validation' : '' }}"  data-name="{{ $ob->name }}" value="{{ $ob->id }}" {{ $helper->check($collections, $ob->id) }} type="checkbox" id="{{ $ob->name }}-{{ $ob->id }}" name="{{$name}}[]" >
                         <span role="button">{{ $ob->name }}</span>
                         <a href="{{ route($model.'.edit',[$url => $ob->id]) }}">
                             <i class="fa fa-pencil"></i> 

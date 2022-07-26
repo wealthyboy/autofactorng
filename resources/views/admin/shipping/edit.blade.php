@@ -19,9 +19,22 @@
                 <div class="row mt-3">
                     <div class="col-sm-12 col-12">
                       <div class="input-group input-group-outline">
-                        <label class="form-label"> Price</label>
+                        <label class="form-label"> Name</label>
                         <input type="text" 
                               required 
+                              class="form-control" 
+                              name="name"
+                              value="{{ $shipping->name ?? old('name') }}"
+                            >
+                      </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-sm-12 col-12">
+                      <div class="input-group input-group-outline">
+                        <label class="form-label"> Price</label>
+                        <input type="text" 
+                               
                               class="form-control" 
                               name="price"
                               value="{{ $shipping->price ?? old('price') }}"
@@ -44,6 +57,32 @@
                                                 @else
                                             <option value="{{ $location->id }}"> {{ $location->name }} </option>
                                           @endif
+                                        @endforeach 
+                                    </select>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="">
+                        <div class="row mt-3">
+                            <div class="col-sm-12 col-12">
+                                <div class="input-group input-group-outline">
+                                    <label class="form-label mt-4 ms-0"> </label>
+                                    <select  class="form-control" name="parent_id" id="">
+                                        <option  value="">--Choose Type--</option>
+                                        @foreach($shippings as $ship)
+                                            @if($shipping->parent_id == $ship->id )
+                                                <option  value="{{ $ship->id }}" selected="selected">{{ $ship->name }} </option>                                        
+                                                @include('includes.children_options',['obj'=>$ship,'space'=>'&nbsp;&nbsp;'])
+                                            @else
+                                                <option  value="{{ $ship->id }}" >{{ $ship->name }} </option>
+                                                @include('includes.children_options',['model' => $shipping,'obj'=>$shipping,'space'=>'&nbsp;&nbsp;'])
+                                            @endif
                                         @endforeach 
                                     </select>
                                     

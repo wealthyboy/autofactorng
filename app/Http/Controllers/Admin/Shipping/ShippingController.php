@@ -32,7 +32,7 @@ class ShippingController extends Controller
         //
 
         //$s = Shipping::find(274)->delete();
-        $shippings = Shipping::get();
+        $shippings = Shipping::parents()->get();
         $locations = Location::parents()->get();
         return view('admin.shipping.index',compact('locations','shippings'));
     }
@@ -70,7 +70,7 @@ class ShippingController extends Controller
         $shipping->price = $request->price;
         $shipping->location_id = $request->location_id;
        // $shipping->sort_order=$request->sort_order;
-       // $shipping->parent_id     = $request->parent_id;
+        $shipping->parent_id     = $request->parent_id;
         $shipping->save();
 
         //$shipping->locations()->sync([$request->location_id]);
@@ -102,9 +102,10 @@ class ShippingController extends Controller
         //
        // User::canTakeAction(4);
 
-        $shipping = Shipping::find($id);
-        $locations = Location::parents()->get();
-        return view('admin.shipping.edit',compact('locations','shipping'));
+       $shipping = Shipping::find($id);
+       $shippings = Shipping::parents()->get();
+       $locations = Location::parents()->get();
+        return view('admin.shipping.edit',compact('locations','shipping','shippings'));
     }
 
     /**
@@ -132,7 +133,7 @@ class ShippingController extends Controller
         $shipping->price       = $request->price;
         $shipping->location_id = $request->location_id;
        // $shipping->sort_order  = $request->sort_order;
-        //$shipping->parent_id   = $request->parent_id;
+         $shipping->parent_id   = $request->parent_id;
         $shipping->save();
         //Log Activity
        // (new Activity)->Log("Updated  Shipping {$request->name} ");

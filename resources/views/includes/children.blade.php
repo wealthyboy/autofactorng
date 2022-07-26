@@ -4,7 +4,7 @@
             <div class="d-flex">
                 <div class="form-check">
                     <label  class="custom-control-label" for="{{ $ob->name }}-{{ $ob->id }}">
-                        <input  class="form-check-input {{ $obj->name }}" value="{{ $ob->id }}"  data-name="{{ $ob->name }}" type="checkbox" id="{{ $ob->name }}-{{ $ob->id }}" name="{{$name}}[]" >
+                        <input  class="form-check-input $obj->name {{ $obj->name == 'Spare Parts' || $obj->name == 'Servicing Parts'  ? 'no-validation' : '' }}" value="{{ $ob->id }}"  data-name="{{ $ob->name }}" type="checkbox" id="{{ $ob->name }}-{{ $ob->id }}" name="{{$name}}[]" >
                         <span role="button">{{ $ob->name }}</span>
                         <a href="{{ route($route.'.edit',[$url => $ob->id]) }}">
                             <i class="fa fa-pencil"></i> 
@@ -13,9 +13,9 @@
 
                         @if(isset($link))
                         |
-                        <a  href="{{ config('app.url') }}/products/{{ $ob->slug }}">
-                           <i class="fa fa-external-link" aria-hidden="true"></i>Link
-                        </a> 
+                            <a  href="{{ config('app.url') }}/products/{{ $ob->slug }}">
+                            <i class="fa fa-external-link" aria-hidden="true"></i>Link
+                            </a> 
                         @endif
 
 

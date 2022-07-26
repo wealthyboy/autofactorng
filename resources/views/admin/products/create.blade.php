@@ -82,6 +82,37 @@
               </div>
 
               <div class="row mt-3">
+                  <div class="col-sm-6 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Voltage</label>
+                        <input 
+                           type="text" 
+                           class="form-control"                                     
+                           name="volts"
+                           required
+                           id="voltage"
+                           value="12"
+                           readonly
+                        >
+                     </div>
+                     <div></div>
+                  </div>
+                  <div class="col-sm-6 col-12">
+                     <div class="input-group input-group-outline">
+                     <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="amphere" id="">
+                            <option  value="">--Battery Amphere--</option>
+                            @foreach($amps as $amp)
+                                <option class="" value="{{ $amp }}" >{{ $amp  }} </option>
+                            @endforeach
+                        </select>
+                     </div>
+                  </div>
+
+                  
+               </div>
+
+              <div class="row mt-3">
                   <div class="col-sm-4 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Product Radius</label>
@@ -138,6 +169,8 @@
                      </div>
                   </div>
                </div>
+
+               
 
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
@@ -349,7 +382,7 @@
                   <div class="parent">
                      <div class="form-check ">
                         <label  class="custom-control-label" for="{{ $category->name }}-{{ $category->id }}">
-                           <input id="{{ $category->name }}-{{ $category->id }}"  class="form-check-input category_parent" value="{{ $category->id }}" type="checkbox" name="category_id[]">
+                           <input id="{{ $category->name }}-{{ $category->id }}"  class="form-check-input category_parent  {{ $category->name == 'Spare Parts' || $category->name == 'Servicing Parts'  ? 'no-validation' : '' }}" value="{{ $category->id }}" type="checkbox" name="category_id[]">
                            <span role="button">{{ $category->name }}</span> 
                            <a href="{{ route('category.edit',['category'=>$category->id]) }}">
                            <i class="fa fa-pencil"></i> Edit</a>

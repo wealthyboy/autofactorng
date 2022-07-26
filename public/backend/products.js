@@ -159,83 +159,48 @@ $(document).ready(function() {
     })
 
     $(document).find('.remove-section-lagos').on('click', function(e) {
-        console.log(true)
         let self = $(this);
         console.log(self.parent().parent())
     })
 
     $('#form-product').on('submit', function() {
-
-        // $.validator.addMethod("oneormorecheckedmaterials", function(value, element) {
-        //     return $('.input_materials:checked').length > 0;
-        // }, "Atleast 1 must be selected");
-
-        // // Code for the Validator
-        // var $validator = $('#form-product').validate({
-        //     errorPlacement: function(error, element) {
-        //         error.addClass('')
-        //     },
-        //     rules: {
-        //         product_name: {
-        //             required: true,
-        //             minlength: 3
-        //         },
-
-        //         pimages: {
-        //             required: true,
-        //             // accept: "image/*",
-        //             // extension: "jpeg|png|jpg|gif"
-        //         },
-
-        //         description: {
-        //             required: true,
-        //             minlength: 15
-        //         },
-
-        //         'category_id[]': {
-        //             required: true,
-        //         },
-
-        //     },
-        //     submitHandler: function(form) {
-        // $(".text-danger").remove();
         let messages = {}
         let parent_attr = $('.parent-attr')
-        if (parent_attr.is(':checked')) {
-            //at least one is checked
-            let pName = parent_attr.data('name');
-            let model = $('.' + pName)
-            if (!model.is(':checked')) {
-                messages['attribute'] = 'Enter model and year range and engine for each Car Selected88';
+        let no_validate = $('.no-validation')
+        if (!no_validate.is(':checked')) {
+            if (parent_attr.is(':checked')) {
+                //at least one is checked
+                let pName = parent_attr.data('name');
+                let model = $('.' + pName)
+                if (!model.is(':checked')) {
+                    messages['attribute'] = 'Enter model and year range and engine for each Car Selected88';
+                } else {
+                    let y = model.data('name');
+                    let model_engine = $('.engine-' + y)
+                    let year = $('.' + y)
+                    if (year.val() == '') {
+                        messages['attribute'] = 'Enter model and year range  and engine for each Car Selected';
+                    }
+                    if (!model_engine.is(':checked')) {
+                        messages['attribute'] = 'Enter model and year range and engine for each Car Selected99';
+                    }
+                }
             } else {
-                let y = model.data('name');
-                let model_engine = $('.engine-' + y)
-
-                let year = $('.' + y)
-                if (year.val() == '') {
-                    messages['attribute'] = 'Enter model and year range  and engine for each Car Selected';
-                }
-
-                if (!model_engine.is(':checked')) {
-                    messages['attribute'] = 'Enter model and year range and engine for each Car Selected99';
-                }
-
+                messages['attribute'] = 'Enter make/model and year range for each Car '
             }
-        } else {
-            messages['attribute'] = 'Enter make/model and year range for each Car '
-        }
 
-        if (!$('input[name="category_id[]"]').is(':checked')) {
-            messages['categories'] = 'Add categories : Always add parent/child of any category'
-        }
-
-        if (!jQuery.isEmptyObject(messages)) {
-            $('html,body').animate({ scrollTop: 0 }, 'fast');
-            for (const i in messages) {
-                const element = messages[i];
-                $('.' + i).text(element)
+            if (!$('input[name="category_id[]"]').is(':checked')) {
+                messages['categories'] = 'Add categories : Always add parent/child of any category'
             }
-            return false;
+
+            if (!jQuery.isEmptyObject(messages)) {
+                $('html,body').animate({ scrollTop: 0 }, 'fast');
+                for (const i in messages) {
+                    const element = messages[i];
+                    $('.' + i).text(element)
+                }
+                return false;
+            }
         }
 
         let self = $(this)

@@ -10,7 +10,10 @@ class Product extends Model
 {
     use HasFactory, ImageFiles;
 
+
+
     protected $fillable = [
+        'amphere',
         'name',
         'slug',
         'price',
@@ -40,11 +43,24 @@ class Product extends Model
         'sale_price_starts',
         'condition_is_present',
         'sale_price_ends',
+        'volts'
 
     ];
 
     public $folder = 'products';
 
+    const AMPHERES  = [
+			"45",
+			"62",
+			"65",
+			"75",
+			"80",
+			"90",
+			"100",
+			"120",
+			"150",
+			"200",
+        ];
 
     public $appends = [
 		'image_m',

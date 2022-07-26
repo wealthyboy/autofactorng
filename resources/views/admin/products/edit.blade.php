@@ -88,6 +88,37 @@
               </div>
 
               <div class="row mt-3">
+                  <div class="col-sm-6 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Voltage</label>
+                        <input 
+                           type="text" 
+                           class="form-control"                                     
+                           name="volts"
+                           required
+                           id="voltage"
+                           value="12"
+                           readonly
+                        >
+                     </div>
+                     <div></div>
+                  </div>
+                  <div class="col-sm-6 col-12">
+                     <div class="input-group input-group-outline">
+                     <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="amphere" id="">
+                            <option  value="">--Battery Amphere--</option>
+                            @foreach($amps as $amp)
+                                <option {{ $product->amphere == $amp ? 'selected' : '' }} class="" value="{{ $amp }}" >{{ $amp  }} </option>
+                            @endforeach
+                        </select>
+                     </div>
+                  </div>
+
+                  
+               </div>
+
+              <div class="row mt-3">
                   <div class="col-sm-4 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Product Radius</label>
@@ -407,7 +438,7 @@
                          
                           <label  class="custom-control-label" for="{{ $category->name }}-{{ $category->id }}">
                               <input  
-                                 class="form-check-input" 
+                                 class="form-check-input {{ $category->name == 'Spare Parts' || $category->name == 'Servicing Parts'  ? 'no-validation' : '' }}" 
                                  {{ $helper->check($product->categories, $category->id) }} 
                                  value="{{ $category->id }}" 
                                  type="checkbox" 

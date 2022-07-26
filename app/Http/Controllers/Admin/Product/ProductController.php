@@ -75,12 +75,13 @@ class ProductController extends Controller
     public function create()
     {
         //User::canTakeAction(2);
-        $brands     = Brand::all();
+        $brands = Brand::all();
         $categories = Category::parents()->get();
         $attributes = Attribute::parents()->orderBy('sort_order','asc')->get();
-        $years      = Helper::years();
+        $years = Helper::years();
         $helper = new Helper;
-        return view('admin.products.create',compact('brands','categories','attributes','years','helper'));
+        $amps = Product::AMPHERES;
+        return view('admin.products.create',compact('amps','brands','categories','attributes','years','helper'));
     }
 
     /**
@@ -91,16 +92,13 @@ class ProductController extends Controller
      */
     public function store(Request $request,Product $product)
     {   
-    
 
         $validator = Validator::make($request->all(), [
             'category_id' => 'required',
             'product_name' => 'required',
             'images' => 'required',
-            'attribute_id' => 'required',
         ]);
- 
-        
+
         $data = [];
         $attr = [];
         if (!empty($request->attribute_id)) {
@@ -129,7 +127,6 @@ class ProductController extends Controller
             return response()->json(array(
                 'success' => false,
                 'errors' => $validator->getMessageBag()->toArray()
-        
             ), 400);
         }
 
@@ -140,12 +137,12 @@ class ProductController extends Controller
         $brand = Brand::find($request->brand_id);
         $data['quantity'] = 1;
         $category = Category::find($request->category_id);
-        $name = $request->filled('brand_id')  ? $brand->name .' '.$request->product_name  : $request->product_name;
+        $name = $request->filled('brand_id') ? $brand->name .' '.$request->product_name  : $request->product_name;
         $data['name'] = $name;
         $data['product_name'] = $request->product_name;
         $data['slug'] = str_slug($name);
         $product = Product::create($data);
-
+        
         if (!empty($request->category_id)) {
             $product->categories()->sync($request->category_id);
         }
@@ -166,8 +163,6 @@ class ProductController extends Controller
         if (!empty($request->attribute_id)) {
             $product->attributes()->sync($request->attribute_id);
         }
-
-        //dd($request->condition['lagos']);
 
         if ($request->condition_is_present) {
 
@@ -240,8 +235,8 @@ class ProductController extends Controller
         $helper = new Helper;
         $year_from = $product->product_years->pluck('year_from')->toArray();
         $year_to = $product->product_years->pluck('year_to')->toArray();
-
-        return view('admin.products.edit',compact('product','brands','categories','year_from','year_to','attributes','years','helper'));
+        $amps = Product::AMPHERES;
+        return view('admin.products.edit',compact('amps','product','brands','categories','year_from','year_to','attributes','years','helper'));
     }
 
 
@@ -292,7 +287,6 @@ class ProductController extends Controller
         $this->validate($request,[
             'category_id' => 'required',
             'product_name' => 'required',
-            'attribute_id' => 'required',
         ]);
 
         $data = $request->except('_token');
