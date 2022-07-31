@@ -211,10 +211,13 @@ $(document).ready(function() {
         let bText = $('#submit-product-form-text')
         bText.text('Saving....');
         $(".text-danger").remove();
+        let desc = CKEDITOR.instances['phy_description'].getData();
+        let formData = self.serializeArray();
+        formData.push({ phy_desc: desc });
         $.ajax({
             type: self.data('method'),
             url: self.attr('action'),
-            data: self.serialize()
+            data: formData
         }).done(function(response) {
             window.location.replace('/admin/products');
         }).catch(function(xhr, status, error) {

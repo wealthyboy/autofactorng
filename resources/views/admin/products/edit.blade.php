@@ -219,7 +219,7 @@
                            rows="8"
                            id="phy_description"
                            >
-                           {{ isset($product) ? $product->phy_desc : old('phy_desc') }}
+                           {{ $product->phy_desc }}
                         </textarea>
                      </div>
                   </div>
