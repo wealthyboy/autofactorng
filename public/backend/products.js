@@ -213,7 +213,8 @@ $(document).ready(function() {
         $(".text-danger").remove();
         let desc = CKEDITOR.instances['phy_description'].getData();
         let formData = self.serializeArray();
-        formData.push({ phy_desc: desc });
+        formData.push({ name: "phy_desc", value: desc });
+
         $.ajax({
             type: self.data('method'),
             url: self.attr('action'),
