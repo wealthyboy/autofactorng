@@ -260,7 +260,7 @@
 
                <div class="form-check form-switch">
                   <input class="form-check-input"  name="condition_is_present" value="1" {{  $product->condition_is_present ? 'checked' : ''}} type="checkbox" id="heavy_item">
-                  <label class="form-check-label" for="heavy_item">Heavy Item</label>
+                  <label class="form-check-label" for="heavy_item">Heavy/Large Item</label>
                </div>
 
                
