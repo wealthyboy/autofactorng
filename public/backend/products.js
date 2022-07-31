@@ -167,7 +167,13 @@ $(document).ready(function() {
         let messages = {}
         let parent_attr = $('.parent-attr')
         let no_validate = $('.no-validation')
-        if (!no_validate.is(':checked')) {
+        if ($('input[name="category_id[]"]').is(':checked') == false) {
+            messages['categories'] = 'Add categories : Always add parent/child of any category'
+        }
+        console.log(messages)
+
+
+        if (no_validate.is(':checked')) {
             if (parent_attr.is(':checked')) {
                 //at least one is checked
                 let pName = parent_attr.data('name');
@@ -189,18 +195,15 @@ $(document).ready(function() {
                 messages['attribute'] = 'Enter make/model and year range for each Car '
             }
 
-            if (!$('input[name="category_id[]"]').is(':checked')) {
-                messages['categories'] = 'Add categories : Always add parent/child of any category'
-            }
+        }
 
-            if (!jQuery.isEmptyObject(messages)) {
-                $('html,body').animate({ scrollTop: 0 }, 'fast');
-                for (const i in messages) {
-                    const element = messages[i];
-                    $('.' + i).text(element)
-                }
-                return false;
+        if (!jQuery.isEmptyObject(messages)) {
+            $('html,body').animate({ scrollTop: 0 }, 'fast');
+            for (const i in messages) {
+                const element = messages[i];
+                $('.' + i).text(element)
             }
+            return false;
         }
 
         let self = $(this)
