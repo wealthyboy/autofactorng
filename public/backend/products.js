@@ -179,7 +179,7 @@ $(document).ready(function() {
                 let pName = parent_attr.data('name');
                 let model = $('.' + pName)
                 if (!model.is(':checked')) {
-                    messages['attribute'] = 'Enter model and year range and engine for each Car Selected88';
+                    messages['attribute'] = 'Enter model and year range and engine for each Car Selected';
                 } else {
                     let y = model.data('name');
                     let model_engine = $('.engine-' + y)
@@ -188,7 +188,7 @@ $(document).ready(function() {
                         messages['attribute'] = 'Enter model and year range  and engine for each Car Selected';
                     }
                     if (!model_engine.is(':checked')) {
-                        messages['attribute'] = 'Enter model and year range and engine for each Car Selected99';
+                        messages['attribute'] = 'Enter model and year range and engine for each Car Selected';
                     }
                 }
             } else {
