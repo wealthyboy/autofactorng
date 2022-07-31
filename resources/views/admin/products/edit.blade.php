@@ -267,6 +267,8 @@
 
                @foreach($product->heavy_item_lagos as $key => $heavy_item)
                   <div  id="row-{{ $heavy_item->id }}" class="row large-items dup-lagos my-3 ">
+                  <h6 class="my-3"> Lagos</h6>
+
                      <div class="col-sm-3">
                         <div class="input-group input-group-outline">
                            <label class="form-label"> </label> 
@@ -310,7 +312,7 @@
 
                <div class="row large-items  d-none dup-lagos"></div>
 
-               <div class="row button-lagos large-items my-3 d-none  {{  $product->condition_is_present ? '' : 'd-none' }}">
+               <div class="row button-lagos large-items my-3  {{  $product->condition_is_present ? '' : 'd-none' }}">
                   <div class=" d-flex justify-content-end">
                      <button onclick="addRowLagos();" id="add-more-lagos" type="button" class="btn btn-outline-primary btn-sm mb-0">+Add more</button>
                   </div>
@@ -319,7 +321,10 @@
 
 
                @foreach($product->heavy_item_outside_lagos as $key => $heavy_item)
+
                   <div  id="out_row-{{  $heavy_item->id }}" class="row large-items dup-out-lagos my-3 ">
+                  <h6 class="my-3">Outside Lagos</h6>
+
                      <div class="col-sm-3">
                         <div class="input-group input-group-outline">
                            <label class="form-label"> </label> 
@@ -366,7 +371,7 @@
                <div class="row large-items  d-none dup-out-lagos"></div>
 
       
-               <div class="row button-lagos large-items my-3 d-none  {{  $product->condition_is_present ? '' : 'd-none' }}">
+               <div class="row button-lagos large-items my-3   {{  $product->condition_is_present ? '' : 'd-none' }}">
                   <div class=" d-flex justify-content-end">
                      <button onclick="addRowOutSideLagos();" id="add-more-out-sidelagos" type="button" class="btn btn-outline-primary btn-sm mb-0">+Add more</button>
                   </div>
