@@ -207,7 +207,7 @@ $(document).ready(function() {
                     console.log(model_engine)
 
                     if (!model_engine.is(':checked')) {
-                        // messages['attribute'] = 'Enter model and year range and engine for each Car Selected model 3';
+                        messages['attribute'] = 'Enter model and year range and engine for each Car Selected model 3';
                     }
                 }
             } else {
