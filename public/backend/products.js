@@ -195,22 +195,22 @@ $(document).ready(function() {
                 let pName = parent_attr.data('name');
                 let model = $('.' + pName)
                 if (!model.is(':checked')) {
-                    messages['attribute'] = 'Enter model and year range and engine for each Car Selected';
+                    messages['attribute'] = 'Enter model and year range and engine for each Car Selected 1';
                 } else {
                     let y = model.data('name');
                     let model_engine = $('.engine-' + y)
                     let year = $('.' + y)
                     if (year.val() == '') {
-                        messages['attribute'] = 'Enter model and year range  and engine for each Car Selected ';
+                        messages['attribute'] = 'Enter model and year range  and engine for each Car Selected 2';
                     }
 
                     console.log(model_engine)
                     if (!model_engine.is(':checked')) {
-                        messages['attribute'] = 'Enter model and year range and engine for each Car Selected model';
+                        messages['attribute'] = 'Enter model and year range and engine for each Car Selected model 3';
                     }
                 }
             } else {
-                messages['attribute'] = 'Enter make/model and year range for each Car ee'
+                messages['attribute'] = 'Enter make/model and year range for each Car 4'
             }
 
         }
