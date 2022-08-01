@@ -353,7 +353,7 @@
                   <div class="container">
                      
                      <div class="row">
-                        <div class="col-md-10 mx-auto">
+                        <div class="">
                             @foreach($attributes as $attribute)
                               <div class="accordion" id="accordionRental">
                                  <div class="accordion-item mb-3">
