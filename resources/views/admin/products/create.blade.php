@@ -349,19 +349,45 @@
                <div class="well well-sm pb-5" style="height: 250px; background-color: #fff; color: black; overflow: auto;">
                <div class="attribute fw-bold  text-sm text-danger px-4 "></div>
 
-                @foreach($attributes as $attribute)
-                  <div class="parent" value="{{ $attribute->id }}">
-                      <div class="form-check ">
-                          <label  class="custom-control-label" for="{{ $attribute->name }}-{{ $attribute->id }}">
-                             <input data-name="{{ $attribute->name }}" class="form-check-input parent-attr" value="{{ $attribute->id }}" type="checkbox" id="{{ $attribute->name }}-{{ $attribute->id }}" name="attribute_id[]" >
-                              <span role="button">{{ $attribute->name }}</span> 
-                                <a href="{{ route('attributes.edit',['attribute'=>$attribute->id]) }}">
-                                <i class="fa fa-pencil"></i> Edit</a>
-                          </label>
-                      </div> 
-                      @include('includes.children',['obj'=>$attribute,'space'=>'&nbsp;&nbsp;','model' => 'attributes','url' => 'attribute','year' => true, 'name' => 'attribute_id','engine' => true, 'route' => 'attributes'])
+                <div class="accordion-1">
+                  <div class="container">
+                     
+                     <div class="row">
+                        <div class="col-md-10 mx-auto">
+                            @foreach($attributes as $attribute)
+                              <div class="accordion" id="accordionRental">
+                                 <div class="accordion-item mb-3">
+                                    <h5 class="accordion-header" id="headingOne{{ $attribute->id }}">
+                                    <button class="accordion-button border-bottom font-weight-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{ $attribute->id }}" aria-expanded="false" aria-controls="collapseOne">
+                                       <div class=" form-check px-0 ">
+                                          <label  class="custom-control-label" for="{{ $attribute->name }}-{{ $attribute->id }}">
+                                             <input data-name="{{ $attribute->name }}" class="form-check-input parent-attr" value="{{ $attribute->id }}" type="checkbox" id="{{ $attribute->name }}-{{ $attribute->id }}" name="attribute_id[]" >
+                                                <span role="button">{{ $attribute->name }}</span> 
+                                                <a href="{{ route('attributes.edit',['attribute'=>$attribute->id]) }}">
+                                                <i class="fa fa-pencil"></i> Edit</a>
+                                          </label>
+                                       </div>
+                                       <i class="collapse-close fa fa-plus text-xs pt-1 position-absolute end-0 me-3" aria-hidden="true"></i>
+                                       <i class="collapse-open fa fa-minus text-xs pt-1 position-absolute end-0 me-3" aria-hidden="true"></i>
+                                    </button>
+                                    </h5>
+                                    <div id="collapseOne{{ $attribute->id }}" class="accordion-collapse collapse" aria-labelledby="headingOne{{ $attribute->id }}" data-bs-parent="#accordionRental" style="">
+                                       <div class="accordion-body text-sm opacity-8">
+                                          <div class="parent" value="{{ $attribute->id }}">
+                                              
+                                             @include('includes.children',['obj'=>$attribute,'space'=>'&nbsp;&nbsp;','model' => 'attributes','url' => 'attribute','year' => true, 'name' => 'attribute_id','engine' => true, 'route' => 'attributes'])
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           @endforeach  
+
+                        </div>
+                     </div>
                   </div>
-                  @endforeach  
+                  </div>
+                  
                </div>
             </div>
          </div>

@@ -2,7 +2,7 @@
     @foreach($obj->children->sortBy('name') as $ob)
         <div class="children" value="{{ $obj->id }}">
             <div class="d-flex">
-                <div class="form-check">
+                <div class="form-check px-0 ">
                     <label  class="custom-control-label" for="{{ $ob->name }}-{{ $ob->id }}">
                         <input  class="form-check-input {{ $obj->name }}  {{ $obj->name == 'Spare Parts' || $obj->name == 'Servicing Parts'  ? 'no-validation' : '' }}"  data-name="{{ $ob->name }}" value="{{ $ob->id }}" {{ $helper->check($collections, $ob->id) }} type="checkbox" id="{{ $ob->name }}-{{ $ob->id }}" name="{{$name}}[]" >
                         <span role="button">{{ $ob->name }}</span>
