@@ -194,7 +194,6 @@ $(document).ready(function() {
                 //at least one is checked
                 let pName = parent_attr.data('name');
                 let model = $('.' + pName)
-                console.log(model)
                 if (!model.is(':checked')) {
                     messages['attribute'] = 'Enter model and year range and engine for each Car Selected';
                 } else {

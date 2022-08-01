@@ -45,7 +45,7 @@ class ProductController extends Controller
         $attributes = Attribute::parents()->orderBy('sort_order','asc')->get();
         $years      = Helper::years();
         $products   = Product::with('categories')
-                           ->orderBy('created_at','desc')->paginate(4);
+                           ->orderBy('created_at','desc')->paginate(20);
         return view('admin.products.index',compact('products','brands','categories','attributes','years'));
     }
 
@@ -343,7 +343,6 @@ class ProductController extends Controller
                 $shipping_rate->save();
             }
 
-
             foreach( $request->condition['out_side_lagos']['tag'] as $key => $value) {
                 $shipping_rate = new ShippingRate;
                 $shipping_rate->tag = $request->condition['out_side_lagos']['tag'][$key];
@@ -356,8 +355,7 @@ class ProductController extends Controller
             }
         }
         //Delete prwvious record
-        if (null !== $product->product_years) 
-        {
+        if (null !== $product->product_years) {
             $product->product_years()->delete();
         }
 
@@ -386,8 +384,6 @@ class ProductController extends Controller
             }
         }
         
-
-
         //(new Activity)->Log("Added a product ", "{$data}");
         return response()->json($product);
     }
