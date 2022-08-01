@@ -163,9 +163,27 @@ $(document).ready(function() {
         console.log(self.parent().parent())
     })
 
+    let messages = {}
+
+    let cat = $('input[name="category_id[]"]');
+    let parent_attr = $('.parent-attr')
+
+    cat.on('click', function() {
+        if ($(this).is(':checked') == true) {
+            delete messages.categories;
+            $('.categories').html('')
+        }
+    })
+
+    parent_attr.on('click', function() {
+        if ($(this).is(':checked') == true) {
+            delete messages.attribute;
+            $('.attribute').html('')
+        }
+    })
+
+
     $('#form-product').on('submit', function() {
-        let messages = {}
-        let parent_attr = $('.parent-attr')
         let no_validate = $('.no-validation')
         if ($('input[name="category_id[]"]').is(':checked') == false) {
             messages['categories'] = 'Add categories : Always add parent/child of any category'
@@ -178,13 +196,13 @@ $(document).ready(function() {
                 let model = $('.' + pName)
                 console.log(model)
                 if (!model.is(':checked')) {
-                    messages['attribute'] = 'Enter model and year range and engine for each Car Selected eeee';
+                    messages['attribute'] = 'Enter model and year range and engine for each Car Selected';
                 } else {
                     let y = model.data('name');
                     let model_engine = $('.engine-' + y)
                     let year = $('.' + y)
                     if (year.val() == '') {
-                        messages['attribute'] = 'Enter model and year range  and engine for each Car Selected 999';
+                        messages['attribute'] = 'Enter model and year range  and engine for each Car Selected ';
                     }
 
                     console.log(model_engine)
@@ -193,10 +211,12 @@ $(document).ready(function() {
                     }
                 }
             } else {
-                messages['attribute'] = 'Enter make/model and year range for each Car '
+                messages['attribute'] = 'Enter make/model and year range for each Car ee'
             }
 
         }
+
+
 
         if (!jQuery.isEmptyObject(messages)) {
             $('html,body').animate({ scrollTop: 0 }, 'fast');
