@@ -170,25 +170,26 @@ $(document).ready(function() {
         if ($('input[name="category_id[]"]').is(':checked') == false) {
             messages['categories'] = 'Add categories : Always add parent/child of any category'
         }
-        console.log(messages)
-
 
         if (no_validate.is(':checked')) {
             if (parent_attr.is(':checked')) {
                 //at least one is checked
                 let pName = parent_attr.data('name');
                 let model = $('.' + pName)
+                console.log(model)
                 if (!model.is(':checked')) {
-                    messages['attribute'] = 'Enter model and year range and engine for each Car Selected';
+                    messages['attribute'] = 'Enter model and year range and engine for each Car Selected eeee';
                 } else {
                     let y = model.data('name');
                     let model_engine = $('.engine-' + y)
                     let year = $('.' + y)
                     if (year.val() == '') {
-                        messages['attribute'] = 'Enter model and year range  and engine for each Car Selected';
+                        messages['attribute'] = 'Enter model and year range  and engine for each Car Selected 999';
                     }
+
+                    console.log(model_engine)
                     if (!model_engine.is(':checked')) {
-                        messages['attribute'] = 'Enter model and year range and engine for each Car Selected';
+                        messages['attribute'] = 'Enter model and year range and engine for each Car Selected model';
                     }
                 }
             } else {
