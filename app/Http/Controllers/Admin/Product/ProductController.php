@@ -160,9 +160,8 @@ class ProductController extends Controller
             }
         }
 
-        if (!empty($request->attribute_id)) {
-            $product->attributes()->sync($request->attribute_id);
-        }
+        $product->attributes()->sync($request->attribute_id);
+        
 
         if ($request->condition_is_present) {
 
@@ -321,9 +320,8 @@ class ProductController extends Controller
             }
         }
 
-        if (!empty($request->attribute_id)) {
-            $product->attributes()->sync($request->attribute_id);
-        }
+        $product->attributes()->sync($request->attribute_id);
+        
 
         //Delete prwvious record
         if (null !== $product->product_rates) {
