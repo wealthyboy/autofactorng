@@ -202,7 +202,7 @@ $(document).ready(function() {
                     //get all the models
 
                     $('.car-models:checkbox:checked').each(function(i, e) {
-                        console.log(i, e)
+                        console.log(e, i)
                     });
 
                     // let car_model_name = car_model.data('name');

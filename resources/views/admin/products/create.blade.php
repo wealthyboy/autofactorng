@@ -351,7 +351,6 @@
 
                      <div class="accordion-1">
                         <div class="container">
-                           
                            <div class="row">
                               <div class="">
                                  @foreach($attributes as $attribute)
@@ -374,15 +373,13 @@
                                           <div id="collapseOne{{ $attribute->id }}" class="accordion-collapse collapse" aria-labelledby="headingOne{{ $attribute->id }}" data-bs-parent="#accordionRental" style="">
                                              <div class="accordion-body text-sm opacity-8">
                                                 <div class="parent" value="{{ $attribute->id }}">
-                                                   
                                                    @include('includes.children',['obj'=>$attribute,'space'=>'&nbsp;&nbsp;','model' => 'attributes','url' => 'attribute','year' => true, 'name' => 'attribute_id','engine' => true, 'route' => 'attributes'])
                                                 </div>
                                              </div>
                                           </div>
                                        </div>
                                     </div>
-                                 @endforeach  
-
+                                 @endforeach
                               </div>
                            </div>
                         </div>
