@@ -230,9 +230,12 @@ $(document).ready(function() {
         $('.car-models:checkbox:checked').each(function(i, e) {
             console.log(e, i)
             let car_model_name = $(this).data('name');
-            if ($('.engine-' + car_model_name).is(':checked') == false) {
-                errors.push(car_model_name.toUpperCase())
+            if ($(this).hasClass('attribute')) {
+                if ($('.engine-' + car_model_name).is(':checked') == false) {
+                    errors.push(car_model_name.toUpperCase())
+                }
             }
+
         });
 
         console.log(errors)
