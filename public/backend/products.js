@@ -190,10 +190,10 @@ $(document).ready(function() {
         }
 
         if (no_validate.is(':checked')) {
+
             if (parent_attr.is(':checked') == false) {
                 messages['attribute'] = 'Enter make/model and year range for each Car'
             }
-
             // check if car model is checked
             let models = []
             $('.parent-attr:checkbox:checked').each(function(i, e) {
@@ -206,12 +206,10 @@ $(document).ready(function() {
             });
 
             if (models.length) {
-                messages['attribute'] = ' Enter model/year for ' + models.join('&')
+                messages['attribute'] = ' Enter model for ' + models.join('&')
             }
 
-
-            let year_from = []
-            let year_to = []
+            let year = []
                 // check if car model's engine is checked
             let car_models = [];
             $('.car-models:checkbox:checked').each(function(i, e) {
@@ -223,27 +221,14 @@ $(document).ready(function() {
                         car_models.push(car_model_name.toUpperCase())
                     }
 
-                    if ($('.Year_from-' + car_model_slug).val() == '') {
-                        year_from.push(car_model_name.toUpperCase())
+                    if ($('.Year_from-' + car_model_slug).val() == '' || $('.Year_to-' + car_model_slug).val() == '') {
+                        year.push(car_model_name.toUpperCase())
                     }
-
-                    if ($('.Year_to-' + car_model_slug).val() == '') {
-                        year_to.push(car_model_name.toUpperCase())
-                    }
-
                 }
             });
 
-            if (year_from.length || year_to.length) {
-                messages['attribute'] = ' Enter year range for ' + car_models.join('&')
-            }
-
-            if (car_models.length) {
-                messages['attribute'] = ' Enter engine for ' + car_models.join('&')
-            }
-
-            if (car_models.length) {
-                messages['attribute'] = ' Enter engine for ' + car_models.join('&')
+            if (year.length) {
+                messages['attribute'] = 'Enter year range for ' + year.join('&')
             }
 
             if (car_models.length) {
@@ -251,8 +236,6 @@ $(document).ready(function() {
             }
 
         }
-
-
 
         if (!jQuery.isEmptyObject(messages)) {
             $('html,body').animate({ scrollTop: 0 }, 'fast');
