@@ -190,39 +190,39 @@ $(document).ready(function() {
         }
 
         if (no_validate.is(':checked')) {
-            if (parent_attr.is(':checked').is(':checked') == false) {
+            if (parent_attr.is(':checked') == false) {
                 messages['attribute'] = 'Enter make/model and year range for each Car'
             }
 
-            // let models = []
-            // $('.parent-attr:checkbox:checked').each(function(i, e) {
-            //     let self = $(this);
-            //     let car_model_slug = self.data('slug');
-            //     let parent_name = self.data('name');
-            //     if ($('.' + car_model_slug).is(':checked') == false) {
-            //         models.push(parent_name.toUpperCase())
-            //     }
-            // });
+            let models = []
+            $('.parent-attr:checkbox:checked').each(function(i, e) {
+                let self = $(this);
+                let car_model_slug = self.data('slug');
+                let parent_name = self.data('name');
+                if ($('.' + car_model_slug).is(':checked') == false) {
+                    models.push(parent_name.toUpperCase())
+                }
+            });
 
-            // if (models.length) {
-            //     messages['attribute'] = ' Enter model/year for' + models.join('&')
-            // }
+            if (models.length) {
+                messages['attribute'] = ' Enter model/year for' + models.join('&')
+            }
 
-            // let car_models = [];
-            // $('.car-models:checkbox:checked').each(function(i, e) {
-            //     let self = $(this);
-            //     let car_model_slug = self.data('slug');
-            //     let car_model_name = self.data('name');
-            //     if (self.hasClass('attribute')) {
-            //         if ($('.engine-' + car_model_slug).is(':checked') == false) {
-            //             car_models.push(car_model_name.toUpperCase())
-            //         }
-            //     }
-            // });
+            let car_models = [];
+            $('.car-models:checkbox:checked').each(function(i, e) {
+                let self = $(this);
+                let car_model_slug = self.data('slug');
+                let car_model_name = self.data('name');
+                if (self.hasClass('attribute')) {
+                    if ($('.engine-' + car_model_slug).is(':checked') == false) {
+                        car_models.push(car_model_name.toUpperCase())
+                    }
+                }
+            });
 
-            // if (car_models.length) {
-            //     messages['attribute'] = ' Enter model/year for' + car_models.join('&')
-            // }
+            if (car_models.length) {
+                messages['attribute'] = ' Enter model/year for' + car_models.join('&')
+            }
 
         }
 
