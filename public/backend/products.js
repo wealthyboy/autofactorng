@@ -200,7 +200,6 @@ $(document).ready(function() {
                 } else {
 
                     //get all the models
-
                     $('.car-models:checkbox:checked').each(function(i, e) {
                         //console.log(e, i)
                     });
@@ -226,8 +225,11 @@ $(document).ready(function() {
 
         }
 
+        let errors = []
+
         $('.car-models:checkbox:checked').each(function(i, e) {
             console.log(e, i)
+            if ($(this).data('name'))
         });
 
         return false
