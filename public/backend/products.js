@@ -202,7 +202,7 @@ $(document).ready(function() {
                     //get all the models
 
                     $('.car-models:checkbox:checked').each(function(i, e) {
-                        console.log(e, i)
+                        //console.log(e, i)
                     });
 
                     // let car_model_name = car_model.data('name');
@@ -225,6 +225,10 @@ $(document).ready(function() {
             }
 
         }
+
+        $('.car-models:checkbox:checked').each(function(i, e) {
+            console.log(true)
+        });
 
         return false
 
