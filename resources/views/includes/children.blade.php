@@ -3,8 +3,8 @@
         <div class="children" value="{{ $ob->id }}">
             <div class="d-flex">
                 <div class="form-check">
-                    <label  class="custom-control-label" for="{{ $ob->name }}-{{ $ob->id }}">
-                        <input  class="form-check-input {{ $obj->name }} {{ $obj->name == 'Spare Parts' || $obj->name == 'Servicing Parts'  ? 'no-validation' : '' }}" value="{{ $ob->id }}"  data-name="{{ $ob->name }}" type="checkbox" id="{{ $ob->name }}-{{ $ob->id }}" name="{{$name}}[]" >
+                    <label  class="custom-control-label" for="{{ $ob->slug }}-{{ $ob->id }}">
+                        <input  class="form-check-input {{ $obj->slug }} {{ $obj->name == 'Spare Parts' || $obj->name == 'Servicing Parts'  ? 'no-validation' : '' }}" value="{{ $ob->id }}"  data-name="{{ $ob->slug }}" type="checkbox" id="{{ $ob->slug }}-{{ $ob->id }}" name="{{$name}}[]" >
                         <span role="button">{{ $ob->name }}</span>
                         <a href="{{ route($route.'.edit',[$url => $ob->id]) }}">
                             <i class="fa fa-pencil"></i> 
@@ -29,7 +29,7 @@
                         <div class="col-sm-3 ml-3 col-12">
                             <div class="input-group input-group-dynamic">
                                 <label class="form-label "> </label>
-                                <select class="form-control mx-3 year {{ $ob->name }}" name="year_from[{{ $ob->id }}]" id="">
+                                <select class="form-control mx-3 year {{ $ob->slug }}" name="year_from[{{ $ob->id }}]" id="">
                                     <option  value="">--Year from--</option>
                                     @foreach($ob->attribute_years as $attribute_year)
                                         <option  value="{{ $attribute_year->year }}">{{ $attribute_year->year }} </option>
@@ -40,7 +40,7 @@
                         <div class="col-sm-3 ml-3 col-12">
                             <div class="input-group input-group-dynamic">
                                 <label class="form-label "> </label>
-                                <select class="form-control year {{ $ob->name }}" name="year_to[{{ $ob->id }}]" id="">
+                                <select class="form-control year {{ $ob->slug }}" name="year_to[{{ $ob->id }}]" id="">
                                     <option  value="">--Year to--</option>
                                     @foreach($ob->attribute_years as $attribute_year)
                                         <option class="" value="{{ $attribute_year->year }}" >{{ $attribute_year->year }} </option>
@@ -60,14 +60,14 @@
                 <div class="children" value="{{ $engine->id }}">
                     <div class="d-flex">
                         <div class="form-check">
-                            <label  class="custom-control-label " for="{{ $ob->name }}-{{ $engine->id }}">
+                            <label  class="custom-control-label " for="{{ $ob->slug }}-{{ $engine->id }}">
                                 <input  
                                     class="form-check-input  engine-{{ $ob->name }}" 
                                     value="{{ $engine->id }}" 
                                     type="checkbox" 
-                                    id="{{ $ob->name }}-{{ $engine->id }}" 
+                                    id="{{ $ob->slug }}-{{ $engine->id }}" 
                                     name="engine_id[{{ $ob->id }}][]" 
-                                    data-name="{{ $ob->name }}"
+                                    data-name="{{ $ob->slug }}"
                                 >
                                 <span role="button">{{ $engine->name }}</span>
                             </label>
