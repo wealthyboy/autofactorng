@@ -194,6 +194,7 @@ $(document).ready(function() {
                 messages['attribute'] = 'Enter make/model and year range for each Car'
             }
 
+            // check if car model is checked
             let models = []
             $('.parent-attr:checkbox:checked').each(function(i, e) {
                 let self = $(this);
@@ -205,9 +206,13 @@ $(document).ready(function() {
             });
 
             if (models.length) {
-                messages['attribute'] = ' Enter model/year for' + models.join('&')
+                messages['attribute'] = ' Enter model/year for ' + models.join('&')
             }
 
+
+            let year_from = []
+            let year_to = []
+                // check if car model's engine is checked
             let car_models = [];
             $('.car-models:checkbox:checked').each(function(i, e) {
                 let self = $(this);
@@ -217,11 +222,32 @@ $(document).ready(function() {
                     if ($('.engine-' + car_model_slug).is(':checked') == false) {
                         car_models.push(car_model_name.toUpperCase())
                     }
+
+                    if ($('.Year_from-' + car_model_slug).val() == '') {
+                        year_from.push(car_model_name.toUpperCase())
+                    }
+
+                    if ($('.Year_to-' + car_model_slug).val() == '') {
+                        year_to.push(car_model_name.toUpperCase())
+                    }
+
                 }
             });
 
+            if (year_from.length || year_to.length) {
+                messages['attribute'] = ' Enter year range for ' + car_models.join('&')
+            }
+
             if (car_models.length) {
-                messages['attribute'] = ' Enter model/year for' + car_models.join('&')
+                messages['attribute'] = ' Enter engine for ' + car_models.join('&')
+            }
+
+            if (car_models.length) {
+                messages['attribute'] = ' Enter engine for ' + car_models.join('&')
+            }
+
+            if (car_models.length) {
+                messages['attribute'] = ' Enter engine for ' + car_models.join('&')
             }
 
         }
