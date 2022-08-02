@@ -198,19 +198,20 @@ $(document).ready(function() {
                 if (!car_model.is(':checked')) {
                     messages['attribute'] = 'Enter model and year range and engine for each Car Selected 1';
                 } else {
-                    let car_model_name = car_model.data('name');
-                    console.log(car_model)
-                    let model_engine = $('.engine-' + car_model_name)
-                    let year = $('.' + y)
-                    if (year.val() == '') {
-                        messages['attribute'] = 'Enter model and year range  and engine for each Car Selected 2';
-                    }
+                    // let car_model_name = car_model.data('name');
+                    // $('.' +car_model +':checkbox:checked')
+                    // console.log(car_model)
+                    // let model_engine = $('.engine-' + car_model_name)
+                    // let year = $('.' + y)
+                    // if (year.val() == '') {
+                    //     messages['attribute'] = 'Enter model and year range  and engine for each Car Selected 2';
+                    // }
 
-                    console.log(model_engine)
+                    // console.log(model_engine)
 
-                    if (!model_engine.is(':checked')) {
-                        messages['attribute'] = 'Enter model and year range and engine for each Car Selected model 3';
-                    }
+                    // if (!model_engine.is(':checked')) {
+                    //     messages['attribute'] = 'Enter model and year range and engine for each Car Selected model 3';
+                    // }
                 }
             } else {
                 messages['attribute'] = 'Enter make/model and year range for each Car 4'
