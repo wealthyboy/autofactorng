@@ -194,22 +194,21 @@ $(document).ready(function() {
                 messages['attribute'] = 'Enter make/model and year range for each Car'
             }
 
-            let models = []
-            $('.parent-attr:checkbox:checked').each(function(i, e) {
-                let self = $(this);
-                let car_model_slug = self.data('slug');
-                let parent_name = self.data('name');
-                if ($('.' + car_model_slug).is(':checked') == false) {
-                    models.push(parent_name.toUpperCase())
-                }
-            });
+            // let models = []
+            // $('.parent-attr:checkbox:checked').each(function(i, e) {
+            //     let self = $(this);
+            //     let car_model_slug = self.data('slug');
+            //     let parent_name = self.data('name');
+            //     if ($('.' + car_model_slug).is(':checked') == false) {
+            //         models.push(parent_name.toUpperCase())
+            //     }
+            // });
 
-            if (models.length) {
-                messages['attribute'] = ' Enter model/year for' + models.join('&')
-            }
+            // if (models.length) {
+            //     messages['attribute'] = ' Enter model/year for' + models.join('&')
+            // }
 
-
-            let car_models = []
+            let car_models = [];
             $('.car-models:checkbox:checked').each(function(i, e) {
                 let self = $(this);
                 let car_model_slug = self.data('slug');
