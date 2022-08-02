@@ -227,7 +227,7 @@ $(document).ready(function() {
         }
 
         $('.car-models:checkbox:checked').each(function(i, e) {
-            console.log(true)
+            console.log(e, i)
         });
 
         return false
