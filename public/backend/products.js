@@ -204,7 +204,6 @@ $(document).ready(function() {
                     $('.car-models:checkbox:checked').each(function(e, i) {
                         console.log(e, i)
                     });
-                    return false
 
                     // let car_model_name = car_model.data('name');
                     // $('.' +car_model +':checkbox:checked')
@@ -226,6 +225,9 @@ $(document).ready(function() {
             }
 
         }
+
+        return false
+
 
 
 
