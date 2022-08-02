@@ -360,7 +360,10 @@
                                           <button class="accordion-button border-bottom font-weight-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{ $attribute->id }}" aria-expanded="false" aria-controls="collapseOne">
                                              <div class=" form-check">
                                                 <label  class="custom-control-label" for="{{ $attribute->name }}-{{ $attribute->id }}">
-                                                   <input data-name="{{ $attribute->name }}" class="form-check-input parent-attr" value="{{ $attribute->id }}" type="checkbox" id="{{ $attribute->name }}-{{ $attribute->id }}" name="attribute_id[]" >
+                                                   <input 
+                                                      data-name="{{ $attribute->name }}"
+                                                      data-slug="{{ $attribute->slug }}"
+                                                      class="form-check-input parent-attr" value="{{ $attribute->id }}" type="checkbox" id="{{ $attribute->name }}-{{ $attribute->id }}" name="attribute_id[]" >
                                                       <span role="button">{{ $attribute->name }}</span> 
                                                       <a href="{{ route('attributes.edit',['attribute'=>$attribute->id]) }}">
                                                       <i class="fa fa-pencil"></i> Edit</a>
