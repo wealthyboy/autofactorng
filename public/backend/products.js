@@ -198,6 +198,12 @@ $(document).ready(function() {
                 if (!car_model.is(':checked')) {
                     messages['attribute'] = 'Enter model and year range and engine for each Car Selected 1';
                 } else {
+
+                    //get all the models
+
+                    console.log($('.car-models:checkbox:checked'))
+                    return false
+
                     // let car_model_name = car_model.data('name');
                     // $('.' +car_model +':checkbox:checked')
                     // console.log(car_model)
@@ -207,11 +213,11 @@ $(document).ready(function() {
                     //     messages['attribute'] = 'Enter model and year range  and engine for each Car Selected 2';
                     // }
 
-                    // console.log(model_engine)
+                    //console.log(model_engine)
 
-                    // if (!model_engine.is(':checked')) {
-                    //     messages['attribute'] = 'Enter model and year range and engine for each Car Selected model 3';
-                    // }
+                    //if (!model_engine.is(':checked')) {
+                    //   messages['attribute'] = 'Enter model and year range and engine for each Car Selected model 3';
+                    //}
                 }
             } else {
                 messages['attribute'] = 'Enter make/model and year range for each Car 4'
