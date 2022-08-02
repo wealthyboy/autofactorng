@@ -221,7 +221,7 @@ $(document).ready(function() {
                         car_models.push(car_model_name.toUpperCase())
                     }
 
-                    if ($('.Year_from-' + car_model_slug).val() == '' || $('.Year_to-' + car_model_slug).val() == '') {
+                    if ($('.Year_from-' + car_model_slug).val() === '' || $('.Year_to-' + car_model_slug).val() === '') {
                         year.push(car_model_name.toUpperCase())
                     }
                 }
