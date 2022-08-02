@@ -62,13 +62,13 @@
                             <div class="form-check">
                                 <label  class="custom-control-label" for="{{ $ob->name }}-{{ $engine->id }}">
                                     <input  
+                                         data-name="{{ $ob->name }}"
                                         class="form-check-input engine-{{ $ob->name }}" 
                                         value="{{ $engine->id }}" 
                                         type="checkbox" 
                                         id="{{ $ob->name }}-{{ $engine->id }}" 
                                         name="engine_id[{{ $ob->id }}][]" 
                                         {{ $helper->check($product->engines, $ob->id, true, $engine->id) }} 
-                                        data-name="{{ $ob->name }}"
 
 
                                     >
