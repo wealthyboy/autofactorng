@@ -68,6 +68,8 @@
                                         id="{{ $ob->name }}-{{ $engine->id }}" 
                                         name="engine_id[{{ $ob->id }}][]" 
                                         {{ $helper->check($product->engines, $ob->id, true, $engine->id) }} 
+                                        data-name="{{ $ob->name }}"
+
 
                                     >
                                     <span role="button">{{ $engine->name }}</span>
