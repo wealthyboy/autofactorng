@@ -225,24 +225,23 @@ $(document).ready(function() {
 
         }
 
-        let errors = []
+        let names = []
 
         $('.car-models:checkbox:checked').each(function(i, e) {
-            console.log(e, i)
-            let car_model_name = $(this).data('name');
-            if ($(this).hasClass('attribute')) {
-                if ($('.engine-' + car_model_name).is(':checked') == false) {
+            let self = $(this);
+            let car_model_slug = self.data('slug');
+            let car_model_name = self.data('name');
+            if (self.hasClass('attribute')) {
+                if ($('.engine-' + car_model_slug).is(':checked') == false) {
                     errors.push(car_model_name.toUpperCase())
                 }
             }
 
         });
 
-        console.log(errors)
-
-        return false
-
-
+        if (errors.length) {
+            messages['attribute'] = ' Enter model/year for' + names.join('&')
+        }
 
 
         if (!jQuery.isEmptyObject(messages)) {
@@ -253,6 +252,9 @@ $(document).ready(function() {
             }
             return false;
         }
+
+        return false
+
 
         let self = $(this)
         let button = $('#submit-product-form-button')
