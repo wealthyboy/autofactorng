@@ -194,13 +194,13 @@ $(document).ready(function() {
                 //at least one is checked
                 //Check if model is checked
                 let pName = parent_attr.data('name');
-                let model = $('.' + pName)
-                if (!model.is(':checked')) {
+                let car_model = $('.' + pName)
+                if (!car_model.is(':checked')) {
                     messages['attribute'] = 'Enter model and year range and engine for each Car Selected 1';
                 } else {
-                    let y = model.data('name');
-                    console.log(y)
-                    let model_engine = $('.engine-' + y)
+                    let car_model_name = car_model.data('name');
+                    console.log(car_model)
+                    let model_engine = $('.engine-' + car_model_name)
                     let year = $('.' + y)
                     if (year.val() == '') {
                         messages['attribute'] = 'Enter model and year range  and engine for each Car Selected 2';
