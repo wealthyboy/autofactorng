@@ -229,7 +229,7 @@ $(document).ready(function() {
 
         $('.car-models:checkbox:checked').each(function(i, e) {
             console.log(e, i)
-            if ($(this).data('name'))
+            console.log($(this).data('name'))
         });
 
         return false
