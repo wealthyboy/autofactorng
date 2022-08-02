@@ -246,9 +246,6 @@ $(document).ready(function() {
             return false;
         }
 
-        return false
-
-
         let self = $(this)
         let button = $('#submit-product-form-button')
         let buttonSpinner = $('#submit-product-form-button .spinner-border')
