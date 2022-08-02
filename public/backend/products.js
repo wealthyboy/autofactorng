@@ -201,7 +201,9 @@ $(document).ready(function() {
 
                     //get all the models
 
-                    console.log($('.car-models:checkbox:checked'))
+                    $('.car-models:checkbox:checked').each(function(e, i) {
+                        console.log(e, i)
+                    });
                     return false
 
                     // let car_model_name = car_model.data('name');
