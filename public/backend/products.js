@@ -226,23 +226,20 @@ $(document).ready(function() {
         }
 
         let names = []
-
         $('.car-models:checkbox:checked').each(function(i, e) {
             let self = $(this);
             let car_model_slug = self.data('slug');
             let car_model_name = self.data('name');
             if (self.hasClass('attribute')) {
                 if ($('.engine-' + car_model_slug).is(':checked') == false) {
-                    errors.push(car_model_name.toUpperCase())
+                    names.push(car_model_name.toUpperCase())
                 }
             }
-
         });
 
-        if (errors.length) {
+        if (names.length) {
             messages['attribute'] = ' Enter model/year for' + names.join('&')
         }
-
 
         if (!jQuery.isEmptyObject(messages)) {
             $('html,body').animate({ scrollTop: 0 }, 'fast');
