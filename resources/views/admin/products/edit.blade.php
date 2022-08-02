@@ -414,7 +414,9 @@
                                              <input
                                               {{ $helper->check($product->attributes, $attribute->id) }} 
 
-                                               data-name="{{ $attribute->name }}" class="form-check-input parent-attr" value="{{ $attribute->id }}" type="checkbox" id="{{ $attribute->name }}-{{ $attribute->id }}" name="attribute_id[]" >
+                                               data-name="{{ $attribute->name }}"
+                                               data-slug="{{ $attribute->slug }}" 
+                                               class="form-check-input parent-attr" value="{{ $attribute->id }}" type="checkbox" id="{{ $attribute->name }}-{{ $attribute->id }}" name="attribute_id[]" >
                                                 <span role="button">{{ $attribute->name }}</span> 
                                                 <a href="{{ route('attributes.edit',['attribute'=>$attribute->id]) }}">
                                                 <i class="fa fa-pencil"></i> Edit</a>
