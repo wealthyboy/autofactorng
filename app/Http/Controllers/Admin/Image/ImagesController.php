@@ -139,9 +139,9 @@ class ImagesController extends Controller
         $file =basename($request->image_url);
 
         $class = '\\App\\Models\\'.$request->model;
-        return $request->image_url;
+        $request->image_url;
         
-        if( file_exists( public_path('images/'. $request->folder .'/'.$file) ) ) 
+        if( null !== $file && file_exists( public_path('images/'. $request->folder .'/'.$file) ) ) 
         {   
             unlink( public_path('images/'. $request->folder .'/'.$file) );
             unlink( public_path('images/'. $request->folder .'/m/'.$file) );
