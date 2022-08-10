@@ -281,8 +281,8 @@
                         <div class="input-group input-group-outline">
                            <label class="form-label"> </label>
                            <select name="condition[lagos][condition][]" id="" class="form-control">
-                              <option value=">">greater than</option>
-                              <option value="=">Equal to</option>
+                              <option {{ $heavy_item->condition == '>' ? 'selected' : null }} value=">">greater than</option>
+                              <option {{ $heavy_item->condition == '=' ? 'selected' : null }} value="=">Equal to</option>
                            </select>
                         </div>
                      </div>
@@ -290,11 +290,11 @@
                         <div class="input-group input-group-outline">
                            <label class="form-label"> </label>
                            <select name="condition[lagos][tag_value][]" id="" class="form-control">
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
+                              <option {{ $heavy_item->tag_value == '1' ? 'selected' : null }} value="1">1</option>
+                              <option {{ $heavy_item->tag_value == '2' ? 'selected' : null }} value="2">2</option>
+                              <option {{ $heavy_item->tag_value == '3' ? 'selected' : null }} value="3">3</option>
+                              <option {{ $heavy_item->tag_value == '4' ? 'selected' : null }} value="4">4</option>
+                              <option {{ $heavy_item->tag_value == '5' ? 'selected' : null }} value="5">5</option>
                            </select>
                         </div>
                      </div>
@@ -305,7 +305,7 @@
                         </div>
                      </div>
                      @if($key != 0)
-                     <div class="col-sm-1"><button data-id="{{  $heavy_item->id }}" onclick="$('#row-{{ $heavy_item->id }}').remove();" class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button"><i class="fa fa-trash" aria-hidden="true"></i> </button></div>
+                        <div class="col-sm-1"><button data-id="{{  $heavy_item->id }}" onclick="$('#row-{{ $heavy_item->id }}').remove();" class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button"><i class="fa fa-trash" aria-hidden="true"></i> </button></div>
                      @endif
                   </div>
                @endforeach
