@@ -143,7 +143,7 @@ class ImagesController extends Controller
 
         dd($file);
         
-        if( null !== $file && file_exists( public_path('images/'. $request->folder .'/'.$file) ) ) 
+        if($file  !== ""  && file_exists( public_path('images/'. $request->folder .'/'.$file) ) ) 
         {   
             unlink( public_path('images/'. $request->folder .'/'.$file) );
             unlink( public_path('images/'. $request->folder .'/m/'.$file) );
