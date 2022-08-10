@@ -318,8 +318,6 @@
                   </div>
                </div>
 
-
-
                @foreach($product->heavy_item_outside_lagos as $key => $heavy_item)
 
                   <div  id="out_row-{{  $heavy_item->id }}" class="row large-items dup-out-lagos my-3 ">
@@ -329,7 +327,7 @@
                         <div class="input-group input-group-outline">
                            <label class="form-label"> </label> 
                            <select name="condition[out_side_lagos][tag][]" id="" class="form-control">
-                              <option value="quantity">Quantity</option>
+                              <option value="quantity">Quantity {{  $heavy_item->quantity }}</option>
                            </select>
                         </div>
                      </div>
@@ -337,8 +335,8 @@
                         <div class="input-group input-group-outline">
                            <label class="form-label"> </label>
                            <select name="condition[out_side_lagos][condition][]" id="" class="form-control">
-                              <option value=">">greater than</option>
-                              <option value="=">Equal to</option>
+                              <option {{ $heavy_item->condition == '>' ? 'selected' : null }} value=">">greater than</option>
+                              <option {{ $heavy_item->condition == '=' ? 'selected' : null }} value="=">Equal to</option>
                            </select>
                         </div>
                      </div>
@@ -346,11 +344,11 @@
                         <div class="input-group input-group-outline">
                            <label class="form-label"> </label>
                            <select name="condition[out_side_lagos][tag_value][]" id="" class="form-control">
-                              <option value="1">1</option>
-                              <option value="2">2</option>
-                              <option value="3">3</option>
-                              <option value="4">4</option>
-                              <option value="5">5</option>
+                              <option {{ $heavy_item->tag_value == '1' ? 'selected' : null }} value="1">1</option>
+                              <option {{ $heavy_item->tag_value == '2' ? 'selected' : null }} value="2">2</option>
+                              <option {{ $heavy_item->tag_value == '3' ? 'selected' : null }} value="3">3</option>
+                              <option {{ $heavy_item->tag_value == '4' ? 'selected' : null }} value="4">4</option>
+                              <option {{ $heavy_item->tag_value == '5' ? 'selected' : null }} value="5">5</option>
                            </select>
                         </div>
                      </div>

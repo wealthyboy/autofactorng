@@ -222,9 +222,6 @@ $(document).ready(function() {
                     }
 
                     if ($('.Year_from-' + car_model_slug).val() === '' || $('.Year_to-' + car_model_slug).val() === '') {
-                        console.log($('.Year_from-' + car_model_slug).val())
-                        console.log($('.Year_to-' + car_model_slug).val())
-
                         year.push(car_model_name.toUpperCase())
                     }
                 }
