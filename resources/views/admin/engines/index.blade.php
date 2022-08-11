@@ -13,7 +13,7 @@
                     <div class="ms-auto my-auto mt-lg-0 mt-4">
                         <div class="ms-auto my-auto">
                             <a href="{{ route('engines.create') }}" class="btn bg-gradient-primary btn-sm mb-0" >+&nbsp; New Engine</a>
-                            <a type="button" href="javascript:void(0)" onclick="confirm('Are you sure?') ? $('#form-brand').submit() : false;" class="btn btn-outline-primary btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#import">
+                            <a type="button" href="javascript:void(0)" onclick="confirm('Are you sure?') ? $('#form-engine').submit() : false;" class="btn btn-outline-primary btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#import">
                                 Delete
                             </a>
                             

@@ -137,9 +137,6 @@ class ImagesController extends Controller
     public static function undo(Request $request)
     {   
         $file =basename($request->image_url);
-
-        
-
         $class = '\\App\\Models\\'.$request->model;
         if($file  !== ""  && file_exists( public_path('images/'. $request->folder .'/'.$file) ) ) 
         {   
