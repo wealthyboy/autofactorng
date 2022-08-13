@@ -51,7 +51,7 @@ class ProductController extends Controller
         if (request()->filled('q')) {
             $value = request()->q;
             $products = Product::where('name', 'like', '%' .$value . '%')
-                                ->latest()->paginate($this->settings->products_items_per_page);
+                                ->latest()->paginate(30);
         }
         return view('admin.products.index',compact('products','brands','categories','attributes','years'));
     }
@@ -255,7 +255,8 @@ class ProductController extends Controller
 		}
 		if($request->has('q')){
 			$filtered_array = array_filter($filtered_array);
-            $query = Product::whereHas('categories', function( $query ) use ( $filtered_array ){
+            $query = Product::
+                whereHas('categories', function( $query ) use ( $filtered_array ){
                 $query->where('categories.name','like','%' .$filtered_array['q'] . '%')
                     ->orWhere('products.product_name', 'like', '%' .$filtered_array['q'] . '%')
                     ->orWhere('products.sku', 'like', '%' .$filtered_array['q'] . '%');
