@@ -16,20 +16,6 @@
                 <input name="product_name" type="text" class="form-control" placeholder="">
             </div>
         </div>
-
-        <div class="col-sm-3 col-4">
-            <div class="input-group input-group-outline">
-                <label class="form-label">Engine Number</label>
-                <input type="number"  name="engine_number" class="form-control" placeholder="">
-            </div>
-        </div>
-
-        <div class="col-sm-3 col-12">
-            <div class="input-group input-group-outline">
-                <label class="form-label">Part Number</label>
-                <input type="number" name="part_number"  class="form-control" placeholder="">
-            </div>
-        </div>
     </div>
     <div class="row mt-3">
         <div class="">

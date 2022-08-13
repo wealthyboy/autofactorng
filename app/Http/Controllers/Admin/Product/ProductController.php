@@ -9,7 +9,7 @@ use App\Models\Brand;
 
 use App\Models\Image;
 use App\Models\Product;
-use App\Models\Activity;
+use App\Models\Setting;
 use App\Models\Category;
 use App\Models\Attribute;
 use App\Models\ProductYear;
@@ -30,7 +30,7 @@ class ProductController extends Controller
 
     public function __construct()
     {	  
-	  //$this->settings =  SystemSetting::first();
+	  $this->settings =  Setting::first();
     }
 
     /**
@@ -39,13 +39,20 @@ class ProductController extends Controller
      * return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {    
+       
         $brands     = Brand::all();
         $categories = Category::parents()->get();
         $attributes = Attribute::parents()->orderBy('sort_order','asc')->get();
         $years      = Helper::years();
         $products   = Product::with('categories')
                            ->orderBy('created_at','desc')->paginate(20);
+
+        if (request()->filled('q')) {
+            $value = request()->q;
+            $products = Product::where('name', 'like', '%' .$value . '%')
+                                ->latest()->paginate($this->settings->products_items_per_page);
+        }
         return view('admin.products.index',compact('products','brands','categories','attributes','years'));
     }
 

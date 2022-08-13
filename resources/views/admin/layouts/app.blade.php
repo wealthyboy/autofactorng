@@ -304,12 +304,16 @@
             </a>
          </div>
          <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-            <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-               <div class="input-group input-group-outline">
-                  <label class="form-label">Search here</label>
-                  <input type="text" class="form-control" onfocus="focused(this)" onfocusout="defocused(this)">
+               <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                  <form action="/admin/products" method="get">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label">Search here</label>
+                        <input type="text" name="q" class="form-control">
+                     </div>
+                  </form>
+
                </div>
-            </div>
+         
             <ul class="navbar-nav  justify-content-end">
                <li class="nav-item">
                   <a href="/" class="nav-link p-0 position-relative text-body" target="_blank">
