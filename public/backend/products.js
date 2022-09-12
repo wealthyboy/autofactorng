@@ -147,7 +147,9 @@ $(document).ready(function() {
 
     if (document.querySelector('.datetimepicker')) {
         flatpickr('.datetimepicker', {
-            allowInput: true
+            allowInput: true,
+
+
         }); // flatpickr
     }
 
@@ -206,7 +208,7 @@ $(document).ready(function() {
             });
 
             if (models.length) {
-                messages['attribute'] = ' Enter model for ' + models.join('&')
+                messages['attribute'] = 'Enter model for ' + models.join('&')
             }
 
             let year = []

@@ -52,6 +52,8 @@ class ProductController extends Controller
             $value = request()->q;
             $products = Product::where('name', 'like', '%' .$value . '%')
                                 ->latest()->paginate(30);
+            $products->appends(request()->query());
+
         }
         return view('admin.products.index',compact('products','brands','categories','attributes','years'));
     }
