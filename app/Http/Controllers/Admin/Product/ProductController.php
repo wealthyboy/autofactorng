@@ -46,7 +46,7 @@ class ProductController extends Controller
         $attributes = Attribute::parents()->orderBy('sort_order','asc')->get();
         $years      = Helper::years();
         $products   = Product::with('categories')
-                           ->orderBy('created_at','desc')->paginate(100);
+                           ->orderBy('created_at','desc')->paginate(20);
 
         if (request()->filled('q')) {
             $value = request()->q;

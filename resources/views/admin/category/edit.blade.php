@@ -63,9 +63,11 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Meta Title</label>
-                        <input type="text" class="form-control"                                     
+                        <input 
+                           type="text" 
+                           class="form-control"                                     
                            name="meta_title"
-                           >
+                        >
                      </div>
                   </div>
                </div>
@@ -73,11 +75,13 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Keywords</label>
-                        <input type="text" class="form-control"                                     
+                        <input 
+                           type="text" 
+                           class="form-control"                                     
                            name="keywords"
                            type="text" 
                            value="{{ $cat->keywords }}"
-                           >
+                        >
                      </div>
                   </div>
                </div>
@@ -88,7 +92,6 @@
                         <textarea type="text" class="form-control"                                     
                            name="meta_description"
                            rows="8"
-                           onfocus="focused(this)" onfocusout="defocused(this)"
                            >{{ $cat->description }}</textarea>
                      </div>
                   </div>
@@ -100,22 +103,20 @@
                         <select class="form-control" name="parent_id" id="">
                            <option  value="">--Choose Parent--</option>
                            @foreach($categories as $category)
-                           @if($cat->parent_id ==  $category->id )
-                           <option class="" value="{{ $category->id }}" selected="selected">{{ $category->name }} </option>
-                           @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
-                           @else
-                           <option class="" value="{{ $category->id }}" >{{ $category->name }} </option>
-                           @include('includes.children_options',['model' => $cat,'obj'=>$category,'space'=>'&nbsp;&nbsp;'])
-                           @endif
+                              @if($cat->parent_id ==  $category->id )
+                                 <option class="" value="{{ $category->id }}" selected="selected">{{ $category->name }} </option>
+                                 @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
+                              @else
+                                 <option class="" value="{{ $category->id }}" >{{ $category->name }} </option>
+                                 @include('includes.children_options',['model' => $cat,'obj'=>$category,'space'=>'&nbsp;&nbsp;'])
+                              @endif
                            @endforeach
                         </select>
                      </div>
                   </div>
                </div>
-               <div class="col-12">
-                  <label class="form-control mb-0"></label>
-                  <div action="/file-upload" class="form-control border dropzone" id="dropzone"></div>
-               </div>
+               @include('admin._partials.single_image',['model' => $cat])
+
                <div class="d-flex justify-content-end mt-4">
                   <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
                </div>
@@ -125,40 +126,25 @@
    </div>
 </div>
 @endsection
+@section('page-scripts')
+<script src="{{ asset('backend/products.js') }}"></script>
+@stop
 @section('inline-scripts')
-if (document.getElementById('choices-gender')) {
-   var gender = document.getElementById('choices-gender');
-   const example = new Choices(gender);
-}
-if (document.getElementById('choices-language')) {
-   var language = document.getElementById('choices-language');
-   const example = new Choices(language);
-}
-if (document.getElementById('choices-skills')) {
-   var skills = document.getElementById('choices-skills');
-   const example = new Choices(skills, {
-      delimiter: ',',
-      editItems: true,
-      maxItemCount: 5,
-      removeItemButton: true,
-      addItems: true
-   });
-}
-   var parent_id = document.getElementById('parent_id');
-   setTimeout(function () {
-      const example = new Choices(parent_id);
-   }, 1);
-   
+$(document).ready(function() {
+   let activateFileExplorer = 'a.activate-file';
+   let delete_image = 'a.delete_image';
+   var main_file = $("input#file_upload_input");
+   Img.initUploadImage({
+       url:'/admin/upload/image?folder=category',
+        activator: activateFileExplorer,
+        inputFile: main_file,
+    });
 
-
-Dropzone.autoDiscover = false;
-var drop = document.getElementById('dropzone')
-var myDropzone = new Dropzone(drop, {
-   url: "/admin/upload/image?folder=category",
-   addRemoveLinks: true,
-   uploadMultiple: false,
-   maxFiles: 1,
-
+    Img.deleteImage({
+        url:'/admin/delete/image?folder=category',
+        activator: delete_image,
+        inputFile: main_file,
+    });
 });
 @stop
 

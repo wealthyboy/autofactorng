@@ -5,7 +5,7 @@
 
 <div class="row">
         <div class="col-md-10">
-            @include('errors.errors')
+           @include('admin.errors.errors')
             <div class="card">
                 <form id="" action="" method="post">
                 

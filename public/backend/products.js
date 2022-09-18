@@ -288,16 +288,19 @@ $(document).ready(function() {
     }, 600);
 });
 
+if (document.querySelector('.phy_description')) {
 
-CKEDITOR.replace('phy_description', {
-    height: '200px',
-    width: '100%',
-    toolbar: [
-        '/',
-        { name: 'paragraph', groups: ['list', 'indent', ], items: ['BulletedList'] },
-        '/',
-    ]
-})
+    // CKEDITOR.replace('phy_description', {
+    //     height: '200px',
+    //     width: '100%',
+    //     toolbar: [
+    //         '/',
+    //         { name: 'paragraph', groups: ['list', 'indent', ], items: ['BulletedList'] },
+    //         '/',
+    //     ]
+    // })
+
+}
 
 var row = 0;
 
@@ -393,3 +396,134 @@ function addRowOutSideLagos() {
     $("div.dup-out-lagos:last").after(html);
     out_row++;
 }
+
+
+var Img = {
+    loadImage: function() {},
+    deleteImage: function(opts = {}) {
+        let fileName, activator, parent;
+        $(document).on("click", opts.activator, function(e) {
+            e.preventDefault();
+            activator = $(this);
+            parent = activator.parents(".uploadloaded_image");
+            opts.inputFile;
+            var $el = opts.inputFile.wrap('<form id="clearfiles"></form>');
+            document.getElementById("clearfiles").reset();
+            opts.inputFile.unwrap();
+            let params = {
+                image_url: parent.find("input.stored_image").val(),
+                image_id: activator.data("id"),
+                delete: true,
+            };
+            $.ajax({
+                url: opts.url,
+                type: "POST",
+                data: params,
+                beforeSend: function() {
+                    $(document)
+                        .find("label#main_image-error")
+                        .remove();
+                    parent.find("div.upload-text").addClass("hide");
+                    parent.find("img#stored_image").addClass("hide");
+                    parent.find("div.remove_image").addClass("hide");
+                    parent.append(
+                        '<img id="image_loader" src="/images/loaders/ajax-loader.gif" class="upload_spinner">'
+                    );
+                },
+                success: function(data) {
+                    parent.find("img.upload_spinner").remove();
+                    parent.find("div.upload-text").removeClass("hide");
+                    parent.find("img#stored_image").remove();
+                    parent.find("input.stored_image").val("");
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    parent.find("img.upload_spinner").remove();
+                    //parent.find('div.upload-text').removeClass('hide');
+                    parent.find("img#stored_image").removeClass("hide");
+                    parent.find("div.remove_image").removeClass("hide");
+                },
+            });
+        });
+    },
+    initUploadImage: function(opts = {}) {
+        let fileName, activator, parent;
+        console.log(opts.inputFile)
+        $(document).on("click", opts.activator, function(e) { opts.inputFile.click() })
+
+        if (opts.inputFile !== null) {
+            opts.inputFile.on("change", function(e) {
+                parent = $(this).parents(".uploadloaded_image");
+                var image_url = parent.find("input.file_upload_input").val();
+                var image_id = parent.find("input.stored_image_id").val();
+                //Disable the submit button
+                var formData = new FormData();
+                var ins = this.files;
+                var self = $(this);
+                for (var x = 0; x < ins.length; x++) {
+                    if (!ins[x].type.match("image.*")) {
+                        resetFile(opts.inputfile);
+                        proceed = false;
+                        return false;
+                    }
+                    if (ins[x].size > 10000000) {
+                        resetFile(inputfile);
+                        proceed = false;
+                        return;
+                    }
+                    formData.append("file", ins[x]);
+                    formData.append("file_name", fileName);
+                    formData.append("image_url", image_url);
+                    formData.append("image_id", image_id);
+                }
+
+                $.ajax({
+                    url: opts.url,
+                    type: "POST",
+                    data: formData,
+                    beforeSend: function(xhr) {
+                        // opts.inputFile.attr('disabled',true)
+                        //$(opts.activator).addClass('uploading')
+                        $(document)
+                            .find("label#main_image-error")
+                            .remove();
+                        parent.find("div.upload-text").addClass("hide");
+                        parent.find("img#stored_image").remove();
+                        parent.find("div.remove_image").addClass("hide");
+                        parent.append(
+                            '<img id="image_loader" src="/images/loaders/ajax-loader.gif" class="upload_spinner">'
+                        );
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    complete: function() {
+                        //opts.inputFile.attr('disabled',false)
+                        // $(opts.activator).removeClass('uploading')
+                    },
+                    success: function(data) {
+                        let path = $.trim(data.path);
+                        console.log(data);
+                        parent.find("img.upload_spinner").remove();
+                        parent.append(
+                            '<img id="stored_image"  class="img-thumnail" src="' +
+                            path +
+                            '" alt="">'
+                        );
+                        parent.find("div.remove_image").removeClass("hide");
+                        parent.find("input.stored_image").val(path);
+                        parent.find("a.stored_image").val(path);
+
+                        localStorage.setItem("first_image", path);
+                        let image = localStorage.getItem("first_image");
+                        parent.find("input.stored_image").val(path);
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        parent.find("img.upload_spinner").remove();
+                        parent.find("div.upload-text").removeClass("hide");
+                    },
+                });
+                //return false;
+            });
+        }
+    },
+};
