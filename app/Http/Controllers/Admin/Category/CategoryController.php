@@ -31,16 +31,7 @@ class CategoryController extends Controller
      */
     public function index()
     {           
-        //dd( \DB::table('migrations')->get());
-
-        $deleted = \DB::table('migrations')->where('id', 84)->delete();
-
-        $deleted = \DB::table('migrations')->where('id', 85)->delete();
-
-
-
-
-
+      
         $categories = Category::parents()->get();
         return view('admin.category.index',compact('categories'));
     }
