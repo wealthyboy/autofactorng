@@ -234,7 +234,7 @@ class CategoryController extends Controller
     public function destroy(Request $request,$id)
     {
         //
-        User::canTakeAction(5);
+       // User::canTakeAction(5);
 
         $rules = array (
                 '_token' => 'required' 
@@ -245,7 +245,7 @@ class CategoryController extends Controller
             return \Redirect::back ()->withErrors ( $validator )->withInput ();
         }
         $count = count($request->selected);
-        (new Activity)->Log("Deleted  {$count} Products");
+       // (new Activity)->Log("Deleted  {$count} Products");
         try {
             Category::destroy( $request->selected );
         } catch (\Throwable $th) {
@@ -254,7 +254,7 @@ class CategoryController extends Controller
         return redirect()->back();
         if ($request->isMethod ( 'get' )) {
             $category =  Category::find( $request->id );
-            (new Activity)->Log("Deleted  {$category->name} Categories");
+           // (new Activity)->Log("Deleted  {$category->name} Categories");
             $category->delete();
             return redirect()->back();
         }
