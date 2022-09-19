@@ -1,6 +1,8 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="row">
+@include('admin.errors.errors')
+
    <div class="col-md-7">
       <div class="card">
          <div class="card-header p-3 pt-2">
@@ -133,24 +135,10 @@
 @stop
 
 @section('inline-scripts')
-$(document).ready(function() {
-   let activateFileExplorer = 'a.activate-file';
-   let delete_image = 'a.delete_image';
-   var main_file = $("input#file_upload_input");
 
-   Img.initUploadImage({
-      url:'/admin/upload/image?folder=category',
-      activator: activateFileExplorer,
-      inputFile: main_file,
-   });
 
-   Img.deleteImage({
-      url:'/admin/delete/image?folder=category',
-      activator: delete_image,
-      inputFile: main_file,
-   });
+@include('admin._partials.image_js',['folder' => 'category'])
 
-});
 @stop
 
 

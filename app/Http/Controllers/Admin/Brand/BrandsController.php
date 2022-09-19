@@ -44,6 +44,7 @@ class BrandsController extends Controller
 		$this->validate($request, [
 			'name' => 'required|unique:brands',
 		]);
+
 		Brand::Insert($request->except('_token'));
 		return redirect()->route('brands.index') ; 
 	}
@@ -64,7 +65,9 @@ class BrandsController extends Controller
 		]);
 
 		$brand = Brand::find($id);
-		$brand->update($request->all());
+		$data = $request->all();
+		$data['is_featured'] = $request->is_featured ? 1 :0;
+		$brand->update($data);
 		return redirect()->route('brands.index'); 
 	}
 	

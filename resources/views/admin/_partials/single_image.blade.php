@@ -14,7 +14,7 @@
                 <a class="delete_image" data-id="{{ $model->id }}" href="#">Remove</a> 
             </div>
 
-            <input accept="image/*"  class="upload_input" data-msg="Upload  your image" type="file" id="file_upload_input" name="category_image"  />
+            <input accept="image/*"  class="upload_input" data-msg="Upload  your image" type="file" id="file_upload_input"   />
             <input type="hidden"  class="file_upload_input  stored_image" value="{{ $model->image }}" name="image">
             @if ( $model->image )
                 <img id="stored_image" role="button" class="img-thumnail" src="{{ $model->image }}" alt="">
@@ -42,7 +42,7 @@
                 <a class="delete_image"  href="#">Remove</a>
             </div>
 
-            <input accept="image/*"   class="upload_input" data-msg="Upload  your image" type="file" id="file_upload_input" name="category_image"  />
+            <input accept="image/*"   class="upload_input" data-msg="Upload  your image" type="file" id="file_upload_input"   />
             <input type="hidden"  class="file_upload_input  stored_image" id="stored_image" name="image">
         </div>
     </div>

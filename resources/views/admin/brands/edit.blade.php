@@ -3,6 +3,8 @@
 @section('content')
 
 <div class="row">
+@include('admin.errors.errors')
+
     <div class="col-md-6">
         <div class="card mt-4" id="password">
             <div class="card-header">
@@ -27,12 +29,9 @@
                         name="image"
                         value="{{ $brand->image }}"
                     >
-                    <div class="row mt-3">
-                        <div class="col-12">
-                            <label class="form-control mb-0"></label>
-                            <div action="/file-upload" class="form-control border dropzone" id="dropzone"></div>
-                        </div>
-                    </div>
+                    @include('admin._partials.single_image',['model' => $brand])
+
+                    @include('admin._partials.is_featured', ['model' =>  $brand])
                     <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-6 mb-0">Save</button>
                 </form>
             </div>
@@ -43,29 +42,11 @@
 
 @endsection
 
+@section('page-scripts')
+<script src="{{ asset('backend/products.js') }}"></script>
+@stop
 @section('inline-scripts')
-Dropzone.autoDiscover = false;
-var drop = document.getElementById('dropzone')
-let imgs = []
-
-var myDropzone = new Dropzone(drop, {
-   url: "/admin/upload/image?folder=brands",
-   addRemoveLinks: true,
-   acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
-   paramName: 'file',
-   maxFiles: 10,
-   sending: function(file, xhr, formData) {
-     formData.append("_token", "{{ csrf_token() }}");
-   },
-    success(file, res, formData) {
-         imgs.push(res.path)
-         console.log(imgs)
-     $('.image').val(imgs)
-  },
-   headers: {
-      'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
-   }
-});;
+@include('admin._partials.image_js',['folder' => 'brands'])
 @stop
 
 
