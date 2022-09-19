@@ -47,14 +47,13 @@ class ProductController extends Controller
         $years      = Helper::years();
         $products   = Product::with('categories')
                            ->orderBy('created_at','desc')->paginate(100);
-
         if (request()->filled('q')) {
             $value = request()->q;
             $products = Product::where('name', 'like', '%' .$value . '%')
                                 ->latest()->paginate(100);
             $products->appends(request()->query());
-
         }
+        
         return view('admin.products.index',compact('products','brands','categories','attributes','years'));
     }
 

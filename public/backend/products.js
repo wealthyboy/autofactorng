@@ -275,8 +275,7 @@ $(document).ready(function() {
             console.log(xhr.responseJSON.errors)
         });
 
-        //     },
-        // });
+
         return false;
     })
 

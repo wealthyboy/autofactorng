@@ -89,10 +89,9 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Description</label>
-                        <textarea type="text" class="form-control"                                     
-                           name="meta_description"
-                           rows="8"
-                           >{{ $cat->description }}</textarea>
+                      
+                        <textarea type="text" class="form-control" name="description" rows="8">{{ $cat->description }}</textarea>
+
                      </div>
                   </div>
                </div>
@@ -117,6 +116,8 @@
                </div>
                @include('admin._partials.single_image',['model' => $cat])
 
+               @include('admin._partials.is_featured', ['model' =>  $cat])
+
                <div class="d-flex justify-content-end mt-4">
                   <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
                </div>
@@ -126,25 +127,29 @@
    </div>
 </div>
 @endsection
+
 @section('page-scripts')
 <script src="{{ asset('backend/products.js') }}"></script>
 @stop
+
 @section('inline-scripts')
 $(document).ready(function() {
    let activateFileExplorer = 'a.activate-file';
    let delete_image = 'a.delete_image';
    var main_file = $("input#file_upload_input");
-   Img.initUploadImage({
-       url:'/admin/upload/image?folder=category',
-        activator: activateFileExplorer,
-        inputFile: main_file,
-    });
 
-    Img.deleteImage({
-        url:'/admin/delete/image?folder=category',
-        activator: delete_image,
-        inputFile: main_file,
-    });
+   Img.initUploadImage({
+      url:'/admin/upload/image?folder=category',
+      activator: activateFileExplorer,
+      inputFile: main_file,
+   });
+
+   Img.deleteImage({
+      url:'/admin/delete/image?folder=category',
+      activator: delete_image,
+      inputFile: main_file,
+   });
+
 });
 @stop
 

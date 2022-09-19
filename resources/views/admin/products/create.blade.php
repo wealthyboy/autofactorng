@@ -217,13 +217,15 @@
                
 
               
-               <div class="col-12">
+               <div class="col-12 my-3">
                   @include('admin.products.product_images') 
                </div>
 
                <hr class="horizontal dark">
-               
 
+               @include('admin._partials.is_featured')
+
+            
                <div class="form-check form-switch">
                   <input class="form-check-input"  name="condition_is_present" value="1" type="checkbox" id="heavy_item">
                   <label class="form-check-label" for="heavy_item">Heavy/Large Item</label>

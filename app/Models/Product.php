@@ -43,7 +43,8 @@ class Product extends Model
         'sale_price_starts',
         'condition_is_present',
         'sale_price_ends',
-        'volts'
+        'volts',
+        'is_featured'
 
     ];
 

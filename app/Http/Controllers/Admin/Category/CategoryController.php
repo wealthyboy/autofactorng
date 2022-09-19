@@ -97,6 +97,7 @@ class CategoryController extends Controller
         $category->title = $request->title;
         $category->slug=$slug;
         $category->sort_order=$request->sort_order;
+        $category->is_featured = $request->is_featured ? 1 : 0;
         $category->description=$request->description;
         $category->parent_id  = $request->parent_id;
         $category->save();
@@ -194,6 +195,7 @@ class CategoryController extends Controller
         $category->meta_description = $request->meta_description;
         $category->keywords = $request->keywords;
         $category->title = $request->title;
+        $category->is_featured = $request->is_featured ? 1 : 0;
         $category->slug=$slug;
         $category->save();    
         //Log Activity

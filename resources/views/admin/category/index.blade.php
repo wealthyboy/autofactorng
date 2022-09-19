@@ -75,14 +75,10 @@
                </div>
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
-                     <label class="form-label">Meta Description</label>
+                     <label class="form-label">Description</label>
 
                      <div class="input-group input-group-outline">
-                        <textarea type="text" class="form-control"                                     
-                           name="meta_description"
-                           rows="8"
-                           >
-                        </textarea>
+                        <textarea type="text" class="form-control" name="description" rows="8"></textarea>
                      </div>
                   </div>
                </div>
@@ -101,6 +97,9 @@
                   </div>
                </div>
                @include('admin._partials.single_image')
+
+               @include('admin._partials.is_featured')
+
 
                <div class="d-flex justify-content-end mt-4">
                   <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>

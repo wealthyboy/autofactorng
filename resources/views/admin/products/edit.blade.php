@@ -226,7 +226,7 @@
                </div>
 
               
-               <div class="col-12">
+               <div class="col-12 my-3">
                   <div id="j-drop" class="j-activate j-drop">
                   <input accept="image/*"   onchange="getFile(this,'images[]','Image')" class="upload_input" data-msg="Upload  your image" type="file"  name="img"  />
                      <div   class=" upload-text {{ $product->images->count() ||  $product->image ? 'hide' : ''}}"> 
@@ -253,8 +253,10 @@
                      </div>
                   </div> 
                </div>
-               
 
+               @include('admin._partials.is_featured', ['model' =>  $product])
+
+            
                <hr class="horizontal dark">
                
 
