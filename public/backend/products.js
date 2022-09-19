@@ -288,7 +288,7 @@ $(document).ready(function() {
     }, 600);
 });
 
-if (document.querySelector('.phy_description')) {
+if (document.querySelector('#phy_description')) {
 
     CKEDITOR.replace('phy_description', {
         height: '200px',
