@@ -57,6 +57,8 @@ class CategoryController extends Controller
    
     public function store(Request $request)
     {   
+
+       dd( \Db::table('migrations')->get());
         if( $request->filled('parent_id') ){
             $this->validate($request,[
                 'name'=>[
