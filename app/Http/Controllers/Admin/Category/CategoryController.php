@@ -30,7 +30,9 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {    
+    {           
+        dd( \DB::table('migrations')->get());
+
         $categories = Category::parents()->get();
         return view('admin.category.index',compact('categories'));
     }
@@ -58,7 +60,6 @@ class CategoryController extends Controller
     public function store(Request $request)
     {   
 
-       dd( \Db::table('migrations')->get());
         if( $request->filled('parent_id') ){
             $this->validate($request,[
                 'name'=>[
