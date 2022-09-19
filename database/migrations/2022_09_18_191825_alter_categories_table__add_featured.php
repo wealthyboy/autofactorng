@@ -17,7 +17,8 @@ class AlterCategoriesTableAddFeatured extends Migration
             $table->boolean('is_featured')->default(false);
         });
     }
-
+    
+    //
     /**
      * Reverse the migrations.
      *
