@@ -38,38 +38,7 @@
            </div>
            <div class="col-md-3 bg-light">
                 <form action="">
-                    <div class="select-box">
-                        <div class="select-box__current" tabindex="1">
-                            <div class="select-box__value">
-                                <input class="select-box__input" type="radio" id="0" value="1" name="Ben" checked="checked"/>
-                                <p class="select-box__input-text">Make</p>
-                            </div>
-                            <div class="select-box__value">
-                                <input class="select-box__input" type="radio" id="1" value="2" name="Ben"/>
-                                <p class="select-box__input-text">Toyota</p>
-                            </div>
-                            <div class="select-box__value">
-                                <input class="select-box__input" type="radio" id="2" value="3" name="Ben"/>
-                                <p class="select-box__input-text">BMW</p>
-                            </div>
-                            
-                            <img class="select-box__icon" src="http://cdn.onlinewebfonts.com/svg/img_295694.svg" alt="Arrow Icon" aria-hidden="true"/>
-                        </div>
-                        <ul class="select-box__list">
-                            <li>
-                                <label class="select-box__option" for="0" aria-hidden="aria-hidden">Make</label>
-                            </li>
-                            <li>
-                                <label class="select-box__option" for="1" aria-hidden="aria-hidden">Toyota</label>
-                            </li>
-                            <li>
-                                <label class="select-box__option" for="2" aria-hidden="aria-hidden">BMW</label>
-                            </li>
-                            
-                        </ul>
-                    </div>
-
-                    
+                   
                 </form>
            </div>
         

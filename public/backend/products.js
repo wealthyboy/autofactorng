@@ -290,15 +290,15 @@ $(document).ready(function() {
 
 if (document.querySelector('.phy_description')) {
 
-    // CKEDITOR.replace('phy_description', {
-    //     height: '200px',
-    //     width: '100%',
-    //     toolbar: [
-    //         '/',
-    //         { name: 'paragraph', groups: ['list', 'indent', ], items: ['BulletedList'] },
-    //         '/',
-    //     ]
-    // })
+    CKEDITOR.replace('phy_description', {
+        height: '200px',
+        width: '100%',
+        toolbar: [
+            '/',
+            { name: 'paragraph', groups: ['list', 'indent', ], items: ['BulletedList'] },
+            '/',
+        ]
+    })
 
 }
 
