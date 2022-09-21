@@ -1,265 +1,231 @@
 @extends('layouts.app')
-
 @section('content')
-
-
 <div class="container-fluid">
-<!-- <div class="p-3 mb-2 bg-danger text-white text-center">Just in Autocover now available</div> -->
-
-    <div class="row g-0">
-
-           <div class="col-md-9">
-               <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                        <img src="https://www.autofactorng.com/images/banner/Body Part.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                        <img src="https://www.autofactorng.com/images/banner/Engine oil.jpg" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                        <img src="https://www.autofactorng.com/images/banner/Body Part.jpg" class="d-block w-100" alt="...">
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-           </div>
-           <div class="col-md-3 bg-light">
-                <form action="">
-                   
-                </form>
-           </div>
-        
-    </div>
-
-    <div class="row mt-5">
-        <div class="col-md-12">
-            <div class="title">
-                <h2 class="">RECENTLY VIEWED & RELATED</h2>
-                <div class="underline mb-5"></div>
+   <!-- <div class="p-3 mb-2 bg-danger text-white text-center">Just in Autocover now available</div> -->
+   <div class="row g-0">
+      <div class="col-md-9 ">
+         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
-            <div class="cities-carousel owl-carousel svg-arrows ">
-                <div class="slider-related-products">
-                    <div class="product-default inner-quickview inner-icon">
-                        <figure>
-                            <a href="/plans?type=auto_cover">
-                                <img   src="https://magnetictheme.net/chakta/assets/images/shop/products-14.jpg">
-                            </a>
-                        </figure>
-                        <div class="product-details">
-                            <div class="product-title">
-                                <a href="#">17 Inch Rim</a>
-                            </div>
-                            <div class="price-box">
-                               <span title="" class="product-price  bold">₦890,000</span>
-                            </div><!-- End .price-box -->
-                        </div><!-- End .product-details -->
-                    </div>
-                </div>
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                 <a href="">
+                    <img src="https://www.autofactorng.com/images/banner/Body Part.jpg" class="d-block w-100" alt="...">
+                 </a>
+               </div>
+               <div class="carousel-item">
+                  <a href="">
+                    <img src="https://www.autofactorng.com/images/banner/Engine oil.jpg" class="d-block w-100" alt="...">
 
-
-                <div class="slider-related-products">
-                    <div class="product-default inner-quickview inner-icon">
-                        <figure>
-                            <a href="">
-                                <img  src="https://magnetictheme.net/chakta/assets/images/shop/products-15.jpg">
-                            </a>
-                        </figure>
-                        <div class="product-details">
-                            <div class="product-title">
-                                <a href="#">Motor Oil</a>
-                            </div>
-                            <div class="price-box">
-                               <span title="" class="product-price  bold">₦890,000</span>
-                            </div><!-- End .price-box -->
-                        </div><!-- End .product-details -->
-                    </div>
-                </div>
-
-                <div class="slider-related-products">
-                    <div class="product-default inner-quickview inner-icon">
-                        <figure>
-                            <a href="">
-                                <img  src="https://templates.hibootstrap.com/maxon/default/assets/img/products/products-1.jpg">
-                            </a>
-                        </figure>
-                        <div class="product-details">
-                            <div class="product-title">
-                                <a href="#">Walnut Wall</a>
-                            </div>
-                            <div class="price-box">
-                               <span title="" class="product-price  bold">₦890,000</span>
-                            </div><!-- End .price-box -->
-                        </div><!-- End .product-details -->
-                    </div>
-                </div>
-
-                <div class="slider-related-products">
-                    <div class="product-default inner-quickview inner-icon">
-                        <figure>
-                            <a href="">
-                                <img  src="https://templates.hibootstrap.com/maxon/default/assets/img/products/products-3.jpg">
-                            </a>
-                        </figure>
-                        <div class="product-details">
-                            <div class="product-title">
-                                <a href="#">17 Inch Rim</a>
-                            </div>
-                            <div class="price-box">
-                               <span title="" class="product-price  bold">₦890,000</span>
-                            </div><!-- End .price-box -->
-                        </div><!-- End .product-details -->
-                    </div>
-                </div>
-
-
-                <div class="slider-related-products">
-                    <div class="product-default inner-quickview inner-icon">
-                        <figure>
-                            <a href="">
-                                <img  src="https://templates.hibootstrap.com/maxon/default/assets/img/products/products-6.jpg">
-                            </a>
-                        </figure>
-                        <div class="product-details">
-                            <div class="product-title">
-                                <a href="#">Tires Collection</a>
-                            </div>
-                            <div class="price-box">
-                               <span title="" class="product-price  bold">₦890,000</span>
-                            </div><!-- End .price-box -->
-                        </div><!-- End .product-details -->
-                    </div>
-                </div>
-
-
-                <div class="slider-related-products">
-                    <div class="product-default inner-quickview inner-icon">
-                        <figure>
-                            <a href="/checkout">
-                                <img  src="https://templates.hibootstrap.com/maxon/default/assets/img/products/products-5.jpg">
-                            </a>
-                        </figure>
-                        <div class="product-details">
-                            <div class="product-title">
-                                <a href="#">Car Engine</a>
-                            </div>
-                            <div class="price-box">
-                                <span title="" class="product-price  bold">₦890,000</span>
-                            </div><!-- End .price-box -->
-                        </div><!-- End .product-details -->
-                    </div>
-                </div>
-
-                
+                  </a>
+               </div>
+               
             </div>
-            
-        </div>
-    </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+            </button>
+         </div>
+      </div>
+      <div class="col-md-3 bg-light ">
+         <form action="">
+         </form>
+      </div>
+   </div>
 
-    <div class="row mt-5">
-    
-        <div class="col-md-6">
-            <div style="height: 250px;" class="bg-dark h-35 d-flex justify-content-center align-items-center text-white">
-               <a  class="text-white bold fs-1" href="/plans?type=auto_cover">AUTO COVER</a>
-            </div>
-        </div>
+</div>
 
-        <div class="col-md-6">
-            <div style="height: 250px;" class="bg-dark h-35 d-flex justify-content-center align-items-center text-white">
-               <a  class="text-white bold fs-1" href="/buy-now-pay-later?type=auto_cover">BUY NOW PAY LATER</a>
-            </div>
-        </div>
-    </div>
+   <div class="container-fluid">
 
-    <div class="row mt-5">
-        <div>
-            <h2 class="">FEATURED CATEGORIES</h2>
+   <div class="row mt-5">
+      <div class="col-md-12">
+         <div class="title">
+            <h2 class="">RECENTLY VIEWED & RELATED</h2>
             <div class="underline mb-5"></div>
-        </div>
-        @foreach($cats as $key => $cat)
-            <div class="col-md-3 border text-center">
-                
-                <div class="category-content d-flex justify-content-center align-items-center">
-                    <a href="#" class="category-link category-link  d-flex flex-column justify-content-around align-items-center">
-                        <div class="category-image"><img src="{{ $cat }}" alt="" srcset="" class="img-fluid"></div>
-                        <div class="mt-4   bold">{{ $key }}</div>
-                    </a>
-                </div>
-                
+         </div>
+         <div class="cities-carousel owl-carousel svg-arrows ">
+            <div class="slider-related-products">
+               <div class="product-default inner-quickview inner-icon">
+                  <figure>
+                     <a href="/plans?type=auto_cover">
+                     <img   src="https://magnetictheme.net/chakta/assets/images/shop/products-14.jpg">
+                     </a>
+                  </figure>
+                  <div class="product-details">
+                     <div class="product-title">
+                        <a href="#">17 Inch Rim</a>
+                     </div>
+                     <div class="price-box">
+                        <span title="" class="product-price  bold">₦890,000</span>
+                     </div>
+                     <!-- End .price-box -->
+                  </div>
+                  <!-- End .product-details -->
+               </div>
             </div>
+            <div class="slider-related-products">
+               <div class="product-default inner-quickview inner-icon">
+                  <figure>
+                     <a href="">
+                     <img  src="https://magnetictheme.net/chakta/assets/images/shop/products-15.jpg">
+                     </a>
+                  </figure>
+                  <div class="product-details">
+                     <div class="product-title">
+                        <a href="#">Motor Oil</a>
+                     </div>
+                     <div class="price-box">
+                        <span title="" class="product-price  bold">₦890,000</span>
+                     </div>
+                     <!-- End .price-box -->
+                  </div>
+                  <!-- End .product-details -->
+               </div>
+            </div>
+            <div class="slider-related-products">
+               <div class="product-default inner-quickview inner-icon">
+                  <figure>
+                     <a href="">
+                     <img  src="https://templates.hibootstrap.com/maxon/default/assets/img/products/products-1.jpg">
+                     </a>
+                  </figure>
+                  <div class="product-details">
+                     <div class="product-title">
+                        <a href="#">Walnut Wall</a>
+                     </div>
+                     <div class="price-box">
+                        <span title="" class="product-price  bold">₦890,000</span>
+                     </div>
+                     <!-- End .price-box -->
+                  </div>
+                  <!-- End .product-details -->
+               </div>
+            </div>
+            <div class="slider-related-products">
+               <div class="product-default inner-quickview inner-icon">
+                  <figure>
+                     <a href="">
+                     <img  src="https://templates.hibootstrap.com/maxon/default/assets/img/products/products-3.jpg">
+                     </a>
+                  </figure>
+                  <div class="product-details">
+                     <div class="product-title">
+                        <a href="#">17 Inch Rim</a>
+                     </div>
+                     <div class="price-box">
+                        <span title="" class="product-price  bold">₦890,000</span>
+                     </div>
+                     <!-- End .price-box -->
+                  </div>
+                  <!-- End .product-details -->
+               </div>
+            </div>
+            <div class="slider-related-products">
+               <div class="product-default inner-quickview inner-icon">
+                  <figure>
+                     <a href="">
+                     <img  src="https://templates.hibootstrap.com/maxon/default/assets/img/products/products-6.jpg">
+                     </a>
+                  </figure>
+                  <div class="product-details">
+                     <div class="product-title">
+                        <a href="#">Tires Collection</a>
+                     </div>
+                     <div class="price-box">
+                        <span title="" class="product-price  bold">₦890,000</span>
+                     </div>
+                     <!-- End .price-box -->
+                  </div>
+                  <!-- End .product-details -->
+               </div>
+            </div>
+            <div class="slider-related-products">
+               <div class="product-default inner-quickview inner-icon">
+                  <figure>
+                     <a href="/checkout">
+                     <img  src="https://templates.hibootstrap.com/maxon/default/assets/img/products/products-5.jpg">
+                     </a>
+                  </figure>
+                  <div class="product-details">
+                     <div class="product-title">
+                        <a href="#">Car Engine</a>
+                     </div>
+                     <div class="price-box">
+                        <span title="" class="product-price  bold">₦890,000</span>
+                     </div>
+                     <!-- End .price-box -->
+                  </div>
+                  <!-- End .product-details -->
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="row mt-5">
+      <div class="col-md-6 my-1">
+         <div style="height: 250px;" class="bg-dark h-35 d-flex justify-content-center align-items-center text-white">
+            <a  class="text-white bold fs-1" href="/plans?type=auto_cover">AUTO COVER</a>
+         </div>
+      </div>
+      <div class="col-md-6 my-1">
+         <div style="height: 250px;" class="bg-dark h-35 d-flex justify-content-center align-items-center text-white">
+            <a  class="text-white bold fs-1" href="/buy-now-pay-later?type=auto_cover">BUY NOW PAY LATER</a>
+         </div>
+      </div>
 
-            
+    
+   </div>
 
-        @endforeach
-    </div>
+   @if($featured_categories->count())
+   <div class="row mt-5">
+      <div class="">
+         <h2 class="">FEATURED CATEGORIES</h2>
+         <div class="underline mb-5"></div>
+      </div>
+      @foreach($featured_categories as $key => $category)
+      <div class="col-md-3 border  col-6 text-center">
+         <div class="category-content d-flex justify-content-center align-items-center">
+            <a href="#" class="category-link category-link  d-flex flex-column justify-content-around align-items-center">
+               <div class="category-image"><img src="{{ $category->image }}" alt="" srcset="" class="img-fluid"></div>
+               <div class="mt-4  bold">{{ $category->name }}</div>
+            </a>
+         </div>
+      </div>
+      @endforeach
+   </div>
+   @endif
+   <div class="row mt-5 no-gutters">
+      <div>
+         <h2 class="">BRANDS WE TRUST</h2>
+         <div class="underline mb-5"></div>
+      </div>
 
-
-    <div class="row mt-5 no-gutters">
-        <div>
-           <h2 class="">BRANDS WE TRUST</h2>
-           <div class="underline mb-5"></div>
-        </div>
-       
-        <div class="col-md-2">
-            <a href="http://">
-                <img class="img-fluid" src="https://www.autozone.com/cdn/images/B2C/US/media/Landing/BrandLandingPage/fy20-bwt-mobil1-d.jpg" alt="" srcset="">
+      @foreach($brands as $key => $brand)
+        <div class="col-md-2 col-6">
+            <a href="#">
+            <img class="img-fluid" src="{{ $brand->image }}" alt="" srcset="">
             </a>
         </div>
+      @endforeach
 
-        <div class="col-md-2">
-            <a href="http://">
-                <img  class="img-fluid" src="https://www.autozone.com/cdn/images/B2C/US/media/Landing/BrandLandingPage/fy20-bwt-castrol-d.jpg" alt="" srcset="">
-            </a>
-        </div>
-
-        <div class="col-md-2">
-            <a href="http://">
-                <img class="img-fluid" src="https://www.autozone.com/cdn/images/B2C/US/media/Landing/BrandLandingPage/fy21-bwt-type-s-d.jpg" alt="" srcset="">
-            </a>
-        </div>
-
-        <div class="col-md-2">
-            <a href="http://">
-                <img class="img-fluid" src="https://www.autozone.com/cdn/images/B2C/US/media/Landing/BrandLandingPage/fy21-bwt-prestoneperformance-d.jpg" alt="" srcset="">
-            </a>
-        </div>
-
-        <div class="col-md-2">
-            <a href="http://">
-                <img class="img-fluid" src="https://www.autozone.com/cdn/images/B2C/US/media/Landing/BrandLandingPage/fy21-bwt-Odyssey-d.jpg" alt="" srcset="">
-            </a>
-        </div>
-
-        <div class="col-md-2">
-            <a href="http://">
-                <img class="img-fluid" src="https://www.autozone.com/cdn/images/B2C/US/media/Landing/BrandLandingPage/fy20-bwt-continental-d.jpg" alt="" srcset="">
-            </a>
-        </div>
-
-    </div>
-
-    <div class="row">
-        <div class="col-12 text-center p-3">
-            <button type="button" class="btn btn-outline-info">More Brands</button>
-        </div>
-    </div>
+      
+    
+   </div>
+   <div class="row">
+      <div class="col-12 text-center p-3">
+         <button type="button" class="btn btn-outline-info">More Brands</button>
+      </div>
+   </div>
 </div>
 @endsection
-
 @section('inline-scripts')
-
 (function ($) {
     "use strict";
 
@@ -312,5 +278,6 @@
         });
     });
 })(jQuery);
-
 @stop
+
+
