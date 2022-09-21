@@ -73,8 +73,8 @@ Route::get('/plans',      [App\Http\Controllers\Plans\PlansController::class, 'i
 Route::get('/subscribe',  [App\Http\Controllers\Subscribe\SubscribeController::class, 'index'])->name('subscribe');
 Route::get('/checkout',   [App\Http\Controllers\Checkout\CheckoutController::class, 'index'])->name('checkout');
 Route::get('/buy-now-pay-later',   [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index'])->name('buy');
-Route::get('/buy-now-pay-later',   [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index'])->name('buy');
-Route::get('',   [Products\ProductsController::class, 'index']);
+//Route::get('/buy-now-pay-later',   [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index'])->name('buy');
+//Route::get('',   [Products\ProductsController::class, 'index']);
 
 
 
