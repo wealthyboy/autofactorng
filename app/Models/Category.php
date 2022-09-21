@@ -37,7 +37,12 @@ class Category extends Model
         }
         return $query->whereNull('parent_id')->orderBy($order,$desc);
     }
+    
 
+    public function link()
+    {
+        return '/products/'. $this->slug;
+    }
 }
 
 

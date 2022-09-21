@@ -11,4 +11,9 @@ class Brand extends Model
 
     protected $fillable = ['name','image', 'is_featured'];
 
+    public function link()
+    {
+        return '/products/'. $this->slug;
+    }
+
 }

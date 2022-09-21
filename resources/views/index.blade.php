@@ -1,45 +1,13 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-fluid">
-   <!-- <div class="p-3 mb-2 bg-danger text-white text-center">Just in Autocover now available</div> -->
-   <div class="row g-0">
-      <div class="col-md-9 ">
-         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                 <a href="">
-                    <img src="https://www.autofactorng.com/images/banner/Body Part.jpg" class="d-block w-100" alt="...">
-                 </a>
-               </div>
-               <div class="carousel-item">
-                  <a href="">
-                    <img src="https://www.autofactorng.com/images/banner/Engine oil.jpg" class="d-block w-100" alt="...">
-
-                  </a>
-               </div>
-               
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-            </button>
-         </div>
-      </div>
-      <div class="col-md-3 bg-light ">
-         <form action="">
-         </form>
-      </div>
-   </div>
-
+    <!-- <div class="p-3 mb-2 bg-danger text-white text-center">Just in Autocover now available</div> -->
+    <div class="row g-0">
+      @include('_partials.slider')
+        <div class="col-md-3 bg-light ">
+           <form action=""></form>
+        </div>
+    </div>
 </div>
 
    <div class="container-fluid">
@@ -192,7 +160,7 @@
       @foreach($featured_categories as $key => $category)
       <div class="col-md-3 border  col-6 text-center">
          <div class="category-content d-flex justify-content-center align-items-center">
-            <a href="#" class="category-link category-link  d-flex flex-column justify-content-around align-items-center">
+            <a href="{{ $category->link() }}" class="category-link category-link  d-flex flex-column justify-content-around align-items-center">
                <div class="category-image"><img src="{{ $category->image }}" alt="" srcset="" class="img-fluid"></div>
                <div class="mt-4  bold">{{ $category->name }}</div>
             </a>
@@ -207,12 +175,15 @@
          <div class="underline mb-5"></div>
       </div>
 
+
       @foreach($brands as $key => $brand)
-        <div class="col-md-2 col-6">
-            <a href="#">
-            <img class="img-fluid" src="{{ $brand->image }}" alt="" srcset="">
+      <div class="col-md-3 border  col-6 text-center">
+         <div class="category-content d-flex justify-content-center align-items-center">
+            <a href="{{ $brand->link() }}" class="category-link category-link  d-flex flex-column justify-content-around align-items-center">
+               <div class="category-image"><img src="{{ $brand->image }}" alt="" srcset="" class="img-fluid"></div>
             </a>
-        </div>
+         </div>
+      </div>
       @endforeach
 
       
@@ -220,7 +191,7 @@
    </div>
    <div class="row">
       <div class="col-12 text-center p-3">
-         <button type="button" class="btn btn-outline-info">More Brands</button>
+         <a href="/brands" type="button" class="btn btn-outline-info">More Brands</a>
       </div>
    </div>
 </div>
