@@ -1,29 +1,34 @@
 <div class="col-md-9 ">
-   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-      </div>
+   <div id="au-slider" class="carousel slide" data-bs-ride="carousel">
+      @if($sliders->count() > 1)
+         <div class="carousel-indicators">
+            @foreach($sliders as $key =>  $slider)
+               <button type="button" data-bs-target="#au-slider" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ?  'active' : '' }}  {{ $slider->device }} " aria-current="true" aria-label="Slide {{ $key }}"></button>
+            @endforeach
+         </div>
+      @endif
+
       <div class="carousel-inner">
-         <div class="carousel-item active">
-            <a href="">
-            <img src="https://www.autofactorng.com/images/banner/Body Part.jpg" class="d-block w-100" alt="...">
-            </a>
-         </div>
-         <div class="carousel-item">
-            <a href="">
-            <img src="https://www.autofactorng.com/images/banner/Engine oil.jpg" class="d-block w-100" alt="...">
-            </a>
-         </div>
+         @foreach($sliders as $key =>  $slider)
+            <div class="carousel-item {{ $key == 0 ?  'active' : '' }}  {{ $slider->device }} ">
+               <a href="{{ $slider->link }}">
+                  <img src="{{ $slider->image }}" class="w-100" alt="...">
+               </a>
+            </div>
+         @endforeach
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      @if($sliders->count() > 1)
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#sau-lider" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
       </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+
+      <button class="carousel-control-next" type="button" data-bs-target="#au-slider" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
       </button>
+      @endif
+
    </div>
 </div>

@@ -113,10 +113,10 @@
                                 <div>Sign in</div>
                              </span>
                         </button>
-                        
                         <a href="#">
                             <img  data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/az-cart-nav.svg" alt="" srcset="">
                             <div>Cart</div>
+
                         </a>
                     </div>
                 </div>

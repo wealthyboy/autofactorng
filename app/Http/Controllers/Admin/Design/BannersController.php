@@ -66,6 +66,7 @@ class BannersController extends Controller
         $banner->description   = $request->description;
         $banner->image   = $request->image;
         $banner->sort_order = $request->sort_order;
+        $banner->device = $request->device;
         $banner->mobile_sort_order = $request->mobile_sort_order;
         $banner->save();
         return redirect()->route('banners.index');
@@ -124,8 +125,8 @@ class BannersController extends Controller
         $banner->description   = $request->description;
         $banner->image   = $request->image;
         $banner->sort_order = $request->sort_order;
+        $banner->device = $request->device;
         $banner->mobile_sort_order = $request->mobile_sort_order;
-
         $banner->save();
         // $flash = app( 'App\Http\flash' );
         // $flash->success( "Success", "Details Updated" );

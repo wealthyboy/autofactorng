@@ -68,14 +68,14 @@ Route::group(['prefix' => 'admin'], function(){
 
 Auth::routes();
 
-Route::get('/',       [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/plans',      [App\Http\Controllers\Plans\PlansController::class, 'index'])->name('plans');
-Route::get('/subscribe',  [App\Http\Controllers\Subscribe\SubscribeController::class, 'index'])->name('subscribe');
-Route::get('/checkout',   [App\Http\Controllers\Checkout\CheckoutController::class, 'index'])->name('checkout');
-Route::get('/buy-now-pay-later',   [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index'])->name('buy');
-Route::get('products/{category}',   [App\Http\Controllers\Products\ProductsController::class, 'index']);
-
-
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/plans', [App\Http\Controllers\Plans\PlansController::class, 'index'])->name('plans');
+Route::get('/subscribe', [App\Http\Controllers\Subscribe\SubscribeController::class, 'index'])->name('subscribe');
+Route::get('/checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'index'])->name('checkout');
+Route::get('/buy-now-pay-later', [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index'])->name('buy');
+Route::get('products/{category}', [App\Http\Controllers\Products\ProductsController::class, 'index']);
+Route::get('product/{category}/{product}', [Products\ProductsController::class, 'show']);
+Route::get('pages/{information}', [Pages\PagesController::class, 'show']);
 
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');
 //Route::post('contact/store',        'Contact\ContactController@store');

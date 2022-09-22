@@ -58,6 +58,16 @@
                     
                   </select>
                </div>
+
+               <div class="input-group input-group-outline mt-3">
+                  <select name="device" class="form-control select2" style="width: 100%;">
+                     <option value="" selected="selected">--device--</option>
+                     <option value="d-block d-sm-none">Show only on sm devices </option>
+                     <option value="d-none d-lg-block d-xl-block">Show only on lg devices </option>
+                  </select>
+               </div>
+
+              
                <div class="input-group input-group-outline mt-3">
                   <label class="form-label mt-4 ms-0"> </label>
                   <select class="form-control" name="type" id="">
@@ -67,14 +77,8 @@
                     
                   </select>
                </div>
-               <div class="row mt-3">
-                  <div class="col-12">
-                        <label class="form-control mb-0"></label>
-                        <div action="/file-upload" class="form-control border dropzone" id="dropzone">
-                        
-                        </div>
-                  </div>
-               </div>
+               @include('admin._partials.single_image')
+
                <button type="submit" class="btn bg-gradient-dark btn-sm float-end mt-4 mb-0">Submit</button>
             </form>
          </div>
@@ -82,29 +86,12 @@
    </div>
 </div>
 @endsection
-@section('inline-scripts')
-Dropzone.autoDiscover = false;
-var drop = document.getElementById('dropzone')
-let imgs = []
+@section('page-scripts')
+<script src="{{ asset('backend/products.js') }}"></script>
+@stop
 
-var myDropzone = new Dropzone(drop, {
-   url: "/admin/upload/image?folder=banners",
-   addRemoveLinks: true,
-   acceptedFiles: ".jpeg,.jpg,.png,.JPG,.PNG",
-   paramName: 'file',
-   maxFiles: 1,
-   sending: function(file, xhr, formData) {
-     formData.append("_token", "{{ csrf_token() }}");
-   },
-  success(file, res, formData) {
-         imgs.push(res.path)
-         console.log(imgs)
-     $('.images').val(imgs)
-  },
-   headers: {
-      'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')
-   }
-});
+@section('inline-scripts')
+@include('admin._partials.image_js',['folder' => 'banners'])
 @stop
 
 
