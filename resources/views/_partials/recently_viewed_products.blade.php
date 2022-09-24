@@ -1,7 +1,7 @@
 <div class="row mt-5">
    <div class="col-md-12">
       <div class="title">
-         <h2 class="">RECENTLY VIEWED & RELATED</h2>
+         <h2 class="">{{$name}}</h2>
          <div class="underline mb-5"></div>
       </div>
       <div class="cities-carousel owl-carousel svg-arrows ">
@@ -9,7 +9,7 @@
             <div class="product-default inner-quickview inner-icon">
                <figure>
                   <a href="/plans?type=auto_cover">
-                  <img   src="https://magnetictheme.net/chakta/assets/images/shop/products-14.jpg">
+                  <img src="https://autofactor.ng/images/products/m/ATlkPupEBI6E9wbYABIrzYPPJ4DNG33xpddTGGos.png">
                   </a>
                </figure>
                <div class="product-details">

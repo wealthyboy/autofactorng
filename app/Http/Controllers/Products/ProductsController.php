@@ -15,7 +15,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        return view('products.index');
     }
 
     /**
@@ -45,9 +45,9 @@ class ProductsController extends Controller
      * @param  \App\Models\r  $r
      * @return \Illuminate\Http\Response
      */
-    public function show(r $r)
+    public function show()
     {
-        //
+        return view('products.show');
     }
 
     /**
@@ -56,7 +56,7 @@ class ProductsController extends Controller
      * @param  \App\Models\r  $r
      * @return \Illuminate\Http\Response
      */
-    public function edit(r $r)
+    public function edit()
     {
         //
     }
@@ -68,7 +68,7 @@ class ProductsController extends Controller
      * @param  \App\Models\r  $r
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, r $r)
+    public function update(Request $request)
     {
         //
     }
@@ -79,7 +79,7 @@ class ProductsController extends Controller
      * @param  \App\Models\r  $r
      * @return \Illuminate\Http\Response
      */
-    public function destroy(r $r)
+    public function destroy()
     {
         //
     }

@@ -32598,6 +32598,14 @@ body {
   padding-right: 20px;
 }
 
+.arrow-svg {
+  width: 20px;
+  z-index: 1;
+  position: absolute;
+  top: 7px;
+  right: 10px;
+}
+
 .nav .nav-container {
   padding-top: 0.3rem !important;
   padding-bottom: 0.35rem !important;
@@ -32608,7 +32616,7 @@ header {
 }
 
 div#offcanvas {
-  margin-top: 160px;
+  margin-top: 127px;
 }
 
 .search-input {

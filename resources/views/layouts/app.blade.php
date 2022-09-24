@@ -24,24 +24,30 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    <!-- Include Choices CSS -->
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
+    />
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
         <div class="container-fluid d-block d-sm-none">
-            <div class=" g-0 d-flex  justify-content-center align-items-center">
+            <div class=" g-0 d-flex  justify-content-between align-items-center">
                 <div class="col-">
                     <div class="menu">
-                        <button   data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0" role="button" >
+                        <button   data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0 p-0" role="button" >
                             <span class="menu-open">
                                 <img  data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="" srcset="">
-                                <div>Menu</div>
+                                <span class="text-xs">Menu</span>
                             </span>
 
                             <span class="menu-close d-none">
                                 <img  data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" alt="" srcset="">
-                                <div>Close</div>
+                                <span class="text-xs">Close</span>
                             </span>
                                 
                         </button>
@@ -57,19 +63,21 @@
                 
                 <div class="col-">
                     <div class="header-icons d-flex justify-content-evenly">
-                        <button class="mr-5 nav-btn mb-0 pb-0">
-                            <span class="">
+                        <div class="dropdown">
+                            <button class="  mr-5 nav-btn mb-0 pb-0" type="button" >
+                                <span class="">
+                                   
                                 <img   src="/images/utils/signin.svg" alt="" srcset="">
-                                <span class="ml-1">
-                                    <img  src="/images/utils/down-arrow.svg" alt="" srcset="">
+                                   
+                                    <div  class="text-xs">Sign in</div>
                                 </span>
-                                <div>Sign in</div>
-                             </span>
-                        </button>
+                            </button>
+                            
+                         </div>
                         <a href="#">
+                             <span class="cart-count badge-circle">3</span>
                             <img  data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/az-cart-nav.svg" alt="" srcset="">
-                            <div>Cart</div>
-
+                            <div  class="text-xs">Cart</div>
                         </a>
                     </div>
                 </div>
@@ -85,7 +93,7 @@
             </div>
         </div>
         <div class="container-fluid 	d-none d-lg-block d-md-block d-xl-block">
-            <div class="row g-0 d-flex py-4 justify-content-center align-items-center">
+            <div class="row g-0 d-flex py-3 justify-content-center align-items-center">
                 <div class="col-md-4">
                     <div class="logo d-flex">
                         <a class="d-block" href="/">
@@ -93,31 +101,34 @@
                         </a>
                     </div>
                 </div>
-                <div class="col-md-6">
-                   <div class="nav-link-text">
-                        <a href="/lp/autozone-savings" target="">
-                            <div class="fs-6">
-                                <p>Autocovery**  We ship to anywhere in nigeria</p> 
-                            </div>
-                        </a>
-                    </div>
+                <div class="col-md-6 text-left">
+                   
                 </div>
                 <div class="col-md-2">
-                    <div class="header-icons d-flex justify-content-evenly">
-                        <button class="mr-5 nav-btn mb-0 pb-0">
-                            <span class="">
-                                <img   src="/images/utils/signin.svg" alt="" srcset="">
-                                <span class="ml-1">
-                                    <img  src="/images/utils/down-arrow.svg" alt="" srcset="">
+                    <div class="header-icons d-flex justify-content-between">
+                       <div class="dropdown  ms-7">
+                            <button class="mr-5 nav-btn mb-0 pb-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="">
+                                    <img   src="/images/utils/signin.svg" alt="" srcset="">
+                                    <span class="ml-1">
+                                        <img  src="/images/utils/down-arrow.svg" alt="" srcset="">
+                                    </span>
+                                    <div class="text-xs me-3">Sign in</div>
                                 </span>
-                                <div>Sign in</div>
-                             </span>
-                        </button>
-                        <a href="#">
-                            <img  data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/az-cart-nav.svg" alt="" srcset="">
-                            <div>Cart</div>
-
-                        </a>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </div>
+                        <div class="me-3">
+                            <a class="my-3" href="/cart">
+                                <img  data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/az-cart-nav.svg" alt="" srcset="">
+                                <div class="text-xs">Cart</div>
+                            </a>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -130,12 +141,12 @@
                             <button   data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0" role="button" >
                                 <span class="menu-open">
                                     <img  data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="" srcset="">
-                                    <div>Menu</div>
+                                    <div class="text-xs">Menu</div>
                                 </span>
 
                                 <span class="menu-close d-none">
                                     <img  data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" alt="" srcset="">
-                                    <div>Close</div>
+                                    <div class="text-xs">Close</div>
                                 </span>
                                  
                             </button>
@@ -184,7 +195,7 @@
                 </div>
             </div>
 
-            <div class="offcanvas offcanvas-start w-30" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
+            <div class="offcanvas offcanvas-start w-25" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
                 <div class="offcanvas-header">
                     <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas">Most Popular</h6>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -317,7 +328,7 @@
         </div>
         
        
-        <main class="py-4">
+        <main class="py-3">
             @yield('content')
         </main>
         
@@ -383,16 +394,20 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
+    
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+
 
 
       @yield('page-scripts')    
       <script type="text/javascript">
         @yield('inline-scripts')
 
-        
+
       </script>
 </body>
 </html>

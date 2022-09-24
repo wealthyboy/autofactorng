@@ -80,6 +80,14 @@ body {
     padding-right: 20px;
 }
 
+.arrow-svg {
+    width: 20px;
+    z-index: 1;
+    position: absolute;
+    top: 7px;
+    right: 10px;
+}
+
 // .nav-link-text:after,
 // .nav-link-text:before {
 //     content: "";
@@ -104,7 +112,7 @@ header {
 }
 
 div#offcanvas {
-    margin-top: 160px;
+    margin-top: 127px;
 }
 
 .search-input {

@@ -76,7 +76,7 @@
             @yield('content')
         </main>
 
-        <footer class="footer font2">           
+        <footer  class="footer w-100 font2 ">           
             <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
             <div class="container">
                 <div class="footer-bottom d-flex justify-content-between align-items-center flex-wrap">
