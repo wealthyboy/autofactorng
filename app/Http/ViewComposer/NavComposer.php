@@ -8,7 +8,7 @@ use Illuminate\View\View;
 use Auth;
 use App\Models\Cart;
 use App\Models\Information;
-use App\MOdels\Category;
+use App\Models\Category;
 use App\Models\Setting;
 use App\Models\Voucher;
 use App\Models\Promo;
