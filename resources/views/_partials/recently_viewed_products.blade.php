@@ -4,7 +4,7 @@
          <h2 class="">{{$name}}</h2>
          <div class="underline mb-5"></div>
       </div>
-      <div class="cities-carousel owl-carousel svg-arrows ">
+      <div class="cities-carousel owl-carousel svg-arrows">
          <div class="slider-related-products">
             <div class="product-default inner-quickview inner-icon">
                <figure>
