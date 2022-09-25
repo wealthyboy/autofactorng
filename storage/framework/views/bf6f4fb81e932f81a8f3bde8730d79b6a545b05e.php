@@ -89,7 +89,6 @@
                         <i class="bi bi-search"></i>
                     </button>
                     <input type="text" class="form-control search-input bg-white" placeholder="Find parts and products" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                    
                 </div>
             </div>
         </div>

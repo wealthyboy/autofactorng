@@ -15,9 +15,6 @@ mix.js('resources/js/app.js', 'public/js')
     .react()
     .sass('resources/sass/app.scss', 'public/css');
 
-
-
-
 mix.styles(
     [
         "resources/admin_assets/css/material-dashboard.min-v=3.0.3.css",
