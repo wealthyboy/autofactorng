@@ -183,10 +183,10 @@
                         <div class="text">
                             <a href="#" class="nav-btn  w-100 mb-0">
                                 <div class="d-flex add-a-vehicle justify-content-evenly">
-                                    <div>
+                                    <div class="ml-3">
                                       <i class="bi bi-camera-reels-fill"></i>                                    </div>
                                     <div>How to</div>
-                                    <div> 
+                                    <div class="me-2"> 
                                         <img src="/images/utils/header-arrow.svg" alt="">
                                     </div>
                                 </div>

@@ -5,8 +5,7 @@
 <div class="container-fluid">
     <!-- <div class="p-3 mb-2 bg-danger text-white text-center">Just in Autocover now available</div> -->
     <div class="row g-2">
-        
-      @include('_partials.slider')
+        @include('_partials.slider')
         <div class="col-md-3  ">
           @include('_partials.search')
         </div>
@@ -15,11 +14,7 @@
 
 <div class="container-fluid">
 
-
     @include('_partials.recently_viewed_products',['name' => ' RECENTLY VIEWED & RELATED'])  
-
-    
-
 
     @include('_partials.auto_cover') 
 

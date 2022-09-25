@@ -4,8 +4,7 @@
 <div class="container-fluid">
     <!-- <div class="p-3 mb-2 bg-danger text-white text-center">Just in Autocover now available</div> -->
     <div class="row g-2">
-        
-      <?php echo $__env->make('_partials.slider', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php echo $__env->make('_partials.slider', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <div class="col-md-3  ">
           <?php echo $__env->make('_partials.search', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </div>
@@ -14,11 +13,7 @@
 
 <div class="container-fluid">
 
-
     <?php echo $__env->make('_partials.recently_viewed_products',['name' => ' RECENTLY VIEWED & RELATED'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>  
-
-    
-
 
     <?php echo $__env->make('_partials.auto_cover', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?> 
 
