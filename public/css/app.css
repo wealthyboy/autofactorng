@@ -32659,6 +32659,51 @@ label {
   transform: skewX(-30deg);
 }
 
+.ratings-container {
+  line-height: 1;
+  margin: 0 0 12px 1px;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+
+.ratings-container .product-ratings,
+.ratings-container .ratings {
+  position: relative;
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}
+
+.ratings-container .product-ratings {
+  height: 11px;
+}
+
+.ratings-container .product-ratings:before {
+  content: "\f005\f005\f005\f005\f005";
+  color: rgba(0, 0, 0, 0.16);
+}
+
+.ratings-container .product-ratings:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.ratings-container .ratings {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.ratings-container .ratings:before {
+  content: "\f005\f005\f005\f005\f005";
+  color: #6a6a6d;
+}
+
 .select-box {
   position: relative;
   display: block;

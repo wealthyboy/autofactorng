@@ -1,7 +1,7 @@
 <div class="row mt-5">
    <div class="col-md-12">
       <div class="title">
-         <h2 class="">{{$name}}</h2>
+         <h2 class=""><?php echo e($name); ?></h2>
          <div class="underline mb-5"></div>
       </div>
       <div class="cities-carousel owl-carousel svg-arrows">
@@ -35,4 +35,4 @@
          </div>
       </div>
    </div>
-</div>
+</div><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/_partials/recently_viewed_products.blade.php ENDPATH**/ ?>

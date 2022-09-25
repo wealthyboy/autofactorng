@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
-    <title>{{ config('app.name', 'Autofactor') }}</title>
+    <title><?php echo e(config('app.name', 'Autofactor')); ?></title>
 
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -31,7 +31,7 @@
     />
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -196,7 +196,7 @@
                 </div>
             </div>
 
-           @include('_partials.nav_categories')
+           <?php echo $__env->make('_partials.nav_categories', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             
         </div>
 
@@ -206,7 +206,7 @@
         
        
         <main class="py-3">
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
         </main>
         
         <div class="py-3 subscribe  text-white">
@@ -238,10 +238,10 @@
             <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
             <div class="container">
                 <div class="footer-middle ">
-                    @include('layouts.footer.mobile_footer')
+                    <?php echo $__env->make('layouts.footer.mobile_footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                     <div class=" d-none d-lg-block d-md-block d-xl-block">
-                       @include('layouts.footer.desktop_footer')
+                       <?php echo $__env->make('layouts.footer.desktop_footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                     </div>
                 </div><!-- End .footer-middle -->
                 
@@ -251,12 +251,12 @@
                         <a href="#" class="bi bi-twitter  fa-2x text-white" target="_blank" title="Twitter"></a>
                         <a href="#" class="bi bi-instagram  fa-2x text-white" target="_blank" title="Linkedin"></a>
                     </div><!-- End .footer-bottom -->
-                   <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
+                   <p class="footer-copyright py-3 pr-4 mb-0">© <?php echo e(config('app.name')); ?>. <?php echo e(date('Y')); ?>. All Rights Reserved</p>
                 </div>
                
                 <div class="d-none d-lg-block d-md-block d-xl-block">
                     <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap  ">
-                        <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
+                        <p class="footer-copyright py-3 pr-4 mb-0">© <?php echo e(config('app.name')); ?>. <?php echo e(date('Y')); ?>. All Rights Reserved</p>
                         <div class="social-icons py-3">
                             <a href="#" class="bi bi-facebook text-white  me-4 fa-2x" target="_blank" title="Facebook"></a>
                             <a href="#" class="bi bi-twitter  text-white me-4 fa-2x" target="_blank" title="Twitter"></a>
@@ -276,15 +276,16 @@
     
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="<?php echo e(asset('js/app.js')); ?>" defer></script>
 
 
 
-      @yield('page-scripts')    
+      <?php echo $__env->yieldContent('page-scripts'); ?>    
       <script type="text/javascript">
-        @yield('inline-scripts')
+        <?php echo $__env->yieldContent('inline-scripts'); ?>
 
 
       </script>
 </body>
 </html>
+<?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/layouts/app.blade.php ENDPATH**/ ?>
