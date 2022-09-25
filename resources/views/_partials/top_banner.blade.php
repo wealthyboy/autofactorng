@@ -5,10 +5,10 @@
               <div class="row">
                 <div class="offer-hignlight ">
                     @foreach($global_promo->promo_texts as $promo_text)
-                        <div class="col-12 text-center">
-                            <h5 class="d-inline-block text-white text-uppercase  mb-0"><b>
+                        <div class="col-12 text-center ">
+                            <div class="d-inline-block  text-sm fw-bold text-white text-uppercase  mb-0"><b>
                             {{ $promo_text->promo}}</b>
-                            </h5>
+                            </div>
                         </div>
                     @endforeach
                 </div>

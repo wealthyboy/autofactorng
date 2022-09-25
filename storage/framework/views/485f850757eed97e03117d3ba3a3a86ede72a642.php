@@ -5,10 +5,10 @@
               <div class="row">
                 <div class="offer-hignlight ">
                     <?php $__currentLoopData = $global_promo->promo_texts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $promo_text): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <div class="col-12 text-center">
-                            <h5 class="d-inline-block text-white text-uppercase  mb-0"><b>
+                        <div class="col-12 text-center ">
+                            <div class="d-inline-block  text-sm fw-bold text-white text-uppercase  mb-0"><b>
                             <?php echo e($promo_text->promo); ?></b>
-                            </h5>
+                            </div>
                         </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
