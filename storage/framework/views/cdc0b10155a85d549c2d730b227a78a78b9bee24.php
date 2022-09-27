@@ -225,18 +225,17 @@
                   </div>
                   <div class="col-md-4 my-auto ms-md-3 mt-md-auto">
                      <h5 class="text-dark cursor-pointer">Land Rover Engine Air Filter PHE500021</h5>
+                     
+                     <p>
+                        Part #550045202 SKU #1181299                        
+                     </p>
                      <div class="ratings-container float-sm-right">
                         <div class="product-ratings">
                            <span class="ratings" style="width:0"></span>
                            <!-- End .ratings -->
-                           <span class="tooltiptext tooltip-top">3.00</span>
+                           <span class="tooltiptext tooltip-top"></span>
                         </div>
                         <!-- End .product-ratings -->
-                     </div>
-                     <p>
-                        Part #550045202 SKU #1181299                        
-                     </p>
-                     <div class="author">
                      </div>
                   </div>
                   <div class="col-md-4 my-auto ms-md-3 text-center mt-md-auto">

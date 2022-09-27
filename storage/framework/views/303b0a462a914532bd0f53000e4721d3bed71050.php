@@ -69,7 +69,7 @@
                                     </a>
                                      |
                                     
-                                    <a href="#" data-bs-toggle="tooltip" data-bs-original-title="Edit">
+                                    <a href="<?php echo e(route('promos.edit',['promo'=>$promo->id])); ?>" data-bs-toggle="tooltip" data-bs-original-title="Edit">
                                     <i class="fa fa-pencil"></i> Edit
                                     </a>
                                 </td>

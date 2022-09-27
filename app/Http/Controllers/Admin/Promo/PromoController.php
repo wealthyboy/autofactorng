@@ -86,7 +86,7 @@ class PromoController extends Controller
     public function update(Request $request, $id)
     {
 		$promo = Promo::find($id);
-        $promo->background_color = $request->background_color;
+        $promo->bgcolor = $request->background_color;
         $promo->is_active = $request->is_active ? 1: 0;
 		$promo->save();
         return redirect('admin/promos'); 
