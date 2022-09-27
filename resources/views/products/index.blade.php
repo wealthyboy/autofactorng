@@ -218,7 +218,7 @@
                      <a href="/product/category/product">
                         <div class="card-image position-relative border-radius-lg cursor-pointer">
                            <div class="blur-shadow-image">
-                              <img class="img border-radius-lg" width="250" height="250" src="https://autofactor.ng/images/products/m/ATlkPupEBI6E9wbYABIrzYPPJ4DNG33xpddTGGos.png">
+                              <img class="img border-radius-lg img-fluid"  src="https://autofactor.ng/images/products/zsHivMkPGIdli7Psb9GIV2HlgahVNEcobWblm7Ec.png">
                            </div>
                         </div>
                      </a>

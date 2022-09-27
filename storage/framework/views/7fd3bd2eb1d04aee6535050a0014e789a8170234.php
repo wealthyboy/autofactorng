@@ -1,8 +1,7 @@
-@extends('admin.layouts.app')
-@section('content')
-<form action="{{ route('products.update',['product'=>$product->id])  }}" class="" method="post" data-method="POST" enctype="multipart/form-data" id="form-product">
-   @method('PATCH') 
-   @csrf
+<?php $__env->startSection('content'); ?>
+<form action="<?php echo e(route('products.update',['product'=>$product->id])); ?>" class="" method="post" data-method="POST" enctype="multipart/form-data" id="form-product">
+   <?php echo method_field('PATCH'); ?> 
+   <?php echo csrf_field(); ?>
 
    <div class="row">
       <div class="col-md-7">
@@ -23,7 +22,7 @@
                            type="text" 
                            class="form-control"                                     
                            name="product_name"
-                           value="{{ isset($product) ? $product->product_name : old('product_name') }}"
+                           value="<?php echo e(isset($product) ? $product->product_name : old('product_name')); ?>"
                            >
                      </div>
                   </div>
@@ -32,13 +31,13 @@
                      <label class="form-label mt-4 ms-0"> </label>
                         <select class="form-control" name="brand_id" id="">
                             <option  value="">--Brand--</option>
-                             @foreach($brands as $brand) 
-                                 @if( $product->brand_id == $brand->id)
-                                    <option value="{{ $brand->id }}" selected> {{ $brand->name }} </option>
-                                    @else
-                                    <option value="{{ $brand->id }}"> {{ $brand->name }} </option>
-                                 @endif
-                              @endforeach
+                             <?php $__currentLoopData = $brands; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
+                                 <?php if( $product->brand_id == $brand->id): ?>
+                                    <option value="<?php echo e($brand->id); ?>" selected> <?php echo e($brand->name); ?> </option>
+                                    <?php else: ?>
+                                    <option value="<?php echo e($brand->id); ?>"> <?php echo e($brand->name); ?> </option>
+                                 <?php endif; ?>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                      </div>
                   </div>
@@ -55,7 +54,7 @@
                            class="form-control"                                     
                            name="price"
                            required
-                           value="{{ isset($product) ? $product->price : old('price') }}"
+                           value="<?php echo e(isset($product) ? $product->price : old('price')); ?>"
 
 
                            >
@@ -69,20 +68,20 @@
                            type="number" 
                            class="form-control"                                     
                            name="sale_price"
-                           value="{{ isset($product) ? $product->sale_price : old('sale_price') }}"
+                           value="<?php echo e(isset($product) ? $product->sale_price : old('sale_price')); ?>"
                         >
                      </div>
                   </div>
                   <div class="col-sm-6 col-12 mt-3">
                   <div class="input-group input-group-outline">
                     <label class="form-label">Sales Start  Date</label>
-                      <input name="sale_price_starts" value="{{ $product->sale_price_starts  }}" class="form-control datetimepicker" type="text" data-input>
+                      <input name="sale_price_starts" value="<?php echo e($product->sale_price_starts); ?>" class="form-control datetimepicker" type="text" data-input>
                     </div>
                   </div>
                   <div class="col-sm-6 col-12 mt-3">
                     <div class="input-group input-group-outline">
                       <label class="form-label">Sales End  Date</label>
-                      <input name="sale_price_ends"  value="{{ $product->sale_price_ends  }}" class="form-control datetimepicker" type="text" data-input>
+                      <input name="sale_price_ends"  value="<?php echo e($product->sale_price_ends); ?>" class="form-control datetimepicker" type="text" data-input>
                     </div>
                   </div>
               </div>
@@ -107,9 +106,9 @@
                      <label class="form-label mt-4 ms-0"> </label>
                         <select class="form-control" name="amphere" id="">
                             <option  value="">--Battery Amphere--</option>
-                            @foreach($amps as $amp)
-                                <option {{ $product->amphere == $amp ? 'selected' : '' }} class="" value="{{ $amp }}" >{{ $amp  }} </option>
-                            @endforeach
+                            <?php $__currentLoopData = $amps; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $amp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option <?php echo e($product->amphere == $amp ? 'selected' : ''); ?> class="" value="<?php echo e($amp); ?>" ><?php echo e($amp); ?> </option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </select>
                      </div>
                   </div>
@@ -125,7 +124,7 @@
                            type="number" 
                            class="form-control"                                     
                            name="radius"
-                           value="{{ isset($product) ? $product->radius : old('product_radius') }}"
+                           value="<?php echo e(isset($product) ? $product->radius : old('product_radius')); ?>"
 
                         >
                      </div>
@@ -138,7 +137,7 @@
                            type="number" 
                            class="form-control"                                     
                            name="width"
-                           value="{{ isset($product) ? $product->width : old('width') }}"
+                           value="<?php echo e(isset($product) ? $product->width : old('width')); ?>"
                         >
                      </div>
                   </div>
@@ -150,7 +149,7 @@
                            type="number" 
                            class="form-control"                                     
                            name="height"
-                           value="{{ isset($product) ? $product->height : old('height') }}"
+                           value="<?php echo e(isset($product) ? $product->height : old('height')); ?>"
                         >
                      </div>
                   </div>
@@ -163,7 +162,7 @@
                         <label class="form-label"> Meta Title</label>
                         <input type="text" class="form-control"                                     
                            name="meta_title"
-                           value="{{ isset($product) ? $product->meta_title : old('meta_title') }}"
+                           value="<?php echo e(isset($product) ? $product->title : old('meta_title')); ?>"
                         >
                      </div>
                   </div>
@@ -176,7 +175,7 @@
                            type="text" 
                            class="form-control" 
                            name="keywords"
-                           value="{{ isset($product) ? $product->keywords : old('keywords') }}"
+                           value="<?php echo e(isset($product) ? $product->keywords : old('keywords')); ?>"
                         >
 
                         <input type="hidden" class="images" name="images">
@@ -191,7 +190,7 @@
                         <textarea type="text" class="form-control"                                     
                            name="meta_description"
                            rows="8"
-                           >{{ isset($product) ? $product->meta_description : old('meta_description') }}</textarea>
+                           ><?php echo e(isset($product) ? $product->meta_description : old('meta_description')); ?></textarea>
                      </div>
                   </div>
                </div>
@@ -204,7 +203,7 @@
                         <textarea type="text" class="form-control"                                     
                            name="description"
                            rows="8"
-                           >{{ isset($product) ? $product->description : old('description') }}</textarea>
+                           ><?php echo e(isset($product) ? $product->description : old('description')); ?></textarea>
                      </div>
                   </div>
                </div>
@@ -219,7 +218,8 @@
                            rows="8"
                            id="phy_description"
                            >
-                           {{ $product->phy_desc }}
+                           <?php echo e($product->phy_desc); ?>
+
                         </textarea>
                      </div>
                   </div>
@@ -229,46 +229,46 @@
                <div class="col-12 my-3">
                   <div id="j-drop" class="j-activate j-drop">
                   <input accept="image/*"   onchange="getFile(this,'images[]','Image')" class="upload_input" data-msg="Upload  your image" type="file"  name="img"  />
-                     <div   class=" upload-text {{ $product->images->count() ||  $product->image ? 'hide' : ''}}"> 
+                     <div   class=" upload-text <?php echo e($product->images->count() ||  $product->image ? 'hide' : ''); ?>"> 
                         <a   class="j-activate" href="#">
                            <img class="" src="/images/utils/upload_icon.png">
                            <b>Click on anywhere to upload image</b> 
                         </a>
                      </div>
                      <div id="j-details"  class="j-details">
-                        @if($product->images->count())
-                              @foreach($product->images as $image)
-                              <div id="{{ $image->id }}" class="j-complete">
+                        <?php if($product->images->count()): ?>
+                              <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <div id="<?php echo e($image->id); ?>" class="j-complete">
                                  <div class="j-preview">
-                                    <img class="img-thumnail" src="{{ $image->image }}">
+                                    <img class="img-thumnail" src="<?php echo e($image->image); ?>">
                                     <div id="remove_image" class="remove_image remove-image">
-                                          <a class="remove-image"  data-id="{{ $image->id }}" data-randid="{{ $image->id }}" data-model="Image" data-type="complete"  data-url="{{ $image->image }}" href="#">Remove</a>
+                                          <a class="remove-image"  data-id="<?php echo e($image->id); ?>" data-randid="<?php echo e($image->id); ?>" data-model="Image" data-type="complete"  data-url="<?php echo e($image->image); ?>" href="#">Remove</a>
                                     </div>
 
                                  </div>
                               </div>
 
-                              @endforeach
-                        @endif
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php endif; ?>
                      </div>
                   </div> 
                </div>
 
-               @include('admin._partials.is_featured', ['model' =>  $product])
+               <?php echo $__env->make('admin._partials.is_featured', ['model' =>  $product], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
             
                <hr class="horizontal dark">
                
 
                <div class="form-check form-switch">
-                  <input class="form-check-input"  name="condition_is_present" value="1" {{  $product->condition_is_present ? 'checked' : ''}} type="checkbox" id="heavy_item">
+                  <input class="form-check-input"  name="condition_is_present" value="1" <?php echo e($product->condition_is_present ? 'checked' : ''); ?> type="checkbox" id="heavy_item">
                   <label class="form-check-label" for="heavy_item">Heavy/Large Item</label>
                </div>
 
                
 
-               @foreach($product->heavy_item_lagos as $key => $heavy_item)
-                  <div  id="row-{{ $heavy_item->id }}" class="row large-items dup-lagos my-3 ">
+               <?php $__currentLoopData = $product->heavy_item_lagos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $heavy_item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <div  id="row-<?php echo e($heavy_item->id); ?>" class="row large-items dup-lagos my-3 ">
                   <h6 class="my-3"> Lagos</h6>
 
                      <div class="col-sm-3">
@@ -283,8 +283,8 @@
                         <div class="input-group input-group-outline">
                            <label class="form-label"> </label>
                            <select name="condition[lagos][condition][]" id="" class="form-control">
-                              <option {{ $heavy_item->condition == '>' ? 'selected' : null }} value=">">greater than</option>
-                              <option {{ $heavy_item->condition == '=' ? 'selected' : null }} value="=">Equal to</option>
+                              <option <?php echo e($heavy_item->condition == '>' ? 'selected' : null); ?> value=">">greater than</option>
+                              <option <?php echo e($heavy_item->condition == '=' ? 'selected' : null); ?> value="=">Equal to</option>
                            </select>
                         </div>
                      </div>
@@ -292,44 +292,44 @@
                         <div class="input-group input-group-outline">
                            <label class="form-label"> </label>
                            <select name="condition[lagos][tag_value][]" id="" class="form-control">
-                              <option {{ $heavy_item->tag_value == '1' ? 'selected' : null }} value="1">1</option>
-                              <option {{ $heavy_item->tag_value == '2' ? 'selected' : null }} value="2">2</option>
-                              <option {{ $heavy_item->tag_value == '3' ? 'selected' : null }} value="3">3</option>
-                              <option {{ $heavy_item->tag_value == '4' ? 'selected' : null }} value="4">4</option>
-                              <option {{ $heavy_item->tag_value == '5' ? 'selected' : null }} value="5">5</option>
+                              <option <?php echo e($heavy_item->tag_value == '1' ? 'selected' : null); ?> value="1">1</option>
+                              <option <?php echo e($heavy_item->tag_value == '2' ? 'selected' : null); ?> value="2">2</option>
+                              <option <?php echo e($heavy_item->tag_value == '3' ? 'selected' : null); ?> value="3">3</option>
+                              <option <?php echo e($heavy_item->tag_value == '4' ? 'selected' : null); ?> value="4">4</option>
+                              <option <?php echo e($heavy_item->tag_value == '5' ? 'selected' : null); ?> value="5">5</option>
                            </select>
                         </div>
                      </div>
                      <div class="col-sm-3">
                         <div class="input-group input-group-outline">
                            <label class="form-label"></label>
-                           <input type="text" class="form-control" value="{{ $heavy_item->price }}" placeholder="Price" name="condition[lagos][price][]">
+                           <input type="text" class="form-control" value="<?php echo e($heavy_item->price); ?>" placeholder="Price" name="condition[lagos][price][]">
                         </div>
                      </div>
-                     @if($key != 0)
-                        <div class="col-sm-1"><button data-id="{{  $heavy_item->id }}" onclick="$('#row-{{ $heavy_item->id }}').remove();" class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button"><i class="fa fa-trash" aria-hidden="true"></i> </button></div>
-                     @endif
+                     <?php if($key != 0): ?>
+                        <div class="col-sm-1"><button data-id="<?php echo e($heavy_item->id); ?>" onclick="$('#row-<?php echo e($heavy_item->id); ?>').remove();" class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button"><i class="fa fa-trash" aria-hidden="true"></i> </button></div>
+                     <?php endif; ?>
                   </div>
-               @endforeach
+               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                <div class="row large-items  d-none dup-lagos"></div>
 
-               <div class="row button-lagos large-items my-3  {{  $product->condition_is_present ? '' : 'd-none' }}">
+               <div class="row button-lagos large-items my-3  <?php echo e($product->condition_is_present ? '' : 'd-none'); ?>">
                   <div class=" d-flex justify-content-end">
                      <button onclick="addRowLagos();" id="add-more-lagos" type="button" class="btn btn-outline-primary btn-sm mb-0">+Add more</button>
                   </div>
                </div>
 
-               @foreach($product->heavy_item_outside_lagos as $key => $heavy_item)
+               <?php $__currentLoopData = $product->heavy_item_outside_lagos; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $heavy_item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                  <div  id="out_row-{{  $heavy_item->id }}" class="row large-items dup-out-lagos my-3 ">
+                  <div  id="out_row-<?php echo e($heavy_item->id); ?>" class="row large-items dup-out-lagos my-3 ">
                   <h6 class="my-3">Outside Lagos</h6>
 
                      <div class="col-sm-3">
                         <div class="input-group input-group-outline">
                            <label class="form-label"> </label> 
                            <select name="condition[out_side_lagos][tag][]" id="" class="form-control">
-                              <option value="quantity">Quantity {{  $heavy_item->quantity }}</option>
+                              <option value="quantity">Quantity <?php echo e($heavy_item->quantity); ?></option>
                            </select>
                         </div>
                      </div>
@@ -337,8 +337,8 @@
                         <div class="input-group input-group-outline">
                            <label class="form-label"> </label>
                            <select name="condition[out_side_lagos][condition][]" id="" class="form-control">
-                              <option {{ $heavy_item->condition == '>' ? 'selected' : null }} value=">">greater than</option>
-                              <option {{ $heavy_item->condition == '=' ? 'selected' : null }} value="=">Equal to</option>
+                              <option <?php echo e($heavy_item->condition == '>' ? 'selected' : null); ?> value=">">greater than</option>
+                              <option <?php echo e($heavy_item->condition == '=' ? 'selected' : null); ?> value="=">Equal to</option>
                            </select>
                         </div>
                      </div>
@@ -346,32 +346,32 @@
                         <div class="input-group input-group-outline">
                            <label class="form-label"> </label>
                            <select name="condition[out_side_lagos][tag_value][]" id="" class="form-control">
-                              <option {{ $heavy_item->tag_value == '1' ? 'selected' : null }} value="1">1</option>
-                              <option {{ $heavy_item->tag_value == '2' ? 'selected' : null }} value="2">2</option>
-                              <option {{ $heavy_item->tag_value == '3' ? 'selected' : null }} value="3">3</option>
-                              <option {{ $heavy_item->tag_value == '4' ? 'selected' : null }} value="4">4</option>
-                              <option {{ $heavy_item->tag_value == '5' ? 'selected' : null }} value="5">5</option>
+                              <option <?php echo e($heavy_item->tag_value == '1' ? 'selected' : null); ?> value="1">1</option>
+                              <option <?php echo e($heavy_item->tag_value == '2' ? 'selected' : null); ?> value="2">2</option>
+                              <option <?php echo e($heavy_item->tag_value == '3' ? 'selected' : null); ?> value="3">3</option>
+                              <option <?php echo e($heavy_item->tag_value == '4' ? 'selected' : null); ?> value="4">4</option>
+                              <option <?php echo e($heavy_item->tag_value == '5' ? 'selected' : null); ?> value="5">5</option>
                            </select>
                         </div>
                      </div>
                      <div class="col-sm-3">
                         <div class="input-group input-group-outline">
                            <label class="form-label"></label>
-                           <input type="text" class="form-control" value="{{ $heavy_item->price }}" placeholder="Price" name="condition[out_side_lagos][price][]">
+                           <input type="text" class="form-control" value="<?php echo e($heavy_item->price); ?>" placeholder="Price" name="condition[out_side_lagos][price][]">
                         </div>
                      </div>
-                     @if($key != 0)
+                     <?php if($key != 0): ?>
                      <div class="col-sm-1">
-                        <button data-id="{{  $heavy_item->id }}" onclick="$('#out_row-{{  $heavy_item->id }}').remove();" class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+                        <button data-id="<?php echo e($heavy_item->id); ?>" onclick="$('#out_row-<?php echo e($heavy_item->id); ?>').remove();" class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button"><i class="fa fa-trash" aria-hidden="true"></i> </button>
                      </div>
-                     @endif
+                     <?php endif; ?>
                   </div>
-               @endforeach
+               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                <div class="row large-items  d-none dup-out-lagos"></div>
 
       
-               <div class="row button-lagos large-items my-3   {{  $product->condition_is_present ? '' : 'd-none' }}">
+               <div class="row button-lagos large-items my-3   <?php echo e($product->condition_is_present ? '' : 'd-none'); ?>">
                   <div class=" d-flex justify-content-end">
                      <button onclick="addRowOutSideLagos();" id="add-more-out-sidelagos" type="button" class="btn btn-outline-primary btn-sm mb-0">+Add more</button>
                   </div>
@@ -404,21 +404,21 @@
                      
                      <div class="row">
                         <div class="">
-                            @foreach($attributes as $attribute)
+                            <?php $__currentLoopData = $attributes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attribute): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                               <div class="accordion" id="accordionRental">
                                  <div class="accordion-item mb-3">
-                                    <h5 class="accordion-header" id="headingOne{{ $attribute->id }}">
-                                    <button class="accordion-button border-bottom font-weight-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne{{ $attribute->id }}" aria-expanded="false" aria-controls="collapseOne">
+                                    <h5 class="accordion-header" id="headingOne<?php echo e($attribute->id); ?>">
+                                    <button class="accordion-button border-bottom font-weight-bold collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<?php echo e($attribute->id); ?>" aria-expanded="false" aria-controls="collapseOne">
                                        <div class=" form-check px-0 ">
-                                          <label  class="custom-control-label" for="{{ $attribute->name }}-{{ $attribute->id }}">
+                                          <label  class="custom-control-label" for="<?php echo e($attribute->name); ?>-<?php echo e($attribute->id); ?>">
                                              <input
-                                              {{ $helper->check($product->attributes, $attribute->id) }} 
+                                              <?php echo e($helper->check($product->attributes, $attribute->id)); ?> 
 
-                                               data-name="{{ $attribute->name }}"
-                                               data-slug="{{ $attribute->slug }}" 
-                                               class="form-check-input parent-attr" value="{{ $attribute->id }}" type="checkbox" id="{{ $attribute->name }}-{{ $attribute->id }}" name="attribute_id[]" >
-                                                <span role="button">{{ $attribute->name }}</span> 
-                                                <a href="{{ route('attributes.edit',['attribute'=>$attribute->id]) }}">
+                                               data-name="<?php echo e($attribute->name); ?>"
+                                               data-slug="<?php echo e($attribute->slug); ?>" 
+                                               class="form-check-input parent-attr" value="<?php echo e($attribute->id); ?>" type="checkbox" id="<?php echo e($attribute->name); ?>-<?php echo e($attribute->id); ?>" name="attribute_id[]" >
+                                                <span role="button"><?php echo e($attribute->name); ?></span> 
+                                                <a href="<?php echo e(route('attributes.edit',['attribute'=>$attribute->id])); ?>">
                                                 <i class="fa fa-pencil"></i> Edit</a>
                                           </label>
                                        </div>
@@ -426,17 +426,17 @@
                                        <i class="collapse-open fa fa-minus text-xs pt-1 position-absolute end-0 me-3" aria-hidden="true"></i>
                                     </button>
                                     </h5>
-                                    <div id="collapseOne{{ $attribute->id }}" class="accordion-collapse collapse" aria-labelledby="headingOne{{ $attribute->id }}" data-bs-parent="#accordionRental" style="">
+                                    <div id="collapseOne<?php echo e($attribute->id); ?>" class="accordion-collapse collapse" aria-labelledby="headingOne<?php echo e($attribute->id); ?>" data-bs-parent="#accordionRental" style="">
                                        <div class="accordion-body text-sm opacity-8">
-                                          <div class="parent" value="{{ $attribute->id }}">
+                                          <div class="parent" value="<?php echo e($attribute->id); ?>">
                                               
-                                            @include('includes.edit_children',[ 'collections' => $product->attributes, 'obj'=>$attribute,'space'=>'&nbsp;&nbsp;','model' => 'attributes','url' => 'attribute','year' => true, 'name' => 'attribute_id', 'route' => 'attributes'])
+                                            <?php echo $__env->make('includes.edit_children',[ 'collections' => $product->attributes, 'obj'=>$attribute,'space'=>'&nbsp;&nbsp;','model' => 'attributes','url' => 'attribute','year' => true, 'name' => 'attribute_id', 'route' => 'attributes'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                           </div>
                                        </div>
                                     </div>
                                  </div>
                               </div>
-                           @endforeach  
+                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
 
                         </div>
                      </div>
@@ -461,40 +461,40 @@
                <div class="categories fw-bold  text-sm text-danger px-4 "></div>
 
                <div class="well well-sm pb-5" style="height: 250px; background-color: #fff; color: black; overflow: auto;">
-                @foreach($categories as $category)
-                  <div class="parent" value="{{ $category->id }}">
+                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <div class="parent" value="<?php echo e($category->id); ?>">
                       
                       <div class="form-check ">
                          
-                          <label  class="custom-control-label" for="{{ $category->name }}-{{ $category->id }}">
+                          <label  class="custom-control-label" for="<?php echo e($category->name); ?>-<?php echo e($category->id); ?>">
                               <input  
-                                 class="form-check-input {{ $category->name == 'Spare Parts' || $category->name == 'Servicing Parts'  ? 'no-validation' : '' }}" 
-                                 {{ $helper->check($product->categories, $category->id) }} 
-                                 value="{{ $category->id }}" 
+                                 class="form-check-input <?php echo e($category->name == 'Spare Parts' || $category->name == 'Servicing Parts'  ? 'no-validation' : ''); ?>" 
+                                 <?php echo e($helper->check($product->categories, $category->id)); ?> 
+                                 value="<?php echo e($category->id); ?>" 
                                  type="checkbox" 
-                                 id="{{ $category->name }}-{{ $category->id }}"
+                                 id="<?php echo e($category->name); ?>-<?php echo e($category->id); ?>"
                                  name="category_id[]"
                               >
-                              <span role="button">{{ $category->name }}</span> 
-                                <a href="{{ route('category.edit',['category'=>$category->id]) }}">
+                              <span role="button"><?php echo e($category->name); ?></span> 
+                                <a href="<?php echo e(route('category.edit',['category'=>$category->id])); ?>">
                                 <i class="fa fa-pencil"></i> Edit</a>
                           </label>
                       </div> 
-                      @include('includes.edit_children',[ 'collections' => $product->categories, 'obj'=>$category,'space'=>'&nbsp;&nbsp;','model' => 'category','url' => 'category','name' => 'category_id', 'route' => 'category'])
+                      <?php echo $__env->make('includes.edit_children',[ 'collections' => $product->categories, 'obj'=>$category,'space'=>'&nbsp;&nbsp;','model' => 'category','url' => 'category','name' => 'category_id', 'route' => 'category'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                   </div>
-                  @endforeach  
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>  
                </div>
             </div>
          </div>
       </div>
    </div>
 </form>
-@endsection
-@section('page-scripts')
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-<script src="{{ asset('backend/products.js') }}"></script>
-@stop
-@section('inline-scripts')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page-scripts'); ?>
+<script src="<?php echo e(asset('ckeditor/ckeditor.js')); ?>"></script>
+<script src="<?php echo e(asset('backend/products.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('inline-scripts'); ?>
    
 
    if (document.getElementById('editor')) {
@@ -508,4 +508,5 @@
          allowInput: true
       }); // flatpickr
    }
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/admin/products/edit.blade.php ENDPATH**/ ?>
