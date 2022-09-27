@@ -65,10 +65,9 @@
                     <div class="header-icons d-flex justify-content-evenly">
                         <div class="dropdown">
                             <button class="  mr-5 nav-btn mb-0 pb-0" type="button" >
+                                
                                 <span class="">
-                                   
-                                <img   src="/images/utils/signin.svg" alt="" srcset="">
-                                   
+                                    <img   src="/images/utils/signin.svg" alt="" srcset="">
                                     <div  class="text-xs">Sign in</div>
                                 </span>
                             </button>
@@ -76,7 +75,7 @@
                          </div>
                         <a href="#">
                              <span class="cart-count badge-circle">3</span>
-                            <img  data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/az-cart-nav.svg" alt="" srcset="">
+                             <img  src="/images/utils/az-cart-nav.svg" alt="" srcset="">
                             <div  class="text-xs">Cart</div>
                         </a>
                     </div>

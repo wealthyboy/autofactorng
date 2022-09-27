@@ -21,17 +21,9 @@
         <div class="product-slider-container mb-auto">
             <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                 <div class="product-item">
-                    <img class="product-single-image" src="https://autofactor.ng/images/products/ATlkPupEBI6E9wbYABIrzYPPJ4DNG33xpddTGGos.png" data-zoom-image="https://autofactor.ng/images/products/ATlkPupEBI6E9wbYABIrzYPPJ4DNG33xpddTGGos.png"  alt="product" />
+                    <img class="product-single-image" src="https://autofactor.ng/images/products/lm9BpEBOsRulb86ATdlrDOi5JzkInmOp5RTYBMZ8.png" data-zoom-image="https://autofactor.ng/images/products/lm9BpEBOsRulb86ATdlrDOi5JzkInmOp5RTYBMZ8.png"  alt="product" />
                 </div>
-                <div class="product-item">
-                    <img class="product-single-image" src="https://autofactor.ng/images/products/ATlkPupEBI6E9wbYABIrzYPPJ4DNG33xpddTGGos.png" data-zoom-image="https://autofactor.ng/images/products/ATlkPupEBI6E9wbYABIrzYPPJ4DNG33xpddTGGos.png"  alt="product" />
-                </div>
-                <div class="product-item">
-                    <img class="product-single-image" src="https://autofactor.ng/images/products/ATlkPupEBI6E9wbYABIrzYPPJ4DNG33xpddTGGos.png" data-zoom-image="https://autofactor.ng/images/products/ATlkPupEBI6E9wbYABIrzYPPJ4DNG33xpddTGGos.png"  alt="product" />
-                </div>
-                <div class="product-item">
-                    <img class="product-single-image" src="https://autofactor.ng/images/products/ATlkPupEBI6E9wbYABIrzYPPJ4DNG33xpddTGGos.png" data-zoom-image="https://autofactor.ng/images/products/ATlkPupEBI6E9wbYABIrzYPPJ4DNG33xpddTGGos.png"  alt="product" />
-                </div>
+                
             </div>
             <!-- End .product-single-carousel -->
             <!-- <span class="prod-full-screen">
@@ -39,24 +31,18 @@
             </span> -->
         </div>
 
+
+
         <div class="prod-thumbnail thumb-vertical owl-dots d-lg-block order-lg-first" id='carousel-custom-dots'>
             <div class="owl-dot">
-                <img src="https://autofactor.ng/images/tn/products/ATlkPupEBI6E9wbYABIrzYPPJ4DNG33xpddTGGos.png" width="110" height="110" alt="product-thumbnail" />
+                <img src="https://autofactor.ng/images/products/lm9BpEBOsRulb86ATdlrDOi5JzkInmOp5RTYBMZ8.png" width="110" height="110" alt="product-thumbnail" />
             </div>
-            <div class="owl-dot">
-                <img src="https://autofactor.ng/images/tn/products/ATlkPupEBI6E9wbYABIrzYPPJ4DNG33xpddTGGos.png" width="110" height="110" alt="product-thumbnail" />
-            </div>
-            <div class="owl-dot">
-                <img src="https://autofactor.ng/images/tn/products/ATlkPupEBI6E9wbYABIrzYPPJ4DNG33xpddTGGos.png" width="110" height="110" alt="product-thumbnail" />
-            </div>
-            <div class="owl-dot">
-                <img src="https://autofactor.ng/images/tn/products/ATlkPupEBI6E9wbYABIrzYPPJ4DNG33xpddTGGos.png" width="110" height="110" alt="product-thumbnail" />
-            </div>
+            
         </div>
     </div>
       <div class="col-md-6">
         <div class="product-single-details mb-1">
-            <h1 class="product-title">Men Black Sports Shoes</h1>
+            <h1 class="product-title">Toyota Front ABS Wheel Speed Sensor (2ABS0476) LH&RH (Pair)</h1>
             <div class="ratings-container">
                <div class="product-ratings">
                   <span class="ratings" style="width:60%"></span>
@@ -72,6 +58,7 @@
                 <div class="price-box">
                     <span class="old-price">$1,999.00</span>
                     <span class="new-price">$1,699.00</span>
+                    
                 </div>
                 <div class="input-group">
                     <span class="input-group-btn input-group-prepend">
@@ -86,8 +73,7 @@
             </div>
            
             <!-- End .price-box -->
-            
-           
+
          </div>
         <div class="add-to-cart">
             <button type="button" class="btn bg-gradient-dark mb-0 ms-lg-3 ms-sm-2 mb-sm-0 mb-2 me-auto w-100 d-block">Add To Cart</button>
@@ -125,7 +111,7 @@
             </div>
         </div>
 
-        <?php echo $__env->make('_partials.recently_viewed_products',['name' => 'Related Products'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>  
+        <?php echo $__env->make('_partials.recently_viewed_products',['name' => 'RELATED PRODUCTS'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>  
 
     </div>
 </div>
@@ -135,7 +121,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="title">
-            <h2 class="">Reviews</h2>
+            <h2 class="">REVIEWS</h2>
             <div class="underline mb-5"></div>
         </div>
     </div>
@@ -144,5 +130,20 @@
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('inline-scripts'); ?>
+(function ($) {
+    "use strict";
+
+    jQuery(function () {
+        $(".product-single-carousel").owlCarousel({
+            nav: 0,
+            dotsContainer: "#carousel-custom-dots",
+            autoplay: !1,
+           
+        });
+
+        
+    });
+})(jQuery);
+
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/products/show.blade.php ENDPATH**/ ?>

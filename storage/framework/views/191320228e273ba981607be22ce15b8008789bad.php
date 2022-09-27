@@ -4,9 +4,7 @@
       <div class="row    align-items-start">
          <div class="col-12 col-md-8 rounded-top">
             <div class="col-md-12 card m7 mb-2 border-gray mb-2">
-               <div class="border-bottom pt-2 px-3">
-                  <h4 class="font-weight-bolder">SHIPPING ADDRESS</h4>
-               </div>
+               
                <div id="stored_address" class="billing-fields__field-wrapper p-3">
                   <div class="row cart-rows raised bg--light mb-3 pt-4 pb-4 border border-gray">
                      <div class="col-md-3 col-6">

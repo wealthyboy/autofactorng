@@ -69,14 +69,22 @@ Route::group(['prefix' => 'admin'], function(){
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/plans', [App\Http\Controllers\Plans\PlansController::class, 'index'])->name('plans');
-Route::get('/subscribe', [App\Http\Controllers\Subscribe\SubscribeController::class, 'index'])->name('subscribe');
-Route::get('/checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'index'])->name('checkout');
-Route::get('/buy-now-pay-later', [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index'])->name('buy');
+Route::get('plans', [App\Http\Controllers\Plans\PlansController::class, 'index'])->name('plans');
+Route::get('subscribe', [App\Http\Controllers\Subscribe\SubscribeController::class, 'index'])->name('subscribe');
+Route::get('checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'index'])->name('checkout');
+Route::get('buy-now-pay-later', [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index'])->name('buy');
 Route::get('products/{category}', 'Products\ProductsController@index');
 Route::get('product/{category}/{product}', 'Products\ProductsController@show');
 Route::get('pages/{information}', 'Pages\PagesController@show');
-Route::get('/cart', 'Cart\CartController@index');
+Route::get('cart', 'Cart\CartController@index');
+Route::get('account', 'Account\AccountController@index');
+Route::get('change/password', 'ChangePassword\ChangePasswordController@index');
+Route::get('orders', 'Order\OrderController@index');
+Route::get('wallet', 'Wallet\WalletController@index');
+Route::get('tracking', 'TranckOrder\TranckOrderController@index');
+
+
+
 
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');
 //Route::post('contact/store',     'Contact\ContactController@store');

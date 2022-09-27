@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\TranckOrder;
+namespace App\Http\Controllers\ChangePassword;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class TranckOrderController extends Controller
+class ChangePasswordController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class TranckOrderController extends Controller
      */
     public function index()
     {
-        return view('wallet.index');
+        return view('change_password.index');
     }
-
+    
 }

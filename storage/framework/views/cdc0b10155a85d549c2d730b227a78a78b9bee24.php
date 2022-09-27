@@ -28,7 +28,7 @@
             <div class="accordion-item mb-3">
                <h5 class="accordion-header " id="headingOne">
                   <button class="accordion-button border-bottom font-weight-bold  " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Guide
+                  Brand
                   <i class="collapse-close fa fa-plus text-xs pt-1 position-absolute end-0"></i>
                   <i class="collapse-open fa fa-minus text-xs pt-1 position-absolute end-0"></i>
                   </button>
@@ -52,7 +52,7 @@
             <div class="accordion-item mb-3">
                <h5 class="accordion-header " id="headingTwo">
                   <button class="accordion-button border-bottom font-weight-bold " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Know Us
+                  Price
                   <i class="collapse-close fa fa-plus text-xs pt-1 position-absolute end-0"></i>
                   <i class="collapse-open fa fa-minus text-xs pt-1 position-absolute end-0"></i>
                   </button>
@@ -60,13 +60,7 @@
                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionRental">
                   <div class="accordion-body text-sm opacity-8">
                      <ul class="links  list-unstyled">
-                        <li><a href="about.html">About </a></li>
-                        <li><a href="#">Our Guarantees</a></li>
-                        <li><a href="#">Terms And Conditions</a></li>
-                        <li><a href="#">Privacy policy</a></li>
-                        <li><a href="#">Return Policy</a></li>
-                        <li><a href="#">Intellectual Property Claims</a></li>
-                        <li><a href="#">Site Map</a></li>
+                        
                      </ul>
                   </div>
                </div>
@@ -74,11 +68,12 @@
          </div>
       </div>
       <div class="col-md-9 col-12">
-         <div class="bg-grey border ">
             <div class="row">
+            <div class="bg-grey border py-3">
+
                <div class="d-flex justify-content-between align-items-center p-0">
                   <div class=" d-none d-lg-block d-md-block d-xl-block">
-                     <h2 id=""  class="">SET YOUR VEHICLE</h2>
+                     <h4 id=""  class="">SET YOUR VEHICLE</h4>
                      <div class="">Get an exact fit for your vehicle.</div>
                   </div>
                   
@@ -132,7 +127,7 @@
                
             </div>
          </div>
-         <div class="col-12  d-none d-lg-block d-md-block d-xl-block">
+         <div class="col-12  d-none d-lg-block d-md-block d-xl-block py-3">
             <div class="product-sorting d-flex justify-content-between justify-content-center align-items-center">
                <div id="product-count">
                   1-12 of 277 Results
@@ -141,25 +136,38 @@
                   <div class="toolbox-right">
                      <div class="toolbox-item toolbox-show d-flex ">
                         <div class="toolbox-item toolbox-show d-flex justify-content-center align-items-center">
-                           <label>Show:</label>
-                           <div class="select-custom">
-                              <select name="count" class="form-control border">
-                                 <option data-testid="sort-by-option" value="featured">Featured</option>
-                                 <option data-testid="sort-by-option" value="price-asc">Price (low to high)</option>
-                                 <option data-testid="sort-by-option" value="price-desc">Price (high to low)</option>
-                                 <option data-testid="sort-by-option" value="recently-added-desc">Recently Added</option>
-                              </select>
+                           <label class="me-1">Sort by</label>
+                           <div class="col-8 mb-3">
+                              <div class="input-group input-group-outline ">
+                                 <select name="state_id" id="state_id" class="form-control required">
+                                    <option data-testid="sort-by-option" value="featured">Featured</option>
+                                    <option data-testid="sort-by-option" value="price-asc">Price (low to high)</option>
+                                    <option data-testid="sort-by-option" value="price-desc">Price (high to low)</option>
+                                    <option data-testid="sort-by-option" value="recently-added-desc">Recently Added</option>
+                                 </select>
+                                 <div class="arrow-svg"  aria-label="year arrow" >
+                                    <img src="/images/utils/img_295694.svg" alt="">
+                                 </div>
+                              </div>
                            </div>
+                           
                         </div>
                         
                         <div class="toolbox-item toolbox-show d-flex  justify-content-center align-items-center">
-                           <label>Items per Page:</label>
-                           <div class="select-custom">
-                              <select name="count" class="form-control border">
-                                 <option value="12">12</option>
-                                 <option value="24">24</option>
-                                 <option value="36">36</option>
-                              </select>
+                           <label class="me-1">Items per Page </label>
+                           
+
+                           <div class="col-5 mb-3">
+                              <div class="input-group input-group-outline ">
+                                 <select name="state_id" id="state_id" class="form-control required">
+                                    <option value="12">12</option>
+                                    <option value="24">24</option>
+                                    <option value="36">36</option>
+                                 </select>
+                                 <div class="arrow-svg"  aria-label="year arrow" >
+                                    <img src="/images/utils/img_295694.svg" alt="">
+                                 </div>
+                              </div>
                            </div>
                         </div>
 
@@ -217,6 +225,14 @@
                   </div>
                   <div class="col-md-4 my-auto ms-md-3 mt-md-auto">
                      <h5 class="text-dark cursor-pointer">Land Rover Engine Air Filter PHE500021</h5>
+                     <div class="ratings-container float-sm-right">
+                        <div class="product-ratings">
+                           <span class="ratings" style="width:0"></span>
+                           <!-- End .ratings -->
+                           <span class="tooltiptext tooltip-top">3.00</span>
+                        </div>
+                        <!-- End .product-ratings -->
+                     </div>
                      <p>
                         Part #550045202 SKU #1181299                        
                      </p>
