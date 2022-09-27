@@ -162,7 +162,7 @@
                         <label class="form-label"> Meta Title</label>
                         <input type="text" class="form-control"                                     
                            name="meta_title"
-                           value="<?php echo e(isset($product) ? $product->title : old('meta_title')); ?>"
+                           value="<?php echo e(isset($product) ? $product->meta_title : old('meta_title')); ?>"
                         >
                      </div>
                   </div>

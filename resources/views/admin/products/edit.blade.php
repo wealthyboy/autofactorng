@@ -162,8 +162,8 @@
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Meta Title</label>
                         <input type="text" class="form-control"                                     
-                           name="meta_title"
-                           value="{{ isset($product) ? $product->meta_title : old('meta_title') }}"
+                           name="title"
+                           value="{{ isset($product) ? $product->title : old('meta_title') }}"
                         >
                      </div>
                   </div>
