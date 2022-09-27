@@ -234,7 +234,7 @@
                         <div class="product-ratings">
                            <span class="ratings" style="width:0"></span>
                            <!-- End .ratings -->
-                           <span class="tooltiptext tooltip-top">3.00</span>
+                           <span class="tooltiptext tooltip-top"></span>
                         </div>
                         <!-- End .product-ratings -->
                      </div>
