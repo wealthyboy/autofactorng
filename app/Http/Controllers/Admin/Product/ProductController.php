@@ -159,6 +159,8 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->save();
 
+        $product->update($data);
+
 
         if (!empty($request->category_id)) {
             $product->categories()->sync($request->category_id);
