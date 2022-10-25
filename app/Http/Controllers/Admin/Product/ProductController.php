@@ -50,7 +50,7 @@ class ProductController extends Controller
         if (request()->filled('q')) {
             $value = request()->q;
             $products = Product::where('name', 'like', '%' . $value . '%')
-                ->latest()->paginate(100);
+                ->latest()->paginate(10);
             $products->appends(request()->query());
         }
 
