@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterUsersTableAddPhoneNumber extends Migration
+class AlterAttributeYearsTableAddAttributeYears extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class AlterUsersTableAddPhoneNumber extends Migration
      */
     public function up()
     {
-        // Schema::table('users', function (Blueprint $table) {
-        //     $table->rename('name', 'first_name');
-        //     $table->string('phone_number')->nullable();
-        // });
+        Schema::table('attribute_years', function (Blueprint $table) {
+            $table->integer('parent_id')->nullable();
+        });
     }
 
     /**
@@ -26,7 +25,7 @@ class AlterUsersTableAddPhoneNumber extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('attribute_years', function (Blueprint $table) {
             //
         });
     }
