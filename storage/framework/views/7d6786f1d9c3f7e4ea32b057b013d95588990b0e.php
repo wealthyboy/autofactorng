@@ -1,7 +1,4 @@
-
-
-
-<div class="row k">              
+<div class="row k">
     <div class="col-lg-4 col-sm-4">
         <div class="widget">
             <h4 class="widget-title text-white">Guide</h4>

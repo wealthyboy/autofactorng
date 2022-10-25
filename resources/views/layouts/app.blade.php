@@ -1,289 +1,373 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+   <title>Porto - Bootstrap eCommerce Template</title>
 
-    <title>{{ config('app.name', 'Autofactor') }}</title>
+   <meta name="keywords" content="HTML5 Template" />
+   <meta name="description" content="Porto - Bootstrap eCommerce Template">
+   <meta name="author" content="SW-THEMES">
 
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-    <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+   <!-- Favicon -->
+   <!-- <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.png"> -->
+   <!-- Main CSS File -->
+   <link rel="stylesheet" type="text/css" href="/vendor/fontawesome-free/css/all.min.css">
 
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-
-    <!-- CSS Files -->
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Include Choices CSS -->
-    <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
-    />
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+   <link rel="stylesheet" href="/css/app.css">
 </head>
+
 <body>
-    <div id="app">
-        <div class="container-fluid d-block d-sm-none">
-            <div class=" g-0 d-flex  justify-content-between align-items-center">
-                <div class="col-">
-                    <div class="menu">
-                        <button   data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0 p-0" role="button" >
-                            <span class="menu-open">
-                                <img  data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="" srcset="">
-                                <span class="text-xs">Menu</span>
-                            </span>
+   <div id="app" class="page-wrapper">
 
-                            <span class="menu-close d-none">
-                                <img  data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" alt="" srcset="">
-                                <span class="text-xs">Close</span>
-                            </span>
-                                
-                        </button>
-                    </div>
-                </div>
-                <div class="col-m">
-                    <div class="logo">
-                        <a class="d-block" href="/">
-                            <img src="/images/logo/autofactor_logo.png" alt="" srcset="">
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="col-">
-                    <div class="header-icons d-flex justify-content-evenly">
-                        <div class="dropdown">
-                            <button class="  mr-5 nav-btn mb-0 pb-0" type="button" >
-                                
-                                <span class="">
-                                    <img   src="/images/utils/signin.svg" alt="" srcset="">
-                                    <div  class="text-xs">Sign in</div>
-                                </span>
-                            </button>
-                            
-                         </div>
-                        <a href="#">
-                             <span class="cart-count badge-circle">3</span>
-                             <img  src="/images/utils/az-cart-nav.svg" alt="" srcset="">
-                            <div  class="text-xs">Cart</div>
-                        </a>
-                    </div>
-                </div>
-                
-            </div>
-            <div class="col-md-12">
-                <div class="input-group border">
-                    <button class="btn bg-white mb-0" type="button" id="button-addon1">
-                        <i class="bi bi-search"></i>
-                    </button>
-                    <input type="text" class="form-control search-input bg-white" placeholder="Find parts and products" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid d-none d-lg-block d-md-block d-xl-block">
-            <div class="row g-0 d-flex py-4 justify-content-center align-items-center">
-                <div class="col-md-4">
-                    <div class="logo d-flex">
-                        <a class="d-block" href="/">
-                            <img src="/images/logo/autofactor_logo.png" alt="" srcset="">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-6 text-left">
-                   
-                </div>
-                <div class="col-md-2">
-                    <div class="header-icons d-flex justify-content-between">
-                       <div class="dropdown  ms-7">
-                            <button class="mr-5 nav-btn mb-0 pb-0" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <span class="">
-                                    <img   src="/images/utils/signin.svg" alt="" srcset="">
-                                    <span class="ml-3">
-                                        <img  src="/images/utils/down-arrow.svg" alt="" srcset="">
-                                    </span>
-                                    <div class="text-xs me-3">Sign in</div>
-                                </span>
-                            </button>
-                            
-                        </div>
-                        <div class="me-3">
-                            <a class="my-3 position-relative" href="/cart">
-                                <span class="position-absolute top-2 start-100 translate-middle badge rounded-circle bg-danger border border-white small  px-2">
-                                    99
-                                    <span class="visually-hidden">unread messages</span>
-                                </span>
-                                <img  data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/az-cart-nav.svg" alt="" srcset="">
-                                <div class="text-xs">Cart</div>
-                                
-                            </a>
-                        </div>
-                    
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="nav d-none d-lg-block d-md-block d-xl-block">
-            <div class="container-fluid">
-                <div class="row nav-container  d-flex justify-content-center align-items-center pb-1">
-                    <div class="col-md-1">
-                        <div class="menu">
-                            <button   data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0" role="button" >
-                                <span class="menu-open">
-                                    <img  data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="" srcset="">
-                                    <div class="text-xs">Menu</div>
-                                </span>
 
-                                <span class="menu-close d-none">
-                                    <img  data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" alt="" srcset="">
-                                    <div class="text-xs">Close</div>
-                                </span>
-                                 
-                            </button>
-                        </div>
-                    </div>
+      <header class="header">
 
-                    <div class="col-md-2">
-                        <div class="text">
-                            <button class="nav-btn  w-100 mb-0">
-                                <div class="d-flex add-a-vehicle justify-content-evenly">
-                                    <div>
-                                        <img src="/images/utils/vehicle-new.svg" alt="">
-                                    </div>
-                                    <div>Add vehicle</div>
-                                    <div> 
-                                        <img src="/images/utils/header-arrow.svg" alt="">
-                                    </div>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="col-md-7">
-                        <div class="input-group">
-                            <button class="btn bg-white mb-0" type="button" id="button-addon1">
-                                <i class="bi bi-search"></i>
-                            </button>
-                            <input type="text" class="form-control search-input bg-white" placeholder="Find parts and products" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <div class="text">
-                            <a href="#" class="nav-btn  w-100 mb-0">
-                                <div class="d-flex add-a-vehicle justify-content-evenly">
-                                    <div class="ml-3">
-                                      <i class="bi bi-camera-reels-fill"></i>                                    </div>
-                                    <div>How to</div>
-                                    <div class="me-2"> 
-                                        <img src="/images/utils/header-arrow.svg" alt="">
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-           @include('_partials.nav_categories')
-            
-        </div>
-
-        <div data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="overlay d-none">
-            <div  data-bs-toggle="offcanvas" data-bs-target="#offcanvas" ></div>
-        </div>
-        
-       
-        <main class="py-3">
-            @yield('content')
-        </main>
-        
-        <div class="py-3 subscribe  text-white">
+         <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
             <div class="container">
-                <div class="row">
-                <div class="col-lg-6 text-start">
-                    <h4 class="text-white">Get tips & tricks</h4>
-                    <span class="mb-0">Subscribe to get the latest deals, promotions, and offerings.</span>
-                </div>
-                <div class="col-lg-5 ms-auto text-end my-auto">
-                    <div class="row g-0">
-                        <div class="col-lg-8 col-10 ">
-                            <div class="input-group input-group-outline">
-                            <label class="form-label">Your Email</label>
-                            <input class="form-control rounded-0 bg-white" placeholder="Enter your email" type="email" >
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-2 text-start ps-0">
-                            <button type="button" class="btn  bg-white rounded-0 bg-gradient-dark mb-0"><i class="bi bi-arrow-right"></i></button>
-                        </div>
-                    </div>
-                </div>
-                </div>
+               <div class="header-left col-lg-2 w-auto pl-0">
+                  <button class="mobile-menu-toggler text-primary mr-2" type="button">
+                     <i class="fas fa-bars"></i>
+                  </button>
+                  <a href="/" class="logo">
+                     <img src="https://autofactor.ng/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
+                  </a>
+               </div>
+               <!-- End .header-left -->
+
+               <div class="header-right w-lg-max">
+                  <div class="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0">
+                     <a href="#" class="search-toggle" role="button"><i class="icon-search-3"></i></a>
+                  </div>
+                  <!-- End .header-search -->
+
+
+
+                  <a href="/login" class="header-icon" title="login">
+                     <img src="/images/utils/signin.svg" alt="">
+                     <div class="text-sm">Signin</div>
+                  </a>
+
+
+                  <div class="dropdown cart-dropdown">
+                     <cart-side-bar></cart-side-bar>
+                  </div>
+                  <!-- End .dropdown -->
+               </div>
+               <!-- End .header-right -->
             </div>
-        </div>
-        <footer class="footer py-5 text-white font2">
-            <!-- -------   START PRE-FOOTER 4 - title & description and input    -------- -->
-            
+            <!-- End .container -->
+         </div>
+         <!-- End .header-middle -->
+
+         <div class="header-bottom sticky-header " data-sticky-options="{'mobile': false}">
+            <div class="a-main-nav w-100">
+               <div class="row g-0  d-flex ">
+                  <div class=" nav-container  d-flex justify-content-center align-items-center pb-1">
+                     <div class="col-md-1">
+                        <div class="menu">
+                           <button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0" role="button">
+                              <span class="menu-open">
+                                 <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="" srcset="">
+                                 <div class="">Menu</div>
+                              </span>
+
+                              <span class="menu-close d-none">
+                                 <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" alt="" srcset="">
+                                 <div class="text-xs">Close</div>
+                              </span>
+
+                           </button>
+                        </div>
+                     </div>
+
+                     <div class="col-md-2">
+                        <div class="text">
+                           <button class="nav-btn  w-100 mb-0">
+                              <div class="d-flex add-a-vehicle justify-content-evenly">
+                                 <div>
+                                    <img src="/images/utils/vehicle-new.svg" alt="">
+                                 </div>
+                                 <div>Add vehicle</div>
+                                 <div>
+                                    <img src="/images/utils/header-arrow.svg" alt="">
+                                 </div>
+                              </div>
+                           </button>
+                        </div>
+                     </div>
+
+                     <div class="col-md-7">
+                        <!-- <button class="btn bg-white mb-0" type="button" id="button-addon1">
+                              <i class="bi bi-search"></i>
+                           </button> -->
+                        <input type="text" class="w-100 search-input bg-white" placeholder="Find parts and products" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                     </div>
+
+                     <div class="col-md-2">
+                        <div class="text">
+                           <a href="#" class="nav-btn  w-100 mb-0">
+                              <div class="d-flex add-a-vehicle justify-content-evenly">
+                                 <div class="ml-3">
+                                    <i class="bi bi-camera-reels-fill"></i>
+                                 </div>
+                                 <div>How to</div>
+                                 <div class="me-2">
+                                    <img src="/images/utils/header-arrow.svg" alt="">
+                                 </div>
+                              </div>
+                           </a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               @include('_partials.nav_categories')
+            </div>
+            <!-- End .container -->
+         </div>
+         <!-- End .header-bottom -->
+      </header>
+      <!-- End .header -->
+
+      <main class="main">
+         @yield('content')
+      </main>
+
+      <!-- End .main -->
+
+      <footer class="footer bg-dark">
+         <div class="footer-middle">
             <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
             <div class="container">
-                <div class="footer-middle ">
-                    @include('layouts.footer.mobile_footer')
+               <div class="footer-middle ">
+                  @include('layouts.footer.mobile_footer')
 
-                    <div class=" d-none d-lg-block d-md-block d-xl-block">
-                       @include('layouts.footer.desktop_footer')
-                    </div>
-                </div><!-- End .footer-middle -->
-                
-                <div class="mobile-footer text-center  d-block d-sm-none">
-                    <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap">
-                        <a href="#" class="bi bi-facebook fa-2x text-white mr-2" target="_blank" title="Facebook"></a>
-                        <a href="#" class="bi bi-twitter  fa-2x text-white" target="_blank" title="Twitter"></a>
-                        <a href="#" class="bi bi-instagram  fa-2x text-white" target="_blank" title="Linkedin"></a>
-                    </div><!-- End .footer-bottom -->
-                   <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
-                </div>
-               
-                <div class="d-none d-lg-block d-md-block d-xl-block">
-                    <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap  ">
-                        <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
-                        <div class="social-icons py-3">
-                            <a href="#" class="bi bi-facebook text-white  me-4 fa-2x" target="_blank" title="Facebook"></a>
-                            <a href="#" class="bi bi-twitter  text-white me-4 fa-2x" target="_blank" title="Twitter"></a>
-                            <a href="#" class="bi bi-instagram  text-white me-4 fa-2x" target="_blank" title="Linkedin"></a>
-                        </div><!-- End .social-icons -->
-                    </div><!-- End .footer-bottom -->
-                </div>
-                
+                  <div class=" d-none d-lg-block d-md-block d-xl-block">
+                     @include('layouts.footer.desktop_footer')
+                  </div>
+               </div><!-- End .footer-middle -->
+
+               <div class="mobile-footer text-center  d-block d-sm-none">
+                  <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap">
+                     <a href="#" class="bi bi-facebook fa-2x text-white mr-2" target="_blank" title="Facebook"></a>
+                     <a href="#" class="bi bi-twitter  fa-2x text-white" target="_blank" title="Twitter"></a>
+                     <a href="#" class="bi bi-instagram  fa-2x text-white" target="_blank" title="Linkedin"></a>
+                  </div><!-- End .footer-bottom -->
+                  <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
+               </div>
+
+               <div class="d-none d-lg-block d-md-block d-xl-block">
+                  <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap  ">
+                     <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
+                     <div class="social-icons py-3">
+                        <a href="#" class="bi bi-facebook text-white  me-4 fa-2x" target="_blank" title="Facebook"></a>
+                        <a href="#" class="bi bi-twitter  text-white me-4 fa-2x" target="_blank" title="Twitter"></a>
+                        <a href="#" class="bi bi-instagram  text-white me-4 fa-2x" target="_blank" title="Linkedin"></a>
+                     </div><!-- End .social-icons -->
+                  </div><!-- End .footer-bottom -->
+               </div>
+
             </div><!-- End .container -->
-        </footer>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+         </div>
+         <!-- End .footer-middle -->
 
-    
+         <div class="container">
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-
-
-      @yield('page-scripts')    
-      <script type="text/javascript">
-        @yield('inline-scripts')
+         </div>
+         <!-- End .container -->
+      </footer>
+      <!-- End .footer -->
+   </div>
+   <!-- End .page-wrapper -->
 
 
-      </script>
+
+   <div class="mobile-menu-overlay"></div>
+   <!-- End .mobil-menu-overlay -->
+
+   <div class="mobile-menu-container">
+      <div class="mobile-menu-wrapper">
+         <span class="mobile-menu-close"><i class="fa fa-times"></i></span>
+         <nav class="mobile-nav">
+            <ul class="mobile-menu">
+               <li><a href="">Home</a></li>
+               <li>
+                  <a href="category.html">Categories</a>
+                  <ul>
+                     <li><a href="category.html">Full Width Banner</a></li>
+                     <li><a href="category-banner-boxed-slider.html">Boxed Slider Banner</a></li>
+                     <li><a href="category-banner-boxed-image.html">Boxed Image Banner</a></li>
+
+                  </ul>
+               </li>
+               <li>
+                  <a href="product.html">Products</a>
+                  <ul>
+                     <li>
+                        <a href="#" class="nolink">PRODUCT PAGES</a>
+                        <ul>
+                           <li><a href="product.html">SIMPLE PRODUCT</a></li>
+
+                        </ul>
+                     </li>
+                     <li>
+                        <a href="#" class="nolink">PRODUCT LAYOUTS</a>
+                        <ul>
+                           <li><a href="product-extended-layout.html">EXTENDED LAYOUT</a></li>
+
+                        </ul>
+                     </li>
+                  </ul>
+               </li>
+               <li>
+                  <a href="#">Pages<span class="tip tip-hot">Hot!</span></a>
+                  <ul>
+                     <li>
+                        <a href="wishlist.html">Wishlist</a>
+                     </li>
+                     <li>
+                        <a href="cart.html">Shopping Cart</a>
+                     </li>
+                     <li>
+                        <a href="checkout.html">Checkout</a>
+                     </li>
+                     <li>
+                        <a href="dashboard.html">Dashboard</a>
+                     </li>
+                     <li>
+                        <a href="login.html">Login</a>
+                     </li>
+                     <li>
+                        <a href="forgot-password.html">Forgot Password</a>
+                     </li>
+                  </ul>
+               </li>
+               <li><a href="blog.html">Blog</a></li>
+               <li><a href="#">Elements</a>
+                  <ul class="custom-scrollbar">
+                     <li><a href="element-accordions.html">Accordion</a></li>
+
+                  </ul>
+               </li>
+            </ul>
+
+            <ul class="mobile-menu mt-2 mb-2">
+               <li class="border-0">
+                  <a href="#">
+                     Special Offer!
+                  </a>
+               </li>
+               <li class="border-0">
+                  <a href="#" target="_blank">
+                     Buy Porto!
+                     <span class="tip tip-hot">Hot</span>
+                  </a>
+               </li>
+            </ul>
+
+            <ul class="mobile-menu">
+               <li><a href="login.html">My Account</a></li>
+               <li><a href="contact.html">Contact Us</a></li>
+               <li><a href="blog.html">Blog</a></li>
+               <li><a href="wishlist.html">My Wishlist</a></li>
+               <li><a href="cart.html">Cart</a></li>
+               <li><a href="login.html" class="login-link">Log In</a></li>
+            </ul>
+         </nav>
+         <!-- End .mobile-nav -->
+
+         <form class="search-wrapper mb-2" action="#">
+            <input type="text" class="form-control mb-0" placeholder="Search..." required />
+            <button class="btn icon-search text-white bg-transparent p-0" type="submit"></button>
+         </form>
+
+         <div class="social-icons">
+            <a href="#" class="social-icon social-facebook icon-facebook" target="_blank">
+            </a>
+            <a href="#" class="social-icon social-twitter icon-twitter" target="_blank">
+            </a>
+            <a href="#" class="social-icon social-instagram icon-instagram" target="_blank">
+            </a>
+         </div>
+      </div>
+      <!-- End .mobile-menu-wrapper -->
+   </div>
+   <!-- End .mobile-menu-container -->
+
+   <div class="sticky-navbar">
+      <div class="sticky-info">
+         <a href="">
+            <i class="icon-home"></i>Home
+         </a>
+      </div>
+      <div class="sticky-info">
+         <a href="category.html" class="">
+            <i class="icon-bars"></i>Categories
+         </a>
+      </div>
+      <div class="sticky-info">
+         <a href="wishlist.html" class="">
+            <i class="icon-wishlist-2"></i>Wishlist
+         </a>
+      </div>
+      <div class="sticky-info">
+         <a href="login.html" class="">
+            <i class="icon-user-2"></i>Account
+         </a>
+      </div>
+      <div class="sticky-info">
+         <a href="cart.html" class="">
+            <i class="icon-shopping-cart position-relative">
+               <span class="cart-count badge-circle">3</span>
+            </i>Cart
+         </a>
+      </div>
+   </div>
+
+   <div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background: #f1f1f1 no-repeat center/cover url('assets/images/newsletter_popup_bg.jpg')">
+      <div class="newsletter-popup-content">
+         <img src="assets/images/logo.png" width="111" height="44" alt="Logo" class="logo-newsletter">
+         <h2>Subscribe to newsletter</h2>
+
+         <p>
+            Subscribe to the Porto mailing list to receive updates on new arrivals, special offers and our promotions.
+         </p>
+
+         <form action="#">
+            <div class="input-group">
+               <input type="email" class="form-control" id="newsletter-email" name="newsletter-email" placeholder="Your email address" required />
+               <input type="submit" class="btn btn-primary" value="Submit" />
+            </div>
+         </form>
+         <div class="newsletter-subscribe">
+            <div class="custom-control custom-checkbox">
+               <input type="checkbox" class="custom-control-input" value="0" id="show-again" />
+               <label for="show-again" class="custom-control-label">
+                  Don't show this popup again
+               </label>
+            </div>
+         </div>
+      </div>
+      <!-- End .newsletter-popup-content -->
+
+      <button title="Close (Esc)" type="button" class="mfp-close">
+         ×
+      </button>
+   </div>
+   <!-- End .newsletter-popup -->
+
+   <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
+
+   <!-- Plugins JS File -->
+   <script src="/js/jquery.min.js"></script>
+   <script src="/js/app.js"></script>
+
 </body>
+
 </html>

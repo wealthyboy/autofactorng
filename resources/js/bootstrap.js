@@ -2,6 +2,11 @@ window._ = require('lodash');
 
 try {
     require('bootstrap');
+    require('../../public/js/optional/isotope.pkgd.min.js')
+    require('../../public/js/plugins.min.js')
+    require('../../public/js/jquery.appear.min.js')
+    require('../../public/js/main.min.js')
+
 } catch (e) {}
 
 /**

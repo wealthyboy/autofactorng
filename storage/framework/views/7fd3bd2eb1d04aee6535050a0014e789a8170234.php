@@ -161,12 +161,13 @@
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Meta Title</label>
                         <input type="text" class="form-control"                                     
-                           name="meta_title"
-                           value="<?php echo e(isset($product) ? $product->meta_title : old('meta_title')); ?>"
+                           name="title"
+                           value="<?php echo e(isset($product) ? $product->title : old('meta_title')); ?>"
                         >
                      </div>
                   </div>
                </div>
+
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">

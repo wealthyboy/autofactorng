@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use App\Filters\ProductsFilter\ProductFilters;
+use App\Traits\FormatPrice;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\ImageFiles;
+use Illuminate\Database\Eloquent\Builder;
 
 class Product extends Model
 {
-    use HasFactory, ImageFiles;
+    use HasFactory, ImageFiles, FormatPrice;
 
 
 
@@ -51,84 +54,120 @@ class Product extends Model
     public $folder = 'products';
 
     const AMPHERES  = [
-			"45",
-			"62",
-			"65",
-			"75",
-			"80",
-			"90",
-			"100",
-			"120",
-			"150",
-			"200",
-        ];
+        "45",
+        "62",
+        "65",
+        "75",
+        "80",
+        "90",
+        "100",
+        "120",
+        "150",
+        "200",
+    ];
 
     public $appends = [
-		'image_m',
+        'image_m',
         'category_name',
-        'image_to_show'
-	];
+        'image_to_show',
+        'link',
+        'discounted_price',
+        'percentage_off',
 
-    public function attributes(){
+    ];
+
+    public function attributes()
+    {
         return $this->belongsToMany(Attribute::class);
     }
 
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
-	}
+    }
+
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
 
     public function categories()
     {
         return $this->belongsToMany(Category::class)->withPivot('category_id');
-	}
+    }
 
     public function engines()
     {
         return $this->belongsToMany(Engine::class)->withPivot('attribute_id');
-	}
+    }
 
     public function product_engines()
     {
         return $this->hasMany(EngineProduct::class);
-	}
+    }
 
     public function category()
     {
         return $this->belongsToMany(Category::class);
-	}
+    }
+
+
+
+
+    public function link()
+    {
+        $link  = '/product/';
+        $link .=  optional(optional($this->categories)->first())->slug . '/';
+        $link .= $this->slug;
+        return $link;
+    }
 
     public function related_products()
     {
         return $this->hasMany(RelatedProduct::class);
-	}
+    }
+
+    public function scopeFilter(Builder $builder, $request)
+    {
+        return (new ProductFilters($request))->filter($builder);
+    }
 
 
     public function product_years()
     {
         return $this->hasMany(ProductYear::class);
-	}
+    }
 
     public function product_rates()
     {
         return $this->hasMany(ShippingRate::class);
-	}
+    }
 
     public function getCategoryNameAttribute()
     {
-        return optional(optional($this->categories()->orderBy('id','DESC'))->first())->name;
-	}
+        return optional(optional($this->categories()->orderBy('id', 'DESC'))->first())->name;
+    }
+
+    public function getLinkAttribute()
+    {
+        return $this->link();
+    }
+
 
     public function heavy_item_lagos()
     {
         return $this->hasMany(ShippingRate::class)->where('is_lagos', true);
-	}
+    }
 
 
     public function heavy_item_outside_lagos()
     {
         return $this->hasMany(ShippingRate::class)->where('is_lagos', false);
-	}
+    }
 
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
-

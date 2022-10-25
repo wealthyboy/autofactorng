@@ -1,66 +1,77 @@
 <?php $__env->startSection('content'); ?>
 <div class="container-fluid px-0">
-   <div class="row">
-      <div class="col-xl-5  col-lg-4 py-4">
-         <a class="px-5" href="/">
-         <img src="/images/logo/autofactor_logo.png" alt="" srcset="">
-         </a>
-         <div class="card px-4 card-plain">
-            <div class="card-header ">
-               <h4 class="font-weight-bolder">Sign Up</h4>
-               <p class="mb-0">Enter your email and password to subscribe</p>
+    <div class="row">
+        <div class="col-xl-5  col-lg-4 ">
+
+            <div class="header p-5">
+                <a class="d-flex nounderline align-items-center" href="">
+                    <span class="material-symbols-outlined ">keyboard_backspace</span>
+                    <span>Back</span>
+                </a>
             </div>
-            <div class="card-body">
-               <form role="form">
-                 
-                  <div class="input-group input-group-outline mb-3">
-                     <label class="form-label">Email</label>
-                     <input type="email" class="form-control">
-                  </div>
-                  <div class="input-group input-group-outline mb-3">
-                     <label class="form-label">Password</label>
-                     <input type="password" class="form-control">
-                  </div>
-                  
-                  <div class="text-center">
-                     <button type="button" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">Submit</button>
-                  </div>
-               </form>
+
+            <div class="content p-5">
+                <div class="logo ">
+                    <a class="px-5" href="/">
+                        <img src="/images/logo/autofactor_logo.png" alt="" srcset="">
+                    </a>
+                </div>
+
+                <div class="row mb-4" id="title">
+                    <h1 class="sign-in" id="at_lnk_sign_in_home_one">
+                        WELCOME BACK
+                    </h1>
+                </div>
+
+                <div class="row mb-5" id="signInMessage">
+                    <span class="sign-in-prompt" data-testid="sign-in-message">
+                        Sign in to save your vehicles, track your orders.
+                        .</span>
+                </div>
+                <login></login>
+
+
+
+                <div class="text-center mt-3">
+                    Dont have an account yet? <a href="/register" class="color--primary bold">Create One</a>
+                </div>
+
             </div>
-            <div class="card-footer text-center pt-0 px-lg-2 px-1">
-               <p class="mb-2 text-sm mx-auto">
-                  
-                  <a href="/register">Already have an account?</a>
-               </p>
-            </div>
-         </div>
-      </div>
-      <div style="background-image: url('/images/utils/sign-in-background-img.jpeg'); background-size: cover; height: 100vh !important;"  class="col-12  col-md-7  position-relative bg-gradient-primary h-100  px-7 border-radius-lg d-flex flex-column justify-content-center">
-         <h3 class="text-white mb-4"> Chosen plan </h3>
-         <div class="card mb-3">
-            <div class="form-check mt-3 mb-2"">
-               <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio1" checked>
-               <label class="custom-control-label text-dark" for="customRadio1">Light Duty   -   ₦50,000</label>
-            </div>
-         </div>
-         <div class="card mb-3">
-            <div class="form-check mt-3 mb-2">
-               <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio2">
-               <label class="custom-control-label text-dark" for="customRadio2">Normal Duty - ₦150,000</label>
-            </div>
-         </div>
-         <div class="card mb-3">
-            <div class="form-check  mt-3 mb-2"">
-               <input class="form-check-input" type="radio" name="flexRadioDefault" id="customRadio3">
-               <label class="custom-control-label text-dark" for="customRadio3">Heavy Duty - ₦350,000</label>
-            </div>
-         </div>
-         <p class="text-white ">
-            Nice choice. You can swap your plan any time during your subscription if you change your mind.
-         </p>
-      </div>
-   </div>
-</div>
+
+
+
+        </div>
+        <div style="background-image: url('/images/utils/sign-in-background-img.jpeg'); background-size: cover; height: 100vh !important;" class="col-12  col-md-7  position-relative bg-gradient-primary h-100  px-7 border-radius-lg d-flex flex-column justify-content-center">
+            <h1 class="text-white mb-4"> MEMBER BENEFITS: </h1>
+            <ul>
+                <li class="right-side-bullets">
+                    <div class="right-content-icons">
+                        <img class="right-content-svgs" alt="" src="/images/rewards.svg">
+                    </div>
+                    <div class="bullet-text">
+                        Earn a $20 Reward after every 5 purchases of $20 or more
+                    </div>
+                </li>
+                <li class="right-side-bullets">
+                    <div class="right-content-icons">
+                        <img class="right-content-svgs" alt="" src="/images/vehicle/orange_1.svg">
+                    </div>
+                    <div class="bullet-text">
+                        Save your vehicles, track your service history and access thousands of repair guides, all for free
+                    </div>
+                </li>
+                <li class="right-side-bullets">
+                    <div class="right-content-icons">
+                        <img class="right-content-svgs" alt="" src="/images/orangeStar.svg">
+                    </div>
+                    <div class="bullet-text">
+                        Get exclusive deals and offers, customized for you
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
 </div>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.auth', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/auth/login.blade.php ENDPATH**/ ?>

@@ -15,7 +15,8 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('carts.index');
+        $page_title = "Your Cart  ";
+        return view('carts.index', compact('page_title'));
     }
 
     /**

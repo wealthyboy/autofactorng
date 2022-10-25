@@ -10,25 +10,30 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "@babel/preset-react": "^7.13.13",
         "@popperjs/core": "^2.10.2",
+        "@vue/compiler-sfc": "^3.2.40",
         "axios": "^0.21",
         "bootstrap": "^5.1.3",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14",
-        "react": "^17.0.2",
-        "react-dom": "^17.0.2",
         "resolve-url-loader": "^3.1.2",
         "sass": "^1.32.11",
         "sass-loader": "^11.0.1",
-        "vue-loader": "^15.9.8"
+        "vue": "3.2.0",
+        "vue-flatpickr-component": "9.0.5",
+        "vue-loader": "^16.8.3",
+        "vuex": "4.0.2"
     },
     "dependencies": {
-        "bootstrap-icons": "^1.8.1",
+        "@vuelidate/core": "^2.0.0",
+        "@vuelidate/validators": "^2.0.0",
+        "bootstrap-icons": "^1.9.1",
         "jquery": "^3.6.0",
         "jquery-validation": "^1.19.5",
         "owl.carousel": "^2.3.4",
-        "slick-carousel": "^1.8.1"
+        "slick-carousel": "^1.8.1",
+        "vue-server-renderer": "^2.7.12",
+        "vuex-composition-helpers": "^2.0.3"
     }
 }

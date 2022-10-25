@@ -1,0 +1,60 @@
+{% extends "cashinmybag.layouts.app" %}
+
+{% block title %} {{  settings.name }} | Wishlist {% endblock %}
+{% block content %}
+
+<!--Page Body Content -->
+        <div class="page-contaiter">
+            <section class="sec-padding--md">
+                <div class="container">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
+                        </ol>
+                    </nav>
+                    <div class="row">
+                        <div class="col-lg-12 col-12 order-lg-2">
+                            <!--Product Filter-->
+                            <div class="product-filter-content">
+                                <div class="product-filter-content-inner">
+                                    <!--Product Showing Text-->
+
+                                <p> {{ products.count() }} Items of {{products.total()}} </p>
+
+                                     <form class="ordering">
+                                        <select name="orderby" class="orderby">
+                                            <option value="menu_order" selected="selected">Sort By:</option>
+                                            <option value="popularity">Sort by Popularity</option>
+                                            <option value="rating">Sort by Average rating</option>
+                                            <option value="date">Sort by Newness</option>
+                                            <option value="price">Sort by price: low to high</option>
+                                            <option value="price-desc">Sort by price: high to low</option>
+                                        </select>
+                                    </form>
+                                </div>
+                            </div>
+                            <!--End Product Filter-->
+                            <!--Product Items-->
+                            
+                            {% include 'cashinmybag._partials.products.items' %}
+                            <!--End Product Items-->
+                            <!--Paginattion-->
+                            <div class="pagination-wraper">
+                                <div class="pagination">
+                                    <ul class="pagination-numbers">
+                                       {{ products.links() | raw }}
+                                    </ul>
+                                </div>
+                            </div>
+                            <!--End Paginattion-->
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!--End Product Content-->
+
+        </div>
+        <!--End Page Body Content -->
+    {% endblock %}
