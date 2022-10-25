@@ -110,7 +110,7 @@ class SettingsController extends Controller
 		}
 
 		//dd($request->all());
-		$settings->store_logo = $request->image;
+		$settings->store_logo = 'image';
 		$settings->store_name                   = $request->store_name;
 		$settings->address                      = $request->address;
 		$settings->store_email                  = $request->store_email;
