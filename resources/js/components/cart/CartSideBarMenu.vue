@@ -84,7 +84,7 @@
       >
         <span>SUBTOTAL:</span>
 
-        <span class="cart-total-price float-right">{{ meta.currency }}{{ meta.sub_total | priceFormat }}</span>
+        <span class="cart-total-price float-right">{{ meta.currency }}{{ meta.sub_total }}</span>
       </div>
       <!-- End .dropdown-cart-total -->
 
