@@ -155,8 +155,28 @@ class ProductController extends Controller
         $data['price'] = $request->price;
         $data['slug'] = str_slug($name);
         // dd($request->price);
-        $product = Product::create($data);
 
+        $product->brand_id = $request->brand_id;
+        $product->name = $name;
+        $product->product_name = $request->product_name;
+        $product->slug = str_slug($name);
+
+
+        $product->price =  $request->price;
+        $product->sale_price =   $request->sale_price;
+        $product->sale_price_starts = $request->sale_price_starts;
+        $product->sale_price_ends = $request->sale_price_ends;
+        $product->volts = $request->volts;
+        $product->amphere = $request->amphere;
+        $product->radius = $request->radius;
+        $product->width = $request->width;
+        $product->height = $request->height;
+        // $product->title = $request->title;
+        $product->keywords = $request->keywords;
+        $product->meta_description = $request->meta_description;
+        $product->description = $request->description;
+        $product->phy_desc = $request->phy_desc;
+        $product->save();
 
         if (!empty($request->category_id)) {
             $product->categories()->sync($request->category_id);
