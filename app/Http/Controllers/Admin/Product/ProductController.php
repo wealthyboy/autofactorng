@@ -54,9 +54,6 @@ class ProductController extends Controller
             $products->appends(request()->query());
         }
 
-
-        dd($products);
-
         return view('admin.products.index', compact('products', 'brands', 'categories', 'attributes', 'years'));
     }
 
