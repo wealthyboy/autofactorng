@@ -2,6 +2,14 @@
 
   <div class="row">
     <div class="col-lg-9 order-lg-2">
+      <div class="d-flex">
+        <div class="title col-2">
+          <h3>SET YOUR VEHICLE</h3>
+
+          <p>Get an exact fit for your vehicle.</p>
+        </div>
+        <search />
+      </div>
 
       <nav
         class="toolbox sticky-header horizontal-filter mb-1"
@@ -149,7 +157,8 @@
 
       </nav>
 
-      <div class="row pb-4">
+      <div class="row pb-4 g-1">
+
         <product
           v-for="product in products"
           :key="product.id"
@@ -225,11 +234,13 @@
 import Product from "./Product";
 import Pagination from "../pagination/Pagination.vue";
 import axios from "axios";
+import Search from "../search/MakeModelYear";
 
 export default {
   components: {
     Product,
     Pagination,
+    Search,
   },
   data() {
     return {

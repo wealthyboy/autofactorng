@@ -19,6 +19,8 @@ import CartSideBar from "./components/cart/CartSideBarMenu";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import CartSummary from "./components/cart/Index";
+//import MakeModelYEar from "./components/search/MakeModelYEar";
+
 
 
 
@@ -32,6 +34,9 @@ app.component('CartSideBar', CartSideBar)
 app.component('Login', Login)
 app.component('Register', Register)
 app.component('CartSummary', CartSummary)
+    // app.component('MakeModelYEar', MakeModelYEar)
+
+
 
 
 

@@ -1,0 +1,4 @@
+<?php $__currentLoopData = $attribute->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product_attribute): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+<option class="product_attribute" <?php echo e(isset($disabled) ? 'disabled' : ''); ?> value="<?php echo e($product_attribute->id); ?>">&nbsp;&nbsp;&nbsp;<?php echo e($product_attribute->name); ?> </option>
+<?php echo $__env->make('includes.product_attr',['attribute'=>$product_attribute], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/includes/product_attr.blade.php ENDPATH**/ ?>
