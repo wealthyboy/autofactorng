@@ -155,11 +155,7 @@ class ProductController extends Controller
         $data['price'] = $request->price;
         $data['slug'] = str_slug($name);
         // dd($request->price);
-        $product = new Product;
-        $product->price = $request->price;
-        $product->save();
-
-        $product->update($data);
+        $product = Product::create($data);
 
 
         if (!empty($request->category_id)) {
