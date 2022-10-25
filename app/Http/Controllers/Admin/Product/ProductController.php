@@ -150,7 +150,7 @@ class ProductController extends Controller
         $data['name'] = $name;
         $data['product_name'] = $request->product_name;
         $data['slug'] = str_slug($name);
-        dd($data);
+        //dd($data);
         $product = Product::create($data);
 
         if (!empty($request->category_id)) {
@@ -259,13 +259,13 @@ class ProductController extends Controller
         if ($request->has('q')) {
             $filtered_array = array_filter($filtered_array);
             $query = Product::whereHas('categories', function ($query) use ($filtered_array) {
-                    $query->where('categories.name', 'like', '%' . $filtered_array['q'] . '%')
-                        ->orWhere('products.product_name', 'like', '%' . $filtered_array['q'] . '%')
-                        ->orWhere('products.sku', 'like', '%' . $filtered_array['q'] . '%');
-                })->orWhereHas('variants', function ($query) use ($filtered_array) {
-                    $query->where('product_variations.name', 'like', '%' . $filtered_array['q'] . '%')
-                        ->orWhere('product_variations.sku', 'like', '%' . $filtered_array['q'] . '%');
-                });
+                $query->where('categories.name', 'like', '%' . $filtered_array['q'] . '%')
+                    ->orWhere('products.product_name', 'like', '%' . $filtered_array['q'] . '%')
+                    ->orWhere('products.sku', 'like', '%' . $filtered_array['q'] . '%');
+            })->orWhereHas('variants', function ($query) use ($filtered_array) {
+                $query->where('product_variations.name', 'like', '%' . $filtered_array['q'] . '%')
+                    ->orWhere('product_variations.sku', 'like', '%' . $filtered_array['q'] . '%');
+            });
         }
 
         $products = $query->groupBy('products.id')->paginate(10);
