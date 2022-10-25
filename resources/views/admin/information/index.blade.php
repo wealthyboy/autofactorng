@@ -16,11 +16,7 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Name</label>
-                        <input 
-                           type="text" 
-                           class="form-control"                                     
-                           name="name"
-                           >
+                        <input type="text" class="form-control" name="name">
                      </div>
                   </div>
                </div>
@@ -28,23 +24,15 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Sort order</label>
-                        <input 
-                           type="number" 
-                           class="form-control"                                     
-                           name="sort_order"
-                           >
+                        <input type="number" class="form-control" name="sort_order">
                      </div>
                   </div>
                </div>
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> Custom  Link</label>
-                        <input 
-                           type="text" 
-                           class="form-control"                                     
-                           name="custom_link"
-                           >
+                        <label class="form-label"> Custom Link</label>
+                        <input type="text" class="form-control" name="custom_link">
                      </div>
                   </div>
                </div>
@@ -52,48 +40,46 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Meta Title</label>
-                        <input type="text" class="form-control"                                     
-                           name="meta_title"
-                           >
+                        <input type="text" class="form-control" name="meta_title">
                      </div>
                   </div>
                </div>
 
                <div class="row mt-3">
-                    <div class="col-sm-12 col-12">
-                        <div class="input-group input-group-outline">
-                        <label class="form-label mt-4 ms-0"> </label>
-                        <select class="form-control" name="parent_id" id="">
-                        <option  value="">--Choose Parent--</option>
-                           
-                           @foreach($pages as $page)
-                                <option class="" value="{{ $page->id }}" >{{ $page->name }} </option>
-                                @include('includes.children_options',['obj'=>$page,'space'=>'&nbsp;&nbsp;'])
-                            @endforeach
-                        </select>
-                        </div>
-                        
-                    </div>
-                </div>
-                
-
-
-            
-                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
-                           <label class="form-label mt-4 ms-0"> </label>
-                           <select class="form-control" name="type" id="">
-                              <option  value="">--Same Page--</option>
-                              <option class="" value="yes">Yes </option>
-                              <option class="" value="no" >No</option>
+                        <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="parent_id" id="">
+                           <option value="">--Choose Parent--</option>
 
-                           </select>
+                           @foreach($pages as $page)
+                           <option class="" value="{{ $page->id }}">{{ $page->name }} </option>
+                           @include('includes.children_options',['obj'=>$page,'space'=>'&nbsp;&nbsp;'])
+                           @endforeach
+                        </select>
+                     </div>
+
+                  </div>
+               </div>
+
+
+
+
+               <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label mt-4 ms-0"> </label>
+                        <select class="form-control" name="type" id="">
+                           <option value="">--Same Page--</option>
+                           <option class="" value="yes">Yes </option>
+                           <option class="" value="no">No</option>
+
+                        </select>
                      </div>
                   </div>
-                </div>
-              
-               
+               </div>
+
+
 
                <div class="row">
                   <div class="col-md-12">
@@ -101,13 +87,12 @@
                         <label>Description</label>
                         <div class="form-group ">
                            <label class="control-label"> </label>
-                           <textarea name="description" 
-                           id="description" class="form-control" required rows="20"></textarea>
+                           <textarea name="description" id="description" class="form-control" required rows="20"></textarea>
                         </div>
                      </div>
                   </div>
                </div>
-               
+
                <div class="d-flex justify-content-end mt-4">
                   <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
                </div>
@@ -116,7 +101,7 @@
       </div>
    </div>
    <div class="col-md-5">
-        @include('admin._partials.children', ['name' => 'selected', 'collections' => $pages, 'year' =>false, 'title' => 'pages' , 'single_name' => 'page', 'route' => 'pages'])
+      @include('admin._partials.children', ['name' => 'selected', 'collections' => $pages, 'year' =>false, 'title' => 'pages' , 'single_name' => 'page', 'route' => 'pages'])
    </div>
 </div>
 @endsection
@@ -125,12 +110,9 @@
 @stop
 @section('inline-scripts')
 CKEDITOR.replace('description',{
-        height: '350px'
-    })
+height: '350px'
+})
 
-var parent_id = document.getElementById('parent_id');
-  setTimeout(function () {
-  const example = new Choices(parent_id);
-}, 1);
+
 
 @stop
