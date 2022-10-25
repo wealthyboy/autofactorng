@@ -149,6 +149,7 @@ class ProductController extends Controller
         $name = $request->filled('brand_id') ? $brand->name . ' ' . $request->product_name  : $request->product_name;
         $data['name'] = $name;
         $data['product_name'] = $request->product_name;
+        $data['price'] = $request->price;
         $data['slug'] = str_slug($name);
         //dd($data);
         $product = Product::create($data);
@@ -172,7 +173,6 @@ class ProductController extends Controller
 
         $product->attributes()->sync($request->attribute_id);
 
-
         if ($request->condition_is_present) {
 
             foreach ($request->condition['lagos']['tag'] as $key => $value) {
@@ -180,7 +180,7 @@ class ProductController extends Controller
                 $shipping_rate->tag = $request->condition['lagos']['tag'][$key];
                 $shipping_rate->condition = $request->condition['lagos']['condition'][$key];
                 $shipping_rate->price =  $request->condition['lagos']['price'][$key];
-                $shipping_rate->tag_value =  $request->condition['lagos']['tag_value'][$key];;
+                $shipping_rate->tag_value = $request->condition['lagos']['tag_value'][$key];;
                 $shipping_rate->product_id = $product->id;
                 $shipping_rate->is_lagos = 1;
                 $shipping_rate->save();
@@ -190,8 +190,8 @@ class ProductController extends Controller
                 $shipping_rate = new ShippingRate;
                 $shipping_rate->tag = $request->condition['out_side_lagos']['tag'][$key];
                 $shipping_rate->condition = $request->condition['out_side_lagos']['condition'][$key];
-                $shipping_rate->price =  $request->condition['out_side_lagos']['price'][$key];
-                $shipping_rate->tag_value =  $request->condition['out_side_lagos']['tag_value'][$key];;
+                $shipping_rate->price = $request->condition['out_side_lagos']['price'][$key];
+                $shipping_rate->tag_value = $request->condition['out_side_lagos']['tag_value'][$key];;
                 $shipping_rate->product_id = $product->id;
                 $shipping_rate->is_lagos = 0;
                 $shipping_rate->save();
