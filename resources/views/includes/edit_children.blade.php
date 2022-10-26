@@ -22,17 +22,17 @@
             </label>
         </div>
 
-         
+
         @if (isset($year) && $year)
-       
-        @foreach($product->product_years->where('attribute_id', $ob->id) as $year)
+        @if(null !== $ob->attribute_years))
+        <?php $y = $product->product_years->where('attribute_id', $ob->id)->first(); ?>
         <div class="col-sm-3 ml-3 col-12">
             <div class="input-group input-group-dynamic">
                 <label class="form-label "> </label>
                 <select class="form-control mx-3 year Year_from-{{ $ob->slug }}" name="year_from[{{ $ob->id }}]" id="">
                     <option value="">--Year from--</option>
                     @foreach($ob->attribute_years as $attribute_year)
-                    <option {{ $year->year_from == $attribute_year->year? 'selected' : '' }} value="{{ $attribute_year->year }}">{{ $attribute_year->year }} </option>
+                    <option {{ optional($y)->year_from == $attribute_year->year? 'selected' : '' }} value="{{ $attribute_year->year }}">{{ $attribute_year->year }} </option>
                     @endforeach
                 </select>
             </div>
@@ -44,13 +44,14 @@
                 <select class="form-control mx-3 year Year_to-{{ $ob->slug }}" name="year_to[{{ $ob->id }}]" id="">
                     <option value="">--Year to--</option>
                     @foreach($ob->attribute_years as $attribute_year)
-                    <option {{ $year->year_to == $attribute_year->year? 'selected' : '' }} value="{{ $attribute_year->year }}">{{ $attribute_year->year }} </option>
+                    <option {{ optional($y)->year_to == $attribute_year->year? 'selected' : '' }} value="{{ $attribute_year->year }}">{{ $attribute_year->year }} </option>
                     @endforeach
                 </select>
             </div>
         </div>
 
-        @endforeach
+        
+        @endif
         @endif
     </div>
 

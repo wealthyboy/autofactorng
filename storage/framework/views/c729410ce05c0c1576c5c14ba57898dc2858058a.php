@@ -22,17 +22,17 @@
             </label>
         </div>
 
-         
+
         <?php if(isset($year) && $year): ?>
-       
-        <?php $__currentLoopData = $product->product_years->where('attribute_id', $ob->id); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <?php if(null !== $ob->attribute_years): ?>)
+        <?php $y = $product->product_years->where('attribute_id', $ob->id)->first(); ?>
         <div class="col-sm-3 ml-3 col-12">
             <div class="input-group input-group-dynamic">
                 <label class="form-label "> </label>
                 <select class="form-control mx-3 year Year_from-<?php echo e($ob->slug); ?>" name="year_from[<?php echo e($ob->id); ?>]" id="">
                     <option value="">--Year from--</option>
                     <?php $__currentLoopData = $ob->attribute_years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attribute_year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option <?php echo e($year->year_from == $attribute_year->year? 'selected' : ''); ?> value="<?php echo e($attribute_year->year); ?>"><?php echo e($attribute_year->year); ?> </option>
+                    <option <?php echo e(optional($y)->year_from == $attribute_year->year? 'selected' : ''); ?> value="<?php echo e($attribute_year->year); ?>"><?php echo e($attribute_year->year); ?> </option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>
@@ -44,13 +44,14 @@
                 <select class="form-control mx-3 year Year_to-<?php echo e($ob->slug); ?>" name="year_to[<?php echo e($ob->id); ?>]" id="">
                     <option value="">--Year to--</option>
                     <?php $__currentLoopData = $ob->attribute_years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attribute_year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option <?php echo e($year->year_to == $attribute_year->year? 'selected' : ''); ?> value="<?php echo e($attribute_year->year); ?>"><?php echo e($attribute_year->year); ?> </option>
+                    <option <?php echo e(optional($y)->year_to == $attribute_year->year? 'selected' : ''); ?> value="<?php echo e($attribute_year->year); ?>"><?php echo e($attribute_year->year); ?> </option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>
         </div>
 
-        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        
+        <?php endif; ?>
         <?php endif; ?>
     </div>
 
