@@ -425,7 +425,7 @@ class ProductController extends Controller
 
         foreach ($request->year_to as $attribute_id => $year) {
             if ($year) {
-                $product_year = ProductYear::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->first();
+                $product_year = MakeModelYearEngine::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->first();
                 $product_year->year_to = $year;
                 $product_year->save();
             }
@@ -436,10 +436,9 @@ class ProductController extends Controller
 
         if (!empty($request->images)) {
             $images =  $request->images;
-            foreach ($images as $image) {
-                $images = new Image(['image' => $image]);
-                $product->images()->save($images);
-            }
+
+            //dd(  $images);
+
         }
 
         //(new Activity)->Log("Added a product ", "{$data}");
