@@ -168,6 +168,9 @@ class ProductController extends Controller
         $product->radius = $request->radius;
         $product->width = $request->width;
         $product->height = $request->height;
+        $product->title = $request->title;
+
+
         $product->quantity = 1000000;
         $product->keywords = $request->keywords;
         $product->meta_description = $request->meta_description;
