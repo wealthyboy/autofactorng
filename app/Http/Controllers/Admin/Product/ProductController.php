@@ -12,7 +12,7 @@ use App\Models\Product;
 use App\Models\Setting;
 use App\Models\Category;
 use App\Models\Attribute;
-use App\Models\ProductYear;
+use App\Models\MakeModelYearEngine;
 use App\Http\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -52,6 +52,15 @@ class ProductController extends Controller
             $products = Product::where('name', 'like', '%' . $value . '%')
                 ->latest()->paginate(10);
             $products->appends(request()->query());
+
+
+        }
+        
+        $aas = MakeModelYearEngine::get();
+        foreach ($aas as $as) {
+            $attribute = Attribute::find($as->attribute_id);
+            $as->parent_id = optional($attribute->parent)->id;
+            $as->save();
         }
 
         return view('admin.products.index', compact('products', 'brands', 'categories', 'attributes', 'years'));
@@ -169,8 +178,6 @@ class ProductController extends Controller
         $product->width = $request->width;
         $product->height = $request->height;
         $product->title = $request->title;
-
-
         $product->quantity = 1000000;
         $product->keywords = $request->keywords;
         $product->meta_description = $request->meta_description;
@@ -223,15 +230,17 @@ class ProductController extends Controller
         }
 
         foreach ($request->year_from as $attribute_id => $year) {
-            $product_year = new ProductYear;
+            $attribute = Attribute::find($attribute_id);
+            $product_year = new MakeModelYearEngine;
             $product_year->attribute_id = $attribute_id;
+            $product_year->parent_id = optional($attribute->parent)->id;
             $product_year->product_id = $product->id;
             $product_year->year_from = $year;
             $product_year->save();
         }
 
         foreach ($request->year_to as $attribute_id => $year) {
-            $product_year = ProductYear::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->first();
+            $product_year = MakeModelYearEngine::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->first();
             $product_year->year_to = $year;
             $product_year->save();
         }
@@ -393,9 +402,11 @@ class ProductController extends Controller
         }
 
         foreach ($request->year_from as $attribute_id => $year) {
-            $product_year = new ProductYear;
+            $attribute = Attribute::find($attribute_id);
+            $product_year = new MakeModelYearEngine;
             $product_year->attribute_id = $attribute_id;
             $product_year->product_id = $product->id;
+            $product_year->parent_id = optional($attribute->parent)->id;
             $product_year->year_from = $year;
             $product_year->save();
         }
