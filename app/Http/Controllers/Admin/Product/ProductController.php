@@ -59,8 +59,12 @@ class ProductController extends Controller
         $aas = MakeModelYearEngine::get();
         foreach ($aas as $as) {
             $attribute = Attribute::find($as->attribute_id);
-            $as->parent_id = optional($attribute->parent)->id;
-            $as->save();
+
+            if (null !==  $attribute) {
+                $as->parent_id = optional($attribute->parent)->id;
+                $as->save();
+            }
+            
         }
 
         return view('admin.products.index', compact('products', 'brands', 'categories', 'attributes', 'years'));
