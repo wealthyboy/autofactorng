@@ -286,6 +286,7 @@ class ProductController extends Controller
         $years = Helper::years();
         $helper = new Helper;
         $year_from = $product->product_years->pluck('year_from')->toArray();
+        dd( $year_from );
         $year_to = $product->product_years->pluck('year_to')->toArray();
         $amps = Product::AMPHERES;
         return view('admin.products.edit', compact('amps', 'product', 'brands', 'categories', 'year_from', 'year_to', 'attributes', 'years', 'helper'));
@@ -437,8 +438,10 @@ class ProductController extends Controller
         if (!empty($request->images)) {
             $images =  $request->images;
 
-            //dd(  $images);
-
+            foreach ($images as $image) {
+                $images = new Image(['image' => $image]);
+                $product->images()->save($images);
+            }
         }
 
         //(new Activity)->Log("Added a product ", "{$data}");
