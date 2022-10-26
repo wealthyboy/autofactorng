@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class AttributeYear extends Model
 {
     use HasFactory;
+
+    public function attribute()
+    {
+        return $this->belongsTo(Attribute::class);
+    }
 }

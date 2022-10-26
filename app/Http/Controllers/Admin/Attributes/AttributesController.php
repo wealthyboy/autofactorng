@@ -18,10 +18,9 @@ class AttributesController extends Controller
 {
     public function __construct()
     {
-        
     }
-    
-    
+
+
     /**
      * Display a listing of the resource.
      *
@@ -29,12 +28,19 @@ class AttributesController extends Controller
      */
     public function index()
     {
-        $parents = Attribute::parents()->where('type','!=','Engine')->get(); 
-        $attributes = Attribute::parents()->get(); 
+        $parents = Attribute::parents()->where('type', '!=', 'Engine')->get();
+        $attributes = Attribute::parents()->get();
         $types = Attribute::$types;
         $engines = Engine::get();
         $helper = new Helper;
-        return view('admin.attributes.index',compact('attributes','helper','types','engines','parents'));
+        // $attrs = AttributeYear::get();
+        // foreach ($attrs as $attr) {
+        //     $attr->parent_id = optional($attr->parent)->id;
+        //     $attr->save();
+        // }
+
+
+        return view('admin.attributes.index', compact('attributes', 'helper', 'types', 'engines', 'parents'));
     }
 
 
@@ -45,30 +51,29 @@ class AttributesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-         //
+    {
+        //
         // dd($request->all());
-        if(  $request->filled('parent_id') ){
-            $this->validate($request,[
-                'name'=>[
+        if ($request->filled('parent_id')) {
+            $this->validate($request, [
+                'name' => [
                     'required',
-                      Rule::unique('attributes')->where(function ($query) use ($request) {
-                        $query->where('parent_id','!=',null)
-                        ->where('parent_id',$request->parent_id);
-                      })
-                      
-                   ],
-            ]);
+                    Rule::unique('attributes')->where(function ($query) use ($request) {
+                        $query->where('parent_id', '!=', null)
+                            ->where('parent_id', $request->parent_id);
+                    })
 
+                ],
+            ]);
         } else {
             //define validation 
-            $this->validate($request,[
-                'name'=>[
+            $this->validate($request, [
+                'name' => [
                     'required',
-                      Rule::unique('attributes')->where(function ($query) {
-                        $query->where('parent_id','=',null);
-                      })
-                      
+                    Rule::unique('attributes')->where(function ($query) {
+                        $query->where('parent_id', '=', null);
+                    })
+
                 ],
             ]);
         }
@@ -89,13 +94,13 @@ class AttributesController extends Controller
             foreach ($request->years as $key => $year) {
                 $attribute_year =  new AttributeYear;
                 $attribute_year->year = $year;
+                $attribute_year->parent_id = $request->parent_id;
                 $attribute_year->attribute_id = $attribute->id;
                 $attribute_year->save();
             }
-           
         }
 
-       // dd($attribute->engines);
+        // dd($attribute->engines);
 
 
         //(new Activity)->Log("Created a new attribute called {$request->name}");
@@ -112,15 +117,15 @@ class AttributesController extends Controller
      */
     public function edit($id)
     {
-       // User::canTakeAction(4);
+        // User::canTakeAction(4);
         $attr = Attribute::find($id);
-        $attributes = Attribute::parents()->get(); 
+        $attributes = Attribute::parents()->get();
         $engines = Engine::get();
         $types = Attribute::$types;
-        $years = $attr->attribute_years->pluck('year')->toArray();  
+        $years = $attr->attribute_years->pluck('year')->toArray();
         $helper = new Helper;
-  
-        return view('admin.attributes.edit',compact('attributes','helper','attr','types','years','engines'));
+
+        return view('admin.attributes.edit', compact('attributes', 'helper', 'attr', 'types', 'years', 'engines'));
     }
 
     /**
@@ -130,8 +135,8 @@ class AttributesController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
-    {   
+    public function update(Request $request, $id)
+    {
         //dd($request->all());
         $attribute = Attribute::find($id);
         // if( $request->filled('parent_id') ) {
@@ -171,20 +176,19 @@ class AttributesController extends Controller
         //     }
         // }
 
-        $years =  $attribute->attribute_years()->delete();    
+        $attribute->attribute_years()->delete();
         if (!empty($request->years)) {
             foreach ($request->years as $key => $year) {
                 $attribute_year =  new AttributeYear;
                 $attribute_year->year = $year;
+                $attribute_year->parent_id = $request->parent_id;
                 $attribute_year->attribute_id = $attribute->id;
                 $attribute_year->save();
             }
-           
         }
         //Log Activity
-       // (new Activity)->Log("Updated  Attribute {$request->name} ");
+        // (new Activity)->Log("Updated  Attribute {$request->name} ");
         return redirect()->action('Admin\Attributes\AttributesController@index');
-    
     }
 
     /**
@@ -196,18 +200,18 @@ class AttributesController extends Controller
     public function destroy(Request $request)
     {
         //
-       // User::canTakeAction(5);
-        $rules = array (
-            '_token' => 'required' 
+        // User::canTakeAction(5);
+        $rules = array(
+            '_token' => 'required'
         );
-        $validator = \Validator::make ( $request->all (), $rules );
-        if (empty ( $request->selected )) {
-            $validator->getMessageBag ()->add ( 'Selected', 'Nothing to Delete' );
-            return \Redirect::back ()->withErrors ( $validator )->withInput ();
+        $validator = \Validator::make($request->all(), $rules);
+        if (empty($request->selected)) {
+            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
+            return \Redirect::back()->withErrors($validator)->withInput();
         }
         $count = count($request->selected);
-       // (new Activity)->Log("Deleted  {$count} Products");
-        Attribute::destroy( $request->selected );
+        // (new Activity)->Log("Deleted  {$count} Products");
+        Attribute::destroy($request->selected);
         return redirect()->back();
     }
 }
