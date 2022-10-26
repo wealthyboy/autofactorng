@@ -116,7 +116,7 @@ class ProductController extends Controller
         $validator = Validator::make($request->all(), [
             'category_id' => 'required',
             'product_name' => 'required',
-            'images' => 'required',
+            //'images' => 'required',
         ]);
 
         $data = [];
@@ -232,20 +232,27 @@ class ProductController extends Controller
             }
         }
 
+       // dd($request->year_from);
+
         foreach ($request->year_from as $attribute_id => $year) {
-            $attribute = Attribute::find($attribute_id);
-            $product_year = new MakeModelYearEngine;
-            $product_year->attribute_id = $attribute_id;
-            $product_year->parent_id = optional($attribute->parent)->id;
-            $product_year->product_id = $product->id;
-            $product_year->year_from = $year;
-            $product_year->save();
+            if ($year) {
+                $attribute = Attribute::find($attribute_id);
+                $product_year = new MakeModelYearEngine;
+                $product_year->attribute_id = $attribute_id;
+                $product_year->parent_id = optional($attribute->parent)->id;
+                $product_year->product_id = $product->id;
+                $product_year->year_from = $year;
+                $product_year->save();
+            }
+            
         }
 
         foreach ($request->year_to as $attribute_id => $year) {
-            $product_year = MakeModelYearEngine::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->first();
-            $product_year->year_to = $year;
-            $product_year->save();
+            if ($year) {
+                $product_year = MakeModelYearEngine::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->first();
+                $product_year->year_to = $year;
+                $product_year->save();
+            }
         }
 
 
