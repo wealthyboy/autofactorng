@@ -56,9 +56,9 @@ class ProductController extends Controller
 
         }
         
-        $aas = MakeModelYearEngine::where('year_to', null)->take(2)->get();
-        dd($aas);
+        $aas = MakeModelYearEngine::where('year_to', null)->take(1000)->get();
         foreach ($aas as $as) {
+            $as->delete();
 
             // $attribute = Attribute::find($as->attribute_id);
             // if (null !==  $attribute) {
