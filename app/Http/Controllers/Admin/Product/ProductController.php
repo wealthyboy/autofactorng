@@ -56,15 +56,16 @@ class ProductController extends Controller
 
         }
         
-        // $aas = MakeModelYearEngine::get();
-        // foreach ($aas as $as) {
-        //     $attribute = Attribute::find($as->attribute_id);
-        //     if (null !==  $attribute) {
-        //         $as->parent_id = optional($attribute->parent)->id;
-        //         $as->save();
-        //     }
+        $aas = MakeModelYearEngine::whereIn('year_to',[null])->delete();
+        foreach ($aas as $as) {
+
+            // $attribute = Attribute::find($as->attribute_id);
+            // if (null !==  $attribute) {
+            //     $as->parent_id = optional($attribute->parent)->id;
+            //     $as->save();
+            // }
             
-        // }
+        }
 
         return view('admin.products.index', compact('products', 'brands', 'categories', 'attributes', 'years'));
     }
@@ -232,26 +233,31 @@ class ProductController extends Controller
             }
         }
 
-       // dd($request->year_from);
+      // dd($request->engine_id);
 
         foreach ($request->year_from as $attribute_id => $year) {
             if ($year) {
-                $attribute = Attribute::find($attribute_id);
-                $product_year = new MakeModelYearEngine;
-                $product_year->attribute_id = $attribute_id;
-                $product_year->parent_id = optional($attribute->parent)->id;
-                $product_year->product_id = $product->id;
-                $product_year->year_from = $year;
-                $product_year->save();
+                foreach ($request->engine_id[$attribute_id] as $key => $engine_id) {
+                    $attribute = Attribute::find($attribute_id);
+                    $product_year = new MakeModelYearEngine;
+                    $product_year->attribute_id = $attribute_id;
+                    $product_year->product_id = $product->id;
+                    $product_year->parent_id = optional($attribute->parent)->id;
+                    $product_year->year_from = $year;
+                    $product_year->engine_id = $engine_id;
+                    $product_year->save();
+                }
             }
             
         }
 
         foreach ($request->year_to as $attribute_id => $year) {
             if ($year) {
-                $product_year = MakeModelYearEngine::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->first();
-                $product_year->year_to = $year;
-                $product_year->save();
+                $product_years = MakeModelYearEngine::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->get();
+                foreach ($product_years as $product_year ) {
+                    $product_year->year_to = $year;
+                    $product_year->save();
+                }
             }
         }
 
@@ -413,13 +419,17 @@ class ProductController extends Controller
 
         foreach ($request->year_from as $attribute_id => $year) {
             if ($year) {
-                $attribute = Attribute::find($attribute_id);
-                $product_year = new MakeModelYearEngine;
-                $product_year->attribute_id = $attribute_id;
-                $product_year->product_id = $product->id;
-                $product_year->parent_id = optional($attribute->parent)->id;
-                $product_year->year_from = $year;
-                $product_year->save();
+                foreach ($request->engine_id as $key => $engine_id) {
+                    $attribute = Attribute::find($attribute_id);
+                    $product_year = new MakeModelYearEngine;
+                    $product_year->attribute_id = $attribute_id;
+                    $product_year->product_id = $product->id;
+                    $product_year->parent_id = optional($attribute->parent)->id;
+                    $product_year->year_from = $year;
+                    $product_year->engine_id = $engine_id;
+                    $product_year->save();
+                }
+                
             }
         }
 

@@ -18,7 +18,7 @@
         <div class="">
             <h1 class="text-uppercase p-0"><?php echo e($category->name); ?></h1>
         </div>
-        <products-items :years="<?php echo e(json_encode($years)); ?>" />
+        <products-items :years="<?php echo e(json_encode($yrs)); ?>" />
     </div>
 </section>
 
