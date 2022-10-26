@@ -22,9 +22,9 @@
             </label>
         </div>
 
-
+         
         <?php if(isset($year) && $year): ?>
-        <?php if(null !== $ob->attribute_years): ?>)
+       
         <?php $__currentLoopData = $product->product_years->where('attribute_id', $ob->id); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <div class="col-sm-3 ml-3 col-12">
             <div class="input-group input-group-dynamic">
@@ -51,7 +51,6 @@
         </div>
 
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        <?php endif; ?>
         <?php endif; ?>
     </div>
 

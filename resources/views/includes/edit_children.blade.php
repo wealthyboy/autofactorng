@@ -22,9 +22,9 @@
             </label>
         </div>
 
-
+         
         @if (isset($year) && $year)
-        @if(null !== $ob->attribute_years))
+       
         @foreach($product->product_years->where('attribute_id', $ob->id) as $year)
         <div class="col-sm-3 ml-3 col-12">
             <div class="input-group input-group-dynamic">
@@ -51,7 +51,6 @@
         </div>
 
         @endforeach
-        @endif
         @endif
     </div>
 
