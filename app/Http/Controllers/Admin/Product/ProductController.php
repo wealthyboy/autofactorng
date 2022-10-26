@@ -57,6 +57,7 @@ class ProductController extends Controller
         }
         
         $aas = MakeModelYearEngine::get();
+        dd($aas);
         foreach ($aas as $as) {
             $attribute = Attribute::find($as->attribute_id);
 
