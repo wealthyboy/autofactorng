@@ -135,7 +135,7 @@ class Product extends Model
 
     public function product_years()
     {
-        return $this->hasMany(MakeModelYear::class);
+        return $this->hasMany(MakeModelYearEngine::class);
     }
 
     public function product_rates()
