@@ -41,6 +41,8 @@ class ProductsController extends Controller
                 $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
                 $builder->where('make_model_year_engines.year_from', '>=', $request->cookie('year'));
                 $builder->groupBy('make_model_year_engines.product_id');
+            })->whereHas('product_engines', function (Builder  $builder) use ($request) {
+                $builder->where('product_engines.engine_id', $request->cookie('engine_id'));
             });
         }
         
