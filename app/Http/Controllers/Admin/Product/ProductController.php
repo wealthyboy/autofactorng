@@ -305,7 +305,8 @@ class ProductController extends Controller
 
 
     public function search(Request $request)
-    {
+    {   
+        dd(true);
 
         $filtered_array = $request->only(['q', 'field']);
         if (empty($filtered_array['q'])) {
