@@ -21396,9 +21396,42 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["years"],
-  setup: function setup() {}
+  setup: function setup() {
+    var makes = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var models = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var engine = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+      year: "",
+      make_id: "",
+      model_id: "",
+      engine_id: "",
+      type: ""
+    });
+
+    function getNext(e) {
+      form.type = e.target.name;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/make-model-year-engine", {
+        params: form
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {});
+    }
+
+    return {
+      makes: makes,
+      models: models,
+      engine: engine,
+      getNext: getNext,
+      form: form
+    };
+  }
 });
 
 /***/ }),
@@ -22703,32 +22736,193 @@ var _hoisted_1 = {
 var _hoisted_2 = {
   "class": "form-floating"
 };
-var _hoisted_3 = {
-  "class": "form-select",
-  id: "floatingSelectGrid",
-  "aria-label": "Floating label select example"
-};
-var _hoisted_4 = ["value"];
+var _hoisted_3 = ["value"];
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "floatingSelectGrid"
 }, "Select years", -1
 /* HOISTED */
 );
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"w-100 p-1\"><div class=\"form-floating\"><select class=\"form-select\" id=\"floatingSelectGrid\" aria-label=\"Floating label select example\"><option selected>Open this select menu</option><option value=\"1\">One</option><option value=\"2\">Two</option><option value=\"3\">Three</option></select><label for=\"floatingSelectGrid\">Works with selects</label></div></div><div class=\"w-100 p-1\"><div class=\"form-floating\"><select class=\"form-select\" id=\"floatingSelectGrid\" aria-label=\"Floating label select example\"><option selected>Open this select menu</option><option value=\"1\">One</option><option value=\"2\">Two</option><option value=\"3\">Three</option></select><label for=\"floatingSelectGrid\">Works with selects</label></div></div><div class=\"col2 w-100 p-1\"><div class=\"form-floating\"><select class=\"form-select\" id=\"floatingSelectGrid\" aria-label=\"Floating label select example\"><option selected>Open this select menu</option><option value=\"1\">One</option><option value=\"2\">Two</option><option value=\"3\">Three</option></select><label for=\"floatingSelectGrid\">Works with selects</label></div></div>", 3);
+var _hoisted_5 = {
+  "class": "w-100 p-1"
+};
+var _hoisted_6 = {
+  "class": "form-floating"
+};
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  selected: ""
+}, "Open this select menu", -1
+/* HOISTED */
+);
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "1"
+}, "One", -1
+/* HOISTED */
+);
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "2"
+}, "Two", -1
+/* HOISTED */
+);
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "3"
+}, "Three", -1
+/* HOISTED */
+);
+
+var _hoisted_11 = [_hoisted_7, _hoisted_8, _hoisted_9, _hoisted_10];
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "floatingSelectGrid"
+}, "Works with selects", -1
+/* HOISTED */
+);
+
+var _hoisted_13 = {
+  "class": "w-100 p-1"
+};
+var _hoisted_14 = {
+  "class": "form-floating"
+};
+
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  selected: ""
+}, "Open this select menu", -1
+/* HOISTED */
+);
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "1"
+}, "One", -1
+/* HOISTED */
+);
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "2"
+}, "Two", -1
+/* HOISTED */
+);
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "3"
+}, "Three", -1
+/* HOISTED */
+);
+
+var _hoisted_19 = [_hoisted_15, _hoisted_16, _hoisted_17, _hoisted_18];
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "floatingSelectGrid"
+}, "Works with selects", -1
+/* HOISTED */
+);
+
+var _hoisted_21 = {
+  "class": "col2 w-100 p-1"
+};
+var _hoisted_22 = {
+  "class": "form-floating"
+};
+
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  selected: ""
+}, "Open this select menu", -1
+/* HOISTED */
+);
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "1"
+}, "One", -1
+/* HOISTED */
+);
+
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "2"
+}, "Two", -1
+/* HOISTED */
+);
+
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "3"
+}, "Three", -1
+/* HOISTED */
+);
+
+var _hoisted_27 = [_hoisted_23, _hoisted_24, _hoisted_25, _hoisted_26];
+
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "for": "floatingSelectGrid"
+}, "Works with selects", -1
+/* HOISTED */
+);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.years, function (year) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "class": "form-select",
+    id: "floatingSelectGrid",
+    "aria-label": "Floating label select example",
+    name: "year",
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $setup.form.year = $event;
+    }),
+    onChange: _cache[1] || (_cache[1] = function ($event) {
+      return $setup.getNext($event);
+    })
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.years, function (year) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: year,
       value: year
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(year), 9
     /* TEXT, PROPS */
-    , _hoisted_4);
+    , _hoisted_3);
   }), 128
   /* KEYED_FRAGMENT */
-  ))]), _hoisted_5])]), _hoisted_6], 64
+  ))], 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.year]]), _hoisted_4])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "class": "form-select",
+    id: "floatingSelectGrid",
+    onChange: _cache[2] || (_cache[2] = function ($event) {
+      return $setup.getNext($event);
+    }),
+    name: "make_id",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $setup.form.make_id = $event;
+    })
+  }, _hoisted_11, 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.make_id]]), _hoisted_12])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "class": "form-select",
+    id: "floatingSelectGrid",
+    "aria-label": "Floating label select example",
+    name: "model_id",
+    onChange: _cache[4] || (_cache[4] = function ($event) {
+      return $setup.getNext($event);
+    }),
+    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+      return $setup.form.model_id = $event;
+    })
+  }, _hoisted_19, 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.model_id]]), _hoisted_20])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "class": "form-select",
+    id: "floatingSelectGrid",
+    "aria-label": "Floating label select example",
+    name: "engine_id",
+    onChange: _cache[6] || (_cache[6] = function ($event) {
+      return $setup.getNext($event);
+    }),
+    "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+      return $setup.form.engine_id = $event;
+    })
+  }, _hoisted_27, 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.engine_id]]), _hoisted_28])])], 64
   /* STABLE_FRAGMENT */
   );
 }

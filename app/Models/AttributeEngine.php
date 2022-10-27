@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class AttributeEngine extends Model
 {
     use HasFactory;
+
+    public $table = 'attribute_engine';
 }

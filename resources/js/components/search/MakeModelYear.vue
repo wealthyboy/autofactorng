@@ -6,6 +6,9 @@
         class="form-select"
         id="floatingSelectGrid"
         aria-label="Floating label select example"
+        name="year"
+        v-model="form.year"
+        @change="getNext($event)"
       >
         <option
           v-for="year in years"
@@ -22,7 +25,11 @@
       <select
         class="form-select"
         id="floatingSelectGrid"
-        aria-label="Floating label select example"
+        @change="getNext($event)"
+        name="make_id"
+        v-model="form.make_id"
+
+
       >
         <option selected>Open this select menu</option>
         <option value="1">One</option>
@@ -38,6 +45,10 @@
         class="form-select"
         id="floatingSelectGrid"
         aria-label="Floating label select example"
+        name="model_id"
+        @change="getNext($event)"
+        v-model="form.model_id"
+
       >
         <option selected>Open this select menu</option>
         <option value="1">One</option>
@@ -53,6 +64,10 @@
         class="form-select"
         id="floatingSelectGrid"
         aria-label="Floating label select example"
+        name="engine_id"
+        @change="getNext($event)"
+        v-model="form.engine_id"
+
       >
         <option selected>Open this select menu</option>
         <option value="1">One</option>
@@ -66,8 +81,47 @@
 </template>
 
 <script>
+import { reactive, ref } from 'vue';
+import axios from 'axios';
+
 export default {
   props: ["years"],
-  setup() {},
+  setup() { 
+    const makes = ref([])
+    const models = ref([])
+    const engine = ref([])
+
+    const form = reactive({
+      year: "",
+      make_id: "",
+      model_id: "",
+      engine_id: "",
+      type: ""
+    })
+
+    function getNext(e) {
+      form.type = e.target.name
+      axios
+        .get("/make-model-year-engine", {
+           params: form
+        })
+        .then(response => {
+            console.log(response)
+        })
+        .catch((error) => {
+
+        });
+    }
+
+    return {
+      makes,
+      models,
+      engine,
+      getNext,
+      form
+    }
+
+
+  },
 };
 </script>

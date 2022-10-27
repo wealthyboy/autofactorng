@@ -75,6 +75,8 @@ Route::get('checkout', [App\Http\Controllers\Checkout\CheckoutController::class,
 Route::get('buy-now-pay-later', [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index']);
 Route::get('products/{category}', 'Products\ProductsController@index');
 Route::get('product/{category}/{product}', 'Products\ProductsController@show');
+Route::get('make-model-year-engine', 'Products\ProductsController@makeModelYearSearch');
+
 
 
 Route::get('pages/{information}', 'Pages\PagesController@show');

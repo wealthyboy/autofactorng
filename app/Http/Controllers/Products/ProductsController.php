@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Products;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductsCollection;
 use App\Models\Category;
+use App\Models\MakeModelYearEngine;
 use App\Models\Product;
 use App\Models\Setting;
 use Illuminate\Database\Eloquent\Builder;
@@ -25,7 +26,10 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function  index(Request $request, Builder $builder, Category $category)
-    {
+    {   
+
+
+       
         $page_title = implode(" ", explode('-', $category->slug));
         $products = Product::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.slug', $category->slug);
@@ -42,6 +46,12 @@ class ProductsController extends Controller
             'category',
             'page_title',
         ));
+    }
+
+
+    public function makeModelYearSearch(Request $request) {
+        
+        return MakeModelYearEngine::getMakeModelYearSearch($request);
     }
 
 
