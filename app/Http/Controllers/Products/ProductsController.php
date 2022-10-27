@@ -39,7 +39,10 @@ class ProductsController extends Controller
         $products->appends(request()->all());
 
         if ($request->ajax()) {
-            return new ProductsCollection($products);
+            return (new ProductsCollection($products))
+            ->additional([
+                'string' => $this->buildSearchString($request),
+            ]);
         }
 
         return  view('products.index', compact(

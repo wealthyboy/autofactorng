@@ -98,7 +98,7 @@ export default {
         .then((res) => {
           this.products = res.data.data;
           this.meta = res.data.meta;
-          console.log(res.data.meta);
+          this.searchText = res.data.string;
         })
         .catch((err) => {});
     },

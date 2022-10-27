@@ -344,8 +344,6 @@ class ProductController extends Controller
         return $data;
     }
 
-
-
     public function update(Request $request, $id)
     {
 
@@ -462,8 +460,6 @@ class ProductController extends Controller
         //(new Activity)->Log("Added a product ", "{$data}");
         return response()->json($product);
     }
-
-
 
     /**
      * Remove the specified resource from storage.

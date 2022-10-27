@@ -1,5 +1,7 @@
 <template>
-  <div class="cta-border cta-bg light ">
+     <div class="cta-border cta-bg light ">
+        <div class="underline w-100"></div>
+
         <div class="row cta-simple p-0 py-5">
         <div class="col-md-2">
             <h3>CURRENTLY SHOPPING FOR:</h3>
