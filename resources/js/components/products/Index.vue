@@ -4,7 +4,7 @@
 
     <div class="col-lg-9 order-lg-2">
 
-      <search-string  v-if="searchText =null"  :searchText="searchText" />
+      <search-string  v-if="searchText"  :searchText="searchText" />
       <div v-else class="cta-border cta-bg light ">
         <div class="underline w-100"></div>
       <div  class="d-flex justify-content-between  align-content-center">
