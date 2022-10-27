@@ -50,8 +50,12 @@ class ProductsController extends Controller
 
 
     public function makeModelYearSearch(Request $request) {
-        
-        return MakeModelYearEngine::getMakeModelYearSearch($request);
+        $data = MakeModelYearEngine::getMakeModelYearSearch($request);
+        return response()->json(
+            [ 
+                'type' => $request->type,
+                'data' =>  $data
+            ]);
     }
 
 

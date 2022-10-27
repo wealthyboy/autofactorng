@@ -56,17 +56,17 @@ class ProductController extends Controller
 
         }
         
-        // $aas = MakeModelYearEngine::where('year_to', null)->take(1000)->get();
-        // foreach ($aas as $as) {
-        //     $as->delete();
+        $aas = MakeModelYearEngine::where('year_to', null)->take(1000)->get();
+        foreach ($aas as $as) {
+            $as->delete();
 
-        //     // $attribute = Attribute::find($as->attribute_id);
-        //     // if (null !==  $attribute) {
-        //     //     $as->parent_id = optional($attribute->parent)->id;
-        //     //     $as->save();
-        //     // }
+            // $attribute = Attribute::find($as->attribute_id);
+            // if (null !==  $attribute) {
+            //     $as->parent_id = optional($attribute->parent)->id;
+            //     $as->save();
+            // }
             
-        // }
+        }
 
         return view('admin.products.index', compact('products', 'brands', 'categories', 'attributes', 'years'));
     }
