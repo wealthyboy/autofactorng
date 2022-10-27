@@ -4,17 +4,17 @@
 
     <div class="col-lg-9 order-lg-2">
 
-      <search-string  v-if="searchText"  :searchText="searchText" />
-      <div v-else class="cta-border cta-bg light ">
-        <div class="underline w-100"></div>
-      <div  class="d-flex justify-content-between  align-content-center">
-        <div class="title w-100 p-2">
-          <h3>SET YOUR VEHICLE</h3>
+      <search-string @remove:vehicle="shopWithoutVehicle"  v-if="searchText"  :searchText="searchText" />
+        <div v-else class="cta-border cta-bg light ">
+          <div class="underline w-100"></div>
+        <div  class="d-flex justify-content-between  align-content-center">
+          <div class="title w-100 p-2">
+            <h3>SET YOUR VEHICLE</h3>
 
-          <p>Get an exact fit for your vehicle.</p>
+            <p>Get an exact fit for your vehicle.</p>
+          </div>
+          <search @do:filter="filter" :filter="true" :years="years" />
         </div>
-        <search @do:filter="filter" :filter="true" :years="years" />
-      </div>
       </div>
 
       <product-nav />
@@ -94,6 +94,17 @@ export default {
   methods: {
     filter(o){
       this.searchText = o.text
+    },
+    shopWithoutVehicle(){
+      this.searchText = null
+
+      // axios
+      //   .post("/remove-make-model-year-engine")
+      //   .then((res) => {
+      //     this.products = res.data.data;
+         
+      //   })
+      //   .catch((err) => {});
     },
     getProducts() {
       axios

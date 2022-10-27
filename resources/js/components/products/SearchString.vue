@@ -15,10 +15,10 @@
 
         <div class="col-md-3">
             <div class="mb-2">
-                <a href="#">Change Vehicle</a>  
+                <a  href="#">Change Vehicle</a>  
             </div>
             <div class="#">
-            <a href="#">Shop Without Vehicle</a>
+            <a @click.prevent="ShopWithoutVehicle" href="#">Shop Without Vehicle</a>
             </div>
 
         </div>
@@ -29,7 +29,16 @@
 <script>
 export default {
     props: ['searchText'],
-    setup() {
+    emits: ['remove:vehicle'],
+    setup(props, { emit }) {
+
+        function ShopWithoutVehicle() {
+            emit('remove:vehicle')
+        }
+
+        return {
+            ShopWithoutVehicle
+        }
     },
 }
 </script>

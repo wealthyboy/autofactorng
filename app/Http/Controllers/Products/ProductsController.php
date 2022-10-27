@@ -29,13 +29,23 @@ class ProductsController extends Controller
      */
     public function  index(Request $request, Builder $builder, Category $category)
     {   
-
         $page_title = implode(" ", explode('-', $category->slug));
         $products = Product::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.slug', $category->slug);
-        })
+        });
+
+        if (null !== $request->cookie('engine_id')) {
+            $products->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
+                $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
+                $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
+                $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
+                $builder->where('make_model_year_engines.year_from', '>=', $request->cookie('year'));
+                $builder->groupBy('make_model_year_engines.product_id');
+            });
+        }
         
-        ->filter($request, [])->latest()->paginate($this->settings->products_items_per_page);
+        
+        $products->filter($request, [])->latest()->paginate($this->settings->products_items_per_page);
 
         $products->load('images');
         $products->appends(request()->all());

@@ -111,9 +111,6 @@ class Product extends Model
         return $this->belongsToMany(Category::class);
     }
 
-
-
-
     public function link()
     {
         $link  = '/product/';
@@ -126,6 +123,13 @@ class Product extends Model
     {
         return $this->hasMany(RelatedProduct::class);
     }
+
+
+    public function make_model_year_engines()
+    {
+        return $this->hasMany(MakeModelYearEngine::class);
+    }
+
 
     public function scopeFilter(Builder $builder, $request)
     {

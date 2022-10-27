@@ -21241,6 +21241,14 @@ __webpack_require__.r(__webpack_exports__);
     filter: function filter(o) {
       this.searchText = o.text;
     },
+    shopWithoutVehicle: function shopWithoutVehicle() {
+      this.searchText = null; // axios
+      //   .post("/remove-make-model-year-engine")
+      //   .then((res) => {
+      //     this.products = res.data.data;
+      //   })
+      //   .catch((err) => {});
+    },
     getProducts: function getProducts() {
       var _this = this;
 
@@ -21341,7 +21349,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['searchText'],
-  setup: function setup() {}
+  emits: ['remove:vehicle'],
+  setup: function setup(props, _ref) {
+    var emit = _ref.emit;
+
+    function ShopWithoutVehicle() {
+      emit('remove:vehicle');
+    }
+
+    return {
+      ShopWithoutVehicle: ShopWithoutVehicle
+    };
+  }
 });
 
 /***/ }),
@@ -22480,10 +22499,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [$data.searchText ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search_string, {
     key: 0,
+    "onRemove:vehicle": $options.shopWithoutVehicle,
     searchText: $data.searchText
   }, null, 8
   /* PROPS */
-  , ["searchText"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_search, {
+  , ["onRemove:vehicle", "searchText"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_search, {
     "onDo:filter": $options.filter,
     filter: true,
     years: $props.years
@@ -22690,13 +22710,30 @@ var _hoisted_5 = {
 var _hoisted_6 = {
   "class": "w-100"
 };
+var _hoisted_7 = {
+  "class": "col-md-3"
+};
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-md-3\"><div class=\"mb-2\"><a href=\"#\">Change Vehicle</a></div><div class=\"#\"><a href=\"#\">Shop Without Vehicle</a></div></div>", 1);
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "mb-2"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: "#"
+}, "Change Vehicle")], -1
+/* HOISTED */
+);
 
+var _hoisted_9 = {
+  "class": "#"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.searchText), 1
   /* TEXT */
-  )]), _hoisted_7])]);
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $setup.ShopWithoutVehicle && $setup.ShopWithoutVehicle.apply($setup, arguments);
+    }, ["prevent"])),
+    href: "#"
+  }, "Shop Without Vehicle")])])])]);
 }
 
 /***/ }),
