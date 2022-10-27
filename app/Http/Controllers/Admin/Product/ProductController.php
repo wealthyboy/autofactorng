@@ -60,8 +60,7 @@ class ProductController extends Controller
 
         if (request()->debug == 1) {
         
-            $aas = AttributeYear::where('parent_id', '=', null)->get();
-            dd($aas);
+            $aas = AttributeYear::get();
              foreach ($aas as $as) {
                 // $as->delete();
      
