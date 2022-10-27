@@ -7,7 +7,7 @@
       <search-string @remove:vehicle="shopWithoutVehicle"  v-if="searchText"  :searchText="searchText" />
         <div v-else class="cta-border cta-bg light ">
           <div class="underline w-100"></div>
-        <div  class="d-flex justify-content-between  align-content-center">
+        <div  class="d-flex justify-content-between  align-content-center py-5">
           <div class="title w-100 p-2">
             <h3>SET YOUR VEHICLE</h3>
 
