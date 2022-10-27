@@ -28,8 +28,6 @@ class ProductsController extends Controller
     public function  index(Request $request, Builder $builder, Category $category)
     {   
 
-
-       
         $page_title = implode(" ", explode('-', $category->slug));
         $products = Product::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.slug', $category->slug);

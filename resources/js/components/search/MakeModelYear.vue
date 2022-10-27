@@ -34,7 +34,7 @@
       >
         <option selected>Open this select menu</option>
         <option
-          v-for="make in makes"
+          v-for="make in next.makes"
           :key="make.id"
           :value="make.id"
         >{{ make.name }}</option>
@@ -57,10 +57,12 @@
 
       >
         <option selected>Open this select menu</option>
-        <option v-for="make in makes"
-          :key="make.id"
-          :value="make.id"
-        >{{ make.name }}</option>
+        <option
+          v-for="model in next.models"
+          :key="model.id"
+          :value="model.id"
+        >{{ model.name }}</option>
+       
         
       </select>
       <label for="floatingSelectGrid">Works with selects</label>
@@ -79,6 +81,12 @@
 
       >
         <option selected>Open this select menu</option>
+
+        <option
+          v-for="engine in next.engines"
+          :key="engine.id"
+          :value="engine.id"
+        >{{ engine.name }}</option>
        
       </select>
       <label for="floatingSelectGrid">Works with selects</label>
@@ -98,25 +106,33 @@ export default {
     const models = ref([])
     const engines = ref([])
 
+    const next = reactive({
+      makes: [],
+      models: "",
+      engines: "",
+    })
+
     const form = reactive({
       year: "",
       make_id: "",
       model_id: "",
       engine_id: "",
-      type: ""
+      type: "",
+      next: ""
     })
 
     function getNext(e) {
       form.type = e.target.name
+      let nt = e.target.dataset.next;
       axios
         .get("/make-model-year-engine", {
            params: form
         })
         .then(response => {
-            response.data.data
+           next[nt] = response.data.data
         })
         .catch((error) => {
-
+           console.log(error)
         });
     }
 
@@ -125,7 +141,8 @@ export default {
       models,
       engines,
       getNext,
-      form
+      form,
+      next
     }
 
 
