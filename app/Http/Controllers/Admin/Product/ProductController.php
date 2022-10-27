@@ -59,8 +59,6 @@ class ProductController extends Controller
         
 
         if (request()->debug == 1) {
-
-            dd(MakeModelYearEngine::get());
         
             $aas = AttributeYear::get();
              foreach ($aas as $as) {
