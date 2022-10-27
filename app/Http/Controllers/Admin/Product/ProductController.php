@@ -17,6 +17,7 @@ use App\Http\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use App\Models\AttributeYear;
 use App\Models\EngineProduct;
 use App\Models\ShippingRate;
 use Illuminate\Support\Facades\Validator;
@@ -58,7 +59,8 @@ class ProductController extends Controller
         
 
         if (request()->debug == 1) {
-            $aas = MakeModelYearEngine::where('parent_id', '=', null)->get();
+        
+            $aas = AttributeYear::where('parent_id', '=', null)->get();
             dd($aas);
              foreach ($aas as $as) {
                 // $as->delete();
