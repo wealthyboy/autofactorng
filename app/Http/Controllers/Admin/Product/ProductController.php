@@ -420,7 +420,7 @@ class ProductController extends Controller
 
         foreach ($request->year_from as $attribute_id => $year) {
             if ($year) {
-                foreach ($request->engine_id as $key => $engine_id) {
+                foreach ($request->engine_id[$attribute_id] as $key => $engine_id) {
                     $attribute = Attribute::find($attribute_id);
                     $product_year = new MakeModelYearEngine;
                     $product_year->attribute_id = $attribute_id;
