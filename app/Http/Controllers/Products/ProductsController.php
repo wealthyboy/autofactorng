@@ -33,7 +33,9 @@ class ProductsController extends Controller
         $page_title = implode(" ", explode('-', $category->slug));
         $products = Product::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.slug', $category->slug);
-        })->filter($request, [])->latest()->paginate($this->settings->products_items_per_page);
+        })
+        
+        ->filter($request, [])->latest()->paginate($this->settings->products_items_per_page);
 
         $products->load('images');
         $products->appends(request()->all());

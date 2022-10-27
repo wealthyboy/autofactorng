@@ -1,6 +1,6 @@
 <template>
 
-  <div class="w-100 p-1">
+  <div class="w-100 p-1 align-self-center">
     <div class="form-floating">
       <select
         class="form-select"
@@ -21,7 +21,7 @@
       <label for="floatingSelectGrid">Select years</label>
     </div>
   </div>
-  <div class=" w-100 p-1">
+  <div class=" w-100 p-1 align-self-center">
     <div class="form-floating">
       <select
         class="form-select"
@@ -43,7 +43,7 @@
       <label for="floatingSelectGrid">Works with selects</label>
     </div>
   </div>
-  <div class=" w-100 p-1">
+  <div class=" w-100 p-1 align-self-center">
     <div class="form-floating">
       <select
         class="form-select"
@@ -68,7 +68,7 @@
       <label for="floatingSelectGrid">Works with selects</label>
     </div>
   </div>
-  <div class="col2 w-100 p-1">
+  <div class="col2 w-100 p-1 align-self-center">
     <div class="form-floating">
       <select
         class="form-select"

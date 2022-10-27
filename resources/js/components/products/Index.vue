@@ -4,14 +4,17 @@
 
     <div class="col-lg-9 order-lg-2">
 
-       <search-string  v-if="searchText"  :searchText="searchText" />
-      <div v-else class="d-flex justify-content-between ">
+      <search-string  v-if="searchText =null"  :searchText="searchText" />
+      <div v-else class="cta-border cta-bg light ">
+        <div class="underline w-100"></div>
+      <div  class="d-flex justify-content-between  align-content-center">
         <div class="title w-100 p-2">
           <h3>SET YOUR VEHICLE</h3>
 
           <p>Get an exact fit for your vehicle.</p>
         </div>
         <search @do:filter="filter" :filter="true" :years="years" />
+      </div>
       </div>
 
       <product-nav />
