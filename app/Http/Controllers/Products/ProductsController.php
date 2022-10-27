@@ -47,14 +47,32 @@ class ProductsController extends Controller
     }
 
 
-    public function makeModelYearSearch(Request $request) {
+    public function makeModelYearSearch(Request $request) 
+    {   
+
+        //year
+        //make
+        //model
+        //engine
+
+        $cookie = null;
+        foreach(array_filter($request->query()) as $key => $value) {
+           // session()->put($key, $value);
+            $cookie = cookie($key, $value, 60 * 60 * 7);
+        }
+        //dd(session('year'));
+
         $data = MakeModelYearEngine::getMakeModelYearSearch($request);
+
         return response()->json(
             [ 
                 'type' => $request->type,
                 'data' =>  $data
-            ]);
+            ])->withCookie($cookie);
     }
+
+
+   
 
 
     /**

@@ -4,6 +4,30 @@
 
     <div class="col-lg-9 order-lg-2">
 
+      <div class="cta-border cta-bg light ">
+          <div class="row cta-simple p-0 py-5">
+            <div class="col-md-2">
+              <h3>CURRENTLY SHOPPING FOR:</h3>
+            </div>
+
+
+            <div class="col-md-7">
+              <button class="w-100">2019 Toyota Truck 4Runner SR5 Premium 2WD 4.0L FI DOHC 6cyl</button>
+            </div>
+
+
+            <div class="col-md-3">
+              <div class="mb-2">
+                 <a href="#">Change Vehicle</a>  
+              </div>
+              <div class="#">
+                <a href="#">Shop Without Vehicle</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
       <div class="d-flex justify-content-between ">
         <div class="title w-100 p-2">
           <h3>SET YOUR VEHICLE</h3>
