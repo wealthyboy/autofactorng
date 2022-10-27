@@ -27,7 +27,7 @@
         class="form-select"
         id="floatingSelectGrid"
         @change="getNext($event)"
-        name="make_id"
+        name="make"
         data-next="models"
 
         v-model="form.make_id"
@@ -49,7 +49,7 @@
         class="form-select"
         id="floatingSelectGrid"
         aria-label="Floating label select example"
-        name="model_id"
+        name="model"
         @change="getNext($event)"
         v-model="form.model_id"
         data-next="engines"

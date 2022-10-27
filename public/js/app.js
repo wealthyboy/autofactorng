@@ -22847,7 +22847,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onChange: _cache[2] || (_cache[2] = function ($event) {
       return $setup.getNext($event);
     }),
-    name: "make_id",
+    name: "make",
     "data-next": "models",
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $setup.form.make_id = $event;
@@ -22867,7 +22867,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "form-select",
     id: "floatingSelectGrid",
     "aria-label": "Floating label select example",
-    name: "model_id",
+    name: "model",
     onChange: _cache[4] || (_cache[4] = function ($event) {
       return $setup.getNext($event);
     }),
