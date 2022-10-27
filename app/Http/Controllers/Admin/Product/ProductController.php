@@ -56,9 +56,9 @@ class ProductController extends Controller
 
         }
         
-        $aas = MakeModelYearEngine::get();
+        $aas = MakeModelYearEngine::where('year_to', null)->take(100)->get();
         dd($aas);
-       // foreach ($aas as $as) {
+      //  foreach ($aas as $as) {
            // $as->delete();
 
             // $attribute = Attribute::find($as->attribute_id);
@@ -67,7 +67,7 @@ class ProductController extends Controller
             //     $as->save();
             // }
             
-        //}
+       // }
 
         return view('admin.products.index', compact('products', 'brands', 'categories', 'attributes', 'years'));
     }
