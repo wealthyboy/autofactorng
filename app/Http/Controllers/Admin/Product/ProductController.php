@@ -64,11 +64,11 @@ class ProductController extends Controller
              foreach ($aas as $as) {
                 // $as->delete();
      
-                 $attribute = Attribute::find($as->attribute_id);
-                 if (null !==  $attribute) {
-                     $as->parent_id = optional($attribute->parent)->id;
-                     $as->save();
-                 }
+                $attribute = Attribute::find($as->attribute_id);
+                if (null !==  $attribute) {
+                    $as->parent_id = optional($attribute->parent)->id;
+                    $as->save();
+                }
              }
         }
         
@@ -323,7 +323,7 @@ class ProductController extends Controller
             });
         }
 
-        $products = $query->groupBy('products.id')->paginate(10);
+        $products = $query->groupBy('products.id')->paginate(100);
         $products->appends(request()->all());
         return view('admin.products.index', compact('products'));
     }
