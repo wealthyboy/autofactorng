@@ -21402,8 +21402,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["years"],
-  setup: function setup() {
+  props: ["years", "filter"],
+  setup: function setup(props, _ref) {
+    var emit = _ref.emit;
     var makes = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var models = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var engines = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
@@ -21428,6 +21429,10 @@ __webpack_require__.r(__webpack_exports__);
         params: form
       }).then(function (response) {
         next[nt] = response.data.data;
+
+        if (nt == 'products' && props.filter) {
+          emit("make:filter", form);
+        }
       })["catch"](function (error) {
         console.log(error);
       });
@@ -22434,6 +22439,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_pagination = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("pagination");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_search, {
+    filter: true,
     years: $props.years
   }, null, 8
   /* PROPS */
@@ -22566,7 +22572,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("figure", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.product.link
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: $props.product.image_m,
+    src: $props.product.image_to_show,
     width: "250",
     height: "250",
     alt: "product"
@@ -22899,7 +22905,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
       return $setup.form.engine_id = $event;
-    })
+    }),
+    "data-next": "products"
   }, [_hoisted_17, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.next.engines, function (engine) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: engine.id,

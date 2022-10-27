@@ -75,9 +75,9 @@
         id="floatingSelectGrid"
         aria-label="Floating label select example"
         name="engine_id"
-        
         @change="getNext($event)"
         v-model="form.engine_id"
+        data-next="products"
 
       >
         <option selected>Open this select menu</option>
@@ -86,7 +86,8 @@
           v-for="engine in next.engines"
           :key="engine.id"
           :value="engine.id"
-        >{{ engine.name }}</option>
+        >{{ engine.name }}
+        </option>
        
       </select>
       <label for="floatingSelectGrid">Works with selects</label>
@@ -100,8 +101,8 @@ import { reactive, ref } from 'vue';
 import axios from 'axios';
 
 export default {
-  props: ["years"],
-  setup() { 
+  props: ["years","filter"],
+  setup(props, {emit}) { 
     const makes = ref([])
     const models = ref([])
     const engines = ref([])
@@ -124,12 +125,19 @@ export default {
     function getNext(e) {
       form.type = e.target.name
       let nt = e.target.dataset.next;
+
+
       axios
         .get("/make-model-year-engine", {
            params: form
         })
         .then(response => {
-           next[nt] = response.data.data
+          next[nt] = response.data.data
+          
+      if (nt == 'products' && props.filter){
+          emit("make:filter", form)
+      }
+      
         })
         .catch((error) => {
            console.log(error)

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductsCollection;
+use App\Models\Attribute;
 use App\Models\Category;
+use App\Models\Engine;
 use App\Models\MakeModelYearEngine;
 use App\Models\Product;
 use App\Models\Setting;
@@ -50,25 +52,57 @@ class ProductsController extends Controller
     public function makeModelYearSearch(Request $request) 
     {   
 
-        //year
-        //make
-        //model
-        //engine
-
+        $data  = $request->query();
         $cookie = null;
-        foreach(array_filter($request->query()) as $key => $value) {
-           // session()->put($key, $value);
-            $cookie = cookie($key, $value, 60 * 60 * 7);
-        }
-        //dd(session('year'));
-
+        $type = $this->getType($request);
+        session()->put($type, $data[$type]);
+        $cookie = cookie($type, $data[$type], 60 * 60 * 7);
         $data = MakeModelYearEngine::getMakeModelYearSearch($request);
-
         return response()->json(
             [ 
                 'type' => $request->type,
-                'data' =>  $data
-            ])->withCookie($cookie);
+                'data' =>  $data,
+                'string' => $this->buildSearchString($request)
+            ]
+        )->withCookie($cookie);
+    }
+
+
+    public function getType(Request $request) {
+        switch ($request->type) {
+            case 'year':
+                 $response = 'year'; 
+                break;
+            case 'make':
+                $response = 'make_id'; 
+                break;
+            case 'model':
+                $response = 'model_id'; 
+                break;
+            case 'engine_id':
+                $response = 'engine_id'; 
+                break;
+            default:
+                # code...
+                $response = null;
+                break;
+        }
+
+        return $response;
+    }
+
+
+    public function buildSearchString(Request $request) {
+        if (null !== $request->cookie('engine_id')) {
+            $year = $request->cookie('year');
+            $make_name = Attribute::find($request->cookie('make_id'))->name;
+            $model_name = Attribute::find($request->cookie('model_id'))->name;
+            $engine_name = Engine::find($request->cookie('engine_id'))->name;
+
+            return $year .' '.$make_name.' '.$model_name.' '.$engine_name;
+        }
+        
+        return null;
     }
 
 

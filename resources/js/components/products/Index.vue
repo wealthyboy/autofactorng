@@ -34,7 +34,7 @@
 
           <p>Get an exact fit for your vehicle.</p>
         </div>
-        <search :years="years" />
+        <search :filter="true" :years="years" />
       </div>
 
       <product-nav />
