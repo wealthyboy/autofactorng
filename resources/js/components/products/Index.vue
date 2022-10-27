@@ -4,37 +4,14 @@
 
     <div class="col-lg-9 order-lg-2">
 
-      <div class="cta-border cta-bg light ">
-          <div class="row cta-simple p-0 py-5">
-            <div class="col-md-2">
-              <h3>CURRENTLY SHOPPING FOR:</h3>
-            </div>
-
-
-            <div class="col-md-7">
-              <button class="w-100">2019 Toyota Truck 4Runner SR5 Premium 2WD 4.0L FI DOHC 6cyl</button>
-            </div>
-
-
-            <div class="col-md-3">
-              <div class="mb-2">
-                 <a href="#">Change Vehicle</a>  
-              </div>
-              <div class="#">
-                <a href="#">Shop Without Vehicle</a>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-      <div class="d-flex justify-content-between ">
+       <search-string  v-if="searchText"  :searchText="searchText" />
+      <div v-else class="d-flex justify-content-between ">
         <div class="title w-100 p-2">
           <h3>SET YOUR VEHICLE</h3>
 
           <p>Get an exact fit for your vehicle.</p>
         </div>
-        <search :filter="true" :years="years" />
+        <search @do:filter="filter" :filter="true" :years="years" />
       </div>
 
       <product-nav />
@@ -87,6 +64,7 @@ import Pagination from "../pagination/Pagination.vue";
 import axios from "axios";
 import Search from "../search/MakeModelYear";
 import ProductNav from "./Nav";
+import SearchString from "./SearchString";
 
 export default {
   components: {
@@ -94,6 +72,7 @@ export default {
     Pagination,
     Search,
     ProductNav,
+    SearchString  
   },
   props: ["years"],
   data() {
@@ -103,12 +82,16 @@ export default {
       has_filters: 0,
       full_width: false,
       loading: false,
+      searchText: null
     };
   },
   mounted() {
     this.getProducts();
   },
   methods: {
+    filter(o){
+      this.searchText = o.text
+    },
     getProducts() {
       axios
         .get(location.href + "?get=1")

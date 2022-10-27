@@ -102,6 +102,7 @@ import axios from 'axios';
 
 export default {
   props: ["years","filter"],
+  emits: ["do:filter"],
   setup(props, {emit}) { 
     const makes = ref([])
     const models = ref([])
@@ -112,7 +113,7 @@ export default {
       models: "",
       engines: "",
     })
-
+    
     const form = reactive({
       year: "",
       make_id: "",
@@ -125,19 +126,18 @@ export default {
     function getNext(e) {
       form.type = e.target.name
       let nt = e.target.dataset.next;
-
-
       axios
         .get("/make-model-year-engine", {
            params: form
         })
         .then(response => {
           next[nt] = response.data.data
-          
-      if (nt == 'products' && props.filter){
-          emit("make:filter", form)
-      }
-      
+          let text = response.data.string
+  
+          if (nt == 'products' ){
+             emit("do:filter", {form, text})
+          }
+    
         })
         .catch((error) => {
            console.log(error)
