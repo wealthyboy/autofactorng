@@ -53,25 +53,29 @@ class ProductController extends Controller
             $products = Product::where('name', 'like', '%' . $value . '%')
                 ->latest()->paginate(100);
             $products->appends(request()->query());
-
-
         }
-        
+
+
+        $aas = MakeModelYearEngine::take(3)->get();
+
+        dd($aas);
 
         if (request()->debug == 1) {
-        
-            $aas = AttributeYear::get();
-             foreach ($aas as $as) {
+
+            $aas = MakeModelYearEngine::take(3)->get();
+
+            dd($aas);
+            foreach ($aas as $as) {
                 // $as->delete();
-     
+
                 $attribute = Attribute::find($as->attribute_id);
                 if (null !==  $attribute) {
                     $as->parent_id = optional($attribute->parent)->id;
                     $as->save();
                 }
-             }
+            }
         }
-        
+
 
         return view('admin.products.index', compact('products', 'brands', 'categories', 'attributes', 'years'));
     }
@@ -239,7 +243,7 @@ class ProductController extends Controller
             }
         }
 
-      // dd($request->engine_id);
+        // dd($request->engine_id);
 
         foreach ($request->year_from as $attribute_id => $year) {
             if ($year) {
@@ -254,13 +258,12 @@ class ProductController extends Controller
                     $product_year->save();
                 }
             }
-            
         }
 
         foreach ($request->year_to as $attribute_id => $year) {
             if ($year) {
                 $product_years = MakeModelYearEngine::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->get();
-                foreach ($product_years as $product_year ) {
+                foreach ($product_years as $product_year) {
                     $product_year->year_to = $year;
                     $product_year->save();
                 }
@@ -305,7 +308,7 @@ class ProductController extends Controller
 
 
     public function search(Request $request)
-    {   
+    {
 
         $filtered_array = $request->only(['q', 'field']);
         if (empty($filtered_array['q'])) {
@@ -433,13 +436,12 @@ class ProductController extends Controller
                     $product_year->engine_id = $engine_id;
                     $product_year->save();
                 }
-                
             }
         }
 
         foreach ($request->year_to as $attribute_id => $year) {
             if ($year) {
-                $product_year = MakeModelYearEngine::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->first();
+                $product_year = MakeModelYearEngine::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->get();
                 $product_year->year_to = $year;
                 $product_year->save();
             }
