@@ -60,7 +60,6 @@ class ProductController extends Controller
 
             $aas = MakeModelYearEngine::get();
 
-            dd($aas);
             foreach ($aas as $as) {
                 // $as->delete();
 
@@ -437,9 +436,13 @@ class ProductController extends Controller
 
         foreach ($request->year_to as $attribute_id => $year) {
             if ($year) {
-                $product_year = MakeModelYearEngine::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->get();
-                $product_year->year_to = $year;
-                $product_year->save();
+                $product_years = MakeModelYearEngine::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->get();
+
+
+                foreach ($product_years as $product_year) {
+                    $product_year->year_to = $year;
+                    $product_year->save();
+                }
             }
         }
 

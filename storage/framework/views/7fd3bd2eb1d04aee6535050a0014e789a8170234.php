@@ -157,7 +157,6 @@
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                      <label class="form-label">Physical Description</label>
-
                      <div class="input-group input-group-outline">
                         <textarea type="text" class="form-control" name="phy_desccfff" rows="8" id="phy_description">
                         <?php echo e($product->phy_desc); ?>
