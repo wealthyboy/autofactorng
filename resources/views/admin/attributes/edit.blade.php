@@ -112,13 +112,43 @@
 
                             <div class="well well-sm pb-5 border" style="height: 300px; background-color: #fff; color: black; overflow: auto;">
                                 @foreach($engines as $engine)
-                                <div class="parent" value="">
-                                    <div class="form-check ">
+
+
+                                <div class="d-flex mt-3">
+                                    <div class="form-check">
                                         <label class="custom-control-label" for="{{ $engine->id }}">
                                             <input class="form-check-input" value="{{ $engine->id }}" id="{{ $engine->id }}" {{  $attr->engines->contains('id', $engine->id) ? 'checked' : '' }} type="checkbox" name="engine_id[]">
-                                            <span role="button" class="mt-4">{{ $engine->name }}</span>
+                                            <span role="button">{{ $engine->name }}</span>
                                         </label>
                                     </div>
+
+
+
+                                    <div class="col-sm-3 ml-3 col-12">
+                                        <?php $y = $attr->attr_engines->where('engine_id', $engine->id)->first(); ?>
+                                        <div class="input-group input-group-dynamic">
+                                            <label class="form-label "> </label>
+                                            <select class="form-control mx-3 year Year_from-4runner" name="year_from[{{ $engine->id }}][]" id="">
+                                                <option value="">--Year from--</option>
+                                                @foreach($helper->years() as $year)
+                                                <option {{ optional($y)->year_from == $year ? 'selected' : '' }} value="{{ $year }}">{{ $year }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-3 ml-3 col-12">
+                                        <div class="input-group input-group-dynamic">
+                                            <label class="form-label "> </label>
+                                            <select class="form-control year Year_to-4runner" name="year_to[{{ $engine->id }}][]" id="">
+                                                <option value="">--Year to--</option>
+                                                @foreach($helper->years() as $year)
+                                                <option {{ optional($y)->year_to == $year ? 'selected' : '' }} value="{{ $year }}">{{ $year }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
                                 </div>
                                 @endforeach
                             </div>

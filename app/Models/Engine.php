@@ -11,4 +11,8 @@ class Engine extends Model
 
     protected $fillable = ['name'];
 
+    public function attr_engine()
+    {
+        return $this->hasOne(AttributeEngine::class);
+    }
 }

@@ -10,9 +10,7 @@ class Attribute extends Model
 {
     use HasChildren, HasFactory;
 
-    public $appends = [
-        
-    ];
+    public $appends = [];
 
     public static $types = [
         'Make',
@@ -20,13 +18,13 @@ class Attribute extends Model
         'Year',
         'Ampere-Hour(AH)',
         'Brand',
-        
+
     ];
 
 
     public function children()
     {
-        return $this->hasMany(Attribute::class,'parent_id','id');
+        return $this->hasMany(Attribute::class, 'parent_id', 'id');
     }
 
 
@@ -38,20 +36,27 @@ class Attribute extends Model
 
     public function parent()
     {
-        return $this->belongsTo(Attribute::class,'parent_id','id');
+        return $this->belongsTo(Attribute::class, 'parent_id', 'id');
     }
 
 
     public function engines()
     {
-        return $this->belongsToMany(Engine::class);
+        return $this->belongsToMany(Engine::class)->withPivot(['year_from', 'year_to']);
     }
+
+
+    public function attr_engines()
+    {
+        return $this->hasMany(AttributeEngine::class);
+    }
+
 
 
     public function products()
     {
         return $this->belongsToMany(Product::class)
-                    ->groupBy('attribute_id');
+            ->groupBy('attribute_id');
     }
 
 
@@ -64,5 +69,4 @@ class Attribute extends Model
     {
         return $this->belongsToMany(Information::class)->withPivot('information_id');
     }
-
 }

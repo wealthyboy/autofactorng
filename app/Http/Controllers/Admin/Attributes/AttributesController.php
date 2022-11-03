@@ -53,7 +53,7 @@ class AttributesController extends Controller
     public function store(Request $request)
     {
         //
-        // dd($request->all());
+        //dd($request->all());
         if ($request->filled('parent_id')) {
             $this->validate($request, [
                 'name' => [
@@ -85,10 +85,18 @@ class AttributesController extends Controller
         $attribute->type = $request->type;
         $attribute->save();
         if (!empty($request->engine_id)) {
-            $attribute->engines()->sync($request->engine_id);
+            $data  = [];
+            foreach ($request->engine_id as $key => $engine_id) {
+                foreach ($request->year_from[$engine_id] as $key => $year_from) {
+                    $data[$engine_id] = ['year_From' => $year_from, 'year_to' => $request->year_to[$engine_id][0]];
+                }
+            }
         }
 
-        //dd($attribute->engines);
+
+        $attribute->engines()->sync($data);
+
+
 
         if (!empty($request->years)) {
             foreach ($request->years as $key => $year) {
@@ -119,6 +127,7 @@ class AttributesController extends Controller
     {
         // User::canTakeAction(4);
         $attr = Attribute::find($id);
+        //dd($attr);
         $attributes = Attribute::parents()->get();
         $engines = Engine::get();
         $types = Attribute::$types;
@@ -164,8 +173,16 @@ class AttributesController extends Controller
         $attribute->save();
 
         if (!empty($request->engine_id)) {
-            $attribute->engines()->sync($request->engine_id);
+            $data  = [];
+            foreach ($request->engine_id as $key => $engine_id) {
+                foreach ($request->year_from[$engine_id] as $key => $year_from) {
+                    $data[$engine_id] = ['year_From' => $year_from, 'year_to' => $request->year_to[$engine_id][0]];
+                }
+            }
         }
+
+
+        $attribute->engines()->sync($data);
 
         // if (!empty($request->engine_id)) {
         //     foreach ($request->engine_id as $engine_id) {

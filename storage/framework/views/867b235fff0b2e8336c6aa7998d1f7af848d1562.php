@@ -58,7 +58,7 @@
 
 
                     <div class="row my-4">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="bor my-3">
                                 <div class="form-check p-0">
                                     <label class="custom-control-label" for="w">
@@ -82,7 +82,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <div class=" my-3">
                                 <div class="form-check p-0">
                                     <label class="custom-control-label" for="w-e">
@@ -95,11 +95,43 @@
                             <div class="well well-sm pb-5 border" style="height: 300px; background-color: #fff; color: black; overflow: auto;">
                                 <?php $__currentLoopData = $engines; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $engine): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <div class="parent" value="">
-                                    <div class="form-check ">
-                                        <label class="custom-control-label" for="<?php echo e($engine->id); ?>">
-                                            <input class="form-check-input" value="<?php echo e($engine->id); ?>" id="<?php echo e($engine->id); ?>" type="checkbox" name="engine_id[]">
-                                            <span role="button" class="mt-4"><?php echo e($engine->name); ?></span>
-                                        </label>
+
+
+                                    <div class="d-flex mt-3">
+                                        <div class="form-check">
+                                            <label class="custom-control-label is-filled" for="<?php echo e($engine->id); ?>">
+                                                <input class="form-check-input car-models attribute  " value="<?php echo e($engine->id); ?>" id="<?php echo e($engine->id); ?>" type="checkbox" name="engine_id[]">
+                                                <span role="button"><?php echo e($engine->name); ?></span>
+                                            </label>
+                                        </div>
+
+
+
+                                        <div class="col-sm-3 ml-3 col-12">
+                                            <div class="input-group input-group-dynamic">
+                                                <label class="form-label "> </label>
+                                                <select class="form-control mx-3 year Year_from-4runner" name="year_from[<?php echo e($engine->id); ?>][]" id="">
+                                                    <option value="">--Year from--</option>
+                                                    <?php $__currentLoopData = $helper->years(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($year); ?>"><?php echo e($year); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3 ml-3 col-12">
+                                            <div class="input-group input-group-dynamic">
+                                                <label class="form-label "> </label>
+                                                <select class="form-control year Year_to-4runner" name="year_to[<?php echo e($engine->id); ?>][]" id="">
+                                                    <option value="">--Year to--</option>
+                                                    <?php $__currentLoopData = $helper->years(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <option value="<?php echo e($year); ?>"><?php echo e($year); ?></option>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+
                                     </div>
                                 </div>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
