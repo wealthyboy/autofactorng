@@ -31,6 +31,8 @@ class ProductsController extends Controller
     {
         $page_title = implode(" ", explode('-', $category->slug));
 
+        dd($category->brands);
+
         $query = Product::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.slug', $category->slug);
         });
