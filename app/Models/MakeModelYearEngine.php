@@ -28,10 +28,12 @@ class MakeModelYearEngine extends Model
             ->get();
     }
 
-    public  static function getEngines($attribute_id)
+    public  static function getEngines($attribute_id, $year)
     {
         return $engines = AttributeEngine::where('attribute_id', $attribute_id)
             ->join('engines', 'engines.id', 'attribute_engine.engine_id')
+            ->where('year_from', '<=', $year)
+            ->where('year_to', '>=', $year)
             ->select('engines.id', 'engines.name')
             ->get();
     }
@@ -46,7 +48,7 @@ class MakeModelYearEngine extends Model
                 $response = self::getModels($request->year, $request->make_id);
                 break;
             case 'model':
-                $response = self::getEngines($request->model_id);
+                $response = self::getEngines($request->model_id, $request->year);
                 break;
             default:
                 # code...
