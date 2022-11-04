@@ -23,6 +23,8 @@
           data-bs-parent="#accordionFlushExample"
           style=""
         >
+
+          {{ objs }}
           <div class="accordion-body">
             <div
               v-for="obj in objs"
