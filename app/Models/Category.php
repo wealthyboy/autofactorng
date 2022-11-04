@@ -51,6 +51,12 @@ class Category extends Model
     }
 
 
+    public function brands()
+    {
+        return $this->belongsToMany(Brand::class);
+    }
+
+
     public function scopeParents($query, $order = null, $desc = null)
     {
         if ($order == null) {

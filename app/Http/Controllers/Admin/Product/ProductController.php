@@ -47,7 +47,16 @@ class ProductController extends Controller
         $attributes = Attribute::parents()->orderBy('sort_order', 'asc')->get();
         $years      = Helper::years();
         $products   = Product::with('categories')
-            ->orderBy('created_at', 'desc')->paginate(100);
+            ->orderBy('created_at', 'desc')->get();
+
+        foreach ($products as $key => $product) {
+            $brand = Brand::find($product->brand_id);
+            if ($brand) {
+                $brand->categories()->sync($product->categories->pluck('id')->toArray());
+            }
+        }
+
+        dd(true);
         if (request()->filled('q')) {
             $value = request()->q;
             $products = Product::where('name', 'like', '%' . $value . '%')
@@ -56,13 +65,14 @@ class ProductController extends Controller
         }
 
 
+
+
         if (request()->debug == 1) {
 
             $aas = MakeModelYearEngine::get();
 
             foreach ($aas as $as) {
                 // $as->delete();
-
                 $attribute = Attribute::find($as->attribute_id);
                 if (null !==  $attribute) {
                     $as->parent_id = optional($attribute->parent)->id;
@@ -368,6 +378,13 @@ class ProductController extends Controller
         if (null !== $product->product_engines) {
             $product->product_engines()->delete();
         }
+
+
+        if (null !== $brand) {
+            $brand->categories()->sync($request->category_id);
+        }
+
+
 
         if (!empty($request->engine_id)) {
             $data = [];

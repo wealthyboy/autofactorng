@@ -9,11 +9,15 @@ class Brand extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','image', 'is_featured'];
+    protected $fillable = ['name', 'image', 'is_featured'];
 
     public function link()
     {
-        return '/products/'. $this->slug;
+        return '/products/' . $this->slug;
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }
