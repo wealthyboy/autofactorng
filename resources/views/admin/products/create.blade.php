@@ -175,7 +175,6 @@
 
 
                <div class="row my-3">
-                  @include('admin.products.variation')
                </div>
 
                <hr class="horizontal dark">
