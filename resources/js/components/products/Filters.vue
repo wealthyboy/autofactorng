@@ -34,11 +34,11 @@
                 class="form-check-input"
                 type="checkbox"
                 value=""
-                id="{{ obj.name }}{{ obj.id }}"
+                :id="obj.name + obj.id"
               >
               <label
                 class="form-check-label"
-                for="{{ obj.name }}{{ obj.id }}"
+                :for="obj.name + obj.id"
                 role="button"
               >
                 {{ obj.name }}
