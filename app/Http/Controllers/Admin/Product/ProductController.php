@@ -47,16 +47,7 @@ class ProductController extends Controller
         $attributes = Attribute::parents()->orderBy('sort_order', 'asc')->get();
         $years      = Helper::years();
         $products   = Product::with('categories')
-            ->orderBy('created_at', 'desc')->get();
-
-        foreach ($products as $key => $product) {
-            $brand = Brand::find($product->brand_id);
-            if ($brand) {
-                $brand->categories()->sync($product->categories->pluck('id')->toArray());
-            }
-        }
-
-        dd(true);
+            ->orderBy('created_at', 'desc')->paginate(100);
         if (request()->filled('q')) {
             $value = request()->q;
             $products = Product::where('name', 'like', '%' . $value . '%')
