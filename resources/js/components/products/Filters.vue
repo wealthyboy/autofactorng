@@ -34,11 +34,11 @@
                 class="form-check-input"
                 type="checkbox"
                 value=""
-                id="defaultCheck1"
+                id="{{ obj.name }}{{ obj.id }}"
               >
               <label
                 class="form-check-label"
-                for="defaultCheck1"
+                for="{{ obj.name }}{{ obj.id }}"
                 role="button"
               >
                 {{ obj.name }}

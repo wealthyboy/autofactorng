@@ -22480,14 +22480,14 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "class": "form-check-input",
   type: "checkbox",
   value: "",
-  id: "defaultCheck1"
+  id: "{{ obj.name }}{{ obj.id }}"
 }, null, -1
 /* HOISTED */
 );
 
 var _hoisted_9 = {
   "class": "form-check-label",
-  "for": "defaultCheck1",
+  "for": "{{ obj.name }}{{ obj.id }}",
   role: "button"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
