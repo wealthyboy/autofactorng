@@ -65,11 +65,13 @@
     <aside class="sidebar-shop col-lg-3 order-lg-1 mobile-sidebar">
       <h2>FILTER RESULTS</h2>
       <div class="underline"></div>
-
+      {{ brands }}
       <filters
         :name="'Brand'"
         :objs="brands"
-      ></filters>
+      >
+
+      </filters>
       <!-- End .sidebar-wrapper -->
     </aside>
     <!-- End .col-lg-3 -->
