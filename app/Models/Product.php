@@ -73,7 +73,7 @@ class Product extends Model
         'link',
         'discounted_price',
         'percentage_off',
-
+        'currency'
     ];
 
     public function attributes()
@@ -104,6 +104,11 @@ class Product extends Model
     public function product_engines()
     {
         return $this->hasMany(EngineProduct::class);
+    }
+
+    public function getCurrencyAttribute()
+    {
+        return '₦';
     }
 
     public function category()
