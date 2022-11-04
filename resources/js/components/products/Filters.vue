@@ -18,7 +18,7 @@
           > {{name}}</button></h2>
         <div
           id="flush-collapseOne"
-          class="accordion-collapse collapse"
+          class="accordion-collapse collapse show"
           aria-labelledby="flush-headingOne"
           data-bs-parent="#accordionFlushExample"
           style=""
