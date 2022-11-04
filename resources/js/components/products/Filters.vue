@@ -15,7 +15,7 @@
             data-bs-target="#flush-collapseOne"
             aria-expanded="false"
             aria-controls="flush-collapseOne"
-          > Accordion Item #1 </button></h2>
+          > {{name}}</button></h2>
         <div
           id="flush-collapseOne"
           class="accordion-collapse collapse"
@@ -24,7 +24,27 @@
           style=""
         >
           <div class="accordion-body">
+            <div
+              v-for="obj in objs"
+              :key="obj.id"
+              class="form-check"
+            >
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="defaultCheck1"
+              >
+              <label
+                class="form-check-label"
+                for="defaultCheck1"
+                role="button"
+              >
+                {{ obj.name }}
+              </label>
+            </div>
 
+            <slot />
           </div>
         </div>
       </div>
@@ -32,3 +52,10 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ["name", "objs"],
+  setup() {},
+};
+</script>

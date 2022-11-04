@@ -20,7 +20,7 @@
         <div class="">
             <h1 class="text-uppercase p-0">{{ $category->name }}</h1>
         </div>
-        <products-items :years="{{ json_encode($yrs) }}" />
+        <products-items :years="{{ json_encode($yrs) }}" :brands="{{$brands }}" />
     </div>
 </section>
 

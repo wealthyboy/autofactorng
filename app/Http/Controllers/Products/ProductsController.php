@@ -35,6 +35,8 @@ class ProductsController extends Controller
             $builder->where('categories.slug', $category->slug);
         });
 
+        $brands = $category->brands;
+
         if (null !== $request->cookie('engine_id')) {
             $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                 $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
@@ -62,6 +64,7 @@ class ProductsController extends Controller
         return  view('products.index', compact(
             'category',
             'page_title',
+            'brands'
         ));
     }
 

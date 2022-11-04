@@ -4,16 +4,27 @@
 
     <div class="col-lg-9 order-lg-2">
 
-      <search-string @remove:vehicle="shopWithoutVehicle"  v-if="searchText"  :searchText="searchText" />
-        <div v-else class="cta-border cta-bg light ">
-          <div class="underline w-100"></div>
-        <div  class="d-flex justify-content-between  align-content-center py-5">
+      <search-string
+        @remove:vehicle="shopWithoutVehicle"
+        v-if="searchText"
+        :searchText="searchText"
+      />
+      <div
+        v-else
+        class="cta-border cta-bg light "
+      >
+        <div class="underline w-100"></div>
+        <div class="d-flex justify-content-between  align-content-center py-5">
           <div class="title w-100 p-2">
             <h3>SET YOUR VEHICLE</h3>
 
             <p>Get an exact fit for your vehicle.</p>
           </div>
-          <search @do:filter="filter" :filter="true" :years="years" />
+          <search
+            @do:filter="filter"
+            :filter="true"
+            :years="years"
+          />
         </div>
       </div>
 
@@ -25,6 +36,7 @@
           v-for="product in products"
           :key="product.id"
           :product="product"
+          :searchText="searchText"
         ></product>
       </div>
       <nav class="toolbox toolbox-pagination">
@@ -54,6 +66,10 @@
       <h2>FILTER RESULTS</h2>
       <div class="underline"></div>
 
+      <filters
+        :name="'Brand'"
+        :objs="brands"
+      ></filters>
       <!-- End .sidebar-wrapper -->
     </aside>
     <!-- End .col-lg-3 -->
@@ -68,6 +84,7 @@ import axios from "axios";
 import Search from "../search/MakeModelYear";
 import ProductNav from "./Nav";
 import SearchString from "./SearchString";
+import Filters from "./Filters";
 
 export default {
   components: {
@@ -75,9 +92,10 @@ export default {
     Pagination,
     Search,
     ProductNav,
-    SearchString  
+    SearchString,
+    Filters,
   },
-  props: ["years"],
+  props: ["years", "brands"],
   data() {
     return {
       meta: {},
@@ -85,24 +103,24 @@ export default {
       has_filters: 0,
       full_width: false,
       loading: false,
-      searchText: null
+      searchText: null,
     };
   },
   mounted() {
     this.getProducts();
   },
   methods: {
-    filter(o){
-      this.searchText = o.text
+    filter(o) {
+      this.searchText = o.text;
     },
-    shopWithoutVehicle(){
-      this.searchText = null
+    shopWithoutVehicle() {
+      this.searchText = null;
 
       // axios
       //   .post("/remove-make-model-year-engine")
       //   .then((res) => {
       //     this.products = res.data.data;
-         
+
       //   })
       //   .catch((err) => {});
     },

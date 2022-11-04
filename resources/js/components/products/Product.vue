@@ -31,7 +31,7 @@
       </div>
       <!-- End .product-container -->
       <p class="product-description">
-        <check-vehicle />
+        <check-vehicle :searchText="searchText" />
       </p>
 
       <div class="price-box">
@@ -70,6 +70,7 @@ import CheckVehicle from "../general/CheckVehicle";
 export default {
   props: {
     product: Object,
+    searchText: String,
   },
   components: { CheckVehicle },
   data() {
