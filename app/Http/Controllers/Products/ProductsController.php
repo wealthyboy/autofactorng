@@ -28,7 +28,7 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function  index(Request $request, Builder $builder, Category $category)
-    {   
+    {
         $page_title = implode(" ", explode('-', $category->slug));
         $query = Product::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.slug', $category->slug);
@@ -43,7 +43,7 @@ class ProductsController extends Controller
                 $builder->groupBy('make_model_year_engines.product_id');
             });
         }
-        
+
         $products = $query->filter($request, [])->latest()->paginate($this->settings->products_items_per_page);
 
         $products->load('images');
@@ -51,9 +51,9 @@ class ProductsController extends Controller
 
         if ($request->ajax()) {
             return (new ProductsCollection($products))
-            ->additional([
-                'string' => $this->buildSearchString($request),
-            ]);
+                ->additional([
+                    'string' => $this->buildSearchString($request),
+                ]);
         }
 
         return  view('products.index', compact(
@@ -63,8 +63,8 @@ class ProductsController extends Controller
     }
 
 
-    public function makeModelYearSearch(Request $request) 
-    {   
+    public function makeModelYearSearch(Request $request)
+    {
 
         $data  = $request->query();
         $cookie = null;
@@ -73,7 +73,7 @@ class ProductsController extends Controller
         $cookie = cookie($type, $data[$type], 60 * 60 * 7);
         $data = MakeModelYearEngine::getMakeModelYearSearch($request);
         return response()->json(
-            [ 
+            [
                 'type' => $request->type,
                 'data' =>  $data,
                 'string' => $this->buildSearchString($request)
@@ -82,19 +82,20 @@ class ProductsController extends Controller
     }
 
 
-    public function getType(Request $request) {
+    public function getType(Request $request)
+    {
         switch ($request->type) {
             case 'year':
-                 $response = 'year'; 
+                $response = 'year';
                 break;
             case 'make':
-                $response = 'make_id'; 
+                $response = 'make_id';
                 break;
             case 'model':
-                $response = 'model_id'; 
+                $response = 'model_id';
                 break;
             case 'engine_id':
-                $response = 'engine_id'; 
+                $response = 'engine_id';
                 break;
             default:
                 # code...
@@ -106,21 +107,22 @@ class ProductsController extends Controller
     }
 
 
-    public function buildSearchString(Request $request) {
+    public function buildSearchString(Request $request)
+    {
         if (null !== $request->cookie('engine_id')) {
             $year = $request->cookie('year');
             $make_name = Attribute::find($request->cookie('make_id'))->name;
             $model_name = Attribute::find($request->cookie('model_id'))->name;
-            $engine_name = Engine::find($request->cookie('engine_id'))->name;
+            $engine_name = optional(Engine::find($request->cookie('engine_id')))->name;
 
-            return $year .' '.$make_name.' '.$model_name.' '.$engine_name;
+            return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
         }
-        
+
         return null;
     }
 
 
-   
+
 
 
     /**
