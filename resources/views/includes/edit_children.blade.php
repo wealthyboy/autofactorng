@@ -32,7 +32,7 @@
                 <select class="form-control mx-3 year Year_from-{{ $ob->slug }}" name="year_from[{{ $ob->id }}]" id="">
                     <option value="">--Year from--</option>
                     @foreach($ob->attribute_years as $attribute_year)
-                    <option {{ optional($y)->year_from == $attribute_year->year? 'selected' : '' }} value="{{ $attribute_year->year }}">{{ $attribute_year->year }} </option>
+                    <option {{ optional($y)->year_from == $attribute_year->year ? 'selected' : '' }} value="{{ $attribute_year->year }}">{{ $attribute_year->year }} </option>
                     @endforeach
                 </select>
             </div>

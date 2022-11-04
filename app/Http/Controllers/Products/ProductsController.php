@@ -30,6 +30,7 @@ class ProductsController extends Controller
     public function  index(Request $request, Builder $builder, Category $category)
     {
         $page_title = implode(" ", explode('-', $category->slug));
+
         $query = Product::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.slug', $category->slug);
         });
@@ -39,7 +40,8 @@ class ProductsController extends Controller
                 $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
                 $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
                 $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
-                $builder->where('make_model_year_engines.year_from', '>=', $request->cookie('year'));
+                $builder->where('year_from', '<=', $request->cookie('year'));
+                $builder->where('year_to', '>=', $request->cookie('year'));
                 $builder->groupBy('make_model_year_engines.product_id');
             });
         }
@@ -47,6 +49,7 @@ class ProductsController extends Controller
         $products = $query->filter($request, [])->latest()->paginate($this->settings->products_items_per_page);
 
         $products->load('images');
+
         $products->appends(request()->all());
 
         if ($request->ajax()) {
@@ -114,7 +117,6 @@ class ProductsController extends Controller
             $make_name = Attribute::find($request->cookie('make_id'))->name;
             $model_name = Attribute::find($request->cookie('model_id'))->name;
             $engine_name = optional(Engine::find($request->cookie('engine_id')))->name;
-
             return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
         }
 
