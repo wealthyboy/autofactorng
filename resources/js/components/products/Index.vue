@@ -9,6 +9,7 @@
         v-if="searchText"
         :searchText="searchText"
       />
+
       <div
         v-else
         class="cta-border cta-bg light "

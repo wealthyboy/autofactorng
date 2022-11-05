@@ -29,30 +29,12 @@ class ProductsController extends Controller
      */
     public function  index(Request $request, Builder $builder, Category $category)
     {
-        $page_title = implode(" ", explode('-', $category->slug));
 
-        $query = Product::whereHas('categories', function (Builder  $builder) use ($category) {
-            $builder->where('categories.slug', $category->slug);
-        });
+        $page_title = implode(" ", explode('-', $category->slug));
 
         $brands = $category->brands;
 
-        if (null !== $request->cookie('engine_id')) {
-            $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
-                $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
-                $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
-                $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
-                $builder->where('year_from', '<=', $request->cookie('year'));
-                $builder->where('year_to', '>=', $request->cookie('year'));
-                $builder->groupBy('make_model_year_engines.product_id');
-            });
-        }
-
-        $products = $query->filter($request, [])->latest()->paginate($this->settings->products_items_per_page = 2);
-
-        $products->load('images');
-
-        $products->appends(request()->all());
+        $products = $this->getProductsData($request, $builder, $category);
 
         if ($request->ajax()) {
             return (new ProductsCollection($products))
@@ -69,6 +51,42 @@ class ProductsController extends Controller
             'brands',
             'prices'
         ));
+    }
+
+    public function getProductsData(Request $request, Builder $builder, Category $category)
+    {
+
+        $query = Product::whereHas('categories', function (Builder  $builder) use ($category) {
+            $builder->where('categories.slug', $category->slug);
+        });
+
+        $type = $this->getType($request);
+
+        if (null !== $request->cookie('engine_id')) {
+            $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
+                $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
+                $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
+                $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
+                $builder->where('year_from', '<=', $request->cookie('year'));
+                $builder->where('year_to', '>=', $request->cookie('year'));
+                $builder->groupBy('make_model_year_engines.product_id');
+            });
+        }
+
+
+        if ($type == 'profile') {
+            $query->where('radius', $request->rim);
+            $query->where('width', $request->width);
+            $query->where('height', $request->profile);
+        }
+
+        $products = $query->filter($request, [])->latest()->paginate($this->settings->products_items_per_page = 2);
+
+        $products->load('images');
+
+        $products->appends(request()->all());
+
+        return $products;
     }
 
     public function filterPrices()
@@ -117,6 +135,16 @@ class ProductsController extends Controller
                 break;
             case 'engine_id':
                 $response = 'engine_id';
+                break;
+            case 'width':
+                $response = 'width';
+                break;
+            case 'rim':
+                $response = 'rim';
+                break;
+            case 'profile':
+                $response = 'profile';
+                Cookie::queue(Cookie::forget('engine_id'));
                 break;
             default:
                 # code...
