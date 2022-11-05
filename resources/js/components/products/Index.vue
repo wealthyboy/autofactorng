@@ -66,6 +66,7 @@
       <h2>FILTER RESULTS</h2>
       <div class="underline"></div>
       <filters
+        v-if="brands.length"
         :name="'Brand'"
         :objs="brands"
       ></filters>
