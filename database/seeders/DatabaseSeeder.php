@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
 
         $products = Product::all();
         foreach ($products as $key => $product) {
-            $product->sku = $product . $string;
+            $product->sku = $product->id . $string;
             $product->save();
         }
     }
