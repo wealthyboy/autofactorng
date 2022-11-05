@@ -12,7 +12,7 @@ use App\Models\Product;
 use App\Models\Setting;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Cookie;
 
 class ProductsController extends Controller
 {
@@ -81,9 +81,7 @@ class ProductsController extends Controller
         }
 
         $products = $query->filter($request, [])->latest()->paginate($this->settings->products_items_per_page);
-
         $products->load('images');
-
         $products->appends(request()->all());
 
         return $products;
