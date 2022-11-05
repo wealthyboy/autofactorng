@@ -1,11 +1,12 @@
 <template>
   <button>
     <div></div>
-    <div>Check if this fits your vehicle</div>
+    <div>{{fitText}}</div>
   </button>
 </template>
 <script>
 export default {
+  props: ["fitText"],
   setup() {},
 };
 </script>

@@ -31,14 +31,14 @@
       </div>
       <!-- End .product-container -->
       <p class="product-description">
-        <check-vehicle :searchText="searchText" />
+        <check-vehicle :fitText="product.fitText" />
       </p>
 
       <div class="price-box">
 
         <template v-if="product.discounted_price">
           <span class="old-price">{{ product.currency }}{{  product.formatted_sale_price }}</span>
-          <span class="new-price">{{ product.currency }}{{ product.formatted_price }}</span>
+          <span class="new-price">{{ product.currency }}{{  product.formatted_price }}</span>
         </template>
         <template v-else>
           <span class="new-price">{{ product.currency }}{{  product.formatted_price }}</span>
@@ -70,7 +70,7 @@ import CheckVehicle from "../general/CheckVehicle";
 export default {
   props: {
     product: Object,
-    searchText: String,
+    fitText: String,
   },
   components: { CheckVehicle },
   data() {

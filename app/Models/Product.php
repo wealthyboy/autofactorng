@@ -8,12 +8,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\ImageFiles;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
+
 
 class Product extends Model
 {
     use HasFactory, ImageFiles, FormatPrice;
-
-
 
     protected $fillable = [
         'amphere',
@@ -75,7 +75,9 @@ class Product extends Model
         'percentage_off',
         'formatted_price',
         'formatted_sale_price',
-        'currency'
+        'currency',
+        'fits',
+        'fitText'
     ];
 
     public function attributes()
@@ -162,6 +164,32 @@ class Product extends Model
     public function getLinkAttribute()
     {
         return $this->link();
+    }
+
+
+    public function getFitsAttribute()
+    {
+        return $this->buildSearchString() ? true : false;
+    }
+
+
+    public function getFitTextAttribute()
+    {
+        return $this->buildSearchString() ? 'Fits your ' . $this->buildSearchString() : "Check if it fits your vehicle";
+    }
+
+
+    public  function buildSearchString()
+    {
+        if (null !== request()->cookie('engine_id')) {
+            $year = request()->cookie('year');
+            $make_name = Attribute::find(request()->cookie('make_id'))->name;
+            $model_name = Attribute::find(request()->cookie('model_id'))->name;
+            $engine_name = optional(Engine::find(request()->cookie('engine_id')))->name;
+            return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
+        }
+
+        return null;
     }
 
 

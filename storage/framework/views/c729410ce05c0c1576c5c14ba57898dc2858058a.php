@@ -32,7 +32,7 @@
                 <select class="form-control mx-3 year Year_from-<?php echo e($ob->slug); ?>" name="year_from[<?php echo e($ob->id); ?>]" id="">
                     <option value="">--Year from--</option>
                     <?php $__currentLoopData = $ob->attribute_years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $attribute_year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option <?php echo e(optional($y)->year_from == $attribute_year->year? 'selected' : ''); ?> value="<?php echo e($attribute_year->year); ?>"><?php echo e($attribute_year->year); ?> </option>
+                    <option <?php echo e(optional($y)->year_from == $attribute_year->year ? 'selected' : ''); ?> value="<?php echo e($attribute_year->year); ?>"><?php echo e($attribute_year->year); ?> </option>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </select>
             </div>

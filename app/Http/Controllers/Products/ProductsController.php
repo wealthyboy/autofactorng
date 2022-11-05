@@ -73,7 +73,6 @@ class ProductsController extends Controller
 
     public function filterPrices()
     {
-
         $collection = collect([
             ['id' => 1, 'slug' => '500-10000', 'name' => '₦500 - ₦10,000'],
             ['id' => 2, 'slug' => '10000-50000', 'name' => '₦10,000 - ₦50,000'],
@@ -139,7 +138,7 @@ class ProductsController extends Controller
             return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
         }
 
-        return null;
+        return '';
     }
 
 

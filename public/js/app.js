@@ -21097,6 +21097,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["fitText"],
   setup: function setup() {}
 });
 
@@ -21324,7 +21325,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     product: Object,
-    searchText: String
+    fitText: String
   },
   components: {
     CheckVehicle: _general_CheckVehicle__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -22280,13 +22281,10 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Check if this fits your vehicle", -1
-/* HOISTED */
-);
-
-var _hoisted_3 = [_hoisted_1, _hoisted_2];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", null, _hoisted_3);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.fitText), 1
+  /* TEXT */
+  )]);
 }
 
 /***/ }),
@@ -22763,10 +22761,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , _hoisted_6)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " SKU #" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.sku), 1
   /* TEXT */
   ), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-container "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_check_vehicle, {
-    searchText: $props.searchText
+    fitText: $props.product.fitText
   }, null, 8
   /* PROPS */
-  , ["searchText"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [$props.product.discounted_price ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+  , ["fitText"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [$props.product.discounted_price ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 0
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.currency) + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.formatted_sale_price), 1
   /* TEXT */
