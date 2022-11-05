@@ -16,7 +16,7 @@
       <h3 class="product-title"> <a :href="product.link">{{product.name }}</a>
       </h3>
       <p>
-        Part #550045202 SKU #1181299
+        SKU #{{product.sku}}
       </p>
       <div class="ratings-container">
         <div class="product-ratings">
