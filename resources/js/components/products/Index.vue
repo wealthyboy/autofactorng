@@ -43,6 +43,7 @@
 
         </div>
         <!-- End .toolbox-item -->
+
         <div
           v-if="meta.total > meta.per_page"
           class="pagination-wraper"
@@ -67,17 +68,13 @@
       <filters
         :name="'Brand'"
         :objs="brands"
-      >
-
-      </filters>
+      ></filters>
 
       <filters
         class="mt-4"
         :name="'Prices'"
         :objs="prices"
-      >
-
-      </filters>
+      ></filters>
 
       <!-- End .sidebar-wrapper -->
     </aside>
@@ -94,7 +91,6 @@ import Search from "../search/MakeModelYear";
 import ProductNav from "./Nav";
 import SearchString from "./SearchString";
 import Filters from "./Filters";
-import { inject } from "vue";
 
 export default {
   components: {

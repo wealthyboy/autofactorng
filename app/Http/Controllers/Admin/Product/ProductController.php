@@ -111,6 +111,22 @@ class ProductController extends Controller
         return view('admin.products.create', compact('amps', 'brands', 'categories', 'attributes', 'years', 'helper'));
     }
 
+
+    public function generateSku()
+    {
+        $characters = 'ABCDEF';
+
+        // generate a pin based on 2 * 7 digits + a random character
+        $pin = mt_rand(1000000, 9999999)
+            . mt_rand(1000000, 9999999)
+            . $characters[rand(0, strlen($characters) - 5)];
+
+        // shuffle the result
+        $string = str_shuffle(substr($pin, 0, 5));
+
+        return $string;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -193,6 +209,9 @@ class ProductController extends Controller
         $product->meta_description = $request->meta_description;
         $product->description = $request->description;
         $product->phy_desc = $request->phy_desc;
+        $product->save();
+
+        $product->sku = $product->id . $this->generateSku();
         $product->save();
 
         if (!empty($request->category_id)) {

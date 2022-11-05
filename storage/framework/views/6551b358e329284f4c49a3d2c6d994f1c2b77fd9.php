@@ -174,7 +174,6 @@
 
 
                <div class="row my-3">
-                  <?php echo $__env->make('admin.products.variation', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                </div>
 
                <hr class="horizontal dark">
