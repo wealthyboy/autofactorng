@@ -80,7 +80,7 @@ class ProductsController extends Controller
             $query->where('height', $request->profile);
         }
 
-        $products = $query->filter($request, [])->latest()->paginate($this->settings->products_items_per_page = 2);
+        $products = $query->filter($request, [])->latest()->paginate($this->settings->products_items_per_page);
 
         $products->load('images');
 
