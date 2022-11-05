@@ -73,6 +73,8 @@ class Product extends Model
         'link',
         'discounted_price',
         'percentage_off',
+        'formatted_price',
+        'formatted_sale_price',
         'currency'
     ];
 

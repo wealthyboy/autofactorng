@@ -111,6 +111,17 @@ trait FormatPrice
     return  $this->price;
   }
 
+  public function getFormattedPriceAttribute()
+  {
+    return  number_format($this->price);
+  }
+
+
+  public function getFormattedSalePriceAttribute()
+  {
+    return  number_format($this->sale_price);
+  }
+
   public function ConvertCurrencyRate($price)
   {
 

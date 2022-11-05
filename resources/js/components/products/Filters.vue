@@ -2,26 +2,25 @@
   <div class="sidebar-wrapper">
     <div
       class="accordion accordion-flush"
-      id="accordionFlushExample"
+      :id="'accordionFlush' + name"
     >
       <div class="accordion-item">
         <h2
           class="accordion-header"
-          id="flush-headingOne"
+          :id="'flush-heading'+ name"
         ><button
             class="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseOne"
+            :data-bs-target="'#flush-collapse' + name"
             aria-expanded="false"
-            aria-controls="flush-collapseOne"
+            :aria-controls="'flush-collapse' + name"
           > {{name}}</button></h2>
         <div
-          id="flush-collapseOne"
+          :id="'flush-collapse' + name"
           class="accordion-collapse collapse show"
-          aria-labelledby="flush-headingOne"
-          data-bs-parent="#accordionFlushExample"
-          style=""
+          :aria-labelledby="'flush-heading' + name"
+          :data-bs-parent="'#accordionFlush' +name"
         >
 
           <div class="accordion-body">
@@ -57,6 +56,8 @@
 <script>
 export default {
   props: ["name", "objs"],
-  setup() {},
+  setup(props, obj) {
+    console.log(obj);
+  },
 };
 </script>

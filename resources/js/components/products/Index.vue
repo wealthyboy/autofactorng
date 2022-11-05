@@ -17,7 +17,6 @@
         <div class="d-flex justify-content-between  align-content-center py-5">
           <div class="title w-100 p-2">
             <h3>SET YOUR VEHICLE</h3>
-
             <p>Get an exact fit for your vehicle.</p>
           </div>
           <search
@@ -71,6 +70,15 @@
       >
 
       </filters>
+
+      <filters
+        class="mt-4"
+        :name="'Prices'"
+        :objs="prices"
+      >
+
+      </filters>
+
       <!-- End .sidebar-wrapper -->
     </aside>
     <!-- End .col-lg-3 -->
@@ -86,6 +94,7 @@ import Search from "../search/MakeModelYear";
 import ProductNav from "./Nav";
 import SearchString from "./SearchString";
 import Filters from "./Filters";
+import { inject } from "vue";
 
 export default {
   components: {
@@ -96,7 +105,7 @@ export default {
     SearchString,
     Filters,
   },
-  props: ["years", "brands"],
+  props: ["years", "brands", "prices"],
   data() {
     return {
       meta: {},
@@ -116,14 +125,6 @@ export default {
     },
     shopWithoutVehicle() {
       this.searchText = null;
-
-      // axios
-      //   .post("/remove-make-model-year-engine")
-      //   .then((res) => {
-      //     this.products = res.data.data;
-
-      //   })
-      //   .catch((err) => {});
     },
     getProducts() {
       axios

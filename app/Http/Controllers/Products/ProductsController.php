@@ -61,11 +61,27 @@ class ProductsController extends Controller
                 ]);
         }
 
+        $prices = $this->filterPrices();
+
         return  view('products.index', compact(
             'category',
             'page_title',
-            'brands'
+            'brands',
+            'prices'
         ));
+    }
+
+    public function filterPrices()
+    {
+
+        $collection = collect([
+            ['id' => 1, 'slug' => '500-10000', 'name' => '₦500 - ₦10,000'],
+            ['id' => 2, 'slug' => '10000-50000', 'name' => '₦10,000 - ₦50,000'],
+            ['id' => 3, 'slug' => '50000-200000', 'name' => '₦50,000 - ₦200,000'],
+            ['id' => 4, 'slug' => '200000-1000000', 'name' => '₦200,000 - ₦10,000,000'],
+        ]);
+
+        return $collection;
     }
 
 

@@ -37,8 +37,5 @@ app.component('CartSummary', CartSummary)
     // app.component('MakeModelYEar', MakeModelYEar)
 
 
-
-
-
 app.use(store)
 app.mount('#app');
