@@ -56,6 +56,7 @@
               <pagination
                 :useUrl="true"
                 :meta="meta"
+                @pagination:switched="getP"
               />
             </ul>
           </div>
@@ -95,6 +96,7 @@ import Search from "../search/MakeModelYear";
 import ProductNav from "./Nav";
 import SearchString from "./SearchString";
 import Filters from "./Filters";
+import { Url } from "url";
 
 export default {
   components: {
@@ -114,20 +116,21 @@ export default {
       full_width: false,
       loading: false,
       searchText: null,
+      url: location.href + "?get=1",
     };
   },
   mounted() {
-    this.getProducts();
+    this.getProducts(this.url);
   },
   methods: {
     filter(o) {
       this.searchText = o.text;
-      this.getProducts();
+      this.getProducts(this.url);
     },
     shopWithoutVehicle() {
       this.searchText = null;
       axios
-        .get(location.href + "?get=1", {
+        .get(this.url, {
           params: {
             type: "clear",
           },
@@ -141,9 +144,16 @@ export default {
           console.log(error);
         });
     },
-    getProducts() {
+    getP(uri) {
+      const url = new URL(uri);
+      //url.searchParams.set("search", "true");
+      window.history.pushState({}, "", url);
+
+      this.getProducts(url);
+    },
+    getProducts(url) {
       axios
-        .get(location.href + "?get=1")
+        .get(url)
         .then((res) => {
           this.products = res.data.data;
           this.meta = res.data.meta;

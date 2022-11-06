@@ -47,12 +47,12 @@ export default {
   created() {},
   methods: {
     switched(page) {
-      console.log(this.meta.links[page].url);
-      return;
+      //console.log(this.meta.links[page].url);
       if (this.pageIsFinished(page)) {
         return;
       }
-      this.$emit("pagination:switched", page);
+      this.$emit("pagination:switched", this.meta.links[page].url);
+      return;
 
       if (this.useUrl) {
         // this.$router.replace({
