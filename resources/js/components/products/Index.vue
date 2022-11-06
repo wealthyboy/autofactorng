@@ -34,6 +34,9 @@
               @do:filter="filter"
               :filter="true"
               :years="years"
+              :rims="rim"
+              :widths="width"
+              :profiles="profile"
             />
           </template>
 
@@ -134,7 +137,7 @@ export default {
     Tyre,
     Battery,
   },
-  props: ["years", "brands", "prices", "category"],
+  props: ["years", "brands", "prices", "category", "rim", "width", "profile"],
   data() {
     return {
       meta: {},

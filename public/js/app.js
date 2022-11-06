@@ -21275,7 +21275,7 @@ __webpack_require__.r(__webpack_exports__);
     Tyre: _search_Tyre__WEBPACK_IMPORTED_MODULE_4__["default"],
     Battery: _search_Battery__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
-  props: ["years", "brands", "prices", "category"],
+  props: ["years", "brands", "prices", "category", "rim", "width", "profile"],
   data: function data() {
     return {
       meta: {},
@@ -21706,7 +21706,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["years", "filter"],
+  props: ["rims", "width", "profiles", "filter"],
   emits: ["do:filter"],
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
@@ -21714,15 +21714,14 @@ __webpack_require__.r(__webpack_exports__);
     var models = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var engines = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var next = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
-      makes: [],
-      models: "",
-      engines: ""
+      rim: [],
+      width: "",
+      profile: ""
     });
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
-      year: "Choose one",
-      make_id: "Choose one",
-      model_id: "Choose one",
-      engine_id: "Choose one",
+      height: "Choose one",
+      rim: "Choose one",
+      profile: "Choose one",
       type: "",
       next: ""
     });
@@ -22859,10 +22858,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 1,
     "onDo:filter": $options.filter,
     filter: true,
-    years: $props.years
+    years: $props.years,
+    rims: $props.rim,
+    widths: $props.width,
+    profiles: $props.profile
   }, null, 8
   /* PROPS */
-  , ["onDo:filter", "years"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.category.search_type == 'battery' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_battery, {
+  , ["onDo:filter", "years", "rims", "widths", "profiles"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.category.search_type == 'battery' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_battery, {
     key: 2,
     "onDo:filter": $options.filter,
     filter: true,
@@ -23776,7 +23778,7 @@ var _hoisted_8 = ["value"];
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "floatingSelectGrid"
-}, "Select Model", -1
+}, "Select Width", -1
 /* HOISTED */
 );
 
@@ -23809,46 +23811,46 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "aria-label": "Floating label select example",
     name: "year",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $setup.form.year = $event;
+      return $setup.form.rim = $event;
     }),
-    "data-next": "makes",
+    "data-next": "rim",
     onChange: _cache[1] || (_cache[1] = function ($event) {
       return $setup.getNext($event);
     })
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.years, function (year) {
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.rims, function (rim) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-      key: year,
-      value: year
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(year), 9
+      key: rim.radius,
+      value: rim.radius
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(rim.radius), 9
     /* TEXT, PROPS */
     , _hoisted_3);
   }), 128
   /* KEYED_FRAGMENT */
   ))], 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.year]]), _hoisted_4])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.rim]]), _hoisted_4])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "form-select",
     id: "floatingSelectGrid",
     onChange: _cache[2] || (_cache[2] = function ($event) {
       return $setup.getNext($event);
     }),
-    name: "make",
-    "data-next": "models",
+    name: "width",
+    "data-next": "width",
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-      return $setup.form.make_id = $event;
+      return $setup.form.width = $event;
     })
-  }, [_hoisted_7, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.next.makes, function (make) {
+  }, [_hoisted_7, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.widths, function (width) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-      key: make.id,
-      value: make.id
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(make.name), 9
+      key: width.width,
+      value: width.width
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(width.width), 9
     /* TEXT, PROPS */
     , _hoisted_8);
   }), 128
   /* KEYED_FRAGMENT */
   ))], 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.make_id]]), _hoisted_9])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.width]]), _hoisted_9])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "form-select",
     id: "floatingSelectGrid",
     "aria-label": "Floating label select example",
@@ -23857,21 +23859,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.getNext($event);
     }),
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-      return $setup.form.model_id = $event;
+      return $setup.form.profile = $event;
     }),
     "data-next": "engines"
-  }, [_hoisted_12, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.next.models, function (model) {
+  }, [_hoisted_12, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.profiles, function (profile) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-      key: model.id,
-      value: model.id
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(model.name), 9
+      key: profile.height,
+      value: profile.height
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(profile.height), 9
     /* TEXT, PROPS */
     , _hoisted_13);
   }), 128
   /* KEYED_FRAGMENT */
   ))], 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.model_id]]), _hoisted_14])])], 64
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.profile]]), _hoisted_14])])], 64
   /* STABLE_FRAGMENT */
   );
 }

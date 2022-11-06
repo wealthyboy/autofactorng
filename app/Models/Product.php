@@ -176,19 +176,19 @@ class Product extends Model
 
     public static function getRim()
     {
-        return self::where('radius', '!=', null)->get();
+        return self::where('radius', '!=', null)->select('radius')->get();
     }
 
 
     public static function getWidth()
     {
-        return self::where('width', '!=', null)->get();
+        return self::where('width', '!=', null)->select('width')->get();
     }
 
 
     public static function getProfile()
     {
-        return self::where('height', '!=', null)->get();
+        return self::where('height', '!=', null)->select('height')->get();
     }
 
 

@@ -7,15 +7,15 @@
         id="floatingSelectGrid"
         aria-label="Floating label select example"
         name="year"
-        v-model="form.year"
-        data-next="makes"
+        v-model="form.rim"
+        data-next="rim"
         @change="getNext($event)"
       >
         <option
-          v-for="year in years"
-          :key="year"
-          :value="year"
-        >{{ year }}</option>
+          v-for="rim in rims"
+          :key="rim.radius"
+          :value="rim.radius"
+        >{{ rim.radius }}</option>
 
       </select>
       <label for="floatingSelectGrid">Select Rim</label>
@@ -27,22 +27,22 @@
         class="form-select"
         id="floatingSelectGrid"
         @change="getNext($event)"
-        name="make"
-        data-next="models"
-        v-model="form.make_id"
+        name="width"
+        data-next="width"
+        v-model="form.width"
       >
         <option
           selected
           value="Choose one"
         >Choose One</option>
         <option
-          v-for="make in next.makes"
-          :key="make.id"
-          :value="make.id"
-        >{{ make.name }}</option>
+          v-for="width in widths"
+          :key="width.width"
+          :value="width.width"
+        >{{ width.width }}</option>
 
       </select>
-      <label for="floatingSelectGrid">Select Model</label>
+      <label for="floatingSelectGrid">Select Width</label>
     </div>
   </div>
   <div class=" w-100 p-1 align-self-center">
@@ -53,7 +53,7 @@
         aria-label="Floating label select example"
         name="model"
         @change="getNext($event)"
-        v-model="form.model_id"
+        v-model="form.profile"
         data-next="engines"
       >
         <option
@@ -61,10 +61,10 @@
           value="Choose one"
         >Choose One</option>
         <option
-          v-for="model in next.models"
-          :key="model.id"
-          :value="model.id"
-        >{{ model.name }}</option>
+          v-for="profile in profiles"
+          :key="profile.height"
+          :value="profile.height"
+        >{{ profile.height }}</option>
 
       </select>
       <label for="floatingSelectGrid">Select Profile</label>
@@ -78,7 +78,7 @@ import { reactive, ref } from "vue";
 import axios from "axios";
 
 export default {
-  props: ["years", "filter"],
+  props: ["rims", "width", "profiles", "filter"],
   emits: ["do:filter"],
   setup(props, { emit }) {
     const makes = ref([]);
@@ -86,16 +86,15 @@ export default {
     const engines = ref([]);
 
     const next = reactive({
-      makes: [],
-      models: "",
-      engines: "",
+      rim: [],
+      width: "",
+      profile: "",
     });
 
     const form = reactive({
-      year: "Choose one",
-      make_id: "Choose one",
-      model_id: "Choose one",
-      engine_id: "Choose one",
+      height: "Choose one",
+      rim: "Choose one",
+      profile: "Choose one",
       type: "",
       next: "",
     });
