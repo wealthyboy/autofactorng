@@ -34,6 +34,12 @@ class ProductsController extends Controller
 
         $brands = $category->brands;
 
+        if ($category->name == 'tyres') {
+            $rim =  Product::getRim();
+            $width =  Product::getWidth();
+            $profile =  Product::getProfile();
+        }
+
         if ($request->type == 'clear') {
             \Cookie::queue(\Cookie::forget('engine_id'));
             \Cookie::queue(\Cookie::forget('make_id'));
@@ -55,7 +61,10 @@ class ProductsController extends Controller
             'category',
             'page_title',
             'brands',
-            'prices'
+            'prices',
+            'rim',
+            'width',
+            'profile'
         ));
     }
 
@@ -80,7 +89,6 @@ class ProductsController extends Controller
                 $builder->groupBy('make_model_year_engines.product_id');
             });
         }
-
 
         if ($type == 'profile') {
             $query->where('radius', $request->rim);

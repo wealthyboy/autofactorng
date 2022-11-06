@@ -174,6 +174,24 @@ class Product extends Model
     }
 
 
+    public static function getRim()
+    {
+        return self::where('radius', '!=', null)->get();
+    }
+
+
+    public static function getWidth()
+    {
+        return self::where('width', '!=', null)->get();
+    }
+
+
+    public static function getProfile()
+    {
+        return self::where('height', '!=', null)->get();
+    }
+
+
     public function getFitsAttribute()
     {
         return $this->buildSearchString() ? true : false;
