@@ -32,14 +32,18 @@
               <input
                 class="form-check-input"
                 type="checkbox"
-                value=""
+                :value="obj.name"
+                :name="name + '[]'"
                 :id="obj.name + obj.id"
+                @change="t($event)"
               >
               <label
                 class="form-check-label"
                 :for="obj.name + obj.id"
                 role="button"
+                @click="activateFilter(name, obj.name)"
               >
+
                 {{ obj.name }}
               </label>
             </div>
@@ -56,8 +60,33 @@
 <script>
 export default {
   props: ["name", "objs"],
-  setup(props, obj) {
-    console.log(obj);
+  emits: ["activate:filter"],
+  setup(props, { emit }) {
+    function activateFilter(name, value) {}
+
+    function t(e) {
+      //  let sort_by = settings.form_sort_by.serializeArray().shift();
+      const qs = [];
+
+      // if (sort_by.value !== "") {
+      //   qs.push(sort_by.name + "=" + sort_by.value);
+      // }
+      $(".form-check-input")
+        .serializeArray()
+        .forEach((element) => {
+          qs.push(element.name + "=" + element.value);
+        });
+
+      window.history.pushState({}, "", "?" + qs.join("&"));
+      // let name = e.target.name;
+      // let value = e.target.value;
+      // emit("handle:filter", { name, value });
+    }
+
+    return {
+      activateFilter,
+      t,
+    };
   },
 };
 </script>

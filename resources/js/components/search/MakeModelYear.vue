@@ -31,7 +31,7 @@
         data-next="models"
         v-model="form.make_id"
       >
-        <option selected>Open this select menu</option>
+        <option selected>Choose One</option>
         <option
           v-for="make in next.makes"
           :key="make.id"
@@ -39,7 +39,7 @@
         >{{ make.name }}</option>
 
       </select>
-      <label for="floatingSelectGrid">Works with selects</label>
+      <label for="floatingSelectGrid">Select Model</label>
     </div>
   </div>
   <div class=" w-100 p-1 align-self-center">
@@ -53,7 +53,7 @@
         v-model="form.model_id"
         data-next="engines"
       >
-        <option selected>Open this select menu</option>
+        <option selected></option>
         <option
           v-for="model in next.models"
           :key="model.id"
@@ -61,7 +61,7 @@
         >{{ model.name }}</option>
 
       </select>
-      <label for="floatingSelectGrid">Works with selects</label>
+      <label for="floatingSelectGrid">Select Make</label>
     </div>
   </div>
   <div class="col2 w-100 p-1 align-self-center">
@@ -75,7 +75,7 @@
         v-model="form.engine_id"
         data-next="products"
       >
-        <option selected>Open this select menu</option>
+        <option selected></option>
 
         <option
           v-for="engine in next.engines"
@@ -85,7 +85,7 @@
         </option>
 
       </select>
-      <label for="floatingSelectGrid">Works with selects</label>
+      <label for="floatingSelectGrid">Select Engine</label>
     </div>
   </div>
 
@@ -110,10 +110,10 @@ export default {
     });
 
     const form = reactive({
-      year: "",
-      make_id: "",
-      model_id: "",
-      engine_id: "",
+      year: "Choose one",
+      make_id: "Choose one",
+      model_id: "Choose one",
+      engine_id: "Choose one",
       type: "",
       next: "",
     });

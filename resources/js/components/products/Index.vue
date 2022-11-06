@@ -73,12 +73,14 @@
         v-if="brands.length"
         :name="'Brand'"
         :objs="brands"
+        @handle:filter="handleFilter"
       ></filters>
 
       <filters
         class="mt-4"
         :name="'Prices'"
         :objs="prices"
+        @handle:filter="handleFilter"
       ></filters>
 
       <!-- End .sidebar-wrapper -->
@@ -143,6 +145,13 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    handleFilter(filter) {
+      const url = new URL(location.href);
+      console.log(filter);
+      url.searchParams.set(filter.name + "[]", filter.value);
+      window.history.pushState({}, "", url);
+      this.getProducts(url);
     },
     getP(uri) {
       const url = new URL(uri);

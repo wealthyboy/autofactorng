@@ -21206,8 +21206,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["name", "objs"],
-  setup: function setup(props, obj) {
-    console.log(obj);
+  emits: ["activate:filter"],
+  setup: function setup(props, _ref) {
+    var emit = _ref.emit;
+
+    function activateFilter(name, value) {}
+
+    function t(e) {
+      //  let sort_by = settings.form_sort_by.serializeArray().shift();
+      var qs = []; // if (sort_by.value !== "") {
+      //   qs.push(sort_by.name + "=" + sort_by.value);
+      // }
+
+      $(".form-check-input").serializeArray().forEach(function (element) {
+        qs.push(element.name + "=" + element.value);
+      });
+      window.history.pushState({}, "", "?" + qs.join("&")); // let name = e.target.name;
+      // let value = e.target.value;
+      // emit("handle:filter", { name, value });
+    }
+
+    return {
+      activateFilter: activateFilter,
+      t: t
+    };
   }
 });
 
@@ -21285,6 +21307,13 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    handleFilter: function handleFilter(filter) {
+      var url = new URL(location.href);
+      console.log(filter);
+      url.searchParams.set(filter.name + "[]", filter.value);
+      window.history.pushState({}, "", url);
+      this.getProducts(url);
     },
     getP: function getP(uri) {
       var url = new URL(uri);
@@ -21503,10 +21532,10 @@ __webpack_require__.r(__webpack_exports__);
       engines: ""
     });
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
-      year: "",
-      make_id: "",
-      model_id: "",
-      engine_id: "",
+      year: "Choose one",
+      make_id: "Choose one",
+      model_id: "Choose one",
+      engine_id: "Choose one",
       type: "",
       next: ""
     });
@@ -22467,8 +22496,8 @@ var _hoisted_6 = ["id", "aria-labelledby", "data-bs-parent"];
 var _hoisted_7 = {
   "class": "accordion-body"
 };
-var _hoisted_8 = ["id"];
-var _hoisted_9 = ["for"];
+var _hoisted_8 = ["value", "name", "id"];
+var _hoisted_9 = ["for", "onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "accordion accordion-flush",
@@ -22499,14 +22528,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       "class": "form-check-input",
       type: "checkbox",
-      value: "",
-      id: obj.name + obj.id
-    }, null, 8
-    /* PROPS */
+      value: obj.name,
+      name: $props.name + '[]',
+      id: obj.name + obj.id,
+      onChange: _cache[0] || (_cache[0] = function ($event) {
+        return $setup.t($event);
+      })
+    }, null, 40
+    /* PROPS, HYDRATE_EVENTS */
     , _hoisted_8), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
       "class": "form-check-label",
       "for": obj.name + obj.id,
-      role: "button"
+      role: "button",
+      onClick: function onClick($event) {
+        return $setup.activateFilter($props.name, obj.name);
+      }
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(obj.name), 9
     /* TEXT, PROPS */
     , _hoisted_9)]);
@@ -22649,16 +22685,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , ["meta", "onPagination:switched"])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .col-lg-9 "), _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_14, [_hoisted_15, _hoisted_16, $props.brands.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_filters, {
     key: 0,
     name: 'Brand',
-    objs: $props.brands
+    objs: $props.brands,
+    "onHandle:filter": $options.handleFilter
   }, null, 8
   /* PROPS */
-  , ["objs"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_filters, {
+  , ["objs", "onHandle:filter"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_filters, {
     "class": "mt-4",
     name: 'Prices',
-    objs: $props.prices
+    objs: $props.prices,
+    "onHandle:filter": $options.handleFilter
   }, null, 8
   /* PROPS */
-  , ["objs"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .sidebar-wrapper ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .col-lg-3 ")]);
+  , ["objs", "onHandle:filter"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .sidebar-wrapper ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .col-lg-3 ")]);
 }
 
 /***/ }),
@@ -23042,7 +23080,7 @@ var _hoisted_6 = {
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   selected: ""
-}, "Open this select menu", -1
+}, "Choose One", -1
 /* HOISTED */
 );
 
@@ -23050,7 +23088,7 @@ var _hoisted_8 = ["value"];
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "floatingSelectGrid"
-}, "Works with selects", -1
+}, "Select Model", -1
 /* HOISTED */
 );
 
@@ -23063,7 +23101,7 @@ var _hoisted_11 = {
 
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   selected: ""
-}, "Open this select menu", -1
+}, null, -1
 /* HOISTED */
 );
 
@@ -23071,7 +23109,7 @@ var _hoisted_13 = ["value"];
 
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "floatingSelectGrid"
-}, "Works with selects", -1
+}, "Select Make", -1
 /* HOISTED */
 );
 
@@ -23084,7 +23122,7 @@ var _hoisted_16 = {
 
 var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   selected: ""
-}, "Open this select menu", -1
+}, null, -1
 /* HOISTED */
 );
 
@@ -23092,7 +23130,7 @@ var _hoisted_18 = ["value"];
 
 var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "floatingSelectGrid"
-}, "Works with selects", -1
+}, "Select Engine", -1
 /* HOISTED */
 );
 
