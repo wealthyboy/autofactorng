@@ -30,7 +30,10 @@
         </div>
       </div>
 
-      <product-nav @handle:sorting="sort" />
+      <product-nav
+        @handle:per_page="perPage"
+        @handle:sorting="sort"
+      />
 
       <div class="row pb-4 g-1">
 
@@ -149,6 +152,13 @@ export default {
       const url = new URL(location.href);
       window.history.pushState({}, "", filter.filterString);
       url.searchParams.set("search", "true");
+      this.getProducts(location.href);
+    },
+    perPage(filter) {
+      const url = new URL(location.href);
+      url.searchParams.set("per_page", filter.per_page);
+      url.searchParams.set("search", "true");
+      window.history.pushState({}, "", url);
       this.getProducts(location.href);
     },
     sort(filter) {

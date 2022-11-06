@@ -112,7 +112,8 @@
         <div class="select-custom">
           <select
             name="count"
-            class="form-control"
+            class="form-control per_page"
+            @change="per_page"
           >
             <option value="20">20</option>
             <option value="30">30</option>
@@ -149,7 +150,7 @@
 <script>
 export default {
   props: ["name", "objs"],
-  emits: ["handle:sorting"],
+  emits: ["handle:sorting", "handle:per_page"],
   setup(props, { emit }) {
     function sort(e) {
       let sort_by = $(".orderby").val();
@@ -158,8 +159,16 @@ export default {
       }
     }
 
+    function per_page() {
+      let per_page = $(".per_page").val();
+      if (per_page !== "") {
+        emit("handle:per_page", { per_page });
+      }
+    }
+
     return {
       sort,
+      per_page,
     };
   },
 };

@@ -68,6 +68,8 @@ class ProductsController extends Controller
 
         $type = $this->getType($request);
 
+        $per_page = $request->per_page ??  20;
+
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
             $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                 $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
@@ -86,7 +88,7 @@ class ProductsController extends Controller
             $query->where('height', $request->profile);
         }
 
-        $products = $query->filter($request)->latest()->paginate($this->settings->products_items_per_page);
+        $products = $query->filter($request)->latest()->paginate($per_page);
         $products->load('images');
         $products->appends(request()->all());
 
