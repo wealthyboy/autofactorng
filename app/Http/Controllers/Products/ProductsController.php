@@ -46,6 +46,8 @@ class ProductsController extends Controller
             $profile = Product::getProfile();
         }
 
+        dd($rim);
+
         if ($request->type == 'clear') {
             \Cookie::queue(\Cookie::forget('engine_id'));
             \Cookie::queue(\Cookie::forget('make_id'));

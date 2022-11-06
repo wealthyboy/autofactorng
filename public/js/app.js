@@ -21706,7 +21706,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["rims", "width", "profiles", "filter"],
+  props: ["rims", "widths", "profiles", "filter"],
   emits: ["do:filter"],
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
@@ -22858,13 +22858,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 1,
     "onDo:filter": $options.filter,
     filter: true,
-    years: $props.years,
     rims: $props.rim,
     widths: $props.width,
     profiles: $props.profile
   }, null, 8
   /* PROPS */
-  , ["onDo:filter", "years", "rims", "widths", "profiles"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.category.search_type == 'battery' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_battery, {
+  , ["onDo:filter", "rims", "widths", "profiles"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.category.search_type == 'battery' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_battery, {
     key: 2,
     "onDo:filter": $options.filter,
     filter: true,
@@ -23839,7 +23838,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $setup.form.width = $event;
     })
-  }, [_hoisted_7, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.widths, function (width) {
+  }, [_hoisted_7, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.widths, function (width) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: width.width,
       value: width.width

@@ -33,7 +33,6 @@
             <tyre
               @do:filter="filter"
               :filter="true"
-              :years="years"
               :rims="rim"
               :widths="width"
               :profiles="profile"

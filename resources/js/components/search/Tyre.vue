@@ -78,7 +78,7 @@ import { reactive, ref } from "vue";
 import axios from "axios";
 
 export default {
-  props: ["rims", "width", "profiles", "filter"],
+  props: ["rims", "widths", "profiles", "filter"],
   emits: ["do:filter"],
   setup(props, { emit }) {
     const makes = ref([]);
