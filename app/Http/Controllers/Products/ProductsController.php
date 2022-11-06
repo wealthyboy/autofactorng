@@ -34,6 +34,10 @@ class ProductsController extends Controller
 
         $brands = $category->brands;
 
+        $rim =  null;
+        $width =  null;
+        $profile = null;
+
         if ($category->name == 'tyres') {
             $rim =  Product::getRim();
             $width =  Product::getWidth();
@@ -57,6 +61,7 @@ class ProductsController extends Controller
         }
 
         $prices = $this->filterPrices();
+
         return  view('products.index', compact(
             'category',
             'page_title',
