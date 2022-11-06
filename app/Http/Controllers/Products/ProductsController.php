@@ -39,9 +39,9 @@ class ProductsController extends Controller
         $profile = null;
 
         if ($category->name == 'tyres') {
-            $rim =  Product::getRim();
-            $width =  Product::getWidth();
-            $profile =  Product::getProfile();
+            $rim = Product::getRim();
+            $width = Product::getWidth();
+            $profile = Product::getProfile();
         }
 
         if ($request->type == 'clear') {
