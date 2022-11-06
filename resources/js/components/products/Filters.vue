@@ -78,6 +78,8 @@ export default {
         });
       let filterString = "?" + qs.join("&");
 
+      console.log(filterString);
+
       emit("handle:filter", { filterString });
     }
 
