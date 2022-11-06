@@ -21266,6 +21266,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     filter: function filter(o) {
       this.searchText = o.text;
+      console.log(o);
     },
     shopWithoutVehicle: function shopWithoutVehicle() {
       this.searchText = null;
@@ -21492,13 +21493,22 @@ __webpack_require__.r(__webpack_exports__);
     function getNext(e) {
       form.type = e.target.name;
       var nt = e.target.dataset.next;
+
+      if (nt == "products") {
+        emit("do:filter", {
+          form: form,
+          text: text
+        });
+        return;
+      }
+
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/make-model-year-engine", {
         params: form
       }).then(function (response) {
         next[nt] = response.data.data;
         var text = response.data.string;
 
-        if (nt == 'products') {
+        if (nt == "products") {
           emit("do:filter", {
             form: form,
             text: text

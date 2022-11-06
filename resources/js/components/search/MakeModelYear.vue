@@ -29,7 +29,6 @@
         @change="getNext($event)"
         name="make"
         data-next="models"
-
         v-model="form.make_id"
       >
         <option selected>Open this select menu</option>
@@ -38,7 +37,7 @@
           :key="make.id"
           :value="make.id"
         >{{ make.name }}</option>
-       
+
       </select>
       <label for="floatingSelectGrid">Works with selects</label>
     </div>
@@ -53,8 +52,6 @@
         @change="getNext($event)"
         v-model="form.model_id"
         data-next="engines"
-
-
       >
         <option selected>Open this select menu</option>
         <option
@@ -62,8 +59,7 @@
           :key="model.id"
           :value="model.id"
         >{{ model.name }}</option>
-       
-        
+
       </select>
       <label for="floatingSelectGrid">Works with selects</label>
     </div>
@@ -78,7 +74,6 @@
         @change="getNext($event)"
         v-model="form.engine_id"
         data-next="products"
-
       >
         <option selected>Open this select menu</option>
 
@@ -88,7 +83,7 @@
           :value="engine.id"
         >{{ engine.name }}
         </option>
-       
+
       </select>
       <label for="floatingSelectGrid">Works with selects</label>
     </div>
@@ -97,50 +92,55 @@
 </template>
 
 <script>
-import { reactive, ref } from 'vue';
-import axios from 'axios';
+import { reactive, ref } from "vue";
+import axios from "axios";
 
 export default {
-  props: ["years","filter"],
+  props: ["years", "filter"],
   emits: ["do:filter"],
-  setup(props, {emit}) { 
-    const makes = ref([])
-    const models = ref([])
-    const engines = ref([])
+  setup(props, { emit }) {
+    const makes = ref([]);
+    const models = ref([]);
+    const engines = ref([]);
 
     const next = reactive({
       makes: [],
       models: "",
       engines: "",
-    })
-    
+    });
+
     const form = reactive({
       year: "",
       make_id: "",
       model_id: "",
       engine_id: "",
       type: "",
-      next: ""
-    })
+      next: "",
+    });
 
     function getNext(e) {
-      form.type = e.target.name
+      form.type = e.target.name;
       let nt = e.target.dataset.next;
+
+      if (nt == "products") {
+        emit("do:filter", { form, text });
+        return;
+      }
+
       axios
         .get("/make-model-year-engine", {
-           params: form
+          params: form,
         })
-        .then(response => {
-          next[nt] = response.data.data
-          let text = response.data.string
-  
-          if (nt == 'products' ){
-             emit("do:filter", {form, text})
+        .then((response) => {
+          next[nt] = response.data.data;
+          let text = response.data.string;
+
+          if (nt == "products") {
+            emit("do:filter", { form, text });
           }
-    
         })
         .catch((error) => {
-           console.log(error)
+          console.log(error);
         });
     }
 
@@ -150,10 +150,8 @@ export default {
       engines,
       getNext,
       form,
-      next
-    }
-
-
+      next,
+    };
   },
 };
 </script>

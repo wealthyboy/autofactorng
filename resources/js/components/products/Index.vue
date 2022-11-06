@@ -20,11 +20,13 @@
             <h3>SET YOUR VEHICLE</h3>
             <p>Get an exact fit for your vehicle.</p>
           </div>
+
           <search
             @do:filter="filter"
             :filter="true"
             :years="years"
           />
+
         </div>
       </div>
 
@@ -120,6 +122,7 @@ export default {
   methods: {
     filter(o) {
       this.searchText = o.text;
+      console.log(o);
     },
     shopWithoutVehicle() {
       this.searchText = null;
