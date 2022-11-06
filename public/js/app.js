@@ -24734,6 +24734,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     },
     topNotice: function topNotice() {
       t(".top-notice .mfp-close").length && t("body").on("click", ".top-notice .mfp-close", function () {
+        alert("I'm here");
         t(this).height();
         t(this).closest(".top-notice").fadeOut(function () {
           t(this).addClass("closed");
