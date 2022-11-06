@@ -109,7 +109,7 @@ class ProductsController extends Controller
 
         //  dd($request->type);
         if ($request->type == 'clear') {
-            Cookie::queue(Cookie::forget('engine_id'));
+            Cookie::queue(Cookie::forget(['engine_id', 'make_id']));
             return response()->json(
                 [
                     'type' => $request->type,
