@@ -85,6 +85,13 @@ class Product extends Model
         return $this->belongsToMany(Attribute::class);
     }
 
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class);
+    }
+
+
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');

@@ -51,7 +51,6 @@ class ProductsController extends Controller
         }
 
         $prices = $this->filterPrices();
-
         return  view('products.index', compact(
             'category',
             'page_title',
@@ -87,7 +86,7 @@ class ProductsController extends Controller
             $query->where('height', $request->profile);
         }
 
-        $products = $query->filter($request, [])->latest()->paginate($this->settings->products_items_per_page);
+        $products = $query->filter($request)->latest()->paginate($this->settings->products_items_per_page);
         $products->load('images');
         $products->appends(request()->all());
 
@@ -113,9 +112,6 @@ class ProductsController extends Controller
         $data  = $request->query();
         $cookie = null;
         $type = $this->getType($request);
-
-        //  dd($request->type);
-
         session()->put($type, $data[$type]);
         $cookie = cookie($type, $data[$type], 60 * 60 * 7);
         $data = MakeModelYearEngine::getMakeModelYearSearch($request);

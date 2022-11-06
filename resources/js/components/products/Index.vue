@@ -71,14 +71,14 @@
       <div class="underline"></div>
       <filters
         v-if="brands.length"
-        :name="'Brand'"
+        :name="'brands'"
         :objs="brands"
         @handle:filter="handleFilter"
       ></filters>
 
       <filters
         class="mt-4"
-        :name="'Prices'"
+        :name="'prices'"
         :objs="prices"
         @handle:filter="handleFilter"
       ></filters>
@@ -149,9 +149,8 @@ export default {
     handleFilter(filter) {
       const url = new URL(location.href);
       console.log(filter);
-      url.searchParams.set(filter.name + "[]", filter.value);
-      window.history.pushState({}, "", url);
-      this.getProducts(url);
+      window.history.pushState({}, "", filter.filterString);
+      this.getProducts(location.href);
     },
     getP(uri) {
       const url = new URL(uri);

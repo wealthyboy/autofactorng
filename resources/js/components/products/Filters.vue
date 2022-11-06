@@ -9,7 +9,7 @@
           class="accordion-header"
           :id="'flush-heading'+ name"
         ><button
-            class="accordion-button collapsed"
+            class="accordion-button text-uppercase collapsed"
             type="button"
             data-bs-toggle="collapse"
             :data-bs-target="'#flush-collapse' + name"
@@ -32,7 +32,7 @@
               <input
                 class="form-check-input"
                 type="checkbox"
-                :value="obj.name"
+                :value="obj.slug"
                 :name="name + '[]'"
                 :id="obj.name + obj.id"
                 @change="t($event)"
@@ -76,11 +76,9 @@ export default {
         .forEach((element) => {
           qs.push(element.name + "=" + element.value);
         });
+      let filterString = "?" + qs.join("&");
 
-      window.history.pushState({}, "", "?" + qs.join("&"));
-      // let name = e.target.name;
-      // let value = e.target.value;
-      // emit("handle:filter", { name, value });
+      emit("handle:filter", { filterString });
     }
 
     return {

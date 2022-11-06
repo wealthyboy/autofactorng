@@ -21221,9 +21221,10 @@ __webpack_require__.r(__webpack_exports__);
       $(".form-check-input").serializeArray().forEach(function (element) {
         qs.push(element.name + "=" + element.value);
       });
-      window.history.pushState({}, "", "?" + qs.join("&")); // let name = e.target.name;
-      // let value = e.target.value;
-      // emit("handle:filter", { name, value });
+      var filterString = "?" + qs.join("&");
+      emit("handle:filter", {
+        filterString: filterString
+      });
     }
 
     return {
@@ -21311,9 +21312,8 @@ __webpack_require__.r(__webpack_exports__);
     handleFilter: function handleFilter(filter) {
       var url = new URL(location.href);
       console.log(filter);
-      url.searchParams.set(filter.name + "[]", filter.value);
-      window.history.pushState({}, "", url);
-      this.getProducts(url);
+      window.history.pushState({}, "", filter.filterString);
+      this.getProducts(location.href);
     },
     getP: function getP(uri) {
       var url = new URL(uri);
@@ -22506,7 +22506,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "accordion-header",
     id: 'flush-heading' + $props.name
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "accordion-button collapsed",
+    "class": "accordion-button text-uppercase collapsed",
     type: "button",
     "data-bs-toggle": "collapse",
     "data-bs-target": '#flush-collapse' + $props.name,
@@ -22528,7 +22528,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       "class": "form-check-input",
       type: "checkbox",
-      value: obj.name,
+      value: obj.slug,
       name: $props.name + '[]',
       id: obj.name + obj.id,
       onChange: _cache[0] || (_cache[0] = function ($event) {
@@ -22684,14 +22684,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["meta", "onPagination:switched"])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .col-lg-9 "), _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_14, [_hoisted_15, _hoisted_16, $props.brands.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_filters, {
     key: 0,
-    name: 'Brand',
+    name: 'brands',
     objs: $props.brands,
     "onHandle:filter": $options.handleFilter
   }, null, 8
   /* PROPS */
   , ["objs", "onHandle:filter"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_filters, {
     "class": "mt-4",
-    name: 'Prices',
+    name: 'prices',
     objs: $props.prices,
     "onHandle:filter": $options.handleFilter
   }, null, 8
