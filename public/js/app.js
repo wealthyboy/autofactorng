@@ -21272,12 +21272,14 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.searchText = null;
-      axios__WEBPACK_IMPORTED_MODULE_2___default().get("/make-model-year-engine", {
+      axios__WEBPACK_IMPORTED_MODULE_2___default().get(location.href + "?get=1", {
         params: {
           type: "clear"
         }
-      }).then(function (response) {
-        _this.getProducts();
+      }).then(function (res) {
+        _this.products = res.data.data;
+        _this.meta = res.data.meta;
+        _this.searchText = res.data.string;
       })["catch"](function (error) {
         console.log(error);
       });

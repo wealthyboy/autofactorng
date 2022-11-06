@@ -127,13 +127,15 @@ export default {
     shopWithoutVehicle() {
       this.searchText = null;
       axios
-        .get("/make-model-year-engine", {
+        .get(location.href + "?get=1", {
           params: {
             type: "clear",
           },
         })
-        .then((response) => {
-          this.getProducts();
+        .then((res) => {
+          this.products = res.data.data;
+          this.meta = res.data.meta;
+          this.searchText = res.data.string;
         })
         .catch((error) => {
           console.log(error);

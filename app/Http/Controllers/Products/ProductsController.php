@@ -34,6 +34,10 @@ class ProductsController extends Controller
 
         $brands = $category->brands;
 
+        if ($request->type == 'clear') {
+            Cookie::queue(Cookie::forget(['engine_id', 'make_id']));
+        }
+
         $products = $this->getProductsData($request, $builder, $category);
 
         if ($request->ajax()) {
@@ -108,16 +112,7 @@ class ProductsController extends Controller
         $type = $this->getType($request);
 
         //  dd($request->type);
-        if ($request->type == 'clear') {
-            Cookie::queue(Cookie::forget(['engine_id', 'make_id']));
-            return response()->json(
-                [
-                    'type' => $request->type,
-                    'data' =>  $data,
-                    'string' => $this->buildSearchString($request)
-                ]
-            );
-        }
+
         session()->put($type, $data[$type]);
         $cookie = cookie($type, $data[$type], 60 * 60 * 7);
         $data = MakeModelYearEngine::getMakeModelYearSearch($request);
