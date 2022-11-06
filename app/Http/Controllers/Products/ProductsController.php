@@ -35,7 +35,10 @@ class ProductsController extends Controller
         $brands = $category->brands;
 
         if ($request->type == 'clear') {
-            Cookie::queue(Cookie::forget(['engine_id', 'make_id']));
+            Cookie::queue(Cookie::forget('engine_id'));
+            Cookie::queue(Cookie::forget('make_id'));
+            Cookie::queue(Cookie::forget('model_id'));
+            Cookie::queue(Cookie::forget('year'));
         }
 
         $products = $this->getProductsData($request, $builder, $category);
