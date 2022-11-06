@@ -21308,11 +21308,13 @@ __webpack_require__.r(__webpack_exports__);
     handleFilter: function handleFilter(filter) {
       var url = new URL(location.href);
       window.history.pushState({}, "", filter.filterString);
+      url.searchParams.set("search", "true");
       this.getProducts(location.href);
     },
     sort: function sort(filter) {
       var url = new URL(location.href);
       url.searchParams.set("sort_by", filter.sort_by);
+      url.searchParams.set("search", "true");
       window.history.pushState({}, "", url);
       this.getProducts(location.href);
     },

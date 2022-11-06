@@ -148,11 +148,13 @@ export default {
     handleFilter(filter) {
       const url = new URL(location.href);
       window.history.pushState({}, "", filter.filterString);
+      url.searchParams.set("search", "true");
       this.getProducts(location.href);
     },
     sort(filter) {
       const url = new URL(location.href);
       url.searchParams.set("sort_by", filter.sort_by);
+      url.searchParams.set("search", "true");
       window.history.pushState({}, "", url);
       this.getProducts(location.href);
     },
