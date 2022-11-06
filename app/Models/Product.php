@@ -188,7 +188,7 @@ class Product extends Model
 
     public  function buildSearchString()
     {
-        if (null !== request()->cookie('engine_id')) {
+        if (null !== request()->cookie('engine_id') &&  request()->type !== 'clear') {
             $year = request()->cookie('year');
             $make_name = Attribute::find(request()->cookie('make_id'))->name;
             $model_name = Attribute::find(request()->cookie('model_id'))->name;
