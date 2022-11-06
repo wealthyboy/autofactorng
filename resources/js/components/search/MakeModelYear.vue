@@ -31,7 +31,10 @@
         data-next="models"
         v-model="form.make_id"
       >
-        <option selected>Choose One</option>
+        <option
+          selected
+          value="Choose one"
+        >Choose One</option>
         <option
           v-for="make in next.makes"
           :key="make.id"
@@ -53,7 +56,10 @@
         v-model="form.model_id"
         data-next="engines"
       >
-        <option selected></option>
+        <option
+          selected
+          value="Choose one"
+        >Choose One</option>
         <option
           v-for="model in next.models"
           :key="model.id"
@@ -75,7 +81,10 @@
         v-model="form.engine_id"
         data-next="products"
       >
-        <option selected></option>
+        <option
+          selected
+          value="Choose one"
+        >Choose One</option>
 
         <option
           v-for="engine in next.engines"
