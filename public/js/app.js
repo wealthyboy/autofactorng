@@ -21162,7 +21162,7 @@ __webpack_require__.r(__webpack_exports__);
     switched: function switched(page) {
       var _this = this;
 
-      console.log(page);
+      console.log(this.meta.links[page].url);
       return;
 
       if (this.pageIsFinished(page)) {

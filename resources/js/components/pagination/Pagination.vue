@@ -47,7 +47,7 @@ export default {
   created() {},
   methods: {
     switched(page) {
-      console.log(page);
+      console.log(this.meta.links[page].url);
       return;
       if (this.pageIsFinished(page)) {
         return;
