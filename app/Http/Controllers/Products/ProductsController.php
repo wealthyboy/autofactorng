@@ -170,7 +170,7 @@ class ProductsController extends Controller
 
     public function buildSearchString(Request $request)
     {
-        if (null !== $request->cookie('engine_id')) {
+        if ($request->type !== 'clear' && null !== $request->cookie('engine_id')) {
             $year = $request->cookie('year');
             $make_name = Attribute::find($request->cookie('make_id'))->name;
             $model_name = Attribute::find($request->cookie('model_id'))->name;
