@@ -21,11 +21,29 @@
             <p>Get an exact fit for your vehicle.</p>
           </div>
 
-          <search
-            @do:filter="filter"
-            :filter="true"
-            :years="years"
-          />
+          <template v-if="category.search_type == 'make_model_year'">
+            <search
+              @do:filter="filter"
+              :filter="true"
+              :years="years"
+            />
+          </template>
+
+          <template v-if="category.search_type == 'tyre'">
+            <tyre
+              @do:filter="filter"
+              :filter="true"
+              :years="years"
+            />
+          </template>
+
+          <template v-if="category.search_type == 'battery'">
+            <battery
+              @do:filter="filter"
+              :filter="true"
+              :years="years"
+            />
+          </template>
 
         </div>
       </div>
@@ -98,6 +116,9 @@ import Product from "./Product";
 import Pagination from "../pagination/Pagination.vue";
 import axios from "axios";
 import Search from "../search/MakeModelYear";
+import Tyre from "../search/Tyre";
+import Battery from "../search/Battery";
+
 import ProductNav from "./Nav";
 import SearchString from "./SearchString";
 import Filters from "./Filters";
@@ -110,8 +131,10 @@ export default {
     ProductNav,
     SearchString,
     Filters,
+    Tyre,
+    Battery,
   },
-  props: ["years", "brands", "prices"],
+  props: ["years", "brands", "prices", "category"],
   data() {
     return {
       meta: {},
