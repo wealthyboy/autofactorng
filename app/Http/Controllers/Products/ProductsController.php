@@ -106,6 +106,18 @@ class ProductsController extends Controller
         $data  = $request->query();
         $cookie = null;
         $type = $this->getType($request);
+
+        //  dd($request->type);
+        if ($request->type == 'clear') {
+            Cookie::queue(Cookie::forget('engine_id'));
+            return response()->json(
+                [
+                    'type' => $request->type,
+                    'data' =>  $data,
+                    'string' => $this->buildSearchString($request)
+                ]
+            );
+        }
         session()->put($type, $data[$type]);
         $cookie = cookie($type, $data[$type], 60 * 60 * 7);
         $data = MakeModelYearEngine::getMakeModelYearSearch($request);
@@ -144,6 +156,10 @@ class ProductsController extends Controller
                 $response = 'profile';
                 Cookie::queue(Cookie::forget('engine_id'));
                 break;
+            case 'clear':
+                $response = 'clear';
+                break;
+
             default:
                 # code...
                 $response = null;

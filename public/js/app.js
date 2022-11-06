@@ -21274,7 +21274,7 @@ __webpack_require__.r(__webpack_exports__);
       this.searchText = null;
       axios__WEBPACK_IMPORTED_MODULE_2___default().get("/make-model-year-engine", {
         params: {
-          clear: true
+          type: "clear"
         }
       }).then(function (response) {
         _this.getProducts();

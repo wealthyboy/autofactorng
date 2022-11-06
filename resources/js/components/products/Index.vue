@@ -129,7 +129,7 @@ export default {
       axios
         .get("/make-model-year-engine", {
           params: {
-            clear: true,
+            type: "clear",
           },
         })
         .then((response) => {
