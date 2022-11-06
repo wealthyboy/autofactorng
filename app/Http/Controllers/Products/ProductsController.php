@@ -12,7 +12,7 @@ use App\Models\Product;
 use App\Models\Setting;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
+//use Illuminate\Support\Facades\Cookie;
 
 class ProductsController extends Controller
 {
@@ -35,10 +35,10 @@ class ProductsController extends Controller
         $brands = $category->brands;
 
         if ($request->type == 'clear') {
-            Cookie::queue(Cookie::forget('engine_id'));
-            Cookie::queue(Cookie::forget('make_id'));
-            Cookie::queue(Cookie::forget('model_id'));
-            Cookie::queue(Cookie::forget('year'));
+            \Cookie::queue(\Cookie::forget('engine_id'));
+            \Cookie::queue(\Cookie::forget('make_id'));
+            \Cookie::queue(\Cookie::forget('model_id'));
+            \Cookie::queue(\Cookie::forget('year'));
         }
 
         $products = $this->getProductsData($request, $builder, $category);
@@ -152,7 +152,7 @@ class ProductsController extends Controller
                 break;
             case 'profile':
                 $response = 'profile';
-                Cookie::queue(Cookie::forget('engine_id'));
+                \Cookie::queue(\Cookie::forget('engine_id'));
                 break;
             case 'clear':
                 $response = 'clear';
