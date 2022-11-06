@@ -214,6 +214,10 @@ class ProductController extends Controller
         $product->sku = $product->id . $this->generateSku();
         $product->save();
 
+        if ($brand !== null) {
+            $brand->categories()->sync($request->category_id);
+        }
+
         if (!empty($request->category_id)) {
             $product->categories()->sync($request->category_id);
         }
