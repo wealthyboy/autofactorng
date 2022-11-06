@@ -146,7 +146,7 @@ export default {
     },
     getP(uri) {
       const url = new URL(uri);
-      //url.searchParams.set("search", "true");
+      url.searchParams.set("search", "true");
       window.history.pushState({}, "", url);
 
       this.getProducts(url);

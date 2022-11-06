@@ -21287,8 +21287,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     getP: function getP(uri) {
-      var url = new URL(uri); //url.searchParams.set("search", "true");
-
+      var url = new URL(uri);
+      url.searchParams.set("search", "true");
       window.history.pushState({}, "", url);
       this.getProducts(url);
     },
