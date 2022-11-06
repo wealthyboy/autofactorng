@@ -11,9 +11,10 @@ class TotalFilter  extends AbstractFilter
 {
     public function filter(Builder $builder, $value)
     {
-
-        $value = explode('-', $value);
-        return  $builder->where('price', '>=', $value[0])
-            ->where('price', '<=', $value[1]);
+        foreach ($value as $v) {
+            $value = explode('-', $v);
+            return  $builder->where('price', '>=', $value[0])
+                ->where('price', '<=', $value[1]);
+        }
     }
 }
