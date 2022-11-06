@@ -122,11 +122,6 @@ export default {
       form.type = e.target.name;
       let nt = e.target.dataset.next;
 
-      if (nt == "products") {
-        emit("do:filter", { form, text });
-        return;
-      }
-
       axios
         .get("/make-model-year-engine", {
           params: form,

@@ -21266,18 +21266,29 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     filter: function filter(o) {
       this.searchText = o.text;
-      console.log(o);
+      this.getProducts();
     },
     shopWithoutVehicle: function shopWithoutVehicle() {
-      this.searchText = null;
-    },
-    getProducts: function getProducts() {
       var _this = this;
 
+      this.searchText = null;
+      axios__WEBPACK_IMPORTED_MODULE_2___default().get("/make-model-year-engine", {
+        params: {
+          clear: true
+        }
+      }).then(function (response) {
+        _this.getProducts();
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getProducts: function getProducts() {
+      var _this2 = this;
+
       axios__WEBPACK_IMPORTED_MODULE_2___default().get(location.href + "?get=1").then(function (res) {
-        _this.products = res.data.data;
-        _this.meta = res.data.meta;
-        _this.searchText = res.data.string;
+        _this2.products = res.data.data;
+        _this2.meta = res.data.meta;
+        _this2.searchText = res.data.string;
       })["catch"](function (err) {});
     }
   }
@@ -21493,15 +21504,6 @@ __webpack_require__.r(__webpack_exports__);
     function getNext(e) {
       form.type = e.target.name;
       var nt = e.target.dataset.next;
-
-      if (nt == "products") {
-        emit("do:filter", {
-          form: form,
-          text: text
-        });
-        return;
-      }
-
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/make-model-year-engine", {
         params: form
       }).then(function (response) {

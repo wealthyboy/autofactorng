@@ -122,10 +122,22 @@ export default {
   methods: {
     filter(o) {
       this.searchText = o.text;
-      console.log(o);
+      this.getProducts();
     },
     shopWithoutVehicle() {
       this.searchText = null;
+      axios
+        .get("/make-model-year-engine", {
+          params: {
+            clear: true,
+          },
+        })
+        .then((response) => {
+          this.getProducts();
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
     getProducts() {
       axios
