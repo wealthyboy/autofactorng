@@ -35,13 +35,12 @@
                 :value="obj.slug"
                 :name="name + '[]'"
                 :id="obj.name + obj.id"
-                @change="t($event)"
+                @change="activateFilter($event)"
               >
               <label
                 class="form-check-label"
                 :for="obj.name + obj.id"
                 role="button"
-                @click="activateFilter(name, obj.name)"
               >
 
                 {{ obj.name }}
@@ -62,9 +61,7 @@ export default {
   props: ["name", "objs"],
   emits: ["activate:filter"],
   setup(props, { emit }) {
-    function activateFilter(name, value) {}
-
-    function t(e) {
+    function activateFilter(e) {
       //  let sort_by = settings.form_sort_by.serializeArray().shift();
       const qs = [];
 
@@ -85,7 +82,6 @@ export default {
 
     return {
       activateFilter,
-      t,
     };
   },
 };

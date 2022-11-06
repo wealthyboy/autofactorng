@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <product-nav />
+      <product-nav @handle:sorting="sort" />
 
       <div class="row pb-4 g-1">
 
@@ -98,7 +98,6 @@ import Search from "../search/MakeModelYear";
 import ProductNav from "./Nav";
 import SearchString from "./SearchString";
 import Filters from "./Filters";
-import { Url } from "url";
 
 export default {
   components: {
@@ -148,15 +147,19 @@ export default {
     },
     handleFilter(filter) {
       const url = new URL(location.href);
-      console.log(filter);
       window.history.pushState({}, "", filter.filterString);
+      this.getProducts(location.href);
+    },
+    sort(filter) {
+      const url = new URL(location.href);
+      url.searchParams.set("sort_by", filter.sort_by);
+      window.history.pushState({}, "", url);
       this.getProducts(location.href);
     },
     getP(uri) {
       const url = new URL(uri);
       url.searchParams.set("search", "true");
       window.history.pushState({}, "", url);
-
       this.getProducts(url);
     },
     getProducts(url) {
