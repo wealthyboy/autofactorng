@@ -97,7 +97,6 @@
               selected="selected"
             >Default sorting</option>
             <option value="rating">Sort by average rating</option>
-            <option value="date">Sort by newness</option>
             <option value="price,asc">Sort by price: low to high</option>
             <option value="price,desc">Sort by price: high to low</option>
           </select>
