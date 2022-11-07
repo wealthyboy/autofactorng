@@ -10,6 +10,6 @@
             <img src="{{ $system_settings->logo_path() }}" height="110" width="80" alt="{{ Config('app.name') }}  Logo">
         </div>
     </div>
-    <checkout-index />
+
 </section>
 @endsection
