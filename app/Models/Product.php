@@ -176,7 +176,7 @@ class Product extends Model
 
     public static function getRim()
     {
-        return self::where('radius', '!=', null)->select('radius')->get();
+        return self::where('radius', '!=', null)->select('radius')->groupBy('radius')->get();
     }
 
 
