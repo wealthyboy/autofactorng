@@ -56,10 +56,8 @@ class ProductController extends Controller
 
 
         if (request()->debug == 1) {
-
             $aas = MakeModelYearEngine::get();
             foreach ($aas as $as) {
-                // $as->delete();
                 $attribute = Attribute::find($as->attribute_id);
                 if (null !==  $attribute) {
                     $as->parent_id = optional($attribute->parent)->id;

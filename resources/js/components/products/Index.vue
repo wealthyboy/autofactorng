@@ -66,7 +66,10 @@
         ></product>
       </div>
       <nav class="toolbox toolbox-pagination">
-        <div class="toolbox-item toolbox-show"> </div>
+        <div class="toolbox-item toolbox-show">
+          <span>{{ meta.from }}- {{ meta.to }} of {{meta.total}} Records</span>
+
+        </div>
         <!-- End .toolbox-item -->
         <div
           v-if="meta.total > meta.per_page"
