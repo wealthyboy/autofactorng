@@ -106,7 +106,6 @@ class ProductsController extends Controller
         $widths = Product::getFilterForCategory($category, 'width');
         $profiles = Product::getFilterForCategory($category, 'height');
         $ampheres = Product::getFilterForCategory($category, 'amphere');
-
         $brands = $category->brands;
 
         $search = collect([
@@ -204,21 +203,6 @@ class ProductsController extends Controller
         }
 
         return '';
-    }
-
-
-
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**

@@ -21341,6 +21341,15 @@ __webpack_require__.r(__webpack_exports__);
       url.searchParams.set("search", "true");
       this.getProducts(location.href);
     },
+    handleTyreFilter: function handleTyreFilter(data) {
+      var url = new URL(location.href);
+      url.searchParams.set("rim", data.rim);
+      url.searchParams.set("width", data.width);
+      url.searchParams.set("profile", data.profile);
+      url.searchParams.set("type", data.type);
+      window.history.pushState({}, "", url);
+      this.getProducts(location.href);
+    },
     perPage: function perPage(filter) {
       var url = new URL(location.href);
       url.searchParams.set("per_page", filter.per_page);
@@ -21726,7 +21735,7 @@ __webpack_require__.r(__webpack_exports__);
         return false;
       }
 
-      emit("handle:Filter", form);
+      emit("do:filter", form);
     }
 
     return {
@@ -22906,7 +22915,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["onDo:filter", "years"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.search_filters.search_type.search == 'tyre' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_tyre, {
     key: 1,
-    "onDo:filter": $options.filter,
+    "onDo:filter": $options.handleTyreFilter,
     filter: true,
     rims: $props.search_filters.rim.items,
     widths: $props.search_filters.width.items,

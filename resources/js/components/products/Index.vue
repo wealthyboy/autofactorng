@@ -31,7 +31,7 @@
 
           <template v-if="search_filters.search_type.search == 'tyre'">
             <tyre
-              @do:filter="filter"
+              @do:filter="handleTyreFilter"
               :filter="true"
               :rims="search_filters.rim.items"
               :widths="search_filters.width.items"
@@ -188,6 +188,15 @@ export default {
       const url = new URL(location.href);
       window.history.pushState({}, "", filter.filterString);
       url.searchParams.set("search", "true");
+      this.getProducts(location.href);
+    },
+    handleTyreFilter(data) {
+      const url = new URL(location.href);
+      url.searchParams.set("rim", data.rim);
+      url.searchParams.set("width", data.width);
+      url.searchParams.set("profile", data.profile);
+      url.searchParams.set("type", data.type);
+      window.history.pushState({}, "", url);
       this.getProducts(location.href);
     },
     perPage(filter) {

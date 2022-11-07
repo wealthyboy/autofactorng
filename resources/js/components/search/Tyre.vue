@@ -25,7 +25,6 @@
       v-model="form.width"
       name="Select Width"
     >
-
       <option
         v-for="width in widths"
         :key="width.width"
@@ -88,7 +87,7 @@ export default {
         return false;
       }
 
-      emit("handle:Filter", form);
+      emit("do:filter", form);
     }
 
     return {
