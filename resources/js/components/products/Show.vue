@@ -22,12 +22,15 @@
     <!-- End .ratings-container -->
 
     <p>
-      Part #550045202 SKU #1181299
+      SKU #{{product.sku}}
     </p>
 
     <p class="product-description">
 
-      <check-vehicle class="w-100" />
+      <check-vehicle
+        class="w-100"
+        :fitText="product.fitText"
+      />
 
     </p>
 
@@ -36,17 +39,18 @@
       <div class="price-box col-8">
 
         <template v-if="product.discounted_price">
-          <span class="old-price">₦{{ product.discounted_price }}</span>
-          <span class="new-price">₦{{ product.price }}</span>
+          <span class="old-price">₦{{ product.formatted_sale_price }}</span>
+          <span class="new-price">₦{{ product.formatted_price }}</span>
         </template>
         <template v-else>
-          <span class="new-price">₦{{  product.price }}</span>
+          <span class="new-price">₦{{  product.formatted_price }}</span>
         </template>
       </div>
 
       <div class="col-4">
         <div class="d-flex align-items-center justify-content-between">
           <button
+            @click="minQty"
             type="button"
             aria-label="decrease value"
             aria-describedby=""
@@ -63,6 +67,7 @@
 
           </div>
           <button
+            @click="addQty"
             data-math="add"
             data-name="adults"
             data-number="1"
@@ -121,6 +126,15 @@ export default {
     ...mapActions({
       addProductToCart: "addProductToCart",
     }),
+
+    addQty() {
+      this.qty++;
+    },
+
+    minQty() {
+      if (this.qty == 1) return;
+      this.qty--;
+    },
 
     addToCart: function (product_id) {
       this.loading = true;
