@@ -16,32 +16,17 @@
       <h3 class="product-title"> <a :href="cart.product.link">{{cart.product.name }}</a>
       </h3>
       <p>
-        Part #550045202 SKU #1181299
-      </p>
-      <div class="ratings-container">
-        <div class="product-ratings">
-          <span
-            class="ratings"
-            style="width:100%"
-          ></span>
-          <!-- End .ratings -->
-          <span class="tooltiptext tooltip-top"></span>
-        </div>
-        <!-- End .product-ratings -->
-      </div>
-      <!-- End .product-container -->
-      <p class="product-description">
-        <check-vehicle />
+        SKU #{{ cart.product.sku }}
       </p>
 
       <div class="price-box">
 
         <template v-if="cart.product.discounted_price">
-          <span class="old-price">{{  cart.product.discounted_price }}</span>
-          <span class="new-price">{{ cart.product.price }}</span>
+          <span class="old-price">{{ cart.product.currency }}{{  cart.product.formatted_sale_price }}</span>
+          <span class="new-price">{{ cart.product.currency }}{{ cart.product.formatted_price }}</span>
         </template>
         <template v-else>
-          <span class="new-price">{{  cart.product.price }}</span>
+          <span class="new-price">{{ cart.product.currency }}{{  cart.product.formatted_price }}</span>
         </template>
       </div>
 

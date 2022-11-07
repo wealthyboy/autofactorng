@@ -1,109 +1,50 @@
-<!doctype html>
-<html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php echo $__env->make('_partials.header_styles', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
-
-    <title><?php echo e(config('app.name', 'Autofactor')); ?></title>
+<body class="loaded">
+	<div id="app" class="page-wrapper">
 
 
-    <!--     Fonts and icons     -->
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
-
-  
-
-    <!-- Font Awesome Icons -->
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
-
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-
-    <!-- CSS Files -->
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="<?php echo e(asset('css/app.css')); ?>" rel="stylesheet">
-</head>
-<body>
-    <div id="app">
-        <header class="header py-3">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="logo d-flex">
-                            <a class="d-block" href="/">
-                                <img src="/images/logo/autofactor_logo.png" alt="" srcset="">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <div class="nav-back">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="mt-3">
-                        <a href="http://"> BACK TO CART</a>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="d-flex justify-content-between">
-                            <div class="mt-3">
-                                <img src="/images/utils/icon-lock.svg" alt="" class="az_pe" data-testid="checkout-title-img">
-                            </div>
-                            <h2 class="">
-                                <div data-testid="hidden-root" class="az_rO">SECURE </div>
-                            </h2>
-                            <div class="ml-3">
-                                <h2 class="">
-                                    CHECKOUT
-                                </h2>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <main class="py-3 bg-light">
-            <?php echo $__env->yieldContent('content'); ?>
-        </main>
-
-        <footer  class="footer w-100 font2 ">           
-            <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
-            <div class="container">
-                <div class="footer-bottom d-flex justify-content-between align-items-center flex-wrap">
-                    <p class="footer-copyright py-3 pr-4 mb-0">© <?php echo e(config('app.name')); ?>. <?php echo e(date('Y')); ?>. All Rights Reserved</p>
-                    <div class="social-icons py-3">
-                        <a href="#" class="social-icon social-facebook icon-facebook" target="_blank" title="Facebook"></a>
-                        <a href="#" class="social-icon social-twitter icon-twitter" target="_blank" title="Twitter"></a>
-                        <a href="#" class="social-icon social-linkedin fab fa-linkedin-in" target="_blank" title="Linkedin"></a>
-                    </div><!-- End .social-icons -->
-                </div><!-- End .footer-bottom -->
-            </div><!-- End .container -->
-        </footer>
-    </div>
+		<header class="header">
+			<div class="header-middle">
+				<div class="container">
+					<div class="header-center order-first order-lg-0 ml-0">
+						<a href="/" class="logo">
+							<img src="<?php echo e($system_settings->logo_path()); ?>" alt="<?php echo e(Config('app.name')); ?> Logo">
+						</a>
+					</div><!-- End .header-center -->
+				</div><!-- End .container -->
+			</div><!-- End .header-middle -->
 
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
+		</header><!-- End .header -->
+		<main class="main">
+			<?php echo $__env->yieldContent('content'); ?>
+		</main>
+		<footer>
+			<div class="footer-bottom">
+				<div class="container d-flex justify-content-center align-items-center flex-wrap">
+					<p class="footer-copyright py-3 pr-4 mb-0">© <?php echo e(Config('app.name')); ?>. 2020. All Rights Reserved</p>
+				</div><!-- End .container -->
+			</div><!-- End .footer-bottom -->
+		</footer>
+	</div><!-- End .page-wrapper -->
 
-    <!-- Scripts -->
-    <script src="<?php echo e(asset('js/app.js')); ?>" defer></script>
-    <?php echo $__env->yieldContent('page-scripts'); ?>    
-      <script type="text/javascript">
-        <?php echo $__env->yieldContent('inline-scripts'); ?>
+	<div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
 
-        
-      </script>
+
+
+
+
+
+	<a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
+
+	<!-- Plugins JS File -->
+	<script src="/js/checkout.js?version=<?php echo e(str_random(6)); ?>" type="text/javascript"></script>
+	<!-- Main JS File -->
+	<?php echo $__env->yieldContent('page-scripts'); ?>
+	<script type="text/javascript">
+		<?php echo $__env->yieldContent('inline-scripts'); ?>
+	</script>
 </body>
-</html>
-<?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/layouts/checkout.blade.php ENDPATH**/ ?>
+
+</html><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/layouts/checkout.blade.php ENDPATH**/ ?>

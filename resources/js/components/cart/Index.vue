@@ -1,32 +1,36 @@
 <template>
-  <cart
-    v-for="cart in carts"
-    :key="cart.id"
-    :cart="cart"
-  ></cart>
 
-  <div class="col-md-4">
-    <div class="cart-collateralse  bg--light  border raised">
-      <div class="cart_totalse">
-        <h3> Summary </h3>
-        <div class="p-3 border-bottom">
-          <span class="bold ">Subtotal</span>
-          <span class="price-amount amount bold float-right"><span class="currencySymbol">{{  meta.currency }}{{ meta.sub_total }}</span></span>
-        </div>
+  <div class="row mt-3">
+    <cart
+      v-for="cart in carts"
+      :key="cart.id"
+      :cart="cart"
+    ></cart>
 
-        <div class="p-3">
-          <span class="bold">Total</span>
-          <span class="price-amount amount bold float-right"><span class="currencySymbol">{{  meta.currency }}{{ meta.sub_total }}</span></span>
-        </div>
-        <div class="proceed-to-checkout">
-          <a
-            href="/checkout"
-            class="checkout-button btn btn--lg btn--primary bold full-width"
-          >Proceed to checkout</a>
+    <div class="col-md-4">
+      <div class="cart   raised">
+        <div class="cart_totalse">
+          <h3> Summary </h3>
+          <div class="p-3 border-bottom  d-flex justify-content-between">
+            <span class="bold ">Subtotal</span>
+            <span class="price-amount amount bold float-right"><span class="currencySymbol">{{  meta.currency }}{{ $filters.formatNumber(meta.sub_total ) }}</span></span>
+          </div>
+
+          <div class="p-3 d-flex justify-content-between">
+            <span class="bold">Total</span>
+            <span class="price-amount amount bold "><span class="currencySymbol">{{  meta.currency }}{{ $filters.formatNumber(meta.sub_total) }}</span></span>
+          </div>
+          <div class="proceed-to-checkout text-center">
+            <a
+              href="/checkout"
+              class="checkout-button btn btn--lg btn--primary bold full-width"
+            >Proceed to checkout</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
+
   <!--End Paragraph-->
 </template>
 

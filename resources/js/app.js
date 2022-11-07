@@ -36,6 +36,12 @@ app.component('Register', Register)
 app.component('CartSummary', CartSummary)
     // app.component('MakeModelYEar', MakeModelYEar)
 
+app.config.globalProperties.$filters = {
+    formatNumber(value) {
+        return new Intl.NumberFormat().format(value);
+    }
+}
+
 
 app.use(store)
 app.mount('#app');

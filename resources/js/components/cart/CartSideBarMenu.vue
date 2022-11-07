@@ -49,7 +49,7 @@
             </h4>
 
             <span class="cart-product-info">
-              <span class="cart-product-qty">{{ cart.quantity }}</span> × {{ cart.price }}
+              <span class="cart-product-qty">{{ cart.quantity }}</span> × {{ $filters.formatNumber(cart.price) }}
             </span>
           </div>
           <!-- End .product-details -->
@@ -84,7 +84,7 @@
       >
         <span>SUBTOTAL:</span>
 
-        <span class="cart-total-price float-right">{{ meta.currency }}{{ meta.sub_total }}</span>
+        <span class="cart-total-price float-right">{{ meta.currency }}{{ $filters.formatNumber(meta.sub_total) }}</span>
       </div>
       <!-- End .dropdown-cart-total -->
 
