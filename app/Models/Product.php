@@ -184,16 +184,7 @@ class Product extends Model
     }
 
 
-    public static function getWidth(Category $category)
-    {
-        return self::where('width', '!=', null)->select('width')->groupBy('width')->get();
-    }
 
-
-    public static function getProfile(Category $category)
-    {
-        return self::where('height', '!=', null)->select('height')->groupBy('height')->get();
-    }
 
 
     public function getFitsAttribute()
@@ -204,6 +195,10 @@ class Product extends Model
 
     public function getFitTextAttribute()
     {
+        if (request()->filled('tyre')) {
+            return 'Fits your vehicle';
+        }
+
         return $this->buildSearchString() ? 'Fits your ' . $this->buildSearchString() : "Check if it fits your vehicle";
     }
 
