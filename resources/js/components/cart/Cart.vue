@@ -13,10 +13,6 @@
     </figure>
     <div class="product-details flex-grow-1">
 
-      mysqldump -u forge -p Xzz1A3FchD48jGCjwDSEhhb!@ > auto.sql
-
-      mysqldump -u forge -p forge > auto.sql
-
       <h3 class="product-title"> <a :href="cart.product.link">{{cart.product.name }}</a>
       </h3>
       <p>
