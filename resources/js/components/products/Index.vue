@@ -188,8 +188,9 @@ export default {
       const url = new URL(location.href);
       console.log(location.href, url);
       url.searchParams.set("search", "true");
-
       window.history.pushState({}, "", filter.filterString);
+      url.searchParams.set("search", "true");
+
       this.getProducts(location.href);
     },
     handleTyreFilter(data) {

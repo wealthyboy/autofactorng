@@ -21339,6 +21339,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(location.href, url);
       url.searchParams.set("search", "true");
       window.history.pushState({}, "", filter.filterString);
+      url.searchParams.set("search", "true");
       this.getProducts(location.href);
     },
     handleTyreFilter: function handleTyreFilter(data) {
