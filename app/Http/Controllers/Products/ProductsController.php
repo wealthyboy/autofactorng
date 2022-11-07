@@ -39,12 +39,13 @@ class ProductsController extends Controller
         $profile = null;
 
         if ($category->name == 'Tyres') {
+            dd(Product::getRim());
+
             $rim = Product::getRim();
             $width = Product::getWidth();
             $profile = Product::getProfile();
         }
 
-        dd(Product::getRim());
 
         if ($request->type == 'clear') {
             \Cookie::queue(\Cookie::forget('engine_id'));
