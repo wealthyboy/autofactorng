@@ -176,9 +176,7 @@ class Product extends Model
 
     public static function getFilterForCategory(Category $category, $type = 'radius')
     {
-        if (strtolower($category->search_type) == 'tyre') {
-            return self::where($type, '!=', null)->select($type)->groupBy($type)->get();
-        } elseif (strtolower($category->search_type) == 'battery') {
+        if (strtolower($category->search_type) == 'tyre' || strtolower($category->search_type) == 'amphere') {
             return self::where($type, '!=', null)->select($type)->groupBy($type)->get();
         }
 
