@@ -57,13 +57,22 @@
       />
 
       <div class="row pb-4 g-1">
+        <template v-if="products.length">
+          <product
+            v-for="product in products"
+            :key="product.id"
+            :product="product"
+            :searchText="searchText"
+          ></product>
+        </template>
+        <template v-else>
+          <div class="empty">
+            <div class="empty-content">
+              <p>No Product found</p>
+            </div>
+          </div>
+        </template>
 
-        <product
-          v-for="product in products"
-          :key="product.id"
-          :product="product"
-          :searchText="searchText"
-        ></product>
       </div>
       <nav class="toolbox toolbox-pagination">
         <div class="toolbox-item toolbox-show">

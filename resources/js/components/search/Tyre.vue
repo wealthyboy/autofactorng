@@ -1,92 +1,92 @@
 <template>
 
   <div class="w-100 p-1 align-self-center">
-    <div class="form-floating">
-      <select
-        class="form-select"
-        id="floatingSelectGrid"
-        aria-label="Floating label select example"
-        name="rim"
-        v-model="form.rim"
-        data-next="products"
-      >
-        <option
-          v-for="rim in rims"
-          :key="rim.radius"
-          :value="rim.radius"
-        >{{ rim.radius }}</option>
+    <general-select
+      id="type"
+      :error="v$.rim"
+      v-model="form.rim"
+      name="Select Rim"
+      @change="doChange($event)"
+    >
 
-      </select>
-      <label for="floatingSelectGrid">Select Rim</label>
-    </div>
+      <option
+        v-for="rim in rims"
+        :key="rim.radius"
+        :value="rim.radius"
+      >{{ rim.radius }}</option>
+
+    </general-select>
   </div>
-  <div class=" w-100 p-1 align-self-center">
-    <div class="form-floating">
-      <select
-        class="form-select"
-        id="floatingSelectGrid"
-        name="width"
-        data-next="products"
-        v-model="form.width"
-      >
-        <option
-          selected
-          value="Choose one"
-        >Choose One</option>
-        <option
-          v-for="width in widths"
-          :key="width.width"
-          :value="width.width"
-        >{{ width.width }}</option>
 
-      </select>
-      <label for="floatingSelectGrid">Select Width</label>
-    </div>
+  <div class="w-100 p-1 align-self-center">
+    <general-select
+      id="type"
+      :error="v$.width"
+      v-model="form.width"
+      name="Select Width"
+      @change="doChange($event)"
+    >
+
+      <option
+        v-for="width in widths"
+        :key="width.width"
+        :value="width.width"
+      >{{ width.width }}</option>
+
+    </general-select>
   </div>
-  <div class=" w-100 p-1 align-self-center">
-    <div class="form-floating">
-      <select
-        class="form-select"
-        id="floatingSelectGrid"
-        aria-label="Floating label select example"
-        name="model"
-        @change="handleFilter($event)"
-        v-model="form.profile"
-        data-next="products"
-      >
-        <option
-          selected
-          value="Choose one"
-        >Choose One</option>
-        <option
-          v-for="profile in profiles"
-          :key="profile.height"
-          :value="profile.height"
-        >{{ profile.height }}</option>
 
-      </select>
-      <label for="floatingSelectGrid">Select Profile</label>
-    </div>
+  <div class="w-100 p-1 align-self-center">
+    <general-select
+      id="type"
+      :error="v$.profile"
+      v-model="form.profile"
+      name="Select Profile"
+      @change="doChange($event)"
+    >
+
+      <option
+        v-for="profile in profiles"
+        :key="profile.height"
+        :value="profile.height"
+      >{{ profile.height }}</option>
+
+    </general-select>
   </div>
 
 </template>
   
-  <script>
+<script>
 import { reactive, ref } from "vue";
+import { useVuelidate } from "@vuelidate/core";
+
+import GeneralSelect from "../Forms/Select";
+
 import axios from "axios";
 
 export default {
   props: ["rims", "widths", "profiles", "filter"],
   emits: ["do:filter"],
+  components: {
+    GeneralSelect,
+  },
   setup(props, { emit }) {
     const form = reactive({
-      rim: "Choose one",
-      height: "Choose one",
-      width: "Choose one",
+      rim: "",
+      height: "",
+      width: "",
       type: "tyre",
     });
 
+    const rules = loginRules(form);
+    const v$ = useVuelidate(rules, form);
+
     function handleFilter(e) {
+      this.v$.$touch();
+
+      if (this.v$.$error) {
+        return false;
+      }
       emit("handle:Filter", form);
     }
 
