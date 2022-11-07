@@ -21694,8 +21694,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _vuelidate_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vuelidate/core */ "./node_modules/@vuelidate/core/dist/index.esm.js");
 /* harmony import */ var _Forms_Select__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Forms/Select */ "./resources/js/components/Forms/Select.vue");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_ValidationRules__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/ValidationRules */ "./resources/js/utils/ValidationRules.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -21709,12 +21711,12 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
-      rim: "",
-      height: "",
-      width: "",
+      rim: null,
+      profile: null,
+      width: null,
       type: "tyre"
     });
-    var rules = loginRules(form);
+    var rules = (0,_utils_ValidationRules__WEBPACK_IMPORTED_MODULE_3__.tyRules)(form);
     var v$ = (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_1__.useVuelidate)(rules, form);
 
     function handleFilter(e) {
@@ -21728,7 +21730,9 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     return {
-      form: form
+      form: form,
+      handleFilter: handleFilter,
+      v$: v$
     };
   }
 });
@@ -21807,7 +21811,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "form-floating mb-2"
+  "class": "form-floating"
 };
 var _hoisted_2 = ["value"];
 var _hoisted_3 = ["value"];
@@ -21838,13 +21842,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )]), $props.error.$error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_simple_message, {
     key: 0,
-    "class": "link-danger fs-6",
+    "class": "link-danger fs-5",
     message: $props.error.$errors[0].$message
   }, null, 8
   /* PROPS */
   , ["message"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), Array.isArray($props.server_errors) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_simple_message, {
     key: 1,
-    "class": "link-danger fs-6",
+    "class": "link-danger fs-5",
     message: $props.server_errors[0]
   }, null, 8
   /* PROPS */
@@ -23684,16 +23688,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_general_select = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("general-select");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_select, {
-    id: "type",
-    error: _ctx.v$.rim,
+    id: "rim",
+    error: $setup.v$.rim,
     modelValue: $setup.form.rim,
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.form.rim = $event;
     }),
-    name: "Select Rim",
-    onChange: _cache[1] || (_cache[1] = function ($event) {
-      return _ctx.doChange($event);
-    })
+    name: "Select Rim"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.rims, function (rim) {
@@ -23713,16 +23714,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, 8
   /* PROPS */
   , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_select, {
-    id: "type",
-    error: _ctx.v$.width,
+    id: "width",
+    error: $setup.v$.width,
     modelValue: $setup.form.width,
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.form.width = $event;
     }),
-    name: "Select Width",
-    onChange: _cache[3] || (_cache[3] = function ($event) {
-      return _ctx.doChange($event);
-    })
+    name: "Select Width"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.widths, function (width) {
@@ -23742,15 +23740,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, 8
   /* PROPS */
   , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_select, {
-    id: "type",
-    error: _ctx.v$.profile,
+    id: "profile",
+    error: $setup.v$.profile,
     modelValue: $setup.form.profile,
-    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $setup.form.profile = $event;
     }),
     name: "Select Profile",
-    onChange: _cache[5] || (_cache[5] = function ($event) {
-      return _ctx.doChange($event);
+    onChange: _cache[3] || (_cache[3] = function ($event) {
+      return $setup.handleFilter($event);
     })
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -31724,7 +31722,8 @@ var registerData = function registerData() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "loginRules": () => (/* binding */ loginRules),
-/* harmony export */   "registerRules": () => (/* binding */ registerRules)
+/* harmony export */   "registerRules": () => (/* binding */ registerRules),
+/* harmony export */   "tyRules": () => (/* binding */ tyRules)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vuelidate/validators */ "./node_modules/@vuelidate/validators/dist/index.esm.js");
@@ -31768,6 +31767,22 @@ var loginRules = function loginRules(form) {
       },
       password: {
         required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a password", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
+      }
+    };
+  });
+  return rules;
+};
+var tyRules = function tyRules(form) {
+  var rules = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+    return {
+      rim: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Select  your tyre's rim", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
+      },
+      width: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Select  your tyre's width", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
+      },
+      profile: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Select  your tyre's profile", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
       }
     };
   });

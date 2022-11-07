@@ -1,6 +1,6 @@
 <template>
 
-  <div class="form-floating mb-2">
+  <div class="form-floating ">
 
     <select
       class="form-select"
@@ -18,12 +18,12 @@
     <label for="floatingSelect">{{ $attrs.name }}</label>
   </div>
   <simple-message
-    class="link-danger fs-6"
+    class="link-danger fs-5"
     v-if="error.$error"
     :message="error.$errors[0].$message"
   />
   <simple-message
-    class="link-danger fs-6"
+    class="link-danger fs-5"
     v-if="Array.isArray(server_errors)"
     :message="server_errors[0]"
   />

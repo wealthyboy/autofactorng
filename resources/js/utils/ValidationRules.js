@@ -64,3 +64,33 @@ export const loginRules = (form) => {
 
     return rules
 }
+
+
+export const tyRules = (form) => {
+
+    const rules = computed(() => {
+        return {
+            rim: {
+                required: helpers.withMessage(
+                    "Select  your tyre's rim",
+                    required
+                ),
+            },
+            width: {
+                required: helpers.withMessage(
+                    "Select  your tyre's width",
+                    required
+                ),
+            },
+
+            profile: {
+                required: helpers.withMessage(
+                    "Select  your tyre's profile",
+                    required
+                ),
+            },
+        };
+    });
+
+    return rules
+}

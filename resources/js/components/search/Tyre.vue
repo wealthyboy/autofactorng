@@ -2,29 +2,28 @@
 
   <div class="w-100 p-1 align-self-center">
     <general-select
-      id="type"
+      id="rim"
       :error="v$.rim"
       v-model="form.rim"
       name="Select Rim"
-      @change="doChange($event)"
     >
-
       <option
         v-for="rim in rims"
         :key="rim.radius"
         :value="rim.radius"
-      >{{ rim.radius }}</option>
+      >
+        {{ rim.radius }}
+      </option>
 
     </general-select>
   </div>
 
   <div class="w-100 p-1 align-self-center">
     <general-select
-      id="type"
+      id="width"
       :error="v$.width"
       v-model="form.width"
       name="Select Width"
-      @change="doChange($event)"
     >
 
       <option
@@ -38,11 +37,11 @@
 
   <div class="w-100 p-1 align-self-center">
     <general-select
-      id="type"
+      id="profile"
       :error="v$.profile"
       v-model="form.profile"
       name="Select Profile"
-      @change="doChange($event)"
+      @change="handleFilter($event)"
     >
 
       <option
@@ -61,6 +60,7 @@ import { reactive, ref } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 
 import GeneralSelect from "../Forms/Select";
+import { tyRules } from "../../utils/ValidationRules";
 
 import axios from "axios";
 
@@ -72,13 +72,13 @@ export default {
   },
   setup(props, { emit }) {
     const form = reactive({
-      rim: "",
-      height: "",
-      width: "",
+      rim: null,
+      profile: null,
+      width: null,
       type: "tyre",
     });
 
-    const rules = loginRules(form);
+    const rules = tyRules(form);
     const v$ = useVuelidate(rules, form);
 
     function handleFilter(e) {
@@ -87,11 +87,14 @@ export default {
       if (this.v$.$error) {
         return false;
       }
+
       emit("handle:Filter", form);
     }
 
     return {
       form,
+      handleFilter,
+      v$,
     };
   },
 };
