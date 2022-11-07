@@ -41,7 +41,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-        dd(Product::getRim());
         $brands     = Brand::all();
         $categories = Category::parents()->get();
         $attributes = Attribute::parents()->orderBy('sort_order', 'asc')->get();

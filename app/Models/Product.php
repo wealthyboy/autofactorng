@@ -182,13 +182,13 @@ class Product extends Model
 
     public static function getWidth()
     {
-        return self::where('width', '!=', null)->select('width')->get();
+        return self::where('width', '!=', null)->select('width')->groupBy('width')->get();
     }
 
 
     public static function getProfile()
     {
-        return self::where('height', '!=', null)->select('height')->get();
+        return self::where('height', '!=', null)->select('height')->groupBy('height')->get();
     }
 
 
