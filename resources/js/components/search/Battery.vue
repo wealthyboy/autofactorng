@@ -13,9 +13,9 @@
       >
         <option
           v-for="amphere in ampheres"
-          :key="amphere"
-          :value="amphere"
-        >{{ amphere }}</option>
+          :key="amphere.amphere"
+          :value="amphere.amphere"
+        >{{ amphere.amphere }}</option>
 
       </select>
       <label for="floatingSelectGrid">Select Amphere</label>

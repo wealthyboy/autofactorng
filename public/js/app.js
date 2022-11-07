@@ -23335,9 +23335,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.ampheres, function (amphere) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
-      key: amphere,
-      value: amphere
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(amphere), 9
+      key: amphere.amphere,
+      value: amphere.amphere
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(amphere.amphere), 9
     /* TEXT, PROPS */
     , _hoisted_3);
   }), 128
