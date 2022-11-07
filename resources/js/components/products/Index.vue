@@ -186,7 +186,7 @@ export default {
     },
     handleFilter(filter) {
       const url = new URL(location.href);
-      console.log(url);
+      console.log(location.href);
       window.history.pushState({}, "", filter.filterString);
       url.searchParams.set("search", "true");
       this.getProducts(location.href);
