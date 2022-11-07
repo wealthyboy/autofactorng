@@ -21243,7 +21243,6 @@ __webpack_require__.r(__webpack_exports__);
         qs.push(element.name + "=" + element.value);
       });
       var filterString = "?" + qs.join("&");
-      console.log(filterString);
       emit("handle:filter", {
         filterString: filterString
       });
