@@ -80,6 +80,11 @@ class ProductsController extends Controller
             $query->where('height', $request->profile);
         }
 
+
+        if ($request->type == 'battery') {
+            $query->where('amphere', $request->amphere);
+        }
+
         $products = $query->filter($request)->latest()->paginate($per_page);
         $products->load('images');
         $products->appends(request()->all());

@@ -41,7 +41,7 @@
 
           <template v-if="search_filters.search_type.search == 'battery'">
             <battery
-              @do:filter="filter"
+              @do:filter="handleBatteryFilter"
               :filter="true"
               :ampheres="search_filters.amphere.items"
             />
@@ -195,6 +195,14 @@ export default {
       url.searchParams.set("rim", data.rim);
       url.searchParams.set("width", data.width);
       url.searchParams.set("profile", data.profile);
+      url.searchParams.set("type", data.type);
+      window.history.pushState({}, "", url);
+      this.getProducts(location.href);
+    },
+
+    handleBatteryFilter(data) {
+      const url = new URL(location.href);
+      url.searchParams.set("amphere", data.amphere);
       url.searchParams.set("type", data.type);
       window.history.pushState({}, "", url);
       this.getProducts(location.href);

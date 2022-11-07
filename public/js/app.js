@@ -21350,6 +21350,13 @@ __webpack_require__.r(__webpack_exports__);
       window.history.pushState({}, "", url);
       this.getProducts(location.href);
     },
+    handleBatteryFilter: function handleBatteryFilter(data) {
+      var url = new URL(location.href);
+      url.searchParams.set("amphere", data.amphere);
+      url.searchParams.set("type", data.type);
+      window.history.pushState({}, "", url);
+      this.getProducts(location.href);
+    },
     perPage: function perPage(filter) {
       var url = new URL(location.href);
       url.searchParams.set("per_page", filter.per_page);
@@ -21603,10 +21610,12 @@ __webpack_require__.r(__webpack_exports__);
     var emit = _ref.emit;
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       amphere: "Choose one",
-      type: "amphere"
+      type: "battery"
     });
 
-    function sendData(e) {//form.type = e.target.name;
+    function sendData(e) {
+      //form.type = e.target.name;
+      emit("do:filter", form);
     }
 
     return {
@@ -22924,7 +22933,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["onDo:filter", "rims", "widths", "profiles"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.search_filters.search_type.search == 'battery' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_battery, {
     key: 2,
-    "onDo:filter": $options.filter,
+    "onDo:filter": $options.handleBatteryFilter,
     filter: true,
     ampheres: $props.search_filters.amphere.items
   }, null, 8

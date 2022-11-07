@@ -34,11 +34,12 @@ export default {
   setup(props, { emit }) {
     const form = reactive({
       amphere: "Choose one",
-      type: "amphere",
+      type: "battery",
     });
 
     function sendData(e) {
       //form.type = e.target.name;
+      emit("do:filter", form);
     }
 
     return {
