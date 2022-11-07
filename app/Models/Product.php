@@ -195,7 +195,7 @@ class Product extends Model
 
     public function getFitTextAttribute()
     {
-        if (request()->filled('tyre')) {
+        if (request()->type == 'type') {
             return 'Fits your vehicle';
         }
 
