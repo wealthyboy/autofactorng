@@ -174,19 +174,23 @@ class Product extends Model
     }
 
 
-    public static function getRim()
+    public static function getFilterForTyre(Category $category, $type = 'radius')
     {
-        return self::where('radius', '!=', null)->select('radius')->groupBy('radius')->get();
+        if (strtolower($category->search_type) == 'tyre') {
+            return self::where($type, '!=', null)->select($type)->groupBy($type)->get();
+        }
+
+        return null;
     }
 
 
-    public static function getWidth()
+    public static function getWidth(Category $category)
     {
         return self::where('width', '!=', null)->select('width')->groupBy('width')->get();
     }
 
 
-    public static function getProfile()
+    public static function getProfile(Category $category)
     {
         return self::where('height', '!=', null)->select('height')->groupBy('height')->get();
     }

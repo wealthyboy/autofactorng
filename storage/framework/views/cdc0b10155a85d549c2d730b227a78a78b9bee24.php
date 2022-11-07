@@ -18,7 +18,7 @@
         <div class="">
             <h1 class="text-uppercase p-0"><?php echo e($category->name); ?></h1>
         </div>
-        <products-items :category="<?php echo e($category); ?>" :years="<?php echo e(json_encode($yrs)); ?>" :prices="<?php echo e($prices); ?>" :brands="<?php echo e($brands); ?>" />
+        <products-items :search_filters="<?php echo e($search_filters); ?>" />
     </div>
 </section>
 

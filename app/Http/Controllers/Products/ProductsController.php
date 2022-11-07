@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\Setting;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
+use App\Http\Helper;
 //use Illuminate\Support\Facades\Cookie;
 
 class ProductsController extends Controller
@@ -31,29 +32,7 @@ class ProductsController extends Controller
     {
 
         $page_title = implode(" ", explode('-', $category->slug));
-
-        $brands = $category->brands;
-
-        $rim =  null;
-        $width =  null;
-        $profile = null;
-
-        if ($category->name == 'Tyres') {
-            dd(Product::getRim());
-
-            $rim = Product::getRim();
-            $width = Product::getWidth();
-            $profile = Product::getProfile();
-        }
-
-
-        if ($request->type == 'clear') {
-            \Cookie::queue(\Cookie::forget('engine_id'));
-            \Cookie::queue(\Cookie::forget('make_id'));
-            \Cookie::queue(\Cookie::forget('model_id'));
-            \Cookie::queue(\Cookie::forget('year'));
-        }
-
+        $this->clearMMYCookies($request);
         $products = $this->getProductsData($request, $builder, $category);
 
         if ($request->ajax()) {
@@ -63,16 +42,14 @@ class ProductsController extends Controller
                 ]);
         }
 
-        $prices = $this->filterPrices();
+
+        $search_filters =  $this->searchFilters($category);
+
 
         return  view('products.index', compact(
             'category',
             'page_title',
-            'brands',
-            'prices',
-            'rim',
-            'width',
-            'profile'
+            'search_filters',
         ));
     }
 
@@ -84,7 +61,6 @@ class ProductsController extends Controller
         });
 
         $type = $this->getType($request);
-
         $per_page = $request->per_page ??  20;
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
@@ -121,6 +97,27 @@ class ProductsController extends Controller
         ]);
 
         return $collection;
+    }
+
+
+    public function searchFilters(Category $category)
+    {
+        $rims = Product::getFilterForTyre($category, 'radius');
+        $widths = Product::getFilterForTyre($category, 'width');
+        $profiles = Product::getFilterForTyre($category, 'height');
+        $brands = $category->brands;
+
+        $search = collect([
+            ['name' => 'price', 'items' => $this->filterPrices()],
+            ['name' => 'brand', 'items' => $brands],
+            ['name' => 'rim', 'items' => $rims],
+            ['name' => 'width', 'items'  => $widths],
+            ['name' => 'profile', 'items' => $profiles],
+            ['name' => 'search_type', 'search' => $category->search_type],
+            ['name' => 'year', 'items' => Helper::years()]
+        ]);
+
+        return $search->keyBy('name');
     }
 
 
@@ -179,6 +176,17 @@ class ProductsController extends Controller
         }
 
         return $response;
+    }
+
+
+    public function clearMMYCookies(Request $request)
+    {
+        if ($request->type == 'clear') {
+            \Cookie::queue(\Cookie::forget('engine_id'));
+            \Cookie::queue(\Cookie::forget('make_id'));
+            \Cookie::queue(\Cookie::forget('model_id'));
+            \Cookie::queue(\Cookie::forget('year'));
+        }
     }
 
 

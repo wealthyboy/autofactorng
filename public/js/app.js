@@ -21275,7 +21275,7 @@ __webpack_require__.r(__webpack_exports__);
     Tyre: _search_Tyre__WEBPACK_IMPORTED_MODULE_4__["default"],
     Battery: _search_Battery__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
-  props: ["years", "brands", "prices", "category", "rim", "width", "profile"],
+  props: ["search_filters"],
   data: function data() {
     return {
       meta: {},
@@ -21288,6 +21288,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    console.log(this.search_filters.search_type);
     this.getProducts(this.url);
   },
   methods: {
@@ -22847,27 +22848,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     searchText: $data.searchText
   }, null, 8
   /* PROPS */
-  , ["onRemove:vehicle", "searchText"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, $props.category.search_type == 'make_model_year' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search, {
+  , ["onRemove:vehicle", "searchText"])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [_hoisted_6, $props.search_filters.search_type.search == 'make_model_year' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search, {
     key: 0,
     "onDo:filter": $options.filter,
     filter: true,
-    years: $props.years
+    years: $props.search_filters.year.items
   }, null, 8
   /* PROPS */
-  , ["onDo:filter", "years"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.category.search_type == 'tyre' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_tyre, {
+  , ["onDo:filter", "years"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.search_filters.search_type.search == 'tyre' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_tyre, {
     key: 1,
     "onDo:filter": $options.filter,
     filter: true,
-    rims: $props.rim,
-    widths: $props.width,
-    profiles: $props.profile
+    rims: $props.search_filters.rim.items,
+    widths: $props.search_filters.width.items,
+    profiles: $props.search_filters.profile.items
   }, null, 8
   /* PROPS */
-  , ["onDo:filter", "rims", "widths", "profiles"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.category.search_type == 'battery' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_battery, {
+  , ["onDo:filter", "rims", "widths", "profiles"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.search_filters.search_type.search == 'battery' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_battery, {
     key: 2,
     "onDo:filter": $options.filter,
     filter: true,
-    years: $props.years
+    years: _ctx.years
   }, null, 8
   /* PROPS */
   , ["onDo:filter", "years"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_product_nav, {
@@ -22891,17 +22892,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onPagination:switched": $options.getP
   }, null, 8
   /* PROPS */
-  , ["meta", "onPagination:switched"])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .col-lg-9 "), _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_14, [_hoisted_15, _hoisted_16, $props.brands.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_filters, {
+  , ["meta", "onPagination:switched"])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .col-lg-9 "), _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_14, [_hoisted_15, _hoisted_16, $props.search_filters.brand.items.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_filters, {
     key: 0,
     name: 'brands',
-    objs: $props.brands,
+    objs: $props.search_filters.brand.items,
     "onHandle:filter": $options.handleFilter
   }, null, 8
   /* PROPS */
   , ["objs", "onHandle:filter"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_filters, {
     "class": "mt-4",
     name: 'prices',
-    objs: $props.prices,
+    objs: $props.search_filters.price.items,
     "onHandle:filter": $options.handleFilter
   }, null, 8
   /* PROPS */

@@ -21,25 +21,25 @@
             <p>Get an exact fit for your vehicle.</p>
           </div>
 
-          <template v-if="category.search_type == 'make_model_year'">
+          <template v-if="search_filters.search_type.search == 'make_model_year'">
             <search
               @do:filter="filter"
               :filter="true"
-              :years="years"
+              :years="search_filters.year.items"
             />
           </template>
 
-          <template v-if="category.search_type == 'tyre'">
+          <template v-if="search_filters.search_type.search == 'tyre'">
             <tyre
               @do:filter="filter"
               :filter="true"
-              :rims="rim"
-              :widths="width"
-              :profiles="profile"
+              :rims="search_filters.rim.items"
+              :widths="search_filters.width.items"
+              :profiles="search_filters.profile.items"
             />
           </template>
 
-          <template v-if="category.search_type == 'battery'">
+          <template v-if="search_filters.search_type.search == 'battery'">
             <battery
               @do:filter="filter"
               :filter="true"
@@ -65,9 +65,7 @@
         ></product>
       </div>
       <nav class="toolbox toolbox-pagination">
-        <div class="toolbox-item toolbox-show">
-
-        </div>
+        <div class="toolbox-item toolbox-show"> </div>
         <!-- End .toolbox-item -->
 
         <div
@@ -93,16 +91,16 @@
       <h2>FILTER RESULTS</h2>
       <div class="underline"></div>
       <filters
-        v-if="brands.length"
+        v-if="search_filters.brand.items.length"
         :name="'brands'"
-        :objs="brands"
+        :objs="search_filters.brand.items"
         @handle:filter="handleFilter"
       ></filters>
 
       <filters
         class="mt-4"
         :name="'prices'"
-        :objs="prices"
+        :objs="search_filters.price.items"
         @handle:filter="handleFilter"
       ></filters>
 
@@ -136,7 +134,7 @@ export default {
     Tyre,
     Battery,
   },
-  props: ["years", "brands", "prices", "category", "rim", "width", "profile"],
+  props: ["search_filters"],
   data() {
     return {
       meta: {},
@@ -149,6 +147,7 @@ export default {
     };
   },
   mounted() {
+    console.log(this.search_filters.search_type);
     this.getProducts(this.url);
   },
   methods: {
