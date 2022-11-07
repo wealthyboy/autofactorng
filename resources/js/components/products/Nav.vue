@@ -76,7 +76,7 @@
       </a>
 
       <div class="toolbox-item filter-toggle d-none d-lg-flex">
-        <span>1-4 of 4 Results</span>
+        <span>{{ meta.from }}- {{ meta.to }} of {{meta.total}} Records</span>
 
       </div>
     </div>
@@ -148,7 +148,7 @@
 
 <script>
 export default {
-  props: ["name", "objs"],
+  props: ["name", "objs", "meta"],
   emits: ["handle:sorting", "handle:per_page"],
   setup(props, { emit }) {
     function sort(e) {

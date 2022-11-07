@@ -53,6 +53,7 @@
       <product-nav
         @handle:per_page="perPage"
         @handle:sorting="sort"
+        :meta="meta"
       />
 
       <div class="row pb-4 g-1">
