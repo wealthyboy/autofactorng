@@ -74,7 +74,7 @@ class ProductsController extends Controller
             });
         }
 
-        if ($type == 'profile') {
+        if ($type == 'tyre') {
             $query->where('radius', $request->rim);
             $query->where('width', $request->width);
             $query->where('height', $request->profile);
@@ -157,15 +157,8 @@ class ProductsController extends Controller
             case 'engine_id':
                 $response = 'engine_id';
                 break;
-            case 'width':
-                $response = 'width';
-                break;
-            case 'rim':
-                $response = 'rim';
-                break;
-            case 'profile':
-                $response = 'profile';
-                \Cookie::queue(\Cookie::forget('engine_id'));
+            case 'tyre':
+                $response = 'tyre';
                 break;
             case 'clear':
                 $response = 'clear';
