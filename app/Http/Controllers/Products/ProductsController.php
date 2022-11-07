@@ -107,7 +107,6 @@ class ProductsController extends Controller
         $profiles = Product::getFilterForCategory($category, 'height');
         $ampheres = Product::getFilterForCategory($category, 'amphere');
 
-        dd($ampheres);
         $brands = $category->brands;
 
         $search = collect([
