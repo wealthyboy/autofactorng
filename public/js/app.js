@@ -21337,6 +21337,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     handleFilter: function handleFilter(filter) {
       var url = new URL(location.href);
+      console.log(url);
       window.history.pushState({}, "", filter.filterString);
       url.searchParams.set("search", "true");
       this.getProducts(location.href);
