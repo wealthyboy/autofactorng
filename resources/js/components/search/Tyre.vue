@@ -6,6 +6,7 @@
       :error="v$.rim"
       v-model="form.rim"
       name="Select Rim"
+      @change="handleFilter($event)"
     >
       <option
         v-for="rim in rims"
@@ -24,6 +25,7 @@
       :error="v$.width"
       v-model="form.width"
       name="Select Width"
+      @change="handleFilter($event)"
     >
       <option
         v-for="width in widths"

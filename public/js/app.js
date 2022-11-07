@@ -23703,7 +23703,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.form.rim = $event;
     }),
-    name: "Select Rim"
+    name: "Select Rim",
+    onChange: _cache[1] || (_cache[1] = function ($event) {
+      return $setup.handleFilter($event);
+    })
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.rims, function (rim) {
@@ -23726,10 +23729,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "width",
     error: $setup.v$.width,
     modelValue: $setup.form.width,
-    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $setup.form.width = $event;
     }),
-    name: "Select Width"
+    name: "Select Width",
+    onChange: _cache[3] || (_cache[3] = function ($event) {
+      return $setup.handleFilter($event);
+    })
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.widths, function (width) {
@@ -23752,11 +23758,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "profile",
     error: $setup.v$.profile,
     modelValue: $setup.form.profile,
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $setup.form.profile = $event;
     }),
     name: "Select Profile",
-    onChange: _cache[3] || (_cache[3] = function ($event) {
+    onChange: _cache[5] || (_cache[5] = function ($event) {
       return $setup.handleFilter($event);
     })
   }, {
