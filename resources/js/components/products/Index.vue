@@ -43,7 +43,7 @@
             <battery
               @do:filter="filter"
               :filter="true"
-              :years="search_filters.amphere.items"
+              :ampheres="search_filters.amphere.items"
             />
           </template>
 

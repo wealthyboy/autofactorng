@@ -32,19 +32,13 @@ export default {
   props: ["ampheres", "filter"],
   emits: ["do:filter"],
   setup(props, { emit }) {
-    const next = reactive({
-      makes: [],
-      models: "",
-      engines: "",
-    });
-
     const form = reactive({
       amphere: "Choose one",
       type: "amphere",
     });
 
     function sendData(e) {
-      form.type = e.target.name;
+      //form.type = e.target.name;
     }
 
     return {

@@ -21569,18 +21569,12 @@ __webpack_require__.r(__webpack_exports__);
   emits: ["do:filter"],
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
-    var next = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
-      makes: [],
-      models: "",
-      engines: ""
-    });
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       amphere: "Choose one",
       type: "amphere"
     });
 
-    function sendData(e) {
-      form.type = e.target.name;
+    function sendData(e) {//form.type = e.target.name;
     }
 
     return {
@@ -22807,10 +22801,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 2,
     "onDo:filter": $options.filter,
     filter: true,
-    years: $props.search_filters.amphere.items
+    ampheres: $props.search_filters.amphere.items
   }, null, 8
   /* PROPS */
-  , ["onDo:filter", "years"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_product_nav, {
+  , ["onDo:filter", "ampheres"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_product_nav, {
     "onHandle:per_page": $options.perPage,
     "onHandle:sorting": $options.sort,
     meta: $data.meta
