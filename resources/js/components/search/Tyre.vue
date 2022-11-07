@@ -6,10 +6,9 @@
         class="form-select"
         id="floatingSelectGrid"
         aria-label="Floating label select example"
-        name="year"
+        name="rim"
         v-model="form.rim"
-        data-next="rim"
-        @change="getNext($event)"
+        data-next="products"
       >
         <option
           v-for="rim in rims"
@@ -26,9 +25,8 @@
       <select
         class="form-select"
         id="floatingSelectGrid"
-        @change="getNext($event)"
         name="width"
-        data-next="width"
+        data-next="products"
         v-model="form.width"
       >
         <option
@@ -52,9 +50,9 @@
         id="floatingSelectGrid"
         aria-label="Floating label select example"
         name="model"
-        @change="getNext($event)"
+        @change="handleFilter($event)"
         v-model="form.profile"
-        data-next="engines"
+        data-next="products"
       >
         <option
           selected
@@ -81,52 +79,19 @@ export default {
   props: ["rims", "widths", "profiles", "filter"],
   emits: ["do:filter"],
   setup(props, { emit }) {
-    const makes = ref([]);
-    const models = ref([]);
-    const engines = ref([]);
-
-    const next = reactive({
-      rim: [],
-      width: "",
-      profile: "",
-    });
-
     const form = reactive({
-      height: "Choose one",
       rim: "Choose one",
-      profile: "Choose one",
-      type: "",
-      next: "",
+      height: "Choose one",
+      width: "Choose one",
+      type: "tyre",
     });
 
-    function getNext(e) {
-      form.type = e.target.name;
-      let nt = e.target.dataset.next;
-
-      axios
-        .get("/make-model-year-engine", {
-          params: form,
-        })
-        .then((response) => {
-          next[nt] = response.data.data;
-          let text = response.data.string;
-
-          if (nt == "products") {
-            emit("do:filter", { form, text });
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    function handleFilter(e) {
+      emit("handle:Filter", form);
     }
 
     return {
-      makes,
-      models,
-      engines,
-      getNext,
       form,
-      next,
     };
   },
 };

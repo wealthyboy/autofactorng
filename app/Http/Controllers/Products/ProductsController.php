@@ -102,9 +102,10 @@ class ProductsController extends Controller
 
     public function searchFilters(Category $category)
     {
-        $rims = Product::getFilterForTyre($category, 'radius');
-        $widths = Product::getFilterForTyre($category, 'width');
-        $profiles = Product::getFilterForTyre($category, 'height');
+        $rims = Product::getFilterForCategory($category, 'radius');
+        $widths = Product::getFilterForCategory($category, 'width');
+        $profiles = Product::getFilterForCategory($category, 'height');
+        $ampheres = Product::getFilterForCategory($category, 'amphere');
         $brands = $category->brands;
 
         $search = collect([
@@ -113,6 +114,7 @@ class ProductsController extends Controller
             ['name' => 'rim', 'items' => $rims],
             ['name' => 'width', 'items'  => $widths],
             ['name' => 'profile', 'items' => $profiles],
+            ['name' => 'amphere', 'items' => $ampheres],
             ['name' => 'search_type', 'search' => $category->search_type],
             ['name' => 'year', 'items' => Helper::years()]
         ]);

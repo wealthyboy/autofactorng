@@ -43,7 +43,7 @@
             <battery
               @do:filter="filter"
               :filter="true"
-              :years="years"
+              :years="search_filters.amphere.items"
             />
           </template>
 
@@ -67,7 +67,6 @@
       <nav class="toolbox toolbox-pagination">
         <div class="toolbox-item toolbox-show"> </div>
         <!-- End .toolbox-item -->
-
         <div
           v-if="meta.total > meta.per_page"
           class="pagination-wraper"

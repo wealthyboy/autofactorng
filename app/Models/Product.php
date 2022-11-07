@@ -174,9 +174,11 @@ class Product extends Model
     }
 
 
-    public static function getFilterForTyre(Category $category, $type = 'radius')
+    public static function getFilterForCategory(Category $category, $type = 'radius')
     {
         if (strtolower($category->search_type) == 'tyre') {
+            return self::where($type, '!=', null)->select($type)->groupBy($type)->get();
+        } elseif (strtolower($category->search_type) == 'battery') {
             return self::where($type, '!=', null)->select($type)->groupBy($type)->get();
         }
 
