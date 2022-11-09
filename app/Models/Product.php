@@ -203,7 +203,7 @@ class Product extends Model
     }
 
 
-    public  function buildSearchString(Category $category)
+    public  function buildSearchString()
     {
 
         if (null !== request()->cookie('engine_id') &&  request()->type !== 'clear') {
