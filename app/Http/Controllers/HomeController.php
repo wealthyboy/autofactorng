@@ -32,7 +32,7 @@ class HomeController extends Controller
 
 
 
-        dd(\Schema::getColumnListing('users'));
+        /// dd(\Schema::getColumnListing('users'));
 
         // return redirect('/');
         $featured_categories = Category::where('is_featured', true)->get();
