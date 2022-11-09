@@ -31,13 +31,6 @@ class WalletsController extends Controller
     }
 
 
-    public function b()
-    {
-        broadcast(new NewBid(auth()->user()));
-
-        return auth()->user();
-    }
-
     /**
      * Show the form for creating a new resource.
      *
