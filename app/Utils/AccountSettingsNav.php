@@ -15,8 +15,8 @@ class AccountSettingsNav
 
         return $nav =  [
             'Address' => [
-                'icon' => 'material-symbols-outlined',
-                'iconText' => 'home',
+                'icon' => 'fa fa-location-arrow',
+                'iconText' => null,
                 'link' => '/address'
             ],
             'Account Settings'  => [

@@ -87,6 +87,8 @@ Route::post('change/password', 'ChangePassword\ChangePasswordController@changePa
 Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'wallets']);
 Route::resource('orders', 'Order\OrderController', ['names' => 'orders']);
 Route::resource('tracking', 'TrackOrder\TranckOrderController', ['names' => 'track.orders']);
+Route::resource('address',  'Address\AddressController', ['names' => 'address']);
+
 Route::group(['prefix' => '/api'], function () {
     Route::get('products/{category}',             'Api\Products\ProductsController@index');
     Route::get('filters/products/{category}',     'Api\Products\ProductsController@filters');
