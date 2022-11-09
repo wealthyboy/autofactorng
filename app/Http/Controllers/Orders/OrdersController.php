@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Orders;
 use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Utils\AccountSettingsNav;
+
 
 class OrdersController extends Controller
 {
@@ -15,29 +17,13 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        return view('orders.index');
+        $nav = (new AccountSettingsNav())->nav();
+        $pagination = auth()->user()->wallets()->paginate(4);
+        $collections = $this->getColumnNames($pagination);
+        $columns = $this->getGetCustomColumnNames();
+        return view('orders.index', compact('nav', 'collections', 'columns', 'pagination'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -50,37 +36,31 @@ class OrdersController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
+
+    protected function getGetCustomColumnNames()
     {
-        //
+        return [
+            "Ref Id",
+            "amount",
+            "date_added",
+        ];
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
+    protected function getColumnNames($collection)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
-    {
-        //
+        return [
+            'items' => [
+                $collection->map(function (Order $order) {
+                    return [
+                        "Ref Id" => '#' . optional($order)->id,
+                        "amount" => '₦' . optional($order)->amount,
+                        "date_added" => $order->created_at->format('d-m-y')
+                    ];
+                })
+            ],
+            'meta' => [
+                'show' => true
+            ]
+        ];
     }
 }
