@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Brand;
+use App\Models\User;
+
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -28,12 +30,9 @@ class HomeController extends Controller
     public function index()
     {
 
-        request()->session()->invalidate();
-        request()->session()->regenerateToken();
-        request()->session()->flush();
-        request()->session()->regenerate();
 
 
+        dd(User::all());
 
         // return redirect('/');
         $featured_categories = Category::where('is_featured', true)->get();
