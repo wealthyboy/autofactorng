@@ -47,11 +47,19 @@
                   <!-- End .header-search -->
 
 
+                  @auth
+                  <a href="/account" class="header-icon" title="login">
+                     <img src="/images/utils/signin.svg" alt="">
+                     <div class="text-sm">Account</div>
+                  </a>
+                  @endauth
 
+                  @guest
                   <a href="/login" class="header-icon" title="login">
                      <img src="/images/utils/signin.svg" alt="">
                      <div class="text-sm">Signin</div>
                   </a>
+                  @endguest
 
 
                   <div class="dropdown cart-dropdown">

@@ -66,6 +66,81 @@ export const loginRules = (form) => {
 }
 
 
+export const changePasswordRules = (form) => {
+    const rules = computed(() => {
+        return {
+            old_password: {
+                required: helpers.withMessage("Please your old   password", required),
+            },
+            password: {
+                required: helpers.withMessage("Please enter your new password", required),
+                minLength: helpers.withMessage("Your password should be  at least eight characters ", minLength(8)),
+            },
+            password_confirmation: {
+                required: helpers.withMessage(
+                    "Please confirm your password",
+                    required
+                ),
+                sameAsPassword: helpers.withMessage(
+                    "Passwords do not match",
+                    sameAs(form.password)
+                ),
+            },
+        };
+    });
+
+    return rules
+};
+
+
+export const accountRules = (form) => {
+    const rules = computed(() => {
+        return {
+            email: {
+                required: helpers.withMessage(
+                    "Please enter an email address",
+                    required
+                ),
+                email,
+            },
+            first_name: {
+                required: helpers.withMessage("Please enter a first name", required),
+            },
+            last_name: {
+                required: helpers.withMessage("Please enter a last name", required),
+            },
+            phone_number: {
+                required: helpers.withMessage(
+                    "Please enter a valid number",
+                    required
+                ),
+                numeric: helpers.withMessage("Please enter a valid number", required),
+            },
+        };
+    });
+
+    return rules
+};
+
+
+export const walletRules = (form) => {
+
+    const rules = computed(() => {
+        return {
+            amount: {
+                required: helpers.withMessage(
+                    "Please enter a valid number",
+                    required
+                ),
+                numeric: helpers.withMessage("Please enter a valid number", required),
+            },
+        };
+    });
+
+    return rules
+}
+
+
 export const tyRules = (form) => {
 
     const rules = computed(() => {
