@@ -16,7 +16,7 @@ class AccountSettingsNav
             'Address' => [
                 'icon' => 'material-symbols-outlined',
                 'iconText' => 'celebration',
-                'link' => '/shoutouts'
+                'link' => '/address'
             ],
             'Account Settings'  => [
                 'icon' => 'fa fa-bars',
@@ -31,11 +31,11 @@ class AccountSettingsNav
             'Orders' => [
                 'icon' => 'fa fa-money',
                 'iconText' => null,
-                'link' => '/bids'
+                'link' => '/orders'
             ],
             'Track Order' => [
                 'icon' => 'fa fa-graduation-cap',
-                'link' => '/classes',
+                'link' => '/tracking',
                 'iconText' => null,
             ],
 

@@ -133,6 +133,18 @@ class User extends Authenticatable
 	}
 
 
+	public function wallets()
+	{
+		return $this->hasMany(Wallet::class);
+	}
+
+
+	public function wallet_balance()
+	{
+		return $this->hasOne(WalletBalance::class);
+	}
+
+
 	public static function userHasPermission($num)
 	{
 		$model = \Auth::user();
