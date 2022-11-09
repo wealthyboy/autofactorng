@@ -203,8 +203,9 @@ class Product extends Model
     }
 
 
-    public  function buildSearchString()
+    public  function buildSearchString(Category $category)
     {
+
         if (null !== request()->cookie('engine_id') &&  request()->type !== 'clear') {
             $year = request()->cookie('year');
             $make_name = Attribute::find(request()->cookie('make_id'))->name;
@@ -212,6 +213,7 @@ class Product extends Model
             $engine_name = optional(Engine::find(request()->cookie('engine_id')))->name;
             return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
         }
+
 
         return null;
     }

@@ -158,6 +158,7 @@ export default {
       full_width: false,
       loading: false,
       searchText: null,
+
       url: location.href + "?get=1",
     };
   },
@@ -181,7 +182,7 @@ export default {
         .then((res) => {
           this.products = res.data.data;
           this.meta = res.data.meta;
-          this.searchText = res.data.string;
+          this.fitText = res.data.string;
         })
         .catch((error) => {
           console.log(error);

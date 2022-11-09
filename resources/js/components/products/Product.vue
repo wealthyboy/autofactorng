@@ -31,7 +31,7 @@
       </div>
       <!-- End .product-container -->
       <p class="product-description">
-        <check-vehicle :fitText="product.fitText" />
+        <check-vehicle :fitText="fitText" />
       </p>
 
       <div class="price-box">

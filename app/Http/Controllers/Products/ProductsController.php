@@ -42,9 +42,7 @@ class ProductsController extends Controller
                 ]);
         }
 
-
         $search_filters =  $this->searchFilters($category);
-
 
         return  view('products.index', compact(
             'category',
@@ -62,7 +60,6 @@ class ProductsController extends Controller
 
         $type = $this->getType($request);
         $per_page = $request->per_page ??  20;
-
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
             $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                 $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
@@ -121,6 +118,7 @@ class ProductsController extends Controller
             ['name' => 'profile', 'items' => $profiles],
             ['name' => 'amphere', 'items' => $ampheres],
             ['name' => 'search_type', 'search' => $category->search_type],
+            ['name' => 'show_fit_text', 'search' => $category->search_type == 'make_model_year'],
             ['name' => 'year', 'items' => Helper::years()]
         ]);
 

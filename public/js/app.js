@@ -21329,7 +21329,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         _this.products = res.data.data;
         _this.meta = res.data.meta;
-        _this.searchText = res.data.string;
+        _this.fitText = res.data.string;
       })["catch"](function (error) {
         console.log(error);
       });
@@ -23196,7 +23196,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , _hoisted_6)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " SKU #" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.sku), 1
   /* TEXT */
   ), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-container "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_check_vehicle, {
-    fitText: $props.product.fitText
+    fitText: $props.fitText
   }, null, 8
   /* PROPS */
   , ["fitText"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [$props.product.discounted_price ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
