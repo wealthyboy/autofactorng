@@ -85,11 +85,8 @@ Route::resource('account', 'Account\AccountController', ['names' => 'account']);
 Route::get('change/password', 'ChangePassword\ChangePasswordController@index');
 Route::post('change/password', 'ChangePassword\ChangePasswordController@changePassword');
 Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'wallets']);
-
-Route::get('orders', 'Order\OrderController@index');
-Route::get('wallet', 'Wallet\WalletController@index');
-Route::get('tracking', 'TranckOrder\TranckOrderController@index');
-
+Route::resource('orders', 'Order\OrderController', ['names' => 'orders']);
+Route::resource('tracking', 'TrackOrder\TranckOrderController', ['names' => 'track.orders']);
 Route::group(['prefix' => '/api'], function () {
     Route::get('products/{category}',             'Api\Products\ProductsController@index');
     Route::get('filters/products/{category}',     'Api\Products\ProductsController@filters');
@@ -110,11 +107,6 @@ Route::group(['prefix' => '/api'], function () {
 Route::controller(Products\ProductsController::class)->group(function () {
     Route::get('products/{category}', 'index');
 });
-
-
-
-
-
 
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');
 //Route::post('contact/store',     'Contact\ContactController@store');

@@ -12,10 +12,11 @@ class AccountSettingsNav
 
     public function nav()
     {
+
         return $nav =  [
             'Address' => [
                 'icon' => 'material-symbols-outlined',
-                'iconText' => 'celebration',
+                'iconText' => 'home',
                 'link' => '/address'
             ],
             'Account Settings'  => [
