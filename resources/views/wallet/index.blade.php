@@ -16,7 +16,7 @@
             <div class="col-md-9">
                 <div class="d-flex align-items-center justify-content-between">
                     <h2 class="page-title ">Wallet</h2>
-                    <div class="wallet-balance">Balance: {{ $wallet_balance }}</div>
+                    <div class="wallet-balance">Balance: 0</div>
                 </div>
                 @include('_partials.table')
             </div>
