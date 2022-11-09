@@ -30,8 +30,11 @@
         <!-- End .product-ratings -->
       </div>
       <!-- End .product-container -->
-      <p class="product-description">
-        <check-vehicle :fitText="fitText" />
+      <p
+        v-if="showFitText"
+        class="product-description"
+      >
+        <check-vehicle :fitText="product.fitText" />
       </p>
 
       <div class="price-box">
@@ -70,7 +73,7 @@ import CheckVehicle from "../general/CheckVehicle";
 export default {
   props: {
     product: Object,
-    fitText: String,
+    showFitText: Boolean,
   },
   components: { CheckVehicle },
   data() {
