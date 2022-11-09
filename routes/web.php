@@ -81,8 +81,11 @@ Route::get('make-model-year-engine', 'Products\ProductsController@makeModelYearS
 
 Route::get('pages/{information}', 'Pages\PagesController@show');
 Route::get('cart', 'Cart\CartController@index');
-Route::get('account', 'Account\AccountController@index');
+Route::resource('account', 'Account\AccountController', ['names' => 'account']);
 Route::get('change/password', 'ChangePassword\ChangePasswordController@index');
+Route::post('change/password', 'ChangePassword\ChangePasswordController@changePassword');
+Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'wallets']);
+
 Route::get('orders', 'Order\OrderController@index');
 Route::get('wallet', 'Wallet\WalletController@index');
 Route::get('tracking', 'TranckOrder\TranckOrderController@index');
@@ -107,6 +110,8 @@ Route::group(['prefix' => '/api'], function () {
 Route::controller(Products\ProductsController::class)->group(function () {
     Route::get('products/{category}', 'index');
 });
+
+
 
 
 
