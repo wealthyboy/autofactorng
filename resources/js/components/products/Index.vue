@@ -65,7 +65,7 @@
             v-for="product in products"
             :key="product.id"
             :product="product"
-            :searchText="searchText"
+            :showFitText="search_filters.search_type.search == 'make_model_year' ? true: false"
           ></product>
         </template>
         <template v-else>
