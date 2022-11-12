@@ -57,22 +57,13 @@ class WalletsController extends Controller
         return response(null, 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     protected function getGetCustomColumnNames()
     {
         return [
             "Ref Id",
             "amount",
+            "status",
             "date_added",
         ];
     }
@@ -85,6 +76,7 @@ class WalletsController extends Controller
                     return [
                         "Ref Id" => '#' . optional($wallet)->id,
                         "amount" => '₦' . optional($wallet)->amount,
+                        "status" =>  optional($wallet)->status,
                         "date_added" => $wallet->created_at->format('d-m-y')
                     ];
                 })

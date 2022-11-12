@@ -26963,7 +26963,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
     toggleCart: function toggleCart() {
       t(".cart-toggle").click(function () {
         t("body").toggleClass("cart-opened");
-      }), t(".btn-close").click(function () {
+      }), t(".btnclose").click(function () {
         t("body").toggleClass("cart-opened");
       }), t(".box-close").click(function () {
         t(this).parent().remove();
