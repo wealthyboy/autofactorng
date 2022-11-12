@@ -14,12 +14,12 @@
     <label for="floatingInput">{{ $attrs.name }}</label>
   </div>
   <simple-message
-    class="link-danger fs-4"
+    class="link-danger fs-6"
     v-if="error.$error"
     :message="error.$errors[0].$message"
   />
   <simple-message
-    class="link-danger fs-4"
+    class="link-danger fs-6"
     v-if="Array.isArray(server_errors)"
     :message="server_errors[0]"
   />

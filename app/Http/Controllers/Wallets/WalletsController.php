@@ -90,7 +90,8 @@ class WalletsController extends Controller
                 })
             ],
             'meta' => [
-                'show' => false
+                'show' => false,
+                'right' => 'Balance: 0000'
             ]
         ];
     }

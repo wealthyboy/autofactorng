@@ -15,20 +15,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\Wallet::factory(50)->create();
+        // $this->call([
+        //     BidsClassSeeder::class,
+        //     WalletSeeder::class,
+        // ]);
 
-        $products   = Product::with('categories')
-            ->orderBy('created_at', 'desc')->get();
-
-        foreach ($products as $key => $product) {
-            $brand = Brand::find($product->brand_id);
-            foreach ($products->categories as  $category) {
-                //$category->b
-            }
-
-            if ($brand) {
-                $product->categories()->sync($product->categories->pluck('id')->toArray());
-            }
-        }
     }
 }

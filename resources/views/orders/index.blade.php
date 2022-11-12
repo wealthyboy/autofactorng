@@ -15,10 +15,8 @@
 
             <div class="col-md-9">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h2 class="page-title ">Wallet</h2>
-                    <div class="wallet-balance">
-                        <fund-wallet :user="{{ $user }}" />
-                    </div>
+                    <h2 class="page-title ">Orders</h2>
+                    <div class="wallet-balance"></div>
                 </div>
                 @include('_partials.table')
             </div>

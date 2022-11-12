@@ -26,13 +26,16 @@ class   NavComposer
 		$global_promo = Promo::first();
 		$system_settings = Setting::first();
 		$yrs = Helper::years();
+		$user = auth()->check() ? auth()->user() : 0000;
+
 		//$news_letter_image = PageBanner::where('page_name','newsletter')->first();
 		$view->with([
 			'footer_info' => $footer_info,
 			'global_categories' => $global_categories,
 			'system_settings' => $system_settings,
 			'global_promo' => $global_promo,
-			'yrs' => $yrs
+			'yrs' => $yrs,
+			'user' => $user
 		]);
 	}
 }

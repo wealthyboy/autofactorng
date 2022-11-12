@@ -23,6 +23,12 @@ import CartSummary from "./components/cart/Index";
 import Account from "./components/account/Account";
 import Modal from "./components/Modal/Index";
 import ChangePassword from "./components/account/ChangePassword"
+import TrackOrders from "./components/account/TrackOrders"
+import Addresses from "./components/account/Addresses"
+import FundWallet from "./components/wallet/Fund"
+
+
+
 
 
 
@@ -41,8 +47,14 @@ app.component('CartSummary', CartSummary)
 app.component('Modal', Modal)
 app.component('Account', Account)
 app.component('ChangePassword', ChangePassword)
+app.component('TrackOrders', TrackOrders)
+app.component('Addresses', Addresses)
+app.component('Addresses', Addresses)
+app.component('FundWallet', FundWallet)
 
-// app.component('MakeModelYEar', MakeModelYEar)
+
+
+
 
 app.config.globalProperties.$filters = {
     formatNumber(value) {

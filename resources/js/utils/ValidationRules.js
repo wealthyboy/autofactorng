@@ -123,6 +123,52 @@ export const accountRules = (form) => {
 };
 
 
+export const addressRules = (form) => {
+
+    const rules = computed(() => {
+        return {
+            first_name: {
+                required: helpers.withMessage("Please enter a first name", required),
+            },
+            last_name: {
+                required: helpers.withMessage("Please enter a last name", required),
+            },
+            address: {
+                required: helpers.withMessage("Please enter an address", required),
+            },
+            city: {
+                required: helpers.withMessage("Please enter a city", required),
+            },
+            state_id: {
+                required: helpers.withMessage(
+                    "Please select a state",
+                    required
+                ),
+            },
+        };
+    });
+
+    return rules
+};
+
+
+export const trackingRules = (form) => {
+    const rules = computed(() => {
+        return {
+            order_id: {
+                required: helpers.withMessage(
+                    "Please enter your order id",
+                    required
+                ),
+                numeric: helpers.withMessage("Please enter your order id", required),
+            },
+        };
+    });
+
+    return rules
+};
+
+
 export const walletRules = (form) => {
 
     const rules = computed(() => {

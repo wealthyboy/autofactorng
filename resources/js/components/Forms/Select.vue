@@ -11,7 +11,6 @@
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
     >
-      <option :value="modelValue">Choose one</option>
 
       <slot />
     </select>

@@ -15,8 +15,8 @@ class AccountSettingsNav
 
         return $nav =  [
             'Address' => [
-                'icon' => 'fa fa-location-arrow',
-                'iconText' => null,
+                'icon' => 'material-symbols-outlined',
+                'iconText' => 'home',
                 'link' => '/address'
             ],
             'Account Settings'  => [
@@ -30,19 +30,19 @@ class AccountSettingsNav
                 'link' => '/change/password'
             ],
             'Orders' => [
-                'icon' => 'fa fa-money',
-                'iconText' => null,
+                'icon' => 'material-symbols-outlined',
+                'iconText' => 'shopping_bag',
                 'link' => '/orders'
             ],
             'Track Order' => [
-                'icon' => 'fa fa-graduation-cap',
+                'icon' => 'material-symbols-outlined',
                 'link' => '/tracking',
-                'iconText' => null,
+                'iconText' => 'show_chart',
             ],
 
             'Wallet' => [
-                'icon' => 'fa fa-google-wallet',
-                'iconText' => null,
+                'icon' => 'material-symbols-outlined',
+                'iconText' => 'account_balance_wallet',
                 'link' => '/wallets'
             ],
         ];

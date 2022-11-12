@@ -2,7 +2,7 @@
 
 <div class="card">
     <div class="card-header">
-        <div class="d-flex align-items-center mt-3">
+        <div class="d-flex justify-content-between align-items-center mt-3">
             <div class="mb-0 align-self-center">
                 <p class="text-sm text-gray-700 leading-5">
                     {!! __('Showing') !!}
@@ -17,6 +17,10 @@
                     <span class="font-medium">{{ $pagination->total() }}</span>
                     {!! __('results') !!}
                 </p>
+            </div>
+
+            <div class="total">
+                {{ $collections['meta']['right'] }}
             </div>
         </div>
     </div>

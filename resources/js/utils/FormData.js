@@ -12,12 +12,36 @@ export const registerData = () => {
     return data
 }
 
+
+export const addressData = (location) => {
+    let data = {
+        first_name: location ? location.first_name : null,
+        last_name: location ? location.last_name : null,
+        address: location ? location.address : null,
+        address_2: location ? location.address_2 : null,
+        city: location ? location.city : null,
+        state_id: location ? location.state_id : "",
+    }
+
+    return data
+}
+
+
 export const accountData = (user) => {
     let data = {
         email: user.email,
         first_name: user.name,
         last_name: user.last_name,
         phone_number: user.phone_number,
+    };
+
+    return data
+}
+
+
+export const trackingData = () => {
+    let data = {
+        order_id: null,
     };
 
     return data

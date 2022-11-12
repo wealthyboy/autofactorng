@@ -13,10 +13,8 @@
 
             <div class="col-md-9">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h2 class="page-title ">Wallet</h2>
-                    <div class="wallet-balance">
-                        <fund-wallet :user="<?php echo e($user); ?>" />
-                    </div>
+                    <h2 class="page-title ">Orders</h2>
+                    <div class="wallet-balance"></div>
                 </div>
                 <?php echo $__env->make('_partials.table', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             </div>
@@ -26,4 +24,4 @@
 <!--End Contact Form & Info-->
 
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/wallet/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/orders/index.blade.php ENDPATH**/ ?>

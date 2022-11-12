@@ -214,42 +214,35 @@ export const clearErr = (value) => {
 
 
 
-export const createAddress = ({ dispatch, commit }, { form, context }) => {
+export const createAddress = ({ dispatch, commit }, { form }) => {
     return axios
-        .post("/api/addresses", {
-            first_name: form.first_name,
-            last_name: form.last_name,
-            address: form.address,
-            address_2: form.address_2,
-            city: form.city,
-            country_id: form.country_id,
-            state_id: form.state_id,
-            postal_code: form.postal_code
-        })
+        .post("/api/addresses", form)
         .then(response => {
             dispatch("setADl", response);
             if (response.data.data.length) {
                 commit("setShowForm", false);
             }
-            context.submiting = false;
-            return Promise.resolve();
+            return Promise.resolve(response);
         })
         .catch(error => {
             if (!response.data.data.length) {
                 commit("setShowForm", false);
             }
             context.errors = error.response.data.errors;
-        });
+
+            return Promise.reject(error);
+
+        })
 };
 
-export const deleteAddress = ({ dispatch, commit }, { id, context }) => {
-    axios.delete("/api/addresses/" + id + "").then(response => {
-        if (!response.data.data.length) {
-            commit("setShowForm", true);
-        }
-        dispatch("setADl", response);
-        context.submiting = false;
-    });
+export const deleteAddress = ({ dispatch, commit }, { id }) => {
+    axios.delete("/api/addresses/" + id + "")
+        .then(response => {
+            dispatch("setADl", response);
+            return Promise.resolve(response);
+        }).catch(error => {
+            return Promise.reject(error);
+        })
 };
 
 export const updateAddresses = ({ dispatch, commit }, { form, id }) => {
@@ -260,21 +253,22 @@ export const updateAddresses = ({ dispatch, commit }, { form, id }) => {
             address: form.address,
             address_2: form.address_2,
             city: form.city,
-            country_id: form.country_id,
             state_id: form.state_id,
-            postal_code: form.postal_code
         })
         .then(response => {
             dispatch("setADl", response);
             if (response.data.data.length) {
                 commit("setShowForm", false);
             }
-            return Promise.resolve();
+            return Promise.resolve(response);
         })
         .catch(() => {
             if (response.data.data.length) {
                 commit("setShowForm", true);
             }
+
+            return Promise.reject(error);
+
         });
 };
 
@@ -282,11 +276,12 @@ export const getAddresses = ({ dispatch, commit }, { context }) => {
     return axios
         .get("/api/addresses")
         .then(response => {
+            console.log(response)
             if (!response.data.data.length) {
                 commit("setShowForm", true);
             }
             dispatch("setADl", response);
-            return Promise.resolve();
+            return Promise.resolve(response);
         })
         .catch(error => {
             //commit('setLoading',false)
@@ -358,6 +353,7 @@ export const setADl = ({ commit }, response) => {
     commit("addToAddress", response.data.data);
     commit("addToLocations", response.data.meta.countries);
     commit("setShipping", response.data.meta.shipping);
+    commit("setStates", response.data.meta.states);
     commit("setDefaultShipping", response.data.meta.default_shipping);
 };
 

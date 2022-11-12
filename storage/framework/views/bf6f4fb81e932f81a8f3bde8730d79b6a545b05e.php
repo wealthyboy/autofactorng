@@ -22,6 +22,18 @@
    <link rel="stylesheet" href="/css/app.css">
 </head>
 
+<script>
+   Window.user = {
+      user: {
+         '<?php echo $user; ?>'
+      },
+      settings: {
+         '<?php echo $system_settings; ?>'
+      },
+      token: '<?php echo csrf_token(); ?>'
+   }
+</script>
+
 <body>
    <div id="app" class="page-wrapper">
 

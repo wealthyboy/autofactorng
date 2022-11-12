@@ -18,7 +18,7 @@ class OrdersController extends Controller
     public function index()
     {
         $nav = (new AccountSettingsNav())->nav();
-        $pagination = auth()->user()->wallets()->paginate(4);
+        $pagination = auth()->user()->orders()->paginate(4);
         $collections = $this->getColumnNames($pagination);
         $columns = $this->getGetCustomColumnNames();
         return view('orders.index', compact('nav', 'collections', 'columns', 'pagination'));
@@ -40,8 +40,9 @@ class OrdersController extends Controller
     protected function getGetCustomColumnNames()
     {
         return [
-            "Ref Id",
-            "amount",
+            "order id",
+            "customer",
+            "total",
             "date_added",
         ];
     }
@@ -52,14 +53,16 @@ class OrdersController extends Controller
             'items' => [
                 $collection->map(function (Order $order) {
                     return [
-                        "Ref Id" => '#' . optional($order)->id,
-                        "amount" => '₦' . optional($order)->amount,
+                        "order id" => '#' . optional($order)->id,
+                        "customer" =>  \Auth::user()->fullname(),
+                        "total" => '₦' . optional($order)->total,
                         "date_added" => $order->created_at->format('d-m-y')
                     ];
                 })
             ],
             'meta' => [
-                'show' => true
+                'show' => true,
+                'right' => null
             ]
         ];
     }
