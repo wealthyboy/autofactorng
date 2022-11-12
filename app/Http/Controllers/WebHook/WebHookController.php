@@ -40,7 +40,7 @@ class WebHookController extends Controller
         try {
             \Log::info($request->all());
             $input    =  $request->data['metadata']['custom_fields'][0];
-            $user     =  User::findOrFail($input['customer_id']);
+            // $user     =  User::findOrFail($input['customer_id']);
         } catch (\Throwable $th) {
             Log::info("Custom error :" . $th);
         }
