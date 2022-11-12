@@ -24,7 +24,7 @@ class WalletsController extends Controller
     public function index()
     {
         $nav = (new AccountSettingsNav())->nav();
-        $pagination = auth()->user()->wallets()->paginate(4);
+        $pagination = auth()->user()->wallets()->latest()->paginate(4);
         $collections = $this->getColumnNames($pagination);
         $columns = $this->getGetCustomColumnNames();
         return view('wallet.index', compact('nav', 'collections', 'columns', 'pagination'));
