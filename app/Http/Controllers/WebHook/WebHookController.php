@@ -33,7 +33,7 @@ class WebHookController extends Controller
     }
 
 
-    public function payment(Request $request, OrderedProduct $ordered_product, Order $order)
+    public function payment(Request $request)
     {
 
 
