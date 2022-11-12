@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\WebHook;
 
 use App\Http\Controllers\Controller;
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Log;
 // use App\User;
 // use App\Order;
