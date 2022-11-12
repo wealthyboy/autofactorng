@@ -36,11 +36,10 @@ class WebHookController extends Controller
     public function payment(Request $request)
     {
 
-
         try {
             \Log::info($request->all());
-            $input    =  $request->data['metadata']['custom_fields'][0];
-            // $user     =  User::findOrFail($input['customer_id']);
+            $input =  $request->data['metadata']['custom_fields'][0];
+            // $user =  User::findOrFail($input['customer_id']);
         } catch (\Throwable $th) {
             Log::info("Custom error :" . $th);
         }
