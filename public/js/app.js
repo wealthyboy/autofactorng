@@ -21697,21 +21697,22 @@ __webpack_require__.r(__webpack_exports__);
         },
         onClose: function onClose() {}
       });
-      handler.openIframe();
-      var postData = {
-        url: "/wallets/store",
-        data: form,
-        loading: loading,
-        needsValidation: true,
-        error: this.v$.$error,
-        post_server_error: post_server_error
-      };
-      makePost(postData).then(function (res) {})["catch"](function (error) {
-        message.value = "We could not find your data in our system";
-        setTimeout(function () {
-          message.value = null;
-        }, 3000);
-      });
+      handler.openIframe(); // const postData = {
+      //   url: "/wallets/store",
+      //   data: form,
+      //   loading,
+      //   needsValidation: true,
+      //   error: this.v$.$error,
+      //   post_server_error: post_server_error,
+      // };
+      // makePost(postData)
+      //   .then((res) => {})
+      //   .catch((error) => {
+      //     message.value = "We could not find your data in our system";
+      //     setTimeout(() => {
+      //       message.value = null;
+      //     }, 3000);
+      //   });
     }
 
     return {

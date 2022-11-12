@@ -106,23 +106,23 @@ export default {
       });
       handler.openIframe();
 
-      const postData = {
-        url: "/wallets/store",
-        data: form,
-        loading,
-        needsValidation: true,
-        error: this.v$.$error,
-        post_server_error: post_server_error,
-      };
+      // const postData = {
+      //   url: "/wallets/store",
+      //   data: form,
+      //   loading,
+      //   needsValidation: true,
+      //   error: this.v$.$error,
+      //   post_server_error: post_server_error,
+      // };
 
-      makePost(postData)
-        .then((res) => {})
-        .catch((error) => {
-          message.value = "We could not find your data in our system";
-          setTimeout(() => {
-            message.value = null;
-          }, 3000);
-        });
+      // makePost(postData)
+      //   .then((res) => {})
+      //   .catch((error) => {
+      //     message.value = "We could not find your data in our system";
+      //     setTimeout(() => {
+      //       message.value = null;
+      //     }, 3000);
+      //   });
     }
     return { form, v$, fund, text, loading, message, change };
   },
