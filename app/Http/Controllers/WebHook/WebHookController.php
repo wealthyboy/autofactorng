@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 // use App\Shipping;
 // use App\ProductVariation;
 // use App\Voucher;
+use App\Models\Wallet;
+use App\Models\WalletBalance;
+
+
 // use App\Mail\OrderReceipt;
 // use App\Mail\SendGiftCard;
 
@@ -39,6 +43,24 @@ class WebHookController extends Controller
         try {
             \Log::info($request->all());
             $input =  $request->data['metadata']['custom_fields'][0];
+            if ($input['type'] == 'Wallet') {
+                $wallet = new Wallet;
+                $wallet->amount = $input['amount'];
+                $wallet->user_id = $input['customer_id'];
+                $wallet->status = 'Added';
+                $wallet->save();
+
+                $balance = Wallet::where('user_id', $input['customer_id'])->first();
+
+                if (null !== $balance) {
+                    $balance->balance = $balance->balance +  $input['amount'];
+                    $balance->save();
+                } else {
+                    $balance = new WalletBalance;
+                    $balance->balance = $input['amount'];
+                    $balance->save();
+                }
+            }
             // $user =  User::findOrFail($input['customer_id']);
         } catch (\Throwable $th) {
             Log::info("Custom error :" . $th);
