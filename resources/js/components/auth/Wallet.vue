@@ -59,6 +59,7 @@ export default {
     const message = ref(null);
     const form = reactive({
       amount: "",
+      type: "Wallet",
     });
 
     onMounted(() => {
@@ -90,7 +91,13 @@ export default {
         currency: "NGN",
         first_name: props.user.name,
         metadata: {
-          custom_fields: [form],
+          custom_fields: [
+            {
+              amount: form.amount,
+              customer_id: props.user.id,
+              type: "Wallet",
+            },
+          ],
         },
         callback: function (response) {
           console.log(response);

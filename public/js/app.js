@@ -21650,7 +21650,8 @@ __webpack_require__.r(__webpack_exports__);
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
-      amount: ""
+      amount: "",
+      type: "Wallet"
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_2__.onMounted)(function () {
       scriptLoaded.value = new Promise(function (resolve) {
@@ -21685,7 +21686,11 @@ __webpack_require__.r(__webpack_exports__);
         currency: "NGN",
         first_name: props.user.name,
         metadata: {
-          custom_fields: [form]
+          custom_fields: [{
+            amount: form.amount,
+            customer_id: props.user.id,
+            type: "Wallet"
+          }]
         },
         callback: function callback(response) {
           console.log(response);
