@@ -45,7 +45,6 @@ class WebHookController extends Controller
             \Log::info($request->all());
             $input =  $request->data['metadata']['custom_fields'][0];
 
-            \Log::info($input);
             if ($input['type'] == 'Wallet') {
                 $wallet = new Wallet;
                 $wallet->amount = $input['amount'];
@@ -64,6 +63,8 @@ class WebHookController extends Controller
                     $balance->user_id = $input['customer_id'];
                     $balance->save();
                 }
+
+                \Log::info($balance);
             }
         } catch (\Throwable $th) {
             \Log::info("Custom error :" . $th);
