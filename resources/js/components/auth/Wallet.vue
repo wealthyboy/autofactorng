@@ -70,10 +70,10 @@ export default {
       });
     });
 
-    const { wallet } = useGetters(["wallet"]);
+    const { wallet, walletBalance } = useGetters(["wallet", "walletBalance"]);
     const rules = walletRules(form);
     const v$ = useVuelidate(rules, form);
-    const { clearErr, makePost, getWalletBalance } = useActions([
+    const { clearErr, makePost, getWalletBalance, getTableData } = useActions([
       "makePost",
       "clearErr",
       "getWalletBalance",
@@ -103,6 +103,8 @@ export default {
           ],
         },
         callback: function (response) {
+          console.log(response);
+          getWalletBalance()
           getTableData(location.href);
         },
         onClose: function () {},
@@ -127,7 +129,7 @@ export default {
       //     }, 3000);
       //   });
     }
-    return { form, v$, fund, text, loading, message, change };
+    return { form, v$, fund, text, loading, message, change, getTableData. getWalletBalance };
   },
 };
 </script>
