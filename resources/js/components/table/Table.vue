@@ -6,16 +6,17 @@
     <div class="card-header">
       <div class="d-flex justify-content-between align-items-center mt-3">
         <div class="mb-0 align-self-center">
-          <p class="text-sm text-gray-700 leading-5"> Showing <span class="font-medium">1</span> to <span class="font-medium">4</span> of <span class="font-medium">53</span> results </p>
+          <p class="text-sm text-gray-700 leading-5">
+            Showing <span>{{ pmeta.from }}- {{ pmeta.to }} of {{pmeta.total}} Records</span>
+
+          </p>
         </div>
         <div
           v-if="tableData.meta.right"
           class="total"
-        > Balance: {{ walletBalance || '0.00'}} </div>
+        > Balance: {{ $filters.formatNumber(walletBalance) || '0.00'}} </div>
       </div>
     </div>
-
-    {{ walletBalance }}
 
     <div class="table-responsive mt-1">
       <form

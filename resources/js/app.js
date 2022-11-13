@@ -1,4 +1,5 @@
 require('./bootstrap');
+
 window.Vue = require('vue');
 
 import { createApp } from "vue";
@@ -31,9 +32,6 @@ import Table from "./components/table/Table"
 
 
 
-
-
-
 // pk_live_f781064afdc5336a6210015e9ff17014d28a4f8b
 
 // pk_live_f781064afdc5336a6210015e9ff17014d28a4f8b
@@ -60,11 +58,9 @@ app.component('GeneralTable', Table)
 
 
 
-
-
 app.config.globalProperties.$filters = {
     formatNumber(value) {
-        return new Intl.NumberFormat().format(value);
+        return '₦' + new Intl.NumberFormat().format(value);
     }
 }
 
