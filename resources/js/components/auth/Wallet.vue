@@ -40,6 +40,7 @@ import Message from "../message/Message";
 import { walletRules } from "../../utils/ValidationRules";
 import { useActions, useGetters } from "vuex-composition-helpers";
 import { loadScript } from "../../utils/Payment";
+import { useStore } from "vuex";
 
 export default {
   emits: ["switched"],
@@ -54,6 +55,7 @@ export default {
     const loading = ref(false);
     const post_server_error = ref(false);
     const scriptLoaded = ref(null);
+    const store = useStore();
 
     const text = ref("Submit");
     const message = ref(null);
@@ -103,8 +105,10 @@ export default {
           ],
         },
         callback: function (response) {
+          store.commit("setWalletBalance", walletBalance.value + form.amount);
           getWalletBalance();
           getTableData(location.href);
+          console.log(walletBalance.value);
         },
         onClose: function () {},
       });

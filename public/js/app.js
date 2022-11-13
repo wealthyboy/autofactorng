@@ -21623,6 +21623,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_ValidationRules__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/ValidationRules */ "./resources/js/utils/ValidationRules.js");
 /* harmony import */ var vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex-composition-helpers */ "./node_modules/vuex-composition-helpers/dist/index.js");
 /* harmony import */ var _utils_Payment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utils/Payment */ "./resources/js/utils/Payment.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+
 
 
 
@@ -21647,6 +21649,7 @@ __webpack_require__.r(__webpack_exports__);
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var scriptLoaded = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_10__.useStore)();
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
@@ -21695,8 +21698,10 @@ __webpack_require__.r(__webpack_exports__);
           }]
         },
         callback: function callback(response) {
+          store.commit("setWalletBalance", walletBalance.value + form.amount);
           getWalletBalance();
           getTableData(location.href);
+          console.log(walletBalance.value);
         },
         onClose: function onClose() {}
       });
@@ -32925,7 +32930,6 @@ var addProductToCart = function addProductToCart(_ref, _ref2) {
 var getWalletBalance = function getWalletBalance(_ref3) {
   var commit = _ref3.commit;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/wallet-balance").then(function (response) {
-    console.log(response.data.balance);
     commit("setWalletBalance", response.data.balance.balance);
     return Promise.resolve(response);
   })["catch"](function () {
