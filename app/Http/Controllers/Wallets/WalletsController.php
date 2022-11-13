@@ -32,7 +32,6 @@ class WalletsController extends Controller
 
         $data = [];
 
-        // dd(WalletBalance::all());
 
 
         if (request()->ajax()) {
@@ -87,7 +86,7 @@ class WalletsController extends Controller
                 $collection->map(function (Wallet $wallet) {
                     return [
                         "Ref Id" => '#' . optional($wallet)->id,
-                        "amount" => '₦' . optional($wallet)->amount,
+                        "amount" => '₦' . number_format(optional($wallet)->amount),
                         "status" =>  optional($wallet)->status,
                         "date_added" => $wallet->created_at->format('d-m-y')
                     ];
