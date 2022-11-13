@@ -15,6 +15,8 @@
       </div>
     </div>
 
+    {{ walletBalance }}
+
     <div class="table-responsive mt-1">
       <form
         action="#"
