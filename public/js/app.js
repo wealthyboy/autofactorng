@@ -33684,7 +33684,7 @@ var setDefaultShipping = function setDefaultShipping(state, default_shipping) {
   state.default_shipping = default_shipping;
 };
 var setWalletBalance = function setWalletBalance(state, balance) {
-  state.walletBalnce = balance;
+  state.walletBalance = balance;
 };
 var setTableData = function setTableData(state, data) {
   state.tableData = data;
