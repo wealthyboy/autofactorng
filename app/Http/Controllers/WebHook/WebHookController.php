@@ -44,6 +44,8 @@ class WebHookController extends Controller
 
             \Log::info($request->all());
             $input =  $request->data['metadata']['custom_fields'][0];
+
+            \Log::info($input);
             if ($input['type'] == 'Wallet') {
                 $wallet = new Wallet;
                 $wallet->amount = $input['amount'];
@@ -51,7 +53,7 @@ class WebHookController extends Controller
                 $wallet->status = 'Added';
                 $wallet->save();
 
-                $balance = Wallet::where('user_id', $input['customer_id'])->first();
+                $balance = WalletBalance::where('user_id', $input['customer_id'])->first();
 
                 if (null !== $balance) {
                     $balance->balance = $balance->balance +  $input['amount'];
