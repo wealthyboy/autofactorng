@@ -21650,7 +21650,7 @@ __webpack_require__.r(__webpack_exports__);
     var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var scriptLoaded = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_10__.useStore)();
-    var error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
+    var error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({

@@ -60,7 +60,7 @@ export default {
     const post_server_error = ref(false);
     const scriptLoaded = ref(null);
     const store = useStore();
-    const error = ref(null);
+    const error = ref(false);
 
     const text = ref("Submit");
     const message = ref(null);
