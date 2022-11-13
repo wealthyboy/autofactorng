@@ -32,7 +32,7 @@ class WalletsController extends Controller
 
         $data = [];
 
-        dd(WalletBalance::all());
+        // dd(WalletBalance::all());
 
 
         if (request()->ajax()) {
