@@ -105,10 +105,11 @@ export default {
           ],
         },
         callback: function (response) {
-          store.commit("setWalletBalance", walletBalance.value + form.amount);
-          getWalletBalance();
+          let new_balnce =
+            parseInt(walletBalance.value) + parseInt(form.amount);
+          store.commit("setWalletBalance", new_balnce);
+          //getWalletBalance();
           getTableData(location.href);
-          console.log(walletBalance.value);
         },
         onClose: function () {},
       });

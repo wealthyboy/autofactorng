@@ -21698,10 +21698,10 @@ __webpack_require__.r(__webpack_exports__);
           }]
         },
         callback: function callback(response) {
-          store.commit("setWalletBalance", walletBalance.value + form.amount);
-          getWalletBalance();
+          var new_balnce = parseInt(walletBalance.value) + parseInt(form.amount);
+          store.commit("setWalletBalance", new_balnce); //getWalletBalance();
+
           getTableData(location.href);
-          console.log(walletBalance.value);
         },
         onClose: function onClose() {}
       });
