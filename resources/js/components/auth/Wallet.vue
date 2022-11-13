@@ -1,6 +1,8 @@
 <template>
 
   <message :message="message" />
+
+  {{ message }}
   <form
     action=""
     class="mb-0"
