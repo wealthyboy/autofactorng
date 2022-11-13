@@ -3,9 +3,10 @@
     v-if="message"
     class="modal-body"
   >
+
     <div
-      :class="[error ? 'alert-danger': 'alert-success']"
-      class="alert alert-rounded alert-danger"
+      :class="[ error === true ? 'alert-danger': 'alert-success'] "
+      class="alert alert-rounded"
     >
 
       <span class="fs-4">{{ message }}</span>
