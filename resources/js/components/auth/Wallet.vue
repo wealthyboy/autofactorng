@@ -108,8 +108,10 @@ export default {
           let new_balnce =
             parseInt(walletBalance.value) + parseInt(form.amount);
           store.commit("setWalletBalance", new_balnce);
-          //getWalletBalance();
-          getTableData(location.href);
+          message.value = "Your money has been addedd";
+          setTimeout(() => {
+            getTableData(location.href);
+          }, 5000);
         },
         onClose: function () {},
       });

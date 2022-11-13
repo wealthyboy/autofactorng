@@ -21699,9 +21699,11 @@ __webpack_require__.r(__webpack_exports__);
         },
         callback: function callback(response) {
           var new_balnce = parseInt(walletBalance.value) + parseInt(form.amount);
-          store.commit("setWalletBalance", new_balnce); //getWalletBalance();
-
-          getTableData(location.href);
+          store.commit("setWalletBalance", new_balnce);
+          message.value = "Your money has been addedd";
+          setTimeout(function () {
+            getTableData(location.href);
+          }, 5000);
         },
         onClose: function onClose() {}
       });
