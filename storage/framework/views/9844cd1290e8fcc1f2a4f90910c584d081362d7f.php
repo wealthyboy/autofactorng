@@ -18,7 +18,8 @@
                         <fund-wallet :user="<?php echo e($user); ?>" />
                     </div>
                 </div>
-                <?php echo $__env->make('_partials.table', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <general-table />
+
             </div>
         </div>
     </div>

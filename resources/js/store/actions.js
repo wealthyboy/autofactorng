@@ -14,6 +14,31 @@ export const addProductToCart = ({ commit }, { product_id, quantity }) => {
         });
 };
 
+export const getWalletBalance = ({ commit }) => {
+    return axios
+        .get("/wallet-balance")
+        .then(response => {
+            commit("setWalletBalnce", response.data.balance);
+            return Promise.resolve(response);
+        }).catch(() => {
+            return Promise.reject(response);
+        });
+};
+
+export const getTableData = ({ commit }, url) => {
+    console.log(url)
+    return axios
+        .get(url)
+        .then(response => {
+            console.log(response.data.collections)
+            commit("setTableData", response.data.collections);
+            commit("setMeta", response.data.pagination);
+            return Promise.resolve(response);
+        }).catch((error) => {
+            return Promise.reject(error);
+        });
+};
+
 export const updateCart = ({ commit }, { product_variation_id, quantity }) => {
     return axios
         .post("/api/cart", {

@@ -87,3 +87,16 @@ export const showForm = (state) => {
 export const states = (state) => {
     return state.states
 }
+
+export const walletBalance = (state) => {
+    return state.walletBalance
+}
+
+
+export const tableData = (state) => {
+    return state.tableData
+}
+
+export const pmeta = (state) => {
+    return state.meta
+}

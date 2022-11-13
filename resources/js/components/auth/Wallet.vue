@@ -73,7 +73,12 @@ export default {
     const { wallet } = useGetters(["wallet"]);
     const rules = walletRules(form);
     const v$ = useVuelidate(rules, form);
-    const { clearErr, makePost } = useActions(["makePost", "clearErr"]);
+    const { clearErr, makePost, getWalletBalance } = useActions([
+      "makePost",
+      "clearErr",
+      "getWalletBalance",
+      "getTableData",
+    ]);
 
     function change(page) {
       emit("switched", page);
@@ -81,8 +86,6 @@ export default {
 
     function fund() {
       this.v$.$touch();
-
-      console.log(Window);
 
       var handler = PaystackPop.setup({
         key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
@@ -100,7 +103,7 @@ export default {
           ],
         },
         callback: function (response) {
-          console.log(response);
+          getTableData(location.href);
         },
         onClose: function () {},
       });

@@ -26,6 +26,7 @@ import ChangePassword from "./components/account/ChangePassword"
 import TrackOrders from "./components/account/TrackOrders"
 import Addresses from "./components/account/Addresses"
 import FundWallet from "./components/wallet/Fund"
+import Table from "./components/table/Table"
 
 
 
@@ -33,8 +34,11 @@ import FundWallet from "./components/wallet/Fund"
 
 
 
+// pk_live_f781064afdc5336a6210015e9ff17014d28a4f8b
 
+// pk_live_f781064afdc5336a6210015e9ff17014d28a4f8b
 
+// pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943
 
 const app = createApp({})
 
@@ -51,6 +55,8 @@ app.component('TrackOrders', TrackOrders)
 app.component('Addresses', Addresses)
 app.component('Addresses', Addresses)
 app.component('FundWallet', FundWallet)
+app.component('GeneralTable', Table)
+
 
 
 

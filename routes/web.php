@@ -84,7 +84,10 @@ Route::get('cart', 'Cart\CartController@index');
 Route::resource('account', 'Account\AccountController', ['names' => 'account']);
 Route::get('change/password', 'ChangePassword\ChangePasswordController@index');
 Route::post('change/password', 'ChangePassword\ChangePasswordController@changePassword');
+Route::get('wallet-balance', 'Wallets\WalletsController@walletBalnce');
+
 Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'wallets']);
+
 Route::resource('orders', 'Orders\OrdersController', ['names' => 'orders']);
 Route::resource('tracking', 'TrackOrder\TrackOrdersController', ['names' => 'track.orders']);
 Route::resource('address',  'Address\AddressController', ['names' => 'address']);

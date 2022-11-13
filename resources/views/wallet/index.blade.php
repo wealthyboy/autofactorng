@@ -20,7 +20,8 @@
                         <fund-wallet :user="{{ $user }}" />
                     </div>
                 </div>
-                @include('_partials.table')
+                <general-table />
+
             </div>
         </div>
     </div>

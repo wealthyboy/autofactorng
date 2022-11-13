@@ -24,21 +24,30 @@ class WalletsController extends Controller
     public function index()
     {
         $nav = (new AccountSettingsNav())->nav();
-        $pagination = auth()->user()->wallets()->latest()->paginate(4);
+        $pagination = auth()->user()->wallets()->latest()->paginate(2);
+
         $collections = $this->getColumnNames($pagination);
         $columns = $this->getGetCustomColumnNames();
+
+        $data = [];
+
+
+        if (request()->ajax()) {
+            return response([
+                'collections' => $this->getColumnNames($pagination),
+                'pagination' =>  $pagination
+            ]);
+        }
         return view('wallet.index', compact('nav', 'collections', 'columns', 'pagination'));
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function walletBalnce()
     {
-        //
+        $balance  = auth()->user()->wallet_balance;
+        return response()->json([
+            'balance' => $balance
+        ]);
     }
 
     /**
@@ -83,7 +92,8 @@ class WalletsController extends Controller
             ],
             'meta' => [
                 'show' => false,
-                'right' => 'Balance: 0000'
+                'right' => 'Balance: 0000',
+                'wallet' => true
             ]
         ];
     }

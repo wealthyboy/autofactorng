@@ -87,3 +87,16 @@ export const setStates = (state, states) => {
 export const setDefaultShipping = (state, default_shipping) => {
     state.default_shipping = default_shipping
 }
+
+
+export const setWalletBalnce = (state, balance) => {
+    state.walletBalnce = balance
+}
+
+export const setTableData = (state, data) => {
+    state.tableData = data
+}
+
+export const setMeta = (state, meta) => {
+    state.meta = meta
+}

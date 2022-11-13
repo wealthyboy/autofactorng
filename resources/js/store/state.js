@@ -19,5 +19,8 @@ export default {
     loadn: false,
     images: [],
     showForm: false,
-    states: []
+    states: [],
+    walletBalance: null,
+    tableData: [],
+    meta: null
 }
