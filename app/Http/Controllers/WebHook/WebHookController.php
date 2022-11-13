@@ -61,6 +61,7 @@ class WebHookController extends Controller
                 } else {
                     $balance = new WalletBalance;
                     $balance->balance = $input['amount'];
+                    $balance->user_id = $input['customer_id'];
                     $balance->save();
                 }
             }
