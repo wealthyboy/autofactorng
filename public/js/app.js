@@ -21650,6 +21650,7 @@ __webpack_require__.r(__webpack_exports__);
     var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var scriptLoaded = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_10__.useStore)();
+    var error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
@@ -21700,6 +21701,7 @@ __webpack_require__.r(__webpack_exports__);
         callback: function callback(response) {
           var new_balnce = parseInt(walletBalance.value) + parseInt(form.amount);
           store.commit("setWalletBalance", new_balnce);
+          error.value = false;
           message.value = "Your money has been addedd";
           setTimeout(function () {
             getTableData(location.href);
@@ -21735,7 +21737,8 @@ __webpack_require__.r(__webpack_exports__);
       change: change,
       getTableData: getTableData,
       getWalletBalance: getWalletBalance,
-      walletBalance: walletBalance
+      walletBalance: walletBalance,
+      error: error
     };
   }
 });
@@ -21931,7 +21934,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
-    message: String
+    message: String,
+    error: Boolean
   }
 });
 
@@ -23754,12 +23758,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_general_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("general-button");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_message, {
-    message: $setup.message
+    message: $setup.message,
+    error: $setup.error
   }, null, 8
   /* PROPS */
-  , ["message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.message) + " ", 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  , ["message", "error"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     action: "",
     "class": "mb-0",
     method: "post",
@@ -24237,15 +24240,16 @@ var _hoisted_1 = {
   "class": "modal-body"
 };
 var _hoisted_2 = {
-  "class": "alert alert-rounded alert-danger"
-};
-var _hoisted_3 = {
   "class": "fs-4"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return $props.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.message), 1
+  return $props.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[$props.error ? 'alert-danger' : 'alert-success'], "alert alert-rounded alert-danger"])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.message), 1
   /* TEXT */
-  )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
+  )], 2
+  /* CLASS */
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
 }
 
 /***/ }),

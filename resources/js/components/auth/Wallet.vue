@@ -1,8 +1,10 @@
 <template>
 
-  <message :message="message" />
+  <message
+    :message="message"
+    :error="error"
+  />
 
-  {{ message }}
   <form
     action=""
     class="mb-0"
@@ -58,6 +60,7 @@ export default {
     const post_server_error = ref(false);
     const scriptLoaded = ref(null);
     const store = useStore();
+    const error = ref(null);
 
     const text = ref("Submit");
     const message = ref(null);
@@ -110,6 +113,7 @@ export default {
           let new_balnce =
             parseInt(walletBalance.value) + parseInt(form.amount);
           store.commit("setWalletBalance", new_balnce);
+          error.value = false;
           message.value = "Your money has been addedd";
           setTimeout(() => {
             getTableData(location.href);
@@ -148,6 +152,7 @@ export default {
       getTableData,
       getWalletBalance,
       walletBalance,
+      error,
     };
   },
 };
