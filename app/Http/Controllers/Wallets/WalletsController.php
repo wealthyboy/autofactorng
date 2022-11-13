@@ -31,6 +31,8 @@ class WalletsController extends Controller
 
         $data = [];
 
+        dd(auth()->user()->wallets()->wallet_balance);
+
 
         if (request()->ajax()) {
             return response([
