@@ -7,6 +7,7 @@ use App\Models\Wallet;
 use App\Utils\AccountSettingsNav;
 use Illuminate\Http\Request;
 use App\Events\NewBid;
+use App\Models\WalletBalance;
 
 class WalletsController extends Controller
 {
@@ -31,7 +32,7 @@ class WalletsController extends Controller
 
         $data = [];
 
-        dd(auth()->user()->wallet_balance);
+        dd(WalletBalance::all());
 
 
         if (request()->ajax()) {
