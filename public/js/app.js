@@ -21727,7 +21727,8 @@ __webpack_require__.r(__webpack_exports__);
       message: message,
       change: change,
       getTableData: getTableData,
-      getWalletBalance: getWalletBalance
+      getWalletBalance: getWalletBalance,
+      walletBalance: walletBalance
     };
   }
 });

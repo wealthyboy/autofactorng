@@ -138,6 +138,7 @@ export default {
       change,
       getTableData,
       getWalletBalance,
+      walletBalance,
     };
   },
 };
