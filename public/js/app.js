@@ -32922,7 +32922,8 @@ var addProductToCart = function addProductToCart(_ref, _ref2) {
 var getWalletBalance = function getWalletBalance(_ref3) {
   var commit = _ref3.commit;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/wallet-balance").then(function (response) {
-    commit("setWalletBalnce", response.data.balance);
+    console.log(response.data.balance);
+    commit("setWalletBalance", response.data.balance);
     return Promise.resolve(response);
   })["catch"](function () {
     return Promise.reject(response);
@@ -33613,7 +33614,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setShowForm": () => (/* binding */ setShowForm),
 /* harmony export */   "setStates": () => (/* binding */ setStates),
 /* harmony export */   "setTableData": () => (/* binding */ setTableData),
-/* harmony export */   "setWalletBalnce": () => (/* binding */ setWalletBalnce),
+/* harmony export */   "setWalletBalance": () => (/* binding */ setWalletBalance),
 /* harmony export */   "setWishlist": () => (/* binding */ setWishlist)
 /* harmony export */ });
 var appendToCart = function appendToCart(state, items) {
@@ -33679,7 +33680,7 @@ var setStates = function setStates(state, states) {
 var setDefaultShipping = function setDefaultShipping(state, default_shipping) {
   state.default_shipping = default_shipping;
 };
-var setWalletBalnce = function setWalletBalnce(state, balance) {
+var setWalletBalance = function setWalletBalance(state, balance) {
   state.walletBalnce = balance;
 };
 var setTableData = function setTableData(state, data) {

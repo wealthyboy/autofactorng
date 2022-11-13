@@ -89,7 +89,7 @@ export const setDefaultShipping = (state, default_shipping) => {
 }
 
 
-export const setWalletBalnce = (state, balance) => {
+export const setWalletBalance = (state, balance) => {
     state.walletBalnce = balance
 }
 
