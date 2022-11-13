@@ -103,8 +103,7 @@ export default {
           ],
         },
         callback: function (response) {
-          console.log(response);
-          getWalletBalance()
+          getWalletBalance();
           getTableData(location.href);
         },
         onClose: function () {},
@@ -129,7 +128,17 @@ export default {
       //     }, 3000);
       //   });
     }
-    return { form, v$, fund, text, loading, message, change, getTableData. getWalletBalance };
+    return {
+      form,
+      v$,
+      fund,
+      text,
+      loading,
+      message,
+      change,
+      getTableData,
+      getWalletBalance,
+    };
   },
 };
 </script>

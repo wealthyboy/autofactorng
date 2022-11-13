@@ -21605,9 +21605,132 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/auth/Wallet.vue?vue&type=script&lang=js ***!
   \*****************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/js/components/auth/Wallet.vue: Unexpected token, expected \",\" (101:73)\n\n\u001b[0m \u001b[90m  99 |\u001b[39m       \u001b[90m//   });\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 100 |\u001b[39m     }\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 101 |\u001b[39m     \u001b[36mreturn\u001b[39m { form\u001b[33m,\u001b[39m v$\u001b[33m,\u001b[39m fund\u001b[33m,\u001b[39m text\u001b[33m,\u001b[39m loading\u001b[33m,\u001b[39m message\u001b[33m,\u001b[39m change\u001b[33m,\u001b[39m getTableData\u001b[33m.\u001b[39m getWalletBalance }\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m     |\u001b[39m                                                                          \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 102 |\u001b[39m   }\u001b[33m,\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 103 |\u001b[39m }\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 104 |\u001b[39m\u001b[0m\n    at instantiate (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:72:32)\n    at constructor (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:358:12)\n    at Parser.raise (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:3335:19)\n    at Parser.unexpected (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:3373:16)\n    at Parser.expect (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:4002:28)\n    at Parser.parseObjectLike (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:13486:14)\n    at Parser.parseExprAtom (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:12890:23)\n    at Parser.parseExprSubscripts (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:12540:23)\n    at Parser.parseUpdate (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:12519:21)\n    at Parser.parseMaybeUnary (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:12490:23)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _vuelidate_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vuelidate/core */ "./node_modules/@vuelidate/core/dist/index.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _message_SimpleMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../message/SimpleMessage */ "./resources/js/components/message/SimpleMessage.vue");
+/* harmony import */ var _general_Button_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../general/Button.vue */ "./resources/js/components/general/Button.vue");
+/* harmony import */ var _Forms_Input__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Forms/Input */ "./resources/js/components/Forms/Input.vue");
+/* harmony import */ var _message_Message__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../message/Message */ "./resources/js/components/message/Message.vue");
+/* harmony import */ var _utils_ValidationRules__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/ValidationRules */ "./resources/js/utils/ValidationRules.js");
+/* harmony import */ var vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex-composition-helpers */ "./node_modules/vuex-composition-helpers/dist/index.js");
+/* harmony import */ var _utils_Payment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utils/Payment */ "./resources/js/utils/Payment.js");
+
+
+
+
+
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  emits: ["switched"],
+  props: ["user"],
+  components: {
+    SimpleMessage: _message_SimpleMessage__WEBPACK_IMPORTED_MODULE_3__["default"],
+    GeneralButton: _general_Button_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
+    GeneralInput: _Forms_Input__WEBPACK_IMPORTED_MODULE_5__["default"],
+    Message: _message_Message__WEBPACK_IMPORTED_MODULE_6__["default"]
+  },
+  setup: function setup(props, _ref) {
+    var emit = _ref.emit;
+    var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
+    var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
+    var scriptLoaded = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
+    var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
+    var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
+    var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
+      amount: "",
+      type: "Wallet"
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.onMounted)(function () {
+      scriptLoaded.value = new Promise(function (resolve) {
+        (0,_utils_Payment__WEBPACK_IMPORTED_MODULE_9__.loadScript)(function () {
+          resolve();
+        });
+      });
+    });
+
+    var _useGetters = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_8__.useGetters)(["wallet", "walletBalance"]),
+        wallet = _useGetters.wallet,
+        walletBalance = _useGetters.walletBalance;
+
+    var rules = (0,_utils_ValidationRules__WEBPACK_IMPORTED_MODULE_7__.walletRules)(form);
+    var v$ = (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_0__.useVuelidate)(rules, form);
+
+    var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_8__.useActions)(["makePost", "clearErr", "getWalletBalance", "getTableData"]),
+        clearErr = _useActions.clearErr,
+        makePost = _useActions.makePost,
+        getWalletBalance = _useActions.getWalletBalance,
+        getTableData = _useActions.getTableData;
+
+    function change(page) {
+      emit("switched", page);
+    }
+
+    function fund() {
+      this.v$.$touch();
+      var handler = PaystackPop.setup({
+        key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943",
+        //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
+        email: props.user.email,
+        amount: form.amount * 100,
+        currency: "NGN",
+        first_name: props.user.name,
+        metadata: {
+          custom_fields: [{
+            amount: form.amount,
+            customer_id: props.user.id,
+            type: "Wallet"
+          }]
+        },
+        callback: function callback(response) {
+          getWalletBalance();
+          getTableData(location.href);
+        },
+        onClose: function onClose() {}
+      });
+      handler.openIframe(); // const postData = {
+      //   url: "/wallets/store",
+      //   data: form,
+      //   loading,
+      //   needsValidation: true,
+      //   error: this.v$.$error,
+      //   post_server_error: post_server_error,
+      // };
+      // makePost(postData)
+      //   .then((res) => {})
+      //   .catch((error) => {
+      //     message.value = "We could not find your data in our system";
+      //     setTimeout(() => {
+      //       message.value = null;
+      //     }, 3000);
+      //   });
+    }
+
+    return {
+      form: form,
+      v$: v$,
+      fund: fund,
+      text: text,
+      loading: loading,
+      message: message,
+      change: change,
+      getTableData: getTableData,
+      getWalletBalance: getWalletBalance
+    };
+  }
+});
 
 /***/ }),
 
@@ -23615,7 +23738,7 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "form-floating mb-3"
 };
-function render(_ctx, _cache) {
+function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_message = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("message");
 
   var _component_general_input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("general-input");
@@ -23623,7 +23746,7 @@ function render(_ctx, _cache) {
   var _component_general_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("general-button");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_message, {
-    message: _ctx.message
+    message: $setup.message
   }, null, 8
   /* PROPS */
   , ["message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
@@ -23631,13 +23754,13 @@ function render(_ctx, _cache) {
     "class": "mb-0",
     method: "post",
     onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-      return _ctx.fund && _ctx.fund.apply(_ctx, arguments);
+      return $setup.fund && $setup.fund.apply($setup, arguments);
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
-    error: _ctx.v$.amount,
-    modelValue: _ctx.form.amount,
+    error: $setup.v$.amount,
+    modelValue: $setup.form.amount,
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return _ctx.form.amount = $event;
+      return $setup.form.amount = $event;
     }),
     id: "wallet",
     name: "Wallet",
@@ -23646,9 +23769,9 @@ function render(_ctx, _cache) {
   /* PROPS */
   , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
     type: "submit",
-    text: _ctx.text,
+    text: $setup.text,
     "class": "btn btn-dark w-100 mb-3",
-    loading: _ctx.loading
+    loading: $setup.loading
   }, null, 8
   /* PROPS */
   , ["text", "loading"])], 32
@@ -33667,6 +33790,42 @@ var changePasswordData = function changePasswordData(user) {
     password_confirmation: ""
   };
   return data;
+};
+
+/***/ }),
+
+/***/ "./resources/js/utils/Payment.js":
+/*!***************************************!*\
+  !*** ./resources/js/utils/Payment.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "loadScript": () => (/* binding */ loadScript)
+/* harmony export */ });
+var loadScript = function loadScript(callback) {
+  var script = document.createElement("script");
+  script.src = "https://js.paystack.co/v1/inline.js";
+  document.getElementsByTagName("head")[0].appendChild(script);
+
+  if (script.readyState) {
+    // IE
+    script.onreadystatechange = function () {
+      if (script.readyState === "loaded" || script.readyState === "complete") {
+        script.onreadystatechange = null;
+        callback();
+      }
+    };
+  } else {
+    // Others
+    script.onload = function () {
+      callback();
+    };
+  }
+
+  return script;
 };
 
 /***/ }),
