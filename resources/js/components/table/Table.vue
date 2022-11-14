@@ -162,7 +162,7 @@ export default {
       loading.value = true;
       getTableData(location.href + "?get=1")
         .then((res) => {
-          console.log(tableData.value);
+          console.log(tableData.value.items);
           loading.value = false;
         })
         .catch(() => {

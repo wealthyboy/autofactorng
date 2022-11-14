@@ -22626,7 +22626,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log();
       loading.value = true;
       getTableData(location.href + "?get=1").then(function (res) {
-        console.log(tableData.value);
+        console.log(tableData.value.items);
         loading.value = false;
       })["catch"](function () {
         loading.value = false;
