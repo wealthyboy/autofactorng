@@ -22600,13 +22600,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex-composition-helpers */ "./node_modules/vuex-composition-helpers/dist/index.js");
 /* harmony import */ var _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pagination/Pagination */ "./resources/js/components/pagination/Pagination.vue");
+/* harmony import */ var _utils_loader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/loader */ "./resources/js/components/utils/loader.vue");
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["url", "reload"],
   components: {
-    Pagination: _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"]
+    Pagination: _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__["default"],
+    Loader: _utils_loader__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   setup: function setup() {
     var _useGetters = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_1__.useGetters)(["tableData", "pmeta", "walletBalance"]),

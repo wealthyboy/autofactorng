@@ -136,11 +136,13 @@
 import { onMounted, ref } from "vue";
 import { useActions, useGetters } from "vuex-composition-helpers";
 import Pagination from "../pagination/Pagination";
+import Loader from "../utils/loader";
 
 export default {
   props: ["url", "reload"],
   components: {
     Pagination,
+    Loader,
   },
   setup() {
     const { tableData, pmeta, walletBalance } = useGetters([
