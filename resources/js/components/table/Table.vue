@@ -114,7 +114,7 @@
     </div>
   </div>
   <div
-    v-if="!tableData.items"
+    v-if="!tableData.items && !loading"
     class="card"
   >
     <div class="row justify-content-center">
@@ -156,9 +156,11 @@ export default {
     const loading = ref(false);
 
     onMounted(() => {
+      console.log();
       loading.value = true;
       getTableData(location.href + "?get=1")
         .then((res) => {
+          console.log(tableData);
           loading.value = false;
         })
         .catch(() => {
