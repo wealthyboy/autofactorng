@@ -2,7 +2,7 @@
 
   <loader :loading="loading" />
   <div
-    v-if="addresses.length && !showForm"
+    v-if="!loading && addresses.length && !showForm"
     class="address_details mt-1"
   >
     <div class="new-a d-flex justify-content-end">
@@ -83,7 +83,7 @@
       </li>
     </ul>
   </div>
-  <template v-if="showForm || !addresses.length">
+  <template v-if="!loading &&  showForm || !addresses.length">
     <create-address
       @form:canceled="cancelForm"
       @address:created="cancelForm"
@@ -125,7 +125,7 @@ export default {
       submiting: false,
       address_id: "",
       error: null,
-      loading: false,
+      loading: true,
       showForm: false,
       location: null,
     };

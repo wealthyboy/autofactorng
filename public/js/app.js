@@ -21221,7 +21221,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       submiting: false,
       address_id: "",
       error: null,
-      loading: false,
+      loading: true,
       showForm: false,
       location: null
     };
@@ -23413,7 +23413,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     loading: $data.loading
   }, null, 8
   /* PROPS */
-  , ["loading"]), _ctx.addresses.length && !$data.showForm ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  , ["loading"]), !$data.loading && _ctx.addresses.length && !$data.showForm ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "#",
     "class": "btn btn-round btn-block mb-3 bold",
     onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
@@ -23464,7 +23464,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_18)])])])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.showForm || !_ctx.addresses.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_create_address, {
+  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.loading && $data.showForm || !_ctx.addresses.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_create_address, {
     key: 1,
     "onForm:canceled": $options.cancelForm,
     "onAddress:created": $options.cancelForm,
