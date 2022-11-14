@@ -1,4 +1,7 @@
 <template>
+
+  <loader :loading="loading" />
+
   <div
     v-if="tableData.items"
     class="card"
@@ -111,9 +114,27 @@
     </div>
   </div>
 
+  <div
+    v-if="!tableData.items"
+    class="card"
+  >
+    <div class="row justify-content-center">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-12">
+        <div
+          href="#"
+          class="icon-box nounderline text-center p-5"
+        >
+          <i class=""></i>
+          <h5 class="porto-sicon-title mx-2">No transaction yet</h5>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
 </template>
 <script>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useActions, useGetters } from "vuex-composition-helpers";
 import Pagination from "../pagination/Pagination";
 
@@ -133,8 +154,17 @@ export default {
       "getWalletBalance",
     ]);
 
+    const loading = ref(false);
+
     onMounted(() => {
-      getTableData(location.href + "?get=1");
+      loading.value = true;
+      getTableData(location.href + "?get=1")
+        .then((res) => {
+          loading.value = false;
+        })
+        .catch(() => {
+          loading.value = false;
+        });
       getWalletBalance();
     });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\TrackOrder;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Utils\AccountSettingsNav;
+use App\Models\Order;
 
 class TrackOrdersController extends Controller
 {
@@ -26,9 +27,15 @@ class TrackOrdersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function show(Request  $request,  $id)
     {
-        //
+        $order = Order::find($id);
+
+        if (null !== $order) {
+            return $order->order_statuses;
+        }
+
+        return null;
     }
 
 

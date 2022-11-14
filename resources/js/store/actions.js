@@ -203,7 +203,7 @@ export const register = ({ commit }, { context }) => {
  * @returns a promise
  */
 export const makePost = ({ dispatch, commit }, postData) => {
-    const { url, data, loading, needsValidation, error, post_server_error } = postData
+    const { url, data, loading, needsValidation, error, post_server_error, method } = postData
     if (needsValidation) {
         if (error) {
             return false;
@@ -212,8 +212,7 @@ export const makePost = ({ dispatch, commit }, postData) => {
 
     loading.value = !loading.value;
 
-    return axios
-        .post(url, data)
+    return axios[method](url, data)
         .then(response => {
             return Promise.resolve(response);
         })
