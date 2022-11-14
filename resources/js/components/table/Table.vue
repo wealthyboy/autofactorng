@@ -180,6 +180,7 @@ export default {
       pmeta,
       walletBalance,
       getWalletBalance,
+      loading,
     };
   },
 };
