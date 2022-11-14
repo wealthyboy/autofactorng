@@ -3,9 +3,10 @@
   <loader :loading="loading" />
 
   <div
-    v-if="tableData.items"
+    v-if="!loading &&  tableData.items[0].length"
     class="card"
   >
+
     <div class="card-header">
       <div class="d-flex justify-content-between align-items-center mt-3">
         <div class="mb-0 align-self-center">
@@ -113,10 +114,12 @@
       </div>
     </div>
   </div>
+
   <div
-    v-if="!tableData.items && !loading"
+    v-if="!loading &&  !tableData.items[0].length"
     class="card"
   >
+
     <div class="row justify-content-center">
       <div class="col-6 col-sm-4 col-md-3 col-lg-12">
         <div
@@ -155,14 +158,14 @@ export default {
       "getWalletBalance",
     ]);
 
-    const loading = ref(false);
+    const loading = ref(true);
 
     onMounted(() => {
       console.log();
       loading.value = true;
       getTableData(location.href + "?get=1")
         .then((res) => {
-          console.log(tableData.value.items[0]);
+          console.log(tableData.value.items);
           loading.value = false;
         })
         .catch(() => {
