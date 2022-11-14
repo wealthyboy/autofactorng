@@ -113,7 +113,7 @@
       </div>
     </div>
   </div>
-  {{ tableData.items}}
+  {{ tableData.items.length}}
   <div
     v-if="!tableData.items"
     class="card"
