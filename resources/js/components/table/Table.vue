@@ -113,7 +113,7 @@
       </div>
     </div>
   </div>
-
+  {{ tableData.items}}
   <div
     v-if="!tableData.items"
     class="card"
