@@ -16,7 +16,7 @@
                     <h2 class="page-title ">Orders</h2>
                     <div class="wallet-balance"></div>
                 </div>
-                <?php echo $__env->make('_partials.table', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <general-table />
             </div>
         </div>
     </div>

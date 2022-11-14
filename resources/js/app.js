@@ -29,6 +29,9 @@ import Addresses from "./components/account/Addresses"
 import FundWallet from "./components/wallet/Fund"
 import Table from "./components/table/Table"
 
+import WalletTable from "./components/wallet/Index"
+
+
 
 
 
@@ -51,9 +54,12 @@ app.component('Account', Account)
 app.component('ChangePassword', ChangePassword)
 app.component('TrackOrders', TrackOrders)
 app.component('Addresses', Addresses)
-app.component('Addresses', Addresses)
+app.component('ShipAddresses', Addresses)
 app.component('FundWallet', FundWallet)
 app.component('GeneralTable', Table)
+app.component('WalletTable', WalletTable)
+
+
 
 
 

@@ -1,6 +1,30 @@
 <template>
   <message :message="post_server_error" />
 
+  <div
+    class="alert alert-success alert-dismissible fade show"
+    role="alert"
+  >
+    <div>
+      <p>
+        <strong>Order placed at: </strong> ----------.
+
+      </p>
+      <p>
+        <strong>Order status: </strong> -------------- <br />
+
+      </p>
+
+    </div>
+
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
+  </div>
+
   <form
     method="POST"
     @submit.prevent="track"

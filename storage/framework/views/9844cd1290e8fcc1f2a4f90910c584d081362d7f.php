@@ -12,14 +12,7 @@
             <?php echo $__env->make('_partials.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
             <div class="col-md-9">
-                <div class="d-flex align-items-center justify-content-between">
-                    <h2 class="page-title ">Wallet</h2>
-                    <div class="wallet-balance">
-                        <fund-wallet :user="<?php echo e($user); ?>" />
-                    </div>
-                </div>
-                <general-table />
-
+                <wallet-table :user="<?php echo e($user); ?>" />
             </div>
         </div>
     </div>

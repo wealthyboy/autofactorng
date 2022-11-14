@@ -68,8 +68,19 @@
                 class=""
               >
                 <div class="align-middle  text-sm">
-                  <h6 class="mb-0 text-xs">{{ td }}</h6>
+                  <h6 class="mb-0 text-xs">{{ td }}
+                  </h6>
                 </div>
+              </td>
+
+              <td v-if="tableData.meta.show">
+                <a
+                  :href="tableData.meta.urls[index].url"
+                  data-bs-toggle="tooltip"
+                  data-bs-original-title="Preview order"
+                >
+                  <i class="material-symbols-outlined text-secondary position-relative text-lg">preview</i>
+                </a>
               </td>
 
             </tr>
@@ -107,7 +118,7 @@ import { useActions, useGetters } from "vuex-composition-helpers";
 import Pagination from "../pagination/Pagination";
 
 export default {
-  props: ["url"],
+  props: ["url", "reload"],
   components: {
     Pagination,
   },
@@ -123,7 +134,7 @@ export default {
     ]);
 
     onMounted(() => {
-      getTableData(location.href);
+      getTableData(location.href + "?get=1");
       getWalletBalance();
     });
 

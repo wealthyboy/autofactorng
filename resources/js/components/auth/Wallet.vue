@@ -47,8 +47,8 @@ import { loadScript } from "../../utils/Payment";
 import { useStore } from "vuex";
 
 export default {
-  emits: ["switched"],
   props: ["user"],
+  emits: ["wallet:funded"],
   components: {
     SimpleMessage,
     GeneralButton,
@@ -87,12 +87,11 @@ export default {
       "getTableData",
     ]);
 
-    function change(page) {
-      emit("switched", page);
-    }
-
     function fund() {
       this.v$.$touch();
+      if (this.v$.$error) {
+        return;
+      }
 
       var handler = PaystackPop.setup({
         key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
@@ -115,9 +114,7 @@ export default {
           store.commit("setWalletBalance", new_balnce);
           error.value = false;
           message.value = "Your money has been addedd";
-          setTimeout(() => {
-            getTableData(location.href);
-          }, 5000);
+          emit("wallet:funded");
         },
         onClose: function () {},
       });
@@ -148,7 +145,6 @@ export default {
       text,
       loading,
       message,
-      change,
       getTableData,
       getWalletBalance,
       walletBalance,

@@ -23,7 +23,10 @@
         style="height: 200px;"
         class="form-floating mx-2 mt-2"
       >
-        <wallet :user="user" />
+        <wallet
+          @wallet:funded="refresh"
+          :user="user"
+        />
       </div>
     </div>
 
@@ -33,10 +36,24 @@
 import Modal from "../Modal/Index";
 import GeneralInput from "../Forms/Input";
 import Wallet from "../auth/Wallet";
+import { useActions } from "vuex-composition-helpers";
 
 export default {
   components: { Modal, GeneralInput, Wallet },
   props: ["user"],
-  setup() {},
+  setup() {
+    const { getTableData } = useActions(["getTableData"]);
+
+    function refresh(m) {
+      console.log(m);
+      setTimeout(() => {
+        getTableData(location.href);
+      }, 3000);
+    }
+
+    return {
+      refresh,
+    };
+  },
 };
 </script>

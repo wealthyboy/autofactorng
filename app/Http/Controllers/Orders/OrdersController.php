@@ -17,10 +17,20 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $nav = (new AccountSettingsNav())->nav();
         $pagination = auth()->user()->orders()->paginate(4);
         $collections = $this->getColumnNames($pagination);
         $columns = $this->getGetCustomColumnNames();
+        $nav = (new AccountSettingsNav())->nav();
+
+
+
+        if (request()->ajax()) {
+            return response([
+                'collections' => $this->getColumnNames($pagination),
+                'pagination' =>  $pagination
+            ]);
+        }
+
         return view('orders.index', compact('nav', 'collections', 'columns', 'pagination'));
     }
 
@@ -33,7 +43,13 @@ class OrdersController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $page_title = 'Order Information';
+        $nav = (new AccountSettingsNav())->nav();
+
+        // $currency = $this->settings->currency->symbol;
+        // $total = $order->ordered_products[0]->sum_items($order->id)->items_total;
+        // $currency =  Helper::getCurrency();
+        return view('orders.show', compact('nav', 'order', 'page_title'));
     }
 
 
@@ -54,15 +70,20 @@ class OrdersController extends Controller
                 $collection->map(function (Order $order) {
                     return [
                         "order id" => '#' . optional($order)->id,
-                        "customer" =>  \Auth::user()->fullname(),
-                        "total" => '₦' . optional($order)->total,
-                        "date_added" => $order->created_at->format('d-m-y')
+                        "Customer" =>  \Auth::user()->fullname(),
+                        "Total" => '₦' . optional($order)->total,
+                        "Date Added" => $order->created_at->format('d-m-y')
                     ];
                 })
             ],
             'meta' => [
                 'show' => true,
-                'right' => null
+                'right' => null,
+                'urls' =>  $collection->map(function (Order $order) {
+                    return [
+                        "url" => '/orders/' . optional($order)->id,
+                    ];
+                })
             ]
         ];
     }

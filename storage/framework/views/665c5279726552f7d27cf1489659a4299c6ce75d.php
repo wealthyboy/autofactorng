@@ -9,7 +9,7 @@
             <?php echo $__env->make('_partials.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <div class="col-md-6">
                 <h2 class="page-t">Address</h2>
-                <addresses />
+                <ship-addresses />
             </div>
         </div>
     </div>

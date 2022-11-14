@@ -11,7 +11,7 @@
             @include('_partials.nav')
             <div class="col-md-6">
                 <h2 class="page-t">Address</h2>
-                <addresses />
+                <ship-addresses />
             </div>
         </div>
     </div>

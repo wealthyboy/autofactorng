@@ -40,6 +40,7 @@ class WalletsController extends Controller
                 'pagination' =>  $pagination
             ]);
         }
+
         return view('wallet.index', compact('nav', 'collections', 'columns', 'pagination'));
     }
 
