@@ -153,6 +153,7 @@ export default {
         needsValidation: true,
         error: this.v$.$error,
         post_server_error: post_server_error,
+        method: "post",
       };
 
       makePost(postData)
