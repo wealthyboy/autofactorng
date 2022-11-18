@@ -50,13 +50,11 @@
                      <img src="https://autofactor.ng/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
                   </a>
                </div>
-               <!-- End .header-left -->
 
                <div class="header-right w-lg-max">
                   <div class="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0">
                      <a href="#" class="search-toggle" role="button"><i class="icon-search-3"></i></a>
                   </div>
-                  <!-- End .header-search -->
 
 
                   <?php if(auth()->guard()->check()): ?>
