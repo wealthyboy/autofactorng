@@ -13,6 +13,7 @@
 
 <div class="container-fluid">
 
+
     @include('_partials.recently_viewed_products',['name' => ' RECENTLY VIEWED & RELATED'])
 
     @include('_partials.auto_cover')

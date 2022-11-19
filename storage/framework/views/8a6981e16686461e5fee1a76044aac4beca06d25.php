@@ -11,6 +11,7 @@
 
 <div class="container-fluid">
 
+
     <?php echo $__env->make('_partials.recently_viewed_products',['name' => ' RECENTLY VIEWED & RELATED'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <?php echo $__env->make('_partials.auto_cover', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>

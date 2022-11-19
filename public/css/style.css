@@ -5265,7 +5265,8 @@ a:focus {
     content: ""
 }
 
-form {
+
+/* form {
     margin-bottom: 3.5rem
 }
 
@@ -5579,7 +5580,7 @@ label {
 
 .form-wide {
     width: 100%
-}
+} */
 
 @media (min-width:768px) {
     .form-footer,
