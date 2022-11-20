@@ -9,6 +9,8 @@ use App\Models\User;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\RegistrationComplete;
 
 class HomeController extends Controller
 {
@@ -35,6 +37,9 @@ class HomeController extends Controller
         /// dd(\Schema::getColumnListing('users'));
 
         // return redirect('/');
+
+        Mail::to('jacob.atam@gmail.com')
+            ->send(new RegistrationComplete);
         $featured_categories = Category::where('is_featured', true)->get();
         $categories = Category::parents()->get();
         $brands = Brand::where('is_featured', true)->get();
