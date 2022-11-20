@@ -38,8 +38,8 @@ class HomeController extends Controller
 
         // return redirect('/');
 
-        Mail::to('jacob.atam@gmail.com')
-            ->send(new RegistrationComplete);
+        // Mail::to('jacob.atam@gmail.com')
+        //     ->send(new RegistrationComplete);
         $featured_categories = Category::where('is_featured', true)->get();
         $categories = Category::parents()->get();
         $brands = Brand::where('is_featured', true)->get();
