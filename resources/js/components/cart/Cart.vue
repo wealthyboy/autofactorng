@@ -46,7 +46,6 @@
                     type="button"
                     aria-label="decrease value"
                     aria-describedby=""
-                    data-name="adults"
                     data-math="minus"
                     class="mr-3   raised cursor-pointer add-subtract  min-adults"
                   ><span><i class="fas fa-minus"></i></span></button>
@@ -61,7 +60,6 @@
                   <button
                     @click="addQty"
                     data-math="add"
-                    data-name="adults"
                     data-number="1"
                     type="button"
                     class="ml-3 raised cursor-pointer add-subtract"

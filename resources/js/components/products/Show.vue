@@ -37,42 +37,16 @@
       <div class="price-box col-8">
 
         <template v-if="product.discounted_price">
-          <span class="old-price">₦{{ product.formatted_sale_price }}</span>
-          <span class="new-price">₦{{ product.formatted_price }}</span>
+          <span class="old-price">{{ $filters.formatNumber(product.formatted_sale_price) }}</span>
+          <span class="new-price">{{  $filters.formatNumber(product.formatted_price) }}</span>
         </template>
         <template v-else>
-          <span class="new-price">₦{{  product.formatted_price }}</span>
+          <span class="new-price">{{  product.formatted_price }}</span>
         </template>
       </div>
 
       <div class="col-4">
-        <div class="d-flex align-items-center justify-content-between">
-          <button
-            @click="minQty"
-            type="button"
-            aria-label="decrease value"
-            aria-describedby=""
-            data-name="adults"
-            data-math="minus"
-            class="mr-3   raised cursor-pointer add-subtract  min-adults"
-          ><span><i class="fas fa-minus"></i></span></button>
-          <div>
-            <input
-              type="text"
-              class="w-100"
-              v-model="qty"
-            >
-
-          </div>
-          <button
-            @click="addQty"
-            data-math="add"
-            data-name="adults"
-            data-number="1"
-            type="button"
-            class="ml-3 raised cursor-pointer add-subtract"
-          ><span><i class="fas fa-plus"></i></span></button>
-        </div>
+        <cart-qty @qty:updated="handleQty" />
       </div>
     </div>
 
@@ -102,6 +76,7 @@
 import { mapGetters, mapActions } from "vuex";
 import CheckVehicle from "../general/CheckVehicle";
 import GeneralButton from "../general/Button";
+import CartQty from "../utils/CartQty";
 
 export default {
   data() {
@@ -119,19 +94,15 @@ export default {
   components: {
     CheckVehicle,
     GeneralButton,
+    CartQty,
   },
   methods: {
     ...mapActions({
       addProductToCart: "addProductToCart",
     }),
 
-    addQty() {
-      this.qty++;
-    },
-
-    minQty() {
-      if (this.qty == 1) return;
-      this.qty--;
+    handleQty(qty) {
+      this.qty = qty;
     },
 
     addToCart: function (product_id) {
