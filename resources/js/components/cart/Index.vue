@@ -7,24 +7,26 @@
       :cart="cart"
     ></cart>
 
-    <div class="col-md-4">
+    <div class="col-md-4 mb-5">
       <div class="cart   raised">
         <div class="cart_totalse">
           <h3> Summary </h3>
-          <div class="p-3 border-bottom  d-flex justify-content-between">
+          <div class="py-5 border-bottom  d-flex justify-content-between">
             <span class="bold ">Subtotal</span>
-            <span class="price-amount amount bold float-right"><span class="currencySymbol">{{  meta.currency }}{{ $filters.formatNumber(meta.sub_total ) }}</span></span>
+            <span class="price-amount amount bold float-right"><span class="currencySymbol">{{ $filters.formatNumber(meta.sub_total ) }}</span></span>
           </div>
 
-          <div class="p-3 d-flex justify-content-between">
+          <div class="py-5 d-flex justify-content-between">
             <span class="bold">Total</span>
-            <span class="price-amount amount bold "><span class="currencySymbol">{{  meta.currency }}{{ $filters.formatNumber(meta.sub_total) }}</span></span>
+            <span class="price-amount amount bold "><span class="currencySymbol">{{ $filters.formatNumber(meta.sub_total) }}</span></span>
           </div>
-          <div class="proceed-to-checkout text-center">
+
+          <div class="checkout-methods w-100">
             <a
               href="/checkout"
-              class="checkout-button btn btn--lg btn--primary bold full-width"
-            >Proceed to checkout</a>
+              class="btn btn-block btn-dark w-100"
+            >Proceed to Checkout
+              <i class="fa fa-arrow-right"></i></a>
           </div>
         </div>
       </div>

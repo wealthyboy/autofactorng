@@ -26,12 +26,10 @@
     </p>
 
     <p class="product-description">
-
       <check-vehicle
         class="w-100"
         :fitText="product.fitText"
       />
-
     </p>
 
     <hr class="short-divider">
@@ -82,7 +80,7 @@
 
     <div class="product-action">
       <general-button
-        class="btn btn-dark btn-place-order"
+        class="btn btn-block btn-dark w-100"
         :text="text"
         :type="button"
         :loading="loading"

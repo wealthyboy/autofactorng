@@ -1,42 +1,81 @@
 <template>
-  <div class="col-sm-7 col-12 product-default left-details product-list mb-2">
-    <figure>
-      <a :href="cart.product.link">
+  <div class="col-lg-8">
+    <div class="cart-table-container">
+      <table class="table table-cart">
+        <thead>
+          <tr>
+            <th class="thumbnail-col"></th>
+            <th class="product-col">Product</th>
+            <th class="price-col">Price</th>
+            <th class="qty-col">Quantity</th>
+            <th class="text-right">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="product-row">
+            <td>
+              <figure class="product-image-container">
+                <a
+                  href="/"
+                  class="product-image"
+                >
+                  <img
+                    :src="cart.image"
+                    alt="product"
+                  >
+                </a>
 
-        <img
-          :src="cart.product.image_m"
-          width="250"
-          height="250"
-          alt="product"
-        />
-      </a>
-    </figure>
-    <div class="product-details flex-grow-1">
+                <a
+                  href="#"
+                  class="btn-remove icon-cancel"
+                  title="Remove Product"
+                ></a>
+              </figure>
+            </td>
+            <td class="product-col">
+              <h5 class="product-title">
+                <a href="/">{{ cart.product.name }}</a>
+              </h5>
+            </td>
+            <td>{{ $filters.formatNumber(cart.price)  }}</td>
+            <td>
+              <div class="product-single-qty">
+                <div class="d-flex align-items-center justify-content-between">
+                  <button
+                    @click="minQty"
+                    type="button"
+                    aria-label="decrease value"
+                    aria-describedby=""
+                    data-name="adults"
+                    data-math="minus"
+                    class="mr-3   raised cursor-pointer add-subtract  min-adults"
+                  ><span><i class="fas fa-minus"></i></span></button>
+                  <div>
+                    <input
+                      type="text"
+                      class="w-100"
+                      v-model="qty"
+                    >
 
-      <h3 class="product-title"> <a :href="cart.product.link">{{cart.product.name }}</a>
-      </h3>
-      <p>
-        SKU #{{ cart.product.sku }}
-      </p>
+                  </div>
+                  <button
+                    @click="addQty"
+                    data-math="add"
+                    data-name="adults"
+                    data-number="1"
+                    type="button"
+                    class="ml-3 raised cursor-pointer add-subtract"
+                  ><span><i class="fas fa-plus"></i></span></button>
+                </div>
+              </div><!-- End .product-single-qty -->
+            </td>
+            <td class="text-right"><span class="subtotal-price">$17.90</span></td>
+          </tr>
 
-      <div class="price-box">
+        </tbody>
 
-        <template v-if="cart.product.discounted_price">
-          <span class="old-price">{{ cart.product.currency }}{{  cart.product.formatted_sale_price }}</span>
-          <span class="new-price">{{ cart.product.currency }}{{ cart.product.formatted_price }}</span>
-        </template>
-        <template v-else>
-          <span class="new-price">{{ cart.product.currency }}{{  cart.product.formatted_price }}</span>
-        </template>
-      </div>
-
-      <div class="product-action">
-
-      </div>
-
-    </div>
-
-    <!-- End .product-details -->
+      </table>
+    </div><!-- End .cart-table-container -->
   </div>
 </template>
 
