@@ -1,70 +1,71 @@
 <template>
-    <div class="product-checkout-review-order">
-    <h3>Your Order</h3>
-    <div class="order_review">
-        <table>
-            <thead>
-                <tr>
-                    <th class="product-name">Product</th>
-                    <th class="product-total">Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="cart_item">
-                    <td class="product-name">Product Name&nbsp;<strong class="product-qty">× 3</strong></td>
-                    <td class="product-total"><span class="amount"><span class="Price-currencySymbol">
-                    $
-                    </span>Sub Total</span></td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr class="cart-subtotal">
-                    <th>Subtotal</th>
-                    <td><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span> sub_total </span></td>
-                </tr>
-                <tr class="shipping">
-                    <th>Shipping</th>
-                    <td data-title="Shipping">
-                        <p class="form-field-wrapper col-sm-12">
-                            <select name="shipping" id="shipping-price" class="form-full input--lg" autocomplete="shipping" tabindex="-1" aria-hidden="true">
-                            <option value="" selected="selected">Choose a shipping</option> 
-                                <option value="shipping_price ">shipping_name ₦ shipping_price</option>
-                            </select>
-                        </p>
-                        Prices is based on your shiping address 
-                    </td>
-                </tr>
-                
-                <tr class="order-total">
-                    <th>Total</th>
-                    <td><strong><span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>sub_total</span></strong> </td>
-                </tr>
-            </tfoot>
-        </table>
-        <div class="checkout-payment">
-            <div class="form-field-wrapper">
-                <input class="copupon-input form-full" placeholder="Email Address" type="text">
-                <button class="coupon-btn btn btn--primary" type="button">Apply Coupon</button>
-            </div>
-            <div class="place-order">
-                <div class="terms-and-conditions-wrapper">
-                    <p>
-                        <label>
-                            <input class="" name="terms" id="terms" type="checkbox">&nbsp;
-                        <span class="woocommerce-terms-and-conditions-checkbox-text">I have read and agree to the website <a href="checkout.html#" class="woocommerce-terms-and-conditions-link" target="_blank">Terms and Conditions</a></span>
-                        </label>
-                    </p>
-                </div>
-
-                //
-            </div>
-        </div>
+  <div
+    v-for="cart in carts"
+    :key="cart.id"
+    class="row cart-rows  mb-2 pt-4 pb-2 border-top border-gray"
+  >
+    <div class="col-md-3 col-6">
+      <div class="cart-image"><img
+          :src="cart.image"
+          alt=""
+        ></div>
     </div>
-</div>
+    <div class="col-md-9 col-6">
+      <div class="tag mb-1 brand-name bold color--gray"></div>
+      <div><a href="#">{{ cart.product.product_name }}</a></div>
+      <div class="product-item-prices d-flex">
+
+        <div
+          v-if="cart.product.discounted_price"
+          class="product--price--amount mr-5"
+        >
+          <span class="retail--title text-gold">SALE PRICE</span>
+          <span class="product--price text-danger">{{ cart.product.formatted_sale_price }}</span>
+          <span class="retail--title"></span>
+        </div>
+        <div
+          class="product--price--amount retail ml-5"
+          v-else
+        >
+          <span class="retail--title text-gold">PRICE</span>
+          <span class="product--price retail--price ">{{   cart.product.formatted_price}}</span>
+          <span class="retail--title"></span>
+        </div>
+
+      </div>
+      <!---->
+      <!---->
+    </div>
+  </div>
+
+  <p class="pt-3 pb-1 d-flex justify-content-between">
+    <span
+      class="bold"
+      style="font-size: 22px;"
+    >Subtotal</span>
+    <span class="bold float-right">
+      <span class="currencySymbol">{{ $filters.formatNumber(meta.sub_total) }}</span>
+    </span>
+  </p>
+  <p class="border-top border-bottom pb-3 pt-3"><span class="bold">Shipping</span> <span class="bold float-right"><small> Shipping is based on your location</small></span></p>
+
 </template>
 <script>
+import { mapGetters, mapActions } from "vuex";
 
 export default {
-    
-}
+  computed: {
+    ...mapGetters({
+      carts: "carts",
+      meta: "meta",
+      addresses: "addresses",
+      default_shipping: "default_shipping",
+    }),
+  },
+  methods: {
+    ...mapActions({
+      getCart: "getCart",
+    }),
+  },
+};
 </script>

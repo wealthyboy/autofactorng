@@ -14,7 +14,7 @@
       > + Add Address </a>
     </div>
 
-    <ul class="">
+    <ul class="p-0">
       <li
         class="mb-3"
         v-for="(location, index) in addresses"

@@ -4,14 +4,40 @@
     <div class="row   align-items-start">
       <div class="col-md-7">
         <div class="col-md-12 m7 bg--light border border-gray mb-2">
-          <div class="head  border-bottom  pt-3 mb-3">
+          <div class="head  border-bottom   mb-3">
             <h3>1. SHIPPING ADDRESS</h3>
           </div>
           <ship-address />
         </div>
+
+        <div class="col-md-12 bg--light">
+          <div class="pt-3 pb-2 ">
+            <span class="float-right">
+              <div class="payment-icons mt-1 d-flex"></div>
+            </span>
+            <h3>2. PAYMENT</h3>
+          </div>
+
+          <cart-summary />
+
+        </div>
+
       </div>
-      <div class="col-md-5">
-        Aaaa
+      <div class="col-5">
+        <div class="col-md-12 d-none d-lg-block  mb-3">
+          <div class="cart-collateralse bg--light  border pb-3 pt-3 pl-3 pt-3 pr-3">
+            <div class="cart_totalse">
+              <div class="head  border-bottom">
+                <h3>SUMMARY</h3>
+              </div>
+
+              <cart-summary />
+
+              <total />
+              <div class="proceed-to-checkout"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -23,12 +49,16 @@ import message from "../message/index";
 import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
 import ErrorMessage from "../messages/components/Error";
+import CartSummary from "./Summary";
+import Total from "./Total";
 
 export default {
   components: {
     ShipAddress,
     message,
     ErrorMessage,
+    CartSummary,
+    Total,
   },
   props: {
     csrf: Object,

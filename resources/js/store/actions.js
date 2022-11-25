@@ -62,7 +62,7 @@ export const getCart = ({ commit }) => {
         .then(response => {
             commit("setCart", response.data);
             commit("setCartMeta", response.data.meta);
-            document.getElementById("js-loading").style.display = "none";
+            // document.getElementById("js-loading").style.display = "none";
             commit("Loading", false);
             return Promise.resolve(response);
         })

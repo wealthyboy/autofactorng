@@ -51,13 +51,16 @@ class AddressController extends Controller
 
         $shipping = [];
 
+
+
         return AddressResource::collection(
             $addresses
         )->additional([
             'meta' => [
                 'shipping' => $shipping,
                 'default_shipping' => null,
-                'states' => Location::all()
+                'states' => Location::all(),
+                'default_address' =>  $default_address
             ]
         ]);
     }
@@ -84,7 +87,9 @@ class AddressController extends Controller
         $address->city  =  $request->city;
         $address->state_id =  $request->state_id;
         $address->save();
-        $addresses =  Address::where(['user_id' =>  \Auth::id(), 'is_active' => true])->get();
+        $addresses =  Address::where(['user_id' =>  \Auth::id(), 'is_active' => true])->first();
+
+
         if (null == $addresses) {
             $address->is_active  = 1;
             $address->save();
