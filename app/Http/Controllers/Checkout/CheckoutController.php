@@ -39,6 +39,7 @@ class CheckoutController extends Controller
     {
 
         $cart_total  = Cart::sum_items_in_cart();
+
         if (!$cart_total) {
             $error['error'] = 'We cannot process your voucher';
             return response()->json($error, 422);
