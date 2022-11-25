@@ -220,6 +220,68 @@ timeline-steps .timeline-step {
     opacity: .5
 }
 
+.full-bg {
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    z-index: 0;
+}
+
+
+/* Position text in the middle */
+
+.signup--middle {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #ffffff;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: auto;
+    z-index: 1;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 10px solid #FFF;
+    border-radius: 50%;
+    position: relative;
+    transform: rotate(45deg);
+    box-sizing: border-box;
+}
+
+.loader::before {
+    content: "";
+    position: absolute;
+    box-sizing: border-box;
+    inset: -10px;
+    border-radius: 50%;
+    border: 10px solid #FF3D00;
+    animation: prixClipFix 2s infinite linear;
+}
+
+@keyframes prixClipFix {
+    0% {
+        clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0)
+    }
+    25% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
+    }
+    50% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
+    }
+    75% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%)
+    }
+    100% {
+        clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0)
+    }
+}
+
 aside.sidebar-shop.col-lg-3.order-lg-1.mobile-sidebar {
     // width: 260px;
 }

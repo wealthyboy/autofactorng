@@ -23,5 +23,6 @@ export default {
     states: [],
     walletBalance: null,
     tableData: [],
-    meta: null
+    meta: null,
+    loading: false
 }

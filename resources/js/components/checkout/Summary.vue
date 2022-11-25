@@ -47,13 +47,10 @@
       <span class="currencySymbol">{{ $filters.formatNumber(meta.sub_total) }}</span>
     </span>
   </p>
-  <p
-    v-if="prices"
-    class="border-top border-bottom pb-3 pt-3  d-flex justify-content-between"
-  ><span class="bold">Shipping</span> <span class="bold float-right"><small> {{ $filters.formatNumber(prices.ship_price) }}</small></span></p>
+  <p class="border-top border-bottom pb-3 pt-3  d-flex justify-content-between"><span class="bold">Shipping</span> <span class="bold float-right"><small> {{ $filters.formatNumber(prices.ship_price) }}</small></span></p>
 
   <p
-    v-if="prices && prices.heavy_item_price"
+    v-if=" prices.heavy_item_price"
     class="border-top border-bottom pb-3 pt-3  d-flex justify-content-between"
   ><span class="bold">Heavy/Large Items Charge</span> <span class="bold float-right"><small> {{ $filters.formatNumber(prices.heavy_item_price) }}</small></span></p>
 

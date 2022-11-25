@@ -1,6 +1,28 @@
 
 <template>
-  <div class="container">
+  <section
+    v-if="loading"
+    style="height: 100%;"
+    class=""
+  >
+    <div class="container-fluid">
+      <div class="full-bg">
+        <div class="signup--middle">
+          <div
+            class="spinner-border"
+            style="width: 3rem; height: 3rem; color:red;"
+            role="status"
+          >
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div
+    v-if="!loading"
+    class="container"
+  >
     <div class="row   align-items-start">
       <div class="col-md-7">
         <div class="col-md-12 m7 bg--light border border-gray mb-2">
@@ -26,7 +48,7 @@
               <input
                 type="text"
                 v-model="coupon"
-                class="form-control"
+                class="form-control b"
                 placeholder="Enter  code"
                 required=""
               >
@@ -54,7 +76,7 @@
 
           </div>
 
-          <total />
+          <total :total="prices.total" />
 
           <div class="checkout-methods w-100 mb-5 mt-5">
             <a
@@ -90,7 +112,7 @@
 
               <cart-summary />
 
-              <total :total="prices" />
+              <total :total="prices.total" />
               <div class="proceed-to-checkout"></div>
             </div>
           </div>
@@ -143,7 +165,6 @@ export default {
       coupon_error: null,
       token: Window.csrf,
       payment_method: null,
-      loading: false,
       pageIsLoading: true,
       delivery_note: null,
       paymentIsComplete: false,
@@ -157,6 +178,7 @@ export default {
       addresses: "addresses",
       default_shipping: "default_shipping",
       prices: "prices",
+      loading: "loading",
     }),
     shippingIsFree() {
       return this.$root.settings.shipping_is_free == 0

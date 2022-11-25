@@ -8,7 +8,7 @@
       <span
         class="currencySymbol"
         style="font-size: 28px;"
-      >{{ total }}</span>
+      >{{ $filters.formatNumber(total) }}</span>
     </span>
   </p>
 </template>

@@ -81,7 +81,7 @@ export const errors = (state) => {
 }
 
 export const loading = (state) => {
-    return state.loadn
+    return state.loading
 }
 
 export const showForm = (state) => {

@@ -43,7 +43,6 @@ class AddressController extends Controller
 
     public function allAddress()
     {
-        //sleep(30);
         $user =  \Auth::user();
         $addresses = User::find($user->id)->addresses;
         $locations = Location::parents()->orderBy('name', 'asc')->get();
@@ -54,7 +53,9 @@ class AddressController extends Controller
 
         $sub_total =  Cart::sum_items_in_cart();
 
-        $ship_price =  optional(optional($default_address->address_state)->shipping)->price;
+        //return $default_address;
+
+        $ship_price =   $default_address ? optional(optional($default_address->address_state)->shipping)->price : null;
 
         $heavy_item_price = 2;
 

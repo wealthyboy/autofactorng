@@ -100,7 +100,6 @@ import { mapActions, mapGetters } from "vuex";
 import ErrorMessage from "../messages/components/Error";
 import CreateAddress from "./CreateAddress";
 import Loader from "../utils/loader";
-
 export default {
   props: {
     currency: String,
@@ -173,7 +172,6 @@ export default {
       });
       this.states = state[0];
     },
-
     submit: function () {
       this.submiting = true;
       if (this.edit) {
@@ -205,7 +203,6 @@ export default {
       this.location = location;
       this.showForm = true;
       this.edit = true;
-
       console.log(true);
     },
     removeAddress: function (e, id) {

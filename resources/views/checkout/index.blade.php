@@ -1,12 +1,15 @@
 @extends('layouts.checkout')
 
 @section('content')
-<section class="header p-5">
+<section class="header container ">
     <div></div>
     <h2>CHECKOUT</h2>
 </section>
 
 
-<checkout-index />
 
+<!--Content-->
+
+<checkout-index />
+<!--End Content-->
 @endsection

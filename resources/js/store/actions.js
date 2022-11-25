@@ -55,7 +55,7 @@ export const updateCart = ({ commit }, { product_id, quantity }) => {
 };
 
 export const getCart = ({ commit }) => {
-    commit("Loading", true);
+    commit("setLoading", true);
 
     return axios
         .get("/api/cart")
@@ -63,10 +63,11 @@ export const getCart = ({ commit }) => {
             commit("setCart", response.data);
             commit("setCartMeta", response.data.meta);
             // document.getElementById("js-loading").style.display = "none";
-            commit("Loading", false);
+            commit("setLoading", false);
             return Promise.resolve(response);
         })
         .catch((error) => {
+            commit("setLoading", false);
             return Promise.reject(error);
         });
 };
@@ -241,13 +242,13 @@ export const clearErr = (value) => {
 
 
 export const createAddress = ({ dispatch, commit }, { form }) => {
+    commit("setLoading", true);
+
     return axios
         .post("/api/addresses", form)
         .then(response => {
             dispatch("setADl", response);
-            if (response.data.data.length) {
-                commit("setShowForm", false);
-            }
+            commit("setLoading", false);
             return Promise.resolve(response);
         })
         .catch(error => {
@@ -255,6 +256,7 @@ export const createAddress = ({ dispatch, commit }, { form }) => {
                 commit("setShowForm", false);
             }
             context.errors = error.response.data.errors;
+            commit("setLoading", false);
 
             return Promise.reject(error);
 
@@ -299,13 +301,13 @@ export const updateAddresses = ({ dispatch, commit }, { form, id }) => {
 };
 
 export const getAddresses = ({ dispatch, commit }, { context }) => {
+    // commit("setLoading", true);
+
     return axios
         .get("/api/addresses")
         .then(response => {
-            console.log(response)
-            if (!response.data.data.length) {
-                commit("setShowForm", true);
-            }
+            commit("setLoading", false);
+
             dispatch("setADl", response);
             return Promise.resolve(response);
         })
@@ -319,6 +321,8 @@ export const getAddresses = ({ dispatch, commit }, { context }) => {
             //     context.error =  error.response.data.errors
             //     commit('setFormErrors', error.response.data.errors)
             // }
+            //commit("setLoading", false);
+
         });
 };
 
