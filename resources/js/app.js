@@ -30,6 +30,8 @@ import FundWallet from "./components/wallet/Fund"
 import Table from "./components/table/Table"
 
 import WalletTable from "./components/wallet/Index"
+import CheckoutIndex from "./components/checkout/CheckoutIndex"
+
 
 
 
@@ -46,6 +48,8 @@ const app = createApp({})
 app.component('ProductsItems', Products)
 app.component('Show', Show)
 app.component('CartSideBar', CartSideBar)
+app.component('CheckoutIndex', CheckoutIndex)
+
 app.component('Login', Login)
 app.component('Register', Register)
 app.component('CartSummary', CartSummary)
@@ -58,10 +62,6 @@ app.component('ShipAddresses', Addresses)
 app.component('FundWallet', FundWallet)
 app.component('GeneralTable', Table)
 app.component('WalletTable', WalletTable)
-
-
-
-
 
 
 app.config.globalProperties.$filters = {

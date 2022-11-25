@@ -118,12 +118,7 @@ class CartController  extends Controller
 
 		if ($request->ajax()) {
 			$cart =  Cart::find($cart_id);
-			if ($cart && $cart->quantity > 1) {
-				$cart->update([
-					'quantity' => ($cart->quantity - 1),
-					'total' => ($cart->quantity - 1) * $cart->price
-				]);
-			} else {
+			if (null !== $cart) {
 				$cart->delete();
 			}
 			return $this->loadCart($request);

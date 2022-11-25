@@ -37,7 +37,7 @@
       <div class="price-box col-8">
 
         <template v-if="product.discounted_price">
-          <span class="old-price">{{ $filters.formatNumber(product.formatted_sale_price) }}</span>
+          <span class="old-price">{{  $filters.formatNumber(product.formatted_sale_price) }}</span>
           <span class="new-price">{{  $filters.formatNumber(product.formatted_price) }}</span>
         </template>
         <template v-else>
@@ -46,7 +46,10 @@
       </div>
 
       <div class="col-4">
-        <cart-qty @qty:updated="handleQty" />
+        <cart-qty
+          :cart="null"
+          @qty:updated="handleQty"
+        />
       </div>
     </div>
 
@@ -102,7 +105,7 @@ export default {
     }),
 
     handleQty(qty) {
-      this.qty = qty;
+      this.qty = qty.qty;
     },
 
     addToCart: function (product_id) {

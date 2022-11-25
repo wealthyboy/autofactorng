@@ -283,7 +283,7 @@
                </li>
                <li class="border-0">
                   <a href="#" target="_blank">
-                     Buy Porto!
+                     Buy Autofactorng!
                      <span class="tip tip-hot">Hot</span>
                   </a>
                </li>
@@ -354,7 +354,7 @@
          <h2>Subscribe to newsletter</h2>
 
          <p>
-            Subscribe to the Porto mailing list to receive updates on new arrivals, special offers and our promotions.
+            Subscribe to the Autofactorng mailing list to receive updates on new arrivals, special offers and our promotions.
          </p>
 
          <form action="#">

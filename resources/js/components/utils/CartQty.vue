@@ -30,22 +30,27 @@
 import { ref } from "vue";
 
 export default {
+  props: ["cart"],
   emits: ["qty:updated"],
 
   setup(props, { emit }) {
-    const qty = ref(1);
+    let cart = props.cart;
+    console.log(cart);
+    const qty = ref(null !== cart ? cart.quantity : 1);
+
+    let product_id = cart ? cart.product.id : null;
 
     function addQty() {
       qty.value++;
 
-      emit("qty:updated", qty.value);
+      emit("qty:updated", { id: product_id, qty: qty.value });
     }
 
     function minQty() {
       if (qty.value == 1) return;
       qty.value--;
 
-      emit("qty:updated", qty.value);
+      emit("qty:updated", { id: product_id, qty: qty.value });
     }
 
     return {

@@ -1,103 +1,85 @@
 <template>
-  <div class="col-lg-8">
-    <div class="cart-table-container">
-      <table class="table table-cart">
-        <thead>
-          <tr>
-            <th class="thumbnail-col"></th>
-            <th class="product-col">Product</th>
-            <th class="price-col">Price</th>
-            <th class="qty-col">Quantity</th>
-            <th class="text-right">Subtotal</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="product-row">
-            <td>
-              <figure class="product-image-container">
-                <a
-                  href="/"
-                  class="product-image"
-                >
-                  <img
-                    :src="cart.image"
-                    alt="product"
-                  >
-                </a>
 
-                <a
-                  href="#"
-                  class="btn-remove icon-cancel"
-                  title="Remove Product"
-                ></a>
-              </figure>
-            </td>
-            <td class="product-col">
-              <h5 class="product-title">
-                <a href="/">{{ cart.product.name }}</a>
-              </h5>
-            </td>
-            <td>{{ $filters.formatNumber(cart.price)  }}</td>
-            <td>
-              <div class="product-single-qty">
-                <div class="d-flex align-items-center justify-content-between">
-                  <button
-                    @click="minQty"
-                    type="button"
-                    aria-label="decrease value"
-                    aria-describedby=""
-                    data-math="minus"
-                    class="mr-3   raised cursor-pointer add-subtract  min-adults"
-                  ><span><i class="fas fa-minus"></i></span></button>
-                  <div>
-                    <input
-                      type="text"
-                      class="w-100"
-                      v-model="qty"
-                    >
+  <tbody>
+    <tr class="product-row">
+      <td>
+        <figure class="product-image-container">
+          <a
+            href="/"
+            class="product-image"
+          >
+            <img
+              :src="cart.image"
+              alt="product"
+            >
+          </a>
 
-                  </div>
-                  <button
-                    @click="addQty"
-                    data-math="add"
-                    data-number="1"
-                    type="button"
-                    class="ml-3 raised cursor-pointer add-subtract"
-                  ><span><i class="fas fa-plus"></i></span></button>
-                </div>
-              </div><!-- End .product-single-qty -->
-            </td>
-            <td class="text-right"><span class="subtotal-price">$17.90</span></td>
-          </tr>
+          <a
+            href="#"
+            class="btn-remove icon-cancel"
+            title="Remove Product"
+            @click.prevent="removeFromCart(cart.id)"
+          ></a>
+        </figure>
+      </td>
+      <td class="product-col">
+        <h5 class="product-title">
+          <a href="/">{{ cart.product.name }}</a>
+        </h5>
+      </td>
+      <td>{{ $filters.formatNumber(cart.price)  }}</td>
+      <td>
+        <div class="product-single-qty">
+          <cart-qty
+            :cart="cart"
+            @qty:updated="handleQty"
+          />
+        </div><!-- End .product-single-qty -->
+      </td>
+      <td class="text-right"><span class="subtotal-price">{{ $filters.formatNumber(qty *  cart.price)}}</span></td>
+    </tr>
 
-        </tbody>
+  </tbody>
 
-      </table>
-    </div><!-- End .cart-table-container -->
-  </div>
 </template>
 
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import CartQty from "../utils/CartQty";
 
 export default {
+  components: { CartQty },
   data() {
     return {
       removeCart: "Remove",
+      qty: 1,
     };
   },
 
   props: ["cart"],
 
-  computed: {
-    // ...mapGetters({
-    //   carts: "carts",
-    //   meta: "meta",
-    //   loading: "loading",
-    // }),
-  },
+  methods: {
+    ...mapActions({
+      getCart: "getCart",
+      deleteCart: "deleteCart",
+      updateCart: "updateCart",
+    }),
 
-  methods: {},
+    removeFromCart(cart_id) {
+      console.log(cart_id);
+      this.deleteCart({
+        cart_id: cart_id,
+      });
+    },
+
+    handleQty(product) {
+      this.qty = product.qty;
+      this.updateCart({
+        product_id: product.id,
+        quantity: product.qty,
+      });
+    },
+  },
 };
 </script>

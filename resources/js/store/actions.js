@@ -39,17 +39,18 @@ export const getTableData = ({ commit }, url) => {
         });
 };
 
-export const updateCart = ({ commit }, { product_variation_id, quantity }) => {
+export const updateCart = ({ commit }, { product_id, quantity }) => {
     return axios
         .post("/api/cart", {
-            product_variation_id: product_variation_id,
+            product_id: product_id,
             quantity
         })
         .then(response => {
             commit("appendToCart", response.data.data);
             commit("setCartMeta", response.data.meta);
-            document.getElementById("icon-trigger").click();
             return Promise.resolve();
+        }).catch((error) => {
+            return Promise.reject(error);
         });
 };
 
@@ -63,10 +64,11 @@ export const getCart = ({ commit }) => {
             commit("setCartMeta", response.data.meta);
             document.getElementById("js-loading").style.display = "none";
             commit("Loading", false);
-
-            return Promise.resolve();
+            return Promise.resolve(response);
         })
-        .catch(() => {});
+        .catch((error) => {
+            return Promise.reject(error);
+        });
 };
 
 export const deleteCart = ({ commit }, { cart_id }) => {

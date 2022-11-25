@@ -1,11 +1,32 @@
 <template>
 
-  <div class="row mt-3">
-    <cart
-      v-for="cart in carts"
-      :key="cart.id"
-      :cart="cart"
-    ></cart>
+  <page-loader :loading="loading" />
+
+  <div
+    v-if="!loading &&  carts.length"
+    class="row "
+  >
+
+    <div class="col-lg-8">
+      <div class="cart-table-container">
+        <table class="table table-cart">
+          <thead>
+            <tr>
+              <th class="thumbnail-col"></th>
+              <th class="product-col">Product</th>
+              <th class="price-col">Price</th>
+              <th class="qty-col">Quantity</th>
+              <th class="text-right">Subtotal</th>
+            </tr>
+          </thead>
+          <cart
+            v-for="cart in carts"
+            :key="cart.id"
+            :cart="cart"
+          ></cart>
+        </table>
+      </div>
+    </div>
 
     <div class="col-md-4 mb-5">
       <div class="cart   raised">
@@ -31,6 +52,26 @@
         </div>
       </div>
     </div>
+
+  </div>
+
+  <div
+    v-if="!loading &&  !carts.length"
+    class="card"
+  >
+
+    <div class="row justify-content-center align-items-center">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-12">
+        <div
+          href="#"
+          class="icon-box nounderline text-center p-5 "
+        >
+          <i class=""></i>
+          <h5 class="porto-sicon-title mx-2  align-item-self">Your cart is empty</h5>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <!--End Paragraph-->
@@ -39,6 +80,7 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
+import PageLoader from "../utils/PageLoader";
 import Cart from "./Cart";
 export default {
   data() {
@@ -48,6 +90,7 @@ export default {
   },
   components: {
     Cart,
+    PageLoader,
   },
   computed: {
     ...mapGetters({
