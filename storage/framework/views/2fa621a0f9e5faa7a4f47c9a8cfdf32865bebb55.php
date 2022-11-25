@@ -1,5 +1,4 @@
-@extends('admin.layouts.app')
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="row">
     <div class="col-md-7">
         <div class="card">
@@ -10,8 +9,8 @@
                 <h6 class="mb-0">Add Shipping</h6>
             </div>
             <div class="card-body pt-0">
-                <form action="{{ route('shipping.store') }}" method="post" enctype="multipart/form-data">
-                    @csrf
+                <form action="<?php echo e(route('shipping.store')); ?>" method="post" enctype="multipart/form-data">
+                    <?php echo csrf_field(); ?>
 
                     <div class="row mt-3">
                         <div class="col-sm-12 col-12">
@@ -38,9 +37,9 @@
                                         <label class="form-label mt-4 ms-0"> </label>
                                         <select required class="form-control" name="location_id" id="">
                                             <option value="">--Choose Type--</option>
-                                            @foreach($locations as $location)
-                                            <option class="" value="{{ $location->id }}">{{ $location->name }} </option>
-                                            @endforeach
+                                            <?php $__currentLoopData = $locations; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $location): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option class="" value="<?php echo e($location->id); ?>"><?php echo e($location->name); ?> </option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
 
                                     </div>
@@ -57,10 +56,10 @@
                                         <label class="form-label mt-4 ms-0"> </label>
                                         <select class="form-control" name="parent_id" id="">
                                             <option value="">--Choose Type--</option>
-                                            @foreach($shippings as $shipping)
-                                            <option class="" value="{{ $shipping->id }}">{{ $shipping->name }} </option>
-                                            @include('includes.children_options',['obj'=>$shipping,'disabled' => true,'space'=>'&nbsp;&nbsp;'])
-                                            @endforeach
+                                            <?php $__currentLoopData = $shippings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $shipping): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option class="" value="<?php echo e($shipping->id); ?>"><?php echo e($shipping->name); ?> </option>
+                                            <?php echo $__env->make('includes.children_options',['obj'=>$shipping,'disabled' => true,'space'=>'&nbsp;&nbsp;'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
 
                                     </div>
@@ -108,26 +107,26 @@
             <div class="clearfix"></div>
 
 
-            <form action="{{ route('shipping.destroy',['shipping'=>1]) }}" method="post" enctype="multipart/form-data" id="form-attributes">
-                @csrf
-                @method('DELETE')
+            <form action="<?php echo e(route('shipping.destroy',['shipping'=>1])); ?>" method="post" enctype="multipart/form-data" id="form-attributes">
+                <?php echo csrf_field(); ?>
+                <?php echo method_field('DELETE'); ?>
                 <div class="material-datatables">
                     <div class="well well-sm pb-5" style="height: 350px; background-color: #fff; color: black; overflow: auto;">
 
-                        @foreach($shippings as $shipping)
-                        <div class="parent" value="{{ $shipping->id }}">
+                        <?php $__currentLoopData = $shippings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $shipping): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <div class="parent" value="<?php echo e($shipping->id); ?>">
                             <div class="form-check ">
-                                <label class="custom-control-label" for="{{ optional($shipping->location)->name }}">
-                                    <input class="form-check-input" value="{{ $shipping->id }}" type="checkbox" id="{{ optional($shipping->location)->name }}" name="selected[]">
-                                    <span role="button">{{ $shipping->name }} | {{ $shipping->price }} </span>
-                                    <a href="{{ route('shipping.edit',['shipping'=>$shipping->id]) }}">
+                                <label class="custom-control-label" for="<?php echo e(optional($shipping->location)->name); ?>">
+                                    <input class="form-check-input" value="<?php echo e($shipping->id); ?>" type="checkbox" id="<?php echo e(optional($shipping->location)->name); ?>" name="selected[]">
+                                    <span role="button"><?php echo e($shipping->name); ?> | <?php echo e($shipping->price); ?> </span>
+                                    <a href="<?php echo e(route('shipping.edit',['shipping'=>$shipping->id])); ?>">
                                         <i class="fa fa-pencil"></i> Edit</a>
                                 </label>
                             </div>
-                            @include('includes.children',['obj'=>$shipping,'space'=>'&nbsp;&nbsp;','model' => 'shipping','url' => 'shipping'])
+                            <?php echo $__env->make('includes.children',['obj'=>$shipping,'space'=>'&nbsp;&nbsp;','model' => 'shipping','url' => 'shipping'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                         </div>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
                     </div>
@@ -136,11 +135,12 @@
         </div><!--  end card  -->
     </div>
 </div>
-@endsection
-@section('inline-scripts')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('inline-scripts'); ?>
 var parent_id = document.getElementById('parent_id');
 setTimeout(function () {
 const example = new Choices(parent_id);
 }, 1);
 
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/admin/shipping/index.blade.php ENDPATH**/ ?>
