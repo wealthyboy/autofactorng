@@ -35,7 +35,7 @@ class AddressController extends Controller
 
     public function index(Request $request)
     {
-
+        // sleep(30);
         return $this->allAddress();
     }
 
@@ -51,13 +51,15 @@ class AddressController extends Controller
 
         $shipping = [];
 
+        $shipping['ship_price'] =  $default_address->address_state->shipping->price;
+        $shipping['heavy_item_price'] =  2;
 
 
         return AddressResource::collection(
             $addresses
         )->additional([
             'meta' => [
-                'shipping' => $shipping,
+                'shipping' => collect($shipping),
                 'default_shipping' => null,
                 'states' => Location::all(),
                 'default_address' =>  $default_address

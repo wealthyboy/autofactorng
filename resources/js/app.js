@@ -1,9 +1,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-
 import { createApp } from "vue";
-
 import store from './store'
 
 
@@ -28,13 +26,8 @@ import TrackOrders from "./components/account/TrackOrders"
 import Addresses from "./components/account/Addresses"
 import FundWallet from "./components/wallet/Fund"
 import Table from "./components/table/Table"
-
 import WalletTable from "./components/wallet/Index"
 import CheckoutIndex from "./components/checkout/CheckoutIndex"
-
-
-
-
 
 
 // pk_live_f781064afdc5336a6210015e9ff17014d28a4f8b
@@ -49,7 +42,6 @@ app.component('ProductsItems', Products)
 app.component('Show', Show)
 app.component('CartSideBar', CartSideBar)
 app.component('CheckoutIndex', CheckoutIndex)
-
 app.component('Login', Login)
 app.component('Register', Register)
 app.component('CartSummary', CartSummary)
@@ -62,7 +54,6 @@ app.component('ShipAddresses', Addresses)
 app.component('FundWallet', FundWallet)
 app.component('GeneralTable', Table)
 app.component('WalletTable', WalletTable)
-
 
 app.config.globalProperties.$filters = {
     formatNumber(value) {

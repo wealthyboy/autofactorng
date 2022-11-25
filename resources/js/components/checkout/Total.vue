@@ -1,5 +1,5 @@
 <template>
-  <p>
+  <p class="d-flex justify-content-between">
     <span
       class="bold "
       style="font-size: 28px;"

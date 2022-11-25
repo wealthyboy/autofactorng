@@ -13,6 +13,11 @@ class Location extends Model
 
     public function children()
     {
-        return $this->hasMany(Location::class,'parent_id','id');
+        return $this->hasMany(Location::class, 'parent_id', 'id');
+    }
+
+    public function shipping()
+    {
+        return $this->hasOne(Shipping::class);
     }
 }

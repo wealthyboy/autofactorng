@@ -68,10 +68,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
                     <div class="d-flex justify-content-end mt-4">
                         <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
                     </div>
@@ -107,13 +103,11 @@
             </div>
             <div class="clearfix"></div>
 
-
             <form action="{{ route('shipping.destroy',['shipping'=>1]) }}" method="post" enctype="multipart/form-data" id="form-attributes">
                 @csrf
                 @method('DELETE')
                 <div class="material-datatables">
                     <div class="well well-sm pb-5" style="height: 350px; background-color: #fff; color: black; overflow: auto;">
-
                         @foreach($shippings as $shipping)
                         <div class="parent" value="{{ $shipping->id }}">
                             <div class="form-check ">
@@ -125,11 +119,8 @@
                                 </label>
                             </div>
                             @include('includes.children',['obj'=>$shipping,'space'=>'&nbsp;&nbsp;','model' => 'shipping','url' => 'shipping'])
-
                         </div>
                         @endforeach
-
-
                     </div>
                 </div>
             </form>

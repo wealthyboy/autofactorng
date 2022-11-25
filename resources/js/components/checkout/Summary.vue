@@ -47,7 +47,15 @@
       <span class="currencySymbol">{{ $filters.formatNumber(meta.sub_total) }}</span>
     </span>
   </p>
-  <p class="border-top border-bottom pb-3 pt-3"><span class="bold">Shipping</span> <span class="bold float-right"><small> Shipping is based on your location</small></span></p>
+  <p
+    v-if="shipping"
+    class="border-top border-bottom pb-3 pt-3  d-flex justify-content-between"
+  ><span class="bold">Shipping</span> <span class="bold float-right"><small> {{ $filters.formatNumber(shipping.ship_price) }}</small></span></p>
+
+  <p
+    v-if="shipping && shipping.heavy_item_price"
+    class="border-top border-bottom pb-3 pt-3  d-flex justify-content-between"
+  ><span class="bold">Heavy/Large Items Charge</span> <span class="bold float-right"><small> {{ $filters.formatNumber(shipping.heavy_item_price) }}</small></span></p>
 
 </template>
 <script>
@@ -59,6 +67,7 @@ export default {
       carts: "carts",
       meta: "meta",
       addresses: "addresses",
+      shipping: "shipping",
       default_shipping: "default_shipping",
     }),
   },

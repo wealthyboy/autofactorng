@@ -20,6 +20,63 @@
 
           <cart-summary />
 
+          <div class="cart-discount p-0  mt-3 col-sm-12">
+            <h4>Apply Discount Code/Redeem Gift Card</h4>
+            <div class="input-group">
+              <input
+                type="text"
+                v-model="coupon"
+                class="form-control"
+                placeholder="Enter  code"
+                required=""
+              >
+              <div class="input-group-append">
+                <button
+                  @click.prevent="applyCoupon"
+                  class="btn btn-sm btn-primary"
+                  type="submit"
+                >
+                  <span
+                    v-if="submiting"
+                    class='spinner-border spinner-border-sm'
+                    role='status'
+                    aria-hidden='true'
+                  ></span>
+                  Apply
+                </button>
+              </div>
+
+            </div><!-- End .input-group -->
+            <div
+              v-if="coupon_error"
+              class="text- text-danger"
+            >{{coupon_error}}</div>
+
+          </div>
+
+          <total />
+
+          <div class="checkout-methods w-100 mb-5 mt-5">
+            <a
+              href="/checkout"
+              class="btn btn-block btn-dark w-100 mb-2"
+            >
+              Pay with wallet
+              <i class="fa fa-arrow-right"></i></a>
+            <a
+              href="/checkout"
+              class="btn btn-block btn-dark w-100 mb-2"
+            >
+              Buy now pay later
+              <i class="fa fa-arrow-right"></i></a>
+            <a
+              href="/checkout"
+              class="btn btn-block btn-dark w-100"
+            >
+              Pay Now
+              <i class="fa fa-arrow-right"></i></a>
+          </div>
+
         </div>
 
       </div>

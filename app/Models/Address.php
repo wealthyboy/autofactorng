@@ -31,8 +31,6 @@ class Address extends Model
         return $this->belongsTo(Location::class, 'state_id');
     }
 
-
-
     public function getStateAttribute()
     {
         return $this->address_state->name;
