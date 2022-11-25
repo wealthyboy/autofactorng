@@ -1,4 +1,4 @@
-@if (null !== $obj)
+@if (null !== $obj->children)
 @foreach($obj->children as $obj)
 @if( isset($model) && $model->parent_id == $obj->id)
 <option {{ isset($disabled) ? 'disabled' : '' }} value="{{ $obj->id }}" selected="selected">
