@@ -80,6 +80,10 @@ export const setShipping = (state, shipping) => {
     state.shipping = shipping
 }
 
+export const setPrices = (state, prices) => {
+    state.prices = prices
+}
+
 export const setStates = (state, states) => {
     state.states = states
 }

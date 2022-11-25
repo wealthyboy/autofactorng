@@ -8,12 +8,13 @@
       <span
         class="currencySymbol"
         style="font-size: 28px;"
-      >₦29,835</span>
+      >{{ total }}</span>
     </span>
   </p>
 </template>
 <script>
 export default {
+  props: ["total"],
   setup() {},
 };
 </script>

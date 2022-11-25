@@ -48,14 +48,14 @@
     </span>
   </p>
   <p
-    v-if="shipping"
+    v-if="prices"
     class="border-top border-bottom pb-3 pt-3  d-flex justify-content-between"
-  ><span class="bold">Shipping</span> <span class="bold float-right"><small> {{ $filters.formatNumber(shipping.ship_price) }}</small></span></p>
+  ><span class="bold">Shipping</span> <span class="bold float-right"><small> {{ $filters.formatNumber(prices.ship_price) }}</small></span></p>
 
   <p
-    v-if="shipping && shipping.heavy_item_price"
+    v-if="prices && prices.heavy_item_price"
     class="border-top border-bottom pb-3 pt-3  d-flex justify-content-between"
-  ><span class="bold">Heavy/Large Items Charge</span> <span class="bold float-right"><small> {{ $filters.formatNumber(shipping.heavy_item_price) }}</small></span></p>
+  ><span class="bold">Heavy/Large Items Charge</span> <span class="bold float-right"><small> {{ $filters.formatNumber(prices.heavy_item_price) }}</small></span></p>
 
 </template>
 <script>
@@ -67,7 +67,7 @@ export default {
       carts: "carts",
       meta: "meta",
       addresses: "addresses",
-      shipping: "shipping",
+      prices: "prices",
       default_shipping: "default_shipping",
     }),
   },

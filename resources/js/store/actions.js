@@ -378,7 +378,7 @@ export const updateLocations = ({ commit }, payload) => {
 export const setADl = ({ commit }, response) => {
     commit("addToAddress", response.data.data);
     commit("addToLocations", response.data.meta.countries);
-    commit("setShipping", response.data.meta.shipping);
+    commit("setPrices", response.data.meta.prices);
     commit("setStates", response.data.meta.states);
     commit("setDefaultShipping", response.data.meta.default_shipping);
 };

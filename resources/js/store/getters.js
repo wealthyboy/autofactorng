@@ -68,6 +68,10 @@ export const shipping = (state) => {
     return state.shipping
 }
 
+export const prices = (state) => {
+    return state.prices
+}
+
 export const default_shipping = (state) => {
     return state.default_shipping
 }

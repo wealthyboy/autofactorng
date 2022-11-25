@@ -90,7 +90,10 @@ Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'wallets']);
 
 Route::resource('orders', 'Orders\OrdersController', ['names' => 'orders']);
 Route::resource('tracking', 'TrackOrder\TrackOrdersController', ['names' => 'track.orders']);
-Route::resource('address',  'Address\AddressController', ['names' => 'address']);
+Route::resource('address', 'Address\AddressController', ['names' => 'address']);
+
+Route::get('checkout', 'Checkout\CheckoutController@index')->name('checkout');
+Route::post('checkout/coupon', 'Checkout\CheckoutController@coupon');
 
 Route::group(['prefix' => '/api'], function () {
     Route::get('products/{category}',             'Api\Products\ProductsController@index');

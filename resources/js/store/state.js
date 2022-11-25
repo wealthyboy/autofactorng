@@ -10,6 +10,7 @@ export default {
     locations: [],
     voucher: [],
     shipping: null,
+    prices: null,
     default_shipping: [],
     errors: [],
     notification: null,

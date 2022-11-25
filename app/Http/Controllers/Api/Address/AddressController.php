@@ -18,6 +18,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\AddressResource;
 use Illuminate\Http\Request;
 use App\Http\Resources\LocationResource;
+use App\Models\Cart;
 
 class AddressController extends Controller
 {
@@ -49,17 +50,25 @@ class AddressController extends Controller
         $shipping_parents = Shipping::parents()->get();
         $default_address = $user->activeAddress();
 
-        $shipping = [];
+        $prices = [];
 
-        $shipping['ship_price'] =  $default_address->address_state->shipping->price;
-        $shipping['heavy_item_price'] =  2;
+        $sub_total =  Cart::sum_items_in_cart();
+
+        $ship_price =  optional(optional($default_address->address_state)->shipping)->price;
+
+        $heavy_item_price = 2;
+
+        $prices['ship_price'] =  $ship_price;
+        $prices['heavy_item_price'] =  $heavy_item_price;
+        $prices['total'] =   $sub_total + $ship_price + $heavy_item_price;
+
 
 
         return AddressResource::collection(
             $addresses
         )->additional([
             'meta' => [
-                'shipping' => collect($shipping),
+                'prices' => collect($prices),
                 'default_shipping' => null,
                 'states' => Location::all(),
                 'default_address' =>  $default_address

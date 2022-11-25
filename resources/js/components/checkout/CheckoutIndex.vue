@@ -90,7 +90,7 @@
 
               <cart-summary />
 
-              <total />
+              <total :total="prices" />
               <div class="proceed-to-checkout"></div>
             </div>
           </div>
@@ -156,6 +156,7 @@ export default {
       meta: "meta",
       addresses: "addresses",
       default_shipping: "default_shipping",
+      prices: "prices",
     }),
     shippingIsFree() {
       return this.$root.settings.shipping_is_free == 0
