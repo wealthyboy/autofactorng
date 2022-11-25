@@ -119,7 +119,7 @@
                             <div class="form-check ">
                                 <label class="custom-control-label" for="{{ optional($shipping->location)->name }}">
                                     <input class="form-check-input" value="{{ $shipping->id }}" type="checkbox" id="{{ optional($shipping->location)->name }}" name="selected[]">
-                                    <span role="button">{{ $shipping->name }} | {{ $shipping->price }} </span>
+                                    <span role="button">{{ optional($shipping->state)->name }} | {{ $shipping->price }} </span>
                                     <a href="{{ route('shipping.edit',['shipping'=>$shipping->id]) }}">
                                         <i class="fa fa-pencil"></i> Edit</a>
                                 </label>
