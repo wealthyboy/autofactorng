@@ -36,8 +36,6 @@ export default {
   components: {
     SimpleMessage,
   },
-  setup(props) {
-    console.log(props.user);
-  },
+  setup(props) {},
 };
 </script>

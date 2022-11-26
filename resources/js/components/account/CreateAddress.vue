@@ -119,6 +119,7 @@ export default {
   props: {
     currency: String,
     location: Object,
+    edit: Boolean,
   },
   components: {
     ErrorMessage,

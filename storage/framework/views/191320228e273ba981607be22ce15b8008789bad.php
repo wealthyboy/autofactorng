@@ -12,16 +12,7 @@
 
  <section class="">
      <div class="container-fluid">
-         <div id="js-loading" class="full-bg">
-             <div class="signup--middle">
-                 <div class="loading">
-                     <div class="loader"></div>
-                 </div>
-                 <img src="<?php echo e($system_settings->logo_path()); ?>" height="110" width="80" alt="Afng">
-             </div>
-         </div>
          <cart-summary />
-
      </div>
 
  </section>

@@ -12,9 +12,7 @@
 
  <section class="">
      <div class="container-fluid">
-
          <cart-summary />
-
      </div>
 
  </section>

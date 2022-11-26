@@ -1,7 +1,7 @@
 
 <template>
   <section
-    v-if="loading"
+    v-if="!carts.length && !addresses.length"
     style="height: 100%;"
     class=""
   >
@@ -19,8 +19,9 @@
       </div>
     </div>
   </section>
+
   <div
-    v-if="!loading"
+    v-if="carts.length && addresses.length"
     class="container"
   >
     <div class="row   align-items-start">
@@ -180,11 +181,6 @@ export default {
       prices: "prices",
       loading: "loading",
     }),
-    shippingIsFree() {
-      return this.$root.settings.shipping_is_free == 0
-        ? "Shipping is based on your location"
-        : this.meta.currency + "0.00";
-    },
   },
 
   created() {
@@ -193,14 +189,17 @@ export default {
         resolve();
       });
     });
+
+    this.getAddresses();
     this.getCart();
-    this.getAddresses({ context: this }).then(() => {
-      document.getElementById("full-bg").style.display = "none";
-      this.pageIsLoading = false;
-    });
   },
   methods: {
     ...mapActions({
+      createAddress: "createAddress",
+      updateAddresses: "updateAddresses",
+      updateLocations: "updateLocations",
+      deleteAddress: "deleteAddress",
+      getAddresses: "getAddresses",
       getCart: "getCart",
     }),
     loadScript(callback) {
@@ -234,11 +233,6 @@ export default {
 
       if (!this.addresses.length) {
         this.error = "You need to save your address before placing your order";
-        return false;
-      }
-
-      if (this.$root.settings.shipping_is_free == 0 && !this.shipping_price) {
-        this.error = "Please select your shipping method";
         return false;
       }
 
@@ -289,60 +283,11 @@ export default {
       });
       handler.openIframe();
     },
-    payAsAdmin: function () {
-      if (!this.delivery_option) {
-        this.delivery_error = true;
-        return;
-      }
 
-      if (!this.addresses.length) {
-        this.error = "You need to save your address before placing your order";
-        return false;
-      }
-
-      if (
-        this.delivery_option == "shipping" &&
-        this.$root.settings.shipping_is_free == 0 &&
-        !this.shipping_price
-      ) {
-        this.error = "Please select your shipping method";
-        return false;
-      }
-
-      this.payment_method = "admin";
-
-      this.order_text = "Please wait. We are almost done......";
-      this.checkout();
-    },
-    addShippingPrice: function (evt) {
-      if (evt.target.value == "") {
-        return;
-      }
-      this.shipping_id = evt.target.selectedOptions[0].dataset.id;
-      this.shipping_price = evt.target.value;
-      //check if a voucher was applied
-      if (this.voucher.length) {
-        this.amount =
-          parseInt(evt.target.value) + parseInt(this.voucher[0].sub_total);
-      } else {
-        this.amount =
-          parseInt(evt.target.value) + parseInt(this.meta.sub_total);
-      }
-      let obj = {
-        sub_total: this.meta.sub_total,
-        currency: this.meta.currency,
-        user: this.meta.user,
-        shipping_id: this.shipping_id,
-        isAdmin: this.meta.isAdmin,
-      };
-      Window.CartMeta = obj;
-      this.updateCartTotal(obj);
-    },
     ...mapActions({
       getCart: "getCart",
       applyVoucher: "applyVoucher",
       updateCartMeta: "updateCartMeta",
-      getAddresses: "getAddresses",
     }),
     applyCoupon: function () {
       if (!this.coupon) {

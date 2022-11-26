@@ -53,8 +53,6 @@ class AddressController extends Controller
 
         $sub_total =  Cart::sum_items_in_cart();
 
-        //return $default_address;
-
         $ship_price =   $default_address ? optional(optional($default_address->address_state)->shipping)->price : null;
 
         $heavy_item_price = 2;
@@ -62,8 +60,6 @@ class AddressController extends Controller
         $prices['ship_price'] =  $ship_price;
         $prices['heavy_item_price'] =  $heavy_item_price;
         $prices['total'] =   $sub_total + $ship_price + $heavy_item_price;
-
-
 
         return AddressResource::collection(
             $addresses
@@ -160,19 +156,17 @@ class AddressController extends Controller
             'address'      => 'required|max:200',
             'city'         => 'required|max:100',
             'state_id'        => 'required|numeric',
-            'country_id'      => 'required'
         ]);
 
-        $address->user_id    =  $user->id;
-        $address->first_name =  $request->first_name;
-        $address->last_name  =  $request->last_name;
-        $address->address    =  $request->address;
-        $address->address_2  =  $request->address_2;
-        $address->email                       =  $request->email;
-        $address->phone_number                =  $request->phone_number;
-        $address->city       =  $request->city;
-        $address->state_id   =  $request->state_id;
-        $address->country_id =  $request->country_id;
+        $address->user_id = $user->id;
+        $address->first_name = $request->first_name;
+        $address->last_name = $request->last_name;
+        $address->address = $request->address;
+        $address->address_2 = $request->address_2;
+        $address->email = $request->email;
+        $address->phone_number = $request->phone_number;
+        $address->city =  $request->city;
+        $address->state_id = $request->state_id;
         $address->save();
         //Get The Address
         return $this->allAddress();

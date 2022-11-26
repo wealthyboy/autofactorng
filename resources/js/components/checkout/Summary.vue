@@ -68,6 +68,7 @@ export default {
       default_shipping: "default_shipping",
     }),
   },
+
   methods: {
     ...mapActions({
       getCart: "getCart",

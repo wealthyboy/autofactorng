@@ -20758,9 +20758,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     SimpleMessage: _message_SimpleMessage__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  setup: function setup(props) {
-    console.log(props.user);
-  }
+  setup: function setup(props) {}
 });
 
 /***/ }),
@@ -21085,7 +21083,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     currency: String,
-    location: Object
+    location: Object,
+    edit: Boolean
   },
   components: {
     ErrorMessage: _messages_components_Error__WEBPACK_IMPORTED_MODULE_4__["default"],
@@ -21221,9 +21220,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       submiting: false,
       address_id: "",
       error: null,
-      loading: true,
       showForm: false,
-      location: null
+      location: null,
+      loading: false
     };
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapGetters)({
@@ -21234,14 +21233,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     errors: "errors",
     meta: "meta"
   })),
-  created: function created() {},
   mounted: function mounted() {
     var _this = this;
 
-    this.loading = true;
-    this.getAddresses({
-      context: this
-    }).then(function (res) {
+    console.log(true);
+    this.getAddresses().then(function (res) {
       _this.loading = false;
 
       if (!res.data.data.length) {
@@ -21276,8 +21272,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       this.submiting = true;
+      console.log("i'm here");
+      return;
 
       if (this.edit) {
+        console.log(true);
         this.updateAddresses({
           form: this.form,
           id: this.address_id,
@@ -21288,6 +21287,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         });
         return;
       } else {
+        console.log(false);
         this.createAddress({
           form: this.form,
           context: this
@@ -21304,11 +21304,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       // this.edit = false;
     },
     editAddress: function editAddress(location) {
-      console.log(location);
       this.location = location;
       this.showForm = true;
       this.edit = true;
-      console.log(true);
     },
     removeAddress: function removeAddress(e, id) {
       var _this3 = this;
@@ -21979,18 +21977,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       uemail: null
     };
   },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)({
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapGetters)({
     carts: "carts",
     meta: "meta",
     addresses: "addresses",
     default_shipping: "default_shipping",
     prices: "prices",
     loading: "loading"
-  })), {}, {
-    shippingIsFree: function shippingIsFree() {
-      return this.$root.settings.shipping_is_free == 0 ? "Shipping is based on your location" : this.meta.currency + "0.00";
-    }
-  }),
+  })),
   created: function created() {
     var _this = this;
 
@@ -21999,15 +21993,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         resolve();
       });
     });
+    this.getAddresses();
     this.getCart();
-    this.getAddresses({
-      context: this
-    }).then(function () {
-      document.getElementById("full-bg").style.display = "none";
-      _this.pageIsLoading = false;
-    });
   },
   methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)({
+    createAddress: "createAddress",
+    updateAddresses: "updateAddresses",
+    updateLocations: "updateLocations",
+    deleteAddress: "deleteAddress",
+    getAddresses: "getAddresses",
     getCart: "getCart"
   })), {}, {
     loadScript: function loadScript(callback) {
@@ -22039,11 +22033,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       if (!this.addresses.length) {
         this.error = "You need to save your address before placing your order";
-        return false;
-      }
-
-      if (this.$root.settings.shipping_is_free == 0 && !this.shipping_price) {
-        this.error = "Please select your shipping method";
         return false;
       }
 
@@ -22093,56 +22082,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       });
       handler.openIframe();
-    },
-    payAsAdmin: function payAsAdmin() {
-      if (!this.delivery_option) {
-        this.delivery_error = true;
-        return;
-      }
-
-      if (!this.addresses.length) {
-        this.error = "You need to save your address before placing your order";
-        return false;
-      }
-
-      if (this.delivery_option == "shipping" && this.$root.settings.shipping_is_free == 0 && !this.shipping_price) {
-        this.error = "Please select your shipping method";
-        return false;
-      }
-
-      this.payment_method = "admin";
-      this.order_text = "Please wait. We are almost done......";
-      this.checkout();
-    },
-    addShippingPrice: function addShippingPrice(evt) {
-      if (evt.target.value == "") {
-        return;
-      }
-
-      this.shipping_id = evt.target.selectedOptions[0].dataset.id;
-      this.shipping_price = evt.target.value; //check if a voucher was applied
-
-      if (this.voucher.length) {
-        this.amount = parseInt(evt.target.value) + parseInt(this.voucher[0].sub_total);
-      } else {
-        this.amount = parseInt(evt.target.value) + parseInt(this.meta.sub_total);
-      }
-
-      var obj = {
-        sub_total: this.meta.sub_total,
-        currency: this.meta.currency,
-        user: this.meta.user,
-        shipping_id: this.shipping_id,
-        isAdmin: this.meta.isAdmin
-      };
-      Window.CartMeta = obj;
-      this.updateCartTotal(obj);
     }
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_6__.mapActions)({
     getCart: "getCart",
     applyVoucher: "applyVoucher",
-    updateCartMeta: "updateCartMeta",
-    getAddresses: "getAddresses"
+    updateCartMeta: "updateCartMeta"
   })), {}, {
     applyCoupon: function applyCoupon() {
       var _this2 = this;
@@ -24890,7 +24834,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_total = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("total");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_ctx.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", _hoisted_1, _hoisted_3)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ship_address)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_cart_summary), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [!_ctx.carts.length && !_ctx.addresses.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", _hoisted_1, _hoisted_3)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.carts.length && _ctx.addresses.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_ship_address)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_cart_summary), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.coupon = $event;
@@ -34343,16 +34287,15 @@ var updateAddresses = function updateAddresses(_ref27, _ref28) {
     return Promise.reject(error);
   });
 };
-var getAddresses = function getAddresses(_ref29, _ref30) {
+var getAddresses = function getAddresses(_ref29) {
   var dispatch = _ref29.dispatch,
       commit = _ref29.commit;
-  var context = _ref30.context;
-  // commit("setLoading", true);
+  // commit("Loading", true);
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/addresses").then(function (response) {
-    commit("setLoading", false);
+    // commit("setLoading", false);
     dispatch("setADl", response);
     return Promise.resolve(response);
-  })["catch"](function (error) {//commit('setLoading',false)
+  })["catch"](function (error) {// commit('setLoading', false)
     // if ( error.response.status == 500 ){
     //     context.error = "We could not change your password at the moment .Please try again"
     //     return;
@@ -34364,11 +34307,11 @@ var getAddresses = function getAddresses(_ref29, _ref30) {
     //commit("setLoading", false);
   });
 };
-var updatePassword = function updatePassword(_ref31, _ref32) {
-  var commit = _ref31.commit,
-      dispatch = _ref31.dispatch;
-  var payload = _ref32.payload,
-      context = _ref32.context;
+var updatePassword = function updatePassword(_ref30, _ref31) {
+  var commit = _ref30.commit,
+      dispatch = _ref30.dispatch;
+  var payload = _ref31.payload,
+      context = _ref31.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/change/password", payload).then(function (response) {
     context.loading = false;
     commit("setMessage", response.data.message);
@@ -34386,10 +34329,10 @@ var updatePassword = function updatePassword(_ref31, _ref32) {
     }
   });
 };
-var resetPassword = function resetPassword(_ref33, _ref34) {
-  var commit = _ref33.commit;
-  var payload = _ref34.payload,
-      context = _ref34.context;
+var resetPassword = function resetPassword(_ref32, _ref33) {
+  var commit = _ref32.commit;
+  var payload = _ref33.payload,
+      context = _ref33.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/reset/password", payload).then(function (response) {
     context.loading = false;
     commit("setMessage", response.data.message);
@@ -34408,40 +34351,40 @@ var resetPassword = function resetPassword(_ref33, _ref34) {
     }
   });
 };
-var updateAddress = function updateAddress(_ref35, payload) {
-  var commit = _ref35.commit;
+var updateAddress = function updateAddress(_ref34, payload) {
+  var commit = _ref34.commit;
   commit("addToAddress", payload);
 };
-var updateLocations = function updateLocations(_ref36, payload) {
-  var commit = _ref36.commit;
+var updateLocations = function updateLocations(_ref35, payload) {
+  var commit = _ref35.commit;
   commit("addToLocations", payload);
 };
-var setADl = function setADl(_ref37, response) {
-  var commit = _ref37.commit;
+var setADl = function setADl(_ref36, response) {
+  var commit = _ref36.commit;
   commit("addToAddress", response.data.data);
   commit("addToLocations", response.data.meta.countries);
   commit("setPrices", response.data.meta.prices);
   commit("setStates", response.data.meta.states);
   commit("setDefaultShipping", response.data.meta.default_shipping);
 };
-var clearError = function clearError(_ref38) {
-  var commit = _ref38.commit;
+var clearError = function clearError(_ref37) {
+  var commit = _ref37.commit;
   var errors = {};
   commit("setFormErrors", errors);
 };
-var clearErrors = function clearErrors(_ref39, _ref40) {
-  var commit = _ref39.commit;
-  var context = _ref40.context,
-      input = _ref40.input,
-      e = _ref40.e;
+var clearErrors = function clearErrors(_ref38, _ref39) {
+  var commit = _ref38.commit;
+  var context = _ref39.context,
+      input = _ref39.input,
+      e = _ref39.e;
   var prop = e.target.name;
   delete context.errors[prop];
 };
-var validateForm = function validateForm(_ref41, _ref42) {
-  var dispatch = _ref41.dispatch,
-      commit = _ref41.commit;
-  var context = _ref42.context,
-      input = _ref42.input;
+var validateForm = function validateForm(_ref40, _ref41) {
+  var dispatch = _ref40.dispatch,
+      commit = _ref40.commit;
+  var context = _ref41.context,
+      input = _ref41.input;
   var p = {},
       k,
       errors = [];
@@ -34480,11 +34423,11 @@ var validateForm = function validateForm(_ref41, _ref42) {
   errors = Object.assign({}, errors, p);
   commit("setFormErrors", errors);
 };
-var checkInput = function checkInput(_ref43, _ref44) {
-  var commit = _ref43.commit;
-  var context = _ref44.context,
-      input = _ref44.input,
-      e = _ref44.e;
+var checkInput = function checkInput(_ref42, _ref43) {
+  var commit = _ref42.commit;
+  var context = _ref43.context,
+      input = _ref43.input,
+      e = _ref43.e;
   validateForm({
     commit: commit
   }, {
@@ -34493,10 +34436,10 @@ var checkInput = function checkInput(_ref43, _ref44) {
     e: e
   });
 };
-var forgotPassword = function forgotPassword(_ref45, _ref46) {
-  var commit = _ref45.commit;
-  var payload = _ref46.payload,
-      context = _ref46.context;
+var forgotPassword = function forgotPassword(_ref44, _ref45) {
+  var commit = _ref44.commit;
+  var payload = _ref45.payload,
+      context = _ref45.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/password/reset/link", payload).then(function (response) {
     context.loading = false;
     commit("setMessage", response.data.message);
@@ -34516,11 +34459,11 @@ var forgotPassword = function forgotPassword(_ref45, _ref46) {
     }
   });
 };
-var createReviews = function createReviews(_ref47, _ref48) {
-  var commit = _ref47.commit;
-  var payload = _ref48.payload,
-      context = _ref48.context,
-      form = _ref48.form;
+var createReviews = function createReviews(_ref46, _ref47) {
+  var commit = _ref46.commit;
+  var payload = _ref47.payload,
+      context = _ref47.context,
+      form = _ref47.form;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/reviews/store", form).then(function (response) {
     context.submiting = false;
     commit("setReviews", response.data.data);
@@ -34540,10 +34483,10 @@ var createReviews = function createReviews(_ref47, _ref48) {
     }
   });
 };
-var createComment = function createComment(_ref49, _ref50) {
-  var commit = _ref49.commit;
-  var payload = _ref50.payload,
-      context = _ref50.context;
+var createComment = function createComment(_ref48, _ref49) {
+  var commit = _ref48.commit;
+  var payload = _ref49.payload,
+      context = _ref49.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/blog", context.form).then(function (response) {
     context.submiting = false;
     commit("setComments", response.data.data);
@@ -34563,9 +34506,9 @@ var createComment = function createComment(_ref49, _ref50) {
     }
   });
 };
-var getReviews = function getReviews(_ref51, _ref52) {
-  var commit = _ref51.commit;
-  var context = _ref52.context;
+var getReviews = function getReviews(_ref50, _ref51) {
+  var commit = _ref50.commit;
+  var context = _ref51.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/reviews/" + context.product_slug).then(function (response) {
     context.loading = false;
     commit("setReviews", response.data.data);

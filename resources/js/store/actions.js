@@ -300,19 +300,19 @@ export const updateAddresses = ({ dispatch, commit }, { form, id }) => {
         });
 };
 
-export const getAddresses = ({ dispatch, commit }, { context }) => {
-    // commit("setLoading", true);
+export const getAddresses = ({ dispatch, commit }) => {
+    // commit("Loading", true);
 
     return axios
         .get("/api/addresses")
         .then(response => {
-            commit("setLoading", false);
+            // commit("setLoading", false);
 
             dispatch("setADl", response);
             return Promise.resolve(response);
         })
         .catch(error => {
-            //commit('setLoading',false)
+            // commit('setLoading', false)
             // if ( error.response.status == 500 ){
             //     context.error = "We could not change your password at the moment .Please try again"
             //     return;

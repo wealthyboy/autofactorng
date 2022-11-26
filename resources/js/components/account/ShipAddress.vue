@@ -124,9 +124,9 @@ export default {
       submiting: false,
       address_id: "",
       error: null,
-      loading: true,
       showForm: false,
       location: null,
+      loading: false,
     };
   },
   computed: {
@@ -139,10 +139,9 @@ export default {
       meta: "meta",
     }),
   },
-  created() {},
   mounted() {
-    this.loading = true;
-    this.getAddresses({ context: this })
+    console.log(true);
+    this.getAddresses()
       .then((res) => {
         this.loading = false;
         if (!res.data.data.length) {
@@ -174,7 +173,12 @@ export default {
     },
     submit: function () {
       this.submiting = true;
+
+      console.log("i'm here");
+
+      return;
       if (this.edit) {
+        console.log(true);
         this.updateAddresses({
           form: this.form,
           id: this.address_id,
@@ -185,6 +189,8 @@ export default {
         });
         return;
       } else {
+        console.log(false);
+
         this.createAddress({ form: this.form, context: this });
       }
     },
@@ -199,11 +205,9 @@ export default {
       // this.edit = false;
     },
     editAddress: function (location) {
-      console.log(location);
       this.location = location;
       this.showForm = true;
       this.edit = true;
-      console.log(true);
     },
     removeAddress: function (e, id) {
       this.submiting = true;
