@@ -1,5 +1,9 @@
 
 <template>
+
+  <template v-if="paymentIsComplete">
+    <complete :message="'Your Order has been placed. Check your email for further details'" />
+  </template>
   <section
     v-if="!carts.length && !addresses.length"
     style="height: 100%;"
@@ -21,7 +25,7 @@
   </section>
 
   <div
-    v-if="carts.length && addresses.length"
+    v-if="carts.length && addresses.length && !paymentIsComplete"
     class="container"
   >
     <div class="row   align-items-start">
@@ -93,7 +97,8 @@
               Buy now pay later
               <i class="fa fa-arrow-right"></i></a>
             <a
-              href="/checkout"
+              href="#"
+              @click.prevent="makePayment"
               class="btn btn-block btn-dark w-100"
             >
               Pay Now
@@ -123,6 +128,7 @@
   </div>
 
 </template>
+
 <script>
 import ShipAddress from "../account/ShipAddress";
 import message from "../message/index";
@@ -131,6 +137,7 @@ import { mapGetters, mapActions } from "vuex";
 import ErrorMessage from "../messages/components/Error";
 import CartSummary from "./Summary";
 import Total from "./Total";
+import Complete from "../utils/Complete.vue";
 
 export default {
   components: {
@@ -139,6 +146,7 @@ export default {
     ErrorMessage,
     CartSummary,
     Total,
+    Complete,
   },
   props: {
     csrf: Object,
@@ -152,24 +160,17 @@ export default {
       shipping_price: "",
       email: "jacob.atam@gmail.com",
       amount: 0,
-      delivery_error: false,
-      shipping: false,
-      delivery_option: null,
       order_text: "Place Order",
       payment_is_processing: false,
       voucher: [],
       error: null,
-      showForm: false,
       scriptLoaded: null,
       submiting: false,
-      checkingout: false,
       coupon_error: null,
       token: Window.csrf,
       payment_method: null,
       pageIsLoading: true,
-      delivery_note: null,
       paymentIsComplete: false,
-      uemail: null,
     };
   },
   computed: {
@@ -184,12 +185,6 @@ export default {
   },
 
   created() {
-    this.scriptLoaded = new Promise((resolve) => {
-      this.loadScript(() => {
-        resolve();
-      });
-    });
-
     this.getAddresses();
     this.getCart();
   },
@@ -202,28 +197,7 @@ export default {
       getAddresses: "getAddresses",
       getCart: "getCart",
     }),
-    loadScript(callback) {
-      const script = document.createElement("script");
-      script.src = "https://js.paystack.co/v1/inline.js";
-      document.getElementsByTagName("head")[0].appendChild(script);
-      if (script.readyState) {
-        // IE
-        script.onreadystatechange = () => {
-          if (
-            script.readyState === "loaded" ||
-            script.readyState === "complete"
-          ) {
-            script.onreadystatechange = null;
-            callback();
-          }
-        };
-      } else {
-        // Others
-        script.onload = () => {
-          callback();
-        };
-      }
-    },
+
     makePayment: function () {
       let context = this;
       var cartIds = [];
@@ -245,7 +219,7 @@ export default {
       this.payment_is_processing = true;
       this.payment_method = "card";
       var handler = PaystackPop.setup({
-        key: "pk_test_2659f44a347260823efb597be7b846264d5cb393", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
+        key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
         email: context.meta.user.email,
         amount: context.amount * 100,
         currency: "NGN",
@@ -256,18 +230,15 @@ export default {
               display_name: context.meta.user.name,
               customer_id: context.meta.user.id,
               coupon: context.coupon_code,
-              type: "fashion",
+              type: "order_from_paystack",
               shipping_id: context.shipping_id,
               shipping_price: context.shipping_price,
               cart: cartIds,
               total: context.amount,
-              delivery_option: context.delivery_option,
-              delivery_note: context.delivery_note,
             },
           ],
         },
         callback: function (response) {
-          console.log(response);
           if (response.status == "success") {
             context.paymentIsComplete = true;
           } else {

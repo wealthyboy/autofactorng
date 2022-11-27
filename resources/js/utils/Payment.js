@@ -1,5 +1,4 @@
 export const loadScript = (callback) => {
-
     const script = document.createElement("script");
     script.src = "https://js.paystack.co/v1/inline.js";
     document.getElementsByTagName("head")[0].appendChild(script);
@@ -22,5 +21,4 @@ export const loadScript = (callback) => {
     }
 
     return script
-
 }

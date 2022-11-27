@@ -14,7 +14,17 @@ class SubscribeController extends Controller
      */
     public function index()
     {
-        return view('subscribe.index');
-    }
+        $links =  [
+            'light_duty',
+            'normal_duty',
+            'heavy_duty'
+        ];
 
+        if (!in_array(request()->plan, $links)) {
+            abort(404);
+        }
+
+        $subscribe = true;
+        return view('subscribe.index', compact('subscribe'));
+    }
 }

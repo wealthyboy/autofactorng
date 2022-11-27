@@ -17,6 +17,8 @@ import Show from "./components/products/Show";
 import CartSideBar from "./components/cart/CartSideBarMenu";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
+import Subscribe from "./components/auth/Subscribe";
+
 import CartSummary from "./components/cart/Index";
 //import MakeModelYEar from "./components/search/MakeModelYEar";
 import Account from "./components/account/Account";
@@ -54,6 +56,8 @@ app.component('ShipAddresses', Addresses)
 app.component('FundWallet', FundWallet)
 app.component('GeneralTable', Table)
 app.component('WalletTable', WalletTable)
+app.component('Subscribe', Subscribe)
+
 
 app.config.globalProperties.$filters = {
     formatNumber(value) {

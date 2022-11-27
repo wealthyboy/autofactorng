@@ -43,6 +43,28 @@ class Order extends Model
 		return  $this->shipping_price ?? optional($this->shipping)->converted_price;
 	}
 
+
+	public static function getShowData(Order $order)
+	{
+		return [];
+	}
+
+
+	public function getListingData($collection)
+	{
+		return  $collection->map(function ($order) {
+			return [
+				"Order Id" => '#' . $order->id,
+				"Invoice" =>  '#' . $order->invoice,
+				"Customer" => optional($order->user)->fullname(),
+				"Type"  => $order->type,
+				"Total" =>  $order->total,
+				"Date Added" => $order->created_at->format('d-m-y'),
+			];
+		});
+	}
+
+
 	public  function voucher()
 	{
 		$voucher = Voucher::where('code', $this->coupon)->first();

@@ -87,11 +87,7 @@
       </div>
       </p>
 
-      <p
-        v-if="subscribe"
-        subscribe
-        class="form-group  p-1 col-12"
-      >
+      <p class="form-group  p-1 col-12">
       <div class="form-floating">
         <general-input
           id="amount"
@@ -126,7 +122,7 @@
     </p>
   </form>
 </template>
-<script>
+  <script>
 import { useVuelidate } from "@vuelidate/core";
 import { useActions } from "vuex-composition-helpers";
 
@@ -136,8 +132,9 @@ import GeneralButton from "../general/Button.vue";
 import GeneralInput from "../Forms/Input";
 import Message from "../message/Message";
 
-import { registerRules } from "../../utils/ValidationRules";
-import { registerData } from "../../utils/FormData";
+import { subscribeRules } from "../../utils/ValidationRules";
+import { subscribeData } from "../../utils/FormData";
+import { loadScript } from "../../utils/Payment";
 
 export default {
   props: ["subscribe"],
@@ -152,12 +149,12 @@ export default {
     const loading = ref(false);
     const text = ref("Submit");
     const message = ref(null);
-    const data = registerData();
+    const data = subscribeData();
     const server_errors = ref(data);
     const post_server_error = ref(null);
 
     const form = reactive(data);
-    const rules = registerRules(form);
+    const rules = subscribeRules(form);
     const v$ = useVuelidate(rules, form);
     const { clearErr, makePost } = useActions(["makePost", "clearErr"]);
 

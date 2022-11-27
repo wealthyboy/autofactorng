@@ -20,6 +20,9 @@
     <link rel="stylesheet" type="text/css" href="/vendor/fontawesome-free/css/all.min.css">
 
     <link rel="stylesheet" href="/css/app.css">
+
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
 </head>
 
 <script>
@@ -121,6 +124,7 @@
     <!-- End .page-wrapper -->
 
     <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
+
 
     <!-- Plugins JS File -->
     <script src="/js/jquery.min.js"></script>

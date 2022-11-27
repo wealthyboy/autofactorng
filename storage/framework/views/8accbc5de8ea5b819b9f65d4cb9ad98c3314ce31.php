@@ -1,6 +1,4 @@
-@extends('layouts.auth')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="container-fluid px-0">
    <div class="row">
       <div class="col-xl-5  col-lg-4 ">
@@ -64,4 +62,5 @@
 
    </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.auth', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/subscribe/index.blade.php ENDPATH**/ ?>

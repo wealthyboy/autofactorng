@@ -7,6 +7,24 @@ export const registerData = () => {
         last_name: null,
         password_confirmation: null,
         phone_number: null,
+
+    };
+
+    return data
+}
+
+
+export const subscribeData = () => {
+
+    let data = {
+        email: "",
+        password: "",
+        first_name: null,
+        last_name: null,
+        password_confirmation: null,
+        phone_number: null,
+        amount: null,
+
     };
 
     return data

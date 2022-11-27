@@ -20,7 +20,6 @@
                 </div>
 
 
-
                 <div class="row mb-5" id="signInMessage">
                     <span class="sign-in-prompt" data-testid="sign-in-message">
                         Welcome to AutoFactor
