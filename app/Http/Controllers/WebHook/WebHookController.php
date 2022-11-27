@@ -87,7 +87,7 @@ class WebHookController extends Controller
                         'order_id' => $order->id,
                         'product_id' => $cart->product_id,
                         'quantity' => $cart->quantity,
-                        'status' => "Processing",
+                        //'status' => "Processing",
                         'price' => $cart->price,
                         'total' => $cart->quantity * $cart->price,
                         'created_at' => \Carbon\Carbon::now()
