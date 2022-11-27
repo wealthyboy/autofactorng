@@ -52,13 +52,11 @@ class WebHookController extends Controller
                 $user     =  User::findOrFail($input['customer_id']);
                 $carts    =  Cart::find($input['cart']);
 
-
                 if (null == $carts) {
                     return  http_response_code(200);
                 }
 
                 $order = new Order();
-
                 // $shipping_id    = isset($input['shipping_id']) ? $input['shipping_id'] : null;
                 $order->user_id = $user->id;
                 $order->address_id =  optional($user->active_address)->id;

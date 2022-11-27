@@ -5,7 +5,7 @@
     <complete :message="'Your Order has been placed. Check your email for further details'" />
   </template>
   <section
-    v-if="!carts.length && !addresses.length"
+    v-if="loading"
     style="height: 100%;"
     class=""
   >
@@ -25,7 +25,7 @@
   </section>
 
   <div
-    v-if="carts.length && addresses.length && !paymentIsComplete"
+    v-if="!loading && !paymentIsComplete"
     class="container"
   >
     <div class="row   align-items-start">
@@ -45,64 +45,66 @@
             <h3>2. PAYMENT</h3>
           </div>
 
-          <cart-summary />
+          <div v-if="addresses.length">
+            <cart-summary />
 
-          <div class="cart-discount p-0  mt-3 col-sm-12">
-            <h4>Apply Discount Code/Redeem Gift Card</h4>
-            <div class="input-group">
-              <input
-                type="text"
-                v-model="coupon"
-                class="form-control b"
-                placeholder="Enter  code"
-                required=""
-              >
-              <div class="input-group-append">
-                <button
-                  @click.prevent="applyCoupon"
-                  class="btn btn-sm btn-primary"
-                  type="submit"
+            <div class="cart-discount p-0  mt-3 col-sm-12">
+              <h4>Apply Discount Code/Redeem Gift Card</h4>
+              <div class="input-group">
+                <input
+                  type="text"
+                  v-model="coupon"
+                  class="form-control b"
+                  placeholder="Enter  code"
+                  required=""
                 >
-                  <span
-                    v-if="submiting"
-                    class='spinner-border spinner-border-sm'
-                    role='status'
-                    aria-hidden='true'
-                  ></span>
-                  Apply
-                </button>
-              </div>
+                <div class="input-group-append">
+                  <button
+                    @click.prevent="applyCoupon"
+                    class="btn btn-sm btn-primary"
+                    type="submit"
+                  >
+                    <span
+                      v-if="submiting"
+                      class='spinner-border spinner-border-sm'
+                      role='status'
+                      aria-hidden='true'
+                    ></span>
+                    Apply
+                  </button>
+                </div>
 
-            </div><!-- End .input-group -->
-            <div
-              v-if="coupon_error"
-              class="text- text-danger"
-            >{{coupon_error}}</div>
+              </div><!-- End .input-group -->
+              <div
+                v-if="coupon_error"
+                class="text- text-danger"
+              >{{coupon_error}}</div>
 
-          </div>
+            </div>
 
-          <total :total="prices.total" />
+            <total :total="prices.total" />
 
-          <div class="checkout-methods w-100 mb-5 mt-5">
-            <a
-              href="/checkout"
-              class="btn btn-block btn-dark w-100 mb-2"
-            >
-              Pay with wallet
-              <i class="fa fa-arrow-right"></i></a>
-            <a
-              href="/checkout"
-              class="btn btn-block btn-dark w-100 mb-2"
-            >
-              Buy now pay later
-              <i class="fa fa-arrow-right"></i></a>
-            <a
-              href="#"
-              @click.prevent="makePayment"
-              class="btn btn-block btn-dark w-100"
-            >
-              Pay Now
-              <i class="fa fa-arrow-right"></i></a>
+            <div class="checkout-methods w-100 mb-5 mt-5">
+              <a
+                href="/checkout"
+                class="btn btn-block btn-dark w-100 mb-2"
+              >
+                Pay with wallet
+                <i class="fa fa-arrow-right"></i></a>
+              <a
+                href="/checkout"
+                class="btn btn-block btn-dark w-100 mb-2"
+              >
+                Buy now pay later
+                <i class="fa fa-arrow-right"></i></a>
+              <a
+                href="#"
+                @click.prevent="makePayment"
+                class="btn btn-block btn-dark w-100"
+              >
+                Pay Now
+                <i class="fa fa-arrow-right"></i></a>
+            </div>
           </div>
 
         </div>
@@ -171,6 +173,7 @@ export default {
       payment_method: null,
       pageIsLoading: true,
       paymentIsComplete: false,
+      loading: true,
     };
   },
   computed: {
@@ -180,13 +183,14 @@ export default {
       addresses: "addresses",
       default_shipping: "default_shipping",
       prices: "prices",
-      loading: "loading",
     }),
   },
 
   created() {
-    this.getAddresses();
     this.getCart();
+    this.getAddresses().then(() => {
+      this.loading = false;
+    });
   },
   methods: {
     ...mapActions({

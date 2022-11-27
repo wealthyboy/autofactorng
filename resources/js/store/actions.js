@@ -301,27 +301,27 @@ export const updateAddresses = ({ dispatch, commit }, { form, id }) => {
 };
 
 export const getAddresses = ({ dispatch, commit }) => {
-    // commit("Loading", true);
+    commit("setLoading", true);
 
     return axios
         .get("/api/addresses")
         .then(response => {
-            // commit("setLoading", false);
+            commit("setLoading", false);
 
             dispatch("setADl", response);
             return Promise.resolve(response);
         })
         .catch(error => {
-            // commit('setLoading', false)
-            // if ( error.response.status == 500 ){
-            //     context.error = "We could not change your password at the moment .Please try again"
-            //     return;
-            // }
-            // if (error.response.data.errors){
-            //     context.error =  error.response.data.errors
-            //     commit('setFormErrors', error.response.data.errors)
-            // }
-            //commit("setLoading", false);
+            commit('setLoading', false)
+                // if ( error.response.status == 500 ){
+                //     context.error = "We could not change your password at the moment .Please try again"
+                //     return;
+                // }
+                // if (error.response.data.errors){
+                //     context.error =  error.response.data.errors
+                //     commit('setFormErrors', error.response.data.errors)
+                // }
+                //commit("setLoading", false);
 
         });
 };
