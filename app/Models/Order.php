@@ -55,10 +55,10 @@ class Order extends Model
 		return  $collection->map(function ($order) {
 			return [
 				"Order Id" => '#' . $order->id,
-				"Invoice" =>  '#' . $order->invoice,
+				"Invoice" => $order->invoice,
 				"Customer" => optional($order->user)->fullname(),
-				"Type"  => $order->type,
-				"Total" =>  $order->total,
+				"Type" => $order->type,
+				"Total" => $order->total,
 				"Date Added" => $order->created_at->format('d-m-y'),
 			];
 		});
