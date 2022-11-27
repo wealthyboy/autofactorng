@@ -85,7 +85,7 @@ class WebHookController extends Controller
                 foreach ($carts   as $cart) {
                     $insert = [
                         'order_id' => $order->id,
-                        'product_variation_id' => $cart->product_variation_id,
+                        'product_id' => $cart->product_id,
                         'quantity' => $cart->quantity,
                         'status' => "Processing",
                         'price' => $cart->price,
