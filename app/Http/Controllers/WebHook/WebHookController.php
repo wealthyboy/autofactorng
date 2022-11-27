@@ -52,7 +52,6 @@ class WebHookController extends Controller
                 $user     =  User::findOrFail($input['customer_id']);
                 $carts    =  Cart::find($input['cart']);
 
-                \Log::info($carts);
 
                 if (null == $carts) {
                     return  http_response_code(200);
@@ -86,6 +85,7 @@ class WebHookController extends Controller
                     $insert = [
                         'order_id' => $order->id,
                         'product_id' => $cart->product_id,
+                        'product_name' => optional($cart->product)->product_name,
                         'quantity' => $cart->quantity,
                         //'status' => "Processing",
                         'price' => $cart->price,
@@ -120,6 +120,7 @@ class WebHookController extends Controller
                     }
                 }
 
+                // \Log::info($cart);
 
                 return http_response_code(200);
             }
