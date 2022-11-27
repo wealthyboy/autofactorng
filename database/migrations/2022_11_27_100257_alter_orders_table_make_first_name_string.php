@@ -18,7 +18,7 @@ class AlterOrdersTableMakeFirstNameString extends Migration
             $table->string('last_name')->change();
             $table->string('city')->change();
             $table->string('state')->change();
-            $table->string('land_mark')->change();
+            $table->string('landmark')->change();
         });
     }
 
