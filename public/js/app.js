@@ -22166,12 +22166,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     meta: "meta",
     addresses: "addresses",
     default_shipping: "default_shipping",
-    prices: "prices"
+    prices: "prices",
+    walletBalance: "walletBalance"
   })),
   created: function created() {
     var _this = this;
 
     this.getCart();
+    this.getWalletBalance();
     this.getAddresses().then(function () {
       _this.loading = false;
     });
@@ -22182,7 +22184,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     updateLocations: "updateLocations",
     deleteAddress: "deleteAddress",
     getAddresses: "getAddresses",
-    getCart: "getCart"
+    getCart: "getCart",
+    getWalletBalance: "getWalletBalance"
   })), {}, {
     makePayment: function makePayment() {
       var context = this;

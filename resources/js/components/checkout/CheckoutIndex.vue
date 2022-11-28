@@ -189,11 +189,13 @@ export default {
       addresses: "addresses",
       default_shipping: "default_shipping",
       prices: "prices",
+      walletBalance: "walletBalance",
     }),
   },
 
   created() {
     this.getCart();
+    this.getWalletBalance();
     this.getAddresses().then(() => {
       this.loading = false;
     });
@@ -206,6 +208,7 @@ export default {
       deleteAddress: "deleteAddress",
       getAddresses: "getAddresses",
       getCart: "getCart",
+      getWalletBalance: "getWalletBalance",
     }),
 
     makePayment: function () {
