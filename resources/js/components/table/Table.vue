@@ -17,11 +17,11 @@
         </div>
         <div
           v-if="tableData.meta.right"
-          class="total d-flex"
+          class="total d-flex "
         >
-          <span>Auto Credit: {{ $filters.formatNumber(walletBalance.balance.auto_credit) || '0.00'}}</span>
-          <span>Wallet Balance : {{ $filters.formatNumber(walletBalance.balance.balance) || '0.00'}}</span>
-          <span>Total : {{ $filters.formatNumber(walletBalance.total) || '0.00'}}</span>
+          <span class="mx-3">Auto Credit: {{ $filters.formatNumber(walletBalance.balance.auto_credit) || '0.00'}}</span>
+          <span class="mx-3">Wallet Balance: {{ $filters.formatNumber(walletBalance.balance.balance) || '0.00'}}</span>
+          <span class="">Total: {{ $filters.formatNumber(walletBalance.total) || '0.00'}}</span>
 
         </div>
       </div>
