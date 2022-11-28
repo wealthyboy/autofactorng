@@ -8,5 +8,17 @@
             </a>
         </li>
         @endforeach
+
+        <li>
+            <a href="#" onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action "><i class="fas fa-sign-out-alt left"></i> Logout
+
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </a>
+
+        </li>
     </ul>
 </div>

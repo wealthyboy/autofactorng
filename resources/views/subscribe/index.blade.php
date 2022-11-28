@@ -19,15 +19,21 @@
                </a>
             </div>
 
+
+
+            @if ($user)
             <div class="row mb-5" id="signInMessage">
-               <span class="sign-in-prompt" data-testid="sign-in-message">Welcome to AutoFactor.</span>
+               <span class="sign-in-prompt" data-testid="sign-in-message">Fund Your Wallet To Get Auto Credits.</span>
             </div>
-
-            <subscribe></subscribe>
-
-            <div class="text-center mt-3">
-               Already have an account ? <a href="/login" class="color--primary bold">Create One</a>
+            <wallet :price_range="{{ collect($price_range) }}"></wallet>
+            @else
+            <div class="row mb-5" id="signInMessage">
+               <span class="sign-in-prompt" data-testid="sign-in-message">Welcome.</span>
             </div>
+            <subscribe :price_range="{{ collect($price_range) }}"></subscribe>
+            @endif
+
+
 
          </div>
 

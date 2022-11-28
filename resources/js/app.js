@@ -18,10 +18,13 @@ import CartSideBar from "./components/cart/CartSideBarMenu";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Subscribe from "./components/auth/Subscribe";
+import Wallet from "./components/auth/Wallet";
+
 
 import CartSummary from "./components/cart/Index";
 //import MakeModelYEar from "./components/search/MakeModelYEar";
 import Account from "./components/account/Account";
+
 import Modal from "./components/Modal/Index";
 import ChangePassword from "./components/account/ChangePassword"
 import TrackOrders from "./components/account/TrackOrders"
@@ -43,6 +46,7 @@ const app = createApp({})
 app.component('ProductsItems', Products)
 app.component('Show', Show)
 app.component('CartSideBar', CartSideBar)
+
 app.component('CheckoutIndex', CheckoutIndex)
 app.component('Login', Login)
 app.component('Register', Register)
@@ -56,6 +60,8 @@ app.component('ShipAddresses', Addresses)
 app.component('FundWallet', FundWallet)
 app.component('GeneralTable', Table)
 app.component('WalletTable', WalletTable)
+app.component('Wallet', Wallet)
+
 app.component('Subscribe', Subscribe)
 
 

@@ -217,6 +217,8 @@ export const makePost = ({ dispatch, commit }, postData) => {
 
     return axios[method](url, data)
         .then(response => {
+            loading.value = !loading.value;
+
             return Promise.resolve(response);
         })
         .catch(error => {

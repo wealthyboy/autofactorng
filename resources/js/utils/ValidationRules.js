@@ -1,5 +1,5 @@
 import { computed } from "vue";
-import { required, email, helpers, minLength, sameAs } from "@vuelidate/validators";
+import { required, email, helpers, minLength, sameAs, between } from "@vuelidate/validators";
 
 export const registerRules = (form) => {
     const rules = computed(() => {
@@ -46,7 +46,7 @@ export const registerRules = (form) => {
 };
 
 
-export const subscribeRules = (form) => {
+export const subscribeRules = (form, price_range) => {
     const rules = computed(() => {
         return {
             email: {
@@ -88,6 +88,8 @@ export const subscribeRules = (form) => {
                     "Please enter a valid number",
                     required
                 ),
+                between: helpers.withMessage("Please enter a an amount between " + price_range[0] + ' and' + price_range[1], between(price_range[0], price_range[1])),
+
                 numeric: helpers.withMessage("Please enter a valid number", required),
             },
         };
@@ -220,7 +222,7 @@ export const trackingRules = (form) => {
 };
 
 
-export const walletRules = (form) => {
+export const walletRules = (price_range) => {
 
     const rules = computed(() => {
         return {
@@ -229,6 +231,8 @@ export const walletRules = (form) => {
                     "Please enter a valid number",
                     required
                 ),
+                between: helpers.withMessage("Please enter a an amount between " + price_range[0] + ' and' + price_range[1], between(price_range[0], price_range[1])),
+
                 numeric: helpers.withMessage("Please enter a valid number", required),
             },
         };

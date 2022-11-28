@@ -67,7 +67,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
@@ -75,6 +75,14 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'phone_number' => $data['phone_number']
         ]);
+
+        return $user;
+
+        //Subscribe user
+
+        //Fund wallet
+
+        //
     }
 
     /**
@@ -89,6 +97,7 @@ class RegisterController extends Controller
         if ($request->ajax()) {
             return response()->json([
                 'loggenIn' => true,
+                'user' => auth()->user(),
                 'url' => \Session::get('url.intended', url('/'))
             ], 200);
         }

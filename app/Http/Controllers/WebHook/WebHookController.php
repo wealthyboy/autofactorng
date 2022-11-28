@@ -126,6 +126,7 @@ class WebHookController extends Controller
 
 
             if ($input['type'] == 'Wallet') {
+
                 $wallet = new Wallet;
                 $wallet->amount = $input['amount'];
                 $wallet->user_id = $input['customer_id'];

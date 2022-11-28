@@ -45,7 +45,7 @@ class PlansController extends Controller
             ],
             'HEAVY DUTY' => [
                 'title' => 'AUTO PARTS COVER SUBSCRIPTION PREMIUM',
-                'price' => '₦550,000 and Above',
+                'price' => '₦350,000 and Above',
                 'text' => [
                     'One free towing service within lagos',
                     'Five free diagnosis within validity period',

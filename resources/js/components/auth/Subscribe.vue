@@ -1,9 +1,40 @@
 <template>
   <message :message="post_server_error" />
 
+  <div
+    v-if="reg_complete"
+    class="d-flex justify-content-center align-content-center  page-loading w-100 h-100"
+  >
+    <div
+      v-if="reg_complete && paymentIsProcessing"
+      class="align-self-center text-center"
+    >
+      <div
+        class="spinner-border"
+        style="width: 7rem; height: 7rem; color:red;"
+        role="status"
+      >
+        <span class="visually-hidden">Loading...</span>
+
+      </div>
+      <div class="mt-4">Please wait. We are processing your request.</div>
+
+    </div>
+
+    <div
+      v-if="paymentIsComplete"
+      class="align-self-center text-center"
+    >
+      <div class="mt-4">Your payment has been been added.</div>
+      <div class="mt-4"> <a href="/">Continue</a> </div>
+    </div>
+
+  </div>
+
   <form
+    v-if="!reg_complete"
     method="POST"
-    @submit.prevent="register"
+    @submit.prevent="subscribe"
   >
     <div class="row ">
       <p class="form-group p-1 col-6">
@@ -108,25 +139,15 @@
       />
 
     </div>
-    <p class="text-center border-top pt-5">
-      By registering your details, you agree with our
-      <a
-        class="color--primary bold"
-        href="/pages/terms-conditions"
-      >Terms & Conditions</a>
-      , and
-      <a
-        class="color--primary bold"
-        href="/pages/privacy-policy"
-      >Privacy and Cookie Policy.</a>
-    </p>
+
   </form>
+
 </template>
   <script>
 import { useVuelidate } from "@vuelidate/core";
 import { useActions } from "vuex-composition-helpers";
 
-import { reactive, ref } from "vue";
+import { reactive, ref, onMounted } from "vue";
 import SimpleMessage from "../message/SimpleMessage";
 import GeneralButton from "../general/Button.vue";
 import GeneralInput from "../Forms/Input";
@@ -135,9 +156,10 @@ import Message from "../message/Message";
 import { subscribeRules } from "../../utils/ValidationRules";
 import { subscribeData } from "../../utils/FormData";
 import { loadScript } from "../../utils/Payment";
+import axios from "axios";
 
 export default {
-  props: ["subscribe"],
+  props: ["price_range"],
   emits: ["switched"],
   components: {
     SimpleMessage,
@@ -145,20 +167,40 @@ export default {
     GeneralInput,
     Message,
   },
-  setup(p, { emit }) {
+  setup(props, { emit }) {
     const loading = ref(false);
     const text = ref("Submit");
     const message = ref(null);
     const data = subscribeData();
     const server_errors = ref(data);
     const post_server_error = ref(null);
-
     const form = reactive(data);
-    const rules = subscribeRules(form);
+    const user = ref(null);
+    const reg_complete = ref(false);
+    const paymentIsProcessing = ref(false);
+    const paymentIsComplete = ref(false);
+
+    const scriptLoaded = ref(null);
+
+    const rules = subscribeRules(form, props.price_range);
     const v$ = useVuelidate(rules, form);
     const { clearErr, makePost } = useActions(["makePost", "clearErr"]);
 
-    function register() {
+    onMounted(() => {
+      scriptLoaded.value = new Promise((resolve) => {
+        loadScript(() => {
+          resolve();
+        });
+      });
+    });
+
+    async function subscribe2() {
+      this.v$.$touch();
+
+      //let res = await register();
+    }
+
+    function subscribe() {
       this.v$.$touch();
 
       const postData = {
@@ -173,7 +215,50 @@ export default {
 
       makePost(postData)
         .then((res) => {
-          window.location.href = res.data.url;
+          let u = res.data.user;
+          reg_complete.value = true;
+          paymentIsProcessing.value = true;
+
+          var handler = PaystackPop.setup({
+            key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
+            email: u.email,
+            amount: form.amount * 100,
+            currency: "NGN",
+            first_name: u.name,
+            metadata: {
+              custom_fields: [
+                {
+                  amount: form.amount,
+                  customer_id: u.id,
+                  type: "Wallet",
+                },
+              ],
+            },
+            callback: function (response) {
+              console.log(response);
+              axios
+                .post("/wallets", form)
+                .then((res) => {
+                  paymentIsComplete.value = true;
+                  paymentIsProcessing.value = false;
+                })
+                .catch((error) => {
+                  message.value = "We could not find your data in our system";
+                  setTimeout(() => {
+                    message.value = null;
+                  }, 3000);
+                });
+
+              reg_complete.value = true;
+            },
+            onClose: function () {
+              if (u) {
+              }
+
+              loading.value = false;
+            },
+          });
+          handler.openIframe();
         })
         .catch((error) => {
           server_errors.value = error.response.data.errors;
@@ -184,11 +269,14 @@ export default {
       form,
       loading,
       v$,
-      register,
       text,
       message,
       server_errors,
       post_server_error,
+      subscribe,
+      reg_complete,
+      paymentIsProcessing,
+      paymentIsComplete,
     };
   },
 };

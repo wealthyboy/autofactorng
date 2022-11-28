@@ -7,7 +7,9 @@ use App\Models\Wallet;
 use App\Utils\AccountSettingsNav;
 use Illuminate\Http\Request;
 use App\Events\NewBid;
+use App\Models\Subscribe;
 use App\Models\WalletBalance;
+use Carbon\Carbon;
 
 class WalletsController extends Controller
 {
@@ -62,11 +64,46 @@ class WalletsController extends Controller
     public function store(Request $request)
     {
         $user = $request->user();
+        $input = $request->all();
         $wallet = new Wallet;
+        $wallet->amount = $input['amount'];
         $wallet->user_id = $user->id;
-        $wallet->amount = $request->amount;
+        $wallet->status = 'Added';
         $wallet->save();
-        return response(null, 200);
+
+        $balance = WalletBalance::where('user_id', $user->id)->first();
+
+        if (null !== $balance) {
+            $balance->balance = $balance->balance +  $input['amount'];
+            $balance->save();
+        } else {
+            $balance = new WalletBalance;
+            $balance->balance = $input['amount'];
+            $balance->user_id = $user->id;
+            $balance->save();
+        }
+
+        $subscribe = Subscribe::where('user_id', $user->id)->first();
+
+        $dt = Carbon::now();
+
+        if (null !== $subscribe) {
+            $subscribe->user_id = $user->id;
+            $subscribe->starts_at =  $dt;
+            $subscribe->ends_at =  $dt->addYear(1);
+            $subscribe->plan = session('plan');
+            $subscribe->save();
+        } else {
+            $subscribe = new Subscribe;
+            $subscribe->user_id = $user->id;
+            $subscribe->starts_at =  $dt;
+            $subscribe->ends_at = $dt->addYear(1);
+            $subscribe->plan = session('plan');
+            $subscribe->save();
+        }
+
+
+        return response($balance, 200);
     }
 
 

@@ -31,8 +31,6 @@
               <span class="text-sm ps-3"><?php echo e($text); ?></span>
             </div>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
           </div>
         </div>
       </div>
@@ -65,4 +63,4 @@
 </section>
 
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.auth', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/plans/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.checkout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/plans/index.blade.php ENDPATH**/ ?>

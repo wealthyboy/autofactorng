@@ -45,6 +45,7 @@ class AccountSettingsNav
                 'iconText' => 'account_balance_wallet',
                 'link' => '/wallets'
             ],
+
         ];
 
         return array_merge($nav, $this->data);
