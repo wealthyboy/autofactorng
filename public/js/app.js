@@ -21883,7 +21883,7 @@ __webpack_require__.r(__webpack_exports__);
           custom_fields: [{
             amount: form.amount,
             customer_id: props.user.id,
-            type: "ingore"
+            type: "Wallet"
           }]
         },
         callback: function callback(response) {

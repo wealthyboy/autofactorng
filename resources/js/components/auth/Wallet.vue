@@ -105,7 +105,7 @@ export default {
             {
               amount: form.amount,
               customer_id: props.user.id,
-              type: "ingore",
+              type: "Wallet",
             },
           ],
         },
