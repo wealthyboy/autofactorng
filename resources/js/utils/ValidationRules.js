@@ -88,7 +88,7 @@ export const subscribeRules = (form, price_range) => {
                     "Please enter a valid number",
                     required
                 ),
-                between: helpers.withMessage("Please enter a an amount between " + price_range[0] + ' and' + price_range[1], between(price_range[0], price_range[1])),
+                between: helpers.withMessage("Please enter a an amount between " + price_range[0] + ' and ' + price_range[1], between(price_range[0], price_range[1])),
 
                 numeric: helpers.withMessage("Please enter a valid number", required),
             },
@@ -231,7 +231,7 @@ export const walletRules = (price_range) => {
                     "Please enter a valid number",
                     required
                 ),
-                between: helpers.withMessage("Please enter a an amount between " + price_range[0] + ' and' + price_range[1], between(price_range[0], price_range[1])),
+                between: helpers.withMessage("Please enter a an amount between " + price_range[0] + ' and ' + price_range[1], between(price_range[0], price_range[1])),
 
                 numeric: helpers.withMessage("Please enter a valid number", required),
             },

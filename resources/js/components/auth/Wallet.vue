@@ -79,7 +79,7 @@ export default {
     });
 
     const { wallet, walletBalance } = useGetters(["wallet", "walletBalance"]);
-    const rules = walletRules(form, price_range);
+    const rules = walletRules(price_range);
     const v$ = useVuelidate(rules, form);
     const { clearErr, makePost, getWalletBalance, getTableData } = useActions([
       "makePost",

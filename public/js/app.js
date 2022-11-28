@@ -21856,7 +21856,7 @@ __webpack_require__.r(__webpack_exports__);
         wallet = _useGetters.wallet,
         walletBalance = _useGetters.walletBalance;
 
-    var rules = (0,_utils_ValidationRules__WEBPACK_IMPORTED_MODULE_7__.walletRules)(form, price_range);
+    var rules = (0,_utils_ValidationRules__WEBPACK_IMPORTED_MODULE_7__.walletRules)(price_range);
     var v$ = (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_0__.useVuelidate)(rules, form);
 
     var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_8__.useActions)(["makePost", "clearErr", "getWalletBalance", "getTableData"]),
@@ -35523,7 +35523,7 @@ var subscribeRules = function subscribeRules(form, price_range) {
       },
       amount: {
         required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a valid number", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required),
-        between: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a an amount between " + price_range[0] + ' and' + price_range[1], (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.between)(price_range[0], price_range[1])),
+        between: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a an amount between " + price_range[0] + ' and ' + price_range[1], (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.between)(price_range[0], price_range[1])),
         numeric: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a valid number", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
       }
     };
@@ -35621,7 +35621,7 @@ var walletRules = function walletRules(price_range) {
     return {
       amount: {
         required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a valid number", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required),
-        between: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a an amount between " + price_range[0] + ' and' + price_range[1], (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.between)(price_range[0], price_range[1])),
+        between: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a an amount between " + price_range[0] + ' and ' + price_range[1], (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.between)(price_range[0], price_range[1])),
         numeric: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a valid number", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
       }
     };
