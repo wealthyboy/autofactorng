@@ -49,9 +49,12 @@ class WalletsController extends Controller
 
     public function walletBalnce()
     {
-        $balance  = auth()->user()->wallet_balance;
+        $wallet_balance  = auth()->user()->wallet_balance;
+        $total  = $wallet_balance->balance + $wallet_balance->auto_credit;
+
         return response()->json([
-            'balance' => $balance
+            'balance' => $wallet_balance,
+            'total' => $total
         ]);
     }
 
@@ -74,33 +77,38 @@ class WalletsController extends Controller
         $balance = WalletBalance::where('user_id', $user->id)->first();
 
         if (null !== $balance) {
-            $balance->balance = $balance->balance +  $input['amount'];
+            $balance->auto_credit = $balance->auto_credit +  $input['amount'];
             $balance->save();
         } else {
             $balance = new WalletBalance;
-            $balance->balance = $input['amount'];
+            $balance->auto_credit = $input['amount'];
             $balance->user_id = $user->id;
             $balance->save();
         }
 
-        $subscribe = Subscribe::where('user_id', $user->id)->first();
 
-        $dt = Carbon::now();
+        if ($request->subscribe) {
 
-        if (null !== $subscribe) {
-            $subscribe->user_id = $user->id;
-            $subscribe->starts_at =  $dt;
-            $subscribe->ends_at =  $dt->addYear(1);
-            $subscribe->plan = session('plan');
-            $subscribe->save();
-        } else {
-            $subscribe = new Subscribe;
-            $subscribe->user_id = $user->id;
-            $subscribe->starts_at =  $dt;
-            $subscribe->ends_at = $dt->addYear(1);
-            $subscribe->plan = session('plan');
-            $subscribe->save();
+            $subscribe = Subscribe::where('user_id', $user->id)->first();
+            $dt = Carbon::now();
+
+            if (null !== $subscribe) {
+                $subscribe->user_id = $user->id;
+                $subscribe->starts_at =  $dt;
+                $subscribe->ends_at =  $dt->addYear(1);
+                $subscribe->plan = session('plan');
+                $subscribe->save();
+            } else {
+                $subscribe = new Subscribe;
+                $subscribe->user_id = $user->id;
+                $subscribe->starts_at =  $dt;
+                $subscribe->ends_at = $dt->addYear(1);
+                $subscribe->plan = session('plan');
+                $subscribe->save();
+            }
         }
+
+
 
 
         return response($balance, 200);

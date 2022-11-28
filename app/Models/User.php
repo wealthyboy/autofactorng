@@ -92,6 +92,11 @@ class User extends Authenticatable
 		);
 	}
 
+	public function ActiveAddress()
+	{
+		return optional($this->addresses)->where('is_active', true)->first();
+	}
+
 
 	public function activities()
 	{
@@ -116,6 +121,18 @@ class User extends Authenticatable
 	}
 
 
+	public function subscribe()
+	{
+		return $this->hasOne(Subscribe::class);
+	}
+
+
+	public function hasActiveSubscription()
+	{
+		return null !== $this->subscribe && $this->subscribe->ends_at->isFuture() ? true : false;
+	}
+
+
 	public function scopeCustomers(Builder $builder)
 	{
 		return $builder->where('type', 'subscriber');
@@ -124,12 +141,6 @@ class User extends Authenticatable
 	public function scopeAdmin(Builder $builder)
 	{
 		return $builder->whereNull('type');
-	}
-
-
-	public function ActiveAddress()
-	{
-		return optional($this->addresses)->where('is_active', true)->first();
 	}
 
 

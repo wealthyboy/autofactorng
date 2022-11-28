@@ -89,6 +89,12 @@
                 href="/checkout"
                 class="btn btn-block btn-dark w-100 mb-2"
               >
+                Pay with auto credits
+                <i class="fa fa-arrow-right"></i></a>
+              <a
+                href="/checkout"
+                class="btn btn-block btn-dark w-100 mb-2"
+              >
                 Pay with wallet
                 <i class="fa fa-arrow-right"></i></a>
               <a

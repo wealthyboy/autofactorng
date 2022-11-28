@@ -19,18 +19,32 @@
 
 
 
-            <?php if($user): ?>
+            <?php if($user && $user->hasActiveSubscription()): ?>
+            <div class="row mb-5" id="signInMessage">
+               <span class="sign-in-prompt" data-testid="sign-in-message">Ypu already Subscribed</span>
+               <div><a href="/">Continue</a></div>
+            </div>
+
+            <?php endif; ?>
+
+
+
+            <?php if($user && !$user->hasActiveSubscription()): ?>
             <div class="row mb-5" id="signInMessage">
                <span class="sign-in-prompt" data-testid="sign-in-message">Fund Your Wallet To Get Auto Credits.</span>
+               <div><a href="/">Continue</a></div>
             </div>
-            <wallet :price_range="<?php echo e(collect($price_range)); ?>"></wallet>
-            <?php else: ?>
+            <wallet></wallet>
+
+            <?php endif; ?>
+
+
+            <?php if(auth()->guard()->guest()): ?>
             <div class="row mb-5" id="signInMessage">
                <span class="sign-in-prompt" data-testid="sign-in-message">Welcome.</span>
             </div>
             <subscribe :price_range="<?php echo e(collect($price_range)); ?>"></subscribe>
             <?php endif; ?>
-
 
 
          </div>

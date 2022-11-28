@@ -24,7 +24,6 @@ class SubscribeController extends Controller
             case 'light_duty':
                 $range1 = 50000;
                 $range2 = 149000;
-
                 break;
             case 'normal_duty':
                 $range1 = 150000;

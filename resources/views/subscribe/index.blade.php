@@ -21,18 +21,32 @@
 
 
 
-            @if ($user)
+            @if ($user && $user->hasActiveSubscription())
+            <div class="row mb-5" id="signInMessage">
+               <span class="sign-in-prompt" data-testid="sign-in-message">Ypu already Subscribed</span>
+               <div><a href="/">Continue</a></div>
+            </div>
+
+            @endif
+
+
+
+            @if ($user && !$user->hasActiveSubscription())
             <div class="row mb-5" id="signInMessage">
                <span class="sign-in-prompt" data-testid="sign-in-message">Fund Your Wallet To Get Auto Credits.</span>
+               <div><a href="/">Continue</a></div>
             </div>
-            <wallet :price_range="{{ collect($price_range) }}"></wallet>
-            @else
+            <wallet></wallet>
+
+            @endif
+
+
+            @guest
             <div class="row mb-5" id="signInMessage">
                <span class="sign-in-prompt" data-testid="sign-in-message">Welcome.</span>
             </div>
             <subscribe :price_range="{{ collect($price_range) }}"></subscribe>
-            @endif
-
+            @endguest
 
 
          </div>
