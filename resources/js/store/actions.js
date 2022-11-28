@@ -18,7 +18,7 @@ export const getWalletBalance = ({ commit }) => {
     return axios
         .get("/wallet-balance")
         .then(response => {
-            commit("setWalletBalance", response.data.balance.balance);
+            commit("setWalletBalance", response.data.total);
             return Promise.resolve(response);
         }).catch(() => {
             return Promise.reject(response);

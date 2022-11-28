@@ -34496,7 +34496,7 @@ var addProductToCart = function addProductToCart(_ref, _ref2) {
 var getWalletBalance = function getWalletBalance(_ref3) {
   var commit = _ref3.commit;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/wallet-balance").then(function (response) {
-    commit("setWalletBalance", response.data.balance.balance);
+    commit("setWalletBalance", response.data.total);
     return Promise.resolve(response);
   })["catch"](function () {
     return Promise.reject(response);
