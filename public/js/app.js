@@ -25317,8 +25317,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , ["total"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "/checkout",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-      'pe-none': _ctx.prices.total > _ctx.walletBalance.total
-    }, "btn btn-block btn-dark w-100 mb-2"])
+      'pe-none': _ctx.prices.total > _ctx.walletBalance.total,
+      'disabled': _ctx.prices.total > _ctx.walletBalance.total
+    }, "btn btn-block btn-dark w-100 mb-2 disabled"])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay with auto credits "), _hoisted_19], 2
   /* CLASS */
   ), _hoisted_20, _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {

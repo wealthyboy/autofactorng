@@ -87,8 +87,8 @@
             <div class="checkout-methods w-100 mb-5 mt-5">
               <a
                 href="/checkout"
-                :class="{'pe-none': prices.total > walletBalance.total }"
-                class="btn btn-block btn-dark w-100 mb-2"
+                :class="{'pe-none': prices.total > walletBalance.total , 'disabled': prices.total > walletBalance.total }"
+                class="btn btn-block btn-dark w-100 mb-2 disabled"
               >
                 Pay with auto credits
                 <i class="fa fa-arrow-right"></i></a>
