@@ -46,6 +46,7 @@ abstract class Table extends Controller
                 $this->builder->getModel()->getListingData($collection)
             ],
             'meta' => [
+                'sub_total' => false,
                 'show'  => true,
                 'right' => null,
                 'links' => $collection->links(),
