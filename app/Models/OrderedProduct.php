@@ -15,16 +15,15 @@ class OrderedProduct extends Model
 
     public function getListingData($collection)
     {
-
         return [
             'items' => [
                 $collection->map(function ($ordered_product) {
                     return [
                         "Image" =>  optional($ordered_product->product)->image_m,
                         "Product" => $ordered_product->product_name,
-                        "Price" => $ordered_product->price,
+                        "Price" =>  '₦' . $ordered_product->price,
                         "Quantity" => $ordered_product->quantity,
-                        "Sub Total" => $ordered_product->total,
+                        "Sub Total" =>  '₦' .  $ordered_product->total,
                     ];
                 })
             ],

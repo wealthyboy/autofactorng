@@ -105,7 +105,7 @@ class Order extends Model
 				"Invoice" => $order->invoice,
 				"Customer" => optional($order->user)->fullname(),
 				"Payment Type" => $order->payment_type,
-				"Total" => $order->total,
+				"Total" =>  '₦' . $order->total,
 				"Date Added" => $order->created_at->format('d-m-y'),
 			];
 		});

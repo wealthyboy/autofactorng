@@ -54,33 +54,21 @@
                 </tbody>
             </table>
             <?php if($models['meta']['sub_total']): ?>
-            <div class="">
-                <div class="border d-flex justify-content-between text-right  ">
-                    <span colspan="6" class="flex-grow-1 border">Sub-Total</span>
-                    <span colspan="" class="text-right"><?php echo e('number_format($sub_total)'); ?></span>
-                </div>
-            </div>
+
             <table class="table ">
                 <tfoot>
-                    <tr class="border text-right">
-                        <td colspan="6" class="text-right border"></td>
-                        <td colspan="6" class="text-right border"></td>
+                    <?php $__currentLoopData = $summaries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $summary): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <tr class=" text-right">
+                        <td colspan="6" class="t"></td>
+                        <td colspan="6" class="text-right "></td>
 
-                        <td colspan="19" class="text-right border">Sub-Total</td>
-                        <td colspan="" class="text-right"><small>ee</small><?php echo e('number_format($sub_total)'); ?></td>
+                        <td colspan="6" class="text-end">
+                            <h6 class="mb-0 text-xs"><?php echo e($key); ?></h6>
+                        </td>
+                        <td colspan="" class="text-end"><?php echo e($summary); ?></td>
                     </tr>
-                    <tr>
-                        <td colspan="6" class="text-right">Coupon</td>
-                        <td class="text-right"> ff</td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="text-right">Shipping</td>
-                        <td class="text-right"><small></small><?php echo e('optional($order->shipping)->price'); ?></td>
-                    </tr>
-                    <tr>
-                        <td colspan="6" class="text-right">Total</td>
-                        <td class="text-right"><?php echo e('$order->get_total()'); ?></td>
-                    </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
                 </tfoot>
             </table>
             <?php endif; ?>

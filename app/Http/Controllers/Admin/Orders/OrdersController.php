@@ -70,7 +70,16 @@ class OrdersController extends Table
 		$statuses   =  static::order_status();
 		$sub_total  =  $this->subTotal($order);
 		$orders = (new OrderedProduct())->getListingData($order->ordered_products()->paginate(10));
-		return view('admin.orders.show', compact('orders', 'statuses', 'order', 'sub_total'));
+
+		$summaries = [];
+		$summaries['Sub-Total'] = '₦' . $sub_total;
+		$summaries['Coupon'] = $order->coupon ?  $order->coupon . '  -%' . optional($order->voucher())->amount . 'off'  : '---';
+		$summaries['Shipping'] =  '₦' . $order->shipping_price;
+		$summaries['Heavy Item Charge'] =   '₦' . $order->shipping_price;
+		$summaries['Total'] =  '₦' .  $order->total;
+
+
+		return view('admin.orders.show', compact('summaries', 'orders', 'statuses', 'order', 'sub_total'));
 	}
 
 
