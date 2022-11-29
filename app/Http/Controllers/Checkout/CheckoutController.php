@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Checkout;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\Order;
 use App\Models\Voucher;
+use App\Models\WalletBalance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class CheckoutController extends Controller
 {
@@ -20,6 +24,10 @@ class CheckoutController extends Controller
      */
     public function index()
     {
+        $carts =  Cart::all_items_in_cart();
+        if (!$carts->count()) {
+            return redirect()->to('/cart');
+        }
         return view('checkout.index');
     }
 
@@ -32,6 +40,58 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+
+    public function confirm(Request $request)
+    {
+
+        $input = $request->all();
+
+        // return $input;
+        $payment_method = $input['payment_method'];
+        $ip = $request->ip();
+        $user = Auth::user();
+        $carts = Cart::all_items_in_cart();
+        $order = Order::checkout($input, $payment_method,  $ip, $carts, $user);
+        $code = trim(session('coupon'));
+        $coupon = Voucher::where('code', $code)->first();
+
+        if ($request->payment_method == 'Wallet') {
+            WalletBalance::deductFromWallet($request->total);
+        }
+
+        if ($request->payment_method == 'auto_credit') {
+            WalletBalance::deductFromCredit($request->total);
+        }
+
+        // $admin_emails = explode(',',$this->settings->alert_email);
+        // $symbol = Helper::getCurrency();
+        // $total =  \DB::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id',$order->id)->get();
+        // $sub_total = $total[0]->items_total ?? '0.00';
+
+        // try {
+        // 	$when = now()->addMinutes(5); 
+        // 	\Mail::to(optional($user->active_address)->email)
+        // 	->bcc($admin_emails[0])
+        // 		->send(new OrderReceipt($order,$this->settings,$symbol,$sub_total));
+        // 	} catch (\Throwable $th) {
+        // 	\Log::info("Mail error :".$th);
+        // }
+
+        //delete cart
+        //$affectedRows = Cart::delete_items_in_cart_purchased();
+        if (null !== $coupon && $coupon->type == 'specific') {
+            $coupon->update(['valid' => false]);
+        }
+
+        //unset the coupon
+        // $request->session()->forget('coupon');
+        // $request->session()->forget('coupon_total');
+        // Cookie::queue(Cookie::forget('cart'));
+        // return response()->json([
+        //     'status' => 'Order pLaced'
+        // ], 200);
     }
 
 

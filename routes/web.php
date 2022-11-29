@@ -93,6 +93,8 @@ Route::resource('tracking', 'TrackOrder\TrackOrdersController', ['names' => 'tra
 Route::resource('address', 'Address\AddressController', ['names' => 'address']);
 
 Route::get('checkout', 'Checkout\CheckoutController@index')->name('checkout');
+Route::post('checkout/confirm', 'Checkout\CheckoutController@confirm');
+
 Route::post('checkout/coupon', 'Checkout\CheckoutController@coupon');
 
 Route::group(['prefix' => '/api'], function () {

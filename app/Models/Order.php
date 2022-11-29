@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Http\Helper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Facades\Auth;
 
 class Order extends Model
 {
@@ -31,6 +31,50 @@ class Order extends Model
 	public function address()
 	{
 		return $this->belongsTo(Address::class);
+	}
+
+	public static function checkout($input, $payment_method, $ip, $carts, $user)
+	{
+
+
+		$order = new self;
+
+		$cart  = new Cart();
+		$order->user_id = $user->id;
+		$order->address_id  = $user->active_address->id;
+		$order->coupon = $input['coupon'];
+		$order->heavy_item_price = $input['heavy_item_price'];
+		$order->status = 'Processing';
+		$order->shipping_price  = $input['shipping_price'];
+		$order->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
+		$order->payment_type = $payment_method;
+		$order->total = $input['total'];
+		$order->first_name = optional($user->active_address)->first_name;
+		$order->last_name = optional($user->active_address)->last_name;
+		$order->address = optional($user->active_address)->address;
+		$order->city = optional($user->active_address)->city;
+		$order->state = optional(optional($user->active_address)->address_state)->name;
+		$order->ip = $ip;
+		//$order->user_agent = request()->server('HTTP_USER_AGENT');
+		if ($order->save()) {
+			foreach ($carts   as $cart) {
+				$insert = [
+					'order_id' => $order->id,
+					'product_id' => $cart->product_id,
+					'product_name' => optional($cart->product)->product_name,
+					'quantity' => $cart->quantity,
+					'price' => $cart->price,
+					'total' => $cart->quantity * $cart->price,
+					'created_at' => \Carbon\Carbon::now()
+				];
+
+				OrderedProduct::Insert($insert);
+				$cart->status = 'paid';
+				$cart->delete();
+			}
+		}
+
+		return $order;
 	}
 
 	public function shipping()

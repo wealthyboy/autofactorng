@@ -22178,16 +22178,30 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       _this.loading = false;
     });
   },
-  methods: _objectSpread(_objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapActions)({
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapActions)({
     createAddress: "createAddress",
     updateAddresses: "updateAddresses",
     updateLocations: "updateLocations",
     deleteAddress: "deleteAddress",
     getAddresses: "getAddresses",
     getCart: "getCart",
-    getWalletBalance: "getWalletBalance"
+    getWalletBalance: "getWalletBalance",
+    applyVoucher: "applyVoucher",
+    updateCartMeta: "updateCartMeta"
   })), {}, {
-    makePayment: function makePayment() {
+    checkoutWithWallet: function checkoutWithWallet(e) {
+      this.checkout(e, "Wallet", "Pay with wallet");
+    },
+    checkoutWithLagos: function checkoutWithLagos(e) {
+      this.checkout(e, "payment_on_delivery", "Pay on delivery (Lagos only)");
+    },
+    checkoutWithCredit: function checkoutWithCredit(e) {
+      this.checkout(e, "auto_credit", "Pay with auto credit");
+    },
+    checkoutCarbon: function checkoutCarbon(e) {
+      this.checkout("auto_credit");
+    },
+    makePayment: function makePayment(e) {
       var context = this;
       var cartIds = [];
       this.carts.forEach(function (cart, key) {
@@ -22200,7 +22214,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       if (!this.coupon) {
-        this.amount = this.meta.sub_total;
+        this.amount = this.prices.total;
       }
 
       var form = document.getElementById("checkout-form-2");
@@ -22221,7 +22235,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             coupon: context.coupon_code,
             type: "order_from_paystack",
             shipping_id: context.shipping_id,
-            shipping_price: context.shipping_price,
+            shipping_price: context.prices.ship_price,
+            heavy_item_price: context.prices.heavy_item_price,
             cart: cartIds,
             total: context.amount
           }]
@@ -22241,12 +22256,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       });
       handler.openIframe();
-    }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_7__.mapActions)({
-    getCart: "getCart",
-    applyVoucher: "applyVoucher",
-    updateCartMeta: "updateCartMeta"
-  })), {}, {
+    },
     applyCoupon: function applyCoupon() {
       var _this2 = this;
 
@@ -22269,8 +22279,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         _this2.voucher.push(response.data);
 
-        if (_this2.shipping_price) {
-          _this2.amount = parseInt(_this2.shipping_price) + parseInt(response.data.sub_total);
+        if (_this2.prices.ship_price) {
+          _this2.amount = parseInt(_this2.prices.ship_price) + parseInt(response.data.sub_total);
         } else {
           _this2.amount = parseInt(response.data.sub_total);
         }
@@ -22283,26 +22293,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       });
     },
-    checkout: function checkout() {
+    checkout: function checkout(e) {
       var _this3 = this;
 
-      this.order_text = "Please wait. We are almost done......";
-      alert(this.shipping_id);
+      var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      var text = arguments.length > 2 ? arguments[2] : undefined;
+      e.target.innerText = "Please wait.......";
+      e.target.classList.add("disabled");
+
+      if (!this.coupon) {
+        this.amount = this.prices.total;
+      }
+
       axios__WEBPACK_IMPORTED_MODULE_2___default().post("/checkout/confirm", {
-        shipping_id: this.shipping_id,
-        delivery_option: this.delivery_option,
-        delivery_note: this.delivery_note,
-        payment_type: "admin",
-        admin: this.meta.isAdmin ? "admin" : "online",
-        pending: false,
-        email: this.uemail
+        coupon: this.coupon_code,
+        payment_method: type,
+        shipping_price: this.prices.ship_price,
+        heavy_item_price: this.prices.heavy_item_price,
+        total: this.amount
       }).then(function (response) {
         _this3.paymentIsComplete = true;
       })["catch"](function (error) {
-        _this3.order_text = "Place Order";
-        _this3.payment_is_processing = false;
-        _this3.checkingout = false;
-        _this3.error = "We could not complete your order.";
+        e.target.innerText = text;
+        e.target.classList.remove("disabled");
       });
     },
     updateCartTotal: function updateCartTotal(obj) {
@@ -25229,21 +25242,15 @@ var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "/checkout",
-  "class": "btn btn-block btn-dark w-100 mb-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay with wallet "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa fa-arrow-right"
-})], -1
+}, null, -1
 /* HOISTED */
 );
 
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "/checkout",
-  "class": "btn btn-block btn-dark w-100 mb-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Buy now pay later "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
   "class": "fa fa-arrow-right"
-})], -1
+}, null, -1
 /* HOISTED */
 );
 
@@ -25253,26 +25260,32 @@ var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_23 = {
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "fa fa-arrow-right"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_24 = {
   "class": "col-5"
 };
-var _hoisted_24 = {
+var _hoisted_25 = {
   "class": "col-md-12 d-none d-lg-block mb-3"
 };
-var _hoisted_25 = {
+var _hoisted_26 = {
   "class": "cart-collateralse bg--light border pb-3 pt-3 pl-3 pt-3 pr-3"
 };
-var _hoisted_26 = {
+var _hoisted_27 = {
   "class": "cart_totalse"
 };
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "head border-bottom"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "SUMMARY")], -1
 /* HOISTED */
 );
 
-var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "proceed-to-checkout"
 }, null, -1
 /* HOISTED */
@@ -25315,24 +25328,50 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8
   /* PROPS */
   , ["total"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "/checkout",
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-      'pe-none': _ctx.prices.total > _ctx.walletBalance.total,
-      'disabled': _ctx.prices.total > _ctx.walletBalance.total
-    }, "btn btn-block btn-dark w-100 mb-2 disabled"])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay with auto credits "), _hoisted_19], 2
-  /* CLASS */
-  ), _hoisted_20, _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "#",
     onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.checkoutWithCredit && $options.checkoutWithCredit.apply($options, arguments);
+    }, ["prevent"])),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+      'pe-none': _ctx.prices.total > _ctx.walletBalance.auto_credit,
+      'disabled': _ctx.prices.total > _ctx.walletBalance.auto_credit
+    }, "btn btn-block btn-dark w-100 mb-2"])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay with auto credits "), _hoisted_19], 2
+  /* CLASS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "#",
+    onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+      return $options.checkoutWithWallet($event);
+    }, ["prevent"])),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+      'pe-none': _ctx.prices.total > parseInt(_ctx.walletBalance.wallet_balance),
+      'disabled': _ctx.prices.total > parseInt(_ctx.walletBalance.wallet_balance)
+    }, "btn btn-block btn-dark w-100 mb-2"])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay with wallet "), _hoisted_20], 2
+  /* CLASS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "#",
+    onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+      return $options.checkoutWithLagos($event);
+    }, ["prevent"])),
+    "class": "btn btn-block btn-dark w-100 mb-2"
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay on delivery (Lagos only) "), _hoisted_21]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "/checkout",
+    onClick: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.makePayment && $options.makePayment.apply($options, arguments);
+    }, ["prevent"])),
+    "class": "btn btn-block btn-dark w-100 mb-2"
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Buy now pay later "), _hoisted_22]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    href: "#",
+    onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.makePayment && $options.makePayment.apply($options, arguments);
     }, ["prevent"])),
     "class": "btn btn-block btn-dark w-100"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay Now "), _hoisted_22])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_cart_summary), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_total, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay Now "), _hoisted_23])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_cart_summary), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_total, {
     total: _ctx.prices.total
   }, null, 8
   /* PROPS */
-  , ["total"]), _hoisted_28])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+  , ["total"]), _hoisted_29])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -27024,9 +27063,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["loading"]), !$setup.loading && $setup.tableData.items[0].length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Showing "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.pmeta.from) + "- " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.pmeta.to) + " of " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.pmeta.total) + " Records", 1
   /* TEXT */
-  )])]), $setup.tableData.meta.right ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_7, "Auto Credit: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($setup.walletBalance.balance.auto_credit) || '0.00'), 1
+  )])]), $setup.tableData.meta.right ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_7, "Auto Credit: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($setup.walletBalance.auto_credit) || '0.00'), 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_8, "Wallet Balance: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($setup.walletBalance.balance.balance) || '0.00'), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_8, "Wallet Balance: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($setup.walletBalance.wallet_balance) || '0.00'), 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_9, "Total: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($setup.walletBalance.total) || '0.00'), 1
   /* TEXT */

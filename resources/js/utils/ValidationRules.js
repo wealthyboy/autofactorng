@@ -99,7 +99,6 @@ export const subscribeRules = (form, price_range) => {
 };
 
 export const loginRules = (form) => {
-
     const rules = computed(() => {
         return {
             email: {

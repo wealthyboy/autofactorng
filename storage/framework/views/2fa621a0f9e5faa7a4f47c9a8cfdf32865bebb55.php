@@ -67,10 +67,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
                     <div class="d-flex justify-content-end mt-4">
                         <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
                     </div>
@@ -106,29 +102,24 @@
             </div>
             <div class="clearfix"></div>
 
-
             <form action="<?php echo e(route('shipping.destroy',['shipping'=>1])); ?>" method="post" enctype="multipart/form-data" id="form-attributes">
                 <?php echo csrf_field(); ?>
                 <?php echo method_field('DELETE'); ?>
                 <div class="material-datatables">
                     <div class="well well-sm pb-5" style="height: 350px; background-color: #fff; color: black; overflow: auto;">
-
                         <?php $__currentLoopData = $shippings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $shipping): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="parent" value="<?php echo e($shipping->id); ?>">
                             <div class="form-check ">
                                 <label class="custom-control-label" for="<?php echo e(optional($shipping->location)->name); ?>">
                                     <input class="form-check-input" value="<?php echo e($shipping->id); ?>" type="checkbox" id="<?php echo e(optional($shipping->location)->name); ?>" name="selected[]">
-                                    <span role="button"><?php echo e($shipping->name); ?> | <?php echo e($shipping->price); ?> </span>
+                                    <span role="button"><?php echo e(optional($shipping->location)->name); ?> | <?php echo e($shipping->price); ?> </span>
                                     <a href="<?php echo e(route('shipping.edit',['shipping'=>$shipping->id])); ?>">
                                         <i class="fa fa-pencil"></i> Edit</a>
                                 </label>
                             </div>
                             <?php echo $__env->make('includes.children',['obj'=>$shipping,'space'=>'&nbsp;&nbsp;','model' => 'shipping','url' => 'shipping'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
                         </div>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
                     </div>
                 </div>
             </form>

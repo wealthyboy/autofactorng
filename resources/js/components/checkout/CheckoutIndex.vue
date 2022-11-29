@@ -86,20 +86,33 @@
 
             <div class="checkout-methods w-100 mb-5 mt-5">
               <a
-                href="/checkout"
-                :class="{'pe-none': prices.total > walletBalance.total , 'disabled': prices.total > walletBalance.total }"
-                class="btn btn-block btn-dark w-100 mb-2 disabled"
+                href="#"
+                @click.prevent="checkoutWithCredit"
+                :class="{'pe-none': prices.total > walletBalance.auto_credit , 'disabled': prices.total > walletBalance.auto_credit }"
+                class="btn btn-block btn-dark w-100 mb-2 "
               >
                 Pay with auto credits
                 <i class="fa fa-arrow-right"></i></a>
               <a
-                href="/checkout"
+                href="#"
+                @click.prevent="checkoutWithWallet($event)"
+                :class="{'pe-none': prices.total > parseInt(walletBalance.wallet_balance) , 'disabled': prices.total  > parseInt(walletBalance.wallet_balance) }"
                 class="btn btn-block btn-dark w-100 mb-2"
               >
+
                 Pay with wallet
+                <i class="fa fa-arrow-right"></i></a>
+
+              <a
+                href="#"
+                @click.prevent="checkoutWithLagos($event)"
+                class="btn btn-block btn-dark w-100 mb-2"
+              >
+                Pay on delivery (Lagos only)
                 <i class="fa fa-arrow-right"></i></a>
               <a
                 href="/checkout"
+                @click.prevent="makePayment"
                 class="btn btn-block btn-dark w-100 mb-2"
               >
                 Buy now pay later
@@ -210,9 +223,27 @@ export default {
       getAddresses: "getAddresses",
       getCart: "getCart",
       getWalletBalance: "getWalletBalance",
+      applyVoucher: "applyVoucher",
+      updateCartMeta: "updateCartMeta",
     }),
 
-    makePayment: function () {
+    checkoutWithWallet: function (e) {
+      this.checkout(e, "Wallet", "Pay with wallet");
+    },
+
+    checkoutWithLagos: function (e) {
+      this.checkout(e, "payment_on_delivery", "Pay on delivery (Lagos only)");
+    },
+
+    checkoutWithCredit: function (e) {
+      this.checkout(e, "auto_credit", "Pay with auto credit");
+    },
+
+    checkoutCarbon: function (e) {
+      this.checkout("auto_credit");
+    },
+
+    makePayment: function (e) {
       let context = this;
       var cartIds = [];
       this.carts.forEach(function (cart, key) {
@@ -225,7 +256,7 @@ export default {
       }
 
       if (!this.coupon) {
-        this.amount = this.meta.sub_total;
+        this.amount = this.prices.total;
       }
 
       let form = document.getElementById("checkout-form-2");
@@ -246,7 +277,8 @@ export default {
               coupon: context.coupon_code,
               type: "order_from_paystack",
               shipping_id: context.shipping_id,
-              shipping_price: context.shipping_price,
+              shipping_price: context.prices.ship_price,
+              heavy_item_price: context.prices.heavy_item_price,
               cart: cartIds,
               total: context.amount,
             },
@@ -269,11 +301,6 @@ export default {
       handler.openIframe();
     },
 
-    ...mapActions({
-      getCart: "getCart",
-      applyVoucher: "applyVoucher",
-      updateCartMeta: "updateCartMeta",
-    }),
     applyCoupon: function () {
       if (!this.coupon) {
         this.coupon_error = "Enter a coupon code";
@@ -293,9 +320,10 @@ export default {
           this.submiting = false;
           this.coupon = "";
           this.voucher.push(response.data);
-          if (this.shipping_price) {
+          if (this.prices.ship_price) {
             this.amount =
-              parseInt(this.shipping_price) + parseInt(response.data.sub_total);
+              parseInt(this.prices.ship_price) +
+              parseInt(response.data.sub_total);
           } else {
             this.amount = parseInt(response.data.sub_total);
           }
@@ -308,28 +336,28 @@ export default {
           }
         });
     },
-    checkout: function () {
-      this.order_text = "Please wait. We are almost done......";
-      alert(this.shipping_id);
+    checkout: function (e, type = null, text) {
+      e.target.innerText = "Please wait.......";
+      e.target.classList.add("disabled");
+
+      if (!this.coupon) {
+        this.amount = this.prices.total;
+      }
 
       axios
         .post("/checkout/confirm", {
-          shipping_id: this.shipping_id,
-          delivery_option: this.delivery_option,
-          delivery_note: this.delivery_note,
-          payment_type: "admin",
-          admin: this.meta.isAdmin ? "admin" : "online",
-          pending: false,
-          email: this.uemail,
+          coupon: this.coupon_code,
+          payment_method: type,
+          shipping_price: this.prices.ship_price,
+          heavy_item_price: this.prices.heavy_item_price,
+          total: this.amount,
         })
         .then((response) => {
           this.paymentIsComplete = true;
         })
         .catch((error) => {
-          this.order_text = "Place Order";
-          this.payment_is_processing = false;
-          this.checkingout = false;
-          this.error = "We could not complete your order.";
+          e.target.innerText = text;
+          e.target.classList.remove("disabled");
         });
     },
     updateCartTotal: function (obj) {

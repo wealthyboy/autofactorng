@@ -49,11 +49,12 @@ class WalletsController extends Controller
 
     public function walletBalnce()
     {
-        $wallet_balance  = auth()->user()->wallet_balance;
+        $wallet_balance  =   auth()->user()->wallet_balance;
         $total  = (int) optional($wallet_balance)->balance + optional($wallet_balance)->auto_credit;
 
         return response()->json([
-            'balance' => $wallet_balance,
+            'wallet_balance' => (int) optional($wallet_balance)->balance,
+            'auto_credit' => (int) optional($wallet_balance)->auto_credit,
             'total' => $total
         ]);
     }
