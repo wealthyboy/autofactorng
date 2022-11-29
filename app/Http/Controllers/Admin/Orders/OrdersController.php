@@ -14,11 +14,7 @@ use App\Http\Helper;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\OrderStatusNotification;
 use App\Mail\ReviewMail;
-
-
-
-
-
+use Illuminate\Support\Facades\DB;
 
 class OrdersController extends Table
 {
@@ -44,8 +40,8 @@ class OrdersController extends Table
 
 	public function index()
 	{
-		//$orders = Order::has('ordered_products')->orderBy('created_at', 'desc')->paginate(450);
-		$orders = $this->getColumnListings();
+		$orders = Order::has('ordered_products')->orderBy('created_at', 'desc')->paginate(450);
+		$orders = $this->getColumnListings($orders);
 		return view('admin.orders.index', compact('orders'));
 	}
 
@@ -73,7 +69,23 @@ class OrdersController extends Table
 		$order      =  Order::find($id);
 		$statuses   =  static::order_status();
 		$sub_total  =  $this->subTotal($order);
-		return view('admin.orders.show', compact('statuses', 'order', 'sub_total'));
+		$orders = (new OrderedProduct())->getListingData($order->ordered_products()->paginate(10));
+		return view('admin.orders.show', compact('orders', 'statuses', 'order', 'sub_total'));
+	}
+
+
+	public function showData($id)
+	{
+		$obj =  $this->builder->find($id);
+		return [
+			'customer' => [
+				"Full Name" => optional($obj->user)->fullname(),
+				"Phone Number" => optional($obj->user)->phone_number,
+				"Email" => optional($obj->user)->email,
+				"Date Joined" => optional($obj->user)->created_at->format('d-m-y')
+			],
+			'data' => $this->builder->getModel()->getShowData($obj)
+		];
 	}
 
 
@@ -86,7 +98,7 @@ class OrdersController extends Table
 
 	public function subTotal($order)
 	{
-		$total = \Db::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id', $order->id)->get();
+		$total = DB::table('ordered_products')->select(DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
 		return $sub_total = $total[0]->items_total ?? '0.00';
 	}
 

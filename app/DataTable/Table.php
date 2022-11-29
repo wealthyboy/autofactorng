@@ -38,9 +38,8 @@ abstract class Table extends Controller
     }
 
 
-    protected function getColumnListings()
+    protected function getColumnListings($collection)
     {
-        $collection =  $this->builder->paginate(10);
 
         return [
             'items' => [
@@ -57,6 +56,7 @@ abstract class Table extends Controller
                 'urls' => $collection->map(function ($obj) {
                     return [
                         "url" => '/admin/' . $this->link . '/' . $obj->id,
+                        "add" => '/admin/' . $this->link . '/' . $obj->id,
                     ];
                 })
             ]

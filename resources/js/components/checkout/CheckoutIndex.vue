@@ -81,8 +81,11 @@
               >{{coupon_error}}</div>
 
             </div>
-
-            <total :total="prices.total" />
+            <total
+              :voucher="voucher"
+              :total="prices.total"
+              :amount="amount"
+            />
 
             <div class="checkout-methods w-100 mb-5 mt-5">
               <a
@@ -151,6 +154,8 @@
 
 </template>
 
+
+
 <script>
 import ShipAddress from "../account/ShipAddress";
 import message from "../message/index";
@@ -184,7 +189,9 @@ export default {
       amount: 0,
       order_text: "Place Order",
       payment_is_processing: false,
-      voucher: [],
+      voucher: null,
+      showZero: false,
+
       error: null,
       scriptLoaded: null,
       submiting: false,
@@ -319,6 +326,8 @@ export default {
         .then((response) => {
           this.submiting = false;
           this.coupon = "";
+          this.voucher = [];
+
           this.voucher.push(response.data);
           if (this.prices.ship_price) {
             this.amount =
@@ -339,8 +348,7 @@ export default {
     checkout: function (e, type = null, text) {
       e.target.innerText = "Please wait.......";
       e.target.classList.add("disabled");
-
-      if (!this.coupon) {
+      if (!this.coupon_code) {
         this.amount = this.prices.total;
       }
 

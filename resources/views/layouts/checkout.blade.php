@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="/css/app.css">
 
     <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="https://unpkg.com/carbon-zero"></script>
+
 
 </head>
 
@@ -58,11 +60,6 @@
                         <div class="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0">
                             <a href="#" class="search-toggle" role="button"><i class="icon-search-3"></i></a>
                         </div>
-
-
-
-
-
                         <div class="dropdown cart-dropdown">
                         </div>
                         <!-- End .dropdown -->

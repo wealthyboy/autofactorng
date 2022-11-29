@@ -96,12 +96,15 @@ class Order extends Model
 
 	public function getListingData($collection)
 	{
+
+
+
 		return  $collection->map(function ($order) {
 			return [
 				"Order Id" => '#' . $order->id,
 				"Invoice" => $order->invoice,
 				"Customer" => optional($order->user)->fullname(),
-				"Type" => $order->type,
+				"Payment Type" => $order->payment_type,
 				"Total" => $order->total,
 				"Date Added" => $order->created_at->format('d-m-y'),
 			];

@@ -139,7 +139,7 @@ class CheckoutController extends Controller
 
 
         if ($cart_total < $coupon->from_value) {
-            $error['error'] = 'You can only use this coupon when your purchase is above  ' . $this->settings->currency->symbol . $coupon->from_value;
+            $error['error'] = 'You can only use this coupon when your purchase is above  '  . $coupon->from_value;
             return response()->json($error, 422);
         }
 
@@ -150,9 +150,24 @@ class CheckoutController extends Controller
         }
         //get all the infomation 
         $total = [];
-        $total['currency'] = $this->settings->currency->symbol;
+
+        $total['currency'] = '';
+
+
 
         if (!empty($coupon->from_value) && $cart_total >= $coupon->from_value) {
+
+            if ($coupon->is_fixed) {
+                $new_total = $cart_total - $coupon->amount;
+                $total['sub_total'] = round($new_total, 0);
+                $request->session()->put(['new_total' => $new_total]);
+                $request->session()->put(['coupon_total' => $new_total]);
+                $request->session()->put(['coupon' => $request->coupon]);
+                $total['percent'] = $coupon->amount . '%  percent off';
+                return response()->json($total, 200);
+            }
+
+
             $new_total = ($coupon->amount * $cart_total) / 100;
             $new_total = $cart_total - $new_total;
             $total['sub_total'] = round($new_total, 0);
@@ -165,6 +180,17 @@ class CheckoutController extends Controller
             $error['error'] = 'Coupon is invalid ';
             return response()->json($error, 422);
         } else {
+
+            if ($coupon->is_fixed) {
+                $new_total = $cart_total - $coupon->amount;
+                $total['sub_total'] = round($new_total, 0);
+                $request->session()->put(['new_total' => $new_total]);
+                $request->session()->put(['coupon_total' => $new_total]);
+                $request->session()->put(['coupon' => $request->coupon]);
+                $total['percent'] = $coupon->amount . '%  percent off';
+                return response()->json($total, 200);
+            }
+
             $new_total = ($coupon->amount * $cart_total) / 100;
             $new_total = $cart_total - $new_total;
             $total['sub_total'] =   $new_total;
