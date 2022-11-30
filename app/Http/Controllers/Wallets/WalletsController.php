@@ -34,8 +34,6 @@ class WalletsController extends Controller
 
         $data = [];
 
-
-
         if (request()->ajax()) {
             return response([
                 'collections' => $this->getColumnNames($pagination),
@@ -67,10 +65,17 @@ class WalletsController extends Controller
      */
     public function store(Request $request)
     {
+
         $user = $request->user();
+
         $input = $request->all();
+
+        $amount = (10 * $input['amount']) / 100;
+        $amount = $input['amount'] +  $amount;
+
+
         $wallet = new Wallet;
-        $wallet->amount = $input['amount'];
+        $wallet->amount = $amount;
         $wallet->user_id = $user->id;
         $wallet->status = 'Added';
         $wallet->save();
@@ -78,11 +83,11 @@ class WalletsController extends Controller
         $balance = WalletBalance::where('user_id', $user->id)->first();
 
         if (null !== $balance) {
-            $balance->auto_credit = $balance->auto_credit +  $input['amount'];
+            $balance->auto_credit = $balance->auto_credit +  $amount;
             $balance->save();
         } else {
             $balance = new WalletBalance;
-            $balance->auto_credit = $input['amount'];
+            $balance->auto_credit = $amount;
             $balance->user_id = $user->id;
             $balance->save();
         }
