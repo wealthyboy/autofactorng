@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Helper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,9 +22,9 @@ class OrderedProduct extends Model
                     return [
                         "Image" =>  optional($ordered_product->product)->image_m,
                         "Product" => $ordered_product->product_name,
-                        "Price" =>  '₦' . $ordered_product->price,
+                        "Price" =>  Helper::currencyWrapper($ordered_product->price),
                         "Quantity" => $ordered_product->quantity,
-                        "Sub Total" =>  '₦' .  $ordered_product->total,
+                        "Sub Total" =>  Helper::currencyWrapper($ordered_product->total),
                     ];
                 })
             ],
