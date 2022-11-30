@@ -22200,7 +22200,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.checkout(e, "auto_credit", "Pay with auto credit");
     },
     checkoutCarbon: function checkoutCarbon(e) {
-      this.checkout("auto_credit");
+      this.showZero = true; // this.checkout("auto_credit");
     },
     makePayment: function makePayment(e) {
       var context = this;
@@ -25302,6 +25302,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_total = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("total");
 
+  var _component_carbon_zero = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("carbon-zero");
+
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$data.paymentIsComplete ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_complete, {
     key: 0,
     message: 'Your Order has been placed. Check your email for further details'
@@ -25362,7 +25364,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay on delivery (Lagos only) "), _hoisted_21]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "/checkout",
     onClick: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-      return $options.makePayment && $options.makePayment.apply($options, arguments);
+      return $options.checkoutCarbon && $options.checkoutCarbon.apply($options, arguments);
     }, ["prevent"])),
     "class": "btn btn-block btn-dark w-100 mb-2"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Buy now pay later "), _hoisted_22]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
@@ -25375,7 +25377,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     total: _ctx.prices.total
   }, null, 8
   /* PROPS */
-  , ["total"]), _hoisted_29])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+  , ["total"]), _hoisted_29])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.showZero ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_carbon_zero, {
+    key: 3,
+    "merchant-id": "PDRx7W",
+    "api-key": "live_pk_FypcQ2fwqTaQnrrKtYvfucLL0pqQCU",
+    country: "ng",
+    "total-price": "2000000",
+    "class": "carbon-zero",
+    "purchase-ref-id": "rtghbvcghj76",
+    "purchase-items": "[{}]",
+    onCloseCarbonZero: _cache[7] || (_cache[7] = function () {
+      return $data.showZero = false;
+    })
+  })) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
   /* STABLE_FRAGMENT */
   );
 }

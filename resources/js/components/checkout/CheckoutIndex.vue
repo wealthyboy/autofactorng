@@ -115,7 +115,7 @@
                 <i class="fa fa-arrow-right"></i></a>
               <a
                 href="/checkout"
-                @click.prevent="makePayment"
+                @click.prevent="checkoutCarbon"
                 class="btn btn-block btn-dark w-100 mb-2"
               >
                 Buy now pay later
@@ -151,6 +151,18 @@
       </div>
     </div>
   </div>
+
+  <carbon-zero
+    v-if="showZero"
+    merchant-id="PDRx7W"
+    api-key="live_pk_FypcQ2fwqTaQnrrKtYvfucLL0pqQCU"
+    country="ng"
+    total-price="2000000"
+    class="carbon-zero"
+    purchase-ref-id="rtghbvcghj76"
+    purchase-items='[{}]'
+    @closeCarbonZero="() => (showZero = false)"
+  ></carbon-zero>
 
 </template>
 
@@ -191,7 +203,6 @@ export default {
       payment_is_processing: false,
       voucher: null,
       showZero: false,
-
       error: null,
       scriptLoaded: null,
       submiting: false,
@@ -247,7 +258,8 @@ export default {
     },
 
     checkoutCarbon: function (e) {
-      this.checkout("auto_credit");
+      this.showZero = true;
+      // this.checkout("auto_credit");
     },
 
     makePayment: function (e) {
