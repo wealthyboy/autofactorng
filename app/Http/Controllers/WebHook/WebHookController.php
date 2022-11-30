@@ -64,7 +64,7 @@ class WebHookController extends Controller
 
 
                 $admin_emails = explode(',', $this->settings->alert_email);
-                $total =  DB::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id', $order->id)->get();
+                $total =  DB::table('ordered_products')->select(DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
                 $sub_total = $total[0]->items_total ?? '0.00';
                 $order->currency = '₦';
                 try {
