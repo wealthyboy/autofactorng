@@ -80,7 +80,7 @@ Route::get('product/{category}/{product}', 'Products\ProductsController@show');
 Route::get('make-model-year-engine', 'Products\ProductsController@makeModelYearSearch');
 
 Route::get('/mailable', function () {
-    $order = Order::find(12);
+    $order = Order::find(10);
     $total =  DB::table('ordered_products')->select(\DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
     $sub_total = $total[0]->items_total ?? '0.00';
     $order->currency = '₦';
