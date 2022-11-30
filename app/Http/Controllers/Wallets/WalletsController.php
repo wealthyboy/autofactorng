@@ -93,29 +93,24 @@ class WalletsController extends Controller
         }
 
 
-        if ($request->subscribe) {
 
-            $subscribe = Subscribe::where('user_id', $user->id)->first();
-            $dt = Carbon::now();
+        $subscribe = Subscribe::where('user_id', $user->id)->first();
+        $dt = Carbon::now();
 
-            if (null !== $subscribe) {
-                $subscribe->user_id = $user->id;
-                $subscribe->starts_at =  $dt;
-                $subscribe->ends_at =  $dt->addYear(1);
-                $subscribe->plan = session('plan');
-                $subscribe->save();
-            } else {
-                $subscribe = new Subscribe;
-                $subscribe->user_id = $user->id;
-                $subscribe->starts_at =  $dt;
-                $subscribe->ends_at = $dt->addYear(1);
-                $subscribe->plan = session('plan');
-                $subscribe->save();
-            }
+        if (null !== $subscribe) {
+            $subscribe->user_id = $user->id;
+            $subscribe->starts_at =  $dt;
+            $subscribe->ends_at =  $dt->addYear(1);
+            $subscribe->plan = session('plan');
+            $subscribe->save();
+        } else {
+            $subscribe = new Subscribe;
+            $subscribe->user_id = $user->id;
+            $subscribe->starts_at =  $dt;
+            $subscribe->ends_at = $dt->addYear(1);
+            $subscribe->plan = session('plan');
+            $subscribe->save();
         }
-
-
-
 
         return response($balance, 200);
     }
