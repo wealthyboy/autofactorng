@@ -21,9 +21,10 @@ use App\Models\Product;
 
 // use App\Jobs\ReviewProduct;
 
-// use App\SystemSetting;
+use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class WebHookController extends Controller
 {
@@ -32,7 +33,7 @@ class WebHookController extends Controller
 
     public function __construct()
     {
-        //$this->settings =  Setting::first();
+        $this->settings =  Setting::first();
     }
 
 
@@ -62,19 +63,18 @@ class WebHookController extends Controller
 
 
 
-                // $admin_emails = explode(',', $this->settings->alert_email);
-                // $symbol = optional($currency)->symbol;
-                // $total =  DB::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id', $order->id)->get();
-                // $sub_total = $total[0]->items_total ?? '0.00';
-
-                // try {
-                //     $when = now()->addMinutes(5);
-                //     \Mail::to($user->email)
-                //         ->bcc($admin_emails[0])
-                //         ->send(new OrderReceipt($order, $this->settings, $symbol, $sub_total));
-                // } catch (\Throwable $th) {
-                //     Log::info("Mail error :" . $th);
-                // }
+                $admin_emails = explode(',', $this->settings->alert_email);
+                $total =  DB::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id', $order->id)->get();
+                $sub_total = $total[0]->items_total ?? '0.00';
+                $order->currency = '₦';
+                try {
+                    $when = now()->addMinutes(5);
+                    Mail::to($user->email)
+                        ->bcc($admin_emails[0])
+                        ->send(new OrderReceipt($order, null, null, $sub_total));
+                } catch (\Throwable $th) {
+                    Log::info("Mail error :" . $th);
+                }
 
                 //delete cart
                 if ($input['coupon']) {

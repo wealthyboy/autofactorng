@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Order;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 
@@ -77,7 +79,14 @@ Route::get('products/{category}', 'Products\ProductsController@index');
 Route::get('product/{category}/{product}', 'Products\ProductsController@show');
 Route::get('make-model-year-engine', 'Products\ProductsController@makeModelYearSearch');
 
+Route::get('/mailable', function () {
+    $order = Order::find(12);
+    $total =  DB::table('ordered_products')->select(\DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
+    $sub_total = $total[0]->items_total ?? '0.00';
+    $order->currency = '₦';
 
+    return  new App\Mail\OrderReceipt($order, null, null, $sub_total);
+});
 
 Route::get('pages/{information}', 'Pages\PagesController@show');
 Route::get('cart', 'Cart\CartController@index');

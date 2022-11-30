@@ -6,7 +6,7 @@
 
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta name="format-detection" content="telephone=no">
-   <title>{{ Config('app.name')}} Reciept</title>
+   <title><?php echo e(Config('app.name')); ?> Reciept</title>
    <style>
       table {
          mso-table-lspace: 0pt;
@@ -156,7 +156,7 @@
          min-width: 100% !important;
       }
 
-      @media only screen and (max-width: 479px) {
+      @media  only screen and (max-width: 479px) {
          body {
             min-width: 100% !important;
          }
@@ -379,7 +379,7 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="wz" width="30"></td>
-                                                      <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;text-align: left;line-height: 23px;">Dear {{ $order->user->fullname() }},<br>Your order has been received and is now being processed. Please find your order details below.</td>
+                                                      <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;text-align: left;line-height: 23px;">Dear <?php echo e($order->user->fullname()); ?>,<br>Your order has been received and is now being processed. Please find your order details below.</td>
                                                       <td class="wz" width="30"></td>
                                                    </tr>
                                                    <tr>
@@ -435,9 +435,9 @@
 
                                                             <tr>
                                                                <td colspan="3" class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="margin-left: 3px;color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;line-height: 23px;">
-                                                                  {{ ucfirst($order->first_name) }} {{ ucfirst($order->last_name) }} <br />
-                                                                  {{ $order->address }}<br /> {{ $order->city }} &nbsp;
-                                                                  <br /> {{ $order->state }}&nbsp;
+                                                                  <?php echo e(ucfirst($order->first_name)); ?> <?php echo e(ucfirst($order->last_name)); ?> <br />
+                                                                  <?php echo e($order->address); ?><br /> <?php echo e($order->city); ?> &nbsp;
+                                                                  <br /> <?php echo e($order->state); ?>&nbsp;
 
                                                                </td>
                                                             </tr>
@@ -489,13 +489,13 @@
                                                          <table class="tableTxt" width="145" cellspacing="0" cellpadding="0" border="0" align="left">
                                                             <tr>
                                                                <td rowspan="2" style="line-height:1px;" width="25" valign="top" align="center">
-                                                                  <!-- <img src="{{ Config('app.url')}}/images/logo/number-icon-20x20.png" style="display:block;" alt="IMG" vspace="0" hspace="0" border="0"> -->
+                                                                  <!-- <img src="<?php echo e(Config('app.url')); ?>/images/logo/number-icon-20x20.png" style="display:block;" alt="IMG" vspace="0" hspace="0" border="0"> -->
                                                                </td>
                                                                <td rowspan="2" style="font-size:0;line-height:0;" width="14">&nbsp;</td>
                                                                <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Invoice No</td>
                                                             </tr>
                                                             <tr>
-                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $order->invoice }}</td>
+                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a><?php echo e($order->invoice); ?></td>
                                                             </tr>
                                                             <tr>
                                                                <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
@@ -523,7 +523,7 @@
                                                                <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Invoice Date</td>
                                                             </tr>
                                                             <tr>
-                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $order->created_at->toFormattedDateString()  }}</td>
+                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a><?php echo e($order->created_at->toFormattedDateString()); ?></td>
                                                             </tr>
                                                             <tr>
                                                                <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
@@ -551,7 +551,7 @@
                                                                <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Invoice Total</td>
                                                             </tr>
                                                             <tr>
-                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $order->currency }}{{ $order->get_total() }}</td>
+                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a><?php echo e($order->currency); ?><?php echo e($order->get_total()); ?></td>
                                                             </tr>
                                                             <tr>
                                                                <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
@@ -678,10 +678,10 @@
                                                          <td class="wz2" width="30"></td>
                                                          <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;">
                                                             <div style="width: 100px;max-height: 120px;overflow: hidden;display: block;" class="">
-                                                               <img style="outline: 0 none;max-width: 100%;" src="{{ $ordered_product->product->image_m }}" />
+                                                               <img style="outline: 0 none;max-width: 100%;" src="<?php echo e($ordered_product->product->image_m); ?>" />
                                                             </div>
 
-                                                            <div> {{ $ordered_product->product_name }}</div>
+                                                            <div> <?php echo e($ordered_product->product_name); ?></div>
                                                          </td>
                                                          <td class="wz2" width="30"></td>
                                                       </tr>
@@ -700,7 +700,7 @@
                                                       </tr>
                                                       <tr>
 
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ $ordered_product->price }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a><?php echo e($order->currency); ?><?php echo e($ordered_product->price); ?></td>
 
                                                       </tr>
                                                       <tr>
@@ -716,7 +716,7 @@
                                                       </tr>
                                                       <tr>
 
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $ordered_product->quantity }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a><?php echo e($ordered_product->quantity); ?></td>
 
                                                       </tr>
                                                       <tr>
@@ -732,7 +732,7 @@
                                                       </tr>
                                                       <tr>
 
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ $ordered_product->total }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a><?php echo e($order->currency); ?><?php echo e($ordered_product->total); ?></td>
 
                                                       </tr>
                                                       <tr>
@@ -805,7 +805,7 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" width="30"><br></td>
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ $order->shipping_price }}</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a><?php echo e($order->currency); ?><?php echo e($order->shipping_price); ?></td>
                                                       <td class="wz2" width="30"><br></td>
                                                    </tr>
                                                    <tr>
@@ -842,7 +842,7 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" width="30"><br></td>
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a> {{ $order->coupon ?  $order->coupon.'  -%'.$order->voucher()->amount .' off' : '---' }}</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a> <?php echo e($order->coupon ?  $order->coupon.'  -%'.$order->voucher()->amount .' off' : '---'); ?></td>
                                                       <td class="wz2" width="30"><br></td>
                                                    </tr>
                                                    <tr>
@@ -874,7 +874,7 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" width="30"><br></td>
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ $order->get_total()   }}</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a><?php echo e($order->currency); ?><?php echo e($order->get_total()); ?></td>
                                                       <td class="wz2" width="30"><br></td>
                                                    </tr>
                                                    <tr>
@@ -909,7 +909,7 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" width="30"><br></td>
-                                                      <td data-bgcolor="ThemeColorBG" class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: rgb(255, 255, 255); font-family: sans-serif; font-size: 15px; text-align: center; line-height: 27px; font-weight: bold; background-color: rgb(0, 0, 0, 1);" bgcolor="#67bffd"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>{{ $order->currency }}{{ $order->get_total() }}</td>
+                                                      <td data-bgcolor="ThemeColorBG" class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: rgb(255, 255, 255); font-family: sans-serif; font-size: 15px; text-align: center; line-height: 27px; font-weight: bold; background-color: rgb(0, 0, 0, 1);" bgcolor="#67bffd"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a><?php echo e($order->currency); ?><?php echo e($order->get_total()); ?></td>
                                                       <td class="wz2" width="30"><br></td>
                                                    </tr>
                                                    <tr>
@@ -968,4 +968,4 @@
 
 </body>
 
-</html>
+</html><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/emails/receipt/index.blade.php ENDPATH**/ ?>
