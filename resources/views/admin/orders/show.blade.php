@@ -2,9 +2,16 @@
 @section('page-styles')
 @stop
 @section('content')
+<div class="row mb-3">
+   <div class="col-md-6">
+      @include('admin._partials.single', ['collections' => $objs['customer'], 'name' => 'Order Details'])
+   </div>
+   <div class="col-md-6">
+      @include('admin._partials.single', ['collections' => $objs['Order'], 'name' => 'Customer'])
+   </div>
+</div>
 <div class="row mb-2">
    <div class="card h-100">
-
       <div class="card-body p-3">
          <table class="table table-bordered">
             <thead>

@@ -1,9 +1,16 @@
 <?php $__env->startSection('page-styles'); ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
+<div class="row mb-3">
+   <div class="col-md-6">
+      <?php echo $__env->make('admin._partials.single', ['collections' => $objs['customer'], 'name' => 'Order Details'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+   </div>
+   <div class="col-md-6">
+      <?php echo $__env->make('admin._partials.single', ['collections' => $objs['Order'], 'name' => 'Customer'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+   </div>
+</div>
 <div class="row mb-2">
    <div class="card h-100">
-
       <div class="card-body p-3">
          <table class="table table-bordered">
             <thead>

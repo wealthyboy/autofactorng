@@ -72,20 +72,21 @@ class OrdersController extends Table
 		$orders = (new OrderedProduct())->getListingData($order->ordered_products()->paginate(10));
 
 		$summaries = [];
-		$summaries['Sub-Total'] = '₦' . $sub_total;
-		$summaries['Coupon'] = $order->coupon ?  $order->coupon . '  -%' . optional($order->voucher())->amount . 'off'  : '---';
-		$summaries['Shipping'] =  '₦' . $order->shipping_price;
-		$summaries['Heavy Item Charge'] =   '₦' . $order->shipping_price;
-		$summaries['Total'] =  '₦' .  $order->total;
+		$summaries['Sub-Total'] =  Helper::currencyWrapper($sub_total);
+		$summaries['Coupon'] = $order->coupon ? $order->coupon . '  -%' . optional($order->voucher())->amount . 'off'  : '---';
+		$summaries['Shipping'] = Helper::currencyWrapper($order->shipping_price);
+		$summaries['Heavy Item Charge'] = Helper::currencyWrapper($order->shipping_price);
+		$summaries['Total'] = Helper::currencyWrapper($order->total);
+		$objs = $this->showData($id);
 
-
-		return view('admin.orders.show', compact('summaries', 'orders', 'statuses', 'order', 'sub_total'));
+		return view('admin.orders.show', compact('objs', 'summaries', 'orders', 'statuses', 'order', 'sub_total'));
 	}
 
 
 	public function showData($id)
 	{
 		$obj =  $this->builder->find($id);
+
 		return [
 			'customer' => [
 				"Full Name" => optional($obj->user)->fullname(),
@@ -93,7 +94,11 @@ class OrdersController extends Table
 				"Email" => optional($obj->user)->email,
 				"Date Joined" => optional($obj->user)->created_at->format('d-m-y')
 			],
-			'data' => $this->builder->getModel()->getShowData($obj)
+			'Order' => [
+				"Date Added" => $obj->created_at,
+				"Payment Type" => $obj->payment_type,
+				"Shipping" => Helper::currencyWrapper($obj->shipping_price),
+			],
 		];
 	}
 
