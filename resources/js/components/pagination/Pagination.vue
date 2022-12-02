@@ -51,7 +51,7 @@ export default {
       if (this.pageIsFinished(page)) {
         return;
       }
-      this.$emit("pagination:switched", this.meta.links[page].url);
+      this.$emit("pagination:switched", page);
       return;
 
       if (this.useUrl) {

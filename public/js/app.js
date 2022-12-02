@@ -22548,7 +22548,7 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
-      this.$emit("pagination:switched", this.meta.links[page].url);
+      this.$emit("pagination:switched", page);
       return;
 
       if (this.useUrl) {// this.$router.replace({
