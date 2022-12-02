@@ -160,7 +160,7 @@
     total-price="2000000"
     class="carbon-zero"
     purchase-ref-id="rtghbvcghj76"
-    purchase-items='[{itemN]'
+    purchase-items='[{"itemName": "iPhone 13", "itemQuantity": 1, "itemPrice": 2000000}]'
     @closeCarbonZero="() => (showZero = false)"
   ></carbon-zero>
 

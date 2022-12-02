@@ -25435,7 +25435,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "total-price": "2000000",
     "class": "carbon-zero",
     "purchase-ref-id": "rtghbvcghj76",
-    "purchase-items": "[{itemN]",
+    "purchase-items": "[{\"itemName\": \"iPhone 13\", \"itemQuantity\": 1, \"itemPrice\": 2000000}]",
     onCloseCarbonZero: _cache[7] || (_cache[7] = function () {
       return $data.showZero = false;
     })
