@@ -33,7 +33,7 @@
   </div>
 
   <form
-    v-if="!paymentIsProcessing"
+    v-if="!paymentIsProcessing && !paymentIsComplete"
     action=""
     class="mb-0"
     method="post"
@@ -148,22 +148,16 @@ export default {
             parseInt(walletBalance.value) + parseInt(form.amount);
           store.commit("setWalletBalance", new_balnce);
           error.value = false;
-          paymentIsComplete.value = true;
-          paymentIsProcessing.value = false;
 
-          const postData = {
-            url: "/wallets",
-            data: form,
-            loading,
-            needsValidation: true,
-            error: this.v$.$error,
-            post_server_error: post_server_error,
-            method: "post",
-          };
-
-          makePost(postData)
-            .then((res) => {})
+          axios
+            .post("/wallets", form)
+            .then((res) => {
+              paymentIsComplete.value = true;
+              paymentIsProcessing.value = false;
+            })
             .catch((error) => {
+              paymentIsComplete.value = false;
+              paymentIsProcessing.value = false;
               message.value = "We could not find your data in our system";
               setTimeout(() => {
                 message.value = null;

@@ -243,6 +243,8 @@ export default {
                 })
                 .catch((error) => {
                   message.value = "We could not find your data in our system";
+                  paymentIsComplete.value = false;
+                  paymentIsProcessing.value = false;
                   setTimeout(() => {
                     message.value = null;
                   }, 3000);

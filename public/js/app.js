@@ -21749,6 +21749,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               paymentIsProcessing.value = false;
             })["catch"](function (error) {
               message.value = "We could not find your data in our system";
+              paymentIsComplete.value = false;
+              paymentIsProcessing.value = false;
               setTimeout(function () {
                 message.value = null;
               }, 3000);
@@ -21894,18 +21896,12 @@ __webpack_require__.r(__webpack_exports__);
           var new_balnce = parseInt(walletBalance.value) + parseInt(form.amount);
           store.commit("setWalletBalance", new_balnce);
           error.value = false;
-          paymentIsComplete.value = true;
-          paymentIsProcessing.value = false;
-          var postData = {
-            url: "/wallets",
-            data: form,
-            loading: loading,
-            needsValidation: true,
-            error: this.v$.$error,
-            post_server_error: post_server_error,
-            method: "post"
-          };
-          makePost(postData).then(function (res) {})["catch"](function (error) {
+          axios__WEBPACK_IMPORTED_MODULE_1___default().post("/wallets", form).then(function (res) {
+            paymentIsComplete.value = true;
+            paymentIsProcessing.value = false;
+          })["catch"](function (error) {
+            paymentIsComplete.value = false;
+            paymentIsProcessing.value = false;
             message.value = "We could not find your data in our system";
             setTimeout(function () {
               message.value = null;
@@ -24743,7 +24739,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     error: $setup.error
   }, null, 8
   /* PROPS */
-  , ["message", "error"]), $setup.paymentIsProcessing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, $setup.paymentIsComplete ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, _hoisted_6)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.paymentIsProcessing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
+  , ["message", "error"]), $setup.paymentIsProcessing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, $setup.paymentIsComplete ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, _hoisted_6)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.paymentIsProcessing && !$setup.paymentIsComplete ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
     key: 1,
     action: "",
     "class": "mb-0",
