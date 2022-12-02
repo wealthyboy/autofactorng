@@ -24,15 +24,18 @@
          @endforeach
 
          <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-            <a class="icon-box nounderline" href="#" onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action "><i class="fas fa-sign-out-alt left"></i> Logout
-
+            <a href="#" class="icon-box nounderline" onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+               <i class="fas fa-sign-out-alt left"></i>
+               <h5 class="porto-sicon-title mx-2">Logout</h5>
 
                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
                </form>
             </a>
          </div>
+
+
 
       </div>
    </div>
