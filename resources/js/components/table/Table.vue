@@ -16,7 +16,7 @@
           </p>
         </div>
         <div
-          v-if="tableData.meta.right"
+          v-if="tableData.unique.right"
           class="total d-flex "
         >
           <span class="mx-3">Auto Credit: {{ $filters.formatNumber(walletBalance.auto_credit) || '0.00'}}</span>
@@ -79,7 +79,7 @@
                 </div>
               </td>
 
-              <td v-if="tableData.meta.show">
+              <td v-if="tableData.unique.show">
                 <a
                   :href="tableData.meta.urls[index].url"
                   data-bs-toggle="tooltip"

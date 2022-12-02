@@ -41,14 +41,13 @@ abstract class Table extends Controller
     protected function getColumnListings($collection)
     {
 
-        return [
+        return $data =  [
             'items' => [
                 $this->builder->getModel()->getListingData($collection)
             ],
             'meta' => [
                 'sub_total'  => false,
-                'show'  => false,
-                'right' => true,
+
                 'links' => $collection->links(),
                 'count' => $collection->count(),
                 'firstItem' => $collection->firstItem(),
@@ -62,9 +61,23 @@ abstract class Table extends Controller
                         "url" => '/admin/' . $this->link . '/' . $obj->id,
                     ];
                 })
-            ]
+            ],
+            'unique' =>  $this->unique()
+
+
+
+
         ];
     }
+
+    public function unique()
+    {
+        return [
+            'show'  => true,
+            'right' => false,
+        ];
+    }
+
 
 
 

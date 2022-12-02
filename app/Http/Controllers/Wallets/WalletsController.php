@@ -143,24 +143,11 @@ class WalletsController extends Table
         ];
     }
 
-    protected function getColumnNames($collection)
+    public function unique()
     {
         return [
-            'items' => [
-                $collection->map(function (Wallet $wallet) {
-                    return [
-                        "Ref Id" => '#' . optional($wallet)->id,
-                        "amount" => '₦' . number_format(optional($wallet)->amount),
-                        "status" =>  optional($wallet)->status,
-                        "date_added" => $wallet->created_at->format('d-m-y')
-                    ];
-                })
-            ],
-            'meta' => [
-                'show' => false,
-                'right' => 'Balance: 0000',
-                'wallet' => true
-            ]
+            'show'  => false,
+            'right' => true,
         ];
     }
 }
