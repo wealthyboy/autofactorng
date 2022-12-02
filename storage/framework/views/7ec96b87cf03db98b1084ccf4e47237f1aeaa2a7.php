@@ -21,16 +21,19 @@
          </div>
          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-         <!-- <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-            <a class="icon-box nounderline" href="#" onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt left"></i> Logout
-
+         <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="#" class="icon-box nounderline" onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+               <i class="fas fa-sign-out-alt left"></i>
+               <h5 class="porto-sicon-title mx-2">Logout</h5>
 
                <form id="logout-form" action="<?php echo e(route('logout')); ?>" method="POST" style="display: none;">
                   <?php echo csrf_field(); ?>
                </form>
             </a>
-         </div> -->
+         </div>
+
+
 
       </div>
    </div>

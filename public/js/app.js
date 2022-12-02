@@ -22208,7 +22208,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.checkout(e, "auto_credit", "Pay with auto credit");
     },
     checkoutCarbon: function checkoutCarbon(e) {
-      this.showZero = true; // this.checkout("auto_credit");
+      this.showZero = true; //this.checkout("auto_credit");
     },
     makePayment: function makePayment(e) {
       var context = this;
@@ -25435,7 +25435,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "total-price": "2000000",
     "class": "carbon-zero",
     "purchase-ref-id": "rtghbvcghj76",
-    "purchase-items": "[{}]",
+    "purchase-items": "[{itemN]",
     onCloseCarbonZero: _cache[7] || (_cache[7] = function () {
       return $data.showZero = false;
     })

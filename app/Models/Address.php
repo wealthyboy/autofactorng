@@ -33,6 +33,6 @@ class Address extends Model
 
     public function getStateAttribute()
     {
-        return $this->address_state->name;
+        return optional($this->address_state)->name;
     }
 }

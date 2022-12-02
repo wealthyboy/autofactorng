@@ -160,7 +160,7 @@
     total-price="2000000"
     class="carbon-zero"
     purchase-ref-id="rtghbvcghj76"
-    purchase-items='[{}]'
+    purchase-items='[{itemN]'
     @closeCarbonZero="() => (showZero = false)"
   ></carbon-zero>
 
@@ -259,7 +259,7 @@ export default {
 
     checkoutCarbon: function (e) {
       this.showZero = true;
-      // this.checkout("auto_credit");
+      //this.checkout("auto_credit");
     },
 
     makePayment: function (e) {
