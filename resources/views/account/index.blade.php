@@ -24,7 +24,7 @@
          @endforeach
 
          <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-            <a href="#" onclick="event.preventDefault();
+            <a class="icon-box nounderline" href="#" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();" class="list-group-item list-group-item-action "><i class="fas fa-sign-out-alt left"></i> Logout
 
 
