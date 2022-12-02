@@ -5,7 +5,35 @@
     :error="error"
   />
 
+  <div
+    v-if="paymentIsProcessing"
+    class="d-flex justify-content-center align-content-center  page-loading w-100 h-100"
+  >
+    <div class="align-self-center text-center">
+      <div
+        class="spinner-border"
+        style="width: 7rem; height: 7rem; color:red;"
+        role="status"
+      >
+        <span class="visually-hidden">Loading...</span>
+
+      </div>
+      <div class="mt-4">Please wait. We are processing your request.</div>
+
+    </div>
+
+    <div
+      v-if="paymentIsComplete"
+      class="align-self-center text-center"
+    >
+      <div class="mt-4">Your payment has been been added.</div>
+      <div class="mt-4"> <a href="/">Continue</a> </div>
+    </div>
+
+  </div>
+
   <form
+    v-if="!paymentIsProcessing"
     action=""
     class="mb-0"
     method="post"
@@ -47,7 +75,7 @@ import { loadScript } from "../../utils/Payment";
 import { useStore } from "vuex";
 
 export default {
-  props: ["user"],
+  props: ["user", "price_range", "auto_credit"],
   emits: ["wallet:funded"],
   components: {
     SimpleMessage,
@@ -61,13 +89,16 @@ export default {
     const scriptLoaded = ref(null);
     const store = useStore();
     const error = ref(false);
-    const price_range = [1000, 9000000];
+    const price_range = props.price_range ? props.price_range : [1000, 9000000];
+    const paymentIsProcessing = ref(false);
+    const paymentIsComplete = ref(false);
 
     const text = ref("Submit");
     const message = ref(null);
     const form = reactive({
       amount: "",
       type: "Wallet",
+      auto_credit: props.auto_credit,
     });
 
     onMounted(() => {
@@ -94,6 +125,28 @@ export default {
         return;
       }
 
+      paymentIsComplete.value = false;
+      paymentIsProcessing.value = true;
+
+      const postData = {
+        url: "/wallets",
+        data: form,
+        loading,
+        needsValidation: true,
+        error: this.v$.$error,
+        post_server_error: post_server_error,
+        method: "post",
+      };
+
+      makePost(postData)
+        .then((res) => {})
+        .catch((error) => {
+          message.value = "We could not find your data in our system";
+          setTimeout(() => {
+            message.value = null;
+          }, 3000);
+        });
+
       var handler = PaystackPop.setup({
         key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
         email: props.user.email,
@@ -114,15 +167,20 @@ export default {
             parseInt(walletBalance.value) + parseInt(form.amount);
           store.commit("setWalletBalance", new_balnce);
           error.value = false;
+          paymentIsComplete.value = true;
+          paymentIsProcessing.value = false;
           message.value = "Your money has been addedd";
           emit("wallet:funded");
         },
-        onClose: function () {},
+        onClose: function () {
+          paymentIsComplete.value = false;
+          paymentIsProcessing.value = false;
+        },
       });
       handler.openIframe();
 
       // const postData = {
-      //   url: "/wallets/store",
+      //   url: "/wallets",
       //   data: form,
       //   loading,
       //   needsValidation: true,
@@ -150,6 +208,8 @@ export default {
       getWalletBalance,
       walletBalance,
       error,
+      paymentIsProcessing,
+      paymentIsComplete,
     };
   },
 };

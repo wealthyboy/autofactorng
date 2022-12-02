@@ -11,19 +11,14 @@
       <div class="d-flex justify-content-between align-items-center mt-3">
         <div class="mb-0 align-self-center">
           <p class="text-sm text-gray-700 leading-5">
-            Showing <span>{{ pmeta.from }}- {{ pmeta.to }} of {{pmeta.total}} Records</span>
+            Showing <span>{{ pmeta.firstItem }}- {{ pmeta.lastItem }} of {{pmeta.total}} Records</span>
 
           </p>
         </div>
         <div
           v-if="tableData.meta.right"
-          class="total d-flex "
-        >
-          <span class="mx-3">Auto Credit: {{ $filters.formatNumber(walletBalance.auto_credit) || '0.00'}}</span>
-          <span class="mx-3">Wallet Balance: {{ $filters.formatNumber(walletBalance.wallet_balance) || '0.00'}}</span>
-          <span class="">Total: {{ $filters.formatNumber(walletBalance.total) || '0.00'}}</span>
-
-        </div>
+          class="total"
+        > Balance: {{ $filters.formatNumber(walletBalance) || '0.00'}} </div>
       </div>
     </div>
 
@@ -34,11 +29,9 @@
         enctype="multipart/form-data"
         id="form-auctions"
         class="is-filled"
-      ><input
-          type="hidden"
-          name="_token"
-          value="PYlFxXUwxavupF6J09OR8TWqPrEQH8ciyislr1wH"
-        > <input
+      >
+
+        <input
           type="hidden"
           name="_method"
           value="DELETE"
@@ -77,8 +70,7 @@
                 class=""
               >
                 <div class="align-middle  text-sm">
-                  <h6 class="mb-0 text-xs">{{ td }}
-                  </h6>
+                  <h6 class="mb-0 text-xs">{{ td }}</h6>
                 </div>
               </td>
 
@@ -144,13 +136,13 @@
 import { onMounted, ref } from "vue";
 import { useActions, useGetters } from "vuex-composition-helpers";
 import Pagination from "../pagination/Pagination";
-import Loader from "../utils/loader";
+import PageLoader from "../utils/PageLoader";
 
 export default {
   props: ["url", "reload"],
   components: {
     Pagination,
-    Loader,
+    PageLoader,
   },
   setup() {
     const { tableData, pmeta, walletBalance } = useGetters([
@@ -166,21 +158,20 @@ export default {
     const loading = ref(true);
 
     onMounted(() => {
-      console.log();
       loading.value = true;
       getTableData(location.href + "?get=1")
         .then((res) => {
-          console.log(tableData.value.items);
+          console.log(res);
           loading.value = false;
         })
         .catch(() => {
           loading.value = false;
         });
-      getWalletBalance();
+      // getWalletBalance();
     });
 
-    function handlePagination(url) {
-      getTableData(url);
+    function handlePagination(page) {
+      getTableData(location.href + "?page=" + page);
     }
 
     return {

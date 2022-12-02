@@ -34,7 +34,7 @@
                <span class="sign-in-prompt" data-testid="sign-in-message">Fund Your Wallet To Get Auto Credits.</span>
                <div><a href="/">Continue</a></div>
             </div>
-            <wallet></wallet>
+            <wallet :auto_credit="true" :user="<?php echo e($user); ?>" :price_range="<?php echo e(collect($price_range)); ?>"></wallet>
 
             <?php endif; ?>
 

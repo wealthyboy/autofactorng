@@ -14,7 +14,7 @@
             @include('_partials.nav')
 
             <div class="col-md-9">
-                <wallet-table :user="{{ $user }}" />
+                <wallet-table :auto_credit="false" :price_range="{{ collect([1000, 9000000]) }}" :user="{{ $user }}" />
             </div>
         </div>
     </div>

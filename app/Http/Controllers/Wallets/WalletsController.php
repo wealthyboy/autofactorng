@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Wallets;
 
+use App\DataTable\Table;
 use App\Http\Controllers\Controller;
 use App\Models\Wallet;
 use App\Utils\AccountSettingsNav;
@@ -11,13 +12,22 @@ use App\Models\Subscribe;
 use App\Models\WalletBalance;
 use Carbon\Carbon;
 
-class WalletsController extends Controller
+class WalletsController extends Table
 {
 
     public function __construct()
     {
         $this->middleware('auth');
+
+        parent::__construct();
     }
+
+
+    public function builder()
+    {
+        return Wallet::query();
+    }
+
 
     /**
      * Display a listing of the resource.
@@ -28,20 +38,15 @@ class WalletsController extends Controller
     {
         $nav = (new AccountSettingsNav())->nav();
         $user = auth()->user();
-        $pagination = auth()->user()->wallets()->latest()->paginate(50);
-        $collections = $this->getColumnNames($pagination);
-        $columns = $this->getGetCustomColumnNames();
-
-        $data = [];
+        $collections = $this->getColumnListings($user->wallets()->paginate(20));
 
         if (request()->ajax()) {
-            return response([
-                'collections' => $this->getColumnNames($pagination),
-                'pagination' =>  $pagination
+            return response()->json([
+                'collections' =>  $collections,
             ]);
         }
 
-        return view('wallet.index', compact('nav', 'user', 'collections', 'columns', 'pagination'));
+        return view('wallet.index', compact('nav', 'user'));
     }
 
 
@@ -49,7 +54,6 @@ class WalletsController extends Controller
     {
         $wallet_balance  =   auth()->user()->wallet_balance;
         $total  = (int) optional($wallet_balance)->balance + optional($wallet_balance)->auto_credit;
-
         return response()->json([
             'wallet_balance' => (int) optional($wallet_balance)->balance,
             'auto_credit' => (int) optional($wallet_balance)->auto_credit,
@@ -65,11 +69,8 @@ class WalletsController extends Controller
      */
     public function store(Request $request)
     {
-
         $user = $request->user();
-
         $input = $request->all();
-
         $amount = (10 * $input['amount']) / 100;
         $amount = $input['amount'] +  $amount;
 
@@ -82,35 +83,51 @@ class WalletsController extends Controller
 
         $balance = WalletBalance::where('user_id', $user->id)->first();
 
-        if (null !== $balance) {
-            $balance->auto_credit = $balance->auto_credit +  $amount;
-            $balance->save();
-        } else {
-            $balance = new WalletBalance;
-            $balance->auto_credit = $amount;
-            $balance->user_id = $user->id;
-            $balance->save();
+        if (!$request->auto_credit) {
+            if (null !== $balance) {
+                $balance->balance = $balance->balance +  $input['amount'];
+                $balance->save();
+            } else {
+                $balance = new WalletBalance;
+                $balance->balance = $input['amount'];
+                $balance->user_id = $input['user_id'];
+                $balance->save();
+            }
         }
 
 
 
-        $subscribe = Subscribe::where('user_id', $user->id)->first();
-        $dt = Carbon::now();
+        if ($request->auto_credit) {
+            if (null !== $balance) {
+                $balance->auto_credit = $balance->auto_credit +  $amount;
+                $balance->save();
+            } else {
+                $balance = new WalletBalance;
+                $balance->auto_credit = $amount;
+                $balance->user_id = $user->id;
+                $balance->save();
+            }
 
-        if (null !== $subscribe) {
-            $subscribe->user_id = $user->id;
-            $subscribe->starts_at =  $dt;
-            $subscribe->ends_at =  $dt->addYear(1);
-            $subscribe->plan = session('plan');
-            $subscribe->save();
-        } else {
-            $subscribe = new Subscribe;
-            $subscribe->user_id = $user->id;
-            $subscribe->starts_at =  $dt;
-            $subscribe->ends_at = $dt->addYear(1);
-            $subscribe->plan = session('plan');
-            $subscribe->save();
+            $subscribe = Subscribe::where('user_id', $user->id)->first();
+            $dt = Carbon::now();
+
+            if (null !== $subscribe) {
+                $subscribe->user_id = $user->id;
+                $subscribe->starts_at =  $dt;
+                $subscribe->ends_at =  $dt->addYear(1);
+                $subscribe->plan = session('plan');
+                $subscribe->save();
+            } else {
+                $subscribe = new Subscribe;
+                $subscribe->user_id = $user->id;
+                $subscribe->starts_at =  $dt;
+                $subscribe->ends_at = $dt->addYear(1);
+                $subscribe->plan = session('plan');
+                $subscribe->save();
+            }
         }
+
+
 
         return response($balance, 200);
     }

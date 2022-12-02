@@ -32,7 +32,7 @@ export const getTableData = ({ commit }, url) => {
         .then(response => {
             console.log(response.data.collections)
             commit("setTableData", response.data.collections);
-            commit("setMeta", response.data.pagination);
+            commit("setMeta", response.data.collections.meta);
             return Promise.resolve(response);
         }).catch((error) => {
             return Promise.reject(error);

@@ -22,8 +22,6 @@ class OrdersController extends Controller
         $columns = $this->getGetCustomColumnNames();
         $nav = (new AccountSettingsNav())->nav();
 
-
-
         if (request()->ajax()) {
             return response([
                 'collections' => $this->getColumnNames($pagination),

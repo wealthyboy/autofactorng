@@ -36,7 +36,7 @@
                <span class="sign-in-prompt" data-testid="sign-in-message">Fund Your Wallet To Get Auto Credits.</span>
                <div><a href="/">Continue</a></div>
             </div>
-            <wallet></wallet>
+            <wallet :auto_credit="true" :user="{{ $user }}" :price_range="{{ collect($price_range) }}"></wallet>
 
             @endif
 

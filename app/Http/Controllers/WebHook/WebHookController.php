@@ -61,8 +61,6 @@ class WebHookController extends Controller
                 $ip = $request->data['ip_address'];
                 $order = Order::checkout($input, $payment_method,  $ip,  $carts,  $user);
 
-
-
                 $admin_emails = explode(',', $this->settings->alert_email);
                 $total =  DB::table('ordered_products')->select(DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
                 $sub_total = $total[0]->items_total ?? '0.00';
@@ -94,25 +92,25 @@ class WebHookController extends Controller
 
             if ($input['type'] == 'Wallet') {
 
-                $wallet = new Wallet;
-                $wallet->amount = $input['amount'];
-                $wallet->user_id = $input['customer_id'];
-                $wallet->status = 'Added';
-                $wallet->save();
+                // $wallet = new Wallet;
+                // $wallet->amount = $input['amount'];
+                // $wallet->user_id = $input['customer_id'];
+                // $wallet->status = 'Added';
+                // $wallet->save();
 
-                $balance = WalletBalance::where('user_id', $input['customer_id'])->first();
+                // $balance = WalletBalance::where('user_id', $input['customer_id'])->first();
 
-                if (null !== $balance) {
-                    $balance->balance = $balance->balance +  $input['amount'];
-                    $balance->save();
-                } else {
-                    $balance = new WalletBalance;
-                    $balance->balance = $input['amount'];
-                    $balance->user_id = $input['customer_id'];
-                    $balance->save();
-                }
+                // if (null !== $balance) {
+                //     $balance->balance = $balance->balance +  $input['amount'];
+                //     $balance->save();
+                // } else {
+                //     $balance = new WalletBalance;
+                //     $balance->balance = $input['amount'];
+                //     $balance->user_id = $input['customer_id'];
+                //     $balance->save();
+                // }
 
-                \Log::info($balance);
+                // \Log::info($balance);
             }
         } catch (\Throwable $th) {
             \Log::info("Custom error :" . $th);

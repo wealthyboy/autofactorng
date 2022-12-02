@@ -5,15 +5,17 @@
   >
     <div class="align-self-center">
       <div
-        class="spinner-grow"
+        class="spinner-border"
+        style="width: 5rem; height: 5rem;"
         role="status"
       >
-        <span class="visually-hidden">Load...</span>
+        <span class="visually-hidden">Loading...</span>
       </div>
     </div>
   </div>
 </template>
-  <script>
+
+<script>
 export default {
   props: ["loading"],
   setup() {},
