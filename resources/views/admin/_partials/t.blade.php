@@ -39,7 +39,7 @@
                         </td>
                         @endforeach
 
-                        @if ($models['meta']['show'])
+                        @if ($models['unique']['show'])
                         <td>
                             <a href="{{ $models['meta']['urls'][$key]['url'] }}" data-bs-toggle="tooltip" data-bs-original-title="View">
                                 <i class="material-symbols-outlined text-secondary position-relative text-lg">preview</i>
