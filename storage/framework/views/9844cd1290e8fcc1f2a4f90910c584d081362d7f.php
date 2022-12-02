@@ -8,11 +8,9 @@
     </div>
     <div class="container ">
         <div class="row">
-
             <?php echo $__env->make('_partials.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
             <div class="col-md-9">
-                <wallet-table :price_range="<?php echo e(collect([1000, 9000000])); ?>" :user="<?php echo e($user); ?>" />
+                <wallet-table :auto_credit="false" :price_range="<?php echo e(collect([1000, 9000000])); ?>" :user="<?php echo e($user); ?>" />
             </div>
         </div>
     </div>

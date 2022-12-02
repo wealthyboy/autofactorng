@@ -48,7 +48,7 @@ abstract class Table extends Controller
             'meta' => [
                 'sub_total'  => false,
                 'show'  => false,
-                'right' => null,
+                'right' => true,
                 'links' => $collection->links(),
                 'count' => $collection->count(),
                 'firstItem' => $collection->firstItem(),

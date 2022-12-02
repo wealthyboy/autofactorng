@@ -1,6 +1,6 @@
 <template>
 
-  <loader :loading="loading" />
+  <PageLoader :loading="loading" />
 
   <div
     v-if="!loading &&  tableData.items[0].length"
@@ -17,8 +17,13 @@
         </div>
         <div
           v-if="tableData.meta.right"
-          class="total"
-        > Balance: {{ $filters.formatNumber(walletBalance) || '0.00'}} </div>
+          class="total d-flex "
+        >
+          <span class="mx-3">Auto Credit: {{ $filters.formatNumber(walletBalance.auto_credit) || '0.00'}}</span>
+          <span class="mx-3">Wallet Balance: {{ $filters.formatNumber(walletBalance.wallet_balance) || '0.00'}}</span>
+          <span class="">Total: {{ $filters.formatNumber(walletBalance.total) || '0.00'}}</span>
+
+        </div>
       </div>
     </div>
 
@@ -167,7 +172,7 @@ export default {
         .catch(() => {
           loading.value = false;
         });
-      // getWalletBalance();
+      getWalletBalance();
     });
 
     function handlePagination(page) {

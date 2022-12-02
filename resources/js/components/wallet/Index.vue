@@ -8,7 +8,7 @@
   <general-table />
 </template>
 <script>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import FundWallet from "./Fund";
 import GeneralTable from "../table/Table";
 import { useActions } from "vuex-composition-helpers";
@@ -21,9 +21,9 @@ export default {
   },
   setup() {
     const reload = ref(false);
-    const { getTableData } = useActions(["getTableData"]);
+    const { getTableData } = useActions(["getWalletBalance"]);
+
     function refre(m) {
-      console.log(m);
       setTimeout(() => {
         getTableData(location.href);
       }, 3000);
