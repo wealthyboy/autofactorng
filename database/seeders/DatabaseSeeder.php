@@ -4074,7 +4074,7 @@ class DatabaseSeeder extends Seeder
             $user->is_verified =  $vs['is_verified'];
             // $user->created_at =  $vs['date_time'];
             $user->is_old =  1;
-            // $user->token =  $vs['token'];
+            $user->type =  'subscriber'];
             $user->save();
         }
     }
