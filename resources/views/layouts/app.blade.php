@@ -178,6 +178,9 @@
                      <a href="#" class="bi bi-instagram  fa-2x text-white" target="_blank" title="Linkedin"></a>
                   </div><!-- End .footer-bottom -->
                   <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
+                  @if ( auth()->check() && auth()->user()->isAdmin() )
+                  <p class="footer-copyright mx-3"><a target="_blank" href="/admin">Go to Admin</a></p>
+                  @endif
                </div>
 
                <div class="d-none d-lg-block d-md-block d-xl-block">
