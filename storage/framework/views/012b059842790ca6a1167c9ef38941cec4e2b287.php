@@ -41,7 +41,7 @@
                         </td>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
-                        <?php if($models['meta']['show']): ?>
+                        <?php if(isset($models['unique']['show']) && $models['unique']['show']): ?>
                         <td>
                             <a href="<?php echo e($models['meta']['urls'][$key]['url']); ?>" data-bs-toggle="tooltip" data-bs-original-title="View">
                                 <i class="material-symbols-outlined text-secondary position-relative text-lg">preview</i>

@@ -140,7 +140,7 @@ class User extends Authenticatable
 
 	public function scopeAdmin(Builder $builder)
 	{
-		return $builder->whereNull('type');
+		return $builder->where('type', 'Admin');
 	}
 
 

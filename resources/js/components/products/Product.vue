@@ -4,7 +4,7 @@
       <a :href="product.link">
 
         <img
-          :src="product.image_to_show"
+          src="https://autofactorng.com/images/products/a_solite.GIF"
           width="250"
           height="250"
           alt="product"
