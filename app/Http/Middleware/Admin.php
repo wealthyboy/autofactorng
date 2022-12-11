@@ -20,12 +20,12 @@ class Admin
 
 		//allow to see the admin page
 		if (!$user) {
-			abort('/login');
+			abort(404);
 		}
 
 		if ($user) {
 			if (!$user->users_permission) {
-				abort('/login');
+				abort(404);
 			}
 		}
 
