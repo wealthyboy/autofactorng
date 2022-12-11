@@ -43,7 +43,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //s User::canTakeAction(2);
+        User::canTakeAction(2);
         return view('admin.category.create');
     }
 
@@ -144,7 +144,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        // User::canTakeAction(4);
+        User::canTakeAction(4);
         $cat = Category::find($id);
         $categories = Category::parents()->get();
         return view('admin.category.edit', compact('cat', 'categories'));
@@ -239,7 +239,7 @@ class CategoryController extends Controller
     public function destroy(Request $request, $id)
     {
         //
-        // User::canTakeAction(5);
+        User::canTakeAction(5);
 
         $rules = array(
             '_token' => 'required'

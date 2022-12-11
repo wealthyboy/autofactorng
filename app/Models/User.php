@@ -158,8 +158,8 @@ class User extends Authenticatable
 
 	public static function userHasPermission($num)
 	{
-		$model = \Auth::user();
-		return Str::contains(optional(optional($model->users_permission)->permission)->code, $num) ? true : false;
+		$user = \Auth::user();
+		return Str::contains(optional(optional($user->users_permission)->permission)->code, $num) ? true : false;
 	}
 
 

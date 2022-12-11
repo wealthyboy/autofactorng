@@ -24,7 +24,7 @@ class DiscountsController extends Controller
     public function index()
     {
         $discounts = Discount::all();
-        return view('admin.discounts.index',compact('discounts'));
+        return view('admin.discounts.index', compact('discounts'));
     }
 
     /**
@@ -33,9 +33,9 @@ class DiscountsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $categories = Category::parents()->get();
-        return view('admin.discounts.create',compact('categories'));
+        return view('admin.discounts.create', compact('categories'));
     }
 
     /**
@@ -46,18 +46,18 @@ class DiscountsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'category_id'=>'required|unique:discounts,category_id',
-            'percentage_discount' =>'required',
-            'expires'=>'required',
+        $this->validate($request, [
+            'category_id' => 'required|unique:discounts,category_id',
+            'percentage_discount' => 'required',
+            'expires' => 'required',
         ]);
 
         $discount = Discount::create([
             'category_id' => $request->category_id,
             'amount' => $request->percentage_discount,
-            'expires'=> $request->expires
+            'expires' => $request->expires
         ]);
-        
+
         return redirect()->route('discounts.index');
     }
 
@@ -69,7 +69,6 @@ class DiscountsController extends Controller
      */
     public function show($id)
     {
-        
     }
 
     /**
@@ -79,10 +78,10 @@ class DiscountsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
+    {
         $discount = Discount::find($id);
         $categories = Category::parents()->get();
-        return view('admin.discounts.edit',compact('categories','discount'));
+        return view('admin.discounts.edit', compact('categories', 'discount'));
     }
 
     /**
@@ -95,14 +94,14 @@ class DiscountsController extends Controller
     public function update(Request $request, $id)
     {
         $discount = Discount::find($id);
-        
-        $this->validate($request,[
-            'category_id'=>[
+
+        $this->validate($request, [
+            'category_id' => [
                 'required',
-                    Rule::unique('discounts')->ignore($id),   
+                Rule::unique('discounts')->ignore($id),
             ],
-            'percentage_discount' =>'required',
-            'expires'=>'required',
+            'percentage_discount' => 'required',
+            'expires' => 'required',
         ]);
         $discount->category_id = $request->category_id;
         $discount->amount = $request->percentage_discount;
@@ -121,19 +120,19 @@ class DiscountsController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        //User::canTakeAction(5);
+        User::canTakeAction(5);
 
-        $rules = array (
-                '_token' => 'required' 
+        $rules = array(
+            '_token' => 'required'
         );
-        $validator = \Validator::make ( $request->all (), $rules );
-        if (empty ( $request->selected )) {
-            $validator->getMessageBag ()->add ( 'Selected', 'Nothing to Delete' );
-            return \Redirect::back ()->withErrors ( $validator )->withInput ();
+        $validator = \Validator::make($request->all(), $rules);
+        if (empty($request->selected)) {
+            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
+            return \Redirect::back()->withErrors($validator)->withInput();
         }
         $count = count($request->selected);
         //(new Activity)->Log("Deleted  {$count} Products");
-        Discount::destroy( $request->selected );
+        Discount::destroy($request->selected);
 
         return redirect()->back();
     }

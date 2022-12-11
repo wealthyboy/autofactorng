@@ -11,54 +11,54 @@ use App\Models\User;
 
 class BrandsController extends Controller
 {
-    //
-
-    
-    
-    
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-    }
+	//
 
 
-    public function index()
-    {    
-        $brands =  Brand::orderBy('name','asc')->get();
-        return view('admin.brands.index',compact('brands'));
+
+
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
 	}
-	
 
-	 public function create()
-    {   
-		//User::canTakeAction(2);
+
+	public function index()
+	{
+		$brands =  Brand::orderBy('name', 'asc')->get();
+		return view('admin.brands.index', compact('brands'));
+	}
+
+
+	public function create()
+	{
+		User::canTakeAction(2);
 		return view('admin.brands.create');
-    }
-	
+	}
+
 	public function store(Request $request)
-    {   
+	{
 		$this->validate($request, [
 			'name' => 'required|unique:brands',
 		]);
 
 		Brand::Insert($request->except('_token'));
-		return redirect()->route('brands.index') ; 
+		return redirect()->route('brands.index');
 	}
-	
-	
-	public function edit(Request $request ,$id)
-    {   
+
+
+	public function edit(Request $request, $id)
+	{
 		$brand = Brand::find($id);
-		return view('admin.brands.edit',compact('brand'));
+		return view('admin.brands.edit', compact('brand'));
 	}
 
 
 	public function update(Request $request, $id)
-    {    
+	{
 
 		$this->validate($request, [
 			//'name' => 'required|unique:brands',
@@ -66,31 +66,27 @@ class BrandsController extends Controller
 
 		$brand = Brand::find($id);
 		$data = $request->all();
-		$data['is_featured'] = $request->is_featured ? 1 :0;
+		$data['is_featured'] = $request->is_featured ? 1 : 0;
 		$brand->update($data);
-		return redirect()->route('brands.index'); 
+		return redirect()->route('brands.index');
 	}
-	
-	
-	public function destroy(Request $request,$id)
-    {     
-		//User::canTakeAction(5);
+
+
+	public function destroy(Request $request, $id)
+	{
+		User::canTakeAction(5);
 		$rules = array(
-				'_token' => 'required',
+			'_token' => 'required',
 		);
-		$validator = \Validator::make($request->all(),$rules);
-		if ( empty ( $request->selected)) {
+		$validator = \Validator::make($request->all(), $rules);
+		if (empty($request->selected)) {
 			$validator->getMessageBag()->add('Selected', 'Nothing to Delete');
 			return \Redirect::back()
-			->withErrors($validator)
-			->withInput();
+				->withErrors($validator)
+				->withInput();
 		}
-		Brand::destroy($request->selected);  	
-	
-		return redirect()->back();	 
+		Brand::destroy($request->selected);
+
+		return redirect()->back();
 	}
-	
-	
 }
-
-

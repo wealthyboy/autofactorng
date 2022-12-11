@@ -178,11 +178,16 @@
                      <a href="#" class="bi bi-instagram  fa-2x text-white" target="_blank" title="Linkedin"></a>
                   </div><!-- End .footer-bottom -->
                   <p class="footer-copyright py-3 pr-4 mb-0">© <?php echo e(config('app.name')); ?>. <?php echo e(date('Y')); ?>. All Rights Reserved</p>
+
+
                </div>
 
                <div class="d-none d-lg-block d-md-block d-xl-block">
                   <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap  ">
                      <p class="footer-copyright py-3 pr-4 mb-0">© <?php echo e(config('app.name')); ?>. <?php echo e(date('Y')); ?>. All Rights Reserved</p>
+                     <?php if( auth()->check() && auth()->user()->isAdmin() ): ?>
+                     <p class="footer-copyright mx-3 text-white"><a target="_blank" href="/admin">Go to Admin</a></p>
+                     <?php endif; ?>
                      <div class="social-icons py-3">
                         <a href="#" class="bi bi-facebook text-white  me-4 fa-2x" target="_blank" title="Facebook"></a>
                         <a href="#" class="bi bi-twitter  text-white me-4 fa-2x" target="_blank" title="Twitter"></a>

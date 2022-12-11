@@ -125,7 +125,7 @@ class AttributesController extends Controller
      */
     public function edit($id)
     {
-        // User::canTakeAction(4);
+        User::canTakeAction(4);
         $attr = Attribute::find($id);
         //dd($attr);
         $attributes = Attribute::parents()->get();
@@ -217,7 +217,7 @@ class AttributesController extends Controller
     public function destroy(Request $request)
     {
         //
-        // User::canTakeAction(5);
+        User::canTakeAction(5);
         $rules = array(
             '_token' => 'required'
         );

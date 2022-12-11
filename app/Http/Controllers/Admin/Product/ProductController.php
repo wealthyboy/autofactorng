@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Admin\Product;
 
 // use App\User;
 use App\Models\Brand;
+use Illuminate\Support\Str;
+
 
 use App\Models\Image;
 use App\Models\Product;
@@ -20,6 +22,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AttributeYear;
 use App\Models\EngineProduct;
 use App\Models\ShippingRate;
+use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -95,7 +98,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //User::canTakeAction(2);
+        User::canTakeAction(2);
+        $user = \Auth::user();
         $brands = Brand::all();
         $categories = Category::parents()->get();
         $attributes = Attribute::parents()->orderBy('sort_order', 'asc')->get();
@@ -306,7 +310,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //User::canTakeAction(2);
+        User::canTakeAction(2);
         $brands = Brand::all();
         $product = Product::find($id);
         $categories = Category::parents()->get();
@@ -495,7 +499,8 @@ class ProductController extends Controller
      */
     public function destroy(Request $request)
     {
-        //User::canTakeAction(5);
+        User::canTakeAction(5);
+
         $rules = array(
             '_token' => 'required'
         );

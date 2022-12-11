@@ -19,26 +19,26 @@ use App\Models\Setting;
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 
-class AccountsController extends Controller 
+class AccountsController extends Controller
 {
-    
+
     public $settings;
 
     public function __construct()
     {
         $this->settings = Setting::first();
     }
-    
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    { 
+    {
 
         //
-       // User::canTakeAction(1);
+        User::canTakeAction(1);
 
         Carbon::setWeekStartsAt(Carbon::SUNDAY);
         Carbon::setWeekEndsAt(Carbon::SUNDAY);
@@ -94,7 +94,7 @@ class AccountsController extends Controller
         // $all_sales = OrderedProduct::select(\DB::raw('SUM(quantity) as qty'))->get();
         // $all_sales = null !== $all_sales ? $all_sales[0] : null;
         // $amount = ProductVariation::select(\DB::raw('sum(price * quantity) as total'))->get();
-    
+
         // $total_value = null !== $amount ? $amount[0] : null;
 
         // $tows = $todays_sales->items_total - $todays_sales_s->price;
@@ -130,14 +130,5 @@ class AccountsController extends Controller
         // ));
 
         return view('admin.account.index');
-
-    
     }
-
-   
-
-   
-
-
-  
 }
