@@ -36,7 +36,7 @@
           />
         </div><!-- End .product-single-qty -->
       </td>
-      <td class="text-right"><span class="subtotal-price">{{ $filters.formatNumber(qty *  cart.price)}}</span></td>
+      <td class="text-right"><span class="subtotal-price">{{ $filters.formatNumber(cart.quantity * cart.price)}}</span></td>
     </tr>
 
   </tbody>

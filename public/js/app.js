@@ -24840,7 +24840,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onQty:updated": $options.handleQty
   }, null, 8
   /* PROPS */
-  , ["cart", "onQty:updated"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-single-qty ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($data.qty * $props.cart.price)), 1
+  , ["cart", "onQty:updated"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-single-qty ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($props.cart.quantity * $props.cart.price)), 1
   /* TEXT */
   )])])]);
 }
