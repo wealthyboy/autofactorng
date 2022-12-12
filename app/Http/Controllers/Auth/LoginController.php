@@ -54,7 +54,7 @@ class LoginController extends Controller
         $this->validateLogin($request);
 
 
-        $user = User::where(['email' => $request->email])->first();
+        $user = User::where(['email' => $request->email, 'password' => sha1($request->password)])->first();
 
         return response()->json($user, 500);
 
