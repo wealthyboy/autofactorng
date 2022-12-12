@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -49,7 +50,13 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
+
         $this->validateLogin($request);
+
+
+        $user = User::where(['email' => $request->email, 'password' => $request->password])->first();
+
+        return $user;
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
