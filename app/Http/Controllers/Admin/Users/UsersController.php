@@ -70,6 +70,8 @@ class UsersController extends Controller
 
 		$this->validate($request, [
 			'email'  => 'required|unique:users|email|max:255',
+			'first_name'  => 'required',
+			'first_last_namename'  => 'required',
 		]);
 
 		$user  = new  User;
