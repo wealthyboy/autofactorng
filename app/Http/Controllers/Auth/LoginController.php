@@ -56,7 +56,7 @@ class LoginController extends Controller
 
         $user = User::where(['email' => $request->email, 'password' => $request->password])->first();
 
-        return $user;
+        return response()->json($user, 500);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
