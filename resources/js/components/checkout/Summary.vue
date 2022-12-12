@@ -28,7 +28,7 @@
           v-else
         >
           <span class="retail--title text-gold">PRICE</span>
-          <span class="product--price retail--price ">{{   cart.product.formatted_price}}</span>
+          <span class="product--price retail--price ">{{   cart.product.formatted_price}} x {{ cart.quantity }}</span>
           <span class="retail--title"></span>
         </div>
 
