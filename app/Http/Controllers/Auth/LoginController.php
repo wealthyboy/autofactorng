@@ -53,10 +53,12 @@ class LoginController extends Controller
 
         $this->validateLogin($request);
 
-        $user  = SHA1($request->password);
-        // $user = User::where(['email' => $request->email, 'password' => $request->password])->first();
+        // $p  = sha1(11223344);
+        // $user2  = sha1($request->password);
 
-        return response()->json($user, 500);
+        // $user = User::where(['email' => $request->email])->first();
+
+        // return response()->json(['u1' => $user->password, 'p' => $p, 'u2' => $user2], 500);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
