@@ -47,13 +47,22 @@
                         </td>
                         @foreach($value as $k => $v)
                         <td class="">
-                            <div class="align-middle  text-sm">
-                                @if($k == 'Image')
-                                <img src="{{ $v }}" alt="" width="100" class="img-fluid" srcset="">
-                                @else
-                                <h6 class="mb-0 text-xs">{{ $v }}</h6>
-                                @endif
+                            @if($k == 'Image')
+
+                            <div class="d-flex">
+                                <figure class="avatar avatar-xl position-relative" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+                                    <a href="{{ $v }}" itemprop="contentUrl" data-size="500x600">
+                                        <img class="border-radius-lg shadow" src="{{ $v }}" alt="Image description">
+                                    </a>
+                                </figure>
                             </div>
+                            @else
+
+                            <div class="align-middle  text-sm">
+                                <h6 class="mb-0 text-xs">{{ $v }}</h6>
+                            </div>
+                            @endif
+
                         </td>
                         @endforeach
 
