@@ -1,6 +1,6 @@
 <?php if(!empty($models['items'][0][0])): ?>
 
-<?php echo $__env->make('admin._partials.top',['name' => 'Users','add' => true, 'delete' => true], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('admin._partials.top', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <?php echo $__env->make('admin._partials.search', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 

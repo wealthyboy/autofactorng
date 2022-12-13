@@ -140,7 +140,7 @@ class ProductController extends Table
             'edit' => true,
             'search' => true,
             'add' => true,
-            'delete' => true,
+            'destroy' => true,
             'export' => true
         ];
     }

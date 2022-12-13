@@ -1,6 +1,6 @@
 @if(!empty($models['items'][0][0]))
 
-@include('admin._partials.top',['name' => 'Users','add' => true, 'delete' => true])
+@include('admin._partials.top')
 
 @include('admin._partials.search')
 
