@@ -68,7 +68,6 @@ class User extends Authenticatable
 
 	public function getListingData($collection)
 	{
-
 		return  $collection->map(function ($user) {
 			return [
 				"Id" =>  $user->id,

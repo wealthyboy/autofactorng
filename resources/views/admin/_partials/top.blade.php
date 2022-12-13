@@ -1,6 +1,4 @@
 <div class="d-lg-flex mb-3">
-    <div>
-    </div>
     <div class="ms-auto my-auto mt-lg-0 mt-4">
         <div class="ms-auto my-auto">
             @if ( isset($models['unique']['add']) && $models['unique']['add'])

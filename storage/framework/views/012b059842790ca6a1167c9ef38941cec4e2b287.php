@@ -19,7 +19,7 @@
                     <tr>
                         <th data-sortable="" class="desc">
                             <div class="form-check p-0">
-                                <input class="form-check-input" type="checkbox" id="customCheck5">
+                                <input onclick="$('input[name*=\'selected[]\']').prop('checked', this.checked)" class="form-check-input" type="checkbox" id="customCheck5">
                             </div>
                         </th>
                         <?php $__currentLoopData = $models['items'][0][0]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -48,13 +48,22 @@
                         </td>
                         <?php $__currentLoopData = $value; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <td class="">
-                            <div class="align-middle  text-sm">
-                                <?php if($k == 'Image'): ?>
-                                <img src="<?php echo e($v); ?>" alt="" width="100" class="img-fluid" srcset="">
-                                <?php else: ?>
-                                <h6 class="mb-0 text-xs"><?php echo e($v); ?></h6>
-                                <?php endif; ?>
+                            <?php if($k == 'Image'): ?>
+
+                            <div class="d-flex">
+                                <figure class="avatar avatar-xl position-relative" itemprop="associatedMedia" itemscope="" itemtype="http://schema.org/ImageObject">
+                                    <a href="<?php echo e($v); ?>" itemprop="contentUrl" data-size="500x600">
+                                        <img class="border-radius-lg shadow" src="<?php echo e($v); ?>" alt="Image description">
+                                    </a>
+                                </figure>
                             </div>
+                            <?php else: ?>
+
+                            <div class="align-middle  text-sm">
+                                <h6 class="mb-0 text-xs"><?php echo e($v); ?></h6>
+                            </div>
+                            <?php endif; ?>
+
                         </td>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 

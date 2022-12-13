@@ -18,8 +18,8 @@
                 <thead>
                     <tr>
                         <th data-sortable="" class="desc">
-                            <div class="form-check p-0">
-                                <input class="form-check-input" type="checkbox" id="customCheck5">
+                            <div class="form-check ">
+                                <input onclick="$('input[name*=\'selected[]\']').prop('checked', this.checked)" class="form-check-input" type="checkbox" id="customCheck5">
                             </div>
                         </th>
                         @foreach($models['items'][0][0] as $key => $value)
