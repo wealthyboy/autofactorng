@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Vouchers;
 
+use App\DataTable\Table;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
@@ -13,24 +14,20 @@ use App\Models\Voucher;
 use App\Http\Helper;
 
 
-class VouchersController  extends Controller
+class VouchersController  extends Table
 {
 
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		//$this->middleware('admin');
-	}
 
+	public function builder()
+	{
+		return Voucher::query();
+	}
 
 	public function index()
 	{
-		$vouchers = Voucher::latest()->get();
+		$vouchers = Voucher::latest()->latest()->paginate(100);
+		$vouchers = $this->getColumnListings(request(), $vouchers);
 		return view('admin.vouchers.index', compact('vouchers'));
 	}
 
@@ -86,6 +83,40 @@ class VouchersController  extends Controller
 	public function create(Request $request)
 	{
 		return view('admin.vouchers.create');
+	}
+
+	public function routes()
+	{
+		return [
+			'edit' =>  [
+				'vouchers.edit',
+				'voucher'
+			],
+			'update' => null,
+			'show' => null,
+			'destroy' =>  [
+				'vouchers.destroy',
+				'voucher'
+			],
+			'create' => [
+				'vouchers.create'
+			],
+			'index' => null
+		];
+	}
+
+
+	public function unique()
+	{
+		return [
+			'show'  => false,
+			'right' => false,
+			'edit' => true,
+			'search' => true,
+			'add' => true,
+			'destroy' => true,
+			'export' => false
+		];
 	}
 
 

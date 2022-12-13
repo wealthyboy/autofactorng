@@ -19,14 +19,12 @@ class BrandsController extends Table
 		return Brand::query();
 	}
 
-
 	public function index()
 	{
 		$brands =  Brand::orderBy('name', 'asc')->paginate(100);
 		$brands = $this->getColumnListings(request(), $brands);
 		return view('admin.brands.index', compact('brands'));
 	}
-
 
 	public function create()
 	{
@@ -44,13 +42,11 @@ class BrandsController extends Table
 		return redirect()->route('brands.index');
 	}
 
-
 	public function edit(Request $request, $id)
 	{
 		$brand = Brand::find($id);
 		return view('admin.brands.edit', compact('brand'));
 	}
-
 
 	public function routes()
 	{
@@ -87,11 +83,8 @@ class BrandsController extends Table
 	}
 
 
-
-
 	public function update(Request $request, $id)
 	{
-
 		$request->validate([
 			//'name' => 'required|unique:brands',
 		]);
