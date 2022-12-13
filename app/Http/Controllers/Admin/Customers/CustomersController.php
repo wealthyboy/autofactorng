@@ -84,6 +84,19 @@ class CustomersController extends Table
         ];
     }
 
+    public function unique()
+    {
+        return [
+            'show'  => false,
+            'right' => false,
+            'edit' => false,
+            'search' => true,
+            'add' => false,
+            'delete' => false,
+            'export' => true
+        ];
+    }
+
 
 
 
