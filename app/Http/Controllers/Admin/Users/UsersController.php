@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Users;
 
+use App\DataTable\Table;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -12,21 +13,25 @@ use App\Models\State;
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
-class UsersController extends Controller
+class UsersController extends Table
 {
 
 
-	public function __construct()
+
+
+	public function builder()
 	{
-		// $this->middleware('auth');
-		//$this->middleware('admin'); 
+		return User::query();
 	}
+
+
 	/* display all users in the database */
 	public function index(Request $request)
 	{
 		User::canTakeAction(1);
-
-		$users = User::admin()->get();
+		$users = User::admin()->paginate(30);
+		$users = $this->getColumnListings($request, $users);
+		//dd($users['routes']);
 		return view('admin.users.index', compact('users'));
 	}
 
@@ -65,13 +70,34 @@ class UsersController extends Controller
 	}
 
 
+	public function routes()
+	{
+		return [
+			'edit' =>  [
+				'admin.users.edit',
+				'user'
+			],
+			'update' => null,
+			'show' => null,
+			'destroy' =>  [
+				'admin.users.destroy',
+				'user'
+			],
+			'create' => [
+				'admin.users.create'
+			],
+			'index' => null
+		];
+	}
+
+
 	protected function store(Request $request)
 	{
 
-		$this->validate($request, [
+		request()->validate([
 			'email'  => 'required|unique:users|email|max:255',
 			'first_name'  => 'required',
-			'first_last_namename'  => 'required',
+			'last_name'  => 'required',
 		]);
 
 		$user  = new  User;
@@ -95,8 +121,8 @@ class UsersController extends Controller
 	protected function update($id, Request $request)
 	{
 
-		$this->validate($request, [
-			'email'      => 'required|email|max:255',
+		request()->validate([
+			'email' => 'required|email|max:255',
 		]);
 
 		$user  = User::find($id);
@@ -115,8 +141,24 @@ class UsersController extends Controller
 		return redirect('/admin/users');
 	}
 
-	public function destroy(Request $request)
+	public function unique()
 	{
+		return [
+			'show'  => false,
+			'right' => false,
+			'edit' => true,
+			'search' => true,
+			'add' => true,
+			'delete' => true,
+			'export' => false
+		];
+	}
+
+
+	public function destroy(Request $request, $id)
+	{
+		User::canTakeAction(5);
+
 		$rules = array(
 			'_token' => 'required',
 		);
@@ -133,6 +175,7 @@ class UsersController extends Controller
 		User::destroy($request->selected);
 		return redirect()->back();
 	}
+
 
 	public function delete(Request $request)
 	{

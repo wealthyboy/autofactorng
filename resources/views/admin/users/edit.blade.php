@@ -1,5 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
+@include('admin.errors.errors')
+
 <div class="row">
    <div class="col-md-7">
       <div class="card mt-4">

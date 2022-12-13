@@ -97,8 +97,6 @@ class Order extends Model
 	public function getListingData($collection)
 	{
 
-
-
 		return  $collection->map(function ($order) {
 			return [
 				"Order Id" => '#' . $order->id,

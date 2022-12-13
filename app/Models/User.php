@@ -60,6 +60,26 @@ class User extends Authenticatable
 	}
 
 
+	public static function getShowData(Order $order)
+	{
+		return [];
+	}
+
+
+	public function getListingData($collection)
+	{
+
+		return  $collection->map(function ($user) {
+			return [
+				"Id" =>  $user->id,
+				"Full Name" =>  $user->fullname(),
+				"Email" => $user->email,
+				"Date Added" =>  $user->created_at->format('d-m-y'),
+			];
+		});
+	}
+
+
 	public function orders()
 	{
 		return $this->hasMany(Order::class);

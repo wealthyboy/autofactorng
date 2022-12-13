@@ -14,18 +14,21 @@
             >
           </a>
 
-          <a
-            href="#"
-            class="btn-remove icon-cancel"
-            title="Remove Product"
-            @click.prevent="removeFromCart(cart.id)"
-          ></a>
         </figure>
       </td>
       <td class="product-col">
         <h5 class="product-title">
           <a href="/">{{ cart.product.name }}</a>
         </h5>
+
+        <a
+          href="#"
+          class=""
+          title="Remove Product"
+          @click.prevent="removeFromCart(cart.id)"
+        >
+          Remove
+        </a>
       </td>
       <td>{{ $filters.formatNumber(cart.price)  }}</td>
       <td>

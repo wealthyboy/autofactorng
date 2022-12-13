@@ -1,4 +1,6 @@
 <?php $__env->startSection('content'); ?>
+<?php echo $__env->make('admin.errors.errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
 <div class="row">
    <div class="col-md-7">
       <div class="card mt-4" id="password">
@@ -18,7 +20,7 @@
                   <div class="col-sm-6 col-4">
                      <div class="input-group input-group-outline ">
                         <label class="form-label">Last Name</label>
-                        <input type="text"  name="last_name" class="form-control" placeholder="">
+                        <input type="text" name="last_name" class="form-control" placeholder="">
                      </div>
                   </div>
                </div>
@@ -33,7 +35,7 @@
                <div class="input-group input-group-outline mt-3">
                   <label class="form-label mt-4 ms-0"> </label>
                   <select class="form-control" name="permission_id" id="">
-                     <option  value="">--Choose Permission--</option>
+                     <option value="">--Choose Permission--</option>
                      <?php $__currentLoopData = $permissions; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $permission): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                      <option value="<?php echo e($permission->id); ?>"><?php echo e($permission->name); ?></option>
                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

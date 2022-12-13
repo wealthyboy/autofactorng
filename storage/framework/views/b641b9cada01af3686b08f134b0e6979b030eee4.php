@@ -1,4 +1,6 @@
 <?php $__env->startSection('content'); ?>
+<?php echo $__env->make('admin.errors.errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
 <div class="row">
    <div class="col-md-7">
       <div class="card mt-4">

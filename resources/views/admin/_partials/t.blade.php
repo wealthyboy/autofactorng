@@ -1,14 +1,27 @@
 @if(!empty($models['items'][0]))
+
+@include('admin._partials.top',['name' => 'Users','add' => true, 'delete' => true])
+
+@include('admin._partials.search')
+
+
 <div class="card">
 
     <div class="card-header">
         <h4 class="m-0">{{ $name }}</h4>
     </div>
     <div class="table-responsive mt-1">
-        <form action="#" method="post" enctype="multipart/form-data" id="form-auctions" class="is-filled"><input type="hidden" name="_token" value="PYlFxXUwxavupF6J09OR8TWqPrEQH8ciyislr1wH"> <input type="hidden" name="_method" value="DELETE">
+        <form action="{{ route($models['routes']['destroy'][0], [ $models['routes']['destroy'][1] => 1 ]) }}" method="post" enctype="multipart/form-data" id="form-table" class="is-filled">
+            @csrf
+            @method('DELETE')
             <table class="table table-flush dataTable-table  align-items-center mb-0">
                 <thead>
                     <tr>
+                        <th data-sortable="" class="desc">
+                            <div class="form-check p-0">
+                                <input class="form-check-input" type="checkbox" id="customCheck5">
+                            </div>
+                        </th>
                         @foreach($models['items'][0][0] as $key => $value)
                         <th data-sortable="" class="desc">
                             <a href="#" class="dataTable-sorter">
@@ -25,16 +38,21 @@
                 <tbody>
                     @foreach($models['items'][0] as $key => $value)
                     <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="selected[]" value="{{ $models['items'][0][$key]['Id']}}" type="checkbox" id="customCheck1">
+                                </div>
+                            </div>
+                        </td>
                         @foreach($value as $k => $v)
                         <td class="">
                             <div class="align-middle  text-sm">
                                 @if($k == 'Image')
                                 <img src="{{ $v }}" alt="" width="100" class="img-fluid" srcset="">
                                 @else
-                                <h6 class="mb-0 text-xs">{{ $v }}
-                                </h6>
+                                <h6 class="mb-0 text-xs">{{ $v }}</h6>
                                 @endif
-
                             </div>
                         </td>
                         @endforeach
@@ -46,6 +64,15 @@
                             </a>
                         </td>
                         @endif
+
+                        @if (isset($models['unique']['edit']) && $models['unique']['edit'])
+                        <td class="text-xs font-weight-normal">
+                            <a href="{{  route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => $models['items'][0][$key]['Id'] ]) }}" rel="tooltip" class="" data-original-title="" title="Edit">
+                                <span class="material-symbols-outlined">edit</span>
+                            </a>
+                        </td>
+                        @endif
+
                     </tr>
                     @endforeach
 

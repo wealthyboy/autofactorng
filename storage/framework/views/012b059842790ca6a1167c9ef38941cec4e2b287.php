@@ -1,14 +1,27 @@
 <?php if(!empty($models['items'][0])): ?>
+
+<?php echo $__env->make('admin._partials.top',['name' => 'Users','add' => true, 'delete' => true], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+<?php echo $__env->make('admin._partials.search', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+
 <div class="card">
 
     <div class="card-header">
         <h4 class="m-0"><?php echo e($name); ?></h4>
     </div>
     <div class="table-responsive mt-1">
-        <form action="#" method="post" enctype="multipart/form-data" id="form-auctions" class="is-filled"><input type="hidden" name="_token" value="PYlFxXUwxavupF6J09OR8TWqPrEQH8ciyislr1wH"> <input type="hidden" name="_method" value="DELETE">
+        <form action="<?php echo e(route($models['routes']['destroy'][0], [ $models['routes']['destroy'][1] => 1 ])); ?>" method="post" enctype="multipart/form-data" id="form-table" class="is-filled">
+            <?php echo csrf_field(); ?>
+            <?php echo method_field('DELETE'); ?>
             <table class="table table-flush dataTable-table  align-items-center mb-0">
                 <thead>
                     <tr>
+                        <th data-sortable="" class="desc">
+                            <div class="form-check p-0">
+                                <input class="form-check-input" type="checkbox" id="customCheck5">
+                            </div>
+                        </th>
                         <?php $__currentLoopData = $models['items'][0][0]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <th data-sortable="" class="desc">
                             <a href="#" class="dataTable-sorter">
@@ -26,17 +39,21 @@
                 <tbody>
                     <?php $__currentLoopData = $models['items'][0]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" name="selected[]" value="<?php echo e($models['items'][0][$key]['Id']); ?>" type="checkbox" id="customCheck1">
+                                </div>
+                            </div>
+                        </td>
                         <?php $__currentLoopData = $value; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <td class="">
                             <div class="align-middle  text-sm">
                                 <?php if($k == 'Image'): ?>
                                 <img src="<?php echo e($v); ?>" alt="" width="100" class="img-fluid" srcset="">
                                 <?php else: ?>
-                                <h6 class="mb-0 text-xs"><?php echo e($v); ?>
-
-                                </h6>
+                                <h6 class="mb-0 text-xs"><?php echo e($v); ?></h6>
                                 <?php endif; ?>
-
                             </div>
                         </td>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -48,6 +65,15 @@
                             </a>
                         </td>
                         <?php endif; ?>
+
+                        <?php if(isset($models['unique']['edit']) && $models['unique']['edit']): ?>
+                        <td class="text-xs font-weight-normal">
+                            <a href="<?php echo e(route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => $models['items'][0][$key]['Id'] ])); ?>" rel="tooltip" class="" data-original-title="" title="Edit">
+                                <span class="material-symbols-outlined">edit</span>
+                            </a>
+                        </td>
+                        <?php endif; ?>
+
                     </tr>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 

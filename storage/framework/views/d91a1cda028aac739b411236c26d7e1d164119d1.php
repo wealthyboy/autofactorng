@@ -1,7 +1,6 @@
-@extends('admin.layouts.app')
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="row">
-   @include('admin.includes.top',['name' => 'Customers','delete' => false, 'export' => true])
+   <?php echo $__env->make('admin.includes.top',['name' => 'Customers','delete' => false, 'export' => true], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
    <div class="card mb-3">
       <div class="card-header p-3 pt-2">
          <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
@@ -50,7 +49,7 @@
                </tr>
             </thead>
             <tbody>
-               @foreach($users as $user)
+               <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                <tr>
                   <td>
                      <div class="form-check  p-3 pb-0">
@@ -59,32 +58,34 @@
                   </td>
                   <td>
                      <div class="d-flex px-2 py-1">
-                        <a href="{{ route('customers.show',['customer' =>  $user->id] ) }}">{{ $user->fullname() }}</a>
+                        <a href="<?php echo e(route('customers.show',['customer' =>  $user->id] )); ?>"><?php echo e($user->fullname()); ?></a>
                      </div>
                   </td>
                   <td>
-                     <p class="text-xs font-weight-bold mb-0">{{ $user->email }}</p>
+                     <p class="text-xs font-weight-bold mb-0"><?php echo e($user->email); ?></p>
                   </td>
                   <td>
-                     <p class="text-xs font-weight-bold mb-0">{{ $user->phone_number }}</p>
+                     <p class="text-xs font-weight-bold mb-0"><?php echo e($user->phone_number); ?></p>
                   </td>
                   <td class="align-middle text-left text-sm">
-                     <span class="badge">{{ $user->orders->count() }}</span>
+                     <span class="badge"><?php echo e($user->orders->count()); ?></span>
                   </td>
                   <td class="align-middle text-left">
-                     {{ $user->created_at }}
+                     <?php echo e($user->created_at); ?>
+
                   </td>
 
 
                </tr>
-               @endforeach
+               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
          </table>
          <div class="mt-4 mb-4 d-flex justify-content-between">
-            @include('admin.includes.paginator_showing', ['name' => $users])
+            <?php echo $__env->make('admin.includes.paginator_showing', ['name' => $users], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
          </div>
       </div>
    </div>
-   @endsection
-   @section('inline-scripts')
-   @stop
+   <?php $__env->stopSection(); ?>
+   <?php $__env->startSection('inline-scripts'); ?>
+   <?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/admin/customers/index.blade.php ENDPATH**/ ?>
