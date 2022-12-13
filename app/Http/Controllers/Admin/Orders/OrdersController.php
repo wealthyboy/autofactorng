@@ -60,13 +60,13 @@ class OrdersController extends Table
 		return [
 			'edit' =>  [
 				'admin.orders.edit',
-				'user'
+				'order'
 			],
 			'update' => null,
 			'show' => null,
 			'destroy' =>  [
 				'admin.orders.destroy',
-				'user'
+				'order'
 			],
 			'create' => [
 				'admin.orders.create'

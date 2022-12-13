@@ -99,7 +99,7 @@ class Order extends Model
 
 		return  $collection->map(function ($order) {
 			return [
-				"Order Id" => '#' . $order->id,
+				"Id" => $order->id,
 				"Invoice" => $order->invoice,
 				"Customer" => optional($order->user)->fullname(),
 				"Payment Type" => $order->payment_type,
