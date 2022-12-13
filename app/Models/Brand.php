@@ -20,4 +20,17 @@ class Brand extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+
+    public function getListingData($collection)
+    {
+
+        return  $collection->map(function ($brand) {
+            return [
+                "Id" => $brand->id,
+                "Image" => $brand->image,
+                "Name" => $brand->name,
+            ];
+        });
+    }
 }

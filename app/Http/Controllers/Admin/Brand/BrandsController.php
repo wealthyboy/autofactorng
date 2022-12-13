@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Brand;
 
+use App\DataTable\Table;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
@@ -9,26 +10,20 @@ use App\Models\User;
 
 
 
-class BrandsController extends Controller
+class BrandsController extends Table
 {
 	//
 
-
-
-
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
+	public function builder()
 	{
+		return Brand::query();
 	}
 
 
 	public function index()
 	{
-		$brands =  Brand::orderBy('name', 'asc')->get();
+		$brands =  Brand::orderBy('name', 'asc')->paginate(100);
+		$brands = $this->getColumnListings(request(), $brands);
 		return view('admin.brands.index', compact('brands'));
 	}
 
@@ -41,7 +36,7 @@ class BrandsController extends Controller
 
 	public function store(Request $request)
 	{
-		$this->validate($request, [
+		$request->validate([
 			'name' => 'required|unique:brands',
 		]);
 
@@ -57,10 +52,47 @@ class BrandsController extends Controller
 	}
 
 
+	public function routes()
+	{
+		return [
+			'edit' =>  [
+				'brands.edit',
+				'brand'
+			],
+			'update' => null,
+			'show' => null,
+			'destroy' =>  [
+				'brands.destroy',
+				'brand'
+			],
+			'create' => [
+				'brands.create'
+			],
+			'index' => null
+		];
+	}
+
+
+	public function unique()
+	{
+		return [
+			'show'  => false,
+			'right' => false,
+			'edit' => true,
+			'search' => true,
+			'add' => true,
+			'delete' => true,
+			'export' => false
+		];
+	}
+
+
+
+
 	public function update(Request $request, $id)
 	{
 
-		$this->validate($request, [
+		$request->validate([
 			//'name' => 'required|unique:brands',
 		]);
 
