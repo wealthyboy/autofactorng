@@ -14,6 +14,7 @@ use App\Http\Helper;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\OrderStatusNotification;
 use App\Mail\ReviewMail;
+use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 
 class OrdersController extends Table
@@ -53,6 +54,42 @@ class OrdersController extends Table
 		$sub_total = $this->subTotal($order);
 		return view('admin.orders.invoice', compact('sub_total', 'order', 'system_settings'));
 	}
+
+	public function routes()
+	{
+		return [
+			'edit' =>  [
+				'admin.orders.edit',
+				'user'
+			],
+			'update' => null,
+			'show' => null,
+			'destroy' =>  [
+				'admin.orders.destroy',
+				'user'
+			],
+			'create' => [
+				'admin.orders.create'
+			],
+			'index' => null
+		];
+	}
+
+
+	public function unique()
+	{
+		return [
+			'show'  => true,
+			'right' => false,
+			'edit' => false,
+			'search' => true,
+			'add' => true,
+			'delete' => false,
+			'export' => true
+		];
+	}
+
+
 
 	public static function order_status()
 	{
