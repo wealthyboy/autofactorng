@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers\Admin\Customers;
 
+use App\DataTable\Table;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class CustomersController extends Controller
+class CustomersController extends Table
 {
 
-    public function __construct()
+
+
+    public function builder()
     {
-      // $this->middleware('auth');
-        //$this->middleware('admin'); 
+        return User::query();
     }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +26,8 @@ class CustomersController extends Controller
     public function index()
     {
         $users = (new User())->customers()->latest()->paginate(100);
-        return   view('admin.customers.index', compact('users'));  
+        $users = $this->getColumnListings(request(), $users);
+        return   view('admin.customers.index', compact('users'));
     }
 
     /**
@@ -55,11 +60,32 @@ class CustomersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('admin.customers.show',compact('user'));
+        return view('admin.customers.show', compact('user'));
     }
 
-    
-    
+
+    public function routes()
+    {
+        return [
+            'edit' =>  [
+                'admin.users.edit',
+                'user'
+            ],
+            'update' => null,
+            'show' => null,
+            'destroy' =>  [
+                'admin.users.destroy',
+                'user'
+            ],
+            'create' => [
+                'admin.users.create'
+            ],
+            'index' => null
+        ];
+    }
+
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -67,26 +93,4 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    
-
-   
-    
-    public function destroy(Request $request) 
-	{ 
-		$rules = array(
-			'_token' => 'required',
-		);
-		// dd(get_class(\new Validator));
-		$validator = \Validator::make($request->all(),$rules);
-		
-		if ( empty ( $request->selected)) {
-			$validator->getMessageBag()->add('Selected', 'Nothing to Delete');    
-			return \Redirect::back()
-						->withErrors($validator)
-						->withInput();
-		}
-				
-		User::destroy($request->selected);
-		return redirect()->back();
-	}
 }
