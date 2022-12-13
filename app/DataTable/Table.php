@@ -123,7 +123,7 @@ abstract class Table extends Controller
         $builder = $this->builder;
         if ($request->filled('q')) {
             $builder = $this->buildSearch($builder, $request);
-            return $this->builder->getModel()->getListingData($builder->paginate(2));
+            return $this->builder->getModel()->getListingData($builder->latest()->paginate(100)->appends(request()->query()));
         }
 
         try {

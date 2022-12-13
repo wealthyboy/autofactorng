@@ -18,7 +18,7 @@
                 <thead>
                     <tr>
                         <th data-sortable="" class="desc">
-                            <div class="form-check p-0">
+                            <div class="form-check ">
                                 <input onclick="$('input[name*=\'selected[]\']').prop('checked', this.checked)" class="form-check-input" type="checkbox" id="customCheck5">
                             </div>
                         </th>
