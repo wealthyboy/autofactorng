@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Product;
 
 
 // use App\User;
+
+use App\DataTable\Table;
 use App\Models\Brand;
 use Illuminate\Support\Str;
 
@@ -23,11 +25,12 @@ use App\Models\AttributeYear;
 use App\Models\EngineProduct;
 use App\Models\ShippingRate;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 
 
-class ProductController extends Controller
+class ProductController extends Table
 {
 
     protected $settings;
@@ -35,6 +38,14 @@ class ProductController extends Controller
     public function __construct()
     {
         $this->settings =  Setting::first();
+
+        parent::__construct();
+    }
+
+
+    public function builder()
+    {
+        return Product::query();
     }
 
     /**
@@ -50,24 +61,14 @@ class ProductController extends Controller
         $years      = Helper::years();
         $products   = Product::with('categories')
             ->orderBy('created_at', 'desc')->paginate(100);
-        if (request()->filled('q')) {
-            $value = request()->q;
-            $products = Product::where('name', 'like', '%' . $value . '%')
-                ->latest()->paginate(100);
-            $products->appends(request()->query());
-        }
+        $products = $this->getColumnListings(request(), $products);
 
-
-        if (request()->debug == 1) {
-            $aas = MakeModelYearEngine::get();
-            foreach ($aas as $as) {
-                $attribute = Attribute::find($as->attribute_id);
-                if (null !==  $attribute) {
-                    $as->parent_id = optional($attribute->parent)->id;
-                    $as->save();
-                }
-            }
-        }
+        // if (request()->filled('q')) {
+        //     $value = request()->q;
+        //     $products = Product::where('name', 'like', '%' . $value . '%')
+        //         ->latest()->paginate(100);
+        //     $products->appends(request()->query());
+        // }
 
 
         return view('admin.products.index', compact('products', 'brands', 'categories', 'attributes', 'years'));
@@ -99,7 +100,7 @@ class ProductController extends Controller
     public function create()
     {
         User::canTakeAction(2);
-        $user = \Auth::user();
+        $user = Auth::user();
         $brands = Brand::all();
         $categories = Category::parents()->get();
         $attributes = Attribute::parents()->orderBy('sort_order', 'asc')->get();
@@ -108,6 +109,42 @@ class ProductController extends Controller
         $amps = Product::AMPHERES;
         return view('admin.products.create', compact('amps', 'brands', 'categories', 'attributes', 'years', 'helper'));
     }
+
+
+    public function routes()
+    {
+        return [
+            'edit' =>  [
+                'products.edit',
+                'product'
+            ],
+            'update' => null,
+            'show' => null,
+            'destroy' =>  [
+                'products.destroy',
+                'product'
+            ],
+            'create' => [
+                'products.create'
+            ],
+            'index' => null
+        ];
+    }
+
+
+    public function unique()
+    {
+        return [
+            'show'  => false,
+            'right' => false,
+            'edit' => true,
+            'search' => true,
+            'add' => true,
+            'delete' => true,
+            'export' => true
+        ];
+    }
+
 
 
     public function generateSku()
@@ -489,34 +526,5 @@ class ProductController extends Controller
 
         //(new Activity)->Log("Added a product ", "{$data}");
         return response()->json($product);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * param  \App\Product  $product
-     * return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
-    {
-        User::canTakeAction(5);
-
-        $rules = array(
-            '_token' => 'required'
-        );
-        $validator = \Validator::make($request->all(), $rules);
-        if (empty($request->selected)) {
-            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-            return \Redirect::back()->withErrors($validator)->withInput();
-        }
-        $count = count($request->selected);
-        // (new Activity)->Log("Deleted  {$count} Products");
-
-        foreach ($request->selected as $selected) {
-            $delete = Product::find($selected);
-            $delete->delete();
-        }
-
-        return redirect()->back();
     }
 }

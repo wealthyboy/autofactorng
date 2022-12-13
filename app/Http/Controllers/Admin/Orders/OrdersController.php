@@ -33,7 +33,6 @@ class OrdersController extends Table
 	}
 
 
-
 	public function builder()
 	{
 		return Order::query();

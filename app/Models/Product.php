@@ -184,7 +184,21 @@ class Product extends Model
     }
 
 
+    public function getListingData($collection)
+    {
 
+        return  $collection->map(function ($product) {
+            return [
+                "Id" => $product->id,
+                "Image" => $product->image_to_show_m,
+                "Name" => $product->product_name,
+                "Category" => $product->category_name,
+                "Price" =>  number_format($product->price),
+                "Status" => $product->status,
+                "Date Added" => $product->created_at->format('d-m-y'),
+            ];
+        });
+    }
 
 
     public function getFitsAttribute()
