@@ -18,6 +18,8 @@ try {
 window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Http;
 
 class LoginController extends Controller
 {
@@ -53,12 +53,29 @@ class LoginController extends Controller
 
         $this->validateLogin($request);
 
-        // $p  = sha1(11223344);
-        // $user2  = sha1($request->password);
+        $user = User::where('email', $request->email)->first();
 
-        // $user = User::where(['email' => $request->email])->first();
+        if (null !== $user && $user->is_old == true && $user->is_updated == false) {
+            $response = Http::get("https://autofactorng.com/apilogin.php?pword={$request->password}&uname={$request->email}");
+            $response = $response->body();
+            if ($response == "logged in") {
+                $user->password = bcrypt($request->password);
+                $user->is_updated = 1;
+                $user->save();
 
-        // return response()->json(['u1' => $user->password, 'p' => $p, 'u2' => $user2], 500);
+                if ($this->attemptLogin($request)) {
+                    if ($request->ajax()) {
+                        return response()->json([
+                            'loggenIn' => true,
+                            'url' => \Session::get('url.intended', url('/'))
+                        ]);
+                    }
+                    return $this->sendLoginResponse($request);
+                }
+            }
+        }
+
+
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
