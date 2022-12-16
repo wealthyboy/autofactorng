@@ -49,7 +49,7 @@ class OrdersController extends Table
 
 	public function store(Request $request)
 	{
-		dd(true);
+		dd($request->all());
 	}
 
 	public function routes()

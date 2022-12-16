@@ -1,5 +1,5 @@
 <?php $__env->startSection('content'); ?>
-<form action="<?php echo e(route('admin.orders.store')); ?>" class="" method="post" data-method="POST" enctype="multipart/form-data" id="form-product">
+<form action="<?php echo e(route('admin.orders.store')); ?>" class="" method="post">
    <?php echo csrf_field(); ?>
    <div class="row">
       <div class="col-md-10">
@@ -129,7 +129,7 @@
                </div>
 
                <div class="d-flex justify-content-end mt-4">
-                  <button type="submit" name="button" id="submit-product-form-button" class="btn bg-gradient-dark m-0 ms-2">
+                  <button type="submit" name="submit" id="" class="btn bg-gradient-dark m-0 ms-2">
                      <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
                      <span id="submit-product-form-text">Submit</span>
                   </button>
