@@ -20,18 +20,12 @@ use Illuminate\Support\Facades\DB;
 class OrdersController extends Table
 {
 
-
 	public $link = 'orders';
-
 
 	public function __construct()
 	{
-		//$this->middleware('admin'); 
-
 		parent::__construct();
-		// $this->settings =  \DB::table('system_settings')->first();
 	}
-
 
 	public function builder()
 	{
@@ -45,13 +39,17 @@ class OrdersController extends Table
 		return view('admin.orders.index', compact('orders'));
 	}
 
-
 	public function invoice($id)
 	{
 		$order = Order::find($id);
 		$system_settings = Setting::first();
 		$sub_total = $this->subTotal($order);
 		return view('admin.orders.invoice', compact('sub_total', 'order', 'system_settings'));
+	}
+
+	public function store(Request $request)
+	{
+		dd(true);
 	}
 
 	public function routes()
@@ -74,7 +72,6 @@ class OrdersController extends Table
 		];
 	}
 
-
 	public function unique()
 	{
 		return [
@@ -87,8 +84,6 @@ class OrdersController extends Table
 			'export' => true
 		];
 	}
-
-
 
 	public static function order_status()
 	{
@@ -141,7 +136,6 @@ class OrdersController extends Table
 
 	public function create(Request $request)
 	{
-
 		return view('admin.orders.create');
 	}
 

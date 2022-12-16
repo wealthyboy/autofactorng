@@ -288,7 +288,6 @@ $(document).ready(function() {
 });
 
 if (document.querySelector('#phy_description')) {
-
     CKEDITOR.replace('phy_description', {
         height: '200px',
         width: '100%',
@@ -395,6 +394,40 @@ function addRowOutSideLagos() {
     $("div.dup-out-lagos:last").after(html);
     out_row++;
 }
+
+
+
+
+var row = 0;
+
+function addProductRow() {
+    let html = '<div id="out_row-' + row + '" class="row product-items my-3 ">';
+    html += '<div class="col-sm-5 col-12">';
+    html += '<div class="input-group input-group-outline">';
+    html += '<label class="form-label"> Product Name</label>';
+    html += '<input type="text" class="form-control" name="product[product_name][]">';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="col-sm-3 col-12">';
+    html += '<div class="input-group input-group-outline">';
+    html += '<label class="form-label"> Quantity</label>';
+    html += '<input type="number" class="form-control" name="product[quantity][]">';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="col-sm-3 col-12">';
+    html += '<div class="input-group input-group-outline">';
+    html += '<label class="form-label">Price</label>';
+    html += '<input type="number" class="form-control" name="product[price][]">';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="col-sm-1">';
+    html += '<button onclick="$(\'#out_row-' + row + '\').remove();"  class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button" ><i class="fa fa-trash"></i> </button>';
+    html += '</div>';
+    html += '</div>';
+    $("div.product-items:last").after(html);
+    row++;
+}
+
 
 
 var Img = {

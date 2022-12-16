@@ -1,7 +1,6 @@
-@extends('admin.layouts.app')
-@section('content')
-<form action="{{ route('admin.orders.store') }}" class="" method="post" data-method="POST" enctype="multipart/form-data" id="form-product">
-   @csrf
+<?php $__env->startSection('content'); ?>
+<form action="<?php echo e(route('admin.orders.store')); ?>" class="" method="post" data-method="POST" enctype="multipart/form-data" id="form-product">
+   <?php echo csrf_field(); ?>
    <div class="row">
       <div class="col-md-10">
          <div class="card">
@@ -12,8 +11,8 @@
                <h6 class="mb-0">Add Order</h6>
             </div>
             <div class="card-body pt-0">
-               @include('errors.errors')
-               @csrf
+               <?php echo $__env->make('errors.errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+               <?php echo csrf_field(); ?>
                <div class="row">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
@@ -145,13 +144,14 @@
 
 
 
-@endsection
-@section('page-scripts')
-<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page-scripts'); ?>
+<script src="<?php echo e(asset('ckeditor/ckeditor.js')); ?>"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-<script src="{{ asset('backend/products.js') }}"></script>
-@stop
-@section('inline-scripts')
+<script src="<?php echo e(asset('backend/products.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('inline-scripts'); ?>
 
 
-@stop
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/admin/orders/create.blade.php ENDPATH**/ ?>

@@ -7,7 +7,6 @@
          <div class="card">
             <div class="card-header p-3 pt-2">
                <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
-                  <i class="material-symbols-outlined">filter_alt</i>
                </div>
                <h6 class="mb-0">Add Product</h6>
             </div>
