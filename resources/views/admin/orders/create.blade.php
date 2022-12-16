@@ -18,7 +18,7 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> To</label>
-                        <input type="text" class="form-control" name="to" required id="to">
+                        <input type="text" class="form-control" name="email" required id="to">
                      </div>
                   </div>
                </div>
@@ -34,7 +34,7 @@
                   <div class="col-sm-12 mt-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Full name</label>
-                        <input type="text" class="form-control" name="full_name">
+                        <input type="text" class="form-control" name="first_name">
                      </div>
                   </div>
                   <div class="col-sm-12 col-12 mt-3">
@@ -46,7 +46,7 @@
                   <div class="col-sm-12 col-12 mt-3">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Payment</label>
-                        <input name="payment" class="form-control" type="text">
+                        <input name="payment_type" class="form-control" type="text">
                      </div>
                   </div>
                </div>
@@ -61,7 +61,7 @@
                   <div class="col-sm-12 col-12 mt-3">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Land Mark</label>
-                        <input type="text" class="form-control" name="land_mark" id="land_mark">
+                        <input type="text" class="form-control" name="landmark" id="land_mark">
                      </div>
                   </div>
 
@@ -90,7 +90,7 @@
                   <div class="col-sm-4 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Shipping</label>
-                        <input type="number" class="form-control" name="ship_price">
+                        <input type="number" class="form-control" name="shipping_price">
                      </div>
                   </div>
                </div>
@@ -105,20 +105,20 @@
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Product Name</label>
-                        <input type="text" class="form-control" name="product[product_name][]">
+                        <input type="text" class="form-control" name="products[product_name][]">
                      </div>
                   </div>
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Quantity</label>
-                        <input type="number" class="form-control" name="product[quantity][]">
+                        <input type="number" class="form-control" name="products[quantity][]">
                      </div>
                   </div>
 
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Price</label>
-                        <input type="number" class="form-control" name="product[price][]">
+                        <input type="number" class="form-control" name="products[price][]">
                      </div>
                   </div>
                </div>

@@ -34,7 +34,7 @@ class OrdersController extends Table
 
 	public function index()
 	{
-		$orders = Order::has('ordered_products')->orderBy('created_at', 'desc')->paginate(450);
+		$orders = Order::has('ordered_products')->latest()->orderBy('created_at', 'desc')->paginate(450);
 		$orders = $this->getColumnListings(request(), $orders);
 		return view('admin.orders.index', compact('orders'));
 	}
@@ -49,7 +49,34 @@ class OrdersController extends Table
 
 	public function store(Request $request)
 	{
-		dd($request->all());
+
+		$input = $request->except('_token');
+		$input['invoice'] = "INV-" . date('Y') . "-" . rand(10000, 39999);
+		$order = new Order;
+		$order->fill($input);
+		$order->save();
+
+		$total = [];
+
+		foreach ($input['products']['product_name'] as $key => $v) {
+			$product =  new OrderedProduct;
+			$product->product_name = $v;
+			$product->order_id =  $order->id;
+			$product->quantity = $input['products']['quantity'][$key];
+			$product->item_price = $input['products']['price'][$key];
+			$product->tracker = time();
+			$product->price = $input['products']['price'][$key];
+			$product->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
+			$total[] = $input['products']['price'][$key] * $input['products']['quantity'][$key];
+			$product->save();
+		}
+
+		$order->total = array_sum($total) + $request->shipping_price;
+		$order->save();
+
+		// Send Mail
+
+		return  redirect()->route('admin.orders.index');
 	}
 
 	public function routes()

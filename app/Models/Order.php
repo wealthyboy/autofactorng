@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Http\Helper;
+use App\Traits\ColumnFillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 class Order extends Model
 {
-	use HasFactory;
+	use HasFactory, ColumnFillable;
 
 	public $appends = ['ship_price'];
 
@@ -101,12 +102,18 @@ class Order extends Model
 			return [
 				"Id" => $order->id,
 				"Invoice" => $order->invoice,
-				"Customer" => optional($order->user)->fullname(),
+				"Customer" => $order->fullName(),
 				"Payment Type" => $order->payment_type,
 				"Total" =>  Helper::currencyWrapper($order->total),
 				"Date Added" => $order->created_at->format('d-m-y'),
 			];
 		});
+	}
+
+
+	public  function fullName()
+	{
+		return $this->first_name . ' ' . $this->last_name;
 	}
 
 
