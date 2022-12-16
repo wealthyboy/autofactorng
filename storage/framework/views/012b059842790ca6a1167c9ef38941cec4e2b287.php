@@ -75,10 +75,25 @@
                         </td>
                         <?php endif; ?>
 
+                        <?php if(isset($models['unique']['order']) && $models['unique']['order']): ?>
+                        <td class="text-xs font-weight-normal">
+                            <a target="_blank" href="/admin/orders/invoice/<?php echo e($key); ?>" rel="tooltip" data-bs-toggle="tooltip" data-bs-original-title="Invoice">
+                                <i class="material-symbols-outlined text-secondary position-relative text-lg">receipt</i>
+                            </a>
+                        </td>
+
+                        <td class="text-xs font-weight-normal">
+                            <a href="<?php echo e(route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => $models['items'][0][$key]['Id'] ])); ?>" rel="tooltip" class="" data-original-title="" title="Edit">
+                                <span class="material-symbols-outlined text-secondary position-relative text-lg">redo</span>
+                            </a>
+                        </td>
+
+                        <?php endif; ?>
+
                         <?php if(isset($models['unique']['edit']) && $models['unique']['edit']): ?>
                         <td class="text-xs font-weight-normal">
                             <a href="<?php echo e(route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => $models['items'][0][$key]['Id'] ])); ?>" rel="tooltip" class="" data-original-title="" title="Edit">
-                                <span class="material-symbols-outlined">edit</span>
+                                <span class="material-symbols-outlined  text-secondary position-relative text-lg">edit</span>
                             </a>
                         </td>
                         <?php endif; ?>

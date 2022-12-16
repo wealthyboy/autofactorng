@@ -103,6 +103,7 @@ class Order extends Model
 				"Id" => $order->id,
 				"Invoice" => $order->invoice,
 				"Customer" => $order->fullName(),
+				"Type" => $order->order_type,
 				"Payment Type" => $order->payment_type,
 				"Total" =>  Helper::currencyWrapper($order->total),
 				"Date Added" => $order->created_at->format('d-m-y'),

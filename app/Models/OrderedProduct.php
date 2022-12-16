@@ -16,11 +16,12 @@ class OrderedProduct extends Model
 
     public function getListingData($collection)
     {
+
         return [
             'items' => [
                 $collection->map(function ($ordered_product) {
                     return [
-                        "Image" =>  optional($ordered_product->product)->image_m,
+                        "Id" =>  $ordered_product->id,
                         "Product" => $ordered_product->product_name,
                         "Price" =>  Helper::currencyWrapper($ordered_product->price),
                         "Quantity" => $ordered_product->quantity,
@@ -40,10 +41,47 @@ class OrderedProduct extends Model
                 'urls' => $collection->map(function ($obj) {
                     return [
                         "url" => '/admin/' . $this->link . '/' . $obj->id,
-                        "add" => '/admin/' . $this->link . '/' . $obj->id,
                     ];
                 })
-            ]
+
+            ],
+            'unique' =>  $this->unique(),
+            'routes' => $this->routes()
+        ];
+    }
+
+
+    public function routes()
+    {
+        return [
+            'edit' =>  [
+                'admin.orders.edit',
+                'order'
+            ],
+            'update' => null,
+            'show' => null,
+            'destroy' =>  [
+                'admin.orders.destroy',
+                'order'
+            ],
+            'create' => [
+                'admin.orders.create'
+            ],
+            'index' => null
+        ];
+    }
+
+    public function unique()
+    {
+        return [
+            'show'  => false,
+            'right' => false,
+            'edit' => false,
+            'search' => false,
+            'add' => false,
+            'delete' => false,
+            'export' => false,
+            'order' => false
         ];
     }
 

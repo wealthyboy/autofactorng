@@ -4,16 +4,10 @@ namespace App\DataTable;
 
 use App\Exports\Export;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Celebrity;
-use App\Models\Image;
-use App\Models\Schedule;
-use App\Models\ShoutOutType;
-use App\Models\Tag;
+
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Arr;
 use Maatwebsite\Excel\Facades\Excel;
@@ -39,16 +33,15 @@ abstract class Table extends Controller
     }
 
 
-    protected function getColumnListings(Request $request, $collection)
+    protected function getColumnListings(Request $request, $collection, $useModel = null)
     {
 
         return $data =  [
             'items' => [
-                $this->getRecords($request, $collection)
+                $this->getRecords($request, $collection, $useModel)
             ],
             'meta' => [
                 'sub_total'  => false,
-
                 'links' => $collection->links(),
                 'count' => $collection->count(),
                 'firstItem' => $collection->firstItem(),
@@ -118,16 +111,20 @@ abstract class Table extends Controller
     }
 
 
-    protected function getRecords(Request $request, $collection)
+    protected function getRecords(Request $request, $collection, $useModel = null)
     {
         $builder = $this->builder;
+
+
         if ($request->filled('q')) {
             $builder = $this->buildSearch($builder, $request);
-            return $this->builder->getModel()->getListingData($builder->latest()->paginate(100)->appends(request()->query()));
+
+            return  $this->builder->getModel()->getListingData($builder->latest()->paginate(100)->appends(request()->query()));
         }
 
         try {
-            return $this->builder->getModel()->getListingData($collection);
+
+            return   !$useModel ?  $this->builder->getModel()->getListingData($collection) :  $useModel;
         } catch (QueryException $e) {
             return [];
         }

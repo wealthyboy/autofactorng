@@ -41,10 +41,10 @@ class OrdersController extends Table
 
 	public function invoice($id)
 	{
-		$order = Order::find($id);
-		$system_settings = Setting::first();
-		$sub_total = $this->subTotal($order);
-		return view('admin.orders.invoice', compact('sub_total', 'order', 'system_settings'));
+		// $order = Order::find($id);
+		// $system_settings = Setting::first();
+		// $sub_total = $this->subTotal($order);
+		return view('admin.orders.invoice',);
 	}
 
 	public function store(Request $request)
@@ -52,6 +52,7 @@ class OrdersController extends Table
 
 		$input = $request->except('_token');
 		$input['invoice'] = "INV-" . date('Y') . "-" . rand(10000, 39999);
+		$input['order_type'] = "Offline";
 		$order = new Order;
 		$order->fill($input);
 		$order->save();
@@ -108,7 +109,8 @@ class OrdersController extends Table
 			'search' => true,
 			'add' => true,
 			'delete' => false,
-			'export' => true
+			'export' => true,
+			'order' => true
 		];
 	}
 
@@ -122,12 +124,21 @@ class OrdersController extends Table
 		];
 	}
 
+	public function edit($id)
+	{
+		$order = Order::find($id);
+		return view('admin.orders.show', compact('order'));
+	}
+
+
 	public function show($id)
 	{
 		$order      =  Order::find($id);
 		$statuses   =  static::order_status();
 		$sub_total  =  $this->subTotal($order);
-		$orders = (new OrderedProduct())->getListingData($order->ordered_products()->paginate(10));
+		$ordered_products = $order->ordered_products()->paginate(10);
+
+		$orders = (new OrderedProduct())->getListingData($ordered_products);
 
 		$summaries = [];
 		$summaries['Sub-Total'] =  Helper::currencyWrapper($sub_total);
@@ -147,10 +158,10 @@ class OrdersController extends Table
 
 		return [
 			'customer' => [
-				"Full Name" => optional($obj->user)->fullname(),
-				"Phone Number" => optional($obj->user)->phone_number,
-				"Email" => optional($obj->user)->email,
-				"Date Joined" => optional($obj->user)->created_at->format('d-m-y')
+				"Full Name" => null !== $obj->user ?  optional($obj->user)->fullname() :  optional($obj)->fullName(),
+				"Phone Number" =>  null !== $obj->user ?  optional($obj->user)->phone_number :  optional($obj)->phone_number,
+				"Email" => null !== $obj->user ?  optional($obj->user)->email :  optional($obj)->email,
+				"Date Joined" => null !== $obj->user ? optional($obj->user)->created_at->format('d-m-y') :  optional($obj)->created_at->format('d-m-y')
 			],
 			'Order' => [
 				"Date Added" => $obj->created_at,
