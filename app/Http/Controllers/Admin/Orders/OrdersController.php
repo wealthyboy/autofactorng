@@ -137,6 +137,7 @@ class OrdersController extends Table
 		$statuses   =  static::order_status();
 		$sub_total  =  $this->subTotal($order);
 		$ordered_products = $order->ordered_products()->paginate(10);
+		dd($ordered_products);
 
 		$orders = (new OrderedProduct())->getListingData($ordered_products);
 
