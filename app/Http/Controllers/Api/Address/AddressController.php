@@ -70,12 +70,15 @@ class AddressController extends Controller
                     ->first()->toArray();
             }
         }
+        $hp = null;
 
-        $heavy_item_price = collect($heavy_item_price)->sum('price');
+        if (!empty($heavy_item_price)) {
+            $hp = collect($heavy_item_price)->sum('price');
+            $prices['heavy_item_price'] = $hp;
+        }
 
         $prices['ship_price'] =  $ship_price;
-        $prices['heavy_item_price'] = $heavy_item_price;
-        $prices['total'] =   $sub_total + $ship_price + $heavy_item_price;
+        $prices['total'] =   $sub_total + $ship_price + $hp;
 
         return AddressResource::collection(
             $addresses
