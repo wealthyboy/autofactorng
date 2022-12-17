@@ -167,7 +167,7 @@ class OrdersController extends Table
 
 
 		$summaries['Shipping'] = Helper::currencyWrapper($order->shipping_price);
-		$summaries['Heavy Item Charge'] = Helper::currencyWrapper($order->shipping_price);
+		$summaries['Heavy Item Charge'] = Helper::currencyWrapper($order->heavy_item_price);
 		$summaries['Total'] = Helper::currencyWrapper($order->total);
 		$objs = $this->showData($id);
 
