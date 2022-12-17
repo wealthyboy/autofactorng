@@ -66,6 +66,7 @@ class Order extends Model
 					'product_id' => $cart->product_id,
 					'product_name' => optional($cart->product)->product_name,
 					'quantity' => $cart->quantity,
+					'tracker' => time(),
 					'price' => $cart->price,
 					'total' => $cart->quantity * $cart->price,
 					'created_at' => \Carbon\Carbon::now()
