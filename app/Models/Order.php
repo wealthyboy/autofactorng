@@ -103,6 +103,7 @@ class Order extends Model
 				"Id" => $order->id,
 				"Invoice" => $order->invoice,
 				"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
+				"Shipping Price" => $order->shipping_price,
 				"Type" => $order->order_type,
 				"Payment Type" => $order->payment_type,
 				"Total" =>  Helper::currencyWrapper($order->total),
