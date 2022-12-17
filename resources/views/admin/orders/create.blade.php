@@ -18,7 +18,7 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> To</label>
-                        <input type="text" class="form-control" name="email" required id="to">
+                        <input type="text" class="form-control" value="{{ null !== $order ? $order->email : null }}" name="email" required id="to">
                      </div>
                   </div>
                </div>
@@ -27,26 +27,26 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Subject</label>
-                        <input type="text" class="form-control" name="subject" required>
+                        <input type="text" value="{{ null !== $order ? $order->email : null }}" class="form-control" name="subject" required>
                      </div>
                   </div>
 
                   <div class="col-sm-12 mt-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Full name</label>
-                        <input type="text" class="form-control" name="first_name">
+                        <input type="text" value="{{ null !== $order ? $order->first_name : null }}" class="form-control" name="first_name">
                      </div>
                   </div>
                   <div class="col-sm-12 col-12 mt-3">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Phone Number</label>
-                        <input name="phone_number" class="form-control " type="text">
+                        <input name="phone_number" value="{{ null !== $order ? $order->phone_number : null }}" class="form-control " type="text">
                      </div>
                   </div>
                   <div class="col-sm-12 col-12 mt-3">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Payment</label>
-                        <input name="payment_type" class="form-control" type="text">
+                        <input name="payment_type" value="{{ null !== $order ? $order->payment_type : null }}" class="form-control" type="text">
                      </div>
                   </div>
                </div>
@@ -55,13 +55,13 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Address</label>
-                        <input type="text" class="form-control" name="address" id="address">
+                        <input type="text" value="{{ null !== $order ? $order->address : null }}" class="form-control" name="address" id="address">
                      </div>
                   </div>
                   <div class="col-sm-12 col-12 mt-3">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Land Mark</label>
-                        <input type="text" class="form-control" name="landmark" id="land_mark">
+                        <input type="text" value="{{ null !== $order ? $order->landmark : null }}" class="form-control" name="landmark" id="land_mark">
                      </div>
                   </div>
 

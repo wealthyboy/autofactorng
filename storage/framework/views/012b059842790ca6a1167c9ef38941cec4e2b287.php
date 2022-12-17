@@ -77,7 +77,7 @@
 
                         <?php if(isset($models['unique']['order']) && $models['unique']['order']): ?>
                         <td class="text-xs font-weight-normal">
-                            <a target="_blank" href="/admin/orders/invoice/<?php echo e($key); ?>" rel="tooltip" data-bs-toggle="tooltip" data-bs-original-title="Invoice">
+                            <a target="_blank" href="/admin/orders/invoice/<?php echo e($models['items'][0][$key]['Id']); ?>" rel="tooltip" data-bs-toggle="tooltip" data-bs-original-title="Invoice">
                                 <i class="material-symbols-outlined text-secondary position-relative text-lg">receipt</i>
                             </a>
                         </td>

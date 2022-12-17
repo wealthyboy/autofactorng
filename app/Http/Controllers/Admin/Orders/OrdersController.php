@@ -64,7 +64,6 @@ class OrdersController extends Table
 			$product->product_name = $v;
 			$product->order_id =  $order->id;
 			$product->quantity = $input['products']['quantity'][$key];
-			$product->item_price = $input['products']['price'][$key];
 			$product->tracker = time();
 			$product->price = $input['products']['price'][$key];
 			$product->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
@@ -127,7 +126,7 @@ class OrdersController extends Table
 	public function edit($id)
 	{
 		$order = Order::find($id);
-		return view('admin.orders.show', compact('order'));
+		return view('admin.orders.create', compact('order'));
 	}
 
 
