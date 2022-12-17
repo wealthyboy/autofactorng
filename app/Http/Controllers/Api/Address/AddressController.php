@@ -8,7 +8,7 @@ namespace App\Http\Controllers\Api\Address;
 use Illuminate\Support\Facades\Auth;
 
 use Validator;
-use App\Models\State;
+use App\Models\ShippingRate;
 use App\Models\Location;
 use App\Models\User;
 use App\Models\Shipping;
@@ -51,14 +51,30 @@ class AddressController extends Controller
 
         $prices = [];
 
-        $sub_total =  Cart::sum_items_in_cart();
+        $sub_total = Cart::sum_items_in_cart();
+        $carts = Cart::all_items_in_cart();
+        $ship_price = $default_address ? optional(optional($default_address->address_state)->shipping)->price : null;
 
-        $ship_price =   $default_address ? optional(optional($default_address->address_state)->shipping)->price : null;
+        $heavy_item_price = [];
 
-        $heavy_item_price = 2;
+        $is_lagos = null !== $default_address->address_state && optional($default_address->address_state)->name  == 'Lagos' ? 1 : 0;
+
+        foreach ($carts as $key => $cart) {
+            if ($cart->product->condition_is_present) {
+                $heavy_item_price[] = ShippingRate::where(['product_id' => 123, 'is_lagos' => $is_lagos])->where(function ($query) use ($cart) {
+                    $query->where('tag_value', '=', $cart->quantity)
+                        ->where('tag', 'quantity')
+                        ->orWhere('tag_value', '>', $cart->quantity);
+                })
+                    ->select('price')
+                    ->first()->toArray();
+            }
+        }
+
+        $heavy_item_price = collect($heavy_item_price)->sum('price');
 
         $prices['ship_price'] =  $ship_price;
-        $prices['heavy_item_price'] =  $heavy_item_price;
+        $prices['heavy_item_price'] = $heavy_item_price;
         $prices['total'] =   $sub_total + $ship_price + $heavy_item_price;
 
         return AddressResource::collection(

@@ -56,16 +56,10 @@ class Cart extends Model
     {
         if (null == $carts) return null;
         foreach ($carts as $cart) {
+
             if (null == $cart->product) {
                 $cart->delete();
             }
-
-
-            // if (null !== $cart->product) {
-            //     $cart->update([
-            //         'quantity' => 1,
-            //     ]);
-            // }
 
             $cart->update([
                 'user_id' => optional(auth()->user())->id
@@ -98,6 +92,8 @@ class Cart extends Model
         $number_products_in_cart = \DB::table('carts')->select('carts.*')->where('remember_token', $cookie)->count();
         return $number_products_in_cart;
     }
+
+
 
     public static function ConvertCurrencyRate($price)
     {

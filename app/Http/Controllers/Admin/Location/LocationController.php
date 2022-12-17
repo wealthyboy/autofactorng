@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Location;
 use App\Models\Activity;
 use App\Models\Http\Helper;
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 
 
