@@ -21,7 +21,6 @@ class OrderedProduct extends Model
             'items' => [
                 $collection->map(function ($ordered_product) {
                     return [
-                        "Id" =>  $ordered_product->id,
                         "Product" => $ordered_product->product_name,
                         "Price" =>  Helper::currencyWrapper($ordered_product->price),
                         "Quantity" => $ordered_product->quantity,
@@ -38,6 +37,7 @@ class OrderedProduct extends Model
                 'total' => $collection->total(),
                 'firstItem' => $collection->firstItem(),
                 'lastItem' => $collection->lastItem(),
+                'show_checkbox' => false,
                 'urls' => $collection->map(function ($obj) {
                     return [
                         "url" => '/admin/' . $this->link . '/' . $obj->id,

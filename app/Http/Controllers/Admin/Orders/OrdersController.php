@@ -62,7 +62,7 @@ class OrdersController extends Table
 		foreach ($input['products']['product_name'] as $key => $v) {
 			$product =  new OrderedProduct;
 			$product->product_name = $v;
-			$product->order_id =  $order->id;
+			$product->order_id = $order->id;
 			$product->quantity = $input['products']['quantity'][$key];
 			$product->tracker = time();
 			$product->price = $input['products']['price'][$key];
@@ -71,7 +71,23 @@ class OrdersController extends Table
 			$product->save();
 		}
 
-		$order->total = array_sum($total) + $request->shipping_price;
+		$total = array_sum($total);
+		$shipping = $request->shipping_price;
+
+
+		if ($request->percentage_type == 'fixed') {
+			$new_total = $total - $request->discount;
+			$new_total = $new_total +  $shipping;
+		}
+
+		if ($request->percentage_type == 'percentage') {
+			$new_total = ($request->discount * $total) / 100;
+			//dd($new_total);
+			$new_total = $total - $new_total;
+			$total = $new_total + $shipping;
+		}
+
+		$order->total = $total;
 		$order->save();
 
 		// Send Mail
@@ -141,7 +157,15 @@ class OrdersController extends Table
 
 		$summaries = [];
 		$summaries['Sub-Total'] =  Helper::currencyWrapper($sub_total);
-		$summaries['Coupon'] = $order->coupon ? $order->coupon . '  -%' . optional($order->voucher())->amount . 'off'  : '---';
+		if ($order->coupon) {
+			$summaries['Discount'] = $order->coupon . '  -%' . optional($order->voucher())->amount . 'off';
+		}
+
+		if ($order->discount) {
+			$summaries['Discount'] = $order->percentage_type == 'percentage' ? $order->discount . '  % off'  :  '-' . $order->discount;
+		}
+
+
 		$summaries['Shipping'] = Helper::currencyWrapper($order->shipping_price);
 		$summaries['Heavy Item Charge'] = Helper::currencyWrapper($order->shipping_price);
 		$summaries['Total'] = Helper::currencyWrapper($order->total);

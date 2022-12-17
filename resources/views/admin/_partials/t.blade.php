@@ -17,11 +17,14 @@
             <table class="table table-flush dataTable-table  align-items-center mb-0">
                 <thead>
                     <tr>
+                        @if( isset($models['meta']['show_checkbox']) && $models['meta']['show_checkbox'])
+
                         <th data-sortable="" class="desc">
                             <div class="form-check ">
                                 <input onclick="$('input[name*=\'selected[]\']').prop('checked', this.checked)" class="form-check-input" type="checkbox" id="customCheck5">
                             </div>
                         </th>
+                        @endif
                         @foreach($models['items'][0][0] as $key => $value)
                         <th data-sortable="" class="desc">
                             <a href="#" class="dataTable-sorter">
@@ -38,13 +41,15 @@
                 <tbody>
                     @foreach($models['items'][0] as $key => $value)
                     <tr>
+                        @if( isset($models['meta']['show_checkbox']) && $models['meta']['show_checkbox'])
                         <td>
                             <div class="d-flex align-items-center">
                                 <div class="form-check">
-                                    <input class="form-check-input" name="selected[]" value="{{ $models['items'][0][$key]['Id']}}" type="checkbox" id="customCheck1">
+                                    <input class="form-check-input" name="selected[]" value="{{ isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null }}" type="checkbox" id="customCheck1">
                                 </div>
                             </div>
                         </td>
+                        @endif
                         @foreach($value as $k => $v)
                         <td class="">
                             @if($k == 'Image')
@@ -76,13 +81,13 @@
 
                         @if (isset($models['unique']['order']) && $models['unique']['order'])
                         <td class="text-xs font-weight-normal">
-                            <a target="_blank" href="/admin/orders/invoice/{{  $models['items'][0][$key]['Id'] }}" rel="tooltip" data-bs-toggle="tooltip" data-bs-original-title="Invoice">
+                            <a target="_blank" href="/admin/orders/invoice/{{  isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null }}" rel="tooltip" data-bs-toggle="tooltip" data-bs-original-title="Invoice">
                                 <i class="material-symbols-outlined text-secondary position-relative text-lg">receipt</i>
                             </a>
                         </td>
 
                         <td class="text-xs font-weight-normal">
-                            <a href="{{  route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => $models['items'][0][$key]['Id'] ]) }}" rel="tooltip" class="" data-original-title="" title="Edit">
+                            <a href="{{  route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null  ]) }}" rel="tooltip" class="" data-original-title="" title="Edit">
                                 <span class="material-symbols-outlined text-secondary position-relative text-lg">redo</span>
                             </a>
                         </td>
@@ -91,7 +96,7 @@
 
                         @if (isset($models['unique']['edit']) && $models['unique']['edit'])
                         <td class="text-xs font-weight-normal">
-                            <a href="{{  route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => $models['items'][0][$key]['Id'] ]) }}" rel="tooltip" class="" data-original-title="" title="Edit">
+                            <a href="{{  route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null  ]) }}" rel="tooltip" class="" data-original-title="" title="Edit">
                                 <span class="material-symbols-outlined  text-secondary position-relative text-lg">edit</span>
                             </a>
                         </td>

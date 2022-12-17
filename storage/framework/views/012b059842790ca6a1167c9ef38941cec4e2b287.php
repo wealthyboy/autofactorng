@@ -17,11 +17,14 @@
             <table class="table table-flush dataTable-table  align-items-center mb-0">
                 <thead>
                     <tr>
+                        <?php if( isset($models['meta']['show_checkbox']) && $models['meta']['show_checkbox']): ?>
+
                         <th data-sortable="" class="desc">
                             <div class="form-check ">
                                 <input onclick="$('input[name*=\'selected[]\']').prop('checked', this.checked)" class="form-check-input" type="checkbox" id="customCheck5">
                             </div>
                         </th>
+                        <?php endif; ?>
                         <?php $__currentLoopData = $models['items'][0][0]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <th data-sortable="" class="desc">
                             <a href="#" class="dataTable-sorter">
@@ -39,13 +42,15 @@
                 <tbody>
                     <?php $__currentLoopData = $models['items'][0]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <tr>
+                        <?php if( isset($models['meta']['show_checkbox']) && $models['meta']['show_checkbox']): ?>
                         <td>
                             <div class="d-flex align-items-center">
                                 <div class="form-check">
-                                    <input class="form-check-input" name="selected[]" value="<?php echo e($models['items'][0][$key]['Id']); ?>" type="checkbox" id="customCheck1">
+                                    <input class="form-check-input" name="selected[]" value="<?php echo e(isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null); ?>" type="checkbox" id="customCheck1">
                                 </div>
                             </div>
                         </td>
+                        <?php endif; ?>
                         <?php $__currentLoopData = $value; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <td class="">
                             <?php if($k == 'Image'): ?>
@@ -77,13 +82,13 @@
 
                         <?php if(isset($models['unique']['order']) && $models['unique']['order']): ?>
                         <td class="text-xs font-weight-normal">
-                            <a target="_blank" href="/admin/orders/invoice/<?php echo e($models['items'][0][$key]['Id']); ?>" rel="tooltip" data-bs-toggle="tooltip" data-bs-original-title="Invoice">
+                            <a target="_blank" href="/admin/orders/invoice/<?php echo e(isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null); ?>" rel="tooltip" data-bs-toggle="tooltip" data-bs-original-title="Invoice">
                                 <i class="material-symbols-outlined text-secondary position-relative text-lg">receipt</i>
                             </a>
                         </td>
 
                         <td class="text-xs font-weight-normal">
-                            <a href="<?php echo e(route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => $models['items'][0][$key]['Id'] ])); ?>" rel="tooltip" class="" data-original-title="" title="Edit">
+                            <a href="<?php echo e(route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null  ])); ?>" rel="tooltip" class="" data-original-title="" title="Edit">
                                 <span class="material-symbols-outlined text-secondary position-relative text-lg">redo</span>
                             </a>
                         </td>
@@ -92,7 +97,7 @@
 
                         <?php if(isset($models['unique']['edit']) && $models['unique']['edit']): ?>
                         <td class="text-xs font-weight-normal">
-                            <a href="<?php echo e(route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => $models['items'][0][$key]['Id'] ])); ?>" rel="tooltip" class="" data-original-title="" title="Edit">
+                            <a href="<?php echo e(route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null  ])); ?>" rel="tooltip" class="" data-original-title="" title="Edit">
                                 <span class="material-symbols-outlined  text-secondary position-relative text-lg">edit</span>
                             </a>
                         </td>

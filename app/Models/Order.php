@@ -52,6 +52,8 @@ class Order extends Model
 		$order->total = $input['total'];
 		$order->first_name = optional($user->active_address)->first_name;
 		$order->last_name = optional($user->active_address)->last_name;
+		$order->email = $user->email;
+		$order->phone_number = $user->phone_number;
 		$order->address = optional($user->active_address)->address;
 		$order->city = optional($user->active_address)->city;
 		$order->state = optional(optional($user->active_address)->address_state)->name;
@@ -103,7 +105,7 @@ class Order extends Model
 				"Id" => $order->id,
 				"Invoice" => $order->invoice,
 				"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
-				"Shipping Price" => $order->shipping_price,
+				"Email" => $order->email,
 				"Type" => $order->order_type,
 				"Payment Type" => $order->payment_type,
 				"Total" =>  Helper::currencyWrapper($order->total),
@@ -122,9 +124,11 @@ class Order extends Model
 	public  function voucher()
 	{
 		$voucher = Voucher::where('code', $this->coupon)->first();
+
 		if (null !== $voucher) {
 			return $voucher;
 		}
+
 		return false;
 	}
 

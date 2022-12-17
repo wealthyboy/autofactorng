@@ -50,6 +50,7 @@ abstract class Table extends Controller
                 'per_page' => $collection->perPage(),
                 'current_page' => $collection->currentPage(),
                 'last_page' => $collection->lastPage(),
+                'show_checkbox' => true,
                 'urls' => $collection->map(function ($obj) {
                     return [
                         "url" => '/admin/' . $this->link . '/' . $obj->id,

@@ -154,7 +154,6 @@ class CheckoutController extends Controller
         $total['currency'] = '';
 
 
-
         if (!empty($coupon->from_value) && $cart_total >= $coupon->from_value) {
 
             if ($coupon->is_fixed) {
