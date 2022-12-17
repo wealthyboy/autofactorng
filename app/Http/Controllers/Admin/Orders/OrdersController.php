@@ -137,7 +137,6 @@ class OrdersController extends Table
 		$statuses   =  static::order_status();
 		$sub_total  =  $this->subTotal($order);
 		$ordered_products = $order->ordered_products()->paginate(10);
-		dd($ordered_products);
 
 		$orders = (new OrderedProduct())->getListingData($ordered_products);
 
@@ -181,7 +180,7 @@ class OrdersController extends Table
 
 	public function subTotal($order)
 	{
-		$total = DB::table('ordered_products')->select(DB::raw('*'))->where('order_id', $order->id)->get();
+		$total = DB::table('ordered_products')->select(DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
 		return $sub_total = $total[0]->items_total ?? '0.00';
 	}
 
