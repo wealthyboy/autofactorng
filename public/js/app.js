@@ -22149,7 +22149,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       coupon: "",
-      coupon_code: "",
+      coupon_code: null,
       locations: [],
       shipping_id: null,
       shipping_price: "",
@@ -22222,10 +22222,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return false;
       }
 
-      if (!this.coupon) {
+      console.log(this.amount);
+      console.log(this.amount);
+
+      if (!this.coupon_code) {
         this.amount = this.prices.total;
       }
 
+      console.log(this.amount);
       var form = document.getElementById("checkout-form-2");
       this.order_text = "Please wait. We are almost done......";
       this.payment_is_processing = true;
@@ -22277,13 +22281,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return;
       }
 
-      this.coupon_code = this.coupon;
       this.coupon_error = null;
       this.submiting = true;
       axios__WEBPACK_IMPORTED_MODULE_2___default().post("/checkout/coupon", {
         coupon: this.coupon
       }).then(function (response) {
         _this2.submiting = false;
+        _this2.coupon_code = _this2.coupon;
         _this2.coupon = "";
         _this2.voucher = [];
 
@@ -25424,10 +25428,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"])),
     "class": "btn btn-block btn-dark w-100"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay Now "), _hoisted_23])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_cart_summary), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_total, {
-    total: _ctx.prices.total
+    voucher: $data.voucher,
+    total: _ctx.prices.total,
+    amount: $data.amount
   }, null, 8
   /* PROPS */
-  , ["total"]), _hoisted_29])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.showZero ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_carbon_zero, {
+  , ["voucher", "total", "amount"]), _hoisted_29])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.showZero ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_carbon_zero, {
     key: 3,
     "merchant-id": "PDRx7W",
     "api-key": "live_pk_FypcQ2fwqTaQnrrKtYvfucLL0pqQCU",

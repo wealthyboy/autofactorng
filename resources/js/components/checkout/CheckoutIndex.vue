@@ -143,7 +143,11 @@
 
               <cart-summary />
 
-              <total :total="prices.total" />
+              <total
+                :voucher="voucher"
+                :total="prices.total"
+                :amount="amount"
+              />
               <div class="proceed-to-checkout"></div>
             </div>
           </div>
@@ -193,7 +197,7 @@ export default {
   data() {
     return {
       coupon: "",
-      coupon_code: "",
+      coupon_code: null,
       locations: [],
       shipping_id: null,
       shipping_price: "",
@@ -274,9 +278,15 @@ export default {
         return false;
       }
 
-      if (!this.coupon) {
+      console.log(this.amount);
+
+      console.log(this.amount);
+
+      if (!this.coupon_code) {
         this.amount = this.prices.total;
       }
+
+      console.log(this.amount);
 
       let form = document.getElementById("checkout-form-2");
       this.order_text = "Please wait. We are almost done......";
@@ -328,7 +338,6 @@ export default {
         }, 2000);
         return;
       }
-      this.coupon_code = this.coupon;
       this.coupon_error = null;
       this.submiting = true;
       axios
@@ -337,10 +346,12 @@ export default {
         })
         .then((response) => {
           this.submiting = false;
+          this.coupon_code = this.coupon;
+
           this.coupon = "";
           this.voucher = [];
-
           this.voucher.push(response.data);
+
           if (this.prices.ship_price) {
             this.amount =
               parseInt(this.prices.ship_price) +
