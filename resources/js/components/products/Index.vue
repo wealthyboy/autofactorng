@@ -30,12 +30,12 @@
       />
 
       <div
-        v-else
+        v-if="!loading && !searchText"
         class="cta-border cta-bg light "
       >
         <div class="underline w-100"></div>
         <div
-          v-if=" !loading && search_filters.search_type.search"
+          v-if=" search_filters.search_type.search"
           class="d-flex justify-content-between  align-content-center py-5"
         >
           <div class="title w-100 p-2">
