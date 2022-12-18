@@ -21,7 +21,7 @@
 
             <?php if($user && $user->hasActiveSubscription()): ?>
             <div class="row mb-5" id="signInMessage">
-               <span class="sign-in-prompt" data-testid="sign-in-message">Ypu already Subscribed</span>
+               <span class="sign-in-prompt" data-testid="sign-in-message">You already Subscribed</span>
                <div><a href="/">Continue</a></div>
             </div>
 

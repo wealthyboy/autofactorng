@@ -6,10 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Utils\AccountSettingsNav;
+use App\DataTable\Table;
 
 
-class OrdersController extends Controller
+
+class OrdersController extends Table
 {
+
+    public $link = '/orders';
+
+
+    public function builder()
+    {
+        return Order::query();
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -17,19 +29,18 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $pagination = auth()->user()->orders()->paginate(4);
-        $collections = $this->getColumnNames($pagination);
-        $columns = $this->getGetCustomColumnNames();
+        $orders = Order::has('ordered_products')->where('user_id', auth()->user()->id)->latest()->orderBy('created_at', 'desc')->paginate(450);
+        $orders = $this->getColumnListings(request(), $orders);
         $nav = (new AccountSettingsNav())->nav();
+
 
         if (request()->ajax()) {
             return response([
-                'collections' => $this->getColumnNames($pagination),
-                'pagination' =>  $pagination
+                'collections' =>  $orders,
             ]);
         }
 
-        return view('orders.index', compact('nav', 'collections', 'columns', 'pagination'));
+        return view('orders.index', compact('orders', 'nav'));
     }
 
 
@@ -48,6 +59,41 @@ class OrdersController extends Controller
         // $total = $order->ordered_products[0]->sum_items($order->id)->items_total;
         // $currency =  Helper::getCurrency();
         return view('orders.show', compact('nav', 'order', 'page_title'));
+    }
+
+
+    public function routes()
+    {
+        return [
+            'edit' =>  [
+                'orders.edit',
+                'order'
+            ],
+            'update' => null,
+            'show' => null,
+            'destroy' =>  [
+                'orders.destroy',
+                'order'
+            ],
+            'create' => [
+                'orders.create'
+            ],
+            'index' => null
+        ];
+    }
+
+    public function unique()
+    {
+        return [
+            'show'  => true,
+            'right' => false,
+            'edit' => false,
+            'search' => true,
+            'add' => true,
+            'delete' => false,
+            'export' => true,
+            'order' => true
+        ];
     }
 
 

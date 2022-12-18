@@ -53,7 +53,7 @@ abstract class Table extends Controller
                 'show_checkbox' => true,
                 'urls' => $collection->map(function ($obj) {
                     return [
-                        "url" => '/admin/' . $this->link . '/' . $obj->id,
+                        "url" =>  $this->link . '/' . $obj->id,
                     ];
                 })
             ],
@@ -116,10 +116,8 @@ abstract class Table extends Controller
     {
         $builder = $this->builder;
 
-
         if ($request->filled('q')) {
             $builder = $this->buildSearch($builder, $request);
-
             return  $this->builder->getModel()->getListingData($builder->latest()->paginate(100)->appends(request()->query()));
         }
 

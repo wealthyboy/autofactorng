@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\DB;
 class OrdersController extends Table
 {
 
-	public $link = 'orders';
+	public $link = '/admin/orders';
 
 	public function __construct()
 	{
@@ -148,15 +148,16 @@ class OrdersController extends Table
 
 	public function show($id)
 	{
+
 		$order      =  Order::find($id);
 		$statuses   =  static::order_status();
 		$sub_total  =  $this->subTotal($order);
 		$ordered_products = $order->ordered_products()->paginate(10);
-
 		$orders = (new OrderedProduct())->getListingData($ordered_products);
 
 		$summaries = [];
 		$summaries['Sub-Total'] =  Helper::currencyWrapper($sub_total);
+
 		if ($order->coupon) {
 			$summaries['Discount'] = $order->coupon . '  -%' . optional($order->voucher())->amount . 'off';
 		}

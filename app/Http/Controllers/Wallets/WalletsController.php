@@ -38,7 +38,7 @@ class WalletsController extends Table
     {
         $nav = (new AccountSettingsNav())->nav();
         $user = auth()->user();
-        $collections = $this->getColumnListings($user->wallets()->paginate(20));
+        $collections = $this->getColumnListings(request(), $user->wallets()->paginate(3));
 
         if (request()->ajax()) {
             return response()->json([
@@ -74,7 +74,6 @@ class WalletsController extends Table
         $amount = (10 * $input['amount']) / 100;
         $amount = $input['amount'] +  $amount;
 
-
         $wallet = new Wallet;
         $wallet->amount = $amount;
         $wallet->user_id = $user->id;
@@ -84,20 +83,20 @@ class WalletsController extends Table
         $balance = WalletBalance::where('user_id', $user->id)->first();
 
         if (!$request->auto_credit) {
+
             if (null !== $balance) {
                 $balance->balance = $balance->balance +  $input['amount'];
                 $balance->save();
             } else {
                 $balance = new WalletBalance;
                 $balance->balance = $input['amount'];
-                $balance->user_id = $input['user_id'];
+                $balance->user_id = $user->id;
                 $balance->save();
             }
         }
 
-
-
         if ($request->auto_credit) {
+
             if (null !== $balance) {
                 $balance->auto_credit = $balance->auto_credit +  $amount;
                 $balance->save();
@@ -109,6 +108,7 @@ class WalletsController extends Table
             }
 
             $subscribe = Subscribe::where('user_id', $user->id)->first();
+
             $dt = Carbon::now();
 
             if (null !== $subscribe) {
@@ -127,7 +127,13 @@ class WalletsController extends Table
             }
         }
 
-
+        $wallet_balance  =   auth()->user()->wallet_balance;
+        $total  = (int) optional($wallet_balance)->balance + optional($wallet_balance)->auto_credit;
+        return response()->json([
+            'wallet_balance' => (int) optional($wallet_balance)->balance,
+            'auto_credit' => (int) optional($wallet_balance)->auto_credit,
+            'total' => $total
+        ]);
 
         return response($balance, 200);
     }

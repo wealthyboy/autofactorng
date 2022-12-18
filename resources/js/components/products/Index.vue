@@ -4,9 +4,28 @@
 
     <div class="col-lg-9 order-lg-2">
 
+      <div
+        v-if="loading"
+        class="d-flex justify-content-center align-content-center  page-loading w-100 h-100"
+      >
+        <div class="align-self-center text-center">
+          <div
+            class="spinner-border"
+            style="width: 7rem; height: 7rem; color:red;"
+            role="status"
+          >
+            <span class="visually-hidden">Loading...</span>
+
+          </div>
+          <div class="mt-4"></div>
+
+        </div>
+
+      </div>
+
       <search-string
         @remove:vehicle="shopWithoutVehicle"
-        v-if="searchText"
+        v-if="!loading && searchText"
         :searchText="searchText"
       />
 
@@ -16,7 +35,7 @@
       >
         <div class="underline w-100"></div>
         <div
-          v-if="search_filters.search_type.search"
+          v-if=" !loading && search_filters.search_type.search"
           class="d-flex justify-content-between  align-content-center py-5"
         >
           <div class="title w-100 p-2">
@@ -57,10 +76,12 @@
         @handle:per_page="perPage"
         @handle:sorting="sort"
         :meta="meta"
+        v-if="!loading"
       />
 
       <div class="row pb-4 g-1">
-        <template v-if="products.length">
+
+        <template v-if="!loading && products.length">
           <product
             v-for="product in products"
             :key="product.id"
@@ -68,7 +89,8 @@
             :showFitText="search_filters.search_type.search == 'make_model_year' ? true: false"
           ></product>
         </template>
-        <template v-else>
+
+        <template v-if="!loading && !products.length">
           <div class="empty">
             <div class="empty-content">
               <p>No Product found</p>
@@ -156,14 +178,13 @@ export default {
       products: [],
       has_filters: 0,
       full_width: false,
-      loading: false,
+      loading: true,
       searchText: null,
 
       url: location.href + "?get=1",
     };
   },
   mounted() {
-    console.log(this.search_filters.search_type);
     this.getProducts(this.url);
   },
   methods: {
@@ -228,19 +249,26 @@ export default {
       window.history.pushState({}, "", url);
       this.getProducts(location.href);
     },
-    getP(uri) {
+    getP(page) {
+      console.log(page);
+      let uri = location.href;
+      console.log(uri);
+
       const url = new URL(uri);
       url.searchParams.set("search", "true");
+      url.searchParams.set("page", page);
       window.history.pushState({}, "", url);
       this.getProducts(url);
     },
     getProducts(url) {
+      this.loading = true;
       axios
         .get(url)
         .then((res) => {
           this.products = res.data.data;
           this.meta = res.data.meta;
           this.searchText = res.data.string;
+          this.loading = false;
         })
         .catch((err) => {});
     },

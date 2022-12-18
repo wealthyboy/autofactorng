@@ -102,6 +102,7 @@ export default {
     });
 
     onMounted(() => {
+      console.log("Im here");
       scriptLoaded.value = new Promise((resolve) => {
         loadScript(() => {
           resolve();
@@ -144,21 +145,25 @@ export default {
           ],
         },
         callback: function (response) {
-          let new_balnce =
-            parseInt(walletBalance.value) + parseInt(form.amount);
-          store.commit("setWalletBalance", new_balnce);
           error.value = false;
+          console.log(false);
 
           axios
             .post("/wallets", form)
             .then((res) => {
               paymentIsComplete.value = true;
               paymentIsProcessing.value = false;
+              store.commit("setWalletBalance", res.data);
+              setTimeout(() => {
+                paymentIsComplete.value = false;
+                message.value = null;
+              }, 3000);
             })
             .catch((error) => {
               paymentIsComplete.value = false;
               paymentIsProcessing.value = false;
               message.value = "We could not find your data in our system";
+
               setTimeout(() => {
                 message.value = null;
               }, 3000);
