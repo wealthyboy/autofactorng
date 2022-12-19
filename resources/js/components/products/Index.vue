@@ -252,8 +252,6 @@ export default {
     getP(page) {
       console.log(page);
       let uri = location.href;
-      console.log(uri);
-
       const url = new URL(uri);
       url.searchParams.set("search", "true");
       url.searchParams.set("page", page);

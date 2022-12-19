@@ -92,7 +92,7 @@ class CustomersController extends Table
             'edit' => false,
             'search' => true,
             'add' => false,
-            'delete' => false,
+            'destroy' => true,
             'export' => true
         ];
     }

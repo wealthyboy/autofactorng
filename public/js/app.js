@@ -22741,7 +22741,6 @@ __webpack_require__.r(__webpack_exports__);
     getP: function getP(page) {
       console.log(page);
       var uri = location.href;
-      console.log(uri);
       var url = new URL(uri);
       url.searchParams.set("search", "true");
       url.searchParams.set("page", page);
@@ -34554,9 +34553,6 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bun
 
 
 
- // pk_live_f781064afdc5336a6210015e9ff17014d28a4f8b
-// pk_live_f781064afdc5336a6210015e9ff17014d28a4f8b
-// pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943
 
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({});
 app.component('ProductsItems', _components_products_Index__WEBPACK_IMPORTED_MODULE_2__["default"]);
@@ -34615,7 +34611,6 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting

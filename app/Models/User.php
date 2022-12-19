@@ -154,7 +154,7 @@ class User extends Authenticatable
 
 	public function scopeCustomers(Builder $builder)
 	{
-		return $builder->where('type', 'subscriber');
+		return $builder->where('type', 'subscriber')->orWhere('type', '=', null);
 	}
 
 	public function scopeAdmin(Builder $builder)

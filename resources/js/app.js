@@ -20,7 +20,6 @@ import Register from "./components/auth/Register";
 import Subscribe from "./components/auth/Subscribe";
 import Wallet from "./components/auth/Wallet";
 
-
 import CartSummary from "./components/cart/Index";
 //import MakeModelYEar from "./components/search/MakeModelYEar";
 import Account from "./components/account/Account";
@@ -35,11 +34,6 @@ import WalletTable from "./components/wallet/Index"
 import CheckoutIndex from "./components/checkout/CheckoutIndex"
 
 
-// pk_live_f781064afdc5336a6210015e9ff17014d28a4f8b
-
-// pk_live_f781064afdc5336a6210015e9ff17014d28a4f8b
-
-// pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943
 
 const app = createApp({})
 
