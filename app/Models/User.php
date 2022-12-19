@@ -73,6 +73,7 @@ class User extends Authenticatable
 				"Id" =>  $user->id,
 				"Full Name" =>  $user->fullname(),
 				"Email" => $user->email,
+				"Phone Number" => $user->phone_number,
 				"Date Added" =>  $user->created_at->format('d-m-y'),
 			];
 		});
