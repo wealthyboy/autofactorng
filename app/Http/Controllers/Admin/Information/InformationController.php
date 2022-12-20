@@ -25,7 +25,7 @@ class InformationController extends Controller
 
 	public function  create(Request $request)
 	{
-		User::canTakeAction(2);
+		User::canTakeAction(User::canCreate);
 		$pages = Information::parents()->get();
 		return view('admin.information.create', compact('pages'));
 	}
@@ -53,8 +53,6 @@ class InformationController extends Controller
 	{
 
 		$page = Information::find($id);
-
-
 
 		if ($request->filled('parent_id')) {
 			$this->validate($request, [
@@ -88,7 +86,7 @@ class InformationController extends Controller
 
 	public function  edit(Request $request, $id)
 	{
-		User::canTakeAction(4);
+		User::canTakeAction(User::canUpdate);
 		$information = Information::find($id);
 		$pages = Information::get();
 		return view('admin.information.edit', compact('information', 'pages'));
@@ -97,7 +95,7 @@ class InformationController extends Controller
 	public function  destroy(Request $request, $id)
 	{
 
-		User::canTakeAction(5);
+		User::canTakeAction(User::canDelete);
 		$rules = array(
 			'_token' => 'required',
 		);

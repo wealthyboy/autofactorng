@@ -34,6 +34,7 @@ class DiscountsController extends Controller
      */
     public function create()
     {
+        User::canTakeAction(User::canCreate);
         $categories = Category::parents()->get();
         return view('admin.discounts.create', compact('categories'));
     }
@@ -79,6 +80,8 @@ class DiscountsController extends Controller
      */
     public function edit($id)
     {
+        User::canTakeAction(User::canUpdate);
+
         $discount = Discount::find($id);
         $categories = Category::parents()->get();
         return view('admin.discounts.edit', compact('categories', 'discount'));
@@ -120,7 +123,7 @@ class DiscountsController extends Controller
      */
     public function destroy(Request $request, $id)
     {
-        User::canTakeAction(5);
+        User::canTakeAction(User::canDelete);
 
         $rules = array(
             '_token' => 'required'

@@ -4,7 +4,7 @@ namespace App\DataTable;
 
 use App\Exports\Export;
 use App\Http\Controllers\Controller;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\Schema;
@@ -155,6 +155,7 @@ abstract class Table extends Controller
 
     public function destroy(Request $request, $id)
     {
+        User::canTakeAction(User::canDelete);
         $this->builder->whereIn('id', $request->selected)->delete();
         if ($this->useJson) {
             return;

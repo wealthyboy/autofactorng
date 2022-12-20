@@ -52,8 +52,7 @@ class AttributesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        //dd($request->all());
+        User::canTakeAction(User::canCreate);
         if ($request->filled('parent_id')) {
             $this->validate($request, [
                 'name' => [
@@ -91,10 +90,8 @@ class AttributesController extends Controller
                     $data[$engine_id] = ['year_From' => $year_from, 'year_to' => $request->year_to[$engine_id][0]];
                 }
             }
+            $attribute->engines()->sync($data);
         }
-
-
-        $attribute->engines()->sync($data);
 
 
 
@@ -108,12 +105,15 @@ class AttributesController extends Controller
             }
         }
 
-        // dd($attribute->engines);
 
 
-        //(new Activity)->Log("Created a new attribute called {$request->name}");
+        (new Activity)->put("Created a new attribute called {$request->name}", null);
+
         return redirect()->back();
     }
+
+
+
 
 
 
@@ -125,7 +125,7 @@ class AttributesController extends Controller
      */
     public function edit($id)
     {
-        User::canTakeAction(4);
+        User::canTakeAction(User::canUpdate);
         $attr = Attribute::find($id);
         //dd($attr);
         $attributes = Attribute::parents()->get();
@@ -204,7 +204,7 @@ class AttributesController extends Controller
             }
         }
         //Log Activity
-        // (new Activity)->Log("Updated  Attribute {$request->name} ");
+        (new Activity)->put("Updated  Attribute called {$request->name} ");
         return redirect()->action('Admin\Attributes\AttributesController@index');
     }
 
@@ -217,7 +217,7 @@ class AttributesController extends Controller
     public function destroy(Request $request)
     {
         //
-        User::canTakeAction(5);
+        User::canTakeAction(User::canDelete);
         $rules = array(
             '_token' => 'required'
         );
@@ -227,7 +227,7 @@ class AttributesController extends Controller
             return \Redirect::back()->withErrors($validator)->withInput();
         }
         $count = count($request->selected);
-        // (new Activity)->Log("Deleted  {$count} Products");
+        (new Activity)->put("Deleted  {$count} Activity");
         Attribute::destroy($request->selected);
         return redirect()->back();
     }

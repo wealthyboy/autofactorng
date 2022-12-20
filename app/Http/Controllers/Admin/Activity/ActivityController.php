@@ -2,26 +2,31 @@
 
 namespace App\Http\Controllers\Admin\Activity;
 
+use App\DataTable\Table;
 use Illuminate\Http\Request;
 use App\Models\Activity;
+use App\Models;
+
 use App\Http\Controllers\Controller;
 use App\Models\User;
 
 
 
-class ActivityController extends Controller
+class ActivityController extends Table
 {
 	//
 
 
-	public function __construct()
+	public function builder()
 	{
+		return Activity::query();
 	}
 
 	public function index()
 	{
-		User::canTakeAction(1);
-		$activities = Activity::orderBy('created_at', 'DESC')->get();
+		User::canTakeAction(User::canAccessActivity);
+		$activities = Activity::orderBy('created_at', 'DESC')->paginate(450);
+		$activities = $this->getColumnListings(request(), $activities);
 		return view('admin.activity.index', compact('activities'));
 	}
 
@@ -32,5 +37,40 @@ class ActivityController extends Controller
 		$flash = app('App\Http\flash');
 		$flash->success("Success", " Deleted");
 		return redirect()->back();
+	}
+
+
+	public function routes()
+	{
+		return [
+			'edit' =>  [
+				'admin.activities.edit',
+				'activity'
+			],
+			'update' => null,
+			'show' => null,
+			'destroy' =>  [
+				'admin.activities.destroy',
+				'activity'
+			],
+			'create' => [
+				'admin.activities.create'
+			],
+			'index' => null
+		];
+	}
+
+	public function unique()
+	{
+		return [
+			'show'  => false,
+			'right' => false,
+			'edit' => false,
+			'search' => true,
+			'add' => false,
+			'destroy' => true,
+			'export' => true,
+			'order' => false
+		];
 	}
 }

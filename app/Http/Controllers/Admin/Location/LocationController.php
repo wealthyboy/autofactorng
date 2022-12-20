@@ -42,7 +42,7 @@ class LocationController extends Controller
      */
     public function create()
     {
-        User::canTakeAction(2);
+        User::canTakeAction(User::canCreate);
         return view('admin.location.create');
     }
 
@@ -116,7 +116,7 @@ class LocationController extends Controller
     public function edit($id)
     {
         //
-        User::canTakeAction(4);
+        User::canTakeAction(User::canUpdate);
         $location = Location::find($id);
         $locations = Location::parents()->get();
         return view('admin.location.edit', compact('location', 'locations'));
@@ -171,7 +171,7 @@ class LocationController extends Controller
     public function destroy(Request $request, $id)
     {
         //
-        // User::canTakeAction(5);
+        User::canTakeAction(User::canDelete);
         $rules = array(
             '_token' => 'required'
         );

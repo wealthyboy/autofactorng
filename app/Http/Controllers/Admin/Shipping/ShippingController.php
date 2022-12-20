@@ -44,7 +44,7 @@ class ShippingController extends Controller
      */
     public function create()
     {
-        //User::canTakeAction(2);
+        User::canTakeAction(User::canCreate);
         return view('admin.shipping.create');
     }
 
@@ -100,7 +100,7 @@ class ShippingController extends Controller
     public function edit($id)
     {
         //
-        // User::canTakeAction(4);
+        User::canTakeAction(User::can);
 
         $shipping = Shipping::find($id);
         $shippings = Shipping::parents()->get();
@@ -149,7 +149,7 @@ class ShippingController extends Controller
     public function destroy(Request $request)
     {
         //
-        // User::canTakeAction(5);
+        User::canTakeAction(User::canDelete);
         $rules = array(
             '_token' => 'required'
         );

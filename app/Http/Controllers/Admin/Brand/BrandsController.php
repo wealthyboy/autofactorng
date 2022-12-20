@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Brand;
 use App\DataTable\Table;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Activity;
 use App\Models\Brand;
 use App\Models\User;
 
@@ -28,22 +29,28 @@ class BrandsController extends Table
 
 	public function create()
 	{
-		User::canTakeAction(2);
+		User::canTakeAction(User::canCreate);
 		return view('admin.brands.create');
 	}
 
 	public function store(Request $request)
 	{
+		User::canTakeAction(User::canCreate);
 		$request->validate([
 			'name' => 'required|unique:brands',
 		]);
 
 		Brand::Insert($request->except('_token'));
+
+		(new Activity)->put("Created a new Brand called {$request->name}", null);
+
 		return redirect()->route('brands.index');
 	}
 
 	public function edit(Request $request, $id)
 	{
+		User::canTakeAction(User::canUpdate);
+
 		$brand = Brand::find($id);
 		return view('admin.brands.edit', compact('brand'));
 	}
@@ -93,13 +100,16 @@ class BrandsController extends Table
 		$data = $request->all();
 		$data['is_featured'] = $request->is_featured ? 1 : 0;
 		$brand->update($data);
+
+		(new Activity)->put("Updated a  Brand called {$request->name}", null);
+
 		return redirect()->route('brands.index');
 	}
 
 
 	public function destroy(Request $request, $id)
 	{
-		User::canTakeAction(5);
+		User::canTakeAction(User::canDelete);
 		$rules = array(
 			'_token' => 'required',
 		);
@@ -110,7 +120,11 @@ class BrandsController extends Table
 				->withErrors($validator)
 				->withInput();
 		}
+		$count = count($request->selected);
+
 		Brand::destroy($request->selected);
+
+		(new Activity)->put("Deleted  {$count} Brand(s)");
 
 		return redirect()->back();
 	}

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\Engines;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Engine;
+use App\Models\User;
+
 
 class EnginesController extends Controller
 {
@@ -17,7 +19,7 @@ class EnginesController extends Controller
 
 	public function create()
 	{
-		User::canTakeAction(2);
+		User::canTakeAction(User::canCreate);
 		return view('admin.engines.create');
 	}
 
@@ -35,6 +37,7 @@ class EnginesController extends Controller
 
 	public function edit(Request $request, $id)
 	{
+		User::canTakeAction(User::canUpdate);
 		$engine = Engine::find($id);
 		return view('admin.engines.edit', compact('engine'));
 	}
@@ -55,7 +58,7 @@ class EnginesController extends Controller
 
 	public function destroy(Request $request, $id)
 	{
-		User::canTakeAction(5);
+		User::canTakeAction(User::canDelete);
 		$rules = array(
 			'_token' => 'required',
 		);

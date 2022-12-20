@@ -23,7 +23,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('/', 'Admin\HomeCtrl@index')->name('admin_home');
     Route::get('/maintainance/mode', 'Admin\Live\LiveController@index')->name('maintainance');
     Route::get('live', 'Admin\Live\LiveController@activate');
-    Route::get('activities', 'Admin\Activity\ActivityController@index');
+    Route::resource('activities', 'Admin\Activity\ActivityController', ['names' => 'admin.activities']);
     Route::get('reports', 'Admin\Account\AccountsController@index');
     Route::get('account/filter', 'Admin\Account\AccountsController@index')->name('filter_sales');
     Route::resource('customers', 'Admin\Customers\CustomersController', ['name' => 'customers']);

@@ -34,7 +34,7 @@ class VouchersController  extends Table
 
 	public function edit(Request $request, $id)
 	{
-		//User::canTakeAction(4); 
+		User::canTakeAction(User::canUpdate);
 		$voucher = Voucher::find($id);
 		return view('admin.vouchers.edit', compact('id', 'voucher'));
 	}
@@ -82,6 +82,8 @@ class VouchersController  extends Table
 
 	public function create(Request $request)
 	{
+		User::canTakeAction(User::canCreate);
+
 		return view('admin.vouchers.create');
 	}
 
@@ -122,6 +124,7 @@ class VouchersController  extends Table
 
 	public function store(Request $request)
 	{
+
 
 		$coupon = new Voucher();
 

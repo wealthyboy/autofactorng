@@ -49,6 +49,7 @@ class OrdersController extends Table
 
 	public function store(Request $request)
 	{
+		User::canTakeAction(User::canCreate);
 
 		$input = $request->except('_token');
 		$input['invoice'] = "INV-" . date('Y') . "-" . rand(10000, 39999);
@@ -141,6 +142,7 @@ class OrdersController extends Table
 
 	public function edit($id)
 	{
+		User::canTakeAction(User::canCreate);
 		$order = Order::find($id);
 		return view('admin.orders.create', compact('order'));
 	}

@@ -15,6 +15,20 @@ class User extends Authenticatable
 {
 	use HasApiTokens, HasFactory, Notifiable;
 
+	//Code: 1 Account ,2 Create , 3 Read , 4 Update ,5 Delete, 6 Reports, 7 Users, 8 Activity, 9 Enable/Disble
+
+	const canCreate = 2;
+	const canEdit = 4;
+	const canUpdate = 4;
+	const canDelete = 5;
+	const canAccessActivity = 8;
+	const canAccessAccount = 1;
+	const canAccessReports = 6;
+	const canAccessUsers = 7;
+	const canEnableSite = 9;
+
+
+
 	/**
 	 * The attributes that are mass assignable.
 	 *
@@ -186,7 +200,7 @@ class User extends Authenticatable
 	public static function canTakeAction($num)
 	{
 		if (!User::userHasPermission($num)) {
-			dd('You dont have access,Permission Denied.');
+			dd('You dont have permission to perform that operation.');
 		}
 	}
 

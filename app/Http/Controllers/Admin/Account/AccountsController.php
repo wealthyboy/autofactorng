@@ -38,8 +38,7 @@ class AccountsController extends Controller
     {
 
         //
-        User::canTakeAction(1);
-
+        User::canTakeAction(User::canAccessReports);
         Carbon::setWeekStartsAt(Carbon::SUNDAY);
         Carbon::setWeekEndsAt(Carbon::SUNDAY);
 
