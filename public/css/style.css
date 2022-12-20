@@ -778,7 +778,7 @@
     top: 50%;
     margin-left: -40px;
     margin-top: -40px;
-    background: url("https://portotheme.com/html/porto_ecommerce/assets/images/owl.video.play.png") no-repeat;
+    background: url("../fonts/AutoFactorCond-Medium.woff2") no-repeat;
     cursor: pointer;
     z-index: 1;
     -webkit-backface-visibility: hidden;
@@ -10576,7 +10576,6 @@ h6.heading-bottom-border {
 
 html {
     overflow-x: hidden;
-    font-size: 62.5%;
     font-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
