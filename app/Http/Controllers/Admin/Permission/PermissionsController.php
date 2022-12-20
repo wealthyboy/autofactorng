@@ -40,7 +40,7 @@ class PermissionsController extends Controller
     public function create()
     {
         //Check if user has Permission 2 code for create
-        //User::canTakeAction(2);
+        User::canTakeAction(User::canCreate);
         $permissions = Permission::$types;
         return view('admin.permissions.create', compact('permissions'));
     }
@@ -123,7 +123,7 @@ class PermissionsController extends Controller
     public function destroy(Request $request, $id)
     {
         //dd($request->selected );
-        User::canTakeAction(5);
+        User::canTakeAction(User::canDelete);
         $rules = array(
             '_token' => 'required'
         );
@@ -133,7 +133,7 @@ class PermissionsController extends Controller
             return \Redirect::back()->withErrors($validator)->withInput();
         }
 
-        // (new Activity)->Log("Deleted a permission");
+        (new Activity)->put("Deleted a permission");
         Permission::destroy($request->selected);
         return redirect()->back();
     }
