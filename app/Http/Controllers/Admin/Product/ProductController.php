@@ -62,15 +62,6 @@ class ProductController extends Table
         $products   = Product::with('categories')
             ->orderBy('created_at', 'desc')->paginate(100);
         $products = $this->getColumnListings(request(), $products);
-
-        // if (request()->filled('q')) {
-        //     $value = request()->q;
-        //     $products = Product::where('name', 'like', '%' . $value . '%')
-        //         ->latest()->paginate(100);
-        //     $products->appends(request()->query());
-        // }
-
-
         return view('admin.products.index', compact('products', 'brands', 'categories', 'attributes', 'years'));
     }
 
@@ -99,7 +90,7 @@ class ProductController extends Table
      */
     public function create()
     {
-        User::canTakeAction(2);
+        User::canTakeAction(User::canCreate);
         $user = Auth::user();
         $brands = Brand::all();
         $categories = Category::parents()->get();
@@ -347,7 +338,7 @@ class ProductController extends Table
      */
     public function edit($id)
     {
-        User::canTakeAction(2);
+        User::canTakeAction(User::canUpdate);
         $brands = Brand::all();
         $product = Product::find($id);
         $categories = Category::parents()->get();
