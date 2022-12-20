@@ -33,33 +33,9 @@ abstract class Table extends Controller
     }
 
 
-    protected function getColumnListings(Request $request, $collection, $useModel = null)
+    protected function getColumnListings(Request $request, $collections)
     {
-
-        return $data =  [
-            'items' => [
-                $this->getRecords($request, $collection, $useModel)
-            ],
-            'meta' => [
-                'sub_total'  => false,
-                'links' => $collection->links(),
-                'count' => $collection->count(),
-                'firstItem' => $collection->firstItem(),
-                'lastItem' => $collection->lastItem(),
-                'total' => $collection->total(),
-                'per_page' => $collection->perPage(),
-                'current_page' => $collection->currentPage(),
-                'last_page' => $collection->lastPage(),
-                'show_checkbox' => true,
-                'urls' => $collection->map(function ($obj) {
-                    return [
-                        "url" =>  $this->link . '/' . $obj->id,
-                    ];
-                })
-            ],
-            'unique' =>  $this->unique(),
-            'routes' => $this->routes()
-        ];
+        return $this->getRecords($request, $collections);
     }
 
 
@@ -112,18 +88,48 @@ abstract class Table extends Controller
     }
 
 
-    protected function getRecords(Request $request, $collection, $useModel = null)
+    protected function getRecords(Request $request, $collections)
     {
         $builder = $this->builder;
 
-        if ($request->filled('q')) {
-            $builder = $this->buildSearch($builder, $request);
-            return  $this->builder->getModel()->getListingData($builder->latest()->paginate(100)->appends(request()->query()));
-        }
+
 
         try {
+            if ($request->filled('q')) {
+                $collections = $this->buildSearch($builder, $request);
+                $records =  $this->builder->getModel()->getListingData($collections);
+            } else {
+                $records =  $this->builder->getModel()->getListingData($collections);
+            }
 
-            return   !$useModel ?  $this->builder->getModel()->getListingData($collection) :  $useModel;
+
+
+
+
+            return $data =  [
+                'items' => [
+                    $records
+                ],
+                'meta' => [
+                    'sub_total'  => false,
+                    'links' => $collections->links(),
+                    'count' => $collections->count(),
+                    'firstItem' => $collections->firstItem(),
+                    'lastItem' => $collections->lastItem(),
+                    'total' => $collections->total(),
+                    'per_page' => $collections->perPage(),
+                    'current_page' => $collections->currentPage(),
+                    'last_page' => $collections->lastPage(),
+                    'show_checkbox' => true,
+                    'urls' => $collections->map(function ($obj) {
+                        return [
+                            "url" =>  $this->link . '/' . $obj->id,
+                        ];
+                    })
+                ],
+                'unique' =>  $this->unique(),
+                'routes' => $this->routes()
+            ];
         } catch (QueryException $e) {
             return [];
         }
@@ -138,14 +144,13 @@ abstract class Table extends Controller
     {
         // $queryParts = $this->resolveQueryParts($request->operator, $request->value);
 
-        if ($request->filled('q')) {
-            return $this->builder()->where(function (Builder $query) use ($request) {
-                $query->where('id', 'like', '%' . $request->q . '%');
-                foreach ($this->getDatabaseColumnNames() as $key => $value) {
-                    $query->orWhere($value, 'like', '%' . $request->q . '%');
-                }
-            });
-        }
+        return $this->builder()->where(function (Builder $query) use ($request) {
+            $query->where('id', 'like', '%' . $request->q . '%');
+            foreach ($this->getDatabaseColumnNames() as $key => $value) {
+                $query->orWhere($value, 'like', '%' . $request->q . '%');
+            }
+        })->latest()->paginate(100);
+
         // return $this->builder()->where($request->column, $queryParts['operator'], $queryParts['value']);
     }
 
