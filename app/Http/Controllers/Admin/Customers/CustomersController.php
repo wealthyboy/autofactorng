@@ -109,9 +109,12 @@ class CustomersController extends Table
 
     public function destroy(Request $request, $id)
     {
+
         User::canTakeAction(User::canDelete);
 
         $customers = User::find($request->selected)->pluck('email')->toArray();
+
+        dd($customers);
 
         $this->builder->whereIn('id', $request->selected)->delete();
 
@@ -120,7 +123,6 @@ class CustomersController extends Table
         if ($this->useJson) {
             return;
         }
-
 
         return back();
     }
