@@ -25,7 +25,7 @@ class CustomersController extends Table
      */
     public function index()
     {
-        $users = (new User())->customers()->latest()->paginate(100);
+        $users = (new User())->customers()->orderBy('id', 'DESC')->paginate(100);
         $users = $this->getColumnListings(request(), $users);
         return   view('admin.customers.index', compact('users'));
     }

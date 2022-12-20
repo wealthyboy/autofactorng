@@ -4075,7 +4075,7 @@ class DatabaseSeeder extends Seeder
             // $user->created_at =  $vs['date_time'];
             $user->is_old =  1;
             $user->type =  'subscriber';
-            $user->save();
+           // $user->save();
         }
     }
 }
