@@ -35,6 +35,11 @@ class ProductController extends Table
 
     protected $settings;
 
+    public $deleted_names = 'name';
+
+    public $deleted_specific = 'products';
+
+
     public function __construct()
     {
         $this->settings =  Setting::first();
@@ -377,20 +382,7 @@ class ProductController extends Table
     }
 
 
-    public function acMessage($product)
-    {
 
-        $data = null;
-        foreach ($product->product_variations as $product_variation) {
-            $data  = '<p>';
-            $data .= 'Name: ' . $product_variation->name  . ' <br/>';
-            $data .= 'Qty: ' . $product_variation->quantity . '<br/>';
-            $data .= 'Price: ' . $product_variation->price . '<br/>';
-            $data .= 'Sale Price: ' . $product_variation->sale_price . '<br/>';
-            $data .= '</p>';
-        }
-        return $data;
-    }
 
     public function update(Request $request, $id)
     {
@@ -508,7 +500,6 @@ class ProductController extends Table
 
         if (!empty($request->images)) {
             $images =  $request->images;
-
             foreach ($images as $image) {
                 $images = new Image(['image' => $image]);
                 $product->images()->save($images);
@@ -516,6 +507,7 @@ class ProductController extends Table
         }
 
         (new Activity)->put("Updated a product called" . $name);
+
         return response()->json($product);
     }
 }

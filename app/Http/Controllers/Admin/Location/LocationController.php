@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Location;
 
+use App\DataTable\Table;
 use Illuminate\Http\Request;
 use App\Models\Location;
 use App\Models\Activity;
@@ -15,12 +16,19 @@ use Illuminate\Validation\Rule;
 
 
 
-class LocationController extends Controller
+class LocationController extends Table
 {
 
-    public function __construct()
+
+    public $deleted_names = 'name';
+
+    public $deleted_specific = 'locations';
+
+    public function builder()
     {
+        return Location::query();
     }
+
 
 
     /**
@@ -59,9 +67,7 @@ class LocationController extends Controller
 
     public function store(Request $request)
     {
-        //
 
-        // dd($request->all());
         if ($request->filled('parent_id')) {
             $this->validate($request, [
                 'name' => [
@@ -91,7 +97,7 @@ class LocationController extends Controller
         $location->name = $request->name;
         $location->parent_id  = $request->parent_id;
         $location->save();
-        //(new Activity)->Log("Created a new Location called {$request->name}");
+        (new Activity)->put("Created a new Location called {$request->name}");
         return redirect()->back();
     }
 
@@ -158,31 +164,7 @@ class LocationController extends Controller
         $location->parent_id     = $request->parent_id;
         $location->save();
         //Log Activity
-        // (new Activity)->Log("Updated  Location {$request->name} ");
+        (new Activity)->put("Updated  Location {$request->name} ");
         return redirect()->action('Admin\Location\LocationController@index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Location  $location
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, $id)
-    {
-        //
-        User::canTakeAction(User::canDelete);
-        $rules = array(
-            '_token' => 'required'
-        );
-        $validator = \Validator::make($request->all(), $rules);
-        if (empty($request->selected)) {
-            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-            return \Redirect::back()->withErrors($validator)->withInput();
-        }
-        $count = count($request->selected);
-        // (new Activity)->Log("Deleted  {$count} Products");
-        Location::destroy($request->selected);
-        return redirect()->back();
     }
 }

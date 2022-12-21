@@ -17,7 +17,9 @@ use App\Http\Helper;
 class VouchersController  extends Table
 {
 
+	public $deleted_names = 'id';
 
+	public $deleted_specific = 'Vouchers';
 
 	public function builder()
 	{
@@ -62,6 +64,8 @@ class VouchersController  extends Table
 		$voucher->is_fixed = $request->is_fixed ? 1 : 0;
 		$voucher->status = $request->status;
 		$voucher->save();
+		(new Activity)->put("Udated  vounher with id  {$voucher->id}", null);
+
 		return redirect('admin/vouchers');
 	}
 
@@ -146,24 +150,9 @@ class VouchersController  extends Table
 		$coupon->is_fixed = $request->is_fixed ? 1 : 0;
 		$coupon->status = $request->status;
 		$coupon->save();
+
+		(new Activity)->put("Added  new vounher  with code  {$voucher->code}", null);
+
 		return redirect('admin/vouchers');
-	}
-
-
-	public function destroy(Request $request, $id)
-	{
-		User::canTakeAction(5);
-		$rules = array(
-			'_token' => 'required',
-		);
-		$validator = \Validator::make($request->all(), $rules);
-		if (empty($request->selected)) {
-			$validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-			return \Redirect::back()
-				->withErrors($validator)
-				->withInput();
-		}
-		Voucher::destroy($request->selected);
-		return redirect()->back();
 	}
 }

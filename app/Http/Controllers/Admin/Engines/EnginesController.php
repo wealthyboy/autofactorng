@@ -2,14 +2,26 @@
 
 namespace App\Http\Controllers\Admin\Engines;
 
+use App\DataTable\Table;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Engine;
 use App\Models\User;
 
 
-class EnginesController extends Controller
+class EnginesController extends Table
 {
+
+	public $deleted_names = 'name';
+
+	public $deleted_specific = 'engines';
+
+	public function builder()
+	{
+		return Engine::query();
+	}
+
+
 	public function index()
 	{
 		$engines =  Engine::orderBy('name', 'asc')->get();
@@ -26,11 +38,14 @@ class EnginesController extends Controller
 	public function store(Request $request)
 	{
 
-		$this->validate($request, [
+		$request->validate([
 			'name' => 'required|unique:engines',
 		]);
 
 		Engine::Insert($request->except('_token'));
+
+		(new Activity)->put("Added  Engine called " . $request->name);
+
 		return redirect()->route('engines.index');
 	}
 
@@ -46,31 +61,15 @@ class EnginesController extends Controller
 	public function update(Request $request, $id)
 	{
 
-		$this->validate($request, [
+		$request->validate([
 			//'name' => 'required|unique:brands',
 		]);
 
 		$engine = Engine::find($id);
 		$engine->update($request->all());
+
+		(new Activity)->put("Added  Engine called " . $request->name);
+
 		return redirect()->route('engines.index');
-	}
-
-
-	public function destroy(Request $request, $id)
-	{
-		User::canTakeAction(User::canDelete);
-		$rules = array(
-			'_token' => 'required',
-		);
-		$validator = \Validator::make($request->all(), $rules);
-		if (empty($request->selected)) {
-			$validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-			return \Redirect::back()
-				->withErrors($validator)
-				->withInput();
-		}
-		Engine::destroy($request->selected);
-
-		return redirect()->back();
 	}
 }

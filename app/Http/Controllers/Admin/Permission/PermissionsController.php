@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Permission;
 
+use App\DataTable\Table;
 use App\Models\Permission;
 use App\Models\Activity;
 use App\Models\User;
@@ -11,15 +12,18 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 
-class PermissionsController extends Controller
+class PermissionsController extends Table
 {
 
-    //
+    public $deleted_names = 'name';
 
-    public function __construct()
+    public $deleted_specific = 'Permissions';
+
+    public function builder()
     {
-        // $this->middleware('admin');
+        return Permission::query();
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -112,29 +116,5 @@ class PermissionsController extends Controller
         //Log Activity
         (new Activity)->put("Updated  {$request->name} permission");
         return redirect()->route('permissions.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Permission  $permission
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, $id)
-    {
-        //dd($request->selected );
-        User::canTakeAction(User::canDelete);
-        $rules = array(
-            '_token' => 'required'
-        );
-        $validator = \Validator::make($request->all(), $rules);
-        if (empty($request->selected)) {
-            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-            return \Redirect::back()->withErrors($validator)->withInput();
-        }
-
-        (new Activity)->put("Deleted a permission");
-        Permission::destroy($request->selected);
-        return redirect()->back();
     }
 }

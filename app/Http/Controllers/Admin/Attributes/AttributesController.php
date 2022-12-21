@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Attributes;
 
+use App\DataTable\Table;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
@@ -14,10 +15,18 @@ use Illuminate\Validation\Rule;
 use App\Http\Helper;
 
 
-class AttributesController extends Controller
+class AttributesController extends Table
 {
-    public function __construct()
+
+
+    public $deleted_names = 'name';
+
+    public $deleted_specific = 'Attributes';
+
+
+    public function builder()
     {
+        return Attribute::query();
     }
 
 
@@ -33,12 +42,6 @@ class AttributesController extends Controller
         $types = Attribute::$types;
         $engines = Engine::get();
         $helper = new Helper;
-        // $attrs = AttributeYear::get();
-        // foreach ($attrs as $attr) {
-        //     $attr->parent_id = optional($attr->parent)->id;
-        //     $attr->save();
-        // }
-
 
         return view('admin.attributes.index', compact('attributes', 'helper', 'types', 'engines', 'parents'));
     }
@@ -146,24 +149,8 @@ class AttributesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($request->all());
+
         $attribute = Attribute::find($id);
-        // if( $request->filled('parent_id') ) {
-        //     $this->validate($request,[
-        //         'name'=>[
-        //             'required',
-        //                 Rule::unique('attributes')->where(function ($query) use ($request) {
-        //                  $query->where('parent_id', '=', $request->parent_id);
-        //                 })->ignore($id)
-        //             ],
-        //     ]);
-        // } 
-        // $this->validate($request,[
-        //     'name'=>[
-        //         'required',
-        //             Rule::unique('attributes')->ignore($id) 
-        //         ],
-        // ]);
 
         $attribute->name = $request->name;
         $attribute->sort_order = $request->sort_order;
@@ -184,14 +171,6 @@ class AttributesController extends Controller
 
         $attribute->engines()->sync($data);
 
-        // if (!empty($request->engine_id)) {
-        //     foreach ($request->engine_id as $engine_id) {
-        //         $attribute_engine = new AttributeEngine;
-        //         $attribute_engine->engine_id = $engine_id;
-        //         $attribute_engine->attribute_id = $attribute->id;
-        //         $attribute_engine->save();
-        //     }
-        // }
 
         $attribute->attribute_years()->delete();
         if (!empty($request->years)) {
@@ -214,21 +193,4 @@ class AttributesController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
-    {
-        //
-        User::canTakeAction(User::canDelete);
-        $rules = array(
-            '_token' => 'required'
-        );
-        $validator = \Validator::make($request->all(), $rules);
-        if (empty($request->selected)) {
-            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-            return \Redirect::back()->withErrors($validator)->withInput();
-        }
-        $count = count($request->selected);
-        (new Activity)->put("Deleted  {$count} Activity");
-        Attribute::destroy($request->selected);
-        return redirect()->back();
-    }
 }

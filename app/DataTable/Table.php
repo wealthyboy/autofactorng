@@ -4,6 +4,7 @@ namespace App\DataTable;
 
 use App\Exports\Export;
 use App\Http\Controllers\Controller;
+use App\Models\Activity;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Exception;
@@ -18,11 +19,16 @@ abstract class Table extends Controller
 
     public $link;
 
+    public $deleted_items;
+
+    public $deleted_specific = 'products';
+
+    public $useJson;
+
     abstract public function builder();
 
     public function __construct()
     {
-
         $builder = $this->builder();
 
         if (!$builder instanceof Builder) {
@@ -156,13 +162,24 @@ abstract class Table extends Controller
     public function destroy(Request $request, $id)
     {
         User::canTakeAction(User::canDelete);
+
+        $rules = array(
+            '_token' => 'required'
+        );
+        $validator = \Validator::make($request->all(), $rules);
+        if (empty($request->selected)) {
+            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
+            return \Redirect::back()->withErrors($validator)->withInput();
+        }
+
+        $collections = $this->builder->find($request->selected)->pluck($this->deleted_names)->toArray();
+        $deleted = implode(',',  $collections);
         $this->builder->whereIn('id', $request->selected)->delete();
-        (new Activity)->put("Deleted a  ");
+        (new Activity)->put("Deleted these " . $this->deleted_specific . ' ' . $deleted);
 
         if ($this->useJson) {
             return;
-        } //js
-
+        }
 
         return back();
     }

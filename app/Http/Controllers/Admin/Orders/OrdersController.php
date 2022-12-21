@@ -22,6 +22,10 @@ class OrdersController extends Table
 
 	public $link = '/admin/orders';
 
+	public $deleted_names = 'name';
+
+	public $deleted_specific = 'locations';
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -41,15 +45,11 @@ class OrdersController extends Table
 
 	public function invoice($id)
 	{
-		// $order = Order::find($id);
-		// $system_settings = Setting::first();
-		// $sub_total = $this->subTotal($order);
 		return view('admin.orders.invoice',);
 	}
 
 	public function store(Request $request)
 	{
-		User::canTakeAction(User::canCreate);
 
 		$input = $request->except('_token');
 		$input['invoice'] = "INV-" . date('Y') . "-" . rand(10000, 39999);
@@ -200,6 +200,8 @@ class OrdersController extends Table
 
 	public function create(Request $request)
 	{
+		User::canTakeAction(User::canCreate);
+
 		return view('admin.orders.create');
 	}
 

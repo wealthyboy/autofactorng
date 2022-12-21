@@ -1,6 +1,8 @@
 @extends('admin.layouts.app')
 
 @section('content')
+@include('admin.errors.errors')
+
 
 <div class="row">
    <div class="col-md-6">
@@ -13,16 +15,14 @@
                @csrf
                <div class="input-group input-group-outline">
                   <label class="form-label">Permissions</label>
-                  <input type="text" class="form-control"                                     
-                     name="name"
-                     >
+                  <input type="text" class="form-control" name="name">
                </div>
                <div class="mt-3">
                   @foreach($permissions as $key => $value)
                   <div class="form-check pl-0 p-0">
-                     <label  class="custom-control-label" for="{{ $value }}">
-                     <input   class="form-check-input" name="code[]" value="{{ $value }}"  id="{{ $value }}" type="checkbox">
-                     <span role="button">{{ $key }}</span> 
+                     <label class="custom-control-label" for="{{ $value }}">
+                        <input class="form-check-input" name="code[]" value="{{ $value }}" id="{{ $value }}" type="checkbox">
+                        <span role="button">{{ $key }}</span>
                      </label>
                   </div>
                   @endforeach
@@ -39,21 +39,10 @@
 
 @section('inline-scripts')
 Dropzone.autoDiscover = false;
-    var drop = document.getElementById('dropzone')
-    var myDropzone = new Dropzone(drop, {
-      url: "/file/post",
-      addRemoveLinks: true,
-      muliple: false
-    });
+var drop = document.getElementById('dropzone')
+var myDropzone = new Dropzone(drop, {
+url: "/file/post",
+addRemoveLinks: true,
+muliple: false
+});
 @stop
-
-
-
-
-
-
-
-
-
-
-

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Category;
 
+use App\DataTable\Table;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
@@ -15,14 +16,19 @@ use App\Models\Attribute;
 
 
 
-class CategoryController extends Controller
+class CategoryController extends Table
 {
 
-    public function __construct()
-    {
-        // $this->middleware('admin'); 
-    }
 
+    public $deleted_names = 'name';
+
+    public $deleted_specific = 'Categories';
+
+
+    public function builder()
+    {
+        return Category::query();
+    }
 
     /**
      * Display a listing of the resource.
@@ -236,32 +242,4 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id)
-    {
-        //
-        User::canTakeAction(User::canDelete);
-
-        $rules = array(
-            '_token' => 'required'
-        );
-        $validator = \Validator::make($request->all(), $rules);
-        if (empty($request->selected)) {
-            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-            return \Redirect::back()->withErrors($validator)->withInput();
-        }
-        $count = count($request->selected);
-        // (new Activity)->Log("Deleted  {$count} Products");
-        try {
-            Category::destroy($request->selected);
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
-        return redirect()->back();
-        if ($request->isMethod('get')) {
-            $category =  Category::find($request->id);
-            // (new Activity)->Log("Deleted  {$category->name} Categories");
-            $category->delete();
-            return redirect()->back();
-        }
-    }
 }

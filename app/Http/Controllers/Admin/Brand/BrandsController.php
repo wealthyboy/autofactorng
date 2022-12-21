@@ -13,7 +13,11 @@ use App\Models\User;
 
 class BrandsController extends Table
 {
-	//
+
+	public $deleted_names = 'name';
+
+	public $deleted_specific = 'Brands';
+
 
 	public function builder()
 	{
@@ -104,28 +108,5 @@ class BrandsController extends Table
 		(new Activity)->put("Updated a  Brand called {$request->name}", null);
 
 		return redirect()->route('brands.index');
-	}
-
-
-	public function destroy(Request $request, $id)
-	{
-		User::canTakeAction(User::canDelete);
-		$rules = array(
-			'_token' => 'required',
-		);
-		$validator = \Validator::make($request->all(), $rules);
-		if (empty($request->selected)) {
-			$validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-			return \Redirect::back()
-				->withErrors($validator)
-				->withInput();
-		}
-		$count = count($request->selected);
-
-		Brand::destroy($request->selected);
-
-		(new Activity)->put("Deleted  {$count} Brand(s)");
-
-		return redirect()->back();
 	}
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Live;
 
 use App\Http\Controllers\Controller;
+use App\Models\Activity;
 use Illuminate\Http\Request;
 use App\Models\Live;
 use App\Models\User;
@@ -29,12 +30,18 @@ class LiveController extends Controller
                 'make_live' => false
             ]);
             return redirect()->route('maintainance', [$st]);
+
+            (new Activity)->put("Disabled site");
         }
 
         if (null !== $st && $st->make_live == false) {
+
             $st->update([
                 'make_live' => true
             ]);
+
+            (new Activity)->put("Enabled site");
+
             return redirect()->route('maintainance', [$st]);
         }
 
@@ -42,6 +49,7 @@ class LiveController extends Controller
             'make_live' => true
         ]);
 
+        (new Activity)->put("Enabled site");
 
         return redirect()->route('maintainance', [$st]);
     }

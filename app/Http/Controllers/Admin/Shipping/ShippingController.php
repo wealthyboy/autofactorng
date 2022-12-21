@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Shipping;
 
+use App\DataTable\Table;
 use Illuminate\Http\Request;
 use App\Models\Shipping;
 use App\Models\Activity;
@@ -14,11 +15,16 @@ use Illuminate\Validation\Rule;
 
 
 
-class ShippingController extends Controller
+class ShippingController extends Table
 {
 
-    public function __construct()
+    public $deleted_names = 'name';
+
+    public $deleted_specific = 'shipping';
+
+    public function builder()
     {
+        return Shipping::query();
     }
 
 
@@ -75,7 +81,7 @@ class ShippingController extends Controller
 
         //$shipping->locations()->sync([$request->location_id]);
 
-        // (new Activity)->Log("Created a new Shipping called {$request->name}");
+        (new Activity)->put("Created a new Shipping called {$request->name}");
         return redirect()->back();
     }
 
@@ -146,23 +152,4 @@ class ShippingController extends Controller
      * @param  \App\Shipping  $shipping
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
-    {
-        //
-        User::canTakeAction(User::canDelete);
-        $rules = array(
-            '_token' => 'required'
-        );
-        $validator = \Validator::make($request->all(), $rules);
-
-        if (empty($request->selected)) {
-            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-            return \Redirect::back()->withErrors($validator)->withInput();
-        }
-
-        $count = count($request->selected);
-        // (new Activity)->Log("Deleted  {$count} Products");
-        Shipping::destroy($request->selected);
-        return redirect()->back();
-    }
 }

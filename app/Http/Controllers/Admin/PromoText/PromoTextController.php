@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\PromoText;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Activity;
 use App\Models\PromoText;
 use App\Models\User;
 
@@ -47,6 +48,9 @@ class PromoTextController extends Controller
         $promo_text->promo = $request->promo;
         $promo_text->promo_id = $id;
         $promo_text->save();
+        (new Activity)->put("Added a new Promo text  {$request->promo}", null);
+
+
         return redirect('admin/promos');
     }
 
@@ -86,6 +90,8 @@ class PromoTextController extends Controller
         $promo_text  = PromoText::find($id);
         $promo_text->promo = $request->promo;
         $promo_text->save();
+        (new Activity)->put("Updated  Promo text  {$request->promo}", null);
+
         return redirect('admin/promos');
     }
 

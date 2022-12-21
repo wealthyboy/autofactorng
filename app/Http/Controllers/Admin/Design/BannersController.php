@@ -2,23 +2,31 @@
 
 namespace App\Http\Controllers\Admin\Design;
 
+use App\DataTable\Table;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Http\Helper;
+use App\Models\Activity;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 
 
 
 
-class BannersController extends Controller
+class BannersController extends Table
 {
 
-    public function __construct()
+
+    public $deleted_names = 'title';
+
+    public $deleted_specific = 'banners';
+
+    public function builder()
     {
-        //$this->middleware('admin'); 
+        return Banner::query();
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -71,6 +79,8 @@ class BannersController extends Controller
         $banner->device = $request->device;
         $banner->mobile_sort_order = $request->mobile_sort_order;
         $banner->save();
+        (new Activity)->put("Added  banner called " . $request->title);
+
         return redirect()->route('banners.index');
     }
 
@@ -95,7 +105,6 @@ class BannersController extends Controller
     {
 
         User::canTakeAction(User::canUpdate);
-
         $banner = Banner::find($id);
         $cols = Helper::col_width();
         return view('admin.banners.edit', compact('banner', 'cols'));
@@ -131,37 +140,8 @@ class BannersController extends Controller
         $banner->device = $request->device;
         $banner->mobile_sort_order = $request->mobile_sort_order;
         $banner->save();
-        // $flash = app( 'App\Http\flash' );
-        // $flash->success( "Success", "Details Updated" );
+        (new Activity)->put("Updated   " . $banner->title);
+
         return redirect()->route('banners.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, $id = null)
-    {
-        User::canTakeAction(User::canDelete);
-
-        $rules = array(
-            '_token' => 'required'
-        );
-        $validator = \Validator::make($request->all(), $rules);
-        if (empty($request->selected)) {
-            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-            return \Redirect::back()->withErrors($validator)->withInput();
-        }
-        $path = base_path() . '/images/slider';
-        $images_to_delete = Banner::whereIn('id', $request->selected)->get();
-        foreach ($images_to_delete as $images) {
-            \File::Delete($path . '/' . $images->image);
-        }
-        Banner::destroy($request->selected);
-        // $flash = app ( 'App\Http\flash' );
-        // $flash->success ( "Success", "Deleted" );
-        return redirect()->back();
     }
 }

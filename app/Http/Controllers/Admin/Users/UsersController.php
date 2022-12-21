@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Validator;
 class UsersController extends Table
 {
 
+	public $deleted_names = 'name';
+
+	public $deleted_specific = 'shipping names';
 
 	public function builder()
 	{
@@ -130,8 +133,6 @@ class UsersController extends Table
 		$user->password = $request->has('password') ? bcrypt($request->password) : $user->password;
 		$user->save();
 
-		//dd($request->permission_id);
-
 		$user->users_permission()->update([
 			'permission_id' => $request->permission_id
 		]);
@@ -150,55 +151,5 @@ class UsersController extends Table
 			'destroy' => true,
 			'export' => false
 		];
-	}
-
-
-	public function destroy(Request $request, $id)
-	{
-		User::canTakeAction(User::canDelete);
-
-		$rules = array(
-			'_token' => 'required',
-		);
-
-
-		$validator = \Validator::make($request->all(), $rules);
-
-		if (empty($request->selected)) {
-			$validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-			return \Redirect::back()
-				->withErrors($validator)
-				->withInput();
-		}
-
-		$customers = User::find($request->selected)->pluck('email')->toArray();
-
-		(new Activity)->put("Deleted these users  " . implode(',',  $customers));
-
-		User::destroy($request->selected);
-		return redirect()->back();
-	}
-
-
-	public function delete(Request $request)
-	{
-		User::canTakeAction(User::canDelete);
-
-		$rules = array(
-			'_token' => 'required',
-		);
-		$validator = \Validator::make($request->all(), $rules);
-		if (empty($request->selected)) {
-			$validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-			return \Redirect::back()
-				->withErrors($validator)
-				->withInput();
-		}
-		$customers = User::find($request->selected)->pluck('email')->toArray();
-		(new Activity)->put("Deleted these emails" . implode(',',  $customers));
-
-		User::destroy($request->selected);
-
-		return redirect()->back();
 	}
 }

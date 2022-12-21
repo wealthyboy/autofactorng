@@ -2,21 +2,26 @@
 
 namespace App\Http\Controllers\Admin\Promo;
 
+use App\DataTable\Table;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Activity;
 use App\Models\Promo;
+use App\Models\User;
 
-class PromoController extends Controller
+class PromoController extends Table
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+
+    public $deleted_names = 'name';
+
+    public $deleted_specific = 'promos with color';
+
+
+    public function builder()
     {
-       // $this->middleware('admin');
+        return Promo::query();
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +30,7 @@ class PromoController extends Controller
     public function index()
     {
         $promos =  Promo::all();
-        return view('admin.promo.index',compact('promos'));
+        return view('admin.promo.index', compact('promos'));
     }
 
     /**
@@ -34,7 +39,8 @@ class PromoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
+        User::canTakeAction(User::canCreate);
         return view('admin.promo.create');
     }
 
@@ -45,12 +51,14 @@ class PromoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $promo = new Promo;
         $promo->bgcolor = $request->background_color;
         $promo->is_active = $request->is_active ? 1 : 0;
         $promo->save();
-        return redirect('admin/promos'); 
+        (new Activity)->put("Created a new Promo with bg color {$request->background_color}", null);
+
+        return redirect('admin/promos');
     }
 
     /**
@@ -72,8 +80,9 @@ class PromoController extends Controller
      */
     public function edit($id)
     {
+        User::canTakeAction(User::canUpdate);
         $promo = Promo::find($id);
-		return view('admin.promo.edit',compact('promo'));
+        return view('admin.promo.edit', compact('promo'));
     }
 
     /**
@@ -85,34 +94,13 @@ class PromoController extends Controller
      */
     public function update(Request $request, $id)
     {
-		$promo = Promo::find($id);
+        $promo = Promo::find($id);
         $promo->bgcolor = $request->background_color;
-        $promo->is_active = $request->is_active ? 1: 0;
-		$promo->save();
-        return redirect('admin/promos'); 
-    }
+        $promo->is_active = $request->is_active ? 1 : 0;
+        $promo->save();
+        (new Activity)->put("Updated a new Promo with bg color {$request->background_color}", null);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
-    {
-        $rules = array(
-                '_token' => 'required',
-        );
-        $validator = \Validator::make($request->all(),$rules);
-        if ( empty ( $request->selected)) {
-            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-            return \Redirect::back()
-            ->withErrors($validator)
-            ->withInput();
-        }
-        Promo::destroy($request->selected);  	
-        return redirect()->back();
-            
-    	
+
+        return redirect('admin/promos');
     }
 }

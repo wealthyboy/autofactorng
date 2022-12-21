@@ -71,8 +71,6 @@ trait FormatPrice
   }
 
 
-
-
   public function salePrice()
   {
 

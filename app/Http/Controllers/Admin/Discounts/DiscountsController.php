@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Discounts;
 
+use App\DataTable\Table;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
@@ -14,8 +15,19 @@ use Illuminate\Validation\Rule;
 
 
 
-class DiscountsController extends Controller
+class DiscountsController extends Table
 {
+
+    public $deleted_names = 'title';
+
+    public $deleted_specific = 'banners';
+
+    public function builder()
+    {
+        return Discount::query();
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -47,7 +59,7 @@ class DiscountsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'category_id' => 'required|unique:discounts,category_id',
             'percentage_discount' => 'required',
             'expires' => 'required',
@@ -58,6 +70,9 @@ class DiscountsController extends Controller
             'amount' => $request->percentage_discount,
             'expires' => $request->expires
         ]);
+
+        (new Activity)->put("Added a discount with id  " . $discount->id . 'and amount' . $discount->amount);
+
 
         return redirect()->route('discounts.index');
     }
@@ -81,7 +96,6 @@ class DiscountsController extends Controller
     public function edit($id)
     {
         User::canTakeAction(User::canUpdate);
-
         $discount = Discount::find($id);
         $categories = Category::parents()->get();
         return view('admin.discounts.edit', compact('categories', 'discount'));
@@ -98,7 +112,7 @@ class DiscountsController extends Controller
     {
         $discount = Discount::find($id);
 
-        $this->validate($request, [
+        $$request->validate([
             'category_id' => [
                 'required',
                 Rule::unique('discounts')->ignore($id),
@@ -110,33 +124,9 @@ class DiscountsController extends Controller
         $discount->amount = $request->percentage_discount;
         $discount->expires = $request->expires;
         $discount->save();
-        //Log Activity
-        //(new Activity)->Log("Updated  Discount {$request->category_id} ");
+
+        (new Activity)->put("Updated a discount with id  " . $discount->id . 'and amount' . $discount->amount);
+
         return redirect()->route('discounts.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, $id)
-    {
-        User::canTakeAction(User::canDelete);
-
-        $rules = array(
-            '_token' => 'required'
-        );
-        $validator = \Validator::make($request->all(), $rules);
-        if (empty($request->selected)) {
-            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-            return \Redirect::back()->withErrors($validator)->withInput();
-        }
-        $count = count($request->selected);
-        //(new Activity)->Log("Deleted  {$count} Products");
-        Discount::destroy($request->selected);
-
-        return redirect()->back();
     }
 }
