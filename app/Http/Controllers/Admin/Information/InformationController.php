@@ -2,14 +2,24 @@
 
 namespace App\Http\Controllers\Admin\Information;
 
+use App\DataTable\Table;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Information;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 
-class InformationController extends Controller
+class InformationController extends Table
 {
+
+	public $deleted_names = 'name';
+
+	public $deleted_specific = 'pages';
+
+	public function builder()
+	{
+		return Information::query();
+	}
 
 
 	public function __construct()
@@ -32,7 +42,7 @@ class InformationController extends Controller
 
 	public function  store(Request $request)
 	{
-		$this->validate($request, [
+		$request->validate([
 			'name' => 'required|unique:information|max:100',
 		]);
 		$info = new Information;
@@ -90,24 +100,5 @@ class InformationController extends Controller
 		$information = Information::find($id);
 		$pages = Information::get();
 		return view('admin.information.edit', compact('information', 'pages'));
-	}
-
-	public function  destroy(Request $request, $id)
-	{
-
-		User::canTakeAction(User::canDelete);
-		$rules = array(
-			'_token' => 'required',
-		);
-		$validator = \Validator::make($request->all(), $rules);
-		if (empty($request->selected)) {
-
-			$validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-			return \Redirect::back()
-				->withErrors($validator)
-				->withInput();
-		}
-		Information::destroy($request->selected);
-		return redirect()->back()->with('status', 'removed');
 	}
 }

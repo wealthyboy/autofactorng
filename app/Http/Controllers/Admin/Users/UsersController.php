@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Validator;
 class UsersController extends Table
 {
 
-	public $deleted_names = 'name';
+	public $deleted_names = 'email';
 
-	public $deleted_specific = 'shipping names';
+	public $deleted_specific = 'Users';
 
 	public function builder()
 	{
@@ -115,6 +115,9 @@ class UsersController extends Table
 			'permission_id' => $request->permission_id
 		]);
 
+		(new Activity)->put("Added a new user with email " . $request->email);
+
+
 		return redirect('/admin/users');
 	}
 
@@ -136,6 +139,9 @@ class UsersController extends Table
 		$user->users_permission()->update([
 			'permission_id' => $request->permission_id
 		]);
+
+		(new Activity)->put("Updated a user with email " . $request->email);
+
 
 		return redirect('/admin/users');
 	}
