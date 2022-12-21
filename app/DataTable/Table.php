@@ -106,7 +106,7 @@ abstract class Table extends Controller
             }
 
             if ($request->filled('q')) {
-                $collections = $this->buildSearch($builder, $request);
+                $collections = $this->buildSearch($this->builder, $request);
                 $records =  $builder->getListingData($collections);
             }
 
