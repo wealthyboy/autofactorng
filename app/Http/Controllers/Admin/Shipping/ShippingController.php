@@ -67,21 +67,14 @@ class ShippingController extends Table
 
     public function store(Request $request)
     {
-        //
-
 
         $shipping = new Shipping;
         $shipping->name = $request->name;
-        //$shipping->description = $request->description;
         $shipping->price = $request->price;
         $shipping->location_id = $request->location_id;
-        // $shipping->sort_order=$request->sort_order;
         $shipping->parent_id     = $request->parent_id;
         $shipping->save();
-
-        //$shipping->locations()->sync([$request->location_id]);
-
-        (new Activity)->put("Created a new Shipping called {$request->name}");
+        (new Activity)->put("Added a shipping for   {optional(shipping->location)->name}");
         return redirect()->back();
     }
 
@@ -143,6 +136,8 @@ class ShippingController extends Table
         $shipping->save();
         //Log Activity
         // (new Activity)->Log("Updated  Shipping {$request->name} ");
+        (new Activity)->put("Updated shipping for   {optional(shipping->location)->name}");
+
         return redirect()->action('Admin\Shipping\ShippingController@index');
     }
 
