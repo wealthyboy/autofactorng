@@ -14,6 +14,7 @@ use App\Http\Helper;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\OrderStatusNotification;
 use App\Mail\ReviewMail;
+use App\Models\Activity;
 use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 
@@ -93,6 +94,7 @@ class OrdersController extends Table
 
 		// Send Mail
 
+		(new Activity)->put("Added a new order with email and phone number  " . $request->email . 'and' . $request->phone_number);
 		return  redirect()->route('admin.orders.index');
 	}
 
