@@ -34,7 +34,7 @@ class BannersController extends Table
      */
     public function index()
     {
-        $banners = Banner::banners()->get();
+        $banners = $this->getColumnListings(request(), Banner::banners()->paginate(100));
         return view('admin.banners.index', compact('banners'));
     }
 
@@ -61,7 +61,7 @@ class BannersController extends Table
 
         $this->validate($request, [
             'link' => 'required',
-            'sort_order' => 'required',
+            'sort_banner' => 'required',
             'image' => 'required',
         ]);
 
@@ -75,9 +75,9 @@ class BannersController extends Table
         $banner->use_text   = $request->use_text ? 1 : 0;
         $banner->description   = $request->description;
         $banner->image   = $request->image;
-        $banner->sort_order = $request->sort_order;
+        $banner->sort_banner = $request->sort_banner;
         $banner->device = $request->device;
-        $banner->mobile_sort_order = $request->mobile_sort_order;
+        $banner->mobile_sort_banner = $request->mobile_sort_banner;
         $banner->save();
         (new Activity)->put("Added  banner called " . $request->title);
 
@@ -110,6 +110,43 @@ class BannersController extends Table
         return view('admin.banners.edit', compact('banner', 'cols'));
     }
 
+
+    public function routes()
+    {
+        return [
+            'edit' =>  [
+                'banners.edit',
+                'banner'
+            ],
+            'update' => null,
+            'show' => null,
+            'destroy' =>  [
+                'banners.destroy',
+                'banner'
+            ],
+            'create' => [
+                'banners.create'
+            ],
+            'index' => null
+        ];
+    }
+
+    public function unique()
+    {
+        return [
+            'show'  => false,
+            'right' => false,
+            'edit' => true,
+            'search' => false,
+            'add' => true,
+            'destroy' => true,
+            'export' => false,
+            'banner' => false,
+            'order' => false
+        ];
+    }
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -123,7 +160,7 @@ class BannersController extends Table
         $banner = Banner::find($id);
         $this->validate($request, [
             'link' => 'required',
-            'sort_order' => 'required',
+            'sort_banner' => 'required',
         ]);
 
         $banner->title = $request->title;
@@ -136,9 +173,9 @@ class BannersController extends Table
         $banner->use_text   = $request->use_text ? 1 : 0;
         $banner->description   = $request->description;
         $banner->image   = $request->image;
-        $banner->sort_order = $request->sort_order;
+        $banner->sort_banner = $request->sort_banner;
         $banner->device = $request->device;
-        $banner->mobile_sort_order = $request->mobile_sort_order;
+        $banner->mobile_sort_banner = $request->mobile_sort_banner;
         $banner->save();
         (new Activity)->put("Updated   " . $banner->title);
 

@@ -32,7 +32,7 @@ class PermissionsController extends Table
     public function index()
     {
         User::canTakeAction(User::canAccessPermissions);
-        $permissions = Permission::all();
+        $permissions = $this->getColumnListings(request(), Permission::paginate(100));
         return view('admin.permissions.index', compact('permissions'));
     }
 
@@ -48,6 +48,43 @@ class PermissionsController extends Table
         $permissions = Permission::$types;
         return view('admin.permissions.create', compact('permissions'));
     }
+
+
+    public function routes()
+    {
+        return [
+            'edit' =>  [
+                'permissions.edit',
+                'permission'
+            ],
+            'update' => null,
+            'show' => null,
+            'destroy' =>  [
+                'permissions.destroy',
+                'permission'
+            ],
+            'create' => [
+                'permissions.create'
+            ],
+            'index' => null
+        ];
+    }
+
+    public function unique()
+    {
+        return [
+            'show'  => false,
+            'right' => false,
+            'edit' => true,
+            'search' => false,
+            'add' => true,
+            'destroy' => true,
+            'export' => false,
+            'banner' => false,
+            'order' => false
+        ];
+    }
+
 
     /**
      * Store a newly created resource in storage.
