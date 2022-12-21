@@ -98,7 +98,7 @@ class PromoController extends Table
         $promo->bgcolor = $request->background_color;
         $promo->is_active = $request->is_active ? 1 : 0;
         $promo->save();
-        (new Activity)->put("Updated a new Promo with bg color {$request->background_color}", null);
+        (new Activity)->put("Updated a  Promo with bg color {$request->background_color}", null);
 
 
         return redirect('admin/promos');
