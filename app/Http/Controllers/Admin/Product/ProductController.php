@@ -21,6 +21,7 @@ use App\Http\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use App\Models\Activity;
 use App\Models\AttributeYear;
 use App\Models\EngineProduct;
 use App\Models\ShippingRate;
@@ -103,6 +104,7 @@ class ProductController extends Table
         $years = Helper::years();
         $helper = new Helper;
         $amps = Product::AMPHERES;
+
         return view('admin.products.create', compact('amps', 'brands', 'categories', 'attributes', 'years', 'helper'));
     }
 
