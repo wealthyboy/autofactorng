@@ -200,6 +200,21 @@ class Product extends Model
     }
 
 
+    public function sortKeys($key)
+    {
+        $sort =  [
+            "Id" => 'id',
+            "Image" => 'image',
+            "Name" => 'product_name',
+            "Category" => 'category_name',
+            "Price" => 'price',
+            "Date Added" => 'created_at',
+        ];
+
+        return $sort[$key];
+    }
+
+
     public function getFitsAttribute()
     {
         return $this->buildSearchString() ? true : false;

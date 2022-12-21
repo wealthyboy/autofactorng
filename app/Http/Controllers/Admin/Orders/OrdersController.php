@@ -39,7 +39,7 @@ class OrdersController extends Table
 
 	public function index()
 	{
-		$orders = Order::has('ordered_products')->latest()->orderBy('created_at', 'desc')->paginate(450);
+		$orders = Order::has('ordered_products')->orderBy('created_at', 'desc')->paginate(450);
 		$orders = $this->getColumnListings(request(), $orders);
 		return view('admin.orders.index', compact('orders'));
 	}
@@ -203,7 +203,6 @@ class OrdersController extends Table
 	public function create(Request $request)
 	{
 		User::canTakeAction(User::canCreate);
-
 		return view('admin.orders.create');
 	}
 

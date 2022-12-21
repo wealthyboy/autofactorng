@@ -1,12 +1,11 @@
-@if(!empty($models['items'][0][0]))
-
 @include('admin._partials.top')
+
+@if(!empty($models['items'][0][0]))
 
 @include('admin._partials.search')
 
 
 <div class="card">
-
     <div class="card-header">
         <h4 class="m-0">{{ $name }}</h4>
     </div>
@@ -19,15 +18,15 @@
                     <tr>
                         @if( isset($models['meta']['show_checkbox']) && $models['meta']['show_checkbox'])
 
-                        <th data-sortable="" class="desc">
+                        <th data-sortable="" class="">
                             <div class="form-check ">
                                 <input onclick="$('input[name*=\'selected[]\']').prop('checked', this.checked)" class="form-check-input" type="checkbox" id="customCheck5">
                             </div>
                         </th>
                         @endif
                         @foreach($models['items'][0][0] as $key => $value)
-                        <th data-sortable="" class="desc">
-                            <a href="#" class="dataTable-sorter">
+                        <th data-sortable="" class="{{ isset($models['meta']['sort']) ?  $models['meta']['sort'] : 'desc' }}">
+                            <a href="{{ request()->url() }}?key={{ $key }}&sort={{ $models['meta']['sort'] }}{{ request()->q ? '&q=request()->q' :  ''}}" class="dataTable-sorter">
                                 <h6 class="mb-0 text-xs">
                                     {{ $key }}
                                 </h6>

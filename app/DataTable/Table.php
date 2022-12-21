@@ -96,21 +96,23 @@ abstract class Table extends Controller
 
     protected function getRecords(Request $request, $collections)
     {
-        $builder = $this->builder;
-
-
+        $builder = $this->builder->getModel();
 
         try {
-            if ($request->filled('q')) {
-                $collections = $this->buildSearch($builder, $request);
-                $records =  $this->builder->getModel()->getListingData($collections);
-            } else {
-                $records =  $this->builder->getModel()->getListingData($collections);
+
+            if ($request->filled('key')) {
+                $collections = $this->builder()->orderBy($builder->sortKeys($request->key), $request->sort)->paginate(100)->appends(request()->all());
+                $records =  $builder->getListingData($collections);
             }
 
+            if ($request->filled('q')) {
+                $collections = $this->buildSearch($builder, $request);
+                $records =  $builder->getListingData($collections);
+            }
 
-
-
+            if (!$request->filled('key') && !$request->filled('q')) {
+                $records =  $builder->getListingData($collections);
+            }
 
             return $data =  [
                 'items' => [
@@ -126,6 +128,7 @@ abstract class Table extends Controller
                     'per_page' => $collections->perPage(),
                     'current_page' => $collections->currentPage(),
                     'last_page' => $collections->lastPage(),
+                    'sort' => $request->filled('sort') && $request->sort == 'desc' ? 'asc' : 'desc',
                     'show_checkbox' => true,
                     'urls' => $collections->map(function ($obj) {
                         return [
@@ -146,15 +149,34 @@ abstract class Table extends Controller
         return count(array_filter($request->only(['column', 'operator', 'value']))) === 3;
     }
 
+    public function sortKeys($key)
+    {
+        return [];
+    }
+
     protected function buildSearch(Builder $builder, Request $request)
     {
         //$queryParts = $this->resolveQueryParts($request->operator, $request->value);
-        return $this->builder()->where(function (Builder $query) use ($request) {
+        $query =  $this->builder()->where(function (Builder $query) use ($request) {
             $query->where('id', 'like', '%' . $request->q . '%');
             foreach ($this->getDatabaseColumnNames() as $key => $value) {
                 $query->orWhere($value, 'like', '%' . $request->q . '%');
             }
-        })->latest()->paginate(100);
+        });
+
+        if ($request->filled('key')) {
+            return $query
+                ->orderBy(strtolower($request->key), $request->sort)
+                ->paginate(100)
+                ->appends(request()->all());
+        } else {
+            return  $query
+                ->latest()
+                ->paginate(100)
+                ->appends(request()->all());
+        }
+
+
 
         // return $this->builder()->where($request->column, $queryParts['operator'], $queryParts['value']);
     }

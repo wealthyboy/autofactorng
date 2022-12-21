@@ -39,4 +39,16 @@ class Activity extends Model
             ];
         });
     }
+
+    public function sortKeys($key)
+    {
+        $sort =  [
+            "Id" => 'id',
+            "User" =>  'username',
+            "Activity" => 'action',
+            "Date Added" => 'created_at',
+        ];
+
+        return $sort[$key];
+    }
 }

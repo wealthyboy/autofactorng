@@ -83,4 +83,20 @@ class Voucher extends Model
             ];
         });
     }
+
+    public function sortKeys($key)
+    {
+        $sort =  [
+            "Id" => 'id',
+            "Code" => 'code',
+            "Amount Percent" => 'amount',
+            "Rule From Amount" => 'from_value',
+            "Valid" => 'valid',
+            "Type" => 'type',
+            "Expires" => 'expires',
+            "Date Added" => 'created_at',
+        ];
+
+        return $sort[$key];
+    }
 }

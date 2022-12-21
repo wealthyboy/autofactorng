@@ -95,6 +95,19 @@ class User extends Authenticatable
 		});
 	}
 
+	public function sortKeys($key)
+	{
+		$sort =  [
+			"Id" => 'id',
+			"Full Name" => 'name',
+			"Email" => 'email',
+			"Phone Number" => 'phone_number',
+			"Date Added" => 'created_at',
+		];
+
+		return $sort[$key];
+	}
+
 
 	public function orders()
 	{

@@ -35,7 +35,7 @@ class DiscountsController extends Table
      */
     public function index()
     {
-        $discounts = Discount::all();
+        $discounts = $this->getColumnListings(request(), Discount::paginate(100));
         return view('admin.discounts.index', compact('discounts'));
     }
 
@@ -99,6 +99,40 @@ class DiscountsController extends Table
         $discount = Discount::find($id);
         $categories = Category::parents()->get();
         return view('admin.discounts.edit', compact('categories', 'discount'));
+    }
+
+    public function routes()
+    {
+        return [
+            'edit' =>  [
+                'discounts.edit',
+                'discount'
+            ],
+            'update' => null,
+            'show' => null,
+            'destroy' =>  [
+                'discounts.destroy',
+                'discount'
+            ],
+            'create' => [
+                'discounts.create'
+            ],
+            'index' => null
+        ];
+    }
+
+    public function unique()
+    {
+        return [
+            'show'  => false,
+            'right' => false,
+            'edit' => true,
+            'search' => false,
+            'add' => true,
+            'destroy' => true,
+            'export' => false,
+            'order' => false
+        ];
     }
 
     /**

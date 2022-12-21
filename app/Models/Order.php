@@ -117,11 +117,28 @@ class Order extends Model
 	}
 
 
+	public function sortKeys($key)
+	{
+		$sort =  [
+			"Id" => 'id',
+			"Invoice" => 'invoice',
+			"Customer" => 'first_name',
+			"Email" => 'email',
+			"Type" => 'order_type',
+			"Payment Type" => 'payment_type',
+			"Total" =>  'total',
+			"Date Added" => 'created_at',
+		];
+
+		return $sort[$key];
+	}
+
+
+
 	public  function fullName()
 	{
 		return $this->first_name . ' ' . $this->last_name;
 	}
-
 
 	public  function voucher()
 	{

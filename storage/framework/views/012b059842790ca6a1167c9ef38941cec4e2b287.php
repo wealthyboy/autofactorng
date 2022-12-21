@@ -1,12 +1,11 @@
-<?php if(!empty($models['items'][0][0])): ?>
-
 <?php echo $__env->make('admin._partials.top', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+<?php if(!empty($models['items'][0][0])): ?>
 
 <?php echo $__env->make('admin._partials.search', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 
 <div class="card">
-
     <div class="card-header">
         <h4 class="m-0"><?php echo e($name); ?></h4>
     </div>
@@ -19,15 +18,15 @@
                     <tr>
                         <?php if( isset($models['meta']['show_checkbox']) && $models['meta']['show_checkbox']): ?>
 
-                        <th data-sortable="" class="desc">
+                        <th data-sortable="" class="">
                             <div class="form-check ">
                                 <input onclick="$('input[name*=\'selected[]\']').prop('checked', this.checked)" class="form-check-input" type="checkbox" id="customCheck5">
                             </div>
                         </th>
                         <?php endif; ?>
                         <?php $__currentLoopData = $models['items'][0][0]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <th data-sortable="" class="desc">
-                            <a href="#" class="dataTable-sorter">
+                        <th data-sortable="" class="<?php echo e(isset($models['meta']['sort']) ?  $models['meta']['sort'] : 'desc'); ?>">
+                            <a href="<?php echo e(request()->url()); ?>?key=<?php echo e($key); ?>&sort=<?php echo e($models['meta']['sort']); ?><?php echo e(request()->q ? '&q=request()->q' :  ''); ?>" class="dataTable-sorter">
                                 <h6 class="mb-0 text-xs">
                                     <?php echo e($key); ?>
 
