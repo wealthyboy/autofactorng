@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Engines;
 
 use App\DataTable\Table;
 use App\Http\Controllers\Controller;
+use App\Models\Activity;
 use Illuminate\Http\Request;
 use App\Models\Engine;
 use App\Models\User;
