@@ -129,6 +129,8 @@ abstract class Table extends Controller
                     'current_page' => $collections->currentPage(),
                     'last_page' => $collections->lastPage(),
                     'sort' => $request->filled('sort') && $request->sort == 'desc' ? 'asc' : 'desc',
+                    'q' => $request->filled('q')  ? '&q=' . request()->q : '',
+
                     'show_checkbox' => true,
                     'urls' => $collections->map(function ($obj) {
                         return [

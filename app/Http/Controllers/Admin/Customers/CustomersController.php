@@ -115,9 +115,6 @@ class CustomersController extends Table
 
         $customers = User::find($request->selected)->pluck('email')->toArray();
 
-
-        dd($customers);
-
         $this->builder->whereIn('id', $request->selected)->delete();
 
         (new Activity)->put("Deleted a  " . implode(',', $customers));

@@ -26,7 +26,7 @@
                         <?php endif; ?>
                         <?php $__currentLoopData = $models['items'][0][0]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <th data-sortable="" class="<?php echo e(isset($models['meta']['sort']) ?  $models['meta']['sort'] : 'desc'); ?>">
-                            <a href="<?php echo e(request()->url()); ?>?key=<?php echo e($key); ?>&sort=<?php echo e($models['meta']['sort']); ?><?php echo e(request()->q ? '&q=request()->q' :  ''); ?>" class="dataTable-sorter">
+                            <a href="<?php echo e(request()->url()); ?>?key=<?php echo e($key); ?>&sort=<?php echo e($models['meta']['sort']); ?><?php echo e($models['meta']['q']); ?>" class="dataTable-sorter">
                                 <h6 class="mb-0 text-xs">
                                     <?php echo e($key); ?>
 

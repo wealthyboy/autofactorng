@@ -26,7 +26,7 @@
                         @endif
                         @foreach($models['items'][0][0] as $key => $value)
                         <th data-sortable="" class="{{ isset($models['meta']['sort']) ?  $models['meta']['sort'] : 'desc' }}">
-                            <a href="{{ request()->url() }}?key={{ $key }}&sort={{ $models['meta']['sort'] }}{{ request()->q ? '&q=request()->q' :  ''}}" class="dataTable-sorter">
+                            <a href="{{ request()->url() }}?key={{ $key }}&sort={{ $models['meta']['sort'] }}{{ $models['meta']['q'] }}" class="dataTable-sorter">
                                 <h6 class="mb-0 text-xs">
                                     {{ $key }}
                                 </h6>
