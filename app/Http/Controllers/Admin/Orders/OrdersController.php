@@ -94,7 +94,7 @@ class OrdersController extends Table
 
 		// Send Mail
 
-		(new Activity)->put("Added a new order with email and phone number  " . $request->email . 'and' . $request->phone_number);
+		(new Activity)->put("Added a new order with email and phone number  " . $request->email . ' and ' . $request->phone_number);
 		return  redirect()->route('admin.orders.index');
 	}
 
