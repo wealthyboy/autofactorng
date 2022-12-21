@@ -15,7 +15,9 @@ use App\Models\User;
 class ActivityController extends Table
 {
 	//
+	public $deleted_names = 'action';
 
+	public $deleted_specific = 'Activity';
 
 	public function builder()
 	{
