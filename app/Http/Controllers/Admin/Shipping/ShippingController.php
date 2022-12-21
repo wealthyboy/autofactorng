@@ -74,7 +74,7 @@ class ShippingController extends Table
         $shipping->location_id = $request->location_id;
         $shipping->parent_id     = $request->parent_id;
         $shipping->save();
-        (new Activity)->put("Added a shipping for   {optional(shipping->location)->name}");
+        (new Activity)->put("Added a shipping for  " . optional($shipping->location)->name);
         return redirect()->back();
     }
 
@@ -136,7 +136,7 @@ class ShippingController extends Table
         $shipping->save();
         //Log Activity
         // (new Activity)->Log("Updated  Shipping {$request->name} ");
-        (new Activity)->put("Updated shipping for   {optional(shipping->location)->name}");
+        (new Activity)->put("Updated shipping for " . optional($shipping->location)->name);
 
         return redirect()->action('Admin\Shipping\ShippingController@index');
     }
