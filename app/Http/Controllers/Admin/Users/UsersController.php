@@ -10,13 +10,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Flash;
 use App\Models\Permission;
 use App\Models\State;
+use App\Models\Activity;
+
+
 use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Table
 {
-
-
 
 
 	public function builder()
@@ -107,8 +108,6 @@ class UsersController extends Table
 		$user->password = $request->has('password') ? bcrypt($request->password) : $user->password;
 		$user->save();
 
-		//dd($request->permission_id);
-
 		$user->users_permission()->create([
 			'permission_id' => $request->permission_id
 		]);
@@ -156,12 +155,13 @@ class UsersController extends Table
 
 	public function destroy(Request $request, $id)
 	{
-		User::canTakeAction(5);
+		User::canTakeAction(User::canDelete);
 
 		$rules = array(
 			'_token' => 'required',
 		);
-		// dd(get_class(\new Validator));
+
+
 		$validator = \Validator::make($request->all(), $rules);
 
 		if (empty($request->selected)) {
@@ -171,6 +171,10 @@ class UsersController extends Table
 				->withInput();
 		}
 
+		$customers = User::find($request->selected)->pluck('email')->toArray();
+
+		(new Activity)->put("Deleted these users  " . implode(',',  $customers));
+
 		User::destroy($request->selected);
 		return redirect()->back();
 	}
@@ -178,28 +182,23 @@ class UsersController extends Table
 
 	public function delete(Request $request)
 	{
-		User::canTakeAction(5);
-		if ($request->isMethod('post')) {
-			$rules = array(
-				'_token' => 'required',
-			);
-			// dd(get_class(\new Validator));
-			$validator = \Validator::make($request->all(), $rules);
-			if (empty($request->selected)) {
-				$validator->getMessageBag()->add('Selected', 'Nothing to Delete');
-				return \Redirect::back()
-					->withErrors($validator)
-					->withInput();
-			}
-			User::destroy($request->selected);
-			$flash = app('App\Http\Flash');
-			$flash->success("Success", "Users Deleted");
-			return redirect()->back();
+		User::canTakeAction(User::canDelete);
+
+		$rules = array(
+			'_token' => 'required',
+		);
+		$validator = \Validator::make($request->all(), $rules);
+		if (empty($request->selected)) {
+			$validator->getMessageBag()->add('Selected', 'Nothing to Delete');
+			return \Redirect::back()
+				->withErrors($validator)
+				->withInput();
 		}
+		$customers = User::find($request->selected)->pluck('email')->toArray();
+		(new Activity)->put("Deleted these emails" . implode(',',  $customers));
 
 		User::destroy($request->selected);
-		$flash = app('App\Http\flash');
-		$flash->success("Success", "User Deleted");
+
 		return redirect()->back();
 	}
 }

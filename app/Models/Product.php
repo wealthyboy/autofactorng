@@ -194,7 +194,6 @@ class Product extends Model
                 "Name" => $product->product_name,
                 "Category" => $product->category_name,
                 "Price" =>  number_format($product->price),
-                "Status" => $product->status,
                 "Date Added" => $product->created_at->format('d-m-y'),
             ];
         });

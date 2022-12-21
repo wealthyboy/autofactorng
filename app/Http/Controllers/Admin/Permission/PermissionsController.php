@@ -27,7 +27,7 @@ class PermissionsController extends Controller
      */
     public function index()
     {
-        //
+        User::canTakeAction(User::canAccessPermissions);
         $permissions = Permission::all();
         return view('admin.permissions.index', compact('permissions'));
     }
@@ -63,7 +63,7 @@ class PermissionsController extends Controller
         $permission->code = implode('', $request->code);
         $permission->save();
         // Log Activity
-        // $activity->Log(" Created new permission called {$request->name}");
+        $activity->put(" Created new permission called {$request->name}");
         return redirect()->route('permissions.index');
     }
 
@@ -110,7 +110,7 @@ class PermissionsController extends Controller
         $permission->code = implode('', $request->code);
         $permission->save();
         //Log Activity
-        //(new Activity)->Log("Updated  {$request->name} permission");
+        (new Activity)->put("Updated  {$request->name} permission");
         return redirect()->route('permissions.index');
     }
 

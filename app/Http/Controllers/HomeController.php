@@ -11,6 +11,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegistrationComplete;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 
@@ -39,6 +40,7 @@ class HomeController extends Controller
 
         $featured_categories = Category::where('is_featured', true)->get();
         $categories = Category::parents()->get();
+
         $brands = Brand::where('is_featured', true)->get();
         $sliders = Banner::where('type', 'slider')->orderBy('sort_order', 'asc')->get();
         $products = Product::where('is_featured', 1)->orderBy('created_at', 'DESC')->take(8)->get();

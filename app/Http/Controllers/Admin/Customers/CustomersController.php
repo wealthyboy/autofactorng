@@ -109,10 +109,11 @@ class CustomersController extends Table
 
     public function destroy(Request $request, $id)
     {
-
+        dd(true);
         User::canTakeAction(User::canDelete);
 
         $customers = User::find($request->selected)->pluck('email')->toArray();
+
 
         dd($customers);
 

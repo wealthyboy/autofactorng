@@ -326,7 +326,7 @@ class ProductController extends Table
             }
         }
 
-        //(new Activity)->Log("Added a product ", "{$data}");
+        (new Activity)->put("Added a product called" . $name);
         return response()->json($product);
     }
 
@@ -515,7 +515,7 @@ class ProductController extends Table
             }
         }
 
-        //(new Activity)->Log("Added a product ", "{$data}");
+        (new Activity)->put("Updated a product called" . $name);
         return response()->json($product);
     }
 }

@@ -26,6 +26,8 @@ class User extends Authenticatable
 	const canAccessReports = 6;
 	const canAccessUsers = 7;
 	const canEnableSite = 9;
+	const canAccessPermissions = 10;
+
 
 
 

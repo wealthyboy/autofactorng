@@ -14,10 +14,11 @@ class Permission extends Model
         'Create' => 2,
         'Read' => 3,
         'Update' => 4,
-        'Delete' => 5, 
+        'Delete' => 5,
         'Reports' => 6,
-        'Add Admin Users' => 7, 
+        'Add Admin Users' => 7,
         'Activity' => 8,
+        'permissions' => 10,
         'Enable/Disble Site' => 9
     ];
 }
