@@ -14,6 +14,8 @@ class OrderedProduct extends Model
 
     protected $fillable = ['order_id', 'product_id', 'price', 'total', 'quantity', 'product_name'];
 
+
+
     public function getListingData($collection)
     {
 
