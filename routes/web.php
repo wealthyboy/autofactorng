@@ -52,7 +52,10 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::resource('payments', 'Admin\Payments\PaymentController', ['name' => 'payments']);
     Route::resource('rates', 'Admin\CurrencyRates\CurrencyRatesController', ['name' => 'rates']);
     Route::resource('vouchers', 'Admin\Vouchers\VouchersController', ['names' => 'vouchers']);
+    Route::get('products/search/makemodelyear', 'Admin\Product\ProductController@makeModelYearSearch');
+
     Route::resource('products', 'Admin\Product\ProductController', ['names' => 'products']);
+
     Route::resource('category', 'Admin\Category\CategoryController', ['name' => 'category']);
     Route::post('category/delete/image', 'Admin\Category\CategoryController@undo');
     Route::resource('reviews',  'Admin\Reviews\ReviewsController', ['names' => 'reviews']);

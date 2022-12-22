@@ -1,8 +1,5 @@
 <?php echo $__env->make('admin._partials.top', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-<?php if(!empty($models['items'][0][0])): ?>
-
-<?php echo $__env->make('admin._partials.search', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <?php if( isset($models['unique']['product']) && $models['unique']['product']): ?>
 <div class="row">
     <div class="card mb-3">
@@ -22,12 +19,17 @@
 
         </div>
 
-        <div id="search-panel" class="card-body pt-0 hide">
+        <div id="search-panel" class="card-body pt-0 ">
             <?php echo $__env->make('admin.includes.product_search', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </div>
     </div>
 
     <?php endif; ?>
+
+    <?php if(!empty($models['items'][0][0])): ?>
+
+    <?php echo $__env->make('admin._partials.search', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
 
 
     <div class="card">

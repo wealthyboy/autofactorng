@@ -40,6 +40,23 @@ class MakeModelYearEngine extends Model
 
     public  static function getMakeModelYearSearch(Request $request)
     {
+
+        if (!$request->type) {
+
+            $response = null;
+
+            if ($request->filled('make_id') && !$request->filled('model_id')) {
+                $response = self::getModels($request->year, $request->make_id);
+            }
+
+            if ($request->filled('model_id')) {
+                $response = self::getEngines($request->model_id, $request->year);
+            }
+
+            return $response;
+        }
+
+
         switch ($request->type) {
             case 'year':
                 $response = self::getMakes($request->year);

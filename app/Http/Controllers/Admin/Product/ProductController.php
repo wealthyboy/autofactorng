@@ -26,6 +26,7 @@ use App\Models\AttributeYear;
 use App\Models\EngineProduct;
 use App\Models\ShippingRate;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -61,14 +62,70 @@ class ProductController extends Table
      */
     public function index()
     {
-        $brands     = Brand::all();
+        $brands = Brand::all();
         $categories = Category::parents()->get();
         $attributes = Attribute::parents()->orderBy('sort_order', 'asc')->get();
-        $years      = Helper::years();
-        $products   = Product::with('categories')
-            ->orderBy('created_at', 'desc')->paginate(100);
+        $years = Helper::years();
+
+        if (request()->filled('search')) {
+            $products = $this->filter(request());
+        } else {
+            $products = Product::with('categories')
+                ->orderBy('created_at', 'desc')->paginate(100);
+        }
+
         $products = $this->getColumnListings(request(), $products);
-        return view('admin.products.index', compact('products', 'brands', 'categories', 'attributes', 'years'));
+        $years = Helper::years();
+        $makes = Attribute::where('type', 'make')->get();
+        return view('admin.products.index', compact('products', 'makes', 'brands', 'categories', 'attributes', 'years'));
+    }
+
+
+    public function filter(Request $request)
+    {
+
+        $query  = Product::query();
+
+        if ($request->filled('product_name')) {
+            $query->where('product_name', $request->product_name);
+        }
+
+        if ($request->filled('category_id')) {
+            $category = Category::find($request->category_id);
+            $query->whereHas('categories', function (Builder  $builder) use ($category) {
+                $builder->where('categories.slug', $category->slug);
+            });
+        }
+
+        $per_page = $request->per_page ??  20;
+
+        if ($request->filled('year') && $request->filled('model_id') && $request->filled('make_id') &&  $request->filled('engine_id')) {
+
+            $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
+                $builder->where('make_model_year_engines.attribute_id', $request->model_id);
+                $builder->where('make_model_year_engines.parent_id', $request->make_id);
+                $builder->where('make_model_year_engines.engine_id', $request->engine_id);
+                $builder->where('year_from', '<=', $request->year);
+                $builder->where('year_to', '>=', $request->year);
+                $builder->groupBy('make_model_year_engines.product_id');
+            });
+        }
+
+        if ($request->filled('profile')) {
+            $query->where('radius', $request->rim);
+            $query->where('width', $request->width);
+            $query->where('height', $request->profile);
+        }
+
+        if ($request->filled('amphere')) {
+            $query->where('amphere', $request->amphere);
+        }
+
+        $products = $query->filter($request)->latest()->paginate($per_page);
+        $products->load('images');
+        $products->appends(request()->all());
+
+        return $products;
     }
 
 
@@ -142,6 +199,15 @@ class ProductController extends Table
             'export' => true,
             'product' => true
         ];
+    }
+
+
+    public function makeModelYearSearch(Request $request)
+    {
+
+        $collections = MakeModelYearEngine::getMakeModelYearSearch($request);
+
+        return view('admin._partials.options', compact('collections'));
     }
 
 

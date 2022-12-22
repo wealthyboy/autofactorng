@@ -1,8 +1,5 @@
 @include('admin._partials.top')
 
-@if(!empty($models['items'][0][0]))
-
-@include('admin._partials.search')
 @if ( isset($models['unique']['product']) && $models['unique']['product'])
 <div class="row">
     <div class="card mb-3">
@@ -22,12 +19,17 @@
 
         </div>
 
-        <div id="search-panel" class="card-body pt-0 hide">
+        <div id="search-panel" class="card-body pt-0 ">
             @include('admin.includes.product_search')
         </div>
     </div>
 
     @endif
+
+    @if(!empty($models['items'][0][0]))
+
+    @include('admin._partials.search')
+
 
 
     <div class="card">
