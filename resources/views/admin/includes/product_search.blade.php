@@ -1,60 +1,67 @@
 <form action="{{  route('products.index') }}" class="" method="get">
-   @csrf
+    @csrf
     <div class="row">
-        <div class="col-sm-3 col-5">
-            <select class="form-control" name="category_id" id="parent_id">
-                <option  value="">--Choose One--</option>
+        <div class="col-sm-6 col-5">
+
+            <select name="category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">
+                <option selected> Select Category</option>
                 @foreach($categories as $category)
-                    <option class="" value="{{ $category->id }}" >{{ $category->name }} </option>
-                    @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
+                <option class="" value="{{ $category->id }}">{{ $category->name }} </option>
+                @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
                 @endforeach
             </select>
         </div>
-        <div class="col-sm-3 col-12">
+        <div class="col-sm-6 col-12">
             <div class="input-group input-group-outline">
                 <label class="form-label">Product Name</label>
                 <input name="product_name" type="text" class="form-control" placeholder="">
             </div>
         </div>
+
+
     </div>
     <div class="row mt-3">
         <div class="">
             <div class="row">
-                <div class="col-sm-4 col-12">
-                    <div class="input-group input-group-outline">
-                    <label class="form-label mt-4 ms-0"> </label>
-                    <select class="form-control" name="year_to" id="">
-                        <option  value="">--Make--</option>
-                        @foreach($years as $year)
-                            <option class="" value="{{ $year }}" >{{ $year }} </option>
+                <div class="col-sm-3 col-12">
+                    <select name="category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">
+                        <option selected> Select Make</option>
+                        @foreach($categories as $category)
+                        <option class="" value="{{ $category->id }}">{{ $category->name }} </option>
+                        @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
                         @endforeach
                     </select>
-                    </div>
                 </div>
-                <div class="col-sm-4 col-12">
-                    <div class="input-group input-group-outline">
-                    <label class="form-label mt-4 ms-0"> </label>
-                    <select class="form-control" name="year_from" id="">
-                        <option  value="">--Year to--</option>
-                        @foreach($years as $year)
-                            <option class="" value="{{ $year }}" >{{ $year }} </option>
+                <div class="col-sm-3 col-12">
+                    <select name="category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">
+                        <option selected> Select Model</option>
+                        @foreach($categories as $category)
+                        <option class="" value="{{ $category->id }}">{{ $category->name }} </option>
+                        @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
                         @endforeach
                     </select>
-                    </div>
                 </div>
-                <div class="col-sm-4 col-12">
-                    <div class="input-group input-group-outline">
-                    <label class="form-label mt-4 ms-0"> </label>
-                    <select class="form-control" name="year_to" id="">
-                        <option  value="">--Year to--</option>
-                        @foreach($years as $year)
-                            <option class="" value="{{ $year }}" >{{ $year }} </option>
+                <div class="col-sm-3 col-12">
+                    <select name="category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">
+                        <option selected> Select Year</option>
+                        @foreach($categories as $category)
+                        <option class="" value="{{ $category->id }}">{{ $category->name }} </option>
+                        @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
                         @endforeach
                     </select>
-                    </div>
-                    
                 </div>
-                
+                <div class="col-sm-3 col-12">
+                    <select name="category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">
+                        <option selected> Select Engine</option>
+                        @foreach($categories as $category)
+                        <option class="" value="{{ $category->id }}">{{ $category->name }} </option>
+                        @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
+                        @endforeach
+                    </select>
+                </div>
+
+
+
             </div>
         </div>
     </div>
@@ -66,7 +73,7 @@
             </div>
         </div>
 
-        
+
 
         <div class="col-3">
             <div class="input-group input-group-outline">
@@ -85,7 +92,7 @@
         <div class="col-3">
             <div class="input-group input-group-outline">
                 <label class="form-label">Amphere</label>
-                <input type="text"  name="amphere" class="form-control" placeholder="">
+                <input type="text" name="amphere" class="form-control" placeholder="">
             </div>
         </div>
     </div>

@@ -77,12 +77,12 @@
                   <span class="nav-link-text ms-2 ps-1"> Activity </span>
                </a>
             </li>
-            <li class=" nav-item">
-               <a class="nav-link text-white <?php echo e($helper->active_link(['reports'])); ?>" href="/admin/reports">
+            <!-- <li class=" nav-item">
+               <a class="nav-link text-white " href="/admin/reports">
                   <i class="material-symbols-outlined opacity-10">show_chart</i>
                   <span class="nav-link-text ms-2 ps-1"> Reports </span>
                </a>
-            </li>
+            </li> -->
 
 
             <li class="nav-item">

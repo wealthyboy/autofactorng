@@ -25,7 +25,8 @@ class EnginesController extends Table
 
 	public function index()
 	{
-		$engines =  Engine::orderBy('name', 'asc')->get();
+		$engines =  Engine::orderBy('name', 'asc')->paginate(100);
+		$engines = $this->getColumnListings(request(), $engines);
 		return view('admin.engines.index', compact('engines'));
 	}
 
@@ -34,6 +35,42 @@ class EnginesController extends Table
 	{
 		User::canTakeAction(User::canCreate);
 		return view('admin.engines.create');
+	}
+
+
+	public function routes()
+	{
+		return [
+			'edit' =>  [
+				'engines.edit',
+				'engine'
+			],
+			'update' => null,
+			'show' => null,
+			'destroy' =>  [
+				'engines.destroy',
+				'engine'
+			],
+			'create' => [
+				'engines.create'
+			],
+			'index' => null
+		];
+	}
+
+	public function unique()
+	{
+		return [
+			'show'  => false,
+			'right' => false,
+			'edit' => true,
+			'search' => false,
+			'add' => true,
+			'destroy' => true,
+			'export' => false,
+			'banner' => false,
+			'order' => false
+		];
 	}
 
 	public function store(Request $request)

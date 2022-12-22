@@ -15,4 +15,25 @@ class Engine extends Model
     {
         return $this->hasOne(AttributeEngine::class);
     }
+
+
+    public function getListingData($collection)
+    {
+        return  $collection->map(function ($engine) {
+            return [
+                "Id" =>  $engine->id,
+                "Engine" =>  $engine->name,
+            ];
+        });
+    }
+
+    public function sortKeys($key)
+    {
+        $sort =  [
+            "Id" => 'id',
+            "Engine" => 'name',
+        ];
+
+        return $sort[$key];
+    }
 }
