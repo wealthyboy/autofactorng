@@ -136,7 +136,7 @@ class ProductController extends Table
             'show'  => false,
             'right' => false,
             'edit' => true,
-            'search' => true,
+            'search' => false,
             'add' => true,
             'destroy' => true,
             'export' => true
