@@ -1,8 +1,14 @@
 <form action="{{  route('products.index') }}" class="" method="get">
     @csrf
     <div class="row">
-        <div class="col-sm-6 col-5">
 
+        <div class="col-sm-6 col-12">
+            <div class="input-group input-group-outline">
+                <label class="form-label">Product Name</label>
+                <input name="product_name" type="text" class="form-control" placeholder="">
+            </div>
+        </div>
+        <div class="col-sm-3 col-5">
             <select name="category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">
                 <option selected> Select Category</option>
                 @foreach($categories as $category)
@@ -11,11 +17,14 @@
                 @endforeach
             </select>
         </div>
-        <div class="col-sm-6 col-12">
-            <div class="input-group input-group-outline">
-                <label class="form-label">Product Name</label>
-                <input name="product_name" type="text" class="form-control" placeholder="">
-            </div>
+        <div class="col-sm-3 col-5">
+            <select name="category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">
+                <option selected> Select Brand</option>
+                @foreach($categories as $category)
+                <option class="" value="{{ $category->id }}">{{ $category->name }} </option>
+                @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
+                @endforeach
+            </select>
         </div>
 
 
@@ -33,13 +42,10 @@
                     </select>
                 </div>
                 <div class="col-sm-3 col-12">
-                    <select name="category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">
-                        <option selected> Select Model</option>
-                        @foreach($categories as $category)
-                        <option class="" value="{{ $category->id }}">{{ $category->name }} </option>
-                        @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
-                        @endforeach
-                    </select>
+                    <div class="input-group input-group-outline">
+                        <label class="form-label">Model</label>
+                        <input name="model" type="text" class="form-control" placeholder="">
+                    </div>
                 </div>
                 <div class="col-sm-3 col-12">
                     <select name="category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">

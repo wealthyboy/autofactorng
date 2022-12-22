@@ -1,8 +1,14 @@
 <form action="<?php echo e(route('products.index')); ?>" class="" method="get">
     <?php echo csrf_field(); ?>
     <div class="row">
-        <div class="col-sm-6 col-5">
 
+        <div class="col-sm-6 col-12">
+            <div class="input-group input-group-outline">
+                <label class="form-label">Product Name</label>
+                <input name="product_name" type="text" class="form-control" placeholder="">
+            </div>
+        </div>
+        <div class="col-sm-3 col-5">
             <select name="category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">
                 <option selected> Select Category</option>
                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -11,11 +17,14 @@
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
         </div>
-        <div class="col-sm-6 col-12">
-            <div class="input-group input-group-outline">
-                <label class="form-label">Product Name</label>
-                <input name="product_name" type="text" class="form-control" placeholder="">
-            </div>
+        <div class="col-sm-3 col-5">
+            <select name="category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">
+                <option selected> Select Brand</option>
+                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option class="" value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?> </option>
+                <?php echo $__env->make('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </select>
         </div>
 
 
@@ -33,13 +42,10 @@
                     </select>
                 </div>
                 <div class="col-sm-3 col-12">
-                    <select name="category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">
-                        <option selected> Select Model</option>
-                        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <option class="" value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?> </option>
-                        <?php echo $__env->make('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </select>
+                    <div class="input-group input-group-outline">
+                        <label class="form-label">Model</label>
+                        <input name="model" type="text" class="form-control" placeholder="">
+                    </div>
                 </div>
                 <div class="col-sm-3 col-12">
                     <select name="category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">
