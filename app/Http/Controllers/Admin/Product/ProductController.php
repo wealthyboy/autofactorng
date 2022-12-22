@@ -111,7 +111,7 @@ class ProductController extends Table
             });
         }
 
-        if ($request->filled('profile')) {
+        if ($request->filled('rim')) {
             $query->where('radius', $request->rim);
             $query->where('width', $request->width);
             $query->where('height', $request->profile);
