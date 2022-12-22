@@ -25,7 +25,7 @@ class EnginesController extends Table
 
 	public function index()
 	{
-		$engines =  Engine::orderBy('name', 'asc')->paginate(100);
+		$engines =  Engine::orderBy('name', 'asc')->paginate(50);
 		$engines = $this->getColumnListings(request(), $engines);
 		return view('admin.engines.index', compact('engines'));
 	}
@@ -64,7 +64,7 @@ class EnginesController extends Table
 			'show'  => false,
 			'right' => false,
 			'edit' => true,
-			'search' => false,
+			'search' => true,
 			'add' => true,
 			'destroy' => true,
 			'export' => false,
@@ -106,7 +106,7 @@ class EnginesController extends Table
 		$engine = Engine::find($id);
 		$engine->update($request->all());
 
-		(new Activity)->put("Added  Engine called " . $request->name);
+		(new Activity)->put("Updated  Engine called " . $request->name);
 
 		return redirect()->route('engines.index');
 	}
