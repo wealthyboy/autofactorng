@@ -33,4 +33,15 @@ class Brand extends Model
             ];
         });
     }
+
+    public function sortKeys($key)
+    {
+        $sort =  [
+            "Id" => 'id',
+            "Image" => 'image',
+            "Name" => 'name',
+        ];
+
+        return $sort[$key];
+    }
 }
