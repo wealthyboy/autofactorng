@@ -206,7 +206,7 @@ class Product extends Model
             "Id" => 'id',
             "Image" => 'image',
             "Name" => 'product_name',
-            "Category" => 'category_name',
+            "Category" => 'brand_id',
             "Price" => 'price',
             "Date Added" => 'created_at',
         ];
