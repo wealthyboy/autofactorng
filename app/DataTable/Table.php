@@ -102,16 +102,16 @@ abstract class Table extends Controller
 
             if ($request->filled('key')) {
                 $collections = $this->builder()->orderBy($builder->sortKeys($request->key), $request->sort)->paginate(100)->appends(request()->all());
-                $records =  $builder->getListingData($collections);
+                $records = $builder->getListingData($collections);
             }
 
             if ($request->filled('q')) {
                 $collections = $this->buildSearch($this->builder, $request);
-                $records =  $builder->getListingData($collections);
+                $records = $builder->getListingData($collections);
             }
 
             if (!$request->filled('key') && !$request->filled('q')) {
-                $records =  $builder->getListingData($collections);
+                $records = $builder->getListingData($collections);
             }
 
             return $data =  [

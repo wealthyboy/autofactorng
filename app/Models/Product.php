@@ -204,7 +204,7 @@ class Product extends Model
     {
         $sort =  [
             "Id" => 'id',
-            "Image" => 'image',
+            "Image" => 'id',
             "Name" => 'product_name',
             "Category" => 'brand_id',
             "Price" => 'price',
