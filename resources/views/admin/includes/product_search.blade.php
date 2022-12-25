@@ -69,20 +69,20 @@
 
         <div class="col-3">
 
-            <select name="height" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
-                <option selected value=""> Select Year</option>
-                @foreach($years as $year)
-                <option class="" value="{{ $year }}">{{ $year }} </option>
+            <select name="width" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
+                <option selected value=""> Select Width</option>
+                @foreach($widths as $width)
+                <option class="" value="{{ $width->width }}">{{$width->width}} </option>
                 @endforeach
             </select>
         </div>
 
         <div class="col-3">
 
-            <select name="width" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
-                <option selected value=""> Select Year</option>
-                @foreach($years as $year)
-                <option class="" value="{{ $year }}">{{ $year }} </option>
+            <select name="height" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
+                <option selected value=""> Select Height</option>
+                @foreach($profiles as $profile)
+                <option class="" value="{{ $profile->height }}">{{ $profile->height }} </option>
                 @endforeach
             </select>
 
@@ -90,9 +90,9 @@
 
         <div class="col-3">
             <select name="amphere" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
-                <option selected value=""> Select Year</option>
-                @foreach($years as $year)
-                <option class="" value="{{ $year }}">{{ $year }} </option>
+                <option selected value=""> Select Amphere</option>
+                @foreach($ampheres as $amphere)
+                <option class="" value="{{ $amphere->amphere }}">{{ $amphere->amphere }} </option>
                 @endforeach
             </select>
 

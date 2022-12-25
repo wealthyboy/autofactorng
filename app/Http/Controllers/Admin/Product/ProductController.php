@@ -70,7 +70,9 @@ class ProductController extends Table
         $rims = Product::getFilterLists('radius');
         $widths = Product::getFilterLists('width');
         $profiles = Product::getFilterLists('height');
+
         $ampheres = Product::getFilterLists('amphere');
+
 
         if (request()->filled('search')) {
             $products = $this->filter(request());
@@ -134,7 +136,7 @@ class ProductController extends Table
         if ($request->filled('rim')) {
             $query->where('radius', $request->rim);
             $query->where('width', $request->width);
-            $query->where('height', $request->profile);
+            $query->where('height', $request->height);
         }
 
         if ($request->filled('amphere')) {
