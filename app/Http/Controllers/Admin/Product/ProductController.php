@@ -72,6 +72,7 @@ class ProductController extends Table
         }
 
         if (request()->filled('q')) {
+
             $request = request();
             $query = Product::whereHas('categories', function ($query) use ($request) {
                 $query->where('categories.name', 'like', '%' . $request->q . '%')
@@ -80,7 +81,7 @@ class ProductController extends Table
             });
 
 
-            $products = $query->groupBy('products.id')->paginate(100);
+            $products = $query->paginate(100);
             $products->appends(request()->all());
         } else {
             $products = Product::with('categories')
