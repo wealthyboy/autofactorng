@@ -75,8 +75,7 @@ class ProductController extends Table
 
             $request = request();
             $query = Product::whereHas('categories', function ($query) use ($request) {
-                $query->where('categories.name', 'like', '%' . $request->q . '%')
-                    ->orWhere('products.product_name', 'like', '%' . $request->q . '%')
+                $query->where('products.product_name', 'like', '%' . $request->q . '%')
                     ->orWhere('products.sku', 'like', '%' . $request->q . '%');
             });
 
