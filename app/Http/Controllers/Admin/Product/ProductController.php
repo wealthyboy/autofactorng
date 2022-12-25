@@ -72,14 +72,14 @@ class ProductController extends Table
         }
 
         if (request()->filled('q')) {
+        }
 
-            $request = request();
-            $products = Product::where('product_name', 'like', '%' . $request->q . '%')->paginate(100)->appends(request()->all());
-        } else {
+
+
+        if (!request()->filled('q') && !request()->filled('search')) {
             $products = Product::with('categories')
                 ->orderBy('created_at', 'desc')->paginate(100);
         }
-
 
         $products = $this->getColumnListings(request(), $products);
         $years = Helper::years();
@@ -437,10 +437,13 @@ class ProductController extends Table
     {
 
         $filtered_array = $request->only(['q', 'field']);
+
         if (empty($filtered_array['q'])) {
             return redirect('/errors');
         }
+
         if ($request->has('q')) {
+
             $filtered_array = array_filter($filtered_array);
             $query = Product::whereHas('categories', function ($query) use ($filtered_array) {
                 $query->where('categories.name', 'like', '%' . $filtered_array['q'] . '%')
