@@ -53,6 +53,21 @@ class OrderedProduct extends Model
     }
 
 
+    public function sortKeys($key)
+    {
+        $sort =  [
+            "Id" => 'id',
+            "Product" => 'product_name',
+            "Price" =>  'price',
+            "Quantity" => 'quantity',
+            "Sub Total" =>  'total',
+            "Date Added" => 'created_at',
+        ];
+
+        return $sort[$key];
+    }
+
+
     public function routes()
     {
         return [
