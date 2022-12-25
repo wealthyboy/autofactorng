@@ -39,6 +39,8 @@ class OrderedProduct extends Model
                 'total' => $collection->total(),
                 'firstItem' => $collection->firstItem(),
                 'lastItem' => $collection->lastItem(),
+                'sort' => request()->filled('sort') && request()->sort == 'desc' ? 'asc' : 'desc',
+                'q' => request()->filled('q')  ? '&q=' . request()->q : '',
                 'show_checkbox' => false,
                 'urls' => $collection->map(function ($obj) {
                     return [
