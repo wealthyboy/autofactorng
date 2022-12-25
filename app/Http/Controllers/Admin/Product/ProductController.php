@@ -97,7 +97,7 @@ class ProductController extends Table
             });
         }
 
-        $per_page = $request->per_page ??  20;
+        $per_page = $request->per_page ??  100;
 
         if ($request->filled('year') && $request->filled('model_id') && $request->filled('make_id') &&  $request->filled('engine_id')) {
 
