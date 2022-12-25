@@ -81,12 +81,12 @@ class ProductController extends Table
                 ->orderBy('created_at', 'desc')->paginate(10);
         }
 
-        dd($products);
+        // dd($products);
 
 
         $products = $this->getColumnListings(request(), $products);
 
-        // dd($products);
+        dd($products);
         $years = Helper::years();
         $makes = Attribute::where('type', 'make')->get();
         return view('admin.products.index', compact('products', 'makes', 'brands', 'categories', 'attributes', 'years'));

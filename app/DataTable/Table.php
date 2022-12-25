@@ -111,6 +111,7 @@ abstract class Table extends Controller
             }
 
             if (!$request->filled('key') && !$request->filled('q')) {
+                //dd($collections);
                 $records = $builder->getListingData($collections);
             }
 

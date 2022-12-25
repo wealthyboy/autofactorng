@@ -191,7 +191,7 @@ class Product extends Model
             return [
                 "Id" => $product->id,
                 "Image" => $product->image_to_show_m,
-                "Name" => $product->product_name,
+                "Name" => $product->name,
                 "Category" => $product->category_name,
                 "Price" =>  number_format($product->price),
                 "Date Added" => $product->created_at->format('d-m-y'),
