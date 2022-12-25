@@ -72,6 +72,7 @@ class ProductController extends Table
         }
 
         if (request()->filled('q')) {
+            $products = Product::paginate(100);
         }
 
 
