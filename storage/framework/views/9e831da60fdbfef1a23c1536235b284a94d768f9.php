@@ -5,14 +5,16 @@
 </div>
 <div class="row g-0">
     <?php $__currentLoopData = $featured_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    <div data-animation-name="fadeInUpShorter" class="col-6  col-md-3    appear-animate col-lg-2">
-        <div class="d-flex icon-box border justify-content-center align-items-center">
-            <a href="<?php echo e($category->link()); ?>" class="">
-                <img src="<?php echo e($category->image); ?>" alt="" srcset="">
-                <div class="mt-4  bold"><?php echo e($category->name); ?></div>
+    <div data-animation-name="fadeInUpShorter" class="col-6  col-md-3     appear-animate ">
+        <a href="<?php echo e($category->link()); ?>" class="d-block p-0 border">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="align-self-center text-center">
+                    <img src="<?php echo e($category->image); ?>" alt="" srcset="">
+                    <div class="mt-4  bold"><?php echo e($category->name); ?></div>
+                </div>
+            </div>
+        </a>
 
-            </a>
-        </div>
     </div>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </div>

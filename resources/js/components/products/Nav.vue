@@ -1,13 +1,15 @@
 <template>
+
   <nav
-    class="toolbox sticky-header horizontal-filter mb-1"
+    class="toolbox sticky-header"
     data-sticky-options="{'mobile': true}"
   >
     <div class="toolbox-left">
       <a
-        href="category-horizontal-filter1.html#"
+        href="category-list.html#"
         class="sidebar-toggle"
-      ><svg
+      >
+        <svg
           data-name="Layer 3"
           id="Layer_3"
           viewBox="0 0 32 32"
@@ -75,49 +77,44 @@
         <span>Filter</span>
       </a>
 
-      <div class="toolbox-item filter-toggle d-none d-lg-flex">
-        <span>{{ meta.from }}- {{ meta.to }} of {{meta.total}} Records</span>
-
-      </div>
-    </div>
-    <!-- End .toolbox-left -->
-
-    <div class="d-flex">
-      <div class="toolbox-item toolbox-sort ml-lg-auto">
+      <div class="toolbox-item toolbox-sort">
         <label>Sort By:</label>
 
         <div class="select-custom">
           <select
-            @change="sort($event)"
             name="orderby"
-            class="form-control orderby"
+            class="form-control"
           >
             <option
               value="menu_order"
               selected="selected"
             >Default sorting</option>
+            <option value="popularity">Sort by popularity</option>
             <option value="rating">Sort by average rating</option>
-            <option value="price,asc">Sort by price: low to high</option>
-            <option value="price,desc">Sort by price: high to low</option>
+            <option value="date">Sort by newness</option>
+            <option value="price">Sort by price: low to high</option>
+            <option value="price-desc">Sort by price: high to low</option>
           </select>
         </div>
         <!-- End .select-custom -->
+
       </div>
       <!-- End .toolbox-item -->
+    </div>
+    <!-- End .toolbox-left -->
 
-      <div class="toolbox-item toolbox-show ml-auto ml-lg-0">
+    <div class="toolbox-right">
+      <div class="toolbox-item toolbox-show">
         <label>Show:</label>
 
         <div class="select-custom">
           <select
             name="count"
-            class="form-control per_page"
-            @change="per_page"
+            class="form-control"
           >
-            <option value="20">20</option>
-            <option value="30">30</option>
-            <option value="40">40</option>
-            <option value="50">50</option>
+            <option value="12">12</option>
+            <option value="24">24</option>
+            <option value="36">36</option>
           </select>
         </div>
         <!-- End .select-custom -->
@@ -126,23 +123,23 @@
 
       <div class="toolbox-item layout-modes">
         <a
-          href="/"
-          class="layout-btn btn-grid active"
+          href="category.html"
+          class="layout-btn btn-grid"
           title="Grid"
         >
-          <i class="fa fa-th"></i>
+          <i class="icon-mode-grid"></i>
         </a>
         <a
-          href="/"
-          class="layout-btn"
+          href="category-list.html"
+          class="layout-btn btn-list active"
           title="List"
         >
-          <i class="fa fa-list-ul"></i>
+          <i class="icon-mode-list"></i>
         </a>
       </div>
       <!-- End .layout-modes -->
     </div>
-
+    <!-- End .toolbox-right -->
   </nav>
 </template>
 

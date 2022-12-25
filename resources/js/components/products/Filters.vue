@@ -1,59 +1,53 @@
 <template>
-  <div class="sidebar-wrapper">
-    <div
-      class="accordion accordion-flush"
-      :id="'accordionFlush' + name"
-    >
-      <div class="accordion-item">
-        <h2
-          class="accordion-header"
-          :id="'flush-heading'+ name"
-        ><button
-            class="accordion-button text-uppercase collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            :data-bs-target="'#flush-collapse' + name"
-            aria-expanded="false"
-            :aria-controls="'flush-collapse' + name"
-          > {{name}}</button></h2>
-        <div
-          :id="'flush-collapse' + name"
-          class="accordion-collapse collapse show"
-          :aria-labelledby="'flush-heading' + name"
-          :data-bs-parent="'#accordionFlush' +name"
-        >
+  <div id="accordion">
+    <div class="card card-accordion">
+      <a
+        class="card-header"
+        href="contact.html#"
+        data-toggle="collapse"
+        :data-target="'#collapseOne' + name"
+        aria-expanded="true"
+        :aria-controls="'collapseOne' + name"
+      >
+        {{  name  }}
+      </a>
 
-          <div class="accordion-body">
-            <div
-              v-for="obj in objs"
-              :key="obj.id"
-              class="form-check"
+      <div
+        :id="'collapseOne' + name"
+        class="collapse show"
+        data-parent="#accordion"
+      >
+        <div>
+          <div
+            v-for="obj in objs"
+            :key="obj.id"
+            class="form-check"
+          >
+            <input
+              class="form-check-input"
+              type="checkbox"
+              :value="obj.slug"
+              :name="name + '[]'"
+              :id="obj.name + obj.id"
+              @change="activateFilter($event)"
             >
-              <input
-                class="form-check-input"
-                type="checkbox"
-                :value="obj.slug"
-                :name="name + '[]'"
-                :id="obj.name + obj.id"
-                @change="activateFilter($event)"
-              >
-              <label
-                class="form-check-label"
-                :for="obj.name + obj.id"
-                role="button"
-              >
+            <label
+              class="form-check-label"
+              :for="obj.name + obj.id"
+              role="button"
+            >
 
-                {{ obj.name }}
-              </label>
-            </div>
-
-            <slot />
+              {{ obj.name }}
+            </label>
           </div>
+
+          <slot />
         </div>
       </div>
-
     </div>
+
   </div>
+
 </template>
 
 <script>

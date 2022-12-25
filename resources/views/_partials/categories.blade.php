@@ -5,14 +5,16 @@
 </div>
 <div class="row g-0">
     @foreach($featured_categories as $key => $category)
-    <div data-animation-name="fadeInUpShorter" class="col-6  col-md-3    appear-animate col-lg-2">
-        <div class="d-flex icon-box border justify-content-center align-items-center">
-            <a href="{{ $category->link() }}" class="">
-                <img src="{{ $category->image }}" alt="" srcset="">
-                <div class="mt-4  bold">{{ $category->name }}</div>
+    <div data-animation-name="fadeInUpShorter" class="col-6  col-md-3     appear-animate ">
+        <a href="{{ $category->link() }}" class="d-block p-0 border">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="align-self-center text-center">
+                    <img src="{{ $category->image }}" alt="" srcset="">
+                    <div class="mt-4  bold">{{ $category->name }}</div>
+                </div>
+            </div>
+        </a>
 
-            </a>
-        </div>
     </div>
     @endforeach
 </div>

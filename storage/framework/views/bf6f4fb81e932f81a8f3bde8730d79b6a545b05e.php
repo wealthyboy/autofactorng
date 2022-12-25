@@ -10,38 +10,92 @@
 
    <meta name="keywords" content="" />
    <meta name="description" content="PAutofactor">
-   <meta name="author" content="SW-THEMES">
+   <meta name="author" content="">
 
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
    <!-- Favicon -->
    <!-- <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.png"> -->
    <!-- Main CSS File -->
-   <link rel="stylesheet" type="text/css" href="/vendor/fontawesome-free/css/all.min.css">
 
    <link rel="stylesheet" href="/css/app.css">
+
 </head>
 
-<script>
-   Window.user = {
-      user: {
-         '<?php echo $user; ?>'
-      },
-      settings: {
-         '<?php echo $system_settings; ?>'
-      },
-      token: '<?php echo csrf_token(); ?>'
-   }
-</script>
 
 <body>
    <div id="app" class="page-wrapper">
 
 
       <header class="header">
+         <div class="header-top">
+            <div class="container">
+               <div class="header-left d-none d-sm-block">
+                  <p class="top-message text-uppercase">FREE Returns. Standard Shipping Orders $99+</p>
+               </div>
+               <!-- End .header-left -->
+
+               <div class="header-right header-dropdowns ml-0 ml-sm-auto w-sm-100">
+                  <div class="header-dropdown dropdown-expanded d-none d-lg-block">
+                     <a href="demo4.html#">Links</a>
+                     <div class="header-menu">
+                        <ul>
+                           <li><a href="dashboard.html">My Account</a></li>
+                           <li><a href="about.html">About Us</a></li>
+                           <li><a href="blog.html">Blog</a></li>
+                           <li><a href="wishlist.html">My Wishlist</a></li>
+                           <li><a href="cart.html">Cart</a></li>
+                           <li><a href="login.html" class="login-link">Log In</a></li>
+                        </ul>
+                     </div>
+                     <!-- End .header-menu -->
+                  </div>
+                  <!-- End .header-dropown -->
+
+                  <span class="separator"></span>
+
+                  <div class="header-dropdown">
+                     <a href="demo4.html#"><i class="flag-us flag"></i>ENG</a>
+                     <div class="header-menu">
+                        <ul>
+                           <li><a href="demo4.html#"><i class="flag-us flag mr-2"></i>ENG</a>
+                           </li>
+                           <li><a href="demo4.html#"><i class="flag-fr flag mr-2"></i>FRA</a></li>
+                        </ul>
+                     </div>
+                     <!-- End .header-menu -->
+                  </div>
+                  <!-- End .header-dropown -->
+
+                  <div class="header-dropdown mr-auto mr-sm-3 mr-md-0">
+                     <a href="demo4.html#">USD</a>
+                     <div class="header-menu">
+                        <ul>
+                           <li><a href="demo4.html#">EUR</a></li>
+                           <li><a href="demo4.html#">USD</a></li>
+                        </ul>
+                     </div>
+                     <!-- End .header-menu -->
+                  </div>
+                  <!-- End .header-dropown -->
+
+                  <span class="separator"></span>
+
+                  <div class="social-icons">
+                     <a href="demo4.html#" class="social-icon social-facebook icon-facebook" target="_blank"></a>
+                     <a href="demo4.html#" class="social-icon social-twitter icon-twitter" target="_blank"></a>
+                     <a href="demo4.html#" class="social-icon social-instagram icon-instagram" target="_blank"></a>
+                  </div>
+                  <!-- End .social-icons -->
+               </div>
+               <!-- End .header-right -->
+            </div>
+            <!-- End .container -->
+         </div>
+         <!-- End .header-top -->
 
          <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
-            <div class="container">
+            <div class="container-fluid">
                <div class="header-left col-lg-2 w-auto pl-0">
                   <button class="mobile-menu-toggler text-primary mr-2" type="button">
                      <i class="fas fa-bars"></i>
@@ -50,30 +104,26 @@
                      <img src="https://autofactor.ng/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
                   </a>
                </div>
+               <!-- End .header-left -->
 
                <div class="header-right w-lg-max">
-                  <div class="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0">
-                     <a href="#" class="search-toggle" role="button"><i class="icon-search-3"></i></a>
+                  <div class="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0"></div>
+                  <!-- End .header-search -->
+
+                  <div class="header-contact d-none d-lg-flex pl-4 pr-4">
+                     <img alt="phone" src="assets/images/phone.png" width="30" height="30" class="pb-1">
+                     <h6><span>Call us now</span><a href="tel:#" class="text-dark font1">+123 5678 890</a></h6>
                   </div>
 
-
-                  <?php if(auth()->guard()->check()): ?>
-                  <a href="/account" class="header-icon" title="login">
-                     <img src="/images/utils/signin.svg" alt="">
-                     <div class="text-sm">Account</div>
-                  </a>
-                  <?php endif; ?>
-
-                  <?php if(auth()->guard()->guest()): ?>
                   <a href="/login" class="header-icon" title="login">
                      <img src="/images/utils/signin.svg" alt="">
                      <div class="text-sm">Signin</div>
                   </a>
-                  <?php endif; ?>
 
 
                   <div class="dropdown cart-dropdown">
                      <cart-side-bar></cart-side-bar>
+
                   </div>
                   <!-- End .dropdown -->
                </div>
@@ -83,69 +133,55 @@
          </div>
          <!-- End .header-middle -->
 
-         <div class="header-bottom sticky-header " data-sticky-options="{'mobile': false}">
-            <div class="a-main-nav w-100">
-               <div class="row g-0  d-flex ">
-                  <div class=" nav-container  d-flex justify-content-center align-items-center pb-1">
-                     <div class="col-md-1">
-                        <div class="menu">
-                           <button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0" role="button">
-                              <span class="menu-open">
-                                 <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="" srcset="">
-                                 <div class="">Menu</div>
-                              </span>
+         <div class="header-bottom sticky-header d-none d-lg-block" data-sticky-options="{'mobile': false}">
+            <div class="container-fluid">
+               <nav class="main-nav w-100 border">
+                  <div class="d-flex">
+                     <div class="menu-icon">
+                        <button class="nav-btn menu-nav-btn mb-0 pb-0" role="button">
+                           <span class="menu-open">
+                              <img src="/images/utils/hamburger.svg">
+                              <div class="">Menu</div>
+                           </span>
+                           <span class="menu-close d-none">
+                              <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" alt="" srcset="">
+                              <div class="text-xs">Close</div>
+                           </span>
+                        </button>
+                     </div>
 
-                              <span class="menu-close d-none">
-                                 <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" alt="" srcset="">
-                                 <div class="text-xs">Close</div>
-                              </span>
+                     <div class="menu-i flex-grow-1  ml-5">
+                        <button class="nav-btn  w-100 mb-0">
+                           <div class="d-flex add-a-vehicle justify-content-evenly">
+                              <div><img src="/images/utils/vehicle-new.svg" alt=""></div>
+                              <div>Add vehicle</div>
+                              <div><img src="/images/utils/header-arrow.svg" alt=""></div>
+                           </div>
+                        </button>
+                     </div>
 
-                           </button>
+                     <div class="input-group   ml-5">
+                        <div class="input-group-prepend">
+                           <button class="btn icon-magnifier p-0" type="submit"></button>
                         </div>
+                        <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
                      </div>
 
-                     <div class="col-md-2">
-                        <div class="text">
-                           <button class="nav-btn  w-100 mb-0">
-                              <div class="d-flex add-a-vehicle justify-content-evenly">
-                                 <div>
-                                    <img src="/images/utils/vehicle-new.svg" alt="">
-                                 </div>
-                                 <div>Add vehicle</div>
-                                 <div>
-                                    <img src="/images/utils/header-arrow.svg" alt="">
-                                 </div>
-                              </div>
-                           </button>
-                        </div>
+                     <div class="menu-i">
+                        <button role="button" class="w-100 mb-0">
+                           <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
+                              <div class="align-self-center"><img src="/images/utils/vehicle-new.svg" alt=""></div>
+                              <div class="align-self-center">Add vehicle</div>
+                              <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
+                           </div>
+                        </button>
                      </div>
 
-                     <div class="col-md-7">
-                        <!-- <button class="btn bg-white mb-0" type="button" id="button-addon1">
-                              <i class="bi bi-search"></i>
-                           </button> -->
-                        <input type="text" class="w-100 search-input bg-white" placeholder="Find parts and products" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                     </div>
 
-                     <div class="col-md-2">
-                        <div class="text">
-                           <a href="#" class="nav-btn  w-100 mb-0">
-                              <div class="d-flex add-a-vehicle justify-content-evenly">
-                                 <div class="ml-3">
-                                    <i class="bi bi-camera-reels-fill"></i>
-                                 </div>
-                                 <div>How to</div>
-                                 <div class="me-2">
-                                    <img src="/images/utils/header-arrow.svg" alt="">
-                                 </div>
-                              </div>
-                           </a>
-                        </div>
-                     </div>
+
+
                   </div>
-               </div>
-
-               <?php echo $__env->make('_partials.nav_categories', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+               </nav>
             </div>
             <!-- End .container -->
          </div>

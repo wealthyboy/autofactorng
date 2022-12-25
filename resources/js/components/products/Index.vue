@@ -1,8 +1,6 @@
 <template>
-
   <div class="row">
-
-    <div class="col-lg-9 order-lg-2">
+    <div class="col-lg-9 order-lg-1">
 
       <div
         v-if="loading"
@@ -71,16 +69,150 @@
 
         </div>
       </div>
+      <nav
+        class="toolbox sticky-header"
+        data-sticky-options="{'mobile': true}"
+      >
+        <div class="toolbox-left">
+          <a
+            href="#"
+            class="sidebar-toggle"
+          >
+            <svg
+              data-name="Layer 3"
+              id="Layer_3"
+              viewBox="0 0 32 32"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line
+                x1="15"
+                x2="26"
+                y1="9"
+                y2="9"
+                class="cls-1"
+              ></line>
+              <line
+                x1="6"
+                x2="9"
+                y1="9"
+                y2="9"
+                class="cls-1"
+              ></line>
+              <line
+                x1="23"
+                x2="26"
+                y1="16"
+                y2="16"
+                class="cls-1"
+              ></line>
+              <line
+                x1="6"
+                x2="17"
+                y1="16"
+                y2="16"
+                class="cls-1"
+              ></line>
+              <line
+                x1="17"
+                x2="26"
+                y1="23"
+                y2="23"
+                class="cls-1"
+              ></line>
+              <line
+                x1="6"
+                x2="11"
+                y1="23"
+                y2="23"
+                class="cls-1"
+              ></line>
+              <path
+                d="M14.5,8.92A2.6,2.6,0,0,1,12,11.5,2.6,2.6,0,0,1,9.5,8.92a2.5,2.5,0,0,1,5,0Z"
+                class="cls-2"
+              ></path>
+              <path
+                d="M22.5,15.92a2.5,2.5,0,1,1-5,0,2.5,2.5,0,0,1,5,0Z"
+                class="cls-2"
+              ></path>
+              <path
+                d="M21,16a1,1,0,1,1-2,0,1,1,0,0,1,2,0Z"
+                class="cls-3"
+              ></path>
+              <path
+                d="M16.5,22.92A2.6,2.6,0,0,1,14,25.5a2.6,2.6,0,0,1-2.5-2.58,2.5,2.5,0,0,1,5,0Z"
+                class="cls-2"
+              ></path>
+            </svg>
+            <span>Filter</span>
+          </a>
 
-      <product-nav
-        @handle:per_page="perPage"
-        @handle:sorting="sort"
-        :meta="meta"
-        v-if="!loading"
-      />
+          <div class="toolbox-item toolbox-sort">
+            <label>Sort By:</label>
 
-      <div class="row pb-4 g-1">
+            <div class="select-custom">
+              <select
+                name="orderby"
+                @change="sort($event)"
+                class="form-control orderby"
+              >
+                <option
+                  value="menu_order"
+                  selected="selected"
+                >Default sorting</option>
+                <option value="rating">Sort by average rating</option>
+                <option value="price,asc">Sort by price: low to high</option>
+                <option value="price,desc">Sort by price: high to low</option>
+              </select>
+            </div>
+            <!-- End .select-custom -->
 
+          </div>
+          <!-- End .toolbox-item -->
+        </div>
+        <!-- End .toolbox-left -->
+
+        <div class="toolbox-right">
+          <div class="toolbox-item toolbox-show">
+            <label>Show:</label>
+
+            <div class="select-custom">
+              <select
+                name="count"
+                class="form-control"
+                @change="per_page"
+              >
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="40">40</option>
+                <option value="50">50</option>
+              </select>
+            </div>
+            <!-- End .select-custom -->
+          </div>
+          <!-- End .toolbox-item -->
+
+          <div class="toolbox-item layout-modes">
+            <a
+              href="#"
+              class="layout-btn btn-grid"
+              title="Grid"
+            >
+              <i class="icon-mode-grid"></i>
+            </a>
+            <a
+              href="category-li.html"
+              class="layout-btn btn-list active"
+              title="List"
+            >
+              <i class="icon-mode-list"></i>
+            </a>
+          </div>
+          <!-- End .layout-modes -->
+        </div>
+        <!-- End .toolbox-right -->
+      </nav>
+
+      <div class="row pb-4">
         <template v-if="!loading && products.length">
           <product
             v-for="product in products"
@@ -99,10 +231,10 @@
         </template>
 
       </div>
+
       <nav class="toolbox toolbox-pagination">
         <div class="toolbox-item toolbox-show">
           <span>{{ meta.from }}- {{ meta.to }} of {{meta.total}} Records</span>
-
         </div>
         <!-- End .toolbox-item -->
         <div
@@ -121,31 +253,32 @@
         </div>
 
       </nav>
+
     </div>
     <!-- End .col-lg-9 -->
+
     <div class="sidebar-overlay"></div>
-    <aside class="sidebar-shop col-lg-3 order-lg-1 mobile-sidebar">
-      <h2>FILTER RESULTS</h2>
-      <div class="underline"></div>
-      <filters
-        v-if="search_filters.brand.items.length"
-        :name="'brands'"
-        :objs="search_filters.brand.items"
-        @handle:filter="handleFilter"
-      ></filters>
+    <aside class="sidebar-shop col-lg-3 order-lg-first mobile-sidebar">
+      <div class="sidebar-wrapper">
+        <filters
+          v-if="search_filters.brand.items.length"
+          :name="'brands'"
+          :objs="search_filters.brand.items"
+          @handle:filter="handleFilter"
+        ></filters>
 
-      <filters
-        class="mt-4"
-        :name="'prices'"
-        :objs="search_filters.price.items"
-        @handle:filter="handleFilter"
-      ></filters>
-
+        <filters
+          class="mt-4"
+          :name="'prices'"
+          :objs="search_filters.price.items"
+          @handle:filter="handleFilter"
+        ></filters>
+      </div>
       <!-- End .sidebar-wrapper -->
     </aside>
     <!-- End .col-lg-3 -->
   </div>
-
+  <!-- End .row -->
 </template>
 
 <script>

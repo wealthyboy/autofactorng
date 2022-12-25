@@ -1,13 +1,17 @@
 window._ = require('lodash');
 
 try {
-    require('bootstrap');
-    require('../../public/js/optional/isotope.pkgd.min.js')
-    require('../../public/js/plugins.min.js')
-    require('../../public/js/jquery.appear.min.js')
-    require('../../public/js/main.min.js')
 
-} catch (e) {}
+    require('../assets/js/bootstrap.bundle.min.js')
+    require('../assets/js/optional/isotope.pkgd.min.js')
+    require('../assets/js/plugins.min.js')
+    require('../assets/js/jquery.appear.min.js')
+    require('../assets/js/nouislider.min.js')
+    require('../assets/js/main.min.js')
+
+} catch (e) {
+
+}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

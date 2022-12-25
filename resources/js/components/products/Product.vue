@@ -1,8 +1,14 @@
 <template>
+
   <div class="col-sm-12 col-6 product-default left-details product-list mb-2">
     <figure>
       <a :href="product.link">
-
+        <img
+          :src="product.image_to_show"
+          width="250"
+          height="250"
+          alt="product"
+        />
         <img
           :src="product.image_to_show"
           width="250"
@@ -11,13 +17,10 @@
         />
       </a>
     </figure>
-    <div class="product-details flex-grow-1">
+    <div class="product-details">
 
-      <h3 class="product-title"> <a :href="product.link">{{product.name }}</a>
+      <h3 class="product-title"> <a :href="product.link">{{ product.name }}</a>
       </h3>
-      <p>
-        SKU #{{product.sku}}
-      </p>
       <div class="ratings-container">
         <div class="product-ratings">
           <span
@@ -30,40 +33,33 @@
         <!-- End .product-ratings -->
       </div>
       <!-- End .product-container -->
-      <p
-        v-if="showFitText"
-        class="product-description"
-      >
-        <check-vehicle :fitText="product.fitText" />
-      </p>
 
       <div class="price-box">
 
         <template v-if="product.discounted_price">
           <span class="old-price">{{ product.currency }}{{  product.formatted_sale_price }}</span>
-          <span class="new-price">{{ product.currency }}{{  product.formatted_price }}</span>
+          <span class="product-price">{{ product.currency }}{{  product.formatted_price }}</span>
         </template>
         <template v-else>
-          <span class="new-price">{{ product.currency }}{{  product.formatted_price }}</span>
+          <span class="product-price">{{ product.currency }}{{  product.formatted_price }}</span>
         </template>
       </div>
-
+      <!-- End .price-box -->
       <div class="product-action">
         <a
           @click.prevent="addToCart(product.id)"
-          href="category-list.html#"
-          class="btn-icon btn-add-cart w-100 product-type-simple"
+          href="#"
+          class="btn-icon btn-add-cart product-type-simple"
         >
           <i class="icon-shopping-cart"></i>
           <span>ADD TO CART</span>
         </a>
 
       </div>
-
     </div>
-
     <!-- End .product-details -->
   </div>
+
 </template>
 
 <script>

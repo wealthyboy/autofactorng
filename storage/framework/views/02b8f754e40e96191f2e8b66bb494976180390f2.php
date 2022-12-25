@@ -56,33 +56,46 @@
     <input name="search" type="hidden" value="1" />
     <div class="row mt-4 mb-3">
         <div class="col-3">
-            <div class="input-group input-group-outline">
-                <label class="form-label">Rim</label>
-                <input type="text" name="rim" class="form-control" placeholder="">
-            </div>
+
+            <select name="rim" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
+                <option selected value=""> Select Year</option>
+                <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option class="" value="<?php echo e($year); ?>"><?php echo e($year); ?> </option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </select>
         </div>
 
 
 
         <div class="col-3">
-            <div class="input-group input-group-outline">
-                <label class="form-label">Height</label>
-                <input type="text" name="height" class="form-control" placeholder="">
-            </div>
+
+            <select name="height" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
+                <option selected value=""> Select Year</option>
+                <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option class="" value="<?php echo e($year); ?>"><?php echo e($year); ?> </option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </select>
         </div>
 
         <div class="col-3">
-            <div class="input-group input-group-outline">
-                <label class="form-label">Width</label>
-                <input type="text" name="width" class="form-control" placeholder="">
-            </div>
+
+            <select name="width" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
+                <option selected value=""> Select Year</option>
+                <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option class="" value="<?php echo e($year); ?>"><?php echo e($year); ?> </option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </select>
+
         </div>
 
         <div class="col-3">
-            <div class="input-group input-group-outline">
-                <label class="form-label">Amphere</label>
-                <input type="text" name="amphere" class="form-control" placeholder="">
-            </div>
+            <select name="amphere" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
+                <option selected value=""> Select Year</option>
+                <?php $__currentLoopData = $years; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $year): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option class="" value="<?php echo e($year); ?>"><?php echo e($year); ?> </option>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </select>
+
         </div>
     </div>
 
