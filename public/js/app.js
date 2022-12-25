@@ -23069,7 +23069,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8
   /* PROPS */
   , ["objs", "onHandle:filter"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_filters, {
-    "class": "mt-4",
+    "class": "",
     name: 'prices',
     objs: $props.search_filters.price.items,
     "onHandle:filter": $options.handleFilter

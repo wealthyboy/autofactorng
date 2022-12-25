@@ -268,7 +268,7 @@
         ></filters>
 
         <filters
-          class="mt-4"
+          class=""
           :name="'prices'"
           :objs="search_filters.price.items"
           @handle:filter="handleFilter"
