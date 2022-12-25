@@ -77,12 +77,12 @@ class ProductController extends Table
                 $query->where('categories.name', 'like', '%' . $request->q . '%')
                     ->orWhere('products.product_name', 'like', '%' . $request->q  . '%')
                     ->orWhere('products.sku', 'like', '%' .  $request->q  . '%');
-            })->groupBy('products.id')->paginate(100)->appends(request()->all());
+            })->groupBy('products.id')->orderBy('created_at', 'desc')->paginate(100)->appends(request()->all());
         }
 
         if (!request()->filled('q') && !request()->filled('search')) {
             $products = Product::with('categories')
-                ->orderBy('created_at', 'desc')->paginate(10);
+                ->orderBy('created_at', 'desc')->paginate(100);
         }
 
         // dd($products);
