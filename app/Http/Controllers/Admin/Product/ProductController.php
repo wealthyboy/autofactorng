@@ -75,6 +75,7 @@ class ProductController extends Table
 
             $request = request();
             $products = Product::where('product_name', 'like', '%' . $request->q . '%')->paginate(100)->appends(request()->all());
+            dd($products);
         } else {
             $products = Product::with('categories')
                 ->orderBy('created_at', 'desc')->paginate(100);
