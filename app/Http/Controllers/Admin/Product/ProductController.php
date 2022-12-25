@@ -72,7 +72,8 @@ class ProductController extends Table
         }
 
         if (request()->filled('q')) {
-            $products = Product::paginate(100);
+            $products = Product::with('categories')
+                ->orderBy('created_at', 'desc')->paginate(100);
         }
 
 
