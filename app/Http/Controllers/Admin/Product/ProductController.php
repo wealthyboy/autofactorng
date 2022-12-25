@@ -80,7 +80,6 @@ class ProductController extends Table
                     ->orWhere('products.sku', 'like', '%' . $request->q . '%');
             });
 
-
             $products = $query->paginate(100);
             $products->appends(request()->all());
         } else {
