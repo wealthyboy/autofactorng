@@ -79,8 +79,10 @@ class ProductController extends Table
         if (!request()->filled('q') && !request()->filled('search')) {
             $products = Product::with('categories')
                 ->orderBy('created_at', 'desc')->paginate(10);
-            dd($products);
         }
+
+        dd($products);
+
 
         $products = $this->getColumnListings(request(), $products);
 
