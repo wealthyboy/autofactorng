@@ -72,8 +72,12 @@ class ProductController extends Table
         }
 
         if (request()->filled('q')) {
-            $products = Product::with('categories')
-                ->orderBy('created_at', 'desc')->paginate(100);
+            $request = request();
+            $products =  Product::whereHas('categories', function ($query) use ($request) {
+                $query->where('categories.name', 'like', '%' . $request->q . '%')
+                    ->orWhere('products.product_name', 'like', '%' . $request->q  . '%')
+                    ->orWhere('products.sku', 'like', '%' .  $request->q  . '%');
+            })->groupBy('products.id')->paginate(100)->appends(request()->all());
         }
 
         if (!request()->filled('q') && !request()->filled('search')) {
