@@ -66,6 +66,11 @@ class ProductController extends Table
         $categories = Category::parents()->get();
         $attributes = Attribute::parents()->orderBy('sort_order', 'asc')->get();
         $years = Helper::years();
+        $category = Category::first();
+        $rims = Product::getFilterLists('radius');
+        $widths = Product::getFilterLists('width');
+        $profiles = Product::getFilterLists('height');
+        $ampheres = Product::getFilterLists('amphere');
 
         if (request()->filled('search')) {
             $products = $this->filter(request());
@@ -92,7 +97,7 @@ class ProductController extends Table
 
         $years = Helper::years();
         $makes = Attribute::where('type', 'make')->get();
-        return view('admin.products.index', compact('products', 'makes', 'brands', 'categories', 'attributes', 'years'));
+        return view('admin.products.index', compact('ampheres', 'profiles', 'widths', 'rims', 'products', 'makes', 'brands', 'categories', 'attributes', 'years'));
     }
 
 

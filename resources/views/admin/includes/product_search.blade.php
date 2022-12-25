@@ -56,33 +56,46 @@
     <input name="search" type="hidden" value="1" />
     <div class="row mt-4 mb-3">
         <div class="col-3">
-            <div class="input-group input-group-outline">
-                <label class="form-label">Rim</label>
-                <input type="text" name="rim" class="form-control" placeholder="">
-            </div>
+
+            <select name="rim" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
+                <option selected value=""> Select Rim</option>
+                @foreach($rims as $rim)
+                <option class="" value="{{ $rim->radius }}">{{ $rim->radius }} </option>
+                @endforeach
+            </select>
         </div>
 
 
 
         <div class="col-3">
-            <div class="input-group input-group-outline">
-                <label class="form-label">Height</label>
-                <input type="text" name="height" class="form-control" placeholder="">
-            </div>
+
+            <select name="height" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
+                <option selected value=""> Select Year</option>
+                @foreach($years as $year)
+                <option class="" value="{{ $year }}">{{ $year }} </option>
+                @endforeach
+            </select>
         </div>
 
         <div class="col-3">
-            <div class="input-group input-group-outline">
-                <label class="form-label">Width</label>
-                <input type="text" name="width" class="form-control" placeholder="">
-            </div>
+
+            <select name="width" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
+                <option selected value=""> Select Year</option>
+                @foreach($years as $year)
+                <option class="" value="{{ $year }}">{{ $year }} </option>
+                @endforeach
+            </select>
+
         </div>
 
         <div class="col-3">
-            <div class="input-group input-group-outline">
-                <label class="form-label">Amphere</label>
-                <input type="text" name="amphere" class="form-control" placeholder="">
-            </div>
+            <select name="amphere" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
+                <option selected value=""> Select Year</option>
+                @foreach($years as $year)
+                <option class="" value="{{ $year }}">{{ $year }} </option>
+                @endforeach
+            </select>
+
         </div>
     </div>
 
