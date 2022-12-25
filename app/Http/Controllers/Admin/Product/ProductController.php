@@ -74,13 +74,11 @@ class ProductController extends Table
         if (request()->filled('q')) {
 
             $request = request();
-            $products = Product::where('product_name', 'like', '%' . $request->q . '%')->paginate(5)->appends(request()->all());
+            $products = Product::where('product_name', 'like', '%' . $request->q . '%')->paginate(100)->appends(request()->all());
         } else {
             $products = Product::with('categories')
                 ->orderBy('created_at', 'desc')->paginate(100);
         }
-
-        dd($products);
 
 
         $products = $this->getColumnListings(request(), $products);
