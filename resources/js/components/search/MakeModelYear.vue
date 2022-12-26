@@ -11,7 +11,7 @@
         @change="getNext($event)"
       >
         <option
-          value=""
+          value="Select years"
           selected="selected"
         >Select years</option>
         <option
