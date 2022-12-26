@@ -1,31 +1,33 @@
 <template>
 
   <div class="w-100 p-1 align-self-center">
-    <div class="form-floating">
+
+    <div class="select-custom">
+      <label>Select years</label>
       <select
-        class="form-select"
-        id="floatingSelectGrid"
-        aria-label="Floating label select example"
         name="year"
+        class="form-control"
         v-model="form.year"
         data-next="makes"
         @change="getNext($event)"
       >
         <option
+          value=""
+          selected="selected"
+        >NY</option>
+        <option
           v-for="year in years"
           :key="year"
           :value="year"
         >{{ year }}</option>
-
       </select>
-      <label for="floatingSelectGrid">Select years</label>
     </div>
   </div>
   <div class=" w-100 p-1 align-self-center">
-    <div class="form-floating">
+    <div class="select-custom">
+      <label>Select Model</label>
       <select
-        class="form-select"
-        id="floatingSelectGrid"
+        class="form-control"
         @change="getNext($event)"
         name="make"
         data-next="models"
@@ -40,17 +42,15 @@
           :key="make.id"
           :value="make.id"
         >{{ make.name }}</option>
-
       </select>
-      <label for="floatingSelectGrid">Select Model</label>
     </div>
+
   </div>
   <div class=" w-100 p-1 align-self-center">
-    <div class="form-floating">
+    <div class="select-custom">
+      <label>Select Make</label>
       <select
-        class="form-select"
-        id="floatingSelectGrid"
-        aria-label="Floating label select example"
+        class="form-control"
         name="model"
         @change="getNext($event)"
         v-model="form.model_id"
@@ -65,17 +65,15 @@
           :key="model.id"
           :value="model.id"
         >{{ model.name }}</option>
-
       </select>
-      <label for="floatingSelectGrid">Select Make</label>
     </div>
+
   </div>
   <div class="col2 w-100 p-1 align-self-center">
-    <div class="form-floating">
+    <div class="select-custom">
+      <label>Select Engine</label>
       <select
-        class="form-select"
-        id="floatingSelectGrid"
-        aria-label="Floating label select example"
+        class="form-control"
         name="engine_id"
         @change="getNext($event)"
         v-model="form.engine_id"
@@ -92,10 +90,9 @@
           :value="engine.id"
         >{{ engine.name }}
         </option>
-
       </select>
-      <label for="floatingSelectGrid">Select Engine</label>
     </div>
+
   </div>
 
 </template>

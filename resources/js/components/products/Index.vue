@@ -401,6 +401,7 @@ export default {
     },
     getProducts(url) {
       this.loading = true;
+      this.list = true;
       axios
         .get(url)
         .then((res) => {
