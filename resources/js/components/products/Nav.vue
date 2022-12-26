@@ -123,9 +123,10 @@
 
       <div class="toolbox-item layout-modes">
         <a
-          href="category.html"
+          href="#"
           class="layout-btn btn-grid"
           title="Grid"
+          @click.prevent="list"
         >
           <i class="icon-mode-grid"></i>
         </a>
@@ -133,6 +134,7 @@
           href="category-list.html"
           class="layout-btn btn-list active"
           title="List"
+          @click.prevent="list"
         >
           <i class="icon-mode-list"></i>
         </a>
@@ -146,13 +148,17 @@
 <script>
 export default {
   props: ["name", "objs", "meta"],
-  emits: ["handle:sorting", "handle:per_page"],
+  emits: ["handle:sorting", "handle:per_page", "handle:listing"],
   setup(props, { emit }) {
     function sort(e) {
       let sort_by = $(".orderby").val();
       if (sort_by !== "") {
         emit("handle:sorting", { sort_by });
       }
+    }
+
+    function list(e) {
+      emit("handle:listing");
     }
 
     function per_page() {
@@ -165,6 +171,7 @@ export default {
     return {
       sort,
       per_page,
+      list,
     };
   },
 };

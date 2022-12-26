@@ -74,6 +74,7 @@
         @handle:per_page="perPage"
         @handle:sorting="sort"
         :meta="meta"
+        @handle:listing="listing"
       />
 
       <div class="row pb-4">
@@ -226,7 +227,9 @@ export default {
       window.history.pushState({}, "", url);
       this.getProducts(location.href);
     },
-
+    listing(type) {
+      this.list = !this.list;
+    },
     handleBatteryFilter(data) {
       const url = new URL(location.href);
       url.searchParams.set("amphere", data.amphere);
@@ -258,9 +261,9 @@ export default {
       window.history.pushState({}, "", url);
       this.getProducts(url);
     },
+
     getProducts(url) {
       this.loading = true;
-      this.list = true;
       axios
         .get(url)
         .then((res) => {
