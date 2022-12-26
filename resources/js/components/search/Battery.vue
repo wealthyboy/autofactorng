@@ -7,6 +7,7 @@
         v-model="form.amphere"
         data-next="amphere"
         @change="sendData($event)"
+        class="form-control"
       >
         <option value="0">Select Amphere</option>
 
