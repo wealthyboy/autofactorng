@@ -1,7 +1,7 @@
 <template>
 
   <div
-    v-if="!list"
+    v-if="list == 'Grid'"
     class="col-6 col-sm-4 col-md-3"
   >
     <div class="product-default">
@@ -71,7 +71,7 @@
   </div>
 
   <div
-    v-if="list"
+    v-if="list == 'List'"
     class="col-sm-12 col-6 product-default left-details product-list mb-2"
   >
     <figure>
@@ -143,7 +143,7 @@ export default {
   props: {
     product: Object,
     showFitText: Boolean,
-    list: Boolean,
+    list: String,
   },
   components: { CheckVehicle },
   data() {

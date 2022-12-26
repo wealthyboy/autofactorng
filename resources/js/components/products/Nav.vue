@@ -126,15 +126,18 @@
           href="#"
           class="layout-btn btn-grid"
           title="Grid"
-          @click.prevent="list"
+          :class="{'active': listing == 'Grid'}"
+          @click.prevent="list('Grid')"
         >
           <i class="icon-mode-grid"></i>
         </a>
+
         <a
-          href="category-list.html"
-          class="layout-btn btn-list active"
+          href="#"
+          class="layout-btn btn-list"
           title="List"
-          @click.prevent="list"
+          :class="{'active': listing == 'List'}"
+          @click.prevent="list('List')"
         >
           <i class="icon-mode-list"></i>
         </a>
@@ -146,10 +149,14 @@
 </template>
 
 <script>
+import { ref } from "vue";
+
 export default {
   props: ["name", "objs", "meta"],
   emits: ["handle:sorting", "handle:per_page", "handle:listing"],
   setup(props, { emit }) {
+    const listing = ref("List");
+
     function sort(e) {
       let sort_by = $(".orderby").val();
       if (sort_by !== "") {
@@ -157,8 +164,10 @@ export default {
       }
     }
 
-    function list(e) {
-      emit("handle:listing");
+    function list(t) {
+      console.log(t);
+      listing.value = t;
+      emit("handle:listing", { t });
     }
 
     function per_page() {
@@ -172,6 +181,7 @@ export default {
       sort,
       per_page,
       list,
+      listing,
     };
   },
 };

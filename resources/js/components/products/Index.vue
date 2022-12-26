@@ -179,7 +179,7 @@ export default {
       full_width: false,
       loading: true,
       searchText: null,
-      list: true,
+      list: "List",
 
       url: location.href + "?get=1",
     };
@@ -228,7 +228,7 @@ export default {
       this.getProducts(location.href);
     },
     listing(type) {
-      this.list = !this.list;
+      this.list = type.t;
     },
     handleBatteryFilter(data) {
       const url = new URL(location.href);
