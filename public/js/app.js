@@ -19758,7 +19758,7 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
-      amphere: "Choose one",
+      amphere: "0",
       type: "battery"
     });
 

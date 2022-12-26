@@ -31,7 +31,7 @@ export default {
   emits: ["do:filter"],
   setup(props, { emit }) {
     const form = reactive({
-      amphere: "Choose one",
+      amphere: "0",
       type: "battery",
     });
 
