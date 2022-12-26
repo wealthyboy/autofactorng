@@ -11,7 +11,7 @@
         @change="getNext($event)"
       >
         <option
-          value="Select years"
+          value="0"
           selected="selected"
         >Select years</option>
         <option
@@ -112,7 +112,7 @@ export default {
     });
 
     const form = reactive({
-      year: "Select year",
+      year: "0",
       make_id: "Choose one",
       model_id: "Choose one",
       engine_id: "Choose one",

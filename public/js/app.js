@@ -19790,7 +19790,7 @@ __webpack_require__.r(__webpack_exports__);
       engines: ""
     });
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
-      year: "Select year",
+      year: "0",
       make_id: "Choose one",
       model_id: "Choose one",
       engine_id: "Choose one",
@@ -23625,7 +23625,7 @@ var _hoisted_2 = {
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-  value: "Select years",
+  value: "0",
   selected: "selected"
 }, "Select years", -1
 /* HOISTED */
