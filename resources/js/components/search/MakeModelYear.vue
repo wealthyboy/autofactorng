@@ -112,7 +112,7 @@ export default {
     });
 
     const form = reactive({
-      year: "Choose one",
+      year: "Select year",
       make_id: "Choose one",
       model_id: "Choose one",
       engine_id: "Choose one",
