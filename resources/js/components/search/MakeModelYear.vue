@@ -13,7 +13,7 @@
         <option
           value="0"
           selected="selected"
-        >Select years</option>
+        >Select year</option>
         <option
           v-for="year in years"
           :key="year"

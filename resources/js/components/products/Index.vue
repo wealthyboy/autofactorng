@@ -71,7 +71,6 @@
         </div>
       </div>
       <nav
-        v-if="!loading"
         class="toolbox sticky-header mt-2"
         data-sticky-options="{'mobile': true}"
       >
