@@ -23038,8 +23038,48 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_10 = [_hoisted_7, _hoisted_8, _hoisted_9];
+var _hoisted_11 = {
+  "class": "toolbox-right"
+};
+var _hoisted_12 = {
+  "class": "toolbox-item toolbox-show"
+};
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"toolbox-right\"><div class=\"toolbox-item toolbox-show\"><label>Show:</label><div class=\"select-custom\"><select name=\"count\" class=\"form-control\"><option value=\"12\">12</option><option value=\"24\">24</option><option value=\"36\">36</option></select></div><!-- End .select-custom --></div><!-- End .toolbox-item --><div class=\"toolbox-item layout-modes\"><a href=\"category.html\" class=\"layout-btn btn-grid\" title=\"Grid\"><i class=\"icon-mode-grid\"></i></a><a href=\"category-list.html\" class=\"layout-btn btn-list active\" title=\"List\"><i class=\"icon-mode-list\"></i></a></div><!-- End .layout-modes --></div>", 1);
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", null, "Show:", -1
+/* HOISTED */
+);
+
+var _hoisted_14 = {
+  "class": "select-custom"
+};
+
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "20"
+}, "20", -1
+/* HOISTED */
+);
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "30"
+}, "30", -1
+/* HOISTED */
+);
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "40"
+}, "40", -1
+/* HOISTED */
+);
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "50"
+}, "50", -1
+/* HOISTED */
+);
+
+var _hoisted_19 = [_hoisted_15, _hoisted_16, _hoisted_17, _hoisted_18];
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"toolbox-item layout-modes\"><a href=\"category.html\" class=\"layout-btn btn-grid\" title=\"Grid\"><i class=\"icon-mode-grid\"></i></a><a href=\"category-list.html\" class=\"layout-btn btn-list active\" title=\"List\"><i class=\"icon-mode-list\"></i></a></div>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("nav", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
@@ -23050,7 +23090,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "form-control orderby"
   }, _hoisted_10, 32
   /* HYDRATE_EVENTS */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .select-custom ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .toolbox-item ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .toolbox-left "), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .toolbox-right ")]);
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .select-custom ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .toolbox-item ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .toolbox-left "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    name: "count",
+    "class": "form-control per_page",
+    onChange: _cache[1] || (_cache[1] = function () {
+      return $setup.per_page && $setup.per_page.apply($setup, arguments);
+    })
+  }, _hoisted_19, 32
+  /* HYDRATE_EVENTS */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .select-custom ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .toolbox-item "), _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .layout-modes ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .toolbox-right ")]);
 }
 
 /***/ }),
