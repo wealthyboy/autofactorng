@@ -70,6 +70,7 @@
         </div>
       </div>
       <nav
+        v-if="!loading"
         class="toolbox sticky-header"
         data-sticky-options="{'mobile': true}"
       >
