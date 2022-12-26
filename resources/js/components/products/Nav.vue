@@ -1,7 +1,7 @@
 <template>
 
   <nav
-    class="toolbox sticky-header"
+    class="toolbox sticky-header mt-2"
     data-sticky-options="{'mobile': true}"
   >
     <div class="toolbox-left">
@@ -82,18 +82,17 @@
 
         <div class="select-custom">
           <select
+            @change="sort($event)"
             name="orderby"
-            class="form-control"
+            class="form-control orderby"
           >
             <option
               value="menu_order"
               selected="selected"
             >Default sorting</option>
-            <option value="popularity">Sort by popularity</option>
             <option value="rating">Sort by average rating</option>
-            <option value="date">Sort by newness</option>
-            <option value="price">Sort by price: low to high</option>
-            <option value="price-desc">Sort by price: high to low</option>
+            <option value="price,asc">Sort by price: low to high</option>
+            <option value="price,desc">Sort by price: high to low</option>
           </select>
         </div>
         <!-- End .select-custom -->

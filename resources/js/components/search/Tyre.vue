@@ -1,57 +1,62 @@
 <template>
 
   <div class="w-100 p-1 align-self-center">
-    <general-select
-      id="rim"
-      :error="v$.rim"
-      v-model="form.rim"
-      name="Select Rim"
-      @change="handleFilter($event)"
-    >
-      <option
-        v-for="rim in rims"
-        :key="rim.radius"
-        :value="rim.radius"
+
+    <div class="select-custom">
+      <select
+        name="rim"
+        class="form-control"
+        v-model="form.rim"
       >
-        {{ rim.radius }}
-      </option>
+        <option value="0">Select Rim</option>
 
-    </general-select>
+        <option
+          v-for="rim in rims"
+          :key="rim.radius"
+          :value="rim.radius"
+        >
+          {{ rim.radius }}
+        </option>
+      </select>
+    </div>
   </div>
 
   <div class="w-100 p-1 align-self-center">
-    <general-select
-      id="width"
-      :error="v$.width"
-      v-model="form.width"
-      name="Select Width"
-      @change="handleFilter($event)"
-    >
-      <option
-        v-for="width in widths"
-        :key="width.width"
-        :value="width.width"
-      >{{ width.width }}</option>
 
-    </general-select>
+    <div class="select-custom">
+      <select
+        v-model="form.width"
+        name="Select Width"
+        class="form-control"
+      >
+        <option value="0">Select Width</option>
+
+        <option
+          v-for="width in widths"
+          :key="width.width"
+          :value="width.width"
+        >{{ width.width }}</option>
+      </select>
+    </div>
   </div>
 
   <div class="w-100 p-1 align-self-center">
-    <general-select
-      id="profile"
-      :error="v$.profile"
-      v-model="form.profile"
-      name="Select Profile"
-      @change="handleFilter($event)"
-    >
 
-      <option
-        v-for="profile in profiles"
-        :key="profile.height"
-        :value="profile.height"
-      >{{ profile.height }}</option>
-
-    </general-select>
+    <div class="select-custom">
+      <select
+        v-model="form.profile"
+        name="Select Profile"
+        class="form-control"
+        @change="handleFilter($event)"
+      >
+        <option value="0">Select Profile</option>
+        <option
+          v-for="profile in profiles"
+          :key="profile.height"
+          :value="profile.height"
+        >{{ profile.height }}</option>
+      </select>
+    </div>
   </div>
 
 </template>
@@ -73,9 +78,9 @@ export default {
   },
   setup(props, { emit }) {
     const form = reactive({
-      rim: null,
-      profile: null,
-      width: null,
+      rim: 0,
+      profile: 0,
+      width: 0,
       type: "tyre",
     });
 
@@ -83,12 +88,6 @@ export default {
     const v$ = useVuelidate(rules, form);
 
     function handleFilter(e) {
-      this.v$.$touch();
-
-      if (this.v$.$error) {
-        return false;
-      }
-
       emit("do:filter", form);
     }
 
