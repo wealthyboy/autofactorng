@@ -44,7 +44,7 @@
         </div>
         <!-- End .product-container -->
 
-        <div class="price-box align-content-start">
+        <div class="price-box">
 
           <template v-if="product.discounted_price">
             <span class="old-price">{{ product.currency }}{{  product.formatted_sale_price }}</span>

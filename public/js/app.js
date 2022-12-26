@@ -23203,7 +23203,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_10 = {
-  "class": "price-box align-content-start"
+  "class": "price-box"
 };
 var _hoisted_11 = {
   "class": "old-price"
