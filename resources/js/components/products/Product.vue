@@ -21,9 +21,9 @@
           >
         </a>
 
-        <div class="label-group">
+        <!-- <div class="label-group">
           <div class="product-label label-sale">-20%</div>
-        </div>
+        </div> -->
       </figure>
 
       <div class="product-details">
