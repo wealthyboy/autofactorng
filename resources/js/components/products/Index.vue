@@ -25,6 +25,7 @@
         @remove:vehicle="shopWithoutVehicle"
         v-if="!loading && searchText"
         :searchText="searchText"
+        class=""
       />
 
       <div
@@ -71,7 +72,7 @@
       </div>
       <nav
         v-if="!loading"
-        class="toolbox sticky-header"
+        class="toolbox sticky-header mt-2"
         data-sticky-options="{'mobile': true}"
       >
         <div class="toolbox-left">
@@ -197,13 +198,17 @@
               href="#"
               class="layout-btn btn-grid"
               title="Grid"
+              :class="{'active' : !list}"
+              @click.prevent="list = false"
             >
               <i class="icon-mode-grid"></i>
             </a>
             <a
               href="category-li.html"
-              class="layout-btn btn-list active"
+              class="layout-btn btn-list"
+              :class="{'active' : list}"
               title="List"
+              @click.prevent="list = true"
             >
               <i class="icon-mode-list"></i>
             </a>
@@ -219,6 +224,7 @@
             v-for="product in products"
             :key="product.id"
             :product="product"
+            :list="list"
             :showFitText="search_filters.search_type.search == 'make_model_year' ? true: false"
           ></product>
         </template>
@@ -314,6 +320,7 @@ export default {
       full_width: false,
       loading: true,
       searchText: null,
+      list: true,
 
       url: location.href + "?get=1",
     };

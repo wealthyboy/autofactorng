@@ -28,8 +28,6 @@
 
 
       <header class="header">
-
-
          <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
             <div class="container-fluid">
                <div class="header-left col-lg-2 w-auto pl-0">
