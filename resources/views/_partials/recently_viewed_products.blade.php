@@ -1,7 +1,7 @@
 @if (null !== $products)
 
 
-<h4 class="text-uppercase heading-bottom-border mt-4">Out of image - products carousel with arrows</h4>
+<h4 class="text-uppercase heading-bottom-border mt-4">FEATURED PRODUCTS</h4>
 <div class="owl-carousel owl-theme show-nav-hover nav-outer nav-image-center" data-owl-options="{
 					'dots': false,
 					'margin': 10,

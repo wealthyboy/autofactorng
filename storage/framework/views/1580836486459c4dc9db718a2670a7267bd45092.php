@@ -44,12 +44,12 @@
          <div class="price-box">
             <?php if($product->discounted_price): ?>
             <div>
-               <span class="old-price"><?php echo e($product.currency); ?><?php echo e($product.formatted_sale_price); ?></span>
-               <span class="product-price"><?php echo e($product.currency); ?><?php echo e($product.formatted_price); ?></span>
+               <span class="old-price"><?php echo e($product->currency); ?><?php echo e($product->formatted_sale_price); ?></span>
+               <span class="product-price"><?php echo e($product->currency); ?><?php echo e($product->formatted_price); ?></span>
             </div>
             <?php else: ?>
             <div>
-               <span class="product-price"><?php echo e($product.currency); ?><?php echo e($product.formatted_price); ?></span>
+               <span class="product-price"><?php echo e($product->currency); ?><?php echo e($product->formatted_price); ?></span>
             </div>
             <?php endif; ?>
          </div>
