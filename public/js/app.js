@@ -27141,7 +27141,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       name: "",
       nameLink: "#",
       content: "has been added to your cart.",
-      action: '<a href="cart.html" class="btn viewcart">View Cart</a><a href="checkout.html" class="btn btn-dark checkout">Checkout</a>',
+      action: '<a href="/cart" class="btn viewcart">View Cart</a><a href="/checkout" class="btn btn-dark checkout">Checkout</a>',
       delay: 4e3,
       space: 20,
       template: '<div class="minipopup-box"><div class="product"><figure class="product-media"><a href="{{imageLink}}"><img src="{{imageSrc}}" alt="product" width="60" height="60"></a></figure><div class="product-detail"><a href="{{nameLink}}" class="product-name">{{name}}</a><p>{{content}}</p></div></div><div class="product-action">{{action}}</div><button class="mfp-close"></button></div>'
