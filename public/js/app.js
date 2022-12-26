@@ -19763,7 +19763,6 @@ __webpack_require__.r(__webpack_exports__);
     });
 
     function sendData(e) {
-      //form.type = e.target.name;
       emit("do:filter", form);
     }
 
@@ -23568,21 +23567,18 @@ var _hoisted_1 = {
   "class": "w-100 p-1 align-self-center"
 };
 var _hoisted_2 = {
-  "class": "form-floating"
+  "class": "select-custom"
 };
-var _hoisted_3 = ["value"];
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-  "for": "floatingSelectGrid"
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "0"
 }, "Select Amphere", -1
 /* HOISTED */
 );
 
+var _hoisted_4 = ["value"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-    "class": "form-select",
-    id: "floatingSelectGrid",
-    "aria-label": "Floating label select example",
     name: "amphere",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.form.amphere = $event;
@@ -23591,18 +23587,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onChange: _cache[1] || (_cache[1] = function ($event) {
       return $setup.sendData($event);
     })
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.ampheres, function (amphere) {
+  }, [_hoisted_3, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.ampheres, function (amphere) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: amphere.amphere,
       value: amphere.amphere
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(amphere.amphere), 9
     /* TEXT, PROPS */
-    , _hoisted_3);
+    , _hoisted_4);
   }), 128
   /* KEYED_FRAGMENT */
   ))], 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.amphere]]), _hoisted_4])]);
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.amphere]])])]);
 }
 
 /***/ }),

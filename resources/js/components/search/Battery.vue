@@ -1,25 +1,23 @@
 <template>
 
   <div class="w-100 p-1 align-self-center">
-    <div class="form-floating">
+    <div class="select-custom">
       <select
-        class="form-select"
-        id="floatingSelectGrid"
-        aria-label="Floating label select example"
         name="amphere"
         v-model="form.amphere"
         data-next="amphere"
         @change="sendData($event)"
       >
+        <option value="0">Select Amphere</option>
+
         <option
           v-for="amphere in ampheres"
           :key="amphere.amphere"
           :value="amphere.amphere"
         >{{ amphere.amphere }}</option>
-
       </select>
-      <label for="floatingSelectGrid">Select Amphere</label>
     </div>
+
   </div>
 
 </template>
@@ -38,7 +36,6 @@ export default {
     });
 
     function sendData(e) {
-      //form.type = e.target.name;
       emit("do:filter", form);
     }
 
