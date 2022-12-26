@@ -3,7 +3,6 @@
   <div class="w-100 p-1 align-self-center">
 
     <div class="select-custom">
-      <label>Select years</label>
       <select
         name="year"
         class="form-control"
@@ -14,7 +13,7 @@
         <option
           value=""
           selected="selected"
-        >NY</option>
+        >Select years</option>
         <option
           v-for="year in years"
           :key="year"
@@ -25,7 +24,6 @@
   </div>
   <div class=" w-100 p-1 align-self-center">
     <div class="select-custom">
-      <label>Select Model</label>
       <select
         class="form-control"
         @change="getNext($event)"
@@ -36,7 +34,7 @@
         <option
           selected
           value="Choose one"
-        >Choose One</option>
+        >Select Model</option>
         <option
           v-for="make in next.makes"
           :key="make.id"
@@ -48,7 +46,6 @@
   </div>
   <div class=" w-100 p-1 align-self-center">
     <div class="select-custom">
-      <label>Select Make</label>
       <select
         class="form-control"
         name="model"
@@ -59,7 +56,7 @@
         <option
           selected
           value="Choose one"
-        >Choose One</option>
+        >Select Make</option>
         <option
           v-for="model in next.models"
           :key="model.id"
@@ -71,7 +68,6 @@
   </div>
   <div class="col2 w-100 p-1 align-self-center">
     <div class="select-custom">
-      <label>Select Engine</label>
       <select
         class="form-control"
         name="engine_id"
@@ -82,7 +78,7 @@
         <option
           selected
           value="Choose one"
-        >Choose One</option>
+        >Select Engine</option>
 
         <option
           v-for="engine in next.engines"
