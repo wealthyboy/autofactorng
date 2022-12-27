@@ -17,7 +17,7 @@
         class="collapse show"
         data-parent="#accordion"
       >
-        <div>
+        <div class="mt-2">
           <div
             v-for="obj in objs"
             :key="obj.id"
@@ -28,7 +28,10 @@
               :for="obj.name + obj.id"
               class="container"
             >
-              {{ obj.name }}
+              <span class="checkbox-label">
+                {{ obj.name }}
+
+              </span>
 
               <input
                 @change="activateFilter($event)"

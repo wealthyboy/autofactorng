@@ -22746,10 +22746,16 @@ var _hoisted_2 = {
 };
 var _hoisted_3 = ["data-target", "aria-controls"];
 var _hoisted_4 = ["id"];
-var _hoisted_5 = ["for"];
-var _hoisted_6 = ["value", "name", "id"];
+var _hoisted_5 = {
+  "class": "mt-2"
+};
+var _hoisted_6 = ["for"];
+var _hoisted_7 = {
+  "class": "checkbox-label"
+};
+var _hoisted_8 = ["value", "name", "id"];
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "checkmark"
 }, null, -1
 /* HOISTED */
@@ -22769,14 +22775,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: 'collapseOne' + $props.name,
     "class": "collapse show",
     "data-parent": "#accordion"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.objs, function (obj) {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.objs, function (obj) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: obj.id,
       "class": "form-check"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
       "for": obj.name + obj.id,
       "class": "container"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(obj.name) + " ", 1
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(obj.name), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       onChange: _cache[0] || (_cache[0] = function ($event) {
@@ -22788,9 +22794,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       type: "checkbox"
     }, null, 40
     /* PROPS, HYDRATE_EVENTS */
-    , _hoisted_6), _hoisted_7], 8
+    , _hoisted_8), _hoisted_9], 8
     /* PROPS */
-    , _hoisted_5)]);
+    , _hoisted_6)]);
   }), 128
   /* KEYED_FRAGMENT */
   )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])], 8
