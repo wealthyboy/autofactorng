@@ -63,43 +63,46 @@
       />
 
       <div class="row pb-4">
-
-        <div
-          v-if="loading"
-          class="col-sm-12 col-6 product-default left-details product-list mb-2"
-        >
-          <figure
-            style="height: 200px; width: 200px;"
-            class="j-preview"
+        <template v-if="loading">
+          <div
+            v-for="x in 10"
+            :key="x"
+            class="col-sm-12 col-6 product-default left-details product-list mb-2"
           >
-            <a href="#">
+            <figure
+              style="height: 200px; width: 200px;"
+              class="j-preview"
+            >
+              <a href="#">
 
-            </a>
-          </figure>
-          <div class="product-details">
-            <div
-              style="height: 10px; width: 200px;"
-              class=" j-preview mb-2"
-            ></div>
+              </a>
+            </figure>
+            <div class="product-details">
+              <div
+                style="height: 10px; width: 200px;"
+                class=" j-preview mb-2"
+              ></div>
 
-            <div
-              style="height: 10px; width: 200px;"
-              class=" j-preview mb-2"
-            ></div>
-            <!-- End .product-container -->
+              <div
+                style="height: 10px; width: 200px;"
+                class=" j-preview mb-2"
+              ></div>
+              <!-- End .product-container -->
 
-            <div
-              style="height: 10px;width: 200px;"
-              class=" j-preview mb-2"
-            ></div>
+              <div
+                style="height: 10px;width: 200px;"
+                class=" j-preview mb-2"
+              ></div>
 
-            <div
-              style="height: 50px;width: 200px;"
-              class=" j-preview"
-            ></div>
+              <div
+                style="height: 50px;width: 200px;"
+                class=" j-preview"
+              ></div>
+            </div>
+            <!-- End .product-details -->
           </div>
-          <!-- End .product-details -->
-        </div>
+        </template>
+
         <template v-if="!loading && products.length">
           <product
             v-for="product in products"
