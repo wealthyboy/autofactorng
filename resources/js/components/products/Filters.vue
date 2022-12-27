@@ -1,6 +1,9 @@
 <template>
   <div id="accordion">
-    <div class="card card-accordion">
+    <div
+      style="height: 250px; overflow:scroll;"
+      class="card card-accordion"
+    >
       <a
         class="card-header text-uppercase"
         href="contact.html#"
