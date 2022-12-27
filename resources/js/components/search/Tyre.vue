@@ -13,7 +13,7 @@
           value="0"
         >
 
-          Rim
+          Select Rim
         </option>
 
         <option
