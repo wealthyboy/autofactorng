@@ -22742,15 +22742,15 @@ var _hoisted_1 = {
   id: "accordion"
 };
 var _hoisted_2 = {
-  style: {
-    "height": "250px",
-    "overflow": "scroll"
-  },
   "class": "card card-accordion"
 };
 var _hoisted_3 = ["data-target", "aria-controls"];
 var _hoisted_4 = ["id"];
 var _hoisted_5 = {
+  style: {
+    "height": "250px",
+    "overflow": "scroll"
+  },
   "class": "mt-2"
 };
 var _hoisted_6 = ["for"];

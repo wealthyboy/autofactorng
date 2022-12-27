@@ -1,9 +1,6 @@
 <template>
   <div id="accordion">
-    <div
-      style="height: 250px; overflow:scroll;"
-      class="card card-accordion"
-    >
+    <div class="card card-accordion">
       <a
         class="card-header text-uppercase"
         href="contact.html#"
@@ -20,7 +17,10 @@
         class="collapse show"
         data-parent="#accordion"
       >
-        <div class="mt-2">
+        <div
+          style="height: 250px; overflow:scroll;"
+          class="mt-2"
+        >
           <div
             v-for="obj in objs"
             :key="obj.id"
