@@ -13,7 +13,12 @@
         <option
           value="0"
           selected="selected"
-        >Select year</option>
+        >
+
+          <span class=" d-none d-lg-block">Select</span>
+
+          Year
+        </option>
         <option
           v-for="year in years"
           :key="year"
