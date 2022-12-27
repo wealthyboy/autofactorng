@@ -2,7 +2,7 @@
   <div id="accordion">
     <div class="card card-accordion">
       <a
-        class="card-header"
+        class="card-header text-uppercase"
         href="contact.html#"
         data-toggle="collapse"
         :data-target="'#collapseOne' + name"
