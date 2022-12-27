@@ -2,25 +2,6 @@
   <div class="row">
     <div class="col-lg-9 order-lg-1">
 
-      <div
-        v-if="loading"
-        class="d-flex justify-content-center align-content-center  page-loading w-100 h-100"
-      >
-        <div class="align-self-center text-center">
-          <div
-            class="spinner-border"
-            style="width: 7rem; height: 7rem; color:red;"
-            role="status"
-          >
-            <span class="visually-hidden">Loading...</span>
-
-          </div>
-          <div class="mt-4"></div>
-
-        </div>
-
-      </div>
-
       <search-string
         @remove:vehicle="shopWithoutVehicle"
         v-if="!loading && searchText"
@@ -39,7 +20,7 @@
         </div>
         <div
           v-if=" search_filters.search_type.search"
-          class="d-flex justify-content-between  align-content-center py"
+          class="d-flex justify-content-between  align-content-center pt-2"
         >
           <div class="title w-100 p-2  d-none d-lg-block">
             <h3>SET YOUR VEHICLE</h3>
@@ -82,6 +63,43 @@
       />
 
       <div class="row pb-4">
+
+        <div
+          v-if="loading"
+          class="col-sm-12 col-6 product-default left-details product-list mb-2"
+        >
+          <figure
+            style="height: 200px; width: 200px;"
+            class="j-preview"
+          >
+            <a href="#">
+
+            </a>
+          </figure>
+          <div class="product-details">
+            <div
+              style="height: 10px; width: 200px;"
+              class=" j-preview mb-2"
+            ></div>
+
+            <div
+              style="height: 10px; width: 200px;"
+              class=" j-preview mb-2"
+            ></div>
+            <!-- End .product-container -->
+
+            <div
+              style="height: 10px;width: 200px;"
+              class=" j-preview mb-2"
+            ></div>
+
+            <div
+              style="height: 50px;width: 200px;"
+              class=" j-preview"
+            ></div>
+          </div>
+          <!-- End .product-details -->
+        </div>
         <template v-if="!loading && products.length">
           <product
             v-for="product in products"
@@ -103,7 +121,10 @@
       </div>
 
       <nav class="toolbox toolbox-pagination">
-        <div class="toolbox-item toolbox-show">
+        <div
+          v-if="!loading"
+          class="toolbox-item toolbox-show"
+        >
           <span>{{ meta.from }}- {{ meta.to }} of {{meta.total}} Records</span>
         </div>
         <!-- End .toolbox-item -->
@@ -281,3 +302,27 @@ export default {
   },
 };
 </script>
+
+<style>
+.j-preview {
+  border-radius: 10px;
+  border: 1px solid #eee;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: rgb(116, 110, 110);
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 1000px 104px;
+}
+
+@keyframes placeHolderShimmer {
+  0% {
+    background-position: -468px 0;
+  }
+  100% {
+    background-position: 468px 0;
+  }
+}
+</style>
