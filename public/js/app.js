@@ -20174,7 +20174,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "form-floating mb-3"
+  "class": "form-floating"
 };
 var _hoisted_2 = ["value"];
 var _hoisted_3 = {
@@ -22746,8 +22746,15 @@ var _hoisted_2 = {
 };
 var _hoisted_3 = ["data-target", "aria-controls"];
 var _hoisted_4 = ["id"];
-var _hoisted_5 = ["value", "name", "id"];
-var _hoisted_6 = ["for"];
+var _hoisted_5 = ["for"];
+var _hoisted_6 = ["value", "name", "id"];
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "checkmark"
+}, null, -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "card-header",
@@ -22766,24 +22773,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: obj.id,
       "class": "form-check"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-      "class": "form-check-input",
-      type: "checkbox",
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+      "for": obj.name + obj.id,
+      "class": "container"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(obj.name) + " ", 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      onChange: _cache[0] || (_cache[0] = function ($event) {
+        return $setup.activateFilter($event);
+      }),
       value: obj.slug,
       name: $props.name + '[]',
       id: obj.name + obj.id,
-      onChange: _cache[0] || (_cache[0] = function ($event) {
-        return $setup.activateFilter($event);
-      })
+      type: "checkbox"
     }, null, 40
     /* PROPS, HYDRATE_EVENTS */
-    , _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
-      "class": "form-check-label",
-      "for": obj.name + obj.id,
-      role: "button"
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(obj.name), 9
-    /* TEXT, PROPS */
-    , _hoisted_6)]);
+    , _hoisted_6), _hoisted_7], 8
+    /* PROPS */
+    , _hoisted_5)]);
   }), 128
   /* KEYED_FRAGMENT */
   )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "default")])], 8
@@ -22853,7 +22860,7 @@ var _hoisted_8 = {
 };
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "title w-100 p-2"
+  "class": "title w-100 p-2 d-none d-lg-block"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "SET YOUR VEHICLE"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Get an exact fit for your vehicle.")], -1
 /* HOISTED */
 );

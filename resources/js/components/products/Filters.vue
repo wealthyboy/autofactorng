@@ -23,21 +23,21 @@
             :key="obj.id"
             class="form-check"
           >
-            <input
-              class="form-check-input"
-              type="checkbox"
-              :value="obj.slug"
-              :name="name + '[]'"
-              :id="obj.name + obj.id"
-              @change="activateFilter($event)"
-            >
-            <label
-              class="form-check-label"
-              :for="obj.name + obj.id"
-              role="button"
-            >
 
+            <label
+              :for="obj.name + obj.id"
+              class="container"
+            >
               {{ obj.name }}
+
+              <input
+                @change="activateFilter($event)"
+                :value="obj.slug"
+                :name="name + '[]'"
+                :id="obj.name + obj.id"
+                type="checkbox"
+              >
+              <span class="checkmark"></span>
             </label>
           </div>
 

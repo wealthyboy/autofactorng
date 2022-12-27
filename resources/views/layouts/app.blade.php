@@ -49,10 +49,21 @@
                      <h6><span>Call us now</span><a href="tel:#" class="text-dark font1">+123 5678 890</a></h6>
                   </div>
 
+
+
+                  @auth
+                  <a href="/account" class="header-icon" title="account">
+                     <img src="/images/utils/signin.svg" alt="">
+                     <div class="text-sm">Account</div>
+                  </a>
+                  @endauth
+
+                  @guest
                   <a href="/login" class="header-icon" title="login">
                      <img src="/images/utils/signin.svg" alt="">
                      <div class="text-sm">Signin</div>
                   </a>
+                  @endguest
 
 
                   <div class="dropdown cart-dropdown">

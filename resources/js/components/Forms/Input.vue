@@ -1,6 +1,6 @@
 <template>
 
-  <div class="form-floating mb-3">
+  <div class="form-floating ">
     <input
       type="email"
       class="form-control"
