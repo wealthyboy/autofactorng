@@ -23625,9 +23625,7 @@ var _hoisted_2 = {
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "0",
   selected: "selected"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "d-none d-lg-block"
-}, "Select"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Year ")], -1
+}, " Year ", -1
 /* HOISTED */
 );
 
@@ -23642,7 +23640,7 @@ var _hoisted_6 = {
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   selected: "",
   value: "Choose one"
-}, "Select Model", -1
+}, " Model", -1
 /* HOISTED */
 );
 
@@ -23657,7 +23655,7 @@ var _hoisted_10 = {
 var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   selected: "",
   value: "Choose one"
-}, "Select Make", -1
+}, " Make", -1
 /* HOISTED */
 );
 
@@ -23672,7 +23670,7 @@ var _hoisted_14 = {
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   selected: "",
   value: "Choose one"
-}, "Select Engine", -1
+}, " Engine", -1
 /* HOISTED */
 );
 
@@ -23790,8 +23788,9 @@ var _hoisted_2 = {
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  "class": "d-none",
   value: "0"
-}, "Select Rim", -1
+}, " Rim ", -1
 /* HOISTED */
 );
 

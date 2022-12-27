@@ -15,8 +15,6 @@
           selected="selected"
         >
 
-          <span class=" d-none d-lg-block">Select</span>
-
           Year
         </option>
         <option
@@ -39,7 +37,7 @@
         <option
           selected
           value="Choose one"
-        >Select Model</option>
+        > Model</option>
         <option
           v-for="make in next.makes"
           :key="make.id"
@@ -61,7 +59,7 @@
         <option
           selected
           value="Choose one"
-        >Select Make</option>
+        > Make</option>
         <option
           v-for="model in next.models"
           :key="model.id"
@@ -83,7 +81,7 @@
         <option
           selected
           value="Choose one"
-        >Select Engine</option>
+        > Engine</option>
 
         <option
           v-for="engine in next.engines"

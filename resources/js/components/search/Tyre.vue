@@ -8,7 +8,13 @@
         class="form-control"
         v-model="form.rim"
       >
-        <option value="0">Select Rim</option>
+        <option
+          class=" d-none "
+          value="0"
+        >
+
+          Rim
+        </option>
 
         <option
           v-for="rim in rims"
