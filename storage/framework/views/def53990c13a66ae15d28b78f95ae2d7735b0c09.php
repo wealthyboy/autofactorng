@@ -51,7 +51,7 @@
         </div>
         <!-- End .row -->
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid  d-none d-lg-block">
         <div class="row">
             <div class="col-md-6">
                 <div class="header">
@@ -73,6 +73,40 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="container d-sm-block d-lg-none">
+        <div class="mt-8" id="accordion1">
+            <div class="card card-accordion">
+                <a class="card-header collapsed" href="element-accordions.html#" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                    PRODUCT SPECIFICATIONS
+                </a>
+
+                <div id="collapse1" class="collapse" data-parent="#accordion1" style="">
+                    <?php echo html_entity_decode($product->phy_desc) ?>
+
+                </div>
+            </div>
+
+            <div class="card card-accordion">
+                <a class="card-header collapsed" href="element-accordions.html#" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                    PRODUCT DESCRIPTION
+
+                </a>
+
+                <div id="collapse2" class="collapse" data-parent="#accordion1" style="">
+                    <?php echo html_entity_decode($product->description) ?>
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
+
     </div>
     <!-- End .container -->
     <?php $__env->stopSection(); ?>
