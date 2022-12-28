@@ -2,7 +2,7 @@
 
   <div
     v-if="list == 'Grid'"
-    class="col-6 col-sm-4 col-md-3"
+    class="col-6  border col-sm-4 col-md-3"
   >
     <div class="product-default">
       <figure>
@@ -72,7 +72,7 @@
 
   <div
     v-if="list == 'List'"
-    class="col-sm-12 col-6 product-default left-details product-list mb-2"
+    class="col-sm-12 col-6 border product-default left-details product-list mb-2"
   >
     <figure>
       <a :href="product.link">

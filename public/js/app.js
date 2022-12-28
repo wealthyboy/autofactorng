@@ -22827,7 +22827,7 @@ var _hoisted_1 = {
   "class": "row"
 };
 var _hoisted_2 = {
-  "class": "col-lg-9 border order-lg-1"
+  "class": "col-lg-9 order-lg-1"
 };
 var _hoisted_3 = {
   "class": "mb-2"
@@ -23205,7 +23205,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = {
   key: 0,
-  "class": "col-6 col-sm-4 col-md-3"
+  "class": "col-6 border col-sm-4 col-md-3"
 };
 var _hoisted_2 = {
   "class": "product-default"
@@ -23266,7 +23266,7 @@ var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_17 = [_hoisted_15, _hoisted_16];
 var _hoisted_18 = {
   key: 1,
-  "class": "col-sm-12 col-6 product-default left-details product-list mb-2"
+  "class": "col-sm-12 col-6 border product-default left-details product-list mb-2"
 };
 var _hoisted_19 = ["href"];
 var _hoisted_20 = ["src"];
