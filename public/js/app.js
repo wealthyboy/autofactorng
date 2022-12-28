@@ -22827,7 +22827,7 @@ var _hoisted_1 = {
   "class": "row"
 };
 var _hoisted_2 = {
-  "class": "col-lg-9 order-lg-1"
+  "class": "col-lg-9 border order-lg-1"
 };
 var _hoisted_3 = {
   "class": "mb-2"
