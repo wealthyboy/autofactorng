@@ -42,6 +42,7 @@
                 :name="name + '[]'"
                 :id="obj.name + obj.id"
                 type="checkbox"
+                class="form-check-input"
               >
               <span class="checkmark"></span>
             </label>
@@ -62,7 +63,6 @@ export default {
   emits: ["activate:filter"],
   setup(props, { emit }) {
     function activateFilter(e) {
-      //  let sort_by = settings.form_sort_by.serializeArray().shift();
       const qs = [];
 
       // if (sort_by.value !== "") {
@@ -74,7 +74,6 @@ export default {
           qs.push(element.name + "=" + element.value);
         });
       let filterString = "?" + qs.join("&");
-
       emit("handle:filter", { filterString });
     }
 

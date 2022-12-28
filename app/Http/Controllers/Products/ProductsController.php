@@ -34,7 +34,6 @@ class ProductsController extends Controller
         $page_title = implode(" ", explode('-', $category->slug));
         $this->clearMMYCookies($request);
         $products = $this->getProductsData($request, $builder, $category);
-
         if ($request->ajax()) {
             return (new ProductsCollection($products))
                 ->additional([

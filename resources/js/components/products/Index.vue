@@ -9,8 +9,18 @@
         class=""
       />
 
+      <div class="mb-2">
+        <a
+          href="#"
+          @click.prevent="clearfIlters"
+          class="border text-dark p-3 "
+        >
+          <i class="fa fa-times"></i> Clear Filters
+        </a>
+      </div>
+
       <div
-        v-if="!loading && !searchText"
+        v-if=" !searchText"
         class="cta-border cta-bg light "
       >
         <div class="underline w-100"></div>
@@ -114,20 +124,26 @@
         </template>
 
         <template v-if="!loading && !products.length">
-          <div class="empty">
-            <div class="empty-content">
-              <p>No Product found</p>
+          <div class=" h-100 col-md-12">
+            <div class="d-flex  col-md-12 justify-content-center align-items-center">
+              <img
+                src="/images/utils/no-product.png"
+                width="300"
+                height="300"
+                alt=""
+                srcset=""
+              >
             </div>
           </div>
         </template>
 
       </div>
 
-      <nav class="toolbox toolbox-pagination">
-        <div
-          v-if="!loading"
-          class="toolbox-item toolbox-show"
-        >
+      <nav
+        v-if="!loading && products.length"
+        class="toolbox toolbox-pagination"
+      >
+        <div class="toolbox-item toolbox-show">
           <span>{{ meta.from }}- {{ meta.to }} of {{meta.total}} Records</span>
         </div>
         <!-- End .toolbox-item -->

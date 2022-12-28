@@ -87,7 +87,7 @@
             class="form-control orderby"
           >
             <option
-              value="menu_order"
+              value=""
               selected="selected"
             >Default sorting</option>
             <option value="price,asc">Price: low to high</option>
