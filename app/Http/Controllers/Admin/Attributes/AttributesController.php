@@ -159,8 +159,10 @@ class AttributesController extends Table
         $attribute->type  = $request->type;
         $attribute->save();
 
+        $data  = [];
+
+
         if (!empty($request->engine_id)) {
-            $data  = [];
             foreach ($request->engine_id as $key => $engine_id) {
                 foreach ($request->year_from[$engine_id] as $key => $year_from) {
                     $data[$engine_id] = ['year_From' => $year_from, 'year_to' => $request->year_to[$engine_id][0]];
