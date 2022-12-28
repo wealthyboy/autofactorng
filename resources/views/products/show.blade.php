@@ -105,10 +105,10 @@
     </div>
     <!-- End .container -->
 
-    <div class="container-fluid">
-        <h2>
-            PRODUCT SPECIFICATIONS
-        </h2>
+    <div class="container-fluid  p-0">
+        <h3>
+            Reviews
+        </h3>
         <div class="product-reviews-content">
             <h3 class="reviews-title">1 review for Men Black Sports Shoes</h3>
 
