@@ -89,18 +89,18 @@
             </figure>
             <div class="product-details">
               <div
-                style="height: 10px; width: 200px;"
+                style="height: 10px;     max-width: calc(100% - 270px);"
                 class=" j-preview mb-2"
               ></div>
 
               <div
-                style="height: 10px; width: 200px;"
+                style="height: 10px;     max-width: calc(100% - 270px);"
                 class=" j-preview mb-2"
               ></div>
               <!-- End .product-container -->
 
               <div
-                style="height: 10px;width: 200px;"
+                style="height: 10px;     max-width: calc(100% - 270px);"
                 class=" j-preview mb-2"
               ></div>
 

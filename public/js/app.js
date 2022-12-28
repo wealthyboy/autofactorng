@@ -22871,7 +22871,7 @@ var _hoisted_10 = {
   "class": "row pb-4"
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<figure style=\"height:200px;width:200px;\" class=\"j-preview\"><a href=\"#\"></a></figure><div class=\"product-details\"><div style=\"height:10px;width:200px;\" class=\"j-preview mb-2\"></div><div style=\"height:10px;width:200px;\" class=\"j-preview mb-2\"></div><!-- End .product-container --><div style=\"height:10px;width:200px;\" class=\"j-preview mb-2\"></div><div style=\"height:50px;width:200px;\" class=\"j-preview\"></div></div>", 2);
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<figure style=\"height:200px;width:200px;\" class=\"j-preview\"><a href=\"#\"></a></figure><div class=\"product-details\"><div style=\"height:10px;max-width:calc(100% - 270px);\" class=\"j-preview mb-2\"></div><div style=\"height:10px;max-width:calc(100% - 270px);\" class=\"j-preview mb-2\"></div><!-- End .product-container --><div style=\"height:10px;max-width:calc(100% - 270px);\" class=\"j-preview mb-2\"></div><div style=\"height:50px;width:200px;\" class=\"j-preview\"></div></div>", 2);
 
 var _hoisted_13 = {
   key: 2,
