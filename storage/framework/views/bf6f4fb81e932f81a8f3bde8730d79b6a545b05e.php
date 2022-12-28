@@ -33,6 +33,7 @@
                <div class="header-left col-lg-2 w-auto pl-0">
                   <button class="mobile-menu-toggler text-primary mr-2" type="button">
                      <i class="fas fa-bars"></i>
+                     <div>Menu</div>
                   </button>
                   <a href="/" class="logo">
                      <img src="https://autofactor.ng/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
@@ -52,17 +53,25 @@
 
 
                   <?php if(auth()->guard()->check()): ?>
-                  <a href="/account" class="header-icon" title="account">
-                     <img src="/images/utils/signin.svg" alt="">
+                  <div class="position-relative">
+                     <a href="/account" class="header-icon" title="account">
+                        <img src="/images/utils/signin.svg" alt="">
+                     </a>
                      <div class="text-sm">Account</div>
-                  </a>
+
+                  </div>
+
                   <?php endif; ?>
 
                   <?php if(auth()->guard()->guest()): ?>
-                  <a href="/login" class="header-icon" title="login">
-                     <img src="/images/utils/signin.svg" alt="">
+                  <div class="position-relative">
+
+                     <a href="/login" class="header-icon" title="login">
+                        <img src="/images/utils/signin.svg" alt="">
+                     </a>
                      <div class="text-sm">Signin</div>
-                  </a>
+
+                  </div>
                   <?php endif; ?>
 
 
@@ -196,142 +205,72 @@
 
    <div class="mobile-menu-container">
       <div class="mobile-menu-wrapper">
-         <span class="mobile-menu-close"><i class="fa fa-times"></i></span>
+         <div class="d-flex border-bottom justify-content-between p-4">
+            <div class="menu">Menu</div>
+            <span class="mobile-menu-close"><i class="fa fa-times"></i></span>
+         </div>
          <nav class="mobile-nav">
-            <ul class="mobile-menu">
-               <li><a href="">Home</a></li>
-               <li>
-                  <a href="category.html">Categories</a>
-                  <ul>
-                     <li><a href="category.html">Full Width Banner</a></li>
-                     <li><a href="category-banner-boxed-slider.html">Boxed Slider Banner</a></li>
-                     <li><a href="category-banner-boxed-image.html">Boxed Image Banner</a></li>
+            <div class="d-flex  border-bottom   px-4  justify-content-between">
+               <?php if(auth()->guard()->check()): ?>
+               <a href="/account" class="header-icon  d-flex" title="account">
+                  <img src="/images/utils/signin.svg" alt="">
+                  <span class="text-sm ml-2">Account</span>
+               </a>
+               <?php endif; ?>
+               <?php if(auth()->guard()->guest()): ?>
 
-                  </ul>
-               </li>
+               <a href="/account" class="header-icon  d-flex" title="account">
+                  <img src="/images/utils/signin.svg" alt="">
+                  <span class="text-sm">Signin</span>
+
+               </a>
+               <?php endif; ?>
+               <div class="menu">Wallet</div>
+            </div>
+
+            <ul class="mobile-menu mt-3">
+               <?php $__currentLoopData = $global_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                <li>
-                  <a href="product.html">Products</a>
+                  <a class="py-4" href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>"><?php echo e($category->name); ?></a>
+                  <?php if($category->isCategoryHaveMultipleChildren()): ?>
                   <ul>
+                     <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
                      <li>
-                        <a href="#" class="nolink">PRODUCT PAGES</a>
+                        <a href="/products/<?php echo e($children->slug); ?>" class="category-heading"><?php echo e($children->name); ?> </a>
+                        <?php if($children->children->count()): ?>
                         <ul>
-                           <li><a href="product.html">SIMPLE PRODUCT</a></li>
-
+                           <?php $__currentLoopData = $children->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                           <li><a href="/products/<?php echo e($children->slug); ?>"><?php echo e($children->name); ?></a></li>
+                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
+                        <?php endif; ?>
                      </li>
-                     <li>
-                        <a href="#" class="nolink">PRODUCT LAYOUTS</a>
-                        <ul>
-                           <li><a href="product-extended-layout.html">EXTENDED LAYOUT</a></li>
-
-                        </ul>
-                     </li>
+                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </ul>
-               </li>
-               <li>
-                  <a href="#">Pages<span class="tip tip-hot">Hot!</span></a>
+                  <?php elseif( !$category->isCategoryHaveMultipleChildren() && $category->children->count() ): ?>
                   <ul>
-                     <li>
-                        <a href="wishlist.html">Wishlist</a>
-                     </li>
-                     <li>
-                        <a href="cart.html">Shopping Cart</a>
-                     </li>
-                     <li>
-                        <a href="checkout.html">Checkout</a>
-                     </li>
-                     <li>
-                        <a href="dashboard.html">Dashboard</a>
-                     </li>
-                     <li>
-                        <a href="login.html">Login</a>
-                     </li>
-                     <li>
-                        <a href="forgot-password.html">Forgot Password</a>
-                     </li>
+                     <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                     <li><a class="category-heading" href="/products/<?php echo e($children->slug); ?>"><?php echo e($children->name); ?></a></li>
+                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                   </ul>
+                  <?php endif; ?>
                </li>
-               <li><a href="blog.html">Blog</a></li>
-               <li><a href="#">Elements</a>
-                  <ul class="custom-scrollbar">
-                     <li><a href="element-accordions.html">Accordion</a></li>
 
-                  </ul>
-               </li>
+               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </ul>
 
-            <ul class="mobile-menu mt-2 mb-2">
-               <li class="border-0">
-                  <a href="#">
-                     Special Offer!
-                  </a>
-               </li>
-               <li class="border-0">
-                  <a href="#" target="_blank">
-                     Buy Autofactorng!
-                     <span class="tip tip-hot">Hot</span>
-                  </a>
-               </li>
-            </ul>
 
-            <ul class="mobile-menu">
-               <li><a href="login.html">My Account</a></li>
-               <li><a href="contact.html">Contact Us</a></li>
-               <li><a href="blog.html">Blog</a></li>
-               <li><a href="wishlist.html">My Wishlist</a></li>
-               <li><a href="cart.html">Cart</a></li>
-               <li><a href="login.html" class="login-link">Log In</a></li>
-            </ul>
+
          </nav>
          <!-- End .mobile-nav -->
 
-         <form class="search-wrapper mb-2" action="#">
-            <input type="text" class="form-control mb-0" placeholder="Search..." required />
-            <button class="btn icon-search text-white bg-transparent p-0" type="submit"></button>
-         </form>
-
-         <div class="social-icons">
-            <a href="#" class="social-icon social-facebook icon-facebook" target="_blank">
-            </a>
-            <a href="#" class="social-icon social-twitter icon-twitter" target="_blank">
-            </a>
-            <a href="#" class="social-icon social-instagram icon-instagram" target="_blank">
-            </a>
-         </div>
       </div>
       <!-- End .mobile-menu-wrapper -->
    </div>
    <!-- End .mobile-menu-container -->
 
-   <div class="sticky-navbar">
-      <div class="sticky-info">
-         <a href="">
-            <i class="icon-home"></i>Home
-         </a>
-      </div>
-      <div class="sticky-info">
-         <a href="category.html" class="">
-            <i class="icon-bars"></i>Categories
-         </a>
-      </div>
-      <div class="sticky-info">
-         <a href="wishlist.html" class="">
-            <i class="icon-wishlist-2"></i>Wishlist
-         </a>
-      </div>
-      <div class="sticky-info">
-         <a href="login.html" class="">
-            <i class="icon-user-2"></i>Account
-         </a>
-      </div>
-      <div class="sticky-info">
-         <a href="cart.html" class="">
-            <i class="icon-shopping-cart position-relative">
-               <span class="cart-count badge-circle">3</span>
-            </i>Cart
-         </a>
-      </div>
-   </div>
+
 
    <div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background: #f1f1f1 no-repeat center/cover url('assets/images/newsletter_popup_bg.jpg')">
       <div class="newsletter-popup-content">

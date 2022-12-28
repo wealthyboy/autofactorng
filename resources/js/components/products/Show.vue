@@ -38,10 +38,10 @@
 
         <template v-if="product.discounted_price">
           <span class="old-price">{{  $filters.formatNumber(product.formatted_sale_price) }}</span>
-          <span class="new-price">{{  $filters.formatNumber(product.formatted_price) }}</span>
+          <span class="new-price">{{  $filters.formatNumber(product.price) }}</span>
         </template>
         <template v-else>
-          <span class="new-price">{{  product.formatted_price }}</span>
+          <span class="new-price">{{   $filters.formatNumber(product.price) }}</span>
         </template>
       </div>
 

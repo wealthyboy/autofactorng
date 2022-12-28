@@ -51,6 +51,7 @@
         </div>
         <!-- End .row -->
     </div>
+
     <div class="container-fluid  d-none d-lg-block">
         <div class="row">
             <div class="col-md-6">
@@ -75,8 +76,8 @@
         </div>
     </div>
 
-    <div class="container d-sm-block d-lg-none">
-        <div class="mt-8" id="accordion1">
+    <div class="container-fluid d-sm-block d-lg-none p-0">
+        <div class="mt-1" id="accordion1">
             <div class="card card-accordion">
                 <a class="card-header collapsed" href="element-accordions.html#" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
                     PRODUCT SPECIFICATIONS
@@ -99,15 +100,168 @@
 
                 </div>
             </div>
+        </div>
+    </div>
+    <!-- End .container -->
+
+    <div class="container-fluid">
+        <h2>
+            PRODUCT SPECIFICATIONS
+        </h2>
+        <div class="product-reviews-content">
+            <h3 class="reviews-title">1 review for Men Black Sports Shoes</h3>
+
+            <div class="comment-list">
+                <div class="comments">
+                    <figure class="img-thumbnail">
+                        <img src="assets/images/blog/author.jpg" alt="author" width="80" height="80">
+                    </figure>
+
+                    <div class="comment-block">
+                        <div class="comment-header">
+                            <div class="comment-arrow"></div>
+
+                            <div class="ratings-container float-sm-right">
+                                <div class="product-ratings">
+                                    <span class="ratings" style="width:60%"></span>
+                                    <!-- End .ratings -->
+                                    <span class="tooltiptext tooltip-top"></span>
+                                </div>
+                                <!-- End .product-ratings -->
+                            </div>
+
+                            <span class="comment-by">
+                                <strong>Joe Doe</strong> – April 12, 2018
+                            </span>
+                        </div>
+
+                        <div class="comment-content">
+                            <p>Excellent.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="add-product-review">
+                <h3 class="review-title">Add a review</h3>
+
+                <form action="#" class="comment-form m-0">
+                    <div class="rating-form">
+                        <label for="rating">Your rating <span class="required">*</span></label>
+                        <span class="rating-stars">
+                            <a class="star-1" href="product.html#">1</a>
+                            <a class="star-2" href="product.html#">2</a>
+                            <a class="star-3" href="product.html#">3</a>
+                            <a class="star-4" href="product.html#">4</a>
+                            <a class="star-5" href="product.html#">5</a>
+                        </span>
+
+                        <select name="rating" id="rating" required="" style="display: none;">
+                            <option value="">Rate…</option>
+                            <option value="5">Perfect</option>
+                            <option value="4">Good</option>
+                            <option value="3">Average</option>
+                            <option value="2">Not that bad</option>
+                            <option value="1">Very poor</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your review <span class="required">*</span></label>
+                        <textarea cols="5" rows="6" class="form-control form-control-sm"></textarea>
+                    </div>
+                    <!-- End .form-group -->
+
+
+                    <div class="row">
+                        <div class="col-md-6 col-xl-12">
+                            <div class="form-group">
+                                <label>Name <span class="required">*</span></label>
+                                <input type="text" class="form-control form-control-sm" required>
+                            </div>
+                            <!-- End .form-group -->
+                        </div>
+
+                        <div class="col-md-6 col-xl-12">
+                            <div class="form-group">
+                                <label>Email <span class="required">*</span></label>
+                                <input type="text" class="form-control form-control-sm" required>
+                            </div>
+                            <!-- End .form-group -->
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="save-name" />
+                                <label class="custom-control-label mb-0" for="save-name">Save my
+                                    name, email, and website in this browser for the next time I
+                                    comment.</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </form>
+            </div>
+            <!-- End .add-product-review -->
+        </div>
+    </div>
+
+    <div class="products-section container-fluid pt-0 mt-4">
+        <h2 class="section-title">Related Products</h2>
+
+        <div class="products-slider owl-carousel owl-theme dots-top dots-small">
+            <div class="product-default">
+                <figure>
+                    <a href="product.html">
+                        <img src="assets/images/products/product-1.jpg" width="280" height="280" alt="product">
+                        <img src="assets/images/products/product-1-2.jpg" width="280" height="280" alt="product">
+                    </a>
+                    <div class="label-group">
+                        <!-- <div class="product-label label-hot">HOT</div>
+                        <div class="product-label label-sale">-20%</div> -->
+                    </div>
+                </figure>
+                <div class="product-details">
+                    <div class="category-list">
+                        <a href="category.html" class="product-category">Category</a>
+                    </div>
+                    <h3 class="product-title">
+                        <a href="product.html">Ultimate 3D Bluetooth Speaker</a>
+                    </h3>
+                    <div class="ratings-container">
+                        <div class="product-ratings">
+                            <span class="ratings" style="width:80%"></span>
+                            <!-- End .ratings -->
+                            <span class="tooltiptext tooltip-top"></span>
+                        </div>
+                        <!-- End .product-ratings -->
+                    </div>
+                    <!-- End .product-container -->
+                    <div class="price-box">
+                        <del class="old-price">$59.00</del>
+                        <span class="product-price">$49.00</span>
+                    </div>
+                    <!-- End .price-box -->
+                    <div class="product-action">
+                        <a href="wishlist.html" title="Wishlist" class="btn-icon-wish"><i class="icon-heart"></i></a>
+                        <a href="product.html" class="btn-icon btn-add-cart"><i class="fa fa-arrow-right"></i><span>SELECT
+                                OPTIONS</span></a>
+                        <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <!-- End .product-details -->
+            </div>
+
+
+
+
 
 
         </div>
-
-
-
-
-
+        <!-- End .products-slider -->
     </div>
-    <!-- End .container -->
     <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/products/show.blade.php ENDPATH**/ ?>
