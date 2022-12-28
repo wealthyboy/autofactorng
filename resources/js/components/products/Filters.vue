@@ -1,65 +1,71 @@
 <template>
-  <div id="accordion">
-    <div class="card card-accordion">
-      <a
-        class="card-header text-uppercase"
-        href="contact.html#"
-        data-toggle="collapse"
-        :data-target="'#collapseOne' + name"
-        aria-expanded="true"
-        :aria-controls="'collapseOne' + name"
-      >
-        {{  name  }}
-      </a>
+  <form
+    action=""
+    method="get"
+    id="filter-form"
+  >
+    <div id="accordion">
+      <div class="card card-accordion">
+        <a
+          class="card-header text-uppercase"
+          href="contact.html#"
+          data-toggle="collapse"
+          :data-target="'#collapseOne' + name"
+          aria-expanded="true"
+          :aria-controls="'collapseOne' + name"
+        >
+          {{  name  }}
+        </a>
 
-      <div
-        :id="'collapseOne' + name"
-        class="collapse show"
-        data-parent="#accordion"
-      >
         <div
-          style="height: 250px; overflow:scroll;"
-          class="mt-2"
+          :id="'collapseOne' + name"
+          class="collapse show"
+          data-parent="#accordion"
         >
           <div
-            v-for="obj in objs"
-            :key="obj.id"
-            class="form-check"
+            style="height: 250px; overflow:scroll;"
+            class="mt-2"
           >
-
-            <label
-              :for="obj.name + obj.id"
-              class="container"
+            <div
+              v-for="obj in objs"
+              :key="obj.id"
+              class="form-check"
             >
-              <span class="checkbox-label">
-                {{ obj.name }}
 
-              </span>
-
-              <input
-                @change="activateFilter($event)"
-                :value="obj.slug"
-                :name="name + '[]'"
-                :id="obj.name + obj.id"
-                type="checkbox"
-                class="form-check-input"
+              <label
+                :for="obj.name + obj.id"
+                class="container"
               >
-              <span class="checkmark"></span>
-            </label>
-          </div>
+                <span class="checkbox-label">
+                  {{ obj.name }}
 
-          <slot />
+                </span>
+
+                <input
+                  @change="activateFilter($event)"
+                  :value="obj.slug"
+                  :name="name + '[]'"
+                  :id="obj.name + obj.id"
+                  type="checkbox"
+                  class="form-check-input"
+                >
+                <span class="checkmark"></span>
+              </label>
+            </div>
+
+            <slot />
+          </div>
         </div>
       </div>
-    </div>
 
-  </div>
+    </div>
+  </form>
 
 </template>
 
 <script>
 export default {
-  props: ["name", "objs"],
+  props: ["name", "objs", "clearFilter"],
   emits: ["activate:filter"],
   setup(props, { emit }) {
     function activateFilter(e) {

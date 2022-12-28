@@ -9,10 +9,13 @@
         class=""
       />
 
-      <div class="mb-2">
+      <div
+        v-if="showClearFilter"
+        class="mb-2"
+      >
         <a
           href="#"
-          @click.prevent="clearfIlters"
+          @click.prevent="clearfilters"
           class="border text-dark p-3 "
         >
           <i class="fa fa-times"></i> Clear Filters
@@ -89,18 +92,18 @@
             </figure>
             <div class="product-details">
               <div
-                style="height: 10px;     max-width: calc(100% - 270px);"
+                style="height: 10px; width: 400px;"
                 class=" j-preview mb-2"
               ></div>
 
               <div
-                style="height: 10px;     max-width: calc(100% - 270px);"
+                style="height: 10px; width: 350px;"
                 class=" j-preview mb-2"
               ></div>
               <!-- End .product-container -->
 
               <div
-                style="height: 10px;     max-width: calc(100% - 270px);"
+                style="height: 10px;width: 200px;"
                 class=" j-preview mb-2"
               ></div>
 
@@ -175,6 +178,7 @@
           :name="'brands'"
           :objs="search_filters.brand.items"
           @handle:filter="handleFilter"
+          :clearFilters="clearFilters"
         ></filters>
 
         <filters
@@ -182,6 +186,7 @@
           :name="'prices'"
           :objs="search_filters.price.items"
           @handle:filter="handleFilter"
+          :clearFilters="clearFilters"
         ></filters>
       </div>
       <!-- End .sidebar-wrapper -->
@@ -224,7 +229,8 @@ export default {
       loading: true,
       searchText: null,
       list: "List",
-
+      clearFilters: false,
+      showClearFilter: false,
       url: location.href + "?get=1",
     };
   },
@@ -232,6 +238,13 @@ export default {
     this.getProducts(this.url);
   },
   methods: {
+    clearfilters() {
+      let u = new URL(location.href);
+      let url = u.pathname;
+      window.history.pushState({}, "", url);
+      this.showClearFilter = false;
+      this.getProducts(url);
+    },
     filter(o) {
       this.searchText = o.text;
       this.getProducts(this.url);
@@ -259,7 +272,7 @@ export default {
       url.searchParams.set("search", "true");
       window.history.pushState({}, "", filter.filterString);
       url.searchParams.set("search", "true");
-
+      this.showClearFilter = true;
       this.getProducts(location.href);
     },
     handleTyreFilter(data) {
@@ -269,6 +282,7 @@ export default {
       url.searchParams.set("profile", data.profile);
       url.searchParams.set("type", data.type);
       window.history.pushState({}, "", url);
+      this.showClearFilter = true;
       this.getProducts(location.href);
     },
     listing(type) {
@@ -279,6 +293,7 @@ export default {
       url.searchParams.set("amphere", data.amphere);
       url.searchParams.set("type", data.type);
       window.history.pushState({}, "", url);
+      this.showClearFilter = true;
       this.getProducts(location.href);
     },
     perPage(filter) {
@@ -286,6 +301,8 @@ export default {
       url.searchParams.set("per_page", filter.per_page);
       url.searchParams.set("search", "true");
       window.history.pushState({}, "", url);
+      this.showClearFilter = true;
+
       this.getProducts(location.href);
     },
     sort(filter) {
@@ -294,6 +311,7 @@ export default {
       url.searchParams.set("sort_by", filter.sort_by);
       url.searchParams.set("search", "true");
       window.history.pushState({}, "", url);
+      this.showClearFilter = true;
       this.getProducts(location.href);
     },
     getP(page) {
@@ -303,11 +321,13 @@ export default {
       url.searchParams.set("search", "true");
       url.searchParams.set("page", page);
       window.history.pushState({}, "", url);
+      this.showClearFilter = true;
       this.getProducts(url);
     },
 
     getProducts(url) {
       this.loading = true;
+      // return;
       axios
         .get(url)
         .then((res) => {
