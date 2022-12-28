@@ -199,7 +199,7 @@ class Product extends Model
                 "Id" => $product->id,
                 "Image" => $product->image_to_show_m,
                 "Name" => $product->name,
-                "Category" => $product->category_name,
+                "Category" => implode(', ', $product->categories->pluck('name')->toArray()),
                 "Price" =>  number_format($product->price),
                 "Date Added" => $product->created_at->format('d-m-y'),
             ];
