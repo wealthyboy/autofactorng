@@ -51,7 +51,7 @@
         </div>
         <!-- End .row -->
     </div>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
                 <div class="header">
