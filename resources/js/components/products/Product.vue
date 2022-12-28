@@ -92,8 +92,11 @@
     </figure>
     <div class="product-details">
 
-      <h3 class="product-title"> <a :href="product.link">{{ product.name }}</a>
-      </h3>
+      <h3 class="product-title"> <a :href="product.link">{{ product.name }}</a></h3>
+
+      <p>
+        SKU #{{product.sku}}
+      </p>
       <div class="ratings-container">
         <div class="product-ratings">
           <span
@@ -106,6 +109,13 @@
         <!-- End .product-ratings -->
       </div>
       <!-- End .product-container -->
+
+      <p
+        v-if="showFitText"
+        class="product-description"
+      >
+        <check-vehicle :fitText="product.fitText" />
+      </p>
 
       <div class="price-box">
 
