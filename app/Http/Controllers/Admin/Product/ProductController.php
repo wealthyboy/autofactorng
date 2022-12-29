@@ -82,7 +82,7 @@ class ProductController extends Table
             $request = request();
             $products =  Product::whereHas('categories', function ($query) use ($request) {
                 $query->where('categories.name', 'like', '%' . $request->q . '%')
-                    ->orWhere('products.product_name', 'like', '%' . $request->q  . '%')
+                    ->orWhere('products.name', 'like', '%' . $request->q  . '%')
                     ->orWhere('products.sku', 'like', '%' .  $request->q  . '%');
             })->groupBy('products.id')->orderBy('created_at', 'desc')->paginate(100)->appends(request()->all());
         }
