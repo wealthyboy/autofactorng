@@ -85,13 +85,26 @@ class User extends Authenticatable
 	public function getListingData($collection)
 	{
 		return  $collection->map(function ($user) {
-			return [
-				"Id" =>  $user->id,
-				"Full Name" =>  $user->fullname(),
-				"Email" => $user->email,
-				"Phone Number" => $user->phone_number,
-				"Date Added" =>  $user->created_at->format('d-m-y'),
-			];
+			if (!$user->isAdmin()) {
+				return [
+					"Id" =>  $user->id,
+					"Full Name" =>  $user->fullname(),
+					"Email" => $user->email,
+					"Phone Number" => $user->phone_number,
+					"Wallet Balance" => (int) optional($user)->balance,
+					'Auto Credit' => (int) optional($user)->auto_credit,
+					"Date Added" =>  $user->created_at->format('d-m-y'),
+				];
+			} else {
+				return [
+					"Id" =>  $user->id,
+					"Full Name" =>  $user->fullname(),
+					"Email" => $user->email,
+					"Phone Number" => $user->phone_number,
+
+					"Date Added" =>  $user->created_at->format('d-m-y'),
+				];
+			}
 		});
 	}
 
@@ -102,10 +115,27 @@ class User extends Authenticatable
 			"Full Name" => 'name',
 			"Email" => 'email',
 			"Phone Number" => 'phone_number',
+			"Wallet Balance" => 'id',
+			'Auto Credit' => 'id',
 			"Date Added" => 'created_at',
 		];
 
 		return $sort[$key];
+	}
+
+	public function credit($user)
+	{
+		$data = [];
+
+		if (!$user->isAdmin()) {
+			$data =  [
+				"Wallet Balance" => (int) optional($user)->balance,
+				'Auto Crdeit' => (int) optional($user)->auto_credit,
+			];
+		}
+
+
+		return !empty($data) ? $data : null;
 	}
 
 

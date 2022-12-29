@@ -106,11 +106,16 @@
                             @endif
 
                             @if (isset($models['unique']['order']) && $models['unique']['order'])
+
                             <td class="text-xs font-weight-normal">
                                 <a target="_blank" href="/admin/orders/invoice/{{  isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null }}" rel="tooltip" data-bs-toggle="tooltip" data-bs-original-title="Invoice">
                                     <i class="material-symbols-outlined text-secondary position-relative text-lg">receipt</i>
                                 </a>
                             </td>
+
+
+
+
 
                             <td class="text-xs font-weight-normal">
                                 <a href="{{  route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null  ]) }}" rel="tooltip" class="" data-original-title="" title="Edit">

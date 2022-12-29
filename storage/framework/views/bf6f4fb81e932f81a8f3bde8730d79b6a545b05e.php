@@ -314,6 +314,12 @@
    <script src="/js/jquery.min.js"></script>
    <script src="/js/app.js"></script>
 
+
+   <?php echo $__env->yieldContent('page-scripts'); ?>
+   <script type="text/javascript">
+      <?php echo $__env->yieldContent('inline-scripts'); ?>
+   </script>
+
 </body>
 
 </html><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/layouts/app.blade.php ENDPATH**/ ?>

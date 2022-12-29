@@ -41815,6 +41815,10 @@ textarea.form-control-lg {
   content: "\f83e";
 }
 
+div#offcanvas {
+  top: 160px;
+}
+
 /* Customize the label (the container) */
 label.container {
   display: block;

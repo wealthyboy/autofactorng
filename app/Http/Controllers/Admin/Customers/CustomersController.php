@@ -12,6 +12,9 @@ class CustomersController extends Table
 
     public $deleted_names = 'email';
 
+    public $link = '/admin/customers';
+
+
     public $deleted_specific = 'user with emails';
 
     public function builder()
@@ -89,7 +92,7 @@ class CustomersController extends Table
     public function unique()
     {
         return [
-            'show'  => false,
+            'show'  => true,
             'right' => false,
             'edit' => false,
             'search' => true,

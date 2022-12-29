@@ -54,7 +54,8 @@ abstract class Table extends Controller
             'search' => true,
             'add' => false,
             'delete' => false,
-            'export' => true
+            'export' => true,
+            'actions' => []
         ];
     }
 

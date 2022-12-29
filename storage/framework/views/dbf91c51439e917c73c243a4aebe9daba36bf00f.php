@@ -1,7 +1,6 @@
-@extends('admin.layouts.app')
-@section('pagespecificstyles')
-@stop
-@section('content')
+<?php $__env->startSection('pagespecificstyles'); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
 <div class="row">
    <div class="col-md-12">
       <div class="card">
@@ -12,10 +11,10 @@
             <h6 class="mb-0">Top Up/Reduce</h6>
          </div>
          <div class="card-body pt-0">
-            @include('errors.errors')
+            <?php echo $__env->make('errors.errors', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
             <form action="/admin/customers/wallet" method="post">
-               @csrf
+               <?php echo csrf_field(); ?>
                <div class="row mt-3">
                   <div class="col-sm-4 col-12">
                      <div class="input-group input-group-outline">
@@ -57,10 +56,11 @@
    </div>
    <!-- end col-md-12 -->
 </div>
-@endsection
-@section('page-scripts')
-<script src="{{ asset('asset/js/sweetalert2.js') }}"></script>
-@stop
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('page-scripts'); ?>
+<script src="<?php echo e(asset('asset/js/sweetalert2.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
 
-@section('inline-scripts')
-@stop
+<?php $__env->startSection('inline-scripts'); ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/admin/customers/show.blade.php ENDPATH**/ ?>

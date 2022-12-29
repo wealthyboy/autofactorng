@@ -58,7 +58,6 @@ app.component('Wallet', Wallet)
 
 app.component('Subscribe', Subscribe)
 
-
 app.config.globalProperties.$filters = {
     formatNumber(value) {
         return '₦' + new Intl.NumberFormat().format(value);
