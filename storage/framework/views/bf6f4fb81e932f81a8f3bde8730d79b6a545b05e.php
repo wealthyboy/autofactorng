@@ -85,21 +85,25 @@
             <!-- End .container -->
          </div>
          <!-- End .header-middle -->
+         <?php echo $__env->make('_partials.nav_categories', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
          <div class="header-bottom sticky-header d-none d-lg-block" data-sticky-options="{'mobile': false}">
             <div class="container-fluid">
                <nav class="main-nav w-100 border">
                   <div class="d-flex">
                      <div class="menu-icon">
-                        <button class="nav-btn menu-nav-btn mb-0 pb-0" role="button">
+
+                        <button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0" role="button">
                            <span class="menu-open">
-                              <img src="/images/utils/hamburger.svg">
+                              <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="" srcset="">
                               <div class="">Menu</div>
                            </span>
+
                            <span class="menu-close d-none">
                               <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" alt="" srcset="">
                               <div class="text-xs">Close</div>
                            </span>
+
                         </button>
                      </div>
 

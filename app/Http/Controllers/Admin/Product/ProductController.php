@@ -109,7 +109,7 @@ class ProductController extends Table
         $query  = Product::query();
 
         if ($request->filled('product_name')) {
-            $query->where('product_name', 'like', '%' . $request->product_name . '%');
+            $query->where('name', 'like', '%' . $request->product_name . '%');
         }
 
         if ($request->filled('category_id')) {
