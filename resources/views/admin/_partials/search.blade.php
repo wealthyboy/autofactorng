@@ -12,7 +12,7 @@
                 <div class="col-sm-12 col-12">
                     <div class="input-group input-group-outline">
                         <label class="form-label">Search</label>
-                        <input name="q" type="text" class="form-control" placeholder="">
+                        <input name="gq" type="text" class="form-control" placeholder="">
                     </div>
                 </div>
             </div>

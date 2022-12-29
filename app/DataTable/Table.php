@@ -106,6 +106,12 @@ abstract class Table extends Controller
             }
 
 
+            if ($request->filled('gq')) {
+                $collections = $this->buildSearch($this->builder, $request);
+                $records = $builder->getListingData($collections);
+            }
+
+
 
             if (!$request->filled('key')) {
                 //dd($collections);
@@ -128,7 +134,6 @@ abstract class Table extends Controller
                     'last_page' => $collections->lastPage(),
                     'sort' => $request->filled('sort') && $request->sort == 'desc' ? 'asc' : 'desc',
                     'q' => $request->filled('q')  ? '&q=' . request()->q : '',
-
                     'show_checkbox' => true,
                     'urls' => $collections->map(function ($obj) {
                         return [
@@ -157,7 +162,6 @@ abstract class Table extends Controller
     protected function buildSearch(Builder $builder, Request $request)
     {
         //$queryParts = $this->resolveQueryParts($request->operator, $request->value);
-        dd(true);
         $query =  $this->builder()->where(function (Builder $query) use ($request) {
             $query->where('id', 'like', '%' . $request->q . '%');
             foreach ($this->getDatabaseColumnNames() as $key => $value) {
