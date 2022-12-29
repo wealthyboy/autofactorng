@@ -18487,7 +18487,7 @@ aside .widget-info i {
         top: 0;
         bottom: 0;
         left: 0;
-        width: 260px;
+        width: 260px !important;
         padding: 2rem;
         margin: 0;
         transform: translate(-260px);
