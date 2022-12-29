@@ -1,8 +1,7 @@
 window._ = require('lodash');
 
 try {
-
-    require('../assets/js/bootstrap.bundle.min.js')
+    require('bootstrap')
     require('../assets/js/optional/isotope.pkgd.min.js')
     require('../assets/js/plugins.min.js')
     require('../assets/js/jquery.appear.min.js')

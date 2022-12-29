@@ -1,13 +1,13 @@
 // Variables
 // Bootstrap
-@import "../assets/css/bootstrap.min.css";
+@import '~bootstrap/scss/bootstrap';
 @import "../assets/css/style.min.css";
 @import "~bootstrap-icons/font/bootstrap-icons";
 @import "../assets/vendor/fontawesome-free/css/all.min.css";
 
 /* Customize the label (the container) */
 
-.container {
+label.container {
     display: block;
     position: relative;
     padding-left: 35px;

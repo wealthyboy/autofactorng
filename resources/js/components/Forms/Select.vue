@@ -1,21 +1,18 @@
 <template>
 
-  <div class="form-floating ">
+  <select
+    class="form-control"
+    :class="{'is-invalid': error.$error}"
+    v-bind="$attrs"
+    id="floatingSelect"
+    aria-label=""
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)"
+  >
 
-    <select
-      class="form-select"
-      :class="{'is-invalid': error.$error}"
-      v-bind="$attrs"
-      id="floatingSelect"
-      aria-label=""
-      :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
-    >
-
-      <slot />
-    </select>
-    <label for="floatingSelect">{{ $attrs.name }}</label>
-  </div>
+    <slot />
+  </select>
+  <label for="floatingSelect">{{ $attrs.name }}</label>
   <simple-message
     class="link-danger fs-5"
     v-if="error.$error"

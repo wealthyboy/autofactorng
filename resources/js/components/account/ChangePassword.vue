@@ -37,7 +37,7 @@
           id="phone_number"
           :error="v$.password_confirmation"
           v-model="form.password_confirmation"
-          name="Phone Number"
+          name="Confirm Password"
           type="password"
           :server_errors="server_errors.password_confirmation"
         />

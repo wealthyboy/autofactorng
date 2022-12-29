@@ -1,7 +1,7 @@
 <template>
 
   <input
-    type="email"
+    type="text"
     class="form-control"
     :class="{'is-invalid': error.$error}"
     id="floatingInput"

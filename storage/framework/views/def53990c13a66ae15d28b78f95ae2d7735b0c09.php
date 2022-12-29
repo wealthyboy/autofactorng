@@ -9,13 +9,9 @@
     </nav>
 
     <div class="product-single-container product-single-default">
-
-
         <div class="row">
             <div class="col-lg-7  product-single-gallery">
                 <div class="product-slider-container">
-
-
                     <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                         <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 

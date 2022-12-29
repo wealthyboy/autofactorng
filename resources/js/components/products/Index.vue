@@ -1,6 +1,6 @@
 <template>
   <div class="row">
-    <div class="col-lg-9  order-lg-1">
+    <div class="col-lg-9  order-lg-">
 
       <search-string
         @remove:vehicle="shopWithoutVehicle"

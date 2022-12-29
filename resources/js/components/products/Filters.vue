@@ -22,10 +22,7 @@
           class="collapse show"
           data-parent="#accordion"
         >
-          <div
-            style="height: 250px; overflow:scroll;"
-            class="mt-2"
-          >
+          <div class="mt-2">
             <div
               v-for="obj in objs"
               :key="obj.id"
