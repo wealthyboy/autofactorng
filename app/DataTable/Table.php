@@ -112,7 +112,6 @@ abstract class Table extends Controller
             }
 
 
-
             if (!$request->filled('key')) {
                 //dd($collections);
                 $records = $builder->getListingData($collections);
@@ -163,9 +162,9 @@ abstract class Table extends Controller
     {
         //$queryParts = $this->resolveQueryParts($request->operator, $request->value);
         $query =  $this->builder()->where(function (Builder $query) use ($request) {
-            $query->where('id', 'like', '%' . $request->q . '%');
+            $query->where('id', 'like', '%' . $request->gq . '%');
             foreach ($this->getDatabaseColumnNames() as $key => $value) {
-                $query->orWhere($value, 'like', '%' . $request->q . '%');
+                $query->orWhere($value, 'like', '%' . $request->gq . '%');
             }
         });
 
