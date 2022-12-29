@@ -20188,23 +20188,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = {
-  "class": "form-floating"
-};
-var _hoisted_2 = ["value"];
-var _hoisted_3 = {
+var _hoisted_1 = ["value"];
+var _hoisted_2 = {
   "for": "floatingInput"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_simple_message = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("simple-message");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", (0,vue__WEBPACK_IMPORTED_MODULE_0__.mergeProps)({
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", (0,vue__WEBPACK_IMPORTED_MODULE_0__.mergeProps)({
     type: "email",
     "class": ["form-control", {
       'is-invalid': $props.error.$error
     }],
     id: "floatingInput",
-    placeholder: "name@example.com",
+    placeholder: "dd",
     value: $props.modelValue
   }, _ctx.$attrs, {
     onInput: _cache[0] || (_cache[0] = function ($event) {
@@ -20212,9 +20209,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }), null, 16
   /* FULL_PROPS */
-  , _hoisted_2), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$attrs.name), 1
+  , _hoisted_1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$attrs.name), 1
   /* TEXT */
-  )]), $props.error.$error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_simple_message, {
+  ), $props.error.$error ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_simple_message, {
     key: 0,
     "class": "link-danger fs-6",
     message: $props.error.$errors[0].$message
@@ -20363,7 +20360,7 @@ var _hoisted_1 = {
   "class": "row"
 };
 var _hoisted_2 = {
-  "class": "form-group p-1 col-12"
+  "class": "p-1 col-12"
 };
 var _hoisted_3 = {
   "class": "form-floating"

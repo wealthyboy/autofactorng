@@ -6,7 +6,8 @@
     @submit.prevent="register"
   >
     <div class="row ">
-      <p class="form-group p-1 col-12">
+
+      <p class=" p-1 col-12 ">
       <div class="form-floating">
         <general-input
           id="first_name"
@@ -17,6 +18,7 @@
         />
 
       </div>
+
       </p>
 
       <p class="form-group  p-1 col-12">

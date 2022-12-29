@@ -1,18 +1,16 @@
 <template>
 
-  <div class="form-floating ">
-    <input
-      type="email"
-      class="form-control"
-      :class="{'is-invalid': error.$error}"
-      id="floatingInput"
-      placeholder="name@example.com"
-      :value="modelValue"
-      v-bind="$attrs"
-      @input="$emit('update:modelValue', $event.target.value)"
-    >
-    <label for="floatingInput">{{ $attrs.name }}</label>
-  </div>
+  <input
+    type="email"
+    class="form-control"
+    :class="{'is-invalid': error.$error}"
+    id="floatingInput"
+    placeholder="dd"
+    :value="modelValue"
+    v-bind="$attrs"
+    @input="$emit('update:modelValue', $event.target.value)"
+  >
+  <label for="floatingInput">{{ $attrs.name }}</label>
   <simple-message
     class="link-danger fs-6"
     v-if="error.$error"

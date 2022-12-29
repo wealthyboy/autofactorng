@@ -100,9 +100,9 @@
                         <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap  ">
                             <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
                             <div class="social-icons py-3">
-                                <a href="#" class="bi bi-facebook text-white  me-4 fa-2x" target="_blank" title="Facebook"></a>
-                                <a href="#" class="bi bi-twitter  text-white me-4 fa-2x" target="_blank" title="Twitter"></a>
-                                <a href="#" class="bi bi-instagram  text-white me-4 fa-2x" target="_blank" title="Linkedin"></a>
+                                <a href="#" class="bi bi-facebook text-white  mr-4 fa-2x" target="_blank" title="Facebook"></a>
+                                <a href="#" class="bi bi-twitter  text-white mr-4 fa-2x" target="_blank" title="Twitter"></a>
+                                <a href="#" class="bi bi-instagram  text-white mr-4 fa-2x" target="_blank" title="Linkedin"></a>
                             </div><!-- End .social-icons -->
                         </div><!-- End .footer-bottom -->
                     </div>

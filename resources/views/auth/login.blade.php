@@ -43,7 +43,8 @@
 
 
         </div>
-        <div style="background-image: url('/images/utils/sign-in-background-img.jpeg'); background-size: cover; height: 100vh !important;" class="col-12  col-md-7  position-relative bg-gradient-primary h-100  px-7 border-radius-lg d-flex flex-column justify-content-center">
+
+        <div style="background-image: url('/images/utils/sign-in-background-img.jpeg'); background-size: cover; height: 100vh !important;" class="col-12  col-md-7  position-relative bg-gradient-primary h-100  px-7 border-radius-lg d-flex    flex-column justify-content-center">
             <h1 class="text-white mb-4"> MEMBER BENEFITS: </h1>
             <ul>
                 <li class="right-side-bullets">
