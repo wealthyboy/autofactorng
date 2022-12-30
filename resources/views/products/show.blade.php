@@ -130,7 +130,7 @@
                 <div class="product-details">
 
 
-                    <h3 class="product-title"> <a href="{{$related_product->product->link }}">{{ $related_product->product->->name }}</a> </h3>
+                    <h3 class="product-title"> <a href="{{$related_product->product->link }}">{{ $related_product->product->name }}</a> </h3>
 
                     <div class="ratings-container">
                         <div class="product-ratings">
