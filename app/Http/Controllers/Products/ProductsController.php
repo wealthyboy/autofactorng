@@ -209,7 +209,8 @@ class ProductsController extends Controller
     public function show(Request $request, Category $category, Product $product)
     {
         $product->load('images');
-        dd($product->related_products);
+        // dd($product->related_products);
+        dd(Product::find(70));
         return view('products.show', compact('product'));
     }
 }
