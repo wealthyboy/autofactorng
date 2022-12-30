@@ -26,12 +26,16 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::resource('activities', 'Admin\Activity\ActivityController', ['names' => 'admin.activities']);
     Route::get('reports', 'Admin\Account\AccountsController@index');
     Route::get('account/filter', 'Admin\Account\AccountsController@index')->name('filter_sales');
+    Route::post('customers/wallet/{id}', 'Admin\Customers\CustomersController@fundWallet');
+
     Route::resource('customers', 'Admin\Customers\CustomersController', ['name' => 'customers']);
+
     Route::get('orders/invoice/{id}', 'Admin\Orders\OrdersController@invoice')->name('order.invoice');
+    Route::post('orders/status', 'Admin\Orders\OrdersController@updateStatus');
+
     Route::get('orders/dispatch/{id}', 'Admin\Orders\OrdersController@dispatchNote')->name('order.dispatch.note');
     Route::resource('location', 'Admin\Location\LocationController', ['names' => 'location']);
     Route::resource('engines', 'Admin\Engines\EnginesController', ['names' => 'engines']);
-
 
     //Route::post('register','Admin\Users\UsersController@create')->name('create.admin.users');
 
@@ -53,6 +57,9 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::resource('rates', 'Admin\CurrencyRates\CurrencyRatesController', ['name' => 'rates']);
     Route::resource('vouchers', 'Admin\Vouchers\VouchersController', ['names' => 'vouchers']);
     Route::get('products/search/makemodelyear', 'Admin\Product\ProductController@makeModelYearSearch');
+    Route::get('/related/products', 'Admin\Product\ProductController@getRelatedProducts');
+    Route::delete('/related_products/{id}', 'Admin\RelatedProducts\RelatedProductsController@destroy');
+
 
     Route::resource('products', 'Admin\Product\ProductController', ['names' => 'products']);
 

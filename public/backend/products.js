@@ -10,6 +10,40 @@ function resetFile(input) {
     input.unwrap();
 }
 
+$(".search_products").on('input', function(e) {
+    var $self = $(this),
+        payLoad = { 'product_name': $self.val() }
+    $.ajax({
+        type: "GET",
+        url: "/admin/related/products",
+        data: payLoad,
+    }).done(function(response) {
+        $("#related_products").html('').append(response)
+    });
+})
+
+
+$(document).on('click', '.add_product', function(e) {
+    e.preventDefault()
+    $(this).parentsUntil('tbody').clone().appendTo(".related_products");
+    $(this).parentsUntil('tbody').remove()
+    $("tbody.related_products").children('.p').remove()
+    $("tbody.related_products td").children('input.d-none').removeClass('hide')
+})
+
+$(document).on('click', '.remove_related_product', function(e) {
+    e.preventDefault()
+    $(this).parentsUntil('tbody').remove()
+    e.preventDefault()
+    $(this).parent().parent('.variation-panel').remove();
+    $.ajax({
+        type: "delete",
+        url: $(this).attr('href'),
+    }).done(function(response) {
+
+    });
+})
+
 
 $(document).on('click', '.remove-image', function(e) {
     e.preventDefault();

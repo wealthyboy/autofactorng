@@ -90,7 +90,23 @@
                                 @else
 
                                 <div class="align-middle  text-sm">
-                                    <h6 class="mb-0 text-xs">{{ $v }}</h6>
+
+                                    @if(is_array($v))
+
+
+                                    <select class="form-control mt-3 update_status" name="order_status[25991]" id="">
+                                        <option value="">Choose Status</option>
+                                        <option value="Processing" selected="">Processing</option>
+                                        <option value="Refunded">Refunded</option>
+                                        <option value="Shipped">Shipped</option>
+                                        <option value="Delivered">Delivered</option>
+
+                                        @else
+
+                                        <h6 class="mb-0 text-xs">{{ $v }}</h6>
+
+                                        @endif
+                                    </select>
                                 </div>
                                 @endif
 

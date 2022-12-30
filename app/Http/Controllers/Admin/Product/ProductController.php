@@ -249,6 +249,17 @@ class ProductController extends Table
         return $string;
     }
 
+    public function getRelatedProducts(Request $request)
+    {
+        if ($request->filled('product_name')) {
+            $products = Product::where('name', 'like', '%' . $request->product_name . '%')
+                ->take(10)
+                ->get();
+            return view('admin.products.related_products', compact('products'));
+        }
+        return [];
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -335,6 +346,19 @@ class ProductController extends Table
 
         $product->sku = $product->id . $this->generateSku();
         $product->save();
+
+        /**
+         * Save related products
+         */
+        if (!empty($request->related_products)) {
+            foreach ($request->related_products as $key => $product_ids) {
+                $product->related_products()->create([
+                    'related_id' =>  $product_ids,
+                    'sort_order' => !empty($request->sort_order) ?  $request->sort_order[$key] : 1,
+                ]);
+            }
+        }
+
 
         if ($brand !== null) {
             $brand->categories()->sync($request->category_id);
@@ -505,6 +529,21 @@ class ProductController extends Table
 
         if (null !== $brand) {
             $brand->categories()->sync($request->category_id);
+        }
+
+
+        //dd($request->related_products);
+
+        /**
+         * Save related products
+         */
+        if (!empty($request->related_products)) {
+            foreach ($request->related_products as $key => $product_ids) {
+                $product->related_products()->create([
+                    'related_id' =>  $product_ids,
+                    'sort_order' => !empty($request->sort_order) ?  $request->sort_order[$key] : 1,
+                ]);
+            }
         }
 
 

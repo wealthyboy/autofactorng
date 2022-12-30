@@ -91,7 +91,23 @@
                                 <?php else: ?>
 
                                 <div class="align-middle  text-sm">
-                                    <h6 class="mb-0 text-xs"><?php echo e($v); ?></h6>
+
+                                    <?php if(is_array($v)): ?>
+
+
+                                    <select class="form-control mt-3 update_status" name="order_status[25991]" id="">
+                                        <option value="">Choose Status</option>
+                                        <option value="Processing" selected="">Processing</option>
+                                        <option value="Refunded">Refunded</option>
+                                        <option value="Shipped">Shipped</option>
+                                        <option value="Delivered">Delivered</option>
+
+                                        <?php else: ?>
+
+                                        <h6 class="mb-0 text-xs"><?php echo e($v); ?></h6>
+
+                                        <?php endif; ?>
+                                    </select>
                                 </div>
                                 <?php endif; ?>
 

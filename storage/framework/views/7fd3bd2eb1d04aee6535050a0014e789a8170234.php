@@ -384,6 +384,8 @@
          </div>
 
 
+
+
          <div class="card mt-4">
             <div class="card-header p-3 pt-2">
                <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
@@ -410,6 +412,71 @@
                      <?php echo $__env->make('includes.edit_children',[ 'collections' => $product->categories, 'obj'=>$category,'space'=>'&nbsp;&nbsp;','model' => 'category','url' => 'category','name' => 'category_id', 'route' => 'category'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                   </div>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+               </div>
+            </div>
+         </div>
+
+         <div class="card mt-4">
+            <div class="card-header p-3 pt-2">
+               <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
+                  <i class="material-symbols-outlined">list</i>
+               </div>
+               <h6 class="mb-0">Related Products</h6>
+            </div>
+            <div class="material-datatables">
+               <div class="categories fw-bold  text-sm text-danger px-4 "></div>
+
+               <div class="well well-sm pb-5" style="height: 250px; background-color: #fff; color: black; overflow: auto;">
+                  <div class="row p-attr">
+                     <div class="col-md-12">
+                        <div class="form-group py-2 px-3">
+
+                           <div class="input-group input-group-outline">
+                              <input name="search_products" type="text" value="" placeholder="Search" class="search_products form-control">
+                           </div>
+                           <div class="search_product">
+                              <table id="datatables" class="table table-striped table-shopping table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                 <tbody id="related_products"></tbody>
+                              </table>
+                           </div>
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+
+                     <div class="col-sm-12">
+                        <table id="datatables" class="table table-striped table-shopping table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                           <thead>
+                              <tr>
+                                 <td>
+                                 </td>
+
+                                 <td class="text-left"> Product Name</td>
+                                 <!-- <td class="text-left"> Sort Order</td> -->
+                                 <td class="text-left"> Action</td>
+                              </tr>
+                           </thead>
+                           <tbody class="related_products">
+                              <?php $__currentLoopData = $product->related_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $related_product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                              <tr class="">
+                                 <td class="">
+                                    <div class="checkbox">
+                                       <label>
+                                          <input type="checkbox" name="po[<?php echo e($related_product->id); ?>]" value="<?php echo e($related_product->related_id); ?>" disabled checked />
+                                       </label>
+                                    </div>
+                                 </td>
+                                 <td class="text-left p">
+                                    <a class="#" href="#"> <?php echo e(optional($related_product->product)->name); ?></a>
+                                 </td>
+
+                                 <td class="text-left"><a class="remove_related_product" href="/admin/related_products/<?php echo e($related_product->id); ?>"><i class="fa fa-trash"></i> Delete</a></td>
+                              </tr>
+                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                           </tbody>
+                        </table>
+                     </div>
+
+                  </div>
                </div>
             </div>
          </div>

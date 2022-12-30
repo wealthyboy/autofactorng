@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Notification;
 use App\Notifications\OrderStatusNotification;
 use App\Mail\ReviewMail;
 use App\Models\Activity;
+use App\Models\OrderStatus;
 use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 
@@ -146,7 +147,8 @@ class OrdersController extends Table
 	{
 		User::canTakeAction(User::canCreate);
 		$order = Order::find($id);
-		return view('admin.orders.create', compact('order'));
+		$statuses   =  static::order_status();
+		return view('admin.orders.create', compact('order', 'statuses'));
 	}
 
 
@@ -215,10 +217,14 @@ class OrdersController extends Table
 
 	public function updateStatus(Request $request)
 	{
-		$ordered_product = OrderedProduct::findOrFail($request->ordered_product_id);
-		$ordered_product->status = $request->status;
-		$ordered_product->save();
-		return $ordered_product;
+		$order = new OrderStatus;
+		$order->status = $request->status;
+		$order->order_id = $request->order_id;
+		$order->save();
+		$order = Order::find($request->order_id);
+		$order->status =  $request->status;
+		$order->save();
+		return $order;
 	}
 
 

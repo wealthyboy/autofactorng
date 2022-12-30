@@ -91,8 +91,8 @@ class User extends Authenticatable
 					"Full Name" =>  $user->fullname(),
 					"Email" => $user->email,
 					"Phone Number" => $user->phone_number,
-					"Wallet Balance" => (int) optional($user)->balance,
-					'Auto Credit' => (int) optional($user)->auto_credit,
+					"Wallet Balance" => (int) optional($user->wallet_balance)->balance,
+					'Auto Credit' => (int) optional($user->wallet_balance)->auto_credit,
 					"Date Added" =>  $user->created_at->format('d-m-y'),
 				];
 			} else {
@@ -123,20 +123,7 @@ class User extends Authenticatable
 		return $sort[$key];
 	}
 
-	public function credit($user)
-	{
-		$data = [];
 
-		if (!$user->isAdmin()) {
-			$data =  [
-				"Wallet Balance" => (int) optional($user)->balance,
-				'Auto Crdeit' => (int) optional($user)->auto_credit,
-			];
-		}
-
-
-		return !empty($data) ? $data : null;
-	}
 
 
 	public function orders()

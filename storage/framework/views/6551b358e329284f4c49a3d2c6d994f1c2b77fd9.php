@@ -373,28 +373,63 @@
                </div>
             </div>
          </div>
+
+
+         <div class="card mt-4">
+            <div class="card-header p-3 pt-2">
+               <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
+                  <i class="material-symbols-outlined">list</i>
+               </div>
+               <h6 class="mb-0">Related Products</h6>
+            </div>
+            <div class="material-datatables">
+               <div class="categories fw-bold  text-sm text-danger px-4 "></div>
+
+               <div class="well well-sm pb-5" style="height: 250px; background-color: #fff; color: black; overflow: auto;">
+                  <div class="row p-attr">
+                     <div class="col-md-12">
+                        <div class="form-group py-2 px-3">
+
+                           <div class="input-group input-group-outline">
+                              <input name="search_products" type="text" value="" placeholder="Search" class="search_products form-control">
+                           </div>
+                           <div class="search_product">
+                              <table id="datatables" class="table table-striped table-shopping table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                 <tbody id="related_products"></tbody>
+                              </table>
+                           </div>
+                           <span class="material-input"></span>
+                        </div>
+                     </div>
+
+                     <div class="col-sm-12">
+                        <table id="datatables" class="table table-striped table-shopping table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                           <thead>
+                              <tr>
+                                 <td>
+                                 </td>
+
+                                 <td class="text-left"> Product Name</td>
+                                 <!-- <td class="text-left"> Sort Order</td> -->
+                                 <td class="text-left"> Action</td>
+                              </tr>
+                           </thead>
+                           <tbody class="related_products">
+
+                           </tbody>
+                        </table>
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
    </div>
 </form>
 
 
 
-<!-- <div class="toast fade  p-2 mt-2 bg-gradient-danger  show  toast-container position-fixed p-3 top-0 end-0" role="alert" aria-live="assertive" id="infoToast" aria-atomic="true">
-<div class="toast-header bg-transparent border-0">
-<i class="material-icons-outlined text-white me-2">
-notifications
-</i>
-<ul>
-   <li style="padding-left: 5px;"> &nbsp;&nbsp;<i class="fa fa-exclamation-circle"></i>         
-      <span class="text-sm text-white">  </span>
-   </li>
-   
-</ul>
-
-<i class="fas fa-times text-md text-white ms-3 cursor-pointer" data-bs-dismiss="toast" aria-label="Close"></i>
-</div>
-
-</div> -->
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('page-scripts'); ?>
 <script src="<?php echo e(asset('ckeditor/ckeditor.js')); ?>"></script>

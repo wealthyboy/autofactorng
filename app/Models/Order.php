@@ -19,10 +19,7 @@ class Order extends Model
 		return $this->hasMany(OrderedProduct::class);
 	}
 
-	public function order_statuses()
-	{
-		return $this->hasMany(OrderStatus::class);
-	}
+
 
 	public function user()
 	{
@@ -133,6 +130,12 @@ class Order extends Model
 
 		return $sort[$key];
 	}
+
+	public  function order_statuses()
+	{
+		return $this->hasMany(OrderStatus::class);
+	}
+
 
 
 

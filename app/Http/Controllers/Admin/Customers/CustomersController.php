@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Admin\Customers;
 
 use App\DataTable\Table;
 use App\Http\Controllers\Controller;
+use App\Models\Activity;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Wallet;
+use App\Models\WalletBalance;
 
 class CustomersController extends Table
 {
@@ -65,7 +68,8 @@ class CustomersController extends Table
     public function show($id)
     {
         $user = User::find($id);
-        return view('admin.customers.show', compact('user'));
+        // dd($user);
+        return view('admin.customers.show', compact('user', 'id'));
     }
 
 
@@ -100,6 +104,43 @@ class CustomersController extends Table
             'destroy' => true,
             'export' => true
         ];
+    }
+
+
+    public function fundWallet(Request $request, $id)
+    {
+
+        $balance = WalletBalance::where('user_id', $id)->first();
+        $wallet = new Wallet;
+        $wallet->amount = $request->amount;
+        $wallet->user_id = $id;
+        $wallet->status = $request->status;
+        $wallet->save();
+
+        if ($request->type == 'wallet') {
+
+            $wallet =  WalletBalance::firstOrNew(
+                ['user_id' => $id]
+            );
+
+
+            $wallet->balance = $request->status == 'added' ? (int) optional($balance)->balance + $request->amount :  $balance->balance  - $request->amount;
+            $wallet->user_id = $id;
+
+            $wallet->save();
+        }
+
+        if ($request->type == 'auto_credit') {
+            $wallet =  WalletBalance::firstOrNew(
+                ['user_id' => $id]
+            );
+
+            $wallet->auto_credit = $request->status == 'added' ? (int) optional($balance)->auto_credit  + $request->amount :  $balance->auto_credit  - $request->amount;
+            $wallet->user_id = $id;
+            $wallet->save();
+        }
+
+        return redirect()->to('/admin/customers');
     }
 
 
