@@ -32,13 +32,16 @@
         </h3>
 
         <div class="ratings-container">
-          <div class="product-ratings">
+
+          <div
+            v-if="product.average_rating_count >= 1"
+            class="product-ratings"
+          >
             <span
               class="ratings"
-              style="width:100%"
+              :style="'width:' + product.average_rating+ '%'"
             ></span>
             <!-- End .ratings -->
-            <span class="tooltiptext tooltip-top">5.00</span>
           </div>
           <!-- End .product-ratings -->
         </div>
@@ -97,16 +100,15 @@
       <p>
         SKU #{{product.sku}}
       </p>
-      <div class="ratings-container">
-        <div class="product-ratings">
-          <span
-            class="ratings"
-            style="width:100%"
-          ></span>
-          <!-- End .ratings -->
-          <span class="tooltiptext tooltip-top"></span>
-        </div>
-        <!-- End .product-ratings -->
+      <div
+        v-if="product.average_rating_count >= 1"
+        class="product-ratings"
+      >
+        <span
+          class="ratings"
+          :style="'width:' + product.average_rating+ '%'"
+        ></span>
+        <!-- End .ratings -->
       </div>
       <!-- End .product-container -->
 
