@@ -205,15 +205,19 @@
         </div>
     </div>
 
+    <?php if( optional($product->related_products)->count() ): ?>
+
     <div class="products-section container-fluid pt-0 mt-4">
         <h2 class="section-title">Related Products</h2>
 
+
         <div class="products-slider owl-carousel owl-theme dots-top dots-small">
+            <?php $__currentLoopData = $product->related_products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $related_product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="product-default">
                 <figure>
                     <a href="product.html">
-                        <img src="assets/images/products/product-1.jpg" width="280" height="280" alt="product">
-                        <img src="assets/images/products/product-1-2.jpg" width="280" height="280" alt="product">
+                        <img src="<?php echo e($product->image_to_show); ?>" width="280" height="280" alt="product">
+                        <img src="<?php echo e($product->image_to_show); ?>" width="280" height="280" alt="product">
                     </a>
                     <div class="label-group">
                         <!-- <div class="product-label label-hot">HOT</div>
@@ -221,12 +225,10 @@
                     </div>
                 </figure>
                 <div class="product-details">
-                    <div class="category-list">
-                        <a href="category.html" class="product-category">Category</a>
-                    </div>
-                    <h3 class="product-title">
-                        <a href="product.html">Ultimate 3D Bluetooth Speaker</a>
-                    </h3>
+
+
+                    <h3 class="product-title"> <a href="<?php echo e($product->link); ?>"><?php echo e($product->name); ?></a> </h3>
+
                     <div class="ratings-container">
                         <div class="product-ratings">
                             <span class="ratings" style="width:80%"></span>
@@ -237,19 +239,23 @@
                     </div>
                     <!-- End .product-container -->
                     <div class="price-box">
-                        <del class="old-price">$59.00</del>
-                        <span class="product-price">$49.00</span>
+                        <?php if($product->discounted_price): ?>
+                        <div>
+                            <span class="old-price"><?php echo e($product->currency); ?><?php echo e($product->formatted_sale_price); ?></span>
+                            <span class="product-price"><?php echo e($product->currency); ?><?php echo e($product->formatted_price); ?></span>
+                        </div>
+                        <?php else: ?>
+                        <div>
+                            <span class="product-price"><?php echo e($product->currency); ?><?php echo e($product->formatted_price); ?></span>
+                        </div>
+                        <?php endif; ?>
                     </div>
                     <!-- End .price-box -->
-                    <div class="product-action">
-                        <a href="wishlist.html" title="Wishlist" class="btn-icon-wish"><i class="icon-heart"></i></a>
-                        <a href="product.html" class="btn-icon btn-add-cart"><i class="fa fa-arrow-right"></i><span>SELECT
-                                OPTIONS</span></a>
-                        <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>
-                    </div>
+
                 </div>
                 <!-- End .product-details -->
             </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
 
@@ -259,5 +265,6 @@
         </div>
         <!-- End .products-slider -->
     </div>
+    <?php endif; ?>
     <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/products/show.blade.php ENDPATH**/ ?>

@@ -206,15 +206,19 @@
         </div>
     </div>
 
+    @if ( optional($product->related_products)->count() )
+
     <div class="products-section container-fluid pt-0 mt-4">
         <h2 class="section-title">Related Products</h2>
 
+
         <div class="products-slider owl-carousel owl-theme dots-top dots-small">
+            @foreach( $product->related_products as $related_product)
             <div class="product-default">
                 <figure>
                     <a href="product.html">
-                        <img src="assets/images/products/product-1.jpg" width="280" height="280" alt="product">
-                        <img src="assets/images/products/product-1-2.jpg" width="280" height="280" alt="product">
+                        <img src="{{ $product->image_to_show }}" width="280" height="280" alt="product">
+                        <img src="{{ $product->image_to_show }}" width="280" height="280" alt="product">
                     </a>
                     <div class="label-group">
                         <!-- <div class="product-label label-hot">HOT</div>
@@ -222,12 +226,10 @@
                     </div>
                 </figure>
                 <div class="product-details">
-                    <div class="category-list">
-                        <a href="category.html" class="product-category">Category</a>
-                    </div>
-                    <h3 class="product-title">
-                        <a href="product.html">Ultimate 3D Bluetooth Speaker</a>
-                    </h3>
+
+
+                    <h3 class="product-title"> <a href="{{ $product->link }}">{{ $product->name }}</a> </h3>
+
                     <div class="ratings-container">
                         <div class="product-ratings">
                             <span class="ratings" style="width:80%"></span>
@@ -238,19 +240,23 @@
                     </div>
                     <!-- End .product-container -->
                     <div class="price-box">
-                        <del class="old-price">$59.00</del>
-                        <span class="product-price">$49.00</span>
+                        @if($product->discounted_price)
+                        <div>
+                            <span class="old-price">{{ $product->currency }}{{ $product->formatted_sale_price }}</span>
+                            <span class="product-price">{{ $product->currency }}{{ $product->formatted_price }}</span>
+                        </div>
+                        @else
+                        <div>
+                            <span class="product-price">{{ $product->currency }}{{ $product->formatted_price }}</span>
+                        </div>
+                        @endif
                     </div>
                     <!-- End .price-box -->
-                    <div class="product-action">
-                        <a href="wishlist.html" title="Wishlist" class="btn-icon-wish"><i class="icon-heart"></i></a>
-                        <a href="product.html" class="btn-icon btn-add-cart"><i class="fa fa-arrow-right"></i><span>SELECT
-                                OPTIONS</span></a>
-                        <a href="ajax/product-quick-view.html" class="btn-quickview" title="Quick View"><i class="fas fa-external-link-alt"></i></a>
-                    </div>
+
                 </div>
                 <!-- End .product-details -->
             </div>
+            @endforeach
 
 
 
@@ -260,4 +266,5 @@
         </div>
         <!-- End .products-slider -->
     </div>
+    @endif
     @endsection
