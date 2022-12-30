@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRelatedProductsTable extends Migration
+class RecreateTableRelatedProducts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateRelatedProductsTable extends Migration
      */
     public function up()
     {
-        // Schema::create('related_products', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->integer('product_id')->nullable();
-        //     $table->integer('related_id')->nullable();
-        //     $table->integer('sort_id')->nullable();
-        //     $table->timestamps();
-        // });
+        Schema::create('related_products', function (Blueprint $table) {
+            $table->id();
+            $table->integer('product_id')->nullable();
+            $table->integer('related_id')->nullable();
+            $table->integer('sort_id')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
