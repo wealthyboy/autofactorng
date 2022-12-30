@@ -73,7 +73,7 @@ class ProductController extends Table
 
         $ampheres = Product::getFilterLists('amphere');
 
-        dd(\Schema::getColumnListing($this->builder->getModel()->getTable()));
+        dd(\Schema::getColumnListing('related_products'));
 
 
         if (request()->filled('search')) {
