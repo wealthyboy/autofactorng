@@ -10,6 +10,9 @@ class RelatedProduct extends Model
 {
     use HasFactory, ColumnFillable;
 
+    public $timestamps = false;
+
+
     public function product()
     {
         return $this->belongsTo(Product::class, 'related_id');
