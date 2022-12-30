@@ -118,9 +118,9 @@
             @foreach( $product->related_products as $related_product)
             <div class="product-default">
                 <figure>
-                    <a href="product.html">
-                        <img src="{{ $product->image_to_show }}" width="280" height="280" alt="product">
-                        <img src="{{ $product->image_to_show }}" width="280" height="280" alt="product">
+                    <a href="{{$related_product->product->link }}">
+                        <img src="{{ $related_product->product->image_to_show }}" width="280" height="280" alt="product">
+                        <img src="{{ $related_product->product->image_to_show }}" width="280" height="280" alt="product">
                     </a>
                     <div class="label-group">
                         <!-- <div class="product-label label-hot">HOT</div>
@@ -130,7 +130,7 @@
                 <div class="product-details">
 
 
-                    <h3 class="product-title"> <a href="{{ $product->link }}">{{ $product->name }}</a> </h3>
+                    <h3 class="product-title"> <a href="{{$related_product->product->link }}">{{ $related_product->product->->name }}</a> </h3>
 
                     <div class="ratings-container">
                         <div class="product-ratings">
@@ -142,14 +142,14 @@
                     </div>
                     <!-- End .product-container -->
                     <div class="price-box">
-                        @if($product->discounted_price)
+                        @if($related_product->product->discounted_price)
                         <div>
-                            <span class="old-price">{{ $product->currency }}{{ $product->formatted_sale_price }}</span>
-                            <span class="product-price">{{ $product->currency }}{{ $product->formatted_price }}</span>
+                            <span class="old-price">{{ $related_product->product->currency }}{{ $related_product->product->formatted_sale_price }}</span>
+                            <span class="product-price">{{ $related_product->product->currency }}{{ $related_product->product->formatted_price }}</span>
                         </div>
                         @else
                         <div>
-                            <span class="product-price">{{ $product->currency }}{{ $product->formatted_price }}</span>
+                            <span class="product-price">{{ $related_product->product->currency }}{{ $related_product->product->formatted_price }}</span>
                         </div>
                         @endif
                     </div>
