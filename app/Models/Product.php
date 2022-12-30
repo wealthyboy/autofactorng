@@ -77,7 +77,9 @@ class Product extends Model
         'formatted_sale_price',
         'currency',
         'fits',
-        'fitText'
+        'fitText',
+        'average_rating',
+        'average_rating_count',
     ];
 
     public function attributes()
@@ -140,6 +142,16 @@ class Product extends Model
         return $this->hasMany(RelatedProduct::class);
     }
 
+    public function getAverageRatingAttribute()
+    {
+        return (new Review())->highest_rating($this->id);
+    }
+
+
+    public function getAverageRatingCountAttribute()
+    {
+        return (new Review())->number_of_occurencies($this->id);
+    }
 
     public function make_model_year_engines()
     {

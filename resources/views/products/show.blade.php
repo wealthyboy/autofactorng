@@ -133,12 +133,7 @@
                     <h3 class="product-title"> <a href="{{$related_product->product->link }}">{{ $related_product->product->name }}</a> </h3>
 
                     <div class="ratings-container">
-                        <div class="product-ratings">
-                            <span class="ratings" style="width:80%"></span>
-                            <!-- End .ratings -->
-                            <span class="tooltiptext tooltip-top"></span>
-                        </div>
-                        <!-- End .product-ratings -->
+                        @include('_partials.ratings')
                     </div>
                     <!-- End .product-container -->
                     <div class="price-box">
