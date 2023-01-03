@@ -77,7 +77,7 @@ class WalletsController extends Table
         $wallet = new Wallet;
         $wallet->amount = $request->amount;
         $wallet->user_id = $user->id;
-        $wallet->status = 'Added';
+        $wallet->status = $request->auto_credit ?  'Added to auto credit' : 'Added to wallet';
         $wallet->save();
 
         $balance = WalletBalance::where('user_id', $user->id)->first();
@@ -127,7 +127,7 @@ class WalletsController extends Table
             }
         }
 
-        $wallet_balance  =   auth()->user()->wallet_balance;
+        $wallet_balance  = auth()->user()->wallet_balance;
         $total  = (int) optional($wallet_balance)->balance + optional($wallet_balance)->auto_credit;
         return response()->json([
             'wallet_balance' => (int) optional($wallet_balance)->balance,
