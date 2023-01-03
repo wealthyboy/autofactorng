@@ -28154,7 +28154,7 @@ var _hoisted_1 = {
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
   "class": "page-title"
-}, "Wallet", -1
+}, "Wallet/Auto Credit", -1
 /* HOISTED */
 );
 

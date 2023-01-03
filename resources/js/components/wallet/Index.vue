@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex align-items-center justify-content-between">
-    <h2 class="page-title ">Wallet</h2>
+    <h2 class="page-title ">Wallet/Auto Credit</h2>
     <div class="wallet-balance">
       <fund-wallet :user="user" />
     </div>
