@@ -28083,17 +28083,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "d-flex"
+  "class": "d-flex align-items-center justify-content-between"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "data-bs-toggle": "modal",
   "data-bs-target": "#main-modal",
-  "class": "btn btn-outline-secondary w-100 rounded-0",
+  "class": "btn btn-outline-secondary w-100 rounded-0 me-2",
   type: "button",
   id: "button-addon2"
 }, "Fund your wallet"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   "class": "btn btn-outline-secondary w-100 rounded-0",
   href: "/plans?type=auto_cover"
-}, "Fund your wallet")], -1
+}, "Auto cover")], -1
 /* HOISTED */
 );
 
@@ -28164,7 +28164,7 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_3 = {
-  "class": "wallet-balance"
+  "class": "wallet-balance w-50"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_fund_wallet = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("fund-wallet");

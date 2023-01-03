@@ -1,9 +1,9 @@
 <template>
-  <div class="d-flex">
+  <div class="d-flex align-items-center justify-content-between">
     <button
       data-bs-toggle="modal"
       data-bs-target="#main-modal"
-      class="btn btn-outline-secondary w-100 rounded-0"
+      class="btn btn-outline-secondary w-100 rounded-0 me-2"
       type="button"
       id="button-addon2"
     >Fund your wallet</button>
@@ -11,7 +11,7 @@
     <a
       class="btn btn-outline-secondary w-100 rounded-0"
       href="/plans?type=auto_cover"
-    >Fund your wallet</a>
+    >Auto cover</a>
   </div>
 
   <modal>
