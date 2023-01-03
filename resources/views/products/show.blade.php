@@ -101,19 +101,20 @@
     </div>
     <!-- End .container -->
 
-    <div class="container-fluid  p-0">
-        <h3>
-            Reviews
-        </h3>
-        <reviews />
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <h3>
+                Reviews
+            </h3>
+            <reviews :user="{{ $user }}" :product="{{ $product }}" />
+        </div>
+
     </div>
 
     @if ( optional($product->related_products)->count() )
 
     <div class="products-section container-fluid pt-0 mt-4">
         <h2 class="section-title">Related Products</h2>
-
-
         <div class="products-slider owl-carousel owl-theme dots-top dots-small">
             @foreach( $product->related_products as $related_product)
             <div class="product-default">

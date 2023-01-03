@@ -7,7 +7,7 @@
       <div class="product-ratings">
         <span
           class="ratings"
-          style="width:60%"
+          :style="{ width: product.average_rating + '%' }"
         ></span>
         <!-- End .ratings -->
         <span class="tooltiptext tooltip-top"></span>
@@ -17,7 +17,7 @@
       <a
         href="product-transparent-image.html#"
         class="rating-link"
-      >( 6 Reviews )</a>
+      >( {{ product.average_rating_count }} Reviews )</a>
     </div>
     <!-- End .ratings-container -->
 

@@ -33,12 +33,8 @@
 
          <h3 class="product-title"> <a href="<?php echo e($product->link); ?>"><?php echo e($product->name); ?></a> </h3>
          <div class="ratings-container">
-            <div class="product-ratings">
-               <span class="ratings" style="width:0%"></span>
-               <!-- End .ratings -->
-               <span class="tooltiptext tooltip-top"></span>
-            </div>
-            <!-- End .product-ratings -->
+            <?php echo $__env->make('_partials.ratings', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
          </div>
          <!-- End .product-container -->
          <div class="price-box">

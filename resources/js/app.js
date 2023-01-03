@@ -14,6 +14,8 @@ import store from './store'
 
 import Products from "./components/products/Index";
 import Show from "./components/products/Show";
+import Reviews from "./components/products/Reviews";
+
 import CartSideBar from "./components/cart/CartSideBarMenu";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
@@ -55,6 +57,8 @@ app.component('FundWallet', FundWallet)
 app.component('GeneralTable', Table)
 app.component('WalletTable', WalletTable)
 app.component('Wallet', Wallet)
+app.component('Reviews', Reviews)
+
 
 app.component('Subscribe', Subscribe)
 

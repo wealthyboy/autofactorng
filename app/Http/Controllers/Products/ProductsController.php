@@ -209,6 +209,7 @@ class ProductsController extends Controller
     public function show(Request $request, Category $category, Product $product)
     {
         $product->load('images');
-        return view('products.show', compact('product'));
+        $user = request()->user();
+        return view('products.show', compact('user', 'product'));
     }
 }

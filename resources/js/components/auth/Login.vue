@@ -70,14 +70,15 @@ import Message from "../message/Message";
 import { loginRules } from "../../utils/ValidationRules";
 
 export default {
-  emits: ["switched"],
+  props: ["redirect"],
+  emits: ["has:loggedIn"],
   components: {
     SimpleMessage,
     GeneralButton,
     GeneralInput,
     Message,
   },
-  setup(p, { emit }) {
+  setup(props, { emit }) {
     const loading = ref(false);
     const text = ref("Submit");
     const message = ref(null);
@@ -98,11 +99,14 @@ export default {
       axios
         .post("/login", form)
         .then((res) => {
-          window.location.href = res.data.url;
+          if (props.redirect) {
+            window.location.href = res.data.url;
+          }
+
+          emit("has:loggedIn");
         })
         .catch((err) => {
           message.value = "We could not find your data in our system";
-
           setTimeout(() => {
             message.value = null;
           }, 3000);

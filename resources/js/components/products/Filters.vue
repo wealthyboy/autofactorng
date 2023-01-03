@@ -6,7 +6,7 @@
   >
     <div id="accordion">
       <div class="card card-accordion">
-        <a
+        <h3
           class="card-header text-uppercase"
           href="contact.html#"
           data-toggle="collapse"
@@ -15,7 +15,7 @@
           :aria-controls="'collapseOne' + name"
         >
           {{  name  }}
-        </a>
+        </h3>
 
         <div
           :id="'collapseOne' + name"

@@ -1,118 +1,178 @@
 <template>
   <!-- End .product-single-container -->
-  <div class="product-single-tabs">
-    <ul class="nav nav-tabs" role="tablist">
-      <li class="nav-item">
-        <a
-          class="nav-link active"
-          id="Warranty_Return"
-          data-toggle="tab"
-          href="#Warranty-Return"
-          role="tab"
-          aria-controls="Warranty-Return"
-          aria-selected="false"
-          ><h4>REVIEWS</h4></a
-        >
-      </li>
-    </ul>
+  <div class=" col-md-12">
+
     <div class="tab-content">
-      <!-- End .tab-pane -->
-      <div
-        class="tab-pane fade show active pl-2"
-        id="Warranty-Return"
-        role="tabpanel"
-        aria-labelledby="Warranty-Return"
+
+      <a
+        type="button"
+        role="button"
+        class=""
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModalCenteredScrollable"
+        v-if="!loading && !reviews.length"
       >
-        <div class="product-reviews-content">
-          <div class="row">
-            <div class="col-12">
-              <div class="alert alert-info">
-                <div class="container d-flex">
-                  <div class="alert-icon mr-2">
-                    <i class="fas fa-exclamation-triangle"></i>
-                  </div>
-                  <div>
-                    You can only review this item only if your have purchased
-                    it.
-                  </div>
-                </div>
-              </div>
-            </div>
+        Be The First To Review This Product
+      </a>
 
-            <div class="col-xl-5 pb-5">
-              <div class="col-12">
-                <div
-                  v-if="$root.loggedIn && !showForm"
-                  class="review-form-wrapper ml-3 mt-2"
-                >
-                  <button
-                    @click="activateForm"
-                    type="button"
-                    class="bold btn  btn-round btn-block btn--primary"
-                  >
-                    Add Review
-                  </button>
-                </div>
-              </div>
-              <div v-if="$root.loggedIn && showForm" class="add-product-review">
-                <form
-                  action="#"
-                  @submit.prevent="submitReview()"
-                  class="comment-form m-0"
-                >
-                  <h3 class="review-title">Add a Review</h3>
+      <div
+        v-if="!loading && reviews.length"
+        class="product-reviews-content"
+      >
+        <div class="d-flex justify-content-between">
+          <h3 class="reviews-title">{{  reviews.length }} review for {{ product.name  }}</h3>
+          <button
+            type="button"
+            class="btn btn-primary mb-4"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModalCenteredScrollable"
+          >
+            Add Review
+          </button>
 
-                  <div v-if="message" class="alert alert-success">
-                    <div class="container d-flex">
-                      <div>
-                        {{ message }}
-                      </div>
+        </div>
+
+        <div class="comment-list">
+          <div
+            v-for="review in reviews"
+            :key="review.id"
+            class="comments mb-3"
+          >
+
+            <div class="comment-block">
+              <div class="comment-header">
+                <div class="comment-arrow"></div>
+
+                <div class="ratings-container float-sm-right">
+                  <div class="product-ratings">
+                    <span
+                      class="ratings"
+                      style="width:60%"
+                      :style="{ width: review.rating + '%' }"
+                    ></span>
+                    <!-- End .ratings -->
+                    <span class="tooltiptext tooltip-top"></span>
+                  </div>
+                  <!-- End .product-ratings -->
+                </div>
+
+                <span class="comment-by">
+                  <strong>{{  review.full_name }}</strong> – {{ review.date }}<span class="float-end">
+                    <div class="text-success">
+                      <p> <i class="fa fa-check"></i> Verified Purchaser.</p>
                     </div>
-                  </div>
+                  </span>
+                </span>
+              </div>
 
+              <div class="comment-content">
+                <p>Excellent.</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+      </div>
+      <!-- End .tab-pane -->
+
+      <div
+        v-if="!loading && meta && meta.total > meta.per_page"
+        class="pagination-wraper"
+      >
+        <div class="pagination">
+          <ul class="pagination-numbers">
+            <pagination
+              :useUrl="useUrl"
+              :meta="meta"
+            />
+          </ul>
+        </div>
+      </div>
+
+      <!-- End .tab-pane -->
+    </div>
+    <!-- End .tab-content -->
+
+    <div
+      class="modal fade"
+      id="exampleModalCenteredScrollable"
+      tabindex="-1"
+      aria-labelledby="exampleModalCenteredScrollableTitle"
+      style="display: none;"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <a
+              href="/"
+              class="logo"
+            ><img
+                src="https://autofactor.ng/images/logo/autofactor_logo.png"
+                alt="Autofactor  Logo"
+              ></a>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="add-product-review">
+              <div class="text-center">
+                <h3 class="review-title">Add a review</h3>
+              </div>
+              <login
+                v-if="!is_loggeIn"
+                :redirect="false"
+                @has:loggedIn="hasLoggedIn"
+              />
+
+              <form
+                action="#"
+                class="comment-form m-0"
+              >
+                <template v-if="is_loggeIn">
                   <div class="rating-form">
-                    <label for="rating">Your rating</label>
+                    <label for="rating">Your rating <span class="required">*</span></label>
                     <span class="rating-stars">
                       <a
                         class="star-1"
-                        @click="getStarRating($event, 20)"
                         href="#"
-                        >1</a
-                      >
+                        @click="getStarRating($event, 20)"
+                      >1</a>
                       <a
                         class="star-2"
+                        href="product.html#"
                         @click="getStarRating($event, 40)"
-                        href="#"
-                        >2</a
-                      >
+                      >2</a>
                       <a
                         class="star-3"
+                        href="product.html#"
                         @click="getStarRating($event, 60)"
-                        href="#"
-                        >3</a
-                      >
+                      >3</a>
                       <a
                         class="star-4"
+                        href="product.html#"
                         @click="getStarRating($event, 80)"
-                        href="#"
-                        >4</a
-                      >
+                      >4</a>
                       <a
                         class="star-5"
                         @click="getStarRating($event, 100)"
-                        href="#"
-                        >5</a
-                      >
+                        href="product.html#"
+                      >5</a>
                     </span>
 
-                    <span
-                      v-if="noRating"
-                      class="help-block error text-danger text-sm-left"
+                    <select
+                      name="rating"
+                      id="rating"
+                      required=""
+                      style="display: none;"
                     >
-                      <small class="text-danger">Add your rating</small>
-                    </span>
-
-                    <select name="rating" id="rating" style="display: none">
                       <option value="">Rate…</option>
                       <option value="5">Perfect</option>
                       <option value="4">Good</option>
@@ -122,8 +182,25 @@
                     </select>
                   </div>
 
+                  <div class="form-group">
+                    <label for="comment">Comment </label>
+                    <textarea
+                      id="comment"
+                      v-model="form.description"
+                      name="description"
+                      class=" form-control rating_required form-control-sm"
+                      cols="35"
+                      rows="10"
+                      @input="removeError($event)"
+                      @blur="vInput($event)"
+                      aria-required="true"
+                    >
+                </textarea>
+                  </div>
+
+                  <!-- End .form-group -->
+
                   <div class="row">
-                    <div class="clearfix"></div>
                     <div class="col-md-6 col-xl-12">
                       <div class="form-group mt-2">
                         <label for="title">Title</label>
@@ -141,172 +218,72 @@
                           v-if="errors.title"
                         >
                           <small class="text-danger">{{
-                            formatError(errors.title)
-                          }}</small>
-                        </span>
-                      </div>
-
-                      <div class="form-group">
-                        <label for="comment">Comment </label>
-                        <textarea
-                          id="comment"
-                          v-model="form.description"
-                          name="description"
-                          class=" form-control rating_required form-control-sm"
-                          cols="35"
-                          rows="10"
-                          @input="removeError($event)"
-                          @blur="vInput($event)"
-                          aria-required="true"
-                        >
-                        </textarea>
-                        <span
-                          class="help-block error text-danger text-sm-left"
-                          v-if="errors.description"
-                        >
-                          <small class="text-danger">{{
-                            formatError(errors.description)
-                          }}</small>
+                    formatError(errors.title)
+                  }}</small>
                         </span>
                       </div>
                       <!-- End .form-group -->
                     </div>
+
                   </div>
 
-                  <p class="d-flex">
-                    <button
-                      type="submit"
-                      class="btn btn--primary btn-round  btn-lg btn-block"
-                    >
-                      <span
-                        v-if="submiting"
-                        class="spinner-border spinner-border-sm"
-                        :class="{ disabled: submiting }"
-                        role="status"
-                        aria-hidden="true"
-                      ></span>
-                      Submit
-                    </button>
+                  <button
+                    type="submit"
+                    class="btn btn--primary btn-round  btn-lg btn-block"
+                  >
+                    <span
+                      v-if="submiting"
+                      class="spinner-border spinner-border-sm"
+                      :class="{ disabled: submiting }"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                    Submit
+                  </button>
 
-                    <button @click="activateForm" type="button" class="ml-1">
-                      Cancel
-                    </button>
-                  </p>
-                </form>
-              </div>
-              <!-- End .add-product-review -->
-              <div v-if="!$root.loggedIn" class="review-form-wrapper ml-3 mt-2">
-                <button
-                  data-toggle="modal"
-                  data-target="#login-modal"
-                  type="button"
-                  class="bold btn  btn-round btn-block btn--primary"
-                >
-                  Add Review
-                </button>
-              </div>
+                  <button
+                    @click="activateForm"
+                    type="button"
+                    class="ml-1"
+                  >
+                    Cancel
+                  </button>
+                </template>
+
+              </form>
             </div>
-            <div class="col-xl-7">
-              <h3
-                v-if="!loading && reviews.length"
-                class="review-title text-uppercase"
-              >
-                {{ meta.total }} Review(s) for <span>This Product</span>
-              </h3>
+            <!-- End .add-product-review -->
+          </div>
+          <div class="modal-footer">
 
-              <ol class="comment-list">
-                <li
-                  v-for="review in reviews"
-                  :key="review.id"
-                  class="comment-container d-block"
-                >
-                  <!-- End .comment-avatar-->
-
-                  <div class="comment-box">
-                    <div class="ratings-container">
-                      <div class="product-ratings">
-                        <span
-                          class="ratings"
-                          :style="{ width: review.rating + '%' }"
-                        ></span
-                        ><!-- End .ratings -->
-                      </div>
-                      <!-- End .product-ratings -->
-                    </div>
-                    <!-- End .ratings-container -->
-
-                    <div
-                      class="comment-info mb-1 d-flex justify-content-between"
-                    >
-                      <div class="">
-                        <h4 class="avatar-name bold">
-                          {{ review.full_name }}
-                        </h4>
-                        - <span class="comment-date">{{ review.date }}</span>
-                      </div>
-                      <div class="align-self-end text-success">
-                        <i class="far fa-check-circle"></i> Verified Purchase
-                      </div>
-                    </div>
-                    <!-- End .comment-info -->
-
-                    <div class="comment-text col-12">
-                      <h4 class="avatar-name bold">
-                        {{ review.title }}
-                      </h4>
-                      <div class="review-description">
-                        {{ review.description }}
-                      </div>
-                    </div>
-                    <!-- End .comment-text -->
-                  </div>
-                  <!-- End .comment-box -->
-                </li>
-                <!-- comment-container -->
-              </ol>
-              <!-- End .comment-list -->
-              <div
-                v-if="!loading && meta && meta.total > meta.per_page"
-                class="pagination-wraper"
-              >
-                <div class="pagination">
-                  <ul class="pagination-numbers">
-                    <pagination :useUrl="useUrl" :meta="meta" />
-                  </ul>
-                </div>
-              </div>
-
-              <div class="text-center bold" v-if="!loading && !reviews.length">
-                No Reviews
-              </div>
-            </div>
           </div>
         </div>
-        <!-- End .product-reviews-content -->
       </div>
-      <!-- End .tab-pane -->
     </div>
-    <!-- End .tab-content -->
+
   </div>
+
   <!-- End .product-single-tabs -->
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
 import Pagination from "../pagination/Pagination.vue";
+import Login from "../auth/Login";
 
 export default {
-  props: ["reviews", "meta", "product"],
+  props: ["meta", "user", "product"],
   components: {
     Pagination,
+    Login,
   },
+
   data() {
     return {
       showMsg: false,
       noRating: false,
-      user: Window.auth,
       useUrl: false,
-      loading: false,
+      loading: true,
       is_loggeIn: false,
       showForm: false,
       form: {
@@ -324,13 +301,20 @@ export default {
       loggedIn: "loggedIn",
       errors: "errors",
       message: "message",
+      reviews: "reviews",
     }),
-    loggedIn: function() {
+    loggedIn: function () {
       return [this.user ? true : false];
     },
   },
-
+  mounted() {
+    this.productReviews();
+    this.is_loggeIn = this.user;
+  },
   methods: {
+    hasLoggedIn() {
+      this.is_loggeIn = true;
+    },
     activateForm() {
       this.showForm = !this.showForm;
     },
@@ -344,6 +328,7 @@ export default {
       e.target.classList.add("active");
     },
     productReviews() {
+      this.loading = true;
       return axios
         .get("/reviews/" + this.product.id)
         .then((response) => {
