@@ -340,7 +340,7 @@
                      </a>
                      <ul class="dropdown-menu dropdown-menu-end p-2 me-sm-n4" aria-labelledby="dropdownMenuButton">
 
-                        <li>
+                        <!-- <li>
                            <a class="dropdown-item border-radius-md" href="javascript:;">
                               <div class="d-flex align-items-center py-1">
                                  <div class="ms-2">
@@ -350,7 +350,7 @@
                                  </div>
                               </div>
                            </a>
-                        </li>
+                        </li> -->
                      </ul>
                   </li>
                </ul>
