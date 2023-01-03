@@ -40,7 +40,7 @@ class AccountSettingsNav
                 'iconText' => 'show_chart',
             ],
 
-            'Wallet' => [
+            'Wallet/Auto Credit' => [
                 'icon' => 'material-symbols-outlined',
                 'iconText' => 'account_balance_wallet',
                 'link' => '/wallets'
