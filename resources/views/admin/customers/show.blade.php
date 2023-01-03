@@ -13,7 +13,7 @@
          </div>
          <div class="card-body pt-0">
             @include('errors.errors')
-            {{ $id }}
+
             <form action="/admin/customers/wallet/{{$id}}" method="post">
                @csrf
                <div class="row mt-3">
@@ -28,7 +28,7 @@
 
                   <div class="col-3">
                      <select name="status" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
-                        <option selected value=""> Status</option>
+                        <option selected value="">Choose Status</option>
                         <option class="" value="added">Added </option>
                         <option class="" value="removed">Remove </option>
 
@@ -38,14 +38,11 @@
 
                   <div class="col-3">
                      <select name="type" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
-                        <option selected value=""> Type</option>
+                        <option selected value=""> Choose Type</option>
                         <option class="" value="auto_credit">Auto Credit </option>
                         <option class="" value="wallet">Wallet </option>
-
                      </select>
-
                   </div>
-
 
                </div>
 
