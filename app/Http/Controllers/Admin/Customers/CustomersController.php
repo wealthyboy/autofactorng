@@ -115,6 +115,23 @@ class CustomersController extends Table
         $wallet->amount = $request->amount;
         $wallet->user_id = $id;
         $wallet->status = $request->status;
+        if ($request->type == 'auto_credit' && $request->status == 'added') {
+            $wallet->status =  'Added to auto credit';
+        }
+
+        if ($request->type == 'auto_credit' && $request->status == 'removed') {
+            $wallet->status =  'Removed from auto credit';
+        }
+
+
+        if ($request->type == 'wallet' && $request->status == 'added') {
+            $wallet->status =  'Added from wallet';
+        }
+
+        if ($request->type == 'wallet' && $request->status == 'removed') {
+            $wallet->status =  'Removed from wallet';
+        }
+
         $wallet->save();
 
         if ($request->type == 'wallet') {
