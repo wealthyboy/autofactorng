@@ -25,14 +25,12 @@
                   </div>
 
 
-
                   <div class="col-3">
                      <label for="">Choose Status</label>
                      <select name="status" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg">
                         <option selected value="">Choose Status</option>
                         <option class="" value="added">Added </option>
                         <option class="" value="removed">Remove </option>
-
                      </select>
 
                   </div>
