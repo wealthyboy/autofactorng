@@ -38,7 +38,7 @@ class WalletsController extends Table
     {
         $nav = (new AccountSettingsNav())->nav();
         $user = auth()->user();
-        $collections = $this->getColumnListings(request(), $user->wallets()->paginate(10));
+        $collections = $this->getColumnListings(request(), $user->wallets()->paginate(20));
 
         if (request()->ajax()) {
             return response()->json([
