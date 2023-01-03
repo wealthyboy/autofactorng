@@ -1,12 +1,18 @@
 <template>
+  <div class="d-flex">
+    <button
+      data-bs-toggle="modal"
+      data-bs-target="#main-modal"
+      class="btn btn-outline-secondary w-100 rounded-0"
+      type="button"
+      id="button-addon2"
+    >Fund your wallet</button>
 
-  <button
-    data-bs-toggle="modal"
-    data-bs-target="#main-modal"
-    class="btn btn-outline-secondary w-100 rounded-0"
-    type="button"
-    id="button-addon2"
-  >Fund your wallet</button>
+    <a
+      class="btn btn-outline-secondary w-100 rounded-0"
+      href="/plans?type=auto_cover"
+    >Fund your wallet</a>
+  </div>
 
   <modal>
     <template v-slot:header>

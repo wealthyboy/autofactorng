@@ -28082,13 +28082,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "d-flex"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "data-bs-toggle": "modal",
   "data-bs-target": "#main-modal",
   "class": "btn btn-outline-secondary w-100 rounded-0",
   type: "button",
   id: "button-addon2"
-}, "Fund your wallet", -1
+}, "Fund your wallet"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  "class": "btn btn-outline-secondary w-100 rounded-0",
+  href: "/plans?type=auto_cover"
+}, "Fund your wallet")], -1
 /* HOISTED */
 );
 

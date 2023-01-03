@@ -12,7 +12,6 @@
         <div class="mb-0 align-self-center">
           <p class="text-sm text-gray-700 leading-5">
             Showing <span>{{ pmeta.firstItem }}- {{ pmeta.lastItem }} of {{pmeta.total}} Records</span>
-
           </p>
         </div>
         <div

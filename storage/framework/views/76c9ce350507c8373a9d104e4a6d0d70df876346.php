@@ -28,7 +28,7 @@
                         Sign in to save your vehicles, track your orders.
                         .</span>
                 </div>
-                <login></login>
+                <login :redirect="true"></login>
 
 
 
