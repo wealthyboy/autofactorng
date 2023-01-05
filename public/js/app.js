@@ -21749,7 +21749,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }]
           },
           callback: function callback(response) {
-            console.log(response);
             axios__WEBPACK_IMPORTED_MODULE_11___default().post("/wallets", form).then(function (res) {
               paymentIsComplete.value = true;
               paymentIsProcessing.value = false;

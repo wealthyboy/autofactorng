@@ -179,7 +179,6 @@ export default {
     const reg_complete = ref(false);
     const paymentIsProcessing = ref(false);
     const paymentIsComplete = ref(false);
-
     const scriptLoaded = ref(null);
 
     const rules = subscribeRules(form, props.price_range);
@@ -196,7 +195,6 @@ export default {
 
     async function subscribe2() {
       this.v$.$touch();
-
       //let res = await register();
     }
 
@@ -235,8 +233,6 @@ export default {
               ],
             },
             callback: function (response) {
-              console.log(response);
-
               axios
                 .post("/wallets", form)
                 .then((res) => {

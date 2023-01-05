@@ -33,6 +33,7 @@ export const subscribeData = () => {
 
 
 export const addressData = (location) => {
+
     let data = {
         first_name: location ? location.first_name : null,
         last_name: location ? location.last_name : null,
