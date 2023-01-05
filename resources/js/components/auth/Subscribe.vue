@@ -235,6 +235,8 @@ export default {
               ],
             },
             callback: function (response) {
+              console.log(response);
+
               axios
                 .post("/wallets", form)
                 .then((res) => {

@@ -24,6 +24,7 @@ export const subscribeData = () => {
         password_confirmation: null,
         phone_number: null,
         amount: null,
+        auto_credit: 1
 
     };
 

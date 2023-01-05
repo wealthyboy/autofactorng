@@ -73,6 +73,7 @@ class WalletsController extends Table
         $input = $request->all();
         $amount = (10 * $input['amount']) / 100;
         $amount = $input['amount'] +  $amount;
+        // return $amount;
 
         $wallet = new Wallet;
         $wallet->amount = !$request->auto_credit ?  $request->amount : $amount;
@@ -83,7 +84,6 @@ class WalletsController extends Table
         $balance = WalletBalance::where('user_id', $user->id)->first();
 
         if (!$request->auto_credit) {
-
             if (null !== $balance) {
                 $balance->balance = $balance->balance +  $input['amount'];
                 $balance->save();
