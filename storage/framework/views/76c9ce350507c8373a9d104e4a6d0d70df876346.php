@@ -30,8 +30,6 @@
                 </div>
                 <login :redirect="true"></login>
 
-
-
                 <div class="text-center mt-3">
                     Dont have an account yet? <a href="/register" class="color--primary bold">Create One</a>
                 </div>

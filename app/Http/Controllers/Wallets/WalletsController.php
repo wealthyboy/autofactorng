@@ -75,7 +75,7 @@ class WalletsController extends Table
         $amount = $input['amount'] +  $amount;
 
         $wallet = new Wallet;
-        $wallet->amount = $request->amount;
+        $wallet->amount = !$request->auto_credit ?  $request->amount : $amount;
         $wallet->user_id = $user->id;
         $wallet->status = $request->auto_credit ?  'Added to auto credit' : 'Added to wallet';
         $wallet->save();
