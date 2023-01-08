@@ -217,10 +217,15 @@ class OrdersController extends Table
 
 	public function updateStatus(Request $request)
 	{
-		$order = new OrderStatus;
-		$order->status = $request->status;
-		$order->order_id = $request->order_id;
-		$order->save();
+
+		$orderStatus = OrderStatus::firstOrNew(
+			['status' =>  request('status')],
+			['order_id' => request('order_id')]
+		);
+		$orderStatus->status = $request->status;
+		$orderStatus->order_id = $request->order_id;
+		$orderStatus->save();
+
 		$order = Order::find($request->order_id);
 		$order->status =  $request->status;
 		$order->save();
