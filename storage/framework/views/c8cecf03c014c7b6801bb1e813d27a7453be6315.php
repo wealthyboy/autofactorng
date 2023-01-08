@@ -14,6 +14,20 @@
                         </div>
                     </div>
                 </a>
+
+                <?php if($category->children->count()): ?>
+
+                <ul>
+                    <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                    <li>
+                        <a href=""><?php echo e($category->name); ?></a>
+                    </li>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                </ul>
+                <?php endif; ?>
+
             </li>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </ul>

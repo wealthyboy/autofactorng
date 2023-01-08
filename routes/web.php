@@ -60,7 +60,6 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('/related/products', 'Admin\Product\ProductController@getRelatedProducts');
     Route::delete('/related_products/{id}', 'Admin\RelatedProducts\RelatedProductsController@destroy');
 
-
     Route::resource('products', 'Admin\Product\ProductController', ['names' => 'products']);
 
     Route::resource('category', 'Admin\Category\CategoryController', ['name' => 'category']);

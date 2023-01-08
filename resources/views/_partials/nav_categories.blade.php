@@ -14,6 +14,20 @@
                         </div>
                     </div>
                 </a>
+
+                @if ($category->children->count())
+
+                <ul>
+                    @foreach( $category->children as $category)
+
+                    <li>
+                        <a href="">{{ $category->name }}</a>
+                    </li>
+                    @endforeach
+
+                </ul>
+                @endif
+
             </li>
             @endforeach
         </ul>
