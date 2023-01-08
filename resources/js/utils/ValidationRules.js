@@ -207,12 +207,11 @@ export const addressRules = (form) => {
 export const trackingRules = (form) => {
     const rules = computed(() => {
         return {
-            order_id: {
+            invoice: {
                 required: helpers.withMessage(
-                    "Please enter your order id",
+                    "Please enter your invoice number",
                     required
                 ),
-                numeric: helpers.withMessage("Please enter your order id", required),
             },
         };
     });

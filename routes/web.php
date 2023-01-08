@@ -108,7 +108,9 @@ Route::get('wallet-balance', 'Wallets\WalletsController@walletBalnce');
 Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'wallets']);
 
 Route::resource('orders', 'Orders\OrdersController', ['names' => 'orders']);
-Route::resource('tracking', 'TrackOrder\TrackOrdersController', ['names' => 'track.orders']);
+Route::get('tracking', 'TrackOrder\TrackOrdersController@index');
+Route::post('tracking', 'TrackOrder\TrackOrdersController@getOrderStatus');
+
 Route::resource('address', 'Address\AddressController', ['names' => 'address']);
 
 Route::get('checkout', 'Checkout\CheckoutController@index')->name('checkout');

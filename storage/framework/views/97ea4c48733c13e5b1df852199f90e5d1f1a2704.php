@@ -301,12 +301,12 @@
             </div>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                  <form action="/admin/products" method="get">
+                  <!-- <form action="/admin/products" method="get">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Search here</label>
                         <input type="text" name="q" class="form-control">
                      </div>
-                  </form>
+                  </form> -->
 
                </div>
 
@@ -341,7 +341,7 @@
                      </a>
                      <ul class="dropdown-menu dropdown-menu-end p-2 me-sm-n4" aria-labelledby="dropdownMenuButton">
 
-                        <li>
+                        <!-- <li>
                            <a class="dropdown-item border-radius-md" href="javascript:;">
                               <div class="d-flex align-items-center py-1">
                                  <div class="ms-2">
@@ -351,7 +351,7 @@
                                  </div>
                               </div>
                            </a>
-                        </li>
+                        </li> -->
                      </ul>
                   </li>
                </ul>

@@ -14,12 +14,17 @@ class Order extends Model
 
 	public $appends = ['ship_price'];
 
+	public static $statuses = [
+		"Processing",
+		"Shipped",
+		"Delivered",
+		"Refunded",
+	];
+
 	public function ordered_products()
 	{
 		return $this->hasMany(OrderedProduct::class);
 	}
-
-
 
 	public function user()
 	{
@@ -33,7 +38,6 @@ class Order extends Model
 
 	public static function checkout($input, $payment_method, $ip, $carts, $user)
 	{
-
 
 		$order = new self;
 
@@ -95,7 +99,6 @@ class Order extends Model
 		return [];
 	}
 
-
 	public function getListingData($collection)
 	{
 
@@ -113,7 +116,6 @@ class Order extends Model
 			];
 		});
 	}
-
 
 	public function sortKeys($key)
 	{

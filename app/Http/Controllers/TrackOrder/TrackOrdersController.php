@@ -27,15 +27,23 @@ class TrackOrdersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Request  $request,  $id)
+    public function getOrderStatus(Request  $request)
     {
-        $order = Order::find($id);
 
-        if (null !== $order) {
-            return $order->order_statuses;
-        }
+        $request->validate([
+            'invoice' => 'exists:orders'
+        ]);
 
-        return null;
+        $order_statuses  = Order::$statuses;
+
+        $order = Order::where('invoice', $request->invoice)->first();
+        $statuses = $order->order_statuses;
+        $completed = $statuses->toArray();
+        $uncompleted = array_diff($order_statuses, $statuses->pluck('status')->toArray());
+        return response()->json([
+            'completed' => $completed,
+            'uncompleted' => $uncompleted
+        ]);
     }
 
 

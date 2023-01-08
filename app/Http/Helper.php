@@ -11,8 +11,6 @@ use App\SystemSetting;
 class Helper
 {
 
-
-
     function active_link(array $url)
     {
         $uri =   $_SERVER['REQUEST_URI'];
