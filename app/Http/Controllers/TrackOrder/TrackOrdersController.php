@@ -31,12 +31,11 @@ class TrackOrdersController extends Controller
     {
 
         $request->validate([
-            'invoice' => 'exists:orders'
+            'tracking' => 'exists:orders'
         ]);
 
         $order_statuses  = Order::$statuses;
-
-        $order = Order::where('invoice', $request->invoice)->first();
+        $order = Order::where('tracking', $request->tracking)->first();
         $statuses = $order->order_statuses;
         $completed = $statuses->toArray();
         $uncompleted = array_diff($order_statuses, $statuses->pluck('status')->toArray());

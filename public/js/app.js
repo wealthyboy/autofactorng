@@ -24409,10 +24409,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     id: "order_id",
-    error: $setup.v$.invoice,
-    modelValue: $setup.form.invoice,
+    error: $setup.v$.tracking,
+    modelValue: $setup.form.tracking,
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $setup.form.invoice = $event;
+      return $setup.form.tracking = $event;
     }),
     name: "Invoice Number",
     type: "text"
@@ -37426,7 +37426,7 @@ var accountData = function accountData(user) {
 };
 var trackingData = function trackingData() {
   var data = {
-    invoice: null
+    tracking: null
   };
   return data;
 };
@@ -37641,8 +37641,8 @@ var addressRules = function addressRules(form) {
 var trackingRules = function trackingRules(form) {
   var rules = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
     return {
-      invoice: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter your invoice number", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
+      tracking: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter your tracking number", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
       }
     };
   });
