@@ -316,7 +316,7 @@
    <script type="text/javascript">
       <?php echo $__env->yieldContent('inline-scripts'); ?>
 
-      $(".menu-nav-btn, .panel-close, .coverlay").on("click", function() {
+      $(".menu-nav-btn, .panel-close").on("click", function() {
          let open = $(".menu-open");
          let close = $(".menu-close");
 
@@ -344,6 +344,10 @@
          }
 
       });
+
+      $(".coverlay").on("click", function() {
+         $(".menu-nav-btn").clicK()
+      })
    </script>
 
 </body>

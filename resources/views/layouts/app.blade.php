@@ -316,7 +316,7 @@
    <script type="text/javascript">
       @yield('inline-scripts')
 
-      $(".menu-nav-btn, .panel-close, .coverlay").on("click", function() {
+      $(".menu-nav-btn, .panel-close").on("click", function() {
          let open = $(".menu-open");
          let close = $(".menu-close");
 
