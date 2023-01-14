@@ -1,7 +1,7 @@
 <div class="offcanvas  nav-categories offcanvas-start w-25" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
     <div class="offcanvas-header">
         <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas">Shop All</h6>
-        <button type="button" class=" text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button type="button" class="panel-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body ">
         <ul class="list-unstyled pl-3">
@@ -16,15 +16,12 @@
                 </a>
 
                 <?php if($category->children->count()): ?>
-
                 <ul>
                     <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
                     <li>
-                        <a href=""><?php echo e($category->name); ?></a>
+                        <a href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>"><?php echo e($category->name); ?></a>
                     </li>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
                 </ul>
                 <?php endif; ?>
 

@@ -33,39 +33,7 @@
 
 <?php $__env->startSection('inline-scripts'); ?>
 
-$(".menu-nav-btn").on("click", function() {
-let open = $(".menu-open");
-let close = $(".menu-close");
 
-if (open.hasClass("d-none")) {
-open.removeClass("d-none");
-close.addClass("d-none");
-$(".overlay").addClass("d-none");
-$('html, body').css({
-overflow: 'auto',
-height: 'auto'
-});
-
-} else {
-open.addClass("d-none");
-close.removeClass("d-none");
-$(".overlay").removeClass("d-none");
-$('html, body').css({
-overflow: 'hidden',
-height: '100%'
-});
-
-}
-
-});
-
-$(".overlay").on("click", function() {
-let self = $(this);
-self.addClass("d-none");
-let open = $(".menu-open");
-open.removeClass("d-none");
-$(".menu-close").addClass("d-none");
-});
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/index.blade.php ENDPATH**/ ?>
