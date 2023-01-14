@@ -141,6 +141,7 @@
          <!-- End .header-bottom -->
       </header>
       <!-- End .header -->
+      <div class="coverlay"></div>
 
       <main class="main">
          @yield('content')
@@ -315,17 +316,17 @@
    <script type="text/javascript">
       @yield('inline-scripts')
 
-      $(".menu-nav-btn, .panel-close").on("click", function() {
+      $(".menu-nav-btn, .panel-close, .coverlay").on("click", function() {
          let open = $(".menu-open");
          let close = $(".menu-close");
+
 
          if (open.hasClass("d-none")) {
 
             open.removeClass("d-none");
             close.addClass("d-none");
 
-            $(".overlay").addClass("d-none");
-
+            $(".coverlay").removeClass("d-block").addClass("d-none");
             $('html, body').css({
                overflow: 'auto',
                height: 'auto'
@@ -334,7 +335,7 @@
          } else {
             open.addClass("d-none");
             close.removeClass("d-none");
-            $(".overlay").removeClass("d-none");
+            $(".coverlay").removeClass("d-none").addClass("d-block");
             $('html, body').css({
                overflow: 'hidden',
                height: '100%'
@@ -342,14 +343,6 @@
 
          }
 
-      });
-
-      $(".overlay").on("click", function() {
-         let self = $(this);
-         self.addClass("d-none");
-         let open = $(".menu-open");
-         open.removeClass("d-none");
-         $(".menu-close").addClass("d-none");
       });
    </script>
 

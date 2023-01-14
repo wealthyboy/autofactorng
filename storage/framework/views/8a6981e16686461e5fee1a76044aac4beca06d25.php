@@ -1,8 +1,6 @@
 <?php $__env->startSection('content'); ?>
 <?php echo $__env->make('_partials.top_banner', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-
-
 <div class="container-fluid">
     <!-- <div class="p-3 mb-2 bg-danger text-white text-center">Just in Autocover now available</div> -->
     <div class="row g-2">
