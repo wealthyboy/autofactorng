@@ -95,19 +95,19 @@
 
                         <button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0" role="button">
                            <span class="menu-open">
-                              <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="" srcset="">
+                              <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="" class="ms-1" srcset="">
                               <div class="">Menu</div>
                            </span>
 
                            <span class="menu-close d-none">
-                              <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" alt="" srcset="">
+                              <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" class="ms-2" alt="" srcset="">
                               <div class="text-xs">Close</div>
                            </span>
 
                         </button>
                      </div>
 
-                     <div class="menu-i   ml-5">
+                     <div class="menu-i   menu-i  w-25 ms-5">
                         <button class="nav-btn  w-100 mb-0">
                            <div class="d-flex add-a-vehicle justify-content-evenly">
                               <div><img src="/images/utils/vehicle-new.svg" alt=""></div>
@@ -117,14 +117,10 @@
                         </button>
                      </div>
 
-                     <div class="input-group mt-3  ml-5">
-                        <div class="input-group-prepend">
-                           <button class="btn icon-magnifier p-0" type="submit"></button>
-                        </div>
-                        <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                     </div>
 
-                     <div class="menu-i">
+                     <product-search></product-search>
+
+                     <div class="menu-i menu-i  w-25 me-5">
                         <button role="button" class="w-100 mb-0">
                            <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
                               <div class="align-self-center"><img src="/images/utils/vehicle-new.svg" alt=""></div>

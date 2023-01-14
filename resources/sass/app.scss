@@ -5,7 +5,7 @@
 @import "~bootstrap-icons/font/bootstrap-icons";
 @import "../assets/vendor/fontawesome-free/css/all.min.css";
 div#offcanvas {
-    top: 170px;
+    top: 177px;
 }
 
 .coverlay {
@@ -17,7 +17,7 @@ div#offcanvas {
     /* Full width (cover the whole page) */
     height: 100%;
     /* Full height (cover the whole page) */
-    top: 165px;
+    top: 177px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -27,6 +27,27 @@ div#offcanvas {
     /* Specify a stack order in case you're using a different order for other elements */
     cursor: pointer;
     /* Add a pointer on hover */
+}
+
+.dropdown-items {
+    width: 100%;
+    background-color: #ffffff;
+    top: 50px;
+    z-index: 1000;
+}
+
+.search-products-icon {
+    /* line-height: 16px; */
+    background: none;
+    border: none;
+    padding: 0 16px;
+    position: absolute;
+    z-index: 200;
+    top: 26%;
+}
+
+input.search-products {
+    padding-left: 5rem;
 }
 
 
