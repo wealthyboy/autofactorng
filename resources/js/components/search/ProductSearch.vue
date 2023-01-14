@@ -18,7 +18,7 @@
       aria-label="Example text with button addon"
       aria-describedby="button-addon1"
     >
-    <div class="dropdown-items position-absolute d-none">
+    <div class="dropdown-items position-absolute rounded-start">
       <ul>
         <li>Oil Filter</li>
         <li>Oil Filter</li>
