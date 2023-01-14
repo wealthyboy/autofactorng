@@ -27,7 +27,7 @@
    <div id="app" class="page-wrapper">
 
 
-      <header class="header">
+      <header class="header ">
          <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
             <div class="container-fluid">
                <div class="header-left col-lg-2 w-auto pl-0">
@@ -90,7 +90,7 @@
          <div class="header-bottom sticky-header d-none d-lg-block" data-sticky-options="{'mobile': false}">
             <div class="container-fluid">
                <nav class="main-nav w-100 border">
-                  <div class="d-flex">
+                  <div class="d-flex align-items-center">
                      <div class="menu-icon">
 
                         <button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0" role="button">
@@ -107,7 +107,7 @@
                         </button>
                      </div>
 
-                     <div class="menu-i flex-grow-1  ml-5">
+                     <div class="menu-i   ml-5">
                         <button class="nav-btn  w-100 mb-0">
                            <div class="d-flex add-a-vehicle justify-content-evenly">
                               <div><img src="/images/utils/vehicle-new.svg" alt=""></div>
@@ -117,7 +117,7 @@
                         </button>
                      </div>
 
-                     <div class="input-group   ml-5">
+                     <div class="input-group mt-3  ml-5">
                         <div class="input-group-prepend">
                            <button class="btn icon-magnifier p-0" type="submit"></button>
                         </div>
@@ -143,7 +143,7 @@
       <!-- End .header -->
       <div class="coverlay"></div>
 
-      <main class="main">
+      <main class="main mt-2">
          <?php echo $__env->yieldContent('content'); ?>
       </main>
 
@@ -344,10 +344,6 @@
          }
 
       });
-
-      $(".coverlay").on("click", function() {
-         $(".menu-nav-btn").clicK()
-      })
    </script>
 
 </body>

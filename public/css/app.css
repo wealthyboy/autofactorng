@@ -41816,7 +41816,7 @@ textarea.form-control-lg {
 }
 
 div#offcanvas {
-  top: 160px;
+  top: 170px;
 }
 
 .coverlay {
@@ -41828,7 +41828,7 @@ div#offcanvas {
   /* Full width (cover the whole page) */
   height: 100%;
   /* Full height (cover the whole page) */
-  top: 157px;
+  top: 165px;
   left: 0;
   right: 0;
   bottom: 0;
