@@ -19,6 +19,7 @@ use App\Http\Resources\AddressResource;
 use Illuminate\Http\Request;
 use App\Http\Resources\LocationResource;
 use App\Models\Cart;
+use Illuminate\Database\Eloquent\Builder;
 
 class AddressController extends Controller
 {
@@ -57,19 +58,23 @@ class AddressController extends Controller
 
         $heavy_item_price = [];
 
+
         $is_lagos = null !== $default_address && optional($default_address->address_state)->name  == 'Lagos' ? 1 : 0;
 
         foreach ($carts as $key => $cart) {
             if ($cart->product->condition_is_present) {
-                $heavy_item_price[] = ShippingRate::where(['product_id' => $cart->product_id, 'is_lagos' => $is_lagos])
-                    ->select('price', 'tag_value')
-                    ->get()->toArray();
+                $heavy_item_price[] = ShippingRate::where(['product_id' => $cart->product_id, 'is_lagos' => $is_lagos])->where(function (Builder $query) use ($cart) {
+                    $query
+                        ->where('tag_value', '=', $cart->quantity)
+                        ->orWhere('tag_value', '>', $cart->quantity);
+                })
+                    ->select('price')
+                    ->first()->toArray();
             }
         }
-
-        return  $heavy_item_price;
-
         $hp = null;
+
+        return   $heavy_item_price;
 
         if (!empty($heavy_item_price)) {
             $hp = collect($heavy_item_price)->sum('price');
