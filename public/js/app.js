@@ -36465,6 +36465,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_wallet_Index__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/wallet/Index */ "./resources/js/components/wallet/Index.vue");
 /* harmony import */ var _components_checkout_CheckoutIndex__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/checkout/CheckoutIndex */ "./resources/js/components/checkout/CheckoutIndex.vue");
 /* harmony import */ var _components_search_ProductSearch__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/search/ProductSearch */ "./resources/js/components/search/ProductSearch.vue");
+/* harmony import */ var _components_search_MakeModelYear__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/search/MakeModelYear */ "./resources/js/components/search/MakeModelYear.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
@@ -36496,6 +36497,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bun
 
 
 
+
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({});
 app.component('ProductsItems', _components_products_Index__WEBPACK_IMPORTED_MODULE_2__["default"]);
 app.component('Show', _components_products_Show__WEBPACK_IMPORTED_MODULE_3__["default"]);
@@ -36516,6 +36518,7 @@ app.component('WalletTable', _components_wallet_Index__WEBPACK_IMPORTED_MODULE_1
 app.component('Wallet', _components_auth_Wallet__WEBPACK_IMPORTED_MODULE_9__["default"]);
 app.component('Reviews', _components_products_Reviews__WEBPACK_IMPORTED_MODULE_4__["default"]);
 app.component('ProductSearch', _components_search_ProductSearch__WEBPACK_IMPORTED_MODULE_20__["default"]);
+app.component('MakeModelYear', _components_search_MakeModelYear__WEBPACK_IMPORTED_MODULE_21__["default"]);
 app.component('Subscribe', _components_auth_Subscribe__WEBPACK_IMPORTED_MODULE_8__["default"]);
 app.config.globalProperties.$filters = {
   formatNumber: function formatNumber(value) {

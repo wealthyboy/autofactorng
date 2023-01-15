@@ -35,6 +35,7 @@ import Table from "./components/table/Table"
 import WalletTable from "./components/wallet/Index"
 import CheckoutIndex from "./components/checkout/CheckoutIndex"
 import ProductSearch from "./components/search/ProductSearch"
+import MakeModelYear from "./components/search/MakeModelYear"
 
 
 
@@ -61,6 +62,9 @@ app.component('WalletTable', WalletTable)
 app.component('Wallet', Wallet)
 app.component('Reviews', Reviews)
 app.component('ProductSearch', ProductSearch)
+app.component('MakeModelYear', MakeModelYear)
+
+
 
 
 app.component('Subscribe', Subscribe)

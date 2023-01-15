@@ -131,6 +131,7 @@ Route::group(['prefix' => '/api'], function () {
     Route::get('wishlist',   'Api\Favorites\FavoritesController@index');
     Route::delete('wishlist/delete/{id}',   'Api\Favorites\FavoritesController@destroy');
     Route::get('blog/{blog}',   'Api\Blog\BlogController@show');
+    Route::get('years',   'Api\Years\YearsController@index');
 });
 
 
