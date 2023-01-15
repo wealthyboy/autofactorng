@@ -169,7 +169,7 @@
          </div>
 
       </header>
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
          <div style="max-width: 984px" class="modal-dialog">
             <div class="modal-content">
                <div class="modal-header  px-5">
@@ -179,7 +179,7 @@
                <div class="modal-body px-5 bg-light">
                   <h6>Add your vehicle to get an exact fit.</h6>
                   <div class=" d-flex justify-content-between align-content-center pt-2">
-                     <make-model-year :years="<?php echo e(collect($yrs)); ?>"></make-model-year>
+                     <modal-make-model-year :years="<?php echo e(collect($yrs)); ?>"></make-model-year>
                   </div>
                </div>
 

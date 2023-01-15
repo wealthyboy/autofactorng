@@ -23220,7 +23220,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["years", "filter"],
-  emits: ["do:filter"],
+  emits: ["do:filter", "do:string"],
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
     var makes = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
@@ -23243,11 +23243,16 @@ __webpack_require__.r(__webpack_exports__);
     function getNext(e) {
       form.type = e.target.name;
       var nt = e.target.dataset.next;
+      console.log(true);
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/make-model-year-engine", {
         params: form
       }).then(function (response) {
         next[nt] = response.data.data;
         var text = response.data.string;
+        console.log(text);
+        emit("do:string", {
+          text: text
+        });
 
         if (nt == "products") {
           emit("do:filter", {
@@ -23267,6 +23272,64 @@ __webpack_require__.r(__webpack_exports__);
       getNext: getNext,
       form: form,
       next: next
+    };
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/search/ModalMakeModelYear.vue?vue&type=script&lang=js":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/search/ModalMakeModelYear.vue?vue&type=script&lang=js ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _products_SearchString__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../products/SearchString */ "./resources/js/components/products/SearchString.vue");
+/* harmony import */ var _search_MakeModelYear__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../search/MakeModelYear */ "./resources/js/components/search/MakeModelYear.vue");
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["years"],
+  components: {
+    SearchString: _products_SearchString__WEBPACK_IMPORTED_MODULE_1__["default"],
+    MakeModelYear: _search_MakeModelYear__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
+  setup: function setup(props, _ref) {
+    var emits = _ref.emits;
+    var searchText = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+
+    function getString(res) {
+      console.log(res);
+    }
+
+    function shopWithoutVehicle() {//   this.searchText = null;
+      //   axios
+      //     .get(this.url, {
+      //       params: {
+      //         type: "clear",
+      //       },
+      //     })
+      //     .then((res) => {
+      //       this.products = res.data.data;
+      //       this.meta = res.data.meta;
+      //       this.fitText = res.data.string;
+      //     })
+      //     .catch((error) => {
+      //       console.log(error);
+      //     });
+    }
+
+    return {
+      searchText: searchText,
+      shopWithoutVehicle: shopWithoutVehicle,
+      getString: getString
     };
   }
 });
@@ -27666,6 +27729,43 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   ))], 544
   /* HYDRATE_EVENTS, NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.engine_id]])])])], 64
+  /* STABLE_FRAGMENT */
+  );
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/search/ModalMakeModelYear.vue?vue&type=template&id=6ade6637":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/search/ModalMakeModelYear.vue?vue&type=template&id=6ade6637 ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_search_string = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("search-string");
+
+  var _component_make_model_year = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("make-model-year");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$setup.searchText ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search_string, {
+    key: 0,
+    "onRemove:vehicle": $setup.shopWithoutVehicle,
+    searchText: $setup.searchText,
+    "class": ""
+  }, null, 8
+  /* PROPS */
+  , ["onRemove:vehicle", "searchText"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_make_model_year, {
+    "onDo:string": $setup.getString,
+    years: $props.years
+  }, null, 8
+  /* PROPS */
+  , ["onDo:string", "years"])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -36465,7 +36565,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_wallet_Index__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/wallet/Index */ "./resources/js/components/wallet/Index.vue");
 /* harmony import */ var _components_checkout_CheckoutIndex__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/checkout/CheckoutIndex */ "./resources/js/components/checkout/CheckoutIndex.vue");
 /* harmony import */ var _components_search_ProductSearch__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/search/ProductSearch */ "./resources/js/components/search/ProductSearch.vue");
-/* harmony import */ var _components_search_MakeModelYear__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/search/MakeModelYear */ "./resources/js/components/search/MakeModelYear.vue");
+/* harmony import */ var _components_search_ModalMakeModelYear__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/search/ModalMakeModelYear */ "./resources/js/components/search/ModalMakeModelYear.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
@@ -36518,7 +36618,7 @@ app.component('WalletTable', _components_wallet_Index__WEBPACK_IMPORTED_MODULE_1
 app.component('Wallet', _components_auth_Wallet__WEBPACK_IMPORTED_MODULE_9__["default"]);
 app.component('Reviews', _components_products_Reviews__WEBPACK_IMPORTED_MODULE_4__["default"]);
 app.component('ProductSearch', _components_search_ProductSearch__WEBPACK_IMPORTED_MODULE_20__["default"]);
-app.component('MakeModelYear', _components_search_MakeModelYear__WEBPACK_IMPORTED_MODULE_21__["default"]);
+app.component('ModalMakeModelYear', _components_search_ModalMakeModelYear__WEBPACK_IMPORTED_MODULE_21__["default"]);
 app.component('Subscribe', _components_auth_Subscribe__WEBPACK_IMPORTED_MODULE_8__["default"]);
 app.config.globalProperties.$filters = {
   formatNumber: function formatNumber(value) {
@@ -73563,6 +73663,34 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/search/ModalMakeModelYear.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/search/ModalMakeModelYear.vue ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _ModalMakeModelYear_vue_vue_type_template_id_6ade6637__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModalMakeModelYear.vue?vue&type=template&id=6ade6637 */ "./resources/js/components/search/ModalMakeModelYear.vue?vue&type=template&id=6ade6637");
+/* harmony import */ var _ModalMakeModelYear_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModalMakeModelYear.vue?vue&type=script&lang=js */ "./resources/js/components/search/ModalMakeModelYear.vue?vue&type=script&lang=js");
+/* harmony import */ var _Applications_XAMPP_xamppfiles_htdocs_autofactorng_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_Applications_XAMPP_xamppfiles_htdocs_autofactorng_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_ModalMakeModelYear_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ModalMakeModelYear_vue_vue_type_template_id_6ade6637__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/search/ModalMakeModelYear.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/components/search/ProductSearch.vue":
 /*!**********************************************************!*\
   !*** ./resources/js/components/search/ProductSearch.vue ***!
@@ -74373,6 +74501,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/search/ModalMakeModelYear.vue?vue&type=script&lang=js":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/search/ModalMakeModelYear.vue?vue&type=script&lang=js ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModalMakeModelYear_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModalMakeModelYear_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ModalMakeModelYear.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/search/ModalMakeModelYear.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/components/search/Tyre.vue?vue&type=script&lang=js":
 /*!*************************************************************************!*\
   !*** ./resources/js/components/search/Tyre.vue?vue&type=script&lang=js ***!
@@ -75057,6 +75201,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MakeModelYear_vue_vue_type_template_id_78c360bc__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_MakeModelYear_vue_vue_type_template_id_78c360bc__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./MakeModelYear.vue?vue&type=template&id=78c360bc */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/search/MakeModelYear.vue?vue&type=template&id=78c360bc");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/search/ModalMakeModelYear.vue?vue&type=template&id=6ade6637":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/search/ModalMakeModelYear.vue?vue&type=template&id=6ade6637 ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModalMakeModelYear_vue_vue_type_template_id_6ade6637__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_ModalMakeModelYear_vue_vue_type_template_id_6ade6637__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./ModalMakeModelYear.vue?vue&type=template&id=6ade6637 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/search/ModalMakeModelYear.vue?vue&type=template&id=6ade6637");
 
 
 /***/ }),

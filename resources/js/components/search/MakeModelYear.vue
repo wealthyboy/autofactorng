@@ -102,7 +102,7 @@ import axios from "axios";
 
 export default {
   props: ["years", "filter"],
-  emits: ["do:filter"],
+  emits: ["do:filter", "do:string"],
   setup(props, { emit }) {
     const makes = ref([]);
     const models = ref([]);
@@ -126,6 +126,7 @@ export default {
     function getNext(e) {
       form.type = e.target.name;
       let nt = e.target.dataset.next;
+      console.log(true);
 
       axios
         .get("/make-model-year-engine", {
@@ -134,6 +135,8 @@ export default {
         .then((response) => {
           next[nt] = response.data.data;
           let text = response.data.string;
+          console.log(text);
+          emit("do:string", { text });
 
           if (nt == "products") {
             emit("do:filter", { form, text });
