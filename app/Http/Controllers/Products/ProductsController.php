@@ -38,7 +38,7 @@ class ProductsController extends Controller
         if ($request->ajax()) {
             return (new ProductsCollection($products))
                 ->additional([
-                    'string' => $this->buildSearchString($request),
+                    'string' => $category->name  == 'Spare Parts' || $category->name == 'Servicing Parts' ?  $this->buildSearchString($request) : null,
                 ]);
         }
 
@@ -144,7 +144,7 @@ class ProductsController extends Controller
             [
                 'type' => $request->type,
                 'data' =>  $data,
-                'string' => $this->buildSearchString($request)
+                'string' =>  $this->buildSearchString($request)
             ]
         )->withCookie($cookie);
     }
