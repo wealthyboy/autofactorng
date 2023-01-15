@@ -89,11 +89,11 @@
 
          <div class="header-bottom sticky-header d-none d-lg-block" data-sticky-options="{'mobile': false}">
             <div class="container-fluid">
-               <nav class="main-nav w-100 border">
+               <nav class="main-nav w-100 ">
                   <div class="d-flex align-items-center">
                      <div class="menu-icon">
 
-                        <button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0" role="button">
+                        <button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0 border-0" role="button">
                            <span class="menu-open">
                               <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="" class="ms-1" srcset="">
                               <div class="">Menu</div>
@@ -108,7 +108,7 @@
                      </div>
 
                      <div class="menu-i   menu-i  w-25 ms-5">
-                        <button class="nav-btn  w-100 mb-0">
+                        <button data-bs-toggle="modal" data-bs-target="#main-modal" class="nav-btn border-0 w-100 mb-0">
                            <div class="d-flex add-a-vehicle justify-content-evenly">
                               <div><img src="/images/utils/vehicle-new.svg" alt=""></div>
                               <div>Add vehicle</div>
@@ -118,13 +118,13 @@
                      </div>
 
 
-                     <product-search></product-search>
+                     <product-search class="mx-5"></product-search>
 
                      <div class="menu-i menu-i  w-25 me-5">
-                        <button role="button" class="w-100 mb-0">
+                        <button role="button" class="w-100 mb-0 border-0">
                            <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
                               <div class="align-self-center"><img src="/images/utils/vehicle-new.svg" alt=""></div>
-                              <div class="align-self-center">Add vehicle</div>
+                              <div class="align-self-center">How To</div>
                               <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
                            </div>
                         </button>
@@ -135,11 +135,46 @@
             <!-- End .container -->
          </div>
          <!-- End .header-bottom -->
+         <div class="container-fluid  d-sm-block d-lg-none">
+            <product-search></product-search>
+         </div>
+
+
+
+         </modal>
+         <div class="container-fluid  d-sm-block d-lg-none">
+
+            <div class="d-flex w-100">
+               <div class="menu-i w-50 me-1">
+                  <button class="nav-btn  w-100 mb-0">
+                     <div class="d-flex add-a-vehicle justify-content-evenly">
+                        <div><img src="/images/utils/vehicle-new.svg" alt=""></div>
+                        <div>Add vehicle</div>
+                        <div><img src="/images/utils/header-arrow.svg" alt=""></div>
+                     </div>
+                  </button>
+               </div>
+
+
+               <div class="menu-i w-50">
+                  <button role="button" class="w-100 mb-0 ">
+                     <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
+                        <div class="align-self-center"><img src="/images/utils/vehicle-new.svg" alt=""></div>
+                        <div class="align-self-center">How To</div>
+                        <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
+                     </div>
+                  </button>
+               </div>
+            </div>
+         </div>
+
       </header>
+
+
       <!-- End .header -->
       <div class="coverlay"></div>
 
-      <main class="main mt-2">
+      <main class="main mt-3">
          <?php echo $__env->yieldContent('content'); ?>
       </main>
 

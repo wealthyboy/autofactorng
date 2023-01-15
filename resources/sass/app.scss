@@ -8,25 +8,8 @@ div#offcanvas {
     top: 178px;
 }
 
-.coverlay {
-    position: fixed;
-    /* Sit on top of the page content */
-    display: none;
-    /* Hidden by default */
-    width: 100%;
-    /* Full width (cover the whole page) */
-    height: 100%;
-    /* Full height (cover the whole page) */
-    top: 177px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    /* Black background with opacity */
-    z-index: 2;
-    /* Specify a stack order in case you're using a different order for other elements */
-    cursor: pointer;
-    /* Add a pointer on hover */
+.logo {
+    max-width: 236px
 }
 
 .dropdown-items {
@@ -44,6 +27,13 @@ div#offcanvas {
     position: absolute;
     z-index: 200;
     top: 26%;
+}
+
+.header-bottom {
+    box-shadow: 0 1px 5px 0 rgb(32 33 36 / 12%), 0 2px 2px 0 rgb(32 33 36 / 14%), 0 3px 1px -2px rgb(32 33 36 / 20%);
+    background: #f2f2f2;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 input.search-products {
@@ -137,6 +127,27 @@ label.container {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+.coverlay {
+    position: fixed;
+    /* Sit on top of the page content */
+    display: none;
+    /* Hidden by default */
+    width: 100%;
+    /* Full width (cover the whole page) */
+    height: 100%;
+    /* Full height (cover the whole page) */
+    top: 177px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black background with opacity */
+    z-index: 2;
+    /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer;
+    /* Add a pointer on hover */
 }
 
 // Fonts

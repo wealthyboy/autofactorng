@@ -1,5 +1,5 @@
 <template>
-  <div class="input-group mt-3  mx-5 position-relative w-100 bg-white rounded-start">
+  <div class="input-group mt-3 position-relative w-100  rounded-start">
     <button
       class="search-products-icon"
       type="button"
@@ -18,14 +18,20 @@
       aria-label="Example text with button addon"
       aria-describedby="button-addon1"
     >
-    <div class="dropdown-items position-absolute rounded-start">
-      <ul>
-        <li>Oil Filter</li>
-        <li>Oil Filter</li>
-        <li>Oil Filter</li>
-        <li>Oil Filter</li>
-        <li>Oil Filter</li>
-        <li>Oil Filter</li>
+    <div class="dropdown-items position-absolute d-none rounded-start">
+      <ul class="mt-4">
+        <li
+          role="button"
+          class="py-3"
+        >Oil Filter</li>
+        <li
+          role="button"
+          class="py-3"
+        >Oil Filter</li>
+        <li
+          role="button"
+          class="py-3"
+        >Oil Filter</li>
 
       </ul>
     </div>
