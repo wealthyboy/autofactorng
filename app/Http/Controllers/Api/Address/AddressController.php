@@ -59,14 +59,11 @@ class AddressController extends Controller
 
 
         $is_lagos = null !== $default_address && optional($default_address->address_state)->name  == 'Lagos' ? 1 : 0;
-        return $is_lagos;
 
         foreach ($carts as $key => $cart) {
             if ($cart->product->condition_is_present) {
                 $heavy_item_price[] = ShippingRate::where(['product_id' => $cart->product_id, 'is_lagos' => $is_lagos])->where(function ($query) use ($cart) {
-                    $query->where('tag_value', '=', $cart->quantity)
-                        ->where('tag', 'quantity')
-                        ->orWhere('tag_value', '>', $cart->quantity);
+                    $query->where('tag_value', '=', $cart->quantity);
                 })
                     ->select('price')
                     ->first()->toArray();
