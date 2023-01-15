@@ -31,6 +31,7 @@ class ProductsController extends Controller
     public function  index(Request $request, Builder $builder, Category $category)
     {
         //sleep(30);
+        dd($category->brands);
         $page_title = implode(" ", explode('-', $category->slug));
         $this->clearMMYCookies($request);
         $products = $this->getProductsData($request, $builder, $category);
@@ -109,6 +110,7 @@ class ProductsController extends Controller
         $profiles = Product::getFilterForCategory($category, 'height');
         $ampheres = Product::getFilterForCategory($category, 'amphere');
         $brands = $category->brands;
+
 
         $search = collect([
             ['name' => 'price', 'items' => $this->filterPrices()],

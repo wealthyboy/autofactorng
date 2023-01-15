@@ -91,8 +91,6 @@ class ProductController extends Table
                 ->orderBy('created_at', 'desc')->paginate(100);
         }
 
-        // dd($products);
-
 
         $products = $this->getColumnListings(request(), $products);
 
