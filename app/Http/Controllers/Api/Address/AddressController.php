@@ -66,7 +66,7 @@ class AddressController extends Controller
                 // })
                 //     ->select('price')
                 //     ->first()->toArray();
-                return 'eeeeee';
+                return $cart->quantity;
             }
         }
 
