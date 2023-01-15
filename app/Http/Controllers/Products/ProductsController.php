@@ -34,11 +34,10 @@ class ProductsController extends Controller
         $page_title = implode(" ", explode('-', $category->slug));
         $this->clearMMYCookies($request);
         $products = $this->getProductsData($request, $builder, $category);
-
         if ($request->ajax()) {
             return (new ProductsCollection($products))
                 ->additional([
-                    'string' => $category->name  == 'Spare Parts' || $category->name == 'Servicing Parts' ?  $this->buildSearchString($request) : null,
+                    'string' => $this->buildSearchString($request),
                 ]);
         }
 
@@ -59,32 +58,27 @@ class ProductsController extends Controller
         });
 
         $type = $this->getType($request);
-
         $per_page = $request->per_page ??  20;
 
-        if ($category->name  == 'Spare Parts' || $category->name == 'Servicing Parts') {
-            if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
-                $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
-                    $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
-                    $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
-                    $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
-                    $builder->where('year_from', '<=', $request->cookie('year'));
-                    $builder->where('year_to', '>=', $request->cookie('year'));
-                    $builder->groupBy('make_model_year_engines.product_id');
-                });
-            }
+        if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
+            $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
+                $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
+                $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
+                $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
+                $builder->where('year_from', '<=', $request->cookie('year'));
+                $builder->where('year_to', '>=', $request->cookie('year'));
+                $builder->groupBy('make_model_year_engines.product_id');
+            });
         }
 
-
-
-        if ($request->type == 'tyre' && $category->name  != 'Spare Parts' || $category->name != 'Servicing Parts') {
+        if ($request->type == 'tyre') {
             $query->where('radius', $request->rim);
             $query->where('width', $request->width);
             $query->where('height', $request->profile);
         }
 
 
-        if ($request->type == 'battery' &&  $category->name  != 'Spare Parts' || $category->name != 'Servicing Parts') {
+        if ($request->type == 'battery') {
             $query->where('amphere', $request->amphere);
         }
 
@@ -144,7 +138,7 @@ class ProductsController extends Controller
             [
                 'type' => $request->type,
                 'data' =>  $data,
-                'string' =>  $this->buildSearchString($request)
+                'string' => $this->buildSearchString($request)
             ]
         )->withCookie($cookie);
     }
