@@ -67,11 +67,11 @@ class AddressController extends Controller
 
                 foreach ($heavy_item_prices as $heavy_item_price) {
                     if ($heavy_item_price->condition == '=') {
-                        $heavy_item_prices[] = 10000;
+                        $heavy_item_price[] = 10000;
                     }
 
                     if ($heavy_item_price->condition == '>') {
-                        $heavy_item_prices[] = $cart->quantity > $heavy_item_price->tag_value ? $heavy_item_price->price :  null;
+                        $heavy_item_price[] = $cart->quantity > $heavy_item_price->tag_value ? $heavy_item_price->price :  null;
                     }
                 }
             }
