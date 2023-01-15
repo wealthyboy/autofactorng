@@ -35,9 +35,8 @@
               >
                 <span class="checkbox-label">
                   {{ obj.name }}
-
                 </span>
-
+                {{  obj.slug }}
                 <input
                   @change="activateFilter($event)"
                   :value="obj.slug"

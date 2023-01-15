@@ -30,7 +30,6 @@ class ProductsController extends Controller
      */
     public function  index(Request $request, Builder $builder, Category $category)
     {
-        //sleep(30);
         $page_title = implode(" ", explode('-', $category->slug));
         $this->clearMMYCookies($request);
         $products = $this->getProductsData($request, $builder, $category);
