@@ -77,7 +77,7 @@ class AddressController extends Controller
             }
         }
 
-        return $heavy_item_prices;
+        return $heavy_item_price;
 
         $hp = null;
 
