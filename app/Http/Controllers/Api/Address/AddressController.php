@@ -56,7 +56,7 @@ class AddressController extends Controller
         $carts = Cart::all_items_in_cart();
         $ship_price = $default_address ? optional(optional($default_address->address_state)->shipping)->price : null;
 
-        $heavy_item_price = [];
+        $large_item_price = [];
 
 
         $is_lagos = null !== $default_address && optional($default_address->address_state)->name  == 'Lagos' ? 1 : 0;
@@ -67,17 +67,17 @@ class AddressController extends Controller
 
                 foreach ($heavy_item_prices as $heavy_item_price) {
                     if ($heavy_item_price->condition == '=') {
-                        $heavy_item_price[] = $cart->quantity == $heavy_item_price->tag_value ? 300 :  null;
+                        $large_item_price[] = $cart->quantity == $heavy_item_price->tag_value ? $heavy_item_price->price :  null;
                     }
 
-                    //     if ($heavy_item_price->condition == '>') {
-                    //         $heavy_item_price[] = $cart->quantity > $heavy_item_price->tag_value ? $heavy_item_price->price :  null;
-                    //     }
+                    if ($heavy_item_price->condition == '>') {
+                        $large_item_price[] = $cart->quantity > $heavy_item_price->tag_value ? $heavy_item_price->price :  null;
+                    }
                 }
             }
         }
 
-        return $heavy_item_price;
+        return $large_item_price;
 
         $hp = null;
 
