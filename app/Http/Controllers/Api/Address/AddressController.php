@@ -65,15 +65,15 @@ class AddressController extends Controller
             if ($cart->product->condition_is_present) {
                 $heavy_item_prices = ShippingRate::where(['product_id' => $cart->product_id, 'is_lagos' => $is_lagos])->get();
 
-                foreach ($heavy_item_prices as $heavy_item_price) {
-                    if ($heavy_item_price->condition == '=') {
-                        $heavy_item_price[] = 10000;
-                    }
+                // foreach ($heavy_item_prices as $heavy_item_price) {
+                //     if ($heavy_item_price->condition == '=') {
+                //         $heavy_item_price[] = $cart->quantity == $heavy_item_price->tag_value ? $heavy_item_price->price :  null;
+                //     }
 
-                    if ($heavy_item_price->condition == '>') {
-                        $heavy_item_price[] = $cart->quantity > $heavy_item_price->tag_value ? $heavy_item_price->price :  null;
-                    }
-                }
+                //     if ($heavy_item_price->condition == '>') {
+                //         $heavy_item_price[] = $cart->quantity > $heavy_item_price->tag_value ? $heavy_item_price->price :  null;
+                //     }
+                // }
             }
         }
 
