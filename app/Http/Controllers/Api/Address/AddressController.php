@@ -59,6 +59,7 @@ class AddressController extends Controller
 
 
         $is_lagos = null !== $default_address && optional($default_address->address_state)->name  == 'Lagos' ? 1 : 0;
+        return $is_lagos;
 
         foreach ($carts as $key => $cart) {
             if ($cart->product->condition_is_present) {
