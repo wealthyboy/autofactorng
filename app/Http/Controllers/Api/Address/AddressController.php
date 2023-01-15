@@ -65,8 +65,7 @@ class AddressController extends Controller
             if ($cart->product->condition_is_present) {
                 $heavy_item_price[] = ShippingRate::where(['product_id' => $cart->product_id, 'is_lagos' => $is_lagos])->where(function (Builder $query) use ($cart) {
                     $query
-                        ->where('tag_value', '=', $cart->quantity)
-                        ->orWhere('tag_value', '>', $cart->quantity);
+                        ->where('tag_value', '>', $cart->quantity);
                 })
                     ->select('price')
                     ->first()->toArray();
