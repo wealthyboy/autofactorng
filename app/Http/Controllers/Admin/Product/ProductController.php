@@ -93,7 +93,6 @@ class ProductController extends Table
 
 
         $products = $this->getColumnListings(request(), $products);
-
         $years = Helper::years();
         $makes = Attribute::where('type', 'make')->get();
         return view('admin.products.index', compact('ampheres', 'profiles', 'widths', 'rims', 'products', 'makes', 'brands', 'categories', 'attributes', 'years'));
@@ -119,7 +118,6 @@ class ProductController extends Table
         $per_page = $request->per_page ??  100;
 
         if ($request->filled('year') && $request->filled('model_id') && $request->filled('make_id') &&  $request->filled('engine_id')) {
-
             $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                 $builder->where('make_model_year_engines.attribute_id', $request->model_id);
                 $builder->where('make_model_year_engines.parent_id', $request->make_id);
