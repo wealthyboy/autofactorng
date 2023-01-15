@@ -79,8 +79,8 @@ class AddressController extends Controller
 
         $hp = null;
 
-        if (!empty($heavy_item_price)) {
-            $hp = collect($heavy_item_price)->sum('price');
+        if (!empty($large_item_price)) {
+            $hp = collect($large_item_price)->sum('price');
             $prices['heavy_item_price'] = $hp;
         }
 
