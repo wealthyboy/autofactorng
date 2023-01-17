@@ -44,7 +44,7 @@ class BrandsController extends Table
 			'name' => 'required|unique:brands',
 		]);
 
-		$data = $request->all();
+		$data = $request->except('_token');
 		$data['is_featured'] = $request->is_featured ? 1 : 0;
 		$data['slug'] = str_slug($data['name']);
 
@@ -105,9 +105,10 @@ class BrandsController extends Table
 		]);
 
 		$brand = Brand::find($id);
-		$data = $request->all();
+		$data = $request->except('_token');
 		$data['is_featured'] = $request->is_featured ? 1 : 0;
 		$data['slug'] = str_slug($data['name']);
+
 		$brand->update($data);
 
 		(new Activity)->put("Updated a  Brand called {$request->name}", null);

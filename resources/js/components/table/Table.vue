@@ -18,9 +18,18 @@
           v-if="tableData.unique.right"
           class="total d-flex "
         >
-          <span class="mx-3">Auto Credit: {{ $filters.formatNumber(walletBalance.auto_credit) || '0.00'}}</span>
-          <span class="mx-3">Wallet Balance: {{ $filters.formatNumber(walletBalance.wallet_balance) || '0.00'}}</span>
-          <span class="">Total: {{ $filters.formatNumber(walletBalance.total) || '0.00'}}</span>
+          <span
+            v-if="walletBalance"
+            class="mx-3"
+          >Auto Credit: {{ $filters.formatNumber(walletBalance.auto_credit) || '0.00'}}</span>
+          <span
+            v-if="walletBalance"
+            class="mx-3"
+          >Wallet Balance: {{ $filters.formatNumber(walletBalance.wallet_balance) || '0.00'}}</span>
+          <span
+            v-if="walletBalance"
+            class=""
+          >Total: {{ $filters.formatNumber(walletBalance.total) || '0.00'}}</span>
 
         </div>
       </div>

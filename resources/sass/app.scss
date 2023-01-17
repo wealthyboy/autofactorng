@@ -4,6 +4,10 @@
 @import "../assets/css/style.min.css";
 @import "~bootstrap-icons/font/bootstrap-icons";
 @import "../assets/vendor/fontawesome-free/css/all.min.css";
+body.modal-open {
+    overflow: hidden;
+}
+
 div#offcanvas {
     top: 178px;
 }

@@ -57,6 +57,7 @@ class ProductsController extends Controller
         });
 
         $type = $this->getType($request);
+
         $per_page = $request->per_page ??  20;
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
@@ -191,8 +192,8 @@ class ProductsController extends Controller
     {
         if ($request->type !== 'clear' && null !== $request->cookie('engine_id')) {
             $year = $request->cookie('year');
-            $make_name = Attribute::find($request->cookie('make_id'))->name;
-            $model_name = Attribute::find($request->cookie('model_id'))->name;
+            $make_name = optional(Attribute::find($request->cookie('make_id')))->name;
+            $model_name = optional(Attribute::find($request->cookie('model_id')))->name;
             $engine_name = optional(Engine::find($request->cookie('engine_id')))->name;
             return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
         }

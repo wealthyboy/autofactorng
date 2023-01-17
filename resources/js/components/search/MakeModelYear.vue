@@ -17,6 +17,7 @@
 
           Year
         </option>
+
         <option
           v-for="year in years"
           :key="year"
@@ -89,6 +90,7 @@
           :value="engine.id"
         >{{ engine.name }}
         </option>
+
       </select>
     </div>
 
@@ -97,16 +99,17 @@
 </template>
 
 <script>
-import { reactive, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import axios from "axios";
 
 export default {
-  props: ["years", "filter"],
+  props: ["filter"],
   emits: ["do:filter", "do:string"],
   setup(props, { emit }) {
     const makes = ref([]);
     const models = ref([]);
     const engines = ref([]);
+    const years = ref([]);
 
     const next = reactive({
       makes: [],
@@ -123,11 +126,22 @@ export default {
       next: "",
     });
 
+    onMounted(() => {
+      console.log(true);
+      axios
+        .get("/api/years")
+        .then((response) => {
+          years.value = response.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+
     function getNext(e) {
+      console.log(e);
       form.type = e.target.name;
       let nt = e.target.dataset.next;
-      console.log(true);
-
       axios
         .get("/make-model-year-engine", {
           params: form,
@@ -135,9 +149,7 @@ export default {
         .then((response) => {
           next[nt] = response.data.data;
           let text = response.data.string;
-          console.log(text);
           emit("do:string", { text });
-
           if (nt == "products") {
             emit("do:filter", { form, text });
           }
@@ -154,6 +166,7 @@ export default {
       getNext,
       form,
       next,
+      years,
     };
   },
 };

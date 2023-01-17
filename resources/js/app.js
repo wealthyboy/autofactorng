@@ -36,7 +36,7 @@ import WalletTable from "./components/wallet/Index"
 import CheckoutIndex from "./components/checkout/CheckoutIndex"
 import ProductSearch from "./components/search/ProductSearch"
 import ModalMakeModelYear from "./components/search/ModalMakeModelYear"
-
+import AddVehicle from "./components/addVehicle/Index"
 
 
 
@@ -63,6 +63,8 @@ app.component('Wallet', Wallet)
 app.component('Reviews', Reviews)
 app.component('ProductSearch', ProductSearch)
 app.component('ModalMakeModelYear', ModalMakeModelYear)
+app.component('AddVehicle', AddVehicle)
+
 
 
 
