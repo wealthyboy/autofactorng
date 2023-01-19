@@ -147,6 +147,7 @@ export default {
           params: form,
         })
         .then((response) => {
+          console.log(true);
           next[nt] = response.data.data;
           let text = response.data.string;
           emit("do:string", { text });

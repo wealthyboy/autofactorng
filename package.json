@@ -34,6 +34,7 @@
         "jquery-validation": "^1.19.5",
         "owl.carousel": "^2.3.4",
         "slick-carousel": "^1.8.1",
+        "vue-js-modal": "^2.0.1",
         "vue-server-renderer": "^2.7.12",
         "vuex-composition-helpers": "^2.0.3"
     }

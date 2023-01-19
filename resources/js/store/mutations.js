@@ -100,6 +100,6 @@ export const setTableData = (state, data) => {
     state.tableData = data
 }
 
-export const setMeta = (state, meta) => {
-    state.meta = meta
+export const setfitString = (state, fitString) => {
+    state.fitString = fitString
 }

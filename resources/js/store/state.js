@@ -24,5 +24,6 @@ export default {
     walletBalance: null,
     tableData: [],
     meta: null,
-    loading: false
+    loading: false,
+    fitString: null
 }

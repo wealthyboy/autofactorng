@@ -39,7 +39,9 @@ class BrandsController extends Table
 
 	public function store(Request $request)
 	{
+
 		User::canTakeAction(User::canCreate);
+
 		$request->validate([
 			'name' => 'required|unique:brands',
 		]);
@@ -58,7 +60,6 @@ class BrandsController extends Table
 	public function edit(Request $request, $id)
 	{
 		User::canTakeAction(User::canUpdate);
-
 		$brand = Brand::find($id);
 		return view('admin.brands.edit', compact('brand'));
 	}

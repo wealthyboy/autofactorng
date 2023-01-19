@@ -104,3 +104,7 @@ export const tableData = (state) => {
 export const pmeta = (state) => {
     return state.meta
 }
+
+export const fitString = (state) => {
+    return state.fitString
+}
