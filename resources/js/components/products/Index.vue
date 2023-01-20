@@ -207,6 +207,7 @@ import Battery from "../search/Battery";
 import ProductNav from "./Nav";
 import SearchString from "./SearchString";
 import Filters from "./Filters";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -234,9 +235,15 @@ export default {
       url: location.href + "?get=1",
     };
   },
+  computed: {
+    ...mapGetters({
+      firString: "firString",
+    }),
+  },
   mounted() {
     this.getProducts(this.url);
   },
+
   methods: {
     clearfilters() {
       let u = new URL(location.href);
@@ -261,6 +268,7 @@ export default {
           this.products = res.data.data;
           this.meta = res.data.meta;
           this.fitText = res.data.string;
+          this.$store.commit("setfitString", null);
         })
         .catch((error) => {
           console.log(error);

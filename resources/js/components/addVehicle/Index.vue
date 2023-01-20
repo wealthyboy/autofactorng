@@ -76,9 +76,7 @@ export default {
     const showModal = ref(false);
 
     const fitString = computed(() => store.getters.fitString);
-    function getString() {
-      console.log(true);
-    }
+    function getString() {}
 
     onMounted(() => {
       http.get("/make-model-year-engine").then((res) => {
