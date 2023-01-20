@@ -131,12 +131,15 @@ class ProductsController extends Controller
         $data  = $request->query();
         $cookie = null;
         $type = $this->getType($request);
+
         $cookie = null;
+
         if (null !== $type) {
             session()->put($type, $data[$type]);
             $cookie = cookie($type, $data[$type], 60 * 60 * 7);
         }
         $data = MakeModelYearEngine::getMakeModelYearSearch($request);
+
         $res =  response()->json(
             [
                 'type' => $request->type,
@@ -144,6 +147,7 @@ class ProductsController extends Controller
                 'string' => $this->buildSearchString($request)
             ]
         );
+
         if (null !== $type) {
             $res->withCookie($cookie);
         }
