@@ -132,16 +132,24 @@ class ProductsController extends Controller
         $data  = $request->query();
         $cookie = null;
         $type = $this->getType($request);
-        session()->put($type, $data[$type]);
-        $cookie = cookie($type, $data[$type], 60 * 60 * 7);
+        $cookie = null;
+        if (null !== $type) {
+            session()->put($type, $data[$type]);
+            $cookie = cookie($type, $data[$type], 60 * 60 * 7);
+        }
         $data = MakeModelYearEngine::getMakeModelYearSearch($request);
-        return response()->json(
+        $res =  response()->json(
             [
                 'type' => $request->type,
                 'data' =>  $data,
                 'string' => $this->buildSearchString($request)
             ]
-        )->withCookie($cookie);
+        );
+        if (null !== $type) {
+            $res->withCookie($cookie);
+        }
+
+        return $res;
     }
 
 
@@ -188,15 +196,19 @@ class ProductsController extends Controller
     }
 
 
-    public function buildSearchString(Request $request)
+    public function buildSearchString(Request $request, $category = null)
     {
-        if ($request->type !== 'clear' && null !== $request->cookie('engine_id')) {
-            $year = $request->cookie('year');
-            $make_name = optional(Attribute::find($request->cookie('make_id')))->name;
-            $model_name = optional(Attribute::find($request->cookie('model_id')))->name;
-            $engine_name = optional(Engine::find($request->cookie('engine_id')))->name;
-            return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
+        if ($category && $category->name == ' Spare Parts') {
+            if ($request->type !== 'clear' && null !== $request->cookie('engine_id')) {
+                $year = $request->cookie('year');
+                $make_name = optional(Attribute::find($request->cookie('make_id')))->name;
+                $model_name = optional(Attribute::find($request->cookie('model_id')))->name;
+                $engine_name = optional(Engine::find($request->cookie('engine_id')))->name;
+                return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
+            }
         }
+
+
 
         return '';
     }

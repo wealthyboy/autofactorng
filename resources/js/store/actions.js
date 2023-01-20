@@ -1,6 +1,8 @@
 import axios from "axios";
 import store from "./index";
 
+
+
 export const addProductToCart = ({ commit }, { product_id, quantity }) => {
     return axios
         .post("/api/cart", {

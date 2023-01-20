@@ -100,6 +100,7 @@
 
 <script>
 import { onMounted, reactive, ref } from "vue";
+import { useStore } from "vuex";
 import axios from "axios";
 
 export default {
@@ -110,6 +111,7 @@ export default {
     const models = ref([]);
     const engines = ref([]);
     const years = ref([]);
+    const store = useStore();
 
     const next = reactive({
       makes: [],
@@ -127,7 +129,6 @@ export default {
     });
 
     onMounted(() => {
-      console.log(true);
       axios
         .get("/api/years")
         .then((response) => {
@@ -147,7 +148,7 @@ export default {
           params: form,
         })
         .then((response) => {
-          console.log(true);
+          store.commit("setfitString", response.data.string);
           next[nt] = response.data.data;
           let text = response.data.string;
           emit("do:string", { text });
