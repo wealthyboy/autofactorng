@@ -5,7 +5,7 @@
       <search-string
         @remove:vehicle="shopWithoutVehicle"
         v-if="!loading && firString"
-        :searchText="firString"
+        :searchText="fitString"
         class=""
       />
 
@@ -23,7 +23,7 @@
       </div>
 
       <div
-        v-if="!firString"
+        v-if="!fitString"
         class="cta-border cta-bg light "
       >
         <div class="underline w-100"></div>
@@ -237,7 +237,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      firString: "firString",
+      fitString: "fitString",
     }),
   },
   mounted() {
