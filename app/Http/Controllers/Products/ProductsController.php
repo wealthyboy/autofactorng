@@ -148,7 +148,7 @@ class ProductsController extends Controller
             [
                 'type' => $request->type,
                 'data' =>  $data,
-                'string' =>  optional(Engine::find($request->cookie('engine_id')))->name
+                'string' =>  $request->cookie('engine_id')
             ]
         );
 
