@@ -218,8 +218,7 @@ class ProductsController extends Controller
         }
 
 
-        if ($request->filled('engine_id')) {
-            return 'eeeeee';
+        if ($request->filled('engine_id') && is_int($request->engine_id)) {
             $year = $request->year;
             $make_name = optional(Attribute::find($request->make_id))->name;
             $model_name = optional(Attribute::find($request->model_id))->name;
