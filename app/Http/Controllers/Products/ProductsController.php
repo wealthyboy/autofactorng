@@ -150,7 +150,7 @@ class ProductsController extends Controller
             [
                 'type' => $request->type,
                 'data' =>  $data,
-                'string' =>  Cookie::get('engine_id')
+                'string' =>  $this->buildSearchString($request)
             ]
         );
 
@@ -207,7 +207,7 @@ class ProductsController extends Controller
 
 
 
-    public function buildSearchString(Request $request, $category = null)
+    public function buildSearchString(Request $request)
     {
         if ($request->type !== 'clear' && null !== $request->cookie('engine_id')) {
             $year = $request->cookie('year');
@@ -217,6 +217,14 @@ class ProductsController extends Controller
             return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
         }
 
+
+        if ($request->filled('engine_id')) {
+            $year = $request->year;
+            $make_name = optional(Attribute::find($request->make_id))->name;
+            $model_name = optional(Attribute::find($request->model_id))->name;
+            $engine_name = optional(Engine::find($request->engine_id))->name;
+            return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
+        }
 
 
 
