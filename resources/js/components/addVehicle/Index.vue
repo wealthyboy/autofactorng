@@ -3,7 +3,7 @@
     class="nav-btn border-0 w-100 mb-0"
     @click="showModal = true"
   >
-    <div class="d-flex add-a-vehicle justify-content-evenly">
+    <div class="d-flex add-a-vehicle align-items-center  align-content-center justify-content-evenly">
       <div>
 
         <img
@@ -41,13 +41,62 @@
         default content
       -->
       <template v-slot:header>
-        <h3>WHAT ARE YOU WORKING ON TODAY?</h3>
+        <div class="d-flex justify-content-between">
+          <h3>WHAT ARE YOU WORKING ON TODAY?</h3>
+
+          <button
+            class="modal-default-button"
+            @click="showModal = !showModal"
+          >
+            Close
+          </button>
+        </div>
+
       </template>
 
       <template v-slot:body>
+
         <h6>Add your vehicle to get an exact fit.</h6>
         <div class=" d-flex justify-content-between align-content-center pt-2">
           <make-model-year @do:string="getString"></make-model-year>
+        </div>
+
+      </template>
+
+      <template v-slot:footer>
+
+        <div
+          v-if="fitString"
+          class="col-md-6 p-1"
+        >
+
+          <button class="w-100">
+            <div class="d-flex align-items-center py-4">
+              <span class="me-3">
+                <img
+                  v-if="fitString"
+                  src="/images/utils/icon-vehicle-selected-d.svg"
+                  alt=""
+                >
+              </span>
+              <span>
+                {{ fitString }}
+
+                {{  }}
+
+              </span>
+            </div>
+          </button>
+
+          <div
+            v-if="fitString"
+            class="mt-3 pb-4"
+          >
+            <a
+              @click.prevent="ShopWithoutVehicle"
+              href="#"
+            >Shop Without Vehicle</a>
+          </div>
         </div>
 
       </template>
@@ -74,9 +123,14 @@ export default {
     const {} = useActions([]);
     const store = useStore();
     const showModal = ref(false);
+    const t = ref(null);
 
     const fitString = computed(() => store.getters.fitString);
-    function getString() {}
+    function getString(t) {
+      if (t.type == "engine_id") {
+        showModal.value = false;
+      }
+    }
 
     onMounted(() => {
       http.get("/make-model-year-engine").then((res) => {
@@ -84,10 +138,13 @@ export default {
       });
     });
 
+    function ShopWithoutVehicle() {}
+
     return {
       getString,
       fitString,
       showModal,
+      ShopWithoutVehicle,
     };
   },
 };

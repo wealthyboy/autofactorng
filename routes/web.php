@@ -87,6 +87,8 @@ Route::get('buy-now-pay-later', [App\Http\Controllers\BuyNowPayLater\BuyNowPayLa
 Route::get('products/{category}', 'Products\ProductsController@index');
 Route::get('product/{category}/{product}', 'Products\ProductsController@show');
 Route::get('make-model-year-engine', 'Products\ProductsController@makeModelYearSearch');
+Route::get('auto-complete', 'Products\ProductsController@autoComplete');
+
 
 Route::get('/mailable', function () {
     $order = Order::find(10);

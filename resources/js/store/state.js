@@ -25,5 +25,6 @@ export default {
     tableData: [],
     meta: null,
     loading: false,
-    fitString: null
+    fitString: null,
+    products: []
 }

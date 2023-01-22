@@ -15,27 +15,74 @@
       type="text"
       class="form-control search-products rounded-start"
       placeholder="Find Parts and Products"
-      aria-label="Example text with button addon"
+      aria-label="Find Parts and Products"
       aria-describedby="button-addon1"
+      @input="autoComplete"
+      v-model="query"
     >
-    <div class="dropdown-items position-absolute d-none rounded-start">
+    <div
+      :class="[categories.length || products.length ? ' ' : dNone]"
+      class="dropdown-items position-absolute  rounded-start"
+    >
       <ul class="mt-4">
         <li
+          v-for="category in categories"
+          :key="category"
           role="button"
           class="py-3"
-        >Oil Filter</li>
+          @click="getSearchedName('category', category)"
+        >{{ category }}</li>
+
         <li
+          v-for="product in products"
+          :key="product"
           role="button"
           class="py-3"
-        >Oil Filter</li>
-        <li
-          role="button"
-          class="py-3"
-        >Oil Filter</li>
+          @click="getSearchedName('product',product)"
+        >{{ product }}</li>
 
       </ul>
     </div>
   </div>
 </template>
 <script>
+import { reactive, ref } from "vue";
+import http from "../../utils/httpService";
+
+export default {
+  setup() {
+    const query = ref(null);
+    const categories = ref([]);
+    const products = ref([]);
+    const dNone = ref("d-none");
+
+    async function autoComplete() {
+      let q = query.value;
+      try {
+        const { data: res } = await http.get("/auto-complete", {
+          params: {
+            q,
+          },
+        });
+        categories.value = res.categories;
+        products.value = res.products;
+      } catch (error) {}
+    }
+
+    function getSearchedName(t, n) {
+      query.value = n;
+      categories.value = [];
+      products.value = [];
+    }
+
+    return {
+      autoComplete,
+      query,
+      categories,
+      products,
+      getSearchedName,
+      dNone,
+    };
+  },
+};
 </script>

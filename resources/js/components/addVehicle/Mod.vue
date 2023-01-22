@@ -6,6 +6,12 @@
         <div class="modal-header">
           <slot name="header">
             default header
+            <button
+              class="modal-default-button"
+              @click="$emit('close')"
+            >
+              Close
+            </button>
           </slot>
         </div>
 
@@ -15,15 +21,8 @@
           </slot>
         </div>
 
-        <div class="modal-footer">
-          <slot name="footer">
-            <button
-              class="modal-default-button"
-              @click="$emit('close')"
-            >
-              Close
-            </button>
-          </slot>
+        <div class="modal-footer justify-content-start ">
+          <slot name="footer"></slot>
         </div>
       </div>
     </div>

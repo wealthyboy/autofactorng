@@ -108,3 +108,7 @@ export const pmeta = (state) => {
 export const fitString = (state) => {
     return state.fitString
 }
+
+export const products = (state) => {
+    return state.products
+}

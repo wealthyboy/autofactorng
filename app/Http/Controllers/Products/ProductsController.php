@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Http\Helper;
 use Illuminate\Support\Facades\Cookie;
+use Laravel\Ui\Presets\React;
 
 //use Illuminate\Support\Facades\Cookie;
 
@@ -38,7 +39,7 @@ class ProductsController extends Controller
         if ($request->ajax()) {
             return (new ProductsCollection($products))
                 ->additional([
-                    'string' =>  $category->name == 'Spare Parts' || optional($category)->name  == 'Servicing Parts' || optional($category->parent)->name == 'Spare Parts' ||   optional($category->parent)->name  == 'Servicing Parts' ? $this->buildSearchString($request) : null,
+                    'string' =>  $this->getCategory($category) ? $this->buildSearchString($request) : null,
                 ]);
         }
 
@@ -62,7 +63,7 @@ class ProductsController extends Controller
 
         $per_page = $request->per_page ??  20;
 
-        if ($category->name == 'Spare Parts' || optional($category)->name  == 'Servicing Parts' || optional($category->parent)->name  == 'Spare Parts' ||  optional($category->parent)->name  == 'Servicing Parts') {
+        if ($this->getCategory($category)) {
             if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
                 $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                     $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
@@ -150,7 +151,8 @@ class ProductsController extends Controller
             [
                 'type' => $request->type,
                 'data' =>  $data,
-                'string' =>  $this->buildSearchString($request)
+                'string' =>  $this->buildSearchString($request),
+                'show' =>  null !== $type ? false : true
             ]
         );
 
@@ -160,6 +162,38 @@ class ProductsController extends Controller
 
         return $res;
     }
+
+
+    public function getCategory(Category $category)
+    {
+        return $category->name == 'Spare Parts' || optional($category)->name  == 'Servicing Parts' || optional($category->parent)->name  == 'Spare Parts' ||  optional($category->parent)->name  == 'Servicing Parts' ? true : false;
+    }
+
+
+    public function autoComplete(Request $request)
+    {
+
+        if ($request->q) {
+            $categories = Category::where('name', 'like', '%' . $request->q . '%')
+                ->take(10)
+                ->pluck('name')
+                ->toArray();
+
+
+            $products = Product::where('name', 'like', '%' . $request->product_name . '%')
+                ->take(10)
+                ->pluck('product_name')
+                ->toArray();
+
+
+            return response()->json([
+                'categories' =>  $categories,
+                'products' => $products
+            ]);
+        }
+        return [];
+    }
+
 
 
     public function getType(Request $request)

@@ -103,3 +103,8 @@ export const setTableData = (state, data) => {
 export const setfitString = (state, fitString) => {
     state.fitString = fitString
 }
+
+
+export const setProducts = (state, products) => {
+    state.products = products
+}

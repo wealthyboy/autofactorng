@@ -151,7 +151,8 @@ export default {
           store.commit("setfitString", response.data.string);
           next[nt] = response.data.data;
           let text = response.data.string;
-          emit("do:string", { text });
+          let type = e.target.name;
+          emit("do:string", { text, type });
           if (nt == "products") {
             emit("do:filter", { form, text });
           }

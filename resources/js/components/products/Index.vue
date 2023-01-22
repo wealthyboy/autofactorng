@@ -222,7 +222,6 @@ export default {
   data() {
     return {
       meta: {},
-      products: [],
       has_filters: 0,
       full_width: false,
       loading: true,
@@ -236,6 +235,7 @@ export default {
   computed: {
     ...mapGetters({
       fitString: "fitString",
+      products: "products",
     }),
   },
   mounted() {
@@ -274,7 +274,6 @@ export default {
     },
     handleFilter(filter) {
       const url = new URL(location.href);
-      console.log(location.href, url);
       url.searchParams.set("search", "true");
       window.history.pushState({}, "", filter.filterString);
       url.searchParams.set("search", "true");
@@ -333,14 +332,15 @@ export default {
 
     getProducts(url) {
       this.loading = true;
-      // return;
       axios
         .get(url)
         .then((res) => {
-          this.products = res.data.data;
+          console.log(res.data.data);
+          this.$store.commit("setProducts", res.data.data);
+          this.loading = false;
+
           this.meta = res.data.meta;
           this.searchText = res.data.string;
-          this.loading = false;
         })
         .catch((err) => {});
     },
