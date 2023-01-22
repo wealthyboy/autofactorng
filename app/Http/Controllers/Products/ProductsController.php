@@ -13,6 +13,8 @@ use App\Models\Setting;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Http\Helper;
+use Illuminate\Support\Facades\Cookie;
+
 //use Illuminate\Support\Facades\Cookie;
 
 class ProductsController extends Controller
@@ -148,7 +150,7 @@ class ProductsController extends Controller
             [
                 'type' => $request->type,
                 'data' =>  $data,
-                'string' =>  $request->cookie('engine_id')
+                'string' =>  Cookie::get('engine_id')
             ]
         );
 
