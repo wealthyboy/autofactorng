@@ -23265,9 +23265,9 @@ __webpack_require__.r(__webpack_exports__);
     });
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       year: "0",
-      make_id: "Choose one",
-      model_id: "Choose one",
-      engine_id: "Choose one",
+      make_id: "0",
+      model_id: "0",
+      engine_id: "0",
       type: "",
       next: ""
     });
@@ -27798,7 +27798,7 @@ var _hoisted_6 = {
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   selected: "",
-  value: "Choose one"
+  value: "0"
 }, " Model", -1
 /* HOISTED */
 );
@@ -27813,7 +27813,7 @@ var _hoisted_10 = {
 
 var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   selected: "",
-  value: "Choose one"
+  value: "0"
 }, " Make", -1
 /* HOISTED */
 );
@@ -27828,7 +27828,7 @@ var _hoisted_14 = {
 
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   selected: "",
-  value: "Choose one"
+  value: "0"
 }, " Engine", -1
 /* HOISTED */
 );

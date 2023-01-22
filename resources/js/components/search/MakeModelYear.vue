@@ -37,7 +37,7 @@
       >
         <option
           selected
-          value="Choose one"
+          value="0"
         > Model</option>
         <option
           v-for="make in next.makes"
@@ -59,7 +59,7 @@
       >
         <option
           selected
-          value="Choose one"
+          value="0"
         > Make</option>
         <option
           v-for="model in next.models"
@@ -81,7 +81,7 @@
       >
         <option
           selected
-          value="Choose one"
+          value="0"
         > Engine</option>
 
         <option
@@ -121,9 +121,9 @@ export default {
 
     const form = reactive({
       year: "0",
-      make_id: "Choose one",
-      model_id: "Choose one",
-      engine_id: "Choose one",
+      make_id: "0",
+      model_id: "0",
+      engine_id: "0",
       type: "",
       next: "",
     });
