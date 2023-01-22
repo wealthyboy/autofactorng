@@ -20,7 +20,10 @@
       @input="autoComplete"
       v-model="query"
     >
-    <div :class="'coverlay' + ' ' + dBlock"></div>
+    <div
+      @click="cancel"
+      :class="'coverlay' + ' ' + dBlock"
+    ></div>
 
     <div
       :class="[categories.length || products.length ? ' ' : dNone]"
@@ -73,6 +76,12 @@ export default {
       } catch (error) {}
     }
 
+    function cancel() {
+      categories.value = [];
+      products.value = [];
+      dBlock.value = "";
+    }
+
     function getSearchedName(t, n) {
       query.value = n;
       categories.value = [];
@@ -88,6 +97,7 @@ export default {
       getSearchedName,
       dNone,
       dBlock,
+      cancel,
     };
   },
 };

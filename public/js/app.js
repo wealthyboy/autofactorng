@@ -23463,6 +23463,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return _autoComplete.apply(this, arguments);
     }
 
+    function cancel() {
+      categories.value = [];
+      products.value = [];
+      dBlock.value = "";
+    }
+
     function getSearchedName(t, n) {
       query.value = n;
       categories.value = [];
@@ -23477,7 +23483,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       products: products,
       getSearchedName: getSearchedName,
       dNone: dNone,
-      dBlock: dBlock
+      dBlock: dBlock,
+      cancel: cancel
     };
   }
 });
@@ -28189,6 +28196,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.query]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    onClick: _cache[2] || (_cache[2] = function () {
+      return $setup.cancel && $setup.cancel.apply($setup, arguments);
+    }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)('coverlay' + ' ' + $setup.dBlock)
   }, null, 2
   /* CLASS */
