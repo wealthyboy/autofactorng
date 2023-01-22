@@ -12,7 +12,7 @@ class BrandsFilter  extends AbstractFilter
     public function filter(Builder $builder, $value)
     {
         return  $builder->whereHas('brand', function (Builder  $builder) use ($value) {
-            $builder->whereIn('name', $value);
+            $builder->whereIn('slug', $value);
         });
     }
 }
