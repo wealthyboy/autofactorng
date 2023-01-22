@@ -175,13 +175,13 @@ class ProductsController extends Controller
 
         if ($request->q) {
             $categories = Category::where('name', 'like', '%' . $request->q . '%')
-                ->take(10)
+                ->take(5)
                 ->pluck('name')
                 ->toArray();
 
 
             $products = Product::where('name', 'like', '%' . $request->product_name . '%')
-                ->take(10)
+                ->take(5)
                 ->pluck('product_name')
                 ->toArray();
 
