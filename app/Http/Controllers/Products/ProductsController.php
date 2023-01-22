@@ -36,7 +36,7 @@ class ProductsController extends Controller
         if ($request->ajax()) {
             return (new ProductsCollection($products))
                 ->additional([
-                    'string' =>  optional($category->parent)->name == 'Spare Parts' ||   optional($category->parent)->name  == 'Servicing Parts' ? $this->buildSearchString($request) : null,
+                    'string' =>  $category->name == 'Spare Parts' || optional($category)->name  == 'Servicing Parts' || optional($category->parent)->name == 'Spare Parts' ||   optional($category->parent)->name  == 'Servicing Parts' ? $this->buildSearchString($request) : null,
                 ]);
         }
 
@@ -60,7 +60,7 @@ class ProductsController extends Controller
 
         $per_page = $request->per_page ??  20;
 
-        if (optional($category->parent)->name  == 'Spare Parts' &&  optional($category->parent)->name  == 'Servicing Parts' && null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
+        if ($category->name == 'Spare Parts' || optional($category)->name  == 'Servicing Parts' || optional($category->parent)->name  == 'Spare Parts' ||  optional($category->parent)->name  == 'Servicing Parts' && null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
             $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                 $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
                 $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
