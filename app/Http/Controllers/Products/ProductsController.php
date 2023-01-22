@@ -60,16 +60,20 @@ class ProductsController extends Controller
 
         $per_page = $request->per_page ??  20;
 
-        if ($category->name == 'Spare Parts' || optional($category)->name  == 'Servicing Parts' || optional($category->parent)->name  == 'Spare Parts' ||  optional($category->parent)->name  == 'Servicing Parts' && null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
-            $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
-                $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
-                $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
-                $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
-                $builder->where('year_from', '<=', $request->cookie('year'));
-                $builder->where('year_to', '>=', $request->cookie('year'));
-                $builder->groupBy('make_model_year_engines.product_id');
-            });
+        if ($category->name == 'Spare Parts' || optional($category)->name  == 'Servicing Parts' || optional($category->parent)->name  == 'Spare Parts' ||  optional($category->parent)->name  == 'Servicing Parts') {
+            if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
+                $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
+                    $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
+                    $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
+                    $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
+                    $builder->where('year_from', '<=', $request->cookie('year'));
+                    $builder->where('year_to', '>=', $request->cookie('year'));
+                    $builder->groupBy('make_model_year_engines.product_id');
+                });
+            }
         }
+
+
 
         if ($request->type == 'tyre') {
             $query->where('radius', $request->rim);
