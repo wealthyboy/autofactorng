@@ -23417,6 +23417,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var categories = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
     var products = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
     var dNone = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("d-none");
+    var dBlock = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)("");
 
     function autoComplete() {
       return _autoComplete.apply(this, arguments);
@@ -23431,32 +23432,33 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 q = query.value;
-                _context.prev = 1;
-                _context.next = 4;
+                dBlock.value = "d-block";
+                _context.prev = 2;
+                _context.next = 5;
                 return _utils_httpService__WEBPACK_IMPORTED_MODULE_2__["default"].get("/auto-complete", {
                   params: {
                     q: q
                   }
                 });
 
-              case 4:
+              case 5:
                 _yield$http$get = _context.sent;
                 res = _yield$http$get.data;
                 categories.value = res.categories;
                 products.value = res.products;
-                _context.next = 12;
+                _context.next = 13;
                 break;
 
-              case 10:
-                _context.prev = 10;
-                _context.t0 = _context["catch"](1);
+              case 11:
+                _context.prev = 11;
+                _context.t0 = _context["catch"](2);
 
-              case 12:
+              case 13:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 10]]);
+        }, _callee, null, [[2, 11]]);
       }));
       return _autoComplete.apply(this, arguments);
     }
@@ -23465,6 +23467,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       query.value = n;
       categories.value = [];
       products.value = [];
+      dBlock.value = "";
     }
 
     return {
@@ -23473,7 +23476,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       categories: categories,
       products: products,
       getSearchedName: getSearchedName,
-      dNone: dNone
+      dNone: dNone,
+      dBlock: dBlock
     };
   }
 });
@@ -28185,6 +28189,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.query]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)('coverlay' + ' ' + $setup.dBlock)
+  }, null, 2
+  /* CLASS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[$setup.categories.length || $setup.products.length ? ' ' : $setup.dNone], "dropdown-items position-absolute rounded-start"])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.categories, function (category) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {

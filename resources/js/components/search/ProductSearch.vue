@@ -20,6 +20,8 @@
       @input="autoComplete"
       v-model="query"
     >
+    <div :class="'coverlay' + ' ' + dBlock"></div>
+
     <div
       :class="[categories.length || products.length ? ' ' : dNone]"
       class="dropdown-items position-absolute  rounded-start"
@@ -55,9 +57,11 @@ export default {
     const categories = ref([]);
     const products = ref([]);
     const dNone = ref("d-none");
+    const dBlock = ref("");
 
     async function autoComplete() {
       let q = query.value;
+      dBlock.value = "d-block";
       try {
         const { data: res } = await http.get("/auto-complete", {
           params: {
@@ -73,6 +77,7 @@ export default {
       query.value = n;
       categories.value = [];
       products.value = [];
+      dBlock.value = "";
     }
 
     return {
@@ -82,6 +87,7 @@ export default {
       products,
       getSearchedName,
       dNone,
+      dBlock,
     };
   },
 };
