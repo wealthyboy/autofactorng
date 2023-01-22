@@ -4,8 +4,8 @@
 
       <search-string
         @remove:vehicle="shopWithoutVehicle"
-        v-if="!loading && searchText"
-        :searchText="searchText"
+        v-if="!loading && firString"
+        :searchText="firString"
         class=""
       />
 
@@ -23,7 +23,7 @@
       </div>
 
       <div
-        v-if=" !searchText"
+        v-if="!firString"
         class="cta-border cta-bg light "
       >
         <div class="underline w-100"></div>

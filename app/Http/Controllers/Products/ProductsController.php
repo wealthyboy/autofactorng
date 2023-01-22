@@ -227,7 +227,6 @@ class ProductsController extends Controller
         }
 
 
-
         return '';
     }
 
