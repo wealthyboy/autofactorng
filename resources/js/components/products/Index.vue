@@ -1,7 +1,6 @@
 <template>
   <div class="row">
     <div class="col-lg-9  order-lg-">
-      {{  fitString  }}
       <search-string
         @remove:vehicle="shopWithoutVehicle"
         v-if="!loading && fitString"
