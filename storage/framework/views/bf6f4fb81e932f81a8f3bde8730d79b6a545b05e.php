@@ -370,6 +370,14 @@
          }
 
       });
+
+      $(".coverlay").on('click', function() {
+         let open = $(".menu-open");
+         let close = $(".menu-close");
+
+         close.click()
+         $(".coverlay").removeClass("d-block").addClass("d-none");
+      })
    </script>
 
 </body>

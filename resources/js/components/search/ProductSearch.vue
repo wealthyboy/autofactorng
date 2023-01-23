@@ -31,13 +31,6 @@
       class="dropdown-items position-absolute  rounded-start"
     >
       <ul class="mt-4">
-        <li
-          v-for="category in categories"
-          :key="category"
-          role="button"
-          class="py-3"
-          @click="getSearchedName('category', category)"
-        >{{ category }}</li>
 
         <li
           v-for="product in products"
@@ -69,6 +62,7 @@ export default {
         height: "100%",
       });
       let q = query.value;
+
       dBlock.value = "d-block";
       try {
         const { data: res } = await http.get("/auto-complete", {
@@ -96,6 +90,18 @@ export default {
     }
 
     function getSearchedName(t, n) {
+      const pathname = new URL(location.href).pathname;
+      let prev_url = pathname.split("/");
+
+      window.history.pushState({}, "Search ", "/search");
+      const url = new URL(location.href);
+      url.searchParams.set("q", n);
+      window.history.pushState({}, "", url);
+
+      if (prev_url[1] != "products") {
+        location.href = url;
+      }
+
       query.value = n;
       categories.value = [];
       products.value = [];

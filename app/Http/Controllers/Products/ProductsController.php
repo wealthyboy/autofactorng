@@ -180,9 +180,9 @@ class ProductsController extends Controller
                 ->toArray();
 
 
-            $products = Product::where('product_name', 'like', '%' . $request->q . '%')
-                ->take(5)
-                ->pluck('product_name')
+            $products = Product::where('name', 'like', '%' . $request->q . '%')
+                ->take(10)
+                ->pluck('name')
                 ->toArray();
 
 
