@@ -23431,42 +23431,54 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                $("html, body").css({
+                  overflow: "hidden",
+                  height: "100%"
+                });
                 q = query.value;
                 dBlock.value = "d-block";
-                _context.prev = 2;
-                _context.next = 5;
+                _context.prev = 3;
+                _context.next = 6;
                 return _utils_httpService__WEBPACK_IMPORTED_MODULE_2__["default"].get("/auto-complete", {
                   params: {
                     q: q
                   }
                 });
 
-              case 5:
+              case 6:
                 _yield$http$get = _context.sent;
                 res = _yield$http$get.data;
                 categories.value = res.categories;
                 products.value = res.products;
-                _context.next = 13;
+                _context.next = 14;
                 break;
 
-              case 11:
-                _context.prev = 11;
-                _context.t0 = _context["catch"](2);
+              case 12:
+                _context.prev = 12;
+                _context.t0 = _context["catch"](3);
 
-              case 13:
+              case 14:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[2, 11]]);
+        }, _callee, null, [[3, 12]]);
       }));
       return _autoComplete.apply(this, arguments);
+    }
+
+    function handleFocus() {
+      console.log(true);
     }
 
     function cancel() {
       categories.value = [];
       products.value = [];
       dBlock.value = "";
+      $("html, body").css({
+        overflow: "auto",
+        height: "auto"
+      });
     }
 
     function getSearchedName(t, n) {
@@ -23474,6 +23486,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       categories.value = [];
       products.value = [];
       dBlock.value = "";
+      $("html, body").css({
+        overflow: "auto",
+        height: "auto"
+      });
     }
 
     return {
@@ -23484,7 +23500,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       getSearchedName: getSearchedName,
       dNone: dNone,
       dBlock: dBlock,
-      cancel: cancel
+      cancel: cancel,
+      handleFocus: handleFocus
     };
   }
 });
@@ -28192,11 +28209,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.query = $event;
+    }),
+    onFocus: _cache[2] || (_cache[2] = function () {
+      return $setup.handleFocus && $setup.handleFocus.apply($setup, arguments);
     })
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.query]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    onClick: _cache[2] || (_cache[2] = function () {
+    onClick: _cache[3] || (_cache[3] = function () {
       return $setup.cancel && $setup.cancel.apply($setup, arguments);
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)('coverlay' + ' ' + $setup.dBlock)

@@ -19,6 +19,7 @@
       aria-describedby="button-addon1"
       @input="autoComplete"
       v-model="query"
+      @focus="handleFocus"
     >
     <div
       @click="cancel"
@@ -63,6 +64,10 @@ export default {
     const dBlock = ref("");
 
     async function autoComplete() {
+      $("html, body").css({
+        overflow: "hidden",
+        height: "100%",
+      });
       let q = query.value;
       dBlock.value = "d-block";
       try {
@@ -76,10 +81,18 @@ export default {
       } catch (error) {}
     }
 
+    function handleFocus() {
+      console.log(true);
+    }
+
     function cancel() {
       categories.value = [];
       products.value = [];
       dBlock.value = "";
+      $("html, body").css({
+        overflow: "auto",
+        height: "auto",
+      });
     }
 
     function getSearchedName(t, n) {
@@ -87,6 +100,10 @@ export default {
       categories.value = [];
       products.value = [];
       dBlock.value = "";
+      $("html, body").css({
+        overflow: "auto",
+        height: "auto",
+      });
     }
 
     return {
@@ -98,6 +115,7 @@ export default {
       dNone,
       dBlock,
       cancel,
+      handleFocus,
     };
   },
 };
