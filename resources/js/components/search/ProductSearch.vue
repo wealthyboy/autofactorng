@@ -1,5 +1,7 @@
 <template>
-  <div class="input-group mt-3 position-relative w-100  rounded-start">
+
+  <form class="input-group mt-3 position-relative w-100 rounded-start mx-5 mb-0">
+
     <button
       class="search-products-icon"
       type="button"
@@ -42,7 +44,7 @@
 
       </ul>
     </div>
-  </div>
+  </form>
 </template>
 <script>
 import { reactive, ref } from "vue";

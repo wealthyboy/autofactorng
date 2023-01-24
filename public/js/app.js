@@ -22724,9 +22724,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     products: "products"
   })),
   mounted: function mounted() {
-    var uri = new URL(this.url);
-    console.log(uri);
-    this.getProducts(this.url);
+    var uri = new URL(this.url),
+        url;
+
+    if (uri.search) {
+      url = "&get=1";
+    } else {
+      url = "?get=1";
+    }
+
+    this.getProducts(this.url + url);
   },
   methods: {
     clearfilters: function clearfilters() {
@@ -28158,7 +28165,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "input-group mt-3 position-relative w-100 rounded-start"
+  "class": "input-group mt-3 position-relative w-100 rounded-start mx-5 mb-0"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
@@ -28208,7 +28215,7 @@ var _hoisted_3 = {
 };
 var _hoisted_4 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "class": "form-control search-products rounded-start",
     placeholder: "Find Parts and Products",

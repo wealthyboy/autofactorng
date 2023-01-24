@@ -239,9 +239,14 @@ export default {
     }),
   },
   mounted() {
-    let uri = new URL(this.url);
-    console.log(uri);
-    this.getProducts(this.url);
+    let uri = new URL(this.url),
+      url;
+    if (uri.search) {
+      url = "&get=1";
+    } else {
+      url = "?get=1";
+    }
+    this.getProducts(this.url + url);
   },
 
   methods: {
