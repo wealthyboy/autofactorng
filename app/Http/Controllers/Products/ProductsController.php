@@ -52,12 +52,95 @@ class ProductsController extends Controller
         ));
     }
 
+
+
+    public function  search(Request $request, Builder $builder)
+    {
+        $page_title = "Search " . $request->q;
+
+        $this->clearMMYCookies($request);
+
+        $query = Product::where('name', 'like', '%' . $request->q . '%');
+
+        $type = $this->getType($request);
+
+        $per_page = $request->per_page ??  20;
+
+        if ($request->engine_id) {
+            $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
+                $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
+                $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
+                $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
+                $builder->where('year_from', '<=', $request->cookie('year'));
+                $builder->where('year_to', '>=', $request->cookie('year'));
+                $builder->groupBy('make_model_year_engines.product_id');
+            });
+        }
+
+        $products = $query->latest()->paginate($per_page);
+        $products->load('images');
+        $products->appends(request()->all());
+
+
+
+        if ($request->ajax()) {
+
+            $query = Product::where('name', 'like', '%' . $request->q . '%')->get();
+            dd($request->q);
+
+
+            $type = $this->getType($request);
+
+            $per_page = $request->per_page ??  20;
+
+            // if ($request->engine_id) {
+            //     $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
+            //         $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
+            //         $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
+            //         $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
+            //         $builder->where('year_from', '<=', $request->cookie('year'));
+            //         $builder->where('year_to', '>=', $request->cookie('year'));
+            //         $builder->groupBy('make_model_year_engines.product_id');
+            //     });
+            // }
+
+            $products = $query->latest()->paginate($per_page);
+            $products->load('images');
+            $products->appends(request()->all());
+            dd($products);
+            return (new ProductsCollection($products))
+                ->additional([
+                    'string' =>  $this->buildSearchString($request),
+                ]);
+        }
+
+
+        $category = null;
+
+        $search_filters =  $search = collect([
+            ['name' => 'price', 'items' => $this->filterPrices()],
+            ['name' => 'year', 'items' => Helper::years()],
+            ['name' => 'search_type', 'search' => 'make_model_year'],
+            ['name' => 'show_fit_text', 'search' => 'make_model_year'],
+        ])->keyBy('name');
+
+        return  view('products.index', compact(
+            'category',
+            'page_title',
+            'search_filters',
+        ));
+    }
+
+
+
     public function getProductsData(Request $request, Builder $builder, Category $category)
     {
+
 
         $query = Product::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.slug', $category->slug);
         });
+
 
         $type = $this->getType($request);
 
@@ -76,14 +159,11 @@ class ProductsController extends Controller
             }
         }
 
-
-
         if ($request->type == 'tyre') {
             $query->where('radius', $request->rim);
             $query->where('width', $request->width);
             $query->where('height', $request->profile);
         }
-
 
         if ($request->type == 'battery') {
             $query->where('amphere', $request->amphere);

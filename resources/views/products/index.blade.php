@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="">
-            <h1 class="text-uppercase p-0">{{ $category->name }}</h1>
+            <h1 class="text-uppercase p-0">{{ optional($category)->name }}</h1>
         </div>
         <products-items :search_filters="{{ $search_filters }}" />
     </div>
@@ -26,6 +26,4 @@
 
 @endsection
 @section('inline-scripts')
-
-
 @stop

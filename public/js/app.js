@@ -22716,7 +22716,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       list: "List",
       clearFilters: false,
       showClearFilter: false,
-      url: location.href + "?get=1"
+      url: location.href
     };
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_9__.mapGetters)({
@@ -22724,6 +22724,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     products: "products"
   })),
   mounted: function mounted() {
+    var uri = new URL(this.url);
+    console.log(uri);
     this.getProducts(this.url);
   },
   methods: {
@@ -22817,8 +22819,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.loading = true;
       axios__WEBPACK_IMPORTED_MODULE_2___default().get(url).then(function (res) {
-        console.log(res.data.data);
-
         _this2.$store.commit("setProducts", res.data.data);
 
         _this2.loading = false;
@@ -26941,7 +26941,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onPagination:switched": $options.getP
   }, null, 8
   /* PROPS */
-  , ["meta", "onPagination:switched"])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .col-lg-9 "), _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [$props.search_filters.brand.items.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_filters, {
+  , ["meta", "onPagination:switched"])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .col-lg-9 "), _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("aside", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [$props.search_filters.brand ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_filters, {
     key: 0,
     name: 'brands',
     objs: $props.search_filters.brand.items,

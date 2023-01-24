@@ -88,6 +88,8 @@ Route::get('products/{category}', 'Products\ProductsController@index');
 Route::get('product/{category}/{product}', 'Products\ProductsController@show');
 Route::get('make-model-year-engine', 'Products\ProductsController@makeModelYearSearch');
 Route::get('auto-complete', 'Products\ProductsController@autoComplete');
+Route::get('search', 'Products\ProductsController@search');
+
 
 
 Route::get('/mailable', function () {

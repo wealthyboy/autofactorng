@@ -172,7 +172,7 @@
     <aside class="sidebar-shop col-lg-3 order-lg-first mobile-sidebar">
       <div class="sidebar-wrapper">
         <filters
-          v-if="search_filters.brand.items.length"
+          v-if="search_filters.brand"
           :name="'brands'"
           :objs="search_filters.brand.items"
           @handle:filter="handleFilter"
@@ -229,7 +229,7 @@ export default {
       list: "List",
       clearFilters: false,
       showClearFilter: false,
-      url: location.href + "?get=1",
+      url: location.href,
     };
   },
   computed: {
@@ -239,6 +239,8 @@ export default {
     }),
   },
   mounted() {
+    let uri = new URL(this.url);
+    console.log(uri);
     this.getProducts(this.url);
   },
 
@@ -335,10 +337,8 @@ export default {
       axios
         .get(url)
         .then((res) => {
-          console.log(res.data.data);
           this.$store.commit("setProducts", res.data.data);
           this.loading = false;
-
           this.meta = res.data.meta;
           this.searchText = res.data.string;
         })
