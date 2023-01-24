@@ -239,12 +239,13 @@ export default {
     }),
   },
   mounted() {
+    let d = new Date();
     let uri = new URL(this.url),
       url;
     if (uri.search) {
-      url = "&get=1";
+      url = "&get=" + d.getTime();
     } else {
-      url = "?get=1";
+      url = "?get=" + d.getTime();
     }
     this.getProducts(this.url + url);
   },

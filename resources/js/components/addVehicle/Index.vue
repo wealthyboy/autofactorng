@@ -81,9 +81,6 @@
               </span>
               <span>
                 {{ fitString }}
-
-                {{  }}
-
               </span>
             </div>
           </button>
