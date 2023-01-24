@@ -98,8 +98,7 @@ export default {
       window.history.pushState({}, "Search ", "/search");
       const url = new URL(location.href);
       url.searchParams.set("q", n);
-      url.searchParams.set("t", Data().getTime());
-
+      url.searchParams.set("t", new Date().getTime());
       window.history.pushState({}, "", url);
 
       if (prev_url[1] != "products") {

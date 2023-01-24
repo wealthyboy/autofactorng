@@ -56,6 +56,12 @@ class ProductsController extends Controller
 
     public function  search(Request $request, Builder $builder)
     {
+
+        if (!$request->q) {
+            return redirect('404');
+        }
+
+
         $page_title = "Search " . $request->q;
 
         $this->clearMMYCookies($request);
