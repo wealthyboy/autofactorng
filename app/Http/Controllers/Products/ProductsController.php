@@ -87,7 +87,6 @@ class ProductsController extends Controller
         $products->load('images');
         $products->appends(request()->all());
         $category = null;
-        dd($products);
 
 
         if ($products->count()) {
