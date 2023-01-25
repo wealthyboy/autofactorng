@@ -43,6 +43,8 @@ class ProductsController extends Controller
                 ]);
         }
 
+        dd($category->brands);
+
         $search_filters =  $this->searchFilters($category);
 
         return  view('products.index', compact(
