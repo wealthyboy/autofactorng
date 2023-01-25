@@ -1,6 +1,9 @@
 <template>
 
-  <form class="input-group mt-3 position-relative w-100 rounded-start mx-5 mb-0">
+  <form
+    method="get"
+    class="input-group mt-3 position-relative w-100 rounded-start mx-5 mb-0"
+  >
 
     <button
       class="search-products-icon"
@@ -22,6 +25,7 @@
       @input="autoComplete"
       v-model="query"
       @focus="handleFocus"
+      name="q"
     >
     <div
       @click="cancel"

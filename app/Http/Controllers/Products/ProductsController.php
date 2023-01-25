@@ -86,6 +86,11 @@ class ProductsController extends Controller
         $products = $query->filter($request)->latest()->paginate($per_page);
         $products->load('images');
         $products->appends(request()->all());
+        $category = null;
+
+        if ($products->count()) {
+            $category = $products->first()->categories->first();
+        }
 
         if ($request->ajax()) {
             return (new ProductsCollection($products))
@@ -95,14 +100,8 @@ class ProductsController extends Controller
         }
 
 
-        $category = null;
+        $search_filters  = $this->searchFilters($category);
 
-        $search_filters =  $search = collect([
-            ['name' => 'price', 'items' => $this->filterPrices()],
-            ['name' => 'year', 'items' => Helper::years()],
-            ['name' => 'search_type', 'search' => 'make_model_year'],
-            ['name' => 'show_fit_text', 'search' => 'make_model_year'],
-        ])->keyBy('name');
 
         return  view('products.index', compact(
             'category',

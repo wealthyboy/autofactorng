@@ -28161,6 +28161,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
+  method: "get",
   "class": "input-group mt-3 position-relative w-100 rounded-start mx-5 mb-0"
 };
 
@@ -28225,7 +28226,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     onFocus: _cache[2] || (_cache[2] = function () {
       return $setup.handleFocus && $setup.handleFocus.apply($setup, arguments);
-    })
+    }),
+    name: "q"
   }, null, 544
   /* HYDRATE_EVENTS, NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.query]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
