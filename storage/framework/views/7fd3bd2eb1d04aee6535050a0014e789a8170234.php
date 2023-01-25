@@ -41,6 +41,16 @@
                </div>
 
                <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Note</label>
+                        <input type="text" value="<?php echo e(isset($product) ? $product->note : old('note')); ?>" class="form-control" name="note" required id="note">
+                     </div>
+                     <div></div>
+                  </div>
+               </div>
+
+               <div class="row mt-3">
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Price</label>

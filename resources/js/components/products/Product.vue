@@ -28,8 +28,8 @@
 
       <div class="product-details">
 
-        <h3 class="product-title"> <a :href="product.link">{{ product.name }}</a>
-        </h3>
+        <h3 class="product-title"> <a :href="product.link">{{ product.name }} </a></h3>
+        <div class="">{{ product.note }} </div>
 
         <div class="ratings-container">
 
@@ -48,14 +48,6 @@
         <!-- End .product-container -->
 
         <div class="price-box">
-
-          <template v-if="product.discounted_price">
-            <span class="old-price">{{ product.currency }}{{  product.formatted_sale_price }}</span>
-            <span class="product-price">{{ product.currency }}{{  product.formatted_price }}</span>
-          </template>
-          <template v-else>
-            <span class="product-price">{{ product.currency }}{{  product.formatted_price }}</span>
-          </template>
 
         </div>
         <!-- End .price-box -->
@@ -96,6 +88,7 @@
     <div class="product-details">
 
       <h3 class="product-title"> <a :href="product.link">{{ product.name }}</a></h3>
+      <div class="">{{ product.note }} </div>
 
       <p>
         SKU #{{product.sku}}
