@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-9  order-lg-">
       <search-string
-        v-if="!loading && !searchText"
+        v-if="!loading && searchText"
         @remove:vehicle="shopWithoutVehicle"
         :searchText="fitString"
         class=""
@@ -225,7 +225,7 @@ export default {
       has_filters: 0,
       full_width: false,
       loading: true,
-      searchText: "Fake",
+      searchText: false,
       list: "List",
       clearFilters: false,
       showClearFilter: false,
@@ -346,7 +346,7 @@ export default {
           this.$store.commit("setProducts", res.data.data);
           this.loading = false;
           this.meta = res.data.meta;
-          this.searchText = res.data.string;
+          this.searchText = null == res.data.string ? false : true;
         })
         .catch((err) => {});
     },
