@@ -22804,7 +22804,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.getProducts(location.href);
     },
     sort: function sort(filter) {
-      console.log(filter);
       var url = new URL(location.href);
       url.searchParams.set("sort_by", filter.sort_by);
       url.searchParams.set("search", "true");
@@ -26878,7 +26877,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_filters = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("filters");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [!$data.loading && !$data.searchText && _ctx.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search_string, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [!$data.loading && !$data.searchText ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search_string, {
     key: 0,
     "onRemove:vehicle": $options.shopWithoutVehicle,
     searchText: _ctx.fitString,
@@ -26891,7 +26890,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.clearfilters && $options.clearfilters.apply($options, arguments);
     }, ["prevent"])),
     "class": "border text-dark p-3"
-  }, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Clear Filters ")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.searchText && !_ctx.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [_hoisted_6, _hoisted_7, $props.search_filters.search_type.search ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [_hoisted_9, $props.search_filters.search_type.search == 'make_model_year' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search, {
+  }, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Clear Filters ")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.searchText ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [_hoisted_6, _hoisted_7, $props.search_filters.search_type.search ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [_hoisted_9, $props.search_filters.search_type.search == 'make_model_year' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search, {
     key: 0,
     "onDo:filter": $options.filter,
     filter: true

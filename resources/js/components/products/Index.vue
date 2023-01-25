@@ -3,7 +3,7 @@
     <div class="col-lg-9  order-lg-">
       <search-string
         @remove:vehicle="shopWithoutVehicle"
-        v-if="!loading && !searchText && fitString"
+        v-if="!loading && !searchText"
         :searchText="fitString"
         class=""
       />
@@ -22,7 +22,7 @@
       </div>
 
       <div
-        v-if="!searchText && !fitString"
+        v-if="!searchText"
         class="cta-border cta-bg light "
       >
         <div class="underline w-100"></div>
@@ -320,7 +320,6 @@ export default {
       this.getProducts(location.href);
     },
     sort(filter) {
-      console.log(filter);
       const url = new URL(location.href);
       url.searchParams.set("sort_by", filter.sort_by);
       url.searchParams.set("search", "true");
