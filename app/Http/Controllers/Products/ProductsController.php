@@ -90,12 +90,13 @@ class ProductsController extends Controller
 
         if ($products->count()) {
             $category = $products->first()->categories->first();
+            dd($category);
         }
 
         if ($request->ajax()) {
             return (new ProductsCollection($products))
                 ->additional([
-                    'string' =>   $this->getCategory($category) ? $this->buildSearchString($request) : null,
+                    'string' => $this->getCategory($category) ? $this->buildSearchString($request) : null,
                 ]);
         }
 
