@@ -87,7 +87,7 @@ class ProductsController extends Controller
         $products->load('images');
         $products->appends(request()->all());
         $category = null;
-
+        $cat = null;
 
         if ($products->count()) {
             $category = $products->first()->categories->first();
