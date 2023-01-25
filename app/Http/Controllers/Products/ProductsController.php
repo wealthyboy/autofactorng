@@ -90,7 +90,6 @@ class ProductsController extends Controller
 
         if ($products->count()) {
             $category = $products->first()->categories->first();
-            dd($category);
         }
 
         if ($request->ajax()) {
@@ -99,6 +98,7 @@ class ProductsController extends Controller
                     'string' => $this->getCategory($category) ? $this->buildSearchString($request) : null,
                 ]);
         }
+        dd($category);
 
 
         $search_filters  = $this->searchFilters($category);
