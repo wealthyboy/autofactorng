@@ -4,7 +4,7 @@
       <search-string
         @remove:vehicle="shopWithoutVehicle"
         v-if="!loading && fitString"
-        :searchText="null != searchText ? searchText : fitString"
+        :searchText="'' == searchText ? searchText : fitString"
         class=""
       />
 
