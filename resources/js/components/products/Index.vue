@@ -1,4 +1,5 @@
 <template>
+  {{  searchText  }}
   <div class="row">
     <div class="col-lg-9  order-lg-">
       <search-string
