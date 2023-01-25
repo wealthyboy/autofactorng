@@ -36,7 +36,7 @@
 
                </div>
 
-               <div class="row">
+               <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Note</label>
@@ -44,9 +44,6 @@
                      </div>
                      <div></div>
                   </div>
-
-
-
                </div>
 
                <div class="row mt-3">
