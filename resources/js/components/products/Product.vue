@@ -48,6 +48,13 @@
         <!-- End .product-container -->
 
         <div class="price-box">
+          <template v-if="product.discounted_price">
+            <span class="old-price">{{ product.currency }}{{  product.formatted_sale_price }}</span>
+            <span class="product-price">{{ product.currency }}{{  product.formatted_price }}</span>
+          </template>
+          <template v-else>
+            <span class="product-price">{{ product.currency }}{{  product.formatted_price }}</span>
+          </template>
 
         </div>
         <!-- End .price-box -->
