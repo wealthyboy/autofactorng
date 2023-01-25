@@ -23495,11 +23495,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var url = new URL(location.href);
       url.searchParams.set("q", n);
       url.searchParams.set("t", new Date().getTime());
-      window.history.pushState({}, "", url);
-
-      if (prev_url[1] != "products") {
-        location.href = url;
-      }
+      window.history.pushState({}, "", url); //if (prev_url[1] != "products") {
+      // location.href = url;
+      // }
 
       query.value = n;
       categories.value = [];
@@ -23509,6 +23507,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         overflow: "auto",
         height: "auto"
       });
+      location.href = url;
     }
 
     return {

@@ -105,9 +105,9 @@ export default {
       url.searchParams.set("t", new Date().getTime());
       window.history.pushState({}, "", url);
 
-      if (prev_url[1] != "products") {
-        location.href = url;
-      }
+      //if (prev_url[1] != "products") {
+      // location.href = url;
+      // }
 
       query.value = n;
       categories.value = [];
@@ -117,6 +117,8 @@ export default {
         overflow: "auto",
         height: "auto",
       });
+
+      location.href = url;
     }
 
     return {
