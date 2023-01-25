@@ -55,7 +55,7 @@
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Price</label>
-                        <input type="number" class="form-control" name="price" required value="{{ isset($product) ? $product->price : old('price') }}">
+                        <input type="number" class="form-control" name="price" value="{{ isset($product) ? $product->price : old('price') }}">
                      </div>
                   </div>
 
