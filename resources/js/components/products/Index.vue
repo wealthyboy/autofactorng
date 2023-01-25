@@ -3,8 +3,8 @@
     <div class="col-lg-9  order-lg-">
       <search-string
         @remove:vehicle="shopWithoutVehicle"
-        v-if="!loading && fitString"
-        :searchText="null == searchText ? searchText : fitString"
+        v-if="!loading && !searchText && fitString"
+        :searchText="fitString"
         class=""
       />
 
@@ -22,7 +22,7 @@
       </div>
 
       <div
-        v-if="!fitString"
+        v-if="!searchText && !fitString"
         class="cta-border cta-bg light "
       >
         <div class="underline w-100"></div>
