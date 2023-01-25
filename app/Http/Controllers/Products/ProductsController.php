@@ -168,27 +168,32 @@ class ProductsController extends Controller
     }
 
 
-    public function searchFilters(Category $category)
+    public function searchFilters($category = null)
     {
-        $rims = Product::getFilterForCategory($category, 'radius');
-        $widths = Product::getFilterForCategory($category, 'width');
-        $profiles = Product::getFilterForCategory($category, 'height');
-        $ampheres = Product::getFilterForCategory($category, 'amphere');
-        $brands = $category->brands;
+        if (!null !== $category) {
+            $rims = Product::getFilterForCategory($category, 'radius');
+            $widths = Product::getFilterForCategory($category, 'width');
+            $profiles = Product::getFilterForCategory($category, 'height');
+            $ampheres = Product::getFilterForCategory($category, 'amphere');
+            $brands = $category->brands;
 
-        $search = collect([
-            ['name' => 'price', 'items' => $this->filterPrices()],
-            ['name' => 'brand', 'items' => $brands],
-            ['name' => 'rim', 'items' => $rims],
-            ['name' => 'width', 'items'  => $widths],
-            ['name' => 'profile', 'items' => $profiles],
-            ['name' => 'amphere', 'items' => $ampheres],
-            ['name' => 'search_type', 'search' => $category->search_type],
-            ['name' => 'show_fit_text', 'search' => $category->search_type == 'make_model_year'],
-            ['name' => 'year', 'items' => Helper::years()]
-        ]);
+            $search = collect([
+                ['name' => 'price', 'items' => $this->filterPrices()],
+                ['name' => 'brand', 'items' => $brands],
+                ['name' => 'rim', 'items' => $rims],
+                ['name' => 'width', 'items'  => $widths],
+                ['name' => 'profile', 'items' => $profiles],
+                ['name' => 'amphere', 'items' => $ampheres],
+                ['name' => 'search_type', 'search' => $category->search_type],
+                ['name' => 'show_fit_text', 'search' => $category->search_type == 'make_model_year'],
+                ['name' => 'year', 'items' => Helper::years()]
+            ]);
 
-        return $search->keyBy('name');
+            return $search->keyBy('name');
+        }
+
+
+        return null;
     }
 
 
@@ -223,7 +228,7 @@ class ProductsController extends Controller
     }
 
 
-    public function getCategory(Category $category)
+    public function getCategory($category = null)
     {
         return $category->name == 'Spare Parts' || optional($category)->name  == 'Servicing Parts' || optional($category->parent)->name  == 'Spare Parts' ||  optional($category->parent)->name  == 'Servicing Parts' ? true : false;
     }
