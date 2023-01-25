@@ -101,8 +101,17 @@ class ProductsController extends Controller
                 ]);
         }
 
+        if (null !== $category) {
+            $search_filters =  $search = collect([
+                ['name' => 'price', 'items' => $this->filterPrices()],
+                ['name' => 'year', 'items' => Helper::years()],
+                ['name' => 'search_type', 'search' => 'make_model_year'],
+                ['name' => 'show_fit_text', 'search' => 'make_model_year'],
+            ])->keyBy('name');
+        } else {
+            $search_filters  = $this->searchFilters($category);
+        }
 
-        $search_filters  = $this->searchFilters($category);
 
 
         return  view('products.index', compact(
