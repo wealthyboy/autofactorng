@@ -4,7 +4,7 @@
       <search-string
         @remove:vehicle="shopWithoutVehicle"
         v-if="!loading && fitString"
-        :searchText="fitString"
+        :searchText="null != searchText ? searchText : fitString"
         class=""
       />
 
@@ -225,7 +225,7 @@ export default {
       has_filters: 0,
       full_width: false,
       loading: true,
-      searchText: null,
+      searchText: "Fake",
       list: "List",
       clearFilters: false,
       showClearFilter: false,
@@ -238,6 +238,7 @@ export default {
       products: "products",
     }),
   },
+
   mounted() {
     let d = new Date();
     let uri = new URL(this.url),
