@@ -87,6 +87,8 @@ class ProductsController extends Controller
         $products->load('images');
         $products->appends(request()->all());
         $category = null;
+        dd($products);
+
 
         if ($products->count()) {
             $category = $products->first()->categories->first();
@@ -98,7 +100,6 @@ class ProductsController extends Controller
                     'string' => $this->getCategory($category) ? $this->buildSearchString($request) : null,
                 ]);
         }
-        dd($category);
 
 
         $search_filters  = $this->searchFilters($category);
