@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterOrderedProductsAddUserId extends Migration
+class AlterProductsAddNote extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AlterOrderedProductsAddUserId extends Migration
      */
     public function up()
     {
-        Schema::table('ordered_products', function (Blueprint $table) {
-            //  $table->integer('user_id')->nullable();
+        Schema::table('products', function (Blueprint $table) {
+            $table->string('note')->nullable();
         });
     }
 
@@ -25,7 +25,8 @@ class AlterOrderedProductsAddUserId extends Migration
      */
     public function down()
     {
-        Schema::table('ordered_products', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
+            //
         });
     }
 }

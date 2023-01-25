@@ -319,6 +319,8 @@ class ProductController extends Table
         $product->brand_id = $request->brand_id;
         $product->name = $name;
         $product->product_name = $request->product_name;
+        $product->note = $request->note;
+
         $product->slug = str_slug($name);
 
 
@@ -509,6 +511,9 @@ class ProductController extends Table
         $name = $request->filled('brand_id')  ? $brand->name . ' ' . $request->product_name  : $request->product_name;
         $data['name'] = $name;
         $data['slug'] = str_slug($name);
+        $data['note'] = $request->note;
+
+
         $product = Product::find($id);
         $product->update($data);
 
