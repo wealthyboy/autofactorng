@@ -172,7 +172,7 @@
     <aside class="sidebar-shop col-lg-3 order-lg-first mobile-sidebar">
       <div class="sidebar-wrapper">
         <filters
-          v-if="search_filters.brand.items"
+          v-if="search_filters.brand.items.length"
           :name="'brands'"
           :objs="search_filters.brand.items"
           @handle:filter="handleFilter"
