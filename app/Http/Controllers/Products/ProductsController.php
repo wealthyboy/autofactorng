@@ -95,7 +95,7 @@ class ProductsController extends Controller
         if ($request->ajax()) {
             return (new ProductsCollection($products))
                 ->additional([
-                    'string' =>  $this->buildSearchString($request),
+                    'string' =>   $this->getCategory($category) ? $this->buildSearchString($request) : null,
                 ]);
         }
 
