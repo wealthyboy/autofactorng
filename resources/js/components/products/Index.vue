@@ -1,10 +1,9 @@
 <template>
-  {{  searchText  }}
   <div class="row">
     <div class="col-lg-9  order-lg-">
       <search-string
-        @remove:vehicle="shopWithoutVehicle"
         v-if="!loading && !searchText"
+        @remove:vehicle="shopWithoutVehicle"
         :searchText="fitString"
         class=""
       />
