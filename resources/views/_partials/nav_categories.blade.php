@@ -7,7 +7,7 @@
         <ul class="list-unstyled pl-3">
             @foreach( $global_categories as $category)
             <li>
-                <a href="#" target="" data-testid="at_popular_part_list_item_0" tabindex="0">
+                <a href="{{  $category->children->count() ?  '#' : '/products/'.$category->slug }}" target="" data-testid="at_popular_part_list_item_0" tabindex="0">
                     <div class="az_ylb">
                         <div class="az_bdb az_lkb az_zlb" tabindex="-1" role="menuitem" aria-disabled="false">
                             <div class="az_-i">{{ $category->name }}</div>
