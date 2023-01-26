@@ -273,9 +273,10 @@ export default {
           },
         })
         .then((res) => {
-          this.products = res.data.data;
           this.meta = res.data.meta;
           this.fitText = res.data.string;
+          this.$store.commit("setProducts", res.data.data);
+
           this.$store.commit("setfitString", null);
         })
         .catch((error) => {

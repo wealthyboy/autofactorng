@@ -78,23 +78,10 @@
       </a>
 
       <div class="toolbox-item toolbox-sort">
-        <label>Sort By:</label>
-
-        <div class="select-custom">
-          <select
-            @change="sort($event)"
-            name="orderby"
-            class="form-control orderby"
-          >
-            <option
-              value=""
-              selected="selected"
-            >Default sorting</option>
-            <option value="price,asc">Price: low to high</option>
-            <option value="price,desc">Price: high to low</option>
-          </select>
+        <div class="toolbox-item toolbox-show">
+          <span>{{ meta.from }}- {{ meta.to }} of {{meta.total}} Records</span>
         </div>
-        <!-- End .select-custom -->
+        <!-- End .toolbox-item -->
 
       </div>
       <!-- End .toolbox-item -->
