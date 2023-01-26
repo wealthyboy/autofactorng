@@ -167,7 +167,7 @@
 
 
       <!-- End .header -->
-      <div class="coverlay"></div>
+      <div class="coverlay overlay-close"></div>
 
       <main class="main mt-3">
          @yield('content')
@@ -345,8 +345,6 @@
       $(".menu-nav-btn, .panel-close").on("click", function() {
          let open = $(".menu-open");
          let close = $(".menu-close");
-
-
          if (open.hasClass("d-none")) {
 
             open.removeClass("d-none");
@@ -371,7 +369,7 @@
 
       });
 
-      $(".coverlay").on('click', function() {
+      $(".overlay-close").on('click', function() {
          let close = $(".menu-close");
          close.click()
          $(".coverlay").removeClass("d-block").addClass("d-none");
