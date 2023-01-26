@@ -125,13 +125,14 @@ export default {
     const store = useStore();
 
     function getString(t) {
-      if (t.text) {
+      console.log(t);
+      if (t.type == "engine_id") {
         store.commit("setMessage", " You are now shopping for  " + t.text);
       }
 
       setTimeout(() => {
         store.commit("setMessage", null);
-      }, 9000);
+      }, 11000);
       if (t.type == "engine_id") {
         showModal.value = false;
       }
