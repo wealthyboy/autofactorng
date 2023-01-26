@@ -22839,7 +22839,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         _this2.loading = false;
         _this2.meta = res.data.meta;
-        _this2.searchText = null == res.data.string ? false : true;
+        _this2.searchText = null == res.data.string || res.data.string == "" ? false : true;
       })["catch"](function (err) {
         _this2.loading = false;
       });
@@ -26890,7 +26890,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [!$data.loading && $data.searchText ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search_string, {
     key: 0,
     "onRemove:vehicle": $options.shopWithoutVehicle,
-    searchText: $data.searchText,
+    searchText: _ctx.fitString,
     "class": ""
   }, null, 8
   /* PROPS */

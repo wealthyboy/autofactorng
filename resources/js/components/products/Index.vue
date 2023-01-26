@@ -4,7 +4,7 @@
       <search-string
         v-if="!loading && searchText"
         @remove:vehicle="shopWithoutVehicle"
-        :searchText="searchText"
+        :searchText="fitString"
         class=""
       />
 
@@ -352,7 +352,8 @@ export default {
           this.$store.commit("setProducts", res.data.data);
           this.loading = false;
           this.meta = res.data.meta;
-          this.searchText = null == res.data.string ? false : true;
+          this.searchText =
+            null == res.data.string || res.data.string == "" ? false : true;
         })
         .catch((err) => {
           this.loading = false;
