@@ -24,6 +24,7 @@
         <div class="modal-footer justify-content-start ">
           <slot name="footer"></slot>
         </div>
+
       </div>
     </div>
   </div>

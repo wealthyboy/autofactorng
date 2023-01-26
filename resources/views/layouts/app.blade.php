@@ -168,9 +168,15 @@
 
       <main class="main mt-3">
          @yield('content')
+
       </main>
 
+      <make-model-year-message></make-model-year-message>
+
+
+
       <!-- End .main -->
+
 
       <footer class="footer bg-dark">
          <div class="footer-middle">

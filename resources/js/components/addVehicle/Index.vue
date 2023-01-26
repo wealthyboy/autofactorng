@@ -36,6 +36,7 @@
       v-if="showModal"
       @close="showModal = false"
     >
+
       <!--
         you can use custom content here to overwrite
         default content
@@ -55,12 +56,10 @@
       </template>
 
       <template v-slot:body>
-
         <h6>Add your vehicle to get an exact fit.</h6>
         <div class=" d-flex justify-content-between align-content-center pt-2">
           <make-model-year @do:string="getString"></make-model-year>
         </div>
-
       </template>
 
       <template v-slot:footer>
@@ -99,6 +98,7 @@
       </template>
 
     </modal>
+
   </transition>
 
 </template>
@@ -135,7 +135,26 @@ export default {
       });
     });
 
-    function ShopWithoutVehicle() {}
+    //You are now shopping for 2022 Audi A5 Sportback Prestige 2.0L FI Turbo HEV 4cyl
+
+    function ShopWithoutVehicle() {
+      // this.searchText = null;
+      // axios
+      //   .get(this.url, {
+      //     params: {
+      //       type: "clear",
+      //     },
+      //   })
+      //   .then((res) => {
+      //     this.meta = res.data.meta;
+      //     this.fitText = res.data.string;
+      //     this.$store.commit("setProducts", res.data.data);
+      //     this.$store.commit("setfitString", null);
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
+    }
 
     return {
       getString,
