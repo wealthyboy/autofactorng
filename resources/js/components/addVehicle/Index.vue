@@ -84,15 +84,28 @@
             </div>
           </button>
 
-          <div
-            v-if="fitString"
-            class="mt-3 pb-4"
-          >
-            <a
-              @click.prevent="ShopWithoutVehicle"
-              href="#"
-            >Shop Without Vehicle</a>
+          <div class="d-flex">
+            <div
+              v-if="fitString"
+              class="mt-3 pb-4"
+            >
+              <a
+                @click.prevent="ShopWithoutVehicle('shop')"
+                href="#"
+              >Shop Without Vehicle</a>
+            </div>
+
+            <div
+              v-if="fitString"
+              class="ms-3 mt-3 pb-4"
+            >
+              <a
+                @click.prevent="ShopWithoutVehicle('change')"
+                href="#"
+              >Change Vehicle</a>
+            </div>
           </div>
+
         </div>
 
       </template>
@@ -146,23 +159,25 @@ export default {
 
     //You are now shopping for 2022 Audi A5 Sportback Prestige 2.0L FI Turbo HEV 4cyl
 
-    function ShopWithoutVehicle() {
-      // this.searchText = null;
-      // axios
-      //   .get(this.url, {
-      //     params: {
-      //       type: "clear",
-      //     },
-      //   })
-      //   .then((res) => {
-      //     this.meta = res.data.meta;
-      //     this.fitText = res.data.string;
-      //     this.$store.commit("setProducts", res.data.data);
-      //     this.$store.commit("setfitString", null);
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
+    function ShopWithoutVehicle(link) {
+      http
+        .get("/products/spare-parts", {
+          params: {
+            type: "clear",
+          },
+        })
+        .then((res) => {
+          this.meta = res.data.meta;
+          this.fitText = res.data.string;
+          store.commit("setProducts", res.data.data);
+          store.commit("setfitString", null);
+          if (link == "shop") {
+            showModal.value = false;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
 
     return {

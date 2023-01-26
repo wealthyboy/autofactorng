@@ -21515,22 +21515,25 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
       });
     }); //You are now shopping for 2022 Audi A5 Sportback Prestige 2.0L FI Turbo HEV 4cyl
 
-    function ShopWithoutVehicle() {// this.searchText = null;
-      // axios
-      //   .get(this.url, {
-      //     params: {
-      //       type: "clear",
-      //     },
-      //   })
-      //   .then((res) => {
-      //     this.meta = res.data.meta;
-      //     this.fitText = res.data.string;
-      //     this.$store.commit("setProducts", res.data.data);
-      //     this.$store.commit("setfitString", null);
-      //   })
-      //   .catch((error) => {
-      //     console.log(error);
-      //   });
+    function ShopWithoutVehicle(link) {
+      var _this = this;
+
+      _utils_httpService__WEBPACK_IMPORTED_MODULE_4__["default"].get("/products/spare-parts", {
+        params: {
+          type: "clear"
+        }
+      }).then(function (res) {
+        _this.meta = res.data.meta;
+        _this.fitText = res.data.string;
+        store.commit("setProducts", res.data.data);
+        store.commit("setfitString", null);
+
+        if (link == "shop") {
+          showModal.value = false;
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
 
     return {
@@ -24830,8 +24833,15 @@ var _hoisted_15 = {
   alt: ""
 };
 var _hoisted_16 = {
+  "class": "d-flex"
+};
+var _hoisted_17 = {
   key: 0,
   "class": "mt-3 pb-4"
+};
+var _hoisted_18 = {
+  key: 1,
+  "class": "ms-3 mt-3 pb-4"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_make_model_year = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("make-model-year");
@@ -24851,7 +24861,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [$setup.showModal ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_modal, {
         key: 0,
-        onClose: _cache[3] || (_cache[3] = function ($event) {
+        onClose: _cache[4] || (_cache[4] = function ($event) {
           return $setup.showModal = false;
         })
       }, {
@@ -24873,12 +24883,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         footer: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_14, [$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_15)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.fitString), 1
           /* TEXT */
-          )])]), $setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-            onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-              return $setup.ShopWithoutVehicle && $setup.ShopWithoutVehicle.apply($setup, arguments);
+          )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+            onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+              return $setup.ShopWithoutVehicle('shop');
             }, ["prevent"])),
             href: "#"
-          }, "Shop Without Vehicle")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
+          }, "Shop Without Vehicle")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+            onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+              return $setup.ShopWithoutVehicle('change');
+            }, ["prevent"])),
+            href: "#"
+          }, "Change Vehicle")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
         }),
         _: 1
         /* STABLE */
