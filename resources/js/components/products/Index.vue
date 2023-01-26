@@ -9,19 +9,6 @@
       />
 
       <div
-        v-if="showClearFilter"
-        class="mb-2"
-      >
-        <a
-          href="#"
-          @click.prevent="clearfilters"
-          class="border text-dark p-3 "
-        >
-          <i class="fa fa-times"></i> Clear Filters
-        </a>
-      </div>
-
-      <div
         v-if="!searchText"
         class="cta-border cta-bg light "
       >
@@ -66,6 +53,19 @@
 
         </div>
       </div>
+
+      <div
+        v-if="showClearFilter"
+        class="mb-4 mt-4"
+      >
+        <a
+          href="#"
+          @click.prevent="clearfilters"
+          class="border text-dark p-3 "
+        >
+          <i class="fa fa-times"></i> Clear Filters
+        </a>
+      </div>
       <product-nav
         @handle:per_page="perPage"
         @handle:sorting="sort"
@@ -96,7 +96,7 @@
 
               <div
                 style="height: 10px; width: 350px;"
-                class=" j-preview mb-2"
+                class="j-preview mb-2"
               ></div>
               <!-- End .product-container -->
 
@@ -201,6 +201,7 @@ import axios from "axios";
 import Search from "../search/MakeModelYear";
 import Tyre from "../search/Tyre";
 import Battery from "../search/Battery";
+import queryString from "query-string";
 
 import ProductNav from "./Nav";
 import SearchString from "./SearchString";
@@ -282,10 +283,15 @@ export default {
         });
     },
     handleFilter(filter) {
-      const url = new URL(location.href);
-      url.searchParams.set("search", "true");
+      let url = new URL(location.href);
+      let q = queryString.parse(location.search).q;
       window.history.pushState({}, "", filter.filterString);
-      url.searchParams.set("search", "true");
+      url = new URL(location.href);
+      if (typeof q !== "undefined") {
+        url.searchParams.set("q", q);
+      }
+      url.searchParams.set("t", new Date().getTime());
+      window.history.pushState({}, "", url);
       this.showClearFilter = true;
       this.getProducts(location.href);
     },
@@ -348,7 +354,9 @@ export default {
           this.meta = res.data.meta;
           this.searchText = null == res.data.string ? false : true;
         })
-        .catch((err) => {});
+        .catch((err) => {
+          this.loading = false;
+        });
     },
   },
 };
