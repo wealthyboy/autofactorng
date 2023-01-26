@@ -125,7 +125,9 @@ export default {
     const store = useStore();
 
     function getString(t) {
-      store.commit("setMessage", " You are now shopping for  " + t.text);
+      if (t.text) {
+        store.commit("setMessage", " You are now shopping for  " + t.text);
+      }
 
       setTimeout(() => {
         store.commit("setMessage", null);
