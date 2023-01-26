@@ -102,6 +102,26 @@
     <!-- End .toolbox-left -->
 
     <div class="toolbox-right">
+      <div class="toolbox-item toolbox-sort">
+        <label>Sort By:</label>
+
+        <div class="select-custom">
+          <select
+            @change="sort($event)"
+            name="orderby"
+            class="form-control orderby"
+          >
+            <option
+              value=""
+              selected="selected"
+            >Default sorting</option>
+            <option value="price,asc">Price: low to high</option>
+            <option value="price,desc">Price: high to low</option>
+          </select>
+        </div>
+        <!-- End .select-custom -->
+
+      </div>
       <div class="toolbox-item toolbox-show">
         <label>Show:</label>
 

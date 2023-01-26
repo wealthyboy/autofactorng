@@ -50,9 +50,6 @@
                      <img alt="phone" src="assets/images/phone.png" width="30" height="30" class="pb-1">
                      <h6><span>Call us now</span><a href="tel:#" class="text-dark font1">+123 5678 890</a></h6>
                   </div>
-
-
-
                   <?php if(auth()->guard()->check()): ?>
                   <div class="position-relative">
                      <a href="/account" class="header-icon" title="account">
@@ -167,7 +164,7 @@
 
 
       <!-- End .header -->
-      <div class="coverlay"></div>
+      <div class="coverlay overlay-close"></div>
 
       <main class="main mt-3">
          <?php echo $__env->yieldContent('content'); ?>
@@ -345,8 +342,6 @@
       $(".menu-nav-btn, .panel-close").on("click", function() {
          let open = $(".menu-open");
          let close = $(".menu-close");
-
-
          if (open.hasClass("d-none")) {
 
             open.removeClass("d-none");
@@ -371,7 +366,7 @@
 
       });
 
-      $(".coverlay").on('click', function() {
+      $(".overlay-close").on('click', function() {
          let close = $(".menu-close");
          close.click()
          $(".coverlay").removeClass("d-block").addClass("d-none");

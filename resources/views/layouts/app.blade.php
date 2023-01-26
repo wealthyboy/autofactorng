@@ -50,9 +50,6 @@
                      <img alt="phone" src="assets/images/phone.png" width="30" height="30" class="pb-1">
                      <h6><span>Call us now</span><a href="tel:#" class="text-dark font1">+123 5678 890</a></h6>
                   </div>
-
-
-
                   @auth
                   <div class="position-relative">
                      <a href="/account" class="header-icon" title="account">
