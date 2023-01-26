@@ -21494,10 +21494,10 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.useStore)();
 
     function getString(t) {
-      store.commit("setMessage", t.text);
+      store.commit("setMessage", " You are now shopping for  " + t.text);
       setTimeout(function () {
         store.commit("setMessage", null);
-      }, 4000);
+      }, 9000);
 
       if (t.type == "engine_id") {
         showModal.value = false;
