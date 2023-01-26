@@ -118,12 +118,18 @@ export default {
   components: { Modal, MakeModelYear },
   setup() {
     const {} = useActions([]);
-    const store = useStore();
     const showModal = ref(false);
     const t = ref(null);
 
     const fitString = computed(() => store.getters.fitString);
+    const store = useStore();
+
     function getString(t) {
+      store.commit("setMessage", t.text);
+
+      setTimeout(() => {
+        store.commit("setMessage", null);
+      }, 4000);
       if (t.type == "engine_id") {
         showModal.value = false;
       }
@@ -161,6 +167,7 @@ export default {
       fitString,
       showModal,
       ShopWithoutVehicle,
+      store,
     };
   },
 };

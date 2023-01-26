@@ -21486,14 +21486,19 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
 
     _objectDestructuringEmpty(_useActions);
 
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.useStore)();
     var showModal = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
     var t = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(null);
     var fitString = (0,vue__WEBPACK_IMPORTED_MODULE_3__.computed)(function () {
       return store.getters.fitString;
     });
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.useStore)();
 
     function getString(t) {
+      store.commit("setMessage", t.text);
+      setTimeout(function () {
+        store.commit("setMessage", null);
+      }, 4000);
+
       if (t.type == "engine_id") {
         showModal.value = false;
       }
@@ -21527,7 +21532,8 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
       getString: getString,
       fitString: fitString,
       showModal: showModal,
-      ShopWithoutVehicle: ShopWithoutVehicle
+      ShopWithoutVehicle: ShopWithoutVehicle,
+      store: store
     };
   }
 });
@@ -22497,8 +22503,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex-composition-helpers */ "./node_modules/vuex-composition-helpers/dist/index.js");
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  setup: function setup() {}
+  props: {
+    message: String
+  },
+  setup: function setup() {
+    var _useGetters = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_0__.useGetters)(["message"]),
+        message = _useGetters.message;
+
+    return {
+      message: message
+    };
+  }
 });
 
 /***/ }),
@@ -26486,14 +26505,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
+  key: 0,
   "class": "content h-100 d-flex align-items-center justify-content-center"
 };
-
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div style=\"z-index:9999;\" class=\"position-fixed bottom-0\"><div class=\"container\"><div class=\"row h-100 d-flex align-items-center justify-content-center\"><div class=\"\"><h3 class=\"p-5 bg-dark text-center text-white z-index-1\"> You are now shopping for 2022 Audi A5 Sportback Prestige 2.0L FI Turbo HEV 4cyl </h3></div></div></div></div>", 1);
-
-var _hoisted_3 = [_hoisted_2];
+var _hoisted_2 = {
+  style: {
+    "z-index": "9999"
+  },
+  "class": "position-fixed bottom-0"
+};
+var _hoisted_3 = {
+  "class": "container"
+};
+var _hoisted_4 = {
+  "class": "row h-100 d-flex align-items-center justify-content-center"
+};
+var _hoisted_5 = {
+  "class": ""
+};
+var _hoisted_6 = {
+  "class": "p-5 bg-dark text-center text-white z-index-1"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, _hoisted_3);
+  return $setup.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.message), 1
+  /* TEXT */
+  )])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
 }
 
 /***/ }),
