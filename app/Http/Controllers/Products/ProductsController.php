@@ -67,7 +67,7 @@ class ProductsController extends Controller
 
         $this->clearMMYCookies($request);
 
-        $query = Product::where('name', 'like', '%' . $request->q . '%')->orWhere('product_name', 'like',  '%' . $request->q . '%');
+        $query = Product::where('name', 'like', '%' . $request->q . '%');
 
         $type = $this->getType($request);
 

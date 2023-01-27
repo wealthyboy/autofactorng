@@ -28340,6 +28340,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = {
   method: "get",
+  action: "/search",
   "class": "input-group mt-3 position-relative w-100 rounded-start mb-0"
 };
 

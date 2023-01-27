@@ -2,6 +2,7 @@
 
   <form
     method="get"
+    action="/search"
     class="input-group mt-3 position-relative w-100 rounded-start  mb-0"
   >
 
