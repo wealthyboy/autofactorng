@@ -22847,6 +22847,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       url.searchParams.set("rim", data.rim);
       url.searchParams.set("width", data.width);
       url.searchParams.set("profile", data.profile);
+      url.searchParams.set("t", new Date().getTime());
       url.searchParams.set("type", data.type);
       window.history.pushState({}, "", url);
       this.showClearFilter = true;
@@ -22859,6 +22860,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var url = new URL(location.href);
       url.searchParams.set("amphere", data.amphere);
       url.searchParams.set("type", data.type);
+      url.searchParams.set("t", new Date().getTime());
       window.history.pushState({}, "", url);
       this.showClearFilter = true;
       this.getProducts(location.href);
@@ -22867,6 +22869,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var url = new URL(location.href);
       url.searchParams.set("per_page", filter.per_page);
       url.searchParams.set("search", "true");
+      url.searchParams.set("t", new Date().getTime());
       window.history.pushState({}, "", url);
       this.showClearFilter = true;
       this.getProducts(location.href);
@@ -22875,6 +22878,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var url = new URL(location.href);
       url.searchParams.set("sort_by", filter.sort_by);
       url.searchParams.set("search", "true");
+      url.searchParams.set("t", new Date().getTime());
       window.history.pushState({}, "", url);
       this.showClearFilter = true;
       this.getProducts(location.href);
@@ -26525,31 +26529,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  key: 0,
-  "class": "content h-100 d-flex align-items-center justify-content-center"
+  key: 0
 };
 var _hoisted_2 = {
+  "class": "content h-100 d-flex align-items-center justify-content-center"
+};
+var _hoisted_3 = {
   style: {
     "z-index": "9999"
   },
   "class": "position-fixed bottom-0"
 };
-var _hoisted_3 = {
+var _hoisted_4 = {
   "class": "container"
 };
-var _hoisted_4 = {
+var _hoisted_5 = {
   "class": "row h-100 d-flex align-items-center justify-content-center"
 };
-var _hoisted_5 = {
+var _hoisted_6 = {
   "class": ""
 };
-var _hoisted_6 = {
+var _hoisted_7 = {
   "class": "p-5 bg-dark text-center text-white z-index-1"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return $setup.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.message), 1
+  return $setup.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.message), 1
   /* TEXT */
-  )])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
+  )])])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
 }
 
 /***/ }),

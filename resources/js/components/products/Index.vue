@@ -318,6 +318,8 @@ export default {
       url.searchParams.set("rim", data.rim);
       url.searchParams.set("width", data.width);
       url.searchParams.set("profile", data.profile);
+      url.searchParams.set("t", new Date().getTime());
+
       url.searchParams.set("type", data.type);
       window.history.pushState({}, "", url);
       this.showClearFilter = true;
@@ -330,6 +332,8 @@ export default {
       const url = new URL(location.href);
       url.searchParams.set("amphere", data.amphere);
       url.searchParams.set("type", data.type);
+      url.searchParams.set("t", new Date().getTime());
+
       window.history.pushState({}, "", url);
       this.showClearFilter = true;
       this.getProducts(location.href);
@@ -338,6 +342,8 @@ export default {
       const url = new URL(location.href);
       url.searchParams.set("per_page", filter.per_page);
       url.searchParams.set("search", "true");
+      url.searchParams.set("t", new Date().getTime());
+
       window.history.pushState({}, "", url);
       this.showClearFilter = true;
 
@@ -347,7 +353,10 @@ export default {
       const url = new URL(location.href);
       url.searchParams.set("sort_by", filter.sort_by);
       url.searchParams.set("search", "true");
+      url.searchParams.set("t", new Date().getTime());
+
       window.history.pushState({}, "", url);
+
       this.showClearFilter = true;
       this.getProducts(location.href);
     },
