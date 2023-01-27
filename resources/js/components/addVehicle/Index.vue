@@ -1,5 +1,8 @@
 <template>
-  <button class="nav-btn border-0 w-100 mb-0">
+  <button
+    @click="showModal =true"
+    class="nav-btn border-0 w-100 mb-0"
+  >
     <div class="d-flex add-a-vehicle align-items-center  align-content-center justify-content-evenly">
       <div>
 
@@ -29,10 +32,7 @@
   </button>
 
   <transition name="modal">
-    <modal
-      v-if="showModal"
-      @click="showModal = false"
-    >
+    <modal v-if="showModal">
 
       <!--
         you can use custom content here to overwrite
@@ -133,7 +133,6 @@ export default {
     const store = useStore();
 
     function getString(t) {
-      console.log(t);
       if (t.type == "engine_id") {
         store.commit("setMessage", " You are now shopping for  " + t.text);
       }
