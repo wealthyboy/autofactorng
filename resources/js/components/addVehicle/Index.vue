@@ -34,7 +34,7 @@
   <transition name="modal">
     <modal
       v-if="showModal"
-      @close="showModal = false"
+      @click="showModal = false"
     >
 
       <!--
@@ -42,16 +42,14 @@
         default content
       -->
       <template v-slot:header>
-        <div class="d-flex justify-content-between">
-          <h3>WHAT ARE YOU WORKING ON TODAY?</h3>
+        <h3>WHAT ARE YOU WORKING ON TODAY?</h3>
 
-          <button
-            class="modal-default-button"
-            @click="showModal = !showModal"
-          >
-            Close
-          </button>
-        </div>
+        <button
+          class="modal-default-button"
+          @click="showModal = !showModal"
+        >
+          <i class="fa-2x bi bi-x-lg"></i>
+        </button>
 
       </template>
 

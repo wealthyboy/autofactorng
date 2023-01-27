@@ -1,15 +1,25 @@
 <template>
+
   <div class="row">
     <div class="col-lg-9  order-lg-">
+      <div
+        v-if="loading"
+        class="cta-border cta-bg light mb-3"
+      >
+        <div class="row  j-preview cta-simple">
+          <div class="col-md-9"></div>
+        </div>
+      </div>
+
       <search-string
-        v-if="!loading && searchText"
+        v-if="!loading && fitString"
         @remove:vehicle="shopWithoutVehicle"
         :searchText="fitString"
         class=""
       />
 
       <div
-        v-if="!searchText"
+        v-if="!loading && !fitString "
         class="cta-border cta-bg light "
       >
         <div class="underline w-100"></div>
@@ -55,7 +65,7 @@
       </div>
 
       <div
-        v-if="showClearFilter"
+        v-if="!loading && showClearFilter"
         class="mb-4 mt-4"
       >
         <a
@@ -67,6 +77,7 @@
         </a>
       </div>
       <product-nav
+        v-if="!loading"
         @handle:per_page="perPage"
         @handle:sorting="sort"
         :meta="meta"
@@ -352,8 +363,7 @@ export default {
           this.$store.commit("setProducts", res.data.data);
           this.loading = false;
           this.meta = res.data.meta;
-          this.searchText =
-            null == res.data.string || res.data.string == "" ? false : true;
+          this.$store.commit("setFitString", res.data.string);
         })
         .catch((err) => {
           this.loading = false;

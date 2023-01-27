@@ -2,12 +2,12 @@
 
   <form
     method="get"
-    class="input-group mt-3 position-relative w-100 rounded-start mx-5 mb-0"
+    class="input-group mt-3 position-relative w-100 rounded-start  mb-0"
   >
 
     <button
       class="search-products-icon"
-      type="button"
+      type="submit"
       data-testid="locationSearch-scroll"
     ><span style="box-sizing: border-box; display: inline-block; overflow: hidden; width: 20px; height: 20px; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"><img
           alt="Search"
