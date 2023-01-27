@@ -1,8 +1,5 @@
 <template>
-  <div
-    @click="$emit('close')"
-    class="modal-mask"
-  >
+  <div class="modal-mask">
     <div class="modal-wrapper">
       <div class="modal-container">
 
