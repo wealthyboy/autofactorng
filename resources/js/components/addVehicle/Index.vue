@@ -1,8 +1,5 @@
 <template>
-  <button
-    class="nav-btn border-0 w-100 mb-0"
-    @click="showModal = true"
-  >
+  <button class="nav-btn border-0 w-100 mb-0">
     <div class="d-flex add-a-vehicle align-items-center  align-content-center justify-content-evenly">
       <div>
 

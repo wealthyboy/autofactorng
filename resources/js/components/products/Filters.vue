@@ -6,11 +6,11 @@
   >
     <div class="accordion-item">
       <h2
-        class="accordion-header border"
+        class="accordion-header text-uppercase  border-bottom"
         :id="'flush-heading' + name"
       >
         <button
-          class="accordion-button collapsed"
+          class="accordion-button collapsed  text-uppercase"
           type="button"
           data-bs-toggle="collapse"
           :data-bs-target="'#flush-collapse' +name "
