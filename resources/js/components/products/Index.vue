@@ -182,21 +182,28 @@
     <div class="sidebar-overlay"></div>
     <aside class="sidebar-shop col-lg-3 order-lg-first mobile-sidebar">
       <div class="sidebar-wrapper">
-        <filters
-          v-if=" search_filters.brand && search_filters.brand.items.length"
-          :name="'brands'"
-          :objs="search_filters.brand.items"
-          @handle:filter="handleFilter"
-          :clearFilters="clearFilters"
-        ></filters>
+        <form
+          action=""
+          method="get"
+          id="filter-form"
+        >
+          <filters
+            v-if=" search_filters.brand && search_filters.brand.items.length"
+            :name="'brands'"
+            :objs="search_filters.brand.items"
+            @handle:filter="handleFilter"
+            :clearFilters="clearFilters"
+          ></filters>
 
-        <filters
-          class=""
-          :name="'prices'"
-          :objs="search_filters.price.items"
-          @handle:filter="handleFilter"
-          :clearFilters="clearFilters"
-        ></filters>
+          <filters
+            class=""
+            :name="'prices'"
+            :objs="search_filters.price.items"
+            @handle:filter="handleFilter"
+            :clearFilters="clearFilters"
+          ></filters>
+        </form>
+
       </div>
       <!-- End .sidebar-wrapper -->
     </aside>
@@ -363,7 +370,7 @@ export default {
           this.$store.commit("setProducts", res.data.data);
           this.loading = false;
           this.meta = res.data.meta;
-          this.$store.commit("setFitString", res.data.string);
+          this.$store.commit("setfitString", res.data.string);
         })
         .catch((err) => {
           this.loading = false;
