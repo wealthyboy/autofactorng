@@ -3,7 +3,7 @@
   <div class="col-xl-5 product-single-details pt-3">
     <h1 class="product-title">{{ product.name }}</h1>
 
-    <div class="product-title">{{ product.note }}</div>
+    <div class="">{{ product.note }}</div>
 
     <div class="ratings-container">
       <div class="product-ratings">

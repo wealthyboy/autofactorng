@@ -27964,7 +27964,7 @@ var _hoisted_2 = {
   "class": "product-title"
 };
 var _hoisted_3 = {
-  "class": "product-title"
+  "class": ""
 };
 var _hoisted_4 = {
   "class": "ratings-container"
