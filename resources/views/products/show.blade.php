@@ -15,13 +15,10 @@
                 <div class="product-slider-container">
                     <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                         @foreach($product->images as $image)
-
                         <div class="product-item">
                             <img class="product-single-image" src="{{ $image->image }}" data-zoom-image="{{ $image->image }}" width="468" height="468" alt="product" />
                         </div>
                         @endforeach
-
-
                     </div>
                     <!-- End .product-single-carousel -->
                     <span class="prod-full-screen">
