@@ -203,6 +203,8 @@
                   </div>
                </div>
 
+               {{$product->is_featured}}
+
                @include('admin._partials.is_featured', ['model' => $product])
 
 
