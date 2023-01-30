@@ -512,6 +512,8 @@ class ProductController extends Table
         $data['name'] = $name;
         $data['slug'] = str_slug($name);
         $data['note'] = $request->note;
+        $data['is_featured'] = $request->is_featured ? 1 : 0;
+
 
 
         $product = Product::find($id);
