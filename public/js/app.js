@@ -23669,6 +23669,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex-composition-helpers */ "./node_modules/vuex-composition-helpers/dist/index.js");
 /* harmony import */ var _pagination_Pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pagination/Pagination */ "./resources/js/components/pagination/Pagination.vue");
 /* harmony import */ var _utils_PageLoader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/PageLoader */ "./resources/js/components/utils/PageLoader.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+
 
 
 
@@ -23689,11 +23691,11 @@ __webpack_require__.r(__webpack_exports__);
         getTableData = _useActions.getTableData,
         getWalletBalance = _useActions.getWalletBalance;
 
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       loading.value = true;
       getTableData(location.href + "?get=1").then(function (res) {
-        console.log(res);
         loading.value = false;
       })["catch"](function () {
         loading.value = false;
@@ -37343,11 +37345,10 @@ var getWalletBalance = function getWalletBalance(_ref3) {
 };
 var getTableData = function getTableData(_ref4, url) {
   var commit = _ref4.commit;
-  console.log(url);
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (response) {
     console.log(response.data.collections);
     commit("setTableData", response.data.collections);
-    commit("setMeta", response.data.collections.meta);
+    commit("setPmeta", response.data.collections.meta);
     return Promise.resolve(response);
   })["catch"](function (error) {
     return Promise.reject(error);
@@ -38031,6 +38032,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setLoading": () => (/* binding */ setLoading),
 /* harmony export */   "setMessage": () => (/* binding */ setMessage),
 /* harmony export */   "setNotification": () => (/* binding */ setNotification),
+/* harmony export */   "setPmeta": () => (/* binding */ setPmeta),
 /* harmony export */   "setPrices": () => (/* binding */ setPrices),
 /* harmony export */   "setProducts": () => (/* binding */ setProducts),
 /* harmony export */   "setReviews": () => (/* binding */ setReviews),
@@ -38120,6 +38122,9 @@ var setfitString = function setfitString(state, fitString) {
 };
 var setProducts = function setProducts(state, products) {
   state.products = products;
+};
+var setPmeta = function setPmeta(state, meta) {
+  state.meta = meta;
 };
 
 /***/ }),

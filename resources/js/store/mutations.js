@@ -108,3 +108,9 @@ export const setfitString = (state, fitString) => {
 export const setProducts = (state, products) => {
     state.products = products
 }
+
+
+
+export const setPmeta = (state, meta) => {
+    state.meta = meta
+}

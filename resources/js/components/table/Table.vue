@@ -150,6 +150,7 @@ import { onMounted, ref } from "vue";
 import { useActions, useGetters } from "vuex-composition-helpers";
 import Pagination from "../pagination/Pagination";
 import PageLoader from "../utils/PageLoader";
+import { useStore } from "vuex";
 
 export default {
   props: ["url", "reload"],
@@ -168,13 +169,14 @@ export default {
       "getWalletBalance",
     ]);
 
+    const store = useStore();
+
     const loading = ref(true);
 
     onMounted(() => {
       loading.value = true;
       getTableData(location.href + "?get=1")
         .then((res) => {
-          console.log(res);
           loading.value = false;
         })
         .catch(() => {
