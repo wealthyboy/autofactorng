@@ -361,7 +361,7 @@ class ProductController extends Table
 
         if (!empty($request->category_id)) {
             $categories = Category::find($request->category_id);
-            $categories->each(function ($category) {
+            $categories->each(function ($category) use ($request) {
                 $category->brands()->sync([$request->brand_id]);
             });
             $product->categories()->sync($request->category_id);
@@ -523,7 +523,7 @@ class ProductController extends Table
 
         if (!empty($request->category_id)) {
             $categories = Category::find($request->category_id);
-            $categories->each(function ($category) {
+            $categories->each(function ($category) use ($request) {
                 $category->brands()->sync([$request->brand_id]);
             });
             $product->categories()->sync($request->category_id);
