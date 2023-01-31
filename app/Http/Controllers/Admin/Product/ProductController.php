@@ -23,6 +23,7 @@ use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use App\Models\AttributeYear;
+use App\Models\BrandCategory;
 use App\Models\EngineProduct;
 use App\Models\ShippingRate;
 use App\Models\User;
@@ -361,9 +362,14 @@ class ProductController extends Table
 
         if (!empty($request->category_id)) {
             $categories = Category::find($request->category_id);
-            $categories->each(function ($category) use ($request) {
-                $category->brands()->sync([$request->brand_id]);
-            });
+            foreach ($categories as $category) {
+                if ($request->brand_id) {
+                    BrandCategory::updateOrCreate(
+                        ['category_id' => $category->id, 'brand_id' => $request->brand_id],
+                        ['category_id' => $category->id, 'brand_id' => $request->brand_id]
+                    );
+                }
+            }
             $product->categories()->sync($request->category_id);
         }
 
@@ -523,9 +529,18 @@ class ProductController extends Table
 
         if (!empty($request->category_id)) {
             $categories = Category::find($request->category_id);
-            $categories->each(function ($category) use ($request) {
-                $category->brands()->sync([$request->brand_id]);
-            });
+            foreach ($categories as $category) {
+                if ($request->brand_id) {
+                    BrandCategory::updateOrCreate(
+                        ['category_id' => $category->id, 'brand_id' => $request->brand_id],
+                        ['category_id' => $category->id, 'brand_id' => $request->brand_id]
+                    );
+                }
+            }
+
+
+
+
             $product->categories()->sync($request->category_id);
         }
 
