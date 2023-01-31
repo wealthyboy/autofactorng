@@ -1,12 +1,31 @@
 <template>
-  <button>
+  <button @click="show">
     <div></div>
     <div>{{fitText}}</div>
   </button>
+
 </template>
 <script>
+import { computed } from "vue";
+import { useStore } from "vuex";
+
 export default {
+  components: {},
   props: ["fitText"],
-  setup() {},
+  setup(props) {
+    const store = useStore();
+
+    const showModal = computed(() => store.getters.showModal);
+
+    function show() {
+      if (props.fitText == "Check if it fits your vehicle")
+        store.commit("setModal", true);
+    }
+
+    return {
+      showModal,
+      show,
+    };
+  },
 };
 </script>

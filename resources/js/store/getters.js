@@ -112,3 +112,7 @@ export const fitString = (state) => {
 export const products = (state) => {
     return state.products
 }
+
+export const showModal = (state) => {
+    return state.showModal
+}

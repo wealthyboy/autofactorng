@@ -114,3 +114,8 @@ export const setProducts = (state, products) => {
 export const setPmeta = (state, meta) => {
     state.meta = meta
 }
+
+
+export const setModal = (state, trueOrFalse) => {
+    state.showModal = trueOrFalse
+}

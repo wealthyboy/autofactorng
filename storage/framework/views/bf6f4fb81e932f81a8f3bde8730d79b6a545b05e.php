@@ -169,7 +169,10 @@
       <main class="main mt-3">
          <?php echo $__env->yieldContent('content'); ?>
 
+         <modal-search></modal-search>
       </main>
+
+
 
       <make-model-year-message></make-model-year-message>
 

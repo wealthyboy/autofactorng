@@ -26,5 +26,6 @@ export default {
     meta: null,
     loading: false,
     fitString: null,
-    products: []
+    products: [],
+    showModal: false
 }

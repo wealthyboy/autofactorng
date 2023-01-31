@@ -357,11 +357,13 @@ class ProductController extends Table
         }
 
 
-        if ($brand !== null) {
-            $brand->categories()->sync($request->category_id);
-        }
+
 
         if (!empty($request->category_id)) {
+            $categories = Category::find($request->category_id);
+            $categories->each(function ($category) {
+                $category->brands()->sync([$request->brand_id]);
+            });
             $product->categories()->sync($request->category_id);
         }
 
@@ -520,6 +522,10 @@ class ProductController extends Table
         $product->update($data);
 
         if (!empty($request->category_id)) {
+            $categories = Category::find($request->category_id);
+            $categories->each(function ($category) {
+                $category->brands()->sync([$request->brand_id]);
+            });
             $product->categories()->sync($request->category_id);
         }
 
@@ -529,9 +535,6 @@ class ProductController extends Table
         }
 
 
-        if (null !== $brand) {
-            $brand->categories()->sync($request->category_id);
-        }
 
 
         //dd($request->related_products);

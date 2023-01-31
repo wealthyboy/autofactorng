@@ -169,7 +169,10 @@
       <main class="main mt-3">
          @yield('content')
 
+         <modal-search></modal-search>
       </main>
+
+
 
       <make-model-year-message></make-model-year-message>
 
