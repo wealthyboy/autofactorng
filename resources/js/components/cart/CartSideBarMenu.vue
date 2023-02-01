@@ -135,7 +135,7 @@ export default {
     ...mapGetters({
       cartItemCount: "cartItemCount",
       carts: "carts",
-      meta: "meta",
+      meta: "cart_meta",
     }),
   },
 

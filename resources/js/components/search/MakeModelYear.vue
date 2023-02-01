@@ -102,6 +102,7 @@
 import { onMounted, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
+import { useActions, useGetters } from "vuex-composition-helpers";
 
 export default {
   props: ["filter"],
@@ -128,6 +129,8 @@ export default {
       next: "",
     });
 
+    const { getProducts } = useActions(["getProducts"]);
+
     onMounted(() => {
       axios
         .get("/api/years")
@@ -140,7 +143,6 @@ export default {
     });
 
     function getNext(e) {
-      console.log(e);
       form.type = e.target.name;
       let nt = e.target.dataset.next;
       axios
@@ -153,6 +155,14 @@ export default {
           let text = response.data.string;
           let type = e.target.name;
           emit("do:string", { text, type });
+          const url = new URL(location.href);
+          let path = url.pathname.split("/");
+
+          if (type == "engine_id" && path[1] == "products") {
+            console.log("YEs");
+            getProducts(location.href);
+          }
+
           if (nt == "products") {
             emit("do:filter", { form, text });
           }
@@ -170,6 +180,7 @@ export default {
       form,
       next,
       years,
+      getProducts,
     };
   },
 };

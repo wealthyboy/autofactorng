@@ -14,13 +14,10 @@
                 <div class="product-slider-container">
                     <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                         <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
                         <div class="product-item">
                             <img class="product-single-image" src="<?php echo e($image->image); ?>" data-zoom-image="<?php echo e($image->image); ?>" width="468" height="468" alt="product" />
                         </div>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
                     </div>
                     <!-- End .product-single-carousel -->
                     <span class="prod-full-screen">

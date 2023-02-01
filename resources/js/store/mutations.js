@@ -110,8 +110,12 @@ export const setProducts = (state, products) => {
 }
 
 
-
 export const setPmeta = (state, meta) => {
+    state.meta = meta
+}
+
+
+export const setMeta = (state, meta) => {
     state.meta = meta
 }
 

@@ -22175,7 +22175,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
     cartItemCount: "cartItemCount",
     carts: "carts",
-    meta: "meta"
+    meta: "cart_meta"
   })),
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapActions)({
     getCart: "getCart",
@@ -22874,7 +22874,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       meta: {},
       has_filters: 0,
       full_width: false,
-      loading: true,
       searchText: false,
       list: "List",
       clearFilters: false,
@@ -22884,7 +22883,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_10__.mapGetters)({
     fitString: "fitString",
-    products: "products"
+    products: "products",
+    loading: "loading"
   })),
   mounted: function mounted() {
     var d = new Date();
@@ -22899,7 +22899,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     this.getProducts(this.url + url);
   },
-  methods: {
+  methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_10__.mapActions)({
+    getProducts: "getProducts"
+  })), {}, {
     clearfilters: function clearfilters() {
       var u = new URL(location.href);
       var url = u.pathname;
@@ -22987,7 +22989,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.getProducts(location.href);
     },
     getP: function getP(page) {
-      console.log(page);
       var uri = location.href;
       var url = new URL(uri);
       url.searchParams.set("search", "true");
@@ -22995,23 +22996,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       window.history.pushState({}, "", url);
       this.showClearFilter = true;
       this.getProducts(url);
-    },
-    getProducts: function getProducts(url) {
-      var _this2 = this;
-
-      this.loading = true;
-      axios__WEBPACK_IMPORTED_MODULE_2___default().get(url).then(function (res) {
-        _this2.$store.commit("setProducts", res.data.data);
-
-        _this2.loading = false;
-        _this2.meta = res.data.meta;
-
-        _this2.$store.commit("setfitString", res.data.string);
-      })["catch"](function (err) {
-        _this2.loading = false;
-      });
     }
-  }
+  })
 });
 
 /***/ }),
@@ -23437,9 +23423,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex-composition-helpers */ "./node_modules/vuex-composition-helpers/dist/index.js");
+
 
 
 
@@ -23452,7 +23440,7 @@ __webpack_require__.r(__webpack_exports__);
     var models = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var engines = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var years = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_2__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
     var next = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       makes: [],
       models: "",
@@ -23466,6 +23454,10 @@ __webpack_require__.r(__webpack_exports__);
       type: "",
       next: ""
     });
+
+    var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_2__.useActions)(["getProducts"]),
+        getProducts = _useActions.getProducts;
+
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/years").then(function (response) {
         years.value = response.data;
@@ -23475,7 +23467,6 @@ __webpack_require__.r(__webpack_exports__);
     });
 
     function getNext(e) {
-      console.log(e);
       form.type = e.target.name;
       var nt = e.target.dataset.next;
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/make-model-year-engine", {
@@ -23489,6 +23480,13 @@ __webpack_require__.r(__webpack_exports__);
           text: text,
           type: type
         });
+        var url = new URL(location.href);
+        var path = url.pathname.split("/");
+
+        if (type == "engine_id" && path[1] == "products") {
+          console.log("YEs");
+          getProducts(location.href);
+        }
 
         if (nt == "products") {
           emit("do:filter", {
@@ -23508,7 +23506,8 @@ __webpack_require__.r(__webpack_exports__);
       getNext: getNext,
       form: form,
       next: next,
-      years: years
+      years: years,
+      getProducts: getProducts
     };
   }
 });
@@ -27158,14 +27157,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_filters = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("filters");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [$data.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.loading && _ctx.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search_string, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_ctx.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.loading && _ctx.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search_string, {
     key: 1,
     "onRemove:vehicle": $options.shopWithoutVehicle,
     searchText: _ctx.fitString,
     "class": ""
   }, null, 8
   /* PROPS */
-  , ["onRemove:vehicle", "searchText"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.loading && !_ctx.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [_hoisted_7, _hoisted_8, $props.search_filters.search_type.search ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [_hoisted_10, $props.search_filters.search_type.search == 'make_model_year' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search, {
+  , ["onRemove:vehicle", "searchText"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.loading && !_ctx.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [_hoisted_7, _hoisted_8, $props.search_filters.search_type.search ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [_hoisted_10, $props.search_filters.search_type.search == 'make_model_year' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search, {
     key: 0,
     "onDo:filter": $options.filter,
     filter: true
@@ -27187,13 +27186,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ampheres: $props.search_filters.amphere.items
   }, null, 8
   /* PROPS */
-  , ["onDo:filter", "ampheres"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.loading && $data.showClearFilter ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  , ["onDo:filter", "ampheres"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.loading && $data.showClearFilter ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "#",
     onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.clearfilters && $options.clearfilters.apply($options, arguments);
     }, ["prevent"])),
     "class": "border text-dark p-3"
-  }, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Clear Filters ")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_product_nav, {
+  }, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Clear Filters ")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_product_nav, {
     key: 4,
     "onHandle:per_page": $options.perPage,
     "onHandle:sorting": $options.sort,
@@ -27201,7 +27200,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onHandle:listing": $options.listing
   }, null, 8
   /* PROPS */
-  , ["onHandle:per_page", "onHandle:sorting", "meta", "onHandle:listing"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [$data.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+  , ["onHandle:per_page", "onHandle:sorting", "meta", "onHandle:listing"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_ctx.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 0
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(10, function (x) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -27210,7 +27209,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [_hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-details ")]);
   }), 64
   /* STABLE_FRAGMENT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.loading && _ctx.products.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.loading && _ctx.products.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 1
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.products, function (product) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_product, {
@@ -27223,7 +27222,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["product", "list", "showFitText"]);
   }), 128
   /* KEYED_FRAGMENT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.loading && !_ctx.products.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, _hoisted_18)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), !$data.loading && _ctx.products.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("nav", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.meta.from) + "- " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.meta.to) + " of " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.meta.total) + " Records", 1
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.loading && !_ctx.products.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, _hoisted_18)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), !_ctx.loading && _ctx.products.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("nav", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.meta.from) + "- " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.meta.to) + " of " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.meta.total) + " Records", 1
   /* TEXT */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .toolbox-item "), $data.meta.total > $data.meta.per_page ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_pagination, {
     useUrl: true,
@@ -37423,6 +37422,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "forgotPassword": () => (/* binding */ forgotPassword),
 /* harmony export */   "getAddresses": () => (/* binding */ getAddresses),
 /* harmony export */   "getCart": () => (/* binding */ getCart),
+/* harmony export */   "getProducts": () => (/* binding */ getProducts),
 /* harmony export */   "getReviews": () => (/* binding */ getReviews),
 /* harmony export */   "getTableData": () => (/* binding */ getTableData),
 /* harmony export */   "getWalletBalance": () => (/* binding */ getWalletBalance),
@@ -37497,8 +37497,20 @@ var updateCart = function updateCart(_ref5, _ref6) {
     return Promise.reject(error);
   });
 };
-var getCart = function getCart(_ref7) {
+var getProducts = function getProducts(_ref7, url) {
   var commit = _ref7.commit;
+  commit("setLoading", true);
+  axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (res) {
+    commit("setProducts", res.data.data);
+    commit("setMeta", res.data.meta);
+    commit("setfitString", res.data.string);
+    commit("setLoading", false);
+  })["catch"](function (err) {
+    commit("setLoading", false);
+  });
+};
+var getCart = function getCart(_ref8) {
+  var commit = _ref8.commit;
   commit("setLoading", true);
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/cart").then(function (response) {
     commit("setCart", response.data);
@@ -37511,9 +37523,9 @@ var getCart = function getCart(_ref7) {
     return Promise.reject(error);
   });
 };
-var deleteCart = function deleteCart(_ref8, _ref9) {
-  var commit = _ref8.commit;
-  var cart_id = _ref9.cart_id;
+var deleteCart = function deleteCart(_ref9, _ref10) {
+  var commit = _ref9.commit;
+  var cart_id = _ref10.cart_id;
   return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/cart/delete/" + cart_id + "").then(function (response) {
     console.log(response.data);
     commit("setCart", response.data);
@@ -37526,15 +37538,15 @@ var deleteCart = function deleteCart(_ref8, _ref9) {
     return Promise.resolve();
   });
 };
-var flashMessage = function flashMessage(_ref10, message) {
-  var commit = _ref10.commit;
+var flashMessage = function flashMessage(_ref11, message) {
+  var commit = _ref11.commit;
   commit("setMessage", message);
   setTimeout(function () {
     commit("clearMessage");
   }, 3000);
 };
-var applyVoucher = function applyVoucher(_ref11, coupon) {
-  var commit = _ref11.commit;
+var applyVoucher = function applyVoucher(_ref12, coupon) {
+  var commit = _ref12.commit;
   axios__WEBPACK_IMPORTED_MODULE_0___default().post("/checkout/coupon", {
     coupon: coupon
   }).then(function (response) {
@@ -37542,15 +37554,15 @@ var applyVoucher = function applyVoucher(_ref11, coupon) {
     return Promise.resolve();
   })["catch"](function (error) {});
 };
-var updateCartMeta = function updateCartMeta(_ref12, payload) {
-  var commit = _ref12.commit;
+var updateCartMeta = function updateCartMeta(_ref13, payload) {
+  var commit = _ref13.commit;
   commit("setCartMeta", payload);
 };
-var addProductToWishList = function addProductToWishList(_ref13, _ref14) {
-  var commit = _ref13.commit,
-      dispatch = _ref13.dispatch;
-  var product_variation_id = _ref14.product_variation_id,
-      context = _ref14.context;
+var addProductToWishList = function addProductToWishList(_ref14, _ref15) {
+  var commit = _ref14.commit,
+      dispatch = _ref14.dispatch;
+  var product_variation_id = _ref15.product_variation_id,
+      context = _ref15.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/wishlist", {
     product_variation_id: product_variation_id
   }).then(function (res) {
@@ -37562,8 +37574,8 @@ var addProductToWishList = function addProductToWishList(_ref13, _ref14) {
     dispatch("flashMessage", "Sorry your item could not be saved.Please try again");
   });
 };
-var getWislist = function getWislist(_ref15) {
-  var commit = _ref15.commit;
+var getWislist = function getWislist(_ref16) {
+  var commit = _ref16.commit;
   commit("Loading", true);
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/wishlist").then(function (response) {
     document.getElementById("js-loading").style.display = "none";
@@ -37574,19 +37586,19 @@ var getWislist = function getWislist(_ref15) {
     console.log("could not get wishlist");
   });
 };
-var deleteWishlist = function deleteWishlist(_ref16, _ref17) {
-  var commit = _ref16.commit;
-  var id = _ref17.id;
+var deleteWishlist = function deleteWishlist(_ref17, _ref18) {
+  var commit = _ref17.commit;
+  var id = _ref18.id;
   return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/wishlist/delete/" + id).then(function (response) {
     commit("setWishlist", response.data.data);
     return Promise.resolve();
   });
 };
-var login = function login(_ref18, _ref19) {
-  var commit = _ref18.commit;
-  var email = _ref19.email,
-      password = _ref19.password,
-      context = _ref19.context;
+var login = function login(_ref19, _ref20) {
+  var commit = _ref19.commit;
+  var email = _ref20.email,
+      password = _ref20.password,
+      context = _ref20.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/login", {
     email: email,
     password: password
@@ -37607,9 +37619,9 @@ var login = function login(_ref18, _ref19) {
     commit("setFormErrors", error.response.data.error);
   });
 };
-var register = function register(_ref20, _ref21) {
-  var commit = _ref20.commit;
-  var context = _ref21.context;
+var register = function register(_ref21, _ref22) {
+  var commit = _ref21.commit;
+  var context = _ref22.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/register", context.form).then(function (response) {
     window.location.href = response.data.url;
   })["catch"](function (error) {
@@ -37635,9 +37647,9 @@ var register = function register(_ref20, _ref21) {
  * @returns a promise
  */
 
-var makePost = function makePost(_ref22, postData) {
-  var dispatch = _ref22.dispatch,
-      commit = _ref22.commit;
+var makePost = function makePost(_ref23, postData) {
+  var dispatch = _ref23.dispatch,
+      commit = _ref23.commit;
   var url = postData.url,
       data = postData.data,
       loading = postData.loading,
@@ -37672,10 +37684,10 @@ var clearErr = function clearErr(value) {
     value.value = null;
   }, 4000);
 };
-var createAddress = function createAddress(_ref23, _ref24) {
-  var dispatch = _ref23.dispatch,
-      commit = _ref23.commit;
-  var form = _ref24.form;
+var createAddress = function createAddress(_ref24, _ref25) {
+  var dispatch = _ref24.dispatch,
+      commit = _ref24.commit;
+  var form = _ref25.form;
   commit("setLoading", true);
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/addresses", form).then(function (response) {
     dispatch("setADl", response);
@@ -37691,10 +37703,10 @@ var createAddress = function createAddress(_ref23, _ref24) {
     return Promise.reject(error);
   });
 };
-var deleteAddress = function deleteAddress(_ref25, _ref26) {
-  var dispatch = _ref25.dispatch,
-      commit = _ref25.commit;
-  var id = _ref26.id;
+var deleteAddress = function deleteAddress(_ref26, _ref27) {
+  var dispatch = _ref26.dispatch,
+      commit = _ref26.commit;
+  var id = _ref27.id;
   axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/addresses/" + id + "").then(function (response) {
     dispatch("setADl", response);
     return Promise.resolve(response);
@@ -37702,11 +37714,11 @@ var deleteAddress = function deleteAddress(_ref25, _ref26) {
     return Promise.reject(error);
   });
 };
-var updateAddresses = function updateAddresses(_ref27, _ref28) {
-  var dispatch = _ref27.dispatch,
-      commit = _ref27.commit;
-  var form = _ref28.form,
-      id = _ref28.id;
+var updateAddresses = function updateAddresses(_ref28, _ref29) {
+  var dispatch = _ref28.dispatch,
+      commit = _ref28.commit;
+  var form = _ref29.form,
+      id = _ref29.id;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/api/addresses/" + id, {
     first_name: form.first_name,
     last_name: form.last_name,
@@ -37730,9 +37742,9 @@ var updateAddresses = function updateAddresses(_ref27, _ref28) {
     return Promise.reject(error);
   });
 };
-var getAddresses = function getAddresses(_ref29) {
-  var dispatch = _ref29.dispatch,
-      commit = _ref29.commit;
+var getAddresses = function getAddresses(_ref30) {
+  var dispatch = _ref30.dispatch,
+      commit = _ref30.commit;
   commit("setLoading", true);
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/addresses").then(function (response) {
     commit("setLoading", false);
@@ -37750,11 +37762,11 @@ var getAddresses = function getAddresses(_ref29) {
     //commit("setLoading", false);
   });
 };
-var updatePassword = function updatePassword(_ref30, _ref31) {
-  var commit = _ref30.commit,
-      dispatch = _ref30.dispatch;
-  var payload = _ref31.payload,
-      context = _ref31.context;
+var updatePassword = function updatePassword(_ref31, _ref32) {
+  var commit = _ref31.commit,
+      dispatch = _ref31.dispatch;
+  var payload = _ref32.payload,
+      context = _ref32.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/change/password", payload).then(function (response) {
     context.loading = false;
     commit("setMessage", response.data.message);
@@ -37772,10 +37784,10 @@ var updatePassword = function updatePassword(_ref30, _ref31) {
     }
   });
 };
-var resetPassword = function resetPassword(_ref32, _ref33) {
-  var commit = _ref32.commit;
-  var payload = _ref33.payload,
-      context = _ref33.context;
+var resetPassword = function resetPassword(_ref33, _ref34) {
+  var commit = _ref33.commit;
+  var payload = _ref34.payload,
+      context = _ref34.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/reset/password", payload).then(function (response) {
     context.loading = false;
     commit("setMessage", response.data.message);
@@ -37794,40 +37806,40 @@ var resetPassword = function resetPassword(_ref32, _ref33) {
     }
   });
 };
-var updateAddress = function updateAddress(_ref34, payload) {
-  var commit = _ref34.commit;
+var updateAddress = function updateAddress(_ref35, payload) {
+  var commit = _ref35.commit;
   commit("addToAddress", payload);
 };
-var updateLocations = function updateLocations(_ref35, payload) {
-  var commit = _ref35.commit;
+var updateLocations = function updateLocations(_ref36, payload) {
+  var commit = _ref36.commit;
   commit("addToLocations", payload);
 };
-var setADl = function setADl(_ref36, response) {
-  var commit = _ref36.commit;
+var setADl = function setADl(_ref37, response) {
+  var commit = _ref37.commit;
   commit("addToAddress", response.data.data);
   commit("addToLocations", response.data.meta.countries);
   commit("setPrices", response.data.meta.prices);
   commit("setStates", response.data.meta.states);
   commit("setDefaultShipping", response.data.meta.default_shipping);
 };
-var clearError = function clearError(_ref37) {
-  var commit = _ref37.commit;
+var clearError = function clearError(_ref38) {
+  var commit = _ref38.commit;
   var errors = {};
   commit("setFormErrors", errors);
 };
-var clearErrors = function clearErrors(_ref38, _ref39) {
-  var commit = _ref38.commit;
-  var context = _ref39.context,
-      input = _ref39.input,
-      e = _ref39.e;
+var clearErrors = function clearErrors(_ref39, _ref40) {
+  var commit = _ref39.commit;
+  var context = _ref40.context,
+      input = _ref40.input,
+      e = _ref40.e;
   var prop = e.target.name;
   delete context.errors[prop];
 };
-var validateForm = function validateForm(_ref40, _ref41) {
-  var dispatch = _ref40.dispatch,
-      commit = _ref40.commit;
-  var context = _ref41.context,
-      input = _ref41.input;
+var validateForm = function validateForm(_ref41, _ref42) {
+  var dispatch = _ref41.dispatch,
+      commit = _ref41.commit;
+  var context = _ref42.context,
+      input = _ref42.input;
   var p = {},
       k,
       errors = [];
@@ -37866,11 +37878,11 @@ var validateForm = function validateForm(_ref40, _ref41) {
   errors = Object.assign({}, errors, p);
   commit("setFormErrors", errors);
 };
-var checkInput = function checkInput(_ref42, _ref43) {
-  var commit = _ref42.commit;
-  var context = _ref43.context,
-      input = _ref43.input,
-      e = _ref43.e;
+var checkInput = function checkInput(_ref43, _ref44) {
+  var commit = _ref43.commit;
+  var context = _ref44.context,
+      input = _ref44.input,
+      e = _ref44.e;
   validateForm({
     commit: commit
   }, {
@@ -37879,10 +37891,10 @@ var checkInput = function checkInput(_ref42, _ref43) {
     e: e
   });
 };
-var forgotPassword = function forgotPassword(_ref44, _ref45) {
-  var commit = _ref44.commit;
-  var payload = _ref45.payload,
-      context = _ref45.context;
+var forgotPassword = function forgotPassword(_ref45, _ref46) {
+  var commit = _ref45.commit;
+  var payload = _ref46.payload,
+      context = _ref46.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/password/reset/link", payload).then(function (response) {
     context.loading = false;
     commit("setMessage", response.data.message);
@@ -37902,11 +37914,11 @@ var forgotPassword = function forgotPassword(_ref44, _ref45) {
     }
   });
 };
-var createReviews = function createReviews(_ref46, _ref47) {
-  var commit = _ref46.commit;
-  var payload = _ref47.payload,
-      context = _ref47.context,
-      form = _ref47.form;
+var createReviews = function createReviews(_ref47, _ref48) {
+  var commit = _ref47.commit;
+  var payload = _ref48.payload,
+      context = _ref48.context,
+      form = _ref48.form;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/reviews/store", form).then(function (response) {
     context.submiting = false;
     commit("setReviews", response.data.data);
@@ -37926,10 +37938,10 @@ var createReviews = function createReviews(_ref46, _ref47) {
     }
   });
 };
-var createComment = function createComment(_ref48, _ref49) {
-  var commit = _ref48.commit;
-  var payload = _ref49.payload,
-      context = _ref49.context;
+var createComment = function createComment(_ref49, _ref50) {
+  var commit = _ref49.commit;
+  var payload = _ref50.payload,
+      context = _ref50.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/blog", context.form).then(function (response) {
     context.submiting = false;
     commit("setComments", response.data.data);
@@ -37949,9 +37961,9 @@ var createComment = function createComment(_ref48, _ref49) {
     }
   });
 };
-var getReviews = function getReviews(_ref50, _ref51) {
-  var commit = _ref50.commit;
-  var context = _ref51.context;
+var getReviews = function getReviews(_ref51, _ref52) {
+  var commit = _ref51.commit;
+  var context = _ref52.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/reviews/" + context.product_slug).then(function (response) {
     context.loading = false;
     commit("setReviews", response.data.data);
@@ -37992,6 +38004,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "addresses": () => (/* binding */ addresses),
 /* harmony export */   "cartItemCount": () => (/* binding */ cartItemCount),
+/* harmony export */   "cart_meta": () => (/* binding */ cart_meta),
 /* harmony export */   "carts": () => (/* binding */ carts),
 /* harmony export */   "comments": () => (/* binding */ comments),
 /* harmony export */   "default_shipping": () => (/* binding */ default_shipping),
@@ -38024,6 +38037,9 @@ var carts = function carts(state) {
   return state.carts;
 };
 var meta = function meta(state) {
+  return state.car_meta;
+};
+var cart_meta = function cart_meta(state) {
   return state.cart_meta;
 };
 var cartItemCount = function cartItemCount(state) {
@@ -38163,6 +38179,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setImages": () => (/* binding */ setImages),
 /* harmony export */   "setLoading": () => (/* binding */ setLoading),
 /* harmony export */   "setMessage": () => (/* binding */ setMessage),
+/* harmony export */   "setMeta": () => (/* binding */ setMeta),
 /* harmony export */   "setModal": () => (/* binding */ setModal),
 /* harmony export */   "setNotification": () => (/* binding */ setNotification),
 /* harmony export */   "setPmeta": () => (/* binding */ setPmeta),
@@ -38257,6 +38274,9 @@ var setProducts = function setProducts(state, products) {
   state.products = products;
 };
 var setPmeta = function setPmeta(state, meta) {
+  state.meta = meta;
+};
+var setMeta = function setMeta(state, meta) {
   state.meta = meta;
 };
 var setModal = function setModal(state, trueOrFalse) {

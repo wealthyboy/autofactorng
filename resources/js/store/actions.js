@@ -55,6 +55,22 @@ export const updateCart = ({ commit }, { product_id, quantity }) => {
         });
 };
 
+
+export const getProducts = ({ commit }, url) => {
+    commit("setLoading", true);
+    axios
+        .get(url)
+        .then((res) => {
+            commit("setProducts", res.data.data);
+            commit("setMeta", res.data.meta);
+            commit("setfitString", res.data.string);
+            commit("setLoading", false);
+        })
+        .catch((err) => {
+            commit("setLoading", false);
+        });
+};
+
 export const getCart = ({ commit }) => {
     commit("setLoading", true);
 

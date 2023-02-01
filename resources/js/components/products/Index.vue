@@ -220,11 +220,10 @@ import Search from "../search/MakeModelYear";
 import Tyre from "../search/Tyre";
 import Battery from "../search/Battery";
 import queryString from "query-string";
-
 import ProductNav from "./Nav";
 import SearchString from "./SearchString";
 import Filters from "./Filters";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   components: {
@@ -243,7 +242,6 @@ export default {
       meta: {},
       has_filters: 0,
       full_width: false,
-      loading: true,
       searchText: false,
       list: "List",
       clearFilters: false,
@@ -255,6 +253,7 @@ export default {
     ...mapGetters({
       fitString: "fitString",
       products: "products",
+      loading: "loading",
     }),
   },
 
@@ -271,6 +270,9 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      getProducts: "getProducts",
+    }),
     clearfilters() {
       let u = new URL(location.href);
       let url = u.pathname;
@@ -319,7 +321,6 @@ export default {
       url.searchParams.set("width", data.width);
       url.searchParams.set("profile", data.profile);
       url.searchParams.set("t", new Date().getTime());
-
       url.searchParams.set("type", data.type);
       window.history.pushState({}, "", url);
       this.showClearFilter = true;
@@ -354,14 +355,12 @@ export default {
       url.searchParams.set("sort_by", filter.sort_by);
       url.searchParams.set("search", "true");
       url.searchParams.set("t", new Date().getTime());
-
       window.history.pushState({}, "", url);
 
       this.showClearFilter = true;
       this.getProducts(location.href);
     },
     getP(page) {
-      console.log(page);
       let uri = location.href;
       const url = new URL(uri);
       url.searchParams.set("search", "true");
@@ -369,21 +368,6 @@ export default {
       window.history.pushState({}, "", url);
       this.showClearFilter = true;
       this.getProducts(url);
-    },
-
-    getProducts(url) {
-      this.loading = true;
-      axios
-        .get(url)
-        .then((res) => {
-          this.$store.commit("setProducts", res.data.data);
-          this.loading = false;
-          this.meta = res.data.meta;
-          this.$store.commit("setfitString", res.data.string);
-        })
-        .catch((err) => {
-          this.loading = false;
-        });
     },
   },
 };

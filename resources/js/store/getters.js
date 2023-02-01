@@ -3,6 +3,11 @@ export const carts = (state) => {
 }
 
 export const meta = (state) => {
+    return state.car_meta
+}
+
+
+export const cart_meta = (state) => {
     return state.cart_meta
 }
 
