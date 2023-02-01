@@ -19,7 +19,7 @@
 
       <div
         v-if="!loading && !fitString "
-        class="cta-border cta-bg light "
+        class="cta-border cta-bg light mb-4"
       >
         <div class="underline w-100"></div>
         <div class="title w-100 mt-2  d-sm-block  d-lg-none  text-center">

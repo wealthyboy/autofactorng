@@ -27026,7 +27026,7 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_5 = [_hoisted_4];
 var _hoisted_6 = {
   key: 2,
-  "class": "cta-border cta-bg light"
+  "class": "cta-border cta-bg light mb-4"
 };
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
