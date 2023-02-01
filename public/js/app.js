@@ -22852,11 +22852,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   props: ["search_filters"],
   data: function data() {
     return {
-      meta: {},
       has_filters: 0,
       full_width: false,
       searchText: false,
       list: "List",
+      isLoading: false,
       clearFilters: false,
       showClearFilter: false,
       url: location.href
@@ -22865,7 +22865,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_10__.mapGetters)({
     fitString: "fitString",
     products: "products",
-    loading: "loading"
+    loading: "loading",
+    meta: "meta"
   })),
   mounted: function mounted() {
     var d = new Date();
@@ -27138,9 +27139,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_filters = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("filters");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_ctx.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.fitString) + " ", 1
-  /* TEXT */
-  ), !_ctx.loading && _ctx.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search_string, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_ctx.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.loading && _ctx.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search_string, {
     key: 1,
     "onRemove:vehicle": $options.shopWithoutVehicle,
     searchText: _ctx.fitString,
@@ -27179,7 +27178,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 4,
     "onHandle:per_page": $options.perPage,
     "onHandle:sorting": $options.sort,
-    meta: $data.meta,
+    meta: _ctx.meta,
     "onHandle:listing": $options.listing
   }, null, 8
   /* PROPS */
@@ -27205,11 +27204,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["product", "list", "showFitText"]);
   }), 128
   /* KEYED_FRAGMENT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.loading && !_ctx.products.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, _hoisted_18)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), !_ctx.loading && _ctx.products.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("nav", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.meta.from) + "- " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.meta.to) + " of " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.meta.total) + " Records", 1
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.loading && !_ctx.products.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, _hoisted_18)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), !_ctx.loading && _ctx.products.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("nav", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.meta.from) + "- " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.meta.to) + " of " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.meta.total) + " Records", 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .toolbox-item "), $data.meta.total > $data.meta.per_page ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_pagination, {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .toolbox-item "), _ctx.meta.total > _ctx.meta.per_page ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_pagination, {
     useUrl: true,
-    meta: $data.meta,
+    meta: _ctx.meta,
     "onPagination:switched": $options.getP
   }, null, 8
   /* PROPS */

@@ -10,7 +10,6 @@
           <div class="col-md-9"></div>
         </div>
       </div>
-      {{ fitString }}
       <search-string
         v-if="!loading && fitString"
         @remove:vehicle="shopWithoutVehicle"
@@ -239,11 +238,11 @@ export default {
   props: ["search_filters"],
   data() {
     return {
-      meta: {},
       has_filters: 0,
       full_width: false,
       searchText: false,
       list: "List",
+      isLoading: false,
       clearFilters: false,
       showClearFilter: false,
       url: location.href,
@@ -254,6 +253,7 @@ export default {
       fitString: "fitString",
       products: "products",
       loading: "loading",
+      meta: "meta",
     }),
   },
 
