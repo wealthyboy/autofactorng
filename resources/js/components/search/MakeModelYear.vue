@@ -159,7 +159,6 @@ export default {
           let path = url.pathname.split("/");
 
           if (type == "engine_id" && path[1] == "products") {
-            console.log("YEs");
             getProducts(location.href);
           }
 

@@ -89,6 +89,25 @@ export const getCart = ({ commit }) => {
         });
 };
 
+export const shopWithoutVehicle = ({ commit }, action) => {
+    axios
+        .get("/products/spare-parts", {
+            params: {
+                type: "clear",
+            },
+        })
+        .then((res) => {
+            commit("setProducts", res.data.data);
+            commit("setfitString", null);
+            if (action == "shop") {
+                commit("setModal", false);
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+}
+
 export const deleteCart = ({ commit }, { cart_id }) => {
     return axios.delete("/api/cart/delete/" + cart_id + "").then(response => {
         console.log(response.data);

@@ -54,7 +54,7 @@
               class="mt-3 pb-4"
             >
               <a
-                @click.prevent="ShopWithoutVehicle('shop')"
+                @click.prevent="shopWithoutVehicle('shop')"
                 href="#"
               >Shop Without Vehicle</a>
             </div>
@@ -64,7 +64,7 @@
               class="ms-3 mt-3 pb-4"
             >
               <a
-                @click.prevent="ShopWithoutVehicle('change')"
+                @click.prevent="shopWithoutVehicle('change')"
                 href="#"
               >Change Vehicle</a>
             </div>
@@ -97,6 +97,8 @@ export default {
     const fitString = computed(() => store.getters.fitString);
     const store = useStore();
 
+    const { shopWithoutVehicle } = useActions(["shopWithoutVehicle"]);
+
     function getString(t) {
       if (t.type == "engine_id") {
         store.commit("setMessage", " You are now shopping for  " + t.text);
@@ -120,36 +122,13 @@ export default {
       });
     });
 
-    //You are now shopping for 2022 Audi A5 Sportback Prestige 2.0L FI Turbo HEV 4cyl
-
-    function ShopWithoutVehicle(link) {
-      http
-        .get("/products/spare-parts", {
-          params: {
-            type: "clear",
-          },
-        })
-        .then((res) => {
-          this.meta = res.data.meta;
-          this.fitText = res.data.string;
-          store.commit("setProducts", res.data.data);
-          store.commit("setfitString", null);
-          if (link == "shop") {
-            store.commit("setModal", false);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-
     return {
       getString,
       fitString,
       showModal,
-      ShopWithoutVehicle,
       store,
       show,
+      shopWithoutVehicle,
     };
   },
 };

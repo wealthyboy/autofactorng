@@ -21572,6 +21572,9 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
     });
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.useStore)();
 
+    var _useActions2 = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_1__.useActions)(["shopWithoutVehicle"]),
+        shopWithoutVehicle = _useActions2.shopWithoutVehicle;
+
     function getString(t) {
       if (t.type == "engine_id") {
         store.commit("setMessage", " You are now shopping for  " + t.text);
@@ -21594,36 +21597,14 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
       _utils_httpService__WEBPACK_IMPORTED_MODULE_3__["default"].get("/make-model-year-engine").then(function (res) {
         store.commit("setfitString", res.data.string);
       });
-    }); //You are now shopping for 2022 Audi A5 Sportback Prestige 2.0L FI Turbo HEV 4cyl
-
-    function ShopWithoutVehicle(link) {
-      var _this = this;
-
-      _utils_httpService__WEBPACK_IMPORTED_MODULE_3__["default"].get("/products/spare-parts", {
-        params: {
-          type: "clear"
-        }
-      }).then(function (res) {
-        _this.meta = res.data.meta;
-        _this.fitText = res.data.string;
-        store.commit("setProducts", res.data.data);
-        store.commit("setfitString", null);
-
-        if (link == "shop") {
-          store.commit("setModal", false);
-        }
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    }
-
+    });
     return {
       getString: getString,
       fitString: fitString,
       showModal: showModal,
-      ShopWithoutVehicle: ShopWithoutVehicle,
       store: store,
-      show: show
+      show: show,
+      shopWithoutVehicle: shopWithoutVehicle
     };
   }
 });
@@ -23284,18 +23265,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex-composition-helpers */ "./node_modules/vuex-composition-helpers/dist/index.js");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ["searchText"],
   emits: ["remove:vehicle"],
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
 
-    function ShopWithoutVehicle() {
-      emit("remove:vehicle");
-    }
+    var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_0__.useActions)(["shopWithoutVehicle"]),
+        shopWithoutVehicle = _useActions.shopWithoutVehicle;
 
     return {
-      ShopWithoutVehicle: ShopWithoutVehicle
+      shopWithoutVehicle: shopWithoutVehicle
     };
   }
 });
@@ -23484,7 +23466,6 @@ __webpack_require__.r(__webpack_exports__);
         var path = url.pathname.split("/");
 
         if (type == "engine_id" && path[1] == "products") {
-          console.log("YEs");
           getProducts(location.href);
         }
 
@@ -25064,12 +25045,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           /* TEXT */
           )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
             onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-              return $setup.ShopWithoutVehicle('shop');
+              return $setup.shopWithoutVehicle('shop');
             }, ["prevent"])),
             href: "#"
           }, "Shop Without Vehicle")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
             onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-              return $setup.ShopWithoutVehicle('change');
+              return $setup.shopWithoutVehicle('change');
             }, ["prevent"])),
             href: "#"
           }, "Change Vehicle")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)];
@@ -28046,23 +28027,27 @@ var _hoisted_7 = {
   "class": "col-md-3"
 };
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "mb-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   href: "#"
-}, "Change Vehicle")], -1
+}, "Change Vehicle", -1
 /* HOISTED */
 );
 
-var _hoisted_9 = {
+var _hoisted_9 = [_hoisted_8];
+var _hoisted_10 = {
   "class": "#"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.searchText), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-      return $setup.ShopWithoutVehicle && $setup.ShopWithoutVehicle.apply($setup, arguments);
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+      return $setup.shopWithoutVehicle('change');
+    }, ["prevent"])),
+    "class": "mb-2"
+  }, _hoisted_9), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+      return $setup.shopWithoutVehicle('shop');
     }, ["prevent"])),
     href: "#"
   }, "Shop Without Vehicle")])])])]);
@@ -37433,6 +37418,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "resetPassword": () => (/* binding */ resetPassword),
 /* harmony export */   "ruleE": () => (/* binding */ ruleE),
 /* harmony export */   "setADl": () => (/* binding */ setADl),
+/* harmony export */   "shopWithoutVehicle": () => (/* binding */ shopWithoutVehicle),
 /* harmony export */   "updateAddress": () => (/* binding */ updateAddress),
 /* harmony export */   "updateAddresses": () => (/* binding */ updateAddresses),
 /* harmony export */   "updateCart": () => (/* binding */ updateCart),
@@ -37523,9 +37509,26 @@ var getCart = function getCart(_ref8) {
     return Promise.reject(error);
   });
 };
-var deleteCart = function deleteCart(_ref9, _ref10) {
+var shopWithoutVehicle = function shopWithoutVehicle(_ref9, action) {
   var commit = _ref9.commit;
-  var cart_id = _ref10.cart_id;
+  axios__WEBPACK_IMPORTED_MODULE_0___default().get("/products/spare-parts", {
+    params: {
+      type: "clear"
+    }
+  }).then(function (res) {
+    commit("setProducts", res.data.data);
+    commit("setfitString", null);
+
+    if (action == "shop") {
+      commit("setModal", false);
+    }
+  })["catch"](function (error) {
+    console.log(error);
+  });
+};
+var deleteCart = function deleteCart(_ref10, _ref11) {
+  var commit = _ref10.commit;
+  var cart_id = _ref11.cart_id;
   return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/cart/delete/" + cart_id + "").then(function (response) {
     console.log(response.data);
     commit("setCart", response.data);
@@ -37538,15 +37541,15 @@ var deleteCart = function deleteCart(_ref9, _ref10) {
     return Promise.resolve();
   });
 };
-var flashMessage = function flashMessage(_ref11, message) {
-  var commit = _ref11.commit;
+var flashMessage = function flashMessage(_ref12, message) {
+  var commit = _ref12.commit;
   commit("setMessage", message);
   setTimeout(function () {
     commit("clearMessage");
   }, 3000);
 };
-var applyVoucher = function applyVoucher(_ref12, coupon) {
-  var commit = _ref12.commit;
+var applyVoucher = function applyVoucher(_ref13, coupon) {
+  var commit = _ref13.commit;
   axios__WEBPACK_IMPORTED_MODULE_0___default().post("/checkout/coupon", {
     coupon: coupon
   }).then(function (response) {
@@ -37554,15 +37557,15 @@ var applyVoucher = function applyVoucher(_ref12, coupon) {
     return Promise.resolve();
   })["catch"](function (error) {});
 };
-var updateCartMeta = function updateCartMeta(_ref13, payload) {
-  var commit = _ref13.commit;
+var updateCartMeta = function updateCartMeta(_ref14, payload) {
+  var commit = _ref14.commit;
   commit("setCartMeta", payload);
 };
-var addProductToWishList = function addProductToWishList(_ref14, _ref15) {
-  var commit = _ref14.commit,
-      dispatch = _ref14.dispatch;
-  var product_variation_id = _ref15.product_variation_id,
-      context = _ref15.context;
+var addProductToWishList = function addProductToWishList(_ref15, _ref16) {
+  var commit = _ref15.commit,
+      dispatch = _ref15.dispatch;
+  var product_variation_id = _ref16.product_variation_id,
+      context = _ref16.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/wishlist", {
     product_variation_id: product_variation_id
   }).then(function (res) {
@@ -37574,8 +37577,8 @@ var addProductToWishList = function addProductToWishList(_ref14, _ref15) {
     dispatch("flashMessage", "Sorry your item could not be saved.Please try again");
   });
 };
-var getWislist = function getWislist(_ref16) {
-  var commit = _ref16.commit;
+var getWislist = function getWislist(_ref17) {
+  var commit = _ref17.commit;
   commit("Loading", true);
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/wishlist").then(function (response) {
     document.getElementById("js-loading").style.display = "none";
@@ -37586,19 +37589,19 @@ var getWislist = function getWislist(_ref16) {
     console.log("could not get wishlist");
   });
 };
-var deleteWishlist = function deleteWishlist(_ref17, _ref18) {
-  var commit = _ref17.commit;
-  var id = _ref18.id;
+var deleteWishlist = function deleteWishlist(_ref18, _ref19) {
+  var commit = _ref18.commit;
+  var id = _ref19.id;
   return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/wishlist/delete/" + id).then(function (response) {
     commit("setWishlist", response.data.data);
     return Promise.resolve();
   });
 };
-var login = function login(_ref19, _ref20) {
-  var commit = _ref19.commit;
-  var email = _ref20.email,
-      password = _ref20.password,
-      context = _ref20.context;
+var login = function login(_ref20, _ref21) {
+  var commit = _ref20.commit;
+  var email = _ref21.email,
+      password = _ref21.password,
+      context = _ref21.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/login", {
     email: email,
     password: password
@@ -37619,9 +37622,9 @@ var login = function login(_ref19, _ref20) {
     commit("setFormErrors", error.response.data.error);
   });
 };
-var register = function register(_ref21, _ref22) {
-  var commit = _ref21.commit;
-  var context = _ref22.context;
+var register = function register(_ref22, _ref23) {
+  var commit = _ref22.commit;
+  var context = _ref23.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/register", context.form).then(function (response) {
     window.location.href = response.data.url;
   })["catch"](function (error) {
@@ -37647,9 +37650,9 @@ var register = function register(_ref21, _ref22) {
  * @returns a promise
  */
 
-var makePost = function makePost(_ref23, postData) {
-  var dispatch = _ref23.dispatch,
-      commit = _ref23.commit;
+var makePost = function makePost(_ref24, postData) {
+  var dispatch = _ref24.dispatch,
+      commit = _ref24.commit;
   var url = postData.url,
       data = postData.data,
       loading = postData.loading,
@@ -37684,10 +37687,10 @@ var clearErr = function clearErr(value) {
     value.value = null;
   }, 4000);
 };
-var createAddress = function createAddress(_ref24, _ref25) {
-  var dispatch = _ref24.dispatch,
-      commit = _ref24.commit;
-  var form = _ref25.form;
+var createAddress = function createAddress(_ref25, _ref26) {
+  var dispatch = _ref25.dispatch,
+      commit = _ref25.commit;
+  var form = _ref26.form;
   commit("setLoading", true);
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/addresses", form).then(function (response) {
     dispatch("setADl", response);
@@ -37703,10 +37706,10 @@ var createAddress = function createAddress(_ref24, _ref25) {
     return Promise.reject(error);
   });
 };
-var deleteAddress = function deleteAddress(_ref26, _ref27) {
-  var dispatch = _ref26.dispatch,
-      commit = _ref26.commit;
-  var id = _ref27.id;
+var deleteAddress = function deleteAddress(_ref27, _ref28) {
+  var dispatch = _ref27.dispatch,
+      commit = _ref27.commit;
+  var id = _ref28.id;
   axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/addresses/" + id + "").then(function (response) {
     dispatch("setADl", response);
     return Promise.resolve(response);
@@ -37714,11 +37717,11 @@ var deleteAddress = function deleteAddress(_ref26, _ref27) {
     return Promise.reject(error);
   });
 };
-var updateAddresses = function updateAddresses(_ref28, _ref29) {
-  var dispatch = _ref28.dispatch,
-      commit = _ref28.commit;
-  var form = _ref29.form,
-      id = _ref29.id;
+var updateAddresses = function updateAddresses(_ref29, _ref30) {
+  var dispatch = _ref29.dispatch,
+      commit = _ref29.commit;
+  var form = _ref30.form,
+      id = _ref30.id;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/api/addresses/" + id, {
     first_name: form.first_name,
     last_name: form.last_name,
@@ -37742,9 +37745,9 @@ var updateAddresses = function updateAddresses(_ref28, _ref29) {
     return Promise.reject(error);
   });
 };
-var getAddresses = function getAddresses(_ref30) {
-  var dispatch = _ref30.dispatch,
-      commit = _ref30.commit;
+var getAddresses = function getAddresses(_ref31) {
+  var dispatch = _ref31.dispatch,
+      commit = _ref31.commit;
   commit("setLoading", true);
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/addresses").then(function (response) {
     commit("setLoading", false);
@@ -37762,11 +37765,11 @@ var getAddresses = function getAddresses(_ref30) {
     //commit("setLoading", false);
   });
 };
-var updatePassword = function updatePassword(_ref31, _ref32) {
-  var commit = _ref31.commit,
-      dispatch = _ref31.dispatch;
-  var payload = _ref32.payload,
-      context = _ref32.context;
+var updatePassword = function updatePassword(_ref32, _ref33) {
+  var commit = _ref32.commit,
+      dispatch = _ref32.dispatch;
+  var payload = _ref33.payload,
+      context = _ref33.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/change/password", payload).then(function (response) {
     context.loading = false;
     commit("setMessage", response.data.message);
@@ -37784,10 +37787,10 @@ var updatePassword = function updatePassword(_ref31, _ref32) {
     }
   });
 };
-var resetPassword = function resetPassword(_ref33, _ref34) {
-  var commit = _ref33.commit;
-  var payload = _ref34.payload,
-      context = _ref34.context;
+var resetPassword = function resetPassword(_ref34, _ref35) {
+  var commit = _ref34.commit;
+  var payload = _ref35.payload,
+      context = _ref35.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/reset/password", payload).then(function (response) {
     context.loading = false;
     commit("setMessage", response.data.message);
@@ -37806,40 +37809,40 @@ var resetPassword = function resetPassword(_ref33, _ref34) {
     }
   });
 };
-var updateAddress = function updateAddress(_ref35, payload) {
-  var commit = _ref35.commit;
+var updateAddress = function updateAddress(_ref36, payload) {
+  var commit = _ref36.commit;
   commit("addToAddress", payload);
 };
-var updateLocations = function updateLocations(_ref36, payload) {
-  var commit = _ref36.commit;
+var updateLocations = function updateLocations(_ref37, payload) {
+  var commit = _ref37.commit;
   commit("addToLocations", payload);
 };
-var setADl = function setADl(_ref37, response) {
-  var commit = _ref37.commit;
+var setADl = function setADl(_ref38, response) {
+  var commit = _ref38.commit;
   commit("addToAddress", response.data.data);
   commit("addToLocations", response.data.meta.countries);
   commit("setPrices", response.data.meta.prices);
   commit("setStates", response.data.meta.states);
   commit("setDefaultShipping", response.data.meta.default_shipping);
 };
-var clearError = function clearError(_ref38) {
-  var commit = _ref38.commit;
+var clearError = function clearError(_ref39) {
+  var commit = _ref39.commit;
   var errors = {};
   commit("setFormErrors", errors);
 };
-var clearErrors = function clearErrors(_ref39, _ref40) {
-  var commit = _ref39.commit;
-  var context = _ref40.context,
-      input = _ref40.input,
-      e = _ref40.e;
+var clearErrors = function clearErrors(_ref40, _ref41) {
+  var commit = _ref40.commit;
+  var context = _ref41.context,
+      input = _ref41.input,
+      e = _ref41.e;
   var prop = e.target.name;
   delete context.errors[prop];
 };
-var validateForm = function validateForm(_ref41, _ref42) {
-  var dispatch = _ref41.dispatch,
-      commit = _ref41.commit;
-  var context = _ref42.context,
-      input = _ref42.input;
+var validateForm = function validateForm(_ref42, _ref43) {
+  var dispatch = _ref42.dispatch,
+      commit = _ref42.commit;
+  var context = _ref43.context,
+      input = _ref43.input;
   var p = {},
       k,
       errors = [];
@@ -37878,11 +37881,11 @@ var validateForm = function validateForm(_ref41, _ref42) {
   errors = Object.assign({}, errors, p);
   commit("setFormErrors", errors);
 };
-var checkInput = function checkInput(_ref43, _ref44) {
-  var commit = _ref43.commit;
-  var context = _ref44.context,
-      input = _ref44.input,
-      e = _ref44.e;
+var checkInput = function checkInput(_ref44, _ref45) {
+  var commit = _ref44.commit;
+  var context = _ref45.context,
+      input = _ref45.input,
+      e = _ref45.e;
   validateForm({
     commit: commit
   }, {
@@ -37891,10 +37894,10 @@ var checkInput = function checkInput(_ref43, _ref44) {
     e: e
   });
 };
-var forgotPassword = function forgotPassword(_ref45, _ref46) {
-  var commit = _ref45.commit;
-  var payload = _ref46.payload,
-      context = _ref46.context;
+var forgotPassword = function forgotPassword(_ref46, _ref47) {
+  var commit = _ref46.commit;
+  var payload = _ref47.payload,
+      context = _ref47.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/password/reset/link", payload).then(function (response) {
     context.loading = false;
     commit("setMessage", response.data.message);
@@ -37914,11 +37917,11 @@ var forgotPassword = function forgotPassword(_ref45, _ref46) {
     }
   });
 };
-var createReviews = function createReviews(_ref47, _ref48) {
-  var commit = _ref47.commit;
-  var payload = _ref48.payload,
-      context = _ref48.context,
-      form = _ref48.form;
+var createReviews = function createReviews(_ref48, _ref49) {
+  var commit = _ref48.commit;
+  var payload = _ref49.payload,
+      context = _ref49.context,
+      form = _ref49.form;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/reviews/store", form).then(function (response) {
     context.submiting = false;
     commit("setReviews", response.data.data);
@@ -37938,10 +37941,10 @@ var createReviews = function createReviews(_ref47, _ref48) {
     }
   });
 };
-var createComment = function createComment(_ref49, _ref50) {
-  var commit = _ref49.commit;
-  var payload = _ref50.payload,
-      context = _ref50.context;
+var createComment = function createComment(_ref50, _ref51) {
+  var commit = _ref50.commit;
+  var payload = _ref51.payload,
+      context = _ref51.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/blog", context.form).then(function (response) {
     context.submiting = false;
     commit("setComments", response.data.data);
@@ -37961,9 +37964,9 @@ var createComment = function createComment(_ref49, _ref50) {
     }
   });
 };
-var getReviews = function getReviews(_ref51, _ref52) {
-  var commit = _ref51.commit;
-  var context = _ref52.context;
+var getReviews = function getReviews(_ref52, _ref53) {
+  var commit = _ref52.commit;
+  var context = _ref53.context;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/reviews/" + context.product_slug).then(function (response) {
     context.loading = false;
     commit("setReviews", response.data.data);

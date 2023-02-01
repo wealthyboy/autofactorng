@@ -12,12 +12,15 @@
       </div>
 
       <div class="col-md-3">
-        <div class="mb-2">
+        <div
+          @click.prevent="shopWithoutVehicle('change')"
+          class="mb-2"
+        >
           <a href="#">Change Vehicle</a>
         </div>
         <div class="#">
           <a
-            @click.prevent="ShopWithoutVehicle"
+            @click.prevent="shopWithoutVehicle('shop')"
             href="#"
           >Shop Without Vehicle</a>
         </div>
@@ -28,16 +31,15 @@
 </template>
 
 <script>
+import { useActions, useGetters } from "vuex-composition-helpers";
+
 export default {
   props: ["searchText"],
   emits: ["remove:vehicle"],
   setup(props, { emit }) {
-    function ShopWithoutVehicle() {
-      emit("remove:vehicle");
-    }
-
+    const { shopWithoutVehicle } = useActions(["shopWithoutVehicle"]);
     return {
-      ShopWithoutVehicle,
+      shopWithoutVehicle,
     };
   },
 };
