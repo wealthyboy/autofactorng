@@ -10,7 +10,7 @@
           <div class="col-md-9"></div>
         </div>
       </div>
-
+      {{ fitString }}
       <search-string
         v-if="!loading && fitString"
         @remove:vehicle="shopWithoutVehicle"
