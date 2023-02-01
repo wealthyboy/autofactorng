@@ -3,7 +3,7 @@ export const carts = (state) => {
 }
 
 export const meta = (state) => {
-    return state.car_meta
+    return state.meta
 }
 
 

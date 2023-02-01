@@ -38045,7 +38045,7 @@ var carts = function carts(state) {
   return state.carts;
 };
 var meta = function meta(state) {
-  return state.car_meta;
+  return state.meta;
 };
 var cart_meta = function cart_meta(state) {
   return state.cart_meta;
