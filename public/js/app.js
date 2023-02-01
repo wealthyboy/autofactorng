@@ -21508,13 +21508,8 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
       if (t.type == "engine_id") {
         store.commit("setShowModal", false);
       }
-    }
+    } //You are now shopping for 2022 Audi A5 Sportback Prestige 2.0L FI Turbo HEV 4cyl
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
-      _utils_httpService__WEBPACK_IMPORTED_MODULE_2__["default"].get("/make-model-year-engine").then(function (res) {
-        store.commit("setfitString", res.data.string);
-      });
-    }); //You are now shopping for 2022 Audi A5 Sportback Prestige 2.0L FI Turbo HEV 4cyl
 
     return {
       getString: getString,
@@ -21594,7 +21589,12 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
     }
 
     (0,vue__WEBPACK_IMPORTED_MODULE_2__.onMounted)(function () {
-      _utils_httpService__WEBPACK_IMPORTED_MODULE_3__["default"].get("/make-model-year-engine").then(function (res) {
+      var category = new URL(location.href).pathname.split("/")[2];
+      _utils_httpService__WEBPACK_IMPORTED_MODULE_3__["default"].get("/make-model-year-engine", {
+        params: {
+          category: category
+        }
+      }).then(function (res) {
         store.commit("setfitString", res.data.string);
       });
     });

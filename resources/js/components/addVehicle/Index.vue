@@ -71,12 +71,6 @@ export default {
       }
     }
 
-    onMounted(() => {
-      http.get("/make-model-year-engine").then((res) => {
-        store.commit("setfitString", res.data.string);
-      });
-    });
-
     //You are now shopping for 2022 Audi A5 Sportback Prestige 2.0L FI Turbo HEV 4cyl
 
     return {

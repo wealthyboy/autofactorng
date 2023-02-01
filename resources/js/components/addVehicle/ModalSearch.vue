@@ -117,9 +117,16 @@ export default {
     }
 
     onMounted(() => {
-      http.get("/make-model-year-engine").then((res) => {
-        store.commit("setfitString", res.data.string);
-      });
+      let category = new URL(location.href).pathname.split("/")[2];
+      http
+        .get("/make-model-year-engine", {
+          params: {
+            category,
+          },
+        })
+        .then((res) => {
+          store.commit("setfitString", res.data.string);
+        });
     });
 
     return {

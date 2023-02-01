@@ -210,7 +210,12 @@ class ProductsController extends Controller
         $cookie = null;
         $type = $this->getType($request);
 
+        $category = Category::where('slug', $request->category)->first();
+
         $cookie = null;
+
+        $cat = $this->getCategory($category) ? $this->buildSearchString($request) : null;
+
 
         if (null !== $type) {
             session()->put($type, $data[$type]);
@@ -222,7 +227,7 @@ class ProductsController extends Controller
             [
                 'type' => $request->type,
                 'data' =>  $data,
-                'string' =>  $this->buildSearchString($request),
+                'string' =>  $cat,
                 'show' =>  null !== $type ? false : true
             ]
         );
