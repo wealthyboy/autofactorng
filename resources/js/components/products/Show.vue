@@ -27,13 +27,6 @@
       SKU #{{product.sku}}
     </p>
 
-    <p class="product-description">
-      <check-vehicle
-        class="w-100"
-        :fitText="product.fitText"
-      />
-    </p>
-
     <p v-if="product.showFitString">
       <check-vehicle :fitText="product.fitText" />
     </p>
