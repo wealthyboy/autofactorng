@@ -345,6 +345,7 @@ class ProductsController extends Controller
     {
         $product->load('images');
         $user = request()->user();
+        $product->showFitString = $this->getCategory($category);
         return view('products.show', compact('user', 'product'));
     }
 }

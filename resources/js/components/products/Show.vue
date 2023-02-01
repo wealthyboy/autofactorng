@@ -34,6 +34,10 @@
       />
     </p>
 
+    <p v-if="product.showFitString">
+      <check-vehicle :fitText="product.fitText" />
+    </p>
+
     <hr class="short-divider">
     <div class="row">
       <div class="price-box col-8">
