@@ -76,7 +76,7 @@
         </a>
       </div>
       <product-nav
-        v-if="!loading"
+        v-if="!loading && meta"
         @handle:per_page="perPage"
         @handle:sorting="sort"
         :meta="meta"
@@ -151,7 +151,7 @@
       </div>
 
       <nav
-        v-if="!loading && products.length"
+        v-if="!loading && products.length && meta"
         class="toolbox toolbox-pagination"
       >
         <div class="toolbox-item toolbox-show">

@@ -34,7 +34,7 @@
       <!-- End .dropdown-cart-header -->
 
       <div
-        v-if="meta.sub_total"
+        v-if="cart_meta.sub_total"
         class="dropdown-cart-products"
       >
 
@@ -79,17 +79,17 @@
       <!-- End .cart-product -->
 
       <div
-        v-if="meta.sub_total"
+        v-if="cart_meta.sub_total"
         class="dropdown-cart-total"
       >
         <span>SUBTOTAL:</span>
 
-        <span class="cart-total-price float-right">{{ $filters.formatNumber(meta.sub_total) }}</span>
+        <span class="cart-total-price float-right">{{ $filters.formatNumber(cart_meta.sub_total) }}</span>
       </div>
       <!-- End .dropdown-cart-total -->
 
       <div
-        v-if="meta.sub_total"
+        v-if="cart_meta.sub_total"
         class="dropdown-cart-action"
       >
         <a
@@ -135,7 +135,7 @@ export default {
     ...mapGetters({
       cartItemCount: "cartItemCount",
       carts: "carts",
-      meta: "cart_meta",
+      cart_meta: "cart_meta",
     }),
   },
 

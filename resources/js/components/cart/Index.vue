@@ -34,12 +34,12 @@
           <h3> Summary </h3>
           <div class="py-5 border-bottom  d-flex justify-content-between">
             <span class="bold ">Subtotal</span>
-            <span class="price-amount amount bold float-right"><span class="currencySymbol">{{ $filters.formatNumber(meta.sub_total ) }}</span></span>
+            <span class="price-amount amount bold float-right"><span class="currencySymbol">{{ $filters.formatNumber(cart_meta.sub_total ) }}</span></span>
           </div>
 
           <div class="py-5 d-flex justify-content-between">
             <span class="bold">Total</span>
-            <span class="price-amount amount bold "><span class="currencySymbol">{{ $filters.formatNumber(meta.sub_total) }}</span></span>
+            <span class="price-amount amount bold "><span class="currencySymbol">{{ $filters.formatNumber(cart_meta.sub_total) }}</span></span>
           </div>
 
           <div class="checkout-methods w-100">
@@ -95,7 +95,7 @@ export default {
   computed: {
     ...mapGetters({
       carts: "carts",
-      meta: "meta",
+      cart_meta: "cart_meta",
       loading: "loading",
     }),
   },
