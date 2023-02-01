@@ -214,7 +214,7 @@ class ProductsController extends Controller
 
         $cookie = null;
 
-        $cat = $this->getCategory($category) ? $this->buildSearchString($request) : null;
+        $cat = null !==  $category && $this->getCategory($category) ? $this->buildSearchString($request) : null;
 
 
         if (null !== $type) {
