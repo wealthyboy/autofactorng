@@ -37511,6 +37511,12 @@ var getCart = function getCart(_ref8) {
 };
 var shopWithoutVehicle = function shopWithoutVehicle(_ref9, action) {
   var commit = _ref9.commit;
+
+  if (action == "change") {
+    commit("setfitString", null);
+    return;
+  }
+
   axios__WEBPACK_IMPORTED_MODULE_0___default().get("/products/spare-parts", {
     params: {
       type: "clear"

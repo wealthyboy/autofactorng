@@ -90,6 +90,11 @@ export const getCart = ({ commit }) => {
 };
 
 export const shopWithoutVehicle = ({ commit }, action) => {
+    if (action == "change") {
+        commit("setfitString", null);
+        return
+    }
+
     axios
         .get("/products/spare-parts", {
             params: {
