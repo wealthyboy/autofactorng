@@ -11,7 +11,7 @@
         </div>
       </div>
       <search-string
-        v-if="!loading && showFitString"
+        v-if="!loading && showFitString && fitString"
         @remove:vehicle="shopWithoutVehicle"
         :searchText="fitString"
         class=""
