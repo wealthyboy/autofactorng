@@ -225,6 +225,8 @@ class ProductsController extends Controller
             $catString = $this->buildSearchString($request);
         }
 
+        $product = null;
+
         if ($request->product == true) {
 
             $product = Product::where('slug', $request->product)->first();
@@ -254,7 +256,7 @@ class ProductsController extends Controller
                 'data' =>  $data,
                 'string' =>  $catString,
                 'show' =>  null !== $type ? false : true,
-                'show' =>  null !== $type ? false : true
+                'p' =>   $product
 
             ]
         );
