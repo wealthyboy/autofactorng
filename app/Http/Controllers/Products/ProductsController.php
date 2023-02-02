@@ -230,7 +230,7 @@ class ProductsController extends Controller
         if ($request->product == true) {
 
             $product = Product::where('slug', $request->product)->first();
-            $p = MakeModelYearEngine::whereHas('products', function (Builder  $builder) use ($request, $product) {
+            $p = MakeModelYearEngine::whereHas('product', function (Builder  $builder) use ($request, $product) {
                 $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
                 $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
                 $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
