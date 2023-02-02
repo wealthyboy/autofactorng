@@ -260,7 +260,7 @@ class ProductsController extends Controller
                 'data' => $data,
                 'string' => $catString,
                 'show' => null !== $type ? false : true,
-                'productFitString' => $productFitString,
+                'productFitString' => $p,
             ]
         );
 
