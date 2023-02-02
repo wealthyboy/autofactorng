@@ -258,7 +258,7 @@ class ProductsController extends Controller
 
 
 
-            // $productFitString = $p ? 'Fits your ' . $this->buildSearchString($request) : "This product does'nt fit your vehicle";
+            $productFitString =  null !== $p ? 'Fits your ' . $this->buildSearchString($request) : "This product does'nt fit your vehicle";
         }
 
 
