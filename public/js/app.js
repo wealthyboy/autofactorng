@@ -23467,6 +23467,7 @@ __webpack_require__.r(__webpack_exports__);
         params: form
       }).then(function (response) {
         store.commit("setfitString", response.data.string);
+        store.commit("setProductFitString", response.data.productFitString);
         next[nt] = response.data.data;
         var text = response.data.string;
         var type = e.target.name;

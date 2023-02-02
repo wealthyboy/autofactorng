@@ -155,6 +155,8 @@ export default {
         })
         .then((response) => {
           store.commit("setfitString", response.data.string);
+          store.commit("setProductFitString", response.data.productFitString);
+
           next[nt] = response.data.data;
           let text = response.data.string;
           let type = e.target.name;
