@@ -234,6 +234,8 @@ class ProductsController extends Controller
 
             $product = Product::where('slug', $request->product)->first();
 
+
+
             $p = Product::where('id', $product->id)->whereHas('make_model_year_engines', function (Builder  $builder) use ($request, $product) {
                 $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
                 $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
@@ -261,7 +263,7 @@ class ProductsController extends Controller
                 'string' => $catString,
                 'show' => null !== $type ? false : true,
                 'productFitString' => $productFitString,
-                'p' => $p
+                'p' => $product
             ]
         );
 
