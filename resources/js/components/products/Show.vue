@@ -28,7 +28,7 @@
     </p>
 
     <p v-if="product.showFitString">
-      <check-vehicle :fitText="porductFitString" />
+      <check-vehicle :fitText="productFitString || product.fitText" />
     </p>
 
     <hr class="short-divider">
