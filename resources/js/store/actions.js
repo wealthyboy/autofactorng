@@ -65,6 +65,9 @@ export const getProducts = ({ commit }, url) => {
             commit("setMeta", res.data.meta);
             commit("setShowFitString", res.data.showFitStringOnCategoryPage);
             commit("setProductIsLoading", false);
+            commit("setProductFitString", null);
+
+            productFitString
         })
         .catch((err) => {
             commit("setProductIsLoading", false);

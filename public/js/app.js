@@ -37510,6 +37510,8 @@ var getProducts = function getProducts(_ref7, url) {
     commit("setMeta", res.data.meta);
     commit("setShowFitString", res.data.showFitStringOnCategoryPage);
     commit("setProductIsLoading", false);
+    commit("setProductFitString", null);
+    productFitString;
   })["catch"](function (err) {
     commit("setProductIsLoading", false);
   });
