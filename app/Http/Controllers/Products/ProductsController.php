@@ -237,8 +237,7 @@ class ProductsController extends Controller
                 $builder->groupBy('make_model_year_engines.product_id');
             })->find($product->id);
 
-            dd($p);
-            $catString = $this->buildSearchString($request);
+            $catString = null !== $product ?  $this->buildSearchString($request) : "This product does'nt fit your vehicle";
         }
 
 
@@ -254,7 +253,9 @@ class ProductsController extends Controller
                 'type' => $request->type,
                 'data' =>  $data,
                 'string' =>  $catString,
+                'show' =>  null !== $type ? false : true,
                 'show' =>  null !== $type ? false : true
+
             ]
         );
 
