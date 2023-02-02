@@ -232,7 +232,6 @@ class ProductsController extends Controller
 
         if ($request->filled('product')) {
 
-            dd(true);
 
             $product = Product::where('slug', $request->product)->first();
 
@@ -244,6 +243,9 @@ class ProductsController extends Controller
                 $builder->where('year_to', '>=', $request->cookie('year'));
                 $builder->groupBy('make_model_year_engines.product_id');
             })->first();
+
+            dd($p);
+
 
             $productFitString = $p ? 'Fits your ' . $this->buildSearchString($request) : "This product does'nt fit your vehicle";
         }
