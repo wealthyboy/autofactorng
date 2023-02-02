@@ -14,7 +14,6 @@ export default {
   props: ["fitText"],
   setup(props) {
     const store = useStore();
-
     const showModal = computed(() => store.getters.showModal);
 
     function show() {

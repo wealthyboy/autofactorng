@@ -36,11 +36,11 @@
       <div class="price-box col-8">
 
         <template v-if="product.discounted_price">
-          <span class="old-price">{{  $filters.formatNumber(product.formatted_sale_price) }}</span>
-          <span class="new-price">{{  $filters.formatNumber(product.price) }}</span>
+          <span class="old-price">{{ $filters.formatNumber(product.formatted_sale_price) }}</span>
+          <span class="new-price">{{ $filters.formatNumber(product.price) }}</span>
         </template>
         <template v-else>
-          <span class="new-price">{{   $filters.formatNumber(product.price) }}</span>
+          <span class="new-price">{{ $filters.formatNumber(product.price) }}</span>
         </template>
       </div>
 
@@ -92,7 +92,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      fitString: "fitString",
+      productFitString: "productFitString",
     }),
   },
   props: {

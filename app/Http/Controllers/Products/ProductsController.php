@@ -210,6 +210,7 @@ class ProductsController extends Controller
         $data  = $request->query();
         $cookie = null;
         $type = $this->getType($request);
+        $partFitsVehicle = true;
 
         $category = Category::where('slug', $request->category)->first();
 
@@ -240,7 +241,7 @@ class ProductsController extends Controller
                 $builder->groupBy('make_model_year_engines.product_id');
             })->first();
 
-            $catString = null !== $product ? $this->buildSearchString($request) : "This product does'nt fit your vehicle";
+            $catString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : "This product does'nt fit your vehicle";
         }
 
 
@@ -254,13 +255,10 @@ class ProductsController extends Controller
         $res =  response()->json(
             [
                 'type' => $request->type,
-                'data' =>  $data,
-                'string' =>  $catString,
-                'show' =>  null !== $type ? false : true,
-                'p' =>   $p,
-                'd' =>  $request->cookie('engine_id')
-
-
+                'data' => $data,
+                'string' => $catString,
+                'show' => null !== $type ? false : true,
+                'porductFitString' => $catString,
             ]
         );
 

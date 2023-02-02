@@ -130,3 +130,7 @@ export const showFitString = (state) => {
 export const productIsLoading = (state) => {
     return state.productIsLoading
 }
+
+export const productFitString = (state) => {
+    return state.productFitString
+}

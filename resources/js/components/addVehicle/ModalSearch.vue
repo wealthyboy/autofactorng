@@ -128,6 +128,7 @@ export default {
         .then((res) => {
           console.log(res.data.string);
           store.commit("setfitString", res.data.string);
+          store.commit("setProductFitString", res.data.productFitString);
         });
     });
 

@@ -73,7 +73,6 @@ export const getProducts = ({ commit }, url) => {
 
 export const getCart = ({ commit }) => {
     commit("setLoading", true);
-
     return axios
         .get("/api/cart")
         .then(response => {

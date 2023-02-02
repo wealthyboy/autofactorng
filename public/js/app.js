@@ -21597,6 +21597,7 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
       }).then(function (res) {
         console.log(res.data.string);
         store.commit("setfitString", res.data.string);
+        store.commit("setProductFitString", res.data.productFitString);
       });
     });
     return {
@@ -23324,7 +23325,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)({
-    fitString: "fitString"
+    productFitString: "productFitString"
   })),
   props: {
     product: Object
@@ -38041,6 +38042,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "notification": () => (/* binding */ notification),
 /* harmony export */   "pmeta": () => (/* binding */ pmeta),
 /* harmony export */   "prices": () => (/* binding */ prices),
+/* harmony export */   "productFitString": () => (/* binding */ productFitString),
 /* harmony export */   "productIsLoading": () => (/* binding */ productIsLoading),
 /* harmony export */   "products": () => (/* binding */ products),
 /* harmony export */   "reviews": () => (/* binding */ reviews),
@@ -38153,6 +38155,9 @@ var showFitString = function showFitString(state) {
 var productIsLoading = function productIsLoading(state) {
   return state.productIsLoading;
 };
+var productFitString = function productFitString(state) {
+  return state.productFitString;
+};
 
 /***/ }),
 
@@ -38214,6 +38219,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setNotification": () => (/* binding */ setNotification),
 /* harmony export */   "setPmeta": () => (/* binding */ setPmeta),
 /* harmony export */   "setPrices": () => (/* binding */ setPrices),
+/* harmony export */   "setProductFitString": () => (/* binding */ setProductFitString),
 /* harmony export */   "setProductIsLoading": () => (/* binding */ setProductIsLoading),
 /* harmony export */   "setProducts": () => (/* binding */ setProducts),
 /* harmony export */   "setReviews": () => (/* binding */ setReviews),
@@ -38320,6 +38326,9 @@ var setShowFitString = function setShowFitString(state, trueOrFalse) {
 var setProductIsLoading = function setProductIsLoading(state, trueOrFalse) {
   state.productIsLoading = trueOrFalse;
 };
+var setProductFitString = function setProductFitString(state, s) {
+  state.productFitString = s;
+};
 
 /***/ }),
 
@@ -38365,7 +38374,8 @@ __webpack_require__.r(__webpack_exports__);
   products: [],
   showModal: false,
   showFitString: false,
-  productIsLoading: true
+  productIsLoading: true,
+  porductFitString: null
 });
 
 /***/ }),
