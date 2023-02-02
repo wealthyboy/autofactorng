@@ -21595,6 +21595,7 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
           category: category
         }
       }).then(function (res) {
+        console.log(res.data.string);
         store.commit("setfitString", res.data.string);
       });
     });
@@ -22866,7 +22867,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     fitString: "fitString",
     products: "products",
     loading: "loading",
-    meta: "meta"
+    meta: "meta",
+    showFitString: "showFitString"
   })),
   mounted: function mounted() {
     var d = new Date();
@@ -23424,6 +23426,7 @@ __webpack_require__.r(__webpack_exports__);
     var engines = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var years = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
+    var url = new URL(location.href).pathname.split("/");
     var next = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       makes: [],
       models: "",
@@ -23435,7 +23438,9 @@ __webpack_require__.r(__webpack_exports__);
       model_id: "0",
       engine_id: "0",
       type: "",
-      next: ""
+      next: "",
+      category: url[2],
+      checkForCategory: url[1] == "products" ? 1 : 0
     });
 
     var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_2__.useActions)(["getProducts"]),
@@ -23465,6 +23470,10 @@ __webpack_require__.r(__webpack_exports__);
         });
         var url = new URL(location.href);
         var path = url.pathname.split("/");
+
+        if (type == "engine_id" && path[1] == "products") {
+          getProducts(location.href);
+        }
 
         if (type == "engine_id" && path[1] == "products") {
           getProducts(location.href);
@@ -27139,14 +27148,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_filters = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("filters");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_ctx.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.loading && _ctx.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search_string, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_ctx.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.loading && _ctx.showFitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search_string, {
     key: 1,
     "onRemove:vehicle": $options.shopWithoutVehicle,
     searchText: _ctx.fitString,
     "class": ""
   }, null, 8
   /* PROPS */
-  , ["onRemove:vehicle", "searchText"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.loading && !_ctx.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [_hoisted_7, _hoisted_8, $props.search_filters.search_type.search ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [_hoisted_10, $props.search_filters.search_type.search == 'make_model_year' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search, {
+  , ["onRemove:vehicle", "searchText"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [_hoisted_7, _hoisted_8, $props.search_filters.search_type.search ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [_hoisted_10, $props.search_filters.search_type.search == 'make_model_year' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search, {
     key: 0,
     "onDo:filter": $options.filter,
     filter: true
@@ -37489,7 +37498,7 @@ var getProducts = function getProducts(_ref7, url) {
   axios__WEBPACK_IMPORTED_MODULE_0___default().get(url).then(function (res) {
     commit("setProducts", res.data.data);
     commit("setMeta", res.data.meta);
-    commit("setfitString", res.data.string);
+    commit("setShowFitString", res.data.showFitStringOnCategoryPage);
     commit("setLoading", false);
   })["catch"](function (err) {
     commit("setLoading", false);
@@ -38031,6 +38040,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "reviews": () => (/* binding */ reviews),
 /* harmony export */   "reviewsMeta": () => (/* binding */ reviewsMeta),
 /* harmony export */   "shipping": () => (/* binding */ shipping),
+/* harmony export */   "showFitString": () => (/* binding */ showFitString),
 /* harmony export */   "showForm": () => (/* binding */ showForm),
 /* harmony export */   "showModal": () => (/* binding */ showModal),
 /* harmony export */   "states": () => (/* binding */ states),
@@ -38131,6 +38141,9 @@ var products = function products(state) {
 var showModal = function showModal(state) {
   return state.showModal;
 };
+var showFitString = function showFitString(state) {
+  return state.showFitString;
+};
 
 /***/ }),
 
@@ -38196,6 +38209,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setReviews": () => (/* binding */ setReviews),
 /* harmony export */   "setReviewsMeta": () => (/* binding */ setReviewsMeta),
 /* harmony export */   "setShipping": () => (/* binding */ setShipping),
+/* harmony export */   "setShowFitString": () => (/* binding */ setShowFitString),
 /* harmony export */   "setShowForm": () => (/* binding */ setShowForm),
 /* harmony export */   "setStates": () => (/* binding */ setStates),
 /* harmony export */   "setTableData": () => (/* binding */ setTableData),
@@ -38290,6 +38304,9 @@ var setMeta = function setMeta(state, meta) {
 var setModal = function setModal(state, trueOrFalse) {
   state.showModal = trueOrFalse;
 };
+var setShowFitString = function setShowFitString(state, trueOrFalse) {
+  state.showFitString = trueOrFalse;
+};
 
 /***/ }),
 
@@ -38333,7 +38350,8 @@ __webpack_require__.r(__webpack_exports__);
   loading: false,
   fitString: null,
   products: [],
-  showModal: false
+  showModal: false,
+  showFitString: false
 });
 
 /***/ }),

@@ -113,6 +113,7 @@ export default {
     const engines = ref([]);
     const years = ref([]);
     const store = useStore();
+    let url = new URL(location.href).pathname.split("/");
 
     const next = reactive({
       makes: [],
@@ -127,6 +128,8 @@ export default {
       engine_id: "0",
       type: "",
       next: "",
+      category: url[2],
+      checkForCategory: url[1] == "products" ? 1 : 0,
     });
 
     const { getProducts } = useActions(["getProducts"]);
@@ -157,6 +160,10 @@ export default {
           emit("do:string", { text, type });
           const url = new URL(location.href);
           let path = url.pathname.split("/");
+
+          if (type == "engine_id" && path[1] == "products") {
+            getProducts(location.href);
+          }
 
           if (type == "engine_id" && path[1] == "products") {
             getProducts(location.href);

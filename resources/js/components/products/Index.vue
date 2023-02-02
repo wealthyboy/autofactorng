@@ -11,14 +11,14 @@
         </div>
       </div>
       <search-string
-        v-if="!loading && fitString"
+        v-if="!loading && showFitString"
         @remove:vehicle="shopWithoutVehicle"
         :searchText="fitString"
         class=""
       />
 
       <div
-        v-if="!loading && !fitString "
+        v-if="!loading"
         class="cta-border cta-bg light mb-4"
       >
         <div class="underline w-100"></div>
@@ -254,6 +254,7 @@ export default {
       products: "products",
       loading: "loading",
       meta: "meta",
+      showFitString: "showFitString",
     }),
   },
 

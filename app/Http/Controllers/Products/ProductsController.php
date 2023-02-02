@@ -40,7 +40,8 @@ class ProductsController extends Controller
         if ($request->ajax()) {
             return (new ProductsCollection($products))
                 ->additional([
-                    'string' =>  $this->getCategory($category) ? $this->buildSearchString($request) : null,
+                    'string' =>  $this->buildSearchString($request),
+                    'showFitStringOnCategoryPage' => $this->getCategory($category)  ? true : false
                 ]);
         }
 
@@ -214,20 +215,32 @@ class ProductsController extends Controller
 
         $cookie = null;
 
-        $cat = null !==  $category && $this->getCategory($category) ? $this->buildSearchString($request) : null;
+        $catString = null;
+
+        if ($request->checkForCategory == true && $this->getCategory($category)) {
+            $catString = $this->buildSearchString($request);
+        } else {
+            $catString = null;
+        }
+
+
+        if ($request->checkForCategory == 0) {
+            $catString = $this->buildSearchString($request);
+        }
 
 
         if (null !== $type) {
             session()->put($type, $data[$type]);
             $cookie = cookie($type, $data[$type], 60 * 60 * 7);
         }
+
         $data = MakeModelYearEngine::getMakeModelYearSearch($request);
 
         $res =  response()->json(
             [
                 'type' => $request->type,
                 'data' =>  $data,
-                'string' =>  $cat,
+                'string' =>  $catString,
                 'show' =>  null !== $type ? false : true
             ]
         );

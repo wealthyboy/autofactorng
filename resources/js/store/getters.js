@@ -121,3 +121,7 @@ export const products = (state) => {
 export const showModal = (state) => {
     return state.showModal
 }
+
+export const showFitString = (state) => {
+    return state.showFitString
+}

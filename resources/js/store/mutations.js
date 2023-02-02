@@ -123,3 +123,8 @@ export const setMeta = (state, meta) => {
 export const setModal = (state, trueOrFalse) => {
     state.showModal = trueOrFalse
 }
+
+
+export const setShowFitString = (state, trueOrFalse) => {
+    state.showFitString = trueOrFalse
+}

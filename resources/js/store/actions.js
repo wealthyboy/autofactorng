@@ -63,7 +63,7 @@ export const getProducts = ({ commit }, url) => {
         .then((res) => {
             commit("setProducts", res.data.data);
             commit("setMeta", res.data.meta);
-            commit("setfitString", res.data.string);
+            commit("setShowFitString", res.data.showFitStringOnCategoryPage);
             commit("setLoading", false);
         })
         .catch((err) => {

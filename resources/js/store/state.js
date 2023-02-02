@@ -27,5 +27,6 @@ export default {
     loading: false,
     fitString: null,
     products: [],
-    showModal: false
+    showModal: false,
+    showFitString: false,
 }
