@@ -230,7 +230,7 @@ class ProductsController extends Controller
 
         $productFitString = null;
 
-        if ($request->product == true) {
+        if ($request->filled('product')) {
 
             $product = Product::where('slug', $request->product)->first();
 
