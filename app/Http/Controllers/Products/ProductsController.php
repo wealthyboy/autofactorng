@@ -228,6 +228,8 @@ class ProductsController extends Controller
 
         $p = null;
 
+        $productFitString = null;
+
         if ($request->product == true) {
 
             $product = Product::where('slug', $request->product)->first();
@@ -241,7 +243,7 @@ class ProductsController extends Controller
                 $builder->groupBy('make_model_year_engines.product_id');
             })->first();
 
-            $catString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : "This product does'nt fit your vehicle";
+            $productFitString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : "This product does'nt fit your vehicle";
         }
 
 
@@ -258,7 +260,7 @@ class ProductsController extends Controller
                 'data' => $data,
                 'string' => $catString,
                 'show' => null !== $type ? false : true,
-                'porductFitString' => $catString,
+                'productFitString' => $productFitString,
             ]
         );
 
