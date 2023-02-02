@@ -28,7 +28,7 @@
     </p>
 
     <p v-if="product.showFitString">
-      <check-vehicle :fitText="product.fitText" />
+      <check-vehicle :fitText="fitString" />
     </p>
 
     <hr class="short-divider">
@@ -89,6 +89,11 @@ export default {
       loading: false,
       text: "Add To Cart",
     };
+  },
+  computed: {
+    ...mapGetters({
+      fitString: "fitString",
+    }),
   },
   props: {
     product: Object,
