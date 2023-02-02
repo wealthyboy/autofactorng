@@ -247,8 +247,7 @@ class ProductsController extends Controller
                     $builder->groupBy('make_model_year_engines.product_id');
                 })->first();
             }
-            if ($request->cookie('model_id')) {
-
+            if ($request->cookie('engine_id')) {
                 $p = Product::where('id', $product->id)->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                     $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
                     $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
@@ -261,8 +260,11 @@ class ProductsController extends Controller
 
 
 
-
-            $productFitString =  null !== $p ? 'Fits your ' . $this->buildSearchString($request) : "This product does'nt fit your vehicle";
+            if ($request->cookie('engine_id') || $request->filled('engine_id')) {
+                $productFitString =  null !== $p ? 'Fits your ' . $this->buildSearchString($request) : "This product does'nt fit your vehicle";
+            } else {
+                $productFitString =  "Check if it fits your vehicle";
+            }
         }
 
 
