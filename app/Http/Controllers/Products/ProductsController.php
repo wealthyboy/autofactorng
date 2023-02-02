@@ -361,14 +361,6 @@ class ProductsController extends Controller
      */
     public function show(Request $request, Category $category, Product $product)
     {
-        $product = $product->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
-            $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
-            $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
-            $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
-            $builder->where('year_from', '<=', $request->cookie('year'));
-            $builder->where('year_to', '>=', $request->cookie('year'));
-            $builder->groupBy('make_model_year_engines.product_id');
-        })->first();
         $product->load('images');
         $user = request()->user();
         $product->showFitString = $this->getCategory($category);

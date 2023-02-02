@@ -18,8 +18,7 @@ export default {
     const showModal = computed(() => store.getters.showModal);
 
     function show() {
-      if (props.fitText == "Check if it fits your vehicle")
-        store.commit("setModal", true);
+      store.commit("setModal", true);
     }
 
     return {

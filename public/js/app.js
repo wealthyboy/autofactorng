@@ -22571,7 +22571,7 @@ __webpack_require__.r(__webpack_exports__);
     });
 
     function show() {
-      if (props.fitText == "Check if it fits your vehicle") store.commit("setModal", true);
+      store.commit("setModal", true);
     }
 
     return {
