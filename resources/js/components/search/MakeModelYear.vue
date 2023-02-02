@@ -130,6 +130,7 @@ export default {
       next: "",
       category: url[2],
       checkForCategory: url[1] == "products" ? 1 : 0,
+      product: url[3],
     });
 
     const { getProducts } = useActions(["getProducts"]);

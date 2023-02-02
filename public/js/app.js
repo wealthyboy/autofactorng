@@ -23441,7 +23441,8 @@ __webpack_require__.r(__webpack_exports__);
       type: "",
       next: "",
       category: url[2],
-      checkForCategory: url[1] == "products" ? 1 : 0
+      checkForCategory: url[1] == "products" ? 1 : 0,
+      product: url[3]
     });
 
     var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_2__.useActions)(["getProducts"]),
