@@ -117,12 +117,15 @@ export default {
     }
 
     onMounted(() => {
-      let category = new URL(location.href).pathname.split("/")[2];
+      let url = new URL(location.href).pathname.split("/");
+      let category = url[2];
+      let product = url[3];
 
       http
         .get("/make-model-year-engine", {
           params: {
             category,
+            product,
           },
         })
         .then((res) => {

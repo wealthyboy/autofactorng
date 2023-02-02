@@ -21589,10 +21589,13 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
     }
 
     (0,vue__WEBPACK_IMPORTED_MODULE_2__.onMounted)(function () {
-      var category = new URL(location.href).pathname.split("/")[2];
+      var url = new URL(location.href).pathname.split("/");
+      var category = url[2];
+      var product = url[3];
       _utils_httpService__WEBPACK_IMPORTED_MODULE_3__["default"].get("/make-model-year-engine", {
         params: {
-          category: category
+          category: category,
+          product: product
         }
       }).then(function (res) {
         console.log(res.data.string);
