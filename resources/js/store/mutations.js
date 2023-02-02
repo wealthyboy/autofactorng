@@ -128,3 +128,7 @@ export const setModal = (state, trueOrFalse) => {
 export const setShowFitString = (state, trueOrFalse) => {
     state.showFitString = trueOrFalse
 }
+
+export const setProductIsLoading = (state, trueOrFalse) => {
+    state.productIsLoading = trueOrFalse
+}

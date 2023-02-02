@@ -125,3 +125,8 @@ export const showModal = (state) => {
 export const showFitString = (state) => {
     return state.showFitString
 }
+
+
+export const productIsLoading = (state) => {
+    return state.productIsLoading
+}

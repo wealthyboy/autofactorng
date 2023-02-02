@@ -29,4 +29,6 @@ export default {
     products: [],
     showModal: false,
     showFitString: false,
+    productIsLoading: true,
+
 }

@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-lg-9  order-lg-">
       <div
-        v-if="loading"
+        v-if="productIsLoading"
         class="cta-border cta-bg light mb-3"
       >
         <div class="row  j-preview cta-simple">
@@ -11,14 +11,14 @@
         </div>
       </div>
       <search-string
-        v-if="!loading && showFitString && fitString"
+        v-if="!productIsLoading && showFitString && fitString"
         @remove:vehicle="shopWithoutVehicle"
         :searchText="fitString"
         class=""
       />
 
       <div
-        v-if="!loading"
+        v-if="!productIsLoading"
         class="cta-border cta-bg light mb-4"
       >
         <div class="underline w-100"></div>
@@ -64,7 +64,7 @@
       </div>
 
       <div
-        v-if="!loading && showClearFilter"
+        v-if="!productIsLoading && showClearFilter"
         class="mb-4 mt-4"
       >
         <a
@@ -76,7 +76,7 @@
         </a>
       </div>
       <product-nav
-        v-if="!loading && meta"
+        v-if="!productIsLoading && meta"
         @handle:per_page="perPage"
         @handle:sorting="sort"
         :meta="meta"
@@ -84,7 +84,7 @@
       />
 
       <div class="row pb-4">
-        <template v-if="loading">
+        <template v-if="productIsLoading">
           <div
             v-for="x in 10"
             :key="x"
@@ -124,7 +124,7 @@
           </div>
         </template>
 
-        <template v-if="!loading && products.length">
+        <template v-if="!productIsLoading && products.length">
           <product
             v-for="product in products"
             :key="product.id"
@@ -134,7 +134,7 @@
           ></product>
         </template>
 
-        <template v-if="!loading && !products.length">
+        <template v-if="!productIsLoading && !products.length">
           <div class=" h-100 col-md-12">
             <div class="d-flex  col-md-12 justify-content-center align-items-center">
               <img
@@ -151,7 +151,7 @@
       </div>
 
       <nav
-        v-if="!loading && products.length && meta"
+        v-if="!productIsLoading && products.length && meta"
         class="toolbox toolbox-pagination"
       >
         <div class="toolbox-item toolbox-show">
@@ -245,6 +245,7 @@ export default {
       isLoading: false,
       clearFilters: false,
       showClearFilter: false,
+      loading: "loading",
       url: location.href,
     };
   },
@@ -252,8 +253,8 @@ export default {
     ...mapGetters({
       fitString: "fitString",
       products: "products",
-      loading: "loading",
       meta: "meta",
+      productIsLoading: "productIsLoading",
       showFitString: "showFitString",
     }),
   },
