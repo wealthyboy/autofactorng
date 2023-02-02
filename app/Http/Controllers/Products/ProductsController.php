@@ -225,7 +225,7 @@ class ProductsController extends Controller
             $catString = $this->buildSearchString($request);
         }
 
-        $product = null;
+        $p = null;
 
         if ($request->product == true) {
 
@@ -257,10 +257,8 @@ class ProductsController extends Controller
                 'data' =>  $data,
                 'string' =>  $catString,
                 'show' =>  null !== $type ? false : true,
-                'p' =>   $product,
+                'p' =>   $p,
                 'd' =>  $request->cookie('engine_id')
-
-
             ]
         );
 
