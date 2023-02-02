@@ -244,10 +244,8 @@ class ProductsController extends Controller
                 $builder->groupBy('make_model_year_engines.product_id');
             })->first();
 
-            dd($p);
 
-
-            $productFitString = $p ? 'Fits your ' . $this->buildSearchString($request) : "This product does'nt fit your vehicle";
+            // $productFitString = $p ? 'Fits your ' . $this->buildSearchString($request) : "This product does'nt fit your vehicle";
         }
 
 
