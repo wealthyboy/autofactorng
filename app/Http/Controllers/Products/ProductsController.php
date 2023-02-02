@@ -232,6 +232,8 @@ class ProductsController extends Controller
 
         if ($request->filled('product')) {
 
+            dd(true);
+
             $product = Product::where('slug', $request->product)->first();
 
             $p = Product::where('id', $product->id)->whereHas('make_model_year_engines', function (Builder  $builder) use ($request, $product) {
