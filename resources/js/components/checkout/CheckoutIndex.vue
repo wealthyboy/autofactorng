@@ -91,7 +91,7 @@
               <a
                 href="#"
                 @click.prevent="checkoutWithCredit"
-                :class="{'pe-none': prices.total > walletBalance.auto_credit , 'disabled': prices.total > walletBalance.auto_credit }"
+                :class="{'pe-none': prices.total > walletBalance?.auto_credit , 'disabled': prices.total > walletBalance?.auto_credit }"
                 class="btn btn-block btn-dark w-100 mb-2 "
               >
                 Pay with auto credits
@@ -114,11 +114,11 @@
                 Pay on delivery (Lagos only)
                 <i class="fa fa-arrow-right"></i></a>
               <a
-                href="/checkout"
+                href="#"
                 @click.prevent="payWithZilla"
                 class="btn btn-block btn-dark w-100 mb-2"
               >
-                Buy now pay later
+                Buy now pay latereee
                 <i class="fa fa-arrow-right"></i></a>
               <a
                 href="#"
@@ -314,6 +314,7 @@ export default {
     },
 
     async payWithZilla() {
+      console.log(true);
       if (this.cart_meta.sub_total < 1) {
         return;
       }
@@ -328,12 +329,14 @@ export default {
         return false;
       }
 
-      this.paymentIsProcessing = true;
-      this.order_text = "Please wait. We are almost done......";
-      this.payment_is_processing = true;
-      this.payment_method = "card";
+      // this.paymentIsProcessing = true;
+      // this.order_text = "Please wait. We are almost done......";
+      // this.payment_is_processing = true;
+      // this.payment_method = "card";
 
       const connect = new Connect();
+      console.log(connect);
+
       let uuid = new Date().getTime();
 
       await axios
@@ -347,11 +350,12 @@ export default {
           total: context.amount,
         })
         .then((response) => {
+          //console.log(response);
           const config = {
             publicKey:
-              "PK_SANDBOX_841e808769a00159352bfd9544448d1f5a1341b7e3890128522c05a50695f5dd",
+              "PK_PROD_9949a7c5fc49cab31e518c0b40701b0af42c154d1b2f860ebdd63bbbb8c56a06",
             onSuccess: function (response) {
-              context.paymentIsProcessing = false;
+              // context.paymentIsProcessing = false;
               context.paymentIsComplete = true;
               context.order_text = "Place Order";
             },
@@ -361,11 +365,7 @@ export default {
           };
           connect.openNew(config);
         })
-        .catch((error) => {
-          context.paymentIsProcessing = false;
-          context.paymentIsComplete = true;
-          context.order_text = "Place Order";
-        });
+        .catch((error) => {});
     },
 
     applyCoupon: function () {

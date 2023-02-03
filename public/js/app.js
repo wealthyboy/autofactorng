@@ -22433,14 +22433,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                console.log(true);
+
                 if (!(_this2.cart_meta.sub_total < 1)) {
-                  _context.next = 2;
+                  _context.next = 3;
                   break;
                 }
 
                 return _context.abrupt("return");
 
-              case 2:
+              case 3:
                 context = _this2;
                 cartIds = [];
 
@@ -22449,21 +22451,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 });
 
                 if (_this2.addresses.length) {
-                  _context.next = 8;
+                  _context.next = 9;
                   break;
                 }
 
                 _this2.error = "You need to save your address before placing your order";
                 return _context.abrupt("return", false);
 
-              case 8:
-                _this2.paymentIsProcessing = true;
-                _this2.order_text = "Please wait. We are almost done......";
-                _this2.payment_is_processing = true;
-                _this2.payment_method = "card";
+              case 9:
+                // this.paymentIsProcessing = true;
+                // this.order_text = "Please wait. We are almost done......";
+                // this.payment_is_processing = true;
+                // this.payment_method = "card";
                 connect = new (_usezilla_zilla_connect__WEBPACK_IMPORTED_MODULE_8___default())();
+                console.log(connect);
                 uuid = new Date().getTime();
-                _context.next = 16;
+                _context.next = 14;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default().post("/cart/meta", {
                   cartId: cartIds.join("|"),
                   coupon: context.coupon_code,
@@ -22473,10 +22476,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   uuid: uuid,
                   total: context.amount
                 }).then(function (response) {
+                  //console.log(response);
                   var config = {
-                    publicKey: "PK_SANDBOX_841e808769a00159352bfd9544448d1f5a1341b7e3890128522c05a50695f5dd",
+                    publicKey: "PK_PROD_9949a7c5fc49cab31e518c0b40701b0af42c154d1b2f860ebdd63bbbb8c56a06",
                     onSuccess: function onSuccess(response) {
-                      context.paymentIsProcessing = false;
+                      // context.paymentIsProcessing = false;
                       context.paymentIsComplete = true;
                       context.order_text = "Place Order";
                     },
@@ -22485,13 +22489,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     amount: context.amount
                   };
                   connect.openNew(config);
-                })["catch"](function (error) {
-                  context.paymentIsProcessing = false;
-                  context.paymentIsComplete = true;
-                  context.order_text = "Place Order";
-                });
+                })["catch"](function (error) {});
 
-              case 16:
+              case 14:
               case "end":
                 return _context.stop();
             }
@@ -26357,6 +26357,8 @@ var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _ctx$walletBalance, _ctx$walletBalance2;
+
   var _component_complete = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("complete");
 
   var _component_ship_address = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ship-address");
@@ -26400,8 +26402,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.checkoutWithCredit && $options.checkoutWithCredit.apply($options, arguments);
     }, ["prevent"])),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-      'pe-none': _ctx.prices.total > _ctx.walletBalance.auto_credit,
-      'disabled': _ctx.prices.total > _ctx.walletBalance.auto_credit
+      'pe-none': _ctx.prices.total > ((_ctx$walletBalance = _ctx.walletBalance) === null || _ctx$walletBalance === void 0 ? void 0 : _ctx$walletBalance.auto_credit),
+      'disabled': _ctx.prices.total > ((_ctx$walletBalance2 = _ctx.walletBalance) === null || _ctx$walletBalance2 === void 0 ? void 0 : _ctx$walletBalance2.auto_credit)
     }, "btn btn-block btn-dark w-100 mb-2"])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay with auto credits "), _hoisted_19], 2
   /* CLASS */
@@ -26423,12 +26425,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"])),
     "class": "btn btn-block btn-dark w-100 mb-2"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay on delivery (Lagos only) "), _hoisted_21]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "/checkout",
+    href: "#",
     onClick: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.payWithZilla && $options.payWithZilla.apply($options, arguments);
     }, ["prevent"])),
     "class": "btn btn-block btn-dark w-100 mb-2"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Buy now pay later "), _hoisted_22]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Buy now pay latereee "), _hoisted_22]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "#",
     onClick: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.makePayment && $options.makePayment.apply($options, arguments);
