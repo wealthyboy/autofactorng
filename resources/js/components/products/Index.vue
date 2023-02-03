@@ -27,10 +27,10 @@
           <p>Get an exact fit for your vehicle.</p>
         </div>
         <div
-          v-if=" search_filters.search_type.search"
+          v-if="search_filters.search_type.search"
           class="d-flex justify-content-between  align-content-center pt-2"
         >
-          <div class="title w-100 p-2  d-none d-lg-block">
+          <div class="title w-100 p-2 d-none d-lg-block">
             <h3>SET YOUR VEHICLE</h3>
             <p>Get an exact fit for your vehicle.</p>
           </div>
