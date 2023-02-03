@@ -103,6 +103,8 @@ Route::get('/mailable', function () {
 
 Route::get('pages/{information}', 'Pages\PagesController@show');
 Route::get('cart', 'Cart\CartController@index');
+Route::post('cart/meta', 'Cart\CartController@meta');
+
 Route::resource('account', 'Account\AccountController', ['names' => 'account']);
 Route::get('change/password', 'ChangePassword\ChangePasswordController@index');
 Route::post('change/password', 'ChangePassword\ChangePasswordController@changePassword');

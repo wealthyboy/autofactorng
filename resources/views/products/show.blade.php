@@ -105,7 +105,6 @@
             </h3>
             <reviews :user="{{ $user }}" :product="{{ $product }}" />
         </div>
-
     </div>
 
     @if ( optional($product->related_products)->count() )

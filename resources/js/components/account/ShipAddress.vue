@@ -26,10 +26,7 @@
               class="border-bottom pb-4"
               id=""
             >{{ location.first_name }} {{ location.last_name }} </p>
-            <p
-              class=""
-              v-if="meta.isAdmin"
-            > {{ location.email }} {{ location.phone_number }} </p>
+            <p class=""> {{ location.email }} {{ location.phone_number }} </p>
             <p class="border-bottom  pb-4"> {{ location.address }} {{ location.address2}} </p>
             <p class="border-bottom pb-4"> {{ location.city }} ,{{ location.state}} </p>
             <p class="w-100 d-flex justify-content-between align-items-center">
@@ -136,11 +133,10 @@ export default {
       addresses: "addresses",
       default_shipping: "default_shipping",
       errors: "errors",
-      meta: "meta",
+      cart_meta: "cart_meta",
     }),
   },
   mounted() {
-    console.log(true);
     this.getAddresses()
       .then((res) => {
         this.loading = false;

@@ -9,7 +9,7 @@
         role="button"
         class=""
         data-bs-toggle="modal"
-        data-bs-target="#exampleModalCenteredScrollable"
+        data-bs-target="#reviewsCenteredScrollableTitle"
         v-if="!loading && !reviews.length"
       >
         Be The First To Review This Product
@@ -25,7 +25,7 @@
             type="button"
             class="btn btn-primary mb-4"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModalCenteredScrollable"
+            data-bs-target="#reviewsCenteredScrollableTitle"
           >
             Add Review
           </button>
@@ -98,9 +98,9 @@
 
     <div
       class="modal fade"
-      id="exampleModalCenteredScrollable"
+      id="reviewsCenteredScrollableTitle"
       tabindex="-1"
-      aria-labelledby="exampleModalCenteredScrollableTitle"
+      aria-labelledby="reviewsCenteredScrollableTitle"
       style="display: none;"
       aria-hidden="true"
     >
@@ -134,6 +134,7 @@
 
               <form
                 action="#"
+                @submit.prevent="submitReview"
                 class="comment-form m-0"
               >
                 <template v-if="is_loggeIn">
@@ -368,25 +369,34 @@ export default {
     }),
 
     submitReview() {
-      let input = document.querySelectorAll(".rating_required");
-      this.validateForm({ context: this, input: input });
-      if (!this.form.rating) {
-        this.noRating = true;
-        return false;
-      }
+      console.log(true);
+      // let input = document.querySelectorAll(".rating_required");
+      // this.validateForm({ context: this, input: input });
+      // if (!this.form.rating) {
+      //   this.noRating = true;
+      //   return false;
+      // }
 
-      if (Object.keys(this.errors).length !== 0) {
-        return false;
-      }
+      // if (Object.keys(this.errors).length !== 0) {
+      //   return false;
+      // }
 
       this.submiting = true;
       let form = new FormData();
       form.append("description", this.form.description);
       form.append("title", this.form.title);
       form.append("rating", this.form.rating);
-      form.append("product_id", this.product.product_id);
-      form.append("product_variation_id", this.product.id);
-      this.createReviews({ context: this, form });
+      form.append("product_id", this.product.id);
+      this.createReviews({ context: this, form }).then(() => {
+        var myModal = new bootstrap.Modal(
+          document.getElementById("reviewsCenteredScrollableTitle"),
+          {
+            keyboard: false,
+          }
+        );
+
+        myModal.hide();
+      });
     },
   },
 };

@@ -16,6 +16,7 @@ use App\Models\Voucher;
 use App\Models\Wallet;
 use App\Models\WalletBalance;
 use App\Mail\OrderReceipt;
+use App\Models\PendingCart;
 use App\Models\Product;
 // use App\Mail\SendGiftCard;
 
@@ -123,5 +124,99 @@ class WebHookController extends Controller
     {
         $output =  shell_exec('sh /home/forge/autofactor.ng/deploy.sh');
         return  $output;
+    }
+
+
+    public function zilla(Request $request, Order $order)
+    {
+
+
+        try {
+            $data = json_decode($request->data);
+            $uuid = $data->clientOrderReference;
+            $pending_cart = PendingCart::where('uuid', $uuid)->first();
+            $cartIds = explode('|', $pending_cart->cart_ids);
+            $user  = User::findOrFail($pending_cart->user_id);
+            $carts = Cart::find($cartIds);
+
+            Log::info($pending_cart);
+
+            foreach ($carts as $cart) {
+                if ($cart->quantity  < 1) {
+                    $cart->delete();
+                }
+            }
+
+            if (null == $carts) {
+                return  http_response_code(200);
+            }
+
+            $currency = '₦';
+            $order->user_id = $user->id;
+            $order->address_id = optional($user->active_address)->id;
+            $order->coupon = $pending_cart->coupon;
+            $order->status = 'Processing';
+            $order->shipping_id = $pending_cart->shipping_id;
+            $order->shipping_price = optional(Shipping::find($pending_cart->shipping_id))->price;
+            $order->currency = '₦';
+            $order->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
+            $order->payment_type = 'Online Zilla';
+            $order->delivery_option  = $pending_cart->delivery_option;
+            $order->delivery_note  = $pending_cart->delivery_note;
+            $order->total = $pending_cart->total;
+            $order->ip = $request->ip();
+            $order->first_name = optional($user->active_address)->first_name;
+            $order->last_name = optional($user->active_address)->last_name;
+            $order->address = optional($user->active_address)->address;
+            $order->email = optional($user->active_address)->email;
+            $order->phone_number = optional($user->active_address)->phone_number;
+            $order->city  = optional($user->active_address)->city;
+            $order->state = optional(optional($user->active_address)->address_state)->name;
+            $order->country = optional(optional($user->active_address)->address_country)->name;
+            $order->save();
+
+            foreach ($carts   as $cart) {
+                $insert = [
+                    'order_id' => $order->id,
+                    'product_id' => $cart->product_id,
+                    'quantity' => $cart->quantity,
+                    'status' => "Processing",
+                    'user_id' =>  $user->id,
+                    'price' => $cart->ConvertCurrencyRate($cart->price),
+                    'total' => $cart->ConvertCurrencyRate($cart->quantity * $cart->price),
+                    'created_at' => \Carbon\Carbon::now()
+                ];
+                OrderedProduct::Insert($insert);
+            }
+
+            // $admin_emails = explode(',', $this->settings->alert_email);
+            // $symbol = optional($currency)->symbol;
+            // $total =  DB::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id', $order->id)->get();
+            // $sub_total = $total[0]->items_total ?? '0.00';
+
+            try {
+                $when = now()->addMinutes(5);
+                // \Mail::to($user->email)
+                //     ->bcc($admin_emails[0])
+                //     ->send(new OrderReceipt($order, $this->settings, $symbol, $sub_total));
+            } catch (\Throwable $th) {
+                Log::info("Mail error :" . $th);
+            }
+
+            //delete cart
+            if ($pending_cart->coupon) {
+                $code = trim($pending_cart->coupon);
+                $coupon =  Voucher::where('code', $code)->first();
+                if (null !== $coupon && $coupon->type == 'specific') {
+                    $coupon->update(['valid' => false]);
+                }
+            }
+        } catch (\Throwable $th) {
+            Log::info("Custom error :" . $th);
+            // Notification::route('mail', 'jacob.atam@gmail.com')
+            //     ->notify(new ErrorNotification($th));
+        }
+
+        return http_response_code(200);
     }
 }

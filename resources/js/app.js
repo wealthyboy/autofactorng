@@ -44,8 +44,6 @@ import ModalSearch from "./components/addVehicle/ModalSearch"
 
 import AddVehicle from "./components/addVehicle/Index"
 
-
-
 const app = createApp({})
 
 app.component('ProductsItems', Products)

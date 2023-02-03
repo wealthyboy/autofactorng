@@ -104,7 +104,6 @@
             </h3>
             <reviews :user="<?php echo e($user); ?>" :product="<?php echo e($product); ?>" />
         </div>
-
     </div>
 
     <?php if( optional($product->related_products)->count() ): ?>

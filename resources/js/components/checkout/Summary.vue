@@ -44,7 +44,7 @@
       style="font-size: 22px;"
     >Subtotal</span>
     <span class="bold float-right">
-      <span class="currencySymbol">{{ $filters.formatNumber(meta.sub_total) }}</span>
+      <span class="currencySymbol">{{ $filters.formatNumber(cart_meta.sub_total) }}</span>
     </span>
   </p>
   <p class="border-top border-bottom pb-3 pt-3  d-flex justify-content-between"><span class="bold">Shipping</span> <span class="bold float-right"><small> {{ $filters.formatNumber(prices.ship_price) }}</small></span></p>
@@ -62,7 +62,7 @@ export default {
   computed: {
     ...mapGetters({
       carts: "carts",
-      meta: "meta",
+      cart_meta: "cart_meta",
       addresses: "addresses",
       prices: "prices",
       default_shipping: "default_shipping",

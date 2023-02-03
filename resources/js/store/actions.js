@@ -515,6 +515,7 @@ export const createReviews = ({ commit }, { payload, context, form }) => {
         .then(response => {
             context.submiting = false;
             commit("setReviews", response.data.data);
+            return Promise.resolve(response);
         })
         .catch(error => {
             context.submiting = false;
@@ -528,6 +529,9 @@ export const createReviews = ({ commit }, { payload, context, form }) => {
             if (error.response.data.errors) {
                 commit("setFormErrors", error.response.data.errors);
             }
+
+            return Promise.reject(error);
+
         });
 };
 

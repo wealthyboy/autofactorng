@@ -115,7 +115,7 @@
                 <i class="fa fa-arrow-right"></i></a>
               <a
                 href="/checkout"
-                @click.prevent="checkoutCarbon"
+                @click.prevent="payWithZilla"
                 class="btn btn-block btn-dark w-100 mb-2"
               >
                 Buy now pay later
@@ -156,18 +156,6 @@
     </div>
   </div>
 
-  <carbon-zero
-    v-if="showZero"
-    merchant-id="PDRx7W"
-    api-key="live_pk_FypcQ2fwqTaQnrrKtYvfucLL0pqQCU"
-    country="ng"
-    total-price="2000000"
-    class="carbon-zero"
-    purchase-ref-id="rtghbvcghj76"
-    purchase-items='[{"itemName": "iPhone 13", "itemQuantity": 1, "itemPrice": 2000000}]'
-    @closeCarbonZero="() => (showZero = false)"
-  ></carbon-zero>
-
 </template>
 
 
@@ -181,6 +169,7 @@ import ErrorMessage from "../messages/components/Error";
 import CartSummary from "./Summary";
 import Total from "./Total";
 import Complete from "../utils/Complete.vue";
+import Connect from "@usezilla/zilla-connect";
 
 export default {
   components: {
@@ -221,7 +210,7 @@ export default {
   computed: {
     ...mapGetters({
       carts: "carts",
-      meta: "meta",
+      cart_meta: "cart_meta",
       addresses: "addresses",
       default_shipping: "default_shipping",
       prices: "prices",
@@ -278,15 +267,9 @@ export default {
         return false;
       }
 
-      console.log(this.amount);
-
-      console.log(this.amount);
-
       if (!this.coupon_code) {
         this.amount = this.prices.total;
       }
-
-      console.log(this.amount);
 
       let form = document.getElementById("checkout-form-2");
       this.order_text = "Please wait. We are almost done......";
@@ -294,15 +277,15 @@ export default {
       this.payment_method = "card";
       var handler = PaystackPop.setup({
         key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
-        email: context.meta.user.email,
+        email: context.cart_meta.user.email,
         amount: context.amount * 100,
         currency: "NGN",
-        first_name: context.meta.user.name,
+        first_name: context.cart_meta.user.name,
         metadata: {
           custom_fields: [
             {
-              display_name: context.meta.user.name,
-              customer_id: context.meta.user.id,
+              display_name: context.cart_meta.user.name,
+              customer_id: context.cart_meta.user.id,
               coupon: context.coupon_code,
               type: "order_from_paystack",
               shipping_id: context.shipping_id,
@@ -328,6 +311,61 @@ export default {
         },
       });
       handler.openIframe();
+    },
+
+    async payWithZilla() {
+      if (this.cart_meta.sub_total < 1) {
+        return;
+      }
+      let context = this;
+      var cartIds = [];
+      this.carts.forEach(function (cart, key) {
+        cartIds.push(cart.id);
+      });
+
+      if (!this.addresses.length) {
+        this.error = "You need to save your address before placing your order";
+        return false;
+      }
+
+      this.paymentIsProcessing = true;
+      this.order_text = "Please wait. We are almost done......";
+      this.payment_is_processing = true;
+      this.payment_method = "card";
+
+      const connect = new Connect();
+      let uuid = new Date().getTime();
+
+      await axios
+        .post("/cart/meta", {
+          cartId: cartIds.join("|"),
+          coupon: context.coupon_code,
+          shipping_id: context.shipping_id,
+          shipping_price: context.shipping_price,
+          user_id: context.cart_meta.user.id,
+          uuid: uuid,
+          total: context.amount,
+        })
+        .then((response) => {
+          const config = {
+            publicKey:
+              "PK_SANDBOX_841e808769a00159352bfd9544448d1f5a1341b7e3890128522c05a50695f5dd",
+            onSuccess: function (response) {
+              context.paymentIsProcessing = false;
+              context.paymentIsComplete = true;
+              context.order_text = "Place Order";
+            },
+            clientOrderReference: uuid,
+            title: "Buy now pay later",
+            amount: context.amount,
+          };
+          connect.openNew(config);
+        })
+        .catch((error) => {
+          context.paymentIsProcessing = false;
+          context.paymentIsComplete = true;
+          context.order_text = "Place Order";
+        });
     },
 
     applyCoupon: function () {
