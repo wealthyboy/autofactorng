@@ -18,7 +18,7 @@
       />
 
       <div
-        v-if="!productIsLoading && !fitString"
+        v-if="!productIsLoading && !fitString && !showFitString"
         class="cta-border cta-bg light mb-4"
       >
         <div class="underline w-100"></div>

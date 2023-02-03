@@ -234,7 +234,6 @@ class ProductsController extends Controller
 
         if ($request->filled('product')) {
 
-
             $product = Product::where('slug', $request->product)->first();
 
             if ($request->filled('engine_id')) {
@@ -247,6 +246,7 @@ class ProductsController extends Controller
                     $builder->groupBy('make_model_year_engines.product_id');
                 })->first();
             }
+
             if ($request->cookie('engine_id')) {
                 $p = Product::where('id', $product->id)->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                     $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
@@ -257,7 +257,6 @@ class ProductsController extends Controller
                     $builder->groupBy('make_model_year_engines.product_id');
                 })->first();
             }
-
 
 
             if ($request->cookie('engine_id') || $request->filled('engine_id')) {
