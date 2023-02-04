@@ -57,16 +57,19 @@
                 </div>
 
                 <span class="comment-by">
-                  <strong>{{  review.full_name }}</strong> – {{ review.date }}<span class="float-end">
+                  <div>
+                    <strong>{{  review.full_name }}</strong> – {{ review.date }}
+                    <p>{{ review.title }}</p>
+                    <p>{{ review.description }}</p>
+
+                  </div>
+
+                  <span class="float-end">
                     <div class="text-success">
                       <p> <i class="fa fa-check"></i> Verified Purchaser.</p>
                     </div>
                   </span>
                 </span>
-              </div>
-
-              <div class="comment-content">
-                <p>Excellent.</p>
               </div>
 
             </div>
@@ -119,6 +122,8 @@
               class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
+              ref="btnclose"
+              id="btn-close"
             ></button>
           </div>
           <div class="modal-body">
@@ -218,9 +223,9 @@
                           class="help-block error text-danger text-sm-left"
                           v-if="errors.title"
                         >
-                          <small class="text-danger">{{
-                    formatError(errors.title)
-                  }}</small>
+                          <small class="text-danger">
+                            {{ formatError(errors.title) }}
+                          </small>
                         </span>
                       </div>
                       <!-- End .form-group -->
@@ -369,7 +374,6 @@ export default {
     }),
 
     submitReview() {
-      console.log(true);
       // let input = document.querySelectorAll(".rating_required");
       // this.validateForm({ context: this, input: input });
       // if (!this.form.rating) {
@@ -387,16 +391,13 @@ export default {
       form.append("title", this.form.title);
       form.append("rating", this.form.rating);
       form.append("product_id", this.product.id);
-      this.createReviews({ context: this, form }).then(() => {
-        var myModal = new bootstrap.Modal(
-          document.getElementById("reviewsCenteredScrollableTitle"),
-          {
-            keyboard: false,
-          }
-        );
-
-        myModal.hide();
-      });
+      this.createReviews({ context: this, form })
+        .then(() => {
+          this.$refs.btnclose.click();
+        })
+        .catch(() => {
+          this.submiting = false;
+        });
     },
   },
 };

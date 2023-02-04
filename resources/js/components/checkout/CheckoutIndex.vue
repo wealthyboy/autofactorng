@@ -118,7 +118,7 @@
                 @click.prevent="payWithZilla"
                 class="btn btn-block btn-dark w-100 mb-2"
               >
-                Buy now pay latereee
+                Buy now pay later
                 <i class="fa fa-arrow-right"></i></a>
               <a
                 href="#"
@@ -335,7 +335,6 @@ export default {
       // this.payment_method = "card";
 
       const connect = new Connect();
-      console.log(connect);
 
       let uuid = new Date().getTime();
 
@@ -350,12 +349,12 @@ export default {
           total: context.amount,
         })
         .then((response) => {
-          //console.log(response);
+          console.log(response);
           const config = {
             publicKey:
-              "PK_PROD_9949a7c5fc49cab31e518c0b40701b0af42c154d1b2f860ebdd63bbbb8c56a06",
+              "PK_SANDBOX_841e808769a00159352bfd9544448d1f5a1341b7e3890128522c05a50695f5dd",
             onSuccess: function (response) {
-              // context.paymentIsProcessing = false;
+              context.paymentIsProcessing = false;
               context.paymentIsComplete = true;
               context.order_text = "Place Order";
             },

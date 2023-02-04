@@ -17,6 +17,8 @@ class ReviewResourceCollection extends JsonResource
         return [
             'id' => $this->id,
             'full_name' => optional($this->user)->name,
+            'title' => $this->title,
+
             'description' => $this->description,
             'date' => optional($this->created_at)->diffForHumans(),
             'rating' => $this->rating,

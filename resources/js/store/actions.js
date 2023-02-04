@@ -514,7 +514,6 @@ export const createReviews = ({ commit }, { payload, context, form }) => {
         .post("/reviews/store", form)
         .then(response => {
             context.submiting = false;
-            commit("setReviews", response.data.data);
             return Promise.resolve(response);
         })
         .catch(error => {
