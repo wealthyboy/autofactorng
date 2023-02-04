@@ -22365,9 +22365,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     checkoutWithCredit: function checkoutWithCredit(e) {
       this.checkout(e, "auto_credit", "Pay with auto credit");
     },
-    checkoutCarbon: function checkoutCarbon(e) {
-      this.showZero = true; //this.checkout("auto_credit");
-    },
     makePayment: function makePayment(e) {
       var context = this;
       var cartIds = [];
@@ -22428,21 +22425,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var context, cartIds, connect, uuid;
+        var context, cartIds, connect, uuid, config;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log(true);
-
                 if (!(_this2.cart_meta.sub_total < 1)) {
-                  _context.next = 3;
+                  _context.next = 2;
                   break;
                 }
 
                 return _context.abrupt("return");
 
-              case 3:
+              case 2:
                 context = _this2;
                 cartIds = [];
 
@@ -22451,21 +22446,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 });
 
                 if (_this2.addresses.length) {
-                  _context.next = 9;
+                  _context.next = 8;
                   break;
                 }
 
                 _this2.error = "You need to save your address before placing your order";
                 return _context.abrupt("return", false);
 
-              case 9:
+              case 8:
                 // this.paymentIsProcessing = true;
                 // this.order_text = "Please wait. We are almost done......";
                 // this.payment_is_processing = true;
                 // this.payment_method = "card";
                 connect = new (_usezilla_zilla_connect__WEBPACK_IMPORTED_MODULE_8___default())();
                 uuid = new Date().getTime();
-                _context.next = 13;
+                _context.next = 12;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default().post("/cart/meta", {
                   cartId: cartIds.join("|"),
                   coupon: context.coupon_code,
@@ -22474,23 +22469,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   user_id: context.cart_meta.user.id,
                   uuid: uuid,
                   total: context.amount
-                }).then(function (response) {
-                  console.log(response);
-                  var config = {
-                    publicKey: "PK_SANDBOX_841e808769a00159352bfd9544448d1f5a1341b7e3890128522c05a50695f5dd",
-                    onSuccess: function onSuccess(response) {
-                      context.paymentIsProcessing = false;
-                      context.paymentIsComplete = true;
-                      context.order_text = "Place Order";
-                    },
-                    clientOrderReference: uuid,
-                    title: "Buy now pay later",
-                    amount: context.amount
-                  };
-                  connect.openNew(config);
-                })["catch"](function (error) {});
+                }).then(function (response) {})["catch"](function (error) {});
 
-              case 13:
+              case 12:
+                config = {
+                  publicKey: "PK_SANDBOX_841e808769a00159352bfd9544448d1f5a1341b7e3890128522c05a50695f5dd",
+                  onSuccess: function onSuccess(response) {
+                    context.paymentIsProcessing = false;
+                    context.paymentIsComplete = true;
+                    context.order_text = "Place Order";
+                  },
+                  clientOrderReference: uuid,
+                  title: "Buy now pay later",
+                  amount: 3900
+                };
+                connect.openNew(config);
+
+              case 14:
               case "end":
                 return _context.stop();
             }

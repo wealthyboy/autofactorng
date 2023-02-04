@@ -250,11 +250,6 @@ export default {
       this.checkout(e, "auto_credit", "Pay with auto credit");
     },
 
-    checkoutCarbon: function (e) {
-      this.showZero = true;
-      //this.checkout("auto_credit");
-    },
-
     makePayment: function (e) {
       let context = this;
       var cartIds = [];
@@ -314,7 +309,6 @@ export default {
     },
 
     async payWithZilla() {
-      console.log(true);
       if (this.cart_meta.sub_total < 1) {
         return;
       }
@@ -335,7 +329,6 @@ export default {
       // this.payment_method = "card";
 
       const connect = new Connect();
-
       let uuid = new Date().getTime();
 
       await axios
@@ -348,23 +341,22 @@ export default {
           uuid: uuid,
           total: context.amount,
         })
-        .then((response) => {
-          console.log(response);
-          const config = {
-            publicKey:
-              "PK_SANDBOX_841e808769a00159352bfd9544448d1f5a1341b7e3890128522c05a50695f5dd",
-            onSuccess: function (response) {
-              context.paymentIsProcessing = false;
-              context.paymentIsComplete = true;
-              context.order_text = "Place Order";
-            },
-            clientOrderReference: uuid,
-            title: "Buy now pay later",
-            amount: context.amount,
-          };
-          connect.openNew(config);
-        })
+        .then((response) => {})
         .catch((error) => {});
+
+      const config = {
+        publicKey:
+          "PK_SANDBOX_841e808769a00159352bfd9544448d1f5a1341b7e3890128522c05a50695f5dd",
+        onSuccess: function (response) {
+          context.paymentIsProcessing = false;
+          context.paymentIsComplete = true;
+          context.order_text = "Place Order";
+        },
+        clientOrderReference: uuid,
+        title: "Buy now pay later",
+        amount: 3900,
+      };
+      connect.openNew(config);
     },
 
     applyCoupon: function () {
