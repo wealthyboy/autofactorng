@@ -112,7 +112,7 @@ export default {
           }, 3000);
         });
     }
-    return { form, v$, login, text, message };
+    return { form, v$, login, loading, text, message };
   },
 };
 </script>

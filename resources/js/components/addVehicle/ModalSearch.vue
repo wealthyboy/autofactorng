@@ -90,11 +90,11 @@ import Modal from "./Mod";
 export default {
   components: { Modal, MakeModelYear },
   setup() {
-    const {} = useActions([]);
     const showModal = computed(() => store.getters.showModal);
     const t = ref(null);
 
     const fitString = computed(() => store.getters.fitString);
+
     const store = useStore();
 
     const { shopWithoutVehicle } = useActions(["shopWithoutVehicle"]);
@@ -120,7 +120,6 @@ export default {
       let url = new URL(location.href).pathname.split("/");
       let category = url[2];
       let product = url[3];
-
       http
         .get("/make-model-year-engine", {
           params: {
@@ -129,7 +128,6 @@ export default {
           },
         })
         .then((res) => {
-          console.log(res.data.string);
           store.commit("setfitString", res.data.string);
           store.commit("setProductFitString", res.data.productFitString);
         });

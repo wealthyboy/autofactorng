@@ -21550,8 +21550,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _utils_httpService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../utils/httpService */ "./resources/js/utils/httpService.js");
 /* harmony import */ var _Mod__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Mod */ "./resources/js/components/addVehicle/Mod.vue");
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
-
 
 
 
@@ -21564,10 +21562,6 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
     MakeModelYear: _search_MakeModelYear__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   setup: function setup() {
-    var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_1__.useActions)([]);
-
-    _objectDestructuringEmpty(_useActions);
-
     var showModal = (0,vue__WEBPACK_IMPORTED_MODULE_2__.computed)(function () {
       return store.getters.showModal;
     });
@@ -21577,8 +21571,8 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
     });
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.useStore)();
 
-    var _useActions2 = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_1__.useActions)(["shopWithoutVehicle"]),
-        shopWithoutVehicle = _useActions2.shopWithoutVehicle;
+    var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_1__.useActions)(["shopWithoutVehicle"]),
+        shopWithoutVehicle = _useActions.shopWithoutVehicle;
 
     function getString(t) {
       if (t.type == "engine_id") {
@@ -21608,7 +21602,6 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
           product: product
         }
       }).then(function (res) {
-        console.log(res.data.string);
         store.commit("setfitString", res.data.string);
         store.commit("setProductFitString", res.data.productFitString);
       });
@@ -21701,6 +21694,7 @@ __webpack_require__.r(__webpack_exports__);
       form: form,
       v$: v$,
       login: login,
+      loading: loading,
       text: text,
       message: message
     };
@@ -23205,14 +23199,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var _pagination_Pagination_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../pagination/Pagination.vue */ "./resources/js/components/pagination/Pagination.vue");
 /* harmony import */ var _auth_Login__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auth/Login */ "./resources/js/components/auth/Login.vue");
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
-
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex-composition-helpers */ "./node_modules/vuex-composition-helpers/dist/index.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -23223,101 +23217,106 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Pagination: _pagination_Pagination_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Login: _auth_Login__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  data: function data() {
-    return {
-      showMsg: false,
-      noRating: false,
-      useUrl: false,
-      loading: true,
-      is_loggeIn: false,
-      showForm: false,
-      form: {
-        description: null,
-        rating: null,
-        product_id: this.product.id,
-        image: null,
-        title: null
-      },
-      submiting: false
-    };
-  },
-  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapGetters)({
-    loggedIn: "loggedIn",
-    errors: "errors",
-    message: "message",
-    reviews: "reviews"
-  })), {}, {
-    loggedIn: function loggedIn() {
-      return [this.user ? true : false];
+  setup: function setup(props) {
+    var _ref;
+
+    var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_3__.useActions)(["createReviews"]),
+        createReviews = _useActions.createReviews;
+
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
+    var showMsg = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
+    var noRating = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
+    var useUrl = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
+    var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(true);
+    var isLoggegIn = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
+    var showForm = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
+    var submiting = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
+    var btnclose = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
+    var reviews = (0,vue__WEBPACK_IMPORTED_MODULE_2__.computed)(function () {
+      return store.getters.reviews;
+    });
+    var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
+      description: null,
+      rating: null,
+      product_id: props.product.id,
+      image: null,
+      title: null
+    });
+
+    function hasLoggedIn() {
+      isLoggegIn.value = true;
     }
-  }),
-  mounted: function mounted() {
-    this.productReviews();
-    this.is_loggeIn = this.user;
-  },
-  methods: _objectSpread(_objectSpread({
-    hasLoggedIn: function hasLoggedIn() {
-      this.is_loggeIn = true;
-    },
-    activateForm: function activateForm() {
-      this.showForm = !this.showForm;
-    },
-    getStarRating: function getStarRating(e, rating) {
-      this.form.rating = rating;
-      this.noRating = false;
+
+    function activateForm() {
+      showForm.value = !showForm.value;
+    }
+
+    (0,vue__WEBPACK_IMPORTED_MODULE_2__.onMounted)(function () {
+      var _props$user;
+
+      isLoggegIn.value = (_props$user = props.user) === null || _props$user === void 0 ? void 0 : _props$user.id;
+      productReviews();
+    });
+
+    function getStarRating(e, rating) {
+      form.rating = rating;
+      noRating.value = false;
       var ratings = document.querySelectorAll(".rating");
       ratings.forEach(function (elm) {
         elm.classList.remove("active");
       });
       e.target.classList.add("active");
-    },
-    productReviews: function productReviews() {
-      var _this = this;
+    }
 
-      this.loading = true;
-      return axios.get("/reviews/" + this.product.id).then(function (response) {
-        _this.loading = false;
-
-        _this.$store.commit("setReviews", response.data.data);
-
-        _this.$store.commit("setReviewsMeta", response.data.meta);
+    function productReviews() {
+      loading.value = true;
+      return axios.get("/reviews/" + props.product.id).then(function (response) {
+        loading.value = false;
+        store.commit("setReviews", response.data.data);
+        store.commit("setReviewsMeta", response.data.meta);
       })["catch"](function (error) {
-        _this.loading = false;
+        loading.value = false;
       });
     }
-  }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)({
-    createReviews: "createReviews",
-    validateForm: "validateForm",
-    clearErrors: "clearErrors",
-    checkInput: "checkInput",
-    getReviews: "getReviews"
-  })), {}, {
-    submitReview: function submitReview() {
-      var _this2 = this;
 
-      if (this.form.rating == "") {
-        this.noRating = true;
+    function submitReview() {
+      if (form.rating == "") {
+        noRating.value = true;
         return false;
       }
 
-      this.submiting = true;
-      var form = new FormData();
-      form.append("description", this.form.description);
-      form.append("title", this.form.title);
-      form.append("rating", this.form.rating);
-      form.append("product_id", this.product.id);
-      this.createReviews({
-        context: this,
+      submiting.value = true;
+      console.log(btnclose.value);
+      var FormD = new FormData();
+      FormD.append("description", form.description);
+      FormD.append("title", form.title);
+      FormD.append("rating", form.rating);
+      FormD.append("product_id", props.product.id);
+      console.log(FormD);
+      createReviews({
         form: form
       }).then(function () {
-        _this2.$refs.btnclose.click();
-
-        _this2.$store.commit("setMessage", "Your review has placed");
+        btnclose.value.click();
+        store.commit("setMessage", "Your review has placed");
       })["catch"](function () {
-        _this2.submiting = false;
+        store.commit("setMessage", "Something went wrong");
+        submiting.value = false;
       });
     }
-  })
+
+    return _ref = {
+      showMsg: showMsg,
+      noRating: noRating,
+      useUrl: useUrl,
+      loading: loading,
+      showForm: showForm,
+      submiting: submiting,
+      isLoggegIn: isLoggegIn,
+      hasLoggedIn: hasLoggedIn,
+      productReviews: productReviews,
+      getStarRating: getStarRating
+    }, _defineProperty(_ref, "hasLoggedIn", hasLoggedIn), _defineProperty(_ref, "submitReview", submitReview), _defineProperty(_ref, "activateForm", activateForm), _defineProperty(_ref, "reviews", reviews), _defineProperty(_ref, "form", form), _defineProperty(_ref, "btnclose", btnclose), _ref;
+  }
 });
 
 /***/ }),
@@ -25232,7 +25231,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "submit",
     text: $setup.text,
     "class": "btn btn-dark w-100",
-    loading: _ctx.loading
+    loading: $setup.loading
   }, null, 8
   /* PROPS */
   , ["text", "loading"])], 32
@@ -27929,9 +27928,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_login = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("login");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-single-container "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [!$data.loading && !_ctx.reviews.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", _hoisted_3, " Be The First To Review This Product ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.loading && _ctx.reviews.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.reviews.length) + " review for " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-single-container "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [!$setup.loading && !$setup.reviews.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", _hoisted_3, " Be The First To Review This Product ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.loading && $setup.reviews.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.reviews.length) + " review for " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name), 1
   /* TEXT */
-  ), _hoisted_7]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.reviews, function (review) {
+  ), _hoisted_7]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.reviews, function (review) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: review.id,
       "class": "comments mb-3"
@@ -27955,71 +27954,70 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     )]), _hoisted_16])])])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))]), _hoisted_17])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .tab-pane "), !$data.loading && $props.meta && $props.meta.total > $props.meta.per_page ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_pagination, {
-    useUrl: $data.useUrl,
+  ))]), _hoisted_17])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .tab-pane "), !$setup.loading && $props.meta && $props.meta.total > $props.meta.per_page ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_pagination, {
+    useUrl: $setup.useUrl,
     meta: $props.meta
   }, null, 8
   /* PROPS */
   , ["useUrl", "meta"])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .tab-pane ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .tab-content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_26, _hoisted_28, 512
   /* NEED_PATCH */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, !$data.is_loggeIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_login, {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, !$setup.isLoggegIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_login, {
     key: 0,
     redirect: false,
-    "onHas:loggedIn": $options.hasLoggedIn
+    "onHas:loggedIn": $setup.hasLoggedIn
   }, null, 8
   /* PROPS */
-  , ["onHas:loggedIn"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  , ["onHas:loggedIn"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.isLoggegIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
+    key: 1,
     action: "#",
     onSubmit: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
-      return $options.submitReview && $options.submitReview.apply($options, arguments);
+      return $setup.submitReview && $setup.submitReview.apply($setup, arguments);
     }, ["prevent"])),
     "class": "comment-form m-0"
-  }, [$data.is_loggeIn ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    key: 0
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "star-1",
     href: "#",
     onClick: _cache[0] || (_cache[0] = function ($event) {
-      return $options.getStarRating($event, 20);
+      return $setup.getStarRating($event, 20);
     })
   }, "1"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "star-2",
     href: "#",
     onClick: _cache[1] || (_cache[1] = function ($event) {
-      return $options.getStarRating($event, 40);
+      return $setup.getStarRating($event, 40);
     })
   }, "2"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "star-3",
     href: "#",
     onClick: _cache[2] || (_cache[2] = function ($event) {
-      return $options.getStarRating($event, 60);
+      return $setup.getStarRating($event, 60);
     })
   }, "3"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "star-4",
     href: "#",
     onClick: _cache[3] || (_cache[3] = function ($event) {
-      return $options.getStarRating($event, 80);
+      return $setup.getStarRating($event, 80);
     })
   }, "4"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "star-5",
     onClick: _cache[4] || (_cache[4] = function ($event) {
-      return $options.getStarRating($event, 100);
+      return $setup.getStarRating($event, 100);
     }),
     href: "#"
-  }, "5")]), _hoisted_35]), $data.noRating ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, " Please select a rating ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, "5")]), _hoisted_35]), $setup.noRating ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_36, " Please select a rating ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     id: "title",
     type: "text",
     "class": "form-control rating_required",
     name: "title",
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-      return $data.form.title = $event;
+      return $setup.form.title = $event;
     })
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.title]]), _hoisted_41]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .form-group ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.title]]), _hoisted_41]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .form-group ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     id: "comment",
     "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
-      return $data.form.description = $event;
+      return $setup.form.description = $event;
     }),
     name: "description",
     "class": "form-control rating_required form-control-sm",
@@ -28028,20 +28026,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "aria-required": "true"
   }, "\n                ", 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.description]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .form-group "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_45, [$data.submiting ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.form.description]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .form-group "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_45, [$setup.submiting ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
     key: 0,
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["spinner-border spinner-border-sm", {
-      disabled: $data.submiting
+      disabled: $setup.submiting
     }]),
     role: "status",
     "aria-hidden": "true"
   }, null, 2
   /* CLASS */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Submit ")])])], 64
-  /* STABLE_FRAGMENT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 32
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Submit ")])])], 32
   /* HYDRATE_EVENTS */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .add-product-review ")])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-single-tabs ")], 2112
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .add-product-review ")])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-single-tabs ")], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
   );
 }
@@ -37989,15 +37985,10 @@ var forgotPassword = function forgotPassword(_ref46, _ref47) {
 };
 var createReviews = function createReviews(_ref48, _ref49) {
   var commit = _ref48.commit;
-  var payload = _ref49.payload,
-      context = _ref49.context,
-      form = _ref49.form;
+  var form = _ref49.form;
   return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/reviews/store", form).then(function (response) {
-    context.submiting = false;
     return Promise.resolve(response);
   })["catch"](function (error) {
-    context.submiting = false;
-
     if (error.response.status == 500) {
       var errors = {
         general: "We could not send your password reset link"

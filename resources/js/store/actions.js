@@ -509,15 +509,13 @@ export const forgotPassword = ({ commit }, { payload, context }) => {
         });
 };
 
-export const createReviews = ({ commit }, { payload, context, form }) => {
+export const createReviews = ({ commit }, { form }) => {
     return axios
         .post("/reviews/store", form)
         .then(response => {
-            context.submiting = false;
             return Promise.resolve(response);
         })
         .catch(error => {
-            context.submiting = false;
             if (error.response.status == 500) {
                 let errors = {
                     general: "We could not send your password reset link"

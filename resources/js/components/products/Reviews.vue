@@ -131,126 +131,124 @@
                 <h3 class="review-title">Add a review</h3>
               </div>
               <login
-                v-if="!is_loggeIn"
+                v-if="!isLoggegIn"
                 :redirect="false"
                 @has:loggedIn="hasLoggedIn"
-              />
+              ></login>
 
               <form
+                v-if="isLoggegIn"
                 action="#"
                 @submit.prevent="submitReview"
                 class="comment-form m-0"
               >
-                <template v-if="is_loggeIn">
-                  <div class="rating-form">
-                    <label for="rating">Your rating <span class="required">*</span></label>
-                    <span class="rating-stars">
-                      <a
-                        class="star-1"
-                        href="#"
-                        @click="getStarRating($event, 20)"
-                      >1</a>
-                      <a
-                        class="star-2"
-                        href="#"
-                        @click="getStarRating($event, 40)"
-                      >2</a>
-                      <a
-                        class="star-3"
-                        href="#"
-                        @click="getStarRating($event, 60)"
-                      >3</a>
-                      <a
-                        class="star-4"
-                        href="#"
-                        @click="getStarRating($event, 80)"
-                      >4</a>
-                      <a
-                        class="star-5"
-                        @click="getStarRating($event, 100)"
-                        href="#"
-                      >5</a>
-                    </span>
+                <div class="rating-form">
+                  <label for="rating">Your rating <span class="required">*</span></label>
+                  <span class="rating-stars">
+                    <a
+                      class="star-1"
+                      href="#"
+                      @click="getStarRating($event, 20)"
+                    >1</a>
+                    <a
+                      class="star-2"
+                      href="#"
+                      @click="getStarRating($event, 40)"
+                    >2</a>
+                    <a
+                      class="star-3"
+                      href="#"
+                      @click="getStarRating($event, 60)"
+                    >3</a>
+                    <a
+                      class="star-4"
+                      href="#"
+                      @click="getStarRating($event, 80)"
+                    >4</a>
+                    <a
+                      class="star-5"
+                      @click="getStarRating($event, 100)"
+                      href="#"
+                    >5</a>
+                  </span>
 
-                    <select
-                      name="rating"
-                      id="rating"
-                      required=""
-                      style="display: none;"
-                    >
-                      <option value="">Rate…</option>
-                      <option value="5">Perfect</option>
-                      <option value="4">Good</option>
-                      <option value="3">Average</option>
-                      <option value="2">Not that bad</option>
-                      <option value="1">Very poor</option>
-                    </select>
-                  </div>
-
-                  <div
-                    v-if="noRating"
-                    class="text-error"
-                    id=""
+                  <select
+                    name="rating"
+                    id="rating"
+                    required=""
+                    style="display: none;"
                   >
-                    Please select a rating
-                  </div>
+                    <option value="">Rate…</option>
+                    <option value="5">Perfect</option>
+                    <option value="4">Good</option>
+                    <option value="3">Average</option>
+                    <option value="2">Not that bad</option>
+                    <option value="1">Very poor</option>
+                  </select>
+                </div>
 
-                  <div class="row">
-                    <div class="col-md-6 col-xl-12">
+                <div
+                  v-if="noRating"
+                  class="text-error"
+                  id=""
+                >
+                  Please select a rating
+                </div>
 
-                      <div class="form-group mt-2">
-                        <label for="title">Title</label>
-                        <input
-                          id="title"
-                          type="text"
-                          class="form-control rating_required"
-                          name="title"
-                          v-model="form.title"
-                        />
-                        <span class="help-block error text-danger text-sm-left">
-                          <small class="text-danger">
+                <div class="row">
+                  <div class="col-md-6 col-xl-12">
 
-                          </small>
-                        </span>
-                      </div>
-                      <!-- End .form-group -->
+                    <div class="form-group mt-2">
+                      <label for="title">Title</label>
+                      <input
+                        id="title"
+                        type="text"
+                        class="form-control rating_required"
+                        name="title"
+                        v-model="form.title"
+                      />
+                      <span class="help-block error text-danger text-sm-left">
+                        <small class="text-danger">
+
+                        </small>
+                      </span>
                     </div>
-
+                    <!-- End .form-group -->
                   </div>
 
-                  <div class="form-group">
-                    <label for="comment">Comment </label>
-                    <textarea
-                      id="comment"
-                      v-model="form.description"
-                      name="description"
-                      class=" form-control rating_required form-control-sm"
-                      cols="35"
-                      rows="10"
-                      aria-required="true"
-                    >
+                </div>
+
+                <div class="form-group">
+                  <label for="comment">Comment </label>
+                  <textarea
+                    id="comment"
+                    v-model="form.description"
+                    name="description"
+                    class=" form-control rating_required form-control-sm"
+                    cols="35"
+                    rows="10"
+                    aria-required="true"
+                  >
                 </textarea>
-                  </div>
+                </div>
 
-                  <!-- End .form-group -->
+                <!-- End .form-group -->
 
-                  <div class="d-flex justify-content-end">
-                    <button
-                      type="submit"
-                      class=""
-                    >
-                      <span
-                        v-if="submiting"
-                        class="spinner-border spinner-border-sm"
-                        :class="{ disabled: submiting }"
-                        role="status"
-                        aria-hidden="true"
-                      ></span>
-                      Submit
-                    </button>
-                  </div>
-
-                </template>
+                <div class="d-flex justify-content-end">
+                  <button
+                    type="submit"
+                    class=""
+                  >
+                    <span
+                      v-if="submiting"
+                      class="spinner-border spinner-border-sm"
+                      :class="{ disabled: submiting }"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                    Submit
+                  </button>
+                </div>
 
               </form>
             </div>
@@ -267,9 +265,11 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, useStore } from "vuex";
 import Pagination from "../pagination/Pagination.vue";
 import Login from "../auth/Login";
+import { computed, onMounted, reactive, ref } from "vue";
+import { useActions, useGetters } from "vuex-composition-helpers";
 
 export default {
   props: ["meta", "user", "product"],
@@ -278,98 +278,108 @@ export default {
     Login,
   },
 
-  data() {
-    return {
-      showMsg: false,
-      noRating: false,
-      useUrl: false,
-      loading: true,
-      is_loggeIn: false,
-      showForm: false,
-      form: {
-        description: null,
-        rating: null,
-        product_id: this.product.id,
-        image: null,
-        title: null,
-      },
-      submiting: false,
-    };
-  },
-  computed: {
-    ...mapGetters({
-      loggedIn: "loggedIn",
-      errors: "errors",
-      message: "message",
-      reviews: "reviews",
-    }),
-    loggedIn: function () {
-      return [this.user ? true : false];
-    },
-  },
-  mounted() {
-    this.productReviews();
-    this.is_loggeIn = this.user;
-  },
-  methods: {
-    hasLoggedIn() {
-      this.is_loggeIn = true;
-    },
-    activateForm() {
-      this.showForm = !this.showForm;
-    },
-    getStarRating(e, rating) {
-      this.form.rating = rating;
-      this.noRating = false;
+  setup(props) {
+    const { createReviews } = useActions(["createReviews"]);
+    const store = useStore();
+    const showMsg = ref(false);
+    const noRating = ref(false);
+    const useUrl = ref(false);
+    const loading = ref(true);
+    const isLoggegIn = ref(null);
+    const showForm = ref(false);
+    const submiting = ref(false);
+    const btnclose = ref(null);
+
+    const reviews = computed(() => store.getters.reviews);
+
+    const form = reactive({
+      description: null,
+      rating: null,
+      product_id: props.product.id,
+      image: null,
+      title: null,
+    });
+
+    function hasLoggedIn() {
+      isLoggegIn.value = true;
+    }
+
+    function activateForm() {
+      showForm.value = !showForm.value;
+    }
+
+    onMounted(() => {
+      isLoggegIn.value = props.user?.id;
+      productReviews();
+    });
+
+    function getStarRating(e, rating) {
+      form.rating = rating;
+      noRating.value = false;
       let ratings = document.querySelectorAll(".rating");
       ratings.forEach((elm) => {
         elm.classList.remove("active");
       });
       e.target.classList.add("active");
-    },
-    productReviews() {
-      this.loading = true;
+    }
+
+    function productReviews() {
+      loading.value = true;
       return axios
-        .get("/reviews/" + this.product.id)
+        .get("/reviews/" + props.product.id)
         .then((response) => {
-          this.loading = false;
-          this.$store.commit("setReviews", response.data.data);
-          this.$store.commit("setReviewsMeta", response.data.meta);
+          loading.value = false;
+          store.commit("setReviews", response.data.data);
+          store.commit("setReviewsMeta", response.data.meta);
         })
         .catch((error) => {
-          this.loading = false;
+          loading.value = false;
         });
-    },
+    }
 
-    ...mapActions({
-      createReviews: "createReviews",
-      validateForm: "validateForm",
-      clearErrors: "clearErrors",
-      checkInput: "checkInput",
-      getReviews: "getReviews",
-    }),
-
-    submitReview() {
-      if (this.form.rating == "") {
-        this.noRating = true;
+    function submitReview() {
+      if (form.rating == "") {
+        noRating.value = true;
         return false;
       }
 
-      this.submiting = true;
-      let form = new FormData();
-      form.append("description", this.form.description);
-      form.append("title", this.form.title);
-      form.append("rating", this.form.rating);
-      form.append("product_id", this.product.id);
-      this.createReviews({ context: this, form })
+      submiting.value = true;
+      console.log(btnclose.value);
+      let FormD = new FormData();
+      FormD.append("description", form.description);
+      FormD.append("title", form.title);
+      FormD.append("rating", form.rating);
+      FormD.append("product_id", props.product.id);
+      console.log(FormD);
+      createReviews({ form })
         .then(() => {
-          this.$refs.btnclose.click();
-          this.$store.commit("setMessage", "Your review has placed");
+          btnclose.value.click();
+          store.commit("setMessage", "Your review has placed");
         })
         .catch(() => {
-          this.submiting = false;
+          store.commit("setMessage", "Something went wrong");
+          submiting.value = false;
         });
-    },
+    }
+
+    return {
+      showMsg,
+      noRating,
+      useUrl,
+      loading,
+      showForm,
+      submiting,
+      isLoggegIn,
+      hasLoggedIn,
+      productReviews,
+      getStarRating,
+      hasLoggedIn,
+      submitReview,
+      activateForm,
+      reviews,
+      form,
+      btnclose,
+    };
   },
 };
 </script>
