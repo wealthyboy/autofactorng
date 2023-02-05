@@ -9,7 +9,10 @@
         <a href="{{ $category->link() }}" class="d-block p-0 border">
             <div class="d-flex justify-content-center align-items-center">
                 <div class="align-self-center text-center">
-                    <img src="{{ $category->image }}" alt="" srcset="">
+                    <div class="image-category">
+                        <img src="{{ $category->image }}" alt="" srcset="">
+
+                    </div>
                     <div class="mt-4  bold">{{ $category->name }}</div>
                 </div>
             </div>
