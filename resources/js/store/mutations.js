@@ -15,7 +15,12 @@ export const setCoupon = (state, voucher) => {
 }
 
 export const setMessage = (state, message) => {
+
     state.message = message;
+
+    setTimeout(() => {
+        state.message = null;
+    }, 4000)
 }
 
 export const setReviews = (state, reviews) => {

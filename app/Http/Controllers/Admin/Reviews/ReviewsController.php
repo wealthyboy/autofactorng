@@ -24,6 +24,9 @@ class ReviewsController extends Table
 
 	public $deleted_specific = 'Reviews';
 
+	public $link = '/admin/reviews';
+
+
 
 
 	public function builder()
@@ -34,6 +37,9 @@ class ReviewsController extends Table
 
 	public function  index()
 	{
+
+		$this->updateStatus();
+
 		$reviews = $this->getColumnListings(request(), Review::paginate(100));
 		return view('admin.reviews.index', compact('reviews'));
 	}
@@ -43,17 +49,18 @@ class ReviewsController extends Table
 	{
 		return [
 			'edit' =>  [
-				'admin.orders.edit',
-				'order'
+				'admin.reviews.edit',
+				'review'
 			],
 			'update' => null,
 			'show' => null,
+
 			'destroy' =>  [
-				'admin.orders.destroy',
-				'order'
+				'admin.reviews.destroy',
+				'review'
 			],
 			'create' => [
-				'admin.orders.create'
+				'admin.reviews.create'
 			],
 			'index' => null
 		];
@@ -66,11 +73,21 @@ class ReviewsController extends Table
 			'right' => false,
 			'edit' => false,
 			'search' => true,
-			'add' => true,
-			'delete' => false,
-			'export' => true,
-			'order' => true
+			'add' => false,
+			'delete' => true,
+			'export' => false,
+			'order' => false
 		];
+	}
+
+
+	public function updateStatus()
+	{
+		if (request()->id) {
+			$review = Review::find(request()->id);
+			$review->is_verified = request()->accept;
+			$review->save();
+		}
 	}
 
 
@@ -79,6 +96,23 @@ class ReviewsController extends Table
 		$review = Review::find($id);
 		return view('admin.reviews.show', compact('review'));
 	}
+
+
+	public function edit(Request $request, $id)
+	{
+		// $review = Review::find($id);
+
+		// if ($review->is_verified == true) {
+		// 	$review->is_verified = 0;
+		// } else {
+		// 	$review->is_verified = 1;
+		// }
+
+		// $review->save();
+
+		return view('admin.reviews.show', compact('review'));
+	}
+
 
 
 	/**
@@ -90,16 +124,5 @@ class ReviewsController extends Table
 	 */
 	public function update(Request $request, $id = null)
 	{
-	}
-
-
-
-	public function updateStatus()
-	{
-		if (request()->id) {
-			$review = Review::find(request()->id);
-			$review->is_verified = request()->accept;
-			$review->save();
-		}
 	}
 }

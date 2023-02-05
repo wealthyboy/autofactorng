@@ -34,7 +34,7 @@ class Review extends Model
         $result = \DB::table('reviews')->select(DB::raw('COUNT(rating) AS occurrences'))
             ->groupBy('rating')
             ->orderBy('occurrences', 'DESC')
-            ->where(['reviews.product_id' => $product_id])
+            ->where(['reviews.product_id' => $product_id, 'is_verified' => 1])
             ->first();
         return $result  !== null ? $result->occurrences : 0;
     }
@@ -49,7 +49,7 @@ class Review extends Model
         $result = static::select('rating')
             ->groupBy('rating')
             ->orderByRaw('COUNT(*) DESC')
-            ->where(['reviews.product_id' => $product_id])
+            ->where(['reviews.product_id' => $product_id, 'is_verified' => 1])
             ->first();
         return $result !== null ?  $result->rating : 0;
     }
@@ -66,9 +66,11 @@ class Review extends Model
         return  $collection->map(function ($review) {
             return [
                 "Id" => $review->id,
-                "Title" => $review->title,
                 "Product Name" => optional($review->product)->product_name,
+                "Title" => $review->title,
+                "Description" => $review->description,
                 "Author Name" =>  optional($review->user)->name,
+                "Verified" =>  $review->is_verified ? 'Yes' : 'No',
                 "Rating" => $review->rating / 20,
                 "Date Added" => $review->created_at->format('d/m/y'),
             ];
@@ -80,9 +82,11 @@ class Review extends Model
     {
         $sort =  [
             "Id" => 'id',
-            "Title" => 'title',
             "Product Name" => 'product_id',
+            "Title" => 'title',
+            "Description" => 'description',
             "Author Name" =>  'user_id',
+            "Verified" =>  'is_verified',
             "Rating" => 'rating',
             "Date Added" => 'created_at',
         ];

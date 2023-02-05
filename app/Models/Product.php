@@ -204,14 +204,12 @@ class Product extends Model
 
     public static function getFilterLists($type = 'radius')
     {
-
-        return   self::where($type, '!=', null)->select($type)->groupBy($type)->orderBy($type, 'asc')->get();
+        return self::where($type, '!=', null)->select($type)->groupBy($type)->orderBy($type, 'asc')->get();
     }
 
 
     public function getListingData($collection)
     {
-
         return  $collection->map(function ($product) {
             return [
                 "Id" => $product->id,
@@ -258,7 +256,6 @@ class Product extends Model
 
     public  function buildSearchString()
     {
-
         if (null !== request()->cookie('engine_id') &&  request()->type !== 'clear') {
             $year = request()->cookie('year');
             $make_name = Attribute::find(request()->cookie('make_id'))->name;
@@ -266,7 +263,6 @@ class Product extends Model
             $engine_name = optional(Engine::find(request()->cookie('engine_id')))->name;
             return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
         }
-
 
         return null;
     }

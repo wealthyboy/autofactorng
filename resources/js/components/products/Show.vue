@@ -17,7 +17,7 @@
       <!-- End .product-ratings -->
 
       <a
-        href="product-transparent-image.html#"
+        href="#"
         class="rating-link"
       >( {{ product.average_rating_count }} Reviews )</a>
     </div>

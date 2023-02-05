@@ -64,7 +64,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
     Route::resource('category', 'Admin\Category\CategoryController', ['name' => 'category']);
     Route::post('category/delete/image', 'Admin\Category\CategoryController@undo');
-    Route::resource('reviews',  'Admin\Reviews\ReviewsController', ['names' => 'reviews']);
+    Route::resource('reviews',  'Admin\Reviews\ReviewsController', ['names' => 'admin.reviews']);
     Route::resource('orders', 'Admin\Orders\OrdersController', ['names' => 'admin.orders']);
     Route::resource('brands', 'Admin\Brand\BrandsController', ['names' => 'brands']);
     Route::resource('promos', 'Admin\Promo\PromoController', ['names' => 'promos']);

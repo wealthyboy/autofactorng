@@ -160,6 +160,7 @@ export default {
           next[nt] = response.data.data;
           let text = response.data.string;
           let type = e.target.name;
+
           emit("do:string", { text, type });
           const url = new URL(location.href);
           let path = url.pathname.split("/");

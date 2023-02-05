@@ -21,7 +21,7 @@ class ReviewsController extends Controller
     public function index($id)
     {
         $product = Product::find($id);
-        $reviews = $product->reviews()->latest()->paginate(1);
+        $reviews = $product->reviews()->where('is_verified', true)->orderBy('id', 'desc')->paginate(10);
         return ReviewResourceCollection::collection($reviews);
     }
 

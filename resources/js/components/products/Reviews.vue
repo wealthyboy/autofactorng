@@ -119,12 +119,11 @@
               ></a>
             <button
               type="button"
-              class="btn-close"
               data-bs-dismiss="modal"
               aria-label="Close"
               ref="btnclose"
               id="btn-close"
-            ></button>
+            ><i class="bi bi-x-lg"></i></button>
           </div>
           <div class="modal-body">
             <div class="add-product-review">
@@ -169,7 +168,7 @@
                       <a
                         class="star-5"
                         @click="getStarRating($event, 100)"
-                        href="product.html#"
+                        href="#"
                       >5</a>
                     </span>
 
@@ -188,23 +187,13 @@
                     </select>
                   </div>
 
-                  <div class="form-group">
-                    <label for="comment">Comment </label>
-                    <textarea
-                      id="comment"
-                      v-model="form.description"
-                      name="description"
-                      class=" form-control rating_required form-control-sm"
-                      cols="35"
-                      rows="10"
-                      @input="removeError($event)"
-                      @blur="vInput($event)"
-                      aria-required="true"
-                    >
-                </textarea>
+                  <div
+                    v-if="noRating"
+                    class="text-error"
+                    id=""
+                  >
+                    Please select a rating
                   </div>
-
-                  <!-- End .form-group -->
 
                   <div class="row">
                     <div class="col-md-6 col-xl-12">
@@ -233,36 +222,47 @@
 
                   </div>
 
-                  <button
-                    type="submit"
-                    class="btn btn--primary btn-round  btn-lg btn-block"
-                  >
-                    <span
-                      v-if="submiting"
-                      class="spinner-border spinner-border-sm"
-                      :class="{ disabled: submiting }"
-                      role="status"
-                      aria-hidden="true"
-                    ></span>
-                    Submit
-                  </button>
+                  <div class="form-group">
+                    <label for="comment">Comment </label>
+                    <textarea
+                      id="comment"
+                      v-model="form.description"
+                      name="description"
+                      class=" form-control rating_required form-control-sm"
+                      cols="35"
+                      rows="10"
+                      @input="removeError($event)"
+                      @blur="vInput($event)"
+                      aria-required="true"
+                    >
+                </textarea>
+                  </div>
 
-                  <button
-                    @click="activateForm"
-                    type="button"
-                    class="ml-1"
-                  >
-                    Cancel
-                  </button>
+                  <!-- End .form-group -->
+
+                  <div class="d-flex justify-content-end">
+                    <button
+                      type="submit"
+                      class=""
+                    >
+                      <span
+                        v-if="submiting"
+                        class="spinner-border spinner-border-sm"
+                        :class="{ disabled: submiting }"
+                        role="status"
+                        aria-hidden="true"
+                      ></span>
+                      Submit
+                    </button>
+                  </div>
+
                 </template>
 
               </form>
             </div>
             <!-- End .add-product-review -->
           </div>
-          <div class="modal-footer">
 
-          </div>
         </div>
       </div>
     </div>
@@ -376,10 +376,10 @@ export default {
     submitReview() {
       // let input = document.querySelectorAll(".rating_required");
       // this.validateForm({ context: this, input: input });
-      // if (!this.form.rating) {
-      //   this.noRating = true;
-      //   return false;
-      // }
+      if (this.form.rating == "") {
+        this.noRating = true;
+        return false;
+      }
 
       // if (Object.keys(this.errors).length !== 0) {
       //   return false;
@@ -394,6 +394,7 @@ export default {
       this.createReviews({ context: this, form })
         .then(() => {
           this.$refs.btnclose.click();
+          this.$store.commit("setMessage", "Your review has placed");
         })
         .catch(() => {
           this.submiting = false;
