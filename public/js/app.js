@@ -23295,15 +23295,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     submitReview: function submitReview() {
       var _this2 = this;
 
-      // let input = document.querySelectorAll(".rating_required");
-      // this.validateForm({ context: this, input: input });
       if (this.form.rating == "") {
         this.noRating = true;
         return false;
-      } // if (Object.keys(this.errors).length !== 0) {
-      //   return false;
-      // }
-
+      }
 
       this.submiting = true;
       var form = new FormData();

@@ -350,16 +350,10 @@ export default {
     }),
 
     submitReview() {
-      // let input = document.querySelectorAll(".rating_required");
-      // this.validateForm({ context: this, input: input });
       if (this.form.rating == "") {
         this.noRating = true;
         return false;
       }
-
-      // if (Object.keys(this.errors).length !== 0) {
-      //   return false;
-      // }
 
       this.submiting = true;
       let form = new FormData();
