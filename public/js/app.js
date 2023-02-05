@@ -23284,29 +23284,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["catch"](function (error) {
         _this.loading = false;
       });
-    },
-    formatError: function formatError(error) {
-      return Array.isArray(error) ? error[0].charAt(0).toUpperCase() + error[0].slice(1) : error.charAt(0).toUpperCase() + error.slice(1);
-    },
-    removeError: function removeError(e) {
-      var input = document.querySelectorAll(".rating_required");
-
-      if (typeof input !== "undefined") {
-        this.clearErrors({
-          context: this,
-          input: input
-        });
-      }
-    },
-    vInput: function vInput(e) {
-      var input = document.querySelectorAll(".rating_required");
-
-      if (typeof input !== "undefined") {
-        this.checkInput({
-          context: this,
-          input: e
-        });
-      }
     }
   }, (0,vuex__WEBPACK_IMPORTED_MODULE_2__.mapActions)({
     createReviews: "createReviews",
@@ -27927,27 +27904,28 @@ var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_41 = {
-  key: 0,
+var _hoisted_41 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "help-block error text-danger text-sm-left"
-};
-var _hoisted_42 = {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", {
   "class": "text-danger"
-};
-var _hoisted_43 = {
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_42 = {
   "class": "form-group"
 };
 
-var _hoisted_44 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "comment"
 }, "Comment ", -1
 /* HOISTED */
 );
 
-var _hoisted_45 = {
+var _hoisted_44 = {
   "class": "d-flex justify-content-end"
 };
-var _hoisted_46 = {
+var _hoisted_45 = {
   type: "submit",
   "class": ""
 };
@@ -27997,7 +27975,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["onHas:loggedIn"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     action: "#",
-    onSubmit: _cache[11] || (_cache[11] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onSubmit: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.submitReview && $options.submitReview.apply($options, arguments);
     }, ["prevent"])),
     "class": "comment-form m-0"
@@ -28011,19 +27989,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, "1"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "star-2",
-    href: "product.html#",
+    href: "#",
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $options.getStarRating($event, 40);
     })
   }, "2"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "star-3",
-    href: "product.html#",
+    href: "#",
     onClick: _cache[2] || (_cache[2] = function ($event) {
       return $options.getStarRating($event, 60);
     })
   }, "3"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "star-4",
-    href: "product.html#",
+    href: "#",
     onClick: _cache[3] || (_cache[3] = function ($event) {
       return $options.getStarRating($event, 80);
     })
@@ -28038,38 +28016,24 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "text",
     "class": "form-control rating_required",
     name: "title",
-    onInput: _cache[5] || (_cache[5] = function ($event) {
-      return $options.removeError($event);
-    }),
-    onBlur: _cache[6] || (_cache[6] = function ($event) {
-      return $options.vInput($event);
-    }),
-    "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
+    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
       return $data.form.title = $event;
     })
-  }, null, 544
-  /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.title]]), _ctx.errors.title ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.formatError(_ctx.errors.title)), 1
-  /* TEXT */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .form-group ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [_hoisted_44, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.title]]), _hoisted_41]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .form-group ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     id: "comment",
-    "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
+    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
       return $data.form.description = $event;
     }),
     name: "description",
     "class": "form-control rating_required form-control-sm",
     cols: "35",
     rows: "10",
-    onInput: _cache[9] || (_cache[9] = function ($event) {
-      return $options.removeError($event);
-    }),
-    onBlur: _cache[10] || (_cache[10] = function ($event) {
-      return $options.vInput($event);
-    }),
     "aria-required": "true"
-  }, "\n                ", 544
-  /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.description]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .form-group "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_46, [$data.submiting ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+  }, "\n                ", 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.description]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .form-group "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_45, [$data.submiting ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
     key: 0,
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["spinner-border spinner-border-sm", {
       disabled: $data.submiting

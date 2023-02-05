@@ -47,7 +47,7 @@
                   <!-- End .header-search -->
 
                   <div class="header-contact d-none d-lg-flex pl-4 pr-4">
-                     <img alt="phone" src="assets/images/phone.png" width="30" height="30" class="pb-1">
+                     <img alt="phone" src="/assets/images/phone.png" width="30" height="30" class="pb-1">
                      <h6><span>Call us now</span><a href="tel:#" class="text-dark font1">+123 5678 890</a></h6>
                   </div>
                   @auth

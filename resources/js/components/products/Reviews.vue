@@ -152,17 +152,17 @@
                       >1</a>
                       <a
                         class="star-2"
-                        href="product.html#"
+                        href="#"
                         @click="getStarRating($event, 40)"
                       >2</a>
                       <a
                         class="star-3"
-                        href="product.html#"
+                        href="#"
                         @click="getStarRating($event, 60)"
                       >3</a>
                       <a
                         class="star-4"
-                        href="product.html#"
+                        href="#"
                         @click="getStarRating($event, 80)"
                       >4</a>
                       <a
@@ -197,6 +197,7 @@
 
                   <div class="row">
                     <div class="col-md-6 col-xl-12">
+
                       <div class="form-group mt-2">
                         <label for="title">Title</label>
                         <input
@@ -204,16 +205,11 @@
                           type="text"
                           class="form-control rating_required"
                           name="title"
-                          @input="removeError($event)"
-                          @blur="vInput($event)"
                           v-model="form.title"
                         />
-                        <span
-                          class="help-block error text-danger text-sm-left"
-                          v-if="errors.title"
-                        >
+                        <span class="help-block error text-danger text-sm-left">
                           <small class="text-danger">
-                            {{ formatError(errors.title) }}
+
                           </small>
                         </span>
                       </div>
@@ -231,8 +227,6 @@
                       class=" form-control rating_required form-control-sm"
                       cols="35"
                       rows="10"
-                      @input="removeError($event)"
-                      @blur="vInput($event)"
                       aria-required="true"
                     >
                 </textarea>
@@ -345,24 +339,6 @@ export default {
         .catch((error) => {
           this.loading = false;
         });
-    },
-
-    formatError(error) {
-      return Array.isArray(error)
-        ? error[0].charAt(0).toUpperCase() + error[0].slice(1)
-        : error.charAt(0).toUpperCase() + error.slice(1);
-    },
-    removeError(e) {
-      let input = document.querySelectorAll(".rating_required");
-      if (typeof input !== "undefined") {
-        this.clearErrors({ context: this, input: input });
-      }
-    },
-    vInput(e) {
-      let input = document.querySelectorAll(".rating_required");
-      if (typeof input !== "undefined") {
-        this.checkInput({ context: this, input: e });
-      }
     },
 
     ...mapActions({
