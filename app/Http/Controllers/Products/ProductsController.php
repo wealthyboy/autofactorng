@@ -130,15 +130,13 @@ class ProductsController extends Controller
     public function getProductsData(Request $request, Builder $builder, Category $category)
     {
 
-
         $query = Product::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.slug', $category->slug);
         });
 
 
         $type = $this->getType($request);
-
-        $per_page = $request->per_page ??  20;
+        $per_page = $request->per_page ?? 20;
 
         if ($this->getCategory($category)) {
             if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
@@ -166,7 +164,6 @@ class ProductsController extends Controller
         $products = $query->filter($request)->latest()->paginate($per_page);
         $products->load('images');
         $products->appends(request()->all());
-
         return $products;
     }
 
@@ -215,9 +212,7 @@ class ProductsController extends Controller
         $partFitsVehicle = true;
 
         $category = Category::where('slug', $request->category)->first();
-
         $cookie = null;
-
         $catString = null;
 
         if ($request->checkForCategory == true && $this->getCategory($category)) {
@@ -229,7 +224,6 @@ class ProductsController extends Controller
         }
 
         $p = null;
-
         $productFitString = null;
 
         if ($request->filled('product')) {
@@ -273,7 +267,6 @@ class ProductsController extends Controller
         }
 
         $data = MakeModelYearEngine::getMakeModelYearSearch($request);
-
         $res =  response()->json(
             [
                 'type' => $request->type,
@@ -311,8 +304,7 @@ class ProductsController extends Controller
 
             $products = Product::where('name', 'like', '%' . $request->q . '%')
                 ->take(10)
-                ->pluck('name')
-                ->toArray();
+                ->get();
 
 
             return response()->json([

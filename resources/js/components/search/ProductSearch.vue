@@ -44,8 +44,7 @@
           :key="product"
           role="button"
           class="py-3"
-          @click="getSearchedName('product',product)"
-        >{{ product }}</li>
+        ><a :href="product.link">{{ product.name }}</a></li>
 
       </ul>
     </div>
