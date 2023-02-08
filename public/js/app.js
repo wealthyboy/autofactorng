@@ -21503,6 +21503,7 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
 
     function activate() {
+      console.log(true);
       store.commit("setModal", true);
     }
 
@@ -25842,7 +25843,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "position-relative"
+  "class": "position-relative me-3"
 };
 var _hoisted_2 = {
   href: "#",
@@ -37320,8 +37321,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_checkout_CheckoutIndex__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./components/checkout/CheckoutIndex */ "./resources/js/components/checkout/CheckoutIndex.vue");
 /* harmony import */ var _components_search_ProductSearch__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./components/search/ProductSearch */ "./resources/js/components/search/ProductSearch.vue");
 /* harmony import */ var _components_search_ModalMakeModelYear__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./components/search/ModalMakeModelYear */ "./resources/js/components/search/ModalMakeModelYear.vue");
-/* harmony import */ var _components_addVehicle_ModalSearch__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/addVehicle/ModalSearch */ "./resources/js/components/addVehicle/ModalSearch.vue");
-/* harmony import */ var _components_addVehicle_Index__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/addVehicle/Index */ "./resources/js/components/addVehicle/Index.vue");
+/* harmony import */ var _components_search_MakeModelYear__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./components/search/MakeModelYear */ "./resources/js/components/search/MakeModelYear.vue");
+/* harmony import */ var _components_addVehicle_ModalSearch__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./components/addVehicle/ModalSearch */ "./resources/js/components/addVehicle/ModalSearch.vue");
+/* harmony import */ var _components_addVehicle_Index__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./components/addVehicle/Index */ "./resources/js/components/addVehicle/Index.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
@@ -37334,6 +37336,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bun
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
 
 
 
@@ -37379,9 +37382,10 @@ app.component('Wallet', _components_auth_Wallet__WEBPACK_IMPORTED_MODULE_11__["d
 app.component('Reviews', _components_products_Reviews__WEBPACK_IMPORTED_MODULE_6__["default"]);
 app.component('ProductSearch', _components_search_ProductSearch__WEBPACK_IMPORTED_MODULE_23__["default"]);
 app.component('ModalMakeModelYear', _components_search_ModalMakeModelYear__WEBPACK_IMPORTED_MODULE_24__["default"]);
-app.component('AddVehicle', _components_addVehicle_Index__WEBPACK_IMPORTED_MODULE_26__["default"]);
+app.component('AddVehicle', _components_addVehicle_Index__WEBPACK_IMPORTED_MODULE_27__["default"]);
 app.component('MakeModelYearMessage', _components_message_MakeModelYearMessage__WEBPACK_IMPORTED_MODULE_13__["default"]);
-app.component('ModalSearch', _components_addVehicle_ModalSearch__WEBPACK_IMPORTED_MODULE_25__["default"]);
+app.component('ModalSearch', _components_addVehicle_ModalSearch__WEBPACK_IMPORTED_MODULE_26__["default"]);
+app.component('MakeModelYearSearch', _components_search_MakeModelYear__WEBPACK_IMPORTED_MODULE_25__["default"]);
 app.component('Subscribe', _components_auth_Subscribe__WEBPACK_IMPORTED_MODULE_10__["default"]);
 app.config.globalProperties.$filters = {
   formatNumber: function formatNumber(value) {

@@ -55,6 +55,7 @@ export default {
     const store = useStore();
 
     function activate() {
+      console.log(true);
       store.commit("setModal", true);
     }
 

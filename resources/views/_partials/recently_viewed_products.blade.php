@@ -5,7 +5,7 @@
 <div class="owl-carousel owl-theme show-nav-hover nav-outer nav-image-center" data-owl-options="{
 					'dots': false,
 					'margin': 10,
-					'loop': true,
+					'loop': false,
 					'nav': true,
 					'autoplay': true,
 					'responsive': {
@@ -25,8 +25,8 @@
    <div class="product-default left-details product-unfold">
       <figure>
          <a href="{{ $product->link }}">
-            <img src="{{ $product->image_to_show }}" alt="product" width="300" height="300">
-            <img src="{{ $product->image_to_show }}" alt="product" width="300" height="300">
+            <img src="https://autofactor.ng/images/products/jCP2paMxbx0KOv8299uJPmJ7JmuA6oZsTy266jFL.png" alt="product">
+            <img src="https://autofactor.ng/images/products/jCP2paMxbx0KOv8299uJPmJ7JmuA6oZsTy266jFL.png" alt="product">
          </a>
       </figure>
       <div class="product-details">

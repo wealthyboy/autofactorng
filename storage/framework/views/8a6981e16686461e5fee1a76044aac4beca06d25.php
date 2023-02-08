@@ -5,26 +5,40 @@
     <!-- <div class="p-3 mb-2 bg-danger text-white text-center">Just in Autocover now available</div> -->
     <div class="row g-2">
         <?php echo $__env->make('_partials.slider', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <div class="col-md-3">
+            <img src="http://auto.test/images/banners/d3fdRL3jfoTLQL8rAXX3wKAxOZXySW0fEagwprZy.jpg" alt="">
+        </div>
 
     </div>
 </div>
 
 <div class="container-fluid">
-
-
     <?php echo $__env->make('_partials.recently_viewed_products',['name' => ' RECENTLY VIEWED & RELATED'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-    <?php echo $__env->make('_partials.auto_cover', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+</div>
 
-    <?php echo $__env->make('_partials.categories', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-    <?php echo $__env->make('_partials.brands', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-    <div class="row">
-        <div class="col-12 text-center p-3">
-            <a href="/brands" type="button" class="btn btn-outline-info">More Brands</a>
-        </div>
+<div class="text-center cta-simple cta-border light my-5">
+    <div class="title w-100 p-2">
+        <h3>SET YOUR VEHICLE</h3>
+        <p>Get an exact fit for your vehicle.</p>
     </div>
+    <div class="d-flex justify-content-between  align-content-center pt-2">
+        <make-model-year-search :filter="true"></make-model-year-search>
+    </div>
+</div>
+
+
+<?php echo $__env->make('_partials.auto_cover', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+<?php echo $__env->make('_partials.categories', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+<?php echo $__env->make('_partials.brands', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+<div class="row">
+    <div class="col-12 text-center p-3">
+        <a href="/brands" type="button" class="btn btn-outline-info">More Brands</a>
+    </div>
+</div>
 </div>
 
 <?php $__env->stopSection(); ?>

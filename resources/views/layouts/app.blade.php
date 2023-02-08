@@ -9,7 +9,7 @@
    <title>Autofactor</title>
 
    <meta name="keywords" content="" />
-   <meta name="description" content="PAutofactor">
+   <meta name="description" content="Autofactor">
    <meta name="author" content="">
 
    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -34,7 +34,7 @@
                <div class="header-left col-lg-2 w-auto pl-0">
                   <button class="mobile-menu-toggler text-primary mr-2" type="button">
                      <i class="fas fa-bars"></i>
-                     <div>Menu</div>
+                     <div class="mt-3">Menu</div>
                   </button>
                   <a href="/" class="logo">
                      <img src="https://autofactor.ng/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
@@ -51,9 +51,9 @@
                      <h6><span>Call us now</span><a href="tel:#" class="text-dark font1">+123 5678 890</a></h6>
                   </div>
                   @auth
-                  <div class="position-relative">
-                     <a href="/account" class="header-icon" title="account">
-                        <img src="/images/utils/signin.svg" class="m" alt="">
+                  <div class="position-relative me-5">
+                     <a href="/account" class="header-" title="account">
+                        <img src="/images/utils/signin.svg" class="ms-2" alt="">
                      </a>
                      <div class="text-sm">Account</div>
                   </div>
@@ -61,10 +61,10 @@
                   @endauth
 
                   @guest
-                  <div class="position-relative">
+                  <div class="position-relative me-5 ">
 
-                     <a href="/login" class="header-icon" title="login">
-                        <img src="/images/utils/signin.svg" class="m" alt="">
+                     <a href="/login" class="header-" title="login">
+                        <img src="/images/utils/signin.svg" class="ms-2" alt="">
                      </a>
                      <div class="text-sm">Signin</div>
 

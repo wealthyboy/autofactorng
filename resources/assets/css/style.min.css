@@ -6017,7 +6017,7 @@ figure:hover .overlay-visible {
 .cta-simple {
     align-items: center;
     text-align: center;
-    padding: 3.2rem 5.5rem
+    padding: 3.2rem 10.5rem
 }
 
 .cta-border {
@@ -10575,7 +10575,7 @@ h6.heading-bottom-border {
 
 html {
     overflow-x: hidden;
-    font-size: 70.5%;
+    font-size: 62.5%;
     font-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
@@ -12096,8 +12096,8 @@ header .separator {
 }
 
 .dropdown-arrow .badge-circle {
-    top: 3px;
-    left: 19px;
+    top: -13px;
+    left: 16px;
     z-index: 2
 }
 
@@ -13599,7 +13599,7 @@ footer .contact-info-label {
 .cart-dropdown a.dropdown-toggle {
     display: flex;
     align-items: center;
-    min-height: 38px
+    /* min-height: 38px */
 }
 
 .cart-dropdown a.dropdown-toggle:hover {

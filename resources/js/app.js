@@ -40,6 +40,8 @@ import WalletTable from "./components/wallet/Index"
 import CheckoutIndex from "./components/checkout/CheckoutIndex"
 import ProductSearch from "./components/search/ProductSearch"
 import ModalMakeModelYear from "./components/search/ModalMakeModelYear"
+import MakeModelYearSearch from "./components/search/MakeModelYear"
+
 import ModalSearch from "./components/addVehicle/ModalSearch"
 
 import AddVehicle from "./components/addVehicle/Index"
@@ -70,6 +72,8 @@ app.component('ModalMakeModelYear', ModalMakeModelYear)
 app.component('AddVehicle', AddVehicle)
 app.component('MakeModelYearMessage', MakeModelYearMessage)
 app.component('ModalSearch', ModalSearch)
+app.component('MakeModelYearSearch', MakeModelYearSearch)
+
 
 
 

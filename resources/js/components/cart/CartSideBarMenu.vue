@@ -1,5 +1,5 @@
 <template>
-  <div class="position-relative">
+  <div class="position-relative me-3">
     <a
       href="#"
       title="Cart"
