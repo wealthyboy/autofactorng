@@ -7698,9 +7698,6 @@ figure .porto-loading-icon {
 
 .product-default a {
     color: inherit;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis
 }
 
 .product-default a:hover {

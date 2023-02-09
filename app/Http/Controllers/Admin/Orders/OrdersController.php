@@ -77,7 +77,6 @@ class OrdersController extends Table
 		$total = array_sum($total);
 		$shipping = $request->shipping_price;
 
-
 		if ($request->percentage_type == 'fixed') {
 			$new_total = $total - $request->discount;
 			$new_total = $new_total +  $shipping;
@@ -147,7 +146,7 @@ class OrdersController extends Table
 	{
 		User::canTakeAction(User::canCreate);
 		$order = Order::find($id);
-		$statuses   =  static::order_status();
+		$statuses = static::order_status();
 		return view('admin.orders.create', compact('order', 'statuses'));
 	}
 
