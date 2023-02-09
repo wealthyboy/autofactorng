@@ -12,12 +12,13 @@
    </div>
    <div class="col-md-12">
       <div class="card">
-         <div class="card-header">
-            <h4 class="card-title">Product {{ optional($review->product)->product_name }}</h4>
+         <div class="card-header d-flex justify-content-between">
+            <h4 class="">Product {{ optional($review->product)->product_name }}</h4>
+            <a href="/admin/reviews?id={{ $review->id }}&accept={{ $review->is_verified ? 0 : 1  }}">{{ $review->is_verified == true ?   'Approved' : "Approve" }}</a>
          </div>
          <div class="card-content">
             <ul class="nav nav-pills nav-pills-warning">
-               <li class="active"><a href="panels.html#pill1" data-toggle="tab">General</a></li>
+               <li class="active"><a href="panels.html#pill1" data-toggle="tab"></a></li>
             </ul>
             <div class="tab-content">
                <div class="tab-pane active" id="pill1">
@@ -26,31 +27,43 @@
                         <table class="table">
                            <tbody>
                               <tr>
-                                 <td colspan="4"><b>Title </b></td>
+                                 <td colspan="4">
+                                    <h6>Title </h6>
+                                 </td>
                                  <td class="text-right">{{ $review->title }}</td>
                               </tr>
 
                               <tr>
-                                 <td colspan="4"><b>Full Name</b></td>
+                                 <td colspan="4">
+                                    <h6>Full Name</h6>
+                                 </td>
                                  <td class="text-right"> {{ optional($review->user)->fullname() }}</td>
                               </tr>
 
                               <tr>
-                                 <td colspan="4"><b>Email </b></td>
+                                 <td colspan="4">
+                                    <h6>Email </h6>
+                                 </td>
                                  <td class="text-right">{{ optional($review->user)->email }}</td>
                               </tr>
                               <tr>
-                                 <td colspan="4"><b>Phone </b></td>
+                                 <td colspan="4">
+                                    <h6>Phone </h6>
+                                 </td>
                                  <td class="text-right">{{ optional($review->user)->phone_number }}</td>
                               </tr>
 
                               <tr>
-                                 <td colspan="4"><b>Stars </b></td>
+                                 <td colspan="4">
+                                    <h6>Stars </h6>
+                                 </td>
                                  <td class="text-right">{{ $review->rating / 20 }} stars</td>
                               </tr>
 
                               <tr>
-                                 <td colspan="4"><b>Description </b></td>
+                                 <td colspan="4">
+                                    <h6>Description </h6>
+                                 </td>
                                  <td class="">{{ $review->description }} </td>
                               </tr>
                            </tbody>

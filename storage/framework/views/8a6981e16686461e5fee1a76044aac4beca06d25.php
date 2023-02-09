@@ -14,17 +14,10 @@
 
 <div class="container-fluid">
     <?php echo $__env->make('_partials.recently_viewed_products',['name' => ' RECENTLY VIEWED & RELATED'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
 </div>
 
 <div class="text-center cta-simple cta-border light my-5">
-    <div class="title w-100 p-2">
-        <h3>SET YOUR VEHICLE</h3>
-        <p>Get an exact fit for your vehicle.</p>
-    </div>
-    <div class="d-flex justify-content-between  align-content-center pt-2">
-        <make-model-year-search :filter="true"></make-model-year-search>
-    </div>
+    <add-vehicle-search></add-vehicle-search>
 </div>
 
 
@@ -40,6 +33,7 @@
     </div>
 </div>
 </div>
+
 
 <?php $__env->stopSection(); ?>
 

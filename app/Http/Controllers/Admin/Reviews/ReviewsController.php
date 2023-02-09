@@ -83,7 +83,7 @@ class ReviewsController extends Table
 
 	public function updateStatus()
 	{
-		if (request()->id) {
+		if (request()->filled('id')) {
 			$review = Review::find(request()->id);
 			$review->is_verified = request()->accept;
 			$review->save();

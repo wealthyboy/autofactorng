@@ -27,7 +27,7 @@ import Subscribe from "./components/auth/Subscribe";
 import Wallet from "./components/auth/Wallet";
 
 import CartSummary from "./components/cart/Index";
-import MakeModelYearMessage from "./components/message/MakeModelYearMessage";
+import MakeMessage from "./components/message/MakeModelYearMessage";
 import Account from "./components/account/Account";
 
 import Modal from "./components/Modal/Index";
@@ -40,7 +40,8 @@ import WalletTable from "./components/wallet/Index"
 import CheckoutIndex from "./components/checkout/CheckoutIndex"
 import ProductSearch from "./components/search/ProductSearch"
 import ModalMakeModelYear from "./components/search/ModalMakeModelYear"
-import MakeModelYearSearch from "./components/search/MakeModelYear"
+import AddVehicleSearch from "./components/search/AddVehicle"
+
 
 import ModalSearch from "./components/addVehicle/ModalSearch"
 
@@ -70,9 +71,9 @@ app.component('Reviews', Reviews)
 app.component('ProductSearch', ProductSearch)
 app.component('ModalMakeModelYear', ModalMakeModelYear)
 app.component('AddVehicle', AddVehicle)
-app.component('MakeModelYearMessage', MakeModelYearMessage)
+app.component('MakeMessage', MakeMessage)
 app.component('ModalSearch', ModalSearch)
-app.component('MakeModelYearSearch', MakeModelYearSearch)
+app.component('AddVehicleSearch', AddVehicleSearch)
 
 
 

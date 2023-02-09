@@ -132,7 +132,8 @@
 
 
 
-         </modal>
+
+
          <div class="container-fluid  d-sm-block d-lg-none">
 
             <div class="d-flex w-100">
@@ -162,6 +163,9 @@
 
       </header>
 
+      <make-message></make-message>
+
+
 
       <!-- End .header -->
       <div class="coverlay overlay-close"></div>
@@ -172,8 +176,6 @@
       </main>
 
 
-
-      <make-model-year-message></make-model-year-message>
       <!-- End .main -->
 
 
