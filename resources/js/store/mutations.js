@@ -19,7 +19,7 @@ export const setMessage = (state, message) => {
     state.message = message;
 
     setTimeout(() => {
-        //state.message = null;
+        state.message = null;
     }, 4000)
 }
 

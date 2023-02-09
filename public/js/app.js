@@ -21569,7 +21569,8 @@ __webpack_require__.r(__webpack_exports__);
         shopWithoutVehicle = _useActions.shopWithoutVehicle;
 
     function getString(t) {
-      if (t.type == "engine_id") {//store.commit("setfitString", " You are now shopping for  " + t.text);
+      if (t.type == "engine_id") {
+        store.commit("setMessage", " You are now shopping for  " + t.text);
       }
 
       if (t.type == "engine_id") {
@@ -37676,6 +37677,7 @@ var shopWithoutVehicle = function shopWithoutVehicle(_ref9, action) {
     commit("setProductIsLoading", false);
     commit("setProductFitString", null);
     commit("setShowSearch", res.data.showSearch);
+    commit("setfitString", res.data.string);
 
     if (action == "shop") {
       commit("setModal", false);
@@ -38387,7 +38389,8 @@ var setCoupon = function setCoupon(state, voucher) {
 };
 var setMessage = function setMessage(state, message) {
   state.message = message;
-  setTimeout(function () {//state.message = null;
+  setTimeout(function () {
+    state.message = null;
   }, 4000);
 };
 var setReviews = function setReviews(state, reviews) {

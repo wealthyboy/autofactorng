@@ -93,6 +93,7 @@ export const getCart = ({ commit }) => {
 };
 
 export const shopWithoutVehicle = ({ commit }, action) => {
+
     if (action == "change") {
         commit("setfitString", null);
         return
@@ -106,13 +107,15 @@ export const shopWithoutVehicle = ({ commit }, action) => {
         })
         .then((res) => {
 
-
             commit("setProducts", res.data.data);
             commit("setMeta", res.data.meta);
             commit("setShowFitString", res.data.showFitStringOnCategoryPage);
             commit("setProductIsLoading", false);
             commit("setProductFitString", null);
             commit("setShowSearch", res.data.showSearch);
+            commit("setfitString", res.data.string);
+
+
 
             if (action == "shop") {
                 commit("setModal", false);

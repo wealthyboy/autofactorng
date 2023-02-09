@@ -98,7 +98,7 @@ export default {
 
     function getString(t) {
       if (t.type == "engine_id") {
-        //store.commit("setfitString", " You are now shopping for  " + t.text);
+        store.commit("setMessage", " You are now shopping for  " + t.text);
       }
 
       if (t.type == "engine_id") {
