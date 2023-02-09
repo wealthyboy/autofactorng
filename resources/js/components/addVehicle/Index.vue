@@ -31,6 +31,8 @@
     </div>
   </button>
 
+  <modal-search></modal-search>
+
 </template>
 
 
@@ -41,17 +43,14 @@ import { useActions, useGetters } from "vuex-composition-helpers";
 import { mapGetters, mapActions, useStore } from "vuex";
 import { computed, onMounted, ref } from "vue";
 import http from "../../utils/httpService";
-import Modal from "./Mod";
+import ModalSearch from "./ModalSearch";
 
 export default {
-  components: { Modal },
+  components: { ModalSearch },
   setup() {
-    const {} = useActions([]);
     const t = ref(null);
-
     const fitString = computed(() => store.getters.fitString);
     const showModal = computed(() => store.getters.showModal);
-
     const store = useStore();
 
     function activate() {
@@ -71,8 +70,6 @@ export default {
         store.commit("setShowModal", false);
       }
     }
-
-    //You are now shopping for 2022 Audi A5 Sportback Prestige 2.0L FI Turbo HEV 4cyl
 
     return {
       getString,

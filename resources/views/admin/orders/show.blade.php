@@ -24,7 +24,7 @@
                   <td class="text-left" data-link-style="text-decoration:none; color:#67bffd;">
                      {{ $order->first_name }} {{ $order->last_name }} <br />
                      {{ $order->address }}<br /> {{ $order->city }} &nbsp;
-                     <br /> {{ $order->state }}&nbsp;
+                     <br />{{ $order->state }}&nbsp;
                   </td>
                </tr>
             </tbody>
@@ -36,7 +36,6 @@
    @include('admin._partials.t', ['models' => $orders, 'name' => 'Items'])
    <div class="card mt-3">
       <div class="card-header p-3 pt-2">
-
          <h6 class="mb-0">Update Status</h6>
       </div>
       <div class="card-body  pt-0">

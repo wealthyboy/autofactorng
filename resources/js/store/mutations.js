@@ -141,3 +141,7 @@ export const setProductIsLoading = (state, trueOrFalse) => {
 export const setProductFitString = (state, s) => {
     state.productFitString = s
 }
+
+export const setShowSearch = (state, trueOrFalse) => {
+    state.showSearch = trueOrFalse
+}

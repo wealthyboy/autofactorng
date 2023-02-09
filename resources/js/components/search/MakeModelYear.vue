@@ -14,7 +14,6 @@
           value="0"
           selected="selected"
         >
-
           Year
         </option>
 
@@ -156,6 +155,10 @@ export default {
         .then((response) => {
           store.commit("setfitString", response.data.string);
           store.commit("setProductFitString", response.data.productFitString);
+          store.commit(
+            "setMessage",
+            "You are now shopping for  " + response.data.string
+          );
 
           next[nt] = response.data.data;
           let text = response.data.string;

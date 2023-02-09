@@ -66,8 +66,10 @@ export const getProducts = ({ commit }, url) => {
             commit("setShowFitString", res.data.showFitStringOnCategoryPage);
             commit("setProductIsLoading", false);
             commit("setProductFitString", null);
+            commit("setShowSearch", res.data.showSearch);
 
-            productFitString
+
+
         })
         .catch((err) => {
             commit("setProductIsLoading", false);
@@ -103,8 +105,15 @@ export const shopWithoutVehicle = ({ commit }, action) => {
             },
         })
         .then((res) => {
+
+
             commit("setProducts", res.data.data);
-            commit("setfitString", null);
+            commit("setMeta", res.data.meta);
+            commit("setShowFitString", res.data.showFitStringOnCategoryPage);
+            commit("setProductIsLoading", false);
+            commit("setProductFitString", null);
+            commit("setShowSearch", res.data.showSearch);
+
             if (action == "shop") {
                 commit("setModal", false);
             }

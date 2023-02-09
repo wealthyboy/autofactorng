@@ -134,3 +134,8 @@ export const productIsLoading = (state) => {
 export const productFitString = (state) => {
     return state.productFitString
 }
+
+
+export const showSearch = (state) => {
+    return state.showSearch
+}

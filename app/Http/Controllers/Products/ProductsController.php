@@ -33,27 +33,32 @@ class ProductsController extends Controller
      */
     public function  index(Request $request, Builder $builder, Category $category)
     {
-        //sleep(30);
+
         $page_title = implode(" ", explode('-', $category->slug));
         $this->clearMMYCookies($request);
         $products = $this->getProductsData($request, $builder, $category);
         if ($request->ajax()) {
             return (new ProductsCollection($products))
                 ->additional([
-                    'string' =>  $this->buildSearchString($request),
+                    'string' => $this->buildSearchString($request),
                     'showFitStringOnCategoryPage' => $this->getCategory($category)  && null != $this->buildSearchString($request) ? true : false,
+                    'showSearch' => $this->showSearch($category),
                     'productFitString' => null,
-
                 ]);
         }
 
-        $search_filters =  $this->searchFilters($category);
-
+        $search_filters = $this->searchFilters($category);
         return  view('products.index', compact(
             'category',
             'page_title',
             'search_filters',
         ));
+    }
+
+
+    public function  showSearch(Category $category)
+    {
+        return $category->name == 'Spare Parts' || optional($category)->name  == 'Servicing Parts' || optional($category->parent)->name  == 'Spare Parts' ||  optional($category->parent)->name  == 'Servicing Parts' || $category->name == 'Tyres' ||  $category->name == 'Batteries' ? true : false;
     }
 
 

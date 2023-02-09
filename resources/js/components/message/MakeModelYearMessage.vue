@@ -27,10 +27,8 @@ import { useGetters } from "vuex-composition-helpers";
 import { useStore } from "vuex";
 
 export default {
-  props: { message: String },
   setup() {
     const { message } = useGetters(["message"]);
-
     return {
       message,
     };

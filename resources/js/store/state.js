@@ -30,6 +30,6 @@ export default {
     showModal: false,
     showFitString: false,
     productIsLoading: true,
-    porductFitString: null,
-
+    productFitString: null,
+    showSearch: false,
 }

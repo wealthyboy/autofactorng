@@ -10,6 +10,7 @@
           <div class="col-md-9"></div>
         </div>
       </div>
+
       <search-string
         v-if="!productIsLoading && showFitString && fitString"
         @remove:vehicle="shopWithoutVehicle"
@@ -256,6 +257,7 @@ export default {
       meta: "meta",
       productIsLoading: "productIsLoading",
       showFitString: "showFitString",
+      showSearch: "showSearch",
     }),
   },
 

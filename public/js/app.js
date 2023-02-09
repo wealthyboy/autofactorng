@@ -21476,9 +21476,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _utils_httpService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../utils/httpService */ "./resources/js/utils/httpService.js");
-/* harmony import */ var _Mod__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Mod */ "./resources/js/components/addVehicle/Mod.vue");
-function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure undefined"); }
-
+/* harmony import */ var _ModalSearch__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ModalSearch */ "./resources/js/components/addVehicle/ModalSearch.vue");
 
 
 
@@ -21486,13 +21484,9 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    Modal: _Mod__WEBPACK_IMPORTED_MODULE_3__["default"]
+    ModalSearch: _ModalSearch__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   setup: function setup() {
-    var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_0__.useActions)([]);
-
-    _objectDestructuringEmpty(_useActions);
-
     var t = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
     var fitString = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return store.getters.fitString;
@@ -21519,8 +21513,7 @@ function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("
       if (t.type == "engine_id") {
         store.commit("setShowModal", false);
       }
-    } //You are now shopping for 2022 Audi A5 Sportback Prestige 2.0L FI Turbo HEV 4cyl
-
+    }
 
     return {
       getString: getString,
@@ -21576,13 +21569,8 @@ __webpack_require__.r(__webpack_exports__);
         shopWithoutVehicle = _useActions.shopWithoutVehicle;
 
     function getString(t) {
-      if (t.type == "engine_id") {
-        store.commit("setMessage", " You are now shopping for  " + t.text);
+      if (t.type == "engine_id") {//store.commit("setfitString", " You are now shopping for  " + t.text);
       }
-
-      setTimeout(function () {
-        store.commit("setMessage", null);
-      }, 11000);
 
       if (t.type == "engine_id") {
         store.commit("setModal", false);
@@ -22683,9 +22671,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: {
-    message: String
-  },
   setup: function setup() {
     var _useGetters = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_0__.useGetters)(["message"]),
         message = _useGetters.message;
@@ -22954,7 +22939,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     products: "products",
     meta: "meta",
     productIsLoading: "productIsLoading",
-    showFitString: "showFitString"
+    showFitString: "showFitString",
+    showSearch: "showSearch"
   })),
   mounted: function mounted() {
     var d = new Date();
@@ -23531,6 +23517,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         store.commit("setfitString", response.data.string);
         store.commit("setProductFitString", response.data.productFitString);
+        store.commit("setMessage", "You are now shopping for  " + response.data.string);
         next[nt] = response.data.data;
         var text = response.data.string;
         var type = e.target.name;
@@ -24967,14 +24954,18 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+  var _component_modal_search = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("modal-search");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[0] || (_cache[0] = function () {
       return $setup.activate && $setup.activate.apply($setup, arguments);
     }),
     "class": "nav-btn border-0 w-100 mb-0"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_2)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_3)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.fitString), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, "Add vehicle")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_6])]);
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, "Add vehicle")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_6])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_modal_search)], 64
+  /* STABLE_FRAGMENT */
+  );
 }
 
 /***/ }),
@@ -25017,7 +25008,7 @@ var _hoisted_6 = {
 };
 function render(_ctx, _cache) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "header", {}, function () {
-    return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" default header "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" default headerdd "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "modal-default-button",
       onClick: _cache[0] || (_cache[0] = function ($event) {
         return _ctx.$emit('close');
@@ -26561,11 +26552,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     ), _hoisted_15]))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(""), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("")])]);
   }), 128
   /* KEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber(_ctx.cart_meta.sub_total)), 1
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.cart_meta.sub_total), 1
   /* TEXT */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber(_ctx.prices.ship_price)), 1
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.prices.ship_price), 1
   /* TEXT */
-  )])]), _ctx.prices.heavy_item_price ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber(_ctx.prices.heavy_item_price)), 1
+  )])]), _ctx.prices.heavy_item_price ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.prices.heavy_item_price), 1
   /* TEXT */
   )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
   /* STABLE_FRAGMENT */
@@ -37554,7 +37545,7 @@ var getProducts = function getProducts(_ref7, url) {
     commit("setShowFitString", res.data.showFitStringOnCategoryPage);
     commit("setProductIsLoading", false);
     commit("setProductFitString", null);
-    productFitString;
+    commit("setShowSearch", res.data.showSearch);
   })["catch"](function (err) {
     commit("setProductIsLoading", false);
   });
@@ -37586,7 +37577,11 @@ var shopWithoutVehicle = function shopWithoutVehicle(_ref9, action) {
     }
   }).then(function (res) {
     commit("setProducts", res.data.data);
-    commit("setfitString", null);
+    commit("setMeta", res.data.meta);
+    commit("setShowFitString", res.data.showFitStringOnCategoryPage);
+    commit("setProductIsLoading", false);
+    commit("setProductFitString", null);
+    commit("setShowSearch", res.data.showSearch);
 
     if (action == "shop") {
       commit("setModal", false);
@@ -38097,6 +38092,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "showFitString": () => (/* binding */ showFitString),
 /* harmony export */   "showForm": () => (/* binding */ showForm),
 /* harmony export */   "showModal": () => (/* binding */ showModal),
+/* harmony export */   "showSearch": () => (/* binding */ showSearch),
 /* harmony export */   "states": () => (/* binding */ states),
 /* harmony export */   "tableData": () => (/* binding */ tableData),
 /* harmony export */   "total": () => (/* binding */ total),
@@ -38204,6 +38200,9 @@ var productIsLoading = function productIsLoading(state) {
 var productFitString = function productFitString(state) {
   return state.productFitString;
 };
+var showSearch = function showSearch(state) {
+  return state.showSearch;
+};
 
 /***/ }),
 
@@ -38273,6 +38272,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setShipping": () => (/* binding */ setShipping),
 /* harmony export */   "setShowFitString": () => (/* binding */ setShowFitString),
 /* harmony export */   "setShowForm": () => (/* binding */ setShowForm),
+/* harmony export */   "setShowSearch": () => (/* binding */ setShowSearch),
 /* harmony export */   "setStates": () => (/* binding */ setStates),
 /* harmony export */   "setTableData": () => (/* binding */ setTableData),
 /* harmony export */   "setWalletBalance": () => (/* binding */ setWalletBalance),
@@ -38378,6 +38378,9 @@ var setProductIsLoading = function setProductIsLoading(state, trueOrFalse) {
 var setProductFitString = function setProductFitString(state, s) {
   state.productFitString = s;
 };
+var setShowSearch = function setShowSearch(state, trueOrFalse) {
+  state.showSearch = trueOrFalse;
+};
 
 /***/ }),
 
@@ -38424,7 +38427,8 @@ __webpack_require__.r(__webpack_exports__);
   showModal: false,
   showFitString: false,
   productIsLoading: true,
-  porductFitString: null
+  productFitString: null,
+  showSearch: false
 });
 
 /***/ }),

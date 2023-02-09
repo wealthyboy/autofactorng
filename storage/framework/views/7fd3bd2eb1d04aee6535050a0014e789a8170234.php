@@ -44,7 +44,7 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Note</label>
-                        <input type="text" value="<?php echo e(isset($product) ? $product->note : old('note')); ?>" class="form-control" name="note" required id="note">
+                        <input type="text" value="<?php echo e(isset($product) ? $product->note : old('note')); ?>" class="form-control" name="note" id="note">
                      </div>
                      <div></div>
                   </div>
@@ -54,7 +54,7 @@
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Price</label>
-                        <input type="number" class="form-control" name="price" required value="<?php echo e(isset($product) ? $product->price : old('price')); ?>">
+                        <input type="number" class="form-control" name="price" value="<?php echo e(isset($product) ? $product->price : old('price')); ?>">
                      </div>
                   </div>
 
@@ -202,6 +202,7 @@
                      </div>
                   </div>
                </div>
+
 
                <?php echo $__env->make('admin._partials.is_featured', ['model' => $product], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 

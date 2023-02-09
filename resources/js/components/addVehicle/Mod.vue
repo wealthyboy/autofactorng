@@ -5,7 +5,7 @@
 
         <div class="modal-header">
           <slot name="header">
-            default header
+            default headerdd
             <button
               class="modal-default-button"
               @click="$emit('close')"

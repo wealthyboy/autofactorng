@@ -92,21 +92,15 @@ export default {
   setup() {
     const showModal = computed(() => store.getters.showModal);
     const t = ref(null);
-
     const fitString = computed(() => store.getters.fitString);
-
     const store = useStore();
-
     const { shopWithoutVehicle } = useActions(["shopWithoutVehicle"]);
 
     function getString(t) {
       if (t.type == "engine_id") {
-        store.commit("setMessage", " You are now shopping for  " + t.text);
+        //store.commit("setfitString", " You are now shopping for  " + t.text);
       }
 
-      setTimeout(() => {
-        store.commit("setMessage", null);
-      }, 11000);
       if (t.type == "engine_id") {
         store.commit("setModal", false);
       }

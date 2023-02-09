@@ -168,16 +168,12 @@
 
       <main class="main mt-3">
          @yield('content')
-
          <modal-search></modal-search>
       </main>
 
 
 
       <make-model-year-message></make-model-year-message>
-
-
-
       <!-- End .main -->
 
 
@@ -255,7 +251,6 @@
                <a href="/account" class="header-icon  d-flex" title="account">
                   <img src="/images/utils/signin.svg" alt="">
                   <span class="text-sm">Signin</span>
-
                </a>
                @endguest
                <div class="menu">Wallet</div>
