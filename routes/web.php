@@ -77,6 +77,10 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 });
 
 
+Route::post('password/reset/link',           'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::post('reset/password',                'Auth\ForgotPasswordController@reset');
+Route::get('validate/token/{token}',         'Auth\ForgotPasswordController@validateToken');
+
 Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
@@ -89,6 +93,7 @@ Route::get('product/{category}/{product}', 'Products\ProductsController@show');
 Route::get('make-model-year-engine', 'Products\ProductsController@makeModelYearSearch');
 Route::get('auto-complete', 'Products\ProductsController@autoComplete');
 Route::get('search', 'Products\ProductsController@search');
+
 
 
 

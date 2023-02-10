@@ -44,7 +44,7 @@
         >Remember me</label>
       </div>
       <div class="text-right "><a
-          href="#"
+          href="/password/reset"
           class="color--primary bold"
         >Forget your password?</a></div>
     </div>

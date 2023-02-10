@@ -126,7 +126,54 @@ export default {
         return;
       }
 
-      console.log(true);
+      paymentIsComplete.value = false;
+      paymentIsProcessing.value = true;
+      var handler = PaystackPop.setup({
+        key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
+        email: props.user.email,
+        amount: form.amount * 100,
+        currency: "NGN",
+        first_name: props.user.name,
+        metadata: {
+          custom_fields: [
+            {
+              amount: form.amount,
+              customer_id: props.user.id,
+              type: "Wallet",
+            },
+          ],
+        },
+        callback: function (response) {
+          error.value = false;
+          console.log(false);
+          axios
+            .post("/wallets", form)
+            .then((res) => {
+              paymentIsComplete.value = true;
+              paymentIsProcessing.value = false;
+              store.commit("setWalletBalance", res.data);
+              setTimeout(() => {
+                paymentIsComplete.value = false;
+                message.value = null;
+              }, 3000);
+            })
+            .catch((error) => {
+              paymentIsComplete.value = false;
+              paymentIsProcessing.value = false;
+              message.value = "We could not find your data in our system";
+              setTimeout(() => {
+                message.value = null;
+              }, 3000);
+            });
+          message.value = "Your money has been addedd";
+          emit("wallet:funded");
+        },
+        onClose: function () {
+          paymentIsComplete.value = false;
+          paymentIsProcessing.value = false;
+        },
+      });
+      handler.openIframe();
     }
     return {
       form,

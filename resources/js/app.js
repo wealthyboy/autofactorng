@@ -32,6 +32,8 @@ import Account from "./components/account/Account";
 
 import Modal from "./components/Modal/Index";
 import ChangePassword from "./components/account/ChangePassword"
+import ForgotPassword from "./components/auth/ForgotPassword"
+
 import TrackOrders from "./components/account/TrackOrders"
 import Addresses from "./components/account/Addresses"
 import FundWallet from "./components/wallet/Fund"
@@ -74,7 +76,7 @@ app.component('AddVehicle', AddVehicle)
 app.component('MakeMessage', MakeMessage)
 app.component('ModalSearch', ModalSearch)
 app.component('AddVehicleSearch', AddVehicleSearch)
-
+app.component('ForgotPassword', ForgotPassword)
 
 
 

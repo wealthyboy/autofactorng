@@ -21,10 +21,12 @@
           </h5>
           <button
             type="button"
-            class="btn-close"
+            class=""
             data-bs-dismiss="modal"
             aria-label="Close"
-          ></button>
+          >
+            x
+          </button>
         </div>
 
         <div class="text-center pt-3">
