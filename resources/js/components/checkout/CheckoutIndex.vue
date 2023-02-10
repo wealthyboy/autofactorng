@@ -4,25 +4,7 @@
   <template v-if="paymentIsComplete">
     <complete :message="'Your Order has been placed. Check your email for further details'" />
   </template>
-  <section
-    v-if="loading"
-    style="height: 100%;"
-    class=""
-  >
-    <div class="container-fluid">
-      <div class="full-bg">
-        <div class="signup--middle">
-          <div
-            class="spinner-border"
-            style="width: 3rem; height: 3rem; color:red;"
-            role="status"
-          >
-            <span class="visually-hidden">Loading...</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <page-loader :loading="loading" />
 
   <div
     v-if="!loading && !paymentIsComplete"
@@ -170,6 +152,7 @@ import CartSummary from "./Summary";
 import Total from "./Total";
 import Complete from "../utils/Complete.vue";
 import Connect from "@usezilla/zilla-connect";
+import PageLoader from "../utils/PageLoader";
 
 export default {
   components: {
@@ -179,6 +162,7 @@ export default {
     CartSummary,
     Total,
     Complete,
+    PageLoader,
   },
   props: {
     csrf: Object,
