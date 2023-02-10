@@ -25,8 +25,8 @@
    <div class="product-default left-details product-unfold">
       <figure>
          <a href="{{ $product->link }}">
-            <img src="https://autofactor.ng/images/products/jCP2paMxbx0KOv8299uJPmJ7JmuA6oZsTy266jFL.png" alt="product">
-            <img src="https://autofactor.ng/images/products/jCP2paMxbx0KOv8299uJPmJ7JmuA6oZsTy266jFL.png" alt="product">
+            <img src="{{ $product->image }}" alt="product">
+            <img src="{{  $product->image }}" alt="product">
          </a>
       </figure>
       <div class="product-details">
