@@ -96,6 +96,7 @@ export const shopWithoutVehicle = ({ commit }, action) => {
 
     if (action == "change") {
         commit("setfitString", null);
+        commit("setShowFitString", false);
         return
     }
 

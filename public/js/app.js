@@ -37829,6 +37829,7 @@ var shopWithoutVehicle = function shopWithoutVehicle(_ref9, action) {
 
   if (action == "change") {
     commit("setfitString", null);
+    commit("setShowFitString", false);
     return;
   }
 
