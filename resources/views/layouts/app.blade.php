@@ -112,13 +112,12 @@
                      <product-search class="mx-5"></product-search>
 
                      <div class="menu-i menu-i  w-25 me-5">
-                        <button role="button" class="w-100 mb-0 border-0">
+                        <a href="" role="button" class="w-100 mb-0 border-0">
                            <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
-                              <div class="align-self-center"><img src="/images/utils/vehicle-new.svg" alt=""></div>
                               <div class="align-self-center">How To</div>
                               <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
                            </div>
-                        </button>
+                        </a>
                      </div>
                   </div>
                </nav>
@@ -150,13 +149,12 @@
 
 
                <div class="menu-i w-50">
-                  <button role="button" class="w-100 mb-0 ">
+                  <a href="/how-to" role="button" class="w-100 mb-0 ">
                      <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
-                        <div class="align-self-center"><img src="/images/utils/vehicle-new.svg" alt=""></div>
                         <div class="align-self-center">How To</div>
                         <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
                      </div>
-                  </button>
+                  </a>
                </div>
             </div>
          </div>

@@ -115,8 +115,6 @@ export const shopWithoutVehicle = ({ commit }, action) => {
             commit("setShowSearch", res.data.showSearch);
             commit("setfitString", res.data.string);
 
-
-
             if (action == "shop") {
                 commit("setModal", false);
             }
