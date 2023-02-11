@@ -29,7 +29,7 @@
                     <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                     <div class="owl-dot">
-                        <img src="<?php echo e($image->image); ?>" width="110" height="110" alt="product-thumbnail" />
+                        <img src="<?php echo e($image->image_m); ?>" width="110" height="110" alt="product-thumbnail" />
                     </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 

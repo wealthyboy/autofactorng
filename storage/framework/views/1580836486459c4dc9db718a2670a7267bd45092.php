@@ -25,8 +25,8 @@
    <div class="product-default left-details product-unfold">
       <figure>
          <a href="<?php echo e($product->link); ?>">
-            <img src="<?php echo e($product->image_to_show); ?>" alt="product">
-            <img src="<?php echo e($product->image_to_show); ?>" alt="product">
+            <img src="<?php echo e($product->image_m); ?>" alt="product">
+            <img src="<?php echo e($product->image_m); ?>" alt="product">
          </a>
       </figure>
       <div class="product-details">

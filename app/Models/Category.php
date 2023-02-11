@@ -19,6 +19,11 @@ class Category extends Model
         return $this->hasMany(Category::class, 'parent_id', 'id')->orderBy('sort_order', 'asc');
     }
 
+    public function discount()
+    {
+        return $this->hasOne(Discount::class);
+    }
+
     public function images()
     {
         return $this->morphOne(Image::class, 'imageable');

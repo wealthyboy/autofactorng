@@ -222,7 +222,6 @@ class ProductController extends Table
 
     public function makeModelYearSearch(Request $request)
     {
-
         $collections = MakeModelYearEngine::getMakeModelYearSearch($request);
 
         return view('admin._partials.options', compact('collections'));

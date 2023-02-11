@@ -38,8 +38,8 @@ trait FormatPrice
   public function display_price()
   {
 
-    if ($this->formatted_discount_price() !== null) {
-      echo "<i style='text-decoration: line-through;'>" . optional($this)->price . "</i>" . '  ' . optional($this)->sale_price;
+    if ($this->salePrice() !== null) {
+      echo "<i style='text-decoration: line-through;'>" . optional($this)->price . "</i>" . '  ' . optional($this)->salePrice();
     }
   }
 
@@ -48,6 +48,19 @@ trait FormatPrice
 
   public function percentageOff()
   {
+    $category = null;
+    if ($this->categories->count() > 1) {
+      $category = $this->categories[1];
+    } else {
+      $category = $this->categories->first();
+    }
+
+    $percent = null;
+    if (null !== optional($category)->discount) {
+      $percent = $category->discount->amount;
+      return  $percent;
+    }
+
     return $this->calPercentageOff($this->price, $this->sale_price);
   }
 
@@ -73,28 +86,33 @@ trait FormatPrice
 
   public function salePrice()
   {
+    $category = null;
+    if ($this->categories->count() > 1) {
+      $category = $this->categories[1];
+    } else {
+      $category = $this->categories->first();
+    }
+
+    $percent = null;
+    if (null !== optional($category)->discount) {
+      $percent =  $category->discount->amount;
+      return  $p = ($percent * $this->price) / 100;
+    }
+
 
     if (null !== $this->sale_price  && null !== $this->sale_price_starts) {
-      if (optional($this->sale_price_starts)->isPast()   || $this->sale_price_starts->isToday()) {
-        if (optional($this->sale_price_expires)->isFuture() &&  !optional($this->sale_price_starts)->isFuture()) {
+      if (optional($this->sale_price_starts)->isPast() || optional($this->sale_price_starts)->isToday()) {
+        if (optional($this->sale_price_ends)->isFuture() &&  !optional($this->sale_price_starts)->isFuture()) {
           return $this->sale_price;
         }
       }
     }
-
-
-    // if ( null !== $this->sale_price  && null !== $this->sale_price_starts  ) {
-    //     if ( optional($this->sale_price_expires)->isFuture() ) { 
-    //       return $this->ConvertCurrencyRate($this->sale_price);
-    //     }
-    // }
 
     return null;
   }
 
   public function getDefaultDiscountedPriceAttribute()
   {
-
     return $this->salePrice();
   }
 
@@ -117,7 +135,7 @@ trait FormatPrice
 
   public function getFormattedSalePriceAttribute()
   {
-    return  number_format($this->sale_price);
+    return  number_format($this->salePrice());
   }
 
   public function ConvertCurrencyRate($price)

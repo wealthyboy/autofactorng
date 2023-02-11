@@ -15,7 +15,6 @@ class Discount extends Model
         'expires'
     ];
 
-
     public function category()
     {
         return $this->belongsTo(Category::class);

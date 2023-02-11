@@ -146,7 +146,7 @@ class DiscountsController extends Table
     {
         $discount = Discount::find($id);
 
-        $$request->validate([
+        $request->validate([
             'category_id' => [
                 'required',
                 Rule::unique('discounts')->ignore($id),
@@ -160,7 +160,6 @@ class DiscountsController extends Table
         $discount->save();
 
         (new Activity)->put("Updated a discount with id  " . $discount->id . 'and amount' . $discount->amount);
-
         return redirect()->route('discounts.index');
     }
 }

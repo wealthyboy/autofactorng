@@ -30,7 +30,7 @@
                     @foreach($product->images as $image)
 
                     <div class="owl-dot">
-                        <img src="{{ $image->image }}" width="110" height="110" alt="product-thumbnail" />
+                        <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
                     </div>
                     @endforeach
 

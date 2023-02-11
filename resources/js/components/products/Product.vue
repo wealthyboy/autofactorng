@@ -8,22 +8,22 @@
       <figure>
         <a :href="product.link">
           <img
-            :src="product.image_to_show"
-            width="280"
-            height="280"
+            :src="product.image_m"
             alt="product"
           >
           <img
-            :src="product.image_to_show"
-            width="280"
-            height="280"
+            :src="product.image_m"
             alt="product"
           >
         </a>
 
-        <!-- <div class="label-group">
-          <div class="product-label label-sale">-20%</div>
-        </div> -->
+        <div
+          v-if="product.percentage_off"
+          class="label-group"
+        >
+          <div class="product-label label-sale">-{{ product.percentage_off }}%</div>
+
+        </div>
       </figure>
 
       <div class="product-details">
@@ -49,8 +49,8 @@
 
         <div class="price-box">
           <template v-if="product.discounted_price">
-            <span class="old-price">{{ product.currency }}{{  product.formatted_sale_price }}</span>
-            <span class="product-price">{{ product.currency }}{{  product.formatted_price }}</span>
+            <span class="old-price me-3">{{ product.currency }}{{  product.formatted_price }}</span>
+            <span class="product-price">{{ product.currency }}{{  product.formatted_sale_price }}</span>
           </template>
           <template v-else>
             <span class="product-price">{{ product.currency }}{{  product.formatted_price }}</span>
@@ -79,18 +79,26 @@
     <figure>
       <a :href="product.link">
         <img
-          :src="product.image_to_show"
+          :src="product.image_m"
           width="250"
           height="250"
           alt="product"
         />
         <img
-          :src="product.image_to_show"
+          :src="product.image_m"
           width="250"
           height="250"
           alt="product"
         />
       </a>
+
+      <div
+        v-if="product.percentage_off"
+        class="label-group"
+      >
+        <div class="product-label label-sale">-{{ product.percentage_off }}%</div>
+
+      </div>
     </figure>
     <div class="product-details">
 
@@ -122,8 +130,8 @@
       <div class="price-box">
 
         <template v-if="product.discounted_price">
-          <span class="old-price">{{ product.currency }}{{  product.formatted_sale_price }}</span>
-          <span class="product-price">{{ product.currency }}{{  product.formatted_price }}</span>
+          <span class="old-price me-3">{{ product.currency }}{{  product.formatted_price }}</span>
+          <span class="product-price">{{ product.currency }}{{  product.formatted_sale_price }}</span>
         </template>
         <template v-else>
           <span class="product-price">{{ product.currency }}{{  product.formatted_price }}</span>
