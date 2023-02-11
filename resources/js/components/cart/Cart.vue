@@ -17,18 +17,19 @@
         </figure>
       </td>
       <td class="product-col">
+
         <h5 class="product-title">
           <a href="/">{{ cart.product.name }}</a>
+
+          <a
+            href="#"
+            class=" mt-5 position-relative"
+            @click.prevent="removeFromCart(cart.id)"
+          >
+            X Remove
+          </a>
         </h5>
 
-        <a
-          href="#"
-          class=""
-          title="Remove Product"
-          @click.prevent="removeFromCart(cart.id)"
-        >
-          Remove
-        </a>
       </td>
       <td>{{ $filters.formatNumber(cart.price)  }}</td>
       <td>
@@ -70,7 +71,6 @@ export default {
     }),
 
     removeFromCart(cart_id) {
-      console.log(cart_id);
       this.deleteCart({
         cart_id: cart_id,
       });
