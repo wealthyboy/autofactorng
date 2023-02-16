@@ -155,5 +155,7 @@ Route::get('reviews/{id}',               'Api\Reviews\ReviewsController@index');
 Route::post('reviews/store',                  'Api\Reviews\ReviewsController@store');
 
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');
+Route::post('webhook/payment/zilla',     'WebHook\WebHookController@zilla');
+
 //Route::post('contact/store',     'Contact\ContactController@store');
 Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
