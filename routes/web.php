@@ -148,6 +148,7 @@ Route::group(['prefix' => '/api'], function () {
 
 Route::controller(Products\ProductsController::class)->group(function () {
     Route::get('products/{category}', 'index');
+    Route::get('clear-cookies', 'clearMMYCookies');
 });
 
 Route::get('reviews/{id}',               'Api\Reviews\ReviewsController@index');

@@ -37852,10 +37852,9 @@ var shopWithoutVehicle = function shopWithoutVehicle(_ref9, action) {
   if (p[1] == 'products') {
     url = u.pathname;
   } else {
-    url = '/products/spare-parts';
+    url = 'clear-cookies';
   }
 
-  console.log(url);
   axios__WEBPACK_IMPORTED_MODULE_0___default().get(url, {
     params: {
       type: "clear"

@@ -106,10 +106,8 @@ export const shopWithoutVehicle = ({ commit }, action) => {
     if (p[1] == 'products'){
        url = u.pathname
     } else {
-       url = '/products/spare-parts'
+       url = 'clear-cookies'
     }
-
-    console.log(url)
 
     axios
         .get(url, {
