@@ -70,7 +70,6 @@ class ProductsController extends Controller
             return redirect('404');
         }
 
-
         $page_title = "Search " . $request->q;
 
         $this->clearMMYCookies($request);

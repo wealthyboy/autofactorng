@@ -71,7 +71,6 @@ class ProductController extends Table
         $rims = Product::getFilterLists('radius');
         $widths = Product::getFilterLists('width');
         $profiles = Product::getFilterLists('height');
-
         $ampheres = Product::getFilterLists('amphere');
 
         if (request()->filled('search')) {

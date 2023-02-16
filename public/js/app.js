@@ -22589,7 +22589,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   },
                   clientOrderReference: uuid,
                   title: "Buy now pay later",
-                  amount: 3900
+                  amount: context.amount
                 };
                 connect.openNew(config);
 
@@ -26568,7 +26568,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"])),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'pe-none': _ctx.prices.total > ((_ctx$walletBalance = _ctx.walletBalance) === null || _ctx$walletBalance === void 0 ? void 0 : _ctx$walletBalance.auto_credit),
-      'disabled': _ctx.prices.total > ((_ctx$walletBalance2 = _ctx.walletBalance) === null || _ctx$walletBalance2 === void 0 ? void 0 : _ctx$walletBalance2.auto_credit)
+      disabled: _ctx.prices.total > ((_ctx$walletBalance2 = _ctx.walletBalance) === null || _ctx$walletBalance2 === void 0 ? void 0 : _ctx$walletBalance2.auto_credit)
     }, "btn btn-block btn-dark w-100 mb-2"])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay with auto credits "), _hoisted_16], 2
   /* CLASS */
@@ -26579,7 +26579,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"])),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'pe-none': _ctx.prices.total > parseInt(_ctx.walletBalance.wallet_balance),
-      'disabled': _ctx.prices.total > parseInt(_ctx.walletBalance.wallet_balance)
+      disabled: _ctx.prices.total > parseInt(_ctx.walletBalance.wallet_balance)
     }, "btn btn-block btn-dark w-100 mb-2"])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay with wallet "), _hoisted_17], 2
   /* CLASS */
