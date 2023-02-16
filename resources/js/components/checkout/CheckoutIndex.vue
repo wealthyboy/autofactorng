@@ -317,6 +317,10 @@ export default {
                 cartIds.push(cart.id);
             });
 
+            if (!this.coupon_code) {
+                this.amount = this.prices.total;
+            }
+
             if (!this.addresses.length) {
                 this.error =
                     "You need to save your address before placing your order";

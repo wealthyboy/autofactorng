@@ -22553,22 +22553,26 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   cartIds.push(cart.id);
                 });
 
+                if (!_this2.coupon_code) {
+                  _this2.amount = _this2.prices.total;
+                }
+
                 if (_this2.addresses.length) {
-                  _context.next = 8;
+                  _context.next = 9;
                   break;
                 }
 
                 _this2.error = "You need to save your address before placing your order";
                 return _context.abrupt("return", false);
 
-              case 8:
+              case 9:
                 // this.paymentIsProcessing = true;
                 // this.order_text = "Please wait. We are almost done......";
                 // this.payment_is_processing = true;
                 // this.payment_method = "card";
                 connect = new (_usezilla_zilla_connect__WEBPACK_IMPORTED_MODULE_8___default())();
                 uuid = new Date().getTime();
-                _context.next = 12;
+                _context.next = 13;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default().post("/cart/meta", {
                   cartId: cartIds.join("|"),
                   coupon: context.coupon_code,
@@ -22579,7 +22583,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   total: context.amount
                 }).then(function (response) {})["catch"](function (error) {});
 
-              case 12:
+              case 13:
                 config = {
                   publicKey: "PK_SANDBOX_841e808769a00159352bfd9544448d1f5a1341b7e3890128522c05a50695f5dd",
                   onSuccess: function onSuccess(response) {
@@ -22593,7 +22597,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 };
                 connect.openNew(config);
 
-              case 14:
+              case 15:
               case "end":
                 return _context.stop();
             }
