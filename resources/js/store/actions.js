@@ -109,6 +109,8 @@ export const shopWithoutVehicle = ({ commit }, action) => {
        url = '/products/spare-parts'
     }
 
+    console.log(url)
+
     axios
         .get(url, {
             params: {

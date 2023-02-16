@@ -37855,6 +37855,7 @@ var shopWithoutVehicle = function shopWithoutVehicle(_ref9, action) {
     url = '/products/spare-parts';
   }
 
+  console.log(url);
   axios__WEBPACK_IMPORTED_MODULE_0___default().get(url, {
     params: {
       type: "clear"
