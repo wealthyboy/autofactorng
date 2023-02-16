@@ -37,7 +37,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-
+        dd(User::all());
         $featured_categories = Category::where('is_featured', true)->get();
         $categories = Category::parents()->get();
 
