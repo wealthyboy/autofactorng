@@ -20,7 +20,7 @@ class CreateCartsTable extends Migration
 			$table->decimal('price',12,2)->nullable();
 			$table->string('total')->nullable();
 			$table->integer('quantity')->length(11);            
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('status')->nullable();
 			$table->rememberToken(255);
             $table->timestamps();

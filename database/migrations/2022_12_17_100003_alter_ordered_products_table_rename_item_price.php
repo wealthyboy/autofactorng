@@ -14,7 +14,7 @@ class AlterOrderedProductsTableRenameItemPrice extends Migration
     public function up()
     {
         Schema::table('ordered_products', function (Blueprint $table) {
-            $table->renameColumn('item_price', 'price');
+           // $table->renameColumn('item_price', 'price');
         });
     }
 

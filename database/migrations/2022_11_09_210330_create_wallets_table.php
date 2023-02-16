@@ -13,12 +13,12 @@ class CreateWalletsTable extends Migration
      */
     public function up()
     {
-        // Schema::create('wallets', function (Blueprint $table) {
-        //     // $table->id();
-        //     // $table->decimal('amount', 8, 2)->nullable();
-        //     // $table->bigInteger('user_id')->nullable();
-        //     // $table->timestamps();
-        // });
+        Schema::create('wallets', function (Blueprint $table) {
+            $table->id();
+            $table->decimal('amount', 8, 2)->nullable();
+            $table->bigInteger('user_id')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

@@ -14,7 +14,7 @@ class AlterOrderedProductsAddProductId extends Migration
     public function up()
     {
         Schema::table('ordered_products', function (Blueprint $table) {
-            $table->bigInteger('product_id')->nullable();
+           // $table->bigInteger('product_id')->nullable();
         });
     }
 

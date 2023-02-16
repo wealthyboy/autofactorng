@@ -13,11 +13,11 @@ class AlterOrderedProductTableAddI extends Migration
      */
     public function up()
     {
-        Schema::rename('ordered_product', 'ordered_products');
-        Schema::table('ordered_products', function (Blueprint $table) {
-            $table->renameColumn('item_name', 'product_name');
-            $table->timestamps();
-        });
+        // Schema::rename('ordered_product', 'ordered_products');
+        // Schema::table('ordered_products', function (Blueprint $table) {
+        //     $table->renameColumn('item_name', 'product_name');
+        //     $table->timestamps();
+        // });
     }
 
     /**

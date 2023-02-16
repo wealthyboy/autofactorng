@@ -14,7 +14,7 @@ class AlterCartsTableDropForeignKey extends Migration
     public function up()
     {
         Schema::table('carts', function (Blueprint $table) {
-            $table->dropForeign('carts_user_id_foreign');
+           // $table->dropForeign('carts_user_id_foreign');
         });
     }
 
