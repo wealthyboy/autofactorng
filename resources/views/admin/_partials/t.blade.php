@@ -103,7 +103,7 @@
 
                                         @else
 
-                                        <h6 class="mb-0 text-xs">{{ $v }}</h6>
+                                        <h6 class="mb-0 text-xs" {{ $k == 'Price' ? 'contenteditable' : null }}>{{ $v }}</h6>
 
                                         @endif
                                     </select>

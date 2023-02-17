@@ -219,7 +219,7 @@ class Product extends Model
     public function getListingData($collection)
     {
         return  $collection->map(function ($product) {
-            $price =  $product->discounted_price ?  number_format($product->discounted_price) . ' - ' . number_format($product->price) : number_format($product->price);
+            $price =  $product->discounted_price ?  $product->discounted_price . ' - ' . $product->price : $product->price;
             return [
                 "Id" => $product->id,
                 "Image" => $product->image_to_show_m,
