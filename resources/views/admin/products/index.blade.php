@@ -7,6 +7,22 @@
 
 
 @section('inline-scripts')
+
+$('.update_price').on('click', function(e) {
+let self = $(this);
+$.ajax({
+url: "/admin/products/" + self.data('id'),
+method: "PATCH",
+data: $('.filter-form').serialize()
+}).then((res) =>{
+console.log(res)
+$("#model_id").append(res)
+}).fail((error) => {
+
+})
+})
+
+
 $('#show-panel').on('click', function(e) {
 e.preventDefault();
 var element = document.getElementById("search-panel");
