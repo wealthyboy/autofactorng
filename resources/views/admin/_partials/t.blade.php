@@ -103,7 +103,7 @@
 
                                         @else
 
-                                        <h6 id="{{ $k == 'Price' ? 'update_price-'.$models['items'][0][$key]['Id']   : null }}" {{ class="mb-0 text-xs" {{ $k == 'Price' ? 'contenteditable' : null }}>{{ $v }}</h6>
+                                        <h6 id="{{ $k == 'Price' ? $models['items'][0][$key]['Id'] : null }}" {{ class="mb-0 text-xs" {{ $k == 'Price' ? 'contenteditable' : null }}>{{ $v }}</h6>
 
                                         @endif
                                     </select>
