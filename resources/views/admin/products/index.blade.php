@@ -8,15 +8,14 @@
 
 @section('inline-scripts')
 
-$('.update_price').on('click', function(e) {
+$('.update_price').on('input', function(e) {
 let self = $(this);
 $.ajax({
 url: "/admin/products/" + self.data('id'),
 method: "PATCH",
-data: $('.filter-form').serialize()
+data: {price: self.data('price')}
 }).then((res) =>{
-console.log(res)
-$("#model_id").append(res)
+
 }).fail((error) => {
 
 })
