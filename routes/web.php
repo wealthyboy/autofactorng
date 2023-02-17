@@ -45,6 +45,9 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::post('upload', 'Admin\Uploads\UploadsController@store');
     Route::get('delete/upload', 'Admin\Uploads\UploadsController@destroy');
     Route::resource('users',  'Admin\Users\UsersController', ['names' => 'admin.users']);
+    Route::post('/products/update-price/{id}', 'Admin\Product\ProductController@updatePrice');
+
+
 
     Route::resource('banners', 'Admin\Design\BannersController', ['names' => 'banners']);
     Route::resource('pages', 'Admin\Information\InformationController', ['names' => 'pages']);

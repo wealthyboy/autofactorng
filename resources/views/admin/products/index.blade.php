@@ -11,7 +11,7 @@
 $('.update_price').on('input', function(e) {
 let self = $(this);
 $.ajax({
-url: "/admin/products/" + self.data('id'),
+url: "/admin/products/update-price/" + self.data('id'),
 method: "PATCH",
 data: {price: self.data('price'), 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
 }).then((res) =>{
