@@ -13,7 +13,7 @@ let self = $(this);
 $.ajax({
 url: "/admin/products/" + self.data('id'),
 method: "PATCH",
-data: {price: self.data('price')}
+data: {price: self.data('price'), 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
 }).then((res) =>{
 
 }).fail((error) => {
