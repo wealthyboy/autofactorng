@@ -505,10 +505,10 @@ class ProductController extends Table
     public function update(Request $request, $id)
     {
 
-        $this->validate($request, [
-            'category_id' => 'required',
-            'product_name' => 'required',
-        ]);
+        // $this->validate($request, [
+        //     'category_id' => 'required',
+        //     'product_name' => 'required',
+        // ]);
 
         $data = $request->except('_token');
         $brand = Brand::find($request->brand_id);
