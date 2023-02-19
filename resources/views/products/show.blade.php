@@ -4,8 +4,9 @@
 <div class="container-fluid">
     <nav aria-label="breadcrumb" class="breadcrumb-nav">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="demo4.html"><i class="icon-home"></i></a></li>
-            <li class="breadcrumb-item"><a href="product.html#">Products</a></li>
+            <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
+            <li class="breadcrumb-item"><a href="/">{{ $category }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $product->name }}</li>
         </ol>
     </nav>
 
