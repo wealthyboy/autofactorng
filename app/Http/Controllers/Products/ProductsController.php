@@ -400,8 +400,8 @@ class ProductsController extends Controller
     {
         $product->load('images');
         $user = request()->user();
-        $category = session('category');
         $product->showFitString = $this->getCategory($category);
+        $category = session('category');
         return view('products.show', compact('category', 'user', 'product'));
     }
 }
