@@ -15,8 +15,9 @@ url: "/admin/products/update-price/" + self.data('id'),
 method: "POST",
 data: {price: self.html(), 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
 }).then((res) =>{
-
+alert("Price Updated")
 }).fail((error) => {
+alert("Something went wrong")
 
 })
 })
