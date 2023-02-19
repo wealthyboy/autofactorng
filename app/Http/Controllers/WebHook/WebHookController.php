@@ -168,8 +168,8 @@ class WebHookController extends Controller
             $order->first_name = optional($user->active_address)->first_name;
             $order->last_name = optional($user->active_address)->last_name;
             $order->address = optional($user->active_address)->address;
-            $order->email = optional($user->active_address)->email;
-            $order->phone_number = optional($user->active_address)->phone_number;
+            $order->email = $user->email;
+            $order->phone_number = $user->phone_number;
             $order->city  = optional($user->active_address)->city;
             $order->state = optional(optional($user->active_address)->address_state)->name;
             $order->country = optional(optional($user->active_address)->address_country)->name;
