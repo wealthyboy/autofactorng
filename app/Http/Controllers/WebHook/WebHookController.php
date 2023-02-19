@@ -160,6 +160,8 @@ class WebHookController extends Controller
             $order->shipping_price = optional(Shipping::find($pending_cart->shipping_id))->price;
             // $order->currency = '₦';
             $order->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
+            $order->tracking = time();
+
             $order->payment_type = 'Online Zilla';
             $order->total = $pending_cart->total;
             $order->ip = $request->ip();
