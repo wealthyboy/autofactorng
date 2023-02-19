@@ -104,7 +104,7 @@
 
                                         <?php else: ?>
 
-                                        <h6 class="mb-0 text-xs"><?php echo e($v); ?></h6>
+                                        <h6 data-price="<?php echo e($k == 'Price' ? $v  : ''); ?>" data-id="<?php echo e($models['items'][0][$key]['Id']); ?>" class=" <?php echo  $k == 'Price' ?  'update_price' : '' ?> mb-0 text-xs" <?php echo e($k == 'Price' ? 'contenteditable' : null); ?>><?php echo e($v); ?></h6>
 
                                         <?php endif; ?>
                                     </select>

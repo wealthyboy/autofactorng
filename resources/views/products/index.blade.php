@@ -26,4 +26,6 @@
 
 @endsection
 @section('inline-scripts')
+
+
 @stop
