@@ -172,7 +172,6 @@ class WebHookController extends Controller
             $order->state = optional(optional($user->active_address)->address_state)->name;
             $order->country = optional(optional($user->active_address)->address_country)->name;
 
-
             $order->save();
 
             foreach ($carts   as $cart) {
@@ -181,8 +180,9 @@ class WebHookController extends Controller
                 $insert = [
                     'order_id' => $order->id,
                     'product_id' => $cart->product_id,
+                    'product_name' => optional($cart->product)->name,
                     'quantity' => $cart->quantity,
-                    'status' => "Processing",
+                    //'status' => "Processing",
                     'user_id' =>  $user->id,
                     'price' => $cart->ConvertCurrencyRate($cart->price),
                     'total' => $cart->ConvertCurrencyRate($cart->quantity * $cart->price),
