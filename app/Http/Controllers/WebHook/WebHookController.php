@@ -192,6 +192,7 @@ class WebHookController extends Controller
                     'created_at' => \Carbon\Carbon::now()
                 ];
                 OrderedProduct::Insert($insert);
+                $cart->delete();
             }
 
             // $admin_emails = explode(',', $this->settings->alert_email);
