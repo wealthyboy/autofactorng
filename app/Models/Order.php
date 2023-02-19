@@ -61,7 +61,6 @@ class Order extends Model
 		$order->city = optional($user->active_address)->city;
 		$order->state = optional(optional($user->active_address)->address_state)->name;
 		$order->ip = $ip;
-		//$order->user_agent = request()->server('HTTP_USER_AGENT');
 		if ($order->save()) {
 			foreach ($carts   as $cart) {
 				$insert = [
