@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
+use App\Models\Error;
 use App\Models\OrderedProduct;
 use App\Models\User;
 use Carbon\Carbon;
@@ -39,6 +40,8 @@ class HomeCtrl extends Controller
                ->whereMonth('created_at', date('m'))
                ->with('product')
                ->first();
+
+          dd(Error::get());
 
           //dd($top_selling_product);
 

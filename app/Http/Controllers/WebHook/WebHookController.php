@@ -16,6 +16,7 @@ use App\Models\Voucher;
 use App\Models\Wallet;
 use App\Models\WalletBalance;
 use App\Mail\OrderReceipt;
+use App\Models\Error;
 use App\Models\PendingCart;
 use App\Models\Product;
 // use App\Mail\SendGiftCard;
@@ -214,6 +215,9 @@ class WebHookController extends Controller
             }
         } catch (\Throwable $th) {
             Log::info("Custom error :" . $th);
+            $err = new Error();
+            $err->error = $th->getMessage();
+            $err->save();
             // Notification::route('mail', 'jacob.atam@gmail.com')
             //     ->notify(new ErrorNotification($th));
         }
