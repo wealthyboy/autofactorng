@@ -22590,6 +22590,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                     context.paymentIsProcessing = false;
                     context.paymentIsComplete = true;
                     context.order_text = "Place Order";
+                    console.log(response);
                   },
                   clientOrderReference: uuid,
                   title: "Buy now pay later",
