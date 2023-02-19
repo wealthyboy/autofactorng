@@ -37,6 +37,8 @@ class ProductsController extends Controller
         $page_title = implode(" ", explode('-', $category->slug));
         $this->clearMMYCookies($request);
         $request->session()->put('category', $category->name);
+        $request->session()->put('category_slug', $category->slug);
+
         $products = $this->getProductsData($request, $builder, $category);
         if ($request->ajax()) {
             return (new ProductsCollection($products))
@@ -402,6 +404,7 @@ class ProductsController extends Controller
         $user = request()->user();
         $product->showFitString = $this->getCategory($category);
         $category = session('category');
-        return view('products.show', compact('category', 'user', 'product'));
+        $category_slug = session('category_slug');
+        return view('products.show', compact('category', 'category_slug', 'user', 'product'));
     }
 }
