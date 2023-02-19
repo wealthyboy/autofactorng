@@ -41,10 +41,6 @@ class HomeCtrl extends Controller
                ->with('product')
                ->first();
 
-          dd(Error::get());
-
-          //dd($top_selling_product);
-
           $stats = [];
           $stats['sales'] = 0;
           $stats['Customers'] = (new User())->customers()->count();
