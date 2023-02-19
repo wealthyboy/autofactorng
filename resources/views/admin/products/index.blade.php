@@ -8,7 +8,7 @@
 
 @section('inline-scripts')
 
-$('.update_price').on('input', function(e) {
+$('.update_price').on('blur', function(e) {
 let self = $(this);
 $.ajax({
 url: "/admin/products/update-price/" + self.data('id'),
