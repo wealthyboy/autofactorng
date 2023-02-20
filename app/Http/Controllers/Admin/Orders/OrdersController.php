@@ -49,7 +49,8 @@ class OrdersController extends Table
 	public function invoice($id)
 	{
 		$order = Order::find($id);
-		return view('admin.orders.invoice', compact('order'));
+		$setting = Setting::first();
+		return view('admin.orders.invoice', compact('setting', 'order'));
 	}
 
 	public function store(Request $request)

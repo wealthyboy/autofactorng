@@ -40,7 +40,7 @@
                            <h6 class="text-secondary font-weight-normal mb-0">Invoice date:</h6>
                         </div>
                         <div class="col-md-6">
-                           <h6 class="text-dark mb-0">{{ #{{$order->invoice }}</h6>
+                           <h6 class="text-dark mb-0">{{ #$order->invoice }}</h6>
                         </div>
                      </div>
                      <div class="row text-md-end text-start">
