@@ -108,6 +108,9 @@
                      <p class="text-sm">Thank you for shopping with us. Have a great day.</p>
                      <p class="text-sm">Sincerely, autofactorng</p>
                      <p class="text-sm">If you encounter any issues related to the invoice you can contact us at:</p>
+                     <h4>
+                        {{ $setting->store_email }}
+                     </h4>
 
                   </div>
 
