@@ -1,5 +1,6 @@
 @extends('admin.layouts.invoice')
 @section('content')
+
 <div class="row">
    <div class="col-md-10 col-lg-8 col-sm-10 mx-auto">
       <form class="" action="index.html" method="post">
@@ -7,17 +8,19 @@
             <div class="card-header text-center">
                <div class="row justify-content-between">
                   <div class="col-md-4 text-start">
-                     <img class="mb-2 w-25 p-2" src="https://autofactorng.com/images/afng_logo.png" alt="Logo">
+                     <img class="mb-2  p-2" src="https://autofactorng.com/images/afng_logo.png" alt="Logo">
                      <h6>
-                        St. Independence Embankment, 050105 Bucharest, Romania
+                        {{ $setting->address }}
                      </h6>
-                     <p class="d-block text-secondary">tel: +4 (074) 1090873</p>
+                     <p class="d-block text-secondary">
+                        {{ $setting->store_phone }}
+                     </p>
                   </div>
                   <div class="col-lg-3 col-md-7 text-md-end text-start mt-5">
-                     <h6 class="d-block mt-2 mb-0">Billed to: John Doe</h6>
-                     <p class="text-secondary">4006 Locust View Drive<br>
-                        San Francisco CA<br>
-                        California
+                     <h6 class="d-block mt-2 mb-0">Billed to: {{ optional($order->user)->fullname() }}</h6>
+                     <p class="text-secondary">{{ $order->address }}<br>
+                        {{ $order->city }}<br>
+                        {{ $order->state }}
                      </p>
                   </div>
                </div>
@@ -28,7 +31,7 @@
                         Invoice no
                      </h6>
                      <h5 class="text-start mb-0">
-                        #0453119
+                        #{{$order->invoice}}
                      </h5>
                   </div>
                   <div class="col-lg-5 col-md-7 mt-auto">
@@ -37,15 +40,15 @@
                            <h6 class="text-secondary font-weight-normal mb-0">Invoice date:</h6>
                         </div>
                         <div class="col-md-6">
-                           <h6 class="text-dark mb-0">06/03/2019</h6>
+                           <h6 class="text-dark mb-0">{{ #{{$order->invoice }}</h6>
                         </div>
                      </div>
                      <div class="row text-md-end text-start">
                         <div class="col-md-6">
-                           <h6 class="text-secondary font-weight-normal mb-0">Due date:</h6>
+                           <h6 class="text-secondary font-weight-normal mb-0">Date:</h6>
                         </div>
                         <div class="col-md-6">
-                           <h6 class="text-dark mb-0">11/03/2019</h6>
+                           <h6 class="text-dark mb-0">{{ #{{$order->created_at->format('d/m/y') }}</h6>
                         </div>
                      </div>
                   </div>
@@ -60,17 +63,19 @@
                               <tr>
                                  <th scope="col" class="pe-2 text-start ps-2">Item</th>
                                  <th scope="col" class="pe-2">Qty</th>
-                                 <th scope="col" class="pe-2" colspan="2">Rate</th>
                                  <th scope="col" class="pe-2">Amount</th>
                               </tr>
                            </thead>
                            <tbody>
+                              @foreach ( $order->ordered_products as $order_product )
                               <tr>
-                                 <td class="text-start">Premium Support</td>
-                                 <td class="ps-4">1</td>
-                                 <td class="ps-4" colspan="2">$ 9.00</td>
-                                 <td class="ps-4">$ 9.00</td>
+                                 <td class="text-start">
+                                    {{ $order_product->product_name }}
+                                 </td>
+                                 <td class="ps-4" colspan="2">{{ $order_product->quantity }}</td>
+                                 <td class="ps-4">{{ $order_product->price }}</td>
                               </tr>
+                              @endforeach
 
 
                            </tbody>
@@ -79,7 +84,7 @@
                                  <th></th>
                                  <th></th>
                                  <th class="h5 ps-4" colspan="2">Total</th>
-                                 <th colspan="1" class="text-right h5 ps-4">$ 698</th>
+                                 <th colspan="1" class="text-right h5 ps-4">{{ $order->get_total() }}</th>
                               </tr>
                            </tfoot>
                         </table>
@@ -100,10 +105,7 @@
                      <p class="text-sm">Thank you for shopping with us. Have a great day.</p>
                      <p class="text-sm">Sincerely, autofactorng</p>
                      <p class="text-sm">If you encounter any issues related to the invoice you can contact us at:</p>
-                     <h6 class="font-weight-normal mb-0">
-                        email:
-                        <span class="text-dark">support@creative-tim.com</span>
-                     </h6>
+
                   </div>
 
                </div>
