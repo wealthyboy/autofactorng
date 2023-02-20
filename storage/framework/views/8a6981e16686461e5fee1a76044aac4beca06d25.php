@@ -16,16 +16,20 @@
     <?php echo $__env->make('_partials.recently_viewed_products',['name' => ' RECENTLY VIEWED & RELATED'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </div>
 
-<div class="text-center cta-simple cta-border light my-5">
+<div class="text-center cta-simple cta-border light my-5   mt-sm-2">
     <add-vehicle-search></add-vehicle-search>
 </div>
 
 
 <?php echo $__env->make('_partials.auto_cover', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<div class="container-fluid mt-5">
+    <?php echo $__env->make('_partials.categories', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+</div>
 
-<?php echo $__env->make('_partials.categories', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-<?php echo $__env->make('_partials.brands', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<div class="container-fluid">
+    <?php echo $__env->make('_partials.brands', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+</div>
 
 <div class="row">
     <div class="col-12 text-center p-3">

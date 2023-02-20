@@ -4,9 +4,75 @@
 @import "../assets/css/style.min.css";
 @import "~bootstrap-icons/font/bootstrap-icons";
 @import "../assets/vendor/fontawesome-free/css/all.min.css";
+
+@font-face {
+    font-family: AutofactorBold;
+    src: url(../fonts/AutoFactorCond-Heavy.woff2);
+    font-weight: bold;
+}
+
+// @font-face {
+//     font-family: luxurySaleFont4;
+//     src: url(../fonts/ProximaNovaAltCondensedLight.otf);
+//     font-weight: bold;
+// }
+
+// @font-face {
+//     font-family: luxurySaleFont5;
+//     src: url(../fonts/ProximaNovaAltCondensedExtrabold.otf);
+//     font-weight: bold;
+// }
+
+// @font-face {
+//     font-family: luxurySaleFont8;
+//     src: url(../fonts/GalaxiePolaris-Medium.otf);
+//     font-weight: bold;
+// }
+
+// @font-face {
+//     font-family: PolarisBook;
+//     src: url(../fonts/ProximaNovaAltRegular.otf);
+//     font-weight: bold;
+// }
+
+// @font-face {
+//     font-family: Polaris-Bold;
+//     src: url(../fonts/GalaxiePolaris-Bold.otf);
+//     font-weight: bold;
+// }
+
+// @font-face {
+//     font-family: luxurysale7;
+//     src: url(../fonts/ProximaNovaAltCondensedThin.otf);
+// }
+
+
+
 body.modal-open {
     overflow: hidden;
 }
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 1.8rem;
+    color: #222529;
+    font-weight: 700;
+    line-height: 1.1;
+    font-family: AutofactorBold, sans-serif;
+    font-size: 2rem;
+}
+
+
 
 div#offcanvas {
     top: 178px;
@@ -162,4 +228,11 @@ label.container {
     /* width: 119px; */
     margin-left: 48rem;
     margin-right: 40rem;
+}
+
+@media (max-width:500px) {
+
+    .cta-simple{
+        padding: 0px 0px;
+    }
 }

@@ -1,5 +1,5 @@
 <?php if($featured_categories->count()): ?>
-<div class="">
+<div class="row mt-5">
     <h2 class="appear-animate" data-animation-delay="100" data-animation-name="fadeInUpShorter">Featured brands
     </h2>
     <div class="underline mb-5"></div>

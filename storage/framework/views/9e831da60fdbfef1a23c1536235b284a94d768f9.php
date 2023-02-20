@@ -1,5 +1,5 @@
 <?php if($featured_categories->count()): ?>
-<div class="">
+<div class="row">
     <h2 class="">FEATURED CATEGORIES</h2>
     <div class="underline mb-5"></div>
 </div>

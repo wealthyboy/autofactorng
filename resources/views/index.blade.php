@@ -18,16 +18,20 @@
     @include('_partials.recently_viewed_products',['name' => ' RECENTLY VIEWED & RELATED'])
 </div>
 
-<div class="text-center cta-simple cta-border light my-5">
+<div class="text-center cta-simple cta-border light my-5   mt-sm-2">
     <add-vehicle-search></add-vehicle-search>
 </div>
 
 
 @include('_partials.auto_cover')
+<div class="container-fluid mt-5">
+    @include('_partials.categories')
+</div>
 
-@include('_partials.categories')
 
-@include('_partials.brands')
+<div class="container-fluid">
+    @include('_partials.brands')
+</div>
 
 <div class="row">
     <div class="col-12 text-center p-3">
