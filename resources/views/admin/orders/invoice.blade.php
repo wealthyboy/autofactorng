@@ -76,7 +76,7 @@
                                  </td>
                                  <td class="ps-4" colspan="2">{{ $order_product->quantity }}</td>
                                  <td class="ps-4" colspan="2">{{ $order_product->price }}</td>
-                                 <td class="ps-4">{{ $order_product->price * $order_product->quantity  }}</td>
+                                 <td class="ps-4" colspan="2">{{ $order_product->price * $order_product->quantity  }}</td>
                               </tr>
                               @endforeach
 
