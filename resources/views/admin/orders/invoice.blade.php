@@ -64,6 +64,8 @@
                                  <th scope="col" class="pe-2 text-start ps-2">Item</th>
                                  <th scope="col" class="pe-2">Qty</th>
                                  <th scope="col" class="pe-2">Amount</th>
+                                 <th scope="col" class="pe-2">Sub Total</th>
+
                               </tr>
                            </thead>
                            <tbody>
@@ -74,6 +76,8 @@
                                  </td>
                                  <td class="ps-4" colspan="2">{{ $order_product->quantity }}</td>
                                  <td class="ps-4">{{ $order_product->price }}</td>
+                                 <td class="ps-4">{{ $order_product->price }}</td>
+
                               </tr>
                               @endforeach
 
