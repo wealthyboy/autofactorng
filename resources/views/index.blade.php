@@ -19,7 +19,7 @@
 </div>
 
 <div class="underline w-100"></div>
-<div class="text-center cta-simple cta-border  my-5 bg-gray  ">
+<div class="text-center cta-simple cta-border  mb-5 bg-gray  ">
     <add-vehicle-search></add-vehicle-search>
 </div>
 
