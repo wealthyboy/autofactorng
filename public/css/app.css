@@ -41771,6 +41771,11 @@ body.modal-open {
   overflow: hidden;
 }
 
+.bold {
+  font-weight: 700;
+  font-family: AutofactorBold, sans-serif !important;
+}
+
 b,
 strong {
   font-weight: 700;
@@ -41795,6 +41800,11 @@ h6 {
   line-height: 1.1;
   font-family: AutofactorMedium, sans-serif;
   font-size: 3.4rem;
+}
+
+.bold {
+  font-weight: 700;
+  font-family: AutofactorBold, sans-serif !important;
 }
 
 button {
