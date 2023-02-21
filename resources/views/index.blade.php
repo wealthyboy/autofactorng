@@ -4,14 +4,13 @@
 @include('_partials.top_banner')
 
 <div class="container-fluid">
-    <!-- <div class="p-3 mb-2 bg-danger text-white text-center">Just in Autocover now available</div> -->
     <div class="row g-2">
         @include('_partials.slider')
     </div>
 </div>
 
 <div class="container-fluid mt-4">
-    @include('_partials.recently_viewed_products',['name' => ' RECENTLY VIEWED & RELATED'])
+    @include('_partials.recently_viewed_products',['name' => 'RECENTLY VIEWED & RELATED'])
 </div>
 
 <div class="underline w-100"></div>

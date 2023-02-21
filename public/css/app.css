@@ -41807,6 +41807,10 @@ h6 {
   font-family: AutofactorBold, sans-serif !important;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 button {
   background: none !important;
   border: none !important;
