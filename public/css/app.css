@@ -41794,7 +41794,12 @@ h6 {
   font-weight: 700;
   line-height: 1.1;
   font-family: AutofactorMedium, sans-serif;
-  font-size: 2rem;
+  font-size: 3.4rem;
+}
+
+button {
+  background: none !important;
+  border: none !important;
 }
 
 div#offcanvas {
