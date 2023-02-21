@@ -6,9 +6,9 @@
         class=""
     />
     <template v-if="!fitString">
-        <div class="title w-100 p-2 mt-sm-3">
-            <h3>WHAT ARE YOU WORKING ON TODAY?</h3>
-            <p>Get an exact fit for your vehicle.</p>
+        <div class="title w-100 mt-sm-3">
+            <h3 class="mb-0">WHAT ARE YOU WORKING ON TODAY?</h3>
+            <div class="mt-2">Get an exact fit for your vehicle.</div>
         </div>
         <div class="d-flex justify-content-between align-content-center pt-2">
             <search @do:filter="getMessage" :filter="true"></search>
