@@ -2,21 +2,17 @@
 <?php echo $__env->make('_partials.top_banner', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 <div class="container-fluid">
-    <!-- <div class="p-3 mb-2 bg-danger text-white text-center">Just in Autocover now available</div> -->
     <div class="row g-2">
         <?php echo $__env->make('_partials.slider', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-        <div class="col-md-3">
-            <img src="http://auto.test/images/banners/d3fdRL3jfoTLQL8rAXX3wKAxOZXySW0fEagwprZy.jpg" alt="">
-        </div>
-
     </div>
 </div>
 
-<div class="container-fluid">
-    <?php echo $__env->make('_partials.recently_viewed_products',['name' => ' RECENTLY VIEWED & RELATED'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<div class="container-fluid mt-4">
+    <?php echo $__env->make('_partials.recently_viewed_products',['name' => 'RECENTLY VIEWED & RELATED'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </div>
 
-<div class="text-center cta-simple cta-border light my-5   mt-sm-2">
+<div class="underline w-100"></div>
+<div class="text-center cta-simple cta-border  mb-5 bg-gray  ">
     <add-vehicle-search></add-vehicle-search>
 </div>
 

@@ -3,8 +3,9 @@
 <div class="container-fluid">
     <nav aria-label="breadcrumb" class="breadcrumb-nav">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="demo4.html"><i class="icon-home"></i></a></li>
-            <li class="breadcrumb-item"><a href="product.html#">Products</a></li>
+            <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
+            <li class="breadcrumb-item"><a href="/products/<?php echo e($category_slug); ?>"><?php echo e($category); ?></a></li>
+            <li class="breadcrumb-item active" aria-current="page"><?php echo e($product->name); ?></li>
         </ol>
     </nav>
 

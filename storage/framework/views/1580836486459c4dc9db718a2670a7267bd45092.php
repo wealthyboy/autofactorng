@@ -1,5 +1,13 @@
 <?php if(null !== $products): ?>
-<h4 class="text-uppercase mt-4">FEATURED PRODUCTS</h4>
+<h4 class="text-uppercase  mb-0 mb-3">
+   FEATURED
+   <strong>
+      PRODUCTS
+   </strong>
+
+</h4>
+<div class="underline mb-5 ms-1"></div>
+
 <div class="owl-carousel owl-theme show-nav-hover nav-outer nav-image-center" data-owl-options="{
 					'dots': false,
 					'margin': 10,
@@ -38,12 +46,12 @@
          <div class="price-box">
             <?php if($product->discounted_price): ?>
             <div>
-               <span class="old-price"><?php echo e($product->currency); ?><?php echo e($product->formatted_sale_price); ?></span>
-               <span class="product-price"><?php echo e($product->currency); ?><?php echo e($product->formatted_price); ?></span>
+               <span class="old-price bold"><?php echo e($product->currency); ?><?php echo e($product->formatted_sale_price); ?></span>
+               <span class="product-price bold"><?php echo e($product->currency); ?><?php echo e($product->formatted_price); ?></span>
             </div>
             <?php else: ?>
             <div>
-               <span class="product-price"><?php echo e($product->currency); ?><?php echo e($product->formatted_price); ?></span>
+               <span class="product-price bold"><?php echo e($product->currency); ?><?php echo e($product->formatted_price); ?></span>
             </div>
             <?php endif; ?>
          </div>

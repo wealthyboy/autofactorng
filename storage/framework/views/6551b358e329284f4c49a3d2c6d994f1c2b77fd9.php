@@ -36,6 +36,16 @@
                </div>
 
                <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Note</label>
+                        <input type="text" class="form-control" name="note" id="note">
+                     </div>
+                     <div></div>
+                  </div>
+               </div>
+
+               <div class="row mt-3">
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Price</label>
@@ -435,7 +445,6 @@
 <script src="<?php echo e(asset('ckeditor/ckeditor.js')); ?>"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 
-<script src="<?php echo e(asset('backend/products.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('inline-scripts'); ?>
 

@@ -22,6 +22,19 @@ $(".search_products").on('input', function(e) {
     });
 })
 
+$('.update_price').on('blur', function(e) {
+    let self = $(this);
+    $.ajax({
+    url: "/admin/products/update-price/" + self.data('id'),
+    method: "POST",
+    data: {price: self.html(), 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+    }).then((res) =>{
+         alert("Price Updated")
+    }).fail((error) => {
+    alert("Something went wrong")
+    
+    })
+ })
 
 $(document).on('click', '.add_product', function(e) {
     e.preventDefault()

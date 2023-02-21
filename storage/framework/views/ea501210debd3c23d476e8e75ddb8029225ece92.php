@@ -4,22 +4,14 @@
 </div>
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('page-scripts'); ?>
+<script src="<?php echo e(asset('backend/products.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
 
 <?php $__env->startSection('inline-scripts'); ?>
 
-$('.update_price').on('blur', function(e) {
-let self = $(this);
-$.ajax({
-url: "/admin/products/update-price/" + self.data('id'),
-method: "POST",
-data: {price: self.html(), 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-}).then((res) =>{
-alert("Price Updated")
-}).fail((error) => {
-alert("Something went wrong")
 
-})
-})
 
 
 $('#show-panel').on('click', function(e) {

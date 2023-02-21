@@ -511,6 +511,7 @@ class ProductController extends Table
     public function update(Request $request, $id)
     {
 
+
         $this->validate($request, [
             'category_id' => 'required',
             'product_name' => 'required',

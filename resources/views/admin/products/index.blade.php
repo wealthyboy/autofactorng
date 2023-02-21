@@ -5,22 +5,14 @@
 </div>
 @endsection
 
+@section('page-scripts')
+<script src="{{ asset('backend/products.js') }}"></script>
+@stop
+
 
 @section('inline-scripts')
 
-$('.update_price').on('blur', function(e) {
-let self = $(this);
-$.ajax({
-url: "/admin/products/update-price/" + self.data('id'),
-method: "POST",
-data: {price: self.html(), 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-}).then((res) =>{
-alert("Price Updated")
-}).fail((error) => {
-alert("Something went wrong")
 
-})
-})
 
 
 $('#show-panel').on('click', function(e) {
