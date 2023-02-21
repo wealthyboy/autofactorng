@@ -239,7 +239,14 @@ label.container {
 
 .image-category{
     max-width: 120px;
-    width: 100px;
-    height: 100px;
+    width: 124px;
+    height: 124px;
     overflow: hidden;
+}
+
+.underline {
+    width: 84px;
+    height: 4px;
+    background-color: #f26100;
+    transform: skewX(-30deg);
 }
