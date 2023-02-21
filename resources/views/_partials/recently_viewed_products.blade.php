@@ -1,6 +1,6 @@
 @if (null !== $products)
 <h4 class="text-uppercase  mb-0 mb-3">FEATURED PRODUCTS</h4>
-<div class="underline mb-5 ms-3"></div>
+<div class="underline mb-5 ms-1"></div>
 
 <div class="owl-carousel owl-theme show-nav-hover nav-outer nav-image-center" data-owl-options="{
 					'dots': false,
