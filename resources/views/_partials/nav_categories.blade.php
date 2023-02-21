@@ -12,7 +12,7 @@
                 <a href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}" target="" data-testid="at_popular_part_list_item_0" tabindex="0">
                     <div class="az_ylb">
                         <div class="" tabindex="-1" role="menuitem" aria-disabled="false">
-                            <h2 class="">{{ $category->name }}</h2>
+                            <h2 class="mb-0">{{ $category->name }}</h2>
                         </div>
                     </div>
                 </a>
