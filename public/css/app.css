@@ -11253,10 +11253,7 @@ ul {
     list-style: none
 }
 
-b,
-strong {
-    font-weight: 700
-}
+
 
 em,
 i {
@@ -41772,6 +41769,12 @@ textarea.form-control-lg {
 }
 body.modal-open {
   overflow: hidden;
+}
+
+b,
+strong {
+  font-weight: 700;
+  font-family: AutofactorBold, sans-serif;
 }
 
 .h1,
