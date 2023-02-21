@@ -7,9 +7,7 @@
     <!-- <div class="p-3 mb-2 bg-danger text-white text-center">Just in Autocover now available</div> -->
     <div class="row g-2">
         @include('_partials.slider')
-        <div class="col-md-3">
-            <img src="http://auto.test/images/banners/d3fdRL3jfoTLQL8rAXX3wKAxOZXySW0fEagwprZy.jpg" alt="">
-        </div>
+
 
     </div>
 </div>
