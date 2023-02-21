@@ -1,4 +1,4 @@
-<div class="col-md-12 ">
+<div class="col-md-9 ">
    <section class="p-0">
 
       <div class="owl-carousel owl-theme show-nav-hover slide-animate" data-owl-options="{
