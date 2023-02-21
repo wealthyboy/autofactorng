@@ -41765,6 +41765,11 @@ textarea.form-control-lg {
   src: url(/fonts/AutoFactorCond-Heavy.woff2?285c59b61c3e52cd80afa2866b332545);
   font-weight: bold;
 }
+@font-face {
+  font-family: AutofactorMedium;
+  src: url(/fonts/AutoFactorCond-Medium.woff2?cd9db4cedeeaf8044b6e2f66e74618e2);
+  font-weight: bold;
+}
 body.modal-open {
   overflow: hidden;
 }
@@ -41785,7 +41790,7 @@ h6 {
   color: #222529;
   font-weight: 700;
   line-height: 1.1;
-  font-family: AutofactorBold, sans-serif;
+  font-family: AutofactorMedium, sans-serif;
   font-size: 2rem;
 }
 

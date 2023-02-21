@@ -11,11 +11,11 @@
     font-weight: bold;
 }
 
-// @font-face {
-//     font-family: luxurySaleFont4;
-//     src: url(../fonts/ProximaNovaAltCondensedLight.otf);
-//     font-weight: bold;
-// }
+@font-face {
+    font-family: AutofactorMedium;
+    src: url(../fonts/AutoFactorCond-Medium.woff2);
+    font-weight: bold;
+}
 
 // @font-face {
 //     font-family: luxurySaleFont5;
@@ -68,7 +68,7 @@ h6 {
     color: #222529;
     font-weight: 700;
     line-height: 1.1;
-    font-family: AutofactorBold, sans-serif;
+    font-family: AutofactorMedium, sans-serif;
     font-size: 2rem;
 }
 
