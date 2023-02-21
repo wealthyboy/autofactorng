@@ -41931,3 +41931,9 @@ label.container {
     padding: 0px 0px;
   }
 }
+.image-category {
+  max-width: 120px;
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+}
