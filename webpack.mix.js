@@ -40,7 +40,6 @@ mix.scripts(
         "resources/admin_assets/js/plugins/flatpickr.min.js",
         "resources/admin_assets/js/plugins/datatables.js",
         "resources/admin_assets/js/material-dashboard.min-v=3.0.3.js",
-        "resources/admin_assets/js/products.js",
     ],
     "public/js/dashboard.js"
 );
