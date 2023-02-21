@@ -18,7 +18,7 @@
     @include('_partials.recently_viewed_products',['name' => ' RECENTLY VIEWED & RELATED'])
 </div>
 
-<div class="text-center cta-simple cta-border light my-5   mt-sm-2">
+<div class="text-center cta-simple cta-border light my-5  ">
     <add-vehicle-search></add-vehicle-search>
 </div>
 
