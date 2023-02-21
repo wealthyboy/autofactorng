@@ -129,7 +129,7 @@
                     >
                 </template>
                 <template v-else>
-                    <span class="product-price"
+                    <span class="product-price bold"
                         >{{ product.currency
                         }}{{ product.formatted_price }}</span
                     >

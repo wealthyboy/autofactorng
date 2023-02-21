@@ -27798,7 +27798,7 @@ var _hoisted_36 = {
 };
 var _hoisted_37 = {
   key: 1,
-  "class": "product-price"
+  "class": "product-price bold"
 };
 var _hoisted_38 = {
   "class": "product-action"
