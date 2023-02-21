@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid mt-4">
     @include('_partials.recently_viewed_products',['name' => ' RECENTLY VIEWED & RELATED'])
 </div>
 
