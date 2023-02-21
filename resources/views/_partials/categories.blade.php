@@ -1,7 +1,7 @@
 @if($featured_categories->count())
 <div class="row">
-    <h2 class="">FEATURED CATEGORIES</h2>
-    <div class="underline mb-5"></div>
+    <h2 class=" mb-0 mb-3">FEATURED CATEGORIES</h2>
+    <div class="underline mb-5 ms-3"></div>
 </div>
 <div class="row g-0">
     @foreach($featured_categories as $key => $category)
