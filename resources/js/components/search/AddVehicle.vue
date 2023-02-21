@@ -6,8 +6,6 @@
         class=""
     />
     <template v-if="!fitString">
-        <div class="underline w-100"></div>
-
         <div class="title w-100 p-2 mt-sm-3">
             <h3>WHAT ARE YOU WORKING ON TODAY?</h3>
             <p>Get an exact fit for your vehicle.</p>
