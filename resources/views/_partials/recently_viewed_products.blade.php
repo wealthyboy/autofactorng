@@ -4,7 +4,6 @@
    <strong>
       PRODUCTS
    </strong>
-
 </h4>
 <div class="underline mb-5 ms-1"></div>
 

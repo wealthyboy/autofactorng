@@ -11,8 +11,8 @@
             <li>
                 <a href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}" target="" data-testid="at_popular_part_list_item_0" tabindex="0">
                     <div class="az_ylb">
-                        <div class="az_bdb az_lkb az_zlb" tabindex="-1" role="menuitem" aria-disabled="false">
-                            <div class="az_-i">{{ $category->name }}</div>
+                        <div class="" tabindex="-1" role="menuitem" aria-disabled="false">
+                            <h2 class="">{{ $category->name }}</h2>
                         </div>
                     </div>
                 </a>
@@ -20,7 +20,7 @@
                 @if ($category->children->count())
                 <ul>
                     @foreach( $category->children as $category)
-                    <li>
+                    <li class="">
                         <a href="{{  $category->link ? $category->link : '/products/'.$category->slug }}">{{ $category->name }}</a>
                     </li>
                     @endforeach
