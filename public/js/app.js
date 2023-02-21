@@ -27791,10 +27791,10 @@ var _hoisted_34 = {
   "class": "price-box"
 };
 var _hoisted_35 = {
-  "class": "old-price me-3"
+  "class": "old-price me-3 bold"
 };
 var _hoisted_36 = {
-  "class": "product-price"
+  "class": "product-price bold"
 };
 var _hoisted_37 = {
   key: 1,

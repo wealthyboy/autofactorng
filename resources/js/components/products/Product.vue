@@ -119,11 +119,11 @@
 
             <div class="price-box">
                 <template v-if="product.discounted_price">
-                    <span class="old-price me-3"
+                    <span class="old-price me-3 bold"
                         >{{ product.currency
                         }}{{ product.formatted_price }}</span
                     >
-                    <span class="product-price"
+                    <span class="product-price bold"
                         >{{ product.currency
                         }}{{ product.formatted_sale_price }}</span
                     >

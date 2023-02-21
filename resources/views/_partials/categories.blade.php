@@ -11,9 +11,8 @@
                 <div class="align-self-center text-center">
                     <div class="image-category">
                         <img src="{{ $category->image }}" alt="" srcset="">
-
                     </div>
-                    <div class="mt-4  bold">{{ $category->name }}</div>
+                    <div class="mt-4   semi-bold">{{ $category->name }}</div>
                 </div>
             </div>
         </a>
