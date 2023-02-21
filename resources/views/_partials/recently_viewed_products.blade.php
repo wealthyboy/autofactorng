@@ -35,11 +35,12 @@
             <img src="{{  $product->image_m }}" alt="product">
          </a>
       </figure>
-      <div class="az_ll az_cm">
+      <div class="product-details-content">
          <div class="az_kl">
             <div class="az_ll az_cm">
                <div class="az_phb az_rhb" data-testid="part-label">Prestone Antifreeze/Coolant Universal 50/50 PREMIXED *10 Year/300K Mile Protection* 1 Gallon</div>
             </div>
+
             <div class="az_ll az_cm">
                <div class="az_kl az_ll az_Hl az_sl az_cm az_thb">
                   <div class="az_z9">
@@ -49,28 +50,7 @@
             </div>
          </div>
       </div>
-      <div class="product-details">
 
-         <h3 class="product-title"> <a href="{{ $product->link }}">{{ $product->name }}</a> </h3>
-         <div class="ratings-container">
-            @include('_partials.ratings')
-
-         </div>
-         <!-- End .product-container -->
-         <div class="price-box">
-            @if($product->discounted_price)
-            <div>
-               <span class="old-price bold">{{ $product->currency }}{{ $product->formatted_sale_price }}</span>
-               <span class="product-price bold">{{ $product->currency }}{{ $product->formatted_price }}</span>
-            </div>
-            @else
-            <div>
-               <span class="product-price bold">{{ $product->currency }}{{ $product->formatted_price }}</span>
-            </div>
-            @endif
-         </div>
-
-      </div>
       <!-- End .product-details -->
    </div>
    @endforeach
