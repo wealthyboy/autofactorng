@@ -9,12 +9,11 @@
     <div data-animation-name="fadeInUpShorter" class="col-6  col-md-3     appear-animate ">
         <a href="{{ $brand->link() }}" class="d-block p-0 border">
             <div class="d-flex justify-content-center align-items-center">
-                <div class="align-self-center text-center">
+                <div class="d-flex justify-content-center align-items-center text-center image-category">
                     <img src="{{ $brand->image }}" alt="" srcset="">
                 </div>
             </div>
         </a>
-
     </div>
     @endforeach
 </div>
