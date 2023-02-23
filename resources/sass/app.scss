@@ -253,6 +253,10 @@ label.container {
     margin-right: 40rem;
 }
 
+.prod-thumbnail .owl-item{
+    width: 100px !important;
+}
+
 @media (max-width:500px) {
 
     .cta-simple{
@@ -313,4 +317,19 @@ label.container {
 .accordion-button:focus{
     border-color: none !important;
     box-shadow: none !important;
+}
+
+.cart-button {
+    border: 1px solid #e5e5e5;
+    min-height: calc(32px - 2px);
+    width: calc(32px - 2px);
+    border-radius: 50%;
+    padding: 0;
+}
+
+.cart-input{
+    width: 58px;
+    height: 40px;
+    text-align: center;
+    margin: 0 16px;
 }

@@ -15887,7 +15887,7 @@ span.toggle:before {
 
 .product-single-details .new-price {
     color: #222529;
-    font-size: 2.4rem;
+    font-size: 3.4rem;
     letter-spacing: -0.02em;
     vertical-align: middle;
     line-height: 0.8;
@@ -41952,6 +41952,10 @@ label.container {
   margin-right: 40rem;
 }
 
+.prod-thumbnail .owl-item {
+  width: 100px !important;
+}
+
 @media (max-width: 500px) {
   .cta-simple {
     padding: 0px 0px;
@@ -42010,4 +42014,19 @@ label.container {
 .accordion-button:focus {
   border-color: none !important;
   box-shadow: none !important;
+}
+
+.cart-button {
+  border: 1px solid #e5e5e5;
+  min-height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.cart-input {
+  width: 58px;
+  height: 40px;
+  text-align: center;
+  margin: 0 16px;
 }

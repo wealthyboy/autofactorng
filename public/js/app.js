@@ -26874,7 +26874,9 @@ var _hoisted_1 = {
   "aria-hidden": "true"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeProps)((0,vue__WEBPACK_IMPORTED_MODULE_0__.guardReactiveProps)(_ctx.$attrs)), [$props.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_1)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.text), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", (0,vue__WEBPACK_IMPORTED_MODULE_0__.mergeProps)({
+    "class": "bold fs-4"
+  }, _ctx.$attrs), [$props.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_1)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.text), 1
   /* TEXT */
   )], 16
   /* FULL_PROPS */
@@ -28417,14 +28419,14 @@ var _hoisted_11 = {
   "class": "price-box col-8"
 };
 var _hoisted_12 = {
-  "class": "old-price"
+  "class": "old-price bold"
 };
 var _hoisted_13 = {
-  "class": "new-price"
+  "class": "new-price bold"
 };
 var _hoisted_14 = {
   key: 1,
-  "class": "new-price"
+  "class": "new-price bold"
 };
 var _hoisted_15 = {
   "class": "col-4"
@@ -28452,7 +28454,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* STYLE */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .ratings "), _hoisted_6]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-ratings "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_7, "( " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.average_rating_count) + " Reviews )", 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .ratings-container "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " SKU #" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.sku), 1
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .ratings-container "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "SKU #" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.sku), 1
   /* TEXT */
   ), $props.product.showFitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_check_vehicle, {
     fitText: _ctx.productFitString || $props.product.fitText
@@ -28474,7 +28476,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8
   /* PROPS */
   , ["onQty:updated"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .price-box "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
-    "class": "btn btn-block btn-dark w-100",
+    "class": "btn btn-block btn-dark w-100 py-4",
     text: $data.text,
     type: _ctx.button,
     loading: $data.loading,
@@ -29260,10 +29262,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "aria-describedby": "",
     "data-name": "adults",
     "data-math": "minus",
-    "class": "mr-3 raised cursor-pointer add-subtract min-adults"
+    "class": "mr-3 cart-button raised cursor-pointer add-subtract min-adults"
   }, _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
-    "class": "w-100",
+    "class": "cart-input w-50",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.qty = $event;
     })
@@ -29277,7 +29279,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "data-name": "adults",
     "data-number": "1",
     type: "button",
-    "class": "ml-3 raised cursor-pointer add-subtract"
+    "class": "ml-3 raised cart-button cursor-pointer add-subtract"
   }, _hoisted_5)]);
 }
 
