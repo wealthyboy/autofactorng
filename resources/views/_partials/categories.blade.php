@@ -12,7 +12,7 @@
                     <div class="image-category">
                         <img src="{{ $category->image }}" alt="" srcset="">
                     </div>
-                    <div class="mt-4   semi-bold">{{ $category->name }}</div>
+                    <div class="mt-4   semi-bold fs-4">{{ $category->name }}</div>
                 </div>
             </div>
         </a>

@@ -10879,7 +10879,7 @@ body.modal-open {
 
 a {
     transition: all 0.3s;
-    color: #000;
+    color: #000 !important;
     text-decoration: none
 }
 
