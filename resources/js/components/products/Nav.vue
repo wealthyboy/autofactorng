@@ -1,6 +1,6 @@
 <template>
     <nav
-        class="toolbox sticky-header mt-2"
+        class="toolbox sticky-header mt-4"
         data-sticky-options="{'mobile': true}"
     >
         <div class="toolbox-left">

@@ -5322,7 +5322,7 @@ form h2 {
 }
 
 select.form-control:not([size]):not([multiple]) {
-    height: 6rem
+    height: 5rem
 }
 
 select.form-control-sm:not([size]):not([multiple]) {
@@ -5435,7 +5435,7 @@ label {
     right: 1.9rem;
     transform: translateY(-50%);
     font-family: "porto";
-    font-size: 1.6rem;
+    font-size: 2rem;
     content: "";
     padding-bottom: 2px;
     font-weight: 400
@@ -6446,7 +6446,7 @@ span.page-link {
 }
 
 .layout-btn.active {
-    color: #08C
+    color: #08C;
 }
 
 @media (min-width:992px) {

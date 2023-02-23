@@ -276,6 +276,21 @@ label.container {
     margin: 0 20px;
 }
 
+.check-vehicle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fffcf2;
+    border: none;
+    border-bottom: 2px solid #ffc600;
+    cursor: pointer;
+    font-size: 13.5px;
+    padding: 8px 12px;
+    min-height: 40px;
+    text-align: left;
+    width: 100%;
+}
+
 .image-category{
     max-width: 120px;
     width: 124px;
