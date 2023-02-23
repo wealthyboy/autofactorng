@@ -27235,7 +27235,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "accordion-header text-uppercase border-bottom",
     id: 'flush-heading' + $props.name
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "accordion-button collapsed text-uppercase",
+    "class": "accordion-button collapsed text-uppercase fs-3",
     type: "button",
     "data-bs-toggle": "collapse",
     "data-bs-target": '#flush-collapse' + $props.name,

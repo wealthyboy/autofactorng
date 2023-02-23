@@ -304,3 +304,13 @@ label.container {
     background-color: #f26100;
     transform: skewX(-30deg);
 }
+
+.accordion-button:not(.collapsed){
+    background-color: #fff !important;
+    color: #000;
+}
+
+.accordion-button:focus{
+    border-color: none !important;
+    box-shadow: none !important;
+}

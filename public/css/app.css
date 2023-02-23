@@ -9267,8 +9267,8 @@ figure .porto-loading-icon {
 .product-list .btn-add-cart {
     margin: 0 3px 5px 0;
     padding: 0 1.4rem;
-    background-color: #08C;
-    border-color: #08C;
+    background-color: #36454F;
+    border-color: #000;
     color: #fff
 }
 
@@ -42000,4 +42000,14 @@ label.container {
   height: 4px;
   background-color: #f26100;
   transform: skewX(-30deg);
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #fff !important;
+  color: #000;
+}
+
+.accordion-button:focus {
+  border-color: none !important;
+  box-shadow: none !important;
 }
