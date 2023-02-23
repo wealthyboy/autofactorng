@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-lg-9 order-lg-">
-            <div v-if="productIsLoading" class="cta-border cta-bg light mb-3">
+            <div v-if="productIsLoading" class="cta-bg light mb-3">
                 <div class="row j-preview cta-simple">
                     <div class="col-md-9"></div>
                 </div>
@@ -26,11 +26,11 @@
                 </div>
                 <div
                     v-if="search_filters.search_type.search"
-                    class="d-flex justify-content-between align-content-center pt-2"
+                    class="d-flex justify-content-between align-content-center py-4"
                 >
                     <div class="title w-100 p-2 d-none d-lg-block">
-                        <h3>SET YOUR VEHICLE</h3>
-                        <p>Get an exact fit for your vehicle.</p>
+                        <h3 class="mb-0">SET YOUR VEHICLE</h3>
+                        <div>Get an exact fit for your vehicle.</div>
                     </div>
 
                     <template

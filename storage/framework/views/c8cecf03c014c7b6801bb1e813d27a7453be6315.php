@@ -11,8 +11,8 @@
             <li>
                 <a href="<?php echo e($category->children->count() ? '#' : '/products/'.$category->slug); ?>" target="" data-testid="at_popular_part_list_item_0" tabindex="0">
                     <div class="az_ylb">
-                        <div class="az_bdb az_lkb az_zlb" tabindex="-1" role="menuitem" aria-disabled="false">
-                            <div class="az_-i"><?php echo e($category->name); ?></div>
+                        <div class="" tabindex="-1" role="menuitem" aria-disabled="false">
+                            <h2 class="mb-0"><?php echo e($category->name); ?></h2>
                         </div>
                     </div>
                 </a>
@@ -20,8 +20,13 @@
                 <?php if($category->children->count()): ?>
                 <ul>
                     <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <li>
-                        <a href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>"><?php echo e($category->name); ?></a>
+                    <li class="py-4">
+                        <a href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>">
+
+                            <?php echo e($category->name); ?>
+
+                        </a>
+
                     </li>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </ul>

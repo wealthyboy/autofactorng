@@ -1,82 +1,70 @@
 <template>
-
-  <transition name="modal">
-    <modal v-if="showModal">
-
-      <!--
+    <transition name="modal">
+        <modal v-if="showModal">
+            <!--
         you can use custom content here to overwrite
         default content
       -->
-      <template v-slot:header>
-        <h3>WHAT ARE YOU WORKING ON TODAY?</h3>
-
-        <button
-          class="modal-default-button"
-          @click="show"
-        >
-          <i class="fa-2x bi bi-x-lg"></i>
-        </button>
-
-      </template>
-
-      <template v-slot:body>
-        <h6>Add your vehicle to get an exact fit.</h6>
-        <div class=" d-flex justify-content-between align-content-center pt-2">
-          <make-model-year @do:string="getString"></make-model-year>
-        </div>
-      </template>
-
-      <template v-slot:footer>
-
-        <div
-          v-if="fitString"
-          class="col-md-6 p-1"
-        >
-
-          <button class="w-100">
-            <div class="d-flex align-items-center py-4">
-              <span class="me-3">
-                <img
-                  v-if="fitString"
-                  src="/images/utils/icon-vehicle-selected-d.svg"
-                  alt=""
+            <template v-slot:header>
+                <h3 class="mb-0 ms-5">WHAT ARE YOU WORKING ON TODAY?</h3>
+                <button
+                    class="bg-transparent border-0 modal-default-button"
+                    @click="show"
                 >
-              </span>
-              <span>
-                {{ fitString }}
-              </span>
-            </div>
-          </button>
+                    <i class="fa-2x bi bi-x-lg"></i>
+                </button>
+            </template>
 
-          <div class="d-flex">
-            <div
-              v-if="fitString"
-              class="mt-3 pb-4"
-            >
-              <a
-                @click.prevent="shopWithoutVehicle('shop')"
-                href="#"
-              >Shop Without Vehicle</a>
-            </div>
+            <template v-slot:body>
+                <div class="mx-5">Add your vehicle to get an exact fit.</div>
+                <div
+                    class="d-flex justify-content-between align-content-center pt-2 mx-5"
+                >
+                    <make-model-year @do:string="getString"></make-model-year>
+                </div>
+            </template>
 
-            <div
-              v-if="fitString"
-              class="ms-3 mt-3 pb-4"
-            >
-              <a
-                @click.prevent="shopWithoutVehicle('change')"
-                href="#"
-              >Change Vehicle</a>
-            </div>
-          </div>
+            <template v-slot:footer>
+                <div v-if="fitString" class="col-md-6 p-1 mx-5 mt-4">
+                    <h2 class="fs-5 mb-0 mb-2">Currently Shopping For:</h2>
+                    <button class="w-100 bg-transparent fit-string border-0">
+                        <div class="d-flex align-items-center py-4">
+                            <span class="me-3">
+                                <img
+                                    v-if="fitString"
+                                    src="/images/utils/icon-vehicle-selected-d.svg"
+                                    alt=""
+                                />
+                            </span>
+                            <span>
+                                {{ fitString }}
+                            </span>
+                        </div>
+                    </button>
 
-        </div>
+                    <div class="d-flex">
+                        <div v-if="fitString" class="mt-4 pb-4">
+                            <a
+                                @click.prevent="shopWithoutVehicle('shop')"
+                                href="#"
+                                >Shop Without Vehicle</a
+                            >
+                        </div>
 
-      </template>
+                        <span class="v-line mt-3"></span>
 
-    </modal>
-
-  </transition>
+                        <div v-if="fitString" class="ms-3 mt-4 pb-4">
+                            <a
+                                @click.prevent="shopWithoutVehicle('change')"
+                                href="#"
+                                >Change Vehicle</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </modal>
+    </transition>
 </template>
 
 <script>
@@ -88,54 +76,54 @@ import http from "../../utils/httpService";
 import Modal from "./Mod";
 
 export default {
-  components: { Modal, MakeModelYear },
-  setup() {
-    const showModal = computed(() => store.getters.showModal);
-    const t = ref(null);
-    const fitString = computed(() => store.getters.fitString);
-    const store = useStore();
-    const { shopWithoutVehicle } = useActions(["shopWithoutVehicle"]);
+    components: { Modal, MakeModelYear },
+    setup() {
+        const showModal = computed(() => store.getters.showModal);
+        const t = ref(null);
+        const fitString = computed(() => store.getters.fitString);
+        const store = useStore();
+        const { shopWithoutVehicle } = useActions(["shopWithoutVehicle"]);
 
-    function getString(t) {
-      if (t.type == "engine_id") {
-        store.commit("setMessage", " You are now shopping for  " + t.text);
-      }
+        function getString(t) {
+            if (t.type == "engine_id") {
+                store.commit(
+                    "setMessage",
+                    " You are now shopping for  " + t.text
+                );
+            }
 
-      if (t.type == "engine_id") {
-        store.commit("setModal", false);
-      }
-    }
+            if (t.type == "engine_id") {
+                store.commit("setModal", false);
+            }
+        }
 
-    function show() {
-      store.commit("setModal", false);
-    }
+        function show() {
+            store.commit("setModal", false);
+        }
 
-    onMounted(() => {
-      let url = new URL(location.href).pathname.split("/");
-      let category = url[2];
-      let product = url[3];
-      http
-        .get("/make-model-year-engine", {
-          params: {
-            category,
-            product,
-          },
-        })
-        .then((res) => {
-          store.commit("setfitString", res.data.string);
-          store.commit("setProductFitString", res.data.productFitString);
+        onMounted(() => {
+            let url = new URL(location.href).pathname.split("/");
+            let category = url[2];
+            let product = url[3];
+            http.get("/make-model-year-engine", {
+                params: {
+                    category,
+                    product,
+                },
+            }).then((res) => {
+                store.commit("setfitString", res.data.string);
+                store.commit("setProductFitString", res.data.productFitString);
+            });
         });
-    });
 
-    return {
-      getString,
-      fitString,
-      showModal,
-      store,
-      show,
-      shopWithoutVehicle,
-    };
-  },
+        return {
+            getString,
+            fitString,
+            showModal,
+            store,
+            show,
+            shopWithoutVehicle,
+        };
+    },
 };
 </script>
-

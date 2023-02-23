@@ -4,7 +4,6 @@
    <strong>
       PRODUCTS
    </strong>
-
 </h4>
 <div class="underline mb-5 ms-1"></div>
 
@@ -35,28 +34,22 @@
             <img src="<?php echo e($product->image_m); ?>" alt="product">
          </a>
       </figure>
-      <div class="product-details">
-
-         <h3 class="product-title"> <a href="<?php echo e($product->link); ?>"><?php echo e($product->name); ?></a> </h3>
-         <div class="ratings-container">
-            <?php echo $__env->make('_partials.ratings', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-         </div>
-         <!-- End .product-container -->
-         <div class="price-box">
-            <?php if($product->discounted_price): ?>
-            <div>
-               <span class="old-price bold"><?php echo e($product->currency); ?><?php echo e($product->formatted_sale_price); ?></span>
-               <span class="product-price bold"><?php echo e($product->currency); ?><?php echo e($product->formatted_price); ?></span>
+      <div class="product-details-content">
+         <div class="az_kl">
+            <div class="az_ll az_cm">
+               <div class="az_phb az_rhb" data-testid="part-label">Prestone Antifreeze/Coolant Universal 50/50 PREMIXED *10 Year/300K Mile Protection* 1 Gallon</div>
             </div>
-            <?php else: ?>
-            <div>
-               <span class="product-price bold"><?php echo e($product->currency); ?><?php echo e($product->formatted_price); ?></span>
-            </div>
-            <?php endif; ?>
-         </div>
 
+            <div class="az_ll az_cm">
+               <div class="az_kl az_ll az_Hl az_sl az_cm az_thb">
+                  <div class="az_z9">
+                     <div class="az_n9 az_Chb" data-testid="price-fragment" aria-label="Total price is: 12 dollars and 99 cents. "><span data-testid="cart-price-icon-deal" class="az_-G az_m9">$</span><span class="az_-i az_o9">12</span><span class="az_-i az_p9"><span class="az_y9">.</span>99</span></div>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
+
       <!-- End .product-details -->
    </div>
    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

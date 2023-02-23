@@ -1,15 +1,15 @@
 <template>
-    <div class="cta-border cta-bg light">
-        <div class="row cta-simple p-0 py-5">
-            <div class="col-md-2">
-                <h3>CURRENTLY SHOPPING FOR:</h3>
+    <div class="cta-bg light">
+        <div class="cta-simple d-flex align-items-center p-0 py-5">
+            <div class="text-start ms-4">
+                <h3 class="mb-0 fs-3">CURRENTLY SHOPPING FOR:</h3>
             </div>
 
-            <div class="col-md-7">
-                <button class="w-100">{{ searchText }}</button>
+            <div class="w-100">
+                <button class="w-100 fit-string py-4">{{ searchText }}</button>
             </div>
 
-            <div class="col-md-3">
+            <div class="w-25">
                 <div @click.prevent="shopWithoutVehicle('change')" class="mb-2">
                     <a href="#">Change Vehicle</a>
                 </div>

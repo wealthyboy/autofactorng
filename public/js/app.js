@@ -25179,7 +25179,7 @@ var _hoisted_4 = {
   "class": "modal-header"
 };
 var _hoisted_5 = {
-  "class": "modal-body"
+  "class": "modal-bod bg-gray py-4"
 };
 var _hoisted_6 = {
   "class": "modal-footer justify-content-start"
@@ -25213,7 +25213,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "WHAT ARE YOU WORKING ON TODAY?", -1
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "mb-0 ms-5"
+}, "WHAT ARE YOU WORKING ON TODAY?", -1
 /* HOISTED */
 );
 
@@ -25225,41 +25227,57 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_3 = [_hoisted_2];
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", null, "Add your vehicle to get an exact fit.", -1
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "mx-5"
+}, "Add your vehicle to get an exact fit.", -1
 /* HOISTED */
 );
 
 var _hoisted_5 = {
-  "class": "d-flex justify-content-between align-content-center pt-2"
+  "class": "d-flex justify-content-between align-content-center pt-2 mx-5"
 };
 var _hoisted_6 = {
   key: 0,
-  "class": "col-md-6 p-1"
+  "class": "col-md-6 p-1 mx-5 mt-4"
 };
-var _hoisted_7 = {
-  "class": "w-100"
-};
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "fs-5 mb-0 mb-2"
+}, "Currently Shopping For:", -1
+/* HOISTED */
+);
+
 var _hoisted_8 = {
-  "class": "d-flex align-items-center py-4"
+  "class": "w-100 bg-transparent fit-string border-0"
 };
 var _hoisted_9 = {
-  "class": "me-3"
+  "class": "d-flex align-items-center py-4"
 };
 var _hoisted_10 = {
+  "class": "me-3"
+};
+var _hoisted_11 = {
   key: 0,
   src: "/images/utils/icon-vehicle-selected-d.svg",
   alt: ""
 };
-var _hoisted_11 = {
+var _hoisted_12 = {
   "class": "d-flex"
 };
-var _hoisted_12 = {
-  key: 0,
-  "class": "mt-3 pb-4"
-};
 var _hoisted_13 = {
+  key: 0,
+  "class": "mt-4 pb-4"
+};
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "v-line mt-3"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_15 = {
   key: 1,
-  "class": "ms-3 mt-3 pb-4"
+  "class": "ms-3 mt-4 pb-4"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_make_model_year = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("make-model-year");
@@ -25275,7 +25293,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, {
         header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-            "class": "modal-default-button",
+            "class": "bg-transparent border-0 modal-default-button",
             onClick: _cache[0] || (_cache[0] = function () {
               return $setup.show && $setup.show.apply($setup, arguments);
             })
@@ -25289,14 +25307,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           , ["onDo:string"])])];
         }),
         footer: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_9, [$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_10)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.fitString), 1
+          return [$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_10, [$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_11)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.fitString), 1
           /* TEXT */
-          )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+          )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
             onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
               return $setup.shopWithoutVehicle('shop');
             }, ["prevent"])),
             href: "#"
-          }, "Shop Without Vehicle")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+          }, "Shop Without Vehicle")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_14, $setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
             onClick: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
               return $setup.shopWithoutVehicle('change');
             }, ["prevent"])),
@@ -27284,7 +27302,7 @@ var _hoisted_2 = {
 };
 var _hoisted_3 = {
   key: 0,
-  "class": "cta-border cta-bg light mb-3"
+  "class": "cta-bg light mb-3"
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -27316,12 +27334,14 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_9 = {
   key: 0,
-  "class": "d-flex justify-content-between align-content-center pt-2"
+  "class": "d-flex justify-content-between align-content-center py-4"
 };
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "title w-100 p-2 d-none d-lg-block"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "SET YOUR VEHICLE"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Get an exact fit for your vehicle.")], -1
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "mb-0"
+}, "SET YOUR VEHICLE"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Get an exact fit for your vehicle.")], -1
 /* HOISTED */
 );
 
@@ -28288,26 +28308,28 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "cta-border cta-bg light"
+  "class": "cta-bg light"
 };
 var _hoisted_2 = {
-  "class": "row cta-simple p-0 py-5"
+  "class": "cta-simple d-flex align-items-center p-0 py-5"
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-md-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "CURRENTLY SHOPPING FOR:")], -1
+  "class": "text-start ms-4"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "mb-0 fs-3"
+}, "CURRENTLY SHOPPING FOR:")], -1
 /* HOISTED */
 );
 
 var _hoisted_4 = {
-  "class": "col-md-7"
-};
-var _hoisted_5 = {
   "class": "w-100"
 };
+var _hoisted_5 = {
+  "class": "w-100 fit-string py-4"
+};
 var _hoisted_6 = {
-  "class": "col-md-3"
+  "class": "w-25"
 };
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
@@ -44388,7 +44410,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-mask[data-v-0ddd4629] {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: table;\n  transition: opacity 0.3s ease;\n}\n.modal-wrapper[data-v-0ddd4629] {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container[data-v-0ddd4629] {\n  width: 900px;\n  margin: 0px auto;\n  padding: 20px 30px;\n  background-color: #fff;\n  border-radius: 2px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n  transition: all 0.3s ease;\n  font-family: Helvetica, Arial, sans-serif;\n}\n.modal-header h3[data-v-0ddd4629] {\n  margin-top: 0;\n  color: #42b983;\n}\n.modal-body[data-v-0ddd4629] {\n  margin: 20px 0;\n}\n.modal-default-button[data-v-0ddd4629] {\n  float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter-from[data-v-0ddd4629],\n.modal-leave-to[data-v-0ddd4629] {\n  opacity: 0;\n}\n.modal-enter-active .modal-container[data-v-0ddd4629],\n.modal-leave-active .modal-container[data-v-0ddd4629] {\n  transform: scale(1.1);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-mask[data-v-0ddd4629] {\n    position: fixed;\n    z-index: 9998;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0, 0, 0, 0.5);\n    display: table;\n    transition: opacity 0.3s ease;\n}\n.modal-wrapper[data-v-0ddd4629] {\n    display: table-cell;\n    vertical-align: middle;\n}\n.modal-container[data-v-0ddd4629] {\n    width: 900px;\n    margin: 0px auto;\n    background-color: #fff;\n    border-radius: 2px;\n    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);\n    transition: all 0.3s ease;\n    font-family: Helvetica, Arial, sans-serif;\n    height: 400px;\n}\n.modal-header h3[data-v-0ddd4629] {\n    margin-top: 0;\n    color: #42b983;\n}\n.modal-body[data-v-0ddd4629] {\n}\n.modal-default-button[data-v-0ddd4629] {\n    float: right;\n}\n\n/*\n * The following styles are auto-applied to elements with\n * transition=\"modal\" when their visibility is toggled\n * by Vue.js.\n *\n * You can easily play with the modal transition by editing\n * these styles.\n */\n.modal-enter-from[data-v-0ddd4629],\n.modal-leave-to[data-v-0ddd4629] {\n    opacity: 0;\n}\n.modal-enter-active .modal-container[data-v-0ddd4629],\n.modal-leave-active .modal-container[data-v-0ddd4629] {\n    transform: scale(1.1);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

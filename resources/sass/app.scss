@@ -260,6 +260,22 @@ label.container {
     }
 }
 
+.fit-string{
+    width: 100%;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 1px 4px 0 rgb(32 33 36 / 12%), 0 2px 2px 0 rgb(32 33 36 / 14%), 0 3px 1px -2px rgb(32 33 36 / 20%);
+    border-left: 3px solid #f26100;
+    border-radius: 4px;
+}
+
+.v-line{
+    background: #e5e5e5;
+    width: 1px;
+    height: 35px;
+    margin: 0 20px;
+}
+
 .image-category{
     max-width: 120px;
     width: 124px;
