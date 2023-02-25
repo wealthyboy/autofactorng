@@ -1,6 +1,6 @@
 <div class="container d-flex justify-content-end">
     <div class="d-block d-sm-none">
-        <div class="col-md-3">
+        <div class="col-12 w-100">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     <span class="material-symbols-outlined">

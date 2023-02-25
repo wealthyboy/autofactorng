@@ -20,13 +20,13 @@ class AccountSettingsNav
                 'link' => '/address'
             ],
             'Account Settings'  => [
-                'icon' => 'fa fa-bars',
-                'iconText' => null,
+                'icon' => 'material-symbols-outlined',
+                'iconText' => 'settings',
                 'link' => '/account/create'
             ],
             'Change Password' => [
-                'icon' => 'fa fa-align-center',
-                'iconText' => null,
+                'icon' => 'material-symbols-outlined',
+                'iconText' => 'edit',
                 'link' => '/change/password'
             ],
             'Orders' => [
