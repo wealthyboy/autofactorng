@@ -81,7 +81,7 @@ class ProductsController extends Controller
 
         $type = $this->getType($request);
 
-        $per_page = $request->per_page ??  50;
+        $per_page = $request->per_page ??  100;
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
             $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
