@@ -23704,10 +23704,8 @@ __webpack_require__.r(__webpack_exports__);
         var url = new URL(location.href);
         var path = url.pathname.split("/");
 
-        if (type == "engine_id" && path[1] == "products") {// getProducts(location.href);
-        }
-
-        if (type == "engine_id" && path[1] == "products") {// getProducts(location.href);
+        if (type == "engine_id" && path[1] == "products") {
+          getProducts(location.href);
         }
 
         if (nt == "products") {
