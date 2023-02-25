@@ -23095,8 +23095,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.getProducts(url);
     },
     filter: function filter(o) {
-      this.searchText = o.text;
-      this.getProducts(this.url);
+      this.searchText = o.text; // this.getProducts(this.url);
     },
     shopWithoutVehicle: function shopWithoutVehicle() {
       var _this = this;
