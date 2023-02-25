@@ -23705,12 +23705,10 @@ __webpack_require__.r(__webpack_exports__);
         var url = new URL(location.href);
         var path = url.pathname.split("/");
 
-        if (type == "engine_id" && path[1] == "products") {
-          getProducts(location.href);
+        if (type == "engine_id" && path[1] == "products") {// getProducts(location.href);
         }
 
-        if (type == "engine_id" && path[1] == "products") {
-          getProducts(location.href);
+        if (type == "engine_id" && path[1] == "products") {// getProducts(location.href);
         }
 
         if (nt == "products") {
@@ -28611,7 +28609,7 @@ var _hoisted_2 = {
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "0",
   selected: "selected"
-}, " Year ", -1
+}, "Year", -1
 /* HOISTED */
 );
 
@@ -28626,7 +28624,7 @@ var _hoisted_6 = {
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   selected: "",
   value: "0"
-}, " Model", -1
+}, "Model", -1
 /* HOISTED */
 );
 
@@ -28641,7 +28639,7 @@ var _hoisted_10 = {
 var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   selected: "",
   value: "0"
-}, " Make", -1
+}, "Make", -1
 /* HOISTED */
 );
 
@@ -28656,7 +28654,7 @@ var _hoisted_14 = {
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   selected: "",
   value: "0"
-}, " Engine", -1
+}, "Engine", -1
 /* HOISTED */
 );
 
