@@ -12,7 +12,7 @@
                     <div class="image-category">
                         <img src="<?php echo e($category->image); ?>" alt="" srcset="">
                     </div>
-                    <div class="mt-4   semi-bold"><?php echo e($category->name); ?></div>
+                    <div class="mt-4 semi-bold fs-3"><?php echo e($category->name); ?></div>
                 </div>
             </div>
         </a>

@@ -46,7 +46,9 @@
 //     src: url(../fonts/ProximaNovaAltCondensedThin.otf);
 // }
 
-
+body {
+    font-size: 14px !important;
+}
 
 body.modal-open {
     overflow: hidden;
@@ -332,4 +334,21 @@ label.container {
     height: 40px;
     text-align: center;
     margin: 0 16px;
+}
+
+
+.form-floating > .form-control:focus, .form-floating > .form-control:not(:placeholder-shown), .form-floating > .form-control-plaintext:focus, .form-floating > .form-control-plaintext:not(:placeholder-shown) {
+    padding-top: 2rem;
+    padding-bottom: 0.625rem;
+}
+.form-floating > .form-control, .form-floating > .form-control-plaintext {
+    padding: 1rem 0.75rem;
+}
+.form-floating > .form-control, .form-floating > .form-control-plaintext, .form-floating > .form-select {
+    height: calc(4.5rem + 2px);
+    line-height: 1.25;
+}
+
+.form-floating > label {
+    padding: 1.3rem 0.75rem;
 }
