@@ -21121,7 +21121,6 @@ __webpack_require__.r(__webpack_exports__);
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(null);
     var data = (0,_utils_FormData__WEBPACK_IMPORTED_MODULE_10__.addressData)(props.location);
-    console.log(data);
     var server_errors = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(data);
     var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_3__.reactive)(data);
@@ -24677,12 +24676,19 @@ var _hoisted_10 = {
 var _hoisted_11 = {
   "class": "form-floating mb-2"
 };
-var _hoisted_12 = ["value"];
-var _hoisted_13 = {
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  value: "0"
+}, "Choose One", -1
+/* HOISTED */
+);
+
+var _hoisted_13 = ["value"];
+var _hoisted_14 = {
   "class": "d-flex justify-content-between"
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, null, -1
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, null, -1
 /* HOISTED */
 );
 
@@ -24754,13 +24760,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     name: "Choose State"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.states, function (state) {
+      return [_hoisted_12, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.states, function (state) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
           value: state.id,
           key: state.id
         }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(state.name), 9
         /* TEXT, PROPS */
-        , _hoisted_12);
+        , _hoisted_13);
       }), 128
       /* KEYED_FRAGMENT */
       ))];
@@ -24770,7 +24776,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["error", "modelValue"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [$setup.addresses.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_general_button, {
+  , ["error", "modelValue"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [$setup.addresses.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_general_button, {
     key: 0,
     type: "button",
     text: 'Cancel',
@@ -24778,10 +24784,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: $setup.cancelForm
   }, null, 8
   /* PROPS */
-  , ["onClick"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
+  , ["onClick"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
     type: "submit",
     text: $setup.text,
-    "class": "btn btn-dark align-self-right",
+    "class": "btn btn-dark align-self-right py-3",
     loading: $setup.loading
   }, null, 8
   /* PROPS */
@@ -26856,7 +26862,7 @@ var _hoisted_1 = {
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", (0,vue__WEBPACK_IMPORTED_MODULE_0__.mergeProps)({
-    "class": "bold fs-4"
+    "class": "bold fs-5"
   }, _ctx.$attrs), [$props.loading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_1)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.text), 1
   /* TEXT */
   )], 16
@@ -38789,7 +38795,7 @@ var addressData = function addressData(location) {
     address: location ? location.address : null,
     address_2: location ? location.address_2 : null,
     city: location ? location.city : null,
-    state_id: location ? location.state_id : ""
+    state_id: location ? location.state_id : "0"
   };
   return data;
 };

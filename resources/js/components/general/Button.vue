@@ -1,5 +1,5 @@
 <template>
-    <button class="bold fs-4" v-bind="$attrs">
+    <button class="bold fs-5" v-bind="$attrs">
         <span
             v-if="loading"
             class="spinner-border spinner-border-sm"

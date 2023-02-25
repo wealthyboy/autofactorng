@@ -1,6 +1,6 @@
 <?php $__env->startSection('content'); ?>
 
-<section class="my-5">
+<section class="bg-light">
 
     <?php echo $__env->make('_partials.mobile_nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 

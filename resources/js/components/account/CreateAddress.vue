@@ -67,6 +67,12 @@
           name="Choose State"
         >
 
+        <option
+          
+            value="0"
+            
+          >Choose One</option>
+
           <option
             v-for="state in states"
             :value="state.id"
@@ -90,7 +96,7 @@
         <general-button
           type="submit"
           :text="text"
-          class="btn btn-dark align-self-right"
+          class="btn btn-dark align-self-right py-3"
           :loading="loading"
         />
       </div>
@@ -134,7 +140,6 @@ export default {
     const text = ref("Submit");
     const message = ref(null);
     const data = addressData(props.location);
-    console.log(data);
     const server_errors = ref(data);
     const post_server_error = ref(null);
     const form = reactive(data);

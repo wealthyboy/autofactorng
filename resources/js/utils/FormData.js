@@ -40,7 +40,7 @@ export const addressData = (location) => {
         address: location ? location.address : null,
         address_2: location ? location.address_2 : null,
         city: location ? location.city : null,
-        state_id: location ? location.state_id : "",
+        state_id: location ? location.state_id : "0",
     }
 
     return data

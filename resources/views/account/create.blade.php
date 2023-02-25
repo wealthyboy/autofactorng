@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section class="my-5">
+<section class="bg-light">
 
     @include('_partials.mobile_nav')
 

@@ -169,7 +169,7 @@
       <!-- End .header -->
       <div class="coverlay overlay-close"></div>
 
-      <main class="main mt-3">
+      <main class="main">
          <?php echo $__env->yieldContent('content'); ?>
          <modal-search></modal-search>
       </main>
@@ -208,9 +208,9 @@
                      <p class="footer-copyright mx-3 text-white"><a target="_blank" href="/admin">Go to Admin</a></p>
                      <?php endif; ?>
                      <div class="social-icons py-3">
-                        <a href="#" class="bi bi-facebook text-white  mr-4 fa-2x" target="_blank" title="Facebook"></a>
-                        <a href="#" class="bi bi-twitter  text-white mr-4 fa-2x" target="_blank" title="Twitter"></a>
-                        <a href="#" class="bi bi-instagram  text-white mr-4 fa-2x" target="_blank" title="Linkedin"></a>
+                        <a href="#" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
+                        <a href="#" class="bi bi-twitter  text-white me-5 fa-2x" target="_blank" title="Twitter"></a>
+                        <a href="#" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
                      </div><!-- End .social-icons -->
                   </div><!-- End .footer-bottom -->
                </div>

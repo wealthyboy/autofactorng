@@ -42061,3 +42061,7 @@ label.container {
 .form-floating > label {
   padding: 1.3rem 0.75rem;
 }
+
+select#floatingSelect {
+  height: 4.65rem !important;
+}
