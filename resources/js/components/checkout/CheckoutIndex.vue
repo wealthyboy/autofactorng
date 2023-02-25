@@ -9,19 +9,19 @@
     <div v-if="!loading && !paymentIsComplete" class="container">
         <div class="row align-items-start">
             <div class="col-md-7">
-                <div class="col-md-12 m7 bg--light border border-gray mb-2">
-                    <div class="head border-bottom mb-3">
-                        <h3>1. SHIPPING ADDRESS</h3>
+                <div class="col-md-12 px-4 bg-white border border-gray mb-2">
+                    <div class="head border-bottom mb-3 py-4">
+                        <h3 class="mb-0">1. SHIPPING ADDRESSS</h3>
                     </div>
                     <ship-address />
                 </div>
 
-                <div class="col-md-12 bg--light">
+                <div class="col-md-12 bg-white">
                     <div class="pt-3 pb-2">
                         <span class="float-right">
                             <div class="payment-icons mt-1 d-flex"></div>
                         </span>
-                        <h3>2. PAYMENT</h3>
+                        <h3 class="mb-0 mb-3">2. PAYMENT</h3>
                     </div>
 
                     <div v-if="addresses.length">
@@ -129,11 +129,11 @@
             <div class="col-5">
                 <div class="col-md-12 d-none d-lg-block mb-3">
                     <div
-                        class="cart-collateralse bg--light border pb-3 pt-3 pl-3 pt-3 pr-3"
+                        class="cart-collateralse bg-white border pb-3 pt-3 pl-3 pt-3 pr-3"
                     >
-                        <div class="cart_totalse">
-                            <div class="head border-bottom">
-                                <h3>SUMMARY</h3>
+                        <div class="cart_totalse px-4">
+                            <div class="head py-3">
+                                <h3 class="mb-0">SUMMARY</h3>
                             </div>
 
                             <cart-summary />

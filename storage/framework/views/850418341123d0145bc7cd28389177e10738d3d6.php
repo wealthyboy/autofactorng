@@ -74,7 +74,7 @@
         </header>
         <!-- End .header -->
 
-        <main class="main">
+        <main class="main  bg-light">
             <?php echo $__env->yieldContent('content'); ?>
         </main>
 
