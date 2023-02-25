@@ -24497,7 +24497,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , ["error", "modelValue", "server_errors"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
     type: "submit",
     text: $setup.text,
-    "class": "btn btn-dark w-100",
+    "class": "btn btn-dark w-100 py-3",
     loading: $setup.loading
   }, null, 8
   /* PROPS */
