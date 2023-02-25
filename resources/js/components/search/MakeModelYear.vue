@@ -154,7 +154,7 @@ export default {
                     }
 
                     if (nt == "products") {
-                        emit("do:filter", { form, text });
+                        // emit("do:filter", { form, text });
                     }
                 })
                 .catch((error) => {

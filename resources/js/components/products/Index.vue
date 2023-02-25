@@ -288,7 +288,7 @@ export default {
         },
         filter(o) {
             this.searchText = o.text;
-            // this.getProducts(this.url);
+            this.getProducts(this.url);
         },
         shopWithoutVehicle() {
             this.searchText = null;

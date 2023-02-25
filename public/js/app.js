@@ -23095,7 +23095,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.getProducts(url);
     },
     filter: function filter(o) {
-      this.searchText = o.text; // this.getProducts(this.url);
+      this.searchText = o.text;
+      this.getProducts(this.url);
     },
     shopWithoutVehicle: function shopWithoutVehicle() {
       var _this = this;
@@ -23708,11 +23709,7 @@ __webpack_require__.r(__webpack_exports__);
           getProducts(location.href);
         }
 
-        if (nt == "products") {
-          emit("do:filter", {
-            form: form,
-            text: text
-          });
+        if (nt == "products") {// emit("do:filter", { form, text });
         }
       })["catch"](function (error) {
         console.log(error);
