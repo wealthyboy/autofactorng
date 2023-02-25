@@ -7,7 +7,7 @@
         <div class="row">
             <?php echo $__env->make('_partials.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <div class="col-md-5">
-                <h2 class="page-title">Change Password</h2>
+                <h2 class="page-title text-uppercase">Change Password</h2>
                 <change-password :user="<?php echo e($user); ?>" />
             </div>
         </div>

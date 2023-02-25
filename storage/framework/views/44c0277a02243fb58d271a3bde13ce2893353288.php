@@ -12,10 +12,9 @@
 
                     <?php $__currentLoopData = $nav; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $n): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <li>
-                        <a href="<?php echo e($n['link']); ?>" class="list-group-item list-group-item-action">
+                        <a href="<?php echo e($n['link']); ?>" class="list-group-item list-group-item-action d-flex-align-items">
                             <i class="<?php echo e($n['icon']); ?>"><?php echo e($n['iconText']); ?></i>
-                            <?php echo e($key); ?>
-
+                            <span class="ms-2"><?php echo e($key); ?></span>
                         </a>
                     </li>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

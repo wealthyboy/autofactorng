@@ -9,7 +9,7 @@
         <div class="row">
             @include('_partials.nav')
             <div class="col-md-5">
-                <h2 class="page-title">Change Password</h2>
+                <h2 class="page-title text-uppercase">Change Password</h2>
                 <change-password :user="{{ $user }}" />
             </div>
         </div>
