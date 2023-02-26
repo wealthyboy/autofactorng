@@ -113,7 +113,7 @@ class ProductsController extends Controller
         }
 
         if (null !== $category) {
-            $search_filters  = $this->searchFilters($category);
+            $search_filters = $this->searchFilters($category);
         } else {
 
             $search_filters =  $search = collect([

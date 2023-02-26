@@ -1,21 +1,18 @@
 <?php $__env->startSection('content'); ?>
 
-<section class="my-5">
-
+<div class="bg-light">
     <?php echo $__env->make('_partials.mobile_nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
     <div class="container">
-        <div class="row">
+        <div class="row mt-5">
             <?php echo $__env->make('_partials.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <div class="col-md-6">
-                <h2 class="page-t">Address</h2>
+                <h3 class="page-t">Address</h3>
                 <ship-addresses />
             </div>
         </div>
     </div>
-
-</section>
-<!--End Contact Form & Info-->
+</div>
+<!--End Contact Form & f-->
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/address/index.blade.php ENDPATH**/ ?>

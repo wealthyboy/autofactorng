@@ -98,6 +98,11 @@ a {
     text-decoration: none !important;
 }
 
+a {
+    color: #202124 ;
+    text-decoration: none !important;
+}
+
 
 div#offcanvas {
     top: 178px;
@@ -370,4 +375,9 @@ input[type=number]:focus,
 [type=tel].form-control:focus, 
 [contenteditable].form-control:focus {
   box-shadow: none !important;
+}
+
+
+footer a {
+    color: #fff !important;
 }

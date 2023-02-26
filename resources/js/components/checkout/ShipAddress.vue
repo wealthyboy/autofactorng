@@ -271,14 +271,14 @@
         class="btn btn--primary btn-round btn-lg btn-block mb-3 bold"
         @click.prevent="addNewAddress"
         id="enter-new-address"
-      > + Add Address </a>
+      > + Add Add</a>
       <ul class="">
         <li
           class="mb-3"
           v-for="(location, index) in addresses"
           :key="location.id"
         >
-          <div class="shipping-info border border-gray pr-3 pt-3 pl-3">
+          <div class="shipping-info border border-gray pr-3 pt-3 pl-3 bg-white">
             <div class="shipping-address-info">
               <p
                 class="border-bottom pb-3"

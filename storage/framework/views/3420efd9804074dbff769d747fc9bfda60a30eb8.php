@@ -1,11 +1,11 @@
 <?php $__env->startSection('content'); ?>
 
-<section class="bg-light">
+<div class="bg-light">
 
     <?php echo $__env->make('_partials.mobile_nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <div class="container">
-        <div class="row">
+        <div class="row mt-5">
             <?php echo $__env->make('_partials.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <div class="col-md-5">
                 <h2 class="page-title ">Account</h2>
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-</section>
+</div>
 <!--End Contact Form & Info-->
 
 <?php $__env->stopSection(); ?>

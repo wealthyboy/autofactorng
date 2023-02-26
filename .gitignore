@@ -7,7 +7,7 @@
 
 /public/images/category
 /public/images/brands
-public/images/utils
+
 /storage/*.key
 /vendor
 .env

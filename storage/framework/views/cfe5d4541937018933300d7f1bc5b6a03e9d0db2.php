@@ -1,26 +1,24 @@
 <?php $__env->startSection('content'); ?>
 
-<section class="my-5">
+<div class="bg-light">
     <div class="container">
         <div class="d-block d-sm-none">
             <?php echo $__env->make('_partials.mobile_nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </div>
     </div>
     <div class="container ">
-        <div class="row">
-
+        <div class="row mt-5">
             <?php echo $__env->make('_partials.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-            <div class="col-md-9">
+            <div class="col-md-9 bg-white">
                 <div class="d-flex align-items-center justify-content-between">
                     <h2 class="page-title ">Orders</h2>
                     <div class="wallet-balance"></div>
                 </div>
-                <general-table />
+                <general-table class="bg-white" />
             </div>
         </div>
     </div>
-</section>
+</div>
 <!--End Contact Form & Info-->
 
 <?php $__env->stopSection(); ?>

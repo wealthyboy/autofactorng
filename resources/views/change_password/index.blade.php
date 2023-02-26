@@ -2,19 +2,18 @@
 
 @section('content')
 
-<section class="sec-padding--account mt-7 bg--gray">
+<div class="bg-light">
     @include('_partials.mobile_nav')
-
     <div class="container">
-        <div class="row">
+        <div class="row mt-5">
             @include('_partials.nav')
             <div class="col-md-5">
-                <h2 class="page-title text-uppercase">Change Password</h2>
+                <h3 class="page-title ">Change Password</h3>
                 <change-password :user="{{ $user }}" />
             </div>
         </div>
     </div>
-</section>
+</div>
 <!--End Contact Form & Info-->
 
 @endsection

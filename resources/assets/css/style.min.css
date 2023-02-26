@@ -10524,7 +10524,6 @@ h6.heading-bottom-border {
     display: block;
     box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.1);
     padding: 2.8rem 0;
-    background: linear-gradient(135deg, #0169fe 0, #383f48 100%);
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -10533,7 +10532,6 @@ h6.heading-bottom-border {
 
 .section-elements .icon-box i {
     font-size: 3.2rem;
-    color: #0169fe;
     position: relative
 }
 
@@ -12304,7 +12302,7 @@ header .separator {
 .dropdown-cart-action .btn {
     padding: 1.3rem 2.5rem 1.4rem;
     border-radius: 0.2rem;
-    color: #fff;
+    color: #fff !important;
     height: auto;
     font-size: 1.2rem;
     font-weight: 600;
@@ -12320,13 +12318,13 @@ header .separator {
 .dropdown-cart-action .view-cart {
     margin: 1rem 0;
     background: #e7e7e7;
-    color: #222529
+    color: #222529 !important;
 }
 
 .dropdown-cart-action .view-cart:focus,
 .dropdown-cart-action .view-cart:hover {
     background: #f1f1f1;
-    color: #222529
+    color: #222529 !important;
 }
 
 .compare-dropdown .dropdown-toggle {

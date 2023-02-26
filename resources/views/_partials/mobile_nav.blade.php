@@ -12,7 +12,7 @@
 
                     @foreach($nav as $key => $n)
                     <li>
-                        <a href="{{ $n['link'] }}" class="list-group-item list-group-item-action d-flex-align-items">
+                        <a href="{{ $n['link'] }}" class="list-group-item list-group-item-action d-flex align-items-center">
                             <i class="{{ $n['icon'] }}">{{ $n['iconText'] }}</i>
                             <span class="ms-2">{{ $key }}</span>
                         </a>

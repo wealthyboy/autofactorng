@@ -24814,7 +24814,7 @@ var _hoisted_3 = {
   "class": "p-0"
 };
 var _hoisted_4 = {
-  "class": "shipping-info border border-gray p-4"
+  "class": "shipping-info border border-gray p-4 bg-white"
 };
 var _hoisted_5 = {
   "class": "shipping-address-info"
@@ -24895,7 +24895,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "enter-new-address"
   }, " + Add Address ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.addresses, function (location, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
-      "class": "mb-3",
+      "class": "mb-3 bg-white",
       key: location.id
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(location.first_name) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(location.last_name), 1
     /* TEXT */

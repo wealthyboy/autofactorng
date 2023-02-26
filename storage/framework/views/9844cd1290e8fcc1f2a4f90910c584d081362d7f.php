@@ -1,20 +1,18 @@
 <?php $__env->startSection('content'); ?>
 
-<section class="my-5">
-    <div class="container">
-        <div class="d-block d-sm-none">
-            <?php echo $__env->make('_partials.mobile_nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-        </div>
-    </div>
+<div class="bg-light">
+
+    <?php echo $__env->make('_partials.mobile_nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
     <div class="container ">
-        <div class="row">
+        <div class="row mt-5">
             <?php echo $__env->make('_partials.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-            <div class="col-md-9">
+            <div class="col-md-9 ">
                 <wallet-table :auto_credit="false" :price_range="<?php echo e(collect([1000, 9000000])); ?>" :user="<?php echo e($user); ?>" />
             </div>
         </div>
     </div>
-</section>
+</div>
 <!--End Contact Form & Info-->
 
 <?php $__env->stopSection(); ?>
