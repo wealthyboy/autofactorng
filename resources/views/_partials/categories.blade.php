@@ -14,6 +14,10 @@
                     </div>
                     <div class="mt-4 semi-bold fs-3">{{ $category->name }}</div>
                 </div>
+                <div class="align-self-center text-center">
+
+                    <div class="mt-4 semi-bold fs-3">{{ $category->name }}</div>
+                </div>
             </div>
         </a>
 
