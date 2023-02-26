@@ -15,8 +15,8 @@
                 </div>
 
             </div>
-            <div class=" text-center">
-                <div class="mt-1 semi-bold fs-3">{{ $category->name }}wewewewe w e we w e w e w</div>
+            <div class="text-center">
+                <div class="mt-1 semi-bold fs-3">{{ $category->name }}</div>
             </div>
         </a>
 
