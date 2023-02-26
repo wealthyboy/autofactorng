@@ -12,8 +12,11 @@
                     <div class="image-category">
                         <img src="<?php echo e($category->image); ?>" alt="" srcset="">
                     </div>
-                    <div class="mt-4 semi-bold fs-3"><?php echo e($category->name); ?></div>
                 </div>
+
+            </div>
+            <div class=" text-center">
+                <div class="mt-1 semi-bold fs-3"><?php echo e($category->name); ?>wewewewe w e we w e w e w</div>
             </div>
         </a>
 

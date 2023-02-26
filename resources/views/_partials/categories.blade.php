@@ -13,9 +13,10 @@
                         <img src="{{ $category->image }}" alt="" srcset="">
                     </div>
                 </div>
-                <div class="align-self-center text-center">
-                    <div class="mt-4 semi-bold fs-3">{{ $category->name }}</div>
-                </div>
+
+            </div>
+            <div class=" text-center">
+                <div class="mt-1 semi-bold fs-3">{{ $category->name }}wewewewe w e we w e w e w</div>
             </div>
         </a>
 
