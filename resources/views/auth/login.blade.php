@@ -43,7 +43,7 @@
 
         </div>
 
-        <div style="background-image: url('/images/utils/sign.jpeg'); background-size: contain; background-repeat:no-repeat; height: 100vh !important; background-position: center;" class="  d-none d-lg-block d-md-block d-xl-block col-12  col-md-7  position-relative bg-gradient-primary h-100  px-7 border-radius-lg">
+        <div style="background-image: url('/images/utils/sign.jpeg'); background-size: cover; background-repeat:no-repeat; height: 100vh !important; background-position: center;" class="  d-none d-lg-block d-md-block d-xl-block col-12  col-md-7  position-relative bg-gradient-primary h-100  px-7 border-radius-lg">
             <div class="d-flex flex-column  align-items-center ">
                 <h1 class="text-white mb-4"> MEMBER BENEFITS: </h1>
                 <ul>
