@@ -117,8 +117,8 @@
             <div class="product-default">
                 <figure>
                     <a href="{{$related_product->product->link }}">
-                        <img src="{{ $related_product->product->image_to_show }}" width="280" height="280" alt="product">
-                        <img src="{{ $related_product->product->image_to_show }}" width="280" height="280" alt="product">
+                        <img src="{{ $related_product->product->image_m }}" width="280" height="280" alt="product">
+                        <img src="{{ $related_product->product->image_m }}" width="280" height="280" alt="product">
                     </a>
                     <div class="label-group">
                         <!-- <div class="product-label label-hot">HOT</div>
