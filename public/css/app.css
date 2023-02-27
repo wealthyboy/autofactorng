@@ -41949,6 +41949,10 @@ label.container {
   /* Add a pointer on hover */
 }
 
+.product-desc ul {
+  padding: 0 !important;
+}
+
 .product-desc ul li {
   padding: 10px;
 }
