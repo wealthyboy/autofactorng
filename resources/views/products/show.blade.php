@@ -80,19 +80,16 @@
 
                 <div id="collapse1" class="collapse" data-parent="#accordion1" style="">
                     <?php echo html_entity_decode($product->phy_desc) ?>
-
                 </div>
             </div>
 
             <div class="card card-accordion">
                 <a class="card-header collapsed" href="element-accordions.html#" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
                     PRODUCT DESCRIPTION
-
                 </a>
 
                 <div id="collapse2" class="collapse" data-parent="#accordion1" style="">
                     <?php echo html_entity_decode($product->description) ?>
-
                 </div>
             </div>
         </div>
@@ -109,7 +106,6 @@
     </div>
 
     @if ( optional($product->related_products)->count() )
-
     <div class="products-section container-fluid pt-0 mt-4">
         <h2 class="section-title">Related Products</h2>
         <div class="products-slider owl-carousel owl-theme dots-top dots-small">

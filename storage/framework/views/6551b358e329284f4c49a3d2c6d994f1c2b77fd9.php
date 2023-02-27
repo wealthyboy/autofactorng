@@ -445,6 +445,7 @@
 <script src="<?php echo e(asset('ckeditor/ckeditor.js')); ?>"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 
+<script src="<?php echo e(asset('backend/products.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('inline-scripts'); ?>
 

@@ -43,14 +43,27 @@
 
         </div>
 
-        <div class="d-none d-lg-block d-md-block d-xl-block col-12  col-md-7  position-relative bg-gradient-primary px-7 border-radius-lg">
-            <div class="image-content">
-                <img src="/images/utils/sign.jpeg" alt="Avatar" class="image  h-100 ">
+        <div class="  d-none d-lg-block d-md-block d-xl-block col-12  col-md-7  position-relative bg-gradient-primary h-100  px-7 border-radius-lg" style="background-image: url(&quot;/images/utils/sign.jpeg&quot;); background-size: cover; background-repeat: no-repeat; height: 100vh !important; background-position: center center;">
+            <div class="d-flex flex-column  align-items-center ">
+                <h1 class="text-white mb-4"> MEMBER BENEFITS: </h1>
+                <ul>
+                    <li class="right-side-bullets">
+                        <div class="right-content-icons"><img class="right-content-svgs" alt="" src="/images/rewards.svg"></div>
+                        <div class="bullet-text"> Earn a $20 Reward after every 5 purchases of $20 or more </div>
+                    </li>
+                    <li class="right-side-bullets">
+                        <div class="right-content-icons"><img class="right-content-svgs" alt="" src="/images/vehicle/orange_1.svg"></div>
+                        <div class="bullet-text"> Save your vehicles, track your service history and access thousands of repair guides, all for free </div>
+                    </li>
+                    <li class="right-side-bullets">
+                        <div class="right-content-icons"><img class="right-content-svgs" alt="" src="/images/orangeStar.svg"></div>
+                        <div class="bullet-text"> Get exclusive deals and offers, customized for you </div>
+                    </li>
+                </ul>
             </div>
-
-
-
         </div>
+
+
 
     </div>
 </div>
