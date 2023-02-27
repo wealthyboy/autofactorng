@@ -41949,6 +41949,14 @@ label.container {
   /* Add a pointer on hover */
 }
 
+.product-desc ul li {
+  padding: 10px;
+}
+
+.product-desc ul li:nth-child(even) {
+  background-color: #ddd;
+}
+
 .owl-theme .owl-dots {
   position: relative;
   top: -30px;
