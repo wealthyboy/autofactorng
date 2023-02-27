@@ -49,7 +49,7 @@
 
 
             <div class="image-overlay">
-                <div class="text">
+                <div class="text text-white">
                     <h1 class="text-white mb-4"> MEMBER BENEFITS: </h1>
                     <ul>
                         <li class="right-side-bullets">
