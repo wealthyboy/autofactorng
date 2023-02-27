@@ -1,6 +1,6 @@
 <?php $__env->startSection('content'); ?>
 <div class="container-fluid px-0">
-    <div class="row">
+    <div class="row  align-items-start">
         <div class="col-xl-5  col-lg-4 ">
 
             <div class="header p-5">
@@ -41,36 +41,12 @@
 
         </div>
 
-        <div style="background-image: url('/images/utils/sign.jpeg'); background-size: cover; background-repeat:no-repeat; height: 100vh !important; background-position: center;" class="  d-none d-lg-block d-md-block d-xl-block col-12  col-md-7  position-relative bg-gradient-primary h-100  px-7 border-radius-lg">
-            <div class="d-flex flex-column  align-items-center ">
-                <h1 class="text-white mb-4"> MEMBER BENEFITS: </h1>
-                <ul>
-                    <li class="right-side-bullets">
-                        <div class="right-content-icons">
-                            <img class="right-content-svgs" alt="" src="/images/rewards.svg">
-                        </div>
-                        <div class="bullet-text">
-                            Earn a $20 Reward after every 5 purchases of $20 or more
-                        </div>
-                    </li>
-                    <li class="right-side-bullets">
-                        <div class="right-content-icons">
-                            <img class="right-content-svgs" alt="" src="/images/vehicle/orange_1.svg">
-                        </div>
-                        <div class="bullet-text">
-                            Save your vehicles, track your service history and access thousands of repair guides, all for free
-                        </div>
-                    </li>
-                    <li class="right-side-bullets">
-                        <div class="right-content-icons">
-                            <img class="right-content-svgs" alt="" src="/images/orangeStar.svg">
-                        </div>
-                        <div class="bullet-text">
-                            Get exclusive deals and offers, customized for you
-                        </div>
-                    </li>
-                </ul>
+        <div class="d-none d-lg-block d-md-block d-xl-block col-12  col-md-7  position-relative bg-gradient-primary px-7 border-radius-lg">
+            <div class="image-content">
+                <img src="/images/utils/sign.jpeg" alt="Avatar" class="image  h-100 ">
             </div>
+
+
 
         </div>
 
