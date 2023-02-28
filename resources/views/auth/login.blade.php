@@ -54,15 +54,15 @@
                     <ul>
                         <li class="right-side-bullets">
                             <div class="right-content-icons"><img class="right-content-svgs" alt="" src="/images/rewards.svg"></div>
-                            <div class="bullet-text"> Earn a $20 Reward after every 5 purchases of $20 or more </div>
+                            <div class="bullet-text">Discounts and offers: Receive exclusive discounts on auto parts and accessories. </div>
                         </li>
                         <li class="right-side-bullets">
                             <div class="right-content-icons"><img class="right-content-svgs" alt="" src="/images/vehicle/orange_1.svg"></div>
-                            <div class="bullet-text"> Save your vehicles, track your service history and access thousands of repair guides, all for free </div>
+                            <div class="bullet-text"> Priority access: You'll be the first to know about new products, limited-time offers, and other special promotions.</div>
                         </li>
                         <li class="right-side-bullets">
                             <div class="right-content-icons"><img class="right-content-svgs" alt="" src="/images/orangeStar.svg"></div>
-                            <div class="bullet-text"> Get exclusive deals and offers, customized for you </div>
+                            <div class="bullet-text"> Personalized product recommendations based on your previous purchases and preferences.</div>
                         </li>
                     </ul>
                 </div>

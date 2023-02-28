@@ -67,7 +67,7 @@
                      <a href="/login" class="header-" title="login">
                         <img src="/images/utils/signin.svg" class="ms-2" alt="">
                      </a>
-                     <div class="text-sm">Signin</div>
+                     <div class="text-sm">Sign in</div>
 
                   </div>
                   @endguest
