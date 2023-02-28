@@ -53,16 +53,31 @@
 
                     <h1 class="text-white mb-4"> MEMBER BENEFITS: </h1>
                     <ul>
-                        <li class="right-side-bullets">
-                            <div class="right-content-icons"><img class="right-content-svgs" alt="" src="/images/rewards.svg"></div>
+                        <li class="d-flex">
+                            <div class="right-content-icons">
+
+                                <i class="material-symbols-outlined">
+                                    payments
+                                </i>
+
+                            </div>
                             <div class="bullet-text">Discounts and offers: Receive exclusive discounts on auto parts and accessories. </div>
+
                         </li>
-                        <li class="right-side-bullets">
-                            <div class="right-content-icons"><img class="right-content-svgs" alt="" src="/images/vehicle/orange_1.svg"></div>
+                        <li class="d-flex">
+                            <div class="right-content-icons">
+                                <span class="material-symbols-outlined fx-2">
+                                    login
+                                </span>
+                            </div>
                             <div class="bullet-text"> Priority access: You'll be the first to know about new products, limited-time offers, and other special promotions.</div>
                         </li>
-                        <li class="right-side-bullets">
-                            <div class="right-content-icons"><img class="right-content-svgs" alt="" src="/images/orangeStar.svg"></div>
+                        <li class="d-flex">
+                            <div class="right-content-icons">
+                                <span class="material-symbols-outlined">
+                                    recommend
+                                </span>
+                            </div>
                             <div class="bullet-text"> Personalized product recommendations based on your previous purchases and preferences.</div>
                         </li>
                     </ul>

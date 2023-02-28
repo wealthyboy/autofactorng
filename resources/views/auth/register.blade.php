@@ -48,7 +48,12 @@
                     <h1 class="text-white mb-4 me-3"> MEMBER BENEFITS: </h1>
                     <ul>
                         <li class="right-side-bullets">
-                            <div class="right-content-icons"><img class="right-content-svgs" alt="" src="/images/rewards.svg"></div>
+                            <div class="right-content-icons">
+
+                                <i class="material-symbols-outlined">
+                                    payments
+                                </i>
+                            </div>
                             <div class="bullet-text"> Earn a $20 Reward after every 5 purchases of $20 or more </div>
                         </li>
                         <li class="right-side-bullets">
