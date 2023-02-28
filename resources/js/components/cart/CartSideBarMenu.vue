@@ -8,9 +8,11 @@
             aria-haspopup="true"
             aria-expanded="false"
             data-display="static"
-            class="d-flex flex-column align-items-center"
+            class="d-flex flex-column align-items-center dropdown-toggle dropdown-arrow cart-toggle"
         >
-            <span class="material-symbols-outlined"> shopping_cart </span>
+            <span class="material-symbols-outlined display-4">
+                shopping_cart
+            </span>
             <span class="cart-count badge-circle">{{ cartItemCount }}</span>
             <span> Cart </span>
         </a>
