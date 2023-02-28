@@ -48,12 +48,14 @@
             <div class="image-overlay d-flex align-items-center">
 
                 <div class="text text-white ">
-                    <div class=" ">
+                    <div class="fs-4 mb-5 d-flex align-items-center justify-content-center ">
                         At Autofactor, we have an extensive inventory of over 50,000 items to cater to your needs, whether online or at our physical store. Also, you'll have access to a range of exclusive benefits and incentives that are designed to make your shopping experience even better.
                         Sign up today to enjoy this and get even more great benefits.
+                        <div>
+                            <h1 class="text-white ms-5 display-2 "> MEMBER BENEFITS: </h1>
+                        </div>
                     </div>
 
-                    <h1 class="text-white ms-5 display-3"> MEMBER BENEFITS: </h1>
                     <ul>
                         <li class="d-flex align-items-center justify-content-center mb-5">
                             <div class="right-content-icons ">
@@ -63,7 +65,7 @@
                                 </i>
 
                             </div>
-                            <div class="bullet-text w-50 ms-4 fs-3">Discounts and offers: Receive exclusive discounts on auto parts and accessories. </div>
+                            <div class="bullet-text w-50 ms-4 fs-4">Discounts and offers: Receive exclusive discounts on auto parts and accessories. </div>
 
                         </li>
                         <li class="d-flex align-items-center justify-content-center mb-5">
@@ -72,7 +74,7 @@
                                     login
                                 </span>
                             </div>
-                            <div class="bullet-text w-50 ms-4 fs-3"> Priority access: You'll be the first to know about new products, limited-time offers, and other special promotions.</div>
+                            <div class="bullet-text w-50 ms-4 fs-4"> Priority access: You'll be the first to know about new products, limited-time offers, and other special promotions.</div>
                         </li>
                         <li class="d-flex align-items-center justify-content-center">
                             <div class="right-content-icons">
@@ -80,7 +82,7 @@
                                     recommend
                                 </span>
                             </div>
-                            <div class="bullet-text w-50 ms-4 fs-3"> Personalized product recommendations based on your previous purchases and preferences.</div>
+                            <div class="bullet-text w-50 ms-4 fs-4"> Personalized product recommendations based on your previous purchases and preferences.</div>
                         </li>
                     </ul>
                 </div>
