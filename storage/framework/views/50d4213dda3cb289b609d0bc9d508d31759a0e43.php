@@ -28,7 +28,7 @@
 
 
                 <div class="text-center mt-3">
-                    Already have an account ? <a href="/login" class="color--primary bold">Create One</a>
+                    Already have an account ? <a href="/login" class="color--primary bold">Login</a>
                 </div>
 
             </div>
