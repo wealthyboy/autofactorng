@@ -53,7 +53,7 @@
                         Sign up today to enjoy this and get even more great benefits.
                     </div>
 
-                    <h1 class="text-white ms-5"> MEMBER BENEFITS: </h1>
+                    <h1 class="text-white ms-5 display-3"> MEMBER BENEFITS: </h1>
                     <ul>
                         <li class="d-flex align-items-center justify-content-center mb-5">
                             <div class="right-content-icons ">
