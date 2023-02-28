@@ -55,7 +55,7 @@
 
                     <h1 class="text-white mb-4"> MEMBER BENEFITS: </h1>
                     <ul>
-                        <li class="d-flex">
+                        <li class="d-flex align-items-center">
                             <div class="right-content-icons">
 
                                 <i class="material-symbols-outlined display-1">
@@ -66,7 +66,7 @@
                             <div class="bullet-text">Discounts and offers: Receive exclusive discounts on auto parts and accessories. </div>
 
                         </li>
-                        <li class="d-flex">
+                        <li class="d-flex align-items-center">
                             <div class="right-content-icons">
                                 <span class="material-symbols-outlined display-1">
                                     login
@@ -74,7 +74,7 @@
                             </div>
                             <div class="bullet-text"> Priority access: You'll be the first to know about new products, limited-time offers, and other special promotions.</div>
                         </li>
-                        <li class="d-flex">
+                        <li class="d-flex align-items-center">
                             <div class="right-content-icons">
                                 <span class="material-symbols-outlined display-1">
                                     recommend
