@@ -41836,6 +41836,10 @@ div#offcanvas {
   z-index: 1000;
 }
 
+span.header-right-icons {
+  margin-top: -11px;
+}
+
 .member-heading {
   margin-right: 20rem !important;
 }
