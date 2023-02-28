@@ -53,34 +53,34 @@
                         Sign up today to enjoy this and get even more great benefits.
                     </div>
 
-                    <h1 class="text-white mb-4"> MEMBER BENEFITS: </h1>
+                    <h1 class="text-white ms-5"> MEMBER BENEFITS: </h1>
                     <ul>
-                        <li class="d-flex align-items-center">
-                            <div class="right-content-icons">
+                        <li class="d-flex align-items-center justify-content-center mb-5">
+                            <div class="right-content-icons ">
 
                                 <i class="material-symbols-outlined display-1">
                                     payments
                                 </i>
 
                             </div>
-                            <div class="bullet-text">Discounts and offers: Receive exclusive discounts on auto parts and accessories. </div>
+                            <div class="bullet-text w-50 ms-4 fs-3">Discounts and offers: Receive exclusive discounts on auto parts and accessories. </div>
 
                         </li>
-                        <li class="d-flex align-items-center">
+                        <li class="d-flex align-items-center justify-content-center mb-5">
                             <div class="right-content-icons">
                                 <span class="material-symbols-outlined display-1">
                                     login
                                 </span>
                             </div>
-                            <div class="bullet-text"> Priority access: You'll be the first to know about new products, limited-time offers, and other special promotions.</div>
+                            <div class="bullet-text w-50 ms-4 fs-3"> Priority access: You'll be the first to know about new products, limited-time offers, and other special promotions.</div>
                         </li>
-                        <li class="d-flex align-items-center">
+                        <li class="d-flex align-items-center justify-content-center">
                             <div class="right-content-icons">
                                 <span class="material-symbols-outlined display-1">
                                     recommend
                                 </span>
                             </div>
-                            <div class="bullet-text"> Personalized product recommendations based on your previous purchases and preferences.</div>
+                            <div class="bullet-text w-50 ms-4 fs-3"> Personalized product recommendations based on your previous purchases and preferences.</div>
                         </li>
                     </ul>
                 </div>
