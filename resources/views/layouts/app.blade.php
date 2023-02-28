@@ -68,7 +68,7 @@
                   @guest
                   <div class="position-relative me-5 ">
                      <a href="/login" class="d-flex flex-column align-items-center" title="account">
-                        <span class="material-symbols-outlined display-4">
+                        <span class="material-symbols-outlined display-5">
                            person
                         </span>
                         <span>

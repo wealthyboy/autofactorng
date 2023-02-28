@@ -26079,11 +26079,11 @@ var _hoisted_2 = {
   "aria-haspopup": "true",
   "aria-expanded": "false",
   "data-display": "static",
-  "class": "d-flex flex-column align-items-center dropdown-toggle dropdown-arrow cart-toggle"
+  "class": "d-flex flex-column align-items-center cart-toggle"
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "material-symbols-outlined display-4"
+  "class": "material-symbols-outlined display-5"
 }, " shopping_cart ", -1
 /* HOISTED */
 );
