@@ -58,7 +58,7 @@
                         <li class="d-flex">
                             <div class="right-content-icons">
 
-                                <i class="material-symbols-outlined">
+                                <i class="material-symbols-outlined display-1">
                                     payments
                                 </i>
 
@@ -68,7 +68,7 @@
                         </li>
                         <li class="d-flex">
                             <div class="right-content-icons">
-                                <span class="material-symbols-outlined fx-2">
+                                <span class="material-symbols-outlined display-1">
                                     login
                                 </span>
                             </div>
@@ -76,7 +76,7 @@
                         </li>
                         <li class="d-flex">
                             <div class="right-content-icons">
-                                <span class="material-symbols-outlined">
+                                <span class="material-symbols-outlined display-1">
                                     recommend
                                 </span>
                             </div>
