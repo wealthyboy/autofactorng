@@ -52,7 +52,7 @@
                             Sign up today to enjoy this and get even more great benefits.
                         </div>
                         <div class="member-heading">
-                            <h1 class="text-white ms-5 display-2 "> MEMBER BENEFITS: </h1>
+                            <h1 class="text-white ms-5 display-3 "> MEMBER BENEFITS: </h1>
                         </div>
                     </div>
 
