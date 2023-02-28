@@ -47,11 +47,11 @@
             <div class="image-overlay d-flex align-items-center">
 
                 <div class="text text-white ">
-                    <div>
+                    <div class="">
                         At Autofactor, we have an extensive inventory of over 50,000 items to cater to your needs, whether online or at our physical store. Also, you'll have access to a range of exclusive benefits and incentives that are designed to make your shopping experience even better.
                         Sign up today to enjoy this and get even more great benefits.
                     </div>
-                    <h1 class="text-white mb-4 me-3"> MEMBER BENEFITS: </h1>
+                    <h1 class="text-white mb-4"> MEMBER BENEFITS: </h1>
                     <ul>
                         <li class="right-side-bullets">
                             <div class="right-content-icons"><img class="right-content-svgs" alt="" src="/images/rewards.svg"></div>
