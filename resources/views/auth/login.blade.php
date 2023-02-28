@@ -48,13 +48,16 @@
             <div class="image-overlay d-flex align-items-center">
 
                 <div class="text text-white ">
-                    <div class="fs-4 mb-5 d-flex align-items-center justify-content-center ">
-                        At Autofactor, we have an extensive inventory of over 50,000 items to cater to your needs, whether online or at our physical store. Also, you'll have access to a range of exclusive benefits and incentives that are designed to make your shopping experience even better.
-                        Sign up today to enjoy this and get even more great benefits.
-                        <div>
+                    <div class="d-flex align-items-center flex-column me-5">
+                        <div class="fs-4 mb-5 w-75">
+                            At Autofactor, we have an extensive inventory of over 50,000 items to cater to your needs, whether online or at our physical store. Also, you'll have access to a range of exclusive benefits and incentives that are designed to make your shopping experience even better.
+                            Sign up today to enjoy this and get even more great benefits.
+                        </div>
+                        <div class="member-heading">
                             <h1 class="text-white ms-5 display-2 "> MEMBER BENEFITS: </h1>
                         </div>
                     </div>
+
 
                     <ul>
                         <li class="d-flex align-items-center justify-content-center mb-5">
