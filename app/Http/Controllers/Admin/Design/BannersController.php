@@ -77,7 +77,7 @@ class BannersController extends Table
         $banner->image   = $request->image;
         $banner->sort_order = $request->sort_order;
         $banner->device = $request->device;
-        $banner->mobile_sort_banner = $request->mobile_sort_banner;
+        $banner->mobile_sort_order = $request->mobile_sort_order;
         $banner->save();
         (new Activity)->put("Added  banner called " . $request->title);
 
