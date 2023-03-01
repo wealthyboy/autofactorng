@@ -49,7 +49,7 @@
 
                   <div class="header-contact d-none d-lg-flex pl-4 pr-4">
                      <img alt="phone" src="/assets/images/phone.png" width="30" height="30" class="pb-1">
-                     <h6><span>Call to order</span><a href="tel:#" class="text-dark font1">{{ $system_settings->phone_number }}</a></h6>
+                     <h6><span>Call to order</span><a href="tel:#" class="text-dark font1">{{ $system_settings->store_phone }}</a></h6>
                   </div>
                   @auth
                   <div class="position-relative me-5">
