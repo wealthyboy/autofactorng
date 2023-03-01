@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container-fluid">
-    <nav aria-label="breadcrumb" class="breadcrumb-nav mt-3">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav mt-4">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
             <li class="breadcrumb-item"><a href="/products/{{ $category_slug }}">{{ $category }}</a></li>
