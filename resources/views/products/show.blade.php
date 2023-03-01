@@ -96,7 +96,7 @@
     </div>
     <!-- End .container -->
 
-    <div class="container-fluid mt-5">
+    <div class="container-fluid my-5">
         <div class="row">
             <h3>
                 Reviews
