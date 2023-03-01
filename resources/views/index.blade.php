@@ -3,7 +3,7 @@
 @section('content')
 @include('_partials.top_banner')
 
-<div class="container-fluid">
+<div class="container-fluid mt-3">
     <div class="row g-2">
         @include('_partials.slider')
     </div>

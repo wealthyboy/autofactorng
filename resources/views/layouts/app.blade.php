@@ -53,7 +53,7 @@
                   </div>
                   @auth
                   <div class="position-relative me-5">
-                     <a href="/account" class="header-" title="account">
+                     <a href="/account" class="d-flex flex-column align-items-center" title="account">
                         <span class="material-symbols-outlined">
                            person
                         </span>
