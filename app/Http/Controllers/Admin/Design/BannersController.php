@@ -60,9 +60,9 @@ class BannersController extends Table
     {
 
         $this->validate($request, [
-            'link' => 'required',
-            'sort_banner' => 'required',
-            'image' => 'required',
+            // 'link' => 'required',
+            // 'sort_banner' => 'required',
+            // 'image' => 'required',
         ]);
 
         $banner->title = $request->title;
@@ -159,8 +159,8 @@ class BannersController extends Table
 
         $banner = Banner::find($id);
         $this->validate($request, [
-            'link' => 'required',
-            'sort_banner' => 'required',
+            // 'link' => 'required',
+            // 'sort_banner' => 'required',
         ]);
 
         $banner->title = $request->title;
