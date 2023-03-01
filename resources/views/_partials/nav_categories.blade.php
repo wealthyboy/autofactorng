@@ -33,7 +33,6 @@
                 <ul>
                     <li class="py-3">
                         <a href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}">
-
                             All {{ $category->name }}
                         </a>
 

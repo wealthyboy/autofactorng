@@ -26011,7 +26011,7 @@ var _hoisted_5 = {
   "class": "product-col"
 };
 var _hoisted_6 = {
-  "class": "product-title"
+  "class": "product-title fs-5"
 };
 var _hoisted_7 = {
   href: "/"
