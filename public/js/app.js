@@ -26092,7 +26092,9 @@ var _hoisted_4 = {
   "class": "cart-count badge-circle"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, " Cart ", -1
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "header-right-icons"
+}, " Cart ", -1
 /* HOISTED */
 );
 

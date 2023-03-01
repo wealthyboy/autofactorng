@@ -14,7 +14,7 @@
                 shopping_cart
             </span>
             <span class="cart-count badge-circle">{{ cartItemCount }}</span>
-            <span> Cart </span>
+            <span class="header-right-icons"> Cart </span>
         </a>
     </div>
 

@@ -57,7 +57,7 @@
                         <span class="material-symbols-outlined">
                            person
                         </span>
-                        <span>
+                        <span class="header-right-icons">
                            Account
                         </span>
                      </a>
@@ -71,7 +71,7 @@
                         <span class="material-symbols-outlined display-5">
                            person
                         </span>
-                        <span>
+                        <span class="header-right-icons">
                            Account
                         </span>
                      </a>
