@@ -52,18 +52,14 @@
                         </div>
                     </div>
 
-
                     <ul>
                         <li class="d-flex align-items-center justify-content-center mb-5">
-                            <div class="right-content-icons ">
-
+                            <div class="right-content-icons">
                                 <i class="material-symbols-outlined display-1">
                                     payments
                                 </i>
-
                             </div>
                             <div class="bullet-text w-50 ms-4 fs-4">Discounts and offers: Receive exclusive discounts on auto parts and accessories. </div>
-
                         </li>
                         <li class="d-flex align-items-center justify-content-center mb-5">
                             <div class="right-content-icons">

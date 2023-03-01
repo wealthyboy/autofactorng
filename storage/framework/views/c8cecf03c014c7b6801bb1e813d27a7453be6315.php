@@ -12,7 +12,7 @@
                 <a href="<?php echo e($category->children->count() ? '#' : '/products/'.$category->slug); ?>" target="" data-testid="at_popular_part_list_item_0" tabindex="0">
                     <div class="az_ylb">
                         <div class="" tabindex="-1" role="menuitem" aria-disabled="false">
-                            <h2 class="mb-0"><?php echo e($category->name); ?></h2>
+                            <h5 class="mb-0 text-uppercase fs-3"><?php echo e($category->name); ?></h5>
                         </div>
                     </div>
                 </a>

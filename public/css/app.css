@@ -42069,6 +42069,8 @@ label.container {
   height: 40px;
   text-align: center;
   margin: 0 16px;
+  border: 0;
+  border-bottom: 2px solid #ddd;
 }
 
 .form-floating > .form-control:not(:-moz-placeholder-shown), .form-floating > .form-control-plaintext:not(:-moz-placeholder-shown) {

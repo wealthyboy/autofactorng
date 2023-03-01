@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center justify-content-end">
         <button
             @click="minQty"
             type="button"
@@ -12,7 +12,7 @@
             <span><i class="fas fa-minus"></i></span>
         </button>
         <div>
-            <input type="text" class="cart-input w-50" v-model="qty" />
+            <input type="text" class="cart-input" v-model="qty" />
         </div>
         <button
             @click="addQty"

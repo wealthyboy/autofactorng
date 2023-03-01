@@ -98,7 +98,7 @@
 
     <div class="container-fluid my-5">
         <div class="row">
-            <h3>
+            <h3 class="mb-0">
                 Reviews
             </h3>
             <reviews :user="{{ $user }}" :product="{{ $product }}" />

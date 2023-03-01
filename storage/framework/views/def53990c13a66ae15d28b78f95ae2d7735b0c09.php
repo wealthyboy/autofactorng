@@ -1,7 +1,7 @@
 <?php $__env->startSection('content'); ?>
 
 <div class="container-fluid">
-    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav mt-4">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
             <li class="breadcrumb-item"><a href="/products/<?php echo e($category_slug); ?>"><?php echo e($category); ?></a></li>
@@ -16,7 +16,7 @@
                     <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                         <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div class="product-item">
-                            <img class="product-single-image" src="<?php echo e($image->image); ?>" data-zoom-image="<?php echo e($image->image); ?>" width="468" height="468" alt="product" />
+                            <img class="product-single-image" src="<?php echo e($image->image); ?>" width="468" height="468" alt="product" />
                         </div>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
@@ -79,28 +79,25 @@
 
                 <div id="collapse1" class="collapse" data-parent="#accordion1" style="">
                     <?php echo html_entity_decode($product->phy_desc) ?>
-
                 </div>
             </div>
 
             <div class="card card-accordion">
                 <a class="card-header collapsed" href="element-accordions.html#" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
                     PRODUCT DESCRIPTION
-
                 </a>
 
                 <div id="collapse2" class="collapse" data-parent="#accordion1" style="">
                     <?php echo html_entity_decode($product->description) ?>
-
                 </div>
             </div>
         </div>
     </div>
     <!-- End .container -->
 
-    <div class="container-fluid mt-5">
+    <div class="container-fluid my-5">
         <div class="row">
-            <h3>
+            <h3 class="mb-0">
                 Reviews
             </h3>
             <reviews :user="<?php echo e($user); ?>" :product="<?php echo e($product); ?>" />
@@ -108,7 +105,6 @@
     </div>
 
     <?php if( optional($product->related_products)->count() ): ?>
-
     <div class="products-section container-fluid pt-0 mt-4">
         <h2 class="section-title">Related Products</h2>
         <div class="products-slider owl-carousel owl-theme dots-top dots-small">
@@ -116,8 +112,8 @@
             <div class="product-default">
                 <figure>
                     <a href="<?php echo e($related_product->product->link); ?>">
-                        <img src="<?php echo e($related_product->product->image_to_show); ?>" width="280" height="280" alt="product">
-                        <img src="<?php echo e($related_product->product->image_to_show); ?>" width="280" height="280" alt="product">
+                        <img src="<?php echo e($related_product->product->image_m); ?>" width="280" height="280" alt="product">
+                        <img src="<?php echo e($related_product->product->image_m); ?>" width="280" height="280" alt="product">
                     </a>
                     <div class="label-group">
                         <!-- <div class="product-label label-hot">HOT</div>
