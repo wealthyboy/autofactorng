@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container-fluid">
-    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+    <nav aria-label="breadcrumb" class="breadcrumb-nav mt-3">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
             <li class="breadcrumb-item"><a href="/products/{{ $category_slug }}">{{ $category }}</a></li>
@@ -17,7 +17,7 @@
                     <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                         @foreach($product->images as $image)
                         <div class="product-item">
-                            <img class="product-single-image" src="{{ $image->image }}" data-zoom-image="{{ $image->image }}" width="468" height="468" alt="product" />
+                            <img class="product-single-image" src="{{ $image->image }}" width="468" height="468" alt="product" />
                         </div>
                         @endforeach
                     </div>
