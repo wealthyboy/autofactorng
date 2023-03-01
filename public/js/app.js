@@ -28369,7 +28369,7 @@ var _hoisted_3 = {
   "class": ""
 };
 var _hoisted_4 = {
-  "class": "ratings-container"
+  "class": "ratings-container mt-3"
 };
 var _hoisted_5 = {
   "class": "product-ratings"

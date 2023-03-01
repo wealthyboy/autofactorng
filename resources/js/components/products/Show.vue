@@ -4,7 +4,7 @@
 
         <div class="">{{ product.note }}</div>
 
-        <div class="ratings-container">
+        <div class="ratings-container mt-3">
             <div class="product-ratings">
                 <span
                     class="ratings"
