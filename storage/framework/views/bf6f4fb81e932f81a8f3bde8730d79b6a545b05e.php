@@ -35,7 +35,7 @@
                <div class="header-left col-lg-2 w-auto pl-0">
                   <button class="mobile-menu-toggler text-primary mr-2" type="button">
                      <i class="fas fa-bars"></i>
-                     <div class="mt-3">Menu</div>
+                     <span class="mt-3">Menu</span>
                   </button>
                   <a href="/" class="logo">
                      <img src="https://autofactor.ng/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
@@ -54,7 +54,7 @@
                   <?php if(auth()->guard()->check()): ?>
                   <div class="position-relative me-5">
                      <a href="/account" class="d-flex flex-column align-items-center" title="account">
-                        <span class="material-symbols-outlined">
+                        <span class="material-symbols-outlined display-5">
                            person
                         </span>
                         <span class="header-right-icons">
