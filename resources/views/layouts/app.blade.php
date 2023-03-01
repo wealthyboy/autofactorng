@@ -33,7 +33,7 @@
          <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
             <div class="container-fluid">
                <div class="header-left col-lg-2 w-auto pl-0">
-                  <button class="mobile-menu-toggler text-primary mr-2" type="button">
+                  <button class="mobile-menu-toggler d-flex flex-column align-items-center text-primary mr-2" type="button">
                      <i class="fas fa-bars"></i>
                      <div class="mt-3">Menu</div>
                   </button>
@@ -49,7 +49,7 @@
 
                   <div class="header-contact d-none d-lg-flex pl-4 pr-4">
                      <img alt="phone" src="/assets/images/phone.png" width="30" height="30" class="pb-1">
-                     <h6><span>Call to order</span><a href="tel:#" class="text-dark font1">{{ $system_settings->store_phone }}</a></h6>
+                     <h6><span>Call to order</span><a href="tel:#" class="text-dark font1">{{ optional($system_settings)->store_phone }}</a></h6>
                   </div>
                   @auth
                   <div class="position-relative me-5">
