@@ -75,7 +75,7 @@ class BannersController extends Table
         $banner->use_text   = $request->use_text ? 1 : 0;
         $banner->description   = $request->description;
         $banner->image   = $request->image;
-        $banner->sort_banner = $request->sort_banner;
+        $banner->sort_order = $request->sort_order;
         $banner->device = $request->device;
         $banner->mobile_sort_banner = $request->mobile_sort_banner;
         $banner->save();
@@ -173,7 +173,7 @@ class BannersController extends Table
         $banner->use_text   = $request->use_text ? 1 : 0;
         $banner->description   = $request->description;
         $banner->image   = $request->image;
-        $banner->sort_banner = $request->sort_banner;
+        $banner->sort_order = $request->sort_order;
         $banner->device = $request->device;
         $banner->mobile_sort_banner = $request->mobile_sort_banner;
         $banner->save();
