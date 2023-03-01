@@ -20,7 +20,7 @@
                 @if ($category->children->count())
                 <ul>
                     @foreach( $category->children as $category)
-                    <li class="py-4">
+                    <li class="py-1">
                         <a href="{{  $category->link ? $category->link : '/products/'.$category->slug }}">
 
                             {{ $category->name }}
@@ -28,6 +28,16 @@
 
                     </li>
                     @endforeach
+                </ul>
+                @else
+                <ul>
+                    <li class="py-1">
+                        <a href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}">
+
+                            All {{ $category->name }}
+                        </a>
+
+                    </li>
                 </ul>
                 @endif
 
