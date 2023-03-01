@@ -26302,12 +26302,12 @@ var _hoisted_8 = {
   "class": "cart_totalse"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, " Summary ", -1
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "Summary", -1
 /* HOISTED */
 );
 
 var _hoisted_10 = {
-  "class": "py-5 border-bottom d-flex justify-content-between"
+  "class": "py-5 border-bottom d-flex justify-content-between fs-3"
 };
 
 var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
@@ -26323,7 +26323,7 @@ var _hoisted_13 = {
   "class": "currencySymbol"
 };
 var _hoisted_14 = {
-  "class": "py-5 d-flex justify-content-between"
+  "class": "py-5 d-flex justify-content-between fs-1"
 };
 
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
@@ -26355,7 +26355,7 @@ var _hoisted_19 = {
   "class": "card"
 };
 
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row justify-content-center align-items-center\"><div class=\"col-6 col-sm-4 col-md-3 col-lg-12\"><div href=\"#\" class=\"icon-box nounderline text-center p-5\"><i class=\"\"></i><h5 class=\"porto-sicon-title mx-2 align-item-self\">Your cart is empty</h5></div></div></div>", 1);
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row justify-content-center align-items-center\"><div class=\"col-6 col-sm-4 col-md-3 col-lg-12\"><div href=\"#\" class=\"icon-box nounderline text-center p-5\"><i class=\"\"></i><h5 class=\"porto-sicon-title mx-2 align-item-self\"> Your cart is empty </h5></div></div></div>", 1);
 
 var _hoisted_21 = [_hoisted_20];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
