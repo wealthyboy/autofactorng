@@ -20,7 +20,7 @@
                 <?php if($category->children->count()): ?>
                 <ul>
                     <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <li class="py-4">
+                    <li class="py-3">
                         <a href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>">
 
                             <?php echo e($category->name); ?>
@@ -29,6 +29,16 @@
 
                     </li>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </ul>
+                <?php else: ?>
+                <ul>
+                    <li class="py-3">
+                        <a href="<?php echo e($category->children->count() ? '#' : '/products/'.$category->slug); ?>">
+                            All <?php echo e($category->name); ?>
+
+                        </a>
+
+                    </li>
                 </ul>
                 <?php endif; ?>
 

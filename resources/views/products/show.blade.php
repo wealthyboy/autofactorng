@@ -12,7 +12,7 @@
 
     <div class="product-single-container product-single-default">
         <div class="row">
-            <div class="col-lg-2">
+            <div class="col-lg-1">
                 <div class="prod-thumbnail owl-dots flex-column">
                     @foreach($product->images as $image)
 
@@ -21,10 +21,9 @@
                     </div>
                     @endforeach
 
-
                 </div>
             </div>
-            <div class="col-lg-2  product-single-gallery">
+            <div class="col-lg-6  product-single-gallery">
                 <div class="product-slider-container">
                     <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                         @foreach($product->images as $image)

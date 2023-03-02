@@ -11,7 +11,18 @@
 
     <div class="product-single-container product-single-default">
         <div class="row">
-            <div class="col-lg-7  product-single-gallery">
+            <div class="col-lg-1">
+                <div class="prod-thumbnail owl-dots flex-column">
+                    <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                    <div class="owl-dot">
+                        <img src="<?php echo e($image->image_m); ?>" width="110" height="110" alt="product-thumbnail" />
+                    </div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+                </div>
+            </div>
+            <div class="col-lg-6  product-single-gallery">
                 <div class="product-slider-container">
                     <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                         <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -26,16 +37,7 @@
                     </span>
                 </div>
 
-                <div class="prod-thumbnail owl-dots">
-                    <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                    <div class="owl-dot">
-                        <img src="<?php echo e($image->image_m); ?>" width="110" height="110" alt="product-thumbnail" />
-                    </div>
-                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
-                </div>
             </div>
             <!-- End .product-single-gallery -->
 
