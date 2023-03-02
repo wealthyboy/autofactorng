@@ -12,7 +12,19 @@
 
     <div class="product-single-container product-single-default">
         <div class="row">
-            <div class="col-lg-7  product-single-gallery">
+            <div class="col-lg-2">
+                <div class="prod-thumbnail owl-dots flex-column">
+                    @foreach($product->images as $image)
+
+                    <div class="owl-dot">
+                        <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
+                    </div>
+                    @endforeach
+
+
+                </div>
+            </div>
+            <div class="col-lg-2  product-single-gallery">
                 <div class="product-slider-container">
                     <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                         @foreach($product->images as $image)
@@ -27,16 +39,7 @@
                     </span>
                 </div>
 
-                <div class="prod-thumbnail owl-dots">
-                    @foreach($product->images as $image)
 
-                    <div class="owl-dot">
-                        <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
-                    </div>
-                    @endforeach
-
-
-                </div>
             </div>
             <!-- End .product-single-gallery -->
 
