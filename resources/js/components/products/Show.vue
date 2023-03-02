@@ -1,5 +1,5 @@
 <template>
-    <div class="col-xl-5 product-single-details pt-3">
+    <div class="col-xl-5 product-single-details pt-0">
         <h1 class="product-title">{{ product.name }}</h1>
 
         <div class="">{{ product.note }}</div>
