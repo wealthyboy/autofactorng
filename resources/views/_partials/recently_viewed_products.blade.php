@@ -1,5 +1,5 @@
 @if (null !== $products)
-<h4 class="text-uppercase  mb-0 mb-3">
+<h4 class="text-uppercase  mb-0 mb-3 display-4">
    FEATURED
    <strong>
       PRODUCTS
