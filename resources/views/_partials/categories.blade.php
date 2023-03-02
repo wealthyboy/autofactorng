@@ -1,6 +1,6 @@
 @if($featured_categories->count())
 <div class="row">
-    <h2 class=" mb-0 mb-3">FEATURED <strong>CATEGORIES</strong> </h2>
+    <h2 class=" mb-0 mb-3 display-4">FEATURED <strong>CATEGORIES</strong> </h2>
     <div class="underline mb-5 ms-3"></div>
 </div>
 <div class="row g-0">
