@@ -27,8 +27,8 @@
 				}">
 
    @foreach($products as $product)
-   <div class="product-default left-details product-unfold">
-      <figure>
+   <div class="product-default left-details product-unfold d-flex flex-column">
+      <figure class="images-category">
          <a href="{{ $product->link }}">
             <img src="{{ $product->image_m }}" alt="product">
             <img src="{{  $product->image_m }}" alt="product">

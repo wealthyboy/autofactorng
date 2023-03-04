@@ -37,7 +37,7 @@
       <div class="product-details-content">
          <div class="az_kl">
             <div class="az_ll az_cm">
-               <div class="az_phb az_rhb" data-testid="part-label">Prestone Antifreeze/Coolant Universal 50/50 PREMIXED *10 Year/300K Mile Protection* 1 Gallon</div>
+               <div class="az_phb az_rhb" data-testid="part-label"><?php echo e($product->name); ?></div>
             </div>
 
             <div class="az_ll az_cm">
