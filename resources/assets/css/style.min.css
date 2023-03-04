@@ -7091,6 +7091,23 @@ figure .porto-loading-icon {
     margin: 6rem !important;
 }
 
+.product-more-info {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.3);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 1000;
+}
+
+.product-info-box:hover  .product-more-info{
+   opacity: 1;
+}
+
 
 .product-default a {
     color: inherit;

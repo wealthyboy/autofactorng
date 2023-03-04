@@ -72,28 +72,41 @@
         v-if="list == 'List'"
         class="col-sm-12 col-6 border product-default left-details product-list mb-2"
     >
-        <figure class="product-image-box">
-            <a :href="product.link">
-                <img
-                    :src="product.image_m"
-                    width="250"
-                    height="250"
-                    alt="product"
-                />
-                <img
-                    :src="product.image_m"
-                    width="250"
-                    height="250"
-                    alt="product"
-                />
-            </a>
+        <div class="position-relative product-info-box">
+            <figure class="product-image-box position-relative">
+                <a :href="product.link">
+                    <img
+                        :src="product.image_m"
+                        width="250"
+                        height="250"
+                        alt="product"
+                    />
+                    <img
+                        :src="product.image_m"
+                        width="250"
+                        height="250"
+                        alt="product"
+                    />
+                </a>
 
-            <div v-if="product.percentage_off" class="label-group">
-                <div class="product-label label-sale">
-                    -{{ product.percentage_off }}%
+                <div v-if="product.percentage_off" class="label-group">
+                    <div class="product-label label-sale">
+                        -{{ product.percentage_off }}%
+                    </div>
                 </div>
+            </figure>
+            <div
+                class="d-flex align-items-center justify-content-center product-more-info position-absolute w-100 h-100 border"
+            >
+                <a
+                    class="text-white fs-5 btn btn-block btn btn-block btn-dark"
+                    href="#"
+                >
+                    Click for more info
+                </a>
             </div>
-        </figure>
+        </div>
+
         <div class="product-details">
             <h3 class="product-title">
                 <a :href="product.link">{{ product.name }}</a>
