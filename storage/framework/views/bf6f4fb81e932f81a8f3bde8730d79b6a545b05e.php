@@ -98,7 +98,7 @@
                   <div class="d-flex align-items-center">
                      <div class="menu-icon">
 
-                        <button data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0 border-0" role="button">
+                        <a data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0 border-0" role="button">
                            <span class="menu-open d-flex flex-column align-items-center">
                               <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="" class="ms-1" srcset="">
                               <div class="">Menu</div>
@@ -109,7 +109,7 @@
                               <div class="text-xs">Close</div>
                            </span>
 
-                        </button>
+                        </a>
                      </div>
 
                      <div class="menu-i   menu-i  w-25 ms-5">
