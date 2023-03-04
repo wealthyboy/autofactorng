@@ -99,8 +99,8 @@
                 class="d-flex align-items-center justify-content-center product-more-info position-absolute w-100 h-100 border"
             >
                 <a
+                    :href="product.link"
                     class="text-white fs-5 btn btn-block btn btn-block btn-dark"
-                    href="#"
                 >
                     Click for more info
                 </a>
