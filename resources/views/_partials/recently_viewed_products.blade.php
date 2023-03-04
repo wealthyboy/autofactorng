@@ -27,11 +27,10 @@
 				}">
 
    @foreach($products as $product)
-   <div class="product-default left-details product-unfold d-flex flex-column">
-      <figure class="images-category">
+   <div class="product-default  d-flex flex-column justify-content-center align-items-center">
+      <figure class="image-category">
          <a href="{{ $product->link }}">
             <img src="{{ $product->image_m }}" alt="product">
-            <img src="{{  $product->image_m }}" alt="product">
          </a>
       </figure>
       <div class="product-details-content">
