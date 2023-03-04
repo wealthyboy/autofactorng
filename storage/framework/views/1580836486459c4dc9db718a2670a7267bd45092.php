@@ -27,31 +27,37 @@
 				}">
 
    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-   <div class="product-default  product-default-sm d-flex flex-column justify-content-center align-items-center ">
+   <div class="product-default  product-default-sm d-flex flex-column justify-content-center align-items-center px-2">
       <figure class="image-category mt-3">
          <a href="<?php echo e($product->link); ?>">
             <img src="<?php echo e($product->image_m); ?>" alt="product">
          </a>
       </figure>
+      <a href="#">
 
-      <div class="product-details-content">
-         <a href="#">
+         <div class="product-details-content">
             <div class="d-flex flex-column text-start">
                <div class="product-title">
-                  <div class="az_phb az_rhb" data-testid="part-label"><?php echo e($product->name); ?></div>
+                  <div class="product-title-label"><?php echo e($product->name); ?></div>
                </div>
 
-               <div class="az_ll az_cm">
-                  <div class="az_kl az_ll az_Hl az_sl az_cm az_thb">
-                     <div class="az_z9">
-                        <div class="az_n9 az_Chb" data-testid="price-fragment" aria-label="Total price is: 12 dollars and 99 cents. "><span data-testid="cart-price-icon-deal" class="az_-G az_m9">$</span><span class="az_-i az_o9">12</span><span class="az_-i az_p9"><span class="az_y9">.</span>99</span></div>
-                     </div>
+               <div class="price-box mt-4">
+                  <?php if($product->discounted_price): ?>
+                  <div>
+                     <span class="old-price bold"><?php echo e($product->currency); ?><?php echo e($product->formatted_sale_price); ?></span>
+                     <span class="product-price bold"><?php echo e($product->currency); ?><?php echo e($product->formatted_price); ?></span>
                   </div>
+                  <?php else: ?>
+                  <div>
+                     <span class="product-price bold"><?php echo e($product->currency); ?><?php echo e($product->formatted_price); ?></span>
+                  </div>
+                  <?php endif; ?>
                </div>
             </div>
-         </a>
 
-      </div>
+         </div>
+      </a>
+
 
       <!-- End .product-details -->
    </div>

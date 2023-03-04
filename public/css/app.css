@@ -7716,6 +7716,14 @@ figure .porto-loading-icon {
     padding-bottom: 48px;
 }
 
+.product-image-box{ 
+    max-width: 120px;
+    width: 132px;
+    height: 132px;
+    overflow: hidden;
+    margin: 6rem !important;
+}
+
 
 .product-default a {
     color: inherit;
