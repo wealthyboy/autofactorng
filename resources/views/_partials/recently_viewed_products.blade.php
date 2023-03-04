@@ -33,20 +33,24 @@
             <img src="{{ $product->image_m }}" alt="product">
          </a>
       </figure>
-      <div class="product-details-content">
-         <div class="az_kl">
-            <div class="az_ll az_cm">
-               <div class="az_phb az_rhb" data-testid="part-label">{{ $product->name }}</div>
-            </div>
 
-            <div class="az_ll az_cm">
-               <div class="az_kl az_ll az_Hl az_sl az_cm az_thb">
-                  <div class="az_z9">
-                     <div class="az_n9 az_Chb" data-testid="price-fragment" aria-label="Total price is: 12 dollars and 99 cents. "><span data-testid="cart-price-icon-deal" class="az_-G az_m9">$</span><span class="az_-i az_o9">12</span><span class="az_-i az_p9"><span class="az_y9">.</span>99</span></div>
+      <div class="product-details-content">
+         <a href="#">
+            <div class="d-flex flex-column text-start">
+               <div class="product-title">
+                  <div class="az_phb az_rhb" data-testid="part-label">{{ $product->name }}</div>
+               </div>
+
+               <div class="az_ll az_cm">
+                  <div class="az_kl az_ll az_Hl az_sl az_cm az_thb">
+                     <div class="az_z9">
+                        <div class="az_n9 az_Chb" data-testid="price-fragment" aria-label="Total price is: 12 dollars and 99 cents. "><span data-testid="cart-price-icon-deal" class="az_-G az_m9">$</span><span class="az_-i az_o9">12</span><span class="az_-i az_p9"><span class="az_y9">.</span>99</span></div>
+                     </div>
                   </div>
                </div>
             </div>
-         </div>
+         </a>
+
       </div>
 
       <!-- End .product-details -->
