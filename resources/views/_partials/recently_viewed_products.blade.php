@@ -27,8 +27,8 @@
 				}">
 
    @foreach($products as $product)
-   <div class="product-default  product-default-sm d-flex flex-column justify-content-center align-items-center m-2">
-      <figure class="image-category">
+   <div class="product-default  product-default-sm d-flex flex-column justify-content-center align-items-center ">
+      <figure class="image-category mt-2">
          <a href="{{ $product->link }}">
             <img src="{{ $product->image_m }}" alt="product">
          </a>
