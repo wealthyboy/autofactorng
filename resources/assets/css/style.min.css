@@ -7108,6 +7108,16 @@ figure .porto-loading-icon {
    opacity: 1;
 }
 
+.product-rating-box {
+    display: inline-flex;
+    position: relative;
+    font-size: 24px;
+    color: #ffb400;
+    text-align: left;
+    pointer-events: none;
+    vertical-align: middle;
+}
+
 
 .product-default a {
     color: inherit;
@@ -14889,6 +14899,10 @@ span.toggle:before {
     stroke: #222529;
     fill: #fff;
     width: 28px
+}
+
+svg {
+    fill: #A9A9A9;
 }
 
 .product-ajax-grid+.bounce-loader {

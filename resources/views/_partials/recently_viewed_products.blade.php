@@ -41,6 +41,14 @@
                   <div class="product-title-label">{{ $product->name }}</div>
                </div>
 
+
+               <div class="ratings-container">
+                  @include('_partials.ratings')
+
+                  <!-- End .product-ratings -->
+               </div>
+
+
                <div class="price-box mt-4">
                   @if($product->discounted_price)
                   <div>

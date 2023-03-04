@@ -41,6 +41,14 @@
                   <div class="product-title-label"><?php echo e($product->name); ?></div>
                </div>
 
+
+               <div class="ratings-container">
+                  <?php echo $__env->make('_partials.ratings', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+                  <!-- End .product-ratings -->
+               </div>
+
+
                <div class="price-box mt-4">
                   <?php if($product->discounted_price): ?>
                   <div>
