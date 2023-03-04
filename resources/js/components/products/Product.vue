@@ -72,7 +72,7 @@
         v-if="list == 'List'"
         class="col-sm-12 col-6 border product-default left-details product-list mb-2"
     >
-        <figure>
+        <figure class="product-image-box">
             <a :href="product.link">
                 <img
                     :src="product.image_m"
