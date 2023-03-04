@@ -1,9 +1,9 @@
 <div class="offcanvas  nav-categories offcanvas-start w-25" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
     <div class="offcanvas-header">
         <h6 class="offcanvas-title d-none d-sm-block" id="offcanvas">Shop All</h6>
-        <button type="button" class="panel-close border-0 bg-transparent bg-transparent" data-bs-dismiss="offcanvas" aria-label="Close">
+        <a type="button" class="panel-close border-0 bg-transparent bg-transparent" data-bs-dismiss="offcanvas" aria-label="Close">
             <img src="/images/utils/close-dark.svg" class="p-3" alt="" srcset="">
-        </button>
+        </a>
     </div>
     <div class="offcanvas-body ">
         <ul class="list-unstyled pl-3">
