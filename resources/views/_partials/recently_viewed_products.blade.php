@@ -38,7 +38,7 @@
          <a href="#">
             <div class="d-flex flex-column text-start">
                <div class="product-title">
-                  <div class="az_phb az_rhb" data-testid="part-label">{{ $product->name }}</div>
+                  <div class=".product-title-label">{{ $product->name }}</div>
                </div>
 
                <div class="az_ll az_cm">
