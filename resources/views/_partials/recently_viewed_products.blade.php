@@ -7,7 +7,7 @@
 </h4>
 <div class="underline mb-5 ms-1"></div>
 
-<div class="owl-carousel owl-theme show-nav-hover nav-outer nav-image-center shadow-sm " data-owl-options="{
+<div class="owl-carousel owl-theme show-nav-hover nav-outer nav-image-center " data-owl-options="{
 					'dots': false,
 					'margin': 10,
 					'loop': false,
@@ -27,7 +27,7 @@
 				}">
 
    @foreach($products as $product)
-   <div class="product-default  d-flex flex-column justify-content-center align-items-center">
+   <div class="product-default  d-flex flex-column justify-content-center align-items-center shadow">
       <figure class="image-category">
          <a href="{{ $product->link }}">
             <img src="{{ $product->image_m }}" alt="product">
