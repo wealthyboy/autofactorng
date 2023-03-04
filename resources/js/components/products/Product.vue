@@ -95,16 +95,16 @@
                     </div>
                 </div>
             </figure>
-            <div
+            <a
+                :href="product.link"
                 class="d-flex align-items-center justify-content-center product-more-info position-absolute w-100 h-100 border"
             >
-                <a
-                    :href="product.link"
+                <div
                     class="text-white fs-5 btn btn-block btn btn-block btn-dark"
                 >
                     Click for more info
-                </a>
-            </div>
+                </div>
+            </a>
         </div>
 
         <div class="product-details">
