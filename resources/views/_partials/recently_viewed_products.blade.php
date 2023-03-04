@@ -33,9 +33,9 @@
             <img src="{{ $product->image_m }}" alt="product">
          </a>
       </figure>
+      <a href="#">
 
-      <div class="product-details-content">
-         <a href="#">
+         <div class="product-details-content">
             <div class="d-flex flex-column text-start">
                <div class="product-title">
                   <div class="product-title-label">{{ $product->name }}</div>
@@ -47,9 +47,10 @@
                   </div>
                </div>
             </div>
-         </a>
 
-      </div>
+         </div>
+      </a>
+
 
       <!-- End .product-details -->
    </div>
