@@ -41,10 +41,17 @@
                   <div class="product-title-label">{{ $product->name }}</div>
                </div>
 
-               <div class="az_ll az_cm">
-                  <div class="az_z9">
-                     <div class="az_n9 az_Chb" data-testid="price-fragment" aria-label="Total price is: 12 dollars and 99 cents. "><span data-testid="cart-price-icon-deal" class="az_-G az_m9">$</span><span class="az_-i az_o9">12</span><span class="az_-i az_p9"><span class="az_y9">.</span>99</span></div>
+               <div class="price-box">
+                  @if($product->discounted_price)
+                  <div>
+                     <span class="old-price">{{ $product->currency }}{{ $product->formatted_sale_price }}</span>
+                     <span class="product-price">{{ $product->currency }}{{ $product->formatted_price }}</span>
                   </div>
+                  @else
+                  <div>
+                     <span class="product-price">{{ $product->currency }}{{ $product->formatted_price }}</span>
+                  </div>
+                  @endif
                </div>
             </div>
 
