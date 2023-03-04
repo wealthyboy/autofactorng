@@ -7066,6 +7066,18 @@ figure .porto-loading-icon {
     transition: box-shadow 0.3s ease-in-out
 }
 
+.product-default-sm {
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-left-width: 0;
+    text-align: center;
+    transition: box-shadow .25s,transform .25s;
+    min-height: 167px;
+    height: 100%;
+    box-shadow: 0 1px 4px 0 rgb(32 33 36 / 12%), 0 2px 2px 0 rgb(32 33 36 / 14%), 0 3px 1px -2px rgb(32 33 36 / 20%);
+}
+
+
 .product-default a {
     color: inherit;
 }

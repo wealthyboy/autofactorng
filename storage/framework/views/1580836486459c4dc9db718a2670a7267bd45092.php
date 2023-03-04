@@ -7,7 +7,7 @@
 </h4>
 <div class="underline mb-5 ms-1"></div>
 
-<div class="owl-carousel owl-theme show-nav-hover nav-outer nav-image-center" data-owl-options="{
+<div class="owl-carousel owl-theme show-nav-hover nav-outer nav-image-center " data-owl-options="{
 					'dots': false,
 					'margin': 10,
 					'loop': false,
@@ -27,10 +27,9 @@
 				}">
 
    <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-   <div class="product-default left-details product-unfold">
-      <figure>
+   <div class="product-default  d-flex flex-column justify-content-center align-items-center ">
+      <figure class="image-category">
          <a href="<?php echo e($product->link); ?>">
-            <img src="<?php echo e($product->image_m); ?>" alt="product">
             <img src="<?php echo e($product->image_m); ?>" alt="product">
          </a>
       </figure>
