@@ -38,14 +38,12 @@
          <a href="#">
             <div class="d-flex flex-column text-start">
                <div class="product-title">
-                  <div class=".product-title-label">{{ $product->name }}</div>
+                  <div class="product-title-label">{{ $product->name }}</div>
                </div>
 
                <div class="az_ll az_cm">
-                  <div class="az_kl az_ll az_Hl az_sl az_cm az_thb">
-                     <div class="az_z9">
-                        <div class="az_n9 az_Chb" data-testid="price-fragment" aria-label="Total price is: 12 dollars and 99 cents. "><span data-testid="cart-price-icon-deal" class="az_-G az_m9">$</span><span class="az_-i az_o9">12</span><span class="az_-i az_p9"><span class="az_y9">.</span>99</span></div>
-                     </div>
+                  <div class="az_z9">
+                     <div class="az_n9 az_Chb" data-testid="price-fragment" aria-label="Total price is: 12 dollars and 99 cents. "><span data-testid="cart-price-icon-deal" class="az_-G az_m9">$</span><span class="az_-i az_o9">12</span><span class="az_-i az_p9"><span class="az_y9">.</span>99</span></div>
                   </div>
                </div>
             </div>
