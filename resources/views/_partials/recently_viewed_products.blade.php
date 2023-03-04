@@ -7,7 +7,7 @@
 </h4>
 <div class="underline mb-5 ms-1"></div>
 
-<div class="owl-carousel owl-theme show-nav-hover nav-outer nav-image-center" data-owl-options="{
+<div class="owl-carousel owl-theme show-nav-hover nav-outer nav-image-center shadow-sm " data-owl-options="{
 					'dots': false,
 					'margin': 10,
 					'loop': false,
