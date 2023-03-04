@@ -7085,10 +7085,10 @@ figure .porto-loading-icon {
 
 .product-image-box{ 
     max-width: 120px;
-    width: 132px;
-    height: 132px;
+    width: 185px;
+    height: 185px;
     overflow: hidden;
-    margin: 6rem !important;
+    margin: 4rem !important;
 }
 
 .product-more-info {
