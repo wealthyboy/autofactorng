@@ -7032,7 +7032,7 @@ figure:hover .overlay-visible {
     border: 1px solid #ccc;
     padding: 0 0.5em;
     min-width: 2.2em;
-    color: inherit;
+    color: #000 !important;
     line-height: 2.1em;
     text-align: center
 }
