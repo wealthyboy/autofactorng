@@ -78,7 +78,7 @@ class ProductController extends Table
 
 
                 if (file_exists($m)) {
-                    dd($m);
+                    dd(true);
                     unlink($m);
                 }
 
