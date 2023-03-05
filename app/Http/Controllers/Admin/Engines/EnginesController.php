@@ -27,7 +27,7 @@ class EnginesController extends Table
 	public function index()
 	{
 
-		\File::makeDirectory(public_path('images/products/tm'), 0755, true);
+		//\File::makeDirectory(public_path('images/products/tm'), 0755, true);
 		$category = Category::where('slug', 'spare-parts-drivetrain')->first();
 		//$products = Product::where('name', 'Genuine CV Joint Boot/ Shaft Rubber (Inner) 1032968 (Pair)')->first();
 		// ->limit(request()->limit)->get();
