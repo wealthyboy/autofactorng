@@ -34,7 +34,7 @@ class EnginesController extends Table
 		//dd(Product::where('slug', request()->name)->first());
 		// ->limit(request()->limit)->get();
 		//dd($category->products()->offset(request()->offset)->limit(request()->limit)->get());
-		foreach ($category->products()->offset(request()->offset)->limit(request()->limit)->get() as  $product) {
+		foreach ($category->products as  $product) {
 			// dd($category->products); as $key => $product) {
 			foreach ($product->images as $key => $image) {
 
