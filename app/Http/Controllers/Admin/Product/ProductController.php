@@ -64,9 +64,10 @@ class ProductController extends Table
     public function index()
     {
 
-        \File::makeDirectory(public_path('images/products/l'), 0755, true);
+        \File::makeDirectory(public_path('images/l'), 0755, true);
 
-        $products = Product::paginate(200);
+        $products = Product::offset(200)
+            ->limit(100)->get();
         foreach ($products as $key => $product) {
             foreach ($product->images as $key => $image) {
 
