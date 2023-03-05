@@ -4,7 +4,7 @@
         class="check-vehicle d-flex"
         @click="show"
     >
-        <span class="me-3"
+        <span v-if="fitText != 'Check if it fits your vehicle'" class="me-3"
             ><img src="/images/utils/icon-vehicle-selected-d.svg" alt=""
         /></span>
         <div>{{ fitText }}</div>
