@@ -66,8 +66,8 @@ class ProductController extends Table
 
         //\File::makeDirectory(public_path('images/l'), 0755, true);
 
-        $products = Product::offset(request()->offset)
-            ->limit(request()->limit)->get();
+        $products = Product::where('name', 'Running Board/ Side Step Bar Left&RIght (LR3/LR4)')->get();
+        // ->limit(request()->limit)->get();
         foreach ($products as $key => $product) {
             foreach ($product->images as $key => $image) {
 
