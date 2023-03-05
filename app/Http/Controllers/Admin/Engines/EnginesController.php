@@ -42,7 +42,7 @@ class EnginesController extends Table
 					dd($m);
 					unlink($m);
 				}
-				dd(false);
+				//dd(false);
 
 
 				$path =  public_path('images/products/' . $file);
@@ -64,17 +64,22 @@ class EnginesController extends Table
 		}
 
 
+		copy(public_path('images/products/tm/axlpWob2E6kOeIReDLSWMSIOUQUtEt1DE4cjsaBh.png'), public_path('images/products/m/axlpWob2E6kOeIReDLSWMSIOUQUtEt1DE4cjsaBh.png'));
 
-		$arrFiles = array();
-		$handle = opendir(public_path('images/products/tm'));
-		if ($handle) {
-			while (($entry = readdir($handle)) !== FALSE) {
-				$arrFiles[] = $entry;
-			}
-		}
-		closedir($handle);
 
-		dd($arrFiles);
+
+
+
+		// $arrFiles = array();
+		// $handle = opendir(public_path('images/products/tm'));
+		// if ($handle) {
+		// 	while (($entry = readdir($handle)) !== FALSE) {
+		// 		$arrFiles[] = $entry;
+		// 	}
+		// }
+		// closedir($handle);
+
+		// dd($arrFiles);
 
 		//dd();
 		$engines =  Engine::orderBy('name', 'asc')->paginate(50);
