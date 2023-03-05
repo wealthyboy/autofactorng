@@ -6451,7 +6451,7 @@ span.page-link {
     display: inline-block;
     width: 1.2em;
     color: #000;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 34px;
     text-align: center
 }
@@ -6461,7 +6461,7 @@ span.page-link {
 }
 
 .layout-btn.active {
-    color: #000;
+    color: #f26100;
 }
 
 @media (min-width:992px) {
