@@ -280,7 +280,7 @@ class ProductsController extends Controller
                 'type' => $request->type,
                 'data' => $data,
                 'string' => $catString,
-                'show' => null !== $type || $request->search === false ? false : true,
+                'show' => $request->filled('search') &&  $request->search === false || null !== $type  ? false : true,
                 'productFitString' => $productFitString,
                 'p' => $p
             ]
