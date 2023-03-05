@@ -74,7 +74,7 @@ class ReviewsController extends Table
 			'edit' => false,
 			'search' => true,
 			'add' => false,
-			'delete' => true,
+			'destroy' => true,
 			'export' => false,
 			'order' => false
 		];
