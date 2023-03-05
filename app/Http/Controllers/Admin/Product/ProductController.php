@@ -66,7 +66,8 @@ class ProductController extends Table
 
         // \File::makeDirectory(public_path('images/l'), 0755, true);
 
-        $products = Product::where('name', 'Genuine CV Joint Boot/ Shaft Rubber (Inner) 1032957 (Pair)')->get();
+        $products = Product::where('name', 'Genuine CV Joint Boot/ Shaft Rubber (Outer) 1032888 (Pair))')->get();
+        dd($products);
         // ->limit(request()->limit)->get();
         foreach ($products as $key => $product) {
             foreach ($product->images as $key => $image) {
