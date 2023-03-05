@@ -36,30 +36,30 @@ class EnginesController extends Table
 			foreach ($product->images as $key => $image) {
 
 				$file = basename($image->image);
-				$m = public_path('images/products/m/' . $file);
+				$m = public_path('images/products/m/axlpWob2E6kOeIReDLSWMSIOUQUtEt1DE4cjsaBh.png');
 
-				// if (file_exists($m)) {
-				// 	//	dd($m);
-				// 	unlink($m);
-				// }
-				// dd(false);
+				if (file_exists($m)) {
+					//	dd($m);
+					unlink($m);
+				}
+				dd(false);
 
 
 				$path =  public_path('images/products/' . $file);
 
 
 
-				if ($file) {
+				// if ($file) {
 
-					$canvas = \Image::canvas(400, 400);
-					$image  = \Image::make($path)->resize(400, 400, function ($constraint) {
-						$constraint->aspectRatio();
-					});
-					$canvas->insert($image, 'center');
-					$canvas->save(
-						public_path('images/products/m/' . $file)
-					);
-				}
+				// 	$canvas = \Image::canvas(400, 400);
+				// 	$image  = \Image::make($path)->resize(400, 400, function ($constraint) {
+				// 		$constraint->aspectRatio();
+				// 	});
+				// 	$canvas->insert($image, 'center');
+				// 	$canvas->save(
+				// 		public_path('images/products/m/' . $file)
+				// 	);
+				// }
 			}
 		}
 
