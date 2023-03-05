@@ -38,6 +38,7 @@ class EnginesController extends Table
 				$file = basename($image->image);
 				$m = public_path('images/products/m/' . $file);
 				if (file_exists($m)) {
+					dd($m);
 					unlink($m);
 				}
 
@@ -45,17 +46,17 @@ class EnginesController extends Table
 
 
 
-				if ($file) {
+				// if ($file) {
 
-					$canvas = \Image::canvas(400, 400);
-					$image  = \Image::make($path)->resize(400, 400, function ($constraint) {
-						$constraint->aspectRatio();
-					});
-					$canvas->insert($image, 'center');
-					$canvas->save(
-						public_path('images/products/tm/' . $file)
-					);
-				}
+				// 	$canvas = \Image::canvas(400, 400);
+				// 	$image  = \Image::make($path)->resize(400, 400, function ($constraint) {
+				// 		$constraint->aspectRatio();
+				// 	});
+				// 	$canvas->insert($image, 'center');
+				// 	$canvas->save(
+				// 		public_path('images/products/tm/' . $file)
+				// 	);
+				// }
 			}
 		}
 
