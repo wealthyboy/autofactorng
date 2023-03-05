@@ -84,9 +84,6 @@ class ProductController extends Table
 
                 $path =  public_path('images/products/' . $file);
 
-                if (file_exists($path)) {
-                    dd($path);
-                }
 
                 if ($file) {
 
@@ -94,6 +91,8 @@ class ProductController extends Table
                     $image  = \Image::make($path)->resize(500, 400, function ($constraint) {
                         $constraint->aspectRatio();
                     });
+
+                    dd($image);
                     $canvas->insert($image, 'center');
                     $canvas->save(
                         public_path('images/products/m/' . $file)
