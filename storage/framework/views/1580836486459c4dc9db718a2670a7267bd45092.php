@@ -38,7 +38,7 @@
          <div class="product-details-content">
             <div class="d-flex flex-column text-start">
                <div class="product-title">
-                  <div class="product-title-label"><?php echo e($product->name); ?></div>
+                  <div class="product-title-label fs-5"><?php echo e($product->name); ?></div>
                </div>
 
 

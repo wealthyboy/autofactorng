@@ -15,7 +15,6 @@
             <div class="col-lg-1">
                 <div class="prod-thumbnail owl-dots flex-column">
                     @foreach($product->images as $image)
-
                     <div class="owl-dot mb-2">
                         <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
                     </div>

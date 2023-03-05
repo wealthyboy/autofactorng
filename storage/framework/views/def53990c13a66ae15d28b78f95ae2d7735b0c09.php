@@ -14,7 +14,6 @@
             <div class="col-lg-1">
                 <div class="prod-thumbnail owl-dots flex-column">
                     <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
                     <div class="owl-dot mb-2">
                         <img src="<?php echo e($image->image_m); ?>" width="110" height="110" alt="product-thumbnail" />
                     </div>
