@@ -23092,6 +23092,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var url = u.pathname;
       window.history.pushState({}, "", url);
       this.showClearFilter = false;
+      document.getElementById("filter-form").reset();
       this.getProducts(url);
     },
     filter: function filter(o) {
