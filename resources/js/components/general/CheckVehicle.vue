@@ -1,7 +1,7 @@
 <template>
     <button
         :class="{ fits: fitText != 'Check if it fits your vehicle' }"
-        class="check-vehicle fits"
+        class="check-vehicle"
         @click="show"
     >
         <div></div>
