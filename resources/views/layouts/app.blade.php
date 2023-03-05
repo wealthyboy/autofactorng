@@ -125,7 +125,7 @@
                               <span class="material-symbols-outlined">
                                  local_library
                               </span>
-                              <div class="align-self-center">How To</div>
+                              <div class="align-self-center fw-bold ms-3 fs-6">How To</div>
                               <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
                            </div>
                         </a>
