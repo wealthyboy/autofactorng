@@ -64,37 +64,37 @@ class ProductController extends Table
     public function index()
     {
 
+        \File::makeDirectory(public_path('images/l'), 0755, true);
 
-        // $products = Product::offset(1600)
-        //     ->limit(200)->get();
-        // foreach ($products as $key => $product) {
-        //     foreach ($product->images as $key => $image) {
+        $products = Product::paginate(200);
+        foreach ($products as $key => $product) {
+            foreach ($product->images as $key => $image) {
 
 
 
-        //         $file = basename($image->image);
+                $file = basename($image->image);
 
-        //         $m = public_path('images/products/m/' . $file);
+                // $m = public_path('images/products/m/' . $file);
 
-        //         if (file_exists($m)) {
-        //             unlink($m);
-        //         }
+                // if (file_exists($m)) {
+                //     unlink($m);
+                // }
 
-        //         $path =  public_path('images/products/' . $file);
+                $path =  public_path('images/products/' . $file);
 
-        //         if ($file) {
+                if ($file) {
 
-        //             $canvas = \Image::canvas(400, 400);
-        //             $image  = \Image::make($path)->resize(400, 400, function ($constraint) {
-        //                 $constraint->aspectRatio();
-        //             });
-        //             $canvas->insert($image, 'center');
-        //             $canvas->save(
-        //                 public_path('images/products/m/' . $file)
-        //             );
-        //         }
-        //     }
-        // }
+                    $canvas = \Image::canvas(1500, 1500);
+                    $image  = \Image::make($path)->resize(1500, 1500, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                    $canvas->insert($image, 'center');
+                    $canvas->save(
+                        public_path('images/products/l/' . $file)
+                    );
+                }
+            }
+        }
         $brands = Brand::all();
         $categories = Category::parents()->get();
         $attributes = Attribute::parents()->orderBy('sort_order', 'asc')->get();
