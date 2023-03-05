@@ -37,7 +37,7 @@ class EnginesController extends Table
 
 				$file = basename($image->image);
 				$m = public_path('images/products/m/' . $file);
-				//dd($m);
+				dd('https://autofactor.ng/images/products/m/ke7qiBUFKNIRHyIL7R4qFXOMRJuj0gzGdsJfo8UA.png');
 
 				if (file_exists($m)) {
 					//	dd($m);
