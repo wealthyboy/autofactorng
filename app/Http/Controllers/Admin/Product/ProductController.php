@@ -64,7 +64,7 @@ class ProductController extends Table
     public function index()
     {
 
-        \File::makeDirectory(public_path('images/l'), 0755, true);
+        //\File::makeDirectory(public_path('images/l'), 0755, true);
 
         $products = Product::offset(200)
             ->limit(100)->get();
