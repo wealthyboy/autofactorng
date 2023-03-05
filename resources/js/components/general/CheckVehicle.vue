@@ -1,5 +1,5 @@
 <template>
-    <button class="check-vehicle" @click="show">
+    <button class="check-vehicle fits" @click="show">
         <div></div>
         <div>{{ fitText }}</div>
     </button>
@@ -26,3 +26,11 @@ export default {
     },
 };
 </script>
+
+<style>
+.fits {
+    border-color: #1f7400;
+    color: #157400;
+    background-color: #f3f8f2;
+}
+</style>
