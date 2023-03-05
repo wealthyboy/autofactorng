@@ -110,7 +110,7 @@ export const shopWithoutVehicle = ({ commit }, action) => {
 
 
     axios
-        .get(, {
+        .get(url, {
             params: {
                 type: "clear",
             },
