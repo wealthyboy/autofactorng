@@ -37,6 +37,8 @@ class EnginesController extends Table
 
 				$file = basename($image->image);
 				$m = public_path('images/products/m/' . $file);
+				dd($m);
+
 				if (file_exists($m)) {
 					dd($m);
 					unlink($m);
