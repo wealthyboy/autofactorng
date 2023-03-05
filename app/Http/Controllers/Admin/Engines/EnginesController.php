@@ -32,16 +32,13 @@ class EnginesController extends Table
 		//$products = Product::where('name', 'Genuine CV Joint Boot/ Shaft Rubber (Inner) 1032968 (Pair)')->first();
 		// ->limit(request()->limit)->get();
 		// dd($category->products);
-		foreach ($category->products as $key => $product) {
+		foreach ($category->products()->offset(request()->offset)->limit(request()->limit)->get() as  $product)
+		// dd($category->products); as $key => $product) {
 			foreach ($product->images as $key => $image) {
 
 				$file = basename($image->image);
 
-
-
 				$path =  public_path('images/products/' . $file);
-
-
 
 				if ($file) {
 
