@@ -66,8 +66,8 @@ class ProductController extends Table
 
         //\File::makeDirectory(public_path('images/l'), 0755, true);
 
-        $products = Product::offset(200)
-            ->limit(100)->get();
+        $products = Product::offset(100)
+            ->limit(50)->get();
         foreach ($products as $key => $product) {
             foreach ($product->images as $key => $image) {
 
