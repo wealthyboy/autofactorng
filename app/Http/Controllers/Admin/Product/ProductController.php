@@ -68,13 +68,15 @@ class ProductController extends Table
         $category = Category::where('slug', 'spare-parts-drivetrain')->first();
         $products = Product::where('name', 'Genuine CV Joint Boot/ Shaft Rubber (Outer) 1032888 (Pair))')->get();
         // ->limit(request()->limit)->get();
-        dd($category->products);
+        // dd($category->products);
         foreach ($category->products as $key => $product) {
             foreach ($product->images as $key => $image) {
 
                 $file = basename($image->image);
 
                 $m = public_path('images/products/m/' . $file);
+
+                dd($m);
 
                 if (file_exists($m)) {
                     unlink($m);
