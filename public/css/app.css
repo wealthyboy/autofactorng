@@ -7037,6 +7037,13 @@ figure:hover .overlay-visible {
     text-align: center
 }
 
+.page-item.active .page-link {
+    color: #706f6c !important;
+    background-color: transparent;
+    border-color: #000;
+    
+}
+
 .page-link:focus,
 .page-link:hover {
     color: #706f6c;
