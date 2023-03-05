@@ -27709,7 +27709,7 @@ var _hoisted_2 = {
   "class": "product-default"
 };
 var _hoisted_3 = {
-  "class": "product-image-box"
+  "class": ""
 };
 var _hoisted_4 = ["href"];
 var _hoisted_5 = ["src"];
