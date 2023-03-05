@@ -27740,7 +27740,7 @@ var _hoisted_10 = {
   "class": "product-details"
 };
 var _hoisted_11 = {
-  "class": "product-title bold"
+  "class": "product-title"
 };
 var _hoisted_12 = ["href"];
 var _hoisted_13 = {
@@ -27814,7 +27814,7 @@ var _hoisted_35 = {
   "class": "product-details"
 };
 var _hoisted_36 = {
-  "class": "product-title bold"
+  "class": "product-title"
 };
 var _hoisted_37 = ["href"];
 var _hoisted_38 = {
