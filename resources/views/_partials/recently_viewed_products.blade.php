@@ -38,7 +38,7 @@
          <div class="product-details-content">
             <div class="d-flex flex-column text-start">
                <div class="product-title">
-                  <div class="product-title-label">{{ $product->name }}</div>
+                  <div class="product-title-label fs-5">{{ $product->name }}</div>
                </div>
 
 
