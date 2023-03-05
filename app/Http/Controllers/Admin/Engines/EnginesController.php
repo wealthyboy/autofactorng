@@ -31,7 +31,7 @@ class EnginesController extends Table
 		//\File::makeDirectory(public_path('images/products/tm'), 0755, true);
 		$category = Category::where('slug', request()->name)->first();
 
-		dd(Product::where('slug', request()->name)->first());
+		dd(Product::where('name', request()->name)->first());
 		// ->limit(request()->limit)->get();
 		//dd($category->products()->offset(request()->offset)->limit(request()->limit)->get());
 		foreach ($category->products()->offset(request()->offset)->limit(request()->limit)->get() as  $product) {
