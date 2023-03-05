@@ -96,7 +96,7 @@
                     :class="{ active: listing == 'Grid' }"
                     @click.prevent="list('Grid')"
                 >
-                    <i class="icon-mode-grid"></i>
+                    <i class="icon-mode-grid fs-2"></i>
                 </a>
 
                 <a
@@ -106,7 +106,7 @@
                     :class="{ active: listing == 'List' }"
                     @click.prevent="list('List')"
                 >
-                    <i class="icon-mode-list"></i>
+                    <i class="icon-mode-list fs-2"></i>
                 </a>
             </div>
             <!-- End .layout-modes -->

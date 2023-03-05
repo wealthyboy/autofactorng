@@ -27622,7 +27622,7 @@ var _hoisted_24 = {
 };
 
 var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "icon-mode-grid"
+  "class": "icon-mode-grid fs-2"
 }, null, -1
 /* HOISTED */
 );
@@ -27630,7 +27630,7 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_26 = [_hoisted_25];
 
 var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
-  "class": "icon-mode-list"
+  "class": "icon-mode-list fs-2"
 }, null, -1
 /* HOISTED */
 );
