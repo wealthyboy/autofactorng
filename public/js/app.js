@@ -23283,7 +23283,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     CheckVehicle: _general_CheckVehicle__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
-    return {};
+    return {
+      added: []
+    };
   },
   computed: {},
   created: function created() {},
@@ -23300,6 +23302,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function () {
         _this.cText = "Add To Bag";
         _this.loading = false;
+
+        _this.added.push(product_id);
       })["catch"](function (error) {
         _this.cText = "Add To Bag";
         _this.loading = false;
@@ -27963,8 +27967,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.addToCart($props.product.id);
     }, ["prevent"])),
     href: "#",
-    "class": "btn-icon btn-add-cart product-type-simple"
-  }, _hoisted_48)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-details ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+      'pe-none': $data.added.includes($props.product.id)
+    }, "btn-icon btn-add-cart product-type-simple"])
+  }, _hoisted_48, 2
+  /* CLASS */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-details ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
   /* STABLE_FRAGMENT */
   );
 }

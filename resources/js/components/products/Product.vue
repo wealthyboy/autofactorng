@@ -155,6 +155,7 @@
                 <a
                     @click.prevent="addToCart(product.id)"
                     href="#"
+                    :class="{ 'pe-none': added.includes(product.id) }"
                     class="btn-icon btn-add-cart product-type-simple"
                 >
                     <i class="icon-shopping-cart"></i>
@@ -178,7 +179,9 @@ export default {
     },
     components: { CheckVehicle },
     data() {
-        return {};
+        return {
+            added: [],
+        };
     },
     computed: {},
     created() {},
@@ -197,6 +200,7 @@ export default {
                 .then(() => {
                     this.cText = "Add To Bag";
                     this.loading = false;
+                    this.added.push(product_id);
                 })
                 .catch((error) => {
                     this.cText = "Add To Bag";
