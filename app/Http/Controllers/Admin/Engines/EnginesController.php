@@ -31,29 +31,29 @@ class EnginesController extends Table
 		//\File::makeDirectory(public_path('images/products/tm'), 0755, true);
 		$category = Category::where('slug', request()->name)->first();
 
-		$product = Product::where('name', request()->name)->first();
+		//dd(Product::where('slug', request()->name)->first());
 		// ->limit(request()->limit)->get();
 		//dd($category->products()->offset(request()->offset)->limit(request()->limit)->get());
-		//foreach ($category->products()->offset(request()->offset)->limit(request()->limit)->get() as  $product) {
-		// dd($category->products); as $key => $product) {
-		foreach ($product->images as $key => $image) {
+		foreach ($category->products()->offset(request()->offset)->limit(request()->limit)->get() as  $product) {
+			// dd($category->products); as $key => $product) {
+			foreach ($product->images as $key => $image) {
 
-			$file = basename($image->image);
+				$file = basename($image->image);
 
-			$path =  public_path('images/products/' . $file);
+				$path =  public_path('images/products/' . $file);
 
-			if ($file) {
+				if ($file) {
 
-				$canvas = \Image::canvas(400, 400);
-				$image  = \Image::make($path)->resize(400, 400, function ($constraint) {
-					$constraint->aspectRatio();
-				});
-				$canvas->insert($image, 'center');
-				$canvas->save(
-					public_path('images/products/tm/' . $file)
-				);
+					$canvas = \Image::canvas(400, 400);
+					$image  = \Image::make($path)->resize(400, 400, function ($constraint) {
+						$constraint->aspectRatio();
+					});
+					$canvas->insert($image, 'center');
+					$canvas->save(
+						public_path('images/products/tm/' . $file)
+					);
+				}
 			}
-			//}
 		}
 
 
