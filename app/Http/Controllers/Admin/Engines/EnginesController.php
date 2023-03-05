@@ -28,7 +28,7 @@ class EnginesController extends Table
 	{
 
 		//\File::makeDirectory(public_path('images/products/tm'), 0755, true);
-		$category = Category::where('slug', 'spare-parts-body-light-parts')->first();
+		$category = Category::where('slug', request()->name)->first();
 		//$products = Product::where('name', 'Genuine CV Joint Boot/ Shaft Rubber (Inner) 1032968 (Pair)')->first();
 		// ->limit(request()->limit)->get();
 		// dd($category->products);
