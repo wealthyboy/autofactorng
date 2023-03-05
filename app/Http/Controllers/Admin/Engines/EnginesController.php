@@ -39,7 +39,7 @@ class EnginesController extends Table
 				$m = public_path('images/products/m/axlpWob2E6kOeIReDLSWMSIOUQUtEt1DE4cjsaBh.png');
 
 				if (file_exists($m)) {
-					//	dd($m);
+					dd($m);
 					unlink($m);
 				}
 				dd(false);
