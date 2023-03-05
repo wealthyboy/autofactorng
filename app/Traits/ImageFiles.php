@@ -55,7 +55,7 @@ trait ImageFiles
     {
         if ($this->images->count()) {
             $image = basename($this->images[0]->image);
-            return  asset('images/' . $this->folder . '/m/' . $image);
+            return  asset('images/' . $this->folder . '/tm/' . $image);
         }
         return '/images/utils/No_image_available.svg.png';
     }
@@ -73,7 +73,7 @@ trait ImageFiles
 
     public function getImageMAttribute()
     {
-        return $this->imageSize('m');
+        return $this->imageSize('tm');
     }
 
 
