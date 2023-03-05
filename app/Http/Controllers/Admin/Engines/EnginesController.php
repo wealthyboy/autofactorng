@@ -32,35 +32,35 @@ class EnginesController extends Table
 		//$products = Product::where('name', 'Genuine CV Joint Boot/ Shaft Rubber (Inner) 1032968 (Pair)')->first();
 		// ->limit(request()->limit)->get();
 		// dd($category->products);
-		foreach ($category->products as $key => $product) {
-			foreach ($product->images as $key => $image) {
+		// foreach ($category->products as $key => $product) {
+		// 	foreach ($product->images as $key => $image) {
 
-				$file = basename($image->image);
-
-
-
-				$path =  public_path('images/products/' . $file);
+		// 		$file = basename($image->image);
 
 
 
-				if ($file) {
+		// 		$path =  public_path('images/products/' . $file);
 
-					$canvas = \Image::canvas(400, 400);
-					$image  = \Image::make($path)->resize(400, 400, function ($constraint) {
-						$constraint->aspectRatio();
-					});
-					$canvas->insert($image, 'center');
-					$canvas->save(
-						public_path('images/products/tm/' . $file)
-					);
-				}
-			}
-		}
+
+
+		// 		if ($file) {
+
+		// 			$canvas = \Image::canvas(400, 400);
+		// 			$image  = \Image::make($path)->resize(400, 400, function ($constraint) {
+		// 				$constraint->aspectRatio();
+		// 			});
+		// 			$canvas->insert($image, 'center');
+		// 			$canvas->save(
+		// 				public_path('images/products/tm/' . $file)
+		// 			);
+		// 		}
+		// 	}
+		// }
 
 		$directory = public_path('images/products/tm');
 		$files = \Storage::allFiles($directory);
 
-		dd($files);
+		dd(public_path());
 
 		//dd();
 		$engines =  Engine::orderBy('name', 'asc')->paginate(50);
