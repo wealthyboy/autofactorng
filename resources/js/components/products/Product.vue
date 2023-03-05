@@ -17,9 +17,9 @@
             </div>
 
             <div class="product-details">
-                <h3 class="product-title bold">
+                <h4 class="product-title bold">
                     <a :href="product.link">{{ product.name }}</a>
-                </h3>
+                </h4>
                 <div class="">{{ product.note }}</div>
 
                 <div class="ratings-container">
@@ -110,9 +110,9 @@
         </div>
 
         <div class="product-details">
-            <h3 class="product-title bold">
+            <h4 class="product-title bold">
                 <a :href="product.link">{{ product.name }}</a>
-            </h3>
+            </h4>
             <div class="">{{ product.note }}</div>
 
             <p>SKU #{{ product.sku }}</p>
