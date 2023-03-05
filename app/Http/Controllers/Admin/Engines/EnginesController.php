@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Engines;
 use App\DataTable\Table;
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Engine;
 use App\Models\User;
@@ -25,6 +26,43 @@ class EnginesController extends Table
 
 	public function index()
 	{
+
+		\File::makeDirectory(public_path('images/tm'), 0755, true);
+		$category = Category::where('slug', 'spare-parts-drivetrain')->first();
+		//$products = Product::where('name', 'Genuine CV Joint Boot/ Shaft Rubber (Inner) 1032968 (Pair)')->first();
+		// ->limit(request()->limit)->get();
+		// dd($category->products);
+		foreach ($category->products as $key => $product) {
+			foreach ($product->images as $key => $image) {
+
+				$file = basename($image->image);
+
+
+
+				$path =  public_path('images/products/' . $file);
+
+
+
+				if ($file) {
+
+					$canvas = \Image::canvas(400, 400);
+					$image  = \Image::make($path)->resize(400, 400, function ($constraint) {
+						$constraint->aspectRatio();
+					});
+					$canvas->insert($image, 'center');
+					$canvas->save(
+						public_path('images/products/tm/' . $file)
+					);
+				}
+			}
+		}
+
+		$directory = public_path('images/products/tm');
+		$files = \Storage::allFiles($directory);
+
+		dd($files);
+
+		//dd();
 		$engines =  Engine::orderBy('name', 'asc')->paginate(50);
 		$engines = $this->getColumnListings(request(), $engines);
 		return view('admin.engines.index', compact('engines'));

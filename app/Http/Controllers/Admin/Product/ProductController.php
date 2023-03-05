@@ -64,43 +64,7 @@ class ProductController extends Table
     public function index()
     {
 
-        // \File::makeDirectory(public_path('images/l'), 0755, true);
-        // $category = Category::where('slug', 'spare-parts-drivetrain')->first();
-        // $products = Product::where('name', 'Genuine CV Joint Boot/ Shaft Rubber (Inner) 1032968 (Pair)')->first();
-        // // ->limit(request()->limit)->get();
-        // // dd($category->products);
-        // foreach ($category->products as $key => $product) {
-        //     foreach ($product->images as $key => $image) {
 
-        //         $file = basename($image->image);
-
-        //         $m = public_path('images/products/m/' . $file);
-
-
-        //         if (file_exists($m)) {
-        //             unlink($m);
-        //         }
-
-
-        //         $path =  public_path('images/products/' . $file);
-
-        //         if (file_exists($m)) {
-        //             dd($p);
-        //         }
-
-        //         if ($file) {
-
-        //             $canvas = \Image::canvas(500, 400);
-        //             $image  = \Image::make($path)->resize(500, 400, function ($constraint) {
-        //                 $constraint->aspectRatio();
-        //             });
-        //             $canvas->insert($image, 'center');
-        //             $canvas->save(
-        //                 public_path('images/products/m/' . $file)
-        //             );
-        //         }
-        //     }
-        // }
         $brands = Brand::all();
         $categories = Category::parents()->get();
         $attributes = Attribute::parents()->orderBy('sort_order', 'asc')->get();
