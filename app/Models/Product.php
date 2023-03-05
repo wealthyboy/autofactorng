@@ -80,7 +80,8 @@ class Product extends Model
         'fitText',
         'average_rating',
         'average_rating_count',
-        'percentage_off'
+        'percentage_off',
+        'image_l'
     ];
 
 
