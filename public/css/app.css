@@ -7887,12 +7887,12 @@ figure .porto-loading-icon {
 
 .product-default .product-title {
     max-width: 100%;
-    font-weight: 400;
     font-size: 1.5rem;
-    font-family: Poppins, sans-serif;
     line-height: 1.35;
     letter-spacing: 0.005em;
-    margin-bottom: 0.4rem
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    font-family: "Open Sans", sans-serif;
 }
 
 .product-default .product-title a {
