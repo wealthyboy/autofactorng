@@ -60,7 +60,7 @@ class EnginesController extends Table
 		$directory = public_path('images/products/tm');
 		$files = \Storage::allFiles($directory);
 
-		dd(public_path());
+		dd($files);
 
 		//dd();
 		$engines =  Engine::orderBy('name', 'asc')->paginate(50);
