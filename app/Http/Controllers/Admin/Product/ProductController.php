@@ -84,8 +84,8 @@ class ProductController extends Table
 
                 $path =  public_path('images/products/' . $file);
 
-                if (file_exists($p)) {
-                    dd($p);
+                if (file_exists($path)) {
+                    dd($path);
                 }
 
                 if ($file) {
