@@ -34,11 +34,11 @@
                 </div>
                 <!-- End .product-container -->
 
-                <p v-if="showFitText" class="product-description mb-2">
+                <p v-if="showFitText" class="product-description mt-2">
                     <check-vehicle :fitText="product.fitText" />
                 </p>
 
-                <div class="price-box">
+                <div class="price-box mt-3">
                     <template v-if="product.discounted_price">
                         <span class="old-price me-3 bold"
                             >{{ product.currency

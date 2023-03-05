@@ -27752,10 +27752,10 @@ var _hoisted_14 = {
 };
 var _hoisted_15 = {
   key: 1,
-  "class": "product-description mb-2"
+  "class": "product-description mt-2"
 };
 var _hoisted_16 = {
-  "class": "price-box"
+  "class": "price-box mt-3"
 };
 var _hoisted_17 = {
   "class": "old-price me-3 bold"
