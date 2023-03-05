@@ -77,6 +77,12 @@ trait ImageFiles
     }
 
 
+    public function getImageLAttribute()
+    {
+        return $this->imageSize('l');
+    }
+
+
     public function getImageTnAttribute()
     {
         return $this->imageSize('tn');
