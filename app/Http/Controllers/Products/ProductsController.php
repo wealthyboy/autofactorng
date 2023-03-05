@@ -368,8 +368,6 @@ class ProductsController extends Controller
     }
 
 
-
-
     public function buildSearchString(Request $request)
     {
         if ($request->type !== 'clear' && null !== $request->cookie('engine_id')) {
