@@ -214,6 +214,7 @@ class ProductsController extends Controller
 
     public function makeModelYearSearch(Request $request)
     {
+        dd($request->filled('search'));
         $data  = $request->query();
         $cookie = null;
         $type = $this->getType($request);
@@ -279,7 +280,7 @@ class ProductsController extends Controller
                 'type' => $request->type,
                 'data' => $data,
                 'string' => $catString,
-                'show' => null !== $type || $request->search == false ? false : true,
+                'show' => null !== $type || $request->search === false ? false : true,
                 'productFitString' => $productFitString,
                 'p' => $p
             ]
