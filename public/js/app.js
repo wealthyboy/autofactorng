@@ -27740,7 +27740,7 @@ var _hoisted_10 = {
   "class": "product-details"
 };
 var _hoisted_11 = {
-  "class": "product-title"
+  "class": "product-title mb-2"
 };
 var _hoisted_12 = ["href"];
 var _hoisted_13 = {
@@ -27748,11 +27748,11 @@ var _hoisted_13 = {
 };
 var _hoisted_14 = {
   key: 0,
-  "class": "product-ratings"
+  "class": "product-ratings mb-2"
 };
 var _hoisted_15 = {
   key: 1,
-  "class": "product-description"
+  "class": "product-description mb-2"
 };
 var _hoisted_16 = {
   "class": "price-box"

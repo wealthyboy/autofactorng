@@ -17,14 +17,14 @@
             </div>
 
             <div class="product-details">
-                <h4 class="product-title">
+                <h4 class="product-title mb-2">
                     <a :href="product.link">{{ product.name }}</a>
                 </h4>
                 <div class="">{{ product.note }}</div>
 
                 <div
                     v-if="product.average_rating_count >= 1"
-                    class="product-ratings"
+                    class="product-ratings mb-2"
                 >
                     <span
                         class="ratings"
@@ -34,7 +34,7 @@
                 </div>
                 <!-- End .product-container -->
 
-                <p v-if="showFitText" class="product-description">
+                <p v-if="showFitText" class="product-description mb-2">
                     <check-vehicle :fitText="product.fitText" />
                 </p>
 
