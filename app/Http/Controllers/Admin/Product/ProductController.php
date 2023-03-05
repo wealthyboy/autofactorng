@@ -76,9 +76,9 @@ class ProductController extends Table
 
                 $m = public_path('images/products/m/' . $file);
 
-                dd($m);
 
                 if (file_exists($m)) {
+                    dd($m);
                     unlink($m);
                 }
 
