@@ -7018,7 +7018,7 @@ figure:hover .overlay-visible {
 }
 
 .page-item.active .page-link {
-    color: #706f6c;
+    color: #706f6c !important;
     background-color: transparent;
     border-color: #000;
     
