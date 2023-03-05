@@ -38,7 +38,7 @@
 }
 
 .bg-primary {
-    background-color: #08C!important
+    background-color: #000!important
 }
 
 .bg-secondary {
@@ -50,7 +50,7 @@
 }
 
 .text-primary {
-    color: #08C!important
+    color: #000!important
 }
 
 .text-secondary {
@@ -897,7 +897,7 @@
     top: 50%;
     margin-top: -0.35rem;
     margin-left: -0.35rem;
-    background-color: #08C;
+    background-color: #000;
     opacity: 0;
     visibility: hidden;
     transform: scale(0);
@@ -907,7 +907,7 @@
 
 .owl-theme .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots .owl-dot:hover span {
-    border-color: #08C;
+    border-color: #000;
     background: transparent
 }
 
@@ -928,12 +928,12 @@
 
 .owl-theme.owl-theme-light .owl-dots .owl-dot.active span,
 .owl-theme.owl-theme-light .owl-dots .owl-dot:hover span {
-    border-color: #08C;
+    border-color: #000;
     background: transparent
 }
 
 .owl-theme.owl-theme-light .owl-dots .owl-dot.active span:before {
-    border-color: #08C
+    border-color: #000
 }
 
 .mfp-bg {
@@ -2831,8 +2831,8 @@ a.btn.disabled {
 }
 
 .btn-primary {
-    border-color: #08C;
-    background-color: #08C;
+    border-color: #000;
+    background-color: #000;
     color: #fff;
     box-shadow: none
 }
@@ -2848,8 +2848,8 @@ a.btn.disabled {
 
 .btn-primary.disabled,
 .btn-primary:disabled {
-    border-color: #08C;
-    background-color: #08C;
+    border-color: #000;
+    background-color: #000;
     color: #fff
 }
 
@@ -2922,16 +2922,16 @@ a.btn.disabled {
 }
 
 .btn-outline-primary {
-    border-color: #08C;
+    border-color: #000;
     background-color: transparent;
     background-image: none;
-    color: #08C
+    color: #000
 }
 
 .btn-outline-primary.focus,
 .btn-outline-primary:hover {
-    border-color: #08C;
-    background-color: #08C;
+    border-color: #000;
+    background-color: #000;
     color: #fff;
     box-shadow: none
 }
@@ -2939,14 +2939,14 @@ a.btn.disabled {
 .btn-outline-primary.disabled,
 .btn-outline-primary:disabled {
     background-color: transparent;
-    color: #08C
+    color: #000
 }
 
 .btn-outline-primary:not(:disabled):not(.disabled).active,
 .btn-outline-primary:not(:disabled):not(.disabled):active,
 .show>.btn-outline-primary.dropdown-toggle {
-    border-color: #08C;
-    background-color: #08C;
+    border-color: #000;
+    background-color: #000;
     color: #fff
 }
 
@@ -3020,8 +3020,8 @@ a.btn.disabled {
 .btn-gray.focus,
 .btn-gray:focus,
 .btn-gray:hover {
-    border-color: #08C;
-    background-color: #08C;
+    border-color: #000;
+    background-color: #000;
     color: #fff;
     box-shadow: none
 }
@@ -3049,7 +3049,7 @@ a.btn.disabled {
 .btn-link {
     padding-top: 0;
     padding-bottom: 0;
-    color: #08C;
+    color: #000;
     font-family: "Open Sans", sans-serif;
     font-size: 13px;
     letter-spacing: 0;
@@ -3058,7 +3058,7 @@ a.btn.disabled {
 
 .btn-link:focus,
 .btn-link:hover {
-    color: #08C;
+    color: #000;
     text-decoration: underline
 }
 
@@ -3074,7 +3074,7 @@ a.btn.disabled {
     display: flex;
     margin-right: 10px;
     margin-left: 10px;
-    background-color: #08C;
+    background-color: #000;
     font-family: Poppins, sans-serif;
     text-decoration: none;
     text-transform: uppercase
@@ -3142,7 +3142,7 @@ a:focus {
     margin: 0 auto;
     border: 2px solid transparent;
     border-radius: 50%;
-    border-top-color: #08C;
+    border-top-color: #000;
     border-image: none;
     text-indent: -9999px;
     -webkit-animation: spin 0.75s infinite linear;
@@ -3194,7 +3194,7 @@ a:focus {
 .card-header .card-edit {
     margin-top: 0.1rem;
     float: right;
-    color: #08C;
+    color: #000;
     font-size: 1.3rem;
     font-weight: 400;
     text-transform: capitalize
@@ -3315,7 +3315,7 @@ a:focus {
 .feature-box i {
     display: inline-block;
     margin-bottom: 2.2rem;
-    color: #08C;
+    color: #000;
     font-size: 5rem;
     line-height: 1
 }
@@ -3345,7 +3345,7 @@ a:focus {
 }
 
 .feature-box.border-top-primary .feature-box-content {
-    border-top: 4px solid #08C;
+    border-top: 4px solid #000;
     padding: 30px 20px 10px 20px
 }
 
@@ -5536,7 +5536,7 @@ label {
 }
 
 .custom-checkbox .custom-control-input:indeterminate~.custom-control-label:before {
-    background-color: #08C
+    background-color: #000
 }
 
 .custom-control-input:focus~.custom-control-label:before {
@@ -5549,7 +5549,7 @@ label {
 
 .custom-radio .custom-control-input:checked~.custom-control-label:after {
     background-image: none;
-    background-color: #08C
+    background-color: #000
 }
 
 .form-control-tooltip {
@@ -6260,7 +6260,7 @@ figure:hover .overlay-visible {
 }
 
 .page-header .breadcrumb a {
-    color: #08C
+    color: #000
 }
 
 .page-header .breadcrumb a:hover {
@@ -6399,7 +6399,8 @@ figure:hover .overlay-visible {
 .page-item.active .page-link {
     color: #706f6c;
     background-color: transparent;
-    border-color: #08C
+    border-color: #000;
+    
 }
 
 .page-item.disabled {
@@ -6419,7 +6420,7 @@ figure:hover .overlay-visible {
 .page-link:hover {
     color: #706f6c;
     background-color: transparent;
-    border-color: #08C;
+    border-color: #000;
     box-shadow: none
 }
 
@@ -6446,7 +6447,7 @@ span.page-link {
 }
 
 .layout-btn.active {
-    color: #08C;
+    color: #000;
 }
 
 @media (min-width:992px) {
@@ -6564,7 +6565,7 @@ span.page-link {
 }
 
 .minipopup-box .product-detail .product-name:hover {
-    color: #08C
+    color: #000
 }
 
 .minipopup-box .product-detail p {
@@ -6965,7 +6966,7 @@ button.mfp-close:before {
 .product-intro.owl-carousel.owl-theme .owl-dots .owl-dot.active span,
 .product-intro.owl-carousel.owl-theme .owl-dots .owl-dot:hover span {
     background: none;
-    border-color: #08C
+    border-color: #000
 }
 
 .product-intro.owl-carousel.owl-theme .owl-dots .owl-dot.active span:before,
@@ -6982,7 +6983,7 @@ button.mfp-close:before {
     right: 3px;
     top: 3px;
     border-radius: 10px;
-    background-color: #08C
+    background-color: #000
 }
 
 .product-intro.owl-carousel.owl-theme .owl-nav {
@@ -7125,7 +7126,7 @@ figure .porto-loading-icon {
 }
 
 .product-default a:hover {
-    color: #08C;
+    color: #000;
     text-decoration: none
 }
 
@@ -7201,7 +7202,7 @@ figure .porto-loading-icon {
     height: 32px;
     border-radius: 50%;
     font-size: 1.6rem;
-    background-color: #08C;
+    background-color: #000;
     color: #fff
 }
 
@@ -7499,7 +7500,7 @@ figure .porto-loading-icon {
 
 .product-select.type-image.checked,
 .product-select.type-image.hover {
-    border: 1px solid #08C
+    border: 1px solid #000
 }
 
 .product-select.type-check {
@@ -7627,7 +7628,7 @@ figure .porto-loading-icon {
 .product-single-qty .btn.btn-down-icon:hover:before,
 .product-single-qty .btn.btn-up-icon:hover:after,
 .product-single-qty .btn.btn-up-icon:hover:before {
-    background-color: #08C
+    background-color: #000
 }
 
 .product-single-qty .btn.btn-outline {
@@ -7687,7 +7688,7 @@ figure .porto-loading-icon {
 }
 
 .config-swatch-list li:hover span:last-child {
-    color: #08C
+    color: #000
 }
 
 .config-swatch-list li.active a:before {
@@ -7729,14 +7730,14 @@ figure .porto-loading-icon {
 
 .add-cart-box {
     padding: 19px 10px 20px!important;
-    border-top: 4px solid #08C;
+    border-top: 4px solid #000;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.6)
 }
 
 .add-cart-box h4 {
     font-weight: 500;
-    color: #08C;
+    color: #000;
     margin-bottom: 1.8rem
 }
 
@@ -7924,7 +7925,7 @@ figure .porto-loading-icon {
     width: 100%;
     height: auto;
     color: #fff;
-    background-color: #08C;
+    background-color: #000;
     font-size: 1.3rem;
     font-weight: 400;
     letter-spacing: 0.025em;
@@ -8096,8 +8097,8 @@ figure .porto-loading-icon {
 }
 
 .inner-icon figure .btn-icon:hover {
-    background-color: #08C;
-    border-color: #08C;
+    background-color: #000;
+    border-color: #000;
     color: #fff
 }
 
@@ -8189,7 +8190,7 @@ figure .porto-loading-icon {
 
 .hidden-description .btn-quickview {
     transform: none;
-    background-color: #08C;
+    background-color: #000;
     color: #fff;
     width: 50%;
     margin: 0;
@@ -8342,7 +8343,7 @@ figure .porto-loading-icon {
 }
 
 .product-overlay .product-details a:hover {
-    color: #08C
+    color: #000
 }
 
 .product-overlay .product-details .ratings-container .product-ratings:before {
@@ -8462,7 +8463,7 @@ figure .porto-loading-icon {
 }
 
 .overlay-dark .product-details a:hover {
-    color: #08C
+    color: #000
 }
 
 .overlay-dark .product-details .ratings-container .product-ratings:before {
@@ -8600,8 +8601,8 @@ figure .porto-loading-icon {
 }
 
 .quantity-input .btn-add-cart:hover {
-    background-color: #08C;
-    border-color: #08C;
+    background-color: #000;
+    border-color: #000;
     color: #fff
 }
 
@@ -9646,7 +9647,7 @@ figure .porto-loading-icon {
     position: relative;
     margin: 0 0 0 15px;
     padding: 1rem 2rem;
-    color: #08C
+    color: #000
 }
 
 .testimonial blockquote:after,
@@ -9752,7 +9753,7 @@ figure .porto-loading-icon {
     width: 32px;
     height: 32px;
     color: #fff;
-    background-color: #08C;
+    background-color: #000;
     font-size: 14px;
     line-height: 3.2rem;
     text-align: center;
@@ -9812,8 +9813,8 @@ figure .porto-loading-icon {
 
 .nav-tabs .nav-item .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-    border-bottom-color: #08C;
-    color: #08C
+    border-bottom-color: #000;
+    color: #000
 }
 
 .nav-tabs .nav-link {
@@ -9829,7 +9830,7 @@ figure .porto-loading-icon {
 }
 
 .nav-tabs .nav-link:hover {
-    color: #08C
+    color: #000
 }
 
 .tabs .tab-content {
@@ -9844,8 +9845,8 @@ figure .porto-loading-icon {
 
 .tabs .nav-tabs .nav-item .nav-link.active,
 .tabs .nav-tabs .nav-item.show .nav-link {
-    border-top-color: #08C;
-    color: #08C;
+    border-top-color: #000;
+    color: #000;
     background: #fff
 }
 
@@ -9870,7 +9871,7 @@ figure .porto-loading-icon {
 
 .tabs .nav-tabs .nav-link:focus,
 .tabs .nav-tabs .nav-link:hover {
-    border-top-color: #08C
+    border-top-color: #000
 }
 
 .tabs .tab-pane p:last-child {
@@ -9880,7 +9881,7 @@ figure .porto-loading-icon {
 .tabs-bottom .nav-tabs .nav-item .nav-link.active,
 .tabs-bottom .nav-tabs .nav-item.show .nav-link {
     border-top: none;
-    border-bottom-color: #08C
+    border-bottom-color: #000
 }
 
 .tabs-bottom .nav-tabs .nav-item:not(:last-child) {
@@ -9899,7 +9900,7 @@ figure .porto-loading-icon {
 
 .tabs-bottom .nav-tabs .nav-link:focus,
 .tabs-bottom .nav-tabs .nav-link:hover {
-    border-bottom-color: #08C
+    border-bottom-color: #000
 }
 
 .tabs-left {
@@ -9912,7 +9913,7 @@ figure .porto-loading-icon {
 
 .tabs-left .nav-tabs .nav-item .nav-link.active,
 .tabs-left .nav-tabs .nav-item.show .nav-link {
-    border-left: 3px solid #08C
+    border-left: 3px solid #000
 }
 
 .tabs-left .nav-tabs .nav-item:not(:last-child) {
@@ -9927,7 +9928,7 @@ figure .porto-loading-icon {
 
 .tabs-left .nav-tabs .nav-link:focus,
 .tabs-left .nav-tabs .nav-link:hover {
-    border-left-color: #08C
+    border-left-color: #000
 }
 
 .tabs-right {
@@ -9940,7 +9941,7 @@ figure .porto-loading-icon {
 
 .tabs-right .nav-tabs .nav-item .nav-link.active,
 .tabs-right .nav-tabs .nav-item.show .nav-link {
-    border-right: 3px solid #08C
+    border-right: 3px solid #000
 }
 
 .tabs-right .nav-tabs .nav-item:not(:last-child) {
@@ -9954,7 +9955,7 @@ figure .porto-loading-icon {
 
 .tabs-right .nav-tabs .nav-link:focus,
 .tabs-right .nav-tabs .nav-link:hover {
-    border-right-color: #08C
+    border-right-color: #000
 }
 
 .nav-justified .nav-link {
@@ -10421,7 +10422,7 @@ h6.heading-bottom-border {
     text-transform: uppercase;
     font-family: Oswald, sans-serif;
     transition: opacity 0.3s ease;
-    background: #08C;
+    background: #000;
     z-index: 6
 }
 
@@ -10656,12 +10657,12 @@ body:not(.loaded)>:not(.loading-overlay) * {
 }
 
 ::-moz-selection {
-    background-color: #08C;
+    background-color: #000;
     color: #fff
 }
 
 ::selection {
-    background-color: #08C;
+    background-color: #000;
     color: #fff
 }
 
@@ -10936,7 +10937,7 @@ a {
 
 a:focus,
 a:hover {
-    color: #08C;
+    color: #000;
     text-decoration: none
 }
 
@@ -11608,7 +11609,7 @@ img.slide-bg {
 }
 
 .noUi-handle {
-    background: #08C
+    background: #000
 }
 
 .noUi-connect {
@@ -11840,7 +11841,7 @@ header a {
     display: flex;
     position: absolute;
     margin-top: 10px;
-    border: 5px solid #08C
+    border: 5px solid #000
 }
 
 .header-bottom.fixed .header-search-inline.header-search:not(.show) .header-search-wrapper {
@@ -12312,7 +12313,7 @@ header .separator {
 
 .cart-dropdown .btn-remove:focus,
 .cart-dropdown .btn-remove:hover {
-    color: #08C
+    color: #000
 }
 
 .sticky-header .cart-dropdown {
@@ -12490,7 +12491,7 @@ header .separator {
 
 .btn-remove:focus,
 .btn-remove:hover {
-    color: #08C
+    color: #000
 }
 
 .icon-cancel:before {
@@ -12598,7 +12599,7 @@ header .separator {
     right: calc(50% - 10px);
     bottom: -10px;
     border: 10px solid transparent;
-    border-bottom-color: #08C
+    border-bottom-color: #000
 }
 
 .header-search:not(.show) .search-toggle:after {
@@ -12624,7 +12625,7 @@ header .separator {
     box-sizing: content-box;
     height: 40px;
     border-radius: 5rem;
-    border: 5px solid #08C
+    border: 5px solid #000
 }
 
 .header-search-wrapper:after {
@@ -12781,7 +12782,7 @@ header .separator {
 .menu>li.active>a,
 .menu>li.show>a,
 .menu>li:hover>a {
-    color: #08C;
+    color: #000;
     background: transparent
 }
 
@@ -12809,7 +12810,7 @@ header .separator {
     background-color: #fff;
     box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.15);
     border: 1px solid #eee;
-    border-top: 3px solid #08C;
+    border-top: 3px solid #000;
     left: 15px;
     padding: 10px 20px;
     width: 580px
@@ -12861,7 +12862,7 @@ header .separator {
     position: absolute;
     min-width: 200px;
     padding: 5px 0;
-    border-top: 3px solid #08C;
+    border-top: 3px solid #000;
     top: 100%;
     left: 0;
     z-index: 101;
@@ -13080,7 +13081,7 @@ header .separator {
 }
 
 .menu-banner.menu-banner-2 .banner-content b {
-    color: #08C
+    color: #000
 }
 
 .menu-banner.menu-banner-2 i {
@@ -13486,7 +13487,7 @@ footer .contact-info-label {
 }
 
 #scroll-top.fixed:hover {
-    color: #08C
+    color: #000
 }
 
 @media (max-width:575px) {
@@ -13640,7 +13641,7 @@ footer .contact-info-label {
 
 .main-nav .menu>li.active>a,
 .main-nav .menu>li>a:hover {
-    border-top-color: #08C
+    border-top-color: #000
 }
 
 .main-nav .menu>li.float-right a:hover {
@@ -14226,7 +14227,7 @@ footer .contact-info-label {
 
 .cat-list li a:focus,
 .cat-list li a:hover {
-    color: #08C
+    color: #000
 }
 
 .cat-list .products-count {
@@ -14296,8 +14297,8 @@ span.toggle:before {
 .config-size-list a.active,
 .config-size-list a:focus,
 .config-size-list a:hover {
-    border-color: #08C;
-    background-color: #08C;
+    border-color: #000;
+    background-color: #000;
     color: #fff;
     text-decoration: none
 }
@@ -14515,7 +14516,7 @@ span.toggle:before {
 .sort-list li.active,
 .sort-list li:focus,
 .sort-list li:hover {
-    color: #08C
+    color: #000
 }
 
 .sort-list.cat-list li {
@@ -14572,7 +14573,7 @@ span.toggle:before {
 }
 
 .filter-toggle.opened a {
-    background-color: #08C
+    background-color: #000
 }
 
 .filter-toggle.opened a:before {
@@ -14652,7 +14653,7 @@ span.toggle:before {
 }
 
 .sidebar-toggle:hover span {
-    color: #08C
+    color: #000
 }
 
 .sidebar-opened .sidebar-toggle i:before {
@@ -15450,7 +15451,7 @@ svg {
 }
 
 .product-single-details .clear-btn:hover {
-    background-color: #08C;
+    background-color: #000;
     color: #fff
 }
 
@@ -15628,8 +15629,8 @@ main .sticky-header .product-ratings:before {
 }
 
 .product-single-filter .config-size-list li a:not(.disabled):hover {
-    border-color: #08C;
-    background-color: #08C;
+    border-color: #000;
+    background-color: #000;
     color: #fff
 }
 
@@ -15646,10 +15647,10 @@ main .sticky-header .product-ratings:before {
 }
 
 .product-single-filter .config-size-list li.active a {
-    border-color: #08C;
+    border-color: #000;
     outline: none;
     color: #fff;
-    background-color: #08C
+    background-color: #000
 }
 
 .product-single-filter .config-size-list li.active a.filter-color:before {
@@ -15756,7 +15757,7 @@ main .sticky-header .product-ratings:before {
 
 .product-single-gallery .prod-thumbnail .owl-nav {
     font-size: 1.6rem;
-    color: #08C
+    color: #000
 }
 
 .product-single-gallery .prod-thumbnail .owl-nav .owl-prev {
@@ -15847,7 +15848,7 @@ main .sticky-header .product-ratings:before {
 }
 
 .prod-thumbnail.owl-theme .owl-nav [class*=owl-]:hover {
-    color: #08C
+    color: #000
 }
 
 .prod-thumbnail img {
@@ -15884,7 +15885,7 @@ main .sticky-header .product-ratings:before {
 
 .transparent-dots .owl-dot.active img,
 .transparent-dots .owl-dot:hover img {
-    border: 1px solid #08C;
+    border: 1px solid #000;
     transition: border-color 0.2s
 }
 
@@ -15982,9 +15983,9 @@ main .sticky-header .product-ratings:before {
     line-height: 60px;
     border-radius: 60px;
     font-size: 28px;
-    color: #08C;
+    color: #000;
     background: transparent;
-    border-color: #08C
+    border-color: #000
 }
 
 .product-desc-content .feature-box p {
@@ -16353,7 +16354,7 @@ main .sticky-header .product-ratings:before {
 }
 
 .products-section .owl-carousel.dots-top .owl-dot.active span {
-    border-color: #08C
+    border-color: #000
 }
 
 .products-section .product-title {
@@ -16768,7 +16769,7 @@ main .sticky-header .product-ratings:before {
 }
 
 .pg-vertical .owl-dot.active:before {
-    border-color: #08C
+    border-color: #000
 }
 
 .pg-vertical .product-thumbs {
@@ -17266,7 +17267,7 @@ main .sticky-header .product-ratings:before {
 }
 
 .product-desc .view-more {
-    color: #08C;
+    color: #000;
     font-weight: 700;
     text-transform: uppercase
 }
@@ -17560,7 +17561,7 @@ aside .widget-info li:not(:last-child) {
 .widget-info i {
     min-width: 40px;
     margin-right: 15px;
-    color: #08C;
+    color: #000;
     font-size: 4rem;
     line-height: 1
 }
@@ -17653,7 +17654,7 @@ aside .widget-info i {
     transform-origin: left center;
     transform: scale(1, 1);
     transition: transform 0.4s;
-    background-color: #08C;
+    background-color: #000;
     content: ""
 }
 
@@ -17720,7 +17721,7 @@ aside .widget-info i {
     content: "";
     display: block;
     width: 94px;
-    border: 0 solid #08C;
+    border: 0 solid #000;
     border-width: 50px 0;
     border-bottom-color: transparent;
     border-radius: 50%
@@ -17976,7 +17977,7 @@ aside .widget-info i {
 
 .product-center-vertical .prod-thumbnail .active img,
 .product-center-vertical .prod-thumbnail img:hover {
-    border: 1px solid #08C
+    border: 1px solid #000
 }
 
 .product-center-vertical .product-nav {
@@ -18121,7 +18122,7 @@ aside .widget-info i {
 .cart-table-container .btn-shop:hover,
 .cart-table-container .btn-sm:hover {
     color: #fff;
-    background-color: #08C
+    background-color: #000
 }
 
 .table.table-cart tr td,
@@ -18266,7 +18267,7 @@ i.cart-empty {
 .btn-move:hover,
 .btn-remove:focus,
 .btn-remove:hover {
-    color: #08C;
+    color: #000;
     text-decoration: none
 }
 
@@ -18343,7 +18344,7 @@ tbody .product-col {
 
 .checkout-progress-bar li a.active,
 .checkout-progress-bar li a:hover {
-    color: #08C;
+    color: #000;
     opacity: 1
 }
 
@@ -18479,12 +18480,12 @@ tbody .product-col {
 
 .cart-summary .btn-update-total:hover {
     color: #fff;
-    background-color: #08C
+    background-color: #000
 }
 
 @media (max-width:575px) {
     .cart-table-container {
-        border-top: 4px solid #08C
+        border-top: 4px solid #000
     }
     .table.table-cart {
         border: 1px solid #e7e7e7;
@@ -18621,11 +18622,11 @@ tbody .product-col {
 }
 
 .checkout-progress-bar li.active a {
-    color: #08C
+    color: #000
 }
 
 .checkout-progress-bar li.active a:hover {
-    color: #08C
+    color: #000
 }
 
 .checkout-progress-bar li.active+li a {
@@ -18633,7 +18634,7 @@ tbody .product-col {
 }
 
 .checkout-progress-bar li.active+li a:hover {
-    color: #08C
+    color: #000
 }
 
 .checkout-progress-bar li.disabled a {
@@ -18964,7 +18965,7 @@ tbody .product-col {
 
 .checkout-discount form .btn:hover,
 .login-form-container form .btn:hover {
-    background-color: #08C;
+    background-color: #000;
     color: #fff
 }
 
@@ -19303,7 +19304,7 @@ tbody .product-col {
     height: 30px;
     align-items: center;
     justify-content: center;
-    background-color: #08C;
+    background-color: #000;
     border-radius: 50%
 }
 
@@ -19459,7 +19460,7 @@ tbody .product-col {
 .single .post-title {
     margin-bottom: -8px;
     font-size: 3rem;
-    color: #08C;
+    color: #000;
     font-weight: 700;
     font-family: Poppins, sans-serif;
     line-height: 40px
@@ -19558,7 +19559,7 @@ tbody .product-col {
     font-weight: 600;
     font-size: 1.6rem;
     letter-spacing: 0.03em;
-    color: #08C;
+    color: #000;
     font-family: "Open Sans", sans-serif
 }
 
@@ -19906,7 +19907,7 @@ tbody .product-col {
     font-weight: 600;
     font-size: 14px;
     line-height: 18px;
-    color: #08C
+    color: #000
 }
 
 .simple-post-list .post-info a:hover {
@@ -20316,7 +20317,7 @@ tbody .product-col {
 }
 
 .address .address-action:hover {
-    background-color: #08C;
+    background-color: #000;
     color: #fff
 }
 
@@ -20385,7 +20386,7 @@ tbody .product-col {
 
 .download-table-container .btn:hover {
     color: #fff;
-    background-color: #08C
+    background-color: #000
 }
 
 .order-table-container .btn-dark {
@@ -20477,13 +20478,13 @@ tbody .product-col {
 
 .table.table-order-detail .product-title {
     display: inline;
-    color: #08C;
+    color: #000;
     font-size: 1.4rem;
     font-weight: 400
 }
 
 .table.table-order-detail .product-count {
-    color: #08C
+    color: #000
 }
 
 .order-update {
@@ -20576,7 +20577,7 @@ tbody .product-col {
 }
 
 .wishlist-table-container .btn-quickview:hover {
-    background-color: #08C;
+    background-color: #000;
     color: #fff
 }
 
@@ -20656,7 +20657,7 @@ tbody .product-col {
 }
 
 .box-content .btn-go-shop:hover {
-    background-color: #08C;
+    background-color: #000;
     color: #fff
 }
 
@@ -20677,7 +20678,7 @@ i.wishlist-empty {
 
 @media (max-width:767px) {
     .wishlist-table-container {
-        border-top: 4px solid #08C
+        border-top: 4px solid #000
     }
     .table.table-wishlist {
         border: 1px solid #e7e7e7;
@@ -20949,7 +20950,7 @@ p {
 
 .info-box-wrapper i {
     font-size: 5rem;
-    color: #08C
+    color: #000
 }
 
 .info-box-wrapper .info-box-img h4 {
@@ -21289,7 +21290,7 @@ p {
 .blog-type3 .post .read-more {
     font-weight: 700;
     float: none;
-    color: #08C;
+    color: #000;
     text-transform: uppercase
 }
 
@@ -21314,11 +21315,11 @@ p {
 
 .blog-type3 .post-meta>span:not(.meta-date) {
     line-height: 1;
-    color: #08C
+    color: #000
 }
 
 .blog-type3 .post-meta>span:not(.meta-date):hover>a {
-    border-bottom: 1px solid #08C
+    border-bottom: 1px solid #000
 }
 
 .blog-type3 .post-meta i {
@@ -21333,7 +21334,7 @@ p {
 }
 
 .blog-type3 .post-title:hover {
-    color: #08C
+    color: #000
 }
 
 .blog-type3 .post-content p {
@@ -21731,7 +21732,7 @@ p {
 
 .owl-dots-simple.owl-theme .owl-dots .owl-dot.active span,
 .owl-dots-simple.owl-theme .owl-dots .owl-dot:hover span {
-    background: #08C
+    background: #000
 }
 
 .circle-icons .circle {
@@ -21743,7 +21744,7 @@ p {
     line-height: 6.4rem;
     border-radius: 50%;
     color: #fff;
-    background: #08C;
+    background: #000;
     margin-bottom: 2rem
 }
 
@@ -21762,14 +21763,14 @@ p {
 
 .fontawesome-icon-list>div:hover,
 .sample-icon-list>div:hover {
-    color: #08C
+    color: #000
 }
 
 .fontawesome-icon-list>div:hover i,
 .sample-icon-list>div:hover i {
     font-size: 28px;
     vertical-align: -6px;
-    color: #08C
+    color: #000
 }
 
 .fontawesome-icon-list i,
