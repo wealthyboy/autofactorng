@@ -66,36 +66,36 @@ class ProductController extends Table
 
         //\File::makeDirectory(public_path('images/l'), 0755, true);
 
-        $products = Product::where('name', 'Running Board/ Side Step Bar Left&RIght (LR3/LR4)')->get();
-        // ->limit(request()->limit)->get();
-        foreach ($products as $key => $product) {
-            foreach ($product->images as $key => $image) {
+        // $products = Product::where('name', 'Running Board/ Side Step Bar Left&RIght (LR3/LR4)')->get();
+        // // ->limit(request()->limit)->get();
+        // foreach ($products as $key => $product) {
+        //     foreach ($product->images as $key => $image) {
 
 
 
-                $file = basename($image->image);
+        //         $file = basename($image->image);
 
-                // $m = public_path('images/products/m/' . $file);
+        //         // $m = public_path('images/products/m/' . $file);
 
-                // if (file_exists($m)) {
-                //     unlink($m);
-                // }
+        //         // if (file_exists($m)) {
+        //         //     unlink($m);
+        //         // }
 
-                $path =  public_path('images/products/' . $file);
+        //         $path =  public_path('images/products/' . $file);
 
-                if ($file) {
+        //         if ($file) {
 
-                    $canvas = \Image::canvas(1500, 1500);
-                    $image  = \Image::make($path)->resize(1500, 1500, function ($constraint) {
-                        $constraint->aspectRatio();
-                    });
-                    $canvas->insert($image, 'center');
-                    $canvas->save(
-                        public_path('images/products/l/' . $file)
-                    );
-                }
-            }
-        }
+        //             $canvas = \Image::canvas(1500, 1500);
+        //             $image  = \Image::make($path)->resize(1500, 1500, function ($constraint) {
+        //                 $constraint->aspectRatio();
+        //             });
+        //             $canvas->insert($image, 'center');
+        //             $canvas->save(
+        //                 public_path('images/products/l/' . $file)
+        //             );
+        //         }
+        //     }
+        // }
         $brands = Brand::all();
         $categories = Category::parents()->get();
         $attributes = Attribute::parents()->orderBy('sort_order', 'asc')->get();
