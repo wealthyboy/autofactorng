@@ -86,7 +86,7 @@
             <div class="row pb-4">
                 <template v-if="productIsLoading">
                     <div
-                        v-for="x in 10"
+                        v-for="x in 61"
                         :key="x"
                         class="col-sm-12 col-6 product-default left-details product-list mb-2"
                     >
