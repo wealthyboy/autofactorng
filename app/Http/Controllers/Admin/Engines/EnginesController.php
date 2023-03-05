@@ -36,8 +36,10 @@ class EnginesController extends Table
 			foreach ($product->images as $key => $image) {
 
 				$file = basename($image->image);
-
-
+				$m = public_path('images/products/m/' . $file);
+				if (file_exists($m)) {
+					unlink($m);
+				}
 
 				$path =  public_path('images/products/' . $file);
 
@@ -57,8 +59,7 @@ class EnginesController extends Table
 			}
 		}
 
-		$directory = public_path('images/products/tm');
-		$files = \Storage::allFiles($directory);
+
 
 		$arrFiles = array();
 		$handle = opendir(public_path('images/products/tm'));
