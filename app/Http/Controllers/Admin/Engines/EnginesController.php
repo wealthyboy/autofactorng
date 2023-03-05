@@ -32,8 +32,8 @@ class EnginesController extends Table
 		//$products = Product::where('name', 'Genuine CV Joint Boot/ Shaft Rubber (Inner) 1032968 (Pair)')->first();
 		// ->limit(request()->limit)->get();
 		// dd($category->products);
-		foreach ($category->products()->offset(request()->offset)->limit(request()->limit)->get() as  $product)
-		// dd($category->products); as $key => $product) {
+		foreach ($category->products()->offset(request()->offset)->limit(request()->limit)->get() as  $product) {
+			// dd($category->products); as $key => $product) {
 			foreach ($product->images as $key => $image) {
 
 				$file = basename($image->image);
@@ -55,7 +55,7 @@ class EnginesController extends Table
 		}
 
 
-		copy(public_path('images/products/tm/CBtmQRPkHBHCsy67g8P2JRzVDXH6qo5RCiaI7Uw8.png'), public_path('images/products/m/CBtmQRPkHBHCsy67g8P2JRzVDXH6qo5RCiaI7Uw8.png'));
+		//copy(public_path('images/products/tm/CBtmQRPkHBHCsy67g8P2JRzVDXH6qo5RCiaI7Uw8.png'), public_path('images/products/m/CBtmQRPkHBHCsy67g8P2JRzVDXH6qo5RCiaI7Uw8.png'));
 
 
 
