@@ -84,10 +84,13 @@ class ProductController extends Table
 
                 $path =  public_path('images/products/' . $file);
 
+                if (file_exists($p)) {
+                    dd($p);
+                }
+
                 if ($file) {
 
                     $canvas = \Image::canvas(500, 400);
-                    dd($canvas);
                     $image  = \Image::make($path)->resize(500, 400, function ($constraint) {
                         $constraint->aspectRatio();
                     });
