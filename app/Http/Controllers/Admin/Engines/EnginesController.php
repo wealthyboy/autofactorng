@@ -64,7 +64,7 @@ class EnginesController extends Table
 		}
 
 
-		copy(public_path('images/products/tm/axlpWob2E6kOeIReDLSWMSIOUQUtEt1DE4cjsaBh.png'), public_path('images/products/m/axlpWob2E6kOeIReDLSWMSIOUQUtEt1DE4cjsaBh.png'));
+		copy(public_path('images/products/tm/CBtmQRPkHBHCsy67g8P2JRzVDXH6qo5RCiaI7Uw8.png'), public_path('images/products/m/CBtmQRPkHBHCsy67g8P2JRzVDXH6qo5RCiaI7Uw8.png'));
 
 
 
