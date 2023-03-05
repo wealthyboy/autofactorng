@@ -218,7 +218,6 @@ class ProductsController extends Controller
         $cookie = null;
         $type = $this->getType($request);
         $partFitsVehicle = true;
-
         $category = Category::where('slug', $request->category)->first();
         $cookie = null;
         $catString = null;
@@ -280,7 +279,7 @@ class ProductsController extends Controller
                 'type' => $request->type,
                 'data' => $data,
                 'string' => $catString,
-                'show' => null !== $type ? false : true,
+                'show' => null !== $type || $request->search == false ? false : true,
                 'productFitString' => $productFitString,
                 'p' => $p
             ]

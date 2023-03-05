@@ -23664,6 +23664,7 @@ __webpack_require__.r(__webpack_exports__);
     var years = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
     var url = new URL(location.href).pathname.split("/");
+    console.log(url[1]);
     var next = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       makes: [],
       models: "",
@@ -23678,7 +23679,9 @@ __webpack_require__.r(__webpack_exports__);
       next: "",
       category: url[2],
       checkForCategory: url[1] == "products" ? 1 : 0,
-      product: url[3]
+      product: url[3],
+      search: url[1] == "search" ? true : false //search mode
+
     });
 
     var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_2__.useActions)(["getProducts"]),

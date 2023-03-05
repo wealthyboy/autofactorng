@@ -95,6 +95,7 @@ export default {
         const years = ref([]);
         const store = useStore();
         let url = new URL(location.href).pathname.split("/");
+        console.log(url[1]);
 
         const next = reactive({
             makes: [],
@@ -112,6 +113,7 @@ export default {
             category: url[2],
             checkForCategory: url[1] == "products" ? 1 : 0,
             product: url[3],
+            search: url[1] == "search" ? true : false, //search mode
         });
 
         const { getProducts } = useActions(["getProducts"]);
