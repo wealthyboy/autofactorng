@@ -22,20 +22,21 @@
                 </h4>
                 <div class="">{{ product.note }}</div>
 
-                <div class="ratings-container">
-                    <div
-                        v-if="product.average_rating_count >= 1"
-                        class="product-ratings"
-                    >
-                        <span
-                            class="ratings"
-                            :style="'width:' + product.average_rating + '%'"
-                        ></span>
-                        <!-- End .ratings -->
-                    </div>
-                    <!-- End .product-ratings -->
+                <div
+                    v-if="product.average_rating_count >= 1"
+                    class="product-ratings"
+                >
+                    <span
+                        class="ratings"
+                        :style="'width:' + product.average_rating + '%'"
+                    ></span>
+                    <!-- End .ratings -->
                 </div>
                 <!-- End .product-container -->
+
+                <p v-if="showFitText" class="product-description">
+                    <check-vehicle :fitText="product.fitText" />
+                </p>
 
                 <div class="price-box">
                     <template v-if="product.discounted_price">
@@ -113,9 +114,8 @@
             <h4 class="product-title">
                 <a :href="product.link">{{ product.name }}</a>
             </h4>
-            <div class="">{{ product.note }}</div>
+            <div class="mb-2">{{ product.note }}</div>
 
-            <p>SKU #{{ product.sku }}</p>
             <div
                 v-if="product.average_rating_count >= 1"
                 class="product-ratings"
