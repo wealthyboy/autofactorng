@@ -79,7 +79,7 @@ class ImagesController extends Controller
 
 
             $path    =  public_path('images/' . $request->folder);
-            $path_m  =  public_path('images/' . $request->folder . '/m');
+            $path_m  =  public_path('images/' . $request->folder . '/tm');
             $path_tn =  public_path('images/' . $request->folder . '/tn');
 
 
@@ -88,7 +88,7 @@ class ImagesController extends Controller
             }
 
             if (!\File::exists($path_m)) {
-                \File::makeDirectory(public_path('images/' . $request->folder . '/m'), 0755, true);
+                \File::makeDirectory(public_path('images/' . $request->folder . '/tm'), 0755, true);
             }
 
             if (!\File::exists($path_tn)) {
@@ -110,7 +110,7 @@ class ImagesController extends Controller
                 });
                 $canvas->insert($image, 'center');
                 $canvas->save(
-                    public_path('images/products/m/' . $file)
+                    public_path('images/products/tm/' . $file)
                 );
 
                 $canvas = \Image::canvas(150, 200);
@@ -126,7 +126,7 @@ class ImagesController extends Controller
             }
 
             $img  = \Image::make($path)->fit(465, 465)->save(
-                public_path('images/' . $request->folder . '/m/' . $file)
+                public_path('images/' . $request->folder . '/tm/' . $file)
             );
             $canvas = \Image::canvas(106, 145);
             $image  = \Image::make($path)->resize(150, 250, function ($constraint) {
