@@ -65,7 +65,8 @@ class ProductController extends Table
     {
 
 
-        $products = Product::where('name', 'Toyota Front Lower Control Arm (48069-04060) Pair')->get();
+        $products = Product::offset(1000)
+            ->limit(200)->get();
         foreach ($products as $key => $product) {
             foreach ($product->images as $key => $image) {
 
