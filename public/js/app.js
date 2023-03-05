@@ -27758,7 +27758,7 @@ var _hoisted_16 = {
   "class": "price-box mt-3"
 };
 var _hoisted_17 = {
-  "class": "old-price me-3 bold"
+  "class": "old-price me-3 bold text-danger"
 };
 var _hoisted_18 = {
   "class": "product-price bold"
@@ -27833,7 +27833,7 @@ var _hoisted_41 = {
   "class": "price-box"
 };
 var _hoisted_42 = {
-  "class": "old-price me-3 bold"
+  "class": "old-price me-3 bold text-danger"
 };
 var _hoisted_43 = {
   "class": "product-price bold"

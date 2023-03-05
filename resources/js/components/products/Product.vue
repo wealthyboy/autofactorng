@@ -40,7 +40,7 @@
 
                 <div class="price-box mt-3">
                     <template v-if="product.discounted_price">
-                        <span class="old-price me-3 bold"
+                        <span class="old-price me-3 bold text-danger"
                             >{{ product.currency
                             }}{{ product.formatted_price }}</span
                         >
@@ -134,7 +134,7 @@
 
             <div class="price-box">
                 <template v-if="product.discounted_price">
-                    <span class="old-price me-3 bold"
+                    <span class="old-price me-3 bold text-danger"
                         >{{ product.currency
                         }}{{ product.formatted_price }}</span
                     >
