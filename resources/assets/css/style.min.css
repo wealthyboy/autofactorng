@@ -7075,6 +7075,7 @@ figure .porto-loading-icon {
     min-height: 167px;
     height: 100%;
     box-shadow: 0 1px 4px 0 rgb(32 33 36 / 12%), 0 2px 2px 0 rgb(32 33 36 / 14%), 0 3px 1px -2px rgb(32 33 36 / 20%);
+    height: 300px;
 }
 
 .product-title-label {
