@@ -92,11 +92,13 @@ class ProductController extends Table
                         $constraint->aspectRatio();
                     });
 
-                    dd($image);
+                    //dd($image);
                     $canvas->insert($image, 'center');
                     $canvas->save(
                         public_path('images/products/m/' . $file)
                     );
+
+                    dd(asset('images/products/m/' . $file));
                 }
             }
         }
