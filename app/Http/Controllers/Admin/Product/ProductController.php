@@ -65,8 +65,8 @@ class ProductController extends Table
     {
 
 
-        $products = Product::offset(600)
-            ->limit(200)->get();
+        $products = Product::offset(800)
+            ->limit(400)->get();
         foreach ($products as $key => $product) {
             foreach ($product->images as $key => $image) {
 
