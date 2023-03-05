@@ -27740,7 +27740,7 @@ var _hoisted_10 = {
   "class": "product-details"
 };
 var _hoisted_11 = {
-  "class": "product-title"
+  "class": "product-title bold"
 };
 var _hoisted_12 = ["href"];
 var _hoisted_13 = {
@@ -27814,7 +27814,7 @@ var _hoisted_35 = {
   "class": "product-details"
 };
 var _hoisted_36 = {
-  "class": "product-title"
+  "class": "product-title bold"
 };
 var _hoisted_37 = ["href"];
 var _hoisted_38 = {
@@ -27876,7 +27876,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , _hoisted_5), $props.product.percentage_off ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, " -" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.percentage_off) + "% ", 1
   /* TEXT */
   )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    "class": "",
     href: $props.product.link
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name), 9
   /* TEXT, PROPS */

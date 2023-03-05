@@ -17,8 +17,8 @@
             </div>
 
             <div class="product-details">
-                <h3 class="product-title">
-                    <a class="" :href="product.link">{{ product.name }} </a>
+                <h3 class="product-title bold">
+                    <a :href="product.link">{{ product.name }}</a>
                 </h3>
                 <div class="">{{ product.note }}</div>
 
@@ -110,7 +110,7 @@
         </div>
 
         <div class="product-details">
-            <h3 class="product-title">
+            <h3 class="product-title bold">
                 <a :href="product.link">{{ product.name }}</a>
             </h3>
             <div class="">{{ product.note }}</div>
