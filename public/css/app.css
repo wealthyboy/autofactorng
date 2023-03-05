@@ -7060,7 +7060,7 @@ figure:hover .overlay-visible {
 
 a.current.page-link {
     background-color: black !important;
-    color: azure;
+    color: azure !important;
 }
 
 .page-link-btn,
