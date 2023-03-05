@@ -1,10 +1,12 @@
 <template>
     <button
         :class="{ fits: fitText != 'Check if it fits your vehicle' }"
-        class="check-vehicle"
+        class="check-vehicle d-flex"
         @click="show"
     >
-        <div></div>
+        <span class="me-3"
+            ><img src="/images/utils/icon-vehicle-selected-d.svg" alt=""
+        /></span>
         <div>{{ fitText }}</div>
     </button>
 </template>
