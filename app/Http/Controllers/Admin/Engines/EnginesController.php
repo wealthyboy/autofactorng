@@ -28,51 +28,7 @@ class EnginesController extends Table
 	public function index()
 	{
 
-		//\File::makeDirectory(public_path('images/products/tm'), 0755, true);
-		$category = Category::where('slug', request()->name)->first();
 
-		//dd(Product::where('slug', request()->name)->first());
-		// ->limit(request()->limit)->get();
-		//dd($category->products()->offset(request()->offset)->limit(request()->limit)->get());
-		foreach ($category->products as  $product) {
-			// dd($category->products); as $key => $product) {
-			foreach ($product->images as $key => $image) {
-
-				$file = basename($image->image);
-
-				$path =  public_path('images/products/' . $file);
-
-				if ($file) {
-
-					$canvas = \Image::canvas(400, 400);
-					$image  = \Image::make($path)->resize(400, 400, function ($constraint) {
-						$constraint->aspectRatio();
-					});
-					$canvas->insert($image, 'center');
-					$canvas->save(
-						public_path('images/products/tm/' . $file)
-					);
-				}
-			}
-		}
-
-
-		//copy(public_path('images/products/tm/CBtmQRPkHBHCsy67g8P2JRzVDXH6qo5RCiaI7Uw8.png'), public_path('images/products/m/CBtmQRPkHBHCsy67g8P2JRzVDXH6qo5RCiaI7Uw8.png'));
-
-
-
-
-
-		// $arrFiles = array();
-		// $handle = opendir(public_path('images/products/tm'));
-		// if ($handle) {
-		// 	while (($entry = readdir($handle)) !== FALSE) {
-		// 		$arrFiles[] = $entry;
-		// 	}
-		// }
-		// closedir($handle);
-
-		// dd($arrFiles);
 
 		//dd();
 		$engines =  Engine::orderBy('name', 'asc')->paginate(50);
