@@ -37,45 +37,44 @@ class EnginesController extends Table
 
 				$file = basename($image->image);
 				$m = public_path('images/products/m/' . $file);
-				dd('https://autofactor.ng/images/products/m/ke7qiBUFKNIRHyIL7R4qFXOMRJuj0gzGdsJfo8UA.png');
 
-				if (file_exists($m)) {
-					//	dd($m);
-					unlink($m);
-				}
-				dd(false);
+				// if (file_exists($m)) {
+				// 	//	dd($m);
+				// 	unlink($m);
+				// }
+				// dd(false);
 
 
 				$path =  public_path('images/products/' . $file);
 
 
 
-				// if ($file) {
+				if ($file) {
 
-				// 	$canvas = \Image::canvas(400, 400);
-				// 	$image  = \Image::make($path)->resize(400, 400, function ($constraint) {
-				// 		$constraint->aspectRatio();
-				// 	});
-				// 	$canvas->insert($image, 'center');
-				// 	$canvas->save(
-				// 		public_path('images/products/tm/' . $file)
-				// 	);
-				// }
+					$canvas = \Image::canvas(400, 400);
+					$image  = \Image::make($path)->resize(400, 400, function ($constraint) {
+						$constraint->aspectRatio();
+					});
+					$canvas->insert($image, 'center');
+					$canvas->save(
+						public_path('images/products/m/' . $file)
+					);
+				}
 			}
 		}
 
 
 
-		$arrFiles = array();
-		$handle = opendir(public_path('images/products/tm'));
-		if ($handle) {
-			while (($entry = readdir($handle)) !== FALSE) {
-				$arrFiles[] = $entry;
-			}
-		}
-		closedir($handle);
+		// $arrFiles = array();
+		// $handle = opendir(public_path('images/products/tm'));
+		// if ($handle) {
+		// 	while (($entry = readdir($handle)) !== FALSE) {
+		// 		$arrFiles[] = $entry;
+		// 	}
+		// }
+		// closedir($handle);
 
-		dd($arrFiles);
+		// dd($arrFiles);
 
 		//dd();
 		$engines =  Engine::orderBy('name', 'asc')->paginate(50);
