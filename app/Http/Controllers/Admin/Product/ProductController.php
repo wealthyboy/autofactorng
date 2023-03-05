@@ -66,7 +66,7 @@ class ProductController extends Table
 
         // \File::makeDirectory(public_path('images/l'), 0755, true);
         $category = Category::where('slug', 'spare-parts-drivetrain')->first();
-        $products = Product::where('name', 'Genuine CV Joint Boot/ Shaft Rubber (Outer) 1032888 (Pair))')->get();
+        $products = Product::where('name', 'Genuine CV Joint Boot/ Shaft Rubber (Inner) 1032968 (Pair)')->first();
         // ->limit(request()->limit)->get();
         // dd($category->products);
         foreach ($category->products as $key => $product) {
@@ -87,6 +87,7 @@ class ProductController extends Table
                 if ($file) {
 
                     $canvas = \Image::canvas(500, 400);
+                    dd($canvas);
                     $image  = \Image::make($path)->resize(500, 400, function ($constraint) {
                         $constraint->aspectRatio();
                     });
