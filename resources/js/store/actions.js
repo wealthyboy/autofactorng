@@ -67,9 +67,7 @@ export const getProducts = ({ commit }, url) => {
             commit("setProductIsLoading", false);
             commit("setProductFitString", null);
             commit("setShowSearch", res.data.showSearch);
-
-
-
+           // commit("setIs", res.data.showSearch);
         })
         .catch((err) => {
             commit("setProductIsLoading", false);

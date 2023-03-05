@@ -26889,13 +26889,17 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-    "class": "check-vehicle fits",
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+      fits: $props.fitText == 'Check if it fits your vehicle'
+    }, "check-vehicle fits"]),
     onClick: _cache[0] || (_cache[0] = function () {
       return $setup.show && $setup.show.apply($setup, arguments);
     })
   }, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.fitText), 1
   /* TEXT */
-  )]);
+  )], 2
+  /* CLASS */
+  );
 }
 
 /***/ }),
@@ -37884,7 +37888,7 @@ var getProducts = function getProducts(_ref7, url) {
     commit("setShowFitString", res.data.showFitStringOnCategoryPage);
     commit("setProductIsLoading", false);
     commit("setProductFitString", null);
-    commit("setShowSearch", res.data.showSearch);
+    commit("setShowSearch", res.data.showSearch); // commit("setIs", res.data.showSearch);
   })["catch"](function (err) {
     commit("setProductIsLoading", false);
   });

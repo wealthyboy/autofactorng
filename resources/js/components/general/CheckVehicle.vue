@@ -1,5 +1,9 @@
 <template>
-    <button class="check-vehicle fits" @click="show">
+    <button
+        :class="{ fits: fitText == 'Check if it fits your vehicle' }"
+        class="check-vehicle fits"
+        @click="show"
+    >
         <div></div>
         <div>{{ fitText }}</div>
     </button>
