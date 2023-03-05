@@ -96,7 +96,9 @@ trait FormatPrice
     $percent = null;
     if (null !== optional($category)->discount) {
       $percent =  $category->discount->amount;
-      return  $p = ($percent * $this->price) / 100;
+      $p = ($percent * $this->price) / 100;
+
+      return $new_total = $this->price - $p;
     }
 
 
