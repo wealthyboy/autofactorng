@@ -28,7 +28,7 @@ class EnginesController extends Table
 	{
 
 		//\File::makeDirectory(public_path('images/products/tm'), 0755, true);
-		$category = Category::where('slug', 'spare-parts-brake-wheel-hub-bearings')->first();
+		$category = Category::where('slug', 'spare-parts-body-light-parts')->first();
 		//$products = Product::where('name', 'Genuine CV Joint Boot/ Shaft Rubber (Inner) 1032968 (Pair)')->first();
 		// ->limit(request()->limit)->get();
 		// dd($category->products);
@@ -36,30 +36,24 @@ class EnginesController extends Table
 			foreach ($product->images as $key => $image) {
 
 				$file = basename($image->image);
-				$m = public_path('images/products/m/axlpWob2E6kOeIReDLSWMSIOUQUtEt1DE4cjsaBh.png');
 
-				if (file_exists($m)) {
-					//dd($m);
-					//unlink($m);
-				}
-				//dd(false);
 
 
 				$path =  public_path('images/products/' . $file);
 
 
 
-				// if ($file) {
+				if ($file) {
 
-				// 	$canvas = \Image::canvas(400, 400);
-				// 	$image  = \Image::make($path)->resize(400, 400, function ($constraint) {
-				// 		$constraint->aspectRatio();
-				// 	});
-				// 	$canvas->insert($image, 'center');
-				// 	$canvas->save(
-				// 		public_path('images/products/m/' . $file)
-				// 	);
-				// }
+					$canvas = \Image::canvas(400, 400);
+					$image  = \Image::make($path)->resize(400, 400, function ($constraint) {
+						$constraint->aspectRatio();
+					});
+					$canvas->insert($image, 'center');
+					$canvas->save(
+						public_path('images/products/tm/' . $file)
+					);
+				}
 			}
 		}
 
