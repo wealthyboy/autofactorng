@@ -37953,6 +37953,10 @@ var shopWithoutVehicle = function shopWithoutVehicle(_ref9, action) {
       type: "clear"
     }
   }).then(function (res) {
+    if (action == "shop" || url == '/clear-cookies') {
+      commit("setModal", false);
+    }
+
     commit("setProducts", res.data.data);
     commit("setMeta", res.data.meta);
     commit("setShowFitString", res.data.showFitStringOnCategoryPage);
@@ -37960,10 +37964,6 @@ var shopWithoutVehicle = function shopWithoutVehicle(_ref9, action) {
     commit("setProductFitString", null);
     commit("setShowSearch", res.data.showSearch);
     commit("setfitString", res.data.string);
-
-    if (action == "shop") {
-      commit("setModal", false);
-    }
   })["catch"](function (error) {
     console.log(error);
   });

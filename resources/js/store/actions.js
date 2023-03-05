@@ -117,6 +117,10 @@ export const shopWithoutVehicle = ({ commit }, action) => {
         })
         .then((res) => {
 
+            if (action == "shop" || url == '/clear-cookies' ) {
+                commit("setModal", false);
+            }
+
             commit("setProducts", res.data.data);
             commit("setMeta", res.data.meta);
             commit("setShowFitString", res.data.showFitStringOnCategoryPage);
@@ -125,9 +129,7 @@ export const shopWithoutVehicle = ({ commit }, action) => {
             commit("setShowSearch", res.data.showSearch);
             commit("setfitString", res.data.string);
 
-            if (action == "shop") {
-                commit("setModal", false);
-            }
+            
         })
         .catch((error) => {
             console.log(error);
