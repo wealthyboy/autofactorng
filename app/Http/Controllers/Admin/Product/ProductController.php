@@ -89,8 +89,8 @@ class ProductController extends Table
 
                 if ($file) {
 
-                    $canvas = \Image::canvas(400, 400);
-                    $image  = \Image::make($path)->resize(400, 400, function ($constraint) {
+                    $canvas = \Image::canvas(500, 400);
+                    $image  = \Image::make($path)->resize(500, 400, function ($constraint) {
                         $constraint->aspectRatio();
                     });
                     $canvas->insert($image, 'center');
