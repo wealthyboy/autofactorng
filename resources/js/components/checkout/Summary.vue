@@ -10,7 +10,7 @@
         <div class="col-md-9 col-6">
             <div class="tag mb-1 brand-name bold color--gray"></div>
             <div>
-                <a href="#">{{ cart.product.product_name }}</a>
+                <a href="#">{{ cart.product.name }}</a>
             </div>
             <div class="product-item-prices d-flex">
                 <div
