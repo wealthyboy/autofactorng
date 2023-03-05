@@ -27715,7 +27715,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = {
   key: 0,
-  "class": "col-6 border col-sm-4 col-md-3 product-list"
+  "class": "col-6 border col-sm-4 col-md-3"
 };
 var _hoisted_2 = {
   "class": "product-default"

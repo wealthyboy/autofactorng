@@ -1,8 +1,5 @@
 <template>
-    <div
-        v-if="list == 'Grid'"
-        class="col-6 border col-sm-4 col-md-3 product-list"
-    >
+    <div v-if="list == 'Grid'" class="col-6 border col-sm-4 col-md-3">
         <div class="product-default">
             <div class="position-relative product-inf-box">
                 <figure class="">
