@@ -3792,7 +3792,7 @@ a:focus {
     padding: 0
 }
 
-.card.card-accordion p {
+/* .card.card-accordion p {
     margin-bottom: 0.4rem;
     padding: 1.3rem 0;
     letter-spacing: 0
@@ -3952,7 +3952,7 @@ a:focus {
 .card.card-background .card-description {
     margin-top: 24px;
     margin-bottom: 24px
-}
+} */
 
 .count-container {
     margin-bottom: 4rem
