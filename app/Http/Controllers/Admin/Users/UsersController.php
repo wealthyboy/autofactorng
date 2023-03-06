@@ -108,7 +108,7 @@ class UsersController extends Table
 		$user->last_name = $request->last_name;
 		$user->email = $request->email;
 		$user->type = 'Admin';
-		$user->password = $request->has('password') ? bcrypt($request->password) : $user->password;
+		$user->password = $request->filled('password') ? bcrypt($request->password) : $user->password;
 		$user->save();
 
 		$user->users_permission()->create([
