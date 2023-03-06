@@ -188,9 +188,10 @@
 
       <!-- End .main -->
 
-
+      {{ $footer_info }}
       <footer class="footer bg-dark">
          <div class="footer-middle">
+
             <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
             <div class="container">
                <div class="footer-middle ">

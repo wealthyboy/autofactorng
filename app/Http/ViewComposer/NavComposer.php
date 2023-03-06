@@ -27,7 +27,6 @@ class   NavComposer
 		$system_settings = Setting::first();
 		$yrs = Helper::years();
 		$user = auth()->check() ? auth()->user() : 0000;
-		dd($footer_info);
 
 		//$news_letter_image = PageBanner::where('page_name','newsletter')->first();
 		$view->with([
