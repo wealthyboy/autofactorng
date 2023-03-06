@@ -74,12 +74,12 @@ class ProductsController extends Controller
             return redirect('404');
         }
 
+
         $page_title = "Search " . $request->q;
 
         $this->clearMMYCookies($request);
 
         $product = Product::where('name', 'like', '%' . $request->q . '%')->first();
-
 
         $query = Product::where('name', 'like', '%' . $request->q . '%');
 
