@@ -1,6 +1,6 @@
 <template>
     <transition name="modal">
-        <modal v-if="showModal">
+        <modal :h="h" v-if="showModal">
             <!--
         you can use custom content here to overwrite
         default content
@@ -81,7 +81,9 @@ export default {
         const showModal = computed(() => store.getters.showModal);
         const t = ref(null);
         const fitString = computed(() => store.getters.fitString);
+
         const store = useStore();
+        const h = ref(fitString ? 400 : 260);
         const { shopWithoutVehicle } = useActions(["shopWithoutVehicle"]);
 
         function getString(t) {
@@ -99,6 +101,11 @@ export default {
 
         function show() {
             store.commit("setModal", false);
+        }
+
+        function shopV() {
+            h.value = 260;
+            shopWithoutVehicle();
         }
 
         onMounted(() => {
@@ -122,6 +129,8 @@ export default {
             showModal,
             store,
             show,
+            h,
+            shopV,
             shopWithoutVehicle,
         };
     },

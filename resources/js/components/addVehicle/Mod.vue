@@ -1,7 +1,7 @@
 <template>
     <div class="modal-mask">
         <div class="modal-wrapper">
-            <div class="modal-container">
+            <div :style="{ height: h + 'px' }" class="modal-container">
                 <div class="modal-header">
                     <slot name="header">
                         default headerdd
@@ -25,6 +25,12 @@
         </div>
     </div>
 </template>
+
+<script>
+export default {
+    props: ["h"],
+};
+</script>
 
 <style scoped>
 .modal-mask {
@@ -52,7 +58,6 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
     font-family: Helvetica, Arial, sans-serif;
-    height: 400px;
 }
 
 .modal-header h3 {
