@@ -14,7 +14,7 @@
         /></span>
 
         <span v-if="itDoesNotFits" class="material-symbols-outlined">
-            dangerous
+            warning
         </span>
         <div>{{ fitText }}</div>
     </button>
