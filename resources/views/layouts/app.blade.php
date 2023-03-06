@@ -188,7 +188,6 @@
 
       <!-- End .main -->
 
-      {{ $footer_info }}
       <footer class="footer bg-dark">
          <div class="footer-middle">
 
