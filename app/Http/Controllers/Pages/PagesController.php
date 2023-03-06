@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Pages;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use  App\Models\Information;
+
+
 class PagesController extends Controller
 {
     /**
@@ -12,9 +15,12 @@ class PagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+
+    public function  index(Request $request, Information $information)
     {
-        //
+        $page_title = $information->name;
+        return view('pages.index', compact('information', 'page_title'));
     }
 
     /**

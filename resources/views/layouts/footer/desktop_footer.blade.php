@@ -1,4 +1,4 @@
-<div class="row k">
+<div class="row ">
     @foreach($footer_info as $info)
     <div class="col-sm-4 col-6 col-lg-4">
         <div class="widget">
