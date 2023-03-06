@@ -30623,7 +30623,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         },
         ".product-single-default .product-single-carousel": {
           margin: 0,
-          nav: !0,
+          nav: !1,
           loop: !1,
           dotsContainer: "#carousel-custom-dots",
           autoplay: !1,
