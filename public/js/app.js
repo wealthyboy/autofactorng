@@ -22804,7 +22804,7 @@ __webpack_require__.r(__webpack_exports__);
       return fText.value != "This product does not fit your vehicle" && fText.value != "Check if it fits your vehicle";
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      fText.value = props.fitText || "Check if it fits your vehicle";
+      fText.value = props.fitText;
     });
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_1__.useStore)();
     var showModal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {

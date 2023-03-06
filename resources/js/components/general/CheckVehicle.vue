@@ -38,7 +38,7 @@ export default {
         );
 
         onMounted(() => {
-            fText.value = props.fitText || "Check if it fits your vehicle";
+            fText.value = props.fitText;
         });
 
         const store = useStore();
