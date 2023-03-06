@@ -22798,6 +22798,7 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
     var checkText = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("Check if it fits your vehicle");
+    var notFit = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("This product does not fit your vehicle");
     var itDoesNotFits = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return props.fitText == "This product does not fit your vehicle";
     });

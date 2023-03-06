@@ -32,6 +32,7 @@ export default {
     props: ["fitText"],
     setup(props, { emit }) {
         const checkText = ref("Check if it fits your vehicle");
+        const notFit = ref("This product does not fit your vehicle");
 
         const itDoesNotFits = computed(
             () => props.fitText == "This product does not fit your vehicle"
