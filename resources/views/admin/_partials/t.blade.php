@@ -54,9 +54,9 @@
                             @foreach($models['items'][0][0] as $key => $value)
                             <th data-sortable="" class="{{ isset($models['meta']['sort']) ?  $models['meta']['sort'] : 'desc' }}">
                                 <a href="{{ request()->url() }}?key={{ $key }}&sort={{ $models['meta']['sort'] }}{{ $models['meta']['q'] }}" class="dataTable-sorter">
-                                    <h6 class="mb-0 text-xs">
+                                    <div class="mb-0 text-xs">
                                         {{ $key }}
-                                    </h6>
+                                    </div>
                                 </a>
                             </th>
                             @endforeach
@@ -103,7 +103,7 @@
 
                                         @else
 
-                                        <h6 data-price="{{ $k == 'Price' ? $v  : '' }}" data-id="{{ isset( $models['items'][0][$key]['Id']) ?   $models['items'][0][$key]['Id'] : null }}" class=" <?php echo  $k == 'Price' ?  'update_price' : '' ?> mb-0 text-xs" {{ $k == 'Price' ? 'contenteditable' : null }}>{{ $v }}</h6>
+                                        <div data-price="{{ $k == 'Price' ? $v  : '' }}" data-id="{{ isset( $models['items'][0][$key]['Id']) ?   $models['items'][0][$key]['Id'] : null }}" class=" <?php echo  $k == 'Price' ?  'update_price' : '' ?> mb-0 text-xs" {{ $k == 'Price' ? 'contenteditable' : null }}>{{ $v }}</div>
 
                                         @endif
                                     </select>
@@ -164,7 +164,7 @@
                             <td colspan="6" class="text-right "></td>
 
                             <td colspan="6" class="text-end">
-                                <h6 class="mb-0 text-xs">{{ $key }}</h6>
+                                <div class="mb-0 text-xs">{{ $key }}</div>
                             </td>
                             <td colspan="" class="text-end">{{ $summary  }}</td>
                         </tr>
