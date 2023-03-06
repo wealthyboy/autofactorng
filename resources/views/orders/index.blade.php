@@ -13,7 +13,7 @@
             @include('_partials.nav')
             <div class="col-md-9 bg-white">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h2 class="page-title ">Orders</h2>
+                    <h2 class="page-title ">Orders History</h2>
                     <div class="wallet-balance"></div>
                 </div>
                 <general-table class="bg-white" />
