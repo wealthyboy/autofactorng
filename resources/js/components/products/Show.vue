@@ -22,9 +22,8 @@
         <!-- End .ratings-container -->
 
         <p>SKU #{{ product.sku }}</p>
-
         <p v-if="product.showFitString">
-            <check-vehicle :fitText="productFitString || product.fitText" />
+            <check-vehicle :fitText="productFitString" />
         </p>
 
         <hr class="short-divider" />
