@@ -37,14 +37,17 @@
 
          <div class="product-details-content">
             <div class="d-flex flex-column text-start">
-               <div class="product-title">
-                  <div class="product-title-label fs-5">{{ $product->name }}</div>
-               </div>
+
+               <a href="{{ $product->link }}">
+                  <div class="product-title">
+                     <div class="product-title-label fs-5">{{ $product->name }}</div>
+                  </div>
+               </a>
+
 
 
                <div class="ratings-container">
                   @include('_partials.ratings')
-
                   <!-- End .product-ratings -->
                </div>
 
