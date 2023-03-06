@@ -109,7 +109,7 @@ Route::get('/mailable', function () {
     return  new App\Mail\OrderReceipt($order, null, null, $sub_total);
 });
 
-Route::get('pages/{information}', 'Pages\PagesController@show');
+Route::get('pages/{information}', 'Pages\PagesController@index');
 Route::get('cart', 'Cart\CartController@index');
 Route::post('cart/meta', 'Cart\CartController@meta');
 
