@@ -81,11 +81,6 @@ app.component('ForgotPassword', ForgotPassword)
 
 
 
-
-
-
-
-
 app.component('Subscribe', Subscribe)
 
 app.config.globalProperties.$filters = {

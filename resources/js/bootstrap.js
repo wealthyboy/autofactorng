@@ -6,7 +6,7 @@ try {
     require('../assets/js/plugins.min.js')
     require('../assets/js/jquery.appear.min.js')
     require('../assets/js/nouislider.min.js')
-    require('../assets/js/main.min.js')
+    require('../assets/js/main.min.jss')
 
 } catch (e) {
 
