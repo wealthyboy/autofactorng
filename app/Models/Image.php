@@ -50,7 +50,7 @@ class Image extends Model
 
     public function getImageMAttribute()
     {
-        return $this->imageSize('m');
+        return $this->imageSize('tm');
     }
 
     public function getImageTnAttribute()
