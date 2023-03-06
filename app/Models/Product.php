@@ -260,7 +260,7 @@ class Product extends Model
             return 'Fits your vehicle';
         }
 
-        if (request()->path() == 'search') {
+        if ($this->buildSearchString()) {
             $request = request();
             $p = Product::where('id', $this->id)->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                 $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
