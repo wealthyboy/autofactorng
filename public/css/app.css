@@ -3742,6 +3742,14 @@ a:focus {
 }
 
 
+
+.card-header {
+  
+    background-color: #fff !important;
+    
+}
+
+
 .card.card-accordion {
     margin-bottom: 0.5rem;
     padding: 0;
@@ -3753,7 +3761,7 @@ a:focus {
     position: relative;
     padding-left: 0;
     padding-right: 25px;
-    background: transparent;
+    background: #fff;
     font-family: Poppins, sans-serif;
     font-size: 1.6rem;
     font-weight: 600;
