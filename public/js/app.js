@@ -37961,8 +37961,11 @@ var shopWithoutVehicle = function shopWithoutVehicle(_ref9, action) {
       type: "clear"
     }
   }).then(function (res) {
-    if (action == "shop" || url == '/clear-cookies') {
+    if (action == "shop") {
       commit("setModal", false);
+    }
+
+    if (url == '/clear-cookies') {
       commit("setProducts", []);
       commit("setMeta", res.data.meta);
       commit("setShowFitString", res.data.showFitStringOnCategoryPage);
