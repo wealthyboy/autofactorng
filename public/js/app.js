@@ -21751,6 +21751,7 @@ __webpack_require__.r(__webpack_exports__);
 
         emit("has:loggedIn");
       })["catch"](function (err) {
+        loading.value = false;
         message.value = "We could not find your data in our system";
         setTimeout(function () {
           message.value = null;

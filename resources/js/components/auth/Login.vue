@@ -97,6 +97,7 @@ export default {
                     emit("has:loggedIn");
                 })
                 .catch((err) => {
+                    loading.value = false;
                     message.value = "We could not find your data in our system";
                     setTimeout(() => {
                         message.value = null;
