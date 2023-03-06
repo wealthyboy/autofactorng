@@ -3171,55 +3171,6 @@ a:focus {
     animation: spin 1.5s infinite ease
 }
 
-.card {
-    margin-bottom: 3rem;
-    border: 1px solid #ddd;
-    border-radius: 0;
-    font-size: 1.4rem
-}
-
-.card-header {
-    margin: 0;
-    padding: 1.2rem 1.5rem;
-    border-radius: 0;
-    border-color: #ddd;
-    background-color: #f5f5f5;
-    color: #000;
-    font-weight: 700;
-    line-height: 1.5;
-    text-transform: uppercase
-}
-
-.card-header:after {
-    display: block;
-    clear: both;
-    content: ""
-}
-
-.card-header .card-edit {
-    margin-top: 0.1rem;
-    float: right;
-    color: #000;
-    font-size: 1.3rem;
-    font-weight: 400;
-    text-transform: capitalize
-}
-
-.card-body {
-    min-height: 135px;
-    padding: 2rem 1.5rem;
-    border-top: 0;
-    border-radius: 0
-}
-
-.card-body a {
-    text-decoration: underline
-}
-
-.card-body h4 {
-    margin-bottom: 0.7rem;
-    color: #666
-}
 
 .card.card-accordion {
     margin-bottom: 0.5rem;
