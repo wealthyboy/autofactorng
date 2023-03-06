@@ -119,19 +119,17 @@ export const shopWithoutVehicle = ({ commit }, action) => {
 
             if (action == "shop") {
                 commit("setModal", false);
-            
-
             } 
 
             if ( url == '/clear-cookies' ) {
             
                 commit("setProducts", []);
                 commit("setMeta", res.data.meta);
-                commit("setShowFitString", res.data.showFitStringOnCategoryPage);
-                commit("setProductIsLoading", false);
+                commit("setShowFitString", null);
+                commit("setProductIsLoading", null);
                 commit("setProductFitString", null);
-                commit("setShowSearch", res.data.showSearch);
-                commit("setfitString", res.data.string);
+                commit("setShowSearch", null);
+                commit("setfitString", null);
                 return
 
             } 
