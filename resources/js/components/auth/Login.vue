@@ -1,5 +1,5 @@
 <template>
-    <message :message="message" />
+    <message :error="error" :message="message" />
     <form action="" class="mb-0" method="post" @submit.prevent="login">
         <div class="form-floating mb-3">
             <general-input
@@ -73,6 +73,7 @@ export default {
         const loading = ref(false);
         const text = ref("Submit");
         const message = ref(null);
+        const error = ref(false);
         const form = reactive({
             email: "",
             password: "",
@@ -98,13 +99,14 @@ export default {
                 })
                 .catch((err) => {
                     loading.value = false;
+                    error.value = true;
                     message.value = "We could not find your data in our system";
                     setTimeout(() => {
                         message.value = null;
                     }, 3000);
                 });
         }
-        return { form, v$, login, loading, text, message };
+        return { error, form, v$, login, loading, text, message };
     },
 };
 </script>

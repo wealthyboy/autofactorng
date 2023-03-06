@@ -21729,6 +21729,7 @@ __webpack_require__.r(__webpack_exports__);
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
+    var error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
       email: "",
       password: ""
@@ -21752,6 +21753,7 @@ __webpack_require__.r(__webpack_exports__);
         emit("has:loggedIn");
       })["catch"](function (err) {
         loading.value = false;
+        error.value = true;
         message.value = "We could not find your data in our system";
         setTimeout(function () {
           message.value = null;
@@ -21760,6 +21762,7 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     return {
+      error: error,
       form: form,
       v$: v$,
       login: login,
@@ -25434,10 +25437,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_general_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("general-button");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_message, {
+    error: $setup.error,
     message: $setup.message
   }, null, 8
   /* PROPS */
-  , ["message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  , ["error", "message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     action: "",
     "class": "mb-0",
     method: "post",
