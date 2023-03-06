@@ -48,7 +48,7 @@ class Order extends Model
 		$order->heavy_item_price = $input['heavy_item_price'];
 		$order->status = 'Processing';
 		$order->shipping_price  = $input['shipping_price'];
-		$order->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
+		$order->invoice =  rand(10000, 3999990);
 		$order->payment_type = $payment_method;
 		$order->total = $input['total'];
 		$order->first_name = optional($user->active_address)->first_name;
