@@ -1,9 +1,10 @@
 <template>
     <button
+        v-if="fitText"
         :class="{
             fits:
-                fText != 'Check if it fits your vehicle' &&
-                fText != 'This product does not fit your vehicle',
+                fitText != checkText &&
+                fitText != 'This product does not fit your vehicle',
         }"
         class="check-vehicle d-flex"
         @click="show"
@@ -15,7 +16,11 @@
         <span v-if="itDoesNotFits" class="material-symbols-outlined">
             dangerous
         </span>
-        <div>{{ fText }}</div>
+        <div>{{ fitText }}</div>
+    </button>
+
+    <button v-if="!fitText" class="check-vehicle d-flex" @click="show">
+        <div>{{ checkText }}</div>
     </button>
 </template>
 <script>
@@ -25,21 +30,18 @@ import { useStore } from "vuex";
 export default {
     components: {},
     props: ["fitText"],
-    setup(props) {
-        const fText = ref(null);
+    setup(props, { emit }) {
+        const checkText = ref("Check if it fits your vehicle");
+
         const itDoesNotFits = computed(
-            () => fText.value == "This product does not fit your vehicle"
+            () => props.fitText == "This product does not fit your vehicle"
         );
 
         const itNotFits = computed(
             () =>
-                fText.value != "This product does not fit your vehicle" &&
-                fText.value != "Check if it fits your vehicle"
+                props.fitText != "This product does not fit your vehicle" &&
+                props.fitText != checkText.value
         );
-
-        onMounted(() => {
-            fText.value = props.fitText;
-        });
 
         const store = useStore();
         const showModal = computed(() => store.getters.showModal);
@@ -53,7 +55,7 @@ export default {
             itNotFits,
             showModal,
             show,
-            fText,
+            checkText,
         };
     },
 };
