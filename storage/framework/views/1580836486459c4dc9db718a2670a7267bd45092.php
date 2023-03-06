@@ -37,14 +37,17 @@
 
          <div class="product-details-content">
             <div class="d-flex flex-column text-start">
-               <div class="product-title">
-                  <div class="product-title-label fs-5"><?php echo e($product->name); ?></div>
-               </div>
+
+               <a href="<?php echo e($product->link); ?>">
+                  <div class="product-title">
+                     <div class="product-title-label fs-5"><?php echo e($product->name); ?></div>
+                  </div>
+               </a>
+
 
 
                <div class="ratings-container">
                   <?php echo $__env->make('_partials.ratings', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
                   <!-- End .product-ratings -->
                </div>
 
