@@ -30627,19 +30627,37 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           loop: !1,
           dotsContainer: "#carousel-custom-dots",
           autoplay: !1,
-          onResized: function onResized() {// var e = this.$element;
-            // t.fn.elevateZoom && e.find("img").each((function() {
-            //     var e = t(this),
-            //         i = { responsive: !0, zoomWindowFadeIn: 350, zoomWindowFadeOut: 200, borderSize: 0, zoomContainer: e.parent(), zoomType: "inner", cursor: "grab" };
-            //     e.elevateZoom(i)
-            // }))
+          onResized: function onResized() {
+            var e = this.$element;
+            t.fn.elevateZoom && e.find("img").each(function () {
+              var e = t(this),
+                  i = {
+                responsive: !0,
+                zoomWindowFadeIn: 350,
+                zoomWindowFadeOut: 200,
+                borderSize: 0,
+                zoomContainer: e.parent(),
+                zoomType: "inner",
+                cursor: "grab"
+              };
+              e.elevateZoom(i);
+            });
           },
-          onInitialized: function onInitialized() {// var e = this.$element;
-            // t.fn.elevateZoom && e.find("img").each((function() {
-            //     var e = t(this),
-            //         i = { responsive: !0, zoomWindowFadeIn: 350, zoomWindowFadeOut: 200, borderSize: 0, zoomContainer: e.parent(), zoomType: "inner", cursor: "grab" };
-            //     e.elevateZoom(i)
-            // }))
+          onInitialized: function onInitialized() {
+            var e = this.$element;
+            t.fn.elevateZoom && e.find("img").each(function () {
+              var e = t(this),
+                  i = {
+                responsive: !0,
+                zoomWindowFadeIn: 350,
+                zoomWindowFadeOut: 200,
+                borderSize: 0,
+                zoomContainer: e.parent(),
+                zoomType: "inner",
+                cursor: "grab"
+              };
+              e.elevateZoom(i);
+            });
           }
         },
         ".product-single-extended .product-single-carousel": {
