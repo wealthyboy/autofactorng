@@ -1,7 +1,7 @@
 <template>
     <PageLoader :loading="loading" />
 
-    <div v-if="!loading && tableData.items[0].length" class="card">
+    <div v-if="!loading && tableData.items[0].length" class="card mb-3">
         <div class="card-header">
             <div class="d-flex justify-content-between align-items-center mt-3">
                 <div class="mb-0 align-self-center">

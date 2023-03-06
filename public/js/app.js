@@ -29101,7 +29101,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = {
   key: 0,
-  "class": "card"
+  "class": "card mb-3"
 };
 var _hoisted_2 = {
   "class": "card-header"
