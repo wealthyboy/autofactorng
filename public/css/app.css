@@ -651,6 +651,11 @@
     width: 100%
 }
 
+.owl-carousel .owl-item {
+    display: flex !important;
+    justify-content: center !important;
+}
+
 .owl-carousel .owl-dots.disabled,
 .owl-carousel .owl-nav.disabled {
     display: none
@@ -16432,7 +16437,9 @@ main .sticky-header .product-ratings:before {
 
 .product-single-gallery .product-item {
     position: relative;
-    z-index: 2
+    z-index: 2;
+    width: 500px;
+    height: 500px;
 }
 
 .product-single-gallery .product-item:not(:last-child) {
