@@ -7,7 +7,7 @@
             <ul class="links text-white list-unstyled">
                 @foreach($info->children as $info)
                 <li>
-                    <a href="{{ $info->link }}">
+                    <a href="{{ $info->c_link }}">
                         {{ $info->name }}
                     </a>
                 </li>

@@ -18,13 +18,13 @@ class Information extends Model
     public $folder = 'blog';
 
     public $appends = [
-        'link',
+        'c_link',
         'image_m',
     ];
 
     protected $table = 'information';
 
-    public function getLinkAttribute()
+    public function getCLinkAttribute()
     {
         return $this->link !== null ? $this->link : '/pages/' . $this->slug;
     }
