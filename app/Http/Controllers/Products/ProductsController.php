@@ -262,7 +262,7 @@ class ProductsController extends Controller
 
 
             if ($request->cookie('engine_id') || $request->filled('engine_id')) {
-                $productFitString =  null !== $p ? 'Fits your ' . $this->buildSearchString($request) : "This product does'nt fit your vehicle";
+                $productFitString =  null !== $p ? 'Fits your ' . $this->buildSearchString($request) : "This product does not fit your vehicle";
             } else {
                 $productFitString =  "Check if it fits your vehicle";
             }

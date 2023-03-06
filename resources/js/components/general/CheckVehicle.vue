@@ -1,10 +1,19 @@
 <template>
     <button
-        :class="{ fits: fitText != 'Check if it fits your vehicle' }"
+        :class="{
+            fits:
+                fitText != 'Check if it fits your vehicle' ||
+                fitText != 'This product does not fit your vehicle',
+        }"
         class="check-vehicle d-flex"
         @click="show"
     >
-        <span v-if="fitText != 'Check if it fits your vehicle'" class="me-3"
+        <span
+            v-if="
+                fitText != 'Check if it fits your vehicle' ||
+                fitText != 'This product does not fit your vehicle'
+            "
+            class="me-3"
             ><img src="/images/utils/icon-vehicle-selected-d.svg" alt=""
         /></span>
         <div>{{ fitText }}</div>

@@ -26912,12 +26912,12 @@ var _hoisted_3 = [_hoisted_2];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-      fits: $props.fitText != 'Check if it fits your vehicle'
+      fits: $props.fitText != 'Check if it fits your vehicle' || $props.fitText != 'This product does not fit your vehicle'
     }, "check-vehicle d-flex"]),
     onClick: _cache[0] || (_cache[0] = function () {
       return $setup.show && $setup.show.apply($setup, arguments);
     })
-  }, [$props.fitText != 'Check if it fits your vehicle' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_1, _hoisted_3)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.fitText), 1
+  }, [$props.fitText != 'Check if it fits your vehicle' || $props.fitText != 'This product does not fit your vehicle' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_1, _hoisted_3)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.fitText), 1
   /* TEXT */
   )], 2
   /* CLASS */
