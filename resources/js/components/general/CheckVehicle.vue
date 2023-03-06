@@ -3,7 +3,8 @@
         :class="{
             fits:
                 fitText != 'Check if it fits your vehicle' &&
-                fitText != 'This product does not fit your vehicle',
+                fitText != 'This product does not fit your vehicle' &&
+                fitText != '',
         }"
         class="check-vehicle d-flex"
         @click="show"
