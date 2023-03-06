@@ -21580,7 +21580,7 @@ __webpack_require__.r(__webpack_exports__);
       return store.getters.fitString;
     });
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_5__.useStore)();
-    var h = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(fitString ? 400 : 260);
+    var h = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(!fitString.value ? 260 : 400);
 
     var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_1__.useActions)(["shopWithoutVehicle"]),
         shopWithoutVehicle = _useActions.shopWithoutVehicle;
@@ -25339,7 +25339,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [$setup.showModal ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_modal, {
         key: 0,
-        h: $setup.h
+        h: !$setup.fitString ? 260 : 400
       }, {
         header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
