@@ -2,9 +2,8 @@
     <button
         :class="{
             fits:
-                fitText != 'Check if it fits your vehicle' &&
-                fitText != 'This product does not fit your vehicle' &&
-                fitText != '',
+                fText != 'Check if it fits your vehicle' &&
+                fText != 'This product does not fit your vehicle',
         }"
         class="check-vehicle d-flex"
         @click="show"
@@ -16,26 +15,31 @@
         <span v-if="itDoesNotFits" class="material-symbols-outlined">
             dangerous
         </span>
-        <div>{{ fitText || "Check if it fits your vehicle" }}</div>
+        <div>{{ fText }}</div>
     </button>
 </template>
 <script>
-import { computed } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 
 export default {
     components: {},
     props: ["fitText"],
     setup(props) {
+        const fText = ref(null);
         const itDoesNotFits = computed(
-            () => props.fitText == "This product does not fit your vehicle"
+            () => fText.value == "This product does not fit your vehicle"
         );
 
         const itNotFits = computed(
             () =>
-                props.fitText != "This product does not fit your vehicle" &&
-                props.fitText != "Check if it fits your vehicle"
+                fText.value != "This product does not fit your vehicle" &&
+                fText.value != "Check if it fits your vehicle"
         );
+
+        onMounted(() => {
+            fText.value = props.fitText || "Check if it fits your vehicle";
+        });
 
         const store = useStore();
         const showModal = computed(() => store.getters.showModal);
@@ -49,6 +53,7 @@ export default {
             itNotFits,
             showModal,
             show,
+            fText,
         };
     },
 };

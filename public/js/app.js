@@ -22796,11 +22796,15 @@ __webpack_require__.r(__webpack_exports__);
   components: {},
   props: ["fitText"],
   setup: function setup(props) {
+    var fText = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
     var itDoesNotFits = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
-      return props.fitText == "This product does not fit your vehicle";
+      return fText.value == "This product does not fit your vehicle";
     });
     var itNotFits = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
-      return props.fitText != "This product does not fit your vehicle" && props.fitText != "Check if it fits your vehicle";
+      return fText.value != "This product does not fit your vehicle" && fText.value != "Check if it fits your vehicle";
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+      fText.value = props.fitText || "Check if it fits your vehicle";
     });
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_1__.useStore)();
     var showModal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
@@ -22815,7 +22819,8 @@ __webpack_require__.r(__webpack_exports__);
       itDoesNotFits: itDoesNotFits,
       itNotFits: itNotFits,
       showModal: showModal,
-      show: show
+      show: show,
+      fText: fText
     };
   }
 });
@@ -26956,12 +26961,12 @@ var _hoisted_4 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-      fits: $props.fitText != 'Check if it fits your vehicle' && $props.fitText != 'This product does not fit your vehicle' && $props.fitText != ''
+      fits: $setup.fText != 'Check if it fits your vehicle' && $setup.fText != 'This product does not fit your vehicle'
     }, "check-vehicle d-flex"]),
     onClick: _cache[0] || (_cache[0] = function () {
       return $setup.show && $setup.show.apply($setup, arguments);
     })
-  }, [$setup.itNotFits ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_1, _hoisted_3)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.itDoesNotFits ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_4, " dangerous ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.fitText || "Check if it fits your vehicle"), 1
+  }, [$setup.itNotFits ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_1, _hoisted_3)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.itDoesNotFits ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_4, " dangerous ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.fText), 1
   /* TEXT */
   )], 2
   /* CLASS */
