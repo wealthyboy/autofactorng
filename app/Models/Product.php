@@ -271,7 +271,7 @@ class Product extends Model
                 $builder->groupBy('make_model_year_engines.product_id');
             })->first();
 
-            return $this->buildSearchString()  && $p !== null ? 'Fits your ' . $this->buildSearchString() : "Check if it fits your vehicle";
+            return $this->buildSearchString()  && $p !== null ? 'Fits your ' . $this->buildSearchString() : "This product does not fit your vehicle";
         }
 
         return $this->buildSearchString() ? 'Fits your ' . $this->buildSearchString() : "Check if it fits your vehicle";
