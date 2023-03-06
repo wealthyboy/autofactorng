@@ -344,6 +344,13 @@
    </div>
    <!-- End .newsletter-popup -->
 
+   <div class="watsapp ">
+      <a class="chat-on-watsapp d-flex" target="_blank" href="https://wa.me/+2">
+         <span> Need help? Chat with us </span>
+         <i class="fab fa-whatsapp fa-2x  mr-2"></i>
+      </a>
+   </div>
+
    <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
 
    <!-- Plugins JS File -->
