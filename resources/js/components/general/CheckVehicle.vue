@@ -2,7 +2,7 @@
     <button
         :class="{
             fits:
-                fitText != 'Check if it fits your vehicle' ||
+                fitText != 'Check if it fits your vehicle' &&
                 fitText != 'This product does not fit your vehicle',
         }"
         class="check-vehicle d-flex"

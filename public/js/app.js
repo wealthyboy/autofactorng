@@ -26924,7 +26924,7 @@ var _hoisted_4 = {
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-      fits: $props.fitText != 'Check if it fits your vehicle' || $props.fitText != 'This product does not fit your vehicle'
+      fits: $props.fitText != 'Check if it fits your vehicle' && $props.fitText != 'This product does not fit your vehicle'
     }, "check-vehicle d-flex"]),
     onClick: _cache[0] || (_cache[0] = function () {
       return $setup.show && $setup.show.apply($setup, arguments);
