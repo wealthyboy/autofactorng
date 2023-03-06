@@ -3743,7 +3743,7 @@ a:focus {
 
 
 
-.card-header {
+/* .card-header {
   
     background-color: #fff !important;
     
@@ -3790,7 +3790,7 @@ a:focus {
 .card.card-accordion .card-body {
     min-height: 0;
     padding: 0
-}
+} */
 
 /* .card.card-accordion p {
     margin-bottom: 0.4rem;
