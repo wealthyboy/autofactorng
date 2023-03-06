@@ -109,7 +109,6 @@ Route::get('/mailable', function () {
     return  new App\Mail\OrderReceipt($order, null, null, $sub_total);
 });
 
-Route::get('pages/{information}', 'Pages\PagesController@index');
 Route::get('cart', 'Cart\CartController@index');
 Route::post('cart/meta', 'Cart\CartController@meta');
 
@@ -130,6 +129,7 @@ Route::get('checkout', 'Checkout\CheckoutController@index')->name('checkout');
 Route::post('checkout/confirm', 'Checkout\CheckoutController@confirm');
 
 Route::post('checkout/coupon', 'Checkout\CheckoutController@coupon');
+
 
 Route::group(['prefix' => '/api'], function () {
     Route::get('products/{category}',             'Api\Products\ProductsController@index');
@@ -162,3 +162,4 @@ Route::post('webhook/payment/zilla',     'WebHook\WebHookController@zilla');
 
 //Route::post('contact/store',     'Contact\ContactController@store');
 Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
+Route::get('pages/{information}', 'Pages\PagesController@index');

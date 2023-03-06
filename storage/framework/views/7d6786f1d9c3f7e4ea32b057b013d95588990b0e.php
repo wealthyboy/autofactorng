@@ -1,4 +1,4 @@
-<div class="row k">
+<div class="row ">
     <?php $__currentLoopData = $footer_info; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $info): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <div class="col-sm-4 col-6 col-lg-4">
         <div class="widget">

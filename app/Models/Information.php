@@ -39,4 +39,9 @@ class Information extends Model
     {
         return $this->hasMany(Information::class, 'parent_id', 'id')->orderBy('sort_order', 'asc');
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
