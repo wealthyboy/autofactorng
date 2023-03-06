@@ -16,7 +16,7 @@
         <span v-if="itDoesNotFits" class="material-symbols-outlined">
             dangerous
         </span>
-        <div>{{ fitText }}</div>
+        <div>{{ fitText || "Check if it fits your vehicle" }}</div>
     </button>
 </template>
 <script>
