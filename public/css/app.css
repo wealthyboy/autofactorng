@@ -107,6 +107,11 @@
     .w-sm-50 {
         width: 50%!important
     }
+
+    .product-single-gallery .product-item{
+        width: auto;
+        height: auto;
+    }
 }
 
 @media (max-width:479px) {
