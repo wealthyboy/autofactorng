@@ -4,7 +4,7 @@
             <h3 class="mb-0 fs-3">CURRENTLY SHOPPING FOR:</h3>
         </div>
         <div class="cta-simple d-flex align-items-center p-0 py-5">
-            <div class="text-start ms-4 d-none d-lg-block d-xl-none">
+            <div class="text-start ms-4 d-none d-lg-block d-xl-block">
                 <h3 class="mb-0 fs-3">CURRENTLY SHOPPING FOR:</h3>
             </div>
 

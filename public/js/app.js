@@ -28452,7 +28452,7 @@ var _hoisted_3 = {
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "text-start ms-4 d-none d-lg-block d-xl-none"
+  "class": "text-start ms-4 d-none d-lg-block d-xl-block"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "mb-0 fs-3"
 }, "CURRENTLY SHOPPING FOR:")], -1
