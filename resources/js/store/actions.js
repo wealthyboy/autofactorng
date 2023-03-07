@@ -21,6 +21,7 @@ export const getWalletBalance = ({ commit }) => {
         .get("/wallet-balance")
         .then(response => {
             commit("setWalletBalance", response.data);
+            console.log(response.data)
             return Promise.resolve(response);
         }).catch(() => {
             return Promise.reject(response);
