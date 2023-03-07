@@ -26,7 +26,7 @@ class Information extends Model
 
     public function getCLinkAttribute()
     {
-        return $this->link !== null ? $this->link : '/pages/' . $this->slug;
+        return null !== $this->link  ? $this->link : '/pages/' . $this->slug;
     }
 
     public function comments()
