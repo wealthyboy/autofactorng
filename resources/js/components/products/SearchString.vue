@@ -5,11 +5,11 @@
                 <h3 class="mb-0 fs-3">CURRENTLY SHOPPING FOR:</h3>
             </div>
 
-            <div class="w-100">
+            <div class="w-100 px-3">
                 <button class="w-100 fit-string py-4">{{ searchText }}</button>
             </div>
 
-            <div class="w-25 d-block d-sm-none">
+            <div class="w-25">
                 <div @click.prevent="shopWithoutVehicle('change')" class="mb-2">
                     <a href="#">Change Vehicle</a>
                 </div>

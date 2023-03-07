@@ -28451,13 +28451,13 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_4 = {
-  "class": "w-100"
+  "class": "w-100 px-3"
 };
 var _hoisted_5 = {
   "class": "w-100 fit-string py-4"
 };
 var _hoisted_6 = {
-  "class": "w-25 d-block d-sm-none"
+  "class": "w-25"
 };
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
