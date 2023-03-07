@@ -25317,7 +25317,7 @@ var _hoisted_11 = {
   alt: ""
 };
 var _hoisted_12 = {
-  "class": "d-flex"
+  "class": "d-flex d-block d-sm-none"
 };
 var _hoisted_13 = {
   key: 0,
@@ -28457,7 +28457,7 @@ var _hoisted_5 = {
   "class": "w-100 fit-string py-4"
 };
 var _hoisted_6 = {
-  "class": "w-25"
+  "class": "w-25 d-block d-sm-none"
 };
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {

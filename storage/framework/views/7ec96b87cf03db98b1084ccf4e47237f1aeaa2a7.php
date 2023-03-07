@@ -1,6 +1,6 @@
 <?php $__env->startSection('content'); ?>
 
-<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+<nav style="--bs-breadcrumb-divider: '>';" class="mt-3" aria-label="breadcrumb">
    <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="#">Home</a></li>
       <li class="breadcrumb-item active" aria-current="page">Account</li>

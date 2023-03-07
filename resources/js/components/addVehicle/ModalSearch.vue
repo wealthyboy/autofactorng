@@ -42,7 +42,7 @@
                         </div>
                     </button>
 
-                    <div class="d-flex">
+                    <div class="d-flex d-block d-sm-none">
                         <div v-if="fitString" class="mt-4 pb-4">
                             <a
                                 @click.prevent="shopWithoutVehicle('shop')"

@@ -1,28 +1,22 @@
 <div class=" d-sm-block d-lg-none">
-    <div class="mt-8" id="accordion1">
-        <div class="card card-accordion">
-            <a class="card-header collapsed" href="element-accordions.html#" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
-                Guide
-            </a>
+    @foreach($footer_info as $info)
+    <div class="col-sm-4 col-6 col-lg-4">
+        <div class="widget">
+            <h2 class="widget-title text-white">{{ title_case($info->name) }}</h2>
+            @if($info->children->count())
+            <ul class="links text-white list-unstyled">
+                @foreach($info->children as $info)
+                <li>
+                    <a href="{{ $info->c_link }}">
+                        {{ $info->name }}
+                    </a>
+                </li>
+                @endforeach
+            </ul>
+            @endif
 
-            <div id="collapse1" class="collapse" data-parent="#accordion1" style="">
-
-
-            </div>
-        </div>
-
-        <div class="card card-accordion">
-            <a class="card-header collapsed" href="element-accordions.html#" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                Know Us
-
-            </a>
-
-            <div id="collapse2" class="collapse" data-parent="#accordion1" style="">
-
-            </div>
-        </div>
-
-
-    </div>
+        </div><!-- End .widget -->
+    </div><!-- End .col-sm-6 -->
+    @endforeach
 
 </div>

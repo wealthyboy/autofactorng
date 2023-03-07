@@ -9,7 +9,7 @@
                 <button class="w-100 fit-string py-4">{{ searchText }}</button>
             </div>
 
-            <div class="w-25">
+            <div class="w-25 d-block d-sm-none">
                 <div @click.prevent="shopWithoutVehicle('change')" class="mb-2">
                     <a href="#">Change Vehicle</a>
                 </div>
