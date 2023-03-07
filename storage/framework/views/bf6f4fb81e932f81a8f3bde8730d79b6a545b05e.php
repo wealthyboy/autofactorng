@@ -150,20 +150,19 @@
                <div class="menu-i w-50 me-1">
 
                   <button class="nav-btn  w-100 mb-0 py-4 bg-transparent  border">
-                     <div class="d-flex add-a-vehicle justify-content-evenly">
-                        <div><img src="/images/utils/vehicle-new.svg" alt=""></div>
-                        <div>Add vehicle</div>
-                        <div><img src="/images/utils/header-arrow.svg" alt=""></div>
-                     </div>
+                     <add-vehicle></add-vehicle>
+
                   </button>
                </div>
 
 
                <div class="menu-i w-50 py-4 border">
-                  <a href="/how-to" role="button" class="w-100 mb-0 ">
+                  <a href="" role="button" class="w-100 mb-0 border-0">
                      <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
-                        <div class="align-self-center fw-bold ms-3">How To</div>
-
+                        <span class="material-symbols-outlined">
+                           local_library
+                        </span>
+                        <div class="align-self-center fw-bold  fs-6">How To</div>
                         <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
                      </div>
                   </a>
