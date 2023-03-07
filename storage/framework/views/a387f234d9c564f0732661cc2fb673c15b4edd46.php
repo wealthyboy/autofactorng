@@ -7,19 +7,21 @@
 
             <h2 class="font-weight-bolder">Buy now pay later</h2>
 
+
+
             <div class="card-body">
-               <p>A plan that affords you the breathing space you need to solve your car problems, enjoy up to 12 months payment plan buffer.</p>
 
-               <p>How it works: Shop for your preferred parts, pick a payment plan that works for you, pay 30% upfront and get the delivered parts and pay the rest in installments.</p>
+               <p>A plan that affords you the breathing space you need to meet your car autoparts and accessories needs without breaking the bank.</p>
 
-               <ul>
+               <p>Pay with Zilla and enjoy up to four payment installments!</p>
 
-                  <li>Annual installment-10%</li>
-                  <li>Half-year 6%</li>
-                  <li>Quarter year 3%</li>
-                  <li>Annual installment-10%</li>
+               <h3>How it works:</h3>
 
-               </ul>
+               <p> Sign up on the website.</p>
+               <p> Shop for your preferred parts.</p>
+               <p> On checkout, choose pay with Zila and follow the prompt.</p>
+               <p> After payment confirmation, get the parts delivered and pay in installments.</p>
+
 
                <div class="text-center">
                   <a href="/register" type="button" class="btn  bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign up >></a>

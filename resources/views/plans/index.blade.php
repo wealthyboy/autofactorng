@@ -25,7 +25,7 @@
             <h5 class="mb-1">{{ $key }}</h5>
             <p class="mb-3 text-sm">{{ $plan['title'] }}</p>
             <h3 class="font-weight-bolder mt-3">
-              {{ $plan['price'] }} <small class="text-sm text-secondary font-weight-bold">/ year</small>
+              {{ $plan['price'] }} <small class="text-sm text-secondary font-weight-bold">/year</small>
             </h3>
             <a href="/subscribe?plan={{ str_slug($key, '_') }}" class="btn btn-sm bg-gradient-dark w-100 border-radius-md mt-4 mb-2">Subscribe now</a>
           </div>
