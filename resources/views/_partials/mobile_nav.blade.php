@@ -11,7 +11,7 @@
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
                     @foreach($nav as $key => $n)
-                    <li>
+                    <li class="py-3">
                         <a href="{{ $n['link'] }}" class="list-group-item list-group-item-action d-flex align-items-center">
                             <i class="{{ $n['icon'] }}">{{ $n['iconText'] }}</i>
                             <span class="ms-2">{{ $key }}</span>
