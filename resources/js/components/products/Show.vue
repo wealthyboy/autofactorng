@@ -30,11 +30,11 @@
         <div class="row">
             <div class="price-box col-8">
                 <template v-if="product.discounted_price">
-                    <span class="old-price bold">{{
-                        $filters.formatNumber(product.discounted_price)
+                    <span class="old-price new-price text-danger bold">{{
+                        $filters.formatNumber(product.price)
                     }}</span>
                     <span class="new-price bold">{{
-                        $filters.formatNumber(product.price)
+                        $filters.formatNumber(product.discounted_price)
                     }}</span>
                 </template>
                 <template v-else>
