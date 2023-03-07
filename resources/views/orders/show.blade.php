@@ -58,7 +58,7 @@
                                 <tbody>
                                     @foreach ( $order->ordered_products as $order_product )
                                     <tr>
-                                        <th scope="row"><span class="bold">Status:</span> {{ $order_product->status }}</th>
+                                        <th scope="row"><span class="bold">Status:</span> {{ $order->status }}</th>
                                         <td colspan="3">
                                             <div class="media">
                                                 <div class="img-container">
@@ -66,6 +66,7 @@
                                                 </div>
                                                 <div class="media-body ml-3 ">
                                                     <div class="font-weight-bolder">
+                                                        <p class="font-weight-bolder"><span class="bold">Name: </span> {{ $order_product->product_name }}</span>
                                                         <p class="font-weight-bolder"><span class="bold">Quantity: </span> {{ $order_product->quantity }}</span>
                                                         <p class="font-weight-bolder"><span class="bold">Price: &nbsp;</span> ₦{{ number_format($order_product->price) }}</p>
 
