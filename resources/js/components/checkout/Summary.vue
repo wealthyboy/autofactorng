@@ -13,25 +13,7 @@
                 <a :href="cart.product.link">{{ cart.product.name }}</a>
             </div>
             <div class="product-item-prices d-flex">
-                <div
-                    v-if="cart.product.discounted_price"
-                    class="product--price--amount mr-5"
-                >
-                    <span class="retail--title text-gold"> PRICE</span>
-                    <span class="product--price retail--price ms-3 bold">{{
-                        $filters.formatNumber(cart.price)
-                    }}</span>
-
-                    <span class="product--price text-danger"
-                        >{{
-                            $filters.formatNumber(cart.product.discounted_price)
-                        }}
-
-                        x
-                        {{ cart.quantity }}</span
-                    >
-                </div>
-                <div class="product--price--amount retail ml-5" v-else>
+                <div class="product--price--amount retail ml-5">
                     <span class="retail--title text-gold">PRICE</span>
                     <span class="product--price retail--price ms-3 bold"
                         >{{ $filters.formatNumber(cart.price) }} x
