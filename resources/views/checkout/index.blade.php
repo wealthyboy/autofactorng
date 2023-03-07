@@ -2,8 +2,10 @@
 
 @section('content')
 <div class="container ">
+</div>
 
-    <div class="row">
+<div class="container ">
+    <div class="row mt-3">
         <h2 class="">CHECKOUT</h2>
     </div>
 </div>
