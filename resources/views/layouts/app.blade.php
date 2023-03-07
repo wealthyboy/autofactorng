@@ -33,9 +33,9 @@
          <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
             <div class="container-fluid">
                <div class="header-left col-lg-2 w-auto pl-0">
-                  <button class="mobile-menu-toggler text-primary mr-2" type="button">
+                  <button class="mobile-menu-toggler  mr-2" type="button">
                      <i class="fas fa-bars"></i>
-                     <span class="mt-3">Menu</span>
+                     <span class="mt-3 fs-5">Menu</span>
                   </button>
                   <a href="/" class="logo">
                      <img src="https://autofactor.ng/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
