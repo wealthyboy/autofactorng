@@ -98,6 +98,7 @@ class InformationController extends Table
 	{
 		User::canTakeAction(User::canUpdate);
 		$information = Information::find($id);
+		//dd($information);
 		$pages = Information::get();
 		return view('admin.information.edit', compact('information', 'pages'));
 	}
