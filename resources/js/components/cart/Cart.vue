@@ -10,7 +10,7 @@
             </td>
             <td class="product-col">
                 <h5 class="product-title fs-5">
-                    <a href="/">{{ cart.product.name }}</a>
+                    <a :href="cart.product.link"></a> cart.product.name }}</a>
 
                     <a
                         href="#"

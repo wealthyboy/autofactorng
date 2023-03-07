@@ -31,7 +31,9 @@
                 <div v-for="cart in carts" :key="cart.id" class="product">
                     <div class="product-details">
                         <h4 class="product-title">
-                            <a href="#">{{ cart.product.name }}</a>
+                            <a :href="cart.product.link">{{
+                                cart.product.name
+                            }}</a>
                         </h4>
 
                         <span class="cart-product-info">
