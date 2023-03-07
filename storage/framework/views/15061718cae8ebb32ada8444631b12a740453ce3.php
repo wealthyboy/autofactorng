@@ -1,7 +1,12 @@
 <?php $__env->startSection('content'); ?>
-<section class="header container ">
-    <h2 class="">CHECKOUT</h2>
-</section>
+<div class="container ">
+</div>
+
+<div class="container ">
+    <div class="row mt-3">
+        <h2 class="">CHECKOUT</h2>
+    </div>
+</div>
 
 
 
