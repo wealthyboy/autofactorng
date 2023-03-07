@@ -2,7 +2,11 @@
 
 @section('content')
 <section class="header container ">
-    <h2 class="">CHECKOUT</h2>
+
+    <div class="row">
+        <h2 class="">CHECKOUT</h2>
+
+    </div>
 </section>
 
 
