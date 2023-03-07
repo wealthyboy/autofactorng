@@ -36,7 +36,7 @@
 
             <div class="text-right">
                 <a href="/password/reset" class="color--primary bold"
-                    >Forget your password?</a
+                    >Forgot your password?</a
                 >
             </div>
         </div>

@@ -25473,7 +25473,7 @@ var _hoisted_2 = {
   "class": "form-floating"
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"d-flex justify-content-between align-items-center py-3\"><div class=\"form-check p-0\"><label for=\"Koyo1\" class=\"container\"><span class=\"checkbox-label\">Remember me</span><input name=\"brands[]\" id=\"Koyo1\" type=\"checkbox\" class=\"form-check-input\" value=\"koyo\"><span class=\"checkmark\"></span></label></div><div class=\"text-right\"><a href=\"/password/reset\" class=\"color--primary bold\">Forget your password?</a></div></div>", 1);
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"d-flex justify-content-between align-items-center py-3\"><div class=\"form-check p-0\"><label for=\"Koyo1\" class=\"container\"><span class=\"checkbox-label\">Remember me</span><input name=\"brands[]\" id=\"Koyo1\" type=\"checkbox\" class=\"form-check-input\" value=\"koyo\"><span class=\"checkmark\"></span></label></div><div class=\"text-right\"><a href=\"/password/reset\" class=\"color--primary bold\">Forgot your password?</a></div></div>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_message = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("message");
