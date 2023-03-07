@@ -109,8 +109,8 @@
     }
 
     .product-single-gallery .product-item{
-        width: auto;
-        height: auto;
+        width: auto !important; 
+        height: auto !important;
     }
 }
 
