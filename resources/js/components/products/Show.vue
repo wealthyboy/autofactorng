@@ -31,7 +31,7 @@
             <div class="price-box col-8">
                 <template v-if="product.discounted_price">
                     <span class="old-price bold">{{
-                        $filters.formatNumber(product.formatted_sale_price)
+                        $filters.formatNumber(product.discounted_price)
                     }}</span>
                     <span class="new-price bold">{{
                         $filters.formatNumber(product.price)
