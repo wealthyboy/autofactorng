@@ -5,6 +5,12 @@
 <section class="py-5">
   <div class="container">
     <div class="row">
+      <div class="col-md12">
+        <p>"Whether you're an individual or a business, mitigating risk, enhancing your driving experience, and having confidence in the quality of your replacement parts are crucial. </p>
+        <p> By subscribing to a plan, you'll get funded with purchase credits that you can use to shop on our website, with exclusive benefits and discounts that must be used within one year from the time of purchase. </p>
+        <p>Don't wait too long to take advantage of the subscription plan benefits!</p>
+
+      </div>
       <div class="col-md-8 mx-auto text-center">
         <h3>Pick the best plan for you</h3>
         <p></p>
@@ -29,7 +35,9 @@
             @foreach($plan['text'] as $key => $text)
 
             <div class="d-flex pb-3">
-              <i class="material-icons my-auto text-dark">done</i>
+              <span class="material-symbols-outlined">
+                check
+              </span>
               <span class="text-sm ps-3">{{ $text }}</span>
             </div>
             @endforeach
@@ -43,20 +51,17 @@
 
 
       <div class="mt-5">
-        <p class="text-dark">
-          Autofactor Cover is our subscription program that helps you get more for buying what you need. It gives you the freedom you need to drive without worries.
 
-        </p>
-        <p>
-          We’ll ensure you have an auto-parts cover to the tune of your subscription with an extra 10% of your annual insurance policy from us to enable you to fix your car issues on the go.
-        </p>
-        <p class="text-dark">
-          Other benefits include free towing services, free diagnosis within the validity period, and receive access to exclusive offers just for you. If you need help keeping track of your purchases, our program helps you do that.
-        </p>
+        <h3>
+          HOW IT WORKS
+        </h3>
 
-        <p>
-          These are just a few benefits of joining as subscribers.
-        </p>
+        <p> Choose a Plan: Select your preferred subscription plan and follow the prompts to make your payment.</p>
+        <p> Get Funded: Once your payment is confirmed, the equivalent amount of Autofactor purchase credit will be funded to your account. You can then use this credit to make purchases on our website.</p>
+        <p> Enjoy Your Benefits: All subscription plans are valid for one year from the time of purchase, and any credits or benefits given must be used within this period. During checkout, your available credit will be applied automatically to your purchase.</p>
+        <p> Use It or Lose It: It's important to note that any unused credits or benefits after the expiry of the validity period cannot be rolled over or transferred. So, make sure to take advantage of all your benefits before the end of the validity period.</p>
+
+
       </div>
 
 
