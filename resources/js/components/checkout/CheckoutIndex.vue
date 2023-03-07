@@ -82,7 +82,7 @@
                                 <i class="fa fa-arrow-right"></i
                             ></a>
 
-                            {{ walletBalance }}
+                            {{ walletBalance.wallet_balance }}
                             <a
                                 href="#"
                                 @click.prevent="checkoutWithWallet($event)"

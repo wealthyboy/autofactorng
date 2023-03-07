@@ -26644,7 +26644,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, "btn btn-block btn-dark w-100 mb-2"])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay with auto credits "), _hoisted_16], 2
   /* CLASS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.walletBalance) + " ", 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.walletBalance.wallet_balance) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "#",
