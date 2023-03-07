@@ -269,7 +269,7 @@
 
             <ul class="mobile-menu mt-3">
                @foreach( $global_categories as $category)
-               <li>
+               <li class="py-3">
                   <a class="py-4" href="{{  $category->link ? $category->link : '/products/'.$category->slug }}">{{ $category->name }}</a>
                   @if ($category->isCategoryHaveMultipleChildren())
                   <ul>
