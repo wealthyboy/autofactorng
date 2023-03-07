@@ -137,9 +137,7 @@
          </div>
          <!-- End .header-bottom -->
          <div class="container-fluid  d-block d-sm-none">
-
             <product-search></product-search>
-
          </div>
 
 
