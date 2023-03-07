@@ -15,23 +15,22 @@
             <div class="product-item-prices d-flex">
                 <div
                     v-if="cart.product.discounted_price"
-                    class="price-box col-8"
+                    class="product--price--amount mr-5"
                 >
-                    <template v-if="product.discounted_price">
-                        <span class="old-price new-price text-danger bold">{{
-                            $filters.formatNumber(cart.product.price)
-                        }}</span>
-                        <span class="new-price bold">{{
-                            $filters.formatNumber(cart.product.discounted_price)
-                        }}</span>
-                    </template>
-                    <template v-else>
-                        <span class="new-price bold">{{
-                            $filters.formatNumber(cart.product.price)
-                        }}</span>
-                    </template>
-                </div>
+                    <span class="retail--title text-gold"> PRICE</span>
+                    <span class="product--price retail--price ms-3 bold">{{
+                        $filters.formatNumber(cart.price)
+                    }}</span>
 
+                    <span class="product--price text-danger"
+                        >{{
+                            $filters.formatNumber(cart.product.discounted_price)
+                        }}
+
+                        x
+                        {{ cart.quantity }}</span
+                    >
+                </div>
                 <div class="product--price--amount retail ml-5" v-else>
                     <span class="retail--title text-gold">PRICE</span>
                     <span class="product--price retail--price ms-3 bold"
