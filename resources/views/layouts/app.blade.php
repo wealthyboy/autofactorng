@@ -275,7 +275,7 @@
                   <ul>
                      @foreach ( $category->children as $children)
 
-                     <li>
+                     <li class="py-3">
                         <a href="/products/{{ $children->slug }}" class="category-heading">{{ $children->name }} </a>
                         @if ($children->children->count())
                         <ul>
