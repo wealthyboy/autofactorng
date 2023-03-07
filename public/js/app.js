@@ -26644,15 +26644,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, "btn btn-block btn-dark w-100 mb-2"])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay with auto credits "), _hoisted_16], 2
   /* CLASS */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.walletBalance.wallet_balance) + " ", 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  ), _ctx.walletBalance ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("a", {
+    key: 0,
     href: "#",
     onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.checkoutWithWallet($event);
     }, ["prevent"])),
-    "class": "btn btn-block btn-dark w-100 mb-2"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay with wallet "), _hoisted_17]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+      'pe-none': _ctx.prices.total > parseInt(_ctx.walletBalance.wallet_balance),
+      disabled: _ctx.prices.total > parseInt(_ctx.walletBalance.wallet_balance)
+    }, "btn btn-block btn-dark w-100 mb-2"])
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay with wallet "), _hoisted_17], 2
+  /* CLASS */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "#",
     onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.checkoutWithLagos($event);

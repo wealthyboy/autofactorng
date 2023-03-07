@@ -82,10 +82,18 @@
                                 <i class="fa fa-arrow-right"></i
                             ></a>
 
-                            {{ walletBalance.wallet_balance }}
                             <a
+                                v-if="walletBalance"
                                 href="#"
                                 @click.prevent="checkoutWithWallet($event)"
+                                :class="{
+                                    'pe-none':
+                                        prices.total >
+                                        parseInt(walletBalance.wallet_balance),
+                                    disabled:
+                                        prices.total >
+                                        parseInt(walletBalance.wallet_balance),
+                                }"
                                 class="btn btn-block btn-dark w-100 mb-2"
                             >
                                 Pay with wallet
