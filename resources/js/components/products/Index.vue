@@ -17,7 +17,7 @@
             />
 
             <div
-                v-if="!productIsLoading && !showFitString"
+                v-if="!productIsLoading && !showFitString && !searchMode"
                 class="cta-border cta-bg light mb-4"
             >
                 <div class="title w-100 mt-2 d-sm-block d-lg-none text-center">
@@ -250,6 +250,7 @@ export default {
             showClearFilter: false,
             loading: "loading",
             url: location.href,
+            searchMode: false,
         };
     },
     computed: {
@@ -268,6 +269,7 @@ export default {
         let uri = new URL(this.url),
             url;
         if (uri.search) {
+            this.searchMode = true;
             url = "&get=" + d.getTime();
         } else {
             url = "?get=" + d.getTime();

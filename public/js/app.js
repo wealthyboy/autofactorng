@@ -23101,7 +23101,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       clearFilters: false,
       showClearFilter: false,
       loading: "loading",
-      url: location.href
+      url: location.href,
+      searchMode: false
     };
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_10__.mapGetters)({
@@ -23118,6 +23119,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         url;
 
     if (uri.search) {
+      this.searchMode = true;
       url = "&get=" + d.getTime();
     } else {
       url = "?get=" + d.getTime();
@@ -27511,7 +27513,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": ""
   }, null, 8
   /* PROPS */
-  , ["onRemove:vehicle", "searchText"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.productIsLoading && !_ctx.showFitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [_hoisted_8, $props.search_filters.search_type.search ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [_hoisted_10, $props.search_filters.search_type.search == 'make_model_year' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search, {
+  , ["onRemove:vehicle", "searchText"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.productIsLoading && !_ctx.showFitString && !$data.searchMode ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [_hoisted_8, $props.search_filters.search_type.search ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [_hoisted_10, $props.search_filters.search_type.search == 'make_model_year' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search, {
     key: 0,
     "onDo:filter": $options.filter,
     filter: true
