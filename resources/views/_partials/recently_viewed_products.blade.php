@@ -7,25 +7,7 @@
 </h4>
 <div class="underline mb-5 ms-1"></div>
 
-<div class="owl-carousel owl-theme show-nav-hover nav-outer nav-image-center " data-owl-options="{
-					'dots': false,
-					'margin': 10,
-					'loop': false,
-					'nav': true,
-					'autoplay': true,
-
-					'responsive': {
-						'480': {
-							'items': 1
-						},
-						'768': {
-							'items': 2
-						},
-						'992': {
-							'items': 8
-						}
-					}
-				}">
+<div class=" products-slider owl-carousel owl-theme show-nav-hover nav-outer nav-image-center ">
 
    @foreach($products as $product)
    <div class="product-default  product-default-sm d-flex flex-column justify-content-center align-items-center px-2">
