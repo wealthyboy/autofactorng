@@ -120,6 +120,7 @@ class ProductsController extends Controller
             return (new ProductsCollection($products))
                 ->additional([
                     'string' => $cat,
+                    'showSearch' => false
                 ]);
         }
 
@@ -293,7 +294,6 @@ class ProductsController extends Controller
                 'show' => $request->filled('search') &&  $request->search == false  || null !== $type ? false : true,
                 'productFitString' => $productFitString,
                 'p' => $p,
-                'showSearch' => false
 
             ]
         );
