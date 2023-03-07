@@ -121,7 +121,7 @@
                                 @click.prevent="makePayment"
                                 class="btn btn-block btn-dark w-100"
                             >
-                                Pay Now
+                                Pay Now {{ prices.total }}
                                 <i class="fa fa-arrow-right"></i
                             ></a>
                         </div>
