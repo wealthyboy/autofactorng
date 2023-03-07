@@ -19,7 +19,7 @@
                 >
                     <span class="retail--title text-gold">SALE PRICE</span>
                     <span class="product--price text-danger">{{
-                        $filters.formatNumber(cart.product.formatted_sale_price)
+                        $filters.formatNumber(cart.product.discounted_price)
                     }}</span>
                     <span class="retail--title"></span>
                 </div>
