@@ -137,9 +137,7 @@
          </div>
          <!-- End .header-bottom -->
          <div class="container-fluid  d-block d-sm-none">
-
             <product-search></product-search>
-
          </div>
 
 
@@ -151,7 +149,7 @@
             <div class="d-flex w-100">
                <div class="menu-i w-50 me-1">
 
-                  <button class="nav-btn  w-100 mb-0">
+                  <button class="nav-btn  w-100 mb-0 py-4 bg-transparent  border">
                      <div class="d-flex add-a-vehicle justify-content-evenly">
                         <div><img src="/images/utils/vehicle-new.svg" alt=""></div>
                         <div>Add vehicle</div>
@@ -161,7 +159,7 @@
                </div>
 
 
-               <div class="menu-i w-50">
+               <div class="menu-i w-50 py-4 border">
                   <a href="/how-to" role="button" class="w-100 mb-0 ">
                      <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
                         <div class="align-self-center fw-bold ms-3">How To</div>
