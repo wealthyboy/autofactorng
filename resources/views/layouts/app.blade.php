@@ -136,8 +136,11 @@
             <!-- End .container -->
          </div>
          <!-- End .header-bottom -->
-         <div class="container-fluid  d-sm-block d-lg-none">
-            <product-search></product-search>
+         <div class="container-fluid  ">
+            <div class="d-sm-block d-lg-none">
+               <product-search></product-search>
+
+            </div>
          </div>
 
 

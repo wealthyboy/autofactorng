@@ -22,10 +22,10 @@ class InformationController extends Table
 	}
 
 
-	public function __construct()
-	{
-		// $this->middleware('admin', ['except' => ['show']]); 
-	}
+	// public function __construct()
+	// {
+	// 	// $this->middleware('admin', ['except' => ['show']]); 
+	// }
 
 	public function  index(Request $request)
 	{

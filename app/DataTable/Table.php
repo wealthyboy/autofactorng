@@ -21,6 +21,9 @@ abstract class Table extends Controller
 
     public $deleted_items;
 
+    public $builder;
+
+
     public $deleted_specific = 'products';
 
     public $useJson;
