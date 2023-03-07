@@ -30566,6 +30566,21 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
             }
           }
         },
+        ".related-products-slider": {
+          loop: !1,
+          margin: 1,
+          autoplay: !1,
+          dots: !0,
+          items: 2,
+          responsive: {
+            576: {
+              items: 3
+            },
+            992: {
+              items: 4
+            }
+          }
+        },
         ".categories-slider": {
           loop: !1,
           margin: 20,

@@ -7,7 +7,7 @@
 </h4>
 <div class="underline mb-5 ms-1"></div>
 
-<div class=" products-slider owl-carousel owl-theme show-nav-hover nav-outer nav-image-center ">
+<div class="related-products-slider owl-carousel owl-theme show-nav-hover nav-outer nav-image-center ">
 
    @foreach($products as $product)
    <div class="product-default  product-default-sm d-flex flex-column justify-content-center align-items-center px-2">

@@ -1,7 +1,7 @@
 @extends('layouts.checkout')
 
 @section('content')
-<div class="container ">
+<div class="container b">
 </div>
 
 <div class="container ">
