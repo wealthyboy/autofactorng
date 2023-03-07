@@ -80,6 +80,7 @@ class ProductsController extends Controller
         $this->clearMMYCookies($request);
 
         $product = Product::where('name', 'like', '%' . $request->q . '%')->first();
+        dd($product);
 
         $query = Product::where('name', 'like', '%' . $request->q . '%');
 
