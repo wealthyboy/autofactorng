@@ -292,7 +292,9 @@ class ProductsController extends Controller
                 'string' => $catString,
                 'show' => $request->filled('search') &&  $request->search == false  || null !== $type ? false : true,
                 'productFitString' => $productFitString,
-                'p' => $p
+                'p' => $p,
+                'showSearch' => false
+
             ]
         );
 
