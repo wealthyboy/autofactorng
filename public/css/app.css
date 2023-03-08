@@ -306,6 +306,8 @@
     .mb-sm-10 {
         margin-bottom: 10rem!important
     }
+
+    
 }
 
 @media (max-width:768px) {
@@ -11384,11 +11386,6 @@ html {
     -webkit-text-size-adjust: 100%
 }
 
-html, body{
-    height:100% !important; /* ✔️ Height on the parent will fix this issue. */
- }
- 
-
 body {
     color: #777;
     background: #fff;
@@ -12809,6 +12806,10 @@ header .separator {
     }
     .logo {
         max-width: 100px
+    }
+
+    .header-middle{ 
+       padding: .7rem 0 !important;
     }
 }
 
@@ -14291,7 +14292,7 @@ footer .contact-info-label {
 
 .header-middle {
     display: flex;
-    padding: 0.7rem 0;
+    padding: 2.7rem 0;
     border-top: 1px solid #e7e7e7
 }
 
