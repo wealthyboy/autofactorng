@@ -21,7 +21,6 @@
         </div>
         <!-- End .ratings-container -->
 
-        <p>SKU #{{ product.sku }}</p>
         <p v-if="product.showFitString">
             <check-vehicle :fitText="productFitString" />
         </p>
