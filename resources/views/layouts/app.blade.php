@@ -332,12 +332,12 @@
             <ul class="mobile-menu mt-3">
                @foreach( $global_categories as $category)
                <li>
-                  <a class="py-4" href="{{  $category->link ? $category->link : '/products/'.$category->slug }}">{{ $category->name }}</a>
+                  <a class="py-4" href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}">{{ $category->name }}</a>
                   @if ($category->isCategoryHaveMultipleChildren())
                   <ul>
                      @foreach ( $category->children as $children)
 
-                     <li>
+                     <li class="py-4">
                         <a href="/products/{{ $children->slug }}" class="category-heading">{{ $children->name }} </a>
                         @if ($children->children->count())
                         <ul>
