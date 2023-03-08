@@ -313,20 +313,7 @@
          </div>
          <nav class="mobile-nav">
             <div class="d-flex  border-bottom   px-4  justify-content-between">
-               <?php if(auth()->guard()->check()): ?>
-               <a href="/account" class="header-icon  d-flex" title="account">
-                  <img src="/images/utils/signin.svg" alt="">
-                  <span class="text-sm ml-2">Account</span>
-               </a>
-               <?php endif; ?>
-               <?php if(auth()->guard()->guest()): ?>
 
-               <a href="/account" class="header-icon  d-flex" title="account">
-                  <img src="/images/utils/signin.svg" alt="">
-                  <span class="text-sm">Signin</span>
-               </a>
-               <?php endif; ?>
-               <div class="menu">Wallet</div>
             </div>
 
             <ul class="mobile-menu mt-3">
