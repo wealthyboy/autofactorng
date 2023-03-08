@@ -6,7 +6,7 @@
             @if($info->children->count())
             <ul class="links text-white list-unstyled">
                 @foreach($info->children as $info)
-                <li>
+                <li class="py-3">
                     <a href="{{ $info->c_link }}">
                         {{ $info->name }}
                     </a>
