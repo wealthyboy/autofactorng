@@ -394,11 +394,11 @@
 
    <div class="watsapp me-3">
       <a class="chat-on-watsapp d-flex justify-content-between align-items-center" target="_blank" href="https://wa.me/+23409081155505">
-         <span class="d-flex flex-column">
-            <span>Need Help?</span>
-            <span>Chat with us</span>
+         <span class="d-flex flex-column me-2">
+            <span class="fs-6">Need Help?</span>
+            <span class="fs-5">Chat with us</span>
          </span>
-         <span>
+         <span class="me-1">
             <img src="/images/utils/afng-whatsapp.png" alt="" width="35" srcset="">
          </span>
       </a>

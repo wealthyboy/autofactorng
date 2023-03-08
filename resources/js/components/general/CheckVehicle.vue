@@ -5,6 +5,7 @@
             fits:
                 fitText != checkText &&
                 fitText != 'This product does not fit your vehicle',
+            itDoesNotfit: fitText == notFit,
         }"
         class="check-vehicle d-flex"
         @click="show"
@@ -13,7 +14,9 @@
             <img src="/images/utils/icon-vehicle-selected-d.svg" alt=""
         /></span>
 
-        <span class="material-symbols-outlined"> warning </span>
+        <span v-if="!itNotFits" class="material-symbols-outlined">
+            warning
+        </span>
         <div>{{ fitText }}</div>
     </button>
 
@@ -55,6 +58,7 @@ export default {
             showModal,
             show,
             checkText,
+            notFit,
         };
     },
 };
@@ -65,5 +69,10 @@ export default {
     border-color: #1f7400;
     color: #157400;
     background-color: #f3f8f2;
+}
+
+.itDoesNotfit {
+    border-color: red !important;
+    color: red !important;
 }
 </style>
