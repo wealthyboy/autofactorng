@@ -14,7 +14,7 @@
             <img src="/images/utils/icon-vehicle-selected-d.svg" alt=""
         /></span>
 
-        <span v-if="!itNotFits" class="material-symbols-outlined">
+        <span v-if="!itNotFits" class="material-symbols-outlined fs-4 me-2">
             warning
         </span>
         <div>{{ fitText }}</div>
