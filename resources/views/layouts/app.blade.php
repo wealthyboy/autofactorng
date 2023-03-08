@@ -29,9 +29,10 @@
    <div id="app" class="page-wrapper">
 
 
+
       <header class="header ">
          <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
-            <div class="container-fluid ">
+            <div class="container-fluid d-none d-lg-block d-xl-block">
                <div class="header-left col-lg-2 w-auto pl-0">
                   <button class="mobile-menu-toggler  mr-2" type="button">
                      <i class="fas fa-bars"></i>
