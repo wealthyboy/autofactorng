@@ -406,7 +406,7 @@
    <!-- End .newsletter-popup -->
 
    <div class="watsapp ">
-      <a class="chat-on-watsapp d-flex justify-content-between align-items-center" target="_blank" href="https://wa.me/+2">
+      <a class="chat-on-watsapp d-flex justify-content-between align-items-center" target="_blank" href="https://wa.me/+23409081155505">
 
          <span>
             <img src="/images/utils/afng-whatsapp.png" alt="" width="35" srcset="">
