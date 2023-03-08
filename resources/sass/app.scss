@@ -397,13 +397,11 @@ label.container {
 }
 
 .chat-on-watsapp {
-    width: 200px;
     height: 50px;
-    background-color: #000;
+    background-color: none;
     position: fixed;
     bottom: 50px;
     right: 0;
-    color: white !important;
     font-weight: bold;
     font-size: 1.35rem;
     text-align: center;
