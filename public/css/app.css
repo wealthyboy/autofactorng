@@ -12802,10 +12802,13 @@ header .separator {
 
 @media (max-width:767px) {
     .header .separator {
-        display: none
+        display: none;
     }
     .logo {
         max-width: 100px
+    }
+    a.d-flex.flex-column.align-items-center.cart-toggle{
+        margin-top: 5px;
     }
 
     .header-middle{ 
