@@ -1,5 +1,7 @@
 <template>
-    <page-loader :loading="loading" />
+    <div class="full-bg">
+        <page-loader :loading="loading" />
+    </div>
 
     <div v-if="!loading && carts.length" class="row">
         <div class="col-lg-8">

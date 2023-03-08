@@ -1,5 +1,5 @@
 <?php $__env->startSection('content'); ?>
-<div class="container ">
+<div class="container b">
 </div>
 
 <div class="container ">

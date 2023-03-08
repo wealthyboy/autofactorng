@@ -4,7 +4,9 @@
             :message="'Your Order has been placed. Check your email for further details'"
         />
     </template>
-    <page-loader :loading="loading" />
+    <div v-if="loading" class="full-bg">
+        <page-loader :loading="loading" />
+    </div>
 
     <div v-if="!loading && !paymentIsComplete" class="container">
         <div class="row align-items-start">
@@ -29,18 +31,20 @@
 
                         <div class="cart-discount p-0 mt-3 col-sm-12">
                             <h4>Apply Discount Code/Redeem Gift Card</h4>
-                            <div class="input-group">
-                                <input
-                                    type="text"
-                                    v-model="coupon"
-                                    class="form-control b"
-                                    placeholder="Enter  code"
-                                    required=""
-                                />
-                                <div class="input-group-append">
+                            <div class="row g-0">
+                                <div class="col-8">
+                                    <input
+                                        type="text"
+                                        v-model="coupon"
+                                        class="form-control b"
+                                        placeholder="Enter  code"
+                                        required=""
+                                    />
+                                </div>
+                                <div class="col-4">
                                     <button
                                         @click.prevent="applyCoupon"
-                                        class="btn btn-sm btn-primary"
+                                        class="btn btn-sm btn-primary w-100 rounded-0 coupon-button"
                                         type="submit"
                                     >
                                         <span
@@ -53,6 +57,8 @@
                                     </button>
                                 </div>
                             </div>
+                            {{ addresses }}
+
                             <!-- End .input-group -->
                             <div v-if="coupon_error" class="text- text-danger">
                                 {{ coupon_error }}
@@ -102,6 +108,11 @@
 
                             <a
                                 href="#"
+                                :class="{
+                                    'pe-none': !prices.isLagos,
+
+                                    disabled: !prices.isLagos,
+                                }"
                                 @click.prevent="checkoutWithLagos($event)"
                                 class="btn btn-block btn-dark w-100 mb-2"
                             >
@@ -212,6 +223,8 @@ export default {
             prices: "prices",
             walletBalance: "walletBalance",
         }),
+
+        activeAddress() {},
     },
 
     created() {

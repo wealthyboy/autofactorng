@@ -407,6 +407,14 @@ label.container {
     padding-top: 1em;
 }
 
+.full-bg {
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    z-index: 0;
+}
+
 select#floatingSelect{
     height: 4.65rem !important;
 }

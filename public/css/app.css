@@ -11384,6 +11384,11 @@ html {
     -webkit-text-size-adjust: 100%
 }
 
+html, body{
+    height:100% !important; /* ✔️ Height on the parent will fix this issue. */
+ }
+ 
+
 body {
     color: #777;
     background: #fff;
@@ -42296,6 +42301,14 @@ label.container {
   text-align: center;
   z-index: 1000;
   padding-top: 1em;
+}
+
+.full-bg {
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  z-index: 0;
 }
 
 select#floatingSelect {

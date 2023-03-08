@@ -55,11 +55,10 @@ class AddressController extends Controller
         $sub_total = Cart::sum_items_in_cart();
         $carts = Cart::all_items_in_cart();
         $ship_price = $default_address ? optional(optional($default_address->address_state)->shipping)->price : null;
-
         $large_item_price = [];
+        $is_lagos = null !== $default_address && optional($default_address)->state == 'Lagos' ? 1 : 0;
+        $prices['isLagos'] = $is_lagos;
 
-
-        $is_lagos = null !== $default_address && optional($default_address->address_state)->name  == 'Lagos' ? 1 : 0;
 
         foreach ($carts as $key => $cart) {
             if ($cart->product->condition_is_present) {

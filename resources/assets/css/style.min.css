@@ -10755,6 +10755,11 @@ html {
     -webkit-text-size-adjust: 100%
 }
 
+html, body{
+    height:100% !important; /* ✔️ Height on the parent will fix this issue. */
+ }
+ 
+
 body {
     color: #777;
     background: #fff;
