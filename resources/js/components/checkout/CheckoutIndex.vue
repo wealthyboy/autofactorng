@@ -44,7 +44,7 @@
                                 <div class="col-4">
                                     <button
                                         @click.prevent="applyCoupon"
-                                        class="btn btn-sm btn-primary w-100 rounded-0 coupon-button"
+                                        class="btn btn-sm btn-primary w-100 rounded-0 coupon-button btn-dark bold"
                                         type="submit"
                                     >
                                         <span
@@ -57,7 +57,6 @@
                                     </button>
                                 </div>
                             </div>
-                            {{ addresses }}
 
                             <!-- End .input-group -->
                             <div v-if="coupon_error" class="text- text-danger">

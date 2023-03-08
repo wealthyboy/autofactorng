@@ -42260,6 +42260,10 @@ label.container {
   border-bottom: 2px solid #ddd;
 }
 
+.coupon-button {
+  height: 46px;
+}
+
 .form-floating > .form-control:not(:-moz-placeholder-shown), .form-floating > .form-control-plaintext:not(:-moz-placeholder-shown) {
   padding-top: 2rem;
   padding-bottom: 0.625rem;
