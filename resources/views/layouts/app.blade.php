@@ -313,20 +313,7 @@
          </div>
          <nav class="mobile-nav">
             <div class="d-flex  border-bottom   px-4  justify-content-between">
-               @auth
-               <a href="/account" class="header-icon  d-flex" title="account">
-                  <img src="/images/utils/signin.svg" alt="">
-                  <span class="text-sm ml-2">Account</span>
-               </a>
-               @endauth
-               @guest
 
-               <a href="/account" class="header-icon  d-flex" title="account">
-                  <img src="/images/utils/signin.svg" alt="">
-                  <span class="text-sm">Signin</span>
-               </a>
-               @endguest
-               <div class="menu">Wallet</div>
             </div>
 
             <ul class="mobile-menu mt-3">
