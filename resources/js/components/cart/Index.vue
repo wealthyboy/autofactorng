@@ -1,5 +1,5 @@
 <template>
-    <div class="full-bg">
+    <div v-if="loading" class="full-bg">
         <page-loader :loading="loading" />
     </div>
 
