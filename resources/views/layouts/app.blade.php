@@ -269,31 +269,30 @@
 
             <ul class="mobile-menu mt-3">
                @foreach( $global_categories as $category)
-               <li class="py-3">
-                  <a class="py-4" href="{{  $category->link ? $category->link : '/products/'.$category->slug }}">{{ $category->name }}</a>
-                  @if ($category->isCategoryHaveMultipleChildren())
-                  <ul>
-                     @foreach ( $category->children as $children)
+               <a class="py-4" href="{{  $category->link ? $category->link : '/products/'.$category->slug }}">{{ $category->name }}</a>
+               @if ($category->isCategoryHaveMultipleChildren())
+               <ul>
+                  @foreach ( $category->children as $children)
 
-                     <li class="py-3">
-                        <a href="/products/{{ $children->slug }}" class="category-heading">{{ $children->name }} </a>
-                        @if ($children->children->count())
-                        <ul>
-                           @foreach ( $children->children as $children)
-                           <li><a href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
-                           @endforeach
-                        </ul>
-                        @endif
-                     </li>
-                     @endforeach
-                  </ul>
-                  @elseif ( !$category->isCategoryHaveMultipleChildren() && $category->children->count() )
-                  <ul>
-                     @foreach ( $category->children as $children)
-                     <li><a class="category-heading" href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
-                     @endforeach
-                  </ul>
-                  @endif
+                  <li class="py-3">
+                     <a href="/products/{{ $children->slug }}" class="category-heading">{{ $children->name }} </a>
+                     @if ($children->children->count())
+                     <ul>
+                        @foreach ( $children->children as $children)
+                        <li><a href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
+                        @endforeach
+                     </ul>
+                     @endif
+                  </li>
+                  @endforeach
+               </ul>
+               @elseif ( !$category->isCategoryHaveMultipleChildren() && $category->children->count() )
+               <ul>
+                  @foreach ( $category->children as $children)
+                  <li><a class="category-heading" href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
+                  @endforeach
+               </ul>
+               @endif
                </li>
 
                @endforeach

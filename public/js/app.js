@@ -30570,14 +30570,14 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           loop: !1,
           margin: 1,
           autoplay: !1,
-          dots: !0,
+          dots: !1,
           items: 2,
           responsive: {
             576: {
               items: 3
             },
             992: {
-              items: 4
+              items: 8
             }
           }
         },

@@ -269,31 +269,30 @@
 
             <ul class="mobile-menu mt-3">
                <?php $__currentLoopData = $global_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-               <li>
-                  <a class="py-4" href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>"><?php echo e($category->name); ?></a>
-                  <?php if($category->isCategoryHaveMultipleChildren()): ?>
-                  <ul>
-                     <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+               <a class="py-4" href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>"><?php echo e($category->name); ?></a>
+               <?php if($category->isCategoryHaveMultipleChildren()): ?>
+               <ul>
+                  <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                     <li>
-                        <a href="/products/<?php echo e($children->slug); ?>" class="category-heading"><?php echo e($children->name); ?> </a>
-                        <?php if($children->children->count()): ?>
-                        <ul>
-                           <?php $__currentLoopData = $children->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                           <li><a href="/products/<?php echo e($children->slug); ?>"><?php echo e($children->name); ?></a></li>
-                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </ul>
-                        <?php endif; ?>
-                     </li>
-                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                  </ul>
-                  <?php elseif( !$category->isCategoryHaveMultipleChildren() && $category->children->count() ): ?>
-                  <ul>
-                     <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                     <li><a class="category-heading" href="/products/<?php echo e($children->slug); ?>"><?php echo e($children->name); ?></a></li>
-                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                  </ul>
-                  <?php endif; ?>
+                  <li class="py-3">
+                     <a href="/products/<?php echo e($children->slug); ?>" class="category-heading"><?php echo e($children->name); ?> </a>
+                     <?php if($children->children->count()): ?>
+                     <ul>
+                        <?php $__currentLoopData = $children->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                        <li><a href="/products/<?php echo e($children->slug); ?>"><?php echo e($children->name); ?></a></li>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                     </ul>
+                     <?php endif; ?>
+                  </li>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+               </ul>
+               <?php elseif( !$category->isCategoryHaveMultipleChildren() && $category->children->count() ): ?>
+               <ul>
+                  <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                  <li><a class="category-heading" href="/products/<?php echo e($children->slug); ?>"><?php echo e($children->name); ?></a></li>
+                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+               </ul>
+               <?php endif; ?>
                </li>
 
                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
