@@ -319,7 +319,7 @@
             <ul class="mobile-menu mt-3">
                <?php $__currentLoopData = $global_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                <li>
-                  <a class="py-4" href="<?php echo e($category->children->count() ? '#' : '/products/'.$category->slug); ?>"><?php echo e($category->name); ?></a>
+                  <a class="" href="<?php echo e($category->children->count() ? '#' : '/products/'.$category->slug); ?>"><?php echo e($category->name); ?></a>
                   <?php if($category->isCategoryHaveMultipleChildren()): ?>
                   <ul>
                      <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -392,9 +392,12 @@
    </div>
    <!-- End .newsletter-popup -->
 
-   <div class="watsapp ">
+   <div class="watsapp me-3">
       <a class="chat-on-watsapp d-flex justify-content-between align-items-center" target="_blank" href="https://wa.me/+23409081155505">
-
+         <span class="d-flex flex-column">
+            <span>Need Help?</span>
+            <span>Chat with us</span>
+         </span>
          <span>
             <img src="/images/utils/afng-whatsapp.png" alt="" width="35" srcset="">
          </span>
