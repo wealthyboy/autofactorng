@@ -74,5 +74,6 @@ export default {
 .itDoesNotfit {
     border-color: red !important;
     color: red !important;
+    background-color: #fbf2f2 !important;
 }
 </style>
