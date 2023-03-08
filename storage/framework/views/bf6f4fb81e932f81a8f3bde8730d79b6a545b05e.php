@@ -31,19 +31,16 @@
 
       <header class="header ">
          <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
-            <div class="container-fluid">
-               <div class="header-left col-lg-2 w-auto pl-0">
-                  <button class="mobile-menu-toggler  mr-2" type="button">
+            <div class="container-fluid w-100">
+               <div class="header-lefts   d-flex justify-content-between align-items-center w-100">
+                  <button class="mobile-menu-toggler  mr-2 d-flex flex-column align-items-center display-3" type="button">
                      <i class="fas fa-bars"></i>
-                     <span class="mt-3 fs-5">Menu</span>
+                     <span class=" fs-5">Menu</span>
                   </button>
                   <a href="/" class="logo">
                      <img src="https://autofactor.ng/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
                   </a>
-               </div>
-               <!-- End .header-left -->
 
-               <div class="header-right w-lg-max">
                   <div class="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0"></div>
                   <!-- End .header-search -->
 
@@ -52,9 +49,9 @@
                      <h6><span>Call to order</span><a href="tel:#" class="text-dark font1"><?php echo e(optional($system_settings)->store_phone); ?></a></h6>
                   </div>
                   <?php if(auth()->guard()->check()): ?>
-                  <div class="position-relative me-5">
+                  <div class="position-relative ms-5">
                      <a href="/account" class="d-flex flex-column align-items-center" title="account">
-                        <span class="material-symbols-outlined display-5">
+                        <span class="material-symbols-outlined display-2">
                            person
                         </span>
                         <span class="header-right-icons">
@@ -66,9 +63,9 @@
                   <?php endif; ?>
 
                   <?php if(auth()->guard()->guest()): ?>
-                  <div class="position-relative me-5 ">
+                  <div class="position-relative ms-5 ">
                      <a href="/login" class="d-flex flex-column align-items-center" title="account">
-                        <span class="material-symbols-outlined display-5">
+                        <span class="material-symbols-outlined display-2">
                            person
                         </span>
                         <span class="header-right-icons">
@@ -84,7 +81,12 @@
                      <cart-side-bar></cart-side-bar>
                   </div>
                   <!-- End .dropdown -->
+
+
                </div>
+               <!-- End .header-left -->
+
+
                <!-- End .header-right -->
             </div>
             <!-- End .container -->
@@ -157,12 +159,10 @@
 
 
                <div class="menu-i w-50 py-4 border">
-                  <a href="" role="button" class="w-100 mb-0 border-0">
+                  <a href="/how-to" role="button" class="w-100 mb-0 ">
                      <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
-                        <span class="material-symbols-outlined">
-                           local_library
-                        </span>
-                        <div class="align-self-center fw-bold  fs-6">How To</div>
+                        <div class="align-self-center fw-bold ms-3">How To</div>
+
                         <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
                      </div>
                   </a>
@@ -269,30 +269,31 @@
 
             <ul class="mobile-menu mt-3">
                <?php $__currentLoopData = $global_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-               <a class="py-4" href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>"><?php echo e($category->name); ?></a>
-               <?php if($category->isCategoryHaveMultipleChildren()): ?>
-               <ul>
-                  <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+               <li>
+                  <a class="py-4" href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>"><?php echo e($category->name); ?></a>
+                  <?php if($category->isCategoryHaveMultipleChildren()): ?>
+                  <ul>
+                     <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-                  <li class="py-3">
-                     <a href="/products/<?php echo e($children->slug); ?>" class="category-heading"><?php echo e($children->name); ?> </a>
-                     <?php if($children->children->count()): ?>
-                     <ul>
-                        <?php $__currentLoopData = $children->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <li><a href="/products/<?php echo e($children->slug); ?>"><?php echo e($children->name); ?></a></li>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                     </ul>
-                     <?php endif; ?>
-                  </li>
-                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-               </ul>
-               <?php elseif( !$category->isCategoryHaveMultipleChildren() && $category->children->count() ): ?>
-               <ul>
-                  <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                  <li><a class="category-heading" href="/products/<?php echo e($children->slug); ?>"><?php echo e($children->name); ?></a></li>
-                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-               </ul>
-               <?php endif; ?>
+                     <li>
+                        <a href="/products/<?php echo e($children->slug); ?>" class="category-heading"><?php echo e($children->name); ?> </a>
+                        <?php if($children->children->count()): ?>
+                        <ul>
+                           <?php $__currentLoopData = $children->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                           <li><a href="/products/<?php echo e($children->slug); ?>"><?php echo e($children->name); ?></a></li>
+                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        </ul>
+                        <?php endif; ?>
+                     </li>
+                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  </ul>
+                  <?php elseif( !$category->isCategoryHaveMultipleChildren() && $category->children->count() ): ?>
+                  <ul>
+                     <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $children): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                     <li><a class="category-heading" href="/products/<?php echo e($children->slug); ?>"><?php echo e($children->name); ?></a></li>
+                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                  </ul>
+                  <?php endif; ?>
                </li>
 
                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -26146,7 +26146,7 @@ var _hoisted_2 = {
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "material-symbols-outlined display-5"
+  "class": "material-symbols-outlined display-2"
 }, " shopping_cart ", -1
 /* HOISTED */
 );
@@ -28975,7 +28975,7 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   method: "get",
   action: "/search",
-  "class": "input-group mt-3 position-relative w-100 rounded-start mb-0"
+  "class": "input-group position-relative w-100 rounded-start mb-0"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {

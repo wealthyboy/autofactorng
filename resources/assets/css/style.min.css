@@ -12185,7 +12185,7 @@ header .separator {
         line-height: 1.5
     }
     .logo {
-        max-width: 90px
+        max-width: 162px !important;
     }
     .header-icon:not(:last-child) {
         margin-right: 1.2rem
@@ -13656,7 +13656,7 @@ footer .contact-info-label {
 
 .header-middle {
     display: flex;
-    padding: 2.7rem 0;
+    padding: 0.7rem 0;
     border-top: 1px solid #e7e7e7
 }
 

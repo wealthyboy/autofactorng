@@ -10,7 +10,7 @@
             data-display="static"
             class="d-flex flex-column align-items-center cart-toggle"
         >
-            <span class="material-symbols-outlined display-5">
+            <span class="material-symbols-outlined display-2">
                 shopping_cart
             </span>
             <span class="cart-count badge-circle">{{ cartItemCount }}</span>
