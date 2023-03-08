@@ -31,7 +31,65 @@
 
       <header class="header ">
          <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
-            <div class="container-fluid w-100">
+            <div class="container-fluid ">
+               <div class="header-left col-lg-2 w-auto pl-0">
+                  <button class="mobile-menu-toggler  mr-2" type="button">
+                     <i class="fas fa-bars"></i>
+                     <span class="mt-3 fs-5">Menu</span>
+                  </button>
+                  <a href="/" class="logo">
+                     <img src="https://autofactor.ng/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
+                  </a>
+               </div>
+               <!-- End .header-left -->
+
+               <div class="header-right w-lg-max">
+                  <div class="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0"></div>
+                  <!-- End .header-search -->
+
+                  <div class="header-contact d-none d-lg-flex pl-4 pr-4">
+                     <img alt="phone" src="/assets/images/phone.png" width="30" height="30" class="pb-1">
+                     <h6><span>Call to order</span><a href="tel:#" class="text-dark font1"><?php echo e(optional($system_settings)->store_phone); ?></a></h6>
+                  </div>
+                  <?php if(auth()->guard()->check()): ?>
+                  <div class="position-relative me-5">
+                     <a href="/account" class="d-flex flex-column align-items-center" title="account">
+                        <span class="material-symbols-outlined display-5">
+                           person
+                        </span>
+                        <span class="header-right-icons">
+                           Account
+                        </span>
+                     </a>
+                  </div>
+
+                  <?php endif; ?>
+
+                  <?php if(auth()->guard()->guest()): ?>
+                  <div class="position-relative me-5 ">
+                     <a href="/login" class="d-flex flex-column align-items-center" title="account">
+                        <span class="material-symbols-outlined display-5">
+                           person
+                        </span>
+                        <span class="header-right-icons">
+                           Sign In
+                        </span>
+                     </a>
+
+                  </div>
+                  <?php endif; ?>
+
+
+                  <div class="dropdown cart-dropdown">
+                     <cart-side-bar></cart-side-bar>
+                  </div>
+                  <!-- End .dropdown -->
+               </div>
+               <!-- End .header-right -->
+            </div>
+            <div class="container-fluid w-100 d-block d-sm-none">
+
+
                <div class="header-lefts   d-flex justify-content-between align-items-center w-100">
                   <button class="mobile-menu-toggler  mr-2 d-flex flex-column align-items-center display-3" type="button">
                      <i class="fas fa-bars"></i>

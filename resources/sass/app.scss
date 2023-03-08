@@ -423,6 +423,10 @@ select#floatingSelect{
     height: 4.65rem !important;
 }
 
+.list-group-item {
+    list-style-type: disc !important;
+}
+
 textarea:focus, 
 textarea.form-control:focus, 
 input.form-control:focus, 
