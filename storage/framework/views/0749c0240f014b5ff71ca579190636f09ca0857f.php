@@ -6,7 +6,7 @@
             <?php if($info->children->count()): ?>
             <ul class="links text-white list-unstyled">
                 <?php $__currentLoopData = $info->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $info): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <li>
+                <li class="py-3">
                     <a href="<?php echo e($info->c_link); ?>">
                         <?php echo e($info->name); ?>
 

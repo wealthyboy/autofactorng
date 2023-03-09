@@ -1,11 +1,21 @@
 <template>
     <div v-if="list == 'Grid'" class="col-6 border col-sm-4 col-md-3">
         <div class="product-default">
-            <div class="position-relative product-inf-box">
-                <figure class="">
+            <div class="position-relative product-info-box">
+                <figure class="product-image-box position-relative">
                     <a :href="product.link">
-                        <img :src="product.image_m" alt="product" />
-                        <img :src="product.image_m" alt="product" />
+                        <img
+                            :src="product.image_m"
+                            width="250"
+                            height="250"
+                            alt="product"
+                        />
+                        <img
+                            :src="product.image_m"
+                            width="250"
+                            height="250"
+                            alt="product"
+                        />
                     </a>
 
                     <div v-if="product.percentage_off" class="label-group">
@@ -14,6 +24,16 @@
                         </div>
                     </div>
                 </figure>
+                <a
+                    :href="product.link"
+                    class="d-flex align-items-center justify-content-center product-more-info position-absolute w-100 h-100 border"
+                >
+                    <div
+                        class="text-white fs-5 btn btn-block btn btn-block btn-dark"
+                    >
+                        Click for more info
+                    </div>
+                </a>
             </div>
 
             <div class="product-details">
