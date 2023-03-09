@@ -29443,7 +29443,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "aria-describedby": "",
     "data-name": "adults",
     "data-math": "minus",
-    "class": "mr-3 cart-button raised cursor-pointer add-subtract min-adults"
+    "class": "mr-3 cart-button bg-light raised cursor-pointer add-subtract min-adults"
   }, _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "class": "cart-input",
@@ -29460,7 +29460,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "data-name": "adults",
     "data-number": "1",
     type: "button",
-    "class": "ml-3 raised cart-button cursor-pointer add-subtract"
+    "class": "ml-3 raised cart-button bg-light cursor-pointer add-subtract"
   }, _hoisted_5)]);
 }
 

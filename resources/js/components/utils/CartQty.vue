@@ -7,7 +7,7 @@
             aria-describedby=""
             data-name="adults"
             data-math="minus"
-            class="mr-3 cart-button raised cursor-pointer add-subtract min-adults"
+            class="mr-3 cart-button bg-light raised cursor-pointer add-subtract min-adults"
         >
             <span><i class="fas fa-minus"></i></span>
         </button>
@@ -20,7 +20,7 @@
             data-name="adults"
             data-number="1"
             type="button"
-            class="ml-3 raised cart-button cursor-pointer add-subtract"
+            class="ml-3 raised cart-button bg-light cursor-pointer add-subtract"
         >
             <span><i class="fas fa-plus"></i></span>
         </button>
