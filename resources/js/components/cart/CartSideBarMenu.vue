@@ -29,12 +29,12 @@
         <a href="#" title="Close (Esc)" class="btn-close">×</a>
 
         <div class="dropdownmenu-wrapper custom-scrollbar">
-            <div class="dropdown-cart-header">Shopping Cart</div>
+            <div class="dropdown-cart-header bold">Shopping Cart</div>
             <!-- End .dropdown-cart-header -->
 
             <div class="d-flex justify-content-between">
-                <a href="/cart">View Cart</a>
-                <a href="/checkout">Checkout</a>
+                <a class="bold" href="/cart">View Cart</a>
+                <a class="display-5" href="/checkout">Checkout</a>
             </div>
 
             <div v-if="cart_meta.sub_total" class="dropdown-cart-products">
