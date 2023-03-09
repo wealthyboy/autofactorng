@@ -34,7 +34,7 @@ class ProductsController extends Controller
      */
     public function  index(Request $request, Builder $builder, Category $category)
     {
-        Image::find(3849)->delete();
+        dd(Image::find(3849));
         $page_title = implode(" ", explode('-', $category->slug));
         $this->clearMMYCookies($request);
         $request->session()->put('category', $category->name);
