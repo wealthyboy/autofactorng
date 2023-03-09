@@ -9358,7 +9358,7 @@ figure .porto-loading-icon {
 
 @media (max-width:575px) {
     .product-image-box{
-        width: 137px;
+        width: 135px;
     }
     .product-list {
         flex-direction: column;
