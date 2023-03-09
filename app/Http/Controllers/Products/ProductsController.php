@@ -13,6 +13,7 @@ use App\Models\Setting;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Http\Helper;
+use App\Models\Image;
 use Illuminate\Support\Facades\Cookie;
 use Laravel\Ui\Presets\React;
 
@@ -33,7 +34,7 @@ class ProductsController extends Controller
      */
     public function  index(Request $request, Builder $builder, Category $category)
     {
-
+        Image::find(3849)->delete();
         $page_title = implode(" ", explode('-', $category->slug));
         $this->clearMMYCookies($request);
         $request->session()->put('category', $category->name);
