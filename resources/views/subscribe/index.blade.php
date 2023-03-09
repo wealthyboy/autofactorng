@@ -6,7 +6,7 @@
       <div class="col-xl-5  col-lg-4 ">
 
          <div class="header p-5">
-            <a class="d-flex nounderline align-items-center" href="">
+            <a class="d-flex nounderline align-items-center" href="/">
                <span class="material-symbols-outlined ">keyboard_backspace</span>
                <span>Back</span>
             </a>
