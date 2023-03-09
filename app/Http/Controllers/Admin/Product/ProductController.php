@@ -65,9 +65,6 @@ class ProductController extends Table
     {
 
         //\File::makeDirectory(public_path('images/l'), 0755, true);
-
-
-
         $brands = Brand::all();
         $categories = Category::parents()->get();
         $attributes = Attribute::parents()->orderBy('sort_order', 'asc')->get();
