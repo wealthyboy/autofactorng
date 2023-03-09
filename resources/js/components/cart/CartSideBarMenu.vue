@@ -32,9 +32,9 @@
             <div class="dropdown-cart-header">Shopping Cart</div>
             <!-- End .dropdown-cart-header -->
 
-            <div class="d-flex">
-                <a href="http://">View Cart</a>
-                <a href="http://">Checkout</a>
+            <div class="d-flex justify-content-between">
+                <a href="/cart">View Cart</a>
+                <a href="/checkout">Checkout</a>
             </div>
 
             <div v-if="cart_meta.sub_total" class="dropdown-cart-products">

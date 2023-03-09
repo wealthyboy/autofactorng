@@ -13350,7 +13350,8 @@ header .separator {
 
 .mobile-menu li {
     display: block;
-    position: relative
+    position: relative;
+    padding: 10px;
 }
 
 .mobile-menu li:not(:last-child) {

@@ -2,8 +2,6 @@
     <div class="col-xl-5 product-single-details pt-0">
         <h1 class="product-title">{{ product.name }}</h1>
 
-        <div class="">{{ product.note }}</div>
-
         <div class="ratings-container mt-3">
             <div class="product-ratings">
                 <span
@@ -13,12 +11,16 @@
                 <!-- End .ratings -->
                 <span class="tooltiptext tooltip-top"></span>
             </div>
+
             <!-- End .product-ratings -->
 
             <a href="#" class="rating-link"
                 >( {{ product.average_rating_count }} Reviews )</a
             >
         </div>
+
+        <div class="mb-4 text-secondary">{{ product.note }}</div>
+
         <!-- End .ratings-container -->
 
         <p v-if="product.showFitString">
