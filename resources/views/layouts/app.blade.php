@@ -255,9 +255,8 @@
             <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
             <div class="container">
                <div class="footer-middle ">
-                  @include('layouts.footer.mobile_footer')
 
-                  <div class=" d-none d-lg-block d-md-block d-xl-block">
+                  <div class="">
                      @include('layouts.footer.desktop_footer')
                   </div>
                </div><!-- End .footer-middle -->
