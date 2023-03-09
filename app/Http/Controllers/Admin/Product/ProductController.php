@@ -66,7 +66,6 @@ class ProductController extends Table
 
         //\File::makeDirectory(public_path('images/l'), 0755, true);
 
-        Image::find(3849)->delete();
 
 
         $brands = Brand::all();
