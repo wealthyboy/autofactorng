@@ -206,8 +206,6 @@
 
 
 
-
-
          <div class="container-fluid  d-block d-sm-none">
 
             <div class="d-flex w-100">
@@ -215,7 +213,6 @@
 
                   <button class="nav-btn  w-100 mb-0 py-4 bg-transparent  border">
                      <add-vehicle></add-vehicle>
-
                   </button>
                </div>
 
@@ -251,13 +248,10 @@
 
       <footer class="footer bg-dark">
          <div class="footer-middle">
-
             <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
             <div class="container">
                <div class="footer-middle ">
-                  <?php echo $__env->make('layouts.footer.mobile_footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-                  <div class=" d-none d-lg-block d-md-block d-xl-block">
+                  <div class="">
                      <?php echo $__env->make('layouts.footer.desktop_footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                   </div>
                </div><!-- End .footer-middle -->
