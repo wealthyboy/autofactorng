@@ -170,6 +170,7 @@
                     >
                 </template>
             </div>
+            {{ carts }}
             <!-- End .price-box -->
             <div class="product-action">
                 <a
@@ -188,7 +189,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import CheckVehicle from "../general/CheckVehicle";
 
 export default {
@@ -203,7 +204,12 @@ export default {
             added: [],
         };
     },
-    computed: {},
+    computed: {
+        ...mapGetters({
+            carts: "carts",
+            cart_meta: "cart_meta",
+        }),
+    },
     created() {},
 
     methods: {
