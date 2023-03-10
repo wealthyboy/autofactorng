@@ -56,7 +56,7 @@
                     <!-- End .product-details -->
 
                     <figure class="product-image-container">
-                        <a href="/" class="product-image">
+                        <a :href="cart.product.link" class="product-image">
                             <img
                                 :src="cart.image"
                                 :alt="cart.title"

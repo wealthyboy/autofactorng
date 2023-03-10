@@ -26286,10 +26286,7 @@ var _hoisted_18 = {
 var _hoisted_19 = {
   "class": "product-image-container"
 };
-var _hoisted_20 = {
-  href: "/",
-  "class": "product-image"
-};
+var _hoisted_20 = ["href"];
 var _hoisted_21 = ["src", "alt"];
 var _hoisted_22 = ["onClick"];
 
@@ -26363,14 +26360,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" × " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber(cart.price)), 1
     /* TEXT */
-    )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-details "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("figure", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-details "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("figure", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      href: cart.product.link,
+      "class": "product-image"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
       src: cart.image,
       alt: cart.title,
       width: "80",
       height: "80"
     }, null, 8
     /* PROPS */
-    , _hoisted_21)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+    , _hoisted_21)], 8
+    /* PROPS */
+    , _hoisted_20), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       href: "#",
       "class": "btn-remove",
       title: "Remove Product",
@@ -28714,7 +28716,7 @@ var _hoisted_6 = {
   "class": "rating-link"
 };
 var _hoisted_7 = {
-  "class": "mb-4 text-secondary"
+  "class": "mb-4 text-secondary semi-bold"
 };
 var _hoisted_8 = {
   key: 0

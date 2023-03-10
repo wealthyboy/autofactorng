@@ -19,7 +19,7 @@
             >
         </div>
 
-        <div class="mb-4 text-secondary">{{ product.note }}</div>
+        <div class="mb-4 text-secondary semi-bold">{{ product.note }}</div>
 
         <!-- End .ratings-container -->
 

@@ -41967,11 +41967,6 @@ body.modal-open {
   overflow: hidden;
 }
 
-.bold {
-  font-weight: 700;
-  font-family: AutofactorBold, sans-serif !important;
-}
-
 b,
 strong {
   font-weight: 700;
