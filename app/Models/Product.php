@@ -81,7 +81,8 @@ class Product extends Model
         'average_rating',
         'average_rating_count',
         'percentage_off',
-        'image_l'
+        'image_l',
+        'is_in_cart'
     ];
 
 
@@ -252,6 +253,19 @@ class Product extends Model
     {
         return $this->buildSearchString() ? true : false;
     }
+
+
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
+
+
+    public function getIsInCartAttribute()
+    {
+        return  null !== $this->cart ? true : false;
+    }
+
 
 
     public function getFitTextAttribute()

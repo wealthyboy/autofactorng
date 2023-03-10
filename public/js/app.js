@@ -23392,10 +23392,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       added: []
     };
   },
-  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)({
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapGetters)({
     carts: "carts",
     cart_meta: "cart_meta"
-  })),
+  })), {}, {
+    pCart: function pCart() {
+      return this.carts.filter(function (cart) {
+        return cart.id === id;
+      });
+    }
+  }),
   created: function created() {},
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)({
     addProductToCart: "addProductToCart"
@@ -28080,11 +28086,6 @@ var _hoisted_49 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, "ADD TO CART", -1
-/* HOISTED */
-);
-
-var _hoisted_51 = [_hoisted_49, _hoisted_50];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_check_vehicle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("check-vehicle");
 
@@ -28200,9 +28201,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"])),
     href: "#",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-      'pe-none': $data.added.includes($props.product.id)
+      'pe-none': $data.added.includes($props.product.id) || $props.product.is_in_cart
     }, "btn-icon btn-add-cart product-type-simple"])
-  }, _hoisted_51, 2
+  }, [_hoisted_49, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.carts.find(function (c) {
+    return c.product_id == $props.product.id;
+  }) ? "ITEM ADDED" : "ADD TO CART"), 1
+  /* TEXT */
+  )], 2
   /* CLASS */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-details ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
   /* STABLE_FRAGMENT */

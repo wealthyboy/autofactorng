@@ -175,11 +175,18 @@
                 <a
                     @click.prevent="addToCart(product.id)"
                     href="#"
-                    :class="{ 'pe-none': added.includes(product.id) }"
+                    :class="{
+                        'pe-none':
+                            added.includes(product.id) || product.is_in_cart,
+                    }"
                     class="btn-icon btn-add-cart product-type-simple"
                 >
                     <i class="icon-shopping-cart"></i>
-                    <span>ADD TO CART</span>
+                    <span>{{
+                        carts.find((c) => c.product_id == product.id)
+                            ? "ITEM ADDED"
+                            : "ADD TO CART"
+                    }}</span>
                 </a>
             </div>
         </div>
@@ -208,6 +215,9 @@ export default {
             carts: "carts",
             cart_meta: "cart_meta",
         }),
+        pCart() {
+            return this.carts.filter((cart) => cart.id === id);
+        },
     },
     created() {},
 

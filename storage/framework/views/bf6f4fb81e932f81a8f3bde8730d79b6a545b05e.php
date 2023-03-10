@@ -365,8 +365,6 @@
                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </ul>
 
-
-
          </nav>
          <!-- End .mobile-nav -->
 
