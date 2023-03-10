@@ -247,6 +247,29 @@
       <!-- End .main -->
 
       <footer class="footer bg-dark">
+         <div class="py-3 subscribe  border-bottom">
+            <div class="container">
+               <div class="row justify-content-center align-items-center no-gutters">
+                  <div class="col-12 col-lg-6">
+                     <div class="mc-mb-6 mc-mb-md-9 mc-mb-lg-0">
+                        <div class="">
+                           <h1 class="text-white">Gain New Skills, Meet Your Favorite Celeb</h1>
+                           <p class="text-white">Unlimited access to all. </p>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-12 col-lg-5 offset-lg-1">
+
+                     <div class="row justify-content-center p-0">
+                        <div class="">
+                           <news-letter />
+                        </div>
+                     </div>
+
+                  </div>
+               </div>
+            </div>
+         </div>
          <div class="footer-middle">
             <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
             <div class="container">

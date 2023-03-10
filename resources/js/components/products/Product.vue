@@ -1,5 +1,5 @@
 <template>
-    <div v-if="list == 'Grid'" class="col-6 border col-sm-4 col-md-3">
+    <div v-if="list == 'Grid'" class="col-6 border col-sm-4 col-md-3 col-12">
         <div class="product-default">
             <div class="position-relative product-info-box">
                 <figure class="product-image-box position-relative">
@@ -93,7 +93,7 @@
 
     <div
         v-if="list == 'List'"
-        class="col-sm-12 col-6 border product-default left-details product-list mb-2"
+        class="col-sm-12 col-6 border product-default left-details product-list mb-2 col-12"
     >
         <div class="position-relative product-info-box">
             <figure class="product-image-box position-relative">

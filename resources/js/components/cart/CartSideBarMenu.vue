@@ -34,7 +34,7 @@
 
             <div class="d-flex justify-content-between">
                 <a class="bold" href="/cart">View Cart</a>
-                <a class="display-5" href="/checkout">Checkout</a>
+                <a class="bold" href="/checkout">Checkout</a>
             </div>
 
             <div v-if="cart_meta.sub_total" class="dropdown-cart-products">

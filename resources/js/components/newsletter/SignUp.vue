@@ -12,23 +12,16 @@
                 <input 
                     name="email"
                         v-model="form.email" 
-                        class="input--lg form-full " 
-                        title="Email" placeholder="Enter Your Email..."
-                        value=""
+                        class="form-control " 
+                        title="Email" 
+                        placeholder="Enter Your Email..."
                         id="newsletteremail" 
                         type="email"
                         required
                     >
+                 
             </div>
-            <span  class="text-danger" role="" >
-                <strong></strong>
-            </span>
-            <div class="form-field-wrapper">
-                <button  type="submit" class="newsletter-btn btn btn--primary btn--lg form-full" name="Sign_Up"  value="Sign Up" data-value="Sign_Up">
-                    <span  v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    Sign Up!
-                </button>
-            </div>
+            
         </form>
         <error-message  :error="error" />
     </div>
