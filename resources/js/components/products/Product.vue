@@ -170,7 +170,6 @@
                     >
                 </template>
             </div>
-            {{ carts }}
             <!-- End .price-box -->
             <div class="product-action">
                 <a
