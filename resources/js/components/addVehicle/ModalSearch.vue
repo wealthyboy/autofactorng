@@ -42,8 +42,8 @@
                         </div>
                     </button>
 
-                    <div class="d-flex d-block d-sm-none">
-                        <div v-if="fitString" class="mt-4 pb-4">
+                    <div v-if="fitString" class="d-flex">
+                        <div class="mt-4 pb-4">
                             <a
                                 @click.prevent="shopWithoutVehicle('shop')"
                                 href="#"
@@ -53,7 +53,7 @@
 
                         <span class="v-line mt-3"></span>
 
-                        <div v-if="fitString" class="ms-3 mt-4 pb-4">
+                        <div class="ms-3 mt-4 pb-4">
                             <a
                                 @click.prevent="shopWithoutVehicle('change')"
                                 href="#"
