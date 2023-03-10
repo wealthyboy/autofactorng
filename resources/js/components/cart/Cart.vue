@@ -3,7 +3,7 @@
         <tr class="product-row">
             <td>
                 <figure class="product-image-container">
-                    <a href="/" class="product-image">
+                    <a :href="cart.product.link" class="product-image">
                         <img :src="cart.image" alt="product" />
                     </a>
                 </figure>
