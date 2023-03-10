@@ -27967,7 +27967,7 @@ var _hoisted_14 = {
 };
 var _hoisted_15 = ["href"];
 var _hoisted_16 = {
-  "class": ""
+  "class": "display-5"
 };
 var _hoisted_17 = {
   key: 0,
@@ -27975,7 +27975,7 @@ var _hoisted_17 = {
 };
 var _hoisted_18 = {
   key: 1,
-  "class": "product-description mt-2"
+  "class": "product-description mt-2 w-100"
 };
 var _hoisted_19 = {
   "class": "price-box mt-3"
@@ -28050,7 +28050,7 @@ var _hoisted_42 = {
 };
 var _hoisted_43 = {
   key: 1,
-  "class": "product-description"
+  "class": "product-description w-100"
 };
 var _hoisted_44 = {
   "class": "price-box"
@@ -28716,7 +28716,7 @@ var _hoisted_6 = {
   "class": "rating-link"
 };
 var _hoisted_7 = {
-  "class": "mb-4 text-secondary semi-bold"
+  "class": "mb-4 text-secondary display-5"
 };
 var _hoisted_8 = {
   key: 0

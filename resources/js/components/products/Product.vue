@@ -40,7 +40,7 @@
                 <h4 class="product-title mb-2">
                     <a :href="product.link">{{ product.name }}</a>
                 </h4>
-                <div class="">{{ product.note }}</div>
+                <div class="display-5">{{ product.note }}</div>
 
                 <div
                     v-if="product.average_rating_count >= 1"
@@ -54,7 +54,7 @@
                 </div>
                 <!-- End .product-container -->
 
-                <p v-if="showFitText" class="product-description mt-2">
+                <p v-if="showFitText" class="product-description mt-2 w-100">
                     <check-vehicle :fitText="product.fitText" />
                 </p>
 
@@ -148,7 +148,7 @@
             </div>
             <!-- End .product-container -->
 
-            <p v-if="showFitText" class="product-description">
+            <p v-if="showFitText" class="product-description w-100">
                 <check-vehicle :fitText="product.fitText" />
             </p>
 
