@@ -148,7 +148,7 @@
             </div>
             <!-- End .product-container -->
 
-            <p v-if="showFitText" class="product-description w-100">
+            <p v-if="showFitText" class="product-description">
                 <check-vehicle :fitText="product.fitText" />
             </p>
 

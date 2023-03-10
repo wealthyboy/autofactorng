@@ -28050,7 +28050,7 @@ var _hoisted_42 = {
 };
 var _hoisted_43 = {
   key: 1,
-  "class": "product-description w-100"
+  "class": "product-description"
 };
 var _hoisted_44 = {
   "class": "price-box"
