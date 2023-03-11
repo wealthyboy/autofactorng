@@ -26268,10 +26268,10 @@ var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "d-flex justify-content-between"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  "class": "bold",
+  "class": "bold view-cart bg-light text-black w-50",
   href: "/cart"
 }, "View Cart"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  "class": "bold",
+  "class": "bold view-cart ms-3 bg-dark text-white w-50",
   href: "/checkout"
 }, "Checkout")], -1
 /* HOISTED */
@@ -26320,19 +26320,19 @@ var _hoisted_27 = {
 };
 var _hoisted_28 = {
   key: 2,
-  "class": "dropdown-cart-action"
+  "class": "d-flex justify-content-between"
 };
 
 var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "/cart",
-  "class": "btn btn-gray btn-block view-cart"
+  "class": "bold view-cart bg-light text-black w-50",
+  href: "/cart"
 }, "View Cart", -1
 /* HOISTED */
 );
 
 var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "/checkout",
-  "class": "btn btn-dark btn-block"
+  "class": "bold view-cart bg-dark ms-3 text-white w-50",
+  href: "/checkout"
 }, "Checkout", -1
 /* HOISTED */
 );

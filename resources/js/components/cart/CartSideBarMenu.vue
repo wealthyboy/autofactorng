@@ -33,8 +33,14 @@
             <!-- End .dropdown-cart-header -->
 
             <div class="d-flex justify-content-between">
-                <a class="bold" href="/cart">View Cart</a>
-                <a class="bold" href="/checkout">Checkout</a>
+                <a class="bold view-cart bg-light text-black w-50" href="/cart"
+                    >View Cart</a
+                >
+                <a
+                    class="bold view-cart ms-3 bg-dark text-white w-50"
+                    href="/checkout"
+                    >Checkout</a
+                >
             </div>
 
             <div v-if="cart_meta.sub_total" class="dropdown-cart-products">
@@ -86,11 +92,18 @@
             </div>
             <!-- End .dropdown-cart-total -->
 
-            <div v-if="cart_meta.sub_total" class="dropdown-cart-action">
-                <a href="/cart" class="btn btn-gray btn-block view-cart"
+            <div
+                v-if="cart_meta.sub_total"
+                class="d-flex justify-content-between"
+            >
+                <a class="bold view-cart bg-light text-black w-50" href="/cart"
                     >View Cart</a
                 >
-                <a href="/checkout" class="btn btn-dark btn-block">Checkout</a>
+                <a
+                    class="bold view-cart bg-dark ms-3 text-white w-50"
+                    href="/checkout"
+                    >Checkout</a
+                >
             </div>
 
             <div v-else class="text-center pb-3">
