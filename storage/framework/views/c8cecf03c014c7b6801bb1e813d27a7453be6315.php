@@ -5,13 +5,13 @@
             <img src="/images/utils/close-dark.svg" class="p-3" alt="" srcset="">
         </a>
     </div>
-    <div class="offcanvas-body ">
+    <div class="offcanvas-body p-0">
         <div class="accordion accordion-flush" id="accordionNav">
             <?php $__currentLoopData = $global_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
             <div class="accordion-item">
                 <h2 class="accordion-header" id="flush-heading<?php echo e($category->id); ?>">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?php echo e($category->id); ?>" aria-expanded="false" aria-controls="flush-collapse<?php echo e($category->id); ?>">
+                    <button class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?php echo e($category->id); ?>" aria-expanded="false" aria-controls="flush-collapse<?php echo e($category->id); ?>">
                         <?php echo e($category->name); ?>
 
                     </button>

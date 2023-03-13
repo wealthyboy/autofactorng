@@ -158,7 +158,7 @@
                   <div class="col-sm-12 col-12">
                      <label class="form-label">Description</label>
                      <div class="input-group input-group-outline">
-                        <textarea type="text" id="m-description" class="form-control" name="description" rows="8"><?php echo e(isset($product) ? $product->description : old('description')); ?></textarea>
+                        <textarea type="text" id="m-description" class="form-control" name="descriptionfff" rows="8"><?php echo e(isset($product) ? $product->description : old('description')); ?></textarea>
                      </div>
                   </div>
                </div>
