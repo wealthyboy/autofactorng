@@ -6,78 +6,49 @@
         </a>
     </div>
     <div class="offcanvas-body ">
-        <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion accordion-flush" id="accordionNav">
+            @foreach( $global_categories as $category)
+
             <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                        Accordion Item #1
+                <h2 class="accordion-header" id="flush-heading{{$category->id}}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $category->id }}" aria-expanded="false" aria-controls="flush-collapse{{ $category->id }}">
+                        {{ $category->name }}
                     </button>
                 </h2>
-                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                        Accordion Item #2
-                    </button>
-                </h2>
-                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
-                </div>
-            </div>
+                <div id="flush-collapse{{ $category->id }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ $category->id}}" data-bs-parent="#accordionNav">
+                    <div class="accordion-body">
+                        @if ($category->isCategoryHaveMultipleChildren())
+                        <ul>
+                            @foreach ( $category->children as $children)
 
-        </div>
-        <div class="mobile-m">
-            <div class="mobile-menu-wrapper">
-                <div class="d-flex border-bottom justify-content-between p-4">
-                    <div class="menu">Menu</div>
-                    <span class="mobile-menu-close"><i class="fa fa-times"></i></span>
-                </div>
-                <nav class="mobile-nav">
-                    <div class="d-flex  border-bottom   px-4  justify-content-between">
-
+                            <li class="py-4">
+                                <a href="/products/{{ $children->slug }}" class="category-heading">{{ $children->name }} </a>
+                                @if ($children->children->count())
+                                <ul>
+                                    @foreach ( $children->children as $children)
+                                    <li><a href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                                @endif
+                            </li>
+                            @endforeach
+                        </ul>
+                        @elseif ( !$category->isCategoryHaveMultipleChildren() && $category->children->count() )
+                        <ul>
+                            @foreach ( $category->children as $children)
+                            <li><a class="category-heading" href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
+                            @endforeach
+                        </ul>
+                        @endif
                     </div>
-
-                    <ul class="mobile-menu mt-3">
-                        @foreach( $global_categories as $category)
-                        <li>
-                            <a class="" href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}">{{ $category->name }}</a>
-                            @if ($category->isCategoryHaveMultipleChildren())
-                            <ul>
-                                @foreach ( $category->children as $children)
-
-                                <li class="py-4">
-                                    <a href="/products/{{ $children->slug }}" class="category-heading">{{ $children->name }} </a>
-                                    @if ($children->children->count())
-                                    <ul>
-                                        @foreach ( $children->children as $children)
-                                        <li><a href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
-                                        @endforeach
-                                    </ul>
-                                    @endif
-                                </li>
-                                @endforeach
-                            </ul>
-                            @elseif ( !$category->isCategoryHaveMultipleChildren() && $category->children->count() )
-                            <ul>
-                                @foreach ( $category->children as $children)
-                                <li><a class="category-heading" href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
-                                @endforeach
-                            </ul>
-                            @endif
-                        </li>
-
-                        @endforeach
-                    </ul>
-
-                </nav>
-                <!-- End .mobile-nav -->
-
+                </div>
             </div>
-            <!-- End .mobile-menu-wrapper -->
+            @endforeach
+
+
+
         </div>
+
 
     </div>
 
