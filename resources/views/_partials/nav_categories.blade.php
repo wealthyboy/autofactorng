@@ -19,7 +19,7 @@
                     <div class="accordion-body">
 
                         @if ($category->children->count())
-                        <ul>
+                        <ul class="ps-1">
                             @foreach( $category->children as $category)
                             <li class="py-2">
                                 <a href="{{  $category->link ? $category->link : '/products/'.$category->slug }}">
