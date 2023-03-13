@@ -6,43 +6,78 @@
         </a>
     </div>
     <div class="offcanvas-body ">
-        <ul class="list-unstyled pl-3">
-            @foreach( $global_categories as $category)
-            <li>
-                <a href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}" target="" data-testid="at_popular_part_list_item_0" tabindex="0">
-                    <div class="az_ylb">
-                        <div class="" tabindex="-1" role="menuitem" aria-disabled="false">
-                            <h5 class="mb-0 text-uppercase fs-3">{{ $category->name }}</h5>
-                        </div>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Accordion Item #1
+                    </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        Accordion Item #2
+                    </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="mobile-m">
+            <div class="mobile-menu-wrapper">
+                <div class="d-flex border-bottom justify-content-between p-4">
+                    <div class="menu">Menu</div>
+                    <span class="mobile-menu-close"><i class="fa fa-times"></i></span>
+                </div>
+                <nav class="mobile-nav">
+                    <div class="d-flex  border-bottom   px-4  justify-content-between">
+
                     </div>
-                </a>
 
-                @if ($category->children->count())
-                <ul>
-                    @foreach( $category->children as $category)
-                    <li class="py-3">
-                        <a href="{{  $category->link ? $category->link : '/products/'.$category->slug }}">
+                    <ul class="mobile-menu mt-3">
+                        @foreach( $global_categories as $category)
+                        <li>
+                            <a class="" href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}">{{ $category->name }}</a>
+                            @if ($category->isCategoryHaveMultipleChildren())
+                            <ul>
+                                @foreach ( $category->children as $children)
 
-                            {{ $category->name }}
-                        </a>
+                                <li class="py-4">
+                                    <a href="/products/{{ $children->slug }}" class="category-heading">{{ $children->name }} </a>
+                                    @if ($children->children->count())
+                                    <ul>
+                                        @foreach ( $children->children as $children)
+                                        <li><a href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                    @endif
+                                </li>
+                                @endforeach
+                            </ul>
+                            @elseif ( !$category->isCategoryHaveMultipleChildren() && $category->children->count() )
+                            <ul>
+                                @foreach ( $category->children as $children)
+                                <li><a class="category-heading" href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
+                                @endforeach
+                            </ul>
+                            @endif
+                        </li>
 
-                    </li>
-                    @endforeach
-                </ul>
-                @else
-                <ul>
-                    <li class="py-3">
-                        <a href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}">
-                            All {{ $category->name }}
-                        </a>
+                        @endforeach
+                    </ul>
 
-                    </li>
-                </ul>
-                @endif
+                </nav>
+                <!-- End .mobile-nav -->
 
-            </li>
-            @endforeach
-        </ul>
+            </div>
+            <!-- End .mobile-menu-wrapper -->
+        </div>
 
     </div>
 

@@ -17,13 +17,17 @@
                             alt="product"
                         />
                     </a>
-
-                    <div v-if="product.percentage_off" class="label-group">
-                        <div class="product-label label-sale">
-                            -{{ product.percentage_off }}%
-                        </div>
-                    </div>
                 </figure>
+                <div v-if="product.percentage_off" class="label-group">
+                    <div class="product-label label-sale">
+                        -{{ product.percentage_off }}%
+                    </div>
+                </div>
+                <div v-if="!product.in_stock" class="out-of-stock">
+                    <div class="product-label label-out-of-stock">
+                        Out Of Stock
+                    </div>
+                </div>
                 <a
                     :href="product.link"
                     class="d-flex align-items-center justify-content-center product-more-info position-absolute w-100 h-100 border"
@@ -40,7 +44,7 @@
                 <h4 class="product-title mb-2">
                     <a :href="product.link">{{ product.name }}</a>
                 </h4>
-                <div class="display-5">{{ product.note }}</div>
+                <div class="">{{ product.note }}</div>
 
                 <div
                     v-if="product.average_rating_count >= 1"

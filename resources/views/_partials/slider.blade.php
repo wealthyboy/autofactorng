@@ -11,7 +11,7 @@
          <div class="banner banner3">
             <a href="" class="d-block">
                <figure>
-                  <img width="1920" height="700" src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
+                  <img class="img-fluid" src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
                </figure>
             </a>
          </div>
