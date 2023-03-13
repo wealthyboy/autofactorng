@@ -1,9 +1,9 @@
 <div class="container d-flex justify-content-end">
     <div class="d-block d-sm-none">
-        <div class="col-12 w-100">
-            <div class="dropdown">
+        <div class="col-12 w-100 p-0">
+            <div class="dropdown mt-3">
                 <button class="btn btn-secondary dropdown-toggle d-flex align-items-center" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="material-symbols-outlined">
+                    <span class="material-symbols-outlined me-2">
                         settings
                     </span>
                     <span>Menu</span>
