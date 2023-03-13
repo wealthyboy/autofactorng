@@ -48,7 +48,8 @@ class Product extends Model
         'sale_price_ends',
         'volts',
         'is_featured',
-        'note'
+        'note',
+        'in_stock'
 
     ];
 

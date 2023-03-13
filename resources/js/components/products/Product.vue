@@ -111,13 +111,15 @@
                         alt="product"
                     />
                 </a>
-
-                <div v-if="product.percentage_off" class="label-group">
-                    <div class="product-label label-sale">
-                        -{{ product.percentage_off }}%
-                    </div>
-                </div>
             </figure>
+            <div v-if="product.percentage_off" class="label-group">
+                <div class="product-label label-sale">
+                    -{{ product.percentage_off }}%
+                </div>
+            </div>
+            <div v-if="!product.in_stock" class="out-of-stock">
+                <div class="product-label label-out-of-stock">Out Of Stock</div>
+            </div>
             <a
                 :href="product.link"
                 class="d-flex align-items-center justify-content-center product-more-info position-absolute w-100 h-100 border"

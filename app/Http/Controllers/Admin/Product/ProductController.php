@@ -323,6 +323,8 @@ class ProductController extends Table
         $product->note = $request->note;
 
         $product->slug = str_slug($name);
+        $product->is_stock = $request->in_stock ? 1 : 0;
+
 
 
         $product->price =  $request->price;
@@ -519,6 +521,7 @@ class ProductController extends Table
             'product_name' => 'required',
         ]);
 
+
         $data = $request->except('_token');
         $brand = Brand::find($request->brand_id);
         $data['quantity'] = 1;
@@ -528,9 +531,7 @@ class ProductController extends Table
         $data['slug'] = str_slug($name);
         $data['note'] = $request->note;
         $data['is_featured'] = $request->is_featured ? 1 : 0;
-
-
-
+        $data['in_stock'] = $request->in_stock ? 1 : 0;
         $product = Product::find($id);
         $product->update($data);
 
@@ -545,9 +546,6 @@ class ProductController extends Table
                 }
             }
 
-
-
-
             $product->categories()->sync($request->category_id);
         }
 
@@ -555,8 +553,6 @@ class ProductController extends Table
         if (null !== $product->product_engines) {
             $product->product_engines()->delete();
         }
-
-
 
 
         //dd($request->related_products);

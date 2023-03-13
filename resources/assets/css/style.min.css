@@ -7292,6 +7292,12 @@ figure .porto-loading-icon {
     left: 0.8rem
 }
 
+.product-default .out-of-stock {
+    position: absolute;
+    top: 0.8rem;
+    right: 20px;
+}
+
 .product-default .product-label {
     display: block;
     text-align: center;
@@ -7307,6 +7313,10 @@ figure .porto-loading-icon {
 
 .product-default .product-label.label-hot {
     background-color: #2ba968
+}
+
+.product-default .product-label.label-out-of-stock {
+    background-color: #ff3232;
 }
 
 .product-default .product-label.label-sale {
@@ -13797,9 +13807,9 @@ footer .contact-info-label {
     transform: none
 }
 
-.footer-middle {
-    padding: 6.5rem 0 2.3rem
-}
+
+
+
 
 .footer-bottom {
     padding: 2.7rem 0;

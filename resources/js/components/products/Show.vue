@@ -19,7 +19,7 @@
             >
         </div>
 
-        <div class="mb-4 text-secondary display-5">{{ product.note }}</div>
+        <div class="mb-4 text-secondary">{{ product.note }}</div>
 
         <!-- End .ratings-container -->
 
@@ -58,6 +58,9 @@
                 :text="text"
                 :type="button"
                 :loading="loading"
+                :class="{
+                    'pe-none disabled': !product.in_stock,
+                }"
                 @click.prevent="addToCart(product.id)"
             />
         </div>
@@ -99,6 +102,9 @@ export default {
         CheckVehicle,
         GeneralButton,
         CartQty,
+    },
+    mounted() {
+        this.text = !this.product.in_stock ? "Out of Stock" : "Add to Cart";
     },
     methods: {
         ...mapActions({
