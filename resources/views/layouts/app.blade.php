@@ -333,37 +333,49 @@
 
             </div>
 
-            <ul class="mobile-menu mt-3">
+            <div class="accordion accordion-flush" id="accordionNav">
                @foreach( $global_categories as $category)
-               <li>
-                  <a class="" href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}">{{ $category->name }}</a>
-                  @if ($category->isCategoryHaveMultipleChildren())
-                  <ul>
-                     @foreach ( $category->children as $children)
 
-                     <li class="py-4">
-                        <a href="/products/{{ $children->slug }}" class="category-heading">{{ $children->name }} </a>
-                        @if ($children->children->count())
+               <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-heading{{$category->id}}">
+                     <button class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $category->id }}" aria-expanded="false" aria-controls="flush-collapse{{ $category->id }}">
+                        {{ $category->name }}
+                     </button>
+                  </h2>
+                  <div id="flush-collapse{{ $category->id }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ $category->id}}" data-bs-parent="#accordionNav">
+                     <div class="accordion-body">
+
+                        @if ($category->children->count())
                         <ul>
-                           @foreach ( $children->children as $children)
-                           <li><a href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
+                           @foreach( $category->children as $category)
+                           <li class="py-2">
+                              <a href="{{  $category->link ? $category->link : '/products/'.$category->slug }}">
+
+                                 {{ $category->name }}
+                              </a>
+
+                           </li>
                            @endforeach
                         </ul>
-                        @endif
-                     </li>
-                     @endforeach
-                  </ul>
-                  @elseif ( !$category->isCategoryHaveMultipleChildren() && $category->children->count() )
-                  <ul>
-                     @foreach ( $category->children as $children)
-                     <li><a class="category-heading" href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
-                     @endforeach
-                  </ul>
-                  @endif
-               </li>
+                        @else
+                        <ul>
+                           <li class="py-3">
+                              <a href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}">
+                                 All {{ $category->name }}
+                              </a>
 
+                           </li>
+                        </ul>
+                        @endif
+
+                     </div>
+                  </div>
+               </div>
                @endforeach
-            </ul>
+
+
+
+            </div>
 
          </nav>
          <!-- End .mobile-nav -->
