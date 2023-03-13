@@ -415,7 +415,6 @@ class ProductsController extends Controller
         $product->showFitString = $this->getCategory($category);
         $category = session('category');
         $category_slug = session('category_slug');
-        dd($product);
         return view('products.show', compact('category', 'category_slug', 'user', 'product'));
     }
 }
