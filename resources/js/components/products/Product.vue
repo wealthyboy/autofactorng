@@ -80,16 +80,27 @@
                         >
                     </template>
                 </div>
-                <!-- End .price-box -->
+
                 <div class="product-action text-left">
                     <a
-                        href="#"
                         @click.prevent="addToCart(product.id)"
+                        href="#"
+                        :class="{
+                            'pe-none':
+                                added.includes(product.id) ||
+                                product.is_in_cart,
+                        }"
                         class="btn-icon btn-add-cart product-type-simple"
-                        ><i class="icon-shopping-cart"></i
-                        ><span>ADD TO CART</span></a
                     >
+                        <i class="icon-shopping-cart"></i>
+                        <span>{{
+                            carts.find((c) => c.product_id == product.id)
+                                ? "ITEM ADDED"
+                                : "ADD TO CART"
+                        }}</span>
+                    </a>
                 </div>
+                <!-- End .price-box -->
             </div>
             <!-- End .product-details -->
         </div>
