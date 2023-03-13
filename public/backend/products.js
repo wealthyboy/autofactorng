@@ -308,7 +308,7 @@ $(document).ready(function() {
 
         let formData = self.serializeArray();
         formData.push({ name: "phy_desc", value: desc });
-        formData.push({name : "description", value: description })
+        formData.push({ name : "description", value: description })
 
         $.ajax({
             type: self.data('method'),
