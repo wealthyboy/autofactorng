@@ -304,8 +304,11 @@ $(document).ready(function() {
         bText.text('Saving....');
         $(".text-danger").remove();
         let desc = CKEDITOR.instances['phy_description'].getData();
+        let description = CKEDITOR.instances['m-description'].getData();
+
         let formData = self.serializeArray();
         formData.push({ name: "phy_desc", value: desc });
+        formData.push({name : "description", value: description })
 
         $.ajax({
             type: self.data('method'),
