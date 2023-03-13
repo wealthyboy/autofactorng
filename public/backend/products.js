@@ -345,7 +345,22 @@ if (document.querySelector('#phy_description')) {
         ]
     })
 
+    if (document.querySelector('#phy_description')) {
+        CKEDITOR.replace('m-description', {
+            height: '200px',
+            width: '100%',
+            toolbar: [
+                '/',
+                { name: 'paragraph', groups: ['list', 'indent', ], items: ['BulletedList'] },
+                '/',
+            ]
+        })
+    
+    }
+
 }
+
+
 
 var row = 0;
 
