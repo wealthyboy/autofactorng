@@ -116,6 +116,10 @@ class WebHookController extends Controller
             }
         } catch (\Throwable $th) {
             \Log::info("Custom error :" . $th);
+            Log::info("Custom error :" . $th);
+            $err = new Error();
+            $err->error = $th->getMessage();
+            $err->save();
         }
 
         return http_response_code(200);
