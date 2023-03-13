@@ -40,14 +40,13 @@ class Order extends Model
 	{
 
 		$order = new self;
-
 		$cart  = new Cart();
 		$order->user_id = $user->id;
 		$order->address_id  = $user->active_address->id;
 		$order->coupon = $input['coupon'];
 		$order->heavy_item_price = isset($input['heavy_item_price']) ? $input['heavy_item_price'] : null;
 		$order->status = 'Processing';
-		$order->shipping_price  = $input['shipping_price'];
+		$order->shipping_price  = data_get($input, 'shipping_price');
 		$order->invoice =  rand(10000, 3999990);
 		$order->payment_type = $payment_method;
 		$order->total = $input['total'];
