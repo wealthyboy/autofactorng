@@ -11,7 +11,7 @@
          <div class="banner banner3">
             <a href="" class="d-block">
                <figure>
-                  <img class="img-fluid" src="<?php echo e($slider->image); ?>" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
+                  <img class="img-" src="<?php echo e($slider->image); ?>" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
                </figure>
             </a>
          </div>

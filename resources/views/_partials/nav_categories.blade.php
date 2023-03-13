@@ -17,29 +17,30 @@
                 </h2>
                 <div id="flush-collapse{{ $category->id }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ $category->id}}" data-bs-parent="#accordionNav">
                     <div class="accordion-body">
-                        @if ($category->isCategoryHaveMultipleChildren())
-                        <ul>
-                            @foreach ( $category->children as $children)
 
-                            <li class="py-4">
-                                <a href="/products/{{ $children->slug }}" class="category-heading">{{ $children->name }} </a>
-                                @if ($children->children->count())
-                                <ul>
-                                    @foreach ( $children->children as $children)
-                                    <li><a href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
-                                    @endforeach
-                                </ul>
-                                @endif
+                        @if ($category->children->count())
+                        <ul>
+                            @foreach( $category->children as $category)
+                            <li class="py-2">
+                                <a href="{{  $category->link ? $category->link : '/products/'.$category->slug }}">
+
+                                    {{ $category->name }}
+                                </a>
+
                             </li>
                             @endforeach
                         </ul>
-                        @elseif ( !$category->isCategoryHaveMultipleChildren() && $category->children->count() )
+                        @else
                         <ul>
-                            @foreach ( $category->children as $children)
-                            <li><a class="category-heading" href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
-                            @endforeach
+                            <li class="py-3">
+                                <a href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}">
+                                    All {{ $category->name }}
+                                </a>
+
+                            </li>
                         </ul>
                         @endif
+
                     </div>
                 </div>
             </div>
