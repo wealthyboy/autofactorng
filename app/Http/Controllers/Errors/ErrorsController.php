@@ -15,7 +15,7 @@ class ErrorsController extends Controller
      */
     public function index()
     {
-        dd(Error::all())
+        dd(Error::all());
     }
 
     /**

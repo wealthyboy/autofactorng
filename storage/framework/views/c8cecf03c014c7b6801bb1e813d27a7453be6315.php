@@ -20,7 +20,7 @@
                     <div class="accordion-body">
 
                         <?php if($category->children->count()): ?>
-                        <ul>
+                        <ul class="ps-1">
                             <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li class="py-2">
                                 <a href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>">
