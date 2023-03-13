@@ -148,6 +148,9 @@ Route::group(['prefix' => '/api'], function () {
     Route::get('years',   'Api\Years\YearsController@index');
 });
 
+Route::get('errors',                  'Errors\ErrorsController@index');
+
+
 
 Route::controller(Products\ProductsController::class)->group(function () {
     Route::get('products/{category}', 'index');
@@ -156,6 +159,7 @@ Route::controller(Products\ProductsController::class)->group(function () {
 
 Route::get('reviews/{id}',               'Api\Reviews\ReviewsController@index');
 Route::post('reviews/store',                  'Api\Reviews\ReviewsController@store');
+
 
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');
 Route::post('webhook/payment/zilla',     'WebHook\WebHookController@zilla');
