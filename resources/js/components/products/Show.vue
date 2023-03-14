@@ -1,6 +1,7 @@
 <template>
     <div class="col-xl-5 product-single-details pt-0">
         <h1 class="product-title">{{ product.name }}</h1>
+        <div class="mb-3 fs-5 fw-bold">{{ product.note }}</div>
 
         <div class="ratings-container mt-3">
             <div class="product-ratings">
@@ -18,8 +19,6 @@
                 >( {{ product.average_rating_count }} Reviews )</a
             >
         </div>
-
-        <div class="mb-3 fs-5 fw-bold">{{ product.note }}</div>
 
         <!-- End .ratings-container -->
 
