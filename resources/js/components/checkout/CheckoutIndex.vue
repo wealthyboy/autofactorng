@@ -277,6 +277,11 @@ export default {
 
             if (!this.coupon_code) {
                 this.amount = this.prices.total;
+                // if (this.prices.ship_price) {
+                //         this.amount =
+                //             parseInt(this.prices.ship_price) +
+                //             parseInt(response.data.sub_total);
+                //     }
             }
 
             let form = document.getElementById("checkout-form-2");
@@ -400,13 +405,7 @@ export default {
                     this.voucher = [];
                     this.voucher.push(response.data);
 
-                    if (this.prices.ship_price) {
-                        this.amount =
-                            parseInt(this.prices.ship_price) +
-                            parseInt(response.data.sub_total);
-                    } else {
-                        this.amount = parseInt(response.data.sub_total);
-                    }
+                    this.amount = parseInt(response.data.sub_total);
                 })
                 .catch((error) => {
                     this.submiting = false;
