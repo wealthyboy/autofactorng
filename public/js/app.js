@@ -27312,9 +27312,10 @@ var _hoisted_2 = {
 var _hoisted_3 = {
   "class": "text-center"
 };
-var _hoisted_4 = {
-  "class": "form-field-wrapper"
-};
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row g-0\"><div class=\"col-8\"><input type=\"text\" class=\"form-control b\" placeholder=\"Enter  code\" required=\"\"></div><div class=\"col-4\"><button class=\"btn btn-sm btn-primary w-100 rounded-0 coupon-button btn-dark bold\" type=\"submit\"><!--v-if--> Apply </button></div></div>", 1);
+
+var _hoisted_5 = [_hoisted_4];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_error_message = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("error-message");
 
@@ -27322,25 +27323,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
     key: 1,
-    onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onSubmit: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $options.signUp && $options.signUp.apply($options, arguments);
     }, ["prevent"])),
     method: "POST",
     "class": "pt-2"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    name: "email",
-    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $data.form.email = $event;
-    }),
-    "class": "form-control",
-    title: "Email",
-    placeholder: "Enter Your Email...",
-    id: "newsletteremail",
-    type: "email",
-    required: ""
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]])])], 32
+  }, _hoisted_5, 32
   /* HYDRATE_EVENTS */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_error_message, {
     error: $data.error
@@ -38056,7 +38044,7 @@ app.component('MakeMessage', _components_message_MakeModelYearMessage__WEBPACK_I
 app.component('ModalSearch', _components_addVehicle_ModalSearch__WEBPACK_IMPORTED_MODULE_28__["default"]);
 app.component('AddVehicleSearch', _components_search_AddVehicle__WEBPACK_IMPORTED_MODULE_26__["default"]);
 app.component('ForgotPassword', _components_auth_ForgotPassword__WEBPACK_IMPORTED_MODULE_17__["default"]);
-app.component('NewsLetter', _components_newsletter_SignUp__WEBPACK_IMPORTED_MODULE_27__["default"]);
+app.component('SignUp', _components_newsletter_SignUp__WEBPACK_IMPORTED_MODULE_27__["default"]);
 app.component('Subscribe', _components_auth_Subscribe__WEBPACK_IMPORTED_MODULE_10__["default"]);
 app.config.globalProperties.$filters = {
   formatNumber: function formatNumber(value) {

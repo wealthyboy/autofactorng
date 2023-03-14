@@ -49,7 +49,7 @@ class Product extends Model
         'volts',
         'is_featured',
         'note',
-        //'in_stock'
+        'in_stock'
 
     ];
 

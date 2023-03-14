@@ -8,18 +8,9 @@
             </p>
         </template>
         <form  v-if="!message"  @submit.prevent="signUp" method="POST" class="pt-2">
-            <div class="form-field-wrapper">
-                <input 
-                    name="email"
-                        v-model="form.email" 
-                        class="form-control " 
-                        title="Email" 
-                        placeholder="Enter Your Email..."
-                        id="newsletteremail" 
-                        type="email"
-                        required
-                    >
-                 
+            <div class="row g-0">
+                <div class="col-8"><input type="text" class="form-control b" placeholder="Enter  code" required=""></div>
+                <div class="col-4"><button class="btn btn-sm btn-primary w-100 rounded-0 coupon-button btn-dark bold" type="submit"><!--v-if--> Apply </button></div>
             </div>
             
         </form>

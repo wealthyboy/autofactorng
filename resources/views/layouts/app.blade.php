@@ -253,7 +253,7 @@
                   <div class="col-12 col-lg-6">
                      <div class="mc-mb-6 mc-mb-md-9 mc-mb-lg-0">
                         <div class="">
-                           <h1 class="text-white">Gain New Skills, Meet Your Favorite Celeb</h1>
+                           <h1 class="text-white">Gain New Skills, Meet Your Favorite </h1>
                            <p class="text-white">Unlimited access to all. </p>
                         </div>
                      </div>
@@ -262,7 +262,7 @@
 
                      <div class="row justify-content-center p-0">
                         <div class="">
-                           <news-letter />
+                           <sign-up></sign-up>
                         </div>
                      </div>
 
@@ -315,6 +315,7 @@
       </footer>
       <!-- End .footer -->
    </div>
+
    <!-- End .page-wrapper -->
 
 
@@ -387,37 +388,7 @@
 
 
 
-   <div class="newsletter-popup mfp-hide bg-img" id="newsletter-popup-form" style="background: #f1f1f1 no-repeat center/cover url('assets/images/newsletter_popup_bg.jpg')">
-      <div class="newsletter-popup-content">
-         <img src="assets/images/logo.png" width="111" height="44" alt="Logo" class="logo-newsletter">
-         <h2>Subscribe to newsletter</h2>
 
-         <p>
-            Subscribe to the Autofactorng mailing list to receive updates on new arrivals, special offers and our promotions.
-         </p>
-
-         <form action="#">
-            <div class="input-group">
-               <input type="email" class="form-control" id="newsletter-email" name="newsletter-email" placeholder="Your email address" required />
-               <input type="submit" class="btn btn-primary" value="Submit" />
-            </div>
-         </form>
-         <div class="newsletter-subscribe">
-            <div class="custom-control custom-checkbox">
-               <input type="checkbox" class="custom-control-input" value="0" id="show-again" />
-               <label for="show-again" class="custom-control-label">
-                  Don't show this popup again
-               </label>
-            </div>
-         </div>
-      </div>
-      <!-- End .newsletter-popup-content -->
-
-      <button title="Close (Esc)" type="button" class="mfp-close">
-         ×
-      </button>
-   </div>
-   <!-- End .newsletter-popup -->
 
    <div class="watsapp me-3">
       <a class="chat-on-watsapp d-flex justify-content-between align-items-center" target="_blank" href="https://wa.me/+23409081155505">

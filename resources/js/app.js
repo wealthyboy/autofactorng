@@ -43,7 +43,7 @@ import CheckoutIndex from "./components/checkout/CheckoutIndex"
 import ProductSearch from "./components/search/ProductSearch"
 import ModalMakeModelYear from "./components/search/ModalMakeModelYear"
 import AddVehicleSearch from "./components/search/AddVehicle"
-import NewsLetter from "./components/newsletter/SignUp"
+import SignUp from "./components/newsletter/SignUp"
 
 import ModalSearch from "./components/addVehicle/ModalSearch"
 
@@ -77,7 +77,7 @@ app.component('MakeMessage', MakeMessage)
 app.component('ModalSearch', ModalSearch)
 app.component('AddVehicleSearch', AddVehicleSearch)
 app.component('ForgotPassword', ForgotPassword)
-app.component('NewsLetter', NewsLetter)
+app.component('SignUp', SignUp)
 
 app.component('Subscribe', Subscribe)
 

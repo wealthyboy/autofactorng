@@ -323,7 +323,7 @@ class ProductController extends Table
         $product->note = $request->note;
 
         $product->slug = str_slug($name);
-        //    / $product->is_stock = $request->in_stock ? 1 : 0;
+        $product->is_stock = $request->in_stock ? 1 : 0;
 
 
 
@@ -531,7 +531,7 @@ class ProductController extends Table
         $data['slug'] = str_slug($name);
         $data['note'] = $request->note;
         $data['is_featured'] = $request->is_featured ? 1 : 0;
-        // $data['in_stock'] = $request->in_stock ? 1 : 0;
+        $data['in_stock'] = $request->in_stock ? 1 : 0;
         $product = Product::find($id);
         $product->update($data);
 
