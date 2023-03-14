@@ -248,6 +248,9 @@ export default {
         }),
 
         addToCart: function (product_id) {
+            if (this.added.includes(product.id) || this.product.is_in_cart) {
+                return;
+            }
             this.loading = true;
             this.addProductToCart({
                 product_id: product_id,

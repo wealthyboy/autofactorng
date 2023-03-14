@@ -23409,6 +23409,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     addToCart: function addToCart(product_id) {
       var _this = this;
 
+      if (this.added.includes(product.id) || this.product.is_in_cart) {
+        return;
+      }
+
       this.loading = true;
       this.addProductToCart({
         product_id: product_id,
