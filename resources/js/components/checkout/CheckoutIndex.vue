@@ -323,12 +323,10 @@ export default {
                     context.paymentIsProcessing = false;
                     context.paymentIsComplete = true;
                     context.order_text = "Place Order";
-
-                    console.log(response);
                 },
                 clientOrderReference: uuid,
                 title: "Buy now pay later",
-                amount: context.amount,
+                amount: context.total,
             };
             connect.openNew(config);
         },
