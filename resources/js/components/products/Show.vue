@@ -163,6 +163,9 @@ export default {
             })
                 .then(() => {
                     this.productIsAdded = true;
+                    setTimeout(() => {
+                        this.productIsAdded = false;
+                    }, 3000);
                     this.text = "Add To Cart";
                     this.loading = false;
                 })

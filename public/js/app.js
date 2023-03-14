@@ -23664,6 +23664,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         quantity: this.qty
       }).then(function () {
         _this.productIsAdded = true;
+        setTimeout(function () {
+          _this.productIsAdded = false;
+        }, 3000);
         _this.text = "Add To Cart";
         _this.loading = false;
       })["catch"](function (error) {
