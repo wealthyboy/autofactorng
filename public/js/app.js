@@ -23658,7 +23658,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       this.loading = true;
       this.text = "Adding......";
-      this.productIsAdded = true;
+      this.productIsAdded = false;
       this.addProductToCart({
         product_id: product_id,
         quantity: this.qty
