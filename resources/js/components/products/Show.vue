@@ -156,6 +156,7 @@ export default {
         addToCart: function (product_id) {
             this.loading = true;
             this.text = "Adding......";
+            this.productIsAdded = true;
             this.addProductToCart({
                 product_id: product_id,
                 quantity: this.qty,
