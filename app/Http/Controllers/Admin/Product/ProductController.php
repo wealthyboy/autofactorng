@@ -320,7 +320,7 @@ class ProductController extends Table
         $product->product_name = $request->product_name;
         $product->note = $request->note;
         $product->slug = str_slug($name);
-        $product->in_stock = $request->in_stock ? 1 : 0;
+        $product->in_stock = 1;
 
 
 
