@@ -102,7 +102,10 @@
                         >Checkout</a
                     >
                 </div>
-                <button class="mfp-close"></button>
+                <button
+                    @click="productIsAdded = false"
+                    class="mfp-close"
+                ></button>
             </div>
         </div>
     </transition>

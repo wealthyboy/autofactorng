@@ -28828,12 +28828,6 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "mfp-close"
-}, null, -1
-/* HOISTED */
-);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_check_vehicle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("check-vehicle");
 
@@ -28912,7 +28906,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         "class": "product-name"
       }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name), 9
       /* TEXT, PROPS */
-      , _hoisted_23), _hoisted_24])]), _hoisted_25, _hoisted_26], 2
+      , _hoisted_23), _hoisted_24])]), _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        onClick: _cache[1] || (_cache[1] = function ($event) {
+          return $data.productIsAdded = false;
+        }),
+        "class": "mfp-close"
+      })], 2
       /* CLASS */
       )])];
     }),
