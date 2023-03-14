@@ -23411,8 +23411,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       console.log(this.added.includes(product_id));
 
-      if (this.added.includes(product_id) || this.product.is_in_cart) {
-        return;
+      if (this.added.includes(product_id)) {
+        return false;
       }
 
       this.loading = true;
@@ -28113,8 +28113,6 @@ var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _ref2;
-
   var _component_check_vehicle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("check-vehicle");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$props.list == 'Grid' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("figure", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
@@ -28236,9 +28234,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.addToCart($props.product.id);
     }, ["prevent"])),
     href: "#",
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([(_ref2 = {
-      'pe-none disabled': $data.added.includes($props.product.id)
-    }, _defineProperty(_ref2, "pe-none disabled", $props.product.is_in_cart), _defineProperty(_ref2, "pe-none disabled", !$props.product.in_stock), _ref2), "btn-icon btn-add-cart product-type-simple"])
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[_ctx.carts.find(function (c) {
+      return c.product_id == $props.product.id;
+    }) || $props.product.is_in_cart ? 'pe-none disabled' : null], "btn-icon btn-add-cart product-type-simple"])
   }, [_hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.carts.find(function (c) {
     return c.product_id == $props.product.id;
   }) ? "ITEM ADDED" : "ADD TO CART"), 1

@@ -195,11 +195,12 @@
                 <a
                     @click.prevent="addToCart(product.id)"
                     href="#"
-                    :class="{
-                        'pe-none disabled': added.includes(product.id),
-                        'pe-none disabled': product.is_in_cart,
-                        'pe-none disabled': !product.in_stock,
-                    }"
+                    :class="[
+                        carts.find((c) => c.product_id == product.id) ||
+                        product.is_in_cart
+                            ? 'pe-none disabled'
+                            : null,
+                    ]"
                     class="btn-icon btn-add-cart product-type-simple"
                 >
                     <i class="icon-shopping-cart"></i>
@@ -249,8 +250,8 @@ export default {
 
         addToCart: function (product_id) {
             console.log(this.added.includes(product_id));
-            if (this.added.includes(product_id) || this.product.is_in_cart) {
-                return;
+            if (this.added.includes(product_id)) {
+                return false;
             }
             this.loading = true;
             this.addProductToCart({
