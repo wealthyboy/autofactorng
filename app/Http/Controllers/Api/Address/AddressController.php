@@ -85,6 +85,8 @@ class AddressController extends Controller
 
         $prices['ship_price'] =  $ship_price;
         $prices['total'] =   $sub_total + $ship_price + $hp;
+        $prices['sub_total'] = $sub_total;
+
 
         return AddressResource::collection(
             $addresses
