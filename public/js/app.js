@@ -22483,6 +22483,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.getAddresses().then(function () {
       _this.loading = false;
     });
+    this.t = this.prices.total;
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_10__.mapActions)({
     createAddress: "createAddress",
@@ -22665,6 +22666,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this3.voucher.push(response.data);
 
         _this3.amount = parseInt(response.data.sub_total);
+        _this3.t = response.data.sub_total;
       })["catch"](function (error) {
         _this3.submiting = false;
         _this3.coupon_error = error.response.data.error;
@@ -26808,7 +26810,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "btn btn-block btn-dark w-100"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay Now "), _hoisted_22])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_cart_summary), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_total, {
     voucher: $data.voucher,
-    total: [$data.coupon_code ? _ctx.prices.sub_total : _ctx.prices.total],
+    total: $data.t,
     amount: $data.amount
   }, null, 8
   /* PROPS */

@@ -152,11 +152,7 @@
 
                             <total
                                 :voucher="voucher"
-                                :total="[
-                                    coupon_code
-                                        ? prices.sub_total
-                                        : prices.total,
-                                ]"
+                                :total="t"
                                 :amount="amount"
                             />
                             <div class="proceed-to-checkout"></div>
@@ -237,6 +233,8 @@ export default {
         this.getAddresses().then(() => {
             this.loading = false;
         });
+
+        this.t = this.prices.total;
     },
     methods: {
         ...mapActions({
@@ -379,6 +377,7 @@ export default {
                     context.paymentIsProcessing = false;
                     context.paymentIsComplete = true;
                     context.order_text = "Place Order";
+
                     console.log(response);
                 },
                 clientOrderReference: uuid,
@@ -410,6 +409,7 @@ export default {
                     this.voucher = [];
                     this.voucher.push(response.data);
                     this.amount = parseInt(response.data.sub_total);
+                    this.t = response.data.sub_total;
                 })
                 .catch((error) => {
                     this.submiting = false;
