@@ -323,7 +323,7 @@ class ProductController extends Table
         $product->note = $request->note;
 
         $product->slug = str_slug($name);
-        $product->is_stock = $request->in_stock ? 1 : 0;
+        $product->in_stock = $request->in_stock ? 1 : 0;
 
 
 
