@@ -151,7 +151,7 @@
             <h4 class="product-title">
                 <a :href="product.link">{{ product.name }}</a>
             </h4>
-            <div class="mb-2">{{ product.note }}</div>
+            <div class="mb-3 fs-5 fw-bold">{{ product.note }}</div>
 
             <div
                 v-if="product.average_rating_count >= 1"
