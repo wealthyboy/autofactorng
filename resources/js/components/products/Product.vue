@@ -88,10 +88,10 @@
                         @click.prevent="addToCart(product.id)"
                         href="#"
                         :class="{
-                            'pe-none':
+                            'pe-none disabled':
                                 added.includes(product.id) ||
                                 product.is_in_cart,
-                            'pe-none': !product.in_stock,
+                            'pe-none disabled': !product.in_stock,
                         }"
                         class="btn-icon btn-add-cart product-type-simple"
                     >
@@ -196,9 +196,9 @@
                     @click.prevent="addToCart(product.id)"
                     href="#"
                     :class="{
-                        'pe-none':
+                        'pe-none disabled':
                             added.includes(product.id) || product.is_in_cart,
-                        'pe-none': !product.in_stock,
+                        'pe-none disabled': !product.in_stock,
                     }"
                     class="btn-icon btn-add-cart product-type-simple"
                 >
