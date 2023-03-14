@@ -28732,7 +28732,7 @@ var _hoisted_1 = {
   "class": "col-xl-5 product-single-details pt-0"
 };
 var _hoisted_2 = {
-  "class": "product-title"
+  "class": "product-title mb-2"
 };
 var _hoisted_3 = {
   "class": "mb-3 fs-4 fw-bold"
