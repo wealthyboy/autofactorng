@@ -252,7 +252,7 @@ export default {
                         {
                             display_name: context.cart_meta.user.name,
                             customer_id: context.cart_meta.user.id,
-                            coupon: context.coupon_code,
+                            coupon: context.coupon,
                             type: "order_from_paystack",
                             shipping_id: context.shipping_id,
                             shipping_price: context.prices.ship_price,
@@ -306,7 +306,7 @@ export default {
             await axios
                 .post("/cart/meta", {
                     cartId: cartIds.join("|"),
-                    coupon: context.coupon_code,
+                    coupon: context.coupon,
                     shipping_id: context.shipping_id,
                     shipping_price: context.shipping_price,
                     user_id: context.cart_meta.user.id,
@@ -333,7 +333,7 @@ export default {
             connect.openNew(config);
         },
 
-        applyCoupon: function (c, s) {
+        applyCoupon: function (c) {
             this.coupon = c;
         },
         checkout: function (e, type = null, text) {
@@ -342,7 +342,7 @@ export default {
 
             axios
                 .post("/checkout/confirm", {
-                    coupon: this.coupon_code,
+                    coupon: this.coupon,
                     payment_method: type,
                     shipping_price: this.prices.ship_price,
                     heavy_item_price: this.prices.heavy_item_price || 0,

@@ -22532,7 +22532,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           custom_fields: [{
             display_name: context.cart_meta.user.name,
             customer_id: context.cart_meta.user.id,
-            coupon: context.coupon_code,
+            coupon: context.coupon,
             type: "order_from_paystack",
             shipping_id: context.shipping_id,
             shipping_price: context.prices.ship_price,
@@ -22599,7 +22599,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context.next = 12;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default().post("/cart/meta", {
                   cartId: cartIds.join("|"),
-                  coupon: context.coupon_code,
+                  coupon: context.coupon,
                   shipping_id: context.shipping_id,
                   shipping_price: context.shipping_price,
                   user_id: context.cart_meta.user.id,
@@ -22630,7 +22630,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }, _callee);
       }))();
     },
-    applyCoupon: function applyCoupon(c, s) {
+    applyCoupon: function applyCoupon(c) {
       this.coupon = c;
     },
     checkout: function checkout(e) {
@@ -22641,7 +22641,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       e.target.innerText = "Please wait.......";
       e.target.classList.add("disabled");
       axios__WEBPACK_IMPORTED_MODULE_3___default().post("/checkout/confirm", {
-        coupon: this.coupon_code,
+        coupon: this.coupon,
         payment_method: type,
         shipping_price: this.prices.ship_price,
         heavy_item_price: this.prices.heavy_item_price || 0,
