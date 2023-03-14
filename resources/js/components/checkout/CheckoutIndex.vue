@@ -344,7 +344,7 @@ export default {
                     payment_method: type,
                     shipping_price: this.prices.ship_price,
                     heavy_item_price: this.prices.heavy_item_price || 0,
-                    total: this.amount,
+                    total: this.total,
                 })
                 .then((response) => {
                     this.paymentIsComplete = true;

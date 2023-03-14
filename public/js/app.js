@@ -22644,7 +22644,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         payment_method: type,
         shipping_price: this.prices.ship_price,
         heavy_item_price: this.prices.heavy_item_price || 0,
-        total: this.amount
+        total: this.total
       }).then(function (response) {
         _this3.paymentIsComplete = true;
       })["catch"](function (error) {
