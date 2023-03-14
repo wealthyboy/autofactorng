@@ -5,11 +5,11 @@
         <span class="price-amount amount bold float-right">
             <span class="currencySymbol" style="font-size: 28px">
                 <template v-if="voucher">
-                    <span>
+                    <span class="text-danger fs-3">
                         <del>{{ $filters.formatNumber(total) }} </del></span
                     >
                     {{ $filters.formatNumber(amount) }}
-                    <p class="">{{ voucher[0].percent }}</p>
+                    <p class="fs-5">{{ voucher[0].percent }}</p>
                 </template>
                 <template v-else>
                     <span> {{ $filters.formatNumber(total) }}</span>
