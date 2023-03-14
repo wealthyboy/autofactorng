@@ -197,7 +197,7 @@
                     href="#"
                     :class="[
                         carts.find((c) => c.product_id == product.id) || 
-                        product.is_in_cart || !product.in_stock
+                        product.is_in_cart 
                             ? 'pe-none disabled'
                             : "",
                     ]"
