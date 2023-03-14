@@ -23663,6 +23663,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function () {
         _this.text = "Add To Cart";
         _this.loading = false;
+        $.miniPopup.open({
+          name: "eeee",
+          nameLink: "eee",
+          imageSrc: "eeee",
+          imageLink: "ww"
+        });
       })["catch"](function (error) {
         _this.text = "Add To Cart";
         _this.loading = false;
@@ -28794,6 +28800,13 @@ var _hoisted_15 = {
 var _hoisted_16 = {
   "class": "product-action"
 };
+
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "minipopup-area"
+}, "ddkdkdk", -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_check_vehicle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("check-vehicle");
 
@@ -28845,8 +28858,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"]))
   }, null, 8
   /* PROPS */
-  , ["text", "type", "loading", "class"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-action "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product single-share ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-single-details "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-single-container ")], 2112
-  /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
+  , ["text", "type", "loading", "class"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-action "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product single-share ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-single-details "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-single-container "), _hoisted_17], 64
+  /* STABLE_FRAGMENT */
   );
 }
 

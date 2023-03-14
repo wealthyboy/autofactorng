@@ -71,6 +71,8 @@
     <!-- End .row -->
 
     <!-- End .product-single-container -->
+
+    <div class="minipopup-area">ddkdkdk</div>
 </template>
 
 <script>
@@ -124,6 +126,13 @@ export default {
                 .then(() => {
                     this.text = "Add To Cart";
                     this.loading = false;
+
+                    $.miniPopup.open({
+                        name: "eeee",
+                        nameLink: "eee",
+                        imageSrc: "eeee",
+                        imageLink: "ww",
+                    });
                 })
                 .catch((error) => {
                     this.text = "Add To Cart";
