@@ -28234,12 +28234,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.addToCart($props.product.id);
     }, ["prevent"])),
     href: "#",
-    "class": "btn-icon btn-add-cart product-type-simple"
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[$props.product.is_in_cart || !$props.product.in_stock ? 'pe-none disabled' : null], "btn-icon btn-add-cart product-type-simple"])
   }, [_hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.carts.find(function (c) {
     return c.product_id == $props.product.id;
   }) ? "ITEM ADDED" : "ADD TO CART"), 1
   /* TEXT */
-  )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-details ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
+  )], 2
+  /* CLASS */
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-details ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
   /* STABLE_FRAGMENT */
   );
 }

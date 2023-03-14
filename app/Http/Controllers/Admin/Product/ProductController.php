@@ -303,8 +303,6 @@ class ProductController extends Table
             ), 400);
         }
 
-        //dd($attributes);
-
 
         $data = $request->except('_token');
         $brand = Brand::find($request->brand_id);
@@ -321,7 +319,6 @@ class ProductController extends Table
         $product->name = $name;
         $product->product_name = $request->product_name;
         $product->note = $request->note;
-
         $product->slug = str_slug($name);
         $product->in_stock = $request->in_stock ? 1 : 0;
 
