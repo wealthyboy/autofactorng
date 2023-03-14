@@ -28735,7 +28735,7 @@ var _hoisted_2 = {
   "class": "product-title"
 };
 var _hoisted_3 = {
-  "class": "mb-3 fs-5 fw-bold"
+  "class": "mb-3 fs-4 fw-bold"
 };
 var _hoisted_4 = {
   "class": "ratings-container mt-3"
