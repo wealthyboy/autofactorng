@@ -72,7 +72,35 @@
 
     <!-- End .product-single-container -->
 
-    <div class="minipopup-area">ddkdkdk</div>
+    <div class="minipopup-area">
+        <div class="minipopup-box active" style="top: 0px">
+            <div class="product">
+                <figure class="product-media">
+                    <a
+                        href="/product/spare-parts/honda-acura-transmission-mount-50850-ta0-a01"
+                        ><img
+                            src="https://autofactor.ng/images/products/tm/sSC7cDpzFV37zemjsWk1t6tgVL0v1dxzNwVBGFXZ.jpg"
+                            alt="product"
+                            width="60"
+                            height="60"
+                    /></a>
+                </figure>
+                <div class="product-detail">
+                    <a
+                        href="/product/spare-parts/honda-acura-transmission-mount-50850-ta0-a01"
+                        class="product-name"
+                        >Honda /Acura Transmission Mount (50850-TA0-A01)</a
+                    >
+                    <p>has been added to your cart.</p>
+                </div>
+            </div>
+            <div class="product-action">
+                <a href="/cart" class="btn viewcart">View Cart</a
+                ><a href="/checkout" class="btn btn-dark checkout">Checkout</a>
+            </div>
+            <button class="mfp-close"></button>
+        </div>
+    </div>
 </template>
 
 <script>
