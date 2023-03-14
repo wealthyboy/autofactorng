@@ -195,13 +195,6 @@
                 <a
                     @click.prevent="addToCart(product.id)"
                     href="#"
-                    :class="[
-                        carts.find((c) => c.product_id == product.id) ||
-                        product.is_in_cart ||
-                        !product.in_stock
-                            ? 'pe-none disabled'
-                            : null,
-                    ]"
                     class="btn-icon btn-add-cart product-type-simple"
                 >
                     <i class="icon-shopping-cart"></i>
