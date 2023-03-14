@@ -28228,9 +28228,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.addToCart($props.product.id);
     }, ["prevent"])),
     href: "#",
-    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([_defineProperty({
       'pe-none': $data.added.includes($props.product.id) || $props.product.is_in_cart
-    }, "btn-icon btn-add-cart product-type-simple"])
+    }, "pe-none", !$props.product.in_stock), "btn-icon btn-add-cart product-type-simple"])
   }, [_hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.carts.find(function (c) {
     return c.product_id == $props.product.id;
   }) ? "ITEM ADDED" : "ADD TO CART"), 1
