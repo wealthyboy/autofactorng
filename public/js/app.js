@@ -27989,7 +27989,7 @@ var _hoisted_17 = {
 };
 var _hoisted_18 = ["href"];
 var _hoisted_19 = {
-  "class": ""
+  "class": "mb-3 fs-5 fw-bold"
 };
 var _hoisted_20 = {
   key: 0,
@@ -28752,7 +28752,7 @@ var _hoisted_6 = {
   "class": "rating-link"
 };
 var _hoisted_7 = {
-  "class": "mb-4 text-secondary"
+  "class": "mb-3 fs-5 fw-bold"
 };
 var _hoisted_8 = {
   key: 0
