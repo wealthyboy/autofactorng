@@ -152,7 +152,11 @@
 
                             <total
                                 :voucher="voucher"
-                                :total="prices.total"
+                                :total="[
+                                    this.coupon_code
+                                        ? prices.sub_total
+                                        : prices.total,
+                                ]"
                                 :amount="amount"
                             />
                             <div class="proceed-to-checkout"></div>
