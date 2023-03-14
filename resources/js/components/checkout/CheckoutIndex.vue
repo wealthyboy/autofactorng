@@ -153,7 +153,7 @@
                             <total
                                 :voucher="voucher"
                                 :total="[
-                                    this.coupon_code
+                                    coupon_code
                                         ? prices.sub_total
                                         : prices.total,
                                 ]"
@@ -215,6 +215,7 @@ export default {
             pageIsLoading: true,
             paymentIsComplete: false,
             loading: true,
+            t: null,
         };
     },
     computed: {
@@ -408,7 +409,6 @@ export default {
                     this.coupon = "";
                     this.voucher = [];
                     this.voucher.push(response.data);
-
                     this.amount = parseInt(response.data.sub_total);
                 })
                 .catch((error) => {
