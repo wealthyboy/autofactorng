@@ -91,7 +91,7 @@
                             'pe-none':
                                 added.includes(product.id) ||
                                 product.is_in_cart,
-                            'pr-none': !product.in_stock,
+                            'pe-none': !product.in_stock,
                         }"
                         class="btn-icon btn-add-cart product-type-simple"
                     >
