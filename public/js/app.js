@@ -23629,7 +23629,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       token: null,
       qty: 1,
       loading: false,
-      text: "Add To Cart"
+      text: "Add To Cart",
+      productIsAdded: false
     };
   },
   computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_3__.mapGetters)({
@@ -23661,14 +23662,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         product_id: product_id,
         quantity: this.qty
       }).then(function () {
+        _this.productIsAdded = true;
         _this.text = "Add To Cart";
         _this.loading = false;
-        $.miniPopup.open({
-          name: "eeee",
-          nameLink: "eee",
-          imageSrc: "eeee",
-          imageLink: "ww"
-        });
       })["catch"](function (error) {
         _this.text = "Add To Cart";
         _this.loading = false;
@@ -28800,8 +28796,43 @@ var _hoisted_15 = {
 var _hoisted_16 = {
   "class": "product-action"
 };
+var _hoisted_17 = {
+  "class": "minipopup-area"
+};
+var _hoisted_18 = {
+  "class": "product"
+};
+var _hoisted_19 = {
+  "class": "product-media"
+};
+var _hoisted_20 = ["href"];
+var _hoisted_21 = ["src"];
+var _hoisted_22 = {
+  "class": "product-detail"
+};
+var _hoisted_23 = ["href"];
 
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"minipopup-area\"><div class=\"minipopup-box active\" style=\"top:0px;\"><div class=\"product\"><figure class=\"product-media\"><a href=\"/product/spare-parts/honda-acura-transmission-mount-50850-ta0-a01\"><img src=\"https://autofactor.ng/images/products/tm/sSC7cDpzFV37zemjsWk1t6tgVL0v1dxzNwVBGFXZ.jpg\" alt=\"product\" width=\"60\" height=\"60\"></a></figure><div class=\"product-detail\"><a href=\"/product/spare-parts/honda-acura-transmission-mount-50850-ta0-a01\" class=\"product-name\">Honda /Acura Transmission Mount (50850-TA0-A01)</a><p>has been added to your cart.</p></div></div><div class=\"product-action\"><a href=\"/cart\" class=\"btn viewcart\">View Cart</a><a href=\"/checkout\" class=\"btn btn-dark checkout\">Checkout</a></div><button class=\"mfp-close\"></button></div></div>", 1);
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "has been added to your cart.", -1
+/* HOISTED */
+);
+
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "product-action"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: "/cart",
+  "class": "btn viewcart"
+}, "View Cart"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  href: "/checkout",
+  "class": "btn btn-dark checkout"
+}, "Checkout")], -1
+/* HOISTED */
+);
+
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  "class": "mfp-close"
+}, null, -1
+/* HOISTED */
+);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_check_vehicle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("check-vehicle");
@@ -28854,7 +28885,41 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"]))
   }, null, 8
   /* PROPS */
-  , ["text", "type", "loading", "class"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-action "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product single-share ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-single-details "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-single-container "), _hoisted_17], 64
+  , ["text", "type", "loading", "class"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-action "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product single-share ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-single-details "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-single-container "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.Transition, {
+    name: "alert"
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+        "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["minipopup-box", {
+          active: $data.productIsAdded
+        }]),
+        style: {
+          "top": "0px"
+        }
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("figure", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        href: $props.product.link
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+        src: $props.product.image_m,
+        alt: "product",
+        width: "60",
+        height: "60"
+      }, null, 8
+      /* PROPS */
+      , _hoisted_21)], 8
+      /* PROPS */
+      , _hoisted_20)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+        href: $props.product.link,
+        "class": "product-name"
+      }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name), 9
+      /* TEXT, PROPS */
+      , _hoisted_23), _hoisted_24])]), _hoisted_25, _hoisted_26], 2
+      /* CLASS */
+      )])];
+    }),
+    _: 1
+    /* STABLE */
+
+  })], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -30350,7 +30415,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
       nameLink: "#",
       content: "has been added to your cart.",
       action: '<a href="/cart" class="btn viewcart">View Cart</a><a href="/checkout" class="btn btn-dark checkout">Checkout</a>',
-      delay: 101e3,
+      delay: 4e3,
       space: 20,
       template: '<div class="minipopup-box"><div class="product"><figure class="product-media"><a href="{{imageLink}}"><img src="{{imageSrc}}" alt="product" width="60" height="60"></a></figure><div class="product-detail"><a href="{{nameLink}}" class="product-name">{{name}}</a><p>{{content}}</p></div></div><div class="product-action">{{action}}</div><button class="mfp-close"></button></div>'
     },
