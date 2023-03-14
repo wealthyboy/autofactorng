@@ -159,6 +159,8 @@ class CheckoutController extends Controller
             if ($coupon->is_fixed) {
                 $new_total = $cart_total - $coupon->amount;
                 $total['sub_total'] = round($new_total, 0);
+                $total['actual_total'] = round($cart_total, 0);
+
                 $request->session()->put(['new_total' => $new_total]);
                 $request->session()->put(['coupon_total' => $new_total]);
                 $request->session()->put(['coupon' => $request->coupon]);

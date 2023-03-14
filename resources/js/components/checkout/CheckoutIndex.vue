@@ -29,40 +29,6 @@
                     <div v-if="addresses.length">
                         <cart-summary />
 
-                        <div class="cart-discount p-0 mt-3 col-sm-12">
-                            <h4>Apply Discount Code/Redeem Gift Card</h4>
-                            <div class="row g-0">
-                                <div class="col-8">
-                                    <input
-                                        type="text"
-                                        v-model="coupon"
-                                        class="form-control b"
-                                        placeholder="Enter  code"
-                                        required=""
-                                    />
-                                </div>
-                                <div class="col-4">
-                                    <button
-                                        @click.prevent="applyCoupon"
-                                        class="btn btn-sm btn-primary w-100 rounded-0 coupon-button btn-dark bold"
-                                        type="submit"
-                                    >
-                                        <span
-                                            v-if="submiting"
-                                            class="spinner-border spinner-border-sm"
-                                            role="status"
-                                            aria-hidden="true"
-                                        ></span>
-                                        Apply
-                                    </button>
-                                </div>
-                            </div>
-
-                            <!-- End .input-group -->
-                            <div v-if="coupon_error" class="text- text-danger">
-                                {{ coupon_error }}
-                            </div>
-                        </div>
                         <total
                             :voucher="voucher"
                             :total="prices.total"
@@ -131,8 +97,7 @@
                                 @click.prevent="makePayment"
                                 class="btn btn-block btn-dark w-100"
                             >
-                                Pay Now
-                                <i class="fa fa-arrow-right"></i
+                                Pay Now<i class="fa fa-arrow-right"></i
                             ></a>
                         </div>
                     </div>
@@ -148,14 +113,9 @@
                                 <h3 class="mb-0">SUMMARY</h3>
                             </div>
 
-                            <cart-summary />
+                            <cart-summary @coupon:sent="applyCoupon" />
 
-                            <total
-                                :voucher="voucher"
-                                :total="t"
-                                :amount="amount"
-                            />
-                            <div class="proceed-to-checkout"></div>
+                            <total :voucher="voucher" :amount="amount" />
                         </div>
                     </div>
                 </div>
@@ -222,6 +182,7 @@ export default {
             default_shipping: "default_shipping",
             prices: "prices",
             walletBalance: "walletBalance",
+            total: "total",
         }),
 
         activeAddress() {},
@@ -230,11 +191,9 @@ export default {
     created() {
         this.getCart();
         this.getWalletBalance();
-        this.getAddresses().then(() => {
+        this.getAddresses().then((res) => {
             this.loading = false;
         });
-
-        this.t = this.prices.total;
     },
     methods: {
         ...mapActions({
@@ -278,15 +237,6 @@ export default {
                 return false;
             }
 
-            if (!this.coupon_code) {
-                this.amount = this.prices.total;
-                // if (this.prices.ship_price) {
-                //         this.amount =
-                //             parseInt(this.prices.ship_price) +
-                //             parseInt(response.data.sub_total);
-                //     }
-            }
-
             let form = document.getElementById("checkout-form-2");
             this.order_text = "Please wait. We are almost done......";
             this.payment_is_processing = true;
@@ -294,7 +244,7 @@ export default {
             var handler = PaystackPop.setup({
                 key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
                 email: context.cart_meta.user.email,
-                amount: context.amount * 100,
+                amount: context.total * 100,
                 currency: "NGN",
                 first_name: context.cart_meta.user.name,
                 metadata: {
@@ -339,10 +289,6 @@ export default {
                 cartIds.push(cart.id);
             });
 
-            if (!this.coupon_code) {
-                this.amount = this.prices.total;
-            }
-
             if (!this.addresses.length) {
                 this.error =
                     "You need to save your address before placing your order";
@@ -365,7 +311,7 @@ export default {
                     shipping_price: context.shipping_price,
                     user_id: context.cart_meta.user.id,
                     uuid: uuid,
-                    total: context.amount,
+                    total: context.total,
                 })
                 .then((response) => {})
                 .catch((error) => {});
@@ -387,44 +333,12 @@ export default {
             connect.openNew(config);
         },
 
-        applyCoupon: function () {
-            if (!this.coupon) {
-                this.coupon_error = "Enter a coupon code";
-                setTimeout(() => {
-                    this.error = null;
-                }, 2000);
-                return;
-            }
-            this.coupon_error = null;
-            this.submiting = true;
-            axios
-                .post("/checkout/coupon", {
-                    coupon: this.coupon,
-                })
-                .then((response) => {
-                    this.submiting = false;
-                    this.coupon_code = this.coupon;
-
-                    this.coupon = "";
-                    this.voucher = [];
-                    this.voucher.push(response.data);
-                    this.amount = parseInt(response.data.sub_total);
-                    this.t = response.data.sub_total;
-                })
-                .catch((error) => {
-                    this.submiting = false;
-                    this.coupon_error = error.response.data.error;
-                    if (error.response.status) {
-                        this.submiting = false;
-                    }
-                });
+        applyCoupon: function (c, s) {
+            this.coupon = c;
         },
         checkout: function (e, type = null, text) {
             e.target.innerText = "Please wait.......";
             e.target.classList.add("disabled");
-            if (!this.coupon_code) {
-                this.amount = this.prices.total;
-            }
 
             axios
                 .post("/checkout/confirm", {

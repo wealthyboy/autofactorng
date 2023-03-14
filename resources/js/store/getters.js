@@ -139,3 +139,4 @@ export const productFitString = (state) => {
 export const showSearch = (state) => {
     return state.showSearch
 }
+

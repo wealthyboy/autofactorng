@@ -261,7 +261,6 @@
         </div>
       </form>
     </div>
-
     <div
       v-if="addresses.length && !showForm"
       class="address_details mt-2"

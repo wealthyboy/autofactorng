@@ -1,6 +1,6 @@
 <template>
     <p class="d-flex justify-content-between">
-        <span class="bold" style="font-size: 28px">Total</span>
+        <span class="bold" style="font-size: 28px">Total </span>
 
         <span class="price-amount amount bold float-right">
             <span class="currencySymbol" style="font-size: 28px">
@@ -19,8 +19,18 @@
     </p>
 </template>
 <script>
+import { computed } from "vue";
+import { useStore } from "vuex";
+
 export default {
-    props: ["total", "voucher", "amount"],
-    setup() {},
+    props: ["voucher", "amount"],
+    setup() {
+        const store = useStore();
+        const total = computed(() => store.getters.total);
+        return {
+            total,
+            store,
+        };
+    },
 };
 </script>

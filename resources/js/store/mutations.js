@@ -145,3 +145,8 @@ export const setProductFitString = (state, s) => {
 export const setShowSearch = (state, trueOrFalse) => {
     state.showSearch = trueOrFalse
 }
+
+
+export const setTotal = (state, total) => {
+    state.total = total;
+}

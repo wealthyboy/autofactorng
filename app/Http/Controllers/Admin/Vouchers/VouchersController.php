@@ -10,6 +10,7 @@ use App\Models\Category;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Voucher;
+use App\Models\Activity;
 
 use App\Http\Helper;
 
@@ -65,6 +66,7 @@ class VouchersController  extends Table
 		$voucher->status = $request->status;
 		$voucher->save();
 		(new Activity)->put("Udated  vounher with id  {$voucher->id}", null);
+
 
 		return redirect('admin/vouchers');
 	}

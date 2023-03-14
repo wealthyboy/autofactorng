@@ -32,4 +32,6 @@ export default {
     productIsLoading: true,
     productFitString: null,
     showSearch: false,
+    total: 0,
+
 }

@@ -390,7 +390,6 @@ export const getAddresses = ({ dispatch, commit }) => {
         .get("/api/addresses")
         .then(response => {
             commit("setLoading", false);
-
             dispatch("setADl", response);
             return Promise.resolve(response);
         })
@@ -468,6 +467,8 @@ export const setADl = ({ commit }, response) => {
     commit("setPrices", response.data.meta.prices);
     commit("setStates", response.data.meta.states);
     commit("setDefaultShipping", response.data.meta.default_shipping);
+    commit("setTotal", response.data.meta.prices.total);
+
 };
 
 export const clearError = ({ commit }) => {

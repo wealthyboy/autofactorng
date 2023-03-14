@@ -27,16 +27,65 @@
         </div>
     </div>
 
-    <p class="pt-3 pb-1 d-flex justify-content-between">
+    <div class="cart-discount mb-0 p-0 mt-3 col-sm-12">
+        <h4>Apply Discount Code/Redeem Gift Card</h4>
+        <div class="row g-0">
+            <div class="col-8">
+                <input
+                    type="text"
+                    v-model="coupon"
+                    class="form-control b"
+                    placeholder="Enter  code"
+                    required=""
+                />
+            </div>
+            <div class="col-4">
+                <button
+                    @click.prevent="applyCoupon"
+                    class="btn btn-sm btn-primary w-100 rounded-0 coupon-button btn-dark bold"
+                    type="submit"
+                >
+                    <span
+                        v-if="submiting"
+                        class="spinner-border spinner-border-sm"
+                        role="status"
+                        aria-hidden="true"
+                    ></span>
+                    Apply
+                </button>
+            </div>
+        </div>
+
+        <!-- End .input-group -->
+        <div v-if="coupon_error" class="text- text-danger">
+            {{ coupon_error }}
+        </div>
+    </div>
+
+    <p v-if="addresses.length" class="pt-3 pb-1 d-flex justify-content-between">
         <span class="bold" style="font-size: 22px">Subtotal</span>
+
         <span class="bold float-right">
-            <span class="currencySymbol fs-3">{{
-                $filters.formatNumber(cart_meta.sub_total)
-            }}</span>
+            <template v-if="v">
+                <span class="text-danger fs-4 me-3">
+                    <del
+                        >{{ $filters.formatNumber(cart_meta.sub_total) }}
+                    </del></span
+                >
+                <span class="fs-2">
+                    {{ $filters.formatNumber(v.sub_total) }}</span
+                >
+                <p class="fs-6">{{ v.percent }}</p>
+            </template>
+            <template v-else>
+                <span class="fs-2">
+                    {{ $filters.formatNumber(cart_meta.sub_total) }}</span
+                >
+            </template>
         </span>
     </p>
     <p
-        class="border-top border-bottom pb-3 pt-3 d-flex justify-content-between"
+        class="border-top border-bottom pb-3 pt-3 d-flex justify-content-between fs-4"
     >
         <span class="bold">Shipping</span>
         <span class="bold float-right"
@@ -62,6 +111,16 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
+    props: ["amount"],
+    data() {
+        return {
+            coupon: "",
+            coupon_code: null,
+            submiting: false,
+            coupon_error: null,
+            v: null,
+        };
+    },
     computed: {
         ...mapGetters({
             carts: "carts",
@@ -76,6 +135,44 @@ export default {
         ...mapActions({
             getCart: "getCart",
         }),
+
+        applyCoupon: function () {
+            if (!this.coupon) {
+                this.coupon_error = "Enter a coupon code";
+                setTimeout(() => {
+                    this.error = null;
+                }, 2000);
+                return;
+            }
+            this.coupon_error = null;
+            this.submiting = true;
+
+            axios
+                .post("/checkout/coupon", {
+                    coupon: this.coupon,
+                })
+                .then((response) => {
+                    this.submiting = false;
+                    this.coupon_code = this.coupon;
+                    this.coupon = "";
+                    this.voucher = [];
+                    this.v = response.data;
+                    //this.amount = parseInt(response.data.sub_total);
+                    this.$store.commit(
+                        "setTotal",
+                        response.data.sub_total + this.prices.ship_price
+                    );
+
+                    this.$emit("coupon:sent", this.coupon_code);
+                })
+                .catch((error) => {
+                    this.submiting = false;
+                    this.coupon_error = error.response.data.error;
+                    if (error.response.status) {
+                        this.submiting = false;
+                    }
+                });
+        },
     },
 };
 </script>
