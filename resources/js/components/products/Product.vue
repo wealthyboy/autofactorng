@@ -196,7 +196,9 @@
                     @click.prevent="addToCart(product.id)"
                     href="#"
                     :class="[
-                        product.is_in_cart || !product.in_stock
+                        carts.find((c) => c.product_id == product.id) ||
+                        product.is_in_cart ||
+                        !product.in_stock
                             ? 'pe-none disabled'
                             : null,
                     ]"

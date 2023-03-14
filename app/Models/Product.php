@@ -258,7 +258,8 @@ class Product extends Model
 
     public function cart()
     {
-        return $this->hasOne(Cart::class);
+        $cookie = \Cookie::get('cart');
+        return $this->hasOne(Cart::class)->where(['remember_token' => $cookie]);
     }
 
 
