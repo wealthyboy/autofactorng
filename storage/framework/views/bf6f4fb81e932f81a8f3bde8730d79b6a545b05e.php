@@ -254,7 +254,6 @@
                      <div class="mc-mb-6 mc-mb-md-9 mc-mb-lg-0">
                         <div class="">
                            <h1 class="text-white">Gain New Skills, Meet Your Favorite </h1>
-                           <p class="text-white">Unlimited access to all. </p>
                         </div>
                      </div>
                   </div>

@@ -196,8 +196,8 @@
                     @click.prevent="addToCart(product.id)"
                     href="#"
                     :class="{
-                        'pe-none disabled':
-                            added.includes(product.id) || product.is_in_cart,
+                        'pe-none disabled': added.includes(product.id),
+                        'pe-none disabled': product.is_in_cart,
                         'pe-none disabled': !product.in_stock,
                     }"
                     class="btn-icon btn-add-cart product-type-simple"

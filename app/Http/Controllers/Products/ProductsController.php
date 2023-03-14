@@ -154,7 +154,7 @@ class ProductsController extends Controller
 
 
         $type = $this->getType($request);
-        $per_page = $request->per_page ?? $this->settings->products_items_per_page;
+        $per_page = $request->per_page ?? optional($this->settings)->products_items_per_page;
 
         if ($this->getCategory($category)) {
             if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
