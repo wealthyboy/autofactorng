@@ -99,9 +99,7 @@
                                         @if($l == 'selected')
                                         <option value="{{ $lv }}" selected>{{ $lv }}</option>
                                         @else
-                                        @if($l == 'selected' && $lv == $v['selected'])
-                                        @continue
-                                        @endif
+
 
                                         <option value="{{ $lv }}">{{ $lv }}</option>
                                         @endif
