@@ -97,7 +97,7 @@
                                     <select style="width: 100px;" class="form-control mt-3 update_status" name="order_status[25991]" id="">
                                         <option value="0" selected>Choose Status</option>
                                         @foreach($v as $k)
-                                        <option value="{{ $k }}" selected>{{ $k }}</option>
+                                        <option value="{{ $k }}">{{ $k }}</option>
 
                                         @endforeach
 
