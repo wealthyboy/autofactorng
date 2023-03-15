@@ -341,10 +341,10 @@ $('.change-status').on('click', function(e){
     let self  = $(this)
     $.ajax({
         type: 'POST',
-        url: '/admin/update',
+        url: '/admin/update/status',
         data: {
             id: self.data('id'),
-            type: self.data('id'),
+            model: self.data('model'),
             value: self.val(),
         }
     }).done(function(response) {
