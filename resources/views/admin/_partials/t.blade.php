@@ -96,17 +96,18 @@
 
                                     <select style="width: 100px;" class="form-control mt-3 update_status" name="order_status[25991]" id="">
                                         <option value="0" selected>Choose Status</option>
-                                        <option value="Processing" selected="">Processing</option>
-                                        <option value="Refunded">Refunded</option>
-                                        <option value="Shipped">Shipped</option>
-                                        <option value="Delivered">Delivered</option>
+                                        @foreach($v as $k)
+                                        <option value="{{ $k }}" selected>{{ $k }}</option>
 
-                                        @else
+                                        @endforeach
 
-                                        <h6 data-price="{{ $k == 'Price' ? $v  : '' }}" data-id="{{ isset( $models['items'][0][$key]['Id']) ?   $models['items'][0][$key]['Id'] : null }}" class=" <?php echo  $k == 'Price' ?  'update_price' : '' ?> mb-0 text-xs" {{ $k == 'Price' ? 'contenteditable' : null }}>{{ $v }}</h6>
 
-                                        @endif
                                     </select>
+                                    @else
+
+                                    <h6 data-price="{{ $k == 'Price' ? $v  : '' }}" data-id="{{ isset( $models['items'][0][$key]['Id']) ?   $models['items'][0][$key]['Id'] : null }}" class=" <?php echo  $k == 'Price' ?  'update_price' : '' ?> mb-0 text-xs" {{ $k == 'Price' ? 'contenteditable' : null }}>{{ $v }}</h6>
+
+                                    @endif
                                 </div>
                                 @endif
 
