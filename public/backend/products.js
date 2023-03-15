@@ -337,7 +337,7 @@ $(document).ready(function() {
     }, 600);
 });
 
-$('.change-status').on('click', function(e){
+$('.change-status').on('change', function(e){
     let self  = $(this)
     $.ajax({
         type: 'POST',
