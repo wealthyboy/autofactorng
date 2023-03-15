@@ -17,7 +17,7 @@ class GeneralController extends Controller
 
         $model = 'App\\Models\\' . $request->model;
         $model = $model::find($request->id);
-        $model->$$request->column = $request->value;
+        $model->{$request->column} = $request->value;
         $model->save();
     }
 
