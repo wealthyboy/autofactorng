@@ -10,15 +10,16 @@
         <div class="col-md-9 col-6">
             <div class="tag mb-1 brand-name bold color--gray"></div>
             <div>
-                <a :href="cart.product.link">{{ cart.product.name }}</a>
+                <a :href="cart.product.link"
+                    >{{ cart.quantity }} X {{ cart.product.name }}</a
+                >
             </div>
             <div class="product-item-prices d-flex">
                 <div class="product--price--amount retail ml-5">
                     <span class="retail--title text-gold">PRICE</span>
                     <span class="product--price retail--price ms-3 bold"
-                        >{{ $filters.formatNumber(cart.price) }} x
-                        {{ cart.quantity }}</span
-                    >
+                        >{{ $filters.formatNumber(cart.price * cart.quantity) }}
+                    </span>
                     <span class="retail--title"></span>
                 </div>
             </div>
