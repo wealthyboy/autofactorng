@@ -14,7 +14,11 @@ class GeneralController extends Controller
      */
     public function changeStatus(Request $request)
     {
-        dd($request->all());
+
+        $model = $request->model;
+        $model = $model::find($request->id);
+        $model->status = $request->value;
+        $model->save();
     }
 
     /**
