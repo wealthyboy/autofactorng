@@ -107,7 +107,6 @@ class Order extends Model
 				"Invoice" => $order->invoice,
 				"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
 				"Email" => $order->email,
-
 				"Status" => self::$statuses,
 				"Total" =>  Helper::currencyWrapper($order->total),
 				"Date Added" => $order->created_at->format('d-m-y'),
@@ -122,13 +121,18 @@ class Order extends Model
 			"Invoice" => 'invoice',
 			"Customer" => 'first_name',
 			"Email" => 'email',
-			"Type" => 'order_type',
-			"Payment Type" => 'payment_type',
 			"Total" =>  'total',
 			"Date Added" => 'created_at',
 		];
 
 		return $sort[$key];
+	}
+
+	public function selected()
+	{
+		return [
+			"Status" => $this->status,
+		];
 	}
 
 	public  function order_statuses()
