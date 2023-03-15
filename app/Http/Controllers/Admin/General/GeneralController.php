@@ -18,7 +18,7 @@ class GeneralController extends Controller
         $co = $$c;
         $model = 'App\\Models\\' . $request->model;
         $model = $model::find($request->id);
-        $model->{$co} = $request->value;
+        $model->status = $request->value;
         $model->save();
     }
 
