@@ -45,8 +45,8 @@
       <div class="form-floating">
         <general-input
           id="order_id"
-          :error="v$.tracking"
-          v-model="form.tracking"
+          :error="v$.invoice"
+          v-model="form.invoice"
           name="Invoice Number"
           type="text"
         />

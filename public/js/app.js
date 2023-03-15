@@ -25213,10 +25213,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     id: "order_id",
-    error: $setup.v$.tracking,
-    modelValue: $setup.form.tracking,
+    error: $setup.v$.invoice,
+    modelValue: $setup.form.invoice,
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $setup.form.tracking = $event;
+      return $setup.form.invoice = $event;
     }),
     name: "Invoice Number",
     type: "text"
