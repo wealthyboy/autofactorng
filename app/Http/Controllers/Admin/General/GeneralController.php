@@ -14,7 +14,8 @@ class GeneralController extends Controller
      */
     public function changeStatus(Request $request)
     {
-
+        $c = $request->column;
+        $c = $$c;
         $model = 'App\\Models\\' . $request->model;
         $model = $model::find($request->id);
         $model->{$request->column} = $request->value;
