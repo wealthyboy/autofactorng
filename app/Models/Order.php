@@ -108,7 +108,7 @@ class Order extends Model
 				"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
 				"Email" => $order->email,
 				"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
-				"Total" =>  Helper::currencyWrapper($order->total),
+				"Total" => Helper::currencyWrapper($order->total),
 				"Date Added" => $order->created_at->format('d-m-y'),
 			];
 		});
