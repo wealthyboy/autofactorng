@@ -337,11 +337,11 @@ $(document).ready(function() {
     }, 600);
 });
 
-$('.change').on('click', function(e){
+$('.change-status').on('click', function(e){
     let self  = $(this)
     $.ajax({
         type: 'POST',
-        url: self.attr('action'),
+        url: '/admin/update',
         data: {
             id: self.data('id'),
             type: self.data('id'),
