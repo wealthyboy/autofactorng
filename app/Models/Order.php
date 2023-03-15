@@ -15,10 +15,10 @@ class Order extends Model
 	public $appends = ['ship_price'];
 
 	public static $statuses = [
-		"Processing",
-		"Shipped",
-		"Delivered",
-		"Refunded",
+		"Processing" => "Processing",
+		"Shipped" => "Shipped",
+		"Delivered" => "Delivered",
+		"Refunded" => "Refunded",
 	];
 
 	public function ordered_products()
@@ -107,7 +107,7 @@ class Order extends Model
 				"Invoice" => $order->invoice,
 				"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
 				"Email" => $order->email,
-				"Status" => self::$statuses,
+				"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 				"Total" =>  Helper::currencyWrapper($order->total),
 				"Date Added" => $order->created_at->format('d-m-y'),
 			];
