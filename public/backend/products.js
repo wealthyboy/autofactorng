@@ -337,6 +337,25 @@ $(document).ready(function() {
     }, 600);
 });
 
+$('.change').on('click', function(e){
+    let self  = $(this)
+    $.ajax({
+        type: 'POST',
+        url: self.attr('action'),
+        data: {
+            id: self.data('id'),
+            type: self.data('id'),
+            value: self.val(),
+        }
+    }).done(function(response) {
+       alert("Status changed")
+    }).catch(function(xhr, status, error) {
+        // error handling
+        alert("Status changed failed")
+    });
+    
+})
+
 if (document.querySelector('#phy_description')) {
     CKEDITOR.replace('phy_description', {
         height: '200px',

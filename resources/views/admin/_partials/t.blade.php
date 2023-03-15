@@ -92,15 +92,13 @@
                                 <div class="align-middle  text-sm">
 
                                     @if(is_array($v))
-                                    <select style="width: 100px;" class="form-control mt-3 update" id="" name="order_status[]" id="">
+                                    <select style="width: 100px;" class="form-control mt-3 change" data-id="{{ isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null }}" data-model="Order" name="[]">
                                         <option value="0" selected>Choose Status</option>
 
                                         @foreach($v as $l => $lv)
                                         @if($l == 'selected')
                                         <option value="{{ $lv }}" selected>{{ $lv }}</option>
                                         @else
-
-
                                         <option value="{{ $lv }}">{{ $lv }}</option>
                                         @endif
                                         @endforeach
