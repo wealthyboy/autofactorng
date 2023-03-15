@@ -27,7 +27,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('reports', 'Admin\Account\AccountsController@index');
     Route::get('account/filter', 'Admin\Account\AccountsController@index')->name('filter_sales');
     Route::post('customers/wallet/{id}', 'Admin\Customers\CustomersController@fundWallet');
-    Route::get('/admin/update/status', 'Admin\General\GeneralController@changeStatus');
+    Route::post('/admin/update/status', 'Admin\General\GeneralController@changeStatus');
 
     Route::resource('customers', 'Admin\Customers\CustomersController', ['name' => 'customers']);
 
