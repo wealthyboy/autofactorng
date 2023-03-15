@@ -94,8 +94,8 @@
                                     @if(is_array($v))
 
 
-                                    <select class="form-control mt-3 update_status" name="order_status[25991]" id="">
-                                        <option value="">Choose Status</option>
+                                    <select style="width: 100px;" class="form-control mt-3 update_status" name="order_status[25991]" id="">
+                                        <option value="0" selected>Choose Status</option>
                                         <option value="Processing" selected="">Processing</option>
                                         <option value="Refunded">Refunded</option>
                                         <option value="Shipped">Shipped</option>
