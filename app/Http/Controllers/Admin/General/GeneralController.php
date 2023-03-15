@@ -15,7 +15,7 @@ class GeneralController extends Controller
     public function changeStatus(Request $request)
     {
 
-        $model = $request->model;
+        $model = 'App\\Models\\' . $request->model;
         $model = $model::find($request->id);
         $model->status = $request->value;
         $model->save();
