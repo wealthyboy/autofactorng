@@ -15,10 +15,10 @@ class GeneralController extends Controller
     public function changeStatus(Request $request)
     {
         $c = $request->column;
-        $c = $$c;
+        $co = $$c;
         $model = 'App\\Models\\' . $request->model;
         $model = $model::find($request->id);
-        $model->$c = $request->value;
+        $model->{$co} = $request->value;
         $model->save();
     }
 
