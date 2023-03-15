@@ -128,11 +128,13 @@ class Order extends Model
 		return $sort[$key];
 	}
 
-	public function selected()
+	public function selected($collection)
 	{
-		return [
-			"Status" => $this->status,
-		];
+		return  $collection->map(function ($order) {
+			return [
+				"Status" => $this->status,
+			];
+		});
 	}
 
 	public  function order_statuses()

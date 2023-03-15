@@ -143,7 +143,7 @@ abstract class Table extends Controller
                             "url" =>  $this->link . '/' . $obj->id,
                         ];
                     }),
-                    'selected' => $builder->selected()
+                    'selected' => $this->builder->selected($collections)
                 ],
                 'unique' =>  $this->unique(),
                 'routes' => $this->routes()
