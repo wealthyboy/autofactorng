@@ -109,7 +109,7 @@ class Order extends Model
 				"Email" => $order->email,
 				"Type" => $order->order_type,
 				"Payment Type" => $order->payment_type,
-				"Status" => $order->status,
+				"Status" => self::$statuses,
 				"Total" =>  Helper::currencyWrapper($order->total),
 				"Date Added" => $order->created_at->format('d-m-y'),
 			];
