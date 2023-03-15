@@ -207,9 +207,9 @@ export const addressRules = (form) => {
 export const trackingRules = (form) => {
     const rules = computed(() => {
         return {
-            tracking: {
+            invoice: {
                 required: helpers.withMessage(
-                    "Please enter your tracking number",
+                    "Please enter your invoice number",
                     required
                 ),
             },

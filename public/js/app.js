@@ -39311,7 +39311,7 @@ var accountData = function accountData(user) {
 };
 var trackingData = function trackingData() {
   var data = {
-    tracking: null
+    invoice: null
   };
   return data;
 };
@@ -39526,8 +39526,8 @@ var addressRules = function addressRules(form) {
 var trackingRules = function trackingRules(form) {
   var rules = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
     return {
-      tracking: {
-        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter your tracking number", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
+      invoice: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter your invoice number", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
       }
     };
   });

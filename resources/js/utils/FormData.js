@@ -61,7 +61,7 @@ export const accountData = (user) => {
 
 export const trackingData = () => {
     let data = {
-        tracking: null,
+        invoice: null,
     };
 
     return data
