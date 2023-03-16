@@ -90,7 +90,7 @@ class User extends Authenticatable
 					"Id" =>  $user->id,
 					"Full Name" =>  $user->fullname(),
 					"Email" => $user->email,
-					"Phone Number" => $user->phone_number,
+					"Permission" => optional($user->users_permission)->name,
 					"Wallet Balance" => (int) optional($user->wallet_balance)->balance,
 					'Auto Credit' => (int) optional($user->wallet_balance)->auto_credit,
 					"Date Added" =>  $user->created_at->format('d-m-y'),
