@@ -36,11 +36,11 @@
                 v-if="cart_meta.sub_total"
                 class="d-flex justify-content-between"
             >
-                <a class="bold view-cart bg-light text-black w-50" href="/cart"
+                <a class="view-cart bg-light text-black w-50" href="/cart"
                     >View Cart</a
                 >
                 <a
-                    class="bold view-cart ms-3 bg-dark text-white w-50"
+                    class="view-cart ms-3 bg-dark text-white w-50"
                     href="/checkout"
                     >Checkout</a
                 >

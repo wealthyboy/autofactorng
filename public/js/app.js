@@ -26298,14 +26298,14 @@ var _hoisted_12 = {
 };
 
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  "class": "bold view-cart bg-light text-black w-50",
+  "class": "view-cart bg-light text-black w-50",
   href: "/cart"
 }, "View Cart", -1
 /* HOISTED */
 );
 
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  "class": "bold view-cart ms-3 bg-dark text-white w-50",
+  "class": "view-cart ms-3 bg-dark text-white w-50",
   href: "/checkout"
 }, "Checkout", -1
 /* HOISTED */
