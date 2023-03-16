@@ -1,11 +1,4 @@
 <div class="row">
-    <div class="col-md-6 ">
-        <a href="/buy-now-pay-later?type=auto_cover" class="d-block p-0 ">
-            <div class="align-self-center text-center">
-                <img class="img-fluid" src="/images/utils/BNPL.jpg" alt="" srcset="">
-            </div>
-        </a>
-    </div>
     <div class="col-md-6 mt">
         <a href="/plans?type=auto_cover" class="d-block p-0 ">
             <div class="align-self-center text-center">
@@ -13,5 +6,13 @@
             </div>
         </a>
     </div>
+    <div class="col-md-6 ">
+        <a href="/buy-now-pay-later?type=auto_cover" class="d-block p-0 ">
+            <div class="align-self-center text-center">
+                <img class="img-fluid" src="/images/utils/BNPL.jpg" alt="" srcset="">
+            </div>
+        </a>
+    </div>
+
 
 </div>
