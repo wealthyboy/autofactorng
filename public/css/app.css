@@ -658,7 +658,7 @@
     width: 100%
 }
 
-.owl-carousel .owl-item {
+.product-show .owl-carousel .owl-item {
     display: flex !important;
     justify-content: center !important;
 }
