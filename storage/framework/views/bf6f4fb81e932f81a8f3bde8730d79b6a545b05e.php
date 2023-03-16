@@ -337,7 +337,7 @@
                <?php $__currentLoopData = $global_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                <div class="accordion-item">
-                  <h2 class="accordion-headery py-2" id="flush-heading<?php echo e($category->id); ?>">
+                  <h2 class="accordion-header mb-0 py-3" id="flush-heading<?php echo e($category->id); ?>">
                      <button class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?php echo e($category->id); ?>" aria-expanded="false" aria-controls="flush-collapse<?php echo e($category->id); ?>">
                         <?php echo e($category->name); ?>
 

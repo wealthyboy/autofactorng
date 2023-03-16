@@ -3,11 +3,14 @@
 @section('content')
 @include('_partials.top_banner')
 
-<div class="container-fluid mt-3">
-    <div class="row g-2">
-        @include('_partials.slider')
+<div class="class">
+    <div class="container-fluid mt-3">
+        <div class="row g-2">
+            @include('_partials.slider')
+        </div>
     </div>
 </div>
+
 
 <div class="container-fluid mt-4">
     @include('_partials.recently_viewed_products',['name' => 'RECENTLY VIEWED & RELATED'])
