@@ -10,7 +10,7 @@
         </ol>
     </nav>
 
-    <div class="product-single-container product-single-default">
+    <div class="product-single-container products-show product-single-default">
         <div class="row">
             <div class="col-lg-1 d-none d-lg-block d-xl-block">
                 <div class="prod-thumbnail owl-dots flex-column">
