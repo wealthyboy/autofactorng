@@ -100,7 +100,7 @@ class User extends Authenticatable
 					"Id" =>  $user->id,
 					"Full Name" =>  $user->fullname(),
 					"Email" => $user->email,
-					"Permission" => optional($user->users_permission)->name,
+					"Permission" => optional(optional($user->users_permission)->permission)->name,
 					"Date Added" =>  $user->created_at->format('d-m-y'),
 				];
 			}
