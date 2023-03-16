@@ -20,7 +20,7 @@
    </section>
 </div>
 
-<div class="col-md-3 ">
+<div class="col-md-3  d-none d-lg-block d-md-block d-xl-block  ">
    <div class="banner banner3">
       <a href="" class="d-block">
          <figure>
