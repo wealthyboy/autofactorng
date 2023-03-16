@@ -102,15 +102,27 @@ class Order extends Model
 	{
 
 		return  $collection->map(function ($order) {
-			return [
-				"Id" => $order->id,
-				"Invoice" => $order->invoice,
-				"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
-				"Email" => $order->email,
-				"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
-				"Total" => Helper::currencyWrapper($order->total),
-				"Date Added" => $order->created_at->format('d-m-y'),
-			];
+			if (str_contains(request()->path(), 'admin')) {
+				return [
+					"Id" => $order->id,
+					"Invoice" => $order->invoice,
+					"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
+					"Email" => $order->email,
+					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
+					"Total" => Helper::currencyWrapper($order->total),
+					"Date Added" => $order->created_at->format('d-m-y'),
+				];
+			} else {
+				return [
+					"Id" => $order->id,
+					"Invoice" => $order->invoice,
+					"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
+					"Email" => $order->email,
+					"Status" => $order->status,
+					"Total" => Helper::currencyWrapper($order->total),
+					"Date Added" => $order->created_at->format('d-m-y'),
+				];
+			}
 		});
 	}
 
