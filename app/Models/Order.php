@@ -18,7 +18,6 @@ class Order extends Model
 		"Processing" => "Processing",
 		"Shipped" => "Shipped",
 		"Delivered" => "Delivered",
-		"Refunded" => "Refunded",
 	];
 
 	public function ordered_products()

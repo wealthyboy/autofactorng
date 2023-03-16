@@ -7,6 +7,7 @@
     <div class="container-fluid mt-3">
         <div class="row g-2">
             @include('_partials.slider')
+
         </div>
     </div>
 </div>
