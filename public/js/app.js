@@ -27986,7 +27986,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var _hoisted_1 = {
   key: 0,
-  "class": "col-6 border col-sm-4 col-md-3 col-12"
+  "class": "col-6 border col-sm-4 col-md-3"
 };
 var _hoisted_2 = {
   "class": "product-default"
@@ -28071,7 +28071,7 @@ var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_28 = {
   key: 1,
-  "class": "col-sm-12 col-6 border product-default left-details product-list mb-2 col-12"
+  "class": "col-sm-12 col-6 border product-default left-details product-list mb-2"
 };
 var _hoisted_29 = {
   "class": "position-relative product-info-box"
