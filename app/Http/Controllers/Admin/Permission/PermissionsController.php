@@ -31,7 +31,7 @@ class PermissionsController extends Table
      */
     public function index()
     {
-        User::canTakeAction(User::canAccessPermissions);
+        // User::canTakeAction(User::canAccessPermissions);
         $permissions = $this->getColumnListings(request(), Permission::paginate(100));
         return view('admin.permissions.index', compact('permissions'));
     }
