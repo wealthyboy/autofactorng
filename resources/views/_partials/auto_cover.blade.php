@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-6 mt">
+    <div class="col-md-6 mb-sm-1">
         <a href="/plans?type=auto_cover" class="d-block p-0 ">
             <div class="align-self-center text-center">
                 <img class="img-fluid" src="/images/utils/Auto_cover.jpg" alt="" srcset="">
