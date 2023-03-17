@@ -3192,9 +3192,8 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 
 .banner img {
     width: 100%;
-    -o-object-fit: cover;
-       object-fit: cover;
-    height: 450px;
+    /* object-fit: cover;
+    height: 450px; */
 
 }
 
@@ -42190,9 +42189,9 @@ label.container {
   position: relative;
   top: -30px;
   background-color: #f0592a;
-  /* width: 119px; */
-  margin-left: 44rem;
-  margin-right: 40rem;
+  max-width: 119px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 .prod-thumbnail .owl-item {
