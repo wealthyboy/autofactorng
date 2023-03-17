@@ -3192,9 +3192,9 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 
 .banner img {
     width: 100%;
-    /* object-fit: cover;
-    height: 450px; */
-
+    -o-object-fit: cover;
+       object-fit: cover;
+    height: 450px;
 }
 
 .banner h1,
@@ -3306,6 +3306,14 @@ aside .banner {
     .banner-sm-vw-large {
         font-size: 4vw
     }
+
+    .banner img {
+        width: 100%;
+    
+        height: 100%;
+    }
+
+    
 }
 
 .breadcrumb-nav {
@@ -42188,7 +42196,6 @@ label.container {
 .owl-theme .owl-dots {
   position: relative;
   top: -30px;
-  background-color: #f0592a;
   max-width: 119px !important;
   margin-left: auto !important;
   margin-right: auto !important;
