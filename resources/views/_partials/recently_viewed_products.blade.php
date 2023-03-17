@@ -23,7 +23,7 @@
 
                <a href="{{ $product->link }}">
                   <div class="pr">
-                     <div class="product-tit">{{ $product->name }}</div>
+                     <div class="text-black">{{ $product->name }}</div>
                   </div>
                </a>
 
