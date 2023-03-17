@@ -1,6 +1,6 @@
 @if (null !== $global_promo)
 <div class="container-fluid text-center mt-3">
-    <div style="background-color: {{ $global_promo->bgcolor }}" class="top-notice py-2 text-white mb-2">
+    <div style="background-color: {{ $global_promo->bgcolor }}" class=" top-notice py-sm-4 py-md-2 text-white mb-2">
         <div class="row">
             <div class="offer-hignlight ">
                 @foreach($global_promo->promo_texts as $promo_text)
