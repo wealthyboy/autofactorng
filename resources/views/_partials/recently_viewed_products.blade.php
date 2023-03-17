@@ -22,11 +22,10 @@
             <div class="d-flex flex-column text-start">
 
                <a href="{{ $product->link }}">
-                  <div class="product-title">
-                     <div class="product-title-label fs-5">{{ $product->name }}</div>
+                  <div class="pr">
+                     <div class="product-tit">{{ $product->name }}</div>
                   </div>
                </a>
-
 
 
                <div class="ratings-container">
