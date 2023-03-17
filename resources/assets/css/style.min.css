@@ -108,6 +108,13 @@
         width: 50%!important
     }
 
+    input.form-control.search-products {
+        background: #f2f2f2;
+        border-radius: 8px;
+        padding-left: 40px;
+        padding-right: 130px;
+    }
+
     .product-single-gallery .product-item{
         width: auto !important; 
         height: auto !important;
