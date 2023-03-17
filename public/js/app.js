@@ -29289,7 +29289,7 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   method: "get",
   action: "/search",
-  "class": "input-group position-relative w-100 rounded-start mb-0"
+  "class": "input-group position-relative w-100 rounded-start mb-0 mt-sm-2"
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
