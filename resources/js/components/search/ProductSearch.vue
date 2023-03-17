@@ -2,7 +2,7 @@
     <form
         method="get"
         action="/search"
-        class="input-group position-relative w-100 rounded-start mb-0 mt-sm-3"
+        class="input-group position-relative w-100 rounded-start mb-0 mt-md-3"
     >
         <button
             class="search-products-icon"
