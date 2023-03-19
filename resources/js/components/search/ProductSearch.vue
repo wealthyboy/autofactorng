@@ -63,13 +63,8 @@
             class="dropdown-items position-absolute rounded-start"
         >
             <ul class="mt-4">
-                <li
-                    v-for="product in products"
-                    :key="product"
-                    role="button"
-                    class="py-3"
-                >
-                    <a :href="product.link">{{ product.name }}</a>
+                <li v-for="product in products" :key="product" role="button">
+                    <a class="py-3" :href="product.link">{{ product.name }}</a>
                 </li>
             </ul>
         </div>
