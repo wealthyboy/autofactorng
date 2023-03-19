@@ -247,7 +247,7 @@
       <!-- End .main -->
 
       <footer class="footer bg-dark">
-         <div class="py-2 subscribe  border-bottom  bg-secondary">
+         <div class="py-2 subscribe  border-bottom  ">
             <div class="container">
                <div class="row justify-content-center align-items-center no-gutters py-4">
                   <div class="col-12 col-lg-6">
@@ -262,7 +262,7 @@
                      <form method="POST" class="mb-0">
                         <div class="row g-0">
                            <div class="col-8"><input type="text" class="form-control mb-0" placeholder="Enter  code" required=""></div>
-                           <div class="col-4"><button class="btn btn-sm btn-primary w-100 rounded-0 coupon-button btn-dark bold" type="submit"><!--v-if--> Apply </button></div>
+                           <div class="col-4"><button class="btn btn-sm btn-primary w-100 rounded-0 coupon-button btn-dark bold bg-danger" type="submit"><!--v-if--> Apply </button></div>
                         </div>
                      </form>
 

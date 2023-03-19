@@ -93,21 +93,20 @@
                                 <div class="align-middle  text-sm">
 
                                     <?php if(is_array($v)): ?>
+                                    <select style="width: 100px;" class="form-control mt-3 change-status" data-column="status" data-id="<?php echo e(isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null); ?>" data-model="Order" name="[]">
+                                        <option value="0" selected>Choose Status</option>
 
-
-                                    <select class="form-control mt-3 update_status" name="order_status[25991]" id="">
-                                        <option value="">Choose Status</option>
-                                        <option value="Processing" selected="">Processing</option>
-                                        <option value="Refunded">Refunded</option>
-                                        <option value="Shipped">Shipped</option>
-                                        <option value="Delivered">Delivered</option>
-
+                                        <?php $__currentLoopData = $v; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $l => $lv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php if($l == 'selected'): ?>
+                                        <option value="<?php echo e($lv); ?>" selected><?php echo e($lv); ?></option>
                                         <?php else: ?>
-
-                                        <h6 data-price="<?php echo e($k == 'Price' ? $v  : ''); ?>" data-id="<?php echo e(isset( $models['items'][0][$key]['Id']) ?   $models['items'][0][$key]['Id'] : null); ?>" class=" <?php echo  $k == 'Price' ?  'update_price' : '' ?> mb-0 text-xs" <?php echo e($k == 'Price' ? 'contenteditable' : null); ?>><?php echo e($v); ?></h6>
-
+                                        <option value="<?php echo e($lv); ?>"><?php echo e($lv); ?></option>
                                         <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
+                                    <?php else: ?>
+                                    <h6 data-price="<?php echo e($k == 'Price' ? $v  : ''); ?>" data-id="<?php echo e(isset( $models['items'][0][$key]['Id']) ?   $models['items'][0][$key]['Id'] : null); ?>" class=" <?php echo  $k == 'Price' ?  'update_price' : '' ?> mb-0 text-xs" <?php echo e($k == 'Price' ? 'contenteditable' : null); ?>><?php echo e($v); ?></h6>
+                                    <?php endif; ?>
                                 </div>
                                 <?php endif; ?>
 

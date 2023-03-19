@@ -86,7 +86,7 @@
         <div class="accordion accordion-flush" id="accordionNav">
 
             <div class="accordion-item">
-                <h2 class="accordion-header mb-0 py-3" id="flush-heading1">
+                <h2 class="accordion-header mb-0 py-3 bold" id="flush-heading1">
                     <button class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse1" aria-expanded="false" aria-controls="flush-collapse1">
                         PRODUCT SPECIFICATIONS
                     </button>
@@ -102,7 +102,7 @@
                     </div>
                 </div>
 
-                <h2 class="accordion-header mb-0 py-3" id="flush-heading2">
+                <h2 class="accordion-header mb-0 py-3 bold" id="flush-heading2">
                     <button class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse2" aria-expanded="false" aria-controls="flush-collapse2">
                         PRODUCT DESCRIPTION
                     </button>

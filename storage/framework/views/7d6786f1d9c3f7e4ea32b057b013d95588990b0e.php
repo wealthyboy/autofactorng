@@ -4,7 +4,7 @@
         <div class="widget">
             <h2 class="widget-title text-white mb-"><?php echo e(title_case($info->name)); ?></h2>
             <?php if($info->children->count()): ?>
-            <ul class="links text-white list-unstyled">
+            <ul class="links text-secondry list-unstyled">
                 <?php $__currentLoopData = $info->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $info): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <li class="py-3">
                     <a href="<?php echo e($info->c_link); ?>">
