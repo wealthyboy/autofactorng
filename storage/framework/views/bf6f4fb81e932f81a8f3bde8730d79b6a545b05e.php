@@ -189,7 +189,7 @@
                               <span class="material-symbols-outlined">
                                  local_library
                               </span>
-                              <div class="align-self-center fw-bold  fs-6">How To</div>
+                              <div class="align-self-center fw-bold  fs-5">How To</div>
                               <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
                            </div>
                         </a>
@@ -249,21 +249,22 @@
       <footer class="footer bg-dark">
          <div class="py-2 subscribe  border-bottom  bg-secondary">
             <div class="container">
-               <div class="row justify-content-center align-items-center no-gutters">
+               <div class="row justify-content-center align-items-center no-gutters py-4">
                   <div class="col-12 col-lg-6">
                      <div class="mc-mb-6 mc-mb-md-9 mc-mb-lg-0">
                         <div class="">
-                           <h1 class="text-white">Gain New Skills, Meet Your Favorite </h1>
+                           <h1 class="text-white mb-0">Gain New Skills, Meet Your Favorite </h1>
                         </div>
                      </div>
                   </div>
                   <div class="col-12 col-lg-5 offset-lg-1">
 
-                     <div class="row justify-content-center p-0">
-                        <div class="">
-                           <sign-up></sign-up>
+                     <form method="POST" class="mb-0">
+                        <div class="row g-0">
+                           <div class="col-8"><input type="text" class="form-control mb-0" placeholder="Enter  code" required=""></div>
+                           <div class="col-4"><button class="btn btn-sm btn-primary w-100 rounded-0 coupon-button btn-dark bold" type="submit"><!--v-if--> Apply </button></div>
                         </div>
-                     </div>
+                     </form>
 
                   </div>
                </div>

@@ -4,7 +4,7 @@
         <div class="widget">
             <h2 class="widget-title text-white mb-">{{ title_case($info->name) }}</h2>
             @if($info->children->count())
-            <ul class="links text-white list-unstyled">
+            <ul class="links text-secondry list-unstyled">
                 @foreach($info->children as $info)
                 <li class="py-3">
                     <a href="{{ $info->c_link }}">
