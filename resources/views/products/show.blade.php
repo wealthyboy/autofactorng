@@ -81,27 +81,42 @@
         </div>
     </div>
 
+
+
     <div class="container-fluid d-sm-block d-lg-none p-0">
-        <div class="mt-1" id="accordion1">
-            <div class="card card-accordion">
-                <a class="card-header collapsed" href="element-accordions.html#" data-toggle="collapse" data-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
-                    PRODUCT SPECIFICATIONS
-                </a>
+        <div class="accordion accordion-flush" id="accordionNav">
 
-                <div id="collapse1" class="collapse" data-parent="#accordion1" style="">
-                    <?php echo html_entity_decode($product->phy_desc) ?>
+            <div class="accordion-item">
+                <h2 class="accordion-header mb-0 py-3" id="flush-heading1">
+                    <button class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse1" aria-expanded="false" aria-controls="flush-collapse1">
+                        PRODUCT SPECIFICATIONS
+                    </button>
+                </h2>
+                <div id="flush-collapse1" class="accordion-collapse collapse" aria-labelledby="flush-heading1" data-bs-parent="#accordionNav">
+                    <div class="accordion-body">
+
+                        <div class="product-desc">
+                            <?php echo html_entity_decode($product->phy_desc) ?>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <h2 class="accordion-header mb-0 py-3" id="flush-heading2">
+                    <button class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse2" aria-expanded="false" aria-controls="flush-collapse2">
+                        PRODUCT DESCRIPTION
+                    </button>
+                </h2>
+                <div id="flush-collapse2" class="accordion-collapse collapse" aria-labelledby="flush-heading2" data-bs-parent="#accordionNav">
+                    <div class="accordion-body">
+                        <?php echo html_entity_decode($product->description) ?>
+                    </div>
                 </div>
             </div>
 
-            <div class="card card-accordion">
-                <a class="card-header collapsed" href="element-accordions.html#" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                    PRODUCT DESCRIPTION
-                </a>
 
-                <div id="collapse2" class="collapse" data-parent="#accordion1" style="">
-                    <?php echo html_entity_decode($product->description) ?>
-                </div>
-            </div>
+
         </div>
     </div>
     <!-- End .container -->

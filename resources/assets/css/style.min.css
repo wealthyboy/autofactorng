@@ -9813,6 +9813,9 @@ figure .porto-loading-icon {
     .product-quick-view .product-single-details .product-title {
         font-size: 2.6rem
     }
+    .coverlay {
+        top: 120px;
+    }
 }
 
 @media (max-width:479px) {

@@ -25266,7 +25266,7 @@ var _hoisted_3 = {
 };
 var _hoisted_4 = {
   key: 0,
-  "class": "fw-bold ms-3 fs-6"
+  "class": "fw-bold ms-3 fs-5 text-start"
 };
 var _hoisted_5 = {
   key: 1

@@ -17,7 +17,7 @@
                 />
             </div>
 
-            <div class="fw-bold ms-3 fs-6" v-if="fitString">
+            <div class="fw-bold ms-3 fs-5 text-start" v-if="fitString">
                 {{ fitString }}
             </div>
             <div v-if="!fitString">Add vehicle</div>

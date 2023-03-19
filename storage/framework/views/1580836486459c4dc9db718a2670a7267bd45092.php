@@ -22,11 +22,10 @@
             <div class="d-flex flex-column text-start">
 
                <a href="<?php echo e($product->link); ?>">
-                  <div class="product-title">
-                     <div class="product-title-label fs-5"><?php echo e($product->name); ?></div>
+                  <div class="pr">
+                     <div class="text-black"><?php echo e($product->name); ?></div>
                   </div>
                </a>
-
 
 
                <div class="ratings-container">
