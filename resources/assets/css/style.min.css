@@ -9764,9 +9764,7 @@ figure .porto-loading-icon {
 }
 
 @media (max-width:575px) {
-    .product-image-box{
-        width: 135px;
-    }
+   
     .product-list {
         flex-direction: column;
         -ms-flex-direction: column
@@ -12174,7 +12172,7 @@ img.slide-bg {
 }
 
 .sticky-header.header-middle.fixed {
-    height: 60px
+    height: 70px
 }
 
 .sticky-header.deprecated-sticky:not(.fixed) .cart-dropdown,
