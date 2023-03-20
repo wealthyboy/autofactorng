@@ -10128,6 +10128,10 @@ figure .porto-loading-icon {
     .divide-line>.col-sm-11:nth-child(1n) {
         border-right: none
     }
+
+    .product-info-box:hover  .product-more-info{
+        opacity: 0;
+     }
 }
 
 @media (min-width:768px) {
