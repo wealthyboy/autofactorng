@@ -252,7 +252,7 @@
                <div class="row justify-content-center align-items-center no-gutters py-4">
                   <div class="col-12 col-lg-6">
                      <div class="mc-mb-6 mc-mb-md-9 mc-mb-lg-0">
-                        <div class="">
+                        <div class="mb-sm-2">
                            <h1 class="text-white mb-0">Gain New Skills, Meet Your Favorite </h1>
                         </div>
                      </div>
@@ -413,15 +413,16 @@
    <script type="text/javascript">
       @yield('inline-scripts')
 
+      $()
+
       $(".menu-nav-btn, .panel-close").on("click", function() {
          let open = $(".menu-open");
          let close = $(".menu-close");
          if (open.hasClass("d-none")) {
-
             open.removeClass("d-none");
             close.addClass("d-none");
-
             $(".coverlay").removeClass("d-block").addClass("d-none");
+
             $('html, body').css({
                overflow: 'auto',
                height: 'auto'
