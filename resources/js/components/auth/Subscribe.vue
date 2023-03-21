@@ -128,13 +128,22 @@
           type="text"
         />
 
+  
+
+        <simple-message
+          class="link-success fs-6 text-end fw-2  fs-4"
+          :message="amount"
+        />
+
       </div>
+
+      
       </p>
 
       <general-button
         type="submit"
         :text="text"
-        class="btn btn-dark w-100"
+        class="btn btn-dark w-100 p-3"
         :loading="loading"
       />
 
@@ -180,10 +189,14 @@ export default {
     const paymentIsProcessing = ref(false);
     const paymentIsComplete = ref(false);
     const scriptLoaded = ref(null);
+    const amount = ref(null);
+
 
     const rules = subscribeRules(form, props.price_range);
     const v$ = useVuelidate(rules, form);
     const { clearErr, makePost } = useActions(["makePost", "clearErr"]);
+
+    console.log(props.price_range)
 
     onMounted(() => {
       scriptLoaded.value = new Promise((resolve) => {
@@ -200,6 +213,13 @@ export default {
 
     function subscribe() {
       this.v$.$touch();
+      if (this.v$.$error) {
+        return;
+      }
+
+      let p   = (10 * data.amount) / 100;
+
+      amount.value = "Your auto credit shopping is ₦" + new Intl.NumberFormat().format((p + parseInt(data.amount)))
 
       const postData = {
         url: "/register",
@@ -251,8 +271,7 @@ export default {
               reg_complete.value = true;
             },
             onClose: function () {
-              if (u) {
-              }
+              
 
               loading.value = false;
             },
@@ -260,11 +279,13 @@ export default {
           handler.openIframe();
         })
         .catch((error) => {
+          if (error.response.data)
           server_errors.value = error.response.data.errors;
           clearErr(server_errors);
         });
     }
     return {
+      amount,
       form,
       loading,
       v$,

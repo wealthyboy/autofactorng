@@ -21953,6 +21953,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var paymentIsProcessing = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
     var paymentIsComplete = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
     var scriptLoaded = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(null);
+    var amount = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(null);
     var rules = (0,_utils_ValidationRules__WEBPACK_IMPORTED_MODULE_8__.subscribeRules)(form, props.price_range);
     var v$ = (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_1__.useVuelidate)(rules, form);
 
@@ -21960,6 +21961,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         clearErr = _useActions.clearErr,
         makePost = _useActions.makePost;
 
+    console.log(props.price_range);
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
       scriptLoaded.value = new Promise(function (resolve) {
         (0,_utils_Payment__WEBPACK_IMPORTED_MODULE_10__.loadScript)(function () {
@@ -21992,6 +21994,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
     function subscribe() {
       this.v$.$touch();
+
+      if (this.v$.$error) {
+        return;
+      }
+
+      var p = 10 * data.amount / 100;
+      amount.value = "Your auto credit shopping is ₦" + new Intl.NumberFormat().format(p + parseInt(data.amount));
       var postData = {
         url: "/register",
         data: form,
@@ -22034,19 +22043,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             reg_complete.value = true;
           },
           onClose: function onClose() {
-            if (u) {}
-
             loading.value = false;
           }
         });
         handler.openIframe();
       })["catch"](function (error) {
-        server_errors.value = error.response.data.errors;
+        if (error.response.data) server_errors.value = error.response.data.errors;
         clearErr(server_errors);
       });
     }
 
     return {
+      amount: amount,
       form: form,
       loading: loading,
       v$: v$,
@@ -25927,6 +25935,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_general_input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("general-input");
 
+  var _component_simple_message = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("simple-message");
+
   var _component_general_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("general-button");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_message, {
@@ -26019,10 +26029,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "text"
   }, null, 8
   /* PROPS */
-  , ["error", "modelValue"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
+  , ["error", "modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_simple_message, {
+    "class": "link-success fs-6 text-end fw-2 fs-4",
+    message: $setup.amount
+  }, null, 8
+  /* PROPS */
+  , ["message"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
     type: "submit",
     text: $setup.text,
-    "class": "btn btn-dark w-100",
+    "class": "btn btn-dark w-100 p-3",
     loading: $setup.loading
   }, null, 8
   /* PROPS */
