@@ -10129,9 +10129,7 @@ figure .porto-loading-icon {
         border-right: none
     }
 
-    .product-info-box:hover  .product-more-info{
-        opacity: 0;
-     }
+   
 }
 
 @media (min-width:768px) {
@@ -10457,6 +10455,10 @@ figure .porto-loading-icon {
     .coverlay {
         top: 120px;
     }
+
+    .product-info-box:hover  .product-more-info{
+        opacity: 0;
+     }
 }
 
 @media (max-width:479px) {
