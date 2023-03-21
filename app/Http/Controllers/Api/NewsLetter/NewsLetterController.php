@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\NewsLetter;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Newsletter;
+use App\Model\Newsletter;
 use App\Services\Newsletter\Contracts\NewsletterContract;
 use App\Services\Newsletter\Exceptions\UserAlreadySubscribedException;
 
@@ -20,9 +20,9 @@ class NewsLetterController extends Controller
      *
      * @return void
      */
-    public function __construct(Request $request,NewsletterContract $newsletter)
-    {   
-		$this->newsletter = $newsletter;
+    public function __construct(Request $request, NewsletterContract $newsletter)
+    {
+        $this->newsletter = $newsletter;
     }
 
     /**
@@ -32,8 +32,8 @@ class NewsLetterController extends Controller
      */
     public function index(Product $product)
     {
-        $reviews =  $product->reviews()->orderBy('created_at','DESC')->paginate(5);
-        return ReviewResourceCollection::collection( $reviews );
+        $reviews =  $product->reviews()->orderBy('created_at', 'DESC')->paginate(5);
+        return ReviewResourceCollection::collection($reviews);
     }
 
 
@@ -43,31 +43,31 @@ class NewsLetterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,NewsLetter $newsletter)
+    public function store(Request $request)
     {
 
         $this->validate($request, [
             'email' => 'required|email',
         ]);
 
-        $email = Newsletter::where('email',$request->email)->first();
-
-       
+        // $email = Newsletter::where('email', $request->email)->first();
 
         //new Review Notification
         //Sign up to mail chimp
 
         try {
-            $mergeVar = ['FNAME' =>$request->fname ,'LNAME' => $request->lname];
+            $mergeVar = ['FNAME' => '', 'LNAME' => ''];
             $this->newsletter->subscribe(
                 config('services.mailchimp.list'),
-                $request->email, $mergeVar
+                $request->email,
+                $mergeVar
             );
         } catch (UserAlreadySubscribedException $e) {
-			return response()->json(
+            return response()->json(
                 [
                     'message' => $e->getMessage()
-                ],200
+                ],
+                200
             );
         }
 
@@ -75,8 +75,8 @@ class NewsLetterController extends Controller
         return response()->json(
             [
                 'message' => 'Thanks for signing up'
-            ],200
+            ],
+            200
         );
     }
-    
 }

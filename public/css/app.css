@@ -42766,9 +42766,3 @@ input[type=number]:focus,
 footer a {
   color: #fff !important;
 }
-
-@media (min-width: 576px) {
-  .coverlay {
-    top: 119px;
-  }
-}

@@ -132,6 +132,8 @@ Route::post('checkout/confirm', 'Checkout\CheckoutController@confirm');
 Route::post('checkout/coupon', 'Checkout\CheckoutController@coupon');
 
 
+
+
 Route::group(['prefix' => '/api'], function () {
     Route::get('products/{category}',             'Api\Products\ProductsController@index');
     Route::get('filters/products/{category}',     'Api\Products\ProductsController@filters');
@@ -147,6 +149,7 @@ Route::group(['prefix' => '/api'], function () {
     Route::delete('wishlist/delete/{id}',   'Api\Favorites\FavoritesController@destroy');
     Route::get('blog/{blog}',   'Api\Blog\BlogController@show');
     Route::get('years',   'Api\Years\YearsController@index');
+    Route::post('newsletter/signup',              'Api\NewsLetter\NewsLetterController@store');
 });
 
 Route::get('errors',                  'Errors\ErrorsController@index');

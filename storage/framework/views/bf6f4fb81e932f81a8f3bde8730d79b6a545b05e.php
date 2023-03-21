@@ -258,14 +258,21 @@
                      </div>
                   </div>
                   <div class="col-12 col-lg-5 offset-lg-1">
-
-                     <form method="POST" class="mb-0">
+                     <form method="POST" id="n-letter" class="mb-0 ">
                         <div class="row g-0">
-                           <div class="col-8"><input type="text" class="form-control mb-0" placeholder="Enter  code" required=""></div>
-                           <div class="col-4"><button class="btn btn-sm btn-primary w-100 rounded-0 coupon-button btn-dark bold bg-danger" type="submit"><!--v-if--> Apply </button></div>
+                           <div class="col-8">
+                              <input type="text" class="form-control mb-0 email" name="email" placeholder="Enter email" required="">
+                           </div>
+                           <div class="col-4">
+                              <button class="btn btn-sm btn-primary w-100 rounded-0 coupon-button btn-dark bold bg-danger fs-4" type="submit">
+                                 <span class="spinner-border spinner-border-sm n-spinner d-none" role="status" aria-hidden="true"></span>
+                                 Apply
+                              </button>
+                           </div>
                         </div>
                      </form>
 
+                     <div class="text-white sub-message"></div>
                   </div>
                </div>
             </div>
@@ -330,9 +337,7 @@
             <span class="mobile-menu-close"><i class="fa fa-times"></i></span>
          </div>
          <nav class="mobile-nav">
-            <div class="d-flex  border-bottom   px-4  justify-content-between">
-
-            </div>
+            <div class="d-flex  border-bottom px-4  justify-content-between"></div>
 
             <div class="accordion accordion-flush" id="accordionNav">
                <?php $__currentLoopData = $global_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -416,7 +421,26 @@
    <script type="text/javascript">
       <?php echo $__env->yieldContent('inline-scripts'); ?>
 
-      $()
+      $('#n-letter').on('submit', function(e) {
+         e.preventDefault()
+
+         let email = $(this).serialize()
+         let spinner = $(".n-spinner")
+         spinner.removeClass('d-none')
+
+
+         axios
+            .post("/api/newsletter/signup", {
+               email: $('.email').val()
+            })
+            .then((response) => {
+               spinner.addClass('d-none')
+            })
+            .catch((error) => {
+               spinner.addClass('d-none')
+            });
+
+      })
 
       $(".menu-nav-btn, .panel-close").on("click", function() {
          let open = $(".menu-open");
