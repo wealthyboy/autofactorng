@@ -11,7 +11,7 @@
         <span class="bubble d-flex justify-content-center align-items-center">
           <span style="margin-left: 0.7rem !important;" class="fas fa-check mt-1  text-black"></span>
         </span>
-        <span class="stacked-text fw-bold">
+        <span class="stacked-text border fw-bold py-2 px-4">
          
           {{  complete.status }} <span class="subdued"> {{ complete.created_at  }}
           </span>
@@ -27,7 +27,7 @@
         <span class="bubble d-flex justify-content-center align-items-center">
           <span style="margin-left: 0.7rem !important;" class="fas fa-check mt-1  text-black"></span>
         </span>
-        <span class="stacked-text border  fw-bold">
+        <span class="stacked-text border fw-bold py-2 px-4">
           {{ incomplete }}
         </span>
       </li>
@@ -313,7 +313,7 @@ export default {
 .progress-indicator.stacked .stacked-text {
   position: relative;
   z-index: 10;
-  top: -18px;
+  top: -24px;
   margin-left: 60% !important;
   width: 45% !important;
   display: inline-block;
