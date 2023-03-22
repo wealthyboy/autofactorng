@@ -25178,7 +25178,7 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   style: {
     "margin-left": "0.7rem !important"
   },
-  "class": "fas fa-check mt-2 text-black"
+  "class": "fas fa-check mt-1 text-black"
 })], -1
 /* HOISTED */
 );

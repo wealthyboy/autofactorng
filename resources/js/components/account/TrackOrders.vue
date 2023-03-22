@@ -26,7 +26,7 @@
         class=""
       >
         <span class="bubble d-flex justify-content-center align-items-center">
-          <span style="margin-left: 0.7rem !important;" class="fas fa-check mt-2  text-black"></span>
+          <span style="margin-left: 0.7rem !important;" class="fas fa-check mt-1  text-black"></span>
         </span>
         <span class="stacked-text border">
           <span class=""></span>
