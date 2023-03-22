@@ -41,7 +41,8 @@ class TrackOrdersController extends Controller
         $uncompleted = array_diff($order_statuses, $statuses->pluck('status')->toArray());
         return response()->json([
             'completed' => $completed,
-            'uncompleted' => $uncompleted
+            'uncompleted' => $uncompleted,
+            's' => $statuses
         ]);
     }
 
