@@ -42,7 +42,7 @@ class TrackOrdersController extends Controller
         return response()->json([
             'completed' => $completed,
             'uncompleted' => $uncompleted,
-            'default' =>  $order->status,
+            'default' =>  'Processing',
             'default_date' =>  $order->created_at->format('d/m/y'),
             'default_statuses' => Order::$statuses,
             'status' => $order->order_statuses
