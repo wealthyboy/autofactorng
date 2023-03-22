@@ -51,6 +51,7 @@
           v-model="form.invoice"
           name="Invoice Number"
           type="text"
+          class="mt-3"
         />
 
       </div>
