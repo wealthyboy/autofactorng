@@ -26,7 +26,7 @@
         class=""
       >
         <span class="bubble">
-          <span class="material-symbols-outlined">check</span>
+          <span style="margin-left: 0.7rem !important;" class="fas fa-check mt-2  text-black"></span>
         </span>
         <span class="stacked-text border">
           <span class=""></span>
@@ -203,7 +203,7 @@ export default {
   height: 20px;
   background-color: #bbb;
   display: block;
-  margin: 0 auto 0.5em auto;
+  margin: 1.5rem auto .1em auto;
   border-bottom: 1px solid #888;
 }
 .progress-indicator > li .bubble:before,
@@ -309,6 +309,7 @@ export default {
   margin-left: -1.5px;
   width: 3px;
   height: 100%;
+  margin-top: 10px;
 }
 .progress-indicator.stacked .stacked-text {
   position: relative;
