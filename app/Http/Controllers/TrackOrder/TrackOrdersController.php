@@ -42,7 +42,7 @@ class TrackOrdersController extends Controller
         return response()->json([
             'completed' => $completed,
             'uncompleted' => $uncompleted,
-            's' => $statuses
+            's' =>  $statuses->pluck('status')->toArray()
         ]);
     }
 
