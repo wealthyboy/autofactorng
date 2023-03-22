@@ -62,6 +62,18 @@ class Order extends Model
 
 		if ($order->save()) {
 
+			foreach (Order::$statuses as $key => $status) {
+
+				$order_status = new OrderStatus();
+
+				if ($status == 'Processing') {
+					$order_status->is_updated = true;
+				}
+
+				$order_status->status = $status;
+				$order_status->save();
+			}
+
 
 			foreach ($carts   as $cart) {
 				$insert = [
