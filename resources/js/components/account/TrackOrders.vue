@@ -8,12 +8,11 @@
         :key="complete.id"
         class="completed"
       >
-        <span class="bubble"></span>
+        <span class="bubble d-flex justify-content-center align-items-center">
+          <span style="margin-left: 0.7rem !important;" class="fas fa-check mt-1  text-black"></span>
+        </span>
         <span class="stacked-text fw-bold">
-          <span
-            class="fa fa-check-square-o fa-lg"
-            aria-hidden="true"
-          ></span>
+         
           {{  complete.status }} <span class="subdued"> {{ complete.created_at  }}
           </span>
         </span>
@@ -100,11 +99,11 @@ export default {
     const post_server_error = ref(null);
     const uncompleted = ref([]);
     const completed = ref([]);
-
     const form = reactive(data);
     const rules = trackingRules(form);
     const v$ = useVuelidate(rules, form);
     const { clearErr, makePost } = useActions(["makePost", "clearErr"]);
+
     function change(page) {
       emit("switched", page);
     }
@@ -133,6 +132,8 @@ export default {
           clearErr(server_errors);
         });
     }
+
+
     return {
       form,
       loading,
