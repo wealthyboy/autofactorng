@@ -14,7 +14,7 @@ class AlterOrderStatusesTableAddIsUodated extends Migration
     public function up()
     {
         Schema::table('order_statuses', function (Blueprint $table) {
-            //
+            $table->boolean('is_updated')->default(false);
         });
     }
 
@@ -26,7 +26,6 @@ class AlterOrderStatusesTableAddIsUodated extends Migration
     public function down()
     {
         Schema::table('order_statuses', function (Blueprint $table) {
-            //
         });
     }
 }
