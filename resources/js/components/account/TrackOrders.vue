@@ -11,7 +11,7 @@
         <span class="bubble d-flex justify-content-center align-items-center">
           <span  class="fas fa-check mt-1  text-black"></span>
         </span>
-        <span class="stacked-text border fw-bold py-2 px-4">
+        <span class="stacked-text border fw-bold py-2 px-1">
          
           {{  complete.status }} 
         </span>
@@ -28,7 +28,7 @@
         <span class="bubble d-flex justify-content-center align-items-center">
           <span  class="fas fa-check mt-1  text-black"></span>
         </span>
-        <span class="stacked-text border fw-bold py-2 px-4">
+        <span class="stacked-text border fw-bold py-2 px-1">
           {{ incomplete }}
         </span>
         <span class="subdued"> {{ incomplete.created_at  }}

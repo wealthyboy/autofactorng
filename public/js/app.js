@@ -25160,7 +25160,7 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_3 = {
-  "class": "stacked-text border fw-bold py-2 px-4"
+  "class": "stacked-text border fw-bold py-2 px-1"
 };
 var _hoisted_4 = {
   "class": "subdued"
@@ -25175,7 +25175,7 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_6 = {
-  "class": "stacked-text border fw-bold py-2 px-4"
+  "class": "stacked-text border fw-bold py-2 px-1"
 };
 var _hoisted_7 = {
   "class": "subdued"
