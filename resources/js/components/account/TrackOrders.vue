@@ -200,8 +200,8 @@ export default {
 }
 .progress-indicator > li .bubble {
   border-radius: 1000px;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   background-color: #bbb;
   display: block;
   margin: 1.5rem auto .1em auto;
