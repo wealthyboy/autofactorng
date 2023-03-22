@@ -25174,12 +25174,14 @@ var _hoisted_5 = {
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "bubble"
-}, null, -1
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "material-symbols-outlined"
+}, "check")], -1
 /* HOISTED */
 );
 
 var _hoisted_7 = {
-  "class": "stacked-text"
+  "class": "stacked-text border"
 };
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {

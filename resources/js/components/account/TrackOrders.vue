@@ -25,8 +25,10 @@
         :key="incomplete"
         class=""
       >
-        <span class="bubble"></span>
-        <span class="stacked-text">
+        <span class="bubble">
+          <span class="material-symbols-outlined">check</span>
+        </span>
+        <span class="stacked-text border">
           <span class=""></span>
           {{ incomplete }} <span class="subdued">
           </span>
