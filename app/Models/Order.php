@@ -59,7 +59,10 @@ class Order extends Model
 		$order->city = optional($user->active_address)->city;
 		$order->state = optional(optional($user->active_address)->address_state)->name;
 		$order->ip = $ip;
+
 		if ($order->save()) {
+
+
 			foreach ($carts   as $cart) {
 				$insert = [
 					'order_id' => $order->id,
