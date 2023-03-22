@@ -334,7 +334,7 @@ export default {
 .progress-indicator.stacked.nocenter .stacked-text {
   width: auto !important;
   display: block;
-  margin-left: 40px !important;
+  margin-left: 30px !important;
 }
 @media handheld, screen and (max-width: 400px) {
   .progress-indicator {
