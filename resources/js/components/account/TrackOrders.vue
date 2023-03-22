@@ -59,7 +59,7 @@
       <general-button
         type="submit"
         :text="text"
-        class="btn btn-dark w-100"
+        class="btn btn-dark w-100 p-3"
         :loading="loading"
       />
 
@@ -315,12 +315,13 @@ export default {
 .progress-indicator.stacked .stacked-text {
   position: relative;
   z-index: 10;
-  top: -24px;
+  top: -28px;
   margin-left: 60% !important;
   width: 45% !important;
   display: inline-block;
   text-align: left;
   line-height: 1.2em;
+  font-size: 13px;
 }
 .progress-indicator.stacked > li a {
   border: none;
@@ -337,6 +338,12 @@ export default {
   width: auto !important;
   margin-left: 30px !important;
 }
+
+span.subdued {
+    position: relative;
+    left: -68px;
+}
+
 @media handheld, screen and (max-width: 400px) {
   .progress-indicator {
     font-size: 60%;
