@@ -21911,13 +21911,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_ValidationRules__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utils/ValidationRules */ "./resources/js/utils/ValidationRules.js");
 /* harmony import */ var _utils_FormData__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utils/FormData */ "./resources/js/utils/FormData.js");
 /* harmony import */ var _utils_Payment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/Payment */ "./resources/js/utils/Payment.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_11__);
+/* harmony import */ var _utils_Functions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../utils/Functions */ "./resources/js/utils/Functions.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_12__);
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -21961,7 +21963,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         clearErr = _useActions.clearErr,
         makePost = _useActions.makePost;
 
-    console.log(props.price_range);
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
       scriptLoaded.value = new Promise(function (resolve) {
         (0,_utils_Payment__WEBPACK_IMPORTED_MODULE_10__.loadScript)(function () {
@@ -21992,6 +21993,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return _subscribe.apply(this, arguments);
     }
 
+    function getAmount() {
+      if (props.price_range.length && form.amount >= props.price_range[0]) {
+        amount.value = (0,_utils_Functions__WEBPACK_IMPORTED_MODULE_11__.autoCredit)(form.amount, props.price_range[0], props.price_range[1]);
+      } else {
+        amount.value = "";
+      }
+    }
+
     function subscribe() {
       this.v$.$touch();
 
@@ -21999,8 +22008,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return;
       }
 
-      var p = 10 * data.amount / 100;
-      amount.value = "Your auto credit shopping is ₦" + new Intl.NumberFormat().format(p + parseInt(data.amount));
       var postData = {
         url: "/register",
         data: form,
@@ -22029,7 +22036,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }]
           },
           callback: function callback(response) {
-            axios__WEBPACK_IMPORTED_MODULE_11___default().post("/wallets", form).then(function (res) {
+            axios__WEBPACK_IMPORTED_MODULE_12___default().post("/wallets", form).then(function (res) {
               paymentIsComplete.value = true;
               paymentIsProcessing.value = false;
             })["catch"](function (error) {
@@ -22056,6 +22063,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       amount: amount,
       form: form,
+      getAmount: getAmount,
       loading: loading,
       v$: v$,
       text: text,
@@ -22094,7 +22102,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_ValidationRules__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/ValidationRules */ "./resources/js/utils/ValidationRules.js");
 /* harmony import */ var vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex-composition-helpers */ "./node_modules/vuex-composition-helpers/dist/index.js");
 /* harmony import */ var _utils_Payment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utils/Payment */ "./resources/js/utils/Payment.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _utils_Functions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/Functions */ "./resources/js/utils/Functions.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+
 
 
 
@@ -22120,11 +22130,12 @@ __webpack_require__.r(__webpack_exports__);
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var scriptLoaded = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_10__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_11__.useStore)();
     var error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var price_range = props.price_range ? props.price_range : [1000, 9000000];
     var paymentIsProcessing = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var paymentIsComplete = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
+    var amount = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
@@ -22133,7 +22144,6 @@ __webpack_require__.r(__webpack_exports__);
       auto_credit: props.auto_credit
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_2__.onMounted)(function () {
-      console.log("Im here");
       scriptLoaded.value = new Promise(function (resolve) {
         (0,_utils_Payment__WEBPACK_IMPORTED_MODULE_9__.loadScript)(function () {
           resolve();
@@ -22153,6 +22163,14 @@ __webpack_require__.r(__webpack_exports__);
         makePost = _useActions.makePost,
         getWalletBalance = _useActions.getWalletBalance,
         getTableData = _useActions.getTableData;
+
+    function getAmount() {
+      if (props.price_range.length && form.amount >= props.price_range[0]) {
+        amount.value = (0,_utils_Functions__WEBPACK_IMPORTED_MODULE_10__.autoCredit)(form.amount, props.price_range[0], props.price_range[1]);
+      } else {
+        amount.value = "";
+      }
+    }
 
     function fund() {
       this.v$.$touch();
@@ -22208,6 +22226,8 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     return {
+      getAmount: getAmount,
+      amount: amount,
       form: form,
       v$: v$,
       fund: fund,
@@ -23052,6 +23072,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       //console.log(this.meta.links[page].url);
+      $("html, body").animate({
+        scrollTop: 100 + "px"
+      });
+
       if (this.pageIsFinished(page)) {
         return;
       }
@@ -26026,10 +26050,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.form.amount = $event;
     }),
     name: "Amount",
-    type: "text"
+    type: "text",
+    onBlur: $setup.getAmount
   }, null, 8
   /* PROPS */
-  , ["error", "modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_simple_message, {
+  , ["error", "modelValue", "onBlur"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_simple_message, {
     "class": "link-success fs-6 text-end fw-2 fs-4",
     message: $setup.amount
   }, null, 8
@@ -26114,6 +26139,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   var _component_general_input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("general-input");
 
+  var _component_simple_message = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("simple-message");
+
   var _component_general_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("general-button");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_message, {
@@ -26137,13 +26164,19 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     id: "wallet",
     name: "Wallet",
-    type: "wallet"
+    type: "wallet",
+    onBlur: $setup.getAmount
   }, null, 8
   /* PROPS */
-  , ["error", "modelValue"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
+  , ["error", "modelValue", "onBlur"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_simple_message, {
+    "class": "link-success fs-6 text-end fw-2 fs-4",
+    message: $setup.amount
+  }, null, 8
+  /* PROPS */
+  , ["message"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
     type: "submit",
     text: $setup.text,
-    "class": "btn btn-dark w-100 mb-3",
+    "class": "btn btn-dark w-100 mb-3 p-3",
     loading: $setup.loading
   }, null, 8
   /* PROPS */
@@ -27436,7 +27469,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.switched($props.meta.current_page - 1);
     }, ["prevent"])),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-      'disabled': $props.meta.current_page === 1
+      disabled: $props.meta.current_page === 1
     }, "page-item disabled"])
   }, _hoisted_4, 2
   /* CLASS */
@@ -27450,7 +27483,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, ["prevent"]),
       href: "#",
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-        'current': $props.meta.current_page === x
+        current: $props.meta.current_page === x
       }, "page-link"])
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(x), 11
     /* TEXT, CLASS, PROPS */
@@ -27462,7 +27495,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.switched($props.meta.current_page + 1);
     }, ["prevent"])),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-      'disabled': $props.meta.current_page === $props.meta.last_page
+      disabled: $props.meta.current_page === $props.meta.last_page
     }, "page-link"]),
     href: "#"
   }, "Next", 2
@@ -39337,6 +39370,28 @@ var changePasswordData = function changePasswordData(user) {
     password_confirmation: ""
   };
   return data;
+};
+
+/***/ }),
+
+/***/ "./resources/js/utils/Functions.js":
+/*!*****************************************!*\
+  !*** ./resources/js/utils/Functions.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "autoCredit": () => (/* binding */ autoCredit)
+/* harmony export */ });
+var autoCredit = function autoCredit(amount, from_price, to_price) {
+  if (amount >= from_price || amount <= to_price) {
+    var p = 10 * amount / 100;
+    return "Your auto credit is ₦" + new Intl.NumberFormat().format(p + parseInt(amount));
+  } else {
+    return null;
+  }
 };
 
 /***/ }),

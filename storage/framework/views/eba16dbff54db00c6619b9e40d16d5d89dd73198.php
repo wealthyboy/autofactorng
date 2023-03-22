@@ -34,7 +34,7 @@
                         <div class="col-sm-4 col-12">
                             <div class="input-group input-group-outline">
                                 <label class="form-label">Store Phone</label>
-                                <input type="number" class="form-control" name="store_phone" value="">
+                                <input type="number" class="form-control" name="store_phone" value="<?php echo e(null !== $setting ? $setting->store_phone : old('store_phone')); ?>">
                             </div>
                         </div>
                         <div class="col-sm-4 col-12">

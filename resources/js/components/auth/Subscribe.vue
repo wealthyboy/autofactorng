@@ -126,6 +126,8 @@
           v-model="form.amount"
           name="Amount"
           type="text"
+          @blur="getAmount"
+
         />
 
   
@@ -165,6 +167,8 @@ import Message from "../message/Message";
 import { subscribeRules } from "../../utils/ValidationRules";
 import { subscribeData } from "../../utils/FormData";
 import { loadScript } from "../../utils/Payment";
+import { autoCredit } from "../../utils/Functions";
+
 import axios from "axios";
 
 export default {
@@ -196,8 +200,6 @@ export default {
     const v$ = useVuelidate(rules, form);
     const { clearErr, makePost } = useActions(["makePost", "clearErr"]);
 
-    console.log(props.price_range)
-
     onMounted(() => {
       scriptLoaded.value = new Promise((resolve) => {
         loadScript(() => {
@@ -211,15 +213,29 @@ export default {
       //let res = await register();
     }
 
+
+    function getAmount() {
+      if (
+          props.price_range.length &&
+          form.amount >= props.price_range[0]
+      ) {
+          amount.value = autoCredit(
+              form.amount,
+              props.price_range[0],
+              props.price_range[1]
+          );
+      } else {
+          amount.value = "";
+      }
+
+    }
+
     function subscribe() {
       this.v$.$touch();
       if (this.v$.$error) {
         return;
       }
 
-      let p   = (10 * data.amount) / 100;
-
-      amount.value = "Your auto credit shopping is ₦" + new Intl.NumberFormat().format((p + parseInt(data.amount)))
 
       const postData = {
         url: "/register",
@@ -287,6 +303,7 @@ export default {
     return {
       amount,
       form,
+      getAmount,
       loading,
       v$,
       text,
