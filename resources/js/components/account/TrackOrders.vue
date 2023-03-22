@@ -25,7 +25,7 @@
         :key="incomplete"
         class=""
       >
-        <span class="bubble">
+        <span class="bubble d-flex justify-content-center align-items-center">
           <span style="margin-left: 0.7rem !important;" class="fas fa-check mt-2  text-black"></span>
         </span>
         <span class="stacked-text border">
@@ -191,7 +191,7 @@ export default {
   margin: 0;
   position: relative;
   text-overflow: ellipsis;
-  color: #bbb;
+  /* color: #bbb; */
   display: block;
 }
 .progress-indicator > li:hover {
