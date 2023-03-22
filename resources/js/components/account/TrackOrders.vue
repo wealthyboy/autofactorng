@@ -13,9 +13,10 @@
         </span>
         <span class="stacked-text border fw-bold py-2 px-4">
          
-          {{  complete.status }} <span class="subdued"> {{ complete.created_at  }}
-          </span>
+          {{  complete.status }} 
         </span>
+        <span class="subdued"> {{ complete.created_at  }}
+          </span>
       </li>
     </template>
     <template v-if="uncompleted.length">
@@ -30,6 +31,8 @@
         <span class="stacked-text border fw-bold py-2 px-4">
           {{ incomplete }}
         </span>
+        <span class="subdued"> {{ complete.created_at  }}
+          </span>
       </li>
     </template>
 
