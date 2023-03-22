@@ -31,7 +31,7 @@
         <span class="stacked-text border fw-bold py-2 px-4">
           {{ incomplete }}
         </span>
-        <span class="subdued"> {{ complete.created_at  }}
+        <span class="subdued"> {{ incomplete.created_at  }}
           </span>
       </li>
     </template>
