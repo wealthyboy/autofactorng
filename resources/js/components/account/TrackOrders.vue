@@ -28,9 +28,7 @@
           <span style="margin-left: 0.7rem !important;" class="fas fa-check mt-1  text-black"></span>
         </span>
         <span class="stacked-text border  fw-bold">
-          <span class=""></span>
-          {{ incomplete }} <span class="subdued">
-          </span>
+          {{ incomplete }}
         </span>
       </li>
     </template>
