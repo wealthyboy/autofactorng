@@ -9,7 +9,7 @@
         class="completed"
       >
         <span class="bubble d-flex justify-content-center align-items-center">
-          <span style="margin-left: 0.7rem !important;" class="fas fa-check mt-1  text-black"></span>
+          <span  class="fas fa-check mt-1  text-black"></span>
         </span>
         <span class="stacked-text border fw-bold py-2 px-4">
          
@@ -26,7 +26,7 @@
         class=""
       >
         <span class="bubble d-flex justify-content-center align-items-center">
-          <span style="margin-left: 0.7rem !important;" class="fas fa-check mt-1  text-black"></span>
+          <span  class="fas fa-check mt-1  text-black"></span>
         </span>
         <span class="stacked-text border fw-bold py-2 px-4">
           {{ incomplete }}
@@ -187,7 +187,6 @@ export default {
 }
 .progress-indicator > li {
   list-style: none;
-  text-align: center;
   width: auto;
   padding: 0;
   margin: 0;
@@ -301,9 +300,9 @@ export default {
   border-color: #25135d;
 }
 .progress-indicator.stacked > li {
-  text-indent: -10px;
+  /* text-indent: -10px;
   text-align: center;
-  display: block;
+  display: block; */
 }
 .progress-indicator.stacked > li .bubble:before,
 .progress-indicator.stacked > li .bubble:after {
