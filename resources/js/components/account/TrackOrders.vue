@@ -314,7 +314,7 @@ export default {
 .progress-indicator.stacked .stacked-text {
   position: relative;
   z-index: 10;
-  top: -17px;
+  top: -18px;
   margin-left: 60% !important;
   width: 45% !important;
   display: inline-block;
