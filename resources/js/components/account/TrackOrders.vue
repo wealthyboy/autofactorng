@@ -9,7 +9,7 @@
         class="completed"
       >
         <span class="bubble"></span>
-        <span class="stacked-text">
+        <span class="stacked-text fw-bold">
           <span
             class="fa fa-check-square-o fa-lg"
             aria-hidden="true"
