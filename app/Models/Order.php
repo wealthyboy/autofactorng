@@ -16,6 +16,7 @@ class Order extends Model
 
 	public static $statuses = [
 		"Processing" => "Processing",
+		"Confirmed" => "Confirmed",
 		"Shipped" => "Shipped",
 		"Delivered" => "Delivered",
 	];
