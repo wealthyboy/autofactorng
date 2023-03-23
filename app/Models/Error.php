@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Error extends Model
 {
     use HasFactory;
+
+    public $fillable = [
+        'error'
+    ];
 }
