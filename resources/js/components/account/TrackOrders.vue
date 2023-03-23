@@ -313,7 +313,7 @@ export default {
   border: none;
 }
 .progress-indicator.stacked.nocenter > li .bubble {
-  margin-left: 0;
+  margin-left: -2px;
   margin-right: 0;
 }
 .progress-indicator.stacked.nocenter > li .bubble:before,
