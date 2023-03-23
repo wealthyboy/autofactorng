@@ -223,7 +223,7 @@ export default {
   color: #65d074;
 }
 .progress-indicator > li.completed .bubble {
-  background-color: #65d074;
+  background-color: #198754;
   color: #65d074;
   border-color: #247830;
 }
