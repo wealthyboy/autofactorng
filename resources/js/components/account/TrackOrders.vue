@@ -11,12 +11,8 @@
         <span class="bubble d-flex justify-content-center align-items-center">
           <span  class="fas fa-check mt-1  text-black"></span>
         </span>
-        <span class="stacked-text border fw-bold py-2 px-1">
-         
-          {{  complete.status }} 
-        </span>
-        <span class="subdued"> {{ complete.created_at  }}
-          </span>
+        <span class="stacked-text border fw-bold py-2 px-1">{{ complete.status }}</span>
+        <span v-if="completed.is_updated" class="subdued"> {{ complete.created_at }}</span>
       </li>
     </template>
     
