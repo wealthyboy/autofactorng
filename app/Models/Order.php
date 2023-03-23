@@ -65,11 +65,11 @@ class Order extends Model
 			foreach (Order::$statuses as $key => $status) {
 
 				$order_status = new OrderStatus();
-
 				if ($status == 'Processing') {
 					$order_status->is_updated = true;
 				}
 
+				$order_status->is_updated = false;
 				$order_status->status = $status;
 				$order_status->save();
 			}
