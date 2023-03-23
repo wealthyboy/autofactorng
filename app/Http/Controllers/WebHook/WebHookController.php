@@ -50,6 +50,10 @@ class WebHookController extends Controller
 
             if ($input['type'] == 'order_from_paystack') {
 
+                Error::create([
+                    'error' => json_encode($input)
+                ]);
+
                 Log::info($request->all());
                 $input    =  $request->data['metadata']['custom_fields'][0];
                 $user     =  User::findOrFail($input['customer_id']);
