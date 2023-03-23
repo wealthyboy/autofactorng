@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Errors;
 
 use App\Http\Controllers\Controller;
 use App\Models\Error;
-use App\Models\OrderStatus;
 use Illuminate\Http\Request;
 
 class ErrorsController extends Controller
@@ -17,7 +16,7 @@ class ErrorsController extends Controller
     public function index()
     {
         //Error::truncate();
-        dd(OrderStatus::all());
+        dd(Error::all());
     }
 
     /**
