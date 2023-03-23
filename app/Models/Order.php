@@ -67,10 +67,12 @@ class Order extends Model
 				$order_status = new OrderStatus();
 				if ($status == 'Processing') {
 					$order_status->is_updated = true;
+				} else {
+					$order_status->is_updated = false;
 				}
 
-				$order_status->is_updated = false;
 				$order_status->status = $status;
+				$order_status->order_id = $order->id;
 				$order_status->save();
 			}
 
