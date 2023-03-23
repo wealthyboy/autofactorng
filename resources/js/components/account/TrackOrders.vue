@@ -6,7 +6,7 @@
       <li
         v-for="complete in completed"
         :key="complete.id"
-        :class="{completed: completed.is_updated }"
+        :class="[ completed.is_updated == 1 ? 'completed' : ""  ]"
       >
         <span class="bubble d-flex justify-content-center align-items-center">
           <span  class="fas fa-check mt-1  text-black"></span>
