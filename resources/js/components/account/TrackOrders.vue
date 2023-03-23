@@ -18,7 +18,7 @@
         :class="[ complete.is_updated === 1 ? 'bg-success text-white' : 'bg-secondary text-white'  ]"
 
         class="stacked-text border fw-bold py-2 px-2">{{ complete.status }} </span>
-        <span v-if="complete.is_updated" class="subdued"> {{ complete.created_at }}</span>
+        <span v-if="complete.is_updated" class="subdued"> {{ complete.formated_date }}</span>
       </li>
     </template>
     
