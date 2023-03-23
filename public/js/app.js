@@ -22566,7 +22566,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             shipping_price: context.prices.ship_price,
             heavy_item_price: context.prices.heavy_item_price,
             cart: cartIds,
-            total: context.amount
+            total: context.total
           }]
         },
         callback: function callback(response) {
