@@ -6,7 +6,7 @@
       <li
         v-for="complete in completed"
         :key="complete.id"
-        class="completed"
+        :class="{'completed': completed.is_updated }"
       >
         <span class="bubble d-flex justify-content-center align-items-center">
           <span  class="fas fa-check mt-1  text-black"></span>
@@ -19,22 +19,7 @@
           </span>
       </li>
     </template>
-    <template v-if="uncompleted.length">
-      <li
-        v-for="(incomplete, index) in uncompleted"
-        :key="incomplete"
-        class=""
-      >
-        <span class="bubble d-flex justify-content-center align-items-center">
-          <span  class="fas fa-check mt-1  text-black"></span>
-        </span>
-        <span class="stacked-text border fw-bold py-2 px-1">
-          {{ incomplete }}
-        </span>
-        <span class="subdued"> {{ incomplete.created_at  }}
-          </span>
-      </li>
-    </template>
+    
 
   </ul>
 
