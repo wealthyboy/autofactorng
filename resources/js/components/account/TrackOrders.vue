@@ -10,7 +10,9 @@
         :class="[ complete.is_updated === 1 ? 'completed' : null  ]"
       >
         <span class="bubble d-flex justify-content-center align-items-center">
-          <span  class="fas fa-check mt-1  text-black"></span>
+          <span         
+              :class="[ complete.is_updated === 1 ? 'text-white' : 'text-black'  ]"
+              class="fas fa-check mt-1  "></span>
         </span>
         <span  
         :class="[ complete.is_updated === 1 ? 'bg-success text-white' : 'bg-secondary text-white'  ]"
