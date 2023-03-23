@@ -25,7 +25,7 @@ fi
 #composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
 # Run database migrations
-php artisan migrate --force
+#php artisan migrate --force
 
 # Clear caches
 php artisan cache:clear
