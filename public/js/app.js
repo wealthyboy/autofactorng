@@ -25183,7 +25183,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.completed, function (complete) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: complete.id,
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([complete.is_updated === 1 && complete.status == 'Delivered' ? 'completed' : null])
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([complete.is_updated === 1 && complete.status === 'Delivered' ? 'completed' : null])
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.is_updated === 1 ? 'text-white' : 'text-black'], "fas fa-check mt-1"])
     }, null, 2
