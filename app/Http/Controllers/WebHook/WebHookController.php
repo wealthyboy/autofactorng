@@ -50,10 +50,6 @@ class WebHookController extends Controller
 
             if ($input['type'] == 'order_from_paystack') {
 
-                Error::create([
-                    'error' => json_encode($input)
-                ]);
-
                 Log::info($request->all());
                 $input    =  $request->data['metadata']['custom_fields'][0];
                 $user     =  User::findOrFail($input['customer_id']);
@@ -73,9 +69,9 @@ class WebHookController extends Controller
                 $order->currency = '₦';
                 try {
                     $when = now()->addMinutes(5);
-                    Mail::to('jacob.atam@gmail.com')
-                        ->bcc('damilola@autofactorng.com')
-                        ->send(new OrderReceipt($order, null, null, $sub_total));
+                    // Mail::to('jacob.atam@gmail.com')
+                    //     ->bcc('damilola@autofactorng.com')
+                    //     ->send(new OrderReceipt($order, null, null, $sub_total));
                 } catch (\Throwable $th) {
                     Log::info("Mail error :" . $th);
                     Log::info("Custom error :" . $th);
