@@ -229,7 +229,7 @@ export default {
 }
 .progress-indicator > li.completed .bubble:before,
 .progress-indicator > li.completed .bubble:after {
-  background-color: #65d074;
+  background-color: #198754;
   border-color: #247830;
 }
 .progress-indicator > li.active {
