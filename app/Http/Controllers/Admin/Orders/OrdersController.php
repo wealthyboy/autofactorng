@@ -41,7 +41,7 @@ class OrdersController extends Table
 	public function index()
 	{
 		Order::destroy([66, 67]);
-		$orders = Order::has('ordered_products')->orderBy('created_at', 'desc')->paginate(450);
+		$orders = Order::has('ordered_products')->orderBy('created_at', 'desc')->paginate(150);
 		$orders = $this->getColumnListings(request(), $orders);
 		return view('admin.orders.index', compact('orders'));
 	}
