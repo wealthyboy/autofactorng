@@ -335,6 +335,7 @@ class ProductController extends Table
         $product->height = $request->height;
         $product->title = $request->title;
         $product->quantity = 1000000;
+        $product->cost_per_item = 2000;
         $product->keywords = $request->keywords;
         $product->meta_description = $request->meta_description;
         $product->description = $request->description;
@@ -529,6 +530,7 @@ class ProductController extends Table
         $data['note'] = $request->note;
         $data['is_featured'] = $request->is_featured ? 1 : 0;
         $data['in_stock'] = $request->in_stock ? 1 : 0;
+        $data['cost_per_item'] = 33333;
         $product = Product::find($id);
         $product->update($data);
 

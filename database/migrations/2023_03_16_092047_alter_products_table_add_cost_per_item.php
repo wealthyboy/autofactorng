@@ -14,7 +14,7 @@ class AlterProductsTableAddCostPerItem extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->decimal('cost_per_item', 8, 2);
+            // $table->decimal('cost_per_item', 8, 2);
         });
     }
 
