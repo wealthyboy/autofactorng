@@ -14,7 +14,7 @@ class AlterProductsTableAddInStocks extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->boolean('in_stock')->default(true);
+            // $table->boolean('in_stock')->default(true);
         });
     }
 
