@@ -148,6 +148,8 @@ export default {
             for (let index = page - 4; index < page; index++) {
                 console.log(index);
                 this.prevArray.push(index);
+
+                console.log(this.prevArray);
             }
 
             for (let index = page + 4; index < page; index++) {

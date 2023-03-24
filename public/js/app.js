@@ -23101,6 +23101,7 @@ __webpack_require__.r(__webpack_exports__);
       for (var index = page - 4; index < page; index++) {
         console.log(index);
         this.prevArray.push(index);
+        console.log(this.prevArray);
       }
 
       for (var _index = page + 4; _index < page; _index++) {
