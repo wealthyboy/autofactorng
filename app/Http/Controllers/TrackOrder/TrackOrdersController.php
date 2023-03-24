@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Utils\AccountSettingsNav;
 use App\Models\Order;
+use App\Models\OrderStatus;
 
 class TrackOrdersController extends Controller
 {
@@ -29,6 +30,7 @@ class TrackOrdersController extends Controller
      */
     public function getOrderStatus(Request  $request)
     {
+        OrderStatus::whereIn('status', [''])->delete();
 
         $request->validate([
             'tracking' => 'exists:orders'
@@ -41,10 +43,7 @@ class TrackOrdersController extends Controller
         $uncompleted = array_diff($order_statuses, $statuses->pluck('status')->toArray());
         return response()->json([
             'completed' => $completed,
-            'uncompleted' => $uncompleted,
-            'default' =>  'Processing',
-            'default_date' =>  $order->created_at->format('d/m/y'),
-            'default_statuses' => Order::$statuses,
+
             'status' => $order->order_statuses
         ]);
     }
