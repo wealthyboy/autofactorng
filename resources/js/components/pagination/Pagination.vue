@@ -42,7 +42,7 @@
                 </li>
             </template>
 
-            <li :key="x" v-for="x in meta.last_page" class="page-item">
+            <!-- <li :key="x" v-for="x in meta.last_page" class="page-item">
                 <a
                     @click.prevent="switched(x)"
                     href="#"
@@ -50,7 +50,7 @@
                     class="page-link"
                     >{{ x }}</a
                 >
-            </li>
+            </li> -->
 
             <li class="page-item">
                 <a
