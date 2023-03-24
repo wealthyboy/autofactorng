@@ -27437,7 +27437,6 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_4 = [_hoisted_3];
 var _hoisted_5 = ["onClick"];
 var _hoisted_6 = {
-  key: 1,
   "class": "page-item"
 };
 var _hoisted_7 = {
@@ -27445,7 +27444,8 @@ var _hoisted_7 = {
   "class": "page-link disabled"
 };
 var _hoisted_8 = ["onClick"];
-var _hoisted_9 = {
+var _hoisted_9 = ["onClick"];
+var _hoisted_10 = {
   "class": "page-item"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -27460,7 +27460,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* CLASS */
   ), $props.meta.last_page > 7 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 0
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(7, function (x) {
+  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(7, function (x) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
       key: x,
       "class": "page-item"
@@ -27477,11 +27477,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_5)]);
   }), 64
   /* STABLE_FRAGMENT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.meta.last_page > 7 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)("..."), 1
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)("..."), 1
   /* TEXT */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.meta.last_page > 7 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    key: 2
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(2, function (x) {
+  )]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(2, function (x) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
       key: x,
       "class": "page-item"
@@ -27498,7 +27496,28 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_8)]);
   }), 64
   /* STABLE_FRAGMENT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <li :key=\"x\" v-for=\"x in meta.last_page\" class=\"page-item\">\n                <a\n                    @click.prevent=\"switched(x)\"\n                    href=\"#\"\n                    :class=\"{ current: meta.current_page === x }\"\n                    class=\"page-link\"\n                    >{{ x }}</a\n                >\n            </li> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  ))], 64
+  /* STABLE_FRAGMENT */
+  )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 1
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.meta.last_page, function (x) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
+      key: x,
+      "class": "page-item"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+        return $options.switched(x);
+      }, ["prevent"]),
+      href: "#",
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+        current: $props.meta.current_page === x
+      }, "page-link"])
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(x), 11
+    /* TEXT, CLASS, PROPS */
+    , _hoisted_9)]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.switched($props.meta.current_page + 1);
     }, ["prevent"])),
