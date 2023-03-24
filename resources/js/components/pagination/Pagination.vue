@@ -12,7 +12,7 @@
             </li>
 
             <template v-if="meta.last_page > 7">
-                <template v-if="meta.current_page == 7">
+                <template v-if="meta.current_page >= 7">
                     <li :key="x" v-for="x in 2" class="page-item">
                         <a
                             @click.prevent="switched(x)"
