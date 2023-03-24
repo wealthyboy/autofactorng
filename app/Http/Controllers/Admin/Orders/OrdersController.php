@@ -248,7 +248,7 @@ class OrdersController extends Table
 			}
 
 
-			$order_status = OrderStatus::where(['order_id' => $request->id,  'status', '=', 'Delivered'])->first();
+			$order_status = OrderStatus::where('order_id', $request->id)->where('status', '=', 'Delivered')->first();
 
 			if (null !== $order_status) {
 				$order_status->is_updated = false;
