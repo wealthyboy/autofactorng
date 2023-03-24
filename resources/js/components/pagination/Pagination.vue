@@ -29,15 +29,15 @@
 
                     <li
                         :key="x"
-                        v-for="x in meta.current_page - 4"
+                        v-for="x in meta.current_page - 6"
                         class="page-item"
                     >
                         <a
-                            @click.prevent="switched(x)"
+                            @click.prevent="switched(x + 6)"
                             href="#"
                             :class="{ current: meta.current_page === x }"
                             class="page-link"
-                            >{{ x + 4 }}</a
+                            >{{ x + 6 }}</a
                         >
                     </li>
 
