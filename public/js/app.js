@@ -23101,9 +23101,8 @@ __webpack_require__.r(__webpack_exports__);
       for (var index = page - 4; index < page; index++) {
         console.log(index);
         this.prevArray.push(index);
+        console.log(this.prevArray);
       }
-
-      console.log(this.prevArray);
 
       for (var _index = page + 4; _index < page; _index++) {
         this.nextArray.push(_index);
@@ -27523,9 +27522,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* STABLE_FRAGMENT */
   )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)("..."), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.prevArray) + " ", 1
-  /* TEXT */
-  ), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.prevArray, function (x) {
+  )]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.meta.current_page - 4, function (x) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: x,
       "class": "page-item"
@@ -27537,7 +27534,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
         current: $props.meta.current_page === x
       }, "page-link"])
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(x), 11
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(x + 4), 11
     /* TEXT, CLASS, PROPS */
     , _hoisted_8)]);
   }), 128
