@@ -257,7 +257,8 @@ class OrdersController extends Table
 
 		if ($request->value == 'Processing') {
 
-			$order_statuses = OrderStatus::where(['order_id' => $request->id])->where('status', '=', 'Shipped')->where('status', '=', 'Delivered')->get();
+			$order_statuses = OrderStatus::where(['order_id' => $request->id])->where('status', '!=', 'Confirmed')->get();
+
 			if (null !== $order_statuses) {
 
 				foreach ($order_statuses as $order_status) {
