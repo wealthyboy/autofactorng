@@ -219,9 +219,9 @@ class OrdersController extends Table
 	public function updateStatus(Request $request)
 	{
 		//dd($order = Order::find($request->id)->order_statuses);
-		$orderStatus = OrderStatus::firstOrNew(
-			['status' =>  request('value')],
-			['order_id' => request('id')]
+		$orderStatus = OrderStatus::updateOrCreate(
+			['status' =>  request('value'), 'order_id' => request('id')],
+			['status' => $request->value, 'is_updated' => 1]
 		);
 
 		dd($orderStatus);
@@ -230,9 +230,9 @@ class OrdersController extends Table
 		// $orderStatus->is_updated = 1;
 		// $orderStatus->save();
 
-		// $order = Order::find($request->id);
-		// $order->status =  $request->value;
-		// $order->save();
+		$order = Order::find($request->id);
+		$order->status =  $request->value;
+		$order->save();
 		return $orderStatus;
 	}
 
