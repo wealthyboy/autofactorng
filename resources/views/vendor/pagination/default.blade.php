@@ -12,8 +12,6 @@
         </li>
         @endif
 
-        Test
-
         {{-- Pagination Elements --}}
         @foreach ($elements as $element)
         {{-- "Three Dots" Separator --}}

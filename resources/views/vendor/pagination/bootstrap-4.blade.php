@@ -12,7 +12,9 @@
         </li>
         @endif
 
-        test
+
+        {{ print_r($elements) }}
+
 
         {{-- Pagination Elements --}}
         @foreach ($elements as $element)
