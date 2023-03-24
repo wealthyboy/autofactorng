@@ -221,6 +221,7 @@ class OrdersController extends Table
 		//dd($order = Order::find($request->id)->order_statuses);
 
 		//status == delivered
+		OrderStatus::where('status', [0])->delete();
 
 
 		if ($request->value == 'Delivered') {

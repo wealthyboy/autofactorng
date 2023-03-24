@@ -30,7 +30,6 @@ class TrackOrdersController extends Controller
      */
     public function getOrderStatus(Request  $request)
     {
-        OrderStatus::whereIn('status', [''])->delete();
 
         $request->validate([
             'tracking' => 'exists:orders'
