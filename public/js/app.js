@@ -23091,7 +23091,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.$emit("pagination:switched", page);
 
-      for (var index = this.meta.current_page - 3; index < this.meta.current_page; index--) {
+      for (var index = this.meta.current_page - 3; index < this.meta.current_page; index++) {
         console.log(index);
       }
 
