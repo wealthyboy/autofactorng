@@ -56,7 +56,7 @@ class OrdersController extends Table
 	{
 
 		$input = $request->except('_token');
-		$input['invoice'] = "INV-" . date('Y') . "-" . rand(10000, 39999);
+		$input['invoice'] = time();
 		$input['order_type'] = "Offline";
 		$order = new Order;
 		$order->fill($input);
@@ -221,6 +221,17 @@ class OrdersController extends Table
 		//dd($order = Order::find($request->id)->order_statuses);
 
 		//status == delivered
+
+		if ($request->value == 'Delivered') {
+			$order_statuses = OrderStatus::where('order_id', $request->id)->get();
+			if (null !== $order_statuses) {
+
+				foreach ($order_statuses as $order_status) {
+					$order_status->is_updated = true;
+					$order_status->save();
+				}
+			}
+		}
 
 		if ($request->value == 'Delivered') {
 			$order_statuses = OrderStatus::where('order_id', $request->id)->get();
