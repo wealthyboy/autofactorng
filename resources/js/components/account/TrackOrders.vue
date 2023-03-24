@@ -7,21 +7,20 @@
       <li
         v-for="complete in completed"
         :key="complete.id"
-        :class="[ complete.is_updated === 1 && complete.status === 'Delivered' ? 'completed' : null  ]"
+        :class="[ complete.is_updated === 1 && complete.status === 'Delivered' ? 'completed' : 'updated'  ]"
         class="list-g"
       >
         <span 
         
-          :class="[ complete.is_updated === 1  && complete.status === 'Confirmed' ? 'bg-blue' : ''  ]"
+          :class="[ complete.is_updated === 1  && !complete.status === 'Delivered' ? 'bg-blue' : ''  ]"
 
            class="bubble d-flex text-white justify-content-center align-items-center">
           <span         
-              :class="[ complete.is_updated === 1 ? 'text-white' : 'text-black'  ]"
-              class="fas fa-check mt-1"></span>
+              class="fas fa-check mt-1 text-white"></span>
         </span>
         <span  
          v-if="complete.is_updated === 1"
-        :class="[  complete.status === 'Delivered' ? 'bg-success' : 'bg-blue'  ]"
+        :class="[ complete.status === 'Delivered' ? 'bg-success' : 'bg-blue'  ]"
 
         class="stacked-text  text-white border fw-bold py-2 px-2">{{ complete.status }} </span>
 
@@ -226,6 +225,12 @@ export default {
   content: "";
   background-color: #bbb;
 }
+
+.progress-indicator > li .bg-blue:before,
+.progress-indicator > li .bg-blue:after {
+  background-color: #1560BD !important;
+}
+
 .progress-indicator > li .bubble:before {
   left: 0;
 }

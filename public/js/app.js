@@ -25154,17 +25154,25 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "progress-indicator stacked nocenter mb-3"
 };
-var _hoisted_2 = {
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "fas fa-check mt-1 text-white"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_3 = [_hoisted_2];
+var _hoisted_4 = {
   key: 2,
   "class": "subdued text-success"
 };
-var _hoisted_3 = {
+var _hoisted_5 = {
   "class": ""
 };
-var _hoisted_4 = {
+var _hoisted_6 = {
   "class": "form-group p-1"
 };
-var _hoisted_5 = {
+var _hoisted_7 = {
   "class": "form-floating"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -25183,14 +25191,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.completed, function (complete) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: complete.id,
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.is_updated === 1 && complete.status === 'Delivered' ? 'completed' : null], "list-g"])
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.is_updated === 1 && complete.status === 'Delivered' ? 'completed' : 'updated'], "list-g"])
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.is_updated === 1 && complete.status === 'Confirmed' ? 'bg-blue' : ''], "bubble d-flex text-white justify-content-center align-items-center"])
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.is_updated === 1 ? 'text-white' : 'text-black'], "fas fa-check mt-1"])
-    }, null, 2
-    /* CLASS */
-    )], 2
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.is_updated === 1 && !complete.status === 'Delivered' ? 'bg-blue' : ''], "bubble d-flex text-white justify-content-center align-items-center"])
+    }, _hoisted_3, 2
     /* CLASS */
     ), complete.is_updated === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
       key: 0,
@@ -25202,7 +25206,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.status === 'Confirmed' ? 'bg-blue' : ''], "stacked-text bg-secondary text-white border fw-bold py-2 px-2"])
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.status), 3
     /* TEXT, CLASS */
-    )), complete.is_updated || complete.status == 'Confirmed' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.formated_date), 1
+    )), complete.is_updated || complete.status == 'Confirmed' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.formated_date), 1
     /* TEXT */
     )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
     /* CLASS */
@@ -25214,7 +25218,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.track && $setup.track.apply($setup, arguments);
     }, ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     id: "order_id",
     error: $setup.v$.invoice,
     modelValue: $setup.form.invoice,
@@ -44919,7 +44923,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.bg-blue {\n  background-color: #1560BD !important;\n}\n.flexer,\n.progress-indicator {\n  display: flex;\n}\n.no-flexer,\n.progress-indicator.stacked {\n  display: block;\n}\n.no-flexer-element {\n  -moz-flex: 0;\n  flex: 0;\n}\n.flexer-element,\n.progress-indicator > li {\n  -moz-flex: 1;\n  flex: 1;\n}\n.progress-indicator {\n  margin: 0;\n  padding: 0;\n  font-size: 80%;\n  text-transform: uppercase;\n  margin-bottom: 1em;\n}\n.progress-indicator > li {\n  list-style: none;\n  width: auto;\n  padding: 0;\n  margin: 0;\n  position: relative;\n  text-overflow: ellipsis;\n  /* color: #bbb; */\n  display: block;\n}\n.progress-indicator > li:hover {\n  color: #6f6f6f;\n}\n.progress-indicator > li .bubble {\n  border-radius: 1000px;\n  width: 25px;\n  height: 25px;\n  background-color: #bbb;\n  display: block;\n  margin: 1.5rem auto .1em auto;\n  border-bottom: 1px solid #888;\n}\n.progress-indicator > li .bubble:before,\n.progress-indicator > li .bubble:after {\n  display: block;\n  position: absolute;\n  top: 9px;\n  width: 100%;\n  height: 3px;\n  content: \"\";\n  background-color: #bbb;\n}\n.progress-indicator > li .bubble:before {\n  left: 0;\n}\n.progress-indicator > li .bubble:after {\n  right: 0;\n}\n.progress-indicator > li:first-child .bubble:before,\n.progress-indicator > li:first-child .bubble:after {\n  width: 50%;\n  margin-left: 50%;\n}\n.progress-indicator > li:last-child .bubble:before,\n.progress-indicator > li:last-child .bubble:after {\n  width: 50%;\n  margin-right: 50%;\n}\n.progress-indicator > li.completed {\n  color: #fff;\n}\n.progress-indicator > li.completed .bubble {\n  background-color: #198754;\n  color: #65d074;\n  border-color: #247830;\n}\n.progress-indicator > li.completed .bubble:before,\n.progress-indicator > li.completed .bubble:after {\n  background-color: #198754;\n  border-color: #247830;\n}\n.progress-indicator > li.active {\n  color: #f44c25;\n}\n.progress-indicator > li.active .bubble {\n  background-color: #f44c25;\n  color: #f44c25;\n  border-color: #7a1c06;\n}\n.progress-indicator > li.active .bubble:before,\n.progress-indicator > li.active .bubble:after {\n  background-color: #f44c25;\n  border-color: #7a1c06;\n}\n.progress-indicator > li a:hover .bubble {\n  background-color: #5671d0;\n  color: #5671d0;\n  border-color: #1f306e;\n}\n.progress-indicator > li a:hover .bubble:before,\n.progress-indicator > li a:hover .bubble:after {\n  background-color: #5671d0;\n  border-color: #1f306e;\n}\n.progress-indicator > li.danger .bubble {\n  background-color: #d3140f;\n  color: #d3140f;\n  border-color: #440605;\n}\n.progress-indicator > li.danger .bubble:before,\n.progress-indicator > li.danger .bubble:after {\n  background-color: #d3140f;\n  border-color: #440605;\n}\n.progress-indicator > li.warning .bubble {\n  background-color: #edb10a;\n  color: #edb10a;\n  border-color: #5a4304;\n}\n.progress-indicator > li.warning .bubble:before,\n.progress-indicator > li.warning .bubble:after {\n  background-color: #edb10a;\n  border-color: #5a4304;\n}\n.progress-indicator > li.info .bubble {\n  background-color: #5b32d6;\n  color: #5b32d6;\n  border-color: #25135d;\n}\n.progress-indicator > li.info .bubble:before,\n.progress-indicator > li.info .bubble:after {\n  background-color: #5b32d6;\n  border-color: #25135d;\n}\n.progress-indicator.stacked > li {\n  /* text-indent: -10px;\n  text-align: center;\n  display: block; */\n}\n.progress-indicator.stacked > li .bubble:before,\n.progress-indicator.stacked > li .bubble:after {\n  left: 50%;\n  margin-left: -1.5px;\n  width: 3px;\n  height: 100%;\n  margin-top: 10px;\n}\n.progress-indicator.stacked .stacked-text {\n  position: relative;\n  z-index: 10;\n  top: -28px;\n  margin-left: 60% !important;\n  width: 45% !important;\n  display: inline-block;\n  text-align: left;\n  line-height: 1.2em;\n  font-size: 13px;\n}\n.progress-indicator.stacked > li a {\n  border: none;\n}\n.progress-indicator.stacked.nocenter > li .bubble {\n  margin-left: -2px;\n  margin-right: 0;\n}\n.progress-indicator.stacked.nocenter > li .bubble:before,\n.progress-indicator.stacked.nocenter > li .bubble:after {\n  left: 10px;\n}\n.progress-indicator.stacked.nocenter .stacked-text {\n  width: auto !important;\n  margin-left: 30px !important;\n}\nspan.subdued {\n  position: absolute;\n    left: 28px;\n}\n@media handheld, screen and (max-width: 400px) {\n.progress-indicator {\n    font-size: 60%;\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.bg-blue {\n  background-color: #1560BD !important;\n}\n.flexer,\n.progress-indicator {\n  display: flex;\n}\n.no-flexer,\n.progress-indicator.stacked {\n  display: block;\n}\n.no-flexer-element {\n  -moz-flex: 0;\n  flex: 0;\n}\n.flexer-element,\n.progress-indicator > li {\n  -moz-flex: 1;\n  flex: 1;\n}\n.progress-indicator {\n  margin: 0;\n  padding: 0;\n  font-size: 80%;\n  text-transform: uppercase;\n  margin-bottom: 1em;\n}\n.progress-indicator > li {\n  list-style: none;\n  width: auto;\n  padding: 0;\n  margin: 0;\n  position: relative;\n  text-overflow: ellipsis;\n  /* color: #bbb; */\n  display: block;\n}\n.progress-indicator > li:hover {\n  color: #6f6f6f;\n}\n.progress-indicator > li .bubble {\n  border-radius: 1000px;\n  width: 25px;\n  height: 25px;\n  background-color: #bbb;\n  display: block;\n  margin: 1.5rem auto .1em auto;\n  border-bottom: 1px solid #888;\n}\n.progress-indicator > li .bubble:before,\n.progress-indicator > li .bubble:after {\n  display: block;\n  position: absolute;\n  top: 9px;\n  width: 100%;\n  height: 3px;\n  content: \"\";\n  background-color: #bbb;\n}\n.progress-indicator > li .bg-blue:before,\n.progress-indicator > li .bg-blue:after {\n  background-color: #1560BD !important;\n}\n.progress-indicator > li .bubble:before {\n  left: 0;\n}\n.progress-indicator > li .bubble:after {\n  right: 0;\n}\n.progress-indicator > li:first-child .bubble:before,\n.progress-indicator > li:first-child .bubble:after {\n  width: 50%;\n  margin-left: 50%;\n}\n.progress-indicator > li:last-child .bubble:before,\n.progress-indicator > li:last-child .bubble:after {\n  width: 50%;\n  margin-right: 50%;\n}\n.progress-indicator > li.completed {\n  color: #fff;\n}\n.progress-indicator > li.completed .bubble {\n  background-color: #198754;\n  color: #65d074;\n  border-color: #247830;\n}\n.progress-indicator > li.completed .bubble:before,\n.progress-indicator > li.completed .bubble:after {\n  background-color: #198754;\n  border-color: #247830;\n}\n.progress-indicator > li.active {\n  color: #f44c25;\n}\n.progress-indicator > li.active .bubble {\n  background-color: #f44c25;\n  color: #f44c25;\n  border-color: #7a1c06;\n}\n.progress-indicator > li.active .bubble:before,\n.progress-indicator > li.active .bubble:after {\n  background-color: #f44c25;\n  border-color: #7a1c06;\n}\n.progress-indicator > li a:hover .bubble {\n  background-color: #5671d0;\n  color: #5671d0;\n  border-color: #1f306e;\n}\n.progress-indicator > li a:hover .bubble:before,\n.progress-indicator > li a:hover .bubble:after {\n  background-color: #5671d0;\n  border-color: #1f306e;\n}\n.progress-indicator > li.danger .bubble {\n  background-color: #d3140f;\n  color: #d3140f;\n  border-color: #440605;\n}\n.progress-indicator > li.danger .bubble:before,\n.progress-indicator > li.danger .bubble:after {\n  background-color: #d3140f;\n  border-color: #440605;\n}\n.progress-indicator > li.warning .bubble {\n  background-color: #edb10a;\n  color: #edb10a;\n  border-color: #5a4304;\n}\n.progress-indicator > li.warning .bubble:before,\n.progress-indicator > li.warning .bubble:after {\n  background-color: #edb10a;\n  border-color: #5a4304;\n}\n.progress-indicator > li.info .bubble {\n  background-color: #5b32d6;\n  color: #5b32d6;\n  border-color: #25135d;\n}\n.progress-indicator > li.info .bubble:before,\n.progress-indicator > li.info .bubble:after {\n  background-color: #5b32d6;\n  border-color: #25135d;\n}\n.progress-indicator.stacked > li {\n  /* text-indent: -10px;\n  text-align: center;\n  display: block; */\n}\n.progress-indicator.stacked > li .bubble:before,\n.progress-indicator.stacked > li .bubble:after {\n  left: 50%;\n  margin-left: -1.5px;\n  width: 3px;\n  height: 100%;\n  margin-top: 10px;\n}\n.progress-indicator.stacked .stacked-text {\n  position: relative;\n  z-index: 10;\n  top: -28px;\n  margin-left: 60% !important;\n  width: 45% !important;\n  display: inline-block;\n  text-align: left;\n  line-height: 1.2em;\n  font-size: 13px;\n}\n.progress-indicator.stacked > li a {\n  border: none;\n}\n.progress-indicator.stacked.nocenter > li .bubble {\n  margin-left: -2px;\n  margin-right: 0;\n}\n.progress-indicator.stacked.nocenter > li .bubble:before,\n.progress-indicator.stacked.nocenter > li .bubble:after {\n  left: 10px;\n}\n.progress-indicator.stacked.nocenter .stacked-text {\n  width: auto !important;\n  margin-left: 30px !important;\n}\nspan.subdued {\n  position: absolute;\n    left: 28px;\n}\n@media handheld, screen and (max-width: 400px) {\n.progress-indicator {\n    font-size: 60%;\n}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
