@@ -8,8 +8,13 @@
         v-for="complete in completed"
         :key="complete.id"
         :class="[ complete.is_updated === 1 && complete.status === 'Delivered' ? 'completed' : null  ]"
+        class="list-g"
       >
-        <span class="bubble d-flex text-white justify-content-center align-items-center">
+        <span 
+        
+          :class="[ complete.is_updated === 1  && complete.status === 'Confirmed' ? 'bg-blue' : ''  ]"
+
+           class="bubble d-flex text-white justify-content-center align-items-center">
           <span         
               :class="[ complete.is_updated === 1 ? 'text-white' : 'text-black'  ]"
               class="fas fa-check mt-1"></span>

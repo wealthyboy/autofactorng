@@ -25155,19 +25155,16 @@ var _hoisted_1 = {
   "class": "progress-indicator stacked nocenter mb-3"
 };
 var _hoisted_2 = {
-  "class": "bubble d-flex text-white justify-content-center align-items-center"
-};
-var _hoisted_3 = {
   key: 2,
   "class": "subdued text-success"
 };
-var _hoisted_4 = {
+var _hoisted_3 = {
   "class": ""
 };
-var _hoisted_5 = {
+var _hoisted_4 = {
   "class": "form-group p-1"
 };
-var _hoisted_6 = {
+var _hoisted_5 = {
   "class": "form-floating"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -25186,12 +25183,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.completed, function (complete) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: complete.id,
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([complete.is_updated === 1 && complete.status === 'Delivered' ? 'completed' : null])
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.is_updated === 1 && complete.status === 'Delivered' ? 'completed' : null], "list-g"])
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.is_updated === 1 && complete.status === 'Confirmed' ? 'bg-blue' : ''], "bubble d-flex text-white justify-content-center align-items-center"])
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.is_updated === 1 ? 'text-white' : 'text-black'], "fas fa-check mt-1"])
     }, null, 2
     /* CLASS */
-    )]), complete.is_updated === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+    )], 2
+    /* CLASS */
+    ), complete.is_updated === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
       key: 0,
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.status === 'Delivered' ? 'bg-success' : 'bg-blue'], "stacked-text text-white border fw-bold py-2 px-2"])
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.status), 3
@@ -25201,7 +25202,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.status === 'Confirmed' ? 'bg-blue' : ''], "stacked-text bg-secondary text-white border fw-bold py-2 px-2"])
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.status), 3
     /* TEXT, CLASS */
-    )), complete.is_updated || complete.status == 'Confirmed' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.formated_date), 1
+    )), complete.is_updated || complete.status == 'Confirmed' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.formated_date), 1
     /* TEXT */
     )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
     /* CLASS */
@@ -25213,7 +25214,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.track && $setup.track.apply($setup, arguments);
     }, ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     id: "order_id",
     error: $setup.v$.invoice,
     modelValue: $setup.form.invoice,
