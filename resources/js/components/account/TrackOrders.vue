@@ -12,7 +12,7 @@
       >
         <span 
         
-          :class="[ complete.is_updated === 1  && !complete.status === 'Delivered' ? 'bg-blue' : ''  ]"
+          :class="[ complete.is_updated === 1  && !complete.status == 'Delivered' ? 'bg-blue' : ''  ]"
 
            class="bubble d-flex text-white justify-content-center align-items-center">
           <span         
