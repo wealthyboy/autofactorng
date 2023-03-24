@@ -39,7 +39,6 @@ class TrackOrdersController extends Controller
         $order = Order::where('invoice', $request->invoice)->first();
         $statuses = $order->order_statuses;
         $completed = $statuses->toArray();
-        $uncompleted = array_diff($order_statuses, $statuses->pluck('status')->toArray());
         return response()->json([
             'completed' => $completed,
 
