@@ -27,13 +27,13 @@
                         <a href="#" class="page-link disabled">{{ "..." }}</a>
                     </li>
 
-                    <li :key="x" v-for="x in 3" class="page-item">
+                    <li :key="x" v-for="x in prevArray" class="page-item">
                         <a
-                            @click.prevent="switched(x + 3)"
+                            @click.prevent="switched(x)"
                             href="#"
                             :class="{ current: meta.current_page === x }"
                             class="page-link"
-                            >{{ x + 3 }}</a
+                            >{{ x }}</a
                         >
                     </li>
 
@@ -119,6 +119,12 @@ export default {
         meta: Object,
         useUrl: Boolean,
     },
+    data() {
+        return {
+            prevArray: [],
+            nextArray: [],
+        };
+    },
     created() {},
     methods: {
         getPrevArray() {
@@ -139,6 +145,11 @@ export default {
             console.log(page);
             for (let index = page - 4; index < page; index++) {
                 console.log(index);
+                prevArray.push(index);
+            }
+
+            for (let index = page + 4; index < page; index++) {
+                nextArray.push(index);
             }
             return;
 
