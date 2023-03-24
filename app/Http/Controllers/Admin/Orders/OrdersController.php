@@ -218,7 +218,7 @@ class OrdersController extends Table
 
 	public function updateStatus(Request $request)
 	{
-		dd($order = Order::find($request->id)->order_statuses);
+		//dd($order = Order::find($request->id)->order_statuses);
 		$orderStatus = OrderStatus::firstOrNew(
 			['status' =>  request('value')],
 			['order_id' => request('id')]
