@@ -219,7 +219,7 @@ class OrdersController extends Table
 
 	public function updateStatus(Request $request)
 	{
-		//dd($order = Order::find($request->id)->order_statuses);
+		Order::whereIn('status', ['0'])->delete();
 
 		//status == delivered
 
