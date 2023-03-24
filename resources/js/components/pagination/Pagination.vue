@@ -29,9 +29,9 @@
 
                     <li :key="x" v-for="x in [3, 2, 1, 0]" class="page-item">
                         <a
-                            @click.prevent="switched(x + 6)"
+                            @click.prevent="switched(meta.current_page - x)"
                             href="#"
-                            :class="{ current: meta.current_page - x }"
+                            :class="{ current: meta.current_page - x === x }"
                             class="page-link"
                             >{{ meta.current_page - x }}</a
                         >

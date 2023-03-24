@@ -27528,11 +27528,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "page-item"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return $options.switched(x + 6);
+        return $options.switched($props.meta.current_page - x);
       }, ["prevent"]),
       href: "#",
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-        current: $props.meta.current_page - x
+        current: $props.meta.current_page - x === x
       }, "page-link"])
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meta.current_page - x), 11
     /* TEXT, CLASS, PROPS */
