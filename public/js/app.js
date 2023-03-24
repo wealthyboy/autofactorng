@@ -27442,7 +27442,7 @@ var _hoisted_6 = {
 };
 var _hoisted_7 = {
   href: "#",
-  "class": "page-link"
+  "class": "page-link disabled"
 };
 var _hoisted_8 = ["onClick"];
 var _hoisted_9 = {

@@ -25,7 +25,7 @@
 
             <template v-if="meta.last_page > 7">
                 <li class="page-item">
-                    <a href="#" class="page-link">{{ "..." }}</a>
+                    <a href="#" class="page-link disabled">{{ "..." }}</a>
                 </li>
             </template>
 
