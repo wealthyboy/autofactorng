@@ -25155,7 +25155,7 @@ var _hoisted_1 = {
   "class": "progress-indicator stacked nocenter mb-3"
 };
 var _hoisted_2 = {
-  "class": "bubble d-flex justify-content-center align-items-center"
+  "class": "bubble d-flex text-white justify-content-center align-items-center"
 };
 var _hoisted_3 = {
   key: 2,

@@ -9,7 +9,7 @@
         :key="complete.id"
         :class="[ complete.is_updated === 1 && complete.status === 'Delivered' ? 'completed' : null  ]"
       >
-        <span class="bubble d-flex justify-content-center align-items-center">
+        <span class="bubble d-flex text-white justify-content-center align-items-center">
           <span         
               :class="[ complete.is_updated === 1 ? 'text-white' : 'text-black'  ]"
               class="fas fa-check mt-1"></span>

@@ -47,7 +47,7 @@ class Order extends Model
 		$order->address_id  = $user->active_address->id;
 		$order->coupon = $input['coupon'];
 		$order->heavy_item_price = isset($input['heavy_item_price']) ? $input['heavy_item_price'] : null;
-		$order->status = 'Processing';
+		$order->status = 'Confirmed';
 		$order->shipping_price  = data_get($input, 'shipping_price');
 		$order->invoice =  rand(10000, 3999990);
 		$order->payment_type = $payment_method;
