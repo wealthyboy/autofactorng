@@ -221,16 +221,16 @@ class OrdersController extends Table
 	{
 
 		$orderStatus = OrderStatus::firstOrNew(
-			['status' =>  request('status')],
-			['order_id' => request('order_id')]
+			['status' =>  request('value')],
+			['order_id' => request('id')]
 		);
-		$orderStatus->status = $request->status;
+		$orderStatus->status = $request->value;
 		$orderStatus->order_id = $request->id;
 		$orderStatus->is_updated = 1;
 		$orderStatus->save();
 
 		$order = Order::find($request->id);
-		$order->status =  $request->status;
+		$order->status =  $request->value;
 		$order->save();
 		return $orderStatus;
 	}
