@@ -58,10 +58,10 @@ class OrdersController extends Table
 		$input = $request->except('_token');
 		$input['invoice'] = time();
 		$input['order_type'] = "Offline";
+		$input['status'] = "Confirmed";
 		$order = new Order;
 		$order->fill($input);
 		$order->save();
-
 		$total = [];
 
 		foreach ($input['products']['product_name'] as $key => $v) {
@@ -225,9 +225,19 @@ class OrdersController extends Table
 		if ($request->value == 'Delivered') {
 			$order_statuses = OrderStatus::where('order_id', $request->id)->get();
 			if (null !== $order_statuses) {
-
 				foreach ($order_statuses as $order_status) {
 					$order_status->is_updated = true;
+					$order_status->save();
+				}
+			}
+		}
+
+
+		if ($request->value == 'Confirmed') {
+			$order_statuses = OrderStatus::where('order_id', $request->id)->get();
+			if (null !== $order_statuses) {
+				foreach ($order_statuses as $order_status) {
+					$order_status->is_updated = false;
 					$order_status->save();
 				}
 			}
@@ -266,9 +276,7 @@ class OrdersController extends Table
 		if ($request->value == 'Processing') {
 
 			$order_statuses = OrderStatus::where(['order_id' => $request->id])->where('status', '!=', 'Confirmed')->get();
-
 			if (null !== $order_statuses) {
-
 				foreach ($order_statuses as $order_status) {
 					$order_status->is_updated = false;
 					$order_status->save();
