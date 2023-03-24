@@ -11,7 +11,6 @@
                 <span class="page-link">Previous</span>
             </li>
 
-            //
             <template v-if="meta.last_page > 7">
                 <li :key="x" v-for="x in 7" class="page-item">
                     <a
