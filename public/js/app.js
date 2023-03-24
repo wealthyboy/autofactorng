@@ -25193,7 +25193,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: complete.id,
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.is_updated === 1 && complete.status === 'Delivered' ? 'completed' : 'updated'], "list-g"])
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.is_updated === 1 && complete.status != 'Delivered' ? 'bg-blue' : ''], "bubble d-flex text-white justify-content-center align-items-center"])
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.is_updated == 1 && complete.status != 'Delivered' ? 'bg-blue' : ''], "bubble d-flex text-white justify-content-center align-items-center"])
     }, _hoisted_3, 2
     /* CLASS */
     ), complete.is_updated === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
@@ -27460,7 +27460,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* CLASS */
   ), $props.meta.last_page > 7 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 0
-  }, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(7, function (x) {
+  }, [$props.meta.current_page <= 7 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 0
+  }, [], 64
+  /* STABLE_FRAGMENT */
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(7, function (x) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", {
       key: x,
       "class": "page-item"

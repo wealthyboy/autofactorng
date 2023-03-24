@@ -12,11 +12,10 @@
       >
         <span 
         
-          :class="[ complete.is_updated === 1  && complete.status != 'Delivered' ? 'bg-blue' : ''  ]"
+          :class="[ complete.is_updated == 1  && complete.status != 'Delivered' ? 'bg-blue' : ''  ]"
 
            class="bubble d-flex text-white justify-content-center align-items-center">
-          <span         
-              class="fas fa-check mt-1 text-white"></span>
+          <span class="fas fa-check mt-1 text-white"></span>
         </span>
         <span  
          v-if="complete.is_updated === 1"
