@@ -27,7 +27,7 @@
                         <a href="#" class="page-link disabled">{{ "..." }}</a>
                     </li>
 
-                    <li :key="x" v-for="x in [3, 2, 1]" class="page-item">
+                    <li :key="x" v-for="x in [3, 2, 1, 0]" class="page-item">
                         <a
                             @click.prevent="switched(x + 6)"
                             href="#"
