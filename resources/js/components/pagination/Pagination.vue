@@ -13,7 +13,7 @@
 
             //
             <template v-if="meta.last_page > 7">
-                <li :key="x" v-for="x in 2" class="page-item">
+                <li :key="x" v-for="x in 7" class="page-item">
                     <a
                         @click.prevent="switched(x)"
                         href="#"
@@ -31,7 +31,7 @@
             </template>
 
             <template v-if="meta.last_page > 7">
-                <li :key="x" v-for="x in 10" class="page-item">
+                <li :key="x" v-for="x in 2" class="page-item">
                     <a
                         @click.prevent="switched(x)"
                         href="#"
