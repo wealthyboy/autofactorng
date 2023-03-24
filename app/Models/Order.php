@@ -73,6 +73,13 @@ class Order extends Model
 				$order_status->save();
 			}
 
+			$order_status = OrderStatus::where('status', 'Confirmed')->first();
+
+			if (null !== $order_status) {
+				$order_status->is_updated = true;
+				$order_status->save();
+			}
+
 
 			foreach ($carts   as $cart) {
 				$insert = [
