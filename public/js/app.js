@@ -21415,11 +21415,10 @@ __webpack_require__.r(__webpack_exports__);
 
     var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_1__.useActions)(["makePost", "clearErr"]),
         clearErr = _useActions.clearErr,
-        makePost = _useActions.makePost;
+        makePost = _useActions.makePost; // const StatusColor = computed(() => {
+    //   [ complete.is_updated === 1 ? 'bg-success text-white' : 'bg-secondary text-white'  ]
+    // })
 
-    var StatusColor = computed(function () {
-      [complete.is_updated === 1 ? 'bg-success text-white' : 'bg-secondary text-white'];
-    });
 
     function change(page) {
       emit("switched", page);

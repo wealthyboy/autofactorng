@@ -93,9 +93,9 @@ export default {
     const v$ = useVuelidate(rules, form);
     const { clearErr, makePost } = useActions(["makePost", "clearErr"]);
 
-    const StatusColor = computed(() => {
-      [ complete.is_updated === 1 ? 'bg-success text-white' : 'bg-secondary text-white'  ]
-    })
+    // const StatusColor = computed(() => {
+    //   [ complete.is_updated === 1 ? 'bg-success text-white' : 'bg-secondary text-white'  ]
+    // })
 
     function change(page) {
       emit("switched", page);
