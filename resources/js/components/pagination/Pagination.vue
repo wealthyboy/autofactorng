@@ -27,6 +27,8 @@
                         <a href="#" class="page-link disabled">{{ "..." }}</a>
                     </li>
 
+                    {{ prevArray }}
+
                     <li :key="x" v-for="x in prevArray" class="page-item">
                         <a
                             @click.prevent="switched(x)"
