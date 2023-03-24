@@ -7,7 +7,7 @@
       <li
         v-for="complete in completed"
         :key="complete.id"
-        :class="[ complete.is_updated === 1  ? 'completed' : null  ]"
+        :class="[ complete.is_updated === 1 && complete.status === 'Delivered' ? 'completed' : null  ]"
       >
         <span class="bubble d-flex justify-content-center align-items-center">
           <span         
@@ -15,7 +15,7 @@
               class="fas fa-check mt-1  "></span>
         </span>
         <span  
-        :class="[ complete.is_updated === 1 ? 'bg-success text-white' : 'bg-secondary text-white'  ]"
+        :class="StatusColor"
 
         class="stacked-text border fw-bold py-2 px-2">{{ complete.status }} </span>
         <span v-if="complete.is_updated" class="subdued text-success"> {{ complete.formated_date }}</span>
@@ -92,6 +92,10 @@ export default {
     const rules = trackingRules(form);
     const v$ = useVuelidate(rules, form);
     const { clearErr, makePost } = useActions(["makePost", "clearErr"]);
+
+    const StatusColor = computed(() => {
+      [ complete.is_updated === 1 ? 'bg-success text-white' : 'bg-secondary text-white'  ]
+    })
 
     function change(page) {
       emit("switched", page);

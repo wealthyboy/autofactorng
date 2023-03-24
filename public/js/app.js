@@ -21417,6 +21417,10 @@ __webpack_require__.r(__webpack_exports__);
         clearErr = _useActions.clearErr,
         makePost = _useActions.makePost;
 
+    var StatusColor = computed(function () {
+      [complete.is_updated === 1 ? 'bg-success text-white' : 'bg-secondary text-white'];
+    });
+
     function change(page) {
       emit("switched", page);
     }
@@ -25183,13 +25187,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.completed, function (complete) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", {
       key: complete.id,
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([complete.is_updated === 1 ? 'completed' : null])
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([complete.is_updated === 1 && complete.status === 'Delivered' ? 'completed' : null])
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.is_updated === 1 ? 'text-white' : 'text-black'], "fas fa-check mt-1"])
     }, null, 2
     /* CLASS */
     )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.is_updated === 1 ? 'bg-success text-white' : 'bg-secondary text-white'], "stacked-text border fw-bold py-2 px-2"])
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([_ctx.StatusColor, "stacked-text border fw-bold py-2 px-2"])
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.status), 3
     /* TEXT, CLASS */
     ), complete.is_updated ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.formated_date), 1
