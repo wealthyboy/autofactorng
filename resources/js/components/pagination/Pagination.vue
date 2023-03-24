@@ -12,30 +12,80 @@
             </li>
 
             <template v-if="meta.last_page > 7">
-                <template v-if="meta.current_page <= 7"> </template>
-                <li :key="x" v-for="x in 7" class="page-item">
-                    <a
-                        @click.prevent="switched(x)"
-                        href="#"
-                        :class="{ current: meta.current_page === x }"
-                        class="page-link"
-                        >{{ x }}</a
-                    >
-                </li>
+                <template v-if="meta.current_page <= 7">
+                    <li :key="x" v-for="x in 2" class="page-item">
+                        <a
+                            @click.prevent="switched(x)"
+                            href="#"
+                            :class="{ current: meta.current_page === x }"
+                            class="page-link"
+                            >{{ x }}</a
+                        >
+                    </li>
 
-                <li class="page-item">
-                    <a href="#" class="page-link disabled">{{ "..." }}</a>
-                </li>
+                    <li class="page-item">
+                        <a href="#" class="page-link disabled">{{ "..." }}</a>
+                    </li>
 
-                <li :key="x" v-for="x in 2" class="page-item">
-                    <a
-                        @click.prevent="switched(x)"
-                        href="#"
-                        :class="{ current: meta.current_page === x }"
-                        class="page-link"
-                        >{{ meta.last_page - x }}</a
-                    >
-                </li>
+                    <li :key="x" v-for="x in 3" class="page-item">
+                        <a
+                            @click.prevent="switched(x)"
+                            href="#"
+                            :class="{ current: meta.current_page === x }"
+                            class="page-link"
+                            >{{ meta.current_page - x }}</a
+                        >
+                    </li>
+
+                    <li :key="x" v-for="x in 3" class="page-item">
+                        <a
+                            @click.prevent="switched(x)"
+                            href="#"
+                            :class="{ current: meta.current_page === x }"
+                            class="page-link"
+                            >{{ meta.current_page + x }}</a
+                        >
+                    </li>
+
+                    <li class="page-item">
+                        <a href="#" class="page-link disabled">{{ "..." }}</a>
+                    </li>
+
+                    <li :key="x" v-for="x in 2" class="page-item">
+                        <a
+                            @click.prevent="switched(x)"
+                            href="#"
+                            :class="{ current: meta.current_page === x }"
+                            class="page-link"
+                            >{{ meta.last_page - x }}</a
+                        >
+                    </li>
+                </template>
+                <template v-else>
+                    <li :key="x" v-for="x in 7" class="page-item">
+                        <a
+                            @click.prevent="switched(x)"
+                            href="#"
+                            :class="{ current: meta.current_page === x }"
+                            class="page-link"
+                            >{{ x }}</a
+                        >
+                    </li>
+
+                    <li class="page-item">
+                        <a href="#" class="page-link disabled">{{ "..." }}</a>
+                    </li>
+
+                    <li :key="x" v-for="x in 2" class="page-item">
+                        <a
+                            @click.prevent="switched(x)"
+                            href="#"
+                            :class="{ current: meta.current_page === x }"
+                            class="page-link"
+                            >{{ meta.last_page - x }}</a
+                        >
+                    </li>
+                </template>
             </template>
             <template v-else>
                 <li :key="x" v-for="x in meta.last_page" class="page-item">
