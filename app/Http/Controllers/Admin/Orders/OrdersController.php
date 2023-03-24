@@ -231,8 +231,6 @@ class OrdersController extends Table
 					$order_status->save();
 				}
 			}
-
-			return response(null, 200);
 		}
 
 		if ($request->value == 'Shipped') {
@@ -254,14 +252,12 @@ class OrdersController extends Table
 				$order_status->is_updated = false;
 				$order_status->save();
 			}
-
-			return response(null, 200);
 		}
 
 
 		if ($request->value == 'Processing') {
 
-			$order_statuses = OrderStatus::where(['order_id', $request->id])->where('status', '=', 'Shipped')->where('status', '=', 'Delivered')->get();
+			$order_statuses = OrderStatus::where(['order_id' => $request->id])->where('status', '=', 'Shipped')->where('status', '=', 'Delivered')->get();
 			if (null !== $order_statuses) {
 
 				foreach ($order_statuses as $order_status) {
@@ -269,7 +265,6 @@ class OrdersController extends Table
 					$order_status->save();
 				}
 			}
-			return response(null, 200);
 		}
 
 
