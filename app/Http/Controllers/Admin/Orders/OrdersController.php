@@ -55,6 +55,7 @@ class OrdersController extends Table
 	public function store(Request $request)
 	{
 
+
 		$input = $request->except('_token');
 		$input['invoice'] = time();
 		$input['order_type'] = "Offline";
@@ -246,12 +247,20 @@ class OrdersController extends Table
 		if ($request->value == 'Delivered') {
 			$order_statuses = OrderStatus::where('order_id', $request->id)->get();
 			if (null !== $order_statuses) {
-
 				foreach ($order_statuses as $order_status) {
 					$order_status->is_updated = true;
 					$order_status->save();
 				}
 			}
+
+			$order_status = OrderStatus::where(['order_id' => $request->id])->where('status', '=', 'Delivered')->first();
+
+			if (null !== $order_status) {
+				$order_status->is_updated = true;
+				$order_status->save();
+			}
+
+			return response(null, 200);
 		}
 
 		if ($request->value == 'Shipped') {
@@ -270,6 +279,15 @@ class OrdersController extends Table
 				$order_status->is_updated = false;
 				$order_status->save();
 			}
+
+			$order_status = OrderStatus::where(['order_id' => $request->id])->where('status', '=', 'Shipped')->first();
+
+			if (null !== $order_status) {
+				$order_status->is_updated = true;
+				$order_status->save();
+			}
+
+			return response(null, 200);
 		}
 
 
@@ -282,15 +300,25 @@ class OrdersController extends Table
 					$order_status->save();
 				}
 			}
+
+
+			$order_status = OrderStatus::where(['order_id' => $request->id])->where('status', '=', 'Processing')->first();
+
+			if (null !== $order_status) {
+				$order_status->is_updated = true;
+				$order_status->save();
+			}
+
+			return response(null, 200);
 		}
 
 
 
 
-		$orderStatus = OrderStatus::updateOrCreate(
-			['status' =>  request('value'), 'order_id' => request('id')],
-			['status' => $request->value, 'is_updated' => 1]
-		);
+		// $orderStatus = OrderStatus::updateOrCreate(
+		// 	['status' =>  request('value'), 'order_id' => request('id')],
+		// 	['status' => $request->value, 'is_updated' => 1]
+		// );
 		// $orderStatus->status = $request->value;
 		// $orderStatus->order_id = $request->id;
 		// $orderStatus->is_updated = 1;
@@ -299,7 +327,7 @@ class OrdersController extends Table
 		$order = Order::find($request->id);
 		$order->status =  $request->value;
 		$order->save();
-		return $orderStatus;
+		return $order;
 	}
 
 
