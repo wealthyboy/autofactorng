@@ -332,8 +332,8 @@ export default {
 }
 
 span.subdued {
-    position: relative;
-    left: -100px;
+  position: absolute;
+    left: 28px;
 }
 
 @media handheld, screen and (max-width: 400px) {
