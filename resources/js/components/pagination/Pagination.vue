@@ -11,6 +11,37 @@
                 <span class="page-link">Previous</span>
             </li>
 
+            //
+            <template v-if="meta.last_page > 7">
+                <li :key="x" v-for="x in 2" class="page-item">
+                    <a
+                        @click.prevent="switched(x)"
+                        href="#"
+                        :class="{ current: meta.current_page === x }"
+                        class="page-link"
+                        >{{ x }}</a
+                    >
+                </li>
+            </template>
+
+            <template v-if="meta.last_page > 7">
+                <li class="page-item">
+                    <a href="#" class="page-link">{{ "..." }}</a>
+                </li>
+            </template>
+
+            <template v-if="meta.last_page > 7">
+                <li :key="x" v-for="x in 10" class="page-item">
+                    <a
+                        @click.prevent="switched(x)"
+                        href="#"
+                        :class="{ current: meta.current_page === x }"
+                        class="page-link"
+                        >{{ meta.last_page - x }}</a
+                    >
+                </li>
+            </template>
+
             <li :key="x" v-for="x in meta.last_page" class="page-item">
                 <a
                     @click.prevent="switched(x)"
