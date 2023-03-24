@@ -137,7 +137,7 @@ export default {
             this.$emit("pagination:switched", page);
 
             console.log(page);
-            for (let index = 4; index < page; index++) {
+            for (let index = page - 4; index < page; index++) {
                 console.log(index);
             }
             return;

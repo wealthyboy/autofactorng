@@ -23092,7 +23092,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$emit("pagination:switched", page);
       console.log(page);
 
-      for (var index = 4; index < page; index++) {
+      for (var index = page - 4; index < page; index++) {
         console.log(index);
       }
 
