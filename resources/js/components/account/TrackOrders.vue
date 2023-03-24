@@ -22,6 +22,7 @@
 
         <span 
          v-else 
+         :class="[  complete.status === 'Confirmed' ? 'bg-blue' : ''  ]"
 
         class="stacked-text bg-secondary text-white border fw-bold py-2 px-2">{{ complete.status }} </span>
 

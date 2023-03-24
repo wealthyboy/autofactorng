@@ -25158,20 +25158,16 @@ var _hoisted_2 = {
   "class": "bubble d-flex justify-content-center align-items-center"
 };
 var _hoisted_3 = {
-  key: 1,
-  "class": "stacked-text bg-secondary text-white border fw-bold py-2 px-2"
-};
-var _hoisted_4 = {
   key: 2,
   "class": "subdued text-success"
 };
-var _hoisted_5 = {
+var _hoisted_4 = {
   "class": ""
 };
-var _hoisted_6 = {
+var _hoisted_5 = {
   "class": "form-group p-1"
 };
-var _hoisted_7 = {
+var _hoisted_6 = {
   "class": "form-floating"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -25200,9 +25196,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.status === 'Delivered' ? 'bg-success' : 'bg-blue'], "stacked-text text-white border fw-bold py-2 px-2"])
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.status), 3
     /* TEXT, CLASS */
-    )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.status), 1
-    /* TEXT */
-    )), complete.is_updated || complete.status == 'Confirmed' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.formated_date), 1
+    )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
+      key: 1,
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.status === 'Confirmed' ? 'bg-blue' : ''], "stacked-text bg-secondary text-white border fw-bold py-2 px-2"])
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.status), 3
+    /* TEXT, CLASS */
+    )), complete.is_updated || complete.status == 'Confirmed' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.formated_date), 1
     /* TEXT */
     )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 2
     /* CLASS */
@@ -25214,7 +25213,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.track && $setup.track.apply($setup, arguments);
     }, ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     id: "order_id",
     error: $setup.v$.invoice,
     modelValue: $setup.form.invoice,
