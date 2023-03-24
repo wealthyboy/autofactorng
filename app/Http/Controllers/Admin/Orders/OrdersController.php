@@ -225,11 +225,11 @@ class OrdersController extends Table
 			['order_id' => request('order_id')]
 		);
 		$orderStatus->status = $request->status;
-		$orderStatus->order_id = $request->order_id;
+		$orderStatus->order_id = $request->id;
 		$orderStatus->is_updated = 1;
 		$orderStatus->save();
 
-		$order = Order::find($request->order_id);
+		$order = Order::find($request->id);
 		$order->status =  $request->status;
 		$order->save();
 		return $orderStatus;
