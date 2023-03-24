@@ -225,14 +225,14 @@ class OrdersController extends Table
 		);
 
 		dd($orderStatus);
-		$orderStatus->status = $request->value;
-		$orderStatus->order_id = $request->id;
-		$orderStatus->is_updated = 1;
-		$orderStatus->save();
+		// $orderStatus->status = $request->value;
+		// $orderStatus->order_id = $request->id;
+		// $orderStatus->is_updated = 1;
+		// $orderStatus->save();
 
-		$order = Order::find($request->id);
-		$order->status =  $request->value;
-		$order->save();
+		// $order = Order::find($request->id);
+		// $order->status =  $request->value;
+		// $order->save();
 		return $orderStatus;
 	}
 
