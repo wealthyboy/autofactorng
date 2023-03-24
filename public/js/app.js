@@ -23100,11 +23100,11 @@ __webpack_require__.r(__webpack_exports__);
 
       for (var index = page - 4; index < page; index++) {
         console.log(index);
-        prevArray.push(index);
+        this.prevArray.push(index);
       }
 
       for (var _index = page + 4; _index < page; _index++) {
-        nextArray.push(_index);
+        this.nextArray.push(_index);
       }
 
       return;

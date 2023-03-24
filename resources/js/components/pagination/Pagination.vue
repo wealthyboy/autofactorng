@@ -145,11 +145,11 @@ export default {
             console.log(page);
             for (let index = page - 4; index < page; index++) {
                 console.log(index);
-                prevArray.push(index);
+                this.prevArray.push(index);
             }
 
             for (let index = page + 4; index < page; index++) {
-                nextArray.push(index);
+                this.nextArray.push(index);
             }
             return;
 
