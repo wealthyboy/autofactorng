@@ -19,6 +19,7 @@ class GeneralController extends Controller
         $model = 'App\\Models\\' . $request->model;
         $model = $model::find($request->id);
         $model->status = $request->value;
+        $model->is_updated = 1;
         $model->save();
     }
 
