@@ -12,13 +12,13 @@
         <span class="bubble d-flex justify-content-center align-items-center">
           <span         
               :class="[ complete.is_updated === 1 ? 'text-white' : 'text-black'  ]"
-              class="fas fa-check mt-1  "></span>
+              class="fas fa-check mt-1"></span>
         </span>
         <span  
         :class="StatusColor"
 
         class="stacked-text border fw-bold py-2 px-2">{{ complete.status }} </span>
-        <span v-if="complete.is_updated" class="subdued text-success"> {{ complete.formated_date }}</span>
+        <span v-if="complete.is_updated || complete.status == 'Confirmed'" class="subdued text-success"> {{ complete.formated_date }}</span>
       </li>
     </template>
     
