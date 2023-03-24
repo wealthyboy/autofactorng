@@ -18,12 +18,12 @@
          v-if="complete.is_updated === 1"
         :class="[  complete.status === 'Delivered' ? 'bg-success' : 'bg-blue'  ]"
 
-        class="stacked-text border fw-bold py-2 px-2">{{ complete.status }} </span>
+        class="stacked-text  text-white border fw-bold py-2 px-2">{{ complete.status }} </span>
 
         <span 
          v-else 
 
-        class="stacked-text bg-secondary border fw-bold py-2 px-2">{{ complete.status }} </span>
+        class="stacked-text bg-secondary text-white border fw-bold py-2 px-2">{{ complete.status }} </span>
 
 
         <span v-if="complete.is_updated || complete.status == 'Confirmed'" class="subdued text-success"> {{ complete.formated_date }}</span>

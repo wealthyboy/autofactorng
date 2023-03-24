@@ -25159,7 +25159,7 @@ var _hoisted_2 = {
 };
 var _hoisted_3 = {
   key: 1,
-  "class": "stacked-text bg-secondary border fw-bold py-2 px-2"
+  "class": "stacked-text bg-secondary text-white border fw-bold py-2 px-2"
 };
 var _hoisted_4 = {
   key: 2,
@@ -25197,7 +25197,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* CLASS */
     )]), complete.is_updated === 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", {
       key: 0,
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.status === 'Delivered' ? 'bg-success' : 'bg-blue'], "stacked-text border fw-bold py-2 px-2"])
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[complete.status === 'Delivered' ? 'bg-success' : 'bg-blue'], "stacked-text text-white border fw-bold py-2 px-2"])
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.status), 3
     /* TEXT, CLASS */
     )) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(complete.status), 1
