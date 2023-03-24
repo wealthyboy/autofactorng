@@ -27474,7 +27474,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       disabled: $props.meta.current_page === $props.meta.last_page
     }, "page-link"]),
     href: "#"
-  }, "Next", 2
+  }, ">", 2
   /* CLASS */
   )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("End Paginattion")], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */

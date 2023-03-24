@@ -27,7 +27,7 @@
                     :class="{ disabled: meta.current_page === meta.last_page }"
                     class="page-link"
                     href="#"
-                    >Next</a
+                    >></a
                 >
             </li>
         </ul>
