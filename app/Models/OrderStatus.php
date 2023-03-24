@@ -12,6 +12,9 @@ class OrderStatus extends Model
 
     public $appends = ['formated_date'];
 
+    protected $fillable = ['status', 'order_id'];
+
+
     public function getFormatedDateAttribute()
     {
         return $this->created_at->format('d/m/y');

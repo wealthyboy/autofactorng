@@ -14,6 +14,8 @@ class Order extends Model
 
 	public $appends = ['ship_price'];
 
+
+
 	public static $statuses = [
 		"Processing" => "Processing",
 		"Confirmed" => "Confirmed",
