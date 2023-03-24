@@ -223,6 +223,8 @@ class OrdersController extends Table
 			['status' =>  request('value')],
 			['order_id' => request('id')]
 		);
+
+		dd($orderStatus);
 		$orderStatus->status = $request->value;
 		$orderStatus->order_id = $request->id;
 		$orderStatus->is_updated = 1;
