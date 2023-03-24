@@ -23072,6 +23072,11 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {},
   methods: {
+    getPrevArray: function getPrevArray() {
+      for (var index = 3; index < this.meta.current_page; index++) {
+        var element = array[index];
+      }
+    },
     switched: function switched(page) {
       var _this = this;
 
@@ -23085,6 +23090,11 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       this.$emit("pagination:switched", page);
+
+      for (var index = 3; index < this.meta.current_page; index++) {
+        console.log(index);
+      }
+
       return;
 
       if (this.useUrl) {// this.$router.replace({

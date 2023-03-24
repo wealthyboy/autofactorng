@@ -121,6 +121,11 @@ export default {
     },
     created() {},
     methods: {
+        getPrevArray() {
+            for (let index = 3; index < this.meta.current_page; index++) {
+                const element = array[index];
+            }
+        },
         switched(page) {
             //console.log(this.meta.links[page].url);
 
@@ -130,6 +135,10 @@ export default {
                 return;
             }
             this.$emit("pagination:switched", page);
+
+            for (let index = 3; index < this.meta.current_page; index++) {
+                console.log(index);
+            }
             return;
 
             if (this.useUrl) {
