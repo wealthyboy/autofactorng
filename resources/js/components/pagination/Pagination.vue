@@ -128,14 +128,16 @@
                 </li>
             </template>
 
-            <li class="page-item">
+            <li
+                class="page-item d-flex justify-content-center align-items-center"
+            >
                 <a
                     @click.prevent="switched(meta.current_page + 1)"
                     :class="{ disabled: meta.current_page === meta.last_page }"
                     class="page-link"
                     href="#"
                 >
-                    <span class="material-symbols-outlined">
+                    <span class="material-symbols-outlined fs-2">
                         arrow_forward_ios
                     </span>
                 </a>
