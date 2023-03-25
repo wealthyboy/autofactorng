@@ -7037,15 +7037,7 @@ span.page-link {
         max-width: 132px
     }
 
-    .page-link {
-       
-        line-height: 2em;
-        text-align: center;
-        border-radius: 50%!important;
-        width: 30px;
-        height: 30px;
-        font-size: 14px;
-    }
+   
 }
 
 .minipopup-area {
