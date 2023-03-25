@@ -42,6 +42,8 @@ class OrdersController extends Table
 	{
 		$orders = Order::has('ordered_products')->orderBy('created_at', 'desc')->paginate(150);
 		$orders = $this->getColumnListings(request(), $orders);
+
+		dd($orders);
 		return view('admin.orders.index', compact('orders'));
 	}
 
