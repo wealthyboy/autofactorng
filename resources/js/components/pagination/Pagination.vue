@@ -31,7 +31,10 @@
                         <a
                             @click.prevent="switched(meta.current_page - x)"
                             href="#"
-                            :class="{ current: meta.current_page - x === x }"
+                            :class="{
+                                current:
+                                    meta.current_page - x === meta.current_page,
+                            }"
                             class="page-link"
                             >{{ meta.current_page - x }}</a
                         >
