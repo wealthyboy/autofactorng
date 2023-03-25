@@ -57,7 +57,7 @@ class OrdersController extends Table
 
 
 		$input = $request->except('_token');
-		$input['invoice'] = substr(rand(100000, time()), 0, 10);
+		$input['invoice'] = substr(rand(100000, time()), 0, 7);
 		$input['order_type'] = "Offline";
 		$input['status'] = "Confirmed";
 		$order = new Order;
