@@ -23,7 +23,7 @@
                             @foreach( $category->children as $category)
                             <li role="button" class="cursor-pointer">
                                 <a class="d-block" href="{{  $category->link ? $category->link : '/products/'.$category->slug }}">
-                                    <div class="w-100">
+                                    <div class="w-100 category-link">
                                         {{ $category->name }}
                                     </div>
                                 </a>

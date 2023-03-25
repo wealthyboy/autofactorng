@@ -10973,11 +10973,15 @@ figure .porto-loading-icon {
 }
 
 .social-icon.social-gplus {
-    background-color: #dd4b39
+    background-color: #dd4b39;
 }
 
 .social-icon.social-mail {
-    background-color: #dd4b39
+    background-color: #dd4b39;
+}
+
+.category-link:hover {
+    background-color: #ddd;
 }
 
 .nav-tabs {
