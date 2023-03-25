@@ -49,7 +49,7 @@ class Order extends Model
 		$order->heavy_item_price = isset($input['heavy_item_price']) ? $input['heavy_item_price'] : null;
 		$order->status = 'Confirmed';
 		$order->shipping_price  = data_get($input, 'shipping_price');
-		$order->invoice =  rand(10000, 3999990);
+		$order->invoice =  rand(100000, time());
 		$order->payment_type = $payment_method;
 		$order->total = $input['total'];
 		$order->first_name = optional($user->active_address)->first_name;
