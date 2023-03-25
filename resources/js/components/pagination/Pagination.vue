@@ -53,7 +53,7 @@
 
                     <li :key="x" v-for="x in 2" class="page-item">
                         <a
-                            @click.prevent="switched(x)"
+                            @click.prevent="switched(meta.last_page - x)"
                             href="#"
                             :class="{ current: meta.current_page === x }"
                             class="page-link"

@@ -27564,7 +27564,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "page-item"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return $options.switched(x);
+        return $options.switched($props.meta.last_page - x);
       }, ["prevent"]),
       href: "#",
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
