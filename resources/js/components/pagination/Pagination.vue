@@ -40,15 +40,17 @@
                         >
                     </li>
 
-                    <li :key="x" v-for="x in 3" class="page-item">
-                        <a
-                            @click.prevent="switched(meta.current_page + x)"
-                            href="#"
-                            :class="{ current: meta.current_page === x }"
-                            class="page-link"
-                            >{{ meta.current_page + x }}</a
-                        >
-                    </li>
+                    <template v-if="meta.current_page + 4 < meta.last_page">
+                        <li :key="x" v-for="x in 3" class="page-item">
+                            <a
+                                @click.prevent="switched(meta.current_page + x)"
+                                href="#"
+                                :class="{ current: meta.current_page === x }"
+                                class="page-link"
+                                >{{ meta.current_page + x }}</a
+                            >
+                        </li>
+                    </template>
 
                     <template v-if="meta.current_page + 4 < meta.last_page">
                         <li class="page-item">
