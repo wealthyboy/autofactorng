@@ -9,7 +9,7 @@
         <div class="accordion accordion-flush" id="accordionNav">
             @foreach( $global_categories as $category)
 
-            <div class="accordion-item">
+            <div class="accordion-item p-0">
                 <h2 class="accordion-header" id="flush-heading{{$category->id}}">
                     <button class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $category->id }}" aria-expanded="false" aria-controls="flush-collapse{{ $category->id }}">
                         {{ $category->name }}
