@@ -56,13 +56,16 @@
                                 "..."
                             }}</a>
                         </li>
-                        <li :key="x" v-for="x in 1" class="page-item">
+                        <li class="page-item">
                             <a
-                                @click.prevent="switched(meta.last_page - x)"
+                                @click.prevent="switched(meta.last_page)"
                                 href="#"
-                                :class="{ current: meta.last_page - x === x }"
+                                :class="{
+                                    current:
+                                        meta.last_page === meta.current_page,
+                                }"
                                 class="page-link"
-                                >{{ meta.last_page - x }}</a
+                                >{{ meta.last_page }}</a
                             >
                         </li>
                     </template>
