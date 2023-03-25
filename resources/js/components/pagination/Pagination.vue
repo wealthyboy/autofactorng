@@ -50,19 +50,22 @@
                         >
                     </li>
 
-                    <li class="page-item">
-                        <a href="#" class="page-link disabled">{{ "..." }}</a>
-                    </li>
-
-                    <li :key="x" v-for="x in 2" class="page-item">
-                        <a
-                            @click.prevent="switched(meta.last_page - x)"
-                            href="#"
-                            :class="{ current: meta.last_page - x === x }"
-                            class="page-link"
-                            >{{ meta.last_page - x }}</a
-                        >
-                    </li>
+                    <template v-if="meta.current_page + 1 != meta.last_page">
+                        <li class="page-item">
+                            <a href="#" class="page-link disabled">{{
+                                "..."
+                            }}</a>
+                        </li>
+                        <li :key="x" v-for="x in 1" class="page-item">
+                            <a
+                                @click.prevent="switched(meta.last_page - x)"
+                                href="#"
+                                :class="{ current: meta.last_page - x === x }"
+                                class="page-link"
+                                >{{ meta.last_page - x }}</a
+                            >
+                        </li>
+                    </template>
                 </template>
 
                 <template v-else>
@@ -147,17 +150,6 @@ export default {
             }
             this.$emit("pagination:switched", page);
 
-            console.log(page);
-            for (let index = page - 4; index < page; index++) {
-                console.log(index);
-                this.prevArray.push(index);
-
-                console.log(this.prevArray);
-            }
-
-            for (let index = page + 4; index < page; index++) {
-                this.nextArray.push(index);
-            }
             return;
 
             if (this.useUrl) {
