@@ -158,7 +158,7 @@
                 v-if="!productIsLoading && products.length && meta"
                 class="toolbox toolbox-pagination"
             >
-                <div class="toolbox-item toolbox-show">
+                <div class="toolbox-item ms-sm-3 mb-sm-3 toolbox-show">
                     <span
                         >{{ meta.from }}- {{ meta.to }} of
                         {{ meta.total }} Records</span

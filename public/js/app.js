@@ -27866,7 +27866,7 @@ var _hoisted_19 = {
   "class": "toolbox toolbox-pagination"
 };
 var _hoisted_20 = {
-  "class": "toolbox-item toolbox-show"
+  "class": "toolbox-item ms-sm-3 mb-sm-3 toolbox-show"
 };
 var _hoisted_21 = {
   key: 0,
