@@ -50,7 +50,7 @@
                         >
                     </li>
 
-                    <template v-if="meta.current_page + 1 != meta.last_page">
+                    <template v-if="meta.current_page + 4 < meta.last_page">
                         <li class="page-item">
                             <a href="#" class="page-link disabled">{{
                                 "..."
