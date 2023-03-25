@@ -9,14 +9,14 @@
         <div class="accordion accordion-flush" id="accordionNav">
             @foreach( $global_categories as $category)
 
-            <div class="accordion-item p-0">
+            <div class="accordion-item ">
                 <h2 class="accordion-header" id="flush-heading{{$category->id}}">
                     <button class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $category->id }}" aria-expanded="false" aria-controls="flush-collapse{{ $category->id }}">
                         {{ $category->name }}
                     </button>
                 </h2>
                 <div id="flush-collapse{{ $category->id }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ $category->id}}" data-bs-parent="#accordionNav">
-                    <div class="accordion-body">
+                    <div class="accordion-body p-0">
 
                         @if ($category->children->count())
                         <ul class="ps-1">
