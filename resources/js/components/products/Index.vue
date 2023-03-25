@@ -170,7 +170,9 @@
                     class="pagination-wraper"
                 >
                     <div class="pagination">
-                        <ul class="pagination-numbers">
+                        <ul
+                            class="pagination-numbers d-flex justify-content-center ps-sm-0"
+                        >
                             <pagination
                                 :useUrl="true"
                                 :meta="meta"

@@ -27876,7 +27876,7 @@ var _hoisted_22 = {
   "class": "pagination"
 };
 var _hoisted_23 = {
-  "class": "pagination-numbers"
+  "class": "pagination-numbers d-flex justify-content-center ps-sm-0"
 };
 
 var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
