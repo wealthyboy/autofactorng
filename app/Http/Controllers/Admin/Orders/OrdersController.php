@@ -260,8 +260,6 @@ class OrdersController extends Table
 				$order_status->is_updated = true;
 				$order_status->save();
 			}
-
-			return response(null, 200);
 		}
 
 		if ($request->value == 'Shipped') {
@@ -287,8 +285,6 @@ class OrdersController extends Table
 				$order_status->is_updated = true;
 				$order_status->save();
 			}
-
-			return response(null, 200);
 		}
 
 
@@ -309,8 +305,6 @@ class OrdersController extends Table
 				$order_status->is_updated = true;
 				$order_status->save();
 			}
-
-			return response(null, 200);
 		}
 
 
