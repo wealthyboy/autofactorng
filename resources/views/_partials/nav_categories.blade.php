@@ -23,8 +23,10 @@
                             @foreach( $category->children as $category)
                             <li role="button" class="cursor-pointer">
                                 <a href="{{  $category->link ? $category->link : '/products/'.$category->slug }}">
+                                    <div>
+                                        {{ $category->name }}
 
-                                    {{ $category->name }}
+                                    </div>
                                 </a>
 
                             </li>
