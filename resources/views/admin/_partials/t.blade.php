@@ -93,7 +93,6 @@
 
                                     @if(is_array($v))
                                     <select style="width: 100px;" class="form-control mt-3 change-status" data-column="status" data-id="{{ isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null }}" data-model="Order" name="[]">
-                                        <option value="0" selected>Choose Status</option>
 
                                         @foreach($v as $l => $lv)
                                         @if($l == 'selected')
