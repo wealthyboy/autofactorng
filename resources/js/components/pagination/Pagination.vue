@@ -54,7 +54,7 @@
                     <template v-else>
                         <li
                             :key="x"
-                            v-for="x in meta.last_page + 4 < meta.current_page"
+                            v-for="x in meta.last_page - meta.current_page"
                             class="page-item"
                         >
                             <a
