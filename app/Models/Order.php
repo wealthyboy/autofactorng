@@ -55,7 +55,7 @@ class Order extends Model
 		$order->first_name = optional($user->active_address)->first_name;
 		$order->last_name = optional($user->active_address)->last_name;
 		$order->email = $user->email;
-		$order->tracking = time();
+		$order->tracking =  rand(100000, time());
 		$order->order_type = "Online";
 		$order->phone_number = $user->phone_number;
 		$order->address = optional($user->active_address)->address;
