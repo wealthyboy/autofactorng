@@ -21,7 +21,7 @@
                         @if ($category->children->count())
                         <ul class="ps-1">
                             @foreach( $category->children as $category)
-                            <li class="py-2">
+                            <li class="">
                                 <a href="{{  $category->link ? $category->link : '/products/'.$category->slug }}">
 
                                     {{ $category->name }}
