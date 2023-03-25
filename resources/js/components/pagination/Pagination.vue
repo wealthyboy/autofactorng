@@ -134,8 +134,11 @@
                     :class="{ disabled: meta.current_page === meta.last_page }"
                     class="page-link"
                     href="#"
-                    >></a
                 >
+                    <span class="material-symbols-outlined">
+                        arrow_forward_ios
+                    </span>
+                </a>
             </li>
         </ul>
     </nav>
