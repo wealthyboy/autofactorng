@@ -27568,7 +27568,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, ["prevent"]),
       href: "#",
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-        current: $props.meta.current_page === x
+        current: $props.meta.last_page - x === x
       }, "page-link"])
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meta.last_page - x), 11
     /* TEXT, CLASS, PROPS */
