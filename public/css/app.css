@@ -13342,6 +13342,19 @@ header .separator {
     font-weight: 300
 }
 
+.btn-close {
+    box-sizing: content-box;
+    width: 1em;
+    height: 1em;
+    padding: 0.25em 0.25em;
+    color: #000;
+    background: none !important;
+    border: 0;
+    border-radius: 0.375rem;
+    opacity: 15.5;
+    z-index: 1051;
+}
+
 .cart-product-info {
     color: #696969
 }
