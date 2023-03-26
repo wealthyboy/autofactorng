@@ -65,7 +65,7 @@
             <ul class="mt-4 p-0">
                 <li v-for="product in products" :key="product" role="button">
                     <a class="py-3 no-hover" :href="product.link">
-                        <div class="w-100 category-link fw-bold">
+                        <div class="w-100 category-link">
                             {{ product.name }}
                         </div>
                     </a>

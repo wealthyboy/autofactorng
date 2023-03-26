@@ -29553,7 +29553,7 @@ var _hoisted_3 = {
 };
 var _hoisted_4 = ["href"];
 var _hoisted_5 = {
-  "class": "w-100 category-link fw-bold"
+  "class": "w-100 category-link"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
