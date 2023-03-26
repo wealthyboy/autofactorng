@@ -20,7 +20,7 @@
             <div class="fw-bold ms-3 fs-5 text-start" v-if="fitString">
                 {{ fitString }}
             </div>
-            <div v-if="!fitString">Add vehicle</div>
+            <div class="fw-bold" v-if="!fitString">Add vehicle</div>
 
             <div>
                 <img src="/images/utils/header-arrow.svg" alt="" />
