@@ -133,7 +133,10 @@ export default {
         const listing = ref("List");
         const store = useStore();
         const products = computed(() => store.getters.products);
-        const perpage = ref(products.length >= 30 ? 30 : products.length);
+        console.log(products.value.length);
+        const perpage = ref(
+            products.value.length >= 30 ? 30 : products.value.length
+        );
 
         function toggleSideBar() {
             $("body").toggleClass("sidebar-opened");

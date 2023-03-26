@@ -23377,7 +23377,8 @@ __webpack_require__.r(__webpack_exports__);
     var products = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return store.getters.products;
     });
-    var perpage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(products.length >= 30 ? 30 : products.length);
+    console.log(products.value.length);
+    var perpage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(products.value.length >= 30 ? 30 : products.value.length);
 
     function toggleSideBar() {
       $("body").toggleClass("sidebar-opened");
