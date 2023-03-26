@@ -26356,7 +26356,7 @@ var _hoisted_17 = {
   "class": "product-details"
 };
 var _hoisted_18 = {
-  "class": "product-title"
+  "class": "product-title fw-bold"
 };
 var _hoisted_19 = ["href"];
 var _hoisted_20 = {
