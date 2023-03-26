@@ -27450,7 +27450,7 @@ var _hoisted_3 = {
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "material-symbols-outlined fs-3"
+  "class": "material-symbols-outlined fs-3 ms-2"
 }, " arrow_back_ios ", -1
 /* HOISTED */
 );
