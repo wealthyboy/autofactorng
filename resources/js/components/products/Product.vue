@@ -93,7 +93,7 @@
                                 product.is_in_cart,
                             'pe-none disabled': !product.in_stock,
                         }"
-                        class="btn-icon btn-add-cart product-type-simple"
+                        class="btn-icon btn-add-cart product-type-simple text-white"
                     >
                         <i class="icon-shopping-cart"></i>
                         <span>{{
