@@ -12139,6 +12139,12 @@ a {
 
 a:focus,
 a:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+a.no-hover:focus,
+a.no-hover:hover {
     color: #000 !important;
     text-decoration: none;
 }
