@@ -81,6 +81,7 @@
                 @handle:sorting="sort"
                 :meta="meta"
                 @handle:listing="listing"
+                :class="{ 'd-none': productIsLoading }"
             />
 
             <div class="row pb-4">

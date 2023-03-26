@@ -71,7 +71,6 @@
             </div>
             <div class="toolbox-item toolbox-show">
                 <label>Show:</label>
-                {{ perpage }}
 
                 <div class="select-custom">
                     <select
@@ -80,9 +79,16 @@
                         @change="per_page"
                         v-model="perpage"
                     >
-                        <option value="30">30</option>
-                        <option value="40">40</option>
-                        <option value="50">50</option>
+                        <template v-if="products.length < 30">
+                            <option :value="products.length">
+                                {{ products.length }}
+                            </option>
+                        </template>
+                        <template v-else>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                        </template>
                     </select>
                 </div>
                 <!-- End .select-custom -->
@@ -117,14 +123,17 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { useStore } from "vuex";
 
 export default {
     props: ["name", "objs", "meta"],
     emits: ["handle:sorting", "handle:per_page", "handle:listing"],
     setup(props, { emit }) {
         const listing = ref("List");
-        const perpage = ref(30);
+        const store = useStore();
+        const products = computed(() => store.getters.products);
+        const perpage = ref(products.length >= 30 ? 30 : products.length);
 
         function toggleSideBar() {
             $("body").toggleClass("sidebar-opened");
@@ -143,7 +152,7 @@ export default {
         }
 
         function per_page() {
-            let per_page = 40;
+            let per_page = perpage.value;
             if (per_page !== "") {
                 emit("handle:per_page", { per_page });
             }
@@ -156,6 +165,7 @@ export default {
             list,
             listing,
             toggleSideBar,
+            products,
         };
     },
 };
