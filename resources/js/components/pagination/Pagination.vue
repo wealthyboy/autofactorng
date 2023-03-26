@@ -12,7 +12,7 @@
             </li>
 
             <template v-if="meta.last_page > 4">
-                <template v-if="meta.current_page > 4">
+                <template v-if="meta.current_page >= 4">
                     <li
                         :key="x"
                         v-for="x in 2"
@@ -30,6 +30,23 @@
                     <li class="page-item">
                         <a href="#" class="page-link disabled">{{ "..." }}</a>
                     </li>
+
+                    <!-- <li
+                        :key="x"
+                        v-for="x in [1, 0]"
+                        class="page-item d-flex justify-content-center align-items-center"
+                    >
+                        <a
+                            @click.prevent="switched(meta.current_page - x)"
+                            href="#"
+                            :class="{
+                                current:
+                                    meta.current_page - x === meta.current_page,
+                            }"
+                            class="page-link"
+                            >{{ meta.current_page - x }}</a
+                        >
+                    </li> -->
 
                     <template v-if="meta.current_page + 7 < meta.last_page">
                         <li
