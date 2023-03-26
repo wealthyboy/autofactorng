@@ -33,7 +33,7 @@
 
                     <li
                         :key="x"
-                        v-for="x in [3, 2, 1, 0]"
+                        v-for="x in [1, 0]"
                         class="page-item d-flex justify-content-center align-items-center"
                     >
                         <a
@@ -48,7 +48,7 @@
                         >
                     </li>
 
-                    <template v-if="meta.current_page + 4 < meta.last_page">
+                    <template v-if="meta.current_page + 7 < meta.last_page">
                         <li
                             :key="x"
                             v-for="x in 6"
