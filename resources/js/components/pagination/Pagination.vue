@@ -8,7 +8,11 @@
                 :class="{ disabled: meta.current_page === 1 }"
                 class="page-item disabled"
             >
-                <span class="page-link">Previous</span>
+                <span class="page-link">
+                    <span class="material-symbols-outlined fs-3">
+                        arrow_backward_ios
+                    </span>
+                </span>
             </li>
 
             <template v-if="meta.last_page > 4">
