@@ -62,9 +62,13 @@
             :class="[categories.length || products.length ? ' ' : dNone]"
             class="dropdown-items position-absolute rounded-start"
         >
-            <ul class="mt-4">
+            <ul class="mt-4 p-0">
                 <li v-for="product in products" :key="product" role="button">
-                    <a class="py-3" :href="product.link">{{ product.name }}</a>
+                    <a class="py-3" :href="product.link">
+                        <div class="w-100 category-link">
+                            {{ product.name }}
+                        </div>
+                    </a>
                 </li>
             </ul>
         </div>
