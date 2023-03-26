@@ -23371,6 +23371,7 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
     var listing = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("List");
+    var perpage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(30);
 
     function toggleSideBar() {
       $("body").toggleClass("sidebar-opened");
@@ -23387,7 +23388,6 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function list(t) {
-      console.log(t);
       listing.value = t;
       emit("handle:listing", {
         t: t
@@ -23395,7 +23395,7 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     function per_page() {
-      var per_page = $(".per_page").val();
+      var per_page = 40;
 
       if (per_page !== "") {
         emit("handle:per_page", {
@@ -23405,6 +23405,7 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     return {
+      perpage: perpage,
       sort: sort,
       per_page: per_page,
       list: list,
@@ -27954,7 +27955,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.clearfilters && $options.clearfilters.apply($options, arguments);
     }, ["prevent"])),
     "class": "border text-dark p-3"
-  }, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Clear Filters ")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !_ctx.productIsLoading && _ctx.meta ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_product_nav, {
+  }, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Clear Filters ")])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.meta ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_product_nav, {
     key: 4,
     "onHandle:per_page": $options.perPage,
     "onHandle:sorting": $options.sort,
@@ -28147,21 +28148,26 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "form-control orderby"
   }, _hoisted_15, 32
   /* HYDRATE_EVENTS */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .select-custom ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .select-custom ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.perpage) + " ", 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     name: "count",
     "class": "form-control per_page",
     onChange: _cache[2] || (_cache[2] = function () {
       return $setup.per_page && $setup.per_page.apply($setup, arguments);
+    }),
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return $setup.perpage = $event;
     })
-  }, _hoisted_22, 32
-  /* HYDRATE_EVENTS */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .select-custom ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .toolbox-item "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, _hoisted_22, 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.perpage]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .select-custom ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .toolbox-item "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "#",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["layout-btn btn-grid", {
       active: $setup.listing == 'Grid'
     }]),
     title: "Grid",
-    onClick: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+    onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $setup.list('Grid');
     }, ["prevent"]))
   }, _hoisted_25, 2
@@ -28172,7 +28178,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       active: $setup.listing == 'List'
     }]),
     title: "List",
-    onClick: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+    onClick: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $setup.list('List');
     }, ["prevent"]))
   }, _hoisted_27, 2

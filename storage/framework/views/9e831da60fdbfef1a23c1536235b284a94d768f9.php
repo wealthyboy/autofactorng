@@ -6,7 +6,7 @@
 <div class="row g-0">
     <?php $__currentLoopData = $featured_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <div data-animation-name="fadeInUpShorter" class="col-6  col-md-3     appear-animate ">
-        <a href="<?php echo e($category->link()); ?>" class="d-block p-0 border  py-5">
+        <a href="<?php echo e($category->link()); ?>" class="d-block p-0 border  py-5 no-hover">
             <div class="d-flex justify-content-center align-items-center">
                 <div class="align-self-center text-center">
                     <div class="image-category">

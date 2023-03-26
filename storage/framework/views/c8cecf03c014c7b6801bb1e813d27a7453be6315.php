@@ -23,7 +23,7 @@
                         <ul class="p-0">
                             <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li role="button" class="cursor-pointer">
-                                <a class="d-block" href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>">
+                                <a class="d-block no-hover" href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>">
                                     <div class="w-100 category-link">
                                         <?php echo e($category->name); ?>
 

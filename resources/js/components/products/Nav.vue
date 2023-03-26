@@ -71,12 +71,14 @@
             </div>
             <div class="toolbox-item toolbox-show">
                 <label>Show:</label>
+                {{ perpage }}
 
                 <div class="select-custom">
                     <select
                         name="count"
                         class="form-control per_page"
                         @change="per_page"
+                        v-model="perpage"
                     >
                         <option value="30">30</option>
                         <option value="40">40</option>
@@ -122,6 +124,7 @@ export default {
     emits: ["handle:sorting", "handle:per_page", "handle:listing"],
     setup(props, { emit }) {
         const listing = ref("List");
+        const perpage = ref(30);
 
         function toggleSideBar() {
             $("body").toggleClass("sidebar-opened");
@@ -135,19 +138,19 @@ export default {
         }
 
         function list(t) {
-            console.log(t);
             listing.value = t;
             emit("handle:listing", { t });
         }
 
         function per_page() {
-            let per_page = $(".per_page").val();
+            let per_page = 40;
             if (per_page !== "") {
                 emit("handle:per_page", { per_page });
             }
         }
 
         return {
+            perpage,
             sort,
             per_page,
             list,

@@ -76,7 +76,7 @@
                 </a>
             </div>
             <product-nav
-                v-if="!productIsLoading && meta"
+                v-if="meta"
                 @handle:per_page="perPage"
                 @handle:sorting="sort"
                 :meta="meta"
@@ -358,7 +358,6 @@ export default {
 
             window.history.pushState({}, "", url);
             this.showClearFilter = true;
-
             this.getProducts(location.href);
         },
         sort(filter) {
