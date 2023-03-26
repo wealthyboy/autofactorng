@@ -4,15 +4,18 @@
     <nav aria-label="...">
         <ul class="pagination">
             <li
-                @click.prevent="switched(meta.current_page - 1)"
-                :class="{ disabled: meta.current_page === 1 }"
-                class="page-item"
+                class="page-item d-flex justify-content-center align-items-center"
             >
-                <span class="page-link">
+                <a
+                    @click.prevent="switched(meta.current_page - 1)"
+                    :class="{ disabled: meta.current_page === 1 }"
+                    class="page-link d-flex justify-content-center align-items-center"
+                    href="#"
+                >
                     <span class="material-symbols-outlined fs-3">
                         arrow_back_ios
                     </span>
-                </span>
+                </a>
             </li>
 
             <template v-if="meta.last_page > 4">
