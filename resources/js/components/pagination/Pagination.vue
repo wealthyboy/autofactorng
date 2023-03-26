@@ -56,7 +56,7 @@
                     <template v-if="meta.current_page + 7 < meta.last_page">
                         <li
                             :key="x"
-                            v-for="x in 4"
+                            v-for="x in 3"
                             class="page-item d-flex justify-content-center align-items-center"
                         >
                             <a
