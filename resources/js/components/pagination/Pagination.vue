@@ -10,7 +10,7 @@
             >
                 <span class="page-link">
                     <span class="material-symbols-outlined fs-3">
-                        arrow_backward_ios
+                        arrow_back_ios
                     </span>
                 </span>
             </li>
