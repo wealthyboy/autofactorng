@@ -11,8 +11,8 @@
                 <span class="page-link">Previous</span>
             </li>
 
-            <template v-if="meta.last_page > 7">
-                <template v-if="meta.current_page >= 7">
+            <template v-if="meta.last_page > 4">
+                <template v-if="meta.current_page >= 4">
                     <li :key="x" v-for="x in 2" class="page-item">
                         <a
                             @click.prevent="switched(x)"
@@ -41,7 +41,7 @@
                     </li>
 
                     <template v-if="meta.current_page + 4 < meta.last_page">
-                        <li :key="x" v-for="x in 3" class="page-item">
+                        <li :key="x" v-for="x in 6" class="page-item">
                             <a
                                 @click.prevent="switched(meta.current_page + x)"
                                 href="#"
@@ -67,7 +67,7 @@
                         </li>
                     </template>
 
-                    <template v-if="meta.current_page + 4 < meta.last_page">
+                    <template v-if="meta.current_page + 7 < meta.last_page">
                         <li class="page-item">
                             <a href="#" class="page-link disabled">{{
                                 "..."
@@ -89,7 +89,7 @@
                 </template>
 
                 <template v-else>
-                    <li :key="x" v-for="x in 7" class="page-item">
+                    <li :key="x" v-for="x in 4" class="page-item">
                         <a
                             @click.prevent="switched(x)"
                             href="#"
@@ -128,7 +128,9 @@
                 </li>
             </template>
 
-            <li class="page-item">
+            <li
+                class="page-item d-flex justify-content-center align-items-center"
+            >
                 <a
                     @click.prevent="switched(meta.current_page + 1)"
                     :class="{ disabled: meta.current_page === meta.last_page }"
