@@ -131,7 +131,7 @@
 
                     <li
                         :key="x"
-                        v-for="x in [2, 1, 0]"
+                        v-for="x in [1, 0]"
                         class="page-item d-flex justify-content-center align-items-center"
                     >
                         <a
