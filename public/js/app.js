@@ -26356,11 +26356,11 @@ var _hoisted_17 = {
   "class": "product-details"
 };
 var _hoisted_18 = {
-  "class": "product-title fw-bold"
+  "class": "product-title"
 };
 var _hoisted_19 = ["href"];
 var _hoisted_20 = {
-  "class": "cart-product-info"
+  "class": "cart-product-info fw-bold bold text-black"
 };
 var _hoisted_21 = {
   "class": "cart-product-qty"
