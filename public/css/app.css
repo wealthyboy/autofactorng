@@ -12133,9 +12133,8 @@ body.modal-open {
 
 
 a {
-    transition: all 0.6s;
+    transition: all 0.s;
     text-decoration: none;
-    color: #000 !important
 }
 
 a:focus,
