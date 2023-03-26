@@ -202,7 +202,7 @@
                             ? 'pe-none disabled'
                             : null,
                     ]"
-                    class="btn-icon btn-add-cart product-type-simple"
+                    class="btn-icon btn-add-cart product-type-simple text-white"
                 >
                     <i class="icon-shopping-cart"></i>
                     <span>{{
