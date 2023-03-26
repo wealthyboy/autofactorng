@@ -12886,7 +12886,7 @@ header .separator {
 
 .cart-dropdown .btn-remove span {
     display: block;
-    margin-top: 1px
+    margin-top: -1px
 }
 
 .cart-dropdown .btn-remove:focus,
