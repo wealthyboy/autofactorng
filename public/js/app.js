@@ -27627,11 +27627,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "page-item d-flex justify-content-center align-items-center"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return $options.switched(x);
+        return $options.switched($props.meta.last_page - x);
       }, ["prevent"]),
       href: "#",
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-        current: $props.meta.last_page - x === $props.meta.last_page
+        current: $props.meta.last_page - x === $props.meta.current_page
       }, "page-link"])
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.meta.last_page - x), 11
     /* TEXT, CLASS, PROPS */

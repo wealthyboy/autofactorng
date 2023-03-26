@@ -135,10 +135,11 @@
                         class="page-item d-flex justify-content-center align-items-center"
                     >
                         <a
-                            @click.prevent="switched(x)"
+                            @click.prevent="switched(meta.last_page - x)"
                             href="#"
                             :class="{
-                                current: meta.last_page - x === meta.last_page,
+                                current:
+                                    meta.last_page - x === meta.current_page,
                             }"
                             class="page-link"
                             >{{ meta.last_page - x }}</a
