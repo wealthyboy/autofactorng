@@ -12718,7 +12718,7 @@ header .separator {
     background: none !important;
     border: 0;
     border-radius: 0.375rem;
-    opacity: 15.5;
+    opacity: 1 !important;
     z-index: 1051;
 }
 
