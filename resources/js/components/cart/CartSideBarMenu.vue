@@ -49,11 +49,11 @@
             <div v-if="cart_meta.sub_total" class="dropdown-cart-products">
                 <div v-for="cart in carts" :key="cart.id" class="product">
                     <div class="product-details">
-                        <h4 class="product-title">
+                        <div class="product-title">
                             <a :href="cart.product.link">{{
                                 cart.product.name
                             }}</a>
-                        </h4>
+                        </div>
 
                         <span class="cart-product-info">
                             <span class="cart-product-qty">{{
