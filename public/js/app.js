@@ -27506,7 +27506,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"])),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       disabled: $props.meta.current_page === 1
-    }, "page-item disabled"])
+    }, "page-item"])
   }, _hoisted_4, 2
   /* CLASS */
   ), $props.meta.last_page > 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {

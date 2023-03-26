@@ -6,7 +6,7 @@
             <li
                 @click.prevent="switched(meta.current_page - 1)"
                 :class="{ disabled: meta.current_page === 1 }"
-                class="page-item disabled"
+                class="page-item"
             >
                 <span class="page-link">
                     <span class="material-symbols-outlined fs-3">
