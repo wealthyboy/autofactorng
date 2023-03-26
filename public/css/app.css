@@ -12134,13 +12134,14 @@ body.modal-open {
 
 a {
     transition: all 0.3s;
-    text-decoration: none
+    text-decoration: none;
+    color: #000 !important
 }
 
 a:focus,
 a:hover {
-    color: #000;
-    text-decoration: none
+    color: #000 !important;
+    text-decoration: none;
 }
 
 .heading {
