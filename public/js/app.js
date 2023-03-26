@@ -29588,7 +29588,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       key: product,
       role: "button"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-      "class": "py-3",
+      "class": "py-3 no-hover",
       href: product.link
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(product.name), 1
     /* TEXT */
