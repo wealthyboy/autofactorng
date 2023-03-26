@@ -17,11 +17,11 @@
         <span v-if="!itNotFits" class="material-symbols-outlined fs-4 me-2">
             warning
         </span>
-        <div>{{ fitText }}</div>
+        <div class="fs-5">{{ fitText }}</div>
     </button>
 
     <button v-if="!fitText" class="check-vehicle d-flex" @click="show">
-        <div>{{ checkText }}</div>
+        <div class="fs-5">{{ checkText }}</div>
     </button>
 </template>
 <script>
