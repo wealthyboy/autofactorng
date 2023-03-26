@@ -10980,6 +10980,15 @@ figure .porto-loading-icon {
     background-color: #dd4b39;
 }
 
+
+.category-link {
+
+padding: 10px 36px!important;
+line-height: 20px!important;
+width: 100%!important;
+}
+
+
 .category-link:hover {
     background-color: #ddd;
 }
@@ -13412,7 +13421,7 @@ header .separator {
 }
 
 .header-dropdown ul a:hover {
-    background: #f4f4f4
+    background: #000;
 }
 
 .header-dropdown+.header-dropdown {

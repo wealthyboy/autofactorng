@@ -9,7 +9,7 @@
         <div class="accordion accordion-flush" id="accordionNav">
             <?php $__currentLoopData = $global_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-            <div class="accordion-item">
+            <div class="accordion-item ">
                 <h2 class="accordion-header" id="flush-heading<?php echo e($category->id); ?>">
                     <button class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?php echo e($category->id); ?>" aria-expanded="false" aria-controls="flush-collapse<?php echo e($category->id); ?>">
                         <?php echo e($category->name); ?>
@@ -17,16 +17,17 @@
                     </button>
                 </h2>
                 <div id="flush-collapse<?php echo e($category->id); ?>" class="accordion-collapse collapse" aria-labelledby="flush-heading<?php echo e($category->id); ?>" data-bs-parent="#accordionNav">
-                    <div class="accordion-body">
+                    <div class="accordion-body p-0">
 
                         <?php if($category->children->count()): ?>
-                        <ul class="ps-1">
+                        <ul class="p-0">
                             <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <li class="">
-                                <a href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>">
+                            <li role="button" class="cursor-pointer">
+                                <a class="d-block" href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>">
+                                    <div class="w-100 category-link">
+                                        <?php echo e($category->name); ?>
 
-                                    <?php echo e($category->name); ?>
-
+                                    </div>
                                 </a>
 
                             </li>
