@@ -27494,7 +27494,7 @@ var _hoisted_20 = {
 };
 
 var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "material-symbols-outlined fs-3"
+  "class": "material-symbols-outlined fs-3 ms-2"
 }, " arrow_forward_ios ", -1
 /* HOISTED */
 );

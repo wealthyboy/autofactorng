@@ -170,7 +170,7 @@
                     class="page-link d-flex justify-content-center align-items-center"
                     href="#"
                 >
-                    <span class="material-symbols-outlined fs-3">
+                    <span class="material-symbols-outlined fs-3 ms-2">
                         arrow_forward_ios
                     </span>
                 </a>
