@@ -68,6 +68,7 @@
                             >
                         </li>
                     </template>
+
                     <template v-else>
                         <li
                             :key="x"
@@ -130,7 +131,7 @@
 
                     <li
                         :key="x"
-                        v-for="x in 2"
+                        v-for="x in [2, 0]"
                         class="page-item d-flex justify-content-center align-items-center"
                     >
                         <a
