@@ -27485,11 +27485,11 @@ var _hoisted_16 = {
 var _hoisted_17 = ["onClick"];
 var _hoisted_18 = ["onClick"];
 var _hoisted_19 = {
-  "class": "page-item d-flex justify-content-center align-items-center"
+  "class": "page-item"
 };
 
 var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "material-symbols-outlined fs-2"
+  "class": "material-symbols-outlined fs-3"
 }, " arrow_forward_ios ", -1
 /* HOISTED */
 );
@@ -27668,7 +27668,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, ["prevent"])),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       disabled: $props.meta.current_page === $props.meta.last_page
-    }, "page-link"]),
+    }, "page-link d-flex justify-content-center align-items-center"]),
     href: "#"
   }, _hoisted_21, 2
   /* CLASS */
