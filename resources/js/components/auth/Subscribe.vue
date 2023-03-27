@@ -274,7 +274,7 @@ export default {
                 .then((res) => {
                   paymentIsComplete.value = true;
                   paymentIsProcessing.value = false;
-                  location.href ="/wallets"
+                  location.href="/wallets"
                 })
                 .catch((error) => {
                   message.value = "We could not find your data in our system";
