@@ -253,7 +253,7 @@
                   <div class="col-12 col-lg-6">
                      <div class="mc-mb-6 mc-mb-md-9 mc-mb-lg-0">
                         <div class="mb-sm-2">
-                           <h1 class="text-white mb-0">Gain New Skills, Meet Your Favorite </h1>
+                           <h1 class="text-white mb-0">Be the first to know</h1>
                         </div>
                      </div>
                   </div>

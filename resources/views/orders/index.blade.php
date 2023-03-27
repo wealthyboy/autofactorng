@@ -9,9 +9,9 @@
         </div>
     </div>
     <div class="container ">
-        <div class="row mt-5">
+        <div class="row">
             @include('_partials.nav')
-            <div class="col-md-9 bg-white">
+            <div class="col-md-9 mt-5">
                 <div class="d-flex align-items-center justify-content-between">
                     <h2 class="page-title ">Orders History</h2>
                     <div class="wallet-balance"></div>
