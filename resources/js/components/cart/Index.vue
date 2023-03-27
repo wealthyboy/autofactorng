@@ -4,29 +4,10 @@
     </div>
 
     <div v-if="!loading && carts.length" class="row">
-        <div class="col-lg-8">
-            <div class="cart-table-container">
-                <table class="table table-cart">
-                    <thead>
-                        <tr>
-                            <th class="thumbnail-col"></th>
-                            <th class="product-col">Product</th>
-                            <th class="price-col">Price</th>
-                            <th class="qty-col">Quantity</th>
-                            <th class="text-right">Subtotal</th>
-                        </tr>
-                    </thead>
-                    <cart
-                        v-for="cart in carts"
-                        :key="cart.id"
-                        :cart="cart"
-                    ></cart>
-                </table>
-            </div>
-        </div>
+        <div class="col-lg-8"></div>
 
         <div class="col-md-4 mb-5">
-            <div class="cart raised">
+            <div class="card raised">
                 <div class="cart_totalse">
                     <h3>Summary</h3>
                     <div
