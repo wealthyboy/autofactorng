@@ -54,8 +54,8 @@ class OrdersController extends Table
 
 	public function store(Request $request)
 	{
-
-		$email = array_shift(explode(',', $request->to));
+		$to = $request->to;
+		$email = array_shift(explode(',', $to));
 		$user = User::where('email', $email)->first();
 		$input = $request->except('_token');
 		$input['invoice'] = substr(rand(100000, time()), 0, 7);
