@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             @include('_partials.nav')
-            <div class="col-md-5">
+            <div class="col-md-5  mt-5">
                 <h2>Track your order</h2>
 
                 <track-orders />

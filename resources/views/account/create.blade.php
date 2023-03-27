@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             @include('_partials.nav')
-            <div class="col-md-5">
+            <div class="col-md-5 mt-5">
                 <h2 class="page-title ">Account</h2>
                 <account :user="{{ $user }}" />
             </div>

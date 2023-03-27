@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             @include('_partials.nav')
-            <div class="col-md-6">
+            <div class="col-md-6  mt-5">
                 <h3 class="page-t">Address</h3>
                 <ship-addresses />
             </div>
