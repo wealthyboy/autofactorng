@@ -31,7 +31,7 @@ class SubscribeController extends Controller
                 break;
             case 'heavy_duty':
                 $range1 = 350000;
-                $range2 = 500000;
+                $range2 = 750000;
                 break;
             default:
                 $range1 = null;
