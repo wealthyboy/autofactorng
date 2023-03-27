@@ -15,27 +15,27 @@ class AccountSettingsNav
 
         return $nav =  [
             'Address' => [
-                'icon' => 'material-symbols-outlined',
+                'icon' => 'material-symbols-outlined  text-main',
                 'iconText' => 'home',
                 'link' => '/address'
             ],
             'Account Settings'  => [
-                'icon' => 'material-symbols-outlined',
+                'icon' => 'material-symbols-outlined text-main',
                 'iconText' => 'settings',
                 'link' => '/account/create'
             ],
             'Change Password' => [
-                'icon' => 'material-symbols-outlined',
+                'icon' => 'material-symbols-outlined text-main',
                 'iconText' => 'edit',
                 'link' => '/change/password'
             ],
             'Orders' => [
-                'icon' => 'material-symbols-outlined',
+                'icon' => 'material-symbols-outlined text-main',
                 'iconText' => 'shopping_bag',
                 'link' => '/orders'
             ],
             'Track Order' => [
-                'icon' => 'material-symbols-outlined',
+                'icon' => 'material-symbols-outlined text-main',
                 'link' => '/tracking',
                 'iconText' => 'show_chart',
             ],

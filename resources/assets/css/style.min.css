@@ -53,6 +53,10 @@
     color: #000!important
 }
 
+.text-main {
+    color: #f26100 !important
+}
+
 .text-secondary {
     color: #ff7272!important
 }
@@ -16552,6 +16556,8 @@ main .sticky-header .product-ratings:before {
     margin-top: 3.5rem;
     border-top: 2px solid #dae2e6
 }
+
+
 
 .product-size-content {
     padding-top: 2rem;

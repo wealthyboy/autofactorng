@@ -4,7 +4,9 @@
     </div>
 
     <div v-if="!loading && carts.length" class="row">
-        <div class="col-lg-8"></div>
+        <div class="col-lg-8">
+            <div class="card"></div>
+        </div>
 
         <div class="col-md-4 mb-5">
             <div class="card raised">
