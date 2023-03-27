@@ -100,7 +100,7 @@ export default {
                 .catch((err) => {
                     loading.value = false;
                     error.value = true;
-                    message.value = "We could not find your data in our system";
+                    message.value = "Invalid username/password";
                     setTimeout(() => {
                         message.value = null;
                     }, 3000);
