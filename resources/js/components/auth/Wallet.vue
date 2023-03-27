@@ -175,13 +175,12 @@ export default {
                         .catch((error) => {
                             paymentIsComplete.value = false;
                             paymentIsProcessing.value = false;
-                            message.value =
-                                "We could not find your data in our system";
+                            message.value = "Error processing your request";
                             setTimeout(() => {
                                 message.value = null;
                             }, 3000);
                         });
-                    message.value = "Your money has been addedd";
+                    message.value = "Your money has been added";
                     emit("wallet:funded");
                 },
                 onClose: function () {
