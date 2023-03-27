@@ -17,20 +17,7 @@
       </div>
     </div>
 
-    <section class="py-3">
-      <div class="bg-gradient-primary">
-        <div class="container pb-lg-9 pb-7 pt-7 postion-relative z-index-2">
-          <div class="row">
-            <div class="col-md-8 mx-auto text-center">
-              <span class="badge bg-gradient-dark mb-2">Pricing</span>
-              <h3 class="text-white">See our pricing</h3>
-              <p class="text-white">You have Free Unlimited Updates and Premium Support on each package.</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-    </section>
 
     <div class="row mt-5">
       @foreach($plans as $key => $plan)

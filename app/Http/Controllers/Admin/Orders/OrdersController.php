@@ -55,10 +55,13 @@ class OrdersController extends Table
 	public function store(Request $request)
 	{
 
+		$email = array_shift(explode(',', $request->to));
 
+		$user = User::where('email', $email)->first();
 		$input = $request->except('_token');
 		$input['invoice'] = substr(rand(100000, time()), 0, 7);
 		$input['order_type'] = "Offline";
+		$input['user_id'] = null !== $user ? $user->id : null;
 		$input['status'] = "Confirmed";
 		$order = new Order;
 		$order->fill($input);
@@ -71,7 +74,6 @@ class OrdersController extends Table
 			$product->order_id = $order->id;
 			$product->quantity = $input['products']['quantity'][$key];
 			$product->tracker = rand(100000, time());
-
 			$product->price = $input['products']['price'][$key];
 			$product->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
 			$total[] = $input['products']['price'][$key] * $input['products']['quantity'][$key];
@@ -80,7 +82,6 @@ class OrdersController extends Table
 
 		$total = array_sum($total);
 		$shipping = $request->shipping_price;
-
 		if ($request->percentage_type == 'fixed') {
 			$new_total = $total - $request->discount;
 			$new_total = $new_total +  $shipping;
@@ -88,7 +89,6 @@ class OrdersController extends Table
 
 		if ($request->percentage_type == 'percentage') {
 			$new_total = ($request->discount * $total) / 100;
-			//dd($new_total);
 			$new_total = $total - $new_total;
 			$total = $new_total + $shipping;
 		}
@@ -163,10 +163,8 @@ class OrdersController extends Table
 		$sub_total  =  $this->subTotal($order);
 		$ordered_products = $order->ordered_products()->paginate(10);
 		$orders = (new OrderedProduct())->getListingData($ordered_products);
-
 		$summaries = [];
 		$summaries['Sub-Total'] =  Helper::currencyWrapper($sub_total);
-
 		if ($order->coupon) {
 			$summaries['Discount'] = $order->coupon . '  -%' . optional($order->voucher())->amount . 'off';
 		}
@@ -280,7 +278,6 @@ class OrdersController extends Table
 			}
 
 			$order_status = OrderStatus::where(['order_id' => $request->id])->where('status', '=', 'Shipped')->first();
-
 			if (null !== $order_status) {
 				$order_status->is_updated = true;
 				$order_status->save();
