@@ -41,7 +41,7 @@ class AccountSettingsNav
             ],
 
             'Wallet/Auto Credit' => [
-                'icon' => 'material-symbols-outlined',
+                'icon' => 'material-symbols-outlined text-main',
                 'iconText' => 'account_balance_wallet',
                 'link' => '/wallets'
             ],
