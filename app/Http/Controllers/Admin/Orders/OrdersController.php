@@ -56,7 +56,6 @@ class OrdersController extends Table
 	{
 
 		$email = array_shift(explode(',', $request->to));
-
 		$user = User::where('email', $email)->first();
 		$input = $request->except('_token');
 		$input['invoice'] = substr(rand(100000, time()), 0, 7);

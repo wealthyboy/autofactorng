@@ -15,25 +15,12 @@
       </div>
     </div>
 
-    <section class="py-3">
-      <div class="bg-gradient-primary">
-        <div class="container pb-lg-9 pb-7 pt-7 postion-relative z-index-2">
-          <div class="row">
-            <div class="col-md-8 mx-auto text-center">
-              <span class="badge bg-gradient-dark mb-2">Pricing</span>
-              <h3 class="text-white">See our pricing</h3>
-              <p class="text-white">You have Free Unlimited Updates and Premium Support on each package.</p>
-            </div>
-          </div>
-        </div>
-      </div>
 
-    </section>
 
     <div class="row mt-5">
       <?php $__currentLoopData = $plans; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $plan): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
       <div class="col-lg-4 col-sm-6 mb-lg-0 mb-4">
-        <div class="card <?php echo e($key == 1 ? 'p-md-0 mb-lg-auto ' : ''); ?> h-100">
+        <div class="card <?php echo e($key == 1 ? 'p-md-0 mb-lg-auto ' : ''); ?> h-100  <?php echo e($key); ?>">
           <div class="card-header text-sm-start text-center pt-4 pb-3 px-4">
             <h5 class="mb-1"><?php echo e($key); ?></h5>
             <p class="mb-3 text-sm"><?php echo e($plan['title']); ?></p>

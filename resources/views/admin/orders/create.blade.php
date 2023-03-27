@@ -27,7 +27,7 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Subject</label>
-                        <input type="text" value="{{ isset($order) ? $order->subject : null }}" class="form-control" name="subject" required>
+                        <input type="text" value="{{ isset($order) ? $order->subject : 'Thanks for ordering' }}" val class="form-control" name="subject" required>
                      </div>
                   </div>
 
