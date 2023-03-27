@@ -5,11 +5,11 @@
 
     <div v-if="!loading && carts.length" class="row">
         <div class="col-lg-8">
-            <div class="card"></div>
+            <div class="card border-0"></div>
         </div>
 
         <div class="col-md-4 mb-5">
-            <div class="card raised">
+            <div class="card raised border-0">
                 <div class="cart_totalse">
                     <h3>Summary</h3>
                     <div

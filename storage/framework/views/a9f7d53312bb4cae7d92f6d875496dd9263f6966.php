@@ -5,9 +5,9 @@
     <?php echo $__env->make('_partials.mobile_nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <div class="container">
-        <div class="row mt-5">
+        <div class="row">
             <?php echo $__env->make('_partials.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-            <div class="col-md-5">
+            <div class="col-md-5  mt-5">
                 <h2>Track your order</h2>
 
                 <track-orders />

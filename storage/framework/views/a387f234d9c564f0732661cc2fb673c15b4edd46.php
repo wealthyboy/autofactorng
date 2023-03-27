@@ -17,10 +17,10 @@
 
                <h3>How it works:</h3>
 
-               <p> Sign up on the website.</p>
-               <p> Shop for your preferred parts.</p>
-               <p> On checkout, choose pay with Zila and follow the prompt.</p>
-               <p> After payment confirmation, get the parts delivered and pay in installments.</p>
+               <p> 1. Sign up on the website.</p>
+               <p> 2. Shop for your preferred parts.</p>
+               <p> 3. On checkout, choose pay with Zila and follow the prompt.</p>
+               <p> 4. After payment confirmation, get the parts delivered and pay in installments.</p>
 
 
                <div class="text-center">

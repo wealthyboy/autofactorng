@@ -2,8 +2,7 @@
 
  <?php $__env->startSection('content'); ?>
  <section class="header p-5">
-     <div>MY</div>
-     <h2>CART</h2>
+     <h4 class="text-uppercase  mb-0 mb-3 display-4"> MY <strong> CART </strong></h4>
  </section>
 
 

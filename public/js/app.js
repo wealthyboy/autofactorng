@@ -26509,7 +26509,7 @@ var _hoisted_2 = {
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-lg-8"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card"
+  "class": "card border-0"
 })], -1
 /* HOISTED */
 );
@@ -26518,7 +26518,7 @@ var _hoisted_4 = {
   "class": "col-md-4 mb-5"
 };
 var _hoisted_5 = {
-  "class": "card raised"
+  "class": "card raised border-0"
 };
 var _hoisted_6 = {
   "class": "cart_totalse"
