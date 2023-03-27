@@ -24,7 +24,7 @@
    <div class="banner banner3">
       <a href="" class="d-block">
          <figure>
-            <img class="img-fluid" src="https://autofactor.ng/images/banners/sG75MBeseWamL0dV73rS8HtGfSakkilmmor7MIRX.jpg" style="background:#f6e1e8;" alt="banner" />
+            <img class="img-fluid" src="/images/utils/ensure_11.jpg" style="background:#f6e1e8;" alt="banner" />
          </figure>
       </a>
    </div>
