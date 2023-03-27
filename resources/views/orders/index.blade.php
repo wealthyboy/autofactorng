@@ -4,7 +4,7 @@
 
 <div class="bg-light">
     <div class="container">
-        <div class="d-block d-sm-none mt-5">
+        <div class="d-block d-sm-none ">
             @include('_partials.mobile_nav')
         </div>
     </div>
@@ -13,7 +13,7 @@
             @include('_partials.nav')
             <div class="col-md-9 mt-5">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h2 class="page-title ">Orders History</h2>
+                    <h2 class="page-title mb-2">Orders History</h2>
                     <div class="wallet-balance"></div>
                 </div>
                 <general-table class="bg-white" />

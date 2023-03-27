@@ -1,4 +1,4 @@
-<div class="col-md-3 d-none d-lg-block d-md-block d-xl-block  mb-5">
+<div class="col-md-3 d-none d-lg-block d-md-block d-xl-block mt-5  mb-5">
     <ul class="list-group list-unstyled bg-white">
         @foreach($nav as $key => $n)
         <li>
