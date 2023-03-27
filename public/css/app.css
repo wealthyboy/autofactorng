@@ -17296,6 +17296,11 @@ main .sticky-header .product-ratings:before {
     background-color: #f9f9f9
 }
 
+
+.table > :not(caption) > * > * {
+    padding: 1.7rem 0.5rem !important;
+}
+
 .product-tags-content h4 {
     margin: 0 0 2rem;
     font-size: 1.8rem;
