@@ -5,7 +5,7 @@
 <div class="bg-light">
     @include('_partials.mobile_nav')
     <div class="container">
-        <div class="row mt-5">
+        <div class="row">
             @include('_partials.nav')
             <div class="col-md-6">
                 <h3 class="page-t">Address</h3>

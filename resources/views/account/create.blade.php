@@ -7,7 +7,7 @@
     @include('_partials.mobile_nav')
 
     <div class="container">
-        <div class="row mt-5">
+        <div class="row">
             @include('_partials.nav')
             <div class="col-md-5">
                 <h2 class="page-title ">Account</h2>

@@ -7,7 +7,7 @@
     @include('_partials.mobile_nav')
 
     <div class="container ">
-        <div class="row mt-5">
+        <div class="row ">
             @include('_partials.nav')
             <div class="col-md-9 ">
                 <wallet-table :auto_credit="false" :price_range="{{ collect([1000, 9000000]) }}" :user="{{ $user }}" />
