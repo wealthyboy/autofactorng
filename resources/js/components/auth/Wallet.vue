@@ -167,6 +167,8 @@ export default {
                             paymentIsComplete.value = true;
                             paymentIsProcessing.value = false;
                             store.commit("setWalletBalance", res.data);
+                            location.href = "/wallets";
+
                             setTimeout(() => {
                                 paymentIsComplete.value = false;
                                 message.value = null;

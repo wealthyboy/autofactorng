@@ -22044,7 +22044,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               paymentIsProcessing.value = false;
               location.href = "/wallets";
             })["catch"](function (error) {
-              message.value = "We could not find your data in our system";
+              message.value = "Error";
               paymentIsComplete.value = false;
               paymentIsProcessing.value = false;
               setTimeout(function () {
@@ -22206,6 +22206,7 @@ __webpack_require__.r(__webpack_exports__);
             paymentIsComplete.value = true;
             paymentIsProcessing.value = false;
             store.commit("setWalletBalance", res.data);
+            location.href = "/wallets";
             setTimeout(function () {
               paymentIsComplete.value = false;
               message.value = null;

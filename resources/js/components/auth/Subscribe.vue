@@ -277,7 +277,7 @@ export default {
                   location.href="/wallets"
                 })
                 .catch((error) => {
-                  message.value = "We could not find your data in our system";
+                  message.value = "Error";
                   paymentIsComplete.value = false;
                   paymentIsProcessing.value = false;
                   setTimeout(() => {
