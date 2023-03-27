@@ -55,17 +55,13 @@
 
 
       <div class="mt-5">
-
         <h3>
           HOW IT WORKS
         </h3>
-
         <p> 1. Choose a Plan: Select your preferred subscription plan and follow the prompts to make your payment.</p>
         <p> 2. Get Funded: Once your payment is confirmed, the equivalent amount of Autofactor purchase credit will be funded to your account. You can then use this credit to make purchases on our website.</p>
         <p> 3. Enjoy Your Benefits: All subscription plans are valid for one year from the time of purchase, and any credits or benefits given must be used within this period. During checkout, your available credit will be applied automatically to your purchase.</p>
         <p> 4. Use It or Lose It: It's important to note that any unused credits or benefits after the expiry of the validity period cannot be rolled over or transferred. So, make sure to take advantage of all your benefits before the end of the validity period.</p>
-
-
       </div>
 
 
