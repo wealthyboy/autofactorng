@@ -13,9 +13,6 @@
         <?php endif; ?>
 
 
-        <?php echo e(print_r($elements)); ?>
-
-
 
         
         <?php $__currentLoopData = $elements; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $element): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

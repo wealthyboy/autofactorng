@@ -21,22 +21,22 @@
 
     <div class="row mt-5">
       @foreach($plans as $key => $plan)
-      <div class="col-lg-4 col-sm-6 mb-lg-0 mb-4">
-        <div class="card {{ $key == 1 ? 'p-md-0 mb-lg-auto ' : ''}} h-100  {{ $key }}">
-          <div class="card-header text-sm-start text-center pt-4 pb-3 px-4">
-            <h5 class="mb-1">{{ $key }}</h5>
-            <p class="mb-3 text-sm">{{ $plan['title'] }}</p>
-            <h3 class="font-weight-bolder mt-3">
+      <div class="col-lg-4 col-sm-6 mb-lg-0 mb-4   rounded ">
+        <div class="card  border-0 rounded  px-5 py-5 h-100  {{ $key == 'NORMAL DUTY' ? ' py-5 text-white bg-dark' : 'bg-white '}}">
+          <div class="card-header  {{ $key == 'NORMAL DUTY' ? 'text-white bg-dark' : 'bg-white'}}  text-sm-start text-center pt-4 pb-3 px-4">
+            <h5 class="mb-1 {{ $key == 'NORMAL DUTY' ? 'text-white' : ''}}">{{ $key }}</h5>
+            <p class="mb-3 text-sm {{ $key == 'NORMAL DUTY' ? 'text-white' : ''}} mt-2">{{ $plan['title'] }}</p>
+            <h3 class="font-weight-bolder mt-3 {{ $key == 'NORMAL DUTY' ? 'text-white' : ''}}">
               {{ $plan['price'] }} <small class="text-sm text-secondary font-weight-bold">/year</small>
             </h3>
-            <a href="/subscribe?plan={{ str_slug($key, '_') }}" class="btn btn-sm bg-gradient-dark w-100 border-radius-md mt-4 mb-2">Subscribe now</a>
+            <a href="/subscribe?plan={{ str_slug($key, '_') }}" class="btn btn-sm py-3 {{ $key == 'NORMAL DUTY' ? 'text-dark bg-white' : ' text-white bg-dark'}}  bg-gradient-white w-100 border-radius-md mt-4 mb-2 fs-5 bold">Subscribe now</a>
           </div>
           <hr class="horizontal dark my-0">
-          <div class="card-body">
+          <div class="card-body {{ $key == 'NORMAL DUTY' ? 'text-center bg-dark' : ''}}">
 
             @foreach($plan['text'] as $key => $text)
 
-            <div class="d-flex pb-3">
+            <div class="d-flex pb-3  ">
               <span class="material-symbols-outlined">
                 check
               </span>
