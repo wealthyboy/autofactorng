@@ -22042,6 +22042,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             axios__WEBPACK_IMPORTED_MODULE_12___default().post("/wallets", form).then(function (res) {
               paymentIsComplete.value = true;
               paymentIsProcessing.value = false;
+              location.href = "/wallets";
             })["catch"](function (error) {
               message.value = "We could not find your data in our system";
               paymentIsComplete.value = false;
