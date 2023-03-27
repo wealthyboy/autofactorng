@@ -29906,7 +29906,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       href: $setup.tableData.meta.urls[index].url,
       "data-bs-toggle": "tooltip",
       "data-bs-original-title": "Preview order",
-      "class": "fw-bold"
+      "class": "fw-bold table-link"
     }, " view ", 8
     /* PROPS */
     , _hoisted_20)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);

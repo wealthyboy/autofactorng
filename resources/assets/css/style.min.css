@@ -16668,6 +16668,10 @@ main .sticky-header .product-ratings:before {
     padding: 1.9rem 0.5rem !important;
 }
 
+.table-link {
+    color: #f26100 !important;
+}
+
 .product-tags-content h4 {
     margin: 0 0 2rem;
     font-size: 1.8rem;

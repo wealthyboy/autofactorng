@@ -17298,7 +17298,11 @@ main .sticky-header .product-ratings:before {
 
 
 .table > :not(caption) > * > * {
-    padding: 1.7rem 0.5rem !important;
+    padding: 1.9rem 0.5rem !important;
+}
+
+.table-link {
+    color: #f26100 !important;
 }
 
 .product-tags-content h4 {

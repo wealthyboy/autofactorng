@@ -85,7 +85,7 @@
                                     :href="tableData.meta.urls[index].url"
                                     data-bs-toggle="tooltip"
                                     data-bs-original-title="Preview order"
-                                    class="fw-bold"
+                                    class="fw-bold table-link"
                                 >
                                     view
                                 </a>
