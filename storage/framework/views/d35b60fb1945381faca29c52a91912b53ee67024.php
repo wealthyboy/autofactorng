@@ -26,7 +26,7 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Subject</label>
-                        <input type="text" value="<?php echo e(isset($order) ? $order->email : null); ?>" class="form-control" name="subject" required>
+                        <input type="text" value="<?php echo e(isset($order) ? $order->subject : 'Thanks for ordering'); ?>" class="form-control" name="subject" required>
                      </div>
                   </div>
 
@@ -104,20 +104,20 @@
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Product Name</label>
-                        <input type="text" class="form-control" name="products[product_name][]">
+                        <input type="text" class="form-control" required name="products[product_name][]">
                      </div>
                   </div>
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Quantity</label>
-                        <input type="number" class="form-control" name="products[quantity][]">
+                        <input type="number" class="form-control" required name="products[quantity][]">
                      </div>
                   </div>
 
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Price</label>
-                        <input type="number" class="form-control" name="products[price][]">
+                        <input type="number" class="form-control" required name="products[price][]">
                      </div>
                   </div>
                </div>

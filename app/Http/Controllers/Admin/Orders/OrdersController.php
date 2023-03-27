@@ -54,9 +54,9 @@ class OrdersController extends Table
 
 	public function store(Request $request)
 	{
-		$to = $request->to;
-		$email = array_shift(explode(',', $to));
-		$user = User::where('email', $email)->first();
+
+		$email = explode(',', $request->email);
+		$user = User::where('email', $email[0])->first();
 		$input = $request->except('_token');
 		$input['invoice'] = substr(rand(100000, time()), 0, 7);
 		$input['order_type'] = "Offline";

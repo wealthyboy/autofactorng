@@ -94,7 +94,6 @@
 
                                     <?php if(is_array($v)): ?>
                                     <select style="width: 100px;" class="form-control mt-3 change-status" data-column="status" data-id="<?php echo e(isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null); ?>" data-model="Order" name="[]">
-                                        <option value="0" selected>Choose Status</option>
 
                                         <?php $__currentLoopData = $v; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $l => $lv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <?php if($l == 'selected'): ?>
