@@ -4,7 +4,7 @@
 
 <div class="bg-light">
     <div class="container">
-        <div class="d-block d-sm-none">
+        <div class="d-block d-sm-none mt-5">
             @include('_partials.mobile_nav')
         </div>
     </div>
