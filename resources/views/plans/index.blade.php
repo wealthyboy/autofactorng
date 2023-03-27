@@ -6,9 +6,11 @@
   <div class="container">
     <div class="row">
       <div class="col-md12">
-        <p>"Whether you're an individual or a business, mitigating risk, enhancing your driving experience, and having confidence in the quality of your replacement parts are crucial. </p>
-        <p> By subscribing to a plan, you'll get funded with purchase credits that you can use to shop on our website, exclusive benefits and discounts that must be used within one year from the time of purchase. </p>
-        <p>Don't wait too long to take advantage of the subscription plan benefits!</p>
+        <p> Whether you're an individual or a business, mitigating risk, enhancing your driving experience, and having confidence in the quality of your replacement parts are crucial.</p>
+        <p> By subscribing to a plan, you'll get funded with shopping credits to the tune of your subscription amount plus 10% extra credit bonus that you can use to shop on our website. </p>
+        <p> You also exclusive benefits and discounts that must be used within one year from the time of purchase.</p>
+
+        <p> Don't wait too long to take advantage of the subscription plan benefits!</p>
 
       </div>
       <div class="col-md-8 mx-auto text-center">

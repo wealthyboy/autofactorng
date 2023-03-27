@@ -27,6 +27,7 @@ class PlansController extends Controller
                 'title' => 'AUTO PARTS COVER SUBSCRIPTION PREMIUM',
                 'price' => '₦50,000 - ₦149,000',
                 'text' => [
+                    '10% extra bonus credit',
                     'One free diagnosis within validity period',
                     'Keep track of your purchase history',
                     'Access to tons of vehicle repair guides',
@@ -37,6 +38,7 @@ class PlansController extends Controller
                 'title' => 'AUTO PARTS COVER SUBSCRIPTION PREMIUM',
                 'price' => '₦150,000 - ₦349,000',
                 'text' => [
+                    '10% extra bonus credit',
                     'Three free diagnosis within validity period',
                     'Keep track of your purchase history',
                     'Access to tons of vehicle repair guides',
@@ -47,6 +49,7 @@ class PlansController extends Controller
                 'title' => 'AUTO PARTS COVER SUBSCRIPTION PREMIUM',
                 'price' => '₦350,000 and Above',
                 'text' => [
+                    '10% extra bonus credit',
                     'One free towing service within lagos',
                     'Five free diagnosis within validity period',
                     'Keep track of your purchase history',
