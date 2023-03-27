@@ -85,11 +85,9 @@
                                     :href="tableData.meta.urls[index].url"
                                     data-bs-toggle="tooltip"
                                     data-bs-original-title="Preview order"
+                                    class="bold"
                                 >
-                                    <i
-                                        class="material-symbols-outlined text-secondary position-relative text-lg"
-                                        >preview</i
-                                    >
+                                    View
                                 </a>
                             </td>
                         </tr>
