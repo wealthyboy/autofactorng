@@ -29760,7 +29760,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = {
   key: 0,
-  "class": "card mb-3"
+  "class": "card mb-3 border-0"
 };
 var _hoisted_2 = {
   "class": "card-header"
