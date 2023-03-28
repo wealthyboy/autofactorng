@@ -1,5 +1,8 @@
 <template>
-  <message :message="post_server_error" />
+  <message v-if="server_error"  :message="server_error" class="bg-danger" />
+
+  <message v-if="message" :message="message"  />
+
 
   <form
     method="POST"
@@ -47,15 +50,18 @@
       <general-button
         type="submit"
         :text="text"
-        class="btn btn-dark w-100"
+        class="btn btn-dark w-100 p-3"
         :loading="loading"
       />
 
     </div>
 
   </form>
+
+   <notification :config="config" />
+ 
 </template>
-    <script>
+<script>
 import { useVuelidate } from "@vuelidate/core";
 import { useActions } from "vuex-composition-helpers";
 
@@ -64,6 +70,7 @@ import SimpleMessage from "../message/SimpleMessage";
 import GeneralButton from "../general/Button.vue";
 import GeneralInput from "../Forms/Input";
 import Message from "../message/Message";
+import Notification from "../utils/Notification";
 
 import { changePasswordRules } from "../../utils/ValidationRules";
 import { changePasswordData } from "../../utils/FormData";
@@ -78,6 +85,7 @@ export default {
     GeneralButton,
     GeneralInput,
     Message,
+    Notification
   },
   setup(props, { emit }) {
     let user = props.user;
@@ -86,7 +94,7 @@ export default {
     const message = ref(null);
     const data = changePasswordData(user);
     const server_errors = ref(data);
-    const post_server_error = ref(null);
+    const server_error = ref(null);
     const form = reactive(data);
     const rules = changePasswordRules(form);
     const v$ = useVuelidate(rules, form);
@@ -94,6 +102,8 @@ export default {
     function change(page) {
       emit("switched", page);
     }
+
+    const config = ref({});
 
     function register() {
       this.v$.$touch();
@@ -104,18 +114,27 @@ export default {
         loading,
         needsValidation: true,
         error: this.v$.$error,
-        post_server_error: post_server_error,
+        post_server_error: server_error,
         method: "post",
       };
 
       makePost(postData)
         .then((res) => {
           loading.value = false;
-          message.value = "Settings updated";
+          message.value = "Password updated";
+          setTimeout(() => {
+            message.value = null;
+          }, 3000);
         })
         .catch((error) => {
-          server_errors.value = error.response.data.errors;
-          clearErr(server_errors);
+          
+         if ( error.response.errors != 'undefined') {
+          server_error.value = error.response.data.errors;
+          setTimeout(() => {
+            server_error.value = null;
+          }, 3000);
+         }
+        
         });
     }
     return {
@@ -126,8 +145,9 @@ export default {
       text,
       message,
       server_errors,
-      post_server_error,
+      server_error,
       change,
+      config
     };
   },
 };

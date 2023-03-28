@@ -318,8 +318,8 @@ export const makePost = ({ dispatch, commit }, postData) => {
 
 export const clearErr = (value) => {
     setTimeout(() => {
-        value.value = null;
-    }, 4000);
+        value = null;
+    }, 3000);
 }
 
 

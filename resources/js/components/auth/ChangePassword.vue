@@ -55,17 +55,12 @@
                 </p>
             </template>
             <p class="form-group text-right">
-                <template v-if="loading">
-                    <button type="button" class="btn bold btn-primary btn-round btn-lg btn-block">
-                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        <span class="">Loading...</span>    
-                    </button>
-                </template>
-                <template v-else>
-                    <button type="submit"  class="btn btn--lg bold btn--primary btn--full ">
-                        Change Password
-                    </button>
-                </template>
+                <general-button
+            type="submit"
+            :text="text"
+            class="btn btn-dark w-100 p-3"
+            :loading="loading"
+        />
             </p>
         </form>
         <error-message  :error="error" />
@@ -75,6 +70,8 @@
 <script>
     import { mapActions ,mapGetters } from 'vuex'
     import ErrorMessage from '../messages/components/Error'
+    import GeneralButton from "../general/Button.vue";
+
 
     export default {
         data(){
@@ -93,6 +90,7 @@
         },
         components:{
             ErrorMessage,
+            GeneralButton
         },
         computed: mapGetters({
             errors: 'errors', 

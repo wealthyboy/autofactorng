@@ -3,9 +3,9 @@
 <div class="bg-light">
     <?php echo $__env->make('_partials.mobile_nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div class="container">
-        <div class="row mt-5">
+        <div class="row">
             <?php echo $__env->make('_partials.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-            <div class="col-md-5">
+            <div class="col-md-5  mt-5">
                 <h3 class="page-title ">Change Password</h3>
                 <change-password :user="<?php echo e($user); ?>" />
             </div>
