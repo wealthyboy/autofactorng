@@ -92,7 +92,7 @@
                <div class="row">
                   <div class="col-lg-12 text-left">
                      <h5>Thank you!</h5>
-                     Dear {{ $order->user->fullname() }}
+                     Dear {{ $order->user->fullname() }},
                      <p class=" text-sm">We hope that you enjoy your order</p>
                      <p class="text-sm">Should you need any sort of further assistance, we are always ready to assist.</p>
                      <p class="text-sm">You can reach us by phone at 09081155504, 09081155505 or by email at care@autofactorng.com</p>
