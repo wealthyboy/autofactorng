@@ -49,9 +49,26 @@ class OrdersController extends Table
 	{
 		$order = Order::find($id);
 		$setting = Setting::first();
+		$sub_total  =  $this->subTotal($order);
+
 		$ordered_products = $order->ordered_products()->paginate(20);
 		$ordered_products = (new OrderedProduct())->getListingData($ordered_products);
-		return view('admin.orders.invoice', compact('setting', 'order', 'ordered_products'));
+		$summaries = [];
+		$summaries['Sub-Total'] =  Helper::currencyWrapper($sub_total);
+		if ($order->coupon) {
+			$summaries['Discount'] = $order->coupon . '  -%' . optional($order->voucher())->amount . 'off';
+		}
+
+		if ($order->discount) {
+			$summaries['Discount'] = $order->percentage_type == 'percentage' ? $order->discount . '  % off'  :  '-' . $order->discount;
+		}
+
+
+		$summaries['Shipping'] = Helper::currencyWrapper($order->shipping_price);
+		$summaries['Heavy Item Charge'] = Helper::currencyWrapper($order->heavy_item_price);
+		$summaries['Total'] = Helper::currencyWrapper($order->total);
+		$objs = $this->showData($id);
+		return view('admin.orders.invoice', compact('summaries', 'objs', 'setting', 'order', 'ordered_products'));
 	}
 
 	public function store(Request $request)
