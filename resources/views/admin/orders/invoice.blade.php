@@ -18,6 +18,7 @@
                   </div>
                   <div class="col-lg-3 col-md-7 text-md-end text-start mt-5">
                      <h6 class="d-block mt-2 mb-0">Billed to: {{ optional($order->user)->fullname() }}</h6>
+                     <p>{{ $order->phone_number }}</p>
 
                      <p class="text-secondary">{{ $order->address }}<br>
                         {{ $order->city }}<br>
