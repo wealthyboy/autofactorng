@@ -62,8 +62,8 @@ class AddressController extends Controller
 
         foreach ($carts as $key => $cart) {
             if ($cart->product->condition_is_present) {
-                $prices['eee'][] = $cart->product_id;
                 $heavy_item_prices = ShippingRate::where(['product_id' => $cart->product_id, 'is_lagos' => $is_lagos])->get();
+                $prices['eee'][]  = $heavy_item_prices;
 
                 foreach ($heavy_item_prices as $heavy_item_price) {
                     if ($heavy_item_price->condition == '=') {
