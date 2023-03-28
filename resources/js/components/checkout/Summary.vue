@@ -164,7 +164,10 @@ export default {
                         response.data.sub_total + this.prices.ship_price
                     );
 
-                    this.$emit("coupon:sent", this.coupon_code);
+                    this.$store.commit("setCouponCode", this.coupon_code);
+                    console.log(this.coupon_code);
+
+                    //this.$emit("sent", this.coupon_code);
                 })
                 .catch((error) => {
                     this.submiting = false;

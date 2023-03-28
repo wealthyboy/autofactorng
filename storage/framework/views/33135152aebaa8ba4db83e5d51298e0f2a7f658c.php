@@ -23,7 +23,7 @@
                   <td class="text-left" data-link-style="text-decoration:none; color:#67bffd;">
                      <?php echo e($order->first_name); ?> <?php echo e($order->last_name); ?> <br />
                      <?php echo e($order->address); ?><br /> <?php echo e($order->city); ?> &nbsp;
-                     <br /> <?php echo e($order->state); ?>&nbsp;
+                     <br /><?php echo e($order->state); ?>&nbsp;
                   </td>
                </tr>
             </tbody>
@@ -35,7 +35,6 @@
    <?php echo $__env->make('admin._partials.t', ['models' => $orders, 'name' => 'Items'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
    <div class="card mt-3">
       <div class="card-header p-3 pt-2">
-
          <h6 class="mb-0">Update Status</h6>
       </div>
       <div class="card-body  pt-0">

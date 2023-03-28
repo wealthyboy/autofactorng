@@ -113,7 +113,7 @@
                                 <h3 class="mb-0">SUMMARY</h3>
                             </div>
 
-                            <cart-summary @coupon:sent="applyCoupon" />
+                            <cart-summary />
 
                             <total :voucher="voucher" :amount="amount" />
                         </div>
@@ -151,8 +151,6 @@ export default {
     },
     data() {
         return {
-            coupon: "",
-            coupon_code: null,
             locations: [],
             shipping_id: null,
             shipping_price: "",
@@ -183,6 +181,7 @@ export default {
             prices: "prices",
             walletBalance: "walletBalance",
             total: "total",
+            coupon_code: "coupon_code",
         }),
 
         activeAddress() {},
@@ -241,7 +240,6 @@ export default {
             this.order_text = "Please wait. We are almost done......";
             this.payment_is_processing = true;
             this.payment_method = "card";
-            console.log(context.total);
             var handler = PaystackPop.setup({
                 key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
                 email: context.cart_meta.user.email,
@@ -253,7 +251,7 @@ export default {
                         {
                             display_name: context.cart_meta.user.name,
                             customer_id: context.cart_meta.user.id,
-                            coupon: context.coupon,
+                            coupon: context.coupon_code,
                             type: "order_from_paystack",
                             shipping_id: context.shipping_id,
                             shipping_price: context.prices.ship_price,
@@ -307,7 +305,7 @@ export default {
             await axios
                 .post("/cart/meta", {
                     cartId: cartIds.join("|"),
-                    coupon: context.coupon,
+                    coupon: context.coupon_code,
                     shipping_id: context.shipping_id,
                     shipping_price: context.shipping_price,
                     user_id: context.cart_meta.user.id,
@@ -334,6 +332,7 @@ export default {
 
         applyCoupon: function (c) {
             this.coupon = c;
+            console.log(c);
         },
         checkout: function (e, type = null, text) {
             e.target.innerText = "Please wait.......";
@@ -341,7 +340,7 @@ export default {
 
             axios
                 .post("/checkout/confirm", {
-                    coupon: this.coupon,
+                    coupon: this.coupon_code,
                     payment_method: type,
                     shipping_price: this.prices.ship_price,
                     heavy_item_price: this.prices.heavy_item_price || 0,

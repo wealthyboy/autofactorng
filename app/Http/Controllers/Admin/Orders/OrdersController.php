@@ -55,8 +55,10 @@ class OrdersController extends Table
 		$ordered_products = (new OrderedProduct())->getListingData($ordered_products);
 		$summaries = [];
 		$summaries['Sub-Total'] =  Helper::currencyWrapper($sub_total);
+
+
 		if ($order->coupon) {
-			$summaries['Discount'] = $order->coupon . '  -%' . optional($order->voucher())->amount . 'off';
+			$summaries[optional($order->voucher())->amount . ' % Discount'] =  '-₦' . number_format((optional($order->voucher())->amount / 100) * $sub_total);
 		}
 
 		if ($order->discount) {
@@ -206,7 +208,7 @@ class OrdersController extends Table
 		$summaries = [];
 		$summaries['Sub-Total'] =  Helper::currencyWrapper($sub_total);
 		if ($order->coupon) {
-			$summaries['Discount'] = $order->coupon . '  -%' . optional($order->voucher())->amount . 'off';
+			$summaries[optional($order->voucher())->amount . ' % Discount'] =  '-₦' . number_format((optional($order->voucher())->amount / 100) * $sub_total);
 		}
 
 		if ($order->discount) {

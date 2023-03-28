@@ -33,5 +33,6 @@ export default {
     productFitString: null,
     showSearch: false,
     total: 0,
+    coupon: null
 
 }

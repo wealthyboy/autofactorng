@@ -14,6 +14,12 @@ export const setCoupon = (state, voucher) => {
     state.voucher.push(voucher);
 }
 
+
+
+export const setCouponCode = (state, voucher) => {
+    state.coupon = voucher;
+}
+
 export const setMessage = (state, message) => {
 
     state.message = message;

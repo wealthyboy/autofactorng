@@ -32,8 +32,8 @@
 
 
 
-    <div class="card">
-        <div class="card-header">
+    <div class="<?php echo e(isset($no_card) ? '' : 'card'); ?>">
+        <div class="card-header ps-2">
             <h4 class="m-0"><?php echo e($name); ?></h4>
         </div>
         <div class="table-responsive mt-1">
@@ -42,7 +42,7 @@
                 <?php echo method_field('DELETE'); ?>
                 <table class="table table-flush dataTable-table  align-items-center mb-0">
                     <thead>
-                        <tr>
+                        <tr class="table-heading">
                             <?php if( isset($models['meta']['show_checkbox']) && $models['meta']['show_checkbox']): ?>
 
                             <th data-sortable="" class="">
@@ -52,8 +52,8 @@
                             </th>
                             <?php endif; ?>
                             <?php $__currentLoopData = $models['items'][0][0]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <th data-sortable="" class="<?php echo e(isset($models['meta']['sort']) ?  $models['meta']['sort'] : 'desc'); ?>">
-                                <a href="<?php echo e(request()->url()); ?>?key=<?php echo e($key); ?>&sort=<?php echo e($models['meta']['sort']); ?><?php echo e($models['meta']['q']); ?>" class="dataTable-sorter">
+                            <th data-sortable="" class="<?php echo e(isset($models['meta']['sort']) ?  $models['meta']['sort'] : 'desc'); ?> ">
+                                <a href="<?php echo e(request()->url()); ?>?key=<?php echo e($key); ?>&sort=<?php echo e($models['meta']['sort']); ?><?php echo e($models['meta']['q']); ?>" class="<?php echo e(isset($no_card) ? '' : 'dataTable-sorter'); ?>">
                                     <h6 class="mb-0 text-xs">
                                         <?php echo e($key); ?>
 
@@ -61,13 +61,12 @@
                                 </a>
                             </th>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <th class="text-secondary opacity-7"></th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <?php $__currentLoopData = $models['items'][0]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                        <tr>
+                        <tr class="table-body">
                             <?php if( isset($models['meta']['show_checkbox']) && $models['meta']['show_checkbox']): ?>
                             <td>
                                 <div class="d-flex align-items-center">
@@ -175,6 +174,7 @@
             </form>
 
         </div>
+        <?php if(!isset($no_card)): ?>
         <div class="card-footer">
             <div class=" d-flex justify-content-between  mt-3">
                 <p class="text-sm text-gray-700 leading-5">
@@ -184,6 +184,8 @@
 
             </div>
         </div>
+
+        <?php endif; ?>
     </div>
 
 

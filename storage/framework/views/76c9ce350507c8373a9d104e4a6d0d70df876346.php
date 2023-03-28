@@ -3,12 +3,8 @@
     <div class="row  align-items-start">
         <div class="col-xl-5  col-lg-4 ">
 
-            <div class="header p-5">
-                <a class="d-flex nounderline align-items-center" href="/">
-                    <span class="material-symbols-outlined ">keyboard_backspace</span>
-                    <span>Back</span>
-                </a>
-            </div>
+            <?php echo $__env->make('_partials.back', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
 
             <div class="content p-5">
                 <div class="logo ">

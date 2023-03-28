@@ -12,6 +12,10 @@ export const cart_meta = (state) => {
 }
 
 
+export const coupon_code = (state) => {
+    return state.coupon
+}
+
 export const cartItemCount = (state) => {
     return state.carts.length
 }

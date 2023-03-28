@@ -22491,8 +22491,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   data: function data() {
     return {
-      coupon: "",
-      coupon_code: null,
       locations: [],
       shipping_id: null,
       shipping_price: "",
@@ -22521,7 +22519,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     default_shipping: "default_shipping",
     prices: "prices",
     walletBalance: "walletBalance",
-    total: "total"
+    total: "total",
+    coupon_code: "coupon_code"
   })), {}, {
     activeAddress: function activeAddress() {}
   }),
@@ -22570,7 +22569,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.order_text = "Please wait. We are almost done......";
       this.payment_is_processing = true;
       this.payment_method = "card";
-      console.log(context.total);
       var handler = PaystackPop.setup({
         key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943",
         //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
@@ -22582,7 +22580,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
           custom_fields: [{
             display_name: context.cart_meta.user.name,
             customer_id: context.cart_meta.user.id,
-            coupon: context.coupon,
+            coupon: context.coupon_code,
             type: "order_from_paystack",
             shipping_id: context.shipping_id,
             shipping_price: context.prices.ship_price,
@@ -22649,7 +22647,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _context.next = 12;
                 return axios__WEBPACK_IMPORTED_MODULE_3___default().post("/cart/meta", {
                   cartId: cartIds.join("|"),
-                  coupon: context.coupon,
+                  coupon: context.coupon_code,
                   shipping_id: context.shipping_id,
                   shipping_price: context.shipping_price,
                   user_id: context.cart_meta.user.id,
@@ -22681,6 +22679,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     applyCoupon: function applyCoupon(c) {
       this.coupon = c;
+      console.log(c);
     },
     checkout: function checkout(e) {
       var _this3 = this;
@@ -22690,7 +22689,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       e.target.innerText = "Please wait.......";
       e.target.classList.add("disabled");
       axios__WEBPACK_IMPORTED_MODULE_3___default().post("/checkout/confirm", {
-        coupon: this.coupon,
+        coupon: this.coupon_code,
         payment_method: type,
         shipping_price: this.prices.ship_price,
         heavy_item_price: this.prices.heavy_item_price || 0,
@@ -22774,7 +22773,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
         _this.$store.commit("setTotal", response.data.sub_total + _this.prices.ship_price);
 
-        _this.$emit("coupon:sent", _this.coupon_code);
+        _this.$store.commit("setCouponCode", _this.coupon_code);
+
+        console.log(_this.coupon_code); //this.$emit("sent", this.coupon_code);
       })["catch"](function (error) {
         _this.submiting = false;
         _this.coupon_error = error.response.data.error;
@@ -26780,11 +26781,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $options.makePayment && $options.makePayment.apply($options, arguments);
     }, ["prevent"])),
     "class": "btn btn-block btn-dark w-100"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay Now"), _hoisted_15])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_cart_summary, {
-    "onCoupon:sent": $options.applyCoupon
-  }, null, 8
-  /* PROPS */
-  , ["onCoupon:sent"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_total, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Pay Now"), _hoisted_15])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_cart_summary), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_total, {
     voucher: $data.voucher,
     amount: $data.amount
   }, null, 8
@@ -39154,6 +39151,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "cart_meta": () => (/* binding */ cart_meta),
 /* harmony export */   "carts": () => (/* binding */ carts),
 /* harmony export */   "comments": () => (/* binding */ comments),
+/* harmony export */   "coupon_code": () => (/* binding */ coupon_code),
 /* harmony export */   "default_shipping": () => (/* binding */ default_shipping),
 /* harmony export */   "errors": () => (/* binding */ errors),
 /* harmony export */   "fitString": () => (/* binding */ fitString),
@@ -39192,6 +39190,9 @@ var meta = function meta(state) {
 };
 var cart_meta = function cart_meta(state) {
   return state.cart_meta;
+};
+var coupon_code = function coupon_code(state) {
+  return state.coupon;
 };
 var cartItemCount = function cartItemCount(state) {
   return state.carts.length;
@@ -39337,6 +39338,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setCartMeta": () => (/* binding */ setCartMeta),
 /* harmony export */   "setComments": () => (/* binding */ setComments),
 /* harmony export */   "setCoupon": () => (/* binding */ setCoupon),
+/* harmony export */   "setCouponCode": () => (/* binding */ setCouponCode),
 /* harmony export */   "setDefaultShipping": () => (/* binding */ setDefaultShipping),
 /* harmony export */   "setFormErrors": () => (/* binding */ setFormErrors),
 /* harmony export */   "setImages": () => (/* binding */ setImages),
@@ -39374,6 +39376,9 @@ var setCartMeta = function setCartMeta(state, meta) {
 };
 var setCoupon = function setCoupon(state, voucher) {
   state.voucher.push(voucher);
+};
+var setCouponCode = function setCouponCode(state, voucher) {
+  state.coupon = voucher;
 };
 var setMessage = function setMessage(state, message) {
   state.message = message;
@@ -39516,7 +39521,8 @@ __webpack_require__.r(__webpack_exports__);
   productIsLoading: true,
   productFitString: null,
   showSearch: false,
-  total: 0
+  total: 0,
+  coupon: null
 });
 
 /***/ }),
