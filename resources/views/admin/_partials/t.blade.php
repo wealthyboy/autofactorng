@@ -42,7 +42,7 @@
                 @method('DELETE')
                 <table class="table table-flush dataTable-table  align-items-center mb-0">
                     <thead>
-                        <tr>
+                        <tr class="table-heading">
                             @if( isset($models['meta']['show_checkbox']) && $models['meta']['show_checkbox'])
 
                             <th data-sortable="" class="">
