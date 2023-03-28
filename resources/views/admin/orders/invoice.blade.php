@@ -18,6 +18,7 @@
                   </div>
                   <div class="col-lg-3 col-md-7 text-md-end text-start mt-5">
                      <h6 class="d-block mt-2 mb-0">Billed to: {{ optional($order->user)->fullname() }}</h6>
+
                      <p class="text-secondary">{{ $order->address }}<br>
                         {{ $order->city }}<br>
                         {{ $order->state }}
@@ -68,7 +69,7 @@
                                     {{ $order_product->product_name }}
                                  </td>
                                  <td class="ps-4" colspan="2">{{ $order_product->quantity }}</td>
-                                 <td class="ps-4" colspan="2">{{ $order_product->price }}</td>
+                                 <td class="ps-4" colspan="2">₦{{ number_format( $order_product->price) }}</td>
                                  <td class="ps-4" colspan="2">₦{{ number_format($order_product->price * $order_product->quantity)  }}</td>
                               </tr>
                               @endforeach
@@ -88,19 +89,19 @@
                   </div>
                </div>
             </div>
-            <div class="card-footer mt-md-5 mt-4">
+            <div class="card-footer mt-md-5 mt-1">
                <div class="row">
                   <div class="col-lg-12 text-left">
                      <h5>Thank you!</h5>
                      Dear {{ $order->user->fullname() }},
-                     <p class=" text-sm">We hope that you enjoy your order</p>
-                     <p class="text-sm">Should you need any sort of further assistance, we are always ready to assist.</p>
-                     <p class="text-sm">You can reach us by phone at 09081155504, 09081155505 or by email at care@autofactorng.com</p>
-                     <p class="text-sm">Tapa House, Imam Dauda Street, Eric Moore, Surulere, Lagos State.</p>
-                     <p class="text-sm">Items must be returned within 5 working days after delivery.</p>
-                     <p class="text-sm">Thank you for shopping with us. Have a great day.</p>
-                     <p class="text-sm">Sincerely, autofactorng</p>
-                     <p class="text-sm">If you encounter any issues related to the invoice you can contact us at:</p>
+                     <p class=" text-sm">We hope that you enjoy your order
+                        Should you need any sort of further assistance, we are always ready to assist.
+                        You can reach us by phone at 09081155504, 09081155505 or by email at care@autofactorng.com
+                        Tapa House, Imam Dauda Street, Eric Moore, Surulere, Lagos State.
+                        Items must be returned within 5 working days after delivery.
+                        Thank you for shopping with us. Have a great day.
+                        Sincerely, autofactorng
+                     </p>
 
 
                   </div>
