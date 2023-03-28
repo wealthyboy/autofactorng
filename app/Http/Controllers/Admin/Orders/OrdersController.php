@@ -65,6 +65,17 @@ class OrdersController extends Table
 		$order = new Order;
 		$order->fill($input);
 		$order->save();
+
+
+
+		foreach (Order::$statuses as $key => $status) {
+			$order_status = new OrderStatus();
+			$order_status->is_updated = false;
+			$order_status->status = $status;
+			$order_status->order_id = $order->id;
+			$order_status->save();
+		}
+
 		$total = [];
 
 		foreach ($input['products']['product_name'] as $key => $v) {
@@ -96,7 +107,6 @@ class OrdersController extends Table
 		$order->save();
 
 		// Send Mail
-
 		(new Activity)->put("Added a new order with email and phone number  " . $request->email . ' and ' . $request->phone_number);
 		return  redirect()->route('admin.orders.index');
 	}

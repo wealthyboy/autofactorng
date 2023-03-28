@@ -5,12 +5,7 @@
    <div class="row">
       <div class="col-xl-5  col-lg-4 ">
 
-         <div class="header p-5">
-            <a class="d-flex nounderline align-items-center" onclick="history.back()">
-               <span class="material-symbols-outlined ">keyboard_backspace</span>
-               <span>Back</span>
-            </a>
-         </div>
+         @includes('_partials.back')
 
          <div class="content p-5">
             <div class="logo ">
