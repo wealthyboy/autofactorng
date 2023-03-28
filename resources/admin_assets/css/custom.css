@@ -362,5 +362,5 @@ tr.table-heading th:last-child{
 }
 
 tr.table-body td:last-child{
-    text-align: end;
+    text-align: end; 
 }
