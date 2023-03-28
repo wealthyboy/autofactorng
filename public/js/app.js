@@ -21015,7 +21015,7 @@ __webpack_require__.r(__webpack_exports__);
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
-    var data = (0,_utils_FormData__WEBPACK_IMPORTED_MODULE_9__.changePasswordData)(user);
+    var data = (0,_utils_FormData__WEBPACK_IMPORTED_MODULE_9__.changePasswordData)();
     var server_errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(data);
     var server_error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)(data);
@@ -21046,6 +21046,7 @@ __webpack_require__.r(__webpack_exports__);
       makePost(postData).then(function (res) {
         loading.value = false;
         message.value = "Password updated";
+        document.getElementById("change-password").reset();
         setTimeout(function () {
           message.value = null;
         }, 3000);
@@ -24824,7 +24825,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     method: "POST",
     onSubmit: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.register && $setup.register.apply($setup, arguments);
-    }, ["prevent"]))
+    }, ["prevent"])),
+    id: "change-password"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     id: "old_password",
     error: $setup.v$.old_password,

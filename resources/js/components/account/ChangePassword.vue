@@ -7,6 +7,7 @@
   <form
     method="POST"
     @submit.prevent="register"
+    id="change-password"
   >
     <div class="row ">
       <p class="form-group p-1 col-12">
@@ -92,7 +93,7 @@ export default {
     const loading = ref(false);
     const text = ref("Submit");
     const message = ref(null);
-    const data = changePasswordData(user);
+    const data = changePasswordData();
     const server_errors = ref(data);
     const server_error = ref(null);
     const form = reactive(data);
@@ -122,6 +123,9 @@ export default {
         .then((res) => {
           loading.value = false;
           message.value = "Password updated";
+          
+           document.getElementById("change-password").reset()
+          
           setTimeout(() => {
             message.value = null;
           }, 3000);
