@@ -95,7 +95,8 @@ class AddressController extends Controller
                 'prices' => collect($prices),
                 'default_shipping' => null,
                 'states' => Location::all(),
-                'default_address' =>  $default_address
+                'default_address' =>  $default_address,
+                'large_item_price' => $large_item_price
             ]
         ]);
     }
