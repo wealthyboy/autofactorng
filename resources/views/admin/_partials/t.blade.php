@@ -52,7 +52,7 @@
                             </th>
                             @endif
                             @foreach($models['items'][0][0] as $key => $value)
-                            <th data-sortable="" class="{{ isset($models['meta']['sort']) ?  $models['meta']['sort'] : 'desc' }}">
+                            <th data-sortable="" class="{{ isset($models['meta']['sort']) ?  $models['meta']['sort'] : 'desc' }} text-end">
                                 <a href="{{ request()->url() }}?key={{ $key }}&sort={{ $models['meta']['sort'] }}{{ $models['meta']['q'] }}" class="{{ isset($no_card) ? '' : 'dataTable-sorter' }}">
                                     <h6 class="mb-0 text-xs">
                                         {{ $key }}
