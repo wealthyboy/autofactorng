@@ -22156,7 +22156,6 @@ __webpack_require__.r(__webpack_exports__);
     var amount = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
-    console.log("I dey here");
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
       amount: "",
       type: "Wallet",
@@ -25985,27 +25984,9 @@ var _hoisted_16 = {
   "class": "form-floating"
 };
 var _hoisted_17 = {
-  "class": "form-group p-1 col-6"
-};
-var _hoisted_18 = {
-  "class": "form-floating"
-};
-var _hoisted_19 = {
-  "class": "form-group p-1 col-6"
-};
-var _hoisted_20 = {
-  "class": "form-floating"
-};
-var _hoisted_21 = {
-  "class": "form-group p-1 col-6"
-};
-var _hoisted_22 = {
-  "class": "form-floating"
-};
-var _hoisted_23 = {
   "class": "form-group p-1 col-12"
 };
-var _hoisted_24 = {
+var _hoisted_18 = {
   "class": "form-floating"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -26024,7 +26005,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , ["message"]), $setup.reg_complete ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [$setup.reg_complete && $setup.paymentIsProcessing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.paymentIsComplete ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, _hoisted_9)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.reg_complete ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
     key: 1,
     method: "POST",
-    onSubmit: _cache[7] || (_cache[7] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onSubmit: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.subscribe && $setup.subscribe.apply($setup, arguments);
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
@@ -26062,45 +26043,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8
   /* PROPS */
   , ["error", "modelValue", "server_errors"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
-    id: "phone_number",
-    error: $setup.v$.phone_number,
-    modelValue: $setup.form.phone_number,
-    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-      return $setup.form.phone_number = $event;
-    }),
-    name: "Phone Number",
-    type: "text",
-    server_errors: $setup.server_errors.phone_number
-  }, null, 8
-  /* PROPS */
-  , ["error", "modelValue", "server_errors"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
-    id: "password",
-    error: $setup.v$.password,
-    modelValue: $setup.form.password,
-    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
-      return $setup.form.password = $event;
-    }),
-    name: "Password",
-    type: "password",
-    server_errors: $setup.server_errors.password
-  }, null, 8
-  /* PROPS */
-  , ["error", "modelValue", "server_errors"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
-    id: "password_confirmation",
-    error: $setup.v$.password_confirmation,
-    modelValue: $setup.form.password_confirmation,
-    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-      return $setup.form.password_confirmation = $event;
-    }),
-    name: "Confirm Password",
-    type: "password"
-  }, null, 8
-  /* PROPS */
-  , ["error", "modelValue"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     id: "amount",
     error: $setup.v$.amount,
     modelValue: $setup.form.amount,
-    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
       return $setup.form.amount = $event;
     }),
     name: "Amount",
@@ -39668,7 +39614,7 @@ __webpack_require__.r(__webpack_exports__);
 var autoCredit = function autoCredit(amount, from_price, to_price) {
   if (amount >= from_price || amount <= to_price) {
     var p = 10 * amount / 100;
-    return "Your auto credit is ₦" + new Intl.NumberFormat().format(p + parseInt(amount));
+    return "Your Auto Credit Value: ₦" + new Intl.NumberFormat().format(p + parseInt(amount));
   } else {
     return null;
   }

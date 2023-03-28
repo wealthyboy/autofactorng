@@ -77,46 +77,11 @@
       </div>
       </p>
 
-      <p class="form-group  p-1 col-6">
-      <div class="form-floating">
-        <general-input
-          id="phone_number"
-          :error="v$.phone_number"
-          v-model="form.phone_number"
-          name="Phone Number"
-          type="text"
-          :server_errors="server_errors.phone_number"
-        />
+     
 
-      </div>
-      </p>
+     
 
-      <p class="form-group p-1 col-6">
-      <div class="form-floating">
-        <general-input
-          id="password"
-          :error="v$.password"
-          v-model="form.password"
-          name="Password"
-          type="password"
-          :server_errors="server_errors.password"
-        />
-
-      </div>
-      </p>
-
-      <p class="form-group  p-1 col-6">
-      <div class="form-floating">
-        <general-input
-          id="password_confirmation"
-          :error="v$.password_confirmation"
-          v-model="form.password_confirmation"
-          name="Confirm Password"
-          type="password"
-        />
-
-      </div>
-      </p>
+     
 
       <p class="form-group  p-1 col-12">
       <div class="form-floating">

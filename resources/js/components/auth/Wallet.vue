@@ -91,7 +91,6 @@ export default {
         const amount = ref(null);
         const text = ref("Submit");
         const message = ref(null);
-        console.log("I dey here");
         const form = reactive({
             amount: "",
             type: "Wallet",

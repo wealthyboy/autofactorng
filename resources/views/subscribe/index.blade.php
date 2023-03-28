@@ -24,7 +24,6 @@
             @if ($user && $user->hasActiveSubscription())
             <div class="row mb-5" id="signInMessage">
                <span class="sign-in-prompt" data-testid="sign-in-message">You already Subscribed</span>
-               <div><a href="/">Continue</a></div>
             </div>
 
             @endif
@@ -34,7 +33,6 @@
             @if ($user && !$user->hasActiveSubscription())
             <div class="row mb-5" id="signInMessage">
                <span class="sign-in-prompt" data-testid="sign-in-message">Enter your subscription amount:</span>
-               <div><a href="/">Continue</a></div>
             </div>
             <wallet :auto_credit="true" :user="{{ $user }}" :price_range="{{ collect($price_range) }}"></wallet>
 
