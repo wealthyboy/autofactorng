@@ -5,7 +5,7 @@
     <div class="row  align-items-start">
         <div class="col-xl-5  col-lg-4 ">
 
-            @includes('_partials.back')
+            @include('_partials.back')
 
 
             <div class="content p-5">
