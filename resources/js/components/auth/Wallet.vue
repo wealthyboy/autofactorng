@@ -18,7 +18,6 @@
 
         <div v-if="paymentIsComplete" class="align-self-center text-center">
             <div class="mt-4">Your payment has been been added.</div>
-            <div class="mt-4"><a href="/">Continue</a></div>
         </div>
     </div>
 
@@ -36,7 +35,7 @@
                 id="wallet"
                 name="Amount"
                 type="text"
-                @blur="getAmount"
+                @input="getAmount($event)"
             />
 
             <simple-message
@@ -92,6 +91,7 @@ export default {
         const amount = ref(null);
         const text = ref("Submit");
         const message = ref(null);
+        console.log("I dey here");
         const form = reactive({
             amount: "",
             type: "Wallet",
@@ -120,7 +120,8 @@ export default {
                 "getTableData",
             ]);
 
-        function getAmount() {
+        function getAmount(e) {
+            form.amount = e.target.value;
             if (
                 props.price_range.length &&
                 form.amount >= props.price_range[0]

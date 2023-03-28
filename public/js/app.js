@@ -22156,6 +22156,7 @@ __webpack_require__.r(__webpack_exports__);
     var amount = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
+    console.log("I dey here");
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
       amount: "",
       type: "Wallet",
@@ -22182,7 +22183,9 @@ __webpack_require__.r(__webpack_exports__);
         getWalletBalance = _useActions.getWalletBalance,
         getTableData = _useActions.getTableData;
 
-    function getAmount() {
+    function getAmount(e) {
+      form.amount = e.target.value;
+
       if (props.price_range.length && form.amount >= props.price_range[0]) {
         amount.value = (0,_utils_Functions__WEBPACK_IMPORTED_MODULE_10__.autoCredit)(form.amount, props.price_range[0], props.price_range[1]);
       } else {
@@ -26173,16 +26176,8 @@ var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "mt-4"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  href: "/"
-}, "Continue")], -1
-/* HOISTED */
-);
-
-var _hoisted_6 = [_hoisted_4, _hoisted_5];
-var _hoisted_7 = {
+var _hoisted_5 = [_hoisted_4];
+var _hoisted_6 = {
   "class": "form-floating mb-3"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -26199,15 +26194,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     error: $setup.error
   }, null, 8
   /* PROPS */
-  , ["message", "error"]), $setup.paymentIsProcessing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, $setup.paymentIsComplete ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, _hoisted_6)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.paymentIsProcessing && !$setup.paymentIsComplete ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
+  , ["message", "error"]), $setup.paymentIsProcessing ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, $setup.paymentIsComplete ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, _hoisted_5)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.paymentIsProcessing && !$setup.paymentIsComplete ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("form", {
     key: 1,
     action: "",
     "class": "mb-0",
     method: "post",
-    onSubmit: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.fund && $setup.fund.apply($setup, arguments);
     }, ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     error: $setup.v$.amount,
     modelValue: $setup.form.amount,
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
@@ -26216,10 +26211,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     id: "wallet",
     name: "Amount",
     type: "text",
-    onBlur: $setup.getAmount
+    onInput: _cache[1] || (_cache[1] = function ($event) {
+      return $setup.getAmount($event);
+    })
   }, null, 8
   /* PROPS */
-  , ["error", "modelValue", "onBlur"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_simple_message, {
+  , ["error", "modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_simple_message, {
     "class": "link-success fs-6 text-end fw-2 fs-5",
     message: $setup.amount
   }, null, 8
