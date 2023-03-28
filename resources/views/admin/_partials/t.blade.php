@@ -173,6 +173,7 @@
             </form>
 
         </div>
+
         <div class="card-footer">
             <div class=" d-flex justify-content-between  mt-3">
                 <p class="text-sm text-gray-700 leading-5">
