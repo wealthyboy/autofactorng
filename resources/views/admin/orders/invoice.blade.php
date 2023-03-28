@@ -51,45 +51,9 @@
                </div>
             </div>
             <div class="card-body">
-               <div class="row">
-                  <div class="col-12">
-                     <div class="table-responsive">
-                        <table class="table text-right">
-                           <thead>
-                              <tr>
-                                 <th scope="col" class="pe-2 text-start ps-2">Item</th>
-                                 <th scope="col" class="pe-2">Qty</th>
-                                 <th scope="col" class="pe-2">Amount</th>
-                                 <th scope="col" class="pe-2">Sub Total</th>
-
-                              </tr>
-                           </thead>
-                           <tbody>
-                              @foreach ( $order->ordered_products as $order_product )
-                              <tr>
-                                 <td class="text-start">
-                                    {{ $order_product->product_name }}
-                                 </td>
-                                 <td class="ps-4" colspan="2">{{ $order_product->quantity }}</td>
-                                 <td class="ps-4" colspan="2">₦{{ number_format( $order_product->price) }}</td>
-                                 <td class="ps-4" colspan="2">₦{{ number_format($order_product->price * $order_product->quantity)  }}</td>
-                              </tr>
-                              @endforeach
+               @include('admin._partials.t', ['models' => $order->ordered_products, 'name' => 'Items'])
 
 
-                           </tbody>
-                           <tfoot>
-                              <tr>
-                                 <th></th>
-                                 <th></th>
-                                 <th class="h5 ps-4" colspan="2">Total</th>
-                                 <th colspan="1" class="text-right h5 ps-4">{{ $order->get_total() }}</th>
-                              </tr>
-                           </tfoot>
-                        </table>
-                     </div>
-                  </div>
-               </div>
             </div>
             <div class="card-footer mt-md-5 mt-1">
                <div class="row">
