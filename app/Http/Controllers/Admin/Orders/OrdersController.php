@@ -60,7 +60,11 @@ class OrdersController extends Table
 		}
 
 		if ($order->discount) {
-			$summaries[$order->discount . ' % off Discount'] = $order->percentage_type == 'percentage' ?  $order->discount . '  % off'  :  '-' . $order->discount;
+			if ($order->percentage_type == 'percentage') {
+				$summaries[$order->discount . ' % off Discount'] = $order->percentage_type == 'percentage' ? Helper::getPercentageDiscount($order->discount, $sub_total)    :  '-' . $order->discount;
+			} else {
+				$summaries[$order->discount - ' Discount'] = $order->discount;
+			}
 		}
 
 		$no_card = true;
