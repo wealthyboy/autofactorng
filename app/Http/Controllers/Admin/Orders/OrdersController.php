@@ -49,7 +49,9 @@ class OrdersController extends Table
 	{
 		$order = Order::find($id);
 		$setting = Setting::first();
-		return view('admin.orders.invoice', compact('setting', 'order'));
+		$ordered_products = $order->ordered_products()->paginate(20);
+		$ordered_products = (new OrderedProduct())->getListingData($ordered_products);
+		return view('admin.orders.invoice', compact('setting', 'order', 'ordered_products'));
 	}
 
 	public function store(Request $request)
