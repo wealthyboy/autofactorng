@@ -7,7 +7,7 @@
       <li
         v-for="complete in completed"
         :key="complete.id"
-        :class="[ complete.is_updated === 1 && complete.status === 'Delivered' ? 'completed' : 'updated'  ]"
+        :class="[ complete.is_updated === 1 && complete.status === 'Delivered' ? 'completed' : 'updated' ]"
         class="list-g"
       >
         <span 

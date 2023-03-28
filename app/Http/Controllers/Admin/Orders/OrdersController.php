@@ -258,6 +258,12 @@ class OrdersController extends Table
 					$order_status->save();
 				}
 			}
+
+			$order_status = OrderStatus::where(['order_id' => $request->id])->where('status', '=', 'Confirmed')->first();
+			if (null !== $order_status) {
+				$order_status->is_updated = true;
+				$order_status->save();
+			}
 		}
 
 		if ($request->value == 'Delivered') {
