@@ -100,7 +100,8 @@
                         Tapa House, Imam Dauda Street, Eric Moore, Surulere, Lagos State.
                         Items must be returned within 5 working days after delivery.
                         Thank you for shopping with us. Have a great day.
-                        Sincerely, autofactorng
+                     </p>
+                     <p> Sincerely, autofactorng
                      </p>
 
 
