@@ -60,7 +60,7 @@ class OrdersController extends Table
 		}
 
 		if ($order->discount) {
-			$summaries['Discount'] = $order->percentage_type == 'percentage' ? $order->discount . '  % off'  :  '-' . $order->discount;
+			$summaries[$order->discount . ' Discount'] = $order->percentage_type == 'percentage' ?  $order->discount . '  % off'  :  '-' . $order->discount;
 		}
 
 		$no_card = true;
