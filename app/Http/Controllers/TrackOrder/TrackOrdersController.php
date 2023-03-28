@@ -41,7 +41,6 @@ class TrackOrdersController extends Controller
         $completed = $statuses->toArray();
         return response()->json([
             'completed' => $completed,
-
             'status' => $order->order_statuses
         ]);
     }
