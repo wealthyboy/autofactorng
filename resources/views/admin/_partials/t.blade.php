@@ -33,7 +33,7 @@
 
 
     <div class="card">
-        <div class="card-header">
+        <div class="card-header ps-2">
             <h4 class="m-0">{{ $name }}</h4>
         </div>
         <div class="table-responsive mt-1">
