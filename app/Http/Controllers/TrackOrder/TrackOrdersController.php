@@ -36,7 +36,7 @@ class TrackOrdersController extends Controller
         ]);
 
         $order_statuses  = Order::$statuses;
-        $order = Order::where('invoice', $request->invoice)->first();
+        $order = Order::where(['invoice', $request->invoice, 'user_id' => auth()->user()->id])->first();
         $statuses = $order->order_statuses;
         $completed = $statuses->toArray();
         return response()->json([
