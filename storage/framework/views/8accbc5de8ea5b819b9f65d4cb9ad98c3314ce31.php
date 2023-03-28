@@ -4,7 +4,7 @@
       <div class="col-xl-5  col-lg-4 ">
 
          <div class="header p-5">
-            <a class="d-flex nounderline align-items-center" href="/">
+            <a class="d-flex nounderline align-items-center" onclick="history.back()">
                <span class="material-symbols-outlined ">keyboard_backspace</span>
                <span>Back</span>
             </a>
@@ -31,7 +31,7 @@
 
             <?php if($user && !$user->hasActiveSubscription()): ?>
             <div class="row mb-5" id="signInMessage">
-               <span class="sign-in-prompt" data-testid="sign-in-message">Fund Your Wallet To Get Auto Credits.</span>
+               <span class="sign-in-prompt" data-testid="sign-in-message">Enter your subscription amount:</span>
                <div><a href="/">Continue</a></div>
             </div>
             <wallet :auto_credit="true" :user="<?php echo e($user); ?>" :price_range="<?php echo e(collect($price_range)); ?>"></wallet>

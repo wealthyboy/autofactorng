@@ -26214,13 +26214,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.form.amount = $event;
     }),
     id: "wallet",
-    name: "Wallet",
-    type: "wallet",
+    name: "Amount",
+    type: "text",
     onBlur: $setup.getAmount
   }, null, 8
   /* PROPS */
   , ["error", "modelValue", "onBlur"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_simple_message, {
-    "class": "link-success fs-6 text-end fw-2 fs-4",
+    "class": "link-success fs-6 text-end fw-2 fs-5",
     message: $setup.amount
   }, null, 8
   /* PROPS */

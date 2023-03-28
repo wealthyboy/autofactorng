@@ -34,13 +34,13 @@
                 :error="v$.amount"
                 v-model="form.amount"
                 id="wallet"
-                name="Wallet"
-                type="wallet"
+                name="Amount"
+                type="text"
                 @blur="getAmount"
             />
 
             <simple-message
-                class="link-success fs-6 text-end fw-2 fs-4"
+                class="link-success fs-6 text-end fw-2 fs-5"
                 :message="amount"
             />
         </div>
