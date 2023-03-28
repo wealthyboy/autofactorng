@@ -65,7 +65,7 @@
 
                     <tbody>
                         @foreach($models['items'][0] as $key => $value)
-                        <tr>
+                        <tr class="table-body">
                             @if( isset($models['meta']['show_checkbox']) && $models['meta']['show_checkbox'])
                             <td>
                                 <div class="d-flex align-items-center">

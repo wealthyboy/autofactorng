@@ -356,3 +356,11 @@ label.error {
 .year {
     margin-top: -11px;
 }
+
+tr.table-heading th:last-child{
+    text-align: end;
+}
+
+tr.table-body td:last-child{
+    text-align: end;
+}
