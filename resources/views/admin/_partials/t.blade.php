@@ -60,7 +60,6 @@
                                 </a>
                             </th>
                             @endforeach
-                            <th class="text-secondary opacity-7"></th>
                         </tr>
                     </thead>
 
