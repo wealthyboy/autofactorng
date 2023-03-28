@@ -63,12 +63,12 @@ class OrdersController extends Table
 			$summaries['Discount'] = $order->percentage_type == 'percentage' ? $order->discount . '  % off'  :  '-' . $order->discount;
 		}
 
-
+		$no_card = true;
 		$summaries['Shipping'] = Helper::currencyWrapper($order->shipping_price);
 		$summaries['Heavy Item Charge'] = Helper::currencyWrapper($order->heavy_item_price);
 		$summaries['Total'] = Helper::currencyWrapper($order->total);
 		$objs = $this->showData($id);
-		return view('admin.orders.invoice', compact('summaries', 'objs', 'setting', 'order', 'ordered_products'));
+		return view('admin.orders.invoice', compact('no_card', 'summaries', 'objs', 'setting', 'order', 'ordered_products'));
 	}
 
 	public function store(Request $request)

@@ -51,7 +51,7 @@
                </div>
             </div>
             <div class="card-body">
-               @include('admin._partials.t', ['models' => $ordered_products, 'name' => 'Items'])
+               @include('admin._partials.t', ['models' => $ordered_products,'no_card' => false, 'name' => 'Items'])
 
 
             </div>

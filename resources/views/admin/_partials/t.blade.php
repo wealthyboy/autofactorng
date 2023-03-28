@@ -32,7 +32,7 @@
 
 
 
-    <div class="card">
+    <div class="{{ isset($no_card) ? '' : 'card }}">
         <div class="card-header ps-2">
             <h4 class="m-0">{{ $name }}</h4>
         </div>
