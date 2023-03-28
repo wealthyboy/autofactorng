@@ -52,7 +52,6 @@
             </div>
             <div class="card-body">
                @include('admin._partials.t', ['models' => $ordered_products,'no_card' => false, 'name' => 'Items'])
-
             </div>
             <div class="card-footer mt-md-1 mt-1">
                <div class="row">

@@ -250,10 +250,10 @@ export default {
         }),
 
         addToCart: function (product_id) {
-            console.log(this.added.includes(product_id));
             if (this.added.includes(product_id)) {
-                return false;
+                return;
             }
+
             this.loading = true;
             this.addProductToCart({
                 product_id: product_id,
