@@ -2,7 +2,7 @@
 
 <div class="bg-light">
     <div class="container">
-        <div class="d-block d-sm-none">
+        <div class="d-block d-sm-none ">
             <?php echo $__env->make('_partials.mobile_nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         </div>
     </div>
@@ -11,7 +11,7 @@
             <?php echo $__env->make('_partials.nav', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <div class="col-md-9 mt-5">
                 <div class="d-flex align-items-center justify-content-between">
-                    <h2 class="page-title ">Orders History</h2>
+                    <h2 class="page-title mb-2">Orders History</h2>
                     <div class="wallet-balance"></div>
                 </div>
                 <general-table class="bg-white" />
