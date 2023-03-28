@@ -35,14 +35,7 @@
                      </h5>
                   </div>
                   <div class="col-lg-5 col-md-7 mt-auto">
-                     <div class="row mt-md-5 mt-4 text-md-end text-start">
-                        <div class="col-md-6">
-                           <h6 class="text-secondary font-weight-normal mb-0">Invoice date:</h6>
-                        </div>
-                        <div class="col-md-6">
-                           <h6 class="text-dark mb-0">#{{ $order->invoice }}</h6>
-                        </div>
-                     </div>
+
                      <div class="row text-md-end text-start">
                         <div class="col-md-6">
                            <h6 class="text-secondary font-weight-normal mb-0">Date:</h6>
@@ -99,7 +92,7 @@
                <div class="row">
                   <div class="col-lg-12 text-left">
                      <h5>Thank you!</h5>
-                     Dear <input type="text" name="customer_name" value="Babarinde Fashola" style="border: 0px;">
+                     Dear {{ $order->user->fullname() }}
                      <p class=" text-sm">We hope that you enjoy your order</p>
                      <p class="text-sm">Should you need any sort of further assistance, we are always ready to assist.</p>
                      <p class="text-sm">You can reach us by phone at 09081155504, 09081155505 or by email at care@autofactorng.com</p>
