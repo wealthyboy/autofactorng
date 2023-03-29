@@ -26200,7 +26200,7 @@ var _hoisted_2 = {
   "class": "row"
 };
 var _hoisted_3 = {
-  "class": "col-6"
+  "class": "col-12 col-md-6"
 };
 var _hoisted_4 = {
   "class": "d-flex"
