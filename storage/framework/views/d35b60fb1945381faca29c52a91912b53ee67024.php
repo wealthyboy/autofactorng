@@ -33,19 +33,19 @@
                   <div class="col-sm-12 mt-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Full name</label>
-                        <input type="text" value="<?php echo e(isset($order) ? $order->first_name : null); ?>" class="form-control" name="first_name">
+                        <input type="text" value="<?php echo e(isset($order) ? $order->first_name : null); ?>" class="form-control" required name="first_name">
                      </div>
                   </div>
                   <div class="col-sm-12 col-12 mt-3">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Phone Number</label>
-                        <input name="phone_number" value="<?php echo e(isset($order) ? $order->phone_number : null); ?>" class="form-control " type="text">
+                        <input name="phone_number" value="<?php echo e(isset($order) ? $order->phone_number : null); ?>" class="form-control " type="text" required>
                      </div>
                   </div>
                   <div class="col-sm-12 col-12 mt-3">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Payment</label>
-                        <input name="payment_type" value="<?php echo e(isset($order) ? $order->payment_type : null); ?>" class="form-control" type="text">
+                        <input name="payment_type" value="<?php echo e(isset($order) ? $order->payment_type : null); ?>" class="form-control" type="text" required>
                      </div>
                   </div>
                </div>
@@ -54,13 +54,13 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Address</label>
-                        <input type="text" value="<?php echo e(isset($order) ? $order->address : null); ?>" class="form-control" name="address" id="address">
+                        <input type="text" value="<?php echo e(isset($order) ? $order->address : null); ?>" class="form-control" name="address" id="address" required>
                      </div>
                   </div>
                   <div class="col-sm-12 col-12 mt-3">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Land Mark</label>
-                        <input type="text" value="<?php echo e(isset($order)? $order->landmark : null); ?>" class="form-control" name="landmark" id="land_mark">
+                        <input type="text" value="<?php echo e(isset($order)? $order->landmark : null); ?>" class="form-control" name="landmark" id="land_mark" required>
                      </div>
                   </div>
 
