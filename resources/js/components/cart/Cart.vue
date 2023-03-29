@@ -1,40 +1,56 @@
 <template>
-    <tbody>
-        <tr class="product-row">
-            <td>
-                <figure class="product-image-container">
+    <div class="card border-0 mb-3 mt-3 p-4">
+        <div class="row">
+            <div class="col-6">
+                <div class="d-flex">
                     <a :href="cart.product.link" class="product-image">
-                        <img :src="cart.image" alt="product" />
+                        <figure class="product-image-container">
+                            <img :src="cart.image" alt="product" />
+                        </figure>
                     </a>
-                </figure>
-            </td>
-            <td class="product-col">
-                <h5 class="product-title fs-5">
-                    <a :href="cart.product.link">{{ cart.product.name }}</a>
+                    <div>
+                        <h5 class="product-title fs-5">
+                            <a :href="cart.product.link">{{
+                                cart.product.name
+                            }}</a>
 
-                    <a
-                        href="#"
-                        class="mt-5 position-relative"
-                        @click.prevent="removeFromCart(cart.id)"
-                    >
-                        X Remove
-                    </a>
-                </h5>
-            </td>
-            <td>{{ $filters.formatNumber(cart.price) }}</td>
-            <td>
-                <div class="product-single-qty">
-                    <cart-qty :cart="cart" @qty:updated="handleQty" />
+                            <a
+                                href="#"
+                                class="mt-5 position-relative"
+                                @click.prevent="removeFromCart(cart.id)"
+                            >
+                                X Remove
+                            </a>
+                        </h5>
+                        <div>
+                            {{ $filters.formatNumber(cart.price) }}
+                        </div>
+                    </div>
                 </div>
-                <!-- End .product-single-qty -->
-            </td>
-            <td class="text-right">
-                <span class="subtotal-price">{{
-                    $filters.formatNumber(cart.quantity * cart.price)
-                }}</span>
-            </td>
-        </tr>
-    </tbody>
+            </div>
+            <div
+                class="col-md-6 d-flex align-items-center justify-content-between"
+            >
+                <div
+                    class="d-flex justify-content-between align-items-center flex-grow-1"
+                >
+                    <cart-qty :cart="cart" @qty:updated="handleQty" />
+                    <div class="d-flex flex-column">
+                        <a
+                            href="#"
+                            class="position-relative"
+                            @click.prevent="removeFromCart(cart.id)"
+                        >
+                            X Remove
+                        </a>
+                        <span class="subtotal-price">{{
+                            $filters.formatNumber(cart.quantity * cart.price)
+                        }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>

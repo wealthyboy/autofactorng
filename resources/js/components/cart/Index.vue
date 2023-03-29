@@ -5,17 +5,18 @@
 
     <div v-if="!loading && carts.length" class="row">
         <div class="col-lg-8">
-            <div class="card border-0"></div>
+            <cart v-for="cart in carts" :key="cart.id" :cart="cart"></cart>
         </div>
 
-        <div class="col-md-4 mb-5">
-            <div class="card raised border-0">
+        <div class="col-md-4 mb-5 mt-3">
+            <div class="card raised border-0 p-4">
                 <div class="cart_totalse">
-                    <h3>Summary</h3>
+                    <h3 class="mb-1 text-uppercase">Summary</h3>
+                    <div class="underline"></div>
                     <div
-                        class="py-5 border-bottom d-flex justify-content-between fs-3"
+                        class="py-5 border-bottom d-flex justify-content-between"
                     >
-                        <span class="bold">Subtotal</span>
+                        <span class="text-muted fs-4">Item(s) Subtotal </span>
                         <span class="price-amount amount bold float-right"
                             ><span class="currencySymbol">{{
                                 $filters.formatNumber(cart_meta.sub_total)
@@ -23,9 +24,9 @@
                         >
                     </div>
 
-                    <div class="py-5 d-flex justify-content-between fs-1">
-                        <span class="bold">Total</span>
-                        <span class="price-amount amount bold"
+                    <div class="py-5 d-flex justify-content-between">
+                        <span class="fs-3 text-muted">Total</span>
+                        <span class="price-amount amount bold display-4"
                             ><span class="currencySymbol">{{
                                 $filters.formatNumber(cart_meta.sub_total)
                             }}</span></span
@@ -33,7 +34,9 @@
                     </div>
 
                     <div class="checkout-methods w-100">
-                        <a href="/checkout" class="btn btn-block btn-dark w-100"
+                        <a
+                            href="/checkout"
+                            class="btn btn-block fw-bold btn-dark w-100"
                             >Proceed to Checkout
                             <i class="fa fa-arrow-right"></i
                         ></a>
