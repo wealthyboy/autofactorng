@@ -259,9 +259,6 @@ export default {
                 .then(() => {
                     this.cText = "Add To Bag";
                     this.loading = false;
-                    setTimeout(() => {
-                        e.target.classList.remove("pe-none");
-                    }, 3000);
                 })
                 .catch((error) => {
                     this.cText = "Add To Bag";
