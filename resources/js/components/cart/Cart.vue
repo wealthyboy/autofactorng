@@ -8,7 +8,7 @@
                             <img :src="cart.image" alt="product" />
                         </figure>
                     </a>
-                    <div>
+                    <div class="ms-4">
                         <h5 class="product-title fs-5">
                             <a :href="cart.product.link">{{
                                 cart.product.name
@@ -38,14 +38,11 @@
                     <div class="d-flex flex-column">
                         <a
                             href="#"
-                            class="position-relative"
+                            class="position-relative bold text-main"
                             @click.prevent="removeFromCart(cart.id)"
                         >
                             X Remove
                         </a>
-                        <span class="subtotal-price">{{
-                            $filters.formatNumber(cart.quantity * cart.price)
-                        }}</span>
                     </div>
                 </div>
             </div>
