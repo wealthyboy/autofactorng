@@ -14,7 +14,7 @@
                                 cart.product.name
                             }}</a>
                         </h5>
-                        <div>
+                        <div class="fs-2 bold">
                             {{ $filters.formatNumber(cart.price) }}
                         </div>
                     </div>
