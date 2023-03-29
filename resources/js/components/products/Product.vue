@@ -250,7 +250,7 @@ export default {
         }),
 
         addToCart: function (product_id) {
-            console.log(product_id);
+            console.log(this.added);
             if (this.added.includes(product_id)) {
                 return;
             }
