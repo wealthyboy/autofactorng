@@ -63,7 +63,7 @@
                </div>
 
                <div class="row mt-3">
-                  <div class="col-sm-4 col-12">
+                  <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                         <select class="form-control" name="percentage_type" id="">
                            <option value="">--Type--</option>
@@ -74,17 +74,23 @@
                      </div>
                   </div>
 
-                  <div class="col-sm-4 col-12">
+                  <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Discount</label>
                         <input type="number" class="form-control" name="discount">
                      </div>
                   </div>
 
-                  <div class="col-sm-4 col-12">
+                  <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Shipping</label>
                         <input type="number" class="form-control" name="shipping_price">
+                     </div>
+                  </div>
+                  <div class="col-sm-3 col-12">
+                     <div class="input-group input-group-outline">
+                        <label class="form-label"> Heavy/Large Item</label>
+                        <input type="number" class="form-control" name="heavy_or_large_item">
                      </div>
                   </div>
                </div>

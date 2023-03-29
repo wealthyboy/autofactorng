@@ -129,9 +129,11 @@ class OrdersController extends Table
 
 			$total = array_sum($total);
 			$shipping = $request->shipping_price;
+			$heavy_or_large_item = $request->heavy_or_large_item;
 			if ($request->percentage_type == 'fixed') {
 				$new_total = $total - $request->discount;
 				$total = $new_total + $shipping;
+				$total = $total + $heavy_or_large_item;
 			}
 
 
@@ -139,6 +141,7 @@ class OrdersController extends Table
 				$new_total = ($request->discount * $total) / 100;
 				$new_total = $total - $new_total;
 				$total = $new_total + $shipping;
+				$total = $total + $heavy_or_large_item;
 			}
 
 			$order->total = $total;
