@@ -23493,15 +23493,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_1__.mapActions)({
     addProductToCart: "addProductToCart"
   })), {}, {
-    addToCart: function addToCart(product_id) {
+    addToCart: function addToCart(e, product_id) {
       var _this = this;
 
       var added = [];
-
-      if (this.added.includes(product_id)) {
-        return;
-      }
-
+      console.log(e);
       this.loading = true;
       this.addProductToCart({
         product_id: product_id,
@@ -23509,7 +23505,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function () {
         _this.cText = "Add To Bag";
         _this.loading = false;
-        added.push(product_id);
       })["catch"](function (error) {
         _this.cText = "Add To Bag";
         _this.loading = false;
@@ -28474,7 +28469,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .price-box "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_52, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-      return $options.addToCart($props.product.id);
+      return $options.addToCart($event, $props.product.id);
     }, ["prevent"])),
     href: "#",
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[_ctx.carts.find(function (c) {

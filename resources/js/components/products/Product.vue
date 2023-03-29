@@ -193,7 +193,7 @@
             <!-- End .price-box -->
             <div class="product-action">
                 <a
-                    @click.prevent="addToCart(product.id)"
+                    @click.prevent="addToCart($event, product.id)"
                     href="#"
                     :class="[
                         carts.find((c) => c.product_id == product.id) ||
@@ -249,12 +249,9 @@ export default {
             addProductToCart: "addProductToCart",
         }),
 
-        addToCart: function (product_id) {
+        addToCart: function (e, product_id) {
             let added = [];
-            if (this.added.includes(product_id)) {
-                return;
-            }
-
+            console.log(e);
             this.loading = true;
             this.addProductToCart({
                 product_id: product_id,
@@ -263,7 +260,6 @@ export default {
                 .then(() => {
                     this.cText = "Add To Bag";
                     this.loading = false;
-                    added.push(product_id);
                 })
                 .catch((error) => {
                     this.cText = "Add To Bag";
