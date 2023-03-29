@@ -3408,6 +3408,10 @@ a.btn.disabled {
     box-shadow: none
 }
 
+.disabled{
+    cursor: not-allowed !important;
+}
+
 .btn-dark.disabled,
 .btn-dark:disabled {
     border-color: #222529;
