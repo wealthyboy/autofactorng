@@ -26555,8 +26555,8 @@ var _hoisted_13 = {
 };
 
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "fs-3 text-muted"
-}, "Total", -1
+  "class": "fs-3 text- bold"
+}, "SUBTOTAL", -1
 /* HOISTED */
 );
 

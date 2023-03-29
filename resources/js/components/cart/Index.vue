@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="py-5 d-flex justify-content-between">
-                        <span class="fs-3 text-muted">Total</span>
+                        <span class="fs-3 text- bold">SUBTOTAL</span>
                         <span class="price-amount amount bold display-4"
                             ><span class="currencySymbol">{{
                                 $filters.formatNumber(cart_meta.sub_total)
