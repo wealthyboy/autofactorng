@@ -26259,7 +26259,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.removeFromCart($props.cart.id);
     }, ["prevent"]))
-  }, " X Remove ")])])])])]);
+  }, " remove ")])])])])]);
 }
 
 /***/ }),

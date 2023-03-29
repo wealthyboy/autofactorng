@@ -33,7 +33,7 @@
                             class="position-relative bold text-main"
                             @click.prevent="removeFromCart(cart.id)"
                         >
-                            X Remove
+                            remove
                         </a>
                     </div>
                 </div>
