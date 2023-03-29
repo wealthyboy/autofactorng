@@ -90,7 +90,7 @@
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Heavy/Large Item</label>
-                        <input type="number" class="form-control" name="heavy_or_large_item">
+                        <input type="number" class="form-control" name="heavy_item_price">
                      </div>
                   </div>
                </div>
