@@ -23496,8 +23496,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     addToCart: function addToCart(e, product_id) {
       var _this = this;
 
-      var added = [];
-      console.log(e);
+      e.classList.add("pe-none disabled");
       this.loading = true;
       this.addProductToCart({
         product_id: product_id,
