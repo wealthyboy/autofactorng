@@ -23496,7 +23496,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     addToCart: function addToCart(product_id) {
       var _this = this;
 
-      console.log(this.added);
+      var added = [];
 
       if (this.added.includes(product_id)) {
         return;
@@ -23509,8 +23509,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function () {
         _this.cText = "Add To Bag";
         _this.loading = false;
-
-        _this.added.push(product_id);
+        added.push(product_id);
       })["catch"](function (error) {
         _this.cText = "Add To Bag";
         _this.loading = false;

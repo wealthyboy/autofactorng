@@ -250,7 +250,7 @@ export default {
         }),
 
         addToCart: function (product_id) {
-            console.log(this.added);
+            let added = [];
             if (this.added.includes(product_id)) {
                 return;
             }
@@ -263,7 +263,7 @@ export default {
                 .then(() => {
                     this.cText = "Add To Bag";
                     this.loading = false;
-                    this.added.push(product_id);
+                    added.push(product_id);
                 })
                 .catch((error) => {
                     this.cText = "Add To Bag";
