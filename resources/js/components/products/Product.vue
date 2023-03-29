@@ -250,7 +250,7 @@ export default {
         }),
 
         addToCart: function (e, product_id) {
-            e.target.classList.add("disabled");
+            e.target.classList.add("pe-none");
             this.loading = true;
             this.addProductToCart({
                 product_id: product_id,
@@ -259,7 +259,7 @@ export default {
                 .then(() => {
                     this.cText = "Add To Bag";
                     this.loading = false;
-                    e.target.classList.remove("disabled");
+                    //e.target.classList.remove("disabled");
                 })
                 .catch((error) => {
                     this.cText = "Add To Bag";

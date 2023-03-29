@@ -23496,15 +23496,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     addToCart: function addToCart(e, product_id) {
       var _this = this;
 
-      e.target.classList.add("disabled");
+      e.target.classList.add("pe-none");
       this.loading = true;
       this.addProductToCart({
         product_id: product_id,
         quantity: 1
       }).then(function () {
         _this.cText = "Add To Bag";
-        _this.loading = false;
-        e.target.classList.remove("disabled");
+        _this.loading = false; //e.target.classList.remove("disabled");
       })["catch"](function (error) {
         _this.cText = "Add To Bag";
         _this.loading = false;
