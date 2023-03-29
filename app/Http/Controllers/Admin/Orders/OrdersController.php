@@ -115,7 +115,7 @@ class OrdersController extends Table
 			$product->product_name = $v;
 			$product->order_id = $order->id;
 			$product->quantity = $input['products']['quantity'][$key];
-			//$product->tracker = rand(100000, time());
+			$product->tracker = rand(100000, time());
 			$product->price = $input['products']['price'][$key];
 			$product->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
 			$total[] = $input['products']['price'][$key] * $input['products']['quantity'][$key];
