@@ -4,7 +4,7 @@
             <div class="col-12 col-md-6">
                 <div class="d-flex">
                     <a :href="cart.product.link" class="product-image">
-                        <figure class="product-image-container">
+                        <figure class="image-category">
                             <img :src="cart.image" alt="product" />
                         </figure>
                     </a>

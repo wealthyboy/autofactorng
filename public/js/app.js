@@ -26207,7 +26207,7 @@ var _hoisted_4 = {
 };
 var _hoisted_5 = ["href"];
 var _hoisted_6 = {
-  "class": "product-image-container"
+  "class": "image-category"
 };
 var _hoisted_7 = ["src"];
 var _hoisted_8 = {
