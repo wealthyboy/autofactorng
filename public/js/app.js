@@ -23503,7 +23503,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         quantity: 1
       }).then(function () {
         _this.cText = "Add To Bag";
-        _this.loading = false; //e.target.classList.remove("disabled");
+        _this.loading = false;
+        e.target.classList.remove("pe-none");
       })["catch"](function (error) {
         _this.cText = "Add To Bag";
         _this.loading = false;

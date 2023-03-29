@@ -259,7 +259,7 @@ export default {
                 .then(() => {
                     this.cText = "Add To Bag";
                     this.loading = false;
-                    //e.target.classList.remove("disabled");
+                    e.target.classList.remove("pe-none");
                 })
                 .catch((error) => {
                     this.cText = "Add To Bag";
