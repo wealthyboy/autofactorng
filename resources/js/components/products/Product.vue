@@ -250,7 +250,7 @@ export default {
         }),
 
         addToCart: function (e, product_id) {
-            e.classList.add("pe-none disabled");
+            e.target.classList.add("pe-none disabled");
             this.loading = true;
             this.addProductToCart({
                 product_id: product_id,
