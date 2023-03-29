@@ -26554,8 +26554,8 @@ var _hoisted_13 = {
   "class": "py-5 d-flex justify-content-between"
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "fs-3 text- bold"
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "mb-1 text-uppercase"
 }, "SUBTOTAL", -1
 /* HOISTED */
 );
