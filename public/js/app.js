@@ -23504,6 +23504,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function () {
         _this.cText = "Add To Bag";
         _this.loading = false;
+        e.target.classList.remove("disabled");
       })["catch"](function (error) {
         _this.cText = "Add To Bag";
         _this.loading = false;

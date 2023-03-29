@@ -259,6 +259,7 @@ export default {
                 .then(() => {
                     this.cText = "Add To Bag";
                     this.loading = false;
+                    e.target.classList.remove("disabled");
                 })
                 .catch((error) => {
                     this.cText = "Add To Bag";
