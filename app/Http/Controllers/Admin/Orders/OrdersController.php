@@ -129,7 +129,7 @@ class OrdersController extends Table
 
 			$total = array_sum($total);
 			$shipping = $request->shipping_price;
-			$heavy_or_large_item = $request->heavy_or_large_item;
+			$heavy_or_large_item = $request->heavy_item_price;
 			if ($request->percentage_type == 'fixed') {
 				$new_total = $total - $request->discount;
 				$total = $new_total + $shipping;
