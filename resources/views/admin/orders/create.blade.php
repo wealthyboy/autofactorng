@@ -27,7 +27,7 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Subject</label>
-                        <input type="text" value="{{ isset($order) ? $order->subject : 'Thanks for ordering' }}" class="form-control" name="subject" required>
+                        <input type="text" value="{{ isset($order) ? $order->subject : 'Thanks For Ordering' }}" class="form-control" name="subject" required>
                      </div>
                   </div>
 
@@ -56,12 +56,6 @@
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Address</label>
                         <input type="text" value="{{ isset($order) ? $order->address : null }}" class="form-control" name="address" id="address" required>
-                     </div>
-                  </div>
-                  <div class="col-sm-12 col-12 mt-3">
-                     <div class="input-group input-group-outline">
-                        <label class="form-label"> Land Mark</label>
-                        <input type="text" value="{{ isset($order)? $order->landmark : null }}" class="form-control" name="landmark" id="land_mark" required>
                      </div>
                   </div>
 
