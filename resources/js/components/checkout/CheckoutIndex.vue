@@ -11,111 +11,122 @@
     <div v-if="!loading && !paymentIsComplete" class="container">
         <div class="row align-items-start">
             <div class="col-md-7">
-                <div class="col-md-12 px-4 bg-white border border-gray mb-2">
-                    <div class="head border-bottom mb-3 py-4">
-                        <h3 class="mb-0">1. SHIPPING ADDRESSS</h3>
+                <div class="card border-0">
+                    <div class="col-md-12 px-4 bg-white mb-2">
+                        <div class="head border-bottom mb-3 py-4">
+                            <h3 class="mb-0">1. SHIPPING ADDRESSS</h3>
+                        </div>
+                        <ship-address />
                     </div>
-                    <ship-address />
                 </div>
 
-                <div class="col-md-12 bg-white">
-                    <div class="pt-3 pb-2">
-                        <span class="float-right">
-                            <div class="payment-icons mt-1 d-flex"></div>
-                        </span>
-                        <h3 class="mb-0 mb-3">2. PAYMENT</h3>
-                    </div>
+                <div class="card border-0 mt-3">
+                    <div class="col-md-12 bg-white">
+                        <div class="pt-3 pb-2">
+                            <span class="float-right">
+                                <div class="payment-icons mt-1 d-flex"></div>
+                            </span>
+                            <h3 class="mb-0 mb-3">2. PAYMENT</h3>
+                        </div>
 
-                    <div v-if="addresses.length">
-                        <cart-summary />
+                        <div v-if="addresses.length">
+                            <cart-summary />
 
-                        <total
-                            :voucher="voucher"
-                            :total="prices.total"
-                            :amount="amount"
-                        />
+                            <total
+                                :voucher="voucher"
+                                :total="prices.total"
+                                :amount="amount"
+                            />
 
-                        <div class="checkout-methods w-100 mb-5 mt-5">
-                            <a
-                                href="#"
-                                @click.prevent="checkoutWithCredit"
-                                :class="{
-                                    'pe-none':
-                                        prices.total >
-                                        walletBalance?.auto_credit,
-                                    disabled:
-                                        prices.total >
-                                        walletBalance?.auto_credit,
-                                }"
-                                class="btn btn-block btn-dark w-100 mb-2"
-                            >
-                                Pay with auto credits
-                                <i class="fa fa-arrow-right"></i
-                            ></a>
+                            <div class="checkout-methods w-100 mb-5 mt-5">
+                                <a
+                                    href="#"
+                                    @click.prevent="checkoutWithCredit"
+                                    :class="{
+                                        'pe-none':
+                                            prices.total >
+                                            walletBalance?.auto_credit,
+                                        disabled:
+                                            prices.total >
+                                            walletBalance?.auto_credit,
+                                    }"
+                                    class="btn btn-block btn-dark w-100 mb-2"
+                                >
+                                    Pay with auto credits
+                                    <i class="fa fa-arrow-right"></i
+                                ></a>
 
-                            <a
-                                v-if="walletBalance"
-                                href="#"
-                                @click.prevent="checkoutWithWallet($event)"
-                                :class="{
-                                    'pe-none':
-                                        prices.total >
-                                        parseInt(walletBalance.wallet_balance),
-                                    disabled:
-                                        prices.total >
-                                        parseInt(walletBalance.wallet_balance),
-                                }"
-                                class="btn btn-block btn-dark w-100 mb-2"
-                            >
-                                Pay with wallet
-                                <i class="fa fa-arrow-right"></i
-                            ></a>
+                                <a
+                                    v-if="walletBalance"
+                                    href="#"
+                                    @click.prevent="checkoutWithWallet($event)"
+                                    :class="{
+                                        'pe-none':
+                                            prices.total >
+                                            parseInt(
+                                                walletBalance.wallet_balance
+                                            ),
+                                        disabled:
+                                            prices.total >
+                                            parseInt(
+                                                walletBalance.wallet_balance
+                                            ),
+                                    }"
+                                    class="btn btn-block btn-dark w-100 mb-2"
+                                >
+                                    Pay with wallet
+                                    <i class="fa fa-arrow-right"></i
+                                ></a>
 
-                            <a
-                                href="#"
-                                :class="{
-                                    'pe-none': !prices.isLagos,
+                                <a
+                                    href="#"
+                                    :class="{
+                                        'pe-none': !prices.isLagos,
 
-                                    disabled: !prices.isLagos,
-                                }"
-                                @click.prevent="checkoutWithLagos($event)"
-                                class="btn btn-block btn-dark w-100 mb-2"
-                            >
-                                Pay on delivery (Lagos only)
-                                <i class="fa fa-arrow-right"></i
-                            ></a>
-                            <a
-                                href="#"
-                                @click.prevent="payWithZilla"
-                                class="btn btn-block btn-dark w-100 mb-2"
-                            >
-                                Buy now pay later
-                                <i class="fa fa-arrow-right"></i
-                            ></a>
-                            <a
-                                href="#"
-                                @click.prevent="makePayment"
-                                class="btn btn-block btn-dark w-100"
-                            >
-                                Pay Now<i class="fa fa-arrow-right"></i
-                            ></a>
+                                        disabled: !prices.isLagos,
+                                    }"
+                                    @click.prevent="checkoutWithLagos($event)"
+                                    class="btn btn-block btn-dark w-100 mb-2"
+                                >
+                                    Pay on delivery (Lagos only)
+                                    <i class="fa fa-arrow-right"></i
+                                ></a>
+                                <a
+                                    href="#"
+                                    @click.prevent="payWithZilla"
+                                    class="btn btn-block btn-dark w-100 mb-2"
+                                >
+                                    Buy now pay later
+                                    <i class="fa fa-arrow-right"></i
+                                ></a>
+                                <a
+                                    href="#"
+                                    @click.prevent="makePayment"
+                                    class="btn btn-block btn-dark w-100"
+                                >
+                                    Pay Now<i class="fa fa-arrow-right"></i
+                                ></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="col-5">
-                <div class="col-md-12 d-none d-lg-block mb-3">
-                    <div
-                        class="cart-collateralse bg-white border pb-3 pt-3 pl-3 pt-3 pr-3"
-                    >
-                        <div class="cart_totalse px-4">
-                            <div class="head py-3">
-                                <h3 class="mb-0">SUMMARY</h3>
+                <div class="card border-0">
+                    <div class="col-md-12 d-none d-lg-block mb-3">
+                        <div
+                            class="cart-collateralse bg-white pb-3 pt-3 pl-3 pt-3 pr-3"
+                        >
+                            <div class="cart_totalse px-4">
+                                <div class="head py-3">
+                                    <h3 class="mb-0">SUMMARY</h3>
+                                </div>
+
+                                <cart-summary />
+
+                                <total :voucher="voucher" :amount="amount" />
                             </div>
-
-                            <cart-summary />
-
-                            <total :voucher="voucher" :amount="amount" />
                         </div>
                     </div>
                 </div>

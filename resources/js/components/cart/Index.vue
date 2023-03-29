@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="py-5 d-flex justify-content-between">
-                        <h3 class="mb-1 text-uppercase">SUBTOTAL</h3>
+                        <h3 class="mb-1 text-uppercase">TOTAL</h3>
 
                         <span class="price-amount amount bold display-4"
                             ><span class="currencySymbol">{{
