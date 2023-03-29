@@ -31,7 +31,6 @@
 
                         <div v-if="addresses.length">
                             <cart-summary />
-
                             <total
                                 :voucher="voucher"
                                 :total="prices.total"

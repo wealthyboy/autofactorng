@@ -6077,6 +6077,16 @@ label {
     padding-right: 4rem
 }
 
+.form-check-input:checked{
+    background-color: #f26100  !important;
+    border-color: #f26100   !important;
+}
+
+.form-check-input {
+    width: 1.3em !important;
+    height: 1.3em !important;
+}
+
 .form-control-tooltip .input-tooltip {
     display: inline-block;
     position: absolute;
@@ -19752,6 +19762,10 @@ tbody .product-col {
 .checkout-container .order-summary {
     padding: 2.8rem 3.2rem 3.1rem;
     margin-top: 1px
+}
+
+.address-info {
+    margin-top: -20px;
 }
 
 .order-complete-container .address .title,

@@ -21,73 +21,68 @@
                 v-for="(location, index) in addresses"
                 :key="location.id"
             >
-                <div class="shipping-info border border-gray p-4 bg-white">
+                <div
+                    class="shipping-info border border-gray px-4 py-2 bg-white"
+                >
                     <div class="shipping-address-info">
-                        <p class="border-bottom pb-4" id="">
-                            {{ location.first_name }} {{ location.last_name }}
-                        </p>
-                        <p class="">
-                            {{ location.email }} {{ location.phone_number }}
-                        </p>
-                        <p class="border-bottom pb-4">
-                            {{ location.address }} {{ location.address2 }}
-                        </p>
-                        <p class="border-bottom pb-4">
-                            {{ location.city }} ,{{ location.state }}
-                        </p>
-                        <p
-                            class="w-100 d-flex justify-content-between align-items-center"
-                        >
-                            <a
-                                @click.prevent="editAddress(location)"
-                                data-placement="left"
-                                href="#"
-                                class="align-self-center"
-                            >
-                                <i class="fa fa-edit"></i> Edit
-                            </a>
-                            <a
-                                @click.prevent="
-                                    makeDefault($event, location.id)
-                                "
+                        <div class="form-check">
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                name="flexRadioDefault"
                                 :id="location.id"
-                                data-placement="left"
-                                href="#"
-                                class=""
+                            />
+                            <label
+                                class="form-check-label mb-0"
+                                :for="location.id"
+                                role="button"
                             >
-                                <i class="fa fa-plus"></i>
-                                <span v-if="location.is_active >= 1">
-                                    Default
-                                </span>
-                                <span v-else>
-                                    <span
-                                        v-if="id == location.id"
-                                        class="spinner-border spinner-border-sm"
-                                        role="status"
-                                        aria-hidden="true"
-                                    ></span>
-                                    Use this address
-                                </span>
-                            </a>
-                            <a
-                                @click.prevent="
-                                    removeAddress($event, location.id)
-                                "
-                                :id="location.id"
-                                data-placement="left"
-                                href="#"
-                                class=""
+                                {{ location.first_name }}
+                                {{ location.last_name }}
+                            </label>
+
+                            <div
+                                class="d-flex justify-content-between align-items-center"
                             >
-                                <i class="fa fa-trash"></i>
-                                <span
-                                    v-if="delete_id == location.id"
-                                    class="spinner-border spinner-border-sm"
-                                    role="status"
-                                    aria-hidden="true"
-                                ></span>
-                                Delete
-                            </a>
-                        </p>
+                                <div class="address-inf text-muted p-0">
+                                    {{ location.email
+                                    }}{{ location.phone_number }}
+                                    {{ location.address }} {{ location.address2
+                                    }}<br />
+                                    {{ location.city }} ,{{ location.state
+                                    }}<br />
+                                </div>
+
+                                <div>
+                                    <a
+                                        @click.prevent="editAddress(location)"
+                                        data-placement="left"
+                                        href="#"
+                                        class="align-self-center text-main"
+                                    >
+                                        <i class="fa fa-edit"></i> Edit
+                                    </a>
+                                    |
+                                    <a
+                                        @click.prevent="
+                                            removeAddress($event, location.id)
+                                        "
+                                        data-placement="left"
+                                        href="#"
+                                        class="text-main"
+                                    >
+                                        <i class="fa fa-trash"></i>
+                                        <span
+                                            v-if="delete_id == location.id"
+                                            class="spinner-border spinner-border-sm"
+                                            role="status"
+                                            aria-hidden="true"
+                                        ></span>
+                                        Delete
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </li>
