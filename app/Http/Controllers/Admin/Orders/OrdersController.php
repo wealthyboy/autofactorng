@@ -79,71 +79,81 @@ class OrdersController extends Table
 	public function store(Request $request)
 	{
 
-		$email = explode(',', $request->email);
-		$user = User::where('email', $email[0])->first();
-		$input = $request->except('_token');
-		$input['invoice'] = substr(rand(100000, time()), 0, 7);
-		$input['order_type'] = "Offline";
-		$input['user_id'] = null !== $user ? $user->id : null;
-		$input['status'] = "Confirmed";
-		$order = new Order;
-		$order->fill($input);
-		$order->save();
+
+
+		try {
+			DB::beginTransaction();
+
+			$email = explode(',', $request->email);
+			$user = User::where('email', $email[0])->first();
+			$input = $request->except('_token');
+			$input['invoice'] = substr(rand(100000, time()), 0, 7);
+			$input['order_type'] = "Offline";
+			$input['user_id'] = null !== $user ? $user->id : null;
+			$input['status'] = "Confirmed";
+			$order = new Order;
+			$order->fill($input);
+			$order->save();
 
 
 
-		foreach (Order::$statuses as $key => $status) {
-			$order_status = new OrderStatus();
-			$order_status->is_updated = false;
-			$order_status->status = $status;
-			$order_status->order_id = $order->id;
-			$order_status->save();
+			foreach (Order::$statuses as $key => $status) {
+				$order_status = new OrderStatus();
+				$order_status->is_updated = false;
+				$order_status->status = $status;
+				$order_status->order_id = $order->id;
+				$order_status->save();
+			}
+
+
+			$order_status = OrderStatus::where(['status' => 'Confirmed', 'order_id' => $order->id])->first();
+
+			if (null !== $order_status) {
+				$order_status->is_updated = true;
+				$order_status->save();
+			}
+
+			$total = [];
+
+			foreach ($input['products']['product_name'] as $key => $v) {
+				$product =  new OrderedProduct;
+				$product->product_name = $v;
+				$product->order_id = $order->id;
+				$product->quantity = $input['products']['quantity'][$key];
+				$product->tracker = rand(100000, time());
+				$product->price = $input['products']['price'][$key];
+				$product->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
+				$total[] = $input['products']['price'][$key] * $input['products']['quantity'][$key];
+				$product->save();
+			}
+
+			$total = array_sum($total);
+			$shipping = $request->shipping_price;
+			if ($request->percentage_type == 'fixed') {
+				$new_total = $total - $request->discount;
+				$total = $new_total + $shipping;
+			}
+
+
+			if ($request->percentage_type == 'percentage') {
+				$new_total = ($request->discount * $total) / 100;
+				$new_total = $total - $new_total;
+				$total = $new_total + $shipping;
+			}
+
+			$order->total = $total;
+			$order->save();
+
+			// Send Mail
+			(new Activity)->put("Added a new order with email and phone number  " . $request->email . ' and ' . $request->phone_number);
+			DB::commit();
+
+			return  redirect()->route('admin.orders.index');
+			//code...
+		} catch (\Throwable $th) {
+			//throw $th;
+			return  redirect()->route('admin.orders.index')->with('errors', 'Something went wrong');
 		}
-
-
-		$order_status = OrderStatus::where(['status' => 'Confirmed', 'order_id' => $order->id])->first();
-
-		if (null !== $order_status) {
-			$order_status->is_updated = true;
-			$order_status->save();
-		}
-
-		$total = [];
-
-		foreach ($input['products']['product_name'] as $key => $v) {
-			$product =  new OrderedProduct;
-			$product->product_name = $v;
-			$product->order_id = $order->id;
-			$product->quantity = $input['products']['quantity'][$key];
-			$product->tracker = rand(100000, time());
-			$product->price = $input['products']['price'][$key];
-			$product->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
-			$total[] = $input['products']['price'][$key] * $input['products']['quantity'][$key];
-			$product->save();
-		}
-
-		$total = array_sum($total);
-		$shipping = $request->shipping_price;
-		if ($request->percentage_type == 'fixed') {
-
-			$new_total = $total - $request->discount;
-
-			$total = $new_total + $shipping;
-		}
-
-
-		if ($request->percentage_type == 'percentage') {
-			$new_total = ($request->discount * $total) / 100;
-			$new_total = $total - $new_total;
-			$total = $new_total + $shipping;
-		}
-
-		$order->total = $total;
-		$order->save();
-
-		// Send Mail
-		(new Activity)->put("Added a new order with email and phone number  " . $request->email . ' and ' . $request->phone_number);
-		return  redirect()->route('admin.orders.index');
 	}
 
 	public function routes()
