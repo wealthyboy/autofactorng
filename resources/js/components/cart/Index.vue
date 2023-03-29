@@ -11,7 +11,7 @@
         <div class="col-md-4 mb-5 mt-3">
             <div class="card raised border-0 p-4">
                 <div class="cart_totalse">
-                    <h3 class="mb-1 text-uppercase">Summary</h3>
+                    <h3 class="mb-2 text-uppercase">Summary</h3>
                     <div class="underline"></div>
                     <div
                         class="py-5 border-bottom d-flex justify-content-between"

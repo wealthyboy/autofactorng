@@ -26523,7 +26523,7 @@ var _hoisted_6 = {
 };
 
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "mb-1 text-uppercase"
+  "class": "mb-2 text-uppercase"
 }, "Summary", -1
 /* HOISTED */
 );
