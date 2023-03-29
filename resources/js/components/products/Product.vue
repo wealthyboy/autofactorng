@@ -250,6 +250,7 @@ export default {
         }),
 
         addToCart: function (product_id) {
+            console.log(product_id);
             if (this.added.includes(product_id)) {
                 return;
             }

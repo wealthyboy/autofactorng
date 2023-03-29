@@ -50,7 +50,6 @@ class OrdersController extends Table
 		$order = Order::find($id);
 		$setting = Setting::first();
 		$sub_total  =  $this->subTotal($order);
-
 		$ordered_products = $order->ordered_products()->paginate(20);
 		$ordered_products = (new OrderedProduct())->getListingData($ordered_products);
 		$summaries = [];
