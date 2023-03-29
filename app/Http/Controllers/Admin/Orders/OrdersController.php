@@ -148,6 +148,7 @@ class OrdersController extends Table
 			(new Activity)->put("Added a new order with email and phone number  " . $request->email . ' and ' . $request->phone_number);
 			DB::commit();
 
+
 			return  redirect()->route('admin.orders.index');
 			//code...
 		} catch (\Throwable $th) {
