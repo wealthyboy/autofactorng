@@ -42739,7 +42739,7 @@ label.container {
   text-align: center;
   margin: 0 16px;
   border: 0;
-  border-bottom: 2px solid #ddd;
+  border-bottom: 2px solid #f26100 !important;
 }
 
 td .cart-input {
