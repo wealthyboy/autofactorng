@@ -259,6 +259,9 @@ export default {
                 .then(() => {
                     this.cText = "Add To Bag";
                     this.loading = false;
+                    setTimeout(() => {
+                        e.target.classList.add("disabled");
+                    }, 8000);
                 })
                 .catch((error) => {
                     this.cText = "Add To Bag";
