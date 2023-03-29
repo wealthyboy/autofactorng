@@ -13,14 +13,6 @@
                             <a :href="cart.product.link">{{
                                 cart.product.name
                             }}</a>
-
-                            <a
-                                href="#"
-                                class="mt-5 position-relative"
-                                @click.prevent="removeFromCart(cart.id)"
-                            >
-                                X Remove
-                            </a>
                         </h5>
                         <div>
                             {{ $filters.formatNumber(cart.price) }}

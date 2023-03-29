@@ -26243,13 +26243,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     href: $props.cart.product.link
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.cart.product.name), 9
   /* TEXT, PROPS */
-  , _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: "#",
-    "class": "mt-5 position-relative",
-    onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-      return $options.removeFromCart($props.cart.id);
-    }, ["prevent"]))
-  }, " X Remove ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($props.cart.price)), 1
+  , _hoisted_10)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($props.cart.price)), 1
   /* TEXT */
   )])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_cart_qty, {
     cart: $props.cart,
@@ -26259,7 +26253,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , ["cart", "onQty:updated"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: "#",
     "class": "position-relative bold text-main",
-    onClick: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+    onClick: _cache[0] || (_cache[0] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
       return $options.removeFromCart($props.cart.id);
     }, ["prevent"]))
   }, " X Remove ")])])])])]);
