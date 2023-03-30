@@ -105,7 +105,6 @@ class OrdersController extends Table
 				$order_status->save();
 			}
 
-
 			$order_status = OrderStatus::where(['status' => 'Confirmed', 'order_id' => $order->id])->first();
 
 			if (null !== $order_status) {

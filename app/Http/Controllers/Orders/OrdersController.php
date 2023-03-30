@@ -67,7 +67,7 @@ class OrdersController extends Table
             if ($order->percentage_type == 'percentage') {
                 $coupon = $order->discount . ' % Discount -₦' . number_format(($order->discount / 100) * $total);
             } else {
-                $coupon = 'Discount  '  . number_format($order->discount);
+                $coupon = 'Discount  -₦'  . number_format($order->discount);
             }
         }
 
