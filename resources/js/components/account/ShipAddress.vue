@@ -135,7 +135,7 @@
                 </div>
             </li>
 
-            <div class="text-end">
+            <div v-if="addresses.length > 1" class="text-end">
                 <a @click.prevent="seeMore" href="#" class="text-end">
                     <div class="text-end d-flex justify-content-end">
                         <span class="flex-gow-1"> See all addresses </span>
