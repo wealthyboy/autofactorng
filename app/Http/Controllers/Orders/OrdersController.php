@@ -56,7 +56,7 @@ class OrdersController extends Table
         $nav = (new AccountSettingsNav())->nav();
 
         // $currency = $this->settings->currency->symbol;
-        $total = $order->ordered_products[0]->sum_items($order->id)->items_total;
+        $total = number_format($order->ordered_products[0]->sum_items($order->id)->items_total);
         $coupon = null;
         // dd($order);
         if ($order->coupon) {
