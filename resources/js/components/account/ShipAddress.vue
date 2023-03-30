@@ -11,16 +11,15 @@
                 @click.prevent="addNewAddress"
                 id="enter-new-address"
             >
-                + Add Address
+                <div class="add-new-address d-flex align-items-center">
+                    <span class="material-symbols-outlined"> add </span>
+                    <span>Add Address</span>
+                </div>
             </a>
         </div>
 
         <ul class="p-0">
-            <li
-                class="mb-3 bg-white"
-                v-for="(location, index) in addresses"
-                :key="location.id"
-            >
+            <li class="mb-3 bg-white">
                 <div
                     class="shipping-info border border-gray px-4 py-2 bg-white"
                 >
@@ -30,55 +29,73 @@
                                 class="form-check-input"
                                 type="radio"
                                 name="flexRadioDefault"
-                                :id="location.id"
+                                :id="addresses[0].id"
+                                checked
                             />
                             <label
                                 class="form-check-label mb-0"
-                                :for="location.id"
+                                :for="addresses[0].id"
                                 role="button"
                             >
-                                {{ location.first_name }}
-                                {{ location.last_name }}
+                                {{ addresses[0].first_name }}
+                                {{ addresses[0].last_name }}
                             </label>
 
                             <div
                                 class="d-flex justify-content-between align-items-center"
                             >
                                 <div class="address-inf text-muted p-0">
-                                    {{ location.email
-                                    }}{{ location.phone_number }}
-                                    {{ location.address }} {{ location.address2
-                                    }}<br />
-                                    {{ location.city }} ,{{ location.state
+                                    {{ addresses[0].email
+                                    }}{{ addresses[0].phone_number }}
+                                    {{ addresses[0].address }}
+                                    {{ addresses[0].address2 }}<br />
+                                    {{ addresses[0].city }} ,{{
+                                        addresses[0].state
                                     }}<br />
                                 </div>
 
                                 <div>
                                     <a
-                                        @click.prevent="editAddress(location)"
-                                        data-placement="left"
-                                        href="#"
-                                        class="align-self-center text-main"
-                                    >
-                                        <i class="fa fa-edit"></i> Edit
-                                    </a>
-                                    |
-                                    <a
                                         @click.prevent="
-                                            removeAddress($event, location.id)
+                                            editAddress(addresses[0])
                                         "
                                         data-placement="left"
                                         href="#"
-                                        class="text-main"
+                                        class="text-main d-block w-50"
                                     >
-                                        <i class="fa fa-trash"></i>
+                                        <div
+                                            class="d-flex align-content-center"
+                                        >
+                                            <span
+                                                class="material-symbols-outlined"
+                                            >
+                                                edit
+                                            </span>
+                                            <span>Edit</span>
+                                        </div>
+                                    </a>
+
+                                    <a
+                                        @click.prevent="
+                                            removeAddress(
+                                                $event,
+                                                addresses[0].id
+                                            )
+                                        "
+                                        data-placement="left"
+                                        href="#"
+                                        class="text-main d-flex align-content-center"
+                                    >
+                                        <span class="material-symbols-outlined">
+                                            delete
+                                        </span>
                                         <span
-                                            v-if="delete_id == location.id"
+                                            v-if="delete_id == addresses[0].id"
                                             class="spinner-border spinner-border-sm"
                                             role="status"
                                             aria-hidden="true"
                                         ></span>
-                                        Delete
+                                        <span> Delete </span>
                                     </a>
                                 </div>
                             </div>
@@ -86,6 +103,17 @@
                     </div>
                 </div>
             </li>
+
+            <div class="text-end">
+                <a href="#" class="text-end">
+                    <div class="text-end d-flex justify-content-end">
+                        <span class="flex-gow-1"> See all addresses </span>
+                        <span class="material-symbols-outlined">
+                            expand_more
+                        </span>
+                    </div>
+                </a>
+            </div>
         </ul>
     </div>
     <template v-if="(!loading && showForm) || !addresses.length">

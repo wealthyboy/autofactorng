@@ -30,7 +30,7 @@
                         </div>
 
                         <div v-if="addresses.length">
-                            <cart-summary />
+                            <cart-summary :showCoupon="!false" />
                             <total
                                 :voucher="voucher"
                                 :total="prices.total"
@@ -122,7 +122,7 @@
                                     <h3 class="mb-0">SUMMARY</h3>
                                 </div>
 
-                                <cart-summary />
+                                <cart-summary :showCoupon="!true" />
 
                                 <total :voucher="voucher" :amount="amount" />
                             </div>

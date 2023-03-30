@@ -17,7 +17,7 @@
             <div class="product-item-prices d-flex">
                 <div class="product--price--amount retail ml-5">
                     <span class="retail--title text-gold">PRICE</span>
-                    <span class="product--price retail--price ms-3 bold"
+                    <span class="product--price retail--price ms-3 bold fs-3"
                         >{{ $filters.formatNumber(cart.price * cart.quantity) }}
                     </span>
                     <span class="retail--title"></span>
@@ -28,7 +28,7 @@
         </div>
     </div>
 
-    <div class="cart-discount mb-0 p-0 mt-3 col-sm-12">
+    <div v-if="showCoupon" class="cart-discount mb-0 p-0 mt-3 col-sm-12">
         <h4>Apply Discount Code/Redeem Gift Card</h4>
         <div class="row g-0">
             <div class="col-8">
@@ -64,7 +64,7 @@
     </div>
 
     <p v-if="addresses.length" class="pt-3 pb-1 d-flex justify-content-between">
-        <span class="bold" style="font-size: 22px">Subtotal</span>
+        <span class="text-muted" style="font-size: 18px">Subtotal</span>
 
         <span class="bold float-right">
             <template v-if="v">
@@ -88,8 +88,8 @@
     <p
         class="border-top border-bottom pb-3 pt-3 d-flex justify-content-between fs-4"
     >
-        <span class="bold">Shipping</span>
-        <span class="bold float-right"
+        <span class="text-muted">Shipping</span>
+        <span class="float-right bold"
             ><small>
                 {{ $filters.formatNumber(prices.ship_price) }}</small
             ></span
@@ -100,8 +100,8 @@
         v-if="prices.heavy_item_price"
         class="border-top border-bottom pb-3 pt-3 d-flex justify-content-between"
     >
-        <span class="bold">Heavy/Large Items Charge</span>
-        <span class="bold float-right"
+        <span class="text-muted">Heavy/Large Items Charge</span>
+        <span class="float-right"
             ><small>
                 {{ $filters.formatNumber(prices.heavy_item_price) }}</small
             ></span
@@ -112,7 +112,7 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-    props: ["amount"],
+    props: ["amount", "showCoupon"],
     data() {
         return {
             coupon: "",
