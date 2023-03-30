@@ -58,17 +58,12 @@ class OrdersController extends Table
         // $currency = $this->settings->currency->symbol;
         $total = $order->ordered_products[0]->sum_items($order->id)->items_total;
         $coupon = null;
-        dd($order);
         if ($order->coupon) {
             $coupon = optional($order->voucher())->amount . '% Discount    -₦' . number_format((optional($order->voucher())->amount / 100) * $total);
         }
 
         if ($order->discount) {
-            if ($order->percentage_type == 'percentage') {
-                $coupon = $order->discount . ' % Discount -₦' . number_format(($order->discount / 100) * $total);
-            } else {
-                $coupon = ' Discount' . number_format($order->discount);
-            }
+            $coupon = $order->discount . 'Discount -₦' . number_format(($order->discount / 100) * $total);
         }
         return view('orders.show', compact('coupon', 'nav', 'order', 'total', 'page_title'));
     }
