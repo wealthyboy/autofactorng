@@ -9,11 +9,13 @@
                         </figure>
                     </a>
                     <div class="ms-4">
-                        <h5 class="product-title fs-5 text-secondary">
-                            <a :href="cart.product.link">{{
-                                cart.product.name
-                            }}</a>
-                        </h5>
+                        <div>
+                            <a
+                                class="text-secondary fs-5"
+                                :href="cart.product.link"
+                                >{{ cart.product.name }}</a
+                            >
+                        </div>
                         <div class="fs-2 bold">
                             {{ $filters.formatNumber(cart.price) }}
                         </div>
