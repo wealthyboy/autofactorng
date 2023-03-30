@@ -96,7 +96,7 @@
         <general-button
           type="submit"
           :text="text"
-          class="btn btn-dark align-self-right py-3"
+          class="btn btn-dark align-self-right py-3 w-50"
           :loading="loading"
         />
       </div>

@@ -25042,7 +25042,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , ["onClick"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
     type: "submit",
     text: $setup.text,
-    "class": "btn btn-dark align-self-right py-3",
+    "class": "btn btn-dark align-self-right py-3 w-50",
     loading: $setup.loading
   }, null, 8
   /* PROPS */
