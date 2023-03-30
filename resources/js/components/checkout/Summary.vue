@@ -15,7 +15,7 @@
                 >
             </div>
             <div class="product-item-prices d-flex">
-                <div class="product--price--amount retail ml-5">
+                <div class="product--price--amount retail ml-5 mt-3">
                     <span class="retail--title text-gold">PRICE</span>
                     <span class="product--price retail--price ms-3 bold fs-3"
                         >{{ $filters.formatNumber(cart.price * cart.quantity) }}

@@ -27055,7 +27055,7 @@ var _hoisted_7 = {
   "class": "product-item-prices d-flex"
 };
 var _hoisted_8 = {
-  "class": "product--price--amount retail ml-5"
+  "class": "product--price--amount retail ml-5 mt-3"
 };
 
 var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
