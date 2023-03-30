@@ -1,7 +1,7 @@
 <template>
     <loader :loading="loading" />
     <div
-        v-if="!loading && addresses.length && !showForm"
+        v-if="!loading && default_address && !showForm"
         class="address_details mt-1"
     >
         <div class="new-a d-flex justify-content-end">
