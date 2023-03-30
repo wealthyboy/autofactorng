@@ -26409,7 +26409,7 @@ var _hoisted_8 = {
   "class": "ms-4"
 };
 var _hoisted_9 = {
-  "class": "product-title fs-5"
+  "class": "product-title fs-5 text-secondary"
 };
 var _hoisted_10 = ["href"];
 var _hoisted_11 = {

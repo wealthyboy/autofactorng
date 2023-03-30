@@ -9,7 +9,7 @@
                         </figure>
                     </a>
                     <div class="ms-4">
-                        <h5 class="product-title fs-5">
+                        <h5 class="product-title fs-5 text-secondary">
                             <a :href="cart.product.link">{{
                                 cart.product.name
                             }}</a>
