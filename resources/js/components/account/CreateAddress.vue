@@ -87,7 +87,7 @@
         <general-button
           type="button"
           :text="'Cancel'"
-          class="btn btn-dark"
+          class="bold fs-5 border-0 bg-transparent text-main  p-0"
           @click="cancelForm"
           v-if="addresses.length"
         />
