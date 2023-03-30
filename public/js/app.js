@@ -25206,7 +25206,7 @@ var _hoisted_33 = {
 var _hoisted_34 = {
   "class": "form-check"
 };
-var _hoisted_35 = ["id", "value"];
+var _hoisted_35 = ["id", "value", "onClick"];
 var _hoisted_36 = ["for", "onClick"];
 var _hoisted_37 = {
   "class": "d-flex justify-content-between align-items-center"
@@ -25344,7 +25344,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       type: "radio",
       name: "flexRadioDefault",
       id: address.id,
-      value: address.id
+      value: address.id,
+      onClick: function onClick($event) {
+        return $options.makeDefault(address.id);
+      }
     }, null, 8
     /* PROPS */
     , _hoisted_35), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
@@ -25362,7 +25365,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     ), _hoisted_40]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return $options.editAddress(address);
+        return $options.makeDefault(address.id);
       }, ["prevent"]),
       "data-placement": "left",
       href: "#",

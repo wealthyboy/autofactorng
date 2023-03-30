@@ -169,6 +169,7 @@
                                         name="flexRadioDefault"
                                         :id="address.id"
                                         :value="address.id"
+                                        @click="makeDefault(address.id)"
                                     />
                                     <label
                                         class="form-check-label mb-0"
@@ -196,7 +197,7 @@
                                         <div class="d-flex aligin-items-center">
                                             <a
                                                 @click.prevent="
-                                                    editAddress(address)
+                                                    makeDefault(address.id)
                                                 "
                                                 data-placement="left"
                                                 href="#"
