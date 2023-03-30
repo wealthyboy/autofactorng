@@ -40127,8 +40127,7 @@ __webpack_require__.r(__webpack_exports__);
 axios__WEBPACK_IMPORTED_MODULE_0___default().interceptors.response.use(null, function (error) {
   var expectedError = error.response && error.response.status >= 400 && error.response.status < 500;
 
-  if (!expectedError) {
-    alert("An unexpected error occurrred.");
+  if (!expectedError) {// alert("An unexpected error occurrred.");
   }
 
   return Promise.reject(error);
