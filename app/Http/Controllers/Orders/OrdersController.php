@@ -58,6 +58,7 @@ class OrdersController extends Table
         // $currency = $this->settings->currency->symbol;
         $total = $order->ordered_products[0]->sum_items($order->id)->items_total;
         $coupon = null;
+        dd($order);
         if ($order->coupon) {
             $coupon = optional($order->voucher())->amount . '% Discount    -₦' . number_format((optional($order->voucher())->amount / 100) * $total);
         }
