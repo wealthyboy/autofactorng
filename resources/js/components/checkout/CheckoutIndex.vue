@@ -26,7 +26,7 @@
                             <span class="float-right">
                                 <div class="payment-icons mt-1 d-flex"></div>
                             </span>
-                            <h3 class="mb-0 mb-3">2. PAYMENT</h3>
+                            <h4 class="mb-0 mb-3">2. REVIEW & PAYMENT</h4>
                         </div>
 
                         <div v-if="addresses.length">
