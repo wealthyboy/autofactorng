@@ -57,8 +57,12 @@ class OrdersController extends Table
 
         // $currency = $this->settings->currency->symbol;
         $total = $order->ordered_products[0]->sum_items($order->id)->items_total;
+        $coupon = null;
+        if ($order->coupon) {
+            $coupon = optional($order->voucher())->amount . ' % Discount -₦' . number_format((optional($order->voucher())->amount / 100) * $total);
+        }
         // $currency =  Helper::getCurrency();
-        return view('orders.show', compact('nav', 'order', 'total', 'page_title'));
+        return view('orders.show', compact('coupon', 'nav', 'order', 'total', 'page_title'));
     }
 
 

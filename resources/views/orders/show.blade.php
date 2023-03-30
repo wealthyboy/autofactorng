@@ -35,7 +35,7 @@
                                 <h3>Cart Total</h3>
                                 <span><span class="bold" id="subtotal">Subtotal:</span> ₦{{ $total -  $order->ship_price }}</span></span> </br>
                                 <span><span class="bold" id="subtotal">Shipping:</span> ₦{{ $order->ship_price }}</span></span> </br>
-                                <span><span class="bold" id="subtotal">Coupon:</span> {{ $order->coupon ?  $order->coupon.'  -%'.$order->voucher()->amount .'  off' : '---' }}</span></span> </br>
+                                <span><span class="bold" id="subtotal">Coupon:</span> {{ $order->coupon ?  $coupon : '---' }}</span></span> </br>
 
                                 <span><span class="bold" id="total">Total:</span> ₦{{ $order->get_total() }} </span>
                             </div>
