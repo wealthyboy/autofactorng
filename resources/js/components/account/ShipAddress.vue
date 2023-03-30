@@ -30,6 +30,8 @@
                                 type="radio"
                                 name="flexRadioDefault"
                                 :id="default_address.id"
+                                v-model="default_add"
+                                :value="default_address.id"
                                 checked
                             />
                             <label
@@ -128,83 +130,90 @@
             </div>
             <template v-if="showOtherAddresses">
                 <li v-for="(address, index) in addresses" class="mb-3 bg-white">
-                    <div
-                        class="shipping-info border border-gray px-4 py-2 bg-white"
-                    >
-                        <div class="shipping-address-info">
-                            <div class="form-check">
-                                <input
-                                    class="form-check-input"
-                                    type="radio"
-                                    name="flexRadioDefault"
-                                    :id="address.id"
-                                />
-                                <label
-                                    class="form-check-label mb-0"
-                                    :for="address.id"
-                                    role="button"
-                                >
-                                    {{ address.first_name }}
-                                    {{ address.last_name }}
-                                </label>
+                    <div v-if="address.id != default_address.id">
+                        <div
+                            class="shipping-info border border-gray px-4 py-2 bg-white"
+                        >
+                            <div class="shipping-address-info">
+                                <div class="form-check">
+                                    <input
+                                        class="form-check-input"
+                                        type="radio"
+                                        name="flexRadioDefault"
+                                        :id="address.id"
+                                        :value="address.id"
+                                    />
+                                    <label
+                                        class="form-check-label mb-0"
+                                        :for="address.id"
+                                        role="button"
+                                        @click="makeDefault(address.id)"
+                                    >
+                                        {{ address.first_name }}
+                                        {{ address.last_name }}
+                                    </label>
 
-                                <div
-                                    class="d-flex justify-content-between align-items-center"
-                                >
-                                    <div class="address-inf text-muted p-0">
-                                        {{ address.email
-                                        }}{{ address.phone_number }}
-                                        {{ address.address }}
-                                        {{ address.address2 }}<br />
-                                        {{ address.city }} ,{{ address.state
-                                        }}<br />
-                                    </div>
+                                    <div
+                                        class="d-flex justify-content-between align-items-center"
+                                    >
+                                        <div class="address-inf text-muted p-0">
+                                            {{ address.email
+                                            }}{{ address.phone_number }}
+                                            {{ address.address }}
+                                            {{ address.address2 }}<br />
+                                            {{ address.city }} ,{{
+                                                address.state
+                                            }}<br />
+                                        </div>
 
-                                    <div>
-                                        <a
-                                            @click.prevent="
-                                                editAddress(address)
-                                            "
-                                            data-placement="left"
-                                            href="#"
-                                            class="text-main d-block w-50"
-                                        >
-                                            <div
-                                                class="d-flex align-content-center"
+                                        <div>
+                                            <a
+                                                @click.prevent="
+                                                    editAddress(address)
+                                                "
+                                                data-placement="left"
+                                                href="#"
+                                                class="text-main d-block w-50"
+                                            >
+                                                <div
+                                                    class="d-flex align-content-center"
+                                                >
+                                                    <span
+                                                        class="material-symbols-outlined"
+                                                    >
+                                                        edit
+                                                    </span>
+                                                    <span>Edit</span>
+                                                </div>
+                                            </a>
+
+                                            <a
+                                                @click.prevent="
+                                                    removeAddress(
+                                                        $event,
+                                                        address.id
+                                                    )
+                                                "
+                                                data-placement="left"
+                                                href="#"
+                                                class="text-main d-flex align-content-center"
                                             >
                                                 <span
                                                     class="material-symbols-outlined"
                                                 >
-                                                    edit
+                                                    delete
                                                 </span>
-                                                <span>Edit</span>
-                                            </div>
-                                        </a>
-
-                                        <a
-                                            @click.prevent="
-                                                removeAddress(
-                                                    $event,
-                                                    address.id
-                                                )
-                                            "
-                                            data-placement="left"
-                                            href="#"
-                                            class="text-main d-flex align-content-center"
-                                        >
-                                            <span
-                                                class="material-symbols-outlined"
-                                            >
-                                                delete
-                                            </span>
-                                            <span
-                                                v-if="delete_id == address.id"
-                                                class="spinner-border spinner-border-sm"
-                                                role="status"
-                                                aria-hidden="true"
-                                            ></span>
-                                            <span> Delete </span>
-                                        </a>
+                                                <span
+                                                    v-if="
+                                                        delete_id == address.id
+                                                    "
+                                                    class="spinner-border spinner-border-sm"
+                                                    role="status"
+                                                    aria-hidden="true"
+                                                ></span>
+                                                <span> Delete </span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -258,6 +267,7 @@ export default {
             location: null,
             loading: false,
             showOtherAddresses: false,
+            default_add: true,
         };
     },
     computed: {
@@ -308,10 +318,6 @@ export default {
         },
         submit: function () {
             this.submiting = true;
-
-            console.log("i'm here");
-
-            return;
             if (this.edit) {
                 console.log(true);
                 this.updateAddresses({
@@ -361,13 +367,14 @@ export default {
                     this.submiting = false;
                 });
         },
-        makeDefault: function (evt, id) {
+        makeDefault: function (id) {
             this.id = id;
             axios
                 .get("/api/addresses/active/" + id)
                 .then((response) => {
                     this.$store.dispatch("setADl", response);
                     this.submiting = false;
+                    this.default_add = id;
                 })
                 .catch(() => {});
         },
