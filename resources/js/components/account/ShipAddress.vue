@@ -35,39 +35,61 @@
                                 checked
                             />
                             <label
-                                class="form-check-label mb-0"
+                                class="form-check-label mb-0 w-100"
                                 :for="default_address.id"
                                 role="button"
                             >
-                                {{ default_address.first_name }}
-                                {{ default_address.last_name }}
+                                <div class="d-flex justify-content-between">
+                                    <span>
+                                        {{ default_address.first_name }}
+                                        {{ default_address.last_name }}
+                                    </span>
+                                    <div
+                                        data-placement="left"
+                                        href="#"
+                                        class="text-white d bg-success d-block"
+                                    >
+                                        <div
+                                            class="d-flex aligin-items-center align-self-end"
+                                        >
+                                            <span
+                                                class="material-symbols-outlined"
+                                            >
+                                                check_circle
+                                            </span>
+                                            <span>Current Address</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </label>
 
                             <div
                                 class="d-flex justify-content-between align-items-center"
                             >
-                                <div class="address-inf text-muted p-0">
-                                    {{ default_address.email
-                                    }}{{ default_address.phone_number }}
-                                    {{ default_address.address }}
-                                    {{ default_address.address2 }}<br />
-                                    {{ default_address.city }} ,{{
-                                        default_address.state
-                                    }}<br />
+                                <div
+                                    class="address-inf text-muted p-0 col-md-6"
+                                >
+                                    <div>
+                                        {{ default_address.email
+                                        }}{{ default_address.phone_number }}
+                                        {{ default_address.address }}
+                                        {{ default_address.address2 }}<br />
+                                        {{ default_address.city }} ,{{
+                                            default_address.state
+                                        }}<br />
+                                    </div>
                                 </div>
 
-                                <div>
+                                <div class="d-flex aligin-items-center">
                                     <a
                                         @click.prevent="
                                             editAddress(default_address)
                                         "
                                         data-placement="left"
                                         href="#"
-                                        class="text-main d-block w-50"
+                                        class="text-main d-block"
                                     >
-                                        <div
-                                            class="d-flex align-content-center"
-                                        >
+                                        <div class="d-flex aligin-items-center">
                                             <span
                                                 class="material-symbols-outlined"
                                             >
@@ -86,20 +108,25 @@
                                         "
                                         data-placement="left"
                                         href="#"
-                                        class="text-main d-flex align-content-center"
+                                        class="text-main d-block"
                                     >
-                                        <span class="material-symbols-outlined">
-                                            delete
-                                        </span>
-                                        <span
-                                            v-if="
-                                                delete_id == default_address.id
-                                            "
-                                            class="spinner-border spinner-border-sm"
-                                            role="status"
-                                            aria-hidden="true"
-                                        ></span>
-                                        <span> Delete </span>
+                                        <div class="d-flex aligin-items-center">
+                                            <span
+                                                class="material-symbols-outlined"
+                                            >
+                                                delete
+                                            </span>
+                                            <span
+                                                v-if="
+                                                    delete_id ==
+                                                    default_address.id
+                                                "
+                                                class="spinner-border spinner-border-sm"
+                                                role="status"
+                                                aria-hidden="true"
+                                            ></span>
+                                            <span> Delete </span>
+                                        </div>
                                     </a>
                                 </div>
                             </div>
@@ -381,3 +408,9 @@ export default {
     },
 };
 </script>
+
+<style>
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 1, "wght" 700, "GRAD" -25, "opsz" 48;
+}
+</style>
