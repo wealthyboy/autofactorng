@@ -56,8 +56,9 @@ class OrdersController extends Table
         $nav = (new AccountSettingsNav())->nav();
 
         // $currency = $this->settings->currency->symbol;
-        // $total = $order->ordered_products[0]->sum_items($order->id)->items_total;
+        $total = $order->ordered_products[0]->sum_items($order->id)->items_total;
         // $currency =  Helper::getCurrency();
+        dd($total);
         return view('orders.show', compact('nav', 'order', 'page_title'));
     }
 
