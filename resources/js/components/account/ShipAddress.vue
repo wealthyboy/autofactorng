@@ -47,13 +47,13 @@
                                     <div
                                         data-placement="left"
                                         href="#"
-                                        class="text-white d bg-success d-block"
+                                        class="text-white d bg-success d-block px-2 py-1 fs-6"
                                     >
                                         <div
                                             class="d-flex aligin-items-center align-self-end"
                                         >
                                             <span
-                                                class="material-symbols-outlined"
+                                                class="material-symbols-outlined fs-5 me-1"
                                             >
                                                 check_circle
                                             </span>
@@ -87,15 +87,15 @@
                                         "
                                         data-placement="left"
                                         href="#"
-                                        class="text-main d-block"
+                                        class="text-main d-block me-3 border px-2 py-1"
                                     >
                                         <div class="d-flex aligin-items-center">
                                             <span
-                                                class="material-symbols-outlined"
+                                                class="material-symbols-outlined fs-5"
                                             >
                                                 edit
                                             </span>
-                                            <span>Edit</span>
+                                            <span class="fs-6">Edit</span>
                                         </div>
                                     </a>
 
@@ -108,11 +108,11 @@
                                         "
                                         data-placement="left"
                                         href="#"
-                                        class="text-main d-block"
+                                        class="text-main d-block border px-2 py-1"
                                     >
                                         <div class="d-flex aligin-items-center">
                                             <span
-                                                class="material-symbols-outlined"
+                                                class="material-symbols-outlined fs-5"
                                             >
                                                 delete
                                             </span>
@@ -121,11 +121,11 @@
                                                     delete_id ==
                                                     default_address.id
                                                 "
-                                                class="spinner-border spinner-border-sm"
+                                                class="spinner-border spinner-border-sm fs-5"
                                                 role="status"
                                                 aria-hidden="true"
                                             ></span>
-                                            <span> Delete </span>
+                                            <span class="fs-6"> Delete </span>
                                         </div>
                                     </a>
                                 </div>
@@ -193,24 +193,48 @@
                                             }}<br />
                                         </div>
 
-                                        <div>
+                                        <div class="d-flex aligin-items-center">
                                             <a
                                                 @click.prevent="
                                                     editAddress(address)
                                                 "
                                                 data-placement="left"
                                                 href="#"
-                                                class="text-main d-block w-50"
+                                                class="text-main d-block me-3 border px-2 py-1"
                                             >
                                                 <div
-                                                    class="d-flex align-content-center"
+                                                    class="d-flex aligin-items-center"
                                                 >
                                                     <span
-                                                        class="material-symbols-outlined"
+                                                        class="material-symbols-outlined fs-5 me-1"
+                                                    >
+                                                        add_circle
+                                                    </span>
+
+                                                    <span class="fs-6"
+                                                        >Use this address</span
+                                                    >
+                                                </div>
+                                            </a>
+                                            <a
+                                                @click.prevent="
+                                                    editAddress(address)
+                                                "
+                                                data-placement="left"
+                                                href="#"
+                                                class="text-main d-block me-3 border px-2 py-1"
+                                            >
+                                                <div
+                                                    class="d-flex aligin-items-center"
+                                                >
+                                                    <span
+                                                        class="material-symbols-outlined fs-5 me-1"
                                                     >
                                                         edit
                                                     </span>
-                                                    <span>Edit</span>
+                                                    <span class="fs-6"
+                                                        >Edit</span
+                                                    >
                                                 </div>
                                             </a>
 
@@ -223,22 +247,29 @@
                                                 "
                                                 data-placement="left"
                                                 href="#"
-                                                class="text-main d-flex align-content-center"
+                                                class="text-main d-block border px-2 py-1"
                                             >
-                                                <span
-                                                    class="material-symbols-outlined"
+                                                <div
+                                                    class="d-flex aligin-items-center"
                                                 >
-                                                    delete
-                                                </span>
-                                                <span
-                                                    v-if="
-                                                        delete_id == address.id
-                                                    "
-                                                    class="spinner-border spinner-border-sm"
-                                                    role="status"
-                                                    aria-hidden="true"
-                                                ></span>
-                                                <span> Delete </span>
+                                                    <span
+                                                        class="material-symbols-outlined fs-5 me-1"
+                                                    >
+                                                        delete
+                                                    </span>
+                                                    <span
+                                                        v-if="
+                                                            delete_id ==
+                                                            address.id
+                                                        "
+                                                        class="spinner-border spinner-border-sm fs-5"
+                                                        role="status"
+                                                        aria-hidden="true"
+                                                    ></span>
+                                                    <span class="fs-6">
+                                                        Delete
+                                                    </span>
+                                                </div>
                                             </a>
                                         </div>
                                     </div>
