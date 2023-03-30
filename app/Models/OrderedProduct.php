@@ -109,4 +109,11 @@ class OrderedProduct extends Model
     {
         return $this->belongsTo(Product::class);
     }
+
+
+    public  function sum_items($order_id)
+    {
+        $total = \DB::table('ordered_product')->select(\DB::raw('SUM(total) as items_total'))->where('order_id', $order_id)->get();
+        return     $total = $total[0];
+    }
 }
