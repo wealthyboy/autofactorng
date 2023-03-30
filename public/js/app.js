@@ -27039,7 +27039,7 @@ var _hoisted_1 = {
   "class": "col-md-3 col-6"
 };
 var _hoisted_2 = {
-  "class": "cart-image"
+  "class": "image-category"
 };
 var _hoisted_3 = ["src"];
 var _hoisted_4 = {

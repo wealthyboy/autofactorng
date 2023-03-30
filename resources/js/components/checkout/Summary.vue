@@ -5,7 +5,7 @@
         class="row cart-rows mb-2 pt-4 pb-2 border-top border-gray"
     >
         <div class="col-md-3 col-6">
-            <div class="cart-image"><img :src="cart.image" alt="" /></div>
+            <div class="image-category"><img :src="cart.image" alt="" /></div>
         </div>
         <div class="col-md-9 col-6">
             <div class="tag mb-1 brand-name bold color--gray"></div>
