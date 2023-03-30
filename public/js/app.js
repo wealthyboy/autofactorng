@@ -25198,7 +25198,7 @@ var _hoisted_31 = {
   key: 0
 };
 var _hoisted_32 = {
-  "class": "shipping-info border border-gray px-4 py-2 bg-white"
+  "class": "shipping-info border border-gray px-4 py-4 bg-white"
 };
 var _hoisted_33 = {
   "class": "shipping-address-info"

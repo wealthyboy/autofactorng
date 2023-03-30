@@ -159,7 +159,7 @@
                 <li v-for="(address, index) in addresses" class="mb-3 bg-white">
                     <div v-if="address.id != default_address.id">
                         <div
-                            class="shipping-info border border-gray px-4 py-2 bg-white"
+                            class="shipping-info border border-gray px-4 py-4 bg-white"
                         >
                             <div class="shipping-address-info">
                                 <div class="form-check">
