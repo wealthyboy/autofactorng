@@ -8,12 +8,14 @@
                     <h1 class="display-2">Thank you for shopping with us</h1>
                     <p class="large">Your order has been received .</p>
                     <p class="large"></p>
-                    <a href="/" class="btn btn--primary space-t--2 fw-bold"
+                    <a
+                        href="/"
+                        class="btn btn--primary space-t--2 fw-bold text-main"
                         >Continue</a
                     >
                     <a
                         href="/orders"
-                        class="btn btn--primary space-t--2 fw-bold"
+                        class="btn btn--primary space-t--2 fw-bold text-main"
                         >View order history</a
                     >
                 </div>
