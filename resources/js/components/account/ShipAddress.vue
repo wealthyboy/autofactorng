@@ -29,35 +29,35 @@
                                 class="form-check-input"
                                 type="radio"
                                 name="flexRadioDefault"
-                                :id="addresses[0].id"
+                                :id="default_address.id"
                                 checked
                             />
                             <label
                                 class="form-check-label mb-0"
-                                :for="addresses[0].id"
+                                :for="default_address.id"
                                 role="button"
                             >
-                                {{ addresses[0].first_name }}
-                                {{ addresses[0].last_name }}
+                                {{ default_address.first_name }}
+                                {{ default_address.last_name }}
                             </label>
 
                             <div
                                 class="d-flex justify-content-between align-items-center"
                             >
                                 <div class="address-inf text-muted p-0">
-                                    {{ addresses[0].email
-                                    }}{{ addresses[0].phone_number }}
-                                    {{ addresses[0].address }}
-                                    {{ addresses[0].address2 }}<br />
-                                    {{ addresses[0].city }} ,{{
-                                        addresses[0].state
+                                    {{ default_address.email
+                                    }}{{ default_address.phone_number }}
+                                    {{ default_address.address }}
+                                    {{ default_address.address2 }}<br />
+                                    {{ default_address.city }} ,{{
+                                        default_address.state
                                     }}<br />
                                 </div>
 
                                 <div>
                                     <a
                                         @click.prevent="
-                                            editAddress(addresses[0])
+                                            editAddress(default_address)
                                         "
                                         data-placement="left"
                                         href="#"
@@ -79,7 +79,7 @@
                                         @click.prevent="
                                             removeAddress(
                                                 $event,
-                                                addresses[0].id
+                                                default_address.id
                                             )
                                         "
                                         data-placement="left"
@@ -90,7 +90,9 @@
                                             delete
                                         </span>
                                         <span
-                                            v-if="delete_id == addresses[0].id"
+                                            v-if="
+                                                delete_id == default_address.id
+                                            "
                                             class="spinner-border spinner-border-sm"
                                             role="status"
                                             aria-hidden="true"
@@ -105,15 +107,111 @@
             </li>
 
             <div class="text-end">
-                <a href="#" class="text-end">
+                <a @click.prevent="seeMore" href="#" class="text-end">
                     <div class="text-end d-flex justify-content-end">
                         <span class="flex-gow-1"> See all addresses </span>
-                        <span class="material-symbols-outlined">
+                        <span
+                            v-if="!showOtherAddresses"
+                            class="material-symbols-outlined"
+                        >
                             expand_more
+                        </span>
+
+                        <span
+                            v-if="showOtherAddresses"
+                            class="material-symbols-outlined"
+                        >
+                            keyboard_arrow_up
                         </span>
                     </div>
                 </a>
             </div>
+            <template v-if="showOtherAddresses">
+                <li v-for="(address, index) in addresses" class="mb-3 bg-white">
+                    <div
+                        class="shipping-info border border-gray px-4 py-2 bg-white"
+                    >
+                        <div class="shipping-address-info">
+                            <div class="form-check">
+                                <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="flexRadioDefault"
+                                    :id="address.id"
+                                />
+                                <label
+                                    class="form-check-label mb-0"
+                                    :for="address.id"
+                                    role="button"
+                                >
+                                    {{ address.first_name }}
+                                    {{ address.last_name }}
+                                </label>
+
+                                <div
+                                    class="d-flex justify-content-between align-items-center"
+                                >
+                                    <div class="address-inf text-muted p-0">
+                                        {{ address.email
+                                        }}{{ address.phone_number }}
+                                        {{ address.address }}
+                                        {{ address.address2 }}<br />
+                                        {{ address.city }} ,{{ address.state
+                                        }}<br />
+                                    </div>
+
+                                    <div>
+                                        <a
+                                            @click.prevent="
+                                                editAddress(address)
+                                            "
+                                            data-placement="left"
+                                            href="#"
+                                            class="text-main d-block w-50"
+                                        >
+                                            <div
+                                                class="d-flex align-content-center"
+                                            >
+                                                <span
+                                                    class="material-symbols-outlined"
+                                                >
+                                                    edit
+                                                </span>
+                                                <span>Edit</span>
+                                            </div>
+                                        </a>
+
+                                        <a
+                                            @click.prevent="
+                                                removeAddress(
+                                                    $event,
+                                                    address.id
+                                                )
+                                            "
+                                            data-placement="left"
+                                            href="#"
+                                            class="text-main d-flex align-content-center"
+                                        >
+                                            <span
+                                                class="material-symbols-outlined"
+                                            >
+                                                delete
+                                            </span>
+                                            <span
+                                                v-if="delete_id == address.id"
+                                                class="spinner-border spinner-border-sm"
+                                                role="status"
+                                                aria-hidden="true"
+                                            ></span>
+                                            <span> Delete </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </template>
         </ul>
     </div>
     <template v-if="(!loading && showForm) || !addresses.length">
@@ -159,6 +257,7 @@ export default {
             showForm: false,
             location: null,
             loading: false,
+            showOtherAddresses: false,
         };
     },
     computed: {
@@ -167,6 +266,7 @@ export default {
             shipping: "shipping",
             addresses: "addresses",
             default_shipping: "default_shipping",
+            default_address: "default_address",
             errors: "errors",
             cart_meta: "cart_meta",
         }),
@@ -189,6 +289,9 @@ export default {
             deleteAddress: "deleteAddress",
             getAddresses: "getAddresses",
         }),
+        seeMore() {
+            this.showOtherAddresses = !this.showOtherAddresses;
+        },
         getState: function (evt) {
             let value =
                 typeof evt.target !== "undefined" ? evt.target.value : evt;

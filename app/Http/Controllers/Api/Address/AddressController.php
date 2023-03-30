@@ -45,7 +45,7 @@ class AddressController extends Controller
     public function allAddress()
     {
         $user =  \Auth::user();
-        $addresses = User::find($user->id)->addresses;
+        $addresses = Address::where(['user_id' => $user->id, 'is_active' => false])->get();
         $locations = Location::parents()->orderBy('name', 'asc')->get();
         $shipping_parents = Shipping::parents()->get();
         $default_address = $user->activeAddress();
@@ -58,7 +58,6 @@ class AddressController extends Controller
         $large_item_price = [];
         $is_lagos = null !== $default_address && optional($default_address)->state == 'Lagos' ? 1 : 0;
         $prices['isLagos'] = $is_lagos;
-
 
         foreach ($carts as $key => $cart) {
             if ($cart->product->condition_is_present) {

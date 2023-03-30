@@ -98,6 +98,10 @@ export const setStates = (state, states) => {
     state.states = states
 }
 
+export const setDefaultAddress = (state, default_address) => {
+    state.default_address = default_address
+}
+
 export const setDefaultShipping = (state, default_shipping) => {
     state.default_shipping = default_shipping
 }

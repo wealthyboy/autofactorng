@@ -12,6 +12,7 @@ export default {
     shipping: null,
     prices: null,
     default_shipping: [],
+    default_address: null,
     errors: [],
     notification: null,
     reviews: [],

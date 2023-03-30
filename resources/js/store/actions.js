@@ -467,6 +467,8 @@ export const setADl = ({ commit }, response) => {
     commit("setPrices", response.data.meta.prices);
     commit("setStates", response.data.meta.states);
     commit("setDefaultShipping", response.data.meta.default_shipping);
+    commit("setDefaultAddress", response.data.meta.default_address);
+
     commit("setTotal", response.data.meta.prices.total);
 
 };

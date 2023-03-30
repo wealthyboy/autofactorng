@@ -85,6 +85,10 @@ export const default_shipping = (state) => {
     return state.default_shipping
 }
 
+export const default_address = (state) => {
+    return state.default_address
+}
+
 export const errors = (state) => {
     return state.errors
 }
