@@ -1,5 +1,6 @@
 <template>
     <loader :loading="loading" />
+    {{ default_address }}
     <div
         v-if="!loading && default_address && !showForm"
         class="address_details mt-1"
