@@ -20,7 +20,10 @@
                 v-if="!productIsLoading && !showFitString && !searchMode"
                 class="cta-border cta-bg light mb-4"
             >
-                <div class="title w-100 mt-2 d-sm-block d-lg-none text-center">
+                <div
+                    v-if="search_filters.search_type.search"
+                    class="title w-100 mt-2 d-sm-block d-lg-none text-center"
+                >
                     <h3>SET YOUR VEHICLE</h3>
                     <p>Get an exact fit for your vehicle.</p>
                 </div>
