@@ -30209,17 +30209,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  style: {
-    "height": "100%"
-  },
-  "class": ""
+  "class": "full-bg"
 };
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"container-fluid\"><div class=\"full-bg\"><div class=\"signup--middle text-dark\"><div class=\"text-center border p-4\"><h1 class=\"fs-1\">Thank you for shopping with us</h1><p class=\"large\">Your order has been received .</p><p class=\"large\"></p><a href=\"/\" class=\"btn btn--primary space-t--2\">Continue</a><a href=\"/orders\" class=\"btn btn--primary space-t--2\">View order history</a></div></div></div></div>", 1);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"d-flex justify-content-center positionfixed align-content-center page-loading w-100 h-100 bg-white\"><div class=\"align-self-center\"><div class=\"text-center border p-4\"><h1 class=\"display-2\">Thank you for shopping with us</h1><p class=\"large\">Your order has been received .</p><p class=\"large\"></p><a href=\"/\" class=\"btn btn--primary space-t--2 fw-bold\">Continue</a><a href=\"/orders\" class=\"btn btn--primary space-t--2 fw-bold\">View order history</a></div></div></div>", 1);
 
 var _hoisted_3 = [_hoisted_2];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("section", _hoisted_1, _hoisted_3);
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, _hoisted_3);
 }
 
 /***/ }),
