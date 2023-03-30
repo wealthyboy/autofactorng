@@ -11,7 +11,7 @@
                     <div class="ms-4">
                         <div>
                             <a
-                                class="text-secondary fs-5"
+                                class="text-secondary fs-5 mb-2"
                                 :href="cart.product.link"
                                 >{{ cart.product.name }}</a
                             >
