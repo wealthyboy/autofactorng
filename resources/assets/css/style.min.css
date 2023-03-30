@@ -17478,6 +17478,10 @@ main .sticky-header .product-ratings:before {
     .pg-vertical .product-slider-container {
         max-width: calc(100% - 90px)
     }
+
+    .view-cart {
+        padding: 14px 260px 13px !important;
+    }
 }
 
 @media (max-width:480px) {
