@@ -24,7 +24,7 @@
            'nav': true,
            'loop': false
         }">
-         @foreach($model_sliders as $key => $slider)
+         @foreach($mobile_sliders as $key => $slider)
 
          <div class="banner banner3 {{ $slider->device }}">
             <a href="" class="d-block">
