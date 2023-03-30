@@ -194,14 +194,16 @@
                                             }}<br />
                                         </div>
 
-                                        <div class="d-flex aligin-items-center">
+                                        <div
+                                            class="d-flex aligin-items-center flex-sm-column"
+                                        >
                                             <a
                                                 @click.prevent="
                                                     makeDefault(address.id)
                                                 "
                                                 data-placement="left"
                                                 href="#"
-                                                class="text-main d-block me-3 border px-2 py-1"
+                                                class="text-main d-block me-3 border px-2 py-1 mb-sm-1"
                                             >
                                                 <div
                                                     class="d-flex aligin-items-center"
@@ -229,7 +231,7 @@
                                                     class="d-flex aligin-items-center"
                                                 >
                                                     <span
-                                                        class="material-symbols-outlined fs-5 me-1"
+                                                        class="material-symbols-outlined fs-5 me-1 mb-sm-1"
                                                     >
                                                         edit
                                                     </span>
@@ -254,7 +256,7 @@
                                                     class="d-flex aligin-items-center"
                                                 >
                                                     <span
-                                                        class="material-symbols-outlined fs-5 me-1"
+                                                        class="material-symbols-outlined fs-5 me-1 mb-sm-1"
                                                     >
                                                         delete
                                                     </span>

@@ -25224,7 +25224,7 @@ var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_41 = {
-  "class": "d-flex aligin-items-center"
+  "class": "d-flex aligin-items-center flex-sm-column"
 };
 var _hoisted_42 = ["onClick"];
 
@@ -25244,7 +25244,7 @@ var _hoisted_45 = ["onClick"];
 var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "d-flex aligin-items-center"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "material-symbols-outlined fs-5 me-1"
+  "class": "material-symbols-outlined fs-5 me-1 mb-sm-1"
 }, " edit "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "fs-6"
 }, "Edit")], -1
@@ -25258,7 +25258,7 @@ var _hoisted_49 = {
 };
 
 var _hoisted_50 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "material-symbols-outlined fs-5 me-1"
+  "class": "material-symbols-outlined fs-5 me-1 mb-sm-1"
 }, " delete ", -1
 /* HOISTED */
 );
@@ -25369,7 +25369,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, ["prevent"]),
       "data-placement": "left",
       href: "#",
-      "class": "text-main d-block me-3 border px-2 py-1"
+      "class": "text-main d-block me-3 border px-2 py-1 mb-sm-1"
     }, _hoisted_44, 8
     /* PROPS */
     , _hoisted_42), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
