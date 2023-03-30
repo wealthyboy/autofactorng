@@ -11,12 +11,12 @@
                     <div class="ms-4">
                         <div>
                             <a
-                                class="text-secondary fs-5 mb-2"
+                                class="text-secondary fs-5"
                                 :href="cart.product.link"
                                 >{{ cart.product.name }}</a
                             >
                         </div>
-                        <div class="fs-2 bold">
+                        <div class="fs-2 bold mt-3">
                             {{ $filters.formatNumber(cart.price) }}
                         </div>
                     </div>
