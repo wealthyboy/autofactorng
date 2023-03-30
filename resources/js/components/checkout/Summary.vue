@@ -10,7 +10,7 @@
         <div class="col-md-9 col-6">
             <div class="tag mb-1 brand-name bold color--gray"></div>
             <div>
-                <a :href="cart.product.link"
+                <a class="text-secondary" :href="cart.product.link"
                     >{{ cart.quantity }} X {{ cart.product.name }}</a
                 >
             </div>
