@@ -220,6 +220,9 @@
                <div class="menu-i w-50 py-4 border">
                   <a href="/how-to" role="button" class="w-100 mb-0 ">
                      <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
+                        <span class="material-symbols-outlined">
+                           local_library
+                        </span>
                         <div class="align-self-center fw-bold ms-3">How To</div>
 
                         <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
