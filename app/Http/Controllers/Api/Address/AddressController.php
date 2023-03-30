@@ -45,7 +45,7 @@ class AddressController extends Controller
     public function allAddress()
     {
         $user =  \Auth::user();
-        $addresses = Address::where(['user_id' => $user->id, 'is_active' => false])->get();
+        $addresses = Address::where(['user_id' => $user->id])->get();
         $locations = Location::parents()->orderBy('name', 'asc')->get();
         $shipping_parents = Shipping::parents()->get();
         $default_address = $user->activeAddress();
