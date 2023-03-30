@@ -14,7 +14,7 @@
                 <div class="card border-0">
                     <div class="col-md-12 px-4 bg-white mb-2">
                         <div class="head border-bottom mb-3 py-4">
-                            <h3 class="mb-0">1. SHIPPING ADDRESSS</h3>
+                            <h3 class="mb-0 fs-3">1. SHIPPING ADDRESSS</h3>
                         </div>
                         <ship-address />
                     </div>
@@ -26,7 +26,7 @@
                             <span class="float-right">
                                 <div class="payment-icons mt-1 d-flex"></div>
                             </span>
-                            <h4 class="mb-0 mb-3">2. REVIEW & PAYMENT</h4>
+                            <h4 class="mb-0 mb-3 fs-3">2. REVIEW & PAYMENT</h4>
                         </div>
 
                         <div v-if="addresses.length">
@@ -119,7 +119,7 @@
                         >
                             <div class="cart_totalse px-4">
                                 <div class="head py-3">
-                                    <h3 class="mb-0">SUMMARY</h3>
+                                    <h3 class="mb-0 fs-3">SUMMARY</h3>
                                 </div>
 
                                 <cart-summary :showCoupon="!true" />

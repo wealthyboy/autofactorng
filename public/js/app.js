@@ -26774,7 +26774,7 @@ var _hoisted_6 = {
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "head border-bottom mb-3 py-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "mb-0"
+  "class": "mb-0 fs-3"
 }, "1. SHIPPING ADDRESSS")], -1
 /* HOISTED */
 );
@@ -26793,7 +26793,7 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "payment-icons mt-1 d-flex"
 })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
-  "class": "mb-0 mb-3"
+  "class": "mb-0 mb-3 fs-3"
 }, "2. REVIEW & PAYMENT")], -1
 /* HOISTED */
 );
@@ -26854,7 +26854,7 @@ var _hoisted_22 = {
 var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "head py-3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "mb-0"
+  "class": "mb-0 fs-3"
 }, "SUMMARY")], -1
 /* HOISTED */
 );
