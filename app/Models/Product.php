@@ -17,7 +17,7 @@ class Product extends Model
 
     const DoesNotFit = "This product does not fit your vehicle";
     const ProductFits = "This product does not fit your vehicle";
-    const CheckText = "Check if it fits your vehicle";
+    const CheckText = "Click to confirm it fits your vehicle";
 
 
 

@@ -22867,7 +22867,7 @@ __webpack_require__.r(__webpack_exports__);
   props: ["fitText"],
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
-    var checkText = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("Check if it fits your vehicle");
+    var checkText = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("Click to confirm it fits your vehicle");
     var notFit = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("This product does not fit your vehicle");
     var itDoesNotFits = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return props.fitText == notFit.value;
@@ -28028,7 +28028,7 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Get an exact fit for your vehicle.", -1
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Find an exact match for your vehicle.", -1
 /* HOISTED */
 );
 
@@ -28042,7 +28042,7 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "title w-100 p-2 d-none d-lg-block"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "mb-0"
-}, "ADD YOUR VEHICLE"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Get an exact fit for your vehicle.")], -1
+}, "ADD YOUR VEHICLE"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Find an exact match for your vehicle. .")], -1
 /* HOISTED */
 );
 

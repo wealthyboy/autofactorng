@@ -25,7 +25,7 @@
                     class="title w-100 mt-2 d-sm-block d-lg-none text-center"
                 >
                     <h3>ADD YOUR VEHICLE</h3>
-                    <p>Get an exact fit for your vehicle.</p>
+                    <p>Find an exact match for your vehicle.</p>
                 </div>
                 <div
                     v-if="search_filters.search_type.search"
@@ -33,7 +33,7 @@
                 >
                     <div class="title w-100 p-2 d-none d-lg-block">
                         <h3 class="mb-0">ADD YOUR VEHICLE</h3>
-                        <div>Get an exact fit for your vehicle.</div>
+                        <div>Find an exact match for your vehicle. .</div>
                     </div>
 
                     <template

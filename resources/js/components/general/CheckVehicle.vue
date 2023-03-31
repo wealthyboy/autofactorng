@@ -29,7 +29,7 @@ export default {
     components: {},
     props: ["fitText"],
     setup(props, { emit }) {
-        const checkText = ref("Check if it fits your vehicle");
+        const checkText = ref("Click to confirm it fits your vehicle");
         const notFit = ref("This product does not fit your vehicle");
         const itDoesNotFits = computed(() => props.fitText == notFit.value);
         const itNotFits = computed(
