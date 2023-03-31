@@ -30388,7 +30388,7 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   type: "button",
   id: "button-addon2"
 }, " Fund your wallet "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  "class": "btn btn-outline-secondary rounded-0",
+  "class": "btn btn-outline-secondary rounded-0 w-50",
   href: "/plans?type=auto_cover"
 }, "Auto cover")], -1
 /* HOISTED */
