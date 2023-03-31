@@ -27,7 +27,7 @@
                         >
                             <span class="material-symbols-outlined">
                                 account_balance_wallet </span
-                            ><span>Balance</span>
+                            ><span> view balance</span>
                         </button>
                         <ul
                             class="dropdown-menu"
