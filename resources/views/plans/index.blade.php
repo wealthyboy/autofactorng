@@ -6,10 +6,12 @@
   <div class="container">
     <div class="row">
       <div class="col-md12">
-        <p> Whether you're an individual or a business, mitigating risk, enhancing your driving experience, and having confidence in the quality of your replacement parts are crucial.</p>
-        <p> By subscribing to a plan, you'll get funded with shopping credits to the tune of your subscription amount plus 10% extra credit bonus that you can use to shop on our website. </p>
-        <p> You also get exclusive benefits and discounts that must be used within one year from the time of purchase.</p>
-        <p> Don't wait too long to take advantage of the subscription plan benefits!</p>
+
+
+        <p> Regardless of whether you're an individual or a business, minimizing risk, improving your driving experience, and having confidence in the quality of your replacement parts are all vital considerations. </p>
+        <p> By signing up for a subscription plan, you will receive shopping credits equal to your subscription fee, plus an additional 10% credit bonus that you can use to purchase items on our website. </p>
+        <p> Additionally, you'll gain access to exclusive advantages and discounts that must be used within one year of the purchase date. </p>
+        <p> Don't miss out on the subscription plan's advantages; signup today!</p>
       </div>
       <div class="col-md-8 mx-auto text-center">
         <h3>Pick the best plan for you</h3>
@@ -58,10 +60,10 @@
         <h3>
           HOW IT WORKS
         </h3>
-        <p> 1. Choose a Plan: Select your preferred subscription plan and follow the prompts to make your payment.</p>
-        <p> 2. Get Funded: Once your payment is confirmed, the equivalent amount of Autofactor purchase credit will be funded to your account. You can then use this credit to make purchases on our website.</p>
-        <p> 3. Enjoy Your Benefits: All subscription plans are valid for one year from the time of purchase, and any credits or benefits given must be used within this period. During checkout, your available credit will be applied automatically to your purchase.</p>
-        <p> 4. Use It or Lose It: It's important to note that any unused credits or benefits after the expiry of the validity period cannot be rolled over or transferred. So, make sure to take advantage of all your benefits before the end of the validity period.</p>
+        <p> <span class="fw-bold">1. Choose a Plan:</span> Select your preferred subscription plan and follow the prompts to make your payment.</p>
+        <p> <span class="fw-bold">2. Get Funded:</span> Once your payment is confirmed, the equivalent amount of Autofactor purchase credit will be funded to your account. You can then use this credit to make purchases on our website.</p>
+        <p> <span class="fw-bold">3. Enjoy Your Benefits:</span> All subscription plans are valid for one year from the time of purchase, and any credits or benefits given must be used within this period. During checkout, your available credit will be applied automatically to your purchase.</p>
+        <p> <span class="fw-bold">4. Use It or Lose It:</span> It's important to note that any unused credits or benefits after the expiry of the validity period cannot be rolled over or transferred. So, make sure to take advantage of all your benefits before the end of the validity period.</p>
       </div>
 
 
