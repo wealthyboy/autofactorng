@@ -282,7 +282,7 @@
          </div>
          <div class="footer-middle">
             <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
-            <div class="container">
+            <div class="container-fluid">
                <div class="footer-middle mt-5">
                   <div class="">
                      @include('layouts.footer.desktop_footer')
