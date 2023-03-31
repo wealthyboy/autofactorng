@@ -42508,12 +42508,12 @@ a {
 }
 
 a {
-  color: #202124 !important;
+  color: #202124;
   text-decoration: none !important;
 }
 
-button, :not(.btn-add-cart) {
-  color: #000 !important;
+.badge-circle {
+  color: #fff !important;
 }
 
 div#offcanvas {
