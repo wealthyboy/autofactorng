@@ -30022,7 +30022,7 @@ var _hoisted_14 = {
 };
 var _hoisted_15 = {
   key: 0,
-  "class": ""
+  "class": "mx-3"
 };
 var _hoisted_16 = {
   key: 0,

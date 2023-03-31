@@ -56,7 +56,7 @@
                             </li>
 
                             <li class="py-3 border-bottom">
-                                <span v-if="walletBalance" class=""
+                                <span v-if="walletBalance" class="mx-3"
                                     >Total:
                                     {{
                                         $filters.formatNumber(
