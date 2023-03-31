@@ -9,7 +9,7 @@
          @foreach($sliders as $key => $slider)
 
          <div class="banner banner3 {{ $slider->device }}">
-            <a href="{{ $banner->link }}" class="d-block">
+            <a href="{{ $slider->link }}" class="d-block">
                <figure>
                   <img width="1920" height="700" src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
                </figure>
@@ -27,7 +27,7 @@
          @foreach($mobile_sliders as $key => $slider)
 
          <div class="banner banner3 {{ $slider->device }}">
-            <a href="" class="d-block">
+            <a href="{{ $slider->link }}" class="d-block">
                <figure>
                   <img width="1920" height="700" src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
                </figure>
