@@ -15,6 +15,12 @@ class Product extends Model
 {
     use HasFactory, ImageFiles, FormatPrice;
 
+    const DoesNotFit = "This product does not fit your vehicle";
+    const ProductFits = "This product does not fit your vehicle";
+    const CheckText = "Check if it fits your vehicle";
+
+
+
     protected $fillable = [
         'amphere',
         'name',
@@ -288,10 +294,10 @@ class Product extends Model
                 $builder->groupBy('make_model_year_engines.product_id');
             })->first();
 
-            return  $p !== null ? 'Fits your ' . $this->buildSearchString() : "This product does not fit your vehicle";
+            return  $p !== null ? 'Fits your ' . $this->buildSearchString() : self::DoesNotFit;
         }
 
-        return $this->buildSearchString() ? 'Fits your ' . $this->buildSearchString() : "Check if it fits your vehicle";
+        return $this->buildSearchString() ? 'Fits your ' . $this->buildSearchString() : self::CheckText;
     }
 
 

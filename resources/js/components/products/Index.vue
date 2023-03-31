@@ -24,7 +24,7 @@
                     v-if="search_filters.search_type.search"
                     class="title w-100 mt-2 d-sm-block d-lg-none text-center"
                 >
-                    <h3>SET YOUR VEHICLE</h3>
+                    <h3>ADD YOUR VEHICLE</h3>
                     <p>Get an exact fit for your vehicle.</p>
                 </div>
                 <div
@@ -32,7 +32,7 @@
                     class="d-flex justify-content-between align-content-center py-4"
                 >
                     <div class="title w-100 p-2 d-none d-lg-block">
-                        <h3 class="mb-0">SET YOUR VEHICLE</h3>
+                        <h3 class="mb-0">ADD YOUR VEHICLE</h3>
                         <div>Get an exact fit for your vehicle.</div>
                     </div>
 

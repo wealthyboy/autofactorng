@@ -22870,10 +22870,10 @@ __webpack_require__.r(__webpack_exports__);
     var checkText = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("Check if it fits your vehicle");
     var notFit = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)("This product does not fit your vehicle");
     var itDoesNotFits = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
-      return props.fitText == "This product does not fit your vehicle";
+      return props.fitText == notFit.value;
     });
     var itNotFits = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
-      return props.fitText != "This product does not fit your vehicle" && props.fitText != checkText.value;
+      return props.fitText != notFit.value && props.fitText != checkText.value;
     });
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_1__.useStore)();
     var showModal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
@@ -27356,7 +27356,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$props.fitText ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
     key: 0,
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
-      fits: $props.fitText != $setup.checkText && $props.fitText != 'This product does not fit your vehicle',
+      fits: $props.fitText != $setup.checkText && $props.fitText != $setup.notFit,
       itDoesNotfit: $props.fitText == $setup.notFit
     }, "check-vehicle d-flex"]),
     onClick: _cache[0] || (_cache[0] = function () {
@@ -28024,7 +28024,7 @@ var _hoisted_8 = {
   "class": "title w-100 mt-2 d-sm-block d-lg-none text-center"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "SET YOUR VEHICLE", -1
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "ADD YOUR VEHICLE", -1
 /* HOISTED */
 );
 
@@ -28042,7 +28042,7 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "title w-100 p-2 d-none d-lg-block"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "mb-0"
-}, "SET YOUR VEHICLE"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Get an exact fit for your vehicle.")], -1
+}, "ADD YOUR VEHICLE"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Get an exact fit for your vehicle.")], -1
 /* HOISTED */
 );
 

@@ -2,9 +2,7 @@
     <button
         v-if="fitText"
         :class="{
-            fits:
-                fitText != checkText &&
-                fitText != 'This product does not fit your vehicle',
+            fits: fitText != checkText && fitText != notFit,
             itDoesNotfit: fitText == notFit,
         }"
         class="check-vehicle d-flex"
@@ -27,31 +25,23 @@
 <script>
 import { computed, onMounted, ref } from "vue";
 import { useStore } from "vuex";
-
 export default {
     components: {},
     props: ["fitText"],
     setup(props, { emit }) {
         const checkText = ref("Check if it fits your vehicle");
         const notFit = ref("This product does not fit your vehicle");
-
-        const itDoesNotFits = computed(
-            () => props.fitText == "This product does not fit your vehicle"
-        );
-
+        const itDoesNotFits = computed(() => props.fitText == notFit.value);
         const itNotFits = computed(
             () =>
-                props.fitText != "This product does not fit your vehicle" &&
+                props.fitText != notFit.value &&
                 props.fitText != checkText.value
         );
-
         const store = useStore();
         const showModal = computed(() => store.getters.showModal);
-
         function show() {
             store.commit("setModal", true);
         }
-
         return {
             itDoesNotFits,
             itNotFits,
@@ -70,7 +60,6 @@ export default {
     color: #157400;
     background-color: #f3f8f2;
 }
-
 .itDoesNotfit {
     border-color: red !important;
     color: red !important;
