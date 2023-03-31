@@ -2,7 +2,7 @@
 
 @section('content')
 <section>
-   <div class="container  h-100 full-bg">
+   <div class="container   full-bg">
       <div class="row">
          <div class="col-xl-12 col-lg-12 py-4 ">
 
@@ -25,9 +25,9 @@
                <p> 4. After payment confirmation, get the parts delivered and pay in installments.</p>
 
 
-               <div class="text-center">
+               <div class="text-end">
 
-                  <a href="/register" type="button" class="btn w-25  bg-gradient-primary btn-primary w-100 mt-4 mb-0">Sign up >></a>
+                  <a href="/register" type="button" class="btn w-25  bg-gradient-primary btn-primary mt-4 mb-0">Sign up >></a>
                </div>
 
             </div>
