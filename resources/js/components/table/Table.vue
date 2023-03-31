@@ -19,7 +19,7 @@
                 <div v-if="tableData.unique.right" class="total d-flex">
                     <div class="dropdown mt-3 mobile-nav d-block d-sm-none">
                         <button
-                            class="btn btn-secondary dropdown-toggle d-flex align-items-center"
+                            class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center"
                             type="button"
                             id="dropdownMenuButton1"
                             data-bs-toggle="dropdown"
