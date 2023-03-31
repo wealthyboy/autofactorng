@@ -42851,3 +42851,7 @@ input[type=number]:focus,
 footer a {
   color: #fff !important;
 }
+
+.mobile-nav .dropdown-menu.show {
+  width: 150px !important;
+}
