@@ -10760,14 +10760,7 @@ figure .porto-loading-icon {
 }
 
 
-@media (max-width:1600px) {
-    .banner img {
-        width: 100%;
-        -o-object-fit: cover;
-           object-fit: cover;
-        height: 0px;
-    }
-}
+
 
 
 @media (max-width:450px) {
