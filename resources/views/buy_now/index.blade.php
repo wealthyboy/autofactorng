@@ -26,7 +26,7 @@
 
 
                <div class="text-center">
-                  <a href="/register" type="button" class="btn  bg-gradient-primary btn-lg w-100 mt-4 mb-0">Sign up >></a>
+                  <a href="/register" type="button" class="btn  bg-gradient-primary btn-primary w-100 mt-4 mb-0">Sign up >></a>
                </div>
 
             </div>
