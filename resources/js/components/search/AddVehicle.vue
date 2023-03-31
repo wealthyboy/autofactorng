@@ -7,8 +7,10 @@
     />
     <template v-if="!fitString">
         <div class="title w-100 mt-sm-3">
-            <h3 class="mb-0">WHAT ARE YOU WORKING ON TODAY?</h3>
-            <div class="mt-2">Get an exact fit for your vehicle.</div>
+            <h3 class="mb-0 text-uppercase">
+                What Car do you need parts for today?
+            </h3>
+            <div class="mt-2">Find an exact match for your vehicle.</div>
         </div>
         <div class="d-flex justify-content-between align-content-center pt-2">
             <search @do:filter="getMessage" :filter="true"></search>

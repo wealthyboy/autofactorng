@@ -25648,7 +25648,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "mb-0 ms-5"
-}, "WHAT ARE YOU WORKING ON TODAY?", -1
+}, "What Car do you need parts for today?", -1
 /* HOISTED */
 );
 
@@ -25662,7 +25662,7 @@ var _hoisted_3 = [_hoisted_2];
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mx-5"
-}, "Add your vehicle to get an exact fit.", -1
+}, "Find an exact match for your vehicle.", -1
 /* HOISTED */
 );
 
@@ -29421,10 +29421,10 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "title w-100 mt-sm-3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
-  "class": "mb-0"
-}, "WHAT ARE YOU WORKING ON TODAY?"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "mb-0 text-uppercase"
+}, " What Car do you need parts for today? "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "mt-2"
-}, "Get an exact fit for your vehicle.")], -1
+}, "Find an exact match for your vehicle.")], -1
 /* HOISTED */
 );
 

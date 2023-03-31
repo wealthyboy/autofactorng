@@ -6,7 +6,7 @@
         default content
       -->
             <template v-slot:header>
-                <h3 class="mb-0 ms-5">WHAT ARE YOU WORKING ON TODAY?</h3>
+                <h3 class="mb-0 ms-5">What Car do you need parts for today?</h3>
                 <button
                     class="bg-transparent border-0 modal-default-button"
                     @click="show"
@@ -16,7 +16,7 @@
             </template>
 
             <template v-slot:body>
-                <div class="mx-5">Add your vehicle to get an exact fit.</div>
+                <div class="mx-5">Find an exact match for your vehicle.</div>
                 <div
                     class="d-flex justify-content-between align-content-center pt-2 mx-5"
                 >
