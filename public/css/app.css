@@ -42512,6 +42512,10 @@ a {
   text-decoration: none !important;
 }
 
+.h-0 {
+  height: 0px !important;
+}
+
 .badge-circle {
   color: #fff !important;
 }
@@ -42853,5 +42857,5 @@ footer a {
 }
 
 .mobile-nav .dropdown-menu.show {
-  width: 150px !important;
+  width: 170px !important;
 }
