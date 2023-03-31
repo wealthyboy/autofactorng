@@ -3026,7 +3026,6 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 .banner img {
     width: 100%;
     object-fit: cover;
-    height: 450px;
 }
 
 .img-fluid {
@@ -10132,7 +10131,7 @@ figure .porto-loading-icon {
     .banner img {
         width: 100%;
         object-fit: cover;
-        height: 590px;
+        height: 0px;
     }
 }
 
