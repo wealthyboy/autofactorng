@@ -22,8 +22,9 @@
     <add-vehicle-search></add-vehicle-search>
 </div>
 
-
-@include('_partials.auto_cover')
+<div class="container-fluid">
+    @include('_partials.auto_cover')
+</div>
 <div class="container-fluid mt-5">
     @include('_partials.categories')
 </div>
