@@ -3,7 +3,7 @@
         <div class="col-12 w-100 p-0">
             <div class="dropdown mt-3 mobile-nav">
                 <button class="btn btn-secondary dropdown-toggle d-flex align-items-center" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="material-symbols-outlined  me-2">
+                    <span class="material-symbols-outlined  me-2 fs-1">
                         settings
                     </span>
                     <span>Menu</span>

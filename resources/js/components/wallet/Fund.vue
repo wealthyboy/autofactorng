@@ -1,42 +1,37 @@
 <template>
-  <div class="d-flex align-items-center justify-content-between">
-    <button
-      data-bs-toggle="modal"
-      data-bs-target="#main-modal"
-      class="btn btn-outline-secondary w-100 rounded-0 me-2"
-      type="button"
-      id="button-addon2"
-    >Fund your wallet</button>
+    <div class="d-flex align-items-center justify-content-end">
+        <button
+            data-bs-toggle="modal"
+            data-bs-target="#main-modal"
+            class="btn btn-outline-secondary w-75 rounded-0 me-2"
+            type="button"
+            id="button-addon2"
+        >
+            Fund your wallet
+        </button>
 
-    <a
-      class="btn btn-outline-secondary w-100 rounded-0"
-      href="/plans?type=auto_cover"
-    >Auto cover</a>
-  </div>
-
-  <modal>
-    <template v-slot:header>
-      AutofactorNg
-    </template>
-
-    <template v-slot:title>
-      <h2>Fund your wallet</h2>
-    </template>
-
-    <div class="row h-100  d-flex align-items-center justify-content-center   mx-2 mt-2">
-
-      <div
-        style="height: 200px;"
-        class="form-floating mx-2 mt-2"
-      >
-        <wallet
-          @wallet:funded="refresh"
-          :user="user"
-        />
-      </div>
+        <a
+            class="btn btn-outline-secondary rounded-0"
+            href="/plans?type=auto_cover"
+            >Auto cover</a
+        >
     </div>
 
-  </modal>
+    <modal>
+        <template v-slot:header> AutofactorNg </template>
+
+        <template v-slot:title>
+            <h2>Fund your wallet</h2>
+        </template>
+
+        <div
+            class="row h-100 d-flex align-items-center justify-content-center mx-2 mt-2"
+        >
+            <div style="height: 200px" class="form-floating mx-2 mt-2">
+                <wallet @wallet:funded="refresh" :user="user" />
+            </div>
+        </div>
+    </modal>
 </template>
 <script>
 import Modal from "../Modal/Index";
@@ -45,21 +40,21 @@ import Wallet from "../auth/Wallet";
 import { useActions } from "vuex-composition-helpers";
 
 export default {
-  components: { Modal, GeneralInput, Wallet },
-  props: ["user"],
-  setup() {
-    const { getTableData } = useActions(["getTableData"]);
+    components: { Modal, GeneralInput, Wallet },
+    props: ["user"],
+    setup() {
+        const { getTableData } = useActions(["getTableData"]);
 
-    function refresh(m) {
-      console.log(m);
-      setTimeout(() => {
-        getTableData(location.href);
-      }, 3000);
-    }
+        function refresh(m) {
+            console.log(m);
+            setTimeout(() => {
+                getTableData(location.href);
+            }, 3000);
+        }
 
-    return {
-      refresh,
-    };
-  },
+        return {
+            refresh,
+        };
+    },
 };
 </script>
