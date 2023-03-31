@@ -96,9 +96,20 @@ a {
 }
 
 a {
-    color: #202124 ;
+    color: #202124 !important;
     text-decoration: none !important;
 }
+
+
+// :not(.btn-add-cart){
+//     color: #fff !important ;
+//     text-decoration: none !important;
+// }
+
+button,  :not(.btn-add-cart){
+    color: #000 !important;
+}
+
 
 
 div#offcanvas {
