@@ -30032,7 +30032,7 @@ var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_17 = {
-  "class": "align-middle text-sm"
+  "class": "align-middle text-sm text-secondary"
 };
 var _hoisted_18 = {
   "class": "mb-0 text-xs"

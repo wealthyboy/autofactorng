@@ -78,7 +78,9 @@
                             :key="index"
                         >
                             <td v-for="(td, i) in h" :key="i" class="">
-                                <div class="align-middle text-sm">
+                                <div
+                                    class="align-middle text-sm text-secondary"
+                                >
                                     <div class="mb-0 text-xs">{{ td }}</div>
                                 </div>
                             </td>
