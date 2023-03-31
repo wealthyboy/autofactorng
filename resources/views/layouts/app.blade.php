@@ -291,9 +291,9 @@
 
                <div class="mobile-footer text-center  d-block d-sm-none">
                   <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap">
-                     <a href="#" class="bi bi-facebook fa-2x text-white mr-2" target="_blank" title="Facebook"></a>
-                     <a href="#" class="bi bi-twitter  fa-2x text-white" target="_blank" title="Twitter"></a>
-                     <a href="#" class="bi bi-instagram  fa-2x text-white" target="_blank" title="Linkedin"></a>
+                     <a href="https://www.facebook.com/autofactorng" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
+                     <a href="https://twitter.com/autofactorng" class="bi bi-twitter  text-white me-5 fa-2x" target="_blank" title="Twitter"></a>
+                     <a href="http://instagram.com/autofactorng/" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
                   </div><!-- End .footer-bottom -->
                   <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
 
