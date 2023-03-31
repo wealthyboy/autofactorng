@@ -3,7 +3,7 @@
         <button
             data-bs-toggle="modal"
             data-bs-target="#main-modal"
-            class="btn btn-outline-secondary bold text-dark w-50 b rounded-0 me-2"
+            class="btn btn-outline-secondary bold text-dark w-50 b rounded-0 me-2 fs-4"
             type="button"
             id="button-addon2"
         >
@@ -11,7 +11,7 @@
         </button>
 
         <a
-            class="btn btn-outline-secondary rounded-0 bold text-dark"
+            class="btn btn-outline-secondary rounded-0 bold text-dark fs-4"
             href="/plans?type=auto_cover"
             >Auto cover</a
         >
