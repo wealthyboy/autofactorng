@@ -26,7 +26,6 @@
 
 
                <div class="text-end">
-
                   <a href="/register" type="button" class="btn w-25  bg-gradient-primary btn-primary mt-4 mb-0">Sign up >></a>
                </div>
 
