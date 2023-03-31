@@ -34,7 +34,7 @@
                             aria-labelledby="dropdownMenuButton1"
                         >
                             <li class="py-3 border-bottom">
-                                <span v-if="walletBalance" class="mx-3"
+                                <span v-if="walletBalance" class="mx-3 fs-3"
                                     >Auto Credit:
                                     {{
                                         $filters.formatNumber(
@@ -45,7 +45,7 @@
                             </li>
 
                             <li class="py-3 border-bottom">
-                                <span v-if="walletBalance" class="mx-3"
+                                <span v-if="walletBalance" class="mx-3 fs-3"
                                     >Wallet Balance:
                                     {{
                                         $filters.formatNumber(
@@ -56,7 +56,7 @@
                             </li>
 
                             <li class="py-3 border-bottom">
-                                <span v-if="walletBalance" class="mx-3"
+                                <span v-if="walletBalance" class="mx-3 fs-3"
                                     >Total:
                                     {{
                                         $filters.formatNumber(

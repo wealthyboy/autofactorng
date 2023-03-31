@@ -30008,21 +30008,21 @@ var _hoisted_10 = {
 };
 var _hoisted_11 = {
   key: 0,
-  "class": "mx-3"
+  "class": "mx-3 fs-3"
 };
 var _hoisted_12 = {
   "class": "py-3 border-bottom"
 };
 var _hoisted_13 = {
   key: 0,
-  "class": "mx-3"
+  "class": "mx-3 fs-3"
 };
 var _hoisted_14 = {
   "class": "py-3 border-bottom"
 };
 var _hoisted_15 = {
   key: 0,
-  "class": "mx-3"
+  "class": "mx-3 fs-3"
 };
 var _hoisted_16 = {
   key: 0,
