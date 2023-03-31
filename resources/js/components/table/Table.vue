@@ -25,9 +25,10 @@
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                         >
+                            <span> view balance</span>
                             <span class="material-symbols-outlined">
-                                account_balance_wallet </span
-                            ><span> view balance</span>
+                                keyboard_arrow_down
+                            </span>
                         </button>
                         <ul
                             class="dropdown-menu"
