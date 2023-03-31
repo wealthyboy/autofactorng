@@ -10127,6 +10127,16 @@ figure .porto-loading-icon {
     }
 }
 
+
+@media (max-width:1600px) {
+    .banner img {
+        width: 100%;
+        object-fit: cover;
+        height: 590px;
+    }
+}
+
+
 @media (max-width:450px) {
     .content-center-bottom .category-content {
         padding: 16.8px 21px;
