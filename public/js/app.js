@@ -30026,15 +30026,15 @@ var _hoisted_15 = {
 };
 var _hoisted_16 = {
   key: 0,
-  "class": "mx-3 d-none d-lg-block d-md-block d-xl-block"
+  "class": "mx-3 d-none d-lg-block d-md-block d-xl-block fw-bold"
 };
 var _hoisted_17 = {
   key: 1,
-  "class": "mx-3 d-none d-lg-block d-md-block d-xl-block"
+  "class": "mx-3 d-none d-lg-block d-md-block d-xl-block fw-bold"
 };
 var _hoisted_18 = {
   key: 2,
-  "class": "d-none d-lg-block d-md-block d-xl-block"
+  "class": "d-none d-lg-block d-md-block d-xl-block fw-bold"
 };
 var _hoisted_19 = {
   "class": "table-responsive mt-1"

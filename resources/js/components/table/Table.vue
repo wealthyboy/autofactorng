@@ -71,7 +71,7 @@
 
                     <span
                         v-if="walletBalance"
-                        class="mx-3 d-none d-lg-block d-md-block d-xl-block"
+                        class="mx-3 d-none d-lg-block d-md-block d-xl-block fw-bold"
                         >Auto Credit:
                         {{
                             $filters.formatNumber(walletBalance.auto_credit) ||
@@ -80,7 +80,7 @@
                     >
                     <span
                         v-if="walletBalance"
-                        class="mx-3 d-none d-lg-block d-md-block d-xl-block"
+                        class="mx-3 d-none d-lg-block d-md-block d-xl-block fw-bold"
                         >Wallet Balance:
                         {{
                             $filters.formatNumber(
@@ -90,7 +90,7 @@
                     >
                     <span
                         v-if="walletBalance"
-                        class="d-none d-lg-block d-md-block d-xl-block"
+                        class="d-none d-lg-block d-md-block d-xl-block fw-bold"
                         >Total:
                         {{
                             $filters.formatNumber(walletBalance.total) || "0.00"
