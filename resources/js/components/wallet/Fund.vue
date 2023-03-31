@@ -11,7 +11,7 @@
         </button>
 
         <a
-            class="btn btn-outline-secondary rounded-0 w-50 bold text-dark"
+            class="btn btn-outline-secondary rounded-0 bold text-dark"
             href="/plans?type=auto_cover"
             >Auto cover</a
         >
