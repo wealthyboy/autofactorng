@@ -21,7 +21,7 @@
                     </h1>
                     <div class="row " id="signInMessage">
                         <span class="sign-in-prompt" data-testid="sign-in-message">
-                            Sign in to save your vehicles, track your orders.
+                            Sign In to Track Your Orders & Enjoy Personalized Experience.
                             .</span>
                     </div>
                 </div>
