@@ -3029,6 +3029,10 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
     height: 450px;
 }
 
+.img-fluid {
+    width:  100% !important;
+}
+
 .banner h1,
 .banner h2,
 .banner h3,
