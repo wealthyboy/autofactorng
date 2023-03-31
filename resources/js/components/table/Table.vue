@@ -17,7 +17,7 @@
                     </p>
                 </div>
                 <div v-if="tableData.unique.right" class="total d-flex">
-                    <div class="dropdown mt-3 mobile-nav">
+                    <div class="dropdown mt-3 mobile-nav d-block d-sm-none">
                         <button
                             class="btn btn-secondary dropdown-toggle d-flex align-items-center"
                             type="button"
@@ -25,84 +25,76 @@
                             data-bs-toggle="dropdown"
                             aria-expanded="false"
                         >
-                            <span class="material-symbols-outlined me-2 fs-1">
-                                settings </span
-                            ><span>Menu</span>
+                            <span class="material-symbols-outlined">
+                                account_balance_wallet </span
+                            ><span>Balance</span>
                         </button>
                         <ul
                             class="dropdown-menu"
                             aria-labelledby="dropdownMenuButton1"
                         >
                             <li class="py-3 border-bottom">
-                                <a
-                                    href="/address"
-                                    class="list-group-item list-group-item-action d-flex align-items-center"
-                                    ><i
-                                        class="fs-1 material-symbols-outlined text-main ms-3"
-                                        >home</i
-                                    ><span class="ms-2 fs-3">Address</span></a
+                                <span v-if="walletBalance" class="mx-3"
+                                    >Auto Credit:
+                                    {{
+                                        $filters.formatNumber(
+                                            walletBalance.auto_credit
+                                        ) || "0.00"
+                                    }}</span
                                 >
                             </li>
+
                             <li class="py-3 border-bottom">
-                                <a
-                                    href="/account/create"
-                                    class="list-group-item list-group-item-action d-flex align-items-center"
-                                    ><i
-                                        class="fs-1 material-symbols-outlined text-main ms-3"
-                                        >settings</i
-                                    ><span class="ms-2 fs-3"
-                                        >Account Settings</span
-                                    ></a
+                                <span v-if="walletBalance" class="mx-3"
+                                    >Wallet Balance:
+                                    {{
+                                        $filters.formatNumber(
+                                            walletBalance.wallet_balance
+                                        ) || "0.00"
+                                    }}</span
                                 >
                             </li>
+
                             <li class="py-3 border-bottom">
-                                <a
-                                    href="/change/password"
-                                    class="list-group-item list-group-item-action d-flex align-items-center"
-                                    ><i
-                                        class="fs-1 material-symbols-outlined text-main ms-3"
-                                        >edit</i
-                                    ><span class="ms-2 fs-3"
-                                        >Change Password</span
-                                    ></a
-                                >
-                            </li>
-                            <li class="py-3 border-bottom">
-                                <a
-                                    href="/orders"
-                                    class="list-group-item list-group-item-action d-flex align-items-center"
-                                    ><i
-                                        class="fs-1 material-symbols-outlined text-main ms-3"
-                                        >shopping_bag</i
-                                    ><span class="ms-2 fs-3">Orders</span></a
-                                >
-                            </li>
-                            <li class="py-3 border-bottom">
-                                <a
-                                    href="/tracking"
-                                    class="list-group-item list-group-item-action d-flex align-items-center"
-                                    ><i
-                                        class="fs-1 material-symbols-outlined text-main ms-3"
-                                        >show_chart</i
-                                    ><span class="ms-2 fs-3"
-                                        >Track Order</span
-                                    ></a
-                                >
-                            </li>
-                            <li class="py-3 border-bottom">
-                                <a
-                                    href="/wallets"
-                                    class="list-group-item list-group-item-action d-flex align-items-center"
-                                    ><i
-                                        class="fs-1 material-symbols-outlined text-main ms-3"
-                                        >account_balance_wallet</i
-                                    ><span class="ms-2 fs-3"
-                                        >Wallet/Auto Credit</span
-                                    ></a
+                                <span v-if="walletBalance" class=""
+                                    >Total:
+                                    {{
+                                        $filters.formatNumber(
+                                            walletBalance.total
+                                        ) || "0.00"
+                                    }}</span
                                 >
                             </li>
                         </ul>
                     </div>
+
+                    <span
+                        v-if="walletBalance"
+                        class="mx-3 d-none d-lg-block d-md-block d-xl-block"
+                        >Auto Credit:
+                        {{
+                            $filters.formatNumber(walletBalance.auto_credit) ||
+                            "0.00"
+                        }}</span
+                    >
+                    <span
+                        v-if="walletBalance"
+                        class="mx-3 d-none d-lg-block d-md-block d-xl-block"
+                        >Wallet Balance:
+                        {{
+                            $filters.formatNumber(
+                                walletBalance.wallet_balance
+                            ) || "0.00"
+                        }}</span
+                    >
+                    <span
+                        v-if="walletBalance"
+                        class="d-none d-lg-block d-md-block d-xl-block"
+                        >Total:
+                        {{
+                            $filters.formatNumber(walletBalance.total) || "0.00"
+                        }}</span
+                    >
                 </div>
             </div>
         </div>
