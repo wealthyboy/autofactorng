@@ -10762,7 +10762,6 @@ figure .porto-loading-icon {
 @media (min-width:1500px) {
 
      .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
-      
         width: 100%;
         padding-right: 85px !important;
         padding-left: 85px !important;

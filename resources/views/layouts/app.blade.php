@@ -251,7 +251,7 @@
 
       <footer class="footer bg-dark">
          <div class="py-2 subscribe  border-bottom  ">
-            <div class="container">
+            <div class="container-fluid">
                <div class="row justify-content-center align-items-center no-gutters py-4">
                   <div class="col-12 col-lg-6">
                      <div class="mc-mb-6 mc-mb-md-9 mc-mb-lg-0">
