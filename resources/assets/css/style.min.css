@@ -7639,9 +7639,7 @@ figure .porto-loading-icon {
 }
 
 .product-image-box{ 
-    max-width: 120px;
-    width: 185px;
-    height: 185px;
+    
     overflow: hidden;
     margin: 4rem !important;
 }
