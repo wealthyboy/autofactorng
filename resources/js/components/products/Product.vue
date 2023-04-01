@@ -41,7 +41,7 @@
             </div>
 
             <div class="product-details">
-                <h4 class="product-title mb-2">
+                <h4 class="product-title mb-3 fs-5">
                     <a :href="product.link">{{ product.name }}</a>
                 </h4>
                 <div class="mb-3 fs-5 fw-bold text-black">

@@ -28476,7 +28476,7 @@ var _hoisted_16 = {
   "class": "product-details"
 };
 var _hoisted_17 = {
-  "class": "product-title mb-2"
+  "class": "product-title mb-3 fs-5"
 };
 var _hoisted_18 = ["href"];
 var _hoisted_19 = {
