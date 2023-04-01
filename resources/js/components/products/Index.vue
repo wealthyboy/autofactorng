@@ -24,8 +24,8 @@
                     v-if="search_filters.search_type.search"
                     class="title w-100 mt-2 d-sm-block d-lg-none text-center"
                 >
-                    <h3>ADD YOUR VEHICLE</h3>
-                    <p>Find an exact match for your vehicle.</p>
+                    <h3 class="mt-4 mb-1">ADD YOUR VEHICLE</h3>
+                    <div>Find an exact match for your vehicle.</div>
                 </div>
                 <div
                     v-if="search_filters.search_type.search"

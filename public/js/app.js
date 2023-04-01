@@ -28024,11 +28024,13 @@ var _hoisted_8 = {
   "class": "title w-100 mt-2 d-sm-block d-lg-none text-center"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", null, "ADD YOUR VEHICLE", -1
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+  "class": "mt-4 mb-1"
+}, "ADD YOUR VEHICLE", -1
 /* HOISTED */
 );
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "Find an exact match for your vehicle.", -1
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Find an exact match for your vehicle.", -1
 /* HOISTED */
 );
 
