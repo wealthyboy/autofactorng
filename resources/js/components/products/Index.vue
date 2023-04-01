@@ -32,7 +32,7 @@
                     class="d-flex justify-content-between align-content-center py-4"
                 >
                     <div class="title w-100 p-2 d-none d-lg-block">
-                        <h3 class="mb-0">ADD YOUR VEHICLE</h3>
+                        <h3 class="mb-0 fs-3">ADD YOUR VEHICLE</h3>
                         <div>Find an exact match for your vehicle. .</div>
                     </div>
 
