@@ -217,7 +217,7 @@
                </div>
 
 
-               <div class="menu-i w-50  d-flex add-a-vehicle justify-content-evenly align-items-center ">
+               <div class="menu-i w-50  d-flex add-a-vehicle justify-content-evenly align-items-center border">
                   <a href="/how-to" role="button" class="w-100  ">
                      <div class="d-flex add-a-vehicle justify-content-evenly align-items-center">
                         <span class="material-symbols-outlined">
