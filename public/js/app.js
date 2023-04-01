@@ -28042,7 +28042,7 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "title w-100 p-2 d-none d-lg-block"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "mb-0 fs-3"
-}, "ADD YOUR VEHICLE"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Find an exact match for your vehicle. .")], -1
+}, "ADD YOUR VEHICLE"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, "Find an exact match for your vehicle.")], -1
 /* HOISTED */
 );
 
