@@ -15,7 +15,7 @@
         <span v-if="!itNotFits" class="material-symbols-outlined fs-4 me-2">
             warning
         </span>
-        <div class="fs-5 no-hover">{{ fitText }}</div>
+        <div class="fs-6 no-hover">{{ fitText }}</div>
     </button>
 
     <button v-if="!fitText" class="check-vehicle d-flex" @click="show">

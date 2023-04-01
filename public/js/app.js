@@ -27347,7 +27347,7 @@ var _hoisted_4 = {
   "class": "material-symbols-outlined fs-4 me-2"
 };
 var _hoisted_5 = {
-  "class": "fs-5 no-hover"
+  "class": "fs-6 no-hover"
 };
 var _hoisted_6 = {
   "class": "fs-5"
