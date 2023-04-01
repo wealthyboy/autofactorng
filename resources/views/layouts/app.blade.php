@@ -36,7 +36,7 @@
 
                <div class="container-fluid justify-content-end ">
                   <div class="header-left col-lg-2 w-auto pl-0">
-                     <button class="mobile-menu-toggler  mr-2" type="button">
+                     <button class="mobile-menu-toggler  no-hover mr-2" type="button">
                         <i class="fas fa-bars"></i>
                         <span class="mt-3 fs-5">Menu</span>
                      </button>
@@ -95,7 +95,7 @@
 
 
                <div class="header-lefts   d-flex justify-content-between align-items-center w-100">
-                  <button class="mobile-menu-toggler  mr-2 d-flex flex-column align-items-center display-3" type="button">
+                  <button class="mobile-menu-toggler  no-hover mr-2 d-flex flex-column align-items-center display-3" type="button">
                      <i class="fas fa-bars"></i>
                      <span class=" fs-5">Menu</span>
                   </button>
