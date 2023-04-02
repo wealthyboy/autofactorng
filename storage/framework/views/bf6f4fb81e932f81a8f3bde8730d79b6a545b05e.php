@@ -36,7 +36,7 @@
 
                <div class="container-fluid justify-content-end ">
                   <div class="header-left col-lg-2 w-auto pl-0">
-                     <button class="mobile-menu-toggler  mr-2" type="button">
+                     <button class="mobile-menu-toggler  no-hover mr-2" type="button">
                         <i class="fas fa-bars"></i>
                         <span class="mt-3 fs-5">Menu</span>
                      </button>
@@ -95,7 +95,7 @@
 
 
                <div class="header-lefts   d-flex justify-content-between align-items-center w-100">
-                  <button class="mobile-menu-toggler  mr-2 d-flex flex-column align-items-center display-3" type="button">
+                  <button class="mobile-menu-toggler  no-hover mr-2 d-flex flex-column align-items-center display-3" type="button">
                      <i class="fas fa-bars"></i>
                      <span class=" fs-5">Menu</span>
                   </button>
@@ -217,13 +217,13 @@
                </div>
 
 
-               <div class="menu-i w-50 py-4 border">
-                  <a href="/how-to" role="button" class="w-100 mb-0 ">
-                     <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
+               <div class="menu-i w-50  d-flex add-a-vehicle justify-content-evenly align-items-center border">
+                  <a href="/how-to" role="button" class="w-100  ">
+                     <div class="d-flex add-a-vehicle justify-content-evenly align-items-center">
                         <span class="material-symbols-outlined">
                            local_library
                         </span>
-                        <div class="align-self-center fw-bold ms-3">How To</div>
+                        <div class="align-self-center fw-bold ">How To</div>
 
                         <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
                      </div>
@@ -251,7 +251,7 @@
 
       <footer class="footer bg-dark">
          <div class="py-2 subscribe  border-bottom  ">
-            <div class="container">
+            <div class="container-fluid">
                <div class="row justify-content-center align-items-center no-gutters py-4">
                   <div class="col-12 col-lg-6">
                      <div class="mc-mb-6 mc-mb-md-9 mc-mb-lg-0">
@@ -282,7 +282,7 @@
          </div>
          <div class="footer-middle">
             <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
-            <div class="container">
+            <div class="container-fluid">
                <div class="footer-middle mt-5">
                   <div class="">
                      <?php echo $__env->make('layouts.footer.desktop_footer', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
@@ -291,11 +291,14 @@
 
                <div class="mobile-footer text-center  d-block d-sm-none">
                   <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap">
-                     <a href="#" class="bi bi-facebook fa-2x text-white mr-2" target="_blank" title="Facebook"></a>
-                     <a href="#" class="bi bi-twitter  fa-2x text-white" target="_blank" title="Twitter"></a>
-                     <a href="#" class="bi bi-instagram  fa-2x text-white" target="_blank" title="Linkedin"></a>
+                     <a href="https://www.facebook.com/autofactorng/" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
+                     <a href="https://twitter.com/autofactorng/" class="bi bi-twitter  text-white me-5 fa-2x" target="_blank" title="Twitter"></a>
+                     <a href="http://instagram.com/autofactorng/" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
                   </div><!-- End .footer-bottom -->
                   <p class="footer-copyright py-3 pr-4 mb-0">© <?php echo e(config('app.name')); ?>. <?php echo e(date('Y')); ?>. All Rights Reserved</p>
+                  <?php if( auth()->check() && auth()->user()->isAdmin() ): ?>
+                  <p class="footer-copyright mx-3 text-white"><a target="_blank" href="/admin">Go to Admin</a></p>
+                  <?php endif; ?>
 
 
                </div>
@@ -307,9 +310,9 @@
                      <p class="footer-copyright mx-3 text-white"><a target="_blank" href="/admin">Go to Admin</a></p>
                      <?php endif; ?>
                      <div class="social-icons py-3">
-                        <a href="#" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
-                        <a href="#" class="bi bi-twitter  text-white me-5 fa-2x" target="_blank" title="Twitter"></a>
-                        <a href="#" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
+                        <a href="https://www.facebook.com/autofactorng/" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
+                        <a href="https://twitter.com/autofactorng/" class="bi bi-twitter  text-white me-5 fa-2x" target="_blank" title="Twitter"></a>
+                        <a href="http://instagram.com/autofactorng/" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
                      </div><!-- End .social-icons -->
                   </div><!-- End .footer-bottom -->
                </div>

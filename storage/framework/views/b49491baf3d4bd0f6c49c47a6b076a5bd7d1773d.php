@@ -4,12 +4,15 @@
       <div class="owl-carousel owl-theme show-nav-hover slide-animate d-none d-lg-block d-xl-block" data-owl-options="{
            'dots': true,
            'nav': true,
-           'loop': false
+           'loop': true,
+           'autoplay': true,
+           'autoPlaySpeed': 5000,
+           'autoPlayTimeout': 5000
         }">
          <?php $__currentLoopData = $sliders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $slider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
          <div class="banner banner3 <?php echo e($slider->device); ?>">
-            <a href="" class="d-block">
+            <a href="<?php echo e($slider->link); ?>" class="d-block">
                <figure>
                   <img width="1920" height="700" src="<?php echo e($slider->image); ?>" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
                </figure>
@@ -27,7 +30,7 @@
          <?php $__currentLoopData = $mobile_sliders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $slider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
          <div class="banner banner3 <?php echo e($slider->device); ?>">
-            <a href="" class="d-block">
+            <a href="<?php echo e($slider->link); ?>" class="d-block">
                <figure>
                   <img width="1920" height="700" src="<?php echo e($slider->image); ?>" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
                </figure>

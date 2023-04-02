@@ -20,8 +20,9 @@
     <add-vehicle-search></add-vehicle-search>
 </div>
 
-
-<?php echo $__env->make('_partials.auto_cover', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<div class="container-fluid">
+    <?php echo $__env->make('_partials.auto_cover', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+</div>
 <div class="container-fluid mt-5">
     <?php echo $__env->make('_partials.categories', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 </div>
