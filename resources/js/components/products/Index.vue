@@ -24,16 +24,65 @@
                     v-if="search_filters.search_type.search"
                     class="title w-100 mt-2 d-sm-block d-lg-none text-center"
                 >
-                    <h3 class="mt-4 mb-1">ADD YOUR VEHICLE</h3>
-                    <div>Find an exact match for your vehicle.</div>
+                    <template
+                        v-if="
+                            search_filters.search_type.search ==
+                            'make_model_year'
+                        "
+                    >
+                        <h3 class="mt-4 mb-1">ADD YOUR VEHICLE</h3>
+                        <div>Find an exact match for your vehicle.</div>
+                    </template>
+
+                    <template
+                        v-if="search_filters.search_type.search == 'tyre'"
+                    >
+                    <h3 class="mt-4 mb-1">SELECT YOUR TYRE SIZE</h3>
+                        <div>Find an exact match for your vehicle.</div>
+                    </template>
+
+
+                    <template
+                        v-if="search_filters.search_type.search == 'battery'"
+                    >
+                    <h3 class="mt-4 mb-1">SELECT YOUR SIZE</h3>
+                        <div>Find an exact match for your vehicle.</div>
+                    </template>
+                   
                 </div>
                 <div
                     v-if="search_filters.search_type.search"
                     class="d-flex justify-content-between align-content-center py-4"
                 >
                     <div class="title w-100 p-2 d-none d-lg-block">
-                        <h3 class="mb-0 fs-3">ADD YOUR VEHICLE</h3>
+                        <div
+                    v-if="search_filters.search_type.search"
+                    class="title w-100 mt-2 d-sm-block d-lg-none text-center"
+                >
+                    <template
+                        v-if="
+                            search_filters.search_type.search ==
+                            'make_model_year'
+                        "
+                    >
+                        <h3 class="mt-4 mb-1">ADD YOUR VEHICLE</h3>
                         <div>Find an exact match for your vehicle.</div>
+                    </template>
+
+                    <template
+                        v-if="search_filters.search_type.search == 'tyre'"
+                    >
+                    <h3 class="mt-4 mb-1">SELECT YOUR TYRE SIZE</h3>
+                        <div>Find an exact match for your vehicle.</div>
+                    </template>
+
+
+                    <template
+                        v-if="search_filters.search_type.search == 'battery'"
+                    >
+                    <h3 class="mt-4 mb-1">SELECT YOUR SIZE</h3>
+                        <div>Find an exact match for your vehicle.</div>
+                    </template>
                     </div>
 
                     <template
