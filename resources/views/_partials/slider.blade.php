@@ -4,7 +4,8 @@
       <div class="owl-carousel owl-theme show-nav-hover slide-animate d-none d-lg-block d-xl-block" data-owl-options="{
            'dots': true,
            'nav': true,
-           'loop': false
+           'loop': true,
+           'autoplay': true,
         }">
          @foreach($sliders as $key => $slider)
 
