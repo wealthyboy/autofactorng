@@ -5,7 +5,7 @@
            'dots': true,
            'nav': true,
            'loop': true,
-           'autoPlay': true,
+           'autoplay': true,
            'autoPlaySpeed': 5000,
            'autoPlayTimeout': 5000
         }">
