@@ -119,6 +119,10 @@
         padding-right: 130px;
     }
 
+    .product-title {
+        font-size: calc(1.3rem + 0.6vw);
+    }
+
     .product-single-gallery .product-item{
         width: auto !important; 
         height: auto !important;
