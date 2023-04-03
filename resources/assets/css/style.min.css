@@ -120,7 +120,7 @@
     }
 
     .product-title {
-        font-size: calc(1.3rem + 0.6vw);
+        font-size: calc(1.3rem + 0.6vw) !important;
     }
 
     .product-single-gallery .product-item{
