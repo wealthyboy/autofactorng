@@ -2,7 +2,7 @@
     <div v-if="list == 'Grid'" class="col-6 border col-sm-4 col-md-3">
         <div class="product-default">
             <div class="position-relative product-info-box">
-                <figure class="product-image-box position-relative">
+                <figure class="product-image-box-h position-relative">
                     <a :href="product.link">
                         <img
                             :src="product.image_m"

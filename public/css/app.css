@@ -8280,6 +8280,11 @@ figure .porto-loading-icon {
     margin: 4rem !important;
 }
 
+.product-image-box-h{ 
+    overflow: hidden;
+    margin: 4rem !important;
+}
+
 .product-more-info {
     transition: .5s ease;
     opacity: 0;

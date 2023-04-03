@@ -28514,7 +28514,7 @@ var _hoisted_3 = {
   "class": "position-relative product-info-box"
 };
 var _hoisted_4 = {
-  "class": "product-image-box position-relative"
+  "class": "product-image-box-h position-relative"
 };
 var _hoisted_5 = ["href"];
 var _hoisted_6 = ["src"];
