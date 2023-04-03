@@ -47,6 +47,7 @@
                         <div>Find an exact match for your vehicle.</div>
                     </template>
                 </div>
+
                 <div
                     v-if="search_filters.search_type.search"
                     class="d-flex justify-content-between align-content-center py-4"
@@ -66,6 +67,11 @@
                         >
                             <h3 class="mb-0 fs-3">SELECT YOUR TYRE SIZE</h3>
                             <div>Find an exact match for your vehicle.</div>
+                            <img
+                                src="/images/utils/tyre_size.jpeg"
+                                alt=""
+                                srcset=""
+                            />
                         </template>
 
                         <template
