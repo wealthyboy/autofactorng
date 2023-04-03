@@ -28,7 +28,7 @@
                             </div>
                             <div class="col-4">
                                 <h3>Payment Method</h3>
-                                {{ str_replace( $order->payment_type, "_", " ") }}
+                                {{ str_replace("_", " ", $order->payment_type) }}
                             </div>
 
                             <div class="col-4">
