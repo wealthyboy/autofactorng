@@ -28084,8 +28084,7 @@ var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "/images/utils/tyre_size.jpeg",
-  alt: "",
-  srcset: ""
+  alt: ""
 }, null, -1
 /* HOISTED */
 );

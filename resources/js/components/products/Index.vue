@@ -67,11 +67,7 @@
                         >
                             <h3 class="mb-0 fs-3">SELECT YOUR TYRE SIZE</h3>
                             <div>Find an exact match for your vehicle.</div>
-                            <img
-                                src="/images/utils/tyre_size.jpeg"
-                                alt=""
-                                srcset=""
-                            />
+                            <img src="/images/utils/tyre_size.jpeg" alt="" />
                         </template>
 
                         <template

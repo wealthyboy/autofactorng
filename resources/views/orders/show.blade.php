@@ -28,7 +28,7 @@
                             </div>
                             <div class="col-4">
                                 <h3>Payment Method</h3>
-                                {{ $order->payment_type }}
+                                {{ str_replace( $order->payment_type, "", "_") }}
                             </div>
 
                             <div class="col-4">
@@ -61,7 +61,7 @@
                                         <th scope="row"><span class="bold">Status:</span> {{ $order->status }}</th>
                                         <td colspan="3">
                                             <div class="media">
-                                                <div class="img-container">
+                                                <div class="image-category">
                                                     <img class="align-self-start mr-3 img-fluid" src="{{ optional($order_product->product)->image_tn  }} " alt="{{ optional($order_product->product)->name  }}">
                                                 </div>
                                                 <div class="media-body ml-3 ">
