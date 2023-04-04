@@ -6,8 +6,7 @@
            'nav': true,
            'loop': true,
            'autoplay': true,
-           'autoPlaySpeed': 5000,
-           'autoPlayTimeout': 5000
+           'autoPlayTimeout': 2000
         }">
          <?php $__currentLoopData = $sliders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $slider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
