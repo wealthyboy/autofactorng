@@ -3,7 +3,7 @@
         <div class="product-default">
             <div class="position-relative product-info-box">
                 <figure class="product-image-box-h position-relative">
-                    <a :href="product.link" class="product-image">
+                    <a :href="product.link" class="product-image-grid">
                         <img
                             :src="product.image_m"
                             width="250"
