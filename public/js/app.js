@@ -27913,7 +27913,7 @@ var _hoisted_6 = {
 };
 var _hoisted_7 = ["for"];
 var _hoisted_8 = {
-  "class": "checkbox-label"
+  "class": "checkbox-label fs-5"
 };
 var _hoisted_9 = ["value", "name", "id"];
 

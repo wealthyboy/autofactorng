@@ -25,7 +25,7 @@
                 <div class="accordion-body">
                     <div v-for="obj in objs" :key="obj.id" class="form-check">
                         <label :for="obj.name + obj.id" class="container">
-                            <span class="checkbox-label">
+                            <span class="checkbox-label fs-5">
                                 {{ obj.name }}
                             </span>
                             <input
