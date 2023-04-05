@@ -155,15 +155,16 @@
                 <a :href="product.link">{{ product.name }}</a>
             </h4>
             <div class="mb-3 fs-5 fw-bold text-black">{{ product.note }}</div>
-
             <div
                 v-if="product.average_rating_count >= 1"
-                class="product-ratings"
+                class="product-ratings mb-2"
             >
-                <span
-                    class="ratings"
-                    :style="'width:' + product.average_rating + '%'"
-                ></span>
+                <rating :active="true" v-for="x in product.average_rating" />
+                <rating
+                    :active="false"
+                    v-for="x in 5 - product.average_rating"
+                />
+
                 <!-- End .ratings -->
             </div>
             <!-- End .product-container -->
@@ -220,6 +221,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import CheckVehicle from "../general/CheckVehicle";
+import Rating from "./Rating";
 
 export default {
     props: {
@@ -227,7 +229,7 @@ export default {
         showFitText: Boolean,
         list: String,
     },
-    components: { CheckVehicle },
+    components: { CheckVehicle, Rating },
     data() {
         return {
             added: [],

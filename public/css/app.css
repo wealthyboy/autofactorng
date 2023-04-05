@@ -118,6 +118,7 @@
     }
 }
 
+
 a.product-image {
     
 }
@@ -682,6 +683,11 @@ a.product-image {
 
 .owl-theme.owl-theme-light .owl-dots .owl-dot.active span:before {
     border-color: #000
+}
+
+.products-show .owl-item {
+    display: flex;
+    justify-content: center;
 }
 
 .mfp-bg {
