@@ -25246,7 +25246,7 @@ var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_41 = {
-  "class": "d-flex aligin-items-center flex-sm-column"
+  "class": "d-flex aligin-items-center flex-xs-column"
 };
 var _hoisted_42 = ["onClick"];
 

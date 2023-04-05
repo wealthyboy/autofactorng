@@ -195,7 +195,7 @@
                                         </div>
 
                                         <div
-                                            class="d-flex aligin-items-center flex-sm-column"
+                                            class="d-flex aligin-items-center flex-xs-column"
                                         >
                                             <a
                                                 @click.prevent="
