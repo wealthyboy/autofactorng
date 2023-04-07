@@ -4,7 +4,7 @@
         <div class="mb-3 fs-4 fw-bold">{{ product.note }}</div>
 
         <div class="ratings-container mt-3">
-            <div class="product-ratings">
+            <div class="product-rating">
                 <rating :active="true" v-for="x in product.average_rating" />
                 <rating
                     :active="false"

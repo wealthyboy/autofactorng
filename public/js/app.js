@@ -29421,7 +29421,7 @@ var _hoisted_4 = {
   "class": "ratings-container mt-3"
 };
 var _hoisted_5 = {
-  "class": "product-ratings"
+  "class": "product-rating"
 };
 var _hoisted_6 = {
   href: "#",
