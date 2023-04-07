@@ -62,7 +62,9 @@
 
                                 <span class="comment-by">
                                     <div>
-                                        <strong>{{ review.full_name }}</strong>
+                                        <strong class="text-main">{{
+                                            review.full_name
+                                        }}</strong>
                                         – {{ review.date }}
                                         <p>{{ review.title }}</p>
                                         <p>{{ review.description }}</p>
