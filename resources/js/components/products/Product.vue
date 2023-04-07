@@ -50,7 +50,7 @@
 
                 <div
                     v-if="product.average_rating_count >= 1"
-                    class="product-ratings mb-2"
+                    class="product-rating mb-2"
                 >
                     <span
                         class="ratings"
