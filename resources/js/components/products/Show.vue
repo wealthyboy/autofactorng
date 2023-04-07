@@ -9,13 +9,16 @@
                     :active="true"
                     v-for="x in product.average_rating / 20"
                 />
+                <rating
+                    :active="false"
+                    v-for="x in (100 - product.average_rating) / 20"
+                />
             </div>
 
             <!-- End .product-ratings -->
 
             <a href="#" class="rating-link"
-                >( {{ product.average_rating_count }} Reviews
-                {{ product.average_rating }} )</a
+                >( {{ product.average_rating_count }} Reviews )</a
             >
         </div>
 
