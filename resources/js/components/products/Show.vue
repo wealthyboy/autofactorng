@@ -5,7 +5,10 @@
 
         <div class="ratings-container mt-3">
             <div class="product-rating">
-                <rating :active="true" v-for="x in product.average_rating" />
+                <rating
+                    :active="true"
+                    v-for="x in product.average_rating / 20"
+                />
             </div>
 
             <!-- End .product-ratings -->
