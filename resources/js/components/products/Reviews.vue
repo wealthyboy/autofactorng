@@ -61,7 +61,7 @@
                                 </div>
 
                                 <span class="comment-by">
-                                    <div>
+                                    <div class="text-black">
                                         <strong class="text-main">{{
                                             review.full_name
                                         }}</strong>
