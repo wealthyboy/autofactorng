@@ -9,7 +9,7 @@
 
         <div class="tab-content">
             <a
-                class="bold fs-6 btn btn-dark p-2"
+                class="bold fs-6 btn btn-primary p-2"
                 data-bs-toggle="modal"
                 data-bs-target="#reviewsCenteredScrollableTitle"
                 v-if="!loading && !reviews.length"

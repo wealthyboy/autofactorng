@@ -28958,7 +28958,7 @@ var _hoisted_4 = {
 };
 var _hoisted_5 = {
   key: 0,
-  "class": "bold fs-6 btn btn-dark p-2",
+  "class": "bold fs-6 btn btn-primary p-2",
   "data-bs-toggle": "modal",
   "data-bs-target": "#reviewsCenteredScrollableTitle"
 };
