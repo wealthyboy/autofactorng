@@ -9,7 +9,8 @@
             <!-- End .product-ratings -->
 
             <a href="#" class="rating-link"
-                >( {{ product.average_rating_count }} Reviews )</a
+                >( {{ product.average_rating_count }}
+                {{ product.average_rating }} Reviews )</a
             >
         </div>
 
