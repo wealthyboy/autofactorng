@@ -43,7 +43,7 @@
             <div class="col-4">
                 <button
                     @click.prevent="applyCoupon"
-                    class="btn btn-sm btn-primary w-100 rounded-0 coupon-button btn-dark bold fs-3"
+                    class="btn btn-sm w-100 rounded-0 coupon-button bg-main bold fs-3 text-white"
                     type="submit"
                 >
                     <span
