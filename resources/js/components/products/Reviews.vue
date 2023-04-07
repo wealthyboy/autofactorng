@@ -46,18 +46,16 @@
                                 <div class="comment-arrow"></div>
 
                                 <div class="ratings-container float-sm-right">
-                                    <div class="product-ratings">
-                                        <span
-                                            class="ratings"
-                                            style="width: 60%"
-                                            :style="{
-                                                width: review.rating + '%',
-                                            }"
-                                        ></span>
-                                        <!-- End .ratings -->
-                                        <span
-                                            class="tooltiptext tooltip-top"
-                                        ></span>
+                                    <div class="product-rating">
+                                        <rating
+                                            :active="true"
+                                            v-for="x in review.rating / 20"
+                                        />
+                                        <rating
+                                            :active="false"
+                                            v-for="x in (100 - review.rating) /
+                                            20"
+                                        />
                                     </div>
                                     <!-- End .product-ratings -->
                                 </div>
