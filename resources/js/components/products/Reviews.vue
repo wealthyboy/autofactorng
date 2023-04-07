@@ -2,11 +2,8 @@
     <!-- End .product-single-container -->
     <div class="col-md-12">
         <div class="ratings-container mt-3">
-            <div class="product-ratings">
-                <span class="ratings" style="width: 0%"></span
-                ><!-- End .ratings --><span class="tooltiptext tooltip-top"
-                    >0</span
-                >
+            <div class="product-rating">
+                <rating :active="false" v-for="x in 5" />
             </div>
         </div>
 
@@ -14,7 +11,7 @@
             <a
                 type="button"
                 role="button"
-                class=""
+                class="btn btn-dark bold"
                 data-bs-toggle="modal"
                 data-bs-target="#reviewsCenteredScrollableTitle"
                 v-if="!loading && !reviews.length"
@@ -277,6 +274,8 @@ import { mapGetters, mapActions, useStore } from "vuex";
 import Pagination from "../pagination/Pagination.vue";
 import Login from "../auth/Login";
 import { computed, onMounted, reactive, ref } from "vue";
+import Rating from "./Rating";
+
 import { useActions, useGetters } from "vuex-composition-helpers";
 
 export default {
@@ -284,6 +283,7 @@ export default {
     components: {
         Pagination,
         Login,
+        Rating,
     },
 
     setup(props) {

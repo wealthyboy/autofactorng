@@ -5,12 +5,11 @@
 
         <div class="ratings-container mt-3">
             <div class="product-ratings">
-                <span
-                    class="ratings"
-                    :style="{ width: product.average_rating + '%' }"
-                ></span>
-                <!-- End .ratings -->
-                <span class="tooltiptext tooltip-top"></span>
+                <rating :active="true" v-for="x in product.average_rating" />
+                <rating
+                    :active="false"
+                    v-for="x in 5 - product.average_rating"
+                />
             </div>
 
             <!-- End .product-ratings -->
@@ -116,6 +115,7 @@ import { mapGetters, mapActions } from "vuex";
 import CheckVehicle from "../general/CheckVehicle";
 import GeneralButton from "../general/Button";
 import CartQty from "../utils/CartQty";
+import Rating from "./Rating";
 
 export default {
     data() {
@@ -140,6 +140,7 @@ export default {
         CheckVehicle,
         GeneralButton,
         CartQty,
+        Rating,
     },
     mounted() {
         this.text = !this.product.in_stock ? "Out of Stock" : "Add to Cart";
