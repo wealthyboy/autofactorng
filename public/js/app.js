@@ -26578,7 +26578,7 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  "class": "view-cart ms-3 bg-dark text-white w-50",
+  "class": "view-cart ms-3 bg-main bold text-white w-50",
   href: "/checkout"
 }, "Checkout", -1
 /* HOISTED */
@@ -26639,7 +26639,7 @@ var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_33 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-  "class": "view-cart bg-dark ms-3 text-white w-50",
+  "class": "view-cart bg-main bold ms-3 text-white w-50",
   href: "/checkout"
 }, "Checkout", -1
 /* HOISTED */

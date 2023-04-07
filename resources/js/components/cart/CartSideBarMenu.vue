@@ -40,7 +40,7 @@
                     >View Cart</a
                 >
                 <a
-                    class="view-cart ms-3 bg-dark text-white w-50"
+                    class="view-cart ms-3 bg-main bold text-white w-50"
                     href="/checkout"
                     >Checkout</a
                 >
@@ -103,7 +103,7 @@
                     >View Cart</a
                 >
                 <a
-                    class="view-cart bg-dark ms-3 text-white w-50"
+                    class="view-cart bg-main bold ms-3 text-white w-50"
                     href="/checkout"
                     >Checkout</a
                 >
