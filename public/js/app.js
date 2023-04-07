@@ -28953,7 +28953,7 @@ var _hoisted_5 = {
   key: 0,
   type: "button",
   role: "button",
-  "class": "btn btn-dark bold",
+  "class": "btn btn-dark bg-dark text-white bold",
   "data-bs-toggle": "modal",
   "data-bs-target": "#reviewsCenteredScrollableTitle"
 };

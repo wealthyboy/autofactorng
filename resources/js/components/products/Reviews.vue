@@ -11,7 +11,7 @@
             <a
                 type="button"
                 role="button"
-                class="btn btn-dark bold"
+                class="btn btn-dark bg-dark text-white bold"
                 data-bs-toggle="modal"
                 data-bs-target="#reviewsCenteredScrollableTitle"
                 v-if="!loading && !reviews.length"
