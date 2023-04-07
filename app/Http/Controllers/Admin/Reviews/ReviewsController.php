@@ -86,8 +86,10 @@ class ReviewsController extends Table
 	{
 		if (request()->filled('id')) {
 			$review = Review::find(request()->id);
-			$review->is_verified = request()->accept || false;
-			$review->save();
+			if (null !== $review) {
+				$review->is_verified = request()->accept || false;
+				$review->save();
+			}
 		}
 	}
 
