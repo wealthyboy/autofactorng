@@ -7,7 +7,9 @@
            'loop': true,
             'autoplay':true,
             'autoplayTimeout':3500,
-            'autoplayHoverPause':true
+            'autoplayHoverPause':true,
+            responsiveClass:true
+
         }">
          @foreach($sliders as $key => $slider)
 
