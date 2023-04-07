@@ -6,7 +6,7 @@
            'nav': true,
            'loop': true,
             'autoplay':true,
-            'autoplayTimeout':1500,
+            'autoplayTimeout':2000,
             'autoplayHoverPause':true
         }">
          @foreach($sliders as $key => $slider)
