@@ -9,9 +9,7 @@
 
         <div class="tab-content">
             <a
-                type="button"
-                role="button"
-                class="btn btn-dark bg-dark text-white bold"
+                class="bold fs-6 btn btn-dark p-2"
                 data-bs-toggle="modal"
                 data-bs-target="#reviewsCenteredScrollableTitle"
                 v-if="!loading && !reviews.length"
