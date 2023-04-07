@@ -42,7 +42,6 @@ class ReviewsController extends Table
 
 		$reviews = $this->getColumnListings(request(), Review::paginate(100));
 
-		dd($reviews);
 		return view('admin.reviews.index', compact('reviews'));
 	}
 

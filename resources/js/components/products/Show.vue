@@ -6,17 +6,13 @@
         <div class="ratings-container mt-3">
             <div class="product-rating">
                 <rating :active="true" v-for="x in product.average_rating" />
-                <rating
-                    :active="false"
-                    v-for="x in 5 - product.average_rating"
-                />
             </div>
 
             <!-- End .product-ratings -->
 
             <a href="#" class="rating-link"
-                >( {{ product.average_rating_count }}
-                {{ product.average_rating }} Reviews )</a
+                >( {{ product.average_rating_count }} Reviews
+                {{ product.average_rating }} )</a
             >
         </div>
 
