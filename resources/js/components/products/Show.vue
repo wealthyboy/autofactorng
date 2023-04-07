@@ -17,7 +17,7 @@
 
             <!-- End .product-ratings -->
 
-            <a href="#" class="rating-link"
+            <a href="#ratings-container" class="rating-link"
                 >( {{ product.average_rating_count }} Reviews )</a
             >
         </div>

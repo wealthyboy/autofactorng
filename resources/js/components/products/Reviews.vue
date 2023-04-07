@@ -1,6 +1,6 @@
 <template>
     <!-- End .product-single-container -->
-    <div class="col-md-12">
+    <div id="ratings-container" class="col-md-12">
         <div class="ratings-container mt-3">
             <div class="product-rating">
                 <rating :active="false" v-for="x in 5" />

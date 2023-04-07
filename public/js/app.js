@@ -28945,6 +28945,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
+  id: "ratings-container",
   "class": "col-md-12"
 };
 var _hoisted_2 = {
@@ -29431,7 +29432,7 @@ var _hoisted_5 = {
   "class": "product-rating"
 };
 var _hoisted_6 = {
-  href: "#",
+  href: "#ratings-container",
   "class": "rating-link"
 };
 var _hoisted_7 = {
