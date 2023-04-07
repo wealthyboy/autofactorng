@@ -52,10 +52,14 @@
                     v-if="product.average_rating_count >= 1"
                     class="product-rating mb-2"
                 >
-                    <span
-                        class="ratings"
-                        :style="'width:' + product.average_rating + '%'"
-                    ></span>
+                    <rating
+                        :active="true"
+                        v-for="x in product.average_rating / 20"
+                    />
+                    <rating
+                        :active="false"
+                        v-for="x in (100 - product.average_rating) / 20"
+                    />
                     <!-- End .ratings -->
                 </div>
                 <!-- End .product-container -->
@@ -159,10 +163,13 @@
                 v-if="product.average_rating_count >= 1"
                 class="product-ratings mb-2"
             >
-                <rating :active="true" v-for="x in product.average_rating" />
+                <rating
+                    :active="true"
+                    v-for="x in product.average_rating / 20"
+                />
                 <rating
                     :active="false"
-                    v-for="x in 5 - product.average_rating"
+                    v-for="x in (100 - product.average_rating) / 20"
                 />
 
                 <!-- End .ratings -->
