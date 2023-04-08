@@ -19,7 +19,6 @@ import 'vue-js-modal/dist/styles.css'
 import Products from "./components/products/Index";
 import Show from "./components/products/Show";
 import Reviews from "./components/products/Reviews";
-
 import CartSideBar from "./components/cart/CartSideBarMenu";
 import Login from "./components/auth/Login";
 import ResetPassword from "./components/auth/ResetPassword";

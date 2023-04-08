@@ -334,8 +334,7 @@
                                                    <tr style=" margin-bottom: 20px;">
                                                       <td class="esFrMb" width="30"></td>
                                                       <td class="esFrMb" align="center" width="200">
-                                                         <span style=" margin-top: 0px;  margin-bottom: 15px;display: block;text-decoration: none;border: none;"> 15 Tapa House Surulere Lagos
-                                                         </span>
+
                                                       </td>
                                                       <td class="esFrMb" width="30"></td>
                                                    </tr>
@@ -438,6 +437,8 @@
                                                                   {{ ucfirst($order->first_name) }} {{ ucfirst($order->last_name) }} <br />
                                                                   {{ $order->address }}<br /> {{ $order->city }} &nbsp;
                                                                   <br /> {{ $order->state }}&nbsp;
+                                                                  <br />Phone number: {{ $order->phone_number }}&nbsp;
+
 
                                                                </td>
                                                             </tr>
@@ -604,11 +605,8 @@
                                              </th>
                                              <th class="stack3" data-border-left-color="borderColor" data-border-bottom-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); border-bottom: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top;" width="139">
                                                 <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
-
                                                    <tr>
-
                                                       <td class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: #ffffff; padding: 4px;font-family: sans-serif;font-size: 15px;text-align: center;line-height: 27px;font-weight: bold;"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>Price</td>
-
                                                    </tr>
                                                 </table>
                                              </th>
@@ -679,7 +677,7 @@
                                                             </div>
                                                             @endif
 
-                                                            <div> {{ $ordered_product->product_name }}</div>
+                                                            <div> {{ $ordered_product->name }}</div>
                                                          </td>
                                                          <td class="wz2" width="30"></td>
                                                       </tr>
