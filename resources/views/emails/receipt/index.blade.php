@@ -485,13 +485,10 @@
                                                       <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
                                                    </tr>
                                                    <tr>
-                                                      <td class="wz" width="30"></td>
                                                       <td valign="top" align="center">
                                                          <table class="tableTxt" width="145" cellspacing="0" cellpadding="0" border="0" align="left">
                                                             <tr>
-                                                               <td rowspan="2" style="line-height:1px;" width="25" valign="top" align="center">
-                                                                  <!-- <img src="{{ Config('app.url')}}/images/logo/number-icon-20x20.png" style="display:block;" alt="IMG" vspace="0" hspace="0" border="0"> -->
-                                                               </td>
+
                                                                <td rowspan="2" style="font-size:0;line-height:0;" width="14">&nbsp;</td>
                                                                <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Invoice No</td>
                                                             </tr>
@@ -499,11 +496,9 @@
                                                                <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $order->invoice }}</td>
                                                             </tr>
                                                             <tr>
-                                                               <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
                                                             </tr>
                                                          </table>
                                                       </td>
-                                                      <td class="wz" width="30"></td>
                                                    </tr>
                                                 </table>
                                              </th>
@@ -513,7 +508,6 @@
                                                       <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
                                                    </tr>
                                                    <tr>
-                                                      <td class="wz" width="30"></td>
                                                       <td valign="top" align="center">
                                                          <table class="tableTxt" width="145" cellspacing="0" cellpadding="0" border="0" align="left">
                                                             <tr>
@@ -531,7 +525,6 @@
                                                             </tr>
                                                          </table>
                                                       </td>
-                                                      <td class="wz" width="30"></td>
                                                    </tr>
                                                 </table>
                                              </th>
@@ -541,7 +534,6 @@
                                                       <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
                                                    </tr>
                                                    <tr>
-                                                      <td class="wz" width="30"></td>
                                                       <td valign="top" align="center">
                                                          <table class="tableTxt" width="145" cellspacing="0" cellpadding="0" border="0" align="left">
                                                             <tr>
@@ -559,7 +551,6 @@
                                                             </tr>
                                                          </table>
                                                       </td>
-                                                      <td class="wz" width="30"></td>
                                                    </tr>
                                                 </table>
                                              </th>
