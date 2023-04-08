@@ -11,6 +11,8 @@ use App\Model\Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
@@ -70,6 +72,7 @@ class CheckoutController extends Controller
         $total =  DB::table('ordered_products')->select(DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
         $sub_total = $total[0]->items_total ?? '0.00';
         $order->currency = '₦';
+
 
         try {
             $when = now()->addMinutes(5);
