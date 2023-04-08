@@ -8,7 +8,7 @@ use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Voucher;
 use App\Models\WalletBalance;
-use App\Model\Error;
+use App\Models\Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
