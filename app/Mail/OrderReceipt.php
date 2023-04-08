@@ -32,6 +32,6 @@ class OrderReceipt extends Mailable
 
     public function build()
     {
-        return $this->subject('HauteSignatures Confirmation')->view('emails.receipt.index');
+        return $this->subject('Order Confirmation')->view('emails.receipt.index');
     }
 }
