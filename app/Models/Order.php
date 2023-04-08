@@ -83,7 +83,7 @@ class Order extends Model
 				$insert = [
 					'order_id' => $order->id,
 					'product_id' => $cart->product_id,
-					'product_name' => optional($cart->product)->product_name,
+					'product_name' => optional($cart->product)->name,
 					'quantity' => $cart->quantity,
 					'tracker' => time(),
 					'price' => $cart->price,
