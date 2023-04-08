@@ -36,14 +36,10 @@
                 v-if="cart_meta.sub_total"
                 class="d-flex justify-content-between"
             >
-                <a
-                    class="view-cart bg-secondary text-white w-50 bold"
-                    href="/cart"
+                <a class="bg-secondary text-white bold px-5 py-2" href="/cart"
                     >View Cart</a
                 >
-                <a
-                    class="view-cart ms-3 bg-dark bold text-white w-50"
-                    href="/checkout"
+                <a class="bg-dark bold text-white px-5 py-2" href="/checkout"
                     >Checkout</a
                 >
             </div>
@@ -101,14 +97,10 @@
                 v-if="cart_meta.sub_total"
                 class="d-flex justify-content-between"
             >
-                <a
-                    class="view-cart bg-secondary text-white w-50 bold"
-                    href="/cart"
+                <a class="bg-secondary text-white bold px-5 py-2" href="/cart"
                     >View Cart</a
                 >
-                <a
-                    class="view-cart ms-3 bg-dark bold text-white w-50"
-                    href="/checkout"
+                <a class="bg-dark bold text-white px-5 py-2" href="/checkout"
                     >Checkout</a
                 >
             </div>
