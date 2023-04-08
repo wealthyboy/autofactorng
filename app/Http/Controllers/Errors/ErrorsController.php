@@ -15,8 +15,8 @@ class ErrorsController extends Controller
      */
     public function index()
     {
-        Error::truncate();
-        // dd(Error::all());
+        //Error::truncate();
+        dd(Error::all());
     }
 
     /**
