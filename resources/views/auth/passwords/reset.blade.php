@@ -6,7 +6,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="my-account-box col-md-6">
-                weweweeweew
+                <reset-password />
+
             </div>
         </div>
     </div>

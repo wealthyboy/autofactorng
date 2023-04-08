@@ -22,6 +22,8 @@ import Reviews from "./components/products/Reviews";
 
 import CartSideBar from "./components/cart/CartSideBarMenu";
 import Login from "./components/auth/Login";
+import ResetPassword from "./components/auth/ResetPassword";
+
 import Register from "./components/auth/Register";
 import Subscribe from "./components/auth/Subscribe";
 import Wallet from "./components/auth/Wallet";
@@ -78,7 +80,7 @@ app.component('ModalSearch', ModalSearch)
 app.component('AddVehicleSearch', AddVehicleSearch)
 app.component('ForgotPassword', ForgotPassword)
 app.component('SignUp', SignUp)
-
+app.component('ResetPassword', ResetPassword)
 app.component('Subscribe', Subscribe)
 
 app.config.globalProperties.$filters = {
