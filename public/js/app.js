@@ -21718,7 +21718,11 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       loading.value = !loading.value;
-      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/password/reset/link", form).then(function (res) {})["catch"](function (err) {});
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post("/password/reset/link", form).then(function (res) {
+        loading.value = !loading.value;
+      })["catch"](function (err) {
+        loading.value = !loading.value;
+      });
     }
 
     return {
