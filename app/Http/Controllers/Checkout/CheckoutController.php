@@ -53,73 +53,92 @@ class CheckoutController extends Controller
 
         $input = $request->all();
 
-        // return $input;
-        $payment_method = $input['payment_method'];
-        $ip = $request->ip();
-        $user = Auth::user();
-        $carts = Cart::all_items_in_cart();
-        $order = Order::checkout($input, $payment_method,  $ip, $carts, $user);
-        $code = trim(session('coupon'));
-        $coupon = Voucher::where('code', $code)->first();
-
-        if ($request->payment_method == 'Wallet') {
-            WalletBalance::deductFromWallet($request->total);
-        }
-
-        if ($request->payment_method == 'auto_credit') {
-            WalletBalance::deductFromCredit($request->total);
-        }
-
-        // $admin_emails = explode(',', $this->settings->alert_email);
-        $total =  DB::table('ordered_products')->select(DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
-        $sub_total = $total[0]->items_total ?? '0.00';
-        $order->currency = '₦';
-
-        if ($order->coupon) {
-            $order->coupon = optional($order->voucher())->amount . '% Discount';
-            $order->coupon_value =  number_format(
-                (optional($order->voucher())->amount / 100) * $total
-            );
-        } else {
-            $order->coupon = 'Coupon';
-            $order->coupon_value = '----';
-        }
-
-        if ($order->discount) {
-            if ($order->percentage_type == 'percentage') {
-                $order->coupon = $order->discount . '% Discount';
-                $order->coupon_value = '-' . number_format(($order->discount  / 100) * $total);
-            } else {
-                $order->coupon = 'Discount';
-                $order->coupon_value = '-' . number_format($order->discount);
-            }
-        } else {
-            $order->coupon = 'Coupon';
-            $order->coupon_value = '----';
-        }
-
-
         try {
-            $when = now()->addMinutes(5);
-            Mail::to($user->email)
-                ->bcc('damilola@autofactorng.com')
-                ->cc('jacob.atam@gmail.com')
-                ->send(new OrderReceipt($order, null, null, $sub_total));
+            DB::beginTransaction();
+            $payment_method = $input['payment_method'];
+            $ip = $request->ip();
+            $user = Auth::user();
+            $carts = Cart::all_items_in_cart();
+            $order = Order::checkout($input, $payment_method,  $ip, $carts, $user);
+            $code = trim(session('coupon'));
+            $coupon = Voucher::where('code', $code)->first();
+
+            if ($request->payment_method == 'Wallet') {
+                WalletBalance::deductFromWallet($request->total);
+            }
+
+            if ($request->payment_method == 'auto_credit') {
+                WalletBalance::deductFromCredit($request->total);
+            }
+
+            // $admin_emails = explode(',', $this->settings->alert_email);
+            $total =  DB::table('ordered_products')->select(DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
+            $sub_total = $total[0]->items_total ?? '0.00';
+            $order->currency = '₦';
+
+            if ($order->coupon) {
+                $order->coupon = optional($order->voucher())->amount . '% Discount';
+                $order->coupon_value =  number_format(
+                    (optional($order->voucher())->amount / 100) * $total
+                );
+            } else {
+                $order->coupon = 'Coupon';
+                $order->coupon_value = '----';
+            }
+
+            if ($order->discount) {
+                if ($order->percentage_type == 'percentage') {
+                    $order->coupon = $order->discount . '% Discount';
+                    $order->coupon_value = '-' . number_format(($order->discount  / 100) * $total);
+                } else {
+                    $order->coupon = 'Discount';
+                    $order->coupon_value = '-' . number_format($order->discount);
+                }
+            } else {
+                $order->coupon = 'Coupon';
+                $order->coupon_value = '----';
+            }
+
+
+            try {
+                $when = now()->addMinutes(5);
+                Mail::to($user->email)
+                    ->bcc('damilola@autofactorng.com')
+                    ->cc('jacob.atam@gmail.com')
+                    ->send(new OrderReceipt($order, null, null, $sub_total));
+            } catch (\Throwable $th) {
+
+                Log::info("Mail error :" . $th);
+                Log::info("Custom error :" . $th);
+                $err = new Error();
+                $err->error = $th->getMessage();
+                $err->save();
+            }
+
+
+            //delete cart
+            //$affectedRows = Cart::delete_items_in_cart_purchased();
+            if (null !== $coupon && $coupon->type == 'specific') {
+                $coupon->update(['valid' => false]);
+            }
+
+            DB::commit();
+
+            $request->session()->forget('coupon');
+            $request->session()->forget('coupon_total');
+            Cookie::queue(Cookie::forget('cart'));
+            return response()->json([
+                'status' => 'Order pLaced'
+            ], 200);
         } catch (\Throwable $th) {
-
-            Log::info("Mail error :" . $th);
-            Log::info("Custom error :" . $th);
-            $err = new Error();
-            $err->error = $th->getMessage();
-            $err->save();
+            //throw $th;
         }
 
 
-        //delete cart
-        //$affectedRows = Cart::delete_items_in_cart_purchased();
-        if (null !== $coupon && $coupon->type == 'specific') {
-            $coupon->update(['valid' => false]);
-        }
+
+
+        // return $input;
+
 
         //unset the coupon
         // $request->session()->forget('coupon');
