@@ -215,9 +215,9 @@ class OrdersController extends Table
 	public function show($id)
 	{
 
-		$order      =  Order::find($id);
-		$statuses   =  static::order_status();
-		$sub_total  =  $this->subTotal($order);
+		$order  =  Order::find($id);
+		$statuses = static::order_status();
+		$sub_total = $this->subTotal($order);
 		$ordered_products = $order->ordered_products()->paginate(10);
 		$orders = (new OrderedProduct())->getListingData($ordered_products);
 		$summaries = [];
