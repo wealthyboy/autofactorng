@@ -164,10 +164,10 @@ class WebHookController extends Controller
             $user  = User::findOrFail($pending_cart->user_id);
             $carts = Cart::find($cartIds);
 
-            Log::info($data);
+            // Log::info($data);
 
 
-            Log::info($pending_cart);
+            //   Log::info($pending_cart);
 
             foreach ($carts as $cart) {
                 if ($cart->quantity  < 1) {
@@ -184,7 +184,7 @@ class WebHookController extends Controller
             $order->address_id = optional($user->active_address)->id;
             $order->coupon = $pending_cart->coupon;
             $order->status = 'Processing';
-            // $order->shipping_price = $pending_cart->shipping_price;
+            $order->shipping_price = $pending_cart->shipping_price;
             //$order->currency = '₦';
             $order->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
             $order->tracking = time();
