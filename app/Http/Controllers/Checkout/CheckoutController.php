@@ -86,18 +86,18 @@ class CheckoutController extends Controller
                 $order->coupon_value = '----';
             }
 
-            if ($order->discount) {
-                if ($order->percentage_type == 'percentage') {
-                    $order->coupon = $order->discount . '% Discount';
-                    $order->coupon_value = '-' . number_format(($order->discount  / 100) * $sub_total);
-                } else {
-                    $order->coupon = 'Discount';
-                    $order->coupon_value = '-' . number_format($order->discount);
-                }
-            } else {
-                $order->coupon = 'Coupon';
-                $order->coupon_value = '----';
-            }
+            // if ($order->discount) {
+            //     if ($order->percentage_type == 'percentage') {
+            //         $order->coupon = $order->discount . '% Discount';
+            //         $order->coupon_value = '-' . number_format(($order->discount  / 100) * $sub_total);
+            //     } else {
+            //         $order->coupon = 'Discount';
+            //         $order->coupon_value = '-' . number_format($order->discount);
+            //     }
+            // } else {
+            //     $order->coupon = 'Coupon';
+            //     $order->coupon_value = '----';
+            // }
 
 
             try {
