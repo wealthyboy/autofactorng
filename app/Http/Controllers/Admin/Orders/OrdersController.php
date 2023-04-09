@@ -138,7 +138,7 @@ class OrdersController extends Table
 
 			if ($request->percentage_type == 'percentage') {
 				$new_total = ($request->discount * $sub_total) / 100;
-				$new_total = $total - $new_total;
+				$new_total = $sub_total - $new_total;
 				$total = $new_total + $shipping;
 				$total = $total + $heavy_or_large_item;
 			}
