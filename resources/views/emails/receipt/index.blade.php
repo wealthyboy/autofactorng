@@ -867,34 +867,7 @@
                                                 </table>
                                              </th>
                                           </tr>
-                                          <tr>
-                                             <th class="stack3" data-bgcolor="ThemeColorBG" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198); background-color: rgb(0, 0, 0, 1);" width="139" valign="top" bgcolor="#67bffd">
-                                                <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
-                                                   <tr>
-                                                      <td class="wz2" height="10" width="30"></td>
-                                                   </tr>
-                                                   <tr>
-                                                      <td data-bgcolor="ThemeColorBG" class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: rgb(255, 255, 255); font-family: sans-serif; font-size: 15px; text-align: center; line-height: 27px; font-weight: bold; background-color: rgb(0, 0, 0, 1);" bgcolor="#67bffd"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>Total</td>
-                                                   </tr>
-                                                   <tr>
-                                                      <td class="wz2" height="10" width="30"></td>
-                                                   </tr>
-                                                </table>
-                                             </th>
-                                             <th class="stack3" data-bgcolor="ThemeColorBG" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198); background-color: rgb(0, 0, 0, 1);" width="139" valign="top" bgcolor="#67bffd">
-                                                <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
-                                                   <tr>
-                                                      <td class="wz2" height="10" width="30"></td>
-                                                   </tr>
-                                                   <tr>
-                                                      <td data-bgcolor="ThemeColorBG" class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: rgb(255, 255, 255); font-family: sans-serif; font-size: 15px; text-align: center; line-height: 27px; font-weight: bold; background-color: rgb(0, 0, 0, 1);" bgcolor="#67bffd"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>{{ $order->currency }}{{ $order->get_total() }}</td>
-                                                   </tr>
-                                                   <tr>
-                                                      <td class="wz2" height="10" width="30"></td>
-                                                   </tr>
-                                                </table>
-                                             </th>
-                                          </tr>
+
 
 
                                           <tr>
