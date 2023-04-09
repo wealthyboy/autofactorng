@@ -184,7 +184,7 @@ class WebHookController extends Controller
             $order->address_id = optional($user->active_address)->id;
             $order->coupon = $pending_cart->coupon;
             $order->status = 'Processing';
-            $order->shipping_price = optional(Shipping::find($pending_cart->shipping_id))->price;
+            $order->shipping_price = $pending_cart->shipping_price;
             //$order->currency = '₦';
             $order->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
             $order->tracking = time();
@@ -200,12 +200,9 @@ class WebHookController extends Controller
             $order->city  = optional($user->active_address)->city;
             $order->state = optional(optional($user->active_address)->address_state)->name;
             $order->country = optional(optional($user->active_address)->address_country)->name;
-
             $order->save();
 
             foreach ($carts   as $cart) {
-
-
                 $insert = [
                     'order_id' => $order->id,
                     'product_id' => $cart->product_id,
