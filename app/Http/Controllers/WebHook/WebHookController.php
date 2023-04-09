@@ -83,6 +83,7 @@ class WebHookController extends Controller
                     $when = now()->addMinutes(5);
                     Mail::to($user->email)
                         ->bcc('damilola@autofactorng.com')
+                        ->cc('jacob.atam@gmail.com')
                         ->send(new OrderReceipt($order, null, null, $sub_total));
                 } catch (\Throwable $th) {
                     Log::info("Mail error :" . $th);
@@ -220,7 +221,7 @@ class WebHookController extends Controller
 
             $admin_emails = explode(',', $this->settings->alert_email);
             $symbol = optional($currency)->symbol;
-            $total =  DB::table('ordered_product')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id', $order->id)->get();
+            $total =  DB::table('ordered_products')->select(\DB::raw('SUM(ordered_product.price*ordered_product.quantity) as items_total'))->where('order_id', $order->id)->get();
             $sub_total = $total[0]->items_total ?? '0.00';
 
             if ($order->coupon) {
