@@ -21971,7 +21971,7 @@ __webpack_require__.r(__webpack_exports__);
     function register() {
       this.v$.$touch();
       var postData = {
-        url: "/register",
+        url: "/reset/password",
         data: form,
         loading: loading,
         needsValidation: true,

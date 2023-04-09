@@ -91,7 +91,7 @@
         this.v$.$touch();
   
         const postData = {
-          url: "/register",
+          url: "/reset/password",
           data: form,
           loading,
           needsValidation: true,

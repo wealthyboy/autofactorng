@@ -117,6 +117,9 @@ Route::resource('account', 'Account\AccountController', ['names' => 'account']);
 Route::get('change/password', 'ChangePassword\ChangePasswordController@index');
 Route::post('change/password', 'ChangePassword\ChangePasswordController@changePassword');
 Route::get('wallet-balance', 'Wallets\WalletsController@walletBalnce');
+Route::post('password/reset/link',           'Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::post('reset/password',                'Auth\ForgotPasswordController@reset');
+Route::get('validate/token/{token}',         'Auth\ForgotPasswordController@validateToken');
 
 Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'wallets']);
 
