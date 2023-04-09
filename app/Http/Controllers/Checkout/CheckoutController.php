@@ -76,7 +76,7 @@ class CheckoutController extends Controller
             $sub_total = $total[0]->items_total ?? '0.00';
             $order->currency = '₦';
 
-            dd($sub_total);
+            // dd($sub_total);
 
             if ($order->coupon) {
                 dd();
