@@ -77,6 +77,7 @@ class CheckoutController extends Controller
             $order->currency = '₦';
 
             if ($order->coupon) {
+                dd($order->voucher()->amount);
                 $order->coupon = optional($order->voucher())->amount . '% Discount';
                 $order->coupon_value =  number_format(
                     (optional($order->voucher())->amount / 100) * $total
