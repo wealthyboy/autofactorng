@@ -81,7 +81,7 @@ class CheckoutController extends Controller
             if ($order->coupon) {
                 $order->coupon = optional($order->voucher())->amount . '% Discount';
                 // $order->coupon_value =
-                dd($order->voucher()->amount / 100);
+                dd($order->voucher()->amount);
 
 
                 dd($sub_total);
