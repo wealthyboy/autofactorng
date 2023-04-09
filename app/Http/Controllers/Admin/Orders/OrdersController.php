@@ -126,18 +126,18 @@ class OrdersController extends Table
 				$product->save();
 			}
 
-			$total = array_sum($total);
+			$sub_total = array_sum($total);
 			$shipping = $request->shipping_price;
 			$heavy_or_large_item = $request->heavy_item_price;
 			if ($request->percentage_type == 'fixed') {
-				$new_total = $total - $request->discount;
+				$new_total = $sub_total - $request->discount;
 				$total = $new_total + $shipping;
 				$total = $total + $heavy_or_large_item;
 			}
 
 
 			if ($request->percentage_type == 'percentage') {
-				$new_total = ($request->discount * $total) / 100;
+				$new_total = ($request->discount * $sub_total) / 100;
 				$new_total = $total - $new_total;
 				$total = $new_total + $shipping;
 				$total = $total + $heavy_or_large_item;
@@ -145,6 +145,44 @@ class OrdersController extends Table
 
 			$order->total = $total;
 			$order->save();
+
+
+			if ($order->coupon) {
+				$order->coupon_value = '-₦' . number_format(
+					(optional($order->voucher())->amount / 100) * $sub_total
+				);
+				$order->coupon = optional($order->voucher())->amount . '% Discount';
+			} else {
+				if ($order->discount) {
+					if ($order->percentage_type == 'percentage') {
+						$order->coupon = $order->discount . '% Discount';
+						$order->coupon_value = '-' . number_format(($order->discount  / 100) * $sub_total);
+					} else {
+						$order->coupon = 'Discount';
+						$order->coupon_value = '-' . number_format($order->discount);
+					}
+				} else {
+					$order->coupon = 'Coupon';
+					$order->coupon_value = '----';
+				}
+			}
+
+
+
+
+			try {
+				$when = now()->addMinutes(5);
+				Mail::to($user->email)
+					->bcc('damilola@autofactorng.com')
+					->cc('jacob.atam@gmail.com')
+					->send(new OrderReceipt($order, null, null, $sub_total));
+			} catch (\Throwable $th) {
+				Log::info("Mail error :" . $th);
+				Log::info("Custom error :" . $th);
+				$err = new Error();
+				$err->error = $th->getMessage();
+				$err->save();
+			}
 
 			// Send Mail
 			(new Activity)->put("Added a new order with email and phone number  " . $request->email . ' and ' . $request->phone_number);
