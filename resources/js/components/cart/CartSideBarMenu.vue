@@ -48,7 +48,7 @@
                 <div v-for="cart in carts" :key="cart.id" class="product">
                     <div class="product-details">
                         <div class="product-title">
-                            <a>{{ cart.product.name }}</a>
+                            <a>{{ cart.product_name }}</a>
                         </div>
 
                         <span class="cart-product-info fw-bold bold text-black">
