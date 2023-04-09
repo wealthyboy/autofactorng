@@ -48,7 +48,7 @@
                 <div v-for="cart in carts" :key="cart.id" class="product">
                     <div class="product-details">
                         <div class="product-title">
-                            <a>{{ cart.product_name }}</a>
+                            <a :href="cart.link">{{ cart.product_name }}</a>
                         </div>
 
                         <span class="cart-product-info fw-bold bold text-black">
@@ -61,7 +61,7 @@
                     <!-- End .product-details -->
 
                     <figure class="product-image-container">
-                        <a :href="cart.product.link" class="product-image">
+                        <a :href="cart.link" class="product-image">
                             <img
                                 :src="cart.image"
                                 :alt="cart.title"
