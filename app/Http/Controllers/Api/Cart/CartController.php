@@ -82,7 +82,9 @@ class CartController  extends Controller
 						'image'        => optional($cart->product)->image_m,
 						'quantity'     => $cart->quantity,
 						'price'        => $cart->price,
-						'product_name' => optional($cart->product)->product_name,
+						'product_name' => optional($cart->product)->name,
+						'link' => optional($cart->product)->name,
+
 					]
 				],
 				'meta' => [

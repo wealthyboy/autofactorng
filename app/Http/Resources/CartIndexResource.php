@@ -24,6 +24,8 @@ class CartIndexResource extends JsonResource
             'price' => Cart::ConvertCurrencyRate($this->price),
             'currency' => optional($this->product)->currency,
             'product_name' => optional($this->product)->name,
+            'link' => optional($this->product)->link,
+
         ];
     }
 }
