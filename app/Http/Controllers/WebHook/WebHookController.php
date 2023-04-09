@@ -78,6 +78,7 @@ class WebHookController extends Controller
                     $order->coupon_value = '----';
                 }
 
+                $order->heavy_item_price = $order->heavy_item_price ?? 0;
 
                 try {
                     $when = now()->addMinutes(5);
@@ -234,6 +235,9 @@ class WebHookController extends Controller
                 $order->coupon = 'Coupon';
                 $order->coupon_value = '----';
             }
+
+            $order->heavy_item_price = $order->heavy_item_price ?? 0;
+
 
             try {
                 $when = now()->addMinutes(5);

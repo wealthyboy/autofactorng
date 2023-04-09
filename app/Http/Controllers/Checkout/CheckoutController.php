@@ -78,6 +78,8 @@ class CheckoutController extends Controller
 
             // dd($sub_total);
 
+            $order->heavy_item_price = $order->heavy_item_price ?? 0;
+
             if ($order->coupon) {
                 $order->coupon_value = '-₦' . number_format(
                     (optional($order->voucher())->amount / 100) * $sub_total

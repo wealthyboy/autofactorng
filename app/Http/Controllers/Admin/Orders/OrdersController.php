@@ -151,8 +151,10 @@ class OrdersController extends Table
 			$order->save();
 
 
+			$order->heavy_item_price = $request->heavy_item_price ?? '---';
 
 			if ($order->coupon) {
+
 				$order->coupon_value = '-₦' . number_format(
 					(optional($order->voucher())->amount / 100) * $sub_total
 				);
@@ -184,7 +186,6 @@ class OrdersController extends Table
 			} catch (\Throwable $th) {
 				Log::info("Mail error :" . $th);
 				Log::info("Custom error :" . $th);
-				dd($th);
 				$err = new Error();
 				$err->error = $th->getMessage();
 				$err->save();
