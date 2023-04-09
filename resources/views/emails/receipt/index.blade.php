@@ -485,6 +485,7 @@
                                                       <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
                                                    </tr>
                                                    <tr>
+                                                      <td class="wz" width="30"></td>
                                                       <td valign="top" align="center">
                                                          <table class="tableTxt" width="145" cellspacing="0" cellpadding="0" border="0" align="left">
                                                             <tr>
@@ -499,6 +500,7 @@
                                                             </tr>
                                                          </table>
                                                       </td>
+                                                      <td class="wz" width="30"></td>
                                                    </tr>
                                                 </table>
                                              </th>
@@ -526,6 +528,7 @@
                                                             </tr>
                                                          </table>
                                                       </td>
+                                                      <td class="wz" width="30"></td>
                                                    </tr>
                                                 </table>
                                              </th>
