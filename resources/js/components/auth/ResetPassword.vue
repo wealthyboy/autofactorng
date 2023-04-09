@@ -20,7 +20,7 @@
                 id="Password"
                 :error="v$.password"
                 v-model="form.password"
-                name="First name"
+                name="Password"
                 type="text"
             />
     
@@ -30,10 +30,10 @@
         <p class="form-group  p-1 col-12">
             <div class="form-floating">
             <general-input
-                id="last_name"
+                id="password_confirmation"
                 :error="v$.password_confirmation"
                 v-model="form.password_confirmation"
-                name="Last name"
+                name="Confirm Password"
                 type="text"
             />
     

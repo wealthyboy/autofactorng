@@ -26265,18 +26265,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.form.password = $event;
     }),
-    name: "First name",
+    name: "Password",
     type: "text"
   }, null, 8
   /* PROPS */
   , ["error", "modelValue"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
-    id: "last_name",
+    id: "password_confirmation",
     error: $setup.v$.password_confirmation,
     modelValue: $setup.form.password_confirmation,
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.form.password_confirmation = $event;
     }),
-    name: "Last name",
+    name: "Confirm Password",
     type: "text"
   }, null, 8
   /* PROPS */

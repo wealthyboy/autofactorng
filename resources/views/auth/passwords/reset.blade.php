@@ -4,10 +4,7 @@
 <div class="container-fluid px-0">
     <div class="row  align-items-start">
         <div class="col-xl-5  col-lg-4 ">
-
             @include('_partials.back')
-
-
             <div class="content p-5">
                 <div class="logo ">
                     <a class="px-5" href="/">
@@ -21,7 +18,7 @@
                     <div class="row " id="signInMessage">
                         <span class="sign-in-prompt" data-testid="sign-in-message">
                             Enter your new password.
-                            .</span>
+                        </span>
                     </div>
                 </div>
                 <reset-password />
