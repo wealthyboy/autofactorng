@@ -179,6 +179,7 @@ class OrdersController extends Table
 			} catch (\Throwable $th) {
 				Log::info("Mail error :" . $th);
 				Log::info("Custom error :" . $th);
+				dd($th);
 				$err = new Error();
 				$err->error = $th->getMessage();
 				$err->save();
@@ -193,6 +194,8 @@ class OrdersController extends Table
 			//code...
 		} catch (\Throwable $th) {
 			//throw $th;
+			dd($th);
+
 			return  redirect()->route('admin.orders.index')->with('errors', 'Something went wrong');
 		}
 	}
