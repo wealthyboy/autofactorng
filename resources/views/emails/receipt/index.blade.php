@@ -898,7 +898,7 @@
 
 
                                           <tr>
-                                             <th class="stack3" data-bgcolor="ThemeColorBG" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198); background-color: rgb(0, 0, 0, 1);" width="139" valign="top" bgcolor="#67bffd">
+                                             <th class="stack3" data-bgcolor="ThemeColorBG" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: none; margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198); background-color: rgb(0, 0, 0, 0);" width="139" valign="top" bgcolor="#67bffd">
                                                 <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
                                                    <tr>
                                                       <td class="wz2" height="10" width="30"></td>
