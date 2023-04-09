@@ -241,6 +241,9 @@ class WebHookController extends Controller
                     ->send(new OrderReceipt($order, $this->settings, $symbol, $sub_total));
             } catch (\Throwable $th) {
                 Log::info("Mail error :" . $th);
+                $err = new Error();
+                $err->error = $th->getMessage();
+                $err->save();
             }
 
             //delete cart
