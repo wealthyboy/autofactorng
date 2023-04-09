@@ -14,25 +14,25 @@
       @submit.prevent="register"
     >
       <div class="row ">
-        <p class="form-group p-1 col-12">
+        <div class="form-group p-1 col-12">
             <div class="form-floating">
             <general-input
                 id="Password"
-                :error="v$.first_name"
-                v-model="form.first_name"
+                :error="v$.password"
+                v-model="form.password"
                 name="First name"
                 type="text"
             />
     
             </div>
-        </p>
+        </div>
   
         <p class="form-group  p-1 col-12">
             <div class="form-floating">
             <general-input
                 id="last_name"
-                :error="v$.last_name"
-                v-model="form.last_name"
+                :error="v$.password_confirmation"
+                v-model="form.password_confirmation"
                 name="Last name"
                 type="text"
             />
@@ -41,14 +41,10 @@
         </p>
   
   
-  
-  
-      
-  
         <general-button
           type="submit"
           :text="text"
-          class="btn btn-dark w-100"
+          class="btn btn-dark w-100 p-3"
           :loading="loading"
         />
   
