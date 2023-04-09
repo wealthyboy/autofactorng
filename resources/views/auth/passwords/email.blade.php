@@ -16,11 +16,11 @@
                 </div>
                 <div class="row mb-4" id="title">
                     <h1 class="sign-in" id="at_lnk_sign_in_home_one">
-                        Need Help ?
+                        REST YOUR PASSWORD?
                     </h1>
                     <div class="row " id="signInMessage">
                         <span class="sign-in-prompt" data-testid="sign-in-message">
-                            Enter your email and get a link to reset your password.
+                            Enter your new password.
                             .</span>
                     </div>
                 </div>
