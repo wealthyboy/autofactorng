@@ -67,6 +67,18 @@ class WebHookController extends Controller
                 $total =  DB::table('ordered_products')->select(DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
                 $sub_total = $total[0]->items_total ?? '0.00';
                 $order->currency = '₦';
+
+                if ($order->coupon) {
+                    $order->coupon_value = '-₦' . number_format(
+                        (optional($order->voucher())->amount / 100) * $sub_total
+                    );
+                    $order->coupon = optional($order->voucher())->amount . '% Discount';
+                } else {
+                    $order->coupon = 'Coupon';
+                    $order->coupon_value = '----';
+                }
+
+
                 try {
                     $when = now()->addMinutes(5);
                     Mail::to('jacob.atam@gmail.com')
