@@ -26231,29 +26231,15 @@ var _hoisted_1 = {
   "class": "row"
 };
 var _hoisted_2 = {
-  "class": "form-group p-1 col-6"
+  "class": "form-group p-1 col-12"
 };
 var _hoisted_3 = {
   "class": "form-floating"
 };
 var _hoisted_4 = {
-  "class": "form-group p-1 col-6"
-};
-var _hoisted_5 = {
-  "class": "form-floating"
-};
-var _hoisted_6 = {
-  "class": "form-group p-1 col-6"
-};
-var _hoisted_7 = {
-  "class": "form-floating"
-};
-var _hoisted_8 = {
-  key: 0,
-  subscribe: "",
   "class": "form-group p-1 col-12"
 };
-var _hoisted_9 = {
+var _hoisted_5 = {
   "class": "form-floating"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -26269,7 +26255,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <template v-if=\"validating  && !allow_change_password\">                    \n        <div class=\"text-center\">\n            <span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            <span class=\"\"> Validating your token....</span> \n        </div>\n    </template> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     method: "POST",
-    onSubmit: _cache[4] || (_cache[4] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+    onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.register && $setup.register.apply($setup, arguments);
     }, ["prevent"]))
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
@@ -26294,30 +26280,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "text"
   }, null, 8
   /* PROPS */
-  , ["error", "modelValue"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
-    id: "email",
-    error: $setup.v$.email,
-    modelValue: $setup.form.email,
-    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
-      return $setup.form.email = $event;
-    }),
-    name: "Email",
-    type: "text",
-    server_errors: $setup.server_errors.email
-  }, null, 8
-  /* PROPS */
-  , ["error", "modelValue", "server_errors"])])]), $props.subscribe ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
-    id: "amount",
-    error: $setup.v$.amount,
-    modelValue: $setup.form.amount,
-    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-      return $setup.form.amount = $event;
-    }),
-    name: "Amount",
-    type: "text"
-  }, null, 8
-  /* PROPS */
-  , ["error", "modelValue"])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
+  , ["error", "modelValue"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {
     type: "submit",
     text: $setup.text,
     "class": "btn btn-dark w-100",

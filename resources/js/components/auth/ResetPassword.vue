@@ -14,7 +14,7 @@
       @submit.prevent="register"
     >
       <div class="row ">
-        <p class="form-group p-1 col-6">
+        <p class="form-group p-1 col-12">
             <div class="form-floating">
             <general-input
                 id="Password"
@@ -27,7 +27,7 @@
             </div>
         </p>
   
-        <p class="form-group  p-1 col-6">
+        <p class="form-group  p-1 col-12">
             <div class="form-floating">
             <general-input
                 id="last_name"
@@ -40,38 +40,10 @@
             </div>
         </p>
   
-        <p class="form-group p-1 col-6">
-            <div class="form-floating">
-            <general-input
-                id="email"
-                :error="v$.email"
-                v-model="form.email"
-                name="Email"
-                type="text"
-                :server_errors="server_errors.email"
-            />
-    
-            </div>
-        </p>
   
   
   
-        <p
-          v-if="subscribe"
-          subscribe
-          class="form-group  p-1 col-12"
-        >
-        <div class="form-floating">
-          <general-input
-            id="amount"
-            :error="v$.amount"
-            v-model="form.amount"
-            name="Amount"
-            type="text"
-          />
-  
-        </div>
-        </p>
+      
   
         <general-button
           type="submit"
