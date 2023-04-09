@@ -14,7 +14,7 @@
         <general-button
             type="submit"
             :text="text"
-            class="btn btn-dark w-100"
+            class="btn btn-dark w-100 p-3"
             :loading="loading"
         />
     </form>
