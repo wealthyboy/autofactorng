@@ -317,7 +317,7 @@ export default {
                     cartId: cartIds.join("|"),
                     coupon: context.coupon_code,
                     shipping_id: context.shipping_id,
-                    shipping_price: context.shipping_price,
+                    shipping_price: context.prices.ship_price,
                     user_id: context.cart_meta.user.id,
                     uuid: uuid,
                     total: context.total,
