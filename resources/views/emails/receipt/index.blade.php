@@ -827,7 +827,7 @@
                                                       <td class="wz2" height="10" width="30"></td>
                                                    </tr>
                                                    <tr>
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a> {{ $order->$order->heavy_item_charge }}</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a> {{ $order->heavy_item_charge }}</td>
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" height="10" width="30"></td>
