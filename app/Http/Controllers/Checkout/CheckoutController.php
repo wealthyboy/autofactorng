@@ -132,6 +132,7 @@ class CheckoutController extends Controller
             ], 200);
         } catch (\Throwable $th) {
             //throw $th;
+            dd($th);
         }
 
 
