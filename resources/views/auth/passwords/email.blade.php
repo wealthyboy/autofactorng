@@ -16,11 +16,11 @@
                 </div>
                 <div class="row mb-4" id="title">
                     <h1 class="sign-in" id="at_lnk_sign_in_home_one">
-                        REST YOUR PASSWORD?
+                        Need Help ?
                     </h1>
                     <div class="row " id="signInMessage">
                         <span class="sign-in-prompt" data-testid="sign-in-message">
-                            Enter your new password.
+                            Enter your email and get a link to reset your password.
                             .</span>
                     </div>
                 </div>
@@ -52,6 +52,7 @@
                                 </i>
                             </div>
                             <div class="bullet-text w-50 ms-4 fs-4">Discounts and offers: Receive exclusive discounts on auto parts and accessories. </div>
+
                         </li>
                         <li class="d-flex align-items-center justify-content-center mb-5">
                             <div class="right-content-icons">
