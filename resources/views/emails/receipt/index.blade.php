@@ -807,6 +807,8 @@
 
                                           </tr>
 
+                                          @if($order->heavy_item_price)
+
                                           <tr>
                                              <th class="stack3" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="139" valign="top" bgcolor="#ffffff">
                                                 <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
@@ -835,6 +837,8 @@
                                                 </table>
                                              </th>
                                           </tr>
+
+                                          @endif
 
 
                                           <tr>
