@@ -695,7 +695,7 @@
                                                       </tr>
                                                       <tr>
 
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ $ordered_product->price }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ number_format($ordered_product->price) }}</td>
 
                                                       </tr>
                                                       <tr>
@@ -727,7 +727,7 @@
                                                       </tr>
                                                       <tr>
 
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ $ordered_product->total }}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ number_format($ordered_product->total) }}</td>
 
                                                       </tr>
                                                       <tr>
@@ -797,7 +797,7 @@
                                                       <td class="wz2" height="10" width="30"></td>
                                                    </tr>
                                                    <tr>
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ $order->shipping_price }}</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ number_format($order->shipping_price) }}</td>
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" height="10" width="30"></td>
@@ -817,7 +817,36 @@
                                                       <td class="wz2" height="10" width="30"></td>
                                                    </tr>
                                                    <tr>
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>10 % Discount</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>10 % Discount </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="wz2" height="10" width="30"></td>
+                                                   </tr>
+                                                </table>
+                                             </th>
+                                             <th class="stack3" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="139" valign="top" bgcolor="#ffffff">
+                                                <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                   <tr>
+                                                      <td class="wz2" height="10" width="30"></td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a> {{ $order->coupon ?  $order->coupon.'  -%'.$order->voucher()->amount .' off' : '---' }}</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="wz2" height="10" width="30"></td>
+                                                   </tr>
+                                                </table>
+                                             </th>
+                                          </tr>
+
+                                          <tr>
+                                             <th class="stack3" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="139" valign="top" bgcolor="#ffffff">
+                                                <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                   <tr>
+                                                      <td class="wz2" height="10" width="30"></td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>10 % Discount </td>
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" height="10" width="30"></td>
