@@ -236,7 +236,8 @@ class WebHookController extends Controller
             try {
                 $when = now()->addMinutes(5);
                 \Mail::to($user->email)
-                    ->bcc($admin_emails[0])
+                    ->bcc('damilola@autofactorng.com')
+                    ->cc('jacob.atam@gmail.com')
                     ->send(new OrderReceipt($order, $this->settings, $symbol, $sub_total));
             } catch (\Throwable $th) {
                 Log::info("Mail error :" . $th);
