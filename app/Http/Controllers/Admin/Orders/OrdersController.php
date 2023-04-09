@@ -11,13 +11,17 @@ use App\Models\SystemSetting;
 use App\Models\OrderedProduct;
 use App\Http\Controllers\Controller;
 use App\Http\Helper;
+use App\Mail\OrderReceipt;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\OrderStatusNotification;
 use App\Mail\ReviewMail;
 use App\Models\Activity;
+use App\Models\Error;
 use App\Models\OrderStatus;
 use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class OrdersController extends Table
 {
@@ -145,6 +149,7 @@ class OrdersController extends Table
 
 			$order->total = $total;
 			$order->save();
+
 
 
 			if ($order->coupon) {
