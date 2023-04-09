@@ -75,6 +75,21 @@ class CheckoutController extends Controller
         $sub_total = $total[0]->items_total ?? '0.00';
         $order->currency = '₦';
 
+        if ($order->coupon) {
+            $order->coupon = optional($order->voucher())->amount . '% Discount';
+            $order->coupon_value = '-' . number_format((optional($order->voucher())->amount / 100) * $total);
+        }
+
+        if ($order->discount) {
+            if ($order->percentage_type == 'percentage') {
+                $order->coupon = $order->discount . '% Discount';
+                $order->coupon_value = '-' . number_format(($order->discount  / 100) * $total);
+            } else {
+                $order->coupon = 'Discount';
+                $order->coupon_value = '-' . number_format($order->discount);
+            }
+        }
+
 
         try {
             $when = now()->addMinutes(5);
