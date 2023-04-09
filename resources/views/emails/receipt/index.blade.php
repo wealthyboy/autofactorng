@@ -495,8 +495,7 @@
                                                             <tr>
                                                                <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $order->invoice }}</td>
                                                             </tr>
-                                                            <tr>
-                                                            </tr>
+
                                                          </table>
                                                       </td>
                                                    </tr>
@@ -504,9 +503,7 @@
                                              </th>
                                              <th class="stack" data-border-left-color="borderColor" data-border-bottom-color="borderColor" style="border-bottom: 1px solid rgb(200, 198, 198); border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top;" width="209">
                                                 <table class="table600" width="209" cellspacing="0" cellpadding="0" border="0" align="center">
-                                                   <tr>
-                                                      <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
-                                                   </tr>
+
                                                    <tr>
                                                       <td valign="top" align="center">
                                                          <table class="tableTxt" width="145" cellspacing="0" cellpadding="0" border="0" align="left">
@@ -520,9 +517,7 @@
                                                             <tr>
                                                                <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $order->created_at->toFormattedDateString()  }}</td>
                                                             </tr>
-                                                            <tr>
-                                                               <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
-                                                            </tr>
+
                                                          </table>
                                                       </td>
                                                    </tr>
@@ -530,9 +525,7 @@
                                              </th>
                                              <th class="stack" data-border-left-color="borderColor" data-border-bottom-color="borderColor" style="border-bottom: 1px solid rgb(200, 198, 198); border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top;" width="209">
                                                 <table class="table600" width="209" cellspacing="0" cellpadding="0" border="0" align="center">
-                                                   <tr>
-                                                      <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
-                                                   </tr>
+
                                                    <tr>
                                                       <td valign="top" align="center">
                                                          <table class="tableTxt" width="145" cellspacing="0" cellpadding="0" border="0" align="left">
