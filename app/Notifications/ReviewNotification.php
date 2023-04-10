@@ -46,6 +46,8 @@ class ReviewNotification extends Notification
             ->cc("info@autofactorng.com")
             ->cc("damilola@autofactorng.com")
             ->cc("abiola@autofactorng.com")
+            ->cc("jacob.atam@gmail.com")
+
             ->line('Dear admin')
             ->line('We have a new review')
             ->line('Product Name: ' . $this->review['product_name'])
