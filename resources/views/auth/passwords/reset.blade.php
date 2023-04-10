@@ -14,7 +14,7 @@
                 </div>
                 <div class="row mb-4" id="title">
                     <h1 class="sign-in" id="at_lnk_sign_in_home_one">
-                        REST YOUR PASSWORD?
+                        RESET YOUR PASSWORD?
                     </h1>
                     <div class="row " id="signInMessage">
                         <span class="sign-in-prompt" data-testid="sign-in-message">
