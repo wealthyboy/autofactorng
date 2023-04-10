@@ -52,6 +52,11 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $user = User::where('email', 'jacobanusa@gmail.com')->first();
+
+        if ($user) {
+            $user->delete();
+        }
         return Validator::make($data, [
             'last_name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
@@ -69,11 +74,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $user = User::where('email', 'jacobanusa@gmail.com')->first();
 
-        if ($user) {
-            $user->delete();
-        }
 
         $user =  User::create([
             'name' => $data['first_name'],
