@@ -69,6 +69,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $user = User::where('email', 'jacobanusa@gmail.com')->first();
+        if ($user) {
+            $user->delete();
+        }
+
         $user =  User::create([
             'name' => $data['first_name'],
             'last_name' => $data['last_name'],
