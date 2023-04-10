@@ -92,8 +92,6 @@ $(document).on('click', '.remove-image', function(e) {
                 upload_text.removeClass('hide')
                 resetFile(file)
                 file.attr('disabled', false)
-                    //check if we are in editting mode
-                console.log(mode)
                 if (typeof mode !== 'undefined') {
                     file.attr('required', true)
                 }
@@ -102,7 +100,6 @@ $(document).on('click', '.remove-image', function(e) {
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             self.text('Delete')
-
         }
     });
 })
