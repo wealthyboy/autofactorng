@@ -3,19 +3,17 @@
         <div v-if="message" class="">
             <div
                 :class="[error === true ? 'alert-danger' : 'alert-success']"
-                class="alert alert-rounded"
+                class="alert alert-rounded justify-content-between"
             >
-                <div class="d-flex justify-content-between">
-                    <div class="fs-5 fw-bold">{{ message }}</div>
-                    <div>
-                        <span
-                            role="button"
-                            @click="show = !show"
-                            class="material-symbols-outlined"
-                        >
-                            close
-                        </span>
-                    </div>
+                <div class="fs-5 fw-bold">{{ message }}</div>
+                <div>
+                    <span
+                        role="button"
+                        @click="show = !show"
+                        class="material-symbols-outlined"
+                    >
+                        close
+                    </span>
                 </div>
             </div>
         </div>
