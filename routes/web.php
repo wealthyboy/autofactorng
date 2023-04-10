@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Order;
+use App\Models\User;
+use App\Notifications\WelcomeNotification;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -85,6 +87,14 @@ Route::post('password/reset/link',           'Auth\ForgotPasswordController@send
 Route::get('validate/token/{token}',         'Auth\ForgotPasswordController@validateToken');
 
 Auth::routes();
+
+
+Route::get('/notification', function () {
+    $user = User::find(1);
+
+    return (new WelcomeNotification($user))
+        ->toMail($user);
+});
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('plans', [App\Http\Controllers\Plans\PlansController::class, 'index']);

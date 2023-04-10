@@ -8,7 +8,7 @@
             'autoplay':true,
             'autoplayTimeout':3500,
             'autoplayHoverPause':true,
-            responsiveClass:true
+            'responsiveClass':true
 
         }">
          <?php $__currentLoopData = $sliders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $slider): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>

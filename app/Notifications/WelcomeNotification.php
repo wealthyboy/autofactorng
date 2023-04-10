@@ -48,9 +48,7 @@ class WelcomeNotification extends Notification
                 'emails.registration.index',
                 ['user' => $this->user],
             )
-            ->subject('Thanks for registering')
-
-            ->line('Thank you for using our application!');
+            ->subject('Thanks for registering');
     }
 
     /**

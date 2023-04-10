@@ -7,7 +7,7 @@
     <meta name="color-scheme" content="light">
     <meta name="supported-color-schemes" content="light">
     <style>
-        @media only screen and (max-width: 600px) {
+        @media  only screen and (max-width: 600px) {
             .inner-body {
                 width: 100% !important;
             }
@@ -17,7 +17,7 @@
             }
         }
 
-        @media only screen and (max-width: 500px) {
+        @media  only screen and (max-width: 500px) {
             .button {
                 width: 100% !important;
             }
@@ -46,7 +46,7 @@
                                 <!-- Body content -->
                                 <tr>
                                     <td class="content-cell" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100vw; padding: 32px;">
-                                        <h1 style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3d4852; font-size: 18px; font-weight: bold; margin-top: 0; text-align: left;">Dear {{ $user }},</h1>
+                                        <h1 style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3d4852; font-size: 18px; font-weight: bold; margin-top: 0; text-align: left;">Dear <?php echo e($user); ?>,</h1>
                                         <p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">We wish to welcome you to AutofactorNG.</p>
                                         <p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">You are now registered with our store and have account privileges. With your account, you can take part in the various services we have to offer you. Some of these many services include:</p>
                                         <ul>
@@ -108,4 +108,4 @@
     </table>
 </body>
 
-</html>
+</html><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/emails/registration/index.blade.php ENDPATH**/ ?>
