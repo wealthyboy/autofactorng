@@ -80,7 +80,7 @@ export default {
                 .catch((err) => {
                     loading.value = !loading.value;
                     message.value = "Error processing your request";
-                    error.value = false;
+                    error.value = true;
                 });
         }
         return { form, v$, forgotPassword, loading, text, message, error };
