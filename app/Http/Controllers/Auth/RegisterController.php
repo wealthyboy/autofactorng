@@ -70,6 +70,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::where('email', 'jacobanusa@gmail.com')->first();
+
         if ($user) {
             $user->delete();
         }
@@ -91,8 +92,6 @@ class RegisterController extends Controller
         //Subscribe user
 
         //Fund wallet
-
-        //
     }
 
     /**
