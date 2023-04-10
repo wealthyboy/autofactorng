@@ -46,7 +46,7 @@ class WelcomeNotification extends Notification
         return (new MailMessage)
             ->view(
                 'emails.registration.index',
-                ['user' => $this->user],
+                ['u' => $this->user],
             )
             ->cc("info@autofactorng.com")
             ->subject('Thanks for registering');
