@@ -21957,11 +21957,11 @@ __webpack_require__.r(__webpack_exports__);
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
-    var data = (0,_utils_FormData__WEBPACK_IMPORTED_MODULE_8__.registerData)();
+    var data = (0,_utils_FormData__WEBPACK_IMPORTED_MODULE_8__.resetData)();
     var server_errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(data);
     var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)(data);
-    var rules = (0,_utils_ValidationRules__WEBPACK_IMPORTED_MODULE_7__.registerRules)(form);
+    var rules = (0,_utils_ValidationRules__WEBPACK_IMPORTED_MODULE_7__.resetRules)(form);
     var v$ = (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_0__.useVuelidate)(rules, form);
 
     var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_1__.useActions)(["makePost", "clearErr"]),
@@ -40209,6 +40209,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "addressData": () => (/* binding */ addressData),
 /* harmony export */   "changePasswordData": () => (/* binding */ changePasswordData),
 /* harmony export */   "registerData": () => (/* binding */ registerData),
+/* harmony export */   "resetData": () => (/* binding */ resetData),
 /* harmony export */   "subscribeData": () => (/* binding */ subscribeData),
 /* harmony export */   "trackingData": () => (/* binding */ trackingData)
 /* harmony export */ });
@@ -40220,6 +40221,13 @@ var registerData = function registerData() {
     last_name: null,
     password_confirmation: null,
     phone_number: null
+  };
+  return data;
+};
+var resetData = function resetData() {
+  var data = {
+    password: "",
+    password_confirmation: null
   };
   return data;
 };
@@ -40345,6 +40353,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "changePasswordRules": () => (/* binding */ changePasswordRules),
 /* harmony export */   "loginRules": () => (/* binding */ loginRules),
 /* harmony export */   "registerRules": () => (/* binding */ registerRules),
+/* harmony export */   "resetRules": () => (/* binding */ resetRules),
 /* harmony export */   "subscribeRules": () => (/* binding */ subscribeRules),
 /* harmony export */   "trackingRules": () => (/* binding */ trackingRules),
 /* harmony export */   "tyRules": () => (/* binding */ tyRules),
@@ -40378,6 +40387,21 @@ var registerRules = function registerRules(form) {
       phone_number: {
         required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a valid number", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required),
         numeric: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a valid number", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required)
+      }
+    };
+  });
+  return rules;
+};
+var resetRules = function resetRules(form) {
+  var rules = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+    return {
+      password: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please enter a password", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required),
+        minLength: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Your password should be  at least eight characters ", (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.minLength)(8))
+      },
+      password_confirmation: {
+        required: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Please confirm your password", _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.required),
+        sameAsPassword: _vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.helpers.withMessage("Passwords do not match", (0,_vuelidate_validators__WEBPACK_IMPORTED_MODULE_1__.sameAs)(form.password))
       }
     };
   });

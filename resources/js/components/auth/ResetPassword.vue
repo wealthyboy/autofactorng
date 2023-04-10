@@ -62,8 +62,8 @@
   import GeneralInput from "../Forms/Input";
   import Message from "../message/Message";
   
-  import { registerRules } from "../../utils/ValidationRules";
-  import { registerData } from "../../utils/FormData";
+  import { resetRules } from "../../utils/ValidationRules";
+  import { resetData } from "../../utils/FormData";
   
   export default {
     props: ["subscribe"],
@@ -78,12 +78,12 @@
       const loading = ref(false);
       const text = ref("Submit");
       const message = ref(null);
-      const data = registerData();
+      const data = resetData();
       const server_errors = ref(data);
       const post_server_error = ref(null);
   
       const form = reactive(data);
-      const rules = registerRules(form);
+      const rules = resetRules(form);
       const v$ = useVuelidate(rules, form);
       const { clearErr, makePost } = useActions(["makePost", "clearErr"]);
   

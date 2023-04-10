@@ -13,6 +13,16 @@ export const registerData = () => {
     return data
 }
 
+export const resetData = () => {
+
+    let data = {
+        password: "",
+        password_confirmation: null,
+    };
+
+    return data
+}
+
 
 export const subscribeData = () => {
 

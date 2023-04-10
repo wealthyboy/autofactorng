@@ -46,6 +46,32 @@ export const registerRules = (form) => {
 };
 
 
+export const resetRules = (form) => {
+    const rules = computed(() => {
+        return {
+           
+            password: {
+                required: helpers.withMessage("Please enter a password", required),
+                minLength: helpers.withMessage("Your password should be  at least eight characters ", minLength(8)),
+            },
+            password_confirmation: {
+                required: helpers.withMessage(
+                    "Please confirm your password",
+                    required
+                ),
+                sameAsPassword: helpers.withMessage(
+                    "Passwords do not match",
+                    sameAs(form.password)
+                ),
+            },
+            
+        };
+    });
+
+    return rules
+};
+
+
 export const subscribeRules = (form, price_range) => {
     const rules = computed(() => {
         return {
