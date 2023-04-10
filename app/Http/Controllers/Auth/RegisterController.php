@@ -92,8 +92,8 @@ class RegisterController extends Controller
         $coupon->type     = 'specific user';
         $coupon->expires  = now()->addDays(365);
         $coupon->from_value =  null;
-        $coupon->is_fixed =  0;
-        $coupon->status = 'active';
+        $coupon->is_fixed = 0;
+        $coupon->status = 1;
         $coupon->save();
 
         $user->coupon = $coupon->code;
