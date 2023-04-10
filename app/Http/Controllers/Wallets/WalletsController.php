@@ -72,6 +72,7 @@ class WalletsController extends Table
     {
         $user = $request->user();
         $input = $request->all();
+        $original_amount =  $input['amount'];
         $amount = (10 * $input['amount']) / 100;
         $amount = $input['amount'] +  $amount;
         // return $amount;
@@ -114,14 +115,14 @@ class WalletsController extends Table
 
             if (null !== $subscribe) {
                 $subscribe->user_id = $user->id;
-                $subscribe->starts_at =  $dt;
-                $subscribe->ends_at =  $dt->addYear(1);
+                $subscribe->starts_at = $dt;
+                $subscribe->ends_at = $dt->addYear(1);
                 $subscribe->plan = session('plan');
                 $subscribe->save();
             } else {
                 $subscribe = new Subscribe;
                 $subscribe->user_id = $user->id;
-                $subscribe->starts_at =  $dt;
+                $subscribe->starts_at = $dt;
                 $subscribe->ends_at = $dt->addYear(1);
                 $subscribe->plan = session('plan');
                 $subscribe->save();
@@ -129,8 +130,9 @@ class WalletsController extends Table
 
             $auto_credit = [];
             $auto_credit['plan'] = session('plan');
-            $auto_credit['amount'] =  $amount;
-            $auto_credit['expiry'] = $dt->addYear(1);
+            $auto_credit['amount'] =  $original_amount;
+            $auto_credit['credit'] =  $amount;
+            $auto_credit['expiry'] = $dt->addYear(1)->forma('d/m/y');
             $user->notify(new AutoCreditNotification($user, $auto_credit));
         }
 
