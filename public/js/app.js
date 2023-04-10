@@ -21726,7 +21726,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         loading.value = !loading.value;
         message.value = "Error processing your request";
-        error.value = true;
+        error.value = false;
       });
     }
 
