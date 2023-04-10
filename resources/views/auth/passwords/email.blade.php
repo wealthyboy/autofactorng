@@ -21,7 +21,7 @@
                     <div class="row " id="signInMessage">
                         <span class="sign-in-prompt" data-testid="sign-in-message">
                             Enter your email and get a link to reset your password.
-                            .</span>
+                        </span>
                     </div>
                 </div>
                 <forgot-password />
