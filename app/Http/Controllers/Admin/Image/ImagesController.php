@@ -147,8 +147,8 @@ class ImagesController extends Controller
         $class = '\\App\\Models\\' . $request->model;
         if ($file  !== ""  && file_exists(public_path('images/' . $request->folder . '/' . $file))) {
             unlink(public_path('images/' . $request->folder . '/' . $file));
-            unlink(public_path('images/' . $request->folder . '/m/' . $file));
-            unlink(public_path('images/' . $request->folder . '/tn/' . $file));
+            //  unlink(public_path('images/' . $request->folder . '/m/' . $file));
+            // unlink(public_path('images/' . $request->folder . '/tn/' . $file));
             if ($request->filled('model')) {
 
                 if ($request->image_id && $request->filled('type')) {
