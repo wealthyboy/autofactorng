@@ -64,7 +64,7 @@ class ReviewsController extends Controller
         $new_review['product_name'] = $product->name ?? $product->product_name;
         $new_review['full_name'] = $user->name;
         $new_review['description'] = $request->description;
-        $new_review['rating'] = $request->rating;
+        $new_review['rating'] = ($request->rating / 20) . ' stars';
         $new_review['email'] = $user->email;
         try {
             Notification::route('mail', 'info@autofactorng.com')
