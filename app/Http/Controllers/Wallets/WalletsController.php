@@ -132,7 +132,7 @@ class WalletsController extends Table
             $auto_credit['plan'] = session('plan');
             $auto_credit['amount'] =  $original_amount;
             $auto_credit['credit'] =  $amount;
-            $auto_credit['expiry'] = $dt->addYear(1)->forma('d/m/y');
+            $auto_credit['expiry'] = $dt->addYear(1)->format('d/m/y');
             $user->notify(new AutoCreditNotification($user, $auto_credit));
         }
 
