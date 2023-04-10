@@ -66,7 +66,7 @@
   import { resetData } from "../../utils/FormData";
   
   export default {
-    props: ["subscribe"],
+    props: ["subscribe", "token", "email"],
     emits: ["switched"],
     components: {
       SimpleMessage,
@@ -74,7 +74,7 @@
       GeneralInput,
       Message,
     },
-    setup(p, { emit }) {
+    setup(props, { emit }) {
       const loading = ref(false);
       const text = ref("Submit");
       const message = ref(null);
@@ -82,7 +82,12 @@
       const server_errors = ref(data);
       const post_server_error = ref(null);
   
-      const form = reactive(data);
+      const form = reactive({
+        password: "",
+        password_confirmation: null,
+        email: props.email,
+        token: props.token
+      });
       const rules = resetRules(form);
       const v$ = useVuelidate(rules, form);
       const { clearErr, makePost } = useActions(["makePost", "clearErr"]);

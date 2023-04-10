@@ -21944,7 +21944,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["subscribe"],
+  props: ["subscribe", "token", "email"],
   emits: ["switched"],
   components: {
     SimpleMessage: _message_SimpleMessage__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -21952,7 +21952,7 @@ __webpack_require__.r(__webpack_exports__);
     GeneralInput: _Forms_Input__WEBPACK_IMPORTED_MODULE_5__["default"],
     Message: _message_Message__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
-  setup: function setup(p, _ref) {
+  setup: function setup(props, _ref) {
     var emit = _ref.emit;
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
@@ -21960,7 +21960,12 @@ __webpack_require__.r(__webpack_exports__);
     var data = (0,_utils_FormData__WEBPACK_IMPORTED_MODULE_8__.resetData)();
     var server_errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(data);
     var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
-    var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)(data);
+    var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
+      password: "",
+      password_confirmation: null,
+      email: props.email,
+      token: props.token
+    });
     var rules = (0,_utils_ValidationRules__WEBPACK_IMPORTED_MODULE_7__.resetRules)(form);
     var v$ = (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_0__.useVuelidate)(rules, form);
 
