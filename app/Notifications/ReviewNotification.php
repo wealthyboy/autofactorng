@@ -43,6 +43,9 @@ class ReviewNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->cc("info@autofactorng.com")
+            ->cc("damilola@autofactorng.com")
+            ->cc("abiola@autofactorng.com")
             ->line('Dear admin')
             ->line('We have a new review')
             ->line('Product Name: ' . $this->review['product_name'])
