@@ -85,7 +85,7 @@ class RegisterController extends Controller
             'phone_number' => $data['phone_number']
         ]);
 
-        $user->notify(new WelcomeNotification());
+        $user->notify(new WelcomeNotification($user));
 
 
         return $user;
