@@ -107,7 +107,7 @@
           })
           .catch((error) => {
             message.value = "Error processing your request";
-            error.value = false;
+            error.value = true;
             // server_errors.value = error.response.data.errors;
             // clearErr(server_errors);
           });
