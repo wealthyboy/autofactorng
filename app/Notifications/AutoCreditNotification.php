@@ -50,7 +50,7 @@ class AutoCreditNotification extends Notification
     {
         return (new MailMessage)
             ->view(
-                'emails.auto_credits.index',
+                'emails.auto_credit.index',
                 ['u' => $this->user, 'auto_credit' => $this->auto_credit],
             )
             ->cc("care@autofactorng.com")
