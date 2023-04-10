@@ -253,8 +253,6 @@ export default {
               reg_complete.value = true;
             },
             onClose: function () {
-              
-
               loading.value = false;
             },
           });

@@ -6,21 +6,27 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Models\User;
 
 class AutoCreditNotification extends Notification
 {
     use Queueable;
 
+
     public $user;
+
+    public $auto_credit;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct(User $user, $auto_credit)
     {
-        $this->user = $user
+        $this->user = $user;
+
+        $this->auto_credit = $auto_credit;
     }
 
     /**
@@ -43,9 +49,15 @@ class AutoCreditNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->view(
+                'emails.auto_credits.index',
+                ['u' => $this->user, 'auto_credit' => $this->auto_credit],
+            )
+            ->cc("care@autofactorng.com")
+            ->cc("account@autofactorng.com")
+            ->cc("damilola@autofactorng.com")
+            ->cc("abiola@autofactorng.com")
+            ->subject('Thanks for subscribing');
     }
 
     /**

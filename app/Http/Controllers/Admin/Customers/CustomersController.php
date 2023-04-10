@@ -161,7 +161,8 @@ class CustomersController extends Table
         }
 
         try {
-            $user->notify(new AutoCreditNotification($new_review));
+
+            //  $user->notify(new AutoCreditNotification($new_review));
         } catch (\Throwable $th) {
             throw $th;
         }
