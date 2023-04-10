@@ -23050,10 +23050,13 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     message: {
       type: String,
+      required: true
+    },
+    error: {
+      type: Boolean,
       required: true,
       defualts: false
-    },
-    error: Boolean
+    }
   },
   setup: function setup() {
     var show = (0,vue_demi__WEBPACK_IMPORTED_MODULE_0__.ref)(true);

@@ -25,8 +25,8 @@
 import { onMounted, ref } from "vue-demi";
 export default {
     props: {
-        message: { type: String, required: true, defualts: false },
-        error: Boolean,
+        message: { type: String, required: true },
+        error: { type: Boolean, required: true, defualts: false },
     },
 
     setup() {
