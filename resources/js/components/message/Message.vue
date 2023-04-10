@@ -5,15 +5,17 @@
                 :class="[error === true ? 'alert-danger' : 'alert-success']"
                 class="alert alert-rounded"
             >
-                <div class="d-flex jsutify-content-between">
-                    <span class="fs-4 fw-bold">{{ message }}</span>
-                    <span
-                        role="button"
-                        @click="show = !show"
-                        class="material-symbols-outlined"
-                    >
-                        close
-                    </span>
+                <div class="d-flex justify-content-between">
+                    <div class="fs-5 fw-bold">{{ message }}</div>
+                    <div>
+                        <span
+                            role="button"
+                            @click="show = !show"
+                            class="material-symbols-outlined"
+                        >
+                            close
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
