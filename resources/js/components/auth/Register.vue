@@ -163,6 +163,9 @@ export default {
 
     function register() {
       this.v$.$touch();
+            if (this.v$.$error) {
+                return;
+            }
 
       const postData = {
         url: "/register",

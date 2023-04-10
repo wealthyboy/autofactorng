@@ -88,6 +88,9 @@
   
       function register() {
         this.v$.$touch();
+            if (this.v$.$error) {
+                return;
+            }
   
         const postData = {
           url: "/reset/password",
@@ -102,8 +105,7 @@
         makePost(postData)
           .then((res) => {
             window.location.href = '/';
-            message.value = "A link has been to your email";
-            error.value = false;
+           
           })
           .catch((error) => {
             message.value = "Error processing your request";

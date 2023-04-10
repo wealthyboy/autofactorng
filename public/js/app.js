@@ -21888,6 +21888,11 @@ __webpack_require__.r(__webpack_exports__);
 
     function register() {
       this.v$.$touch();
+
+      if (this.v$.$error) {
+        return;
+      }
+
       var postData = {
         url: "/register",
         data: form,
@@ -21983,6 +21988,11 @@ __webpack_require__.r(__webpack_exports__);
 
     function register() {
       this.v$.$touch();
+
+      if (this.v$.$error) {
+        return;
+      }
+
       var postData = {
         url: "/reset/password",
         data: form,
@@ -21994,8 +22004,6 @@ __webpack_require__.r(__webpack_exports__);
       };
       makePost(postData).then(function (res) {
         window.location.href = '/';
-        message.value = "A link has been to your email";
-        error.value = false;
       })["catch"](function (error) {
         message.value = "Error processing your request";
         error.value = true; // server_errors.value = error.response.data.errors;
