@@ -103,7 +103,7 @@
           .then((res) => {
             window.location.href = '/';
             message.value = "A link has been to your email";
-                    error.value = false;
+            error.value = false;
           })
           .catch((error) => {
             message.value = "Error processing your request";
