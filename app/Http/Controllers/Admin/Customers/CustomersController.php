@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Models\WalletBalance;
+use App\Notifications\AutoCreditNotification;
+use Illuminate\Support\Facades\Notification;
+
 
 class CustomersController extends Table
 {
@@ -109,7 +112,7 @@ class CustomersController extends Table
 
     public function fundWallet(Request $request, $id)
     {
-
+        $user = User::find($id);
         $balance = WalletBalance::where('user_id', $id)->first();
         $wallet = new Wallet;
         $wallet->amount = $request->amount;
@@ -155,6 +158,12 @@ class CustomersController extends Table
             $wallet->auto_credit = $request->status == 'added' ? (int) optional($balance)->auto_credit  + $request->amount :  $balance->auto_credit  - $request->amount;
             $wallet->user_id = $id;
             $wallet->save();
+        }
+
+        try {
+            $user->notify(new AutoCreditNotification($new_review));
+        } catch (\Throwable $th) {
+            throw $th;
         }
 
         return redirect()->to('/admin/customers');

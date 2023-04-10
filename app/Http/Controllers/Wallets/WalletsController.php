@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Events\NewBid;
 use App\Models\Subscribe;
 use App\Models\WalletBalance;
+use App\Notifications\AutoCreditNotification;
 use Carbon\Carbon;
 
 class WalletsController extends Table
@@ -125,10 +126,20 @@ class WalletsController extends Table
                 $subscribe->plan = session('plan');
                 $subscribe->save();
             }
+
+            $auto_credit = [];
+            $auto_credit['plan'] = session('plan');
+            $auto_credit['amount'] =  $amount;
+            $auto_credit['Expiry'] = $dt->addYear(1);
+            $user->notify(AutoCreditNotification($auto_credit))
+
         }
 
         $wallet_balance  = auth()->user()->wallet_balance;
         $total  = (int) optional($wallet_balance)->balance + optional($wallet_balance)->auto_credit;
+
+
+
         return response()->json([
             'wallet_balance' => (int) optional($wallet_balance)->balance,
             'auto_credit' => (int) optional($wallet_balance)->auto_credit,

@@ -107,11 +107,9 @@ class CheckoutController extends Controller
             try {
                 $when = now()->addMinutes(5);
                 Mail::to($user->email)
-                    ->bcc('damilola@autofactorng.com')
-                    ->cc('jacob.atam@gmail.com')
+                    ->cc('orders@autofactorng.com')
                     ->send(new OrderReceipt($order, null, null, $sub_total));
             } catch (\Throwable $th) {
-                dd($th);
                 Log::info("Mail error :" . $th);
                 Log::info("Custom error :" . $th);
                 $err = new Error();
