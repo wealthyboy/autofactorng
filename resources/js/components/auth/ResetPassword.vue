@@ -108,7 +108,7 @@
   
         makePost(postData)
           .then((res) => {
-            window.location.href = res.data.url;
+            window.location.href = '/';
           })
           .catch((error) => {
             server_errors.value = error.response.data.errors;

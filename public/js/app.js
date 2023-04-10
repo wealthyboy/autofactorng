@@ -21986,7 +21986,7 @@ __webpack_require__.r(__webpack_exports__);
         method: "post"
       };
       makePost(postData).then(function (res) {
-        window.location.href = res.data.url;
+        window.location.href = '/';
       })["catch"](function (error) {
         server_errors.value = error.response.data.errors;
         clearErr(server_errors);
