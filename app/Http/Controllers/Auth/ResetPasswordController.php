@@ -53,4 +53,9 @@ class ResetPasswordController extends Controller
             ['params' => $params, 'token' => $token, 'email' => $request->email]
         );
     }
+
+    protected function redirectTo()
+    {
+        return redirect('/');
+    }
 }
