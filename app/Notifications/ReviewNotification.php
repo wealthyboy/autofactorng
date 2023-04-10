@@ -43,14 +43,13 @@ class ReviewNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Dear admin')
-                    ->line('We have a new review')
-                    ->line('Product Name: ' . $this->review['product_name'])
-                    ->line('Author: ' . $this->review['full_name'])
-                    ->line('Email: ' . $this->review['email'])
-                    ->line('Rating: ' . $this->review['rating'])
-                    ->line('Comment: ' . $this->review['description']);
-
+            ->line('Dear admin')
+            ->line('We have a new review')
+            ->line('Product Name: ' . $this->review['product_name'])
+            ->line('Author: ' . $this->review['full_name'])
+            ->line('Email: ' . $this->review['email'])
+            ->line('Rating: ' . $this->review['rating'])
+            ->line('Comment: ' . $this->review['description']);
     }
 
     /**

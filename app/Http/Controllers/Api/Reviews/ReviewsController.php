@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Review;
 use App\Models\Product;
 use  App\Http\Resources\ReviewResourceCollection;
-use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Notification;
 use App\Notifications\ReviewNotification;
 
 
@@ -67,8 +67,8 @@ class ReviewsController extends Controller
         $new_review['rating'] = $request->rating;
         $new_review['email'] = $user->email;
         try {
-            // \Notification::route('mail', 'info@autofactorng.com')
-            //   ->notify(new ReviewNotification($new_review));
+            Notification::route('mail', 'info@autofactorng.com')
+                ->notify(new ReviewNotification($new_review));
         } catch (\Throwable $th) {
             throw $th;
         }
