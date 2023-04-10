@@ -1,7 +1,6 @@
 <template>
     <div v-if="show">
         <div v-if="message" class="">
-            {{ error }}
             <div
                 :class="[error ? 'alert-danger' : 'alert-success']"
                 class="alert alert-rounded justify-content-between"
