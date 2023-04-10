@@ -21998,7 +21998,7 @@ __webpack_require__.r(__webpack_exports__);
         error.value = false;
       })["catch"](function (error) {
         message.value = "Error processing your request";
-        error.value = true; // server_errors.value = error.response.data.errors;
+        error.value = false; // server_errors.value = error.response.data.errors;
         // clearErr(server_errors);
       });
     }
