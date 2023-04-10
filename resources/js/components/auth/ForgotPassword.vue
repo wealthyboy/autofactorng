@@ -1,5 +1,6 @@
 <template>
-    <message :message="message" />
+    <message :error="error" :message="message" />
+
     <form action="" class="mb-0" method="post" @submit.prevent="forgotPassword">
         <div class="form-floating mb-3">
             <general-input
@@ -43,6 +44,8 @@ export default {
         const loading = ref(false);
         const text = ref("Submit");
         const message = ref(null);
+        const error = ref(null);
+
         const form = reactive({
             email: "",
         });
@@ -71,12 +74,16 @@ export default {
                 .post("/password/reset/link", form)
                 .then((res) => {
                     loading.value = !loading.value;
+                    message.value = "A link has been to your email";
+                    error.value = false;
                 })
                 .catch((err) => {
                     loading.value = !loading.value;
+                    message.value = "Error processing your request";
+                    error.value = true;
                 });
         }
-        return { form, v$, forgotPassword, loading, text, message };
+        return { form, v$, forgotPassword, loading, text, message, error };
     },
 };
 </script>
