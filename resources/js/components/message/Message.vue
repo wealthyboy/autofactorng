@@ -1,8 +1,9 @@
 <template>
     <div v-if="show">
         <div v-if="message" class="">
+            {{ error }}
             <div
-                :class="[error === true ? 'alert-danger' : 'alert-success']"
+                :class="[error ? 'alert-danger' : 'alert-success']"
                 class="alert alert-rounded justify-content-between"
             >
                 <div class="fs-5 fw-bold">{{ message }}</div>
@@ -24,7 +25,7 @@
 import { onMounted, ref } from "vue-demi";
 export default {
     props: {
-        message: String,
+        message: { type: String, required: true, defualts: false },
         error: Boolean,
     },
 
