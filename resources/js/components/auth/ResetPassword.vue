@@ -66,7 +66,7 @@
   import { resetData } from "../../utils/FormData";
   
   export default {
-    props: ["subscribe", "token", "email"],
+    props: ["subscribe", "params"],
     emits: ["switched"],
     components: {
       SimpleMessage,
@@ -81,12 +81,13 @@
       const data = resetData();
       const server_errors = ref(data);
       const post_server_error = ref(null);
+      let params = props.params
   
       const form = reactive({
         password: "",
         password_confirmation: null,
-        email: '',
-        token: ''
+        email: params.email,
+        token: params.token
       });
       const rules = resetRules(form);
       const v$ = useVuelidate(rules, form);

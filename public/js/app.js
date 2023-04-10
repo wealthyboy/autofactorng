@@ -21944,7 +21944,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["subscribe", "token", "email"],
+  props: ["subscribe", "params"],
   emits: ["switched"],
   components: {
     SimpleMessage: _message_SimpleMessage__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -21960,11 +21960,12 @@ __webpack_require__.r(__webpack_exports__);
     var data = (0,_utils_FormData__WEBPACK_IMPORTED_MODULE_8__.resetData)();
     var server_errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(data);
     var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
+    var params = props.params;
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
       password: "",
       password_confirmation: null,
-      email: '',
-      token: ''
+      email: params.email,
+      token: params.token
     });
     var rules = (0,_utils_ValidationRules__WEBPACK_IMPORTED_MODULE_7__.resetRules)(form);
     var v$ = (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_0__.useVuelidate)(rules, form);
