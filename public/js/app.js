@@ -26266,7 +26266,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.form.password = $event;
     }),
     name: "Password",
-    type: "text"
+    type: "password"
   }, null, 8
   /* PROPS */
   , ["error", "modelValue"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
@@ -26277,7 +26277,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.form.password_confirmation = $event;
     }),
     name: "Confirm Password",
-    type: "text"
+    type: "password"
   }, null, 8
   /* PROPS */
   , ["error", "modelValue"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_button, {

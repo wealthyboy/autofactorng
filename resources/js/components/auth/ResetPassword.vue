@@ -21,7 +21,7 @@
                 :error="v$.password"
                 v-model="form.password"
                 name="Password"
-                type="text"
+                type="password"
             />
     
             </div>
@@ -34,7 +34,7 @@
                 :error="v$.password_confirmation"
                 v-model="form.password_confirmation"
                 name="Confirm Password"
-                type="text"
+                type="password"
             />
     
             </div>
