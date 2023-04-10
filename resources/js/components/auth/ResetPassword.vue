@@ -1,14 +1,6 @@
 
 <template>
-    <message :message="post_server_error" />
-
-    <!-- <template v-if="validating  && !allow_change_password">                    
-        <div class="text-center">
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            <span class=""> Validating your token....</span> 
-        </div>
-    </template> -->
-  
+    <message :error="error" :message="message" />
     <form
       method="POST"
       @submit.prevent="register"
@@ -78,6 +70,7 @@
       const loading = ref(false);
       const text = ref("Submit");
       const message = ref(null);
+        const error = ref(null);
       const data = resetData();
       const server_errors = ref(data);
       const post_server_error = ref(null);
@@ -109,14 +102,19 @@
         makePost(postData)
           .then((res) => {
             window.location.href = '/';
+            message.value = "A link has been to your email";
+                    error.value = false;
           })
           .catch((error) => {
-            server_errors.value = error.response.data.errors;
-            clearErr(server_errors);
+            message.value = "Error processing your request";
+            error.value = true;
+            // server_errors.value = error.response.data.errors;
+            // clearErr(server_errors);
           });
       }
       return {
         form,
+        error,
         loading,
         v$,
         register,

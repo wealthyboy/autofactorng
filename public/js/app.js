@@ -21963,6 +21963,7 @@ __webpack_require__.r(__webpack_exports__);
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
+    var error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var data = (0,_utils_FormData__WEBPACK_IMPORTED_MODULE_8__.resetData)();
     var server_errors = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(data);
     var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
@@ -21993,14 +21994,18 @@ __webpack_require__.r(__webpack_exports__);
       };
       makePost(postData).then(function (res) {
         window.location.href = '/';
+        message.value = "A link has been to your email";
+        error.value = false;
       })["catch"](function (error) {
-        server_errors.value = error.response.data.errors;
-        clearErr(server_errors);
+        message.value = "Error processing your request";
+        error.value = true; // server_errors.value = error.response.data.errors;
+        // clearErr(server_errors);
       });
     }
 
     return {
       form: form,
+      error: error,
       loading: loading,
       v$: v$,
       register: register,
@@ -26269,10 +26274,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_general_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("general-button");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_message, {
-    message: $setup.post_server_error
+    error: $setup.error,
+    message: $setup.message
   }, null, 8
   /* PROPS */
-  , ["message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <template v-if=\"validating  && !allow_change_password\">                    \n        <div class=\"text-center\">\n            <span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            <span class=\"\"> Validating your token....</span> \n        </div>\n    </template> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  , ["error", "message"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     method: "POST",
     onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.register && $setup.register.apply($setup, arguments);
