@@ -20,7 +20,7 @@
                 id="Password"
                 :error="v$.password"
                 v-model="form.password"
-                name="Password"
+                name="New Password"
                 type="password"
             />
     

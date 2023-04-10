@@ -26265,7 +26265,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.form.password = $event;
     }),
-    name: "Password",
+    name: "New Password",
     type: "password"
   }, null, 8
   /* PROPS */
