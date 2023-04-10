@@ -100,7 +100,10 @@ $(document).on('click', '.remove-image', function(e) {
             }
 
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {}
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            self.text('Delete')
+
+        }
     });
 })
 

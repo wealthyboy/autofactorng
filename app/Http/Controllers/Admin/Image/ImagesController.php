@@ -145,7 +145,7 @@ class ImagesController extends Controller
     {
         $file = basename($request->image_url);
         $class = '\\App\\Models\\' . $request->model;
-        if ($file  !== ""  && file_exists(public_path('images/' . $request->folder . '/' . $file))) {
+        if ($file   && file_exists(public_path('images/' . $request->folder . '/' . $file))) {
             unlink(public_path('images/' . $request->folder . '/' . $file));
             //  unlink(public_path('images/' . $request->folder . '/m/' . $file));
             // unlink(public_path('images/' . $request->folder . '/tn/' . $file));
@@ -167,11 +167,14 @@ class ImagesController extends Controller
                 }
             }
         } else {
-            $model = $class::find($request->image_id);
-            if ($model) {
-                $model->image = null;
-                $model->save();
+            if ($request->model) {
+                $model = $class::find($request->image_id);
+                if ($model) {
+                    $model->image = null;
+                    $model->save();
+                }
             }
+
             return response('deleted', 200);
         }
 
