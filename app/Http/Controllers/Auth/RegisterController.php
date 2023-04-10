@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Voucher;
 use App\Notifications\WelcomeNotification;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -84,15 +85,22 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'phone_number' => $data['phone_number']
         ]);
+        $coupon = new Voucher;
+        $coupon->code =  str_random(6);
+        $coupon->user_id = $user->id;
+        $coupon->amount   = 5;
+        $coupon->type     = 'specific user';
+        $coupon->expires  = now()->addDays(365);
+        $coupon->from_value =  null;
+        $coupon->is_fixed =  0;
+        $coupon->status = 'active';
+        $coupon->save();
+
+        $user->coupon = $coupon->code;
 
         $user->notify(new WelcomeNotification($user));
 
-
         return $user;
-
-        //Subscribe user
-
-        //Fund wallet
     }
 
     /**
