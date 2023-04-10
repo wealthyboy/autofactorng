@@ -85,8 +85,8 @@
       const form = reactive({
         password: "",
         password_confirmation: null,
-        email: props.email,
-        token: props.token
+        email: '',
+        token: ''
       });
       const rules = resetRules(form);
       const v$ = useVuelidate(rules, form);

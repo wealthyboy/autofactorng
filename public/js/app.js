@@ -21963,8 +21963,8 @@ __webpack_require__.r(__webpack_exports__);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
       password: "",
       password_confirmation: null,
-      email: props.email,
-      token: props.token
+      email: '',
+      token: ''
     });
     var rules = (0,_utils_ValidationRules__WEBPACK_IMPORTED_MODULE_7__.resetRules)(form);
     var v$ = (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_0__.useVuelidate)(rules, form);

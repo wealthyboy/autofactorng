@@ -22,7 +22,7 @@
                         </span>
                     </div>
                 </div>
-                <reset-password :token="{{ $token }}" :email="{{ $email }}" />
+                <reset-password :params="{{ $params }}" />
             </div>
         </div>
 
