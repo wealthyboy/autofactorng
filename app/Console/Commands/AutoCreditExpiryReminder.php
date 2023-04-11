@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Subscribe;
 use App\Notifications\ReminderNotification;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Notification;
 
@@ -39,8 +41,18 @@ class AutoCreditExpiryReminder extends Command
      */
     public function handle()
     {
-        // Notification::route('mail', 'jacob.atam@gmail.com')
 
-        //     ->notify(new ReminderNotification());
+        $now = Carbon::now();
+        $week = Carbon::now()->addWeek();
+        $month = Carbon::now()->addMonth();
+
+        $subscribers = Subscribe::with('user')->where("ends_at", "<", $month)->get();
+
+        if (null !== $subscribers) {
+            foreach ($subscribers as  $subscriber) {
+                Notification::route('mail', optional($subscriber->user)->email)
+                    ->notify(new ReminderNotification($subscriber->user));
+            }
+        }
     }
 }
