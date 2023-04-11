@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Notifications\ReminderNotification;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Notification;
 
 class AutoCreditExpiryReminder extends Command
 {
@@ -37,6 +39,8 @@ class AutoCreditExpiryReminder extends Command
      */
     public function handle()
     {
-        dd(true);
+        Notification::route('mail', 'jacob.atam@gmail.com')
+
+            ->notify(new ReminderNotification());
     }
 }
