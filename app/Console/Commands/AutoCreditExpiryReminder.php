@@ -39,8 +39,8 @@ class AutoCreditExpiryReminder extends Command
      */
     public function handle()
     {
-        Notification::route('mail', 'jacob.atam@gmail.com')
+        // Notification::route('mail', 'jacob.atam@gmail.com')
 
-            ->notify(new ReminderNotification());
+        //     ->notify(new ReminderNotification());
     }
 }
