@@ -42,7 +42,6 @@ class AutoCreditExpiryReminder extends Command
     public function handle()
     {
 
-        $now = Carbon::now();
         $week = Carbon::now()->addWeek();
         $month = Carbon::now()->addMonth();
 
@@ -51,7 +50,16 @@ class AutoCreditExpiryReminder extends Command
         if (null !== $subscribers) {
             foreach ($subscribers as  $subscriber) {
                 Notification::route('mail', optional($subscriber->user)->email)
-                    ->notify(new ReminderNotification($subscriber->user));
+                    ->notify(new ReminderNotification($subscriber->user, 30));
+            }
+        }
+
+        $subscribers = Subscribe::with('user')->where("ends_at", "<", $week)->get();
+
+        if (null !== $subscribers) {
+            foreach ($subscribers as  $subscriber) {
+                Notification::route('mail', optional($subscriber->user)->email)
+                    ->notify(new ReminderNotification($subscriber->user, 14));
             }
         }
     }
