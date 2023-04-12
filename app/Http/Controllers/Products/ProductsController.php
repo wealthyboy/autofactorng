@@ -44,7 +44,7 @@ class ProductsController extends Controller
             return (new ProductsCollection($products))
                 ->additional([
                     'string' => $this->buildSearchString($request),
-                    'showFitStringOnCategoryPage' => $this->getCategory($category)  && null != $this->buildSearchString($request) ? true : false,
+                    'showFitStringOnCategoryPage' => true,
                     'showSearch' => $this->showSearch($category),
                     'productFitString' => null,
                     'fits' =>  $this->buildSearchString($request) ? true : false,
@@ -52,6 +52,7 @@ class ProductsController extends Controller
         }
 
         $search_filters = $this->searchFilters($category);
+
         return  view('products.index', compact(
             'category',
             'page_title',
