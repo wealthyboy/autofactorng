@@ -146,7 +146,6 @@
                             <form
                                 v-if="isLoggegIn"
                                 action="#"
-                                @submit.prevent="submitReview"
                                 class="comment-form m-0"
                             >
                                 <div class="rating-form">
@@ -247,7 +246,8 @@
                                 <div class="d-flex justify-content-end">
                                     <button
                                         class="btn btn-block btn-dark w-100 py-4"
-                                        type="submit"
+                                        type="button"
+                                        @click="submitReview"
                                     >
                                         <span
                                             v-if="submiting"
