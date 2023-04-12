@@ -127,6 +127,7 @@
                             aria-label="Close"
                             ref="btnclose"
                             id="btn-close"
+                            class="bg-transparent"
                         >
                             <i class="bi bi-x-lg"></i>
                         </button>

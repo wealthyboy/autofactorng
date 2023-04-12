@@ -29299,7 +29299,8 @@ var _hoisted_29 = {
   "data-bs-dismiss": "modal",
   "aria-label": "Close",
   ref: "btnclose",
-  id: "btn-close"
+  id: "btn-close",
+  "class": "bg-transparent"
 };
 
 var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
