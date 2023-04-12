@@ -50,6 +50,7 @@ class ProductsController extends Controller
                     'showSearch' => $this->showSearch($category),
                     'productFitString' => null,
                     'fits' =>  $this->buildSearchString($request) ? true : false,
+                    'search_filters' => null
                 ]);
         }
 
