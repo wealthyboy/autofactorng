@@ -40,6 +40,9 @@ class ProductsController extends Controller
         $request->session()->put('category_slug', $category->slug);
 
         $products = $this->getProductsData($request, $builder, $category);
+        $search_filters = $this->searchFilters($category);
+
+        dd($search_filters);
         if ($request->ajax()) {
             return (new ProductsCollection($products))
                 ->additional([
@@ -51,7 +54,7 @@ class ProductsController extends Controller
                 ]);
         }
 
-        $search_filters = $this->searchFilters($category);
+
         return  view('products.index', compact(
             'category',
             'page_title',
