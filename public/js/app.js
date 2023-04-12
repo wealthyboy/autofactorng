@@ -23395,7 +23395,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     console.log(uri);
 
     if (uri.search) {
-      this.searchMode = true;
+      this.searchMode = false;
       url = "&get=" + d.getTime();
     } else {
       url = "?get=" + d.getTime();
