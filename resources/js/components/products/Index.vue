@@ -9,7 +9,7 @@
 
             <div class="underline w-100"></div>
 
-            {{ search_filters }}
+            {{ search_filters.search_type.search }}
 
             <search-string
                 v-if="!productIsLoading && showFitString && fitString"
