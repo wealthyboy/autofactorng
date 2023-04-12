@@ -23775,7 +23775,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       submiting.value = true;
-      console.log(btnclose.value);
       var FormD = new FormData();
       FormD.append("description", form.description);
       FormD.append("title", form.title);

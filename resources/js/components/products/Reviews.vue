@@ -354,7 +354,6 @@ export default {
             }
 
             submiting.value = true;
-            console.log(btnclose.value);
             let FormD = new FormData();
             FormD.append("description", form.description);
             FormD.append("title", form.title);
