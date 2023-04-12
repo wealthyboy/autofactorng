@@ -42,7 +42,6 @@ class ProductsController extends Controller
         $products = $this->getProductsData($request, $builder, $category);
         $search_filters = $this->searchFilters($category);
 
-        dd($search_filters);
         if ($request->ajax()) {
             return (new ProductsCollection($products))
                 ->additional([
