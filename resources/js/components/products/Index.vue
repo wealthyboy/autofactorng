@@ -15,13 +15,10 @@
                 :searchText="fitString"
                 class=""
             />
-            {{ searchMode }}{{ showFitString }}
             <div
                 v-if="!productIsLoading && !showFitString && !searchMode"
                 class="cta-border cta-bg light mb-4"
             >
-                {{ search_filters.search_type.search }}
-
                 <div
                     v-if="search_filters.search_type.search"
                     class="title w-100 mt-2 d-sm-block d-lg-none text-center"
