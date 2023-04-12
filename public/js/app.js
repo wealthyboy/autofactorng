@@ -23787,6 +23787,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }).then(function () {
         btnclose.value.click();
         store.commit("setMessage", "Your review has placed");
+        submiting.value = false;
       })["catch"](function () {
         store.commit("setMessage", "Something went wrong");
         submiting.value = false;

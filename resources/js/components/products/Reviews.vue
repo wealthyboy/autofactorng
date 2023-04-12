@@ -365,6 +365,7 @@ export default {
                 .then(() => {
                     btnclose.value.click();
                     store.commit("setMessage", "Your review has placed");
+                    submiting.value = false;
                 })
                 .catch(() => {
                     store.commit("setMessage", "Something went wrong");
