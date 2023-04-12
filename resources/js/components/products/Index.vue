@@ -15,7 +15,7 @@
                 :searchText="fitString"
                 class=""
             />
-
+            {{ searchMode }}{{ showFitString }}
             <div
                 v-if="!productIsLoading && !showFitString && !searchMode"
                 class="cta-border cta-bg light mb-4"
