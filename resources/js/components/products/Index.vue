@@ -9,6 +9,8 @@
 
             <div class="underline w-100"></div>
 
+            {{ search_filters }}
+
             <search-string
                 v-if="!productIsLoading && showFitString && fitString"
                 @remove:vehicle="shopWithoutVehicle"
