@@ -244,7 +244,10 @@
                                 <!-- End .form-group -->
 
                                 <div class="d-flex justify-content-end">
-                                    <button type="submit" class="">
+                                    <button
+                                        class="btn btn-block btn-dark w-100 py-4"
+                                        type="submit"
+                                    >
                                         <span
                                             v-if="submiting"
                                             class="spinner-border spinner-border-sm"

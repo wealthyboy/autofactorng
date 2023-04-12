@@ -15,6 +15,9 @@ class ReminderNotification extends Notification
 
     public $user;
 
+    public $days;
+
+
     /**
      * Create a new notification instance.
      *
@@ -22,9 +25,11 @@ class ReminderNotification extends Notification
      */
 
 
-    public function __construct(User $user)
+    public function __construct(User $user, $days)
     {
         $this->user = $user;
+
+        $this->days = $days;
     }
 
     /**
@@ -48,7 +53,7 @@ class ReminderNotification extends Notification
     {
         return (new MailMessage)
             ->subject('Hello ' . $this->user->name)
-            ->line('This is a reminder that your auto credit plan expires in 30 days.')
+            ->line('This is a reminder that your auto credit plan expires in' .  $this->days . 'days.')
             ->action('Visit website', url(Config('app.url')))
             ->line('Thank you for using our application!');
     }

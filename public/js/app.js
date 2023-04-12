@@ -29385,8 +29385,8 @@ var _hoisted_47 = {
   "class": "d-flex justify-content-end"
 };
 var _hoisted_48 = {
-  type: "submit",
-  "class": ""
+  "class": "btn btn-block btn-dark w-100 py-4",
+  type: "submit"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_rating = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("rating");
