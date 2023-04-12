@@ -363,12 +363,17 @@ export default {
             createReviews({ form })
                 .then(() => {
                     btnclose.value.click();
+                    form.title = null;
+                    form.description = null;
+
                     store.commit("setMessage", "Your review has placed");
                     submiting.value = false;
                 })
                 .catch(() => {
                     store.commit("setMessage", "Something went wrong");
                     submiting.value = false;
+                    form.title = null;
+                    form.description = null;
                 });
         }
 

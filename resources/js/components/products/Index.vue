@@ -9,8 +9,6 @@
 
             <div class="underline w-100"></div>
 
-            {{ search_filters.search_type.search }}
-
             <search-string
                 v-if="!productIsLoading && showFitString && fitString"
                 @remove:vehicle="shopWithoutVehicle"
@@ -22,6 +20,8 @@
                 v-if="!productIsLoading && !showFitString && !searchMode"
                 class="cta-border cta-bg light mb-4"
             >
+                {{ search_filters.search_type.search }}
+
                 <div
                     v-if="search_filters.search_type.search"
                     class="title w-100 mt-2 d-sm-block d-lg-none text-center"
