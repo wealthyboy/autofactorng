@@ -320,6 +320,8 @@ export default {
         let d = new Date();
         let uri = new URL(this.url),
             url;
+
+        console.log(uri);
         if (uri.search) {
             this.searchMode = true;
             url = "&get=" + d.getTime();

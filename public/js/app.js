@@ -23392,6 +23392,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var d = new Date();
     var uri = new URL(this.url),
         url;
+    console.log(uri);
 
     if (uri.search) {
       this.searchMode = true;
