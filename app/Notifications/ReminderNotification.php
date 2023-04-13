@@ -52,7 +52,7 @@ class ReminderNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->cc('damilola@autofactorng.com')
+            ->bcc('damilola@autofactorng.com')
             ->subject('Hello ' . $this->user->name)
             ->line($this->message)
             ->action('Visit website', url(Config('app.url')))
