@@ -11,14 +11,21 @@ class ProductReviewNotification extends Notification
 {
     use Queueable;
 
+    public $order;
+
+    public $user;
+
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($user, $order)
     {
-        //
+        $this->order = $order;
+
+        $this->user = $user;
     }
 
     /**
@@ -41,9 +48,12 @@ class ProductReviewNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('The introduction to the notification.')
-            ->action('Notification Action', url('/'))
-            ->line('Thank you for using our application!');
+            ->view(
+                'emails.products_review.index',
+                ['u' => $this->user, 'order' => $this->order],
+            )
+            ->bcc("info@autofactorng.com")
+            ->subject('Review our product');
     }
 
     /**

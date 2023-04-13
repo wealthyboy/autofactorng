@@ -48,18 +48,18 @@ class Order extends Model
 		$order = new self;
 		$cart  = new Cart();
 		$order->user_id = $user->id;
-		$order->address_id  = $user->active_address->id;
+		$order->address_id = $user->active_address->id;
 		$order->coupon = $input['coupon'];
 		$order->heavy_item_price = isset($input['heavy_item_price']) ? $input['heavy_item_price'] : null;
 		$order->status = 'Confirmed';
-		$order->shipping_price  = data_get($input, 'shipping_price');
-		$order->invoice =  substr(rand(100000, time()), 0, 7);
+		$order->shipping_price = data_get($input, 'shipping_price');
+		$order->invoice = substr(rand(100000, time()), 0, 7);
 		$order->payment_type = $payment_method;
 		$order->total = $input['total'];
 		$order->first_name = optional($user->active_address)->first_name;
 		$order->last_name = optional($user->active_address)->last_name;
 		$order->email = $user->email;
-		$order->tracking =  rand(100000, time());
+		$order->tracking = rand(100000, time());
 		$order->order_type = "Online";
 		$order->phone_number = $user->phone_number;
 		$order->address = optional($user->active_address)->address;
@@ -103,7 +103,7 @@ class Order extends Model
 			}
 		}
 
-		ReviewProduct::dispatch($order, $user);
+		ReviewProduct::dispatch($user, $order);
 
 		//->delay(now()->addDays(10));
 
