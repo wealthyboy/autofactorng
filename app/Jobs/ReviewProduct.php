@@ -26,7 +26,7 @@ class ReviewProduct implements ShouldQueue
 
 
 
-    public function __construct(Order $order, User $user)
+    public function __construct(User $user, Order $order)
     {
         $this->order = $order;
 
@@ -40,6 +40,6 @@ class ReviewProduct implements ShouldQueue
      */
     public function handle()
     {
-        $this->user->notify(new ProductReviewNotification($this->order));
+        $this->user->notify(new ProductReviewNotification($this->user, $this->order));
     }
 }
