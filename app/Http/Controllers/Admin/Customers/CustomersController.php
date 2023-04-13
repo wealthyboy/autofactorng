@@ -129,7 +129,7 @@ class CustomersController extends Table
 
 
         if ($request->type == 'wallet' && $request->status == 'added') {
-            $wallet->status =  'Added from wallet';
+            $wallet->status =  'Added to wallet';
         }
 
         if ($request->type == 'wallet' && $request->status == 'removed') {
@@ -162,9 +162,8 @@ class CustomersController extends Table
         }
 
         try {
-            $message = "This is a reminder to let you know that your auto credit plan expires in 30 days.";
-
-            $user->notify(new ReminderNotification($user));
+            $message = $request->amount . "has been " . $wallet->status;
+            $user->notify(new ReminderNotification($user, $message));
         } catch (\Throwable $th) {
             throw $th;
         }
