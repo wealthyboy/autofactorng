@@ -119,23 +119,24 @@ class CustomersController extends Table
         $wallet->amount = $request->amount;
         $wallet->user_id = $id;
         $wallet->status = $request->status;
+        $wallet_status = null;
         if ($request->type == 'auto_credit' && $request->status == 'added') {
-            $wallet->status =  'Added to auto credit';
+            $wallet_status =  'Added to auto credit';
         }
 
         if ($request->type == 'auto_credit' && $request->status == 'removed') {
-            $wallet->status =  'Removed from auto credit';
+            $wallet_status =  'Removed from auto credit';
         }
 
 
         if ($request->type == 'wallet' && $request->status == 'added') {
-            $wallet->status =  'Added to wallet';
+            $wallet_status =  'Added to wallet';
         }
 
         if ($request->type == 'wallet' && $request->status == 'removed') {
-            $wallet->status =  'Removed from wallet';
+            $wallet =  'Removed from wallet';
         }
-
+        $wallet->status =   $wallet_status;
         $wallet->save();
 
         if ($request->type == 'wallet') {
@@ -162,7 +163,7 @@ class CustomersController extends Table
         }
 
         try {
-            $message = $request->amount . "has been " . $wallet->status;
+            $message = number_format($request->amount) . "has been " . $wallet_status;
             $user->notify(new ReminderNotification($user, $message));
         } catch (\Throwable $th) {
             throw $th;
