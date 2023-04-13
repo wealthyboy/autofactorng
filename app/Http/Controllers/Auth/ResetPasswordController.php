@@ -7,6 +7,8 @@ use App\Notifications\PasswordConfirmationNotification;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 
 class ResetPasswordController extends Controller
