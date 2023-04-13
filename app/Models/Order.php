@@ -39,7 +39,7 @@ class Order extends Model
 
 	public static function orderReviewNotiication($order)
 	{
-		return 
+		return null;
 	}
 
 	public static function checkout($input, $payment_method, $ip, $carts, $user)
@@ -104,7 +104,7 @@ class Order extends Model
 		}
 
 		ReviewProduct::dispatch($order, $user);
-		
+
 		//->delay(now()->addDays(10));
 
 		return $order;
