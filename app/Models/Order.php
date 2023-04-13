@@ -103,9 +103,7 @@ class Order extends Model
 			}
 		}
 
-		ReviewProduct::dispatch($user, $order);
-
-		//->delay(now()->addDays(10));
+		ReviewProduct::dispatch($user, $order)->delay(now()->addDays(7));
 
 		return $order;
 	}
