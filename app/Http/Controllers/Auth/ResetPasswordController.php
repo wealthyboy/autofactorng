@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Notifications\PasswordConfirmationNotification;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
@@ -53,6 +54,31 @@ class ResetPasswordController extends Controller
             ['params' => $params, 'token' => $token, 'email' => $request->email]
         );
     }
+
+
+    /**
+     * Reset the given user's password.
+     *
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $user
+     * @param  string  $password
+     * @return void
+     */
+    protected function resetPassword($user, $password)
+    {
+        $this->setUserPassword($user, $password);
+
+        $user->setRememberToken(Str::random(60));
+
+        $user->save();
+
+        event(new PasswordReset($user));
+
+        $user->notify(new PasswordConfirmationNotification($user));
+
+        $this->guard()->login($user);
+    }
+
+
 
     protected function redirectTo()
     {

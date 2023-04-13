@@ -2,34 +2,23 @@
 
 namespace App\Notifications;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-
-class ReminderNotification extends Notification
+class ProductReviewNotification extends Notification
 {
     use Queueable;
-
-    public $user;
-
-    public $message;
-
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-
-
-    public function __construct(User $user, $message)
+    public function __construct()
     {
-        $this->user = $user;
-
-        $this->message = $message;
+        //
     }
 
     /**
@@ -52,9 +41,8 @@ class ReminderNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Hello ' . $this->user->name)
-            ->line($this->message)
-            ->action('Visit website', url(Config('app.url')))
+            ->line('The introduction to the notification.')
+            ->action('Notification Action', url('/'))
             ->line('Thank you for using our application!');
     }
 

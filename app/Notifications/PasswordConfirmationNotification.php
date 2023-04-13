@@ -2,34 +2,24 @@
 
 namespace App\Notifications;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-
-class ReminderNotification extends Notification
+class PasswordConfirmationNotification extends Notification
 {
     use Queueable;
 
     public $user;
-
-    public $message;
-
-
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-
-
-    public function __construct(User $user, $message)
+    public function __construct(User $user)
     {
         $this->user = $user;
-
-        $this->message = $message;
     }
 
     /**
@@ -52,10 +42,9 @@ class ReminderNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->bcc('damilola@autofactorng.com')
             ->subject('Hello ' . $this->user->name)
-            ->line($this->message)
-            ->action('Visit website', url(Config('app.url')))
-            ->line('Thank you for using our application!');
+            ->line('Your password was reset was successful')
     }
 
     /**

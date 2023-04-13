@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Http\Helper;
+use App\Jobs\ReviewProduct;
 use App\Traits\ColumnFillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -34,6 +35,11 @@ class Order extends Model
 	public function address()
 	{
 		return $this->belongsTo(Address::class);
+	}
+
+	public static function orderReviewNotiication($order)
+	{
+		return 
 	}
 
 	public static function checkout($input, $payment_method, $ip, $carts, $user)
@@ -96,6 +102,10 @@ class Order extends Model
 				$cart->delete();
 			}
 		}
+
+		ReviewProduct::dispatch($order, $user);
+		
+		//->delay(now()->addDays(10));
 
 		return $order;
 	}

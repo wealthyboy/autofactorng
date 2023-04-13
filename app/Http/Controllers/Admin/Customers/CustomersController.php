@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Models\WalletBalance;
 use App\Notifications\AutoCreditNotification;
+use App\Notifications\ReminderNotification;
 use Illuminate\Support\Facades\Notification;
 
 
@@ -161,8 +162,9 @@ class CustomersController extends Table
         }
 
         try {
+            $message = "This is a reminder to let you know that your auto credit plan expires in 30 days.";
 
-            //  $user->notify(new AutoCreditNotification($new_review));
+            $user->notify(new ReminderNotification($user));
         } catch (\Throwable $th) {
             throw $th;
         }
