@@ -72,28 +72,19 @@ class CheckoutController extends Controller
             }
 
             // $admin_emails = explode(',', $this->settings->alert_email);
-            $total =  DB::table('ordered_products')->select(DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
-            $sub_total = $total[0]->items_total ?? '0.00';
-            $order->currency = '₦';
+            $sub_total = Order::subTotal($order);
 
-            // dd($sub_total);
+            $order->currency = '₦';
 
             $order->heavy_item_price = $order->heavy_item_price ?? 0;
 
-            if ($order->coupon) {
-                $order->coupon_value = '-₦' . number_format(
-                    (optional($order->voucher())->amount / 100) * $sub_total
-                );
-                $order->coupon = optional($order->voucher())->amount . '% Discount';
-            } else {
-                $order->coupon = 'Coupon';
-                $order->coupon_value = '----';
-            }
+
+
+            Order::getCoupon($order, $sub_total);
 
 
 
             Order::sendMail($user, $order, $sub_total);
-
 
 
             //delete cart

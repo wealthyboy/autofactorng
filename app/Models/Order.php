@@ -9,6 +9,7 @@ use App\Traits\ColumnFillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
@@ -126,6 +127,27 @@ class Order extends Model
 			$err->error = $th->getMessage();
 			$err->save();
 		}
+	}
+
+	public static function getCoupon(Order $order, $sub_total)
+	{
+		if ($order->coupon) {
+			$order->coupon_value = '-₦' . number_format(
+				(optional($order->voucher())->amount / 100) * $sub_total
+			);
+			$order->coupon = optional($order->voucher())->amount . '% Discount';
+		} else {
+			$order->coupon = 'Coupon';
+			$order->coupon_value = '----';
+		}
+	}
+
+
+	public static function subTotal(Order $order)
+	{
+
+		$total =  DB::table('ordered_products')->select(DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
+		return $sub_total = $total[0]->items_total ?? '0.00';
 	}
 
 	public function shipping()

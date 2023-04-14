@@ -58,8 +58,7 @@ class WebHookController extends Controller
                 $order = Order::checkout($input, $payment_method,  $ip,  $carts,  $user);
 
                 $admin_emails = explode(',', $this->settings->alert_email);
-                $total =  DB::table('ordered_products')->select(DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
-                $sub_total = $total[0]->items_total ?? '0.00';
+                $sub_total = Order::subTotal($order);
                 $order->currency = '₦';
 
                 if ($order->coupon) {
@@ -205,8 +204,8 @@ class WebHookController extends Controller
 
             $admin_emails = explode(',', $this->settings->alert_email);
             $symbol = optional($currency)->symbol;
-            $total =  DB::table('ordered_products')->select(\DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
-            $sub_total = $total[0]->items_total ?? '0.00';
+            $sub_total = Order::subTotal($order);
+
             $order->currency = '₦';
 
             if ($order->coupon) {
