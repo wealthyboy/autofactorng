@@ -9,24 +9,16 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderedProduct;
 use App\Models\Cart;
-use App\Models\Currency;
-use App\Models\Shipping;
-use App\Models\ProductVariation;
+
 use App\Models\Voucher;
-use App\Models\Wallet;
-use App\Models\WalletBalance;
-use App\Mail\OrderReceipt;
+
 use App\Models\Error;
 use App\Models\PendingCart;
-use App\Models\Product;
-// use App\Mail\SendGiftCard;
 
-// use App\Jobs\ReviewProduct;
 
 use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 
 class WebHookController extends Controller
 {
@@ -44,7 +36,9 @@ class WebHookController extends Controller
 
         try {
 
-            \Log::info($request->all());
+            Log::info($request->all());
+
+
 
             $input =  $request->data['metadata']['custom_fields'][0];
 
@@ -80,18 +74,8 @@ class WebHookController extends Controller
 
                 $order->heavy_item_price = $order->heavy_item_price ?? 0;
 
-                try {
-                    $when = now()->addMinutes(5);
-                    Mail::to($user->email)
-                        ->cc('orders@autofactorng.com')
-                        ->send(new OrderReceipt($order, null, null, $sub_total));
-                } catch (\Throwable $th) {
-                    Log::info("Mail error :" . $th);
-                    Log::info("Custom error :" . $th);
-                    $err = new Error();
-                    $err->error = $th->getMessage();
-                    $err->save();
-                }
+                Order::sendMail($user, $order, $sub_total);
+
 
                 //delete cart
                 if ($input['coupon']) {
@@ -238,17 +222,7 @@ class WebHookController extends Controller
             $order->heavy_item_price = $order->heavy_item_price ?? 0;
 
 
-            try {
-                $when = now()->addMinutes(5);
-                Mail::to($user->email)
-                    ->cc('orders@autofactorng.com')
-                    ->send(new OrderReceipt($order, null, null, $sub_total));
-            } catch (\Throwable $th) {
-                Log::info("Mail error :" . $th);
-                $err = new Error();
-                $err->error = $th->getMessage();
-                $err->save();
-            }
+            Order::sendMail($user, $order, $sub_total);
 
             //delete cart
             if ($pending_cart->coupon) {

@@ -4,10 +4,13 @@ namespace App\Models;
 
 use App\Http\Helper;
 use App\Jobs\ReviewProduct;
+use App\Mail\OrderReceipt;
 use App\Traits\ColumnFillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class Order extends Model
 {
@@ -106,6 +109,23 @@ class Order extends Model
 		ReviewProduct::dispatch($user, $order)->delay(now()->addDays(7));
 
 		return $order;
+	}
+
+
+	public static function sendMail(User $user, Order $order, $sub_total)
+	{
+
+		try {
+			$when = now()->addMinutes(5);
+			Mail::to($user->email)
+				->cc('orders@autofactorng.com')
+				->send(new OrderReceipt($order, null, null, $sub_total));
+		} catch (\Throwable $th) {
+			Log::info("Mail error :" . $th);
+			$err = new Error();
+			$err->error = $th->getMessage();
+			$err->save();
+		}
 	}
 
 	public function shipping()
