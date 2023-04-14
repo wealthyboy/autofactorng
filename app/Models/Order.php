@@ -140,6 +140,9 @@ class Order extends Model
 			$order->coupon = 'Coupon';
 			$order->coupon_value = '----';
 		}
+
+		$order->currency = '₦';
+		$order->heavy_item_price = $order->heavy_item_price ?? 0;
 	}
 
 

@@ -61,7 +61,6 @@ class CheckoutController extends Controller
             $carts = Cart::all_items_in_cart();
             $order = Order::checkout($input, $payment_method,  $ip, $carts, $user);
             $code = trim(session('coupon'));
-            $coupon = Voucher::where('code', $code)->first();
 
             if ($request->payment_method == 'Wallet') {
                 WalletBalance::deductFromWallet($request->total);
@@ -71,27 +70,13 @@ class CheckoutController extends Controller
                 WalletBalance::deductFromCredit($request->total);
             }
 
-            // $admin_emails = explode(',', $this->settings->alert_email);
             $sub_total = Order::subTotal($order);
-
-            $order->currency = '₦';
-
-            $order->heavy_item_price = $order->heavy_item_price ?? 0;
-
-
 
             Order::getCoupon($order, $sub_total);
 
-
-
             Order::sendMail($user, $order, $sub_total);
 
-
-            //delete cart
-            //$affectedRows = Cart::delete_items_in_cart_purchased();
-            if (null !== $coupon && $coupon->type == 'specific') {
-                $coupon->update(['valid' => false]);
-            }
+            Voucher::inValidate($code);
 
             DB::commit();
 

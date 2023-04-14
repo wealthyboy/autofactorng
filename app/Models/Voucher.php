@@ -38,6 +38,16 @@ class Voucher extends Model
         return $exp[2] . '/' . $exp[1] . '/' . $exp[0];
     }
 
+    public static function inValidate($coupon)
+    {
+        if ($coupon) {
+            $code = trim($coupon);
+            $coupon =  Voucher::where('code', $coupon)->first();
+            if (null !== $coupon && $coupon->type == 'specific') {
+                $coupon->update(['valid' => false]);
+            }
+        }
+    }
 
     public function getFromPriceAttribute()
     {

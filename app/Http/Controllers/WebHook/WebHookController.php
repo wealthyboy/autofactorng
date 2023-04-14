@@ -59,31 +59,13 @@ class WebHookController extends Controller
 
                 $admin_emails = explode(',', $this->settings->alert_email);
                 $sub_total = Order::subTotal($order);
-                $order->currency = '₦';
 
-                if ($order->coupon) {
-                    $order->coupon_value = '-₦' . number_format(
-                        (optional($order->voucher())->amount / 100) * $sub_total
-                    );
-                    $order->coupon = optional($order->voucher())->amount . '% Discount';
-                } else {
-                    $order->coupon = 'Coupon';
-                    $order->coupon_value = '----';
-                }
-
-                $order->heavy_item_price = $order->heavy_item_price ?? 0;
+                Order::getCoupon($order, $sub_total);
 
                 Order::sendMail($user, $order, $sub_total);
 
 
-                //delete cart
-                if ($input['coupon']) {
-                    $code = trim($input['coupon']);
-                    $coupon =  Voucher::where('code', $input['coupon'])->first();
-                    if (null !== $coupon && $coupon->type == 'specific') {
-                        $coupon->update(['valid' => false]);
-                    }
-                }
+                Voucher::inValidate($input['coupon']);
 
                 // \Log::info($cart);
 
@@ -93,26 +75,6 @@ class WebHookController extends Controller
 
 
             if ($input['type'] == 'Wallet') {
-
-                // $wallet = new Wallet;
-                // $wallet->amount = $input['amount'];
-                // $wallet->user_id = $input['customer_id'];
-                // $wallet->status = 'Added';
-                // $wallet->save();
-
-                // $balance = WalletBalance::where('user_id', $input['customer_id'])->first();
-
-                // if (null !== $balance) {
-                //     $balance->balance = $balance->balance +  $input['amount'];
-                //     $balance->save();
-                // } else {
-                //     $balance = new WalletBalance;
-                //     $balance->balance = $input['amount'];
-                //     $balance->user_id = $input['customer_id'];
-                //     $balance->save();
-                // }
-
-                // \Log::info($balance);
             }
         } catch (\Throwable $th) {
             \Log::info("Custom error :" . $th);
@@ -168,7 +130,6 @@ class WebHookController extends Controller
             $order->coupon = $pending_cart->coupon;
             $order->status = 'Processing';
             $order->shipping_price = $pending_cart->shipping_price;
-            //$order->currency = '₦';
             $order->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
             $order->tracking = time();
 
@@ -202,35 +163,17 @@ class WebHookController extends Controller
                 $cart->delete();
             }
 
-            $admin_emails = explode(',', $this->settings->alert_email);
-            $symbol = optional($currency)->symbol;
             $sub_total = Order::subTotal($order);
 
-            $order->currency = '₦';
-
-            if ($order->coupon) {
-                $order->coupon_value = '-₦' . number_format(
-                    (optional($order->voucher())->amount / 100) * $sub_total
-                );
-                $order->coupon = optional($order->voucher())->amount . '% Discount';
-            } else {
-                $order->coupon = 'Coupon';
-                $order->coupon_value = '----';
-            }
-
-            $order->heavy_item_price = $order->heavy_item_price ?? 0;
-
+            Order::getCoupon($order, $sub_total);
 
             Order::sendMail($user, $order, $sub_total);
 
+
+            Voucher::inValidate($pending_cart->coupon);
+
             //delete cart
-            if ($pending_cart->coupon) {
-                $code = trim($pending_cart->coupon);
-                $coupon =  Voucher::where('code', $code)->first();
-                if (null !== $coupon && $coupon->type == 'specific') {
-                    $coupon->update(['valid' => false]);
-                }
-            }
+
         } catch (\Throwable $th) {
             Log::info("Custom error :" . $th);
             $err = new Error();
