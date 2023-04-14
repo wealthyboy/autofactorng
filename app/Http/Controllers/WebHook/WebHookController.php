@@ -67,17 +67,11 @@ class WebHookController extends Controller
 
                 Voucher::inValidate($input['coupon']);
 
-                // \Log::info($cart);
-
                 return http_response_code(200);
             }
-
-
-
-            if ($input['type'] == 'Wallet') {
-            }
         } catch (\Throwable $th) {
-            \Log::info("Custom error :" . $th);
+
+            Log::info("Custom error :" . $th);
             Log::info("Custom error :" . $th);
             $err = new Error();
             $err->error = $th->getMessage();
