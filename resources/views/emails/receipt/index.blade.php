@@ -333,11 +333,8 @@
                                                    </tr>
                                                    <tr style=" margin-bottom: 20px;">
                                                       <td class="esFrMb" width="30"></td>
-                                                      <td class="esFrMb" align="center" width="200">
-                                                         <span style=" margin-top: 0px;  margin-bottom: 15px;display: block;text-decoration: none;border: none;"> 15 Tapa House Surulere Lagos
-                                                         </span>
-                                                      </td>
-                                                      <td class="esFrMb" width="30"></td>
+
+
                                                    </tr>
                                                 </table>
                                              </td>
