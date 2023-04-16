@@ -772,7 +772,7 @@
                                     <td align="left">
                                        <table cellspacing="0" cellpadding="0" border="0" align="center">
                                           <tr>
-                                             <th rowspan="4" class="stack4" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" style="margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="349" height="100" bgcolor="#ffffff">
+                                             <th rowspan="5" class="stack4" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" style="margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="349" height="100" bgcolor="#ffffff">
                                                 <table class="table60034" width="349" cellspacing="0" cellpadding="0" border="0" align="center">
 
                                                    <tr>
