@@ -825,7 +825,9 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" width="30"><br></td>
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>Coupon </td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;">
+                                                         <div data-color="RegularLink" style="text-decoration: none;color: #67bffd;">Coupon</div>
+                                                      </td>
                                                       <td class="wz2" width="30"><br></td>
                                                    </tr>
                                                    <tr>
@@ -840,7 +842,9 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" width="30"><br></td>
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a> {{ $order->coupon ?  $order->coupon.'  -%'.$order->voucher()->amount .' off' : '---' }}</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;">
+                                                         <div href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"> {{ $order->coupon }} </div>
+                                                      </td>
                                                       <td class="wz2" width="30"><br></td>
                                                    </tr>
                                                    <tr>
