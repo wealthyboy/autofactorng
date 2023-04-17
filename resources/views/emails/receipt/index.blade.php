@@ -788,7 +788,7 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" width="30"><br></td>
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065; font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;">Heavy/Large item charge</a></td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065; font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>Shipping</td>
                                                       <td class="wz2" width="30"></td>
                                                    </tr>
                                                    <tr>
@@ -803,7 +803,7 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" width="30"><br></td>
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ $order->heavy_item_price }}</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ $order->shipping_price }}</td>
                                                       <td class="wz2" width="30"><br></td>
                                                    </tr>
                                                    <tr>
