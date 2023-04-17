@@ -829,7 +829,7 @@
                                              <th class="stack3" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="139" valign="top" bgcolor="#ffffff">
                                                 <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
                                                    <tr>
-                                                      <td class="wz2" height="10" width="30"></td>
+                                                      <td class="wz2" height="25" width="30"></td>
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" width="30"><br></td>
@@ -838,9 +838,7 @@
                                                       </td>
                                                       <td class="wz2" width="30"><br></td>
                                                    </tr>
-                                                   <tr>
-                                                      <td class="wz2" height="10" width="30"></td>
-                                                   </tr>
+
                                                 </table>
                                              </th>
                                           </tr>
