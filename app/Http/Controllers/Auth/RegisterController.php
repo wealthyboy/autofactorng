@@ -88,10 +88,10 @@ class RegisterController extends Controller
         $coupon = new Voucher;
         $coupon->code =  str_random(6);
         $coupon->user_id = $user->id;
-        $coupon->amount   = 5;
-        $coupon->type     = 'specific';
-        $coupon->expires  = now()->addDays(365);
-        $coupon->from_value =  null;
+        $coupon->amount = 5;
+        $coupon->type = 'specific';
+        $coupon->expires = now()->addDays(365);
+        $coupon->from_value = null;
         $coupon->is_fixed = 0;
         $coupon->status = 1;
         $coupon->save();
