@@ -1,5 +1,9 @@
 <template>
-    <a @click.prevent="activate" href="#" class="nav-btn border-0 w-100 mb-0">
+    <a
+        @click.prevent="activate"
+        href="#"
+        class="nav-btn border-0 w-100 mb-0 no-hover text-black"
+    >
         <div
             class="d-flex add-a-vehicle align-items-center align-content-center justify-content-evenly"
         >
@@ -17,7 +21,10 @@
                 />
             </div>
 
-            <div class="fw-bold ms-3 fs-5 text-start" v-if="fitString">
+            <div
+                class="fw-bold ms-3 fs-5 text-start text-black"
+                v-if="fitString"
+            >
                 {{ fitString }}
             </div>
             <div class="fw-bold" v-if="!fitString">Add vehicle</div>

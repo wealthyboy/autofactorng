@@ -56,7 +56,7 @@
                      </div>
                      @auth
                      <div class="position-relative me-5">
-                        <a href="/account" class="d-flex flex-column align-items-center" title="account">
+                        <a href="/account" class="d-flex flex-column align-items-center no-hover text-black" title="account">
                            <span class="material-symbols-outlined display-5">
                               person
                            </span>
@@ -70,7 +70,7 @@
 
                      @guest
                      <div class="position-relative me-5 ">
-                        <a href="/login" class="d-flex flex-column align-items-center" title="account">
+                        <a href="/login" class="d-flex flex-column align-items-center no-hover text-black" title="account">
                            <span class="material-symbols-outlined display-5">
                               person
                            </span>
