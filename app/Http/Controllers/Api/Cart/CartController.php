@@ -15,8 +15,8 @@ use Storage;
 use App\Http\Resources\CartIndexResource;
 use App\Http\Resources\CartResource;
 use App\Http\Helper;
-
-
+use App\Models\Attribute;
+use App\Models\Engine;
 
 class CartController  extends Controller
 {
@@ -46,6 +46,10 @@ class CartController  extends Controller
 			$cart->user_id    = optional($request->user())->id;
 		}
 		$price = null !== $product->discounted_price ?  $product->discounted_price :  $product->price;
+		$make = optional(Attribute::find($request->cookie('make_id')))->name;
+		$model = optional(Attribute::find($request->cookie('model_id')))->name;
+		$year = $request->cookie('year');
+		$engine = optional(Engine::find($request->cookie('engine_id')))->name;
 		if (\Cookie::get('cart') !== null) {
 			$remember_token  = \Cookie::get('cart');
 			$result = $cart->updateOrCreate(
@@ -54,7 +58,11 @@ class CartController  extends Controller
 					'product_id' => $request->product_id,
 					'quantity'   => $request->quantity,
 					'price'      => $price,
-					'total'      => $price * $request->quantity
+					'total'      => $price * $request->quantity,
+					'make' => $make,
+					'model' => $model,
+					'year' => $year,
+					'engine' => $engine,
 				]
 			);
 
@@ -64,10 +72,14 @@ class CartController  extends Controller
 			session()->put('cart', $value);
 			$cookie = cookie('cart', session()->get('cart'), 60 * 60 * 7);
 			$cart->product_id = $request->product_id;
-			$cart->quantity   = $request->quantity;
-			$cart->price      = $price;
-			$cart->total      = $price * $request->quantity;
+			$cart->quantity = $request->quantity;
+			$cart->price = $price;
+			$cart->total = $price * $request->quantity;
 			$cart->remember_token = $cookie->getValue();
+			$make = $make;
+			$model = $model;
+			$year = $year;
+			$engine = $engine;
 			$cart->save();
 			$carts = Cart::all_items_in_cart();
 			$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $cookie->getValue())->get();
@@ -79,9 +91,9 @@ class CartController  extends Controller
 					0 => [
 						'cart_id' => $cart->id,
 						'product_id' => $cart->product_id,
-						'image'        => optional($cart->product)->image_m,
-						'quantity'     => $cart->quantity,
-						'price'        => $cart->price,
+						'image' => optional($cart->product)->image_m,
+						'quantity' => $cart->quantity,
+						'price' => $cart->price,
 						'product_name' => optional($cart->product)->name,
 						'link' => optional($cart->product)->name,
 

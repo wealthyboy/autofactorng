@@ -98,6 +98,10 @@ class Order extends Model
 					'tracker' => time(),
 					'price' => $cart->price,
 					'total' => $cart->quantity * $cart->price,
+					'make' => $cart->make,
+					'model' => $cart->model,
+					'year' => $cart->year,
+					'engine' => $cart->engine,
 					'created_at' => \Carbon\Carbon::now()
 				];
 

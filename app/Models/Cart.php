@@ -22,6 +22,10 @@ class Cart extends Model
         'quantity',
         'total',
         'price',
+        'make',
+        'model',
+        'year',
+        'engine',
     ];
 
     public $appends = [
