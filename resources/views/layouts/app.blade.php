@@ -269,7 +269,7 @@
                                  <button class="btn btn-sm w-100 rounded-0 coupon-button bg-main bold fs-3 text-white" type="submit"><!--v-if-->
                                     <span class="spinner-border spinner-border-sm n-spinner d-none" role="status" aria-hidden="true"></span>
 
-                                    Apply </button>
+                                    Submit </button>
                               </div>
                            </div>
 
