@@ -27863,7 +27863,7 @@ var _hoisted_3 = {
   "class": "text-center"
 };
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row g-0\"><div class=\"col-8\"><input type=\"text\" class=\"form-control b\" placeholder=\"Enter  code\" required=\"\"></div><div class=\"col-4\"><button class=\"btn btn-sm btn-primary w-100 rounded-0 coupon-button btn-dark bold\" type=\"submit\"><!--v-if--> Apply </button></div></div>", 1);
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row g-0\"><div class=\"input-group mb-3\"><input type=\"text\" class=\"form-control\" placeholder=\"Recipient&#39;s username\" aria-label=\"Recipient&#39;s username\" aria-describedby=\"button-addon2\"><button class=\"btn btn-outline-secondary\" type=\"button\" id=\"button-addon2\">Button</button></div><div class=\"col-8\"><input type=\"text\" class=\"form-control b\" placeholder=\"Enter  code\" required=\"\"></div><div class=\"col-4\"><button class=\"btn btn-sm btn-primary w-100 rounded-0 coupon-button btn-dark bold\" type=\"submit\"><!--v-if--> Apply </button></div></div>", 1);
 
 var _hoisted_5 = [_hoisted_4];
 function render(_ctx, _cache, $props, $setup, $data, $options) {

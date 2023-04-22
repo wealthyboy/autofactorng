@@ -263,15 +263,16 @@
                   <div class="col-12 col-lg-5 offset-lg-1">
                      <form method="POST" id="n-letter" class="mb-0 ">
                         <div class="row g-0">
-                           <div class="col-8">
-                              <input type="text" class="form-control mb-0 email" name="email" placeholder="Enter email" required="">
+                           <div class="row g-0">
+                              <div class="col-8"><input type="text" class="form-control b rounded-0 email" placeholder="Enter  code" required=""></div>
+                              <div class="col-4">
+                                 <button class="btn btn-sm w-100 rounded-0 coupon-button bg-main bold fs-3 text-white" type="submit"><!--v-if-->
+                                    <span class="spinner-border spinner-border-sm n-spinner d-none" role="status" aria-hidden="true"></span>
+
+                                    Apply </button>
+                              </div>
                            </div>
-                           <div class="col-4">
-                              <button class="btn btn-sm btn-primary w-100 rounded-0 coupon-button btn-dark bold bg-danger fs-4" type="submit">
-                                 <span class="spinner-border spinner-border-sm n-spinner d-none" role="status" aria-hidden="true"></span>
-                                 Apply
-                              </button>
-                           </div>
+
                         </div>
                      </form>
 
