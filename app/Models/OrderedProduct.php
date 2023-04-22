@@ -33,11 +33,11 @@ class OrderedProduct extends Model
                     return [
                         "Product" => $ordered_product->product_name,
                         "Price" =>  Helper::currencyWrapper($ordered_product->price),
+                        "Quantity" => $ordered_product->quantity,
                         "make" =>  $ordered_product->make,
                         "model" => $ordered_product->model,
                         "year" =>  $ordered_product->year,
                         "engine" =>  $ordered_product->engine,
-                        "Quantity" => $ordered_product->quantity,
                         "Sub Total" =>  Helper::currencyWrapper($ordered_product->total),
                     ];
                 })
