@@ -121,7 +121,7 @@ class CustomersController extends Table
         $wallet->status = $request->status;
         $wallet_status = null;
         if ($request->type == 'auto_credit' && $request->status == 'added') {
-            $wallet_status =  'Added to auto credit';
+            $wallet_status =  'Added to your your auto credit';
         }
 
         if ($request->type == 'auto_credit' && $request->status == 'removed') {
@@ -130,11 +130,11 @@ class CustomersController extends Table
 
 
         if ($request->type == 'wallet' && $request->status == 'added') {
-            $wallet_status =  'Added to wallet';
+            $wallet_status =  'Added to your wallet';
         }
 
         if ($request->type == 'wallet' && $request->status == 'removed') {
-            $wallet =  'Removed from wallet';
+            $wallet =  'Removed from your wallet';
         }
         $wallet->status =   $wallet_status;
         $wallet->save();

@@ -48,7 +48,7 @@ class WelcomeNotification extends Notification
                 'emails.registration.index',
                 ['u' => $this->user],
             )
-            ->cc("info@autofactorng.com")
+            ->bcc("info@autofactorng.com")
             ->subject('Thanks for registering');
     }
 

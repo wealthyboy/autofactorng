@@ -43,10 +43,10 @@ class ReviewNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->cc("info@autofactorng.com")
-            ->cc("damilola@autofactorng.com")
-            ->cc("abiola@autofactorng.com")
-            ->cc("jacob.atam@gmail.com")
+            ->bcc("info@autofactorng.com")
+            ->bcc("damilola@autofactorng.com")
+            ->bcc("abiola@autofactorng.com")
+            ->bcc("jacob.atam@gmail.com")
 
             ->line('Dear admin')
             ->line('We have a new review')

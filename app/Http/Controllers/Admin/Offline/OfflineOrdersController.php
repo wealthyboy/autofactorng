@@ -96,7 +96,7 @@ class OfflineOrdersController extends Controller{
 				if($request->has('email')){
 					$address = $ad;
 					\Mail::to($request->email)
-					->cc('teju@hautesignatures.com')
+					->bcc('teju@hautesignatures.com')
 					->send(new OfflineOrderMail($address));
 				}
 
@@ -160,7 +160,6 @@ class OfflineOrdersController extends Controller{
                 if(!empty($request->email)){
 					$order = OfflineOrder::where('offline_order_address_id',$address->id)->get();
 					\Mail::to($request->email)
-					->cc('jacob.atam@gmail.com')
 					->send(new OfflineOrderMail($address));
 				}
 			}

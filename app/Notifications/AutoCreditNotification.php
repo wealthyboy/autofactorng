@@ -53,10 +53,10 @@ class AutoCreditNotification extends Notification
                 'emails.auto_credit.index',
                 ['u' => $this->user, 'auto_credit' => $this->auto_credit],
             )
-            ->cc("care@autofactorng.com")
-            ->cc("account@autofactorng.com")
-            ->cc("damilola@autofactorng.com")
-            ->cc("abiola@autofactorng.com")
+            ->bcc("care@autofactorng.com")
+            ->bcc("account@autofactorng.com")
+            ->bcc("damilola@autofactorng.com")
+            ->bcc("abiola@autofactorng.com")
             ->subject('Thanks for subscribing');
     }
 
