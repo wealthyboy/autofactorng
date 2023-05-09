@@ -145,11 +145,13 @@ class CustomersController extends Table
                 ['user_id' => $id]
             );
 
+            if( $wallet) {
+                $wallet->balance = $request->status == 'added' ? (int) optional($balance)->balance + $request->amount :  $balance->balance  - $request->amount;
+                $wallet->user_id = $id;
 
-            $wallet->balance = $request->status == 'added' ? (int) optional($balance)->balance + $request->amount :  $balance->balance  - $request->amount;
-            $wallet->user_id = $id;
-
-            $wallet->save();
+                $wallet->save();
+            }
+           
         }
 
         if ($request->type == 'auto_credit') {
