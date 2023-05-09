@@ -146,7 +146,7 @@ class CustomersController extends Table
             );
 
 
-                $wallet->balance = $request->status == 'added' ? (int) optional($balance)->balance + $request->amount :  $balance->balance  - $request->amount;
+                $wallet->balance = $request->status == 'added' ? (int) optional($balance)->balance + $request->amount :  optional($balance)->balance  - $request->amount;
                 $wallet->user_id = $id;
 
                 $wallet->save();
