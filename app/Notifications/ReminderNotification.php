@@ -53,6 +53,8 @@ class ReminderNotification extends Notification
     {
         return (new MailMessage)
             ->bcc('damilola@autofactorng.com')
+            ->bcc('account@autofactorng.com')
+            ->bcc('care@autofactorng.com')
             ->subject('Hello ' . $this->user->name)
             ->line($this->message)
             ->action('Visit website', url(Config('app.url')))
