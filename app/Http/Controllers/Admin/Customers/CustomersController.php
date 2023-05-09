@@ -145,7 +145,6 @@ class CustomersController extends Table
                 ['user_id' => $id]
             );
 
-
                 $wallet->balance = $request->status == 'added' ? (int) optional($balance)->balance + $request->amount :  optional($balance)->balance  - $request->amount;
                 $wallet->user_id = $id;
 
@@ -165,7 +164,7 @@ class CustomersController extends Table
         }
 
         try {
-            $message = '₦' . number_format($request->amount) . " has been " . $wallet_status . '.';
+            $message = '₦'. number_format($request->amount) . " has been " . $wallet_status . '.';
             $user->notify(new ReminderNotification($user, $message));
         } catch (\Throwable $th) {
             throw $th;
