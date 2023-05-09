@@ -134,9 +134,9 @@ class CustomersController extends Table
         }
 
         if ($request->type == 'wallet' && $request->status == 'removed') {
-            $wallet =  'Removed from your wallet';
+            $wallet_status =  'Removed from your wallet';
         }
-        $wallet->status =   $wallet_status;
+        $wallet->status = $wallet_status;
         $wallet->save();
 
         if ($request->type == 'wallet') {
