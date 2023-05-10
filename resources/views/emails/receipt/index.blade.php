@@ -771,6 +771,39 @@
                                  <tr>
                                     <td align="left">
                                        <table cellspacing="0" cellpadding="0" border="0" align="center">
+
+                                       <tr>
+                                             <th class="stack3" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="139" valign="top" bgcolor="#ffffff">
+                                                <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                   <tr>
+                                                      <td class="wz2" height="10" width="30"></td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="wz2" width="30"><br></td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>Sub Total </td>
+                                                      <td class="wz2" width="30"><br></td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="wz2" height="10" width="30"></td>
+                                                   </tr>
+                                                </table>
+                                             </th>
+                                             <th class="stack3" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="139" valign="top" bgcolor="#ffffff">
+                                                <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
+                                                   <tr>
+                                                      <td class="wz2" height="10" width="30"></td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="wz2" width="30"><br></td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ $sub_total  }}</td>
+                                                      <td class="wz2" width="30"><br></td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="wz2" height="10" width="30"></td>
+                                                   </tr>
+                                                </table>
+                                             </th>
+                                          </tr>
                                           <tr>
                                              <th rowspan="5" class="stack4" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" style="margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="349" height="100" bgcolor="#ffffff">
                                                 <table class="table60034" width="349" cellspacing="0" cellpadding="0" border="0" align="center">
@@ -888,38 +921,7 @@
                                           </tr>
 
 
-                                          <tr>
-                                             <th class="stack3" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="139" valign="top" bgcolor="#ffffff">
-                                                <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
-                                                   <tr>
-                                                      <td class="wz2" height="10" width="30"></td>
-                                                   </tr>
-                                                   <tr>
-                                                      <td class="wz2" width="30"><br></td>
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>Sub Total </td>
-                                                      <td class="wz2" width="30"><br></td>
-                                                   </tr>
-                                                   <tr>
-                                                      <td class="wz2" height="10" width="30"></td>
-                                                   </tr>
-                                                </table>
-                                             </th>
-                                             <th class="stack3" data-bgcolor="CalculationsBGColor" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198);" width="139" valign="top" bgcolor="#ffffff">
-                                                <table class="table60033" width="139" cellspacing="0" cellpadding="0" border="0" align="center">
-                                                   <tr>
-                                                      <td class="wz2" height="10" width="30"></td>
-                                                   </tr>
-                                                   <tr>
-                                                      <td class="wz2" width="30"><br></td>
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ $order->get_total()   }}</td>
-                                                      <td class="wz2" width="30"><br></td>
-                                                   </tr>
-                                                   <tr>
-                                                      <td class="wz2" height="10" width="30"></td>
-                                                   </tr>
-                                                </table>
-                                             </th>
-                                          </tr>
+                                     
 
                                           <tr>
                                              <th class="stack3" data-bgcolor="ThemeColorBG" data-border-bottom-color="borderColor" data-border-left-color="borderColor" style="border-left: 1px solid rgb(200, 198, 198); margin: 0px; padding: 0px; vertical-align: top; border-bottom: 1px solid rgb(200, 198, 198); background-color: rgb(0, 0, 0, 1);" width="139" valign="top" bgcolor="#67bffd">
