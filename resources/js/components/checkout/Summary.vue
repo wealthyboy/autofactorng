@@ -161,11 +161,11 @@ export default {
                     //this.amount = parseInt(response.data.sub_total);
                     this.$store.commit(
                         "setTotal",
-                        response.data.sub_total + this.prices.ship_price
+                        response.data.sub_total + this.prices.ship_price + parseInt(this.prices.heavy_item_price)
                     );
 
                     this.$store.commit("setCouponCode", this.coupon_code);
-                    console.log(this.coupon_code);
+
 
                     //this.$emit("sent", this.coupon_code);
                 })
