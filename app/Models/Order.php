@@ -122,9 +122,9 @@ class Order extends Model
 
 		try {
 			$when = now()->addMinutes(5);
-			Mail::to('jacob.atam@@gmail.com')
+			Mail::to('jacob.atam@gmail.com')
 				->bcc('orders@autofactorng.com')
-				->bcc('jacob.atam@@gmail.com')
+				->bcc('jacob.atam@gmail.com')
 				->send(new OrderReceipt($order, null, null, $sub_total));
 		} catch (\Throwable $th) {
 			Log::info("Mail error :" . $th);
