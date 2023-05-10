@@ -49,7 +49,7 @@ class MailResetPasswordNotification extends Notification
             ->line( "Hello! You are receiving this email because we received a password reset request for your account." )
             ->action( 'Reset Password', $link )
             ->line( "This password reset link will expire in 1 hr" )
-            ->line( "If you did not request a password reset, no further action is required." );   
+            ->line( "If you did not request a password reset, Please ignore this message" P;   
     }
 
     /**
