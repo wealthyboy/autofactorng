@@ -26740,7 +26740,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "material-symbols-outlined display-2 d-block d-sm-none"
+  "class": "material-symbols-outlined display-2 d-md-block d-lg-none d-sm-block"
 }, " shopping_cart ", -1
 /* HOISTED */
 );
