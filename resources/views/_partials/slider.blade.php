@@ -24,7 +24,7 @@
       </div>
 
 
-      <div class="owl-carousel owl-theme show-nav-hover slide-animate d-block d-sm-none" data-owl-options="{
+      <div class="owl-carousel owl-theme show-nav-hover slide-animate  d-md-block d-lg-none d-sm-block" data-owl-options="{
            'dots': true,
            'nav': true,
            'loop': false
