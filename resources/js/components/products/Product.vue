@@ -155,8 +155,8 @@
         </div>
 
         <div class="product-details">
-            <h4 :class="{title: product.str_len > 30}" class="product-title ">
-                <a :href="product.link">{{ product.name }} {{ product.name.length  }}</a>
+            <h4 :class="{'title': product.str_len > 30}" class="product-title ">
+                <a :href="product.link">{{ product.name }} </a>
             </h4>
             <div class="mb-3 fs-5 fw-bold text-black product-note">{{ product.note }}</div>
             <div
