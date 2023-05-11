@@ -141,7 +141,7 @@ class Order extends Model
 			);
 			$order->coupon = optional($order->voucher())->amount . '% Discount';
 		} else {
-			$order->coupon = 'Coupon';
+			$order->coupon = 'Discount';
 			$order->coupon_value = '----';
 		}
 
