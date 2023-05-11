@@ -7024,6 +7024,20 @@ span.page-link {
         max-width: 132px
     }
 
+    h4.product-title{
+        height: 82px;
+        border: 1px solid;
+    }
+
+    h4.product-title.title{
+        height: 82px;
+        border: 1px solid;
+    }
+
+    .product-note{
+        height: 20px;
+    }
+
    
 }
 

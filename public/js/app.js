@@ -28806,11 +28806,11 @@ var _hoisted_16 = {
   "class": "product-details"
 };
 var _hoisted_17 = {
-  "class": "product-title mb-3 fs-5"
+  "class": "product-title mb-3 fs-5 title"
 };
 var _hoisted_18 = ["href"];
 var _hoisted_19 = {
-  "class": "mb-3 fs-5 fw-bold text-black"
+  "class": "mb-3 fs-5 fw-bold text-black product-note"
 };
 var _hoisted_20 = {
   key: 0,

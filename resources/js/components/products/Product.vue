@@ -41,10 +41,10 @@
             </div>
 
             <div class="product-details">
-                <h4 class="product-title mb-3 fs-5">
+                <h4 class="product-title mb-3 fs-5 title">
                     <a :href="product.link">{{ product.name }}</a>
                 </h4>
-                <div class="mb-3 fs-5 fw-bold text-black">
+                <div class="mb-3 fs-5 fw-bold text-black product-note">
                     {{ product.note }}
                 </div>
 
