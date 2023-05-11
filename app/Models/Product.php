@@ -90,7 +90,7 @@ class Product extends Model
         'average_rating_count',
         'percentage_off',
         'image_l',
-        'is_in_cart'
+        'is_in_cart',
         'str_len'
     ];
 
