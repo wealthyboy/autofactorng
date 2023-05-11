@@ -41,10 +41,10 @@
             </div>
 
             <div class="product-details">
-                <h4 :class="{title: product.str_len > 30}" class="product-title mb-3 fs-5 ">
+                <h4 :class="{title: product.str_len > 30}" class="product-title mb-3 fs-5 Grid">
                     <a :href="product.link">{{ product.name }}</a>
                 </h4>
-                <div class="mb-3 fs-5 fw-bold text-black product-note">
+                <div class="mb-3 fs-5 fw-bold text-black product-note Grid">
                     {{ product.note }}
                 </div>
 

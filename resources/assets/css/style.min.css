@@ -6389,6 +6389,14 @@ span.page-link {
     }
 }
 
+h4.product-title.Grid{
+    height: 82px;
+}
+
+.product-note.Grid{
+    height: 20px;
+}
+
 @media (max-width:575px) {
     
     .toolbox .layout-modes {

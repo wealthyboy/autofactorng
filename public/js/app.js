@@ -28807,7 +28807,7 @@ var _hoisted_16 = {
 };
 var _hoisted_17 = ["href"];
 var _hoisted_18 = {
-  "class": "mb-3 fs-5 fw-bold text-black product-note"
+  "class": "mb-3 fs-5 fw-bold text-black product-note Grid"
 };
 var _hoisted_19 = {
   key: 0,
@@ -28953,7 +28953,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , _hoisted_13)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       title: $props.product.str_len > 30
-    }, "product-title mb-3 fs-5"])
+    }, "product-title mb-3 fs-5 Grid"])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.product.link
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name), 9
