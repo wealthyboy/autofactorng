@@ -386,7 +386,7 @@
 
                                                    <tr>
                                                       <td class="wz" width="30"></td>
-                                                      <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;text-align: left;line-height: 23px;">You can use your invoice number to track your order. <a href="{{ config('app.url') }}/tracking">Click here</a></td>
+                                                      <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #727e8d; font-family: sans-serif;font-size: 13px;font-weight: bold;text-align: left;line-height: 23px; margin-top: 30px;">You can use your invoice number to track your order. <a href="{{ config('app.url') }}/tracking">Click here</a></td>
                                                       <td class="wz" width="30"></td>
                                                    </tr>
                                                    <tr>
