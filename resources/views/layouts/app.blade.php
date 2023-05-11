@@ -201,13 +201,13 @@
             <!-- End .container -->
          </div>
          <!-- End .header-bottom -->
-         <div class="container-fluid  d-block d-sm-none">
+         <div class="container-fluid   d-md-block d-lg-none d-sm-block">
             <product-search></product-search>
          </div>
 
 
 
-         <div class="container-fluid  d-block d-sm-none">
+         <div class="container-fluid   d-md-block d-lg-none d-sm-block">
 
             <div class="d-flex w-100">
                <div class="menu-i w-50 me-1">
