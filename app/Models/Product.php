@@ -264,7 +264,7 @@ class Product extends Model
     }
 
 
-    public function getStrLentribute()
+    public function getStrLenAttribute()
     {
         return strlen($this->name);
     }
