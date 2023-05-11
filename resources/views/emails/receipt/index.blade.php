@@ -379,6 +379,12 @@
                                                       <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;text-align: left;line-height: 23px;">Dear {{ $order->user->fullname() }},<br>Your order has been received and is now being processed. Please find your order details below.</td>
                                                       <td class="wz" width="30"></td>
                                                    </tr>
+
+                                                   <tr>
+                                                      <td class="wz" width="30"></td>
+                                                      <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;text-align: left;line-height: 23px;">You can use your invoice number to track your order. <a href="{{ config('app.url) }}/tracking">Click here</a></td>
+                                                      <td class="wz" width="30"></td>
+                                                   </tr>
                                                    <tr>
                                                       <td colspan="3" style="font-size:0;line-height:0;" class="vrtclAlgn" height="25">&nbsp;</td>
                                                    </tr>
