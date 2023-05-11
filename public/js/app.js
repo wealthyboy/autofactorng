@@ -28888,7 +28888,7 @@ var _hoisted_42 = {
   "class": "product-details"
 };
 var _hoisted_43 = {
-  "class": "product-title"
+  "class": "product-title title"
 };
 var _hoisted_44 = ["href"];
 var _hoisted_45 = {
@@ -28958,7 +28958,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , _hoisted_13)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.product.link
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name), 9
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name.length), 9
   /* TEXT, PROPS */
   , _hoisted_18)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.note), 1
   /* TEXT */
@@ -29029,7 +29029,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , _hoisted_39)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.product.link
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name), 9
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name.length), 9
   /* TEXT, PROPS */
   , _hoisted_44)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.note), 1
   /* TEXT */
