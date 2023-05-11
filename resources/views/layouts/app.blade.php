@@ -44,6 +44,7 @@
                         <img src="https://autofactor.ng/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
                      </a>
                   </div>
+                 
                   <!-- End .header-left -->
 
                   <div class="header-right w-lg-max">
@@ -91,7 +92,7 @@
                   <!-- End .header-right -->
                </div>
             </div>
-            <div class="container-fluid w-100 d-block d-sm-none">
+            <div class="container-fluid w-100  d-md-block d-lg-none d-sm-block">
 
 
                <div class="header-lefts   d-flex justify-content-between align-items-center w-100">
