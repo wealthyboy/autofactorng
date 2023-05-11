@@ -91,6 +91,7 @@ class Product extends Model
         'percentage_off',
         'image_l',
         'is_in_cart'
+        'str_len'
     ];
 
 
@@ -260,6 +261,12 @@ class Product extends Model
     public function getFitsAttribute()
     {
         return $this->buildSearchString() ? true : false;
+    }
+
+
+    public function getStrLentribute()
+    {
+        return strlen($this->name);
     }
 
 
