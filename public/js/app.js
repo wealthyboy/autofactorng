@@ -29547,7 +29547,7 @@ var _hoisted_1 = {
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "text-center mt-5 d-block d-sm-none"
+  "class": "text-center mt-5 d-md-block d-lg-none d-sm-block"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
   "class": "mb-0 fs-3"
 }, "CURRENTLY SHOPPING FOR:")], -1
@@ -29573,7 +29573,7 @@ var _hoisted_6 = {
   "class": "w-100 fit-string py-4"
 };
 var _hoisted_7 = {
-  "class": "d-flex justify-content-center d-block d-sm-none mt-3"
+  "class": "d-flex justify-content-center d-md-block d-lg-none d-sm-block mt-3"
 };
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
