@@ -66,7 +66,7 @@ class BlogController extends Controller
 		// 		],
 		// ]);
 	
-		$info->title=$request->title;
+		$info->title= $request->title;
 		$info->teaser=$request->teaser;
         $info->description=$request->description;
         $info->slug= str_slug($request->title);
