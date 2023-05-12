@@ -57,14 +57,14 @@ class BlogController extends Controller
 	public function update(Request $request,$id){
 
         $info = Blog::find($id);
-		$this->validate($request,[
-			'title'=>[
-				'required',
-					Rule::unique('blogs')->where(function ($query) use ($request) {
-					})->ignore($id)
+		// $this->validate($request,[
+		// 	'title'=>[
+		// 		'required',
+		// 			Rule::unique('blogs')->where(function ($query) use ($request) {
+		// 			})->ignore($id)
 					
-				],
-		]);
+		// 		],
+		// ]);
 	
 		$info->title=$request->title;
 		$info->teaser=$request->teaser;
@@ -73,9 +73,8 @@ class BlogController extends Controller
         $info->link= $request->link;
 		$info->save();
 
-		$post->save();
 		
-		return redirect()->route('blogs.index')->with('status','created');
+		return redirect()->route('blogs.index')->with('status','added');
 	}
 
 	public static function undo(Request $request)
