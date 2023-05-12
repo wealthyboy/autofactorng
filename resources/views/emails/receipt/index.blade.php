@@ -272,7 +272,7 @@
          }
 
          table[class=table60033] {
-            width: 64px !important;
+            width: 74px !important;
          }
 
          table[class=table60] {
