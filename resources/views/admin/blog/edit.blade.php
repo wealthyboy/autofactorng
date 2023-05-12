@@ -10,7 +10,7 @@
             <h6 class="mb-0">Edit {{ $blog->title }}</h6>
          </div>
          <div class="card-body pt-0">
-            <form action="{{ route('blog.update',['page' => $information->id]) }}" method="post" enctype="multipart/form-data" id="form-category">
+            <form action="{{ route('blog.update',['page' => $blog->id]) }}" method="post" enctype="multipart/form-data" id="form-category">
                @csrf
                @method('PATCH')
                <div class="row">
