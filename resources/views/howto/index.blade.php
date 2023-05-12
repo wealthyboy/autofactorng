@@ -26,7 +26,7 @@
     <div class="container-fluid">
         <div class="row justifiy-content-center">
             @foreach($videos as $video)
-            <div id="content" class="col-md-6  mb-5 mt-5">
+            <div id="content" class="col-md-6  mb-5">
               <h2>{{ $video->title }}</h2>
               <?php echo  html_entity_decode( $video->description)  ?>
 
