@@ -55,7 +55,6 @@
                         <img alt="phone" src="/assets/images/phone.png" width="30" height="30" class="pb-1">
                         <h6><span>Call to order</span><a href="tel:#" class="text-dark font1">{{optional($system_settings)->store_phone }}</a></h6>
                      </div>
-                     @auth
 
                      <div class="position-relative me-5">
                         <a href="/account" class="d-flex flex-column align-items-center no-hover text-black" title="account">
@@ -67,6 +66,9 @@
                            </span>
                         </a>
                      </div>
+                     @auth
+
+                   
 
 
                      <div class="position-relative me-5">
