@@ -49,7 +49,6 @@ class BlogController extends Controller
 		$info->teaser=$request->teaser;
         $info->description=$request->description;
         $info->slug= str_slug($request->title);
-        $info->name= "Admin";
         $info->link= $request->link;
 		$info->save();
 		return redirect()->route('blogs.index')->with('status','created');

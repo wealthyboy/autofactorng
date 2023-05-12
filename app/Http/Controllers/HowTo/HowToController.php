@@ -7,5 +7,9 @@ use Illuminate\Http\Request;
 
 class HowToController extends Controller
 {
-    //
+    public function index()
+    {
+        $videos  = Blog::paginate(10);
+        return view('howto.index', compact('videos'));
+    }
 }
