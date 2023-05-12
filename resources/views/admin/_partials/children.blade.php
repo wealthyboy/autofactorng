@@ -34,7 +34,7 @@
                         <div class="form-check">
                             <label  class="custom-control-label" for="attr-{{ $collection->id }}">
                                 <input class="form-check-input " value="{{ $collection->id }}" type="checkbox" id="attr-{{ $collection->id }}" name="selected[]" >
-                                <span role="button">{{ $collection->name }}</span> 
+                                <span role="button">{{ $collection->name ||   $collection->title }}</span> 
                                 <a href="{{ route($route.'.edit',[$single_name =>$collection->id]) }}">
                                 <i class="fa fa-pencil"></i> Edit</a>
                             </label>
