@@ -30,8 +30,7 @@
               <h2>{{ $video->title }}</h2>
               <?php echo  html_entity_decode( $video->description)  ?>
 
-              <iframe src="{{ $video->link }}" height="600"  class="w-100" frameborder="0"></iframe>
-               
+              <?php echo  html_entity_decode( $video->link)  ?>
             </div>
             @endforeach
             <div class="margin-top-35"></div>
