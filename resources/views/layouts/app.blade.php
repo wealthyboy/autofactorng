@@ -122,7 +122,7 @@
                            </span>
                         </a>
                      </div>
-                  <div class="position-relative ms-5">
+                  <div class="position-relative me-3">
                      <a href="/account" class="d-flex flex-column align-items-center" title="account">
                         <span class="material-symbols-outlined display-2">
                            person
@@ -136,7 +136,7 @@
                   @endauth
 
                   @guest
-                  <div class="position-relative ">
+                  <div class="position-relative ms-3">
                         <a href="/account" class="d-flex flex-column align-items-center no-hover text-black" title="account">
                         <span class="material-symbols-outlined display-2">
                            phone
@@ -146,6 +146,8 @@
                            </span>
                         </a>
                      </div>
+                     <div class="position-relative me-3">
+
                      <a href="/login" class="d-flex flex-column align-items-center" title="account">
                         <span class="material-symbols-outlined display-2">
                            person
