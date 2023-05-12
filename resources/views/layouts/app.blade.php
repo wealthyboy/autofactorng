@@ -112,13 +112,13 @@
                      <h6><span>Call to order</span><a href="tel:#" class="text-dark font1">{{optional($system_settings)->store_phone }}</a></h6>
                   </div>
                   @auth
-                  <div class="position-relative me-5">
+                  <div class="position-relative ">
                         <a href="/account" class="d-flex flex-column align-items-center no-hover text-black" title="account">
                         <span class="material-symbols-outlined display-2">
                            phone
                            </span>
                            <span class="header-right-icons">
-                              Account
+                              Callu  Us
                            </span>
                         </a>
                      </div>
@@ -136,17 +136,16 @@
                   @endauth
 
                   @guest
-                  <div class="position-relative me-5">
+                  <div class="position-relative ">
                         <a href="/account" class="d-flex flex-column align-items-center no-hover text-black" title="account">
                         <span class="material-symbols-outlined display-2">
                            phone
                            </span>
                            <span class="header-right-icons">
-                              Account
+                              Call US
                            </span>
                         </a>
                      </div>
-                  <div class="position-relative ms-5 ">
                      <a href="/login" class="d-flex flex-column align-items-center" title="account">
                         <span class="material-symbols-outlined display-2">
                            person
