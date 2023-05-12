@@ -118,7 +118,7 @@
                            phone
                            </span>
                            <span class="header-right-icons  fs-5">
-                              Call Us
+                              Call 
                            </span>
                         </a>
                      </div>
@@ -142,7 +142,7 @@
                            phone
                            </span>
                            <span class="header-right-icons  fs-5">
-                              Call US
+                              Call 
                            </span>
                         </a>
                      </div>
