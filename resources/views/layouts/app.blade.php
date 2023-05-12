@@ -118,7 +118,7 @@
                            phone
                            </span>
                            <span class="header-right-icons">
-                              Callu  Us
+                              Call  Us
                            </span>
                         </a>
                      </div>
