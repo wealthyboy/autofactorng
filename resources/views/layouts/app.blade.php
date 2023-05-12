@@ -141,7 +141,7 @@
                         <span class="material-symbols-outlined display-2">
                            phone
                            </span>
-                           <span class="header-right-icons  fs-5">
+                           <span class="header-right-icons  fs-5 m">
                               Call 
                            </span>
                         </a>
@@ -228,7 +228,7 @@
 
 
 
-         <div class="container-fluid  ">
+         <div class="container-fluid   d-md-block d-lg-none d-sm-block">
 
             <div class="d-flex w-100">
                <div class="menu-i w-50 me-1">
