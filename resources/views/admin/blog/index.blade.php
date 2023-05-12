@@ -10,7 +10,7 @@
             <h6 class="mb-0">Add Blog</h6>
          </div>
          <div class="card-body pt-0">
-            <form action="{{ route('blog.store') }}" method="post" enctype="multipart/form-data" id="form-category">
+            <form action="{{ route('blogs.store') }}" method="post" enctype="multipart/form-data" id="form-category">
                @csrf
                <div class="row">
                   <div class="col-sm-12 col-12">

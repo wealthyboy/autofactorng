@@ -18,7 +18,6 @@ class CreateBlogsTable extends Migration
             $table->string('title')->nullable();
             $table->string('link')->nullable();
             $table->string('slug')->nullable();
-
             $table->integer('sort_order')->nullable();
             $table->longText('description')->nullable();
             $table->string('teaser')->nullable();
