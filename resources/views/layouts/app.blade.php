@@ -117,7 +117,7 @@
                         <span class="material-symbols-outlined display-2">
                            phone
                            </span>
-                           <span class="header-right-icons">
+                           <span class="header-right-icons  fs-5">
                               Call Us
                            </span>
                         </a>
@@ -127,7 +127,7 @@
                         <span class="material-symbols-outlined display-2">
                            person
                         </span>
-                        <span class="header-right-icons">
+                        <span class="header-right-icons  fs-5">
                            Account
                         </span>
                      </a>
@@ -141,7 +141,7 @@
                         <span class="material-symbols-outlined display-2">
                            phone
                            </span>
-                           <span class="header-right-icons">
+                           <span class="header-right-icons  fs-5">
                               Call US
                            </span>
                         </a>
@@ -152,7 +152,7 @@
                         <span class="material-symbols-outlined display-2">
                            person
                         </span>
-                        <span class="header-right-icons">
+                        <span class="header-right-icons  fs-5">
                            Sign In
                         </span>
                      </a>
