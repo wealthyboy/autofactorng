@@ -188,8 +188,8 @@
             </li>
 
             <li class=" nav-item">
-               <a class="nav-link text-white {{ $helper->active_link(['blog']) }}" href="/admin/posts">
-                  <i class="material-symbols-outlined opacity-10">shopping_cart</i>
+               <a class="nav-link text-white {{ $helper->active_link(['blog']) }}" href="/admin/blogs">
+               <span class="sidenav-mini-icon"> B </span>
                   <span class="nav-link-text ms-2 ps-1"> Blog </span>
                </a>
             </li>
