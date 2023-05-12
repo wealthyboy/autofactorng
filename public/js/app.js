@@ -26750,7 +26750,7 @@ var _hoisted_5 = {
 };
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "header-right-icons"
+  "class": "header-right-icons fs-5"
 }, " Cart ", -1
 /* HOISTED */
 );
