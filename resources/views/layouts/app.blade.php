@@ -56,6 +56,19 @@
                         <h6><span>Call to order</span><a href="tel:#" class="text-dark font1">{{optional($system_settings)->store_phone }}</a></h6>
                      </div>
                      @auth
+
+                     <div class="position-relative me-5">
+                        <a href="/account" class="d-flex flex-column align-items-center no-hover text-black" title="account">
+                           <span class="material-symbols-outlined display-5">
+                              person
+                           </span>
+                           <span class="header-right-icons">
+                              Account
+                           </span>
+                        </a>
+                     </div>
+
+
                      <div class="position-relative me-5">
                         <a href="/account" class="d-flex flex-column align-items-center no-hover text-black" title="account">
                            <span class="material-symbols-outlined display-5">
@@ -70,6 +83,19 @@
                      @endauth
 
                      @guest
+
+                     <div class="position-relative me-5">
+                        <a href="/account" class="d-flex flex-column align-items-center no-hover text-black" title="account">
+                           <span class="material-symbols-outlined display-5">
+                              person
+                           </span>
+                           <span class="header-right-icons">
+                              Account
+                           </span>
+                        </a>
+                     </div>
+
+                     
                      <div class="position-relative me-5 ">
                         <a href="/login" class="d-flex flex-column align-items-center no-hover text-black" title="account">
                            <span class="material-symbols-outlined display-5">
