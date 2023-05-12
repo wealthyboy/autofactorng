@@ -6,14 +6,14 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-use App\Information;
+use App\Models\Information;
 use Auth;
 use App\Http\Helper;
-use App\User;
-use App\PageBanner;
+use App\Models\User;
+use App\Modesl\PageBanner;
 use Illuminate\Validation\Rule;
-use App\Attribute;
-use App\EnableBlog;
+use App\Models\Attribute;
+use App\Models\EnableBlog;
 
 
 
@@ -28,33 +28,15 @@ class BlogController extends Controller
 
 	
 	public function  index(Request $request)  {
-        $status = null;
-		if( $request->status ) {
-            $status = EnableBlog::first();
-			if ($status){
-				if ($status->is_active){
-					$status->is_active = false;
-					$status->save();
-				}else{	
-					$status->is_active = true;
-					$status->save();
-				}
-			} else {
-				$status = new EnableBlog;
-				$status->is_active = true;
-				$status->save();
-			}
-		}
+        
 
-		$posts = Information::where('blog',true)->get(); 
-		$blog_image = PageBanner::where('page_name','blog')->first();
-	    return view('admin.blog.index',compact('status','blog_image','posts'));
+		$posts = Blog::get(); 
+	    return view('admin.blog.index',compact('blogs'));
 	}
 
 	public function  create(Request $request)  {
 		//User::canTakeAction(2);
-		$product_attributes = Attribute::parents()->get();        
-	    return view('admin.blog.create',compact('product_attributes'));
+	    return view('admin.blog.create');
 	}
 
 	public function  store(Request $request)  {
@@ -62,22 +44,16 @@ class BlogController extends Controller
         $this->validate($request, [
             'title' => 'required|unique:information|max:100',
 		]);
-        $info = new Information;
+        $info = new Blog;
 		$info->title=$request->title;
 		$info->teaser=$request->teaser;
         $info->description=$request->description;
         $info->slug= str_slug($request->title);
         $info->name= "Admin";
-        $info->image=$request->image;
-        $info->meta_description = $request->meta_description;
-        $info->meta_keywords = $request->meta_keywords;
-        $info->meta_title = $request->meta_title;
-        $info->blog= true;
-		$info->is_active=  $request->is_active ? 1 : 0;
-
+        $info->link= $request->link;
 		$info->save();
 		$info->attributes()->sync($request->attribute_id);
-		return redirect()->route('posts.index')->with('status','created');
+		return redirect()->route('blogs.index')->with('status','created');
 	}
 
 	public function update(Request $request,$id){
