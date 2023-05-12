@@ -17,7 +17,7 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Title</label>
-                        <input type="text" class="form-control" name="name" value="{{ $blog->title }}">
+                        <input type="text" class="form-control" name="title" value="{{ $blog->title }}">
                      </div>
                   </div>
                </div>
@@ -34,7 +34,7 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Link</label>
-                        <input type="text" class="form-control" name="custom_link" value="{{ $blog->link }}">
+                        <input type="text" class="form-control" name="link" value="{{ $blog->link }}">
                      </div>
                   </div>
                </div>
