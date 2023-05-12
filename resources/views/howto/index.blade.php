@@ -28,7 +28,7 @@
             @foreach($videos as $video)
             <div id="content" class="col-md-6  mb-5">
               <h2>{{ $video->title }}</h2>
-              <h2>{{ $video->description }}</h2>
+              <p>{{ html_entity_decode( $video->description) }}</p>
 
               <iframe src="{{ $video->link }}" height="600" frameborder="0"></iframe>
                
