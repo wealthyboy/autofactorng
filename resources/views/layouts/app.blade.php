@@ -114,7 +114,7 @@
                   @auth
                   <div class="position-relative me-5">
                         <a href="/account" class="d-flex flex-column align-items-center no-hover text-black" title="account">
-                        <span class="material-icons-outlined">
+                        <span class="material-symbols-outlined display-2">
                            phone
                            </span>
                            <span class="header-right-icons">
@@ -138,7 +138,7 @@
                   @guest
                   <div class="position-relative me-5">
                         <a href="/account" class="d-flex flex-column align-items-center no-hover text-black" title="account">
-                        <span class="material-icons-outlined">
+                        <span class="material-symbols-outlined display-2">
                            phone
                            </span>
                            <span class="header-right-icons">
