@@ -42,7 +42,7 @@ class BlogController extends Controller
 	public function  store(Request $request)  {
 
         $this->validate($request, [
-            'title' => 'required|unique:information|max:100',
+            'title' => 'required|unique:blogs|max:100',
 		]);
         $info = new Blog;
 		$info->title=$request->title;
@@ -52,35 +52,31 @@ class BlogController extends Controller
         $info->name= "Admin";
         $info->link= $request->link;
 		$info->save();
-		$info->attributes()->sync($request->attribute_id);
 		return redirect()->route('blogs.index')->with('status','created');
 	}
 
 	public function update(Request $request,$id){
 
-        $post = Information::find($id);
+        $info = Blog::find($id);
 		$this->validate($request,[
 			'title'=>[
 				'required',
-					Rule::unique('information')->where(function ($query) use ($request) {
+					Rule::unique('blogs')->where(function ($query) use ($request) {
 					})->ignore($id)
 					
 				],
 		]);
 	
-		$post->title=$request->title;
-		$post->description=$request->description;
-		$post->teaser=$request->teaser;
-		$post->slug= str_slug($request->title);
-        $post->image=$request->image;
-		$post->is_active=  $request->is_active ? 1 : 0;
-        $post->meta_description = $request->meta_description;
-        $post->meta_keywords = $request->meta_keywords;
-        $post->meta_title = $request->meta_title;
+		$info->title=$request->title;
+		$info->teaser=$request->teaser;
+        $info->description=$request->description;
+        $info->slug= str_slug($request->title);
+        $info->link= $request->link;
+		$info->save();
 
 		$post->save();
-		$post->attributes()->sync($request->attribute_id);
-		return redirect()->route('posts.index')->with('status','created');
+		
+		return redirect()->route('blogs.index')->with('status','created');
 	}
 
 	public static function undo(Request $request)
@@ -130,7 +126,7 @@ class BlogController extends Controller
 						->withErrors($validator)
 						->withInput();
 		}
-		Information::destroy($request->selected);
+		Blog::destroy($request->selected);
 		return redirect()->back()->with('status','removed');
 	}
 	 
