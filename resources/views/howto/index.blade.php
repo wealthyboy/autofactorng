@@ -23,7 +23,7 @@
     </div>
 </section>
 <section id="home">
-    <div class="container">
+    <div class="container-fluid">
         <div class="row justifiy-content-center">
             @foreach($videos as $video)
             <div id="content" class="col-md-6  mb-5">
