@@ -206,7 +206,7 @@
                      <product-search class="mx-5"></product-search>
 
                      <div class="menu-i menu-i  w-25 me-5">
-                        <a href="" role="button" class="w-100 mb-0 border-0">
+                        <a href="/how-to" role="button" class="w-100 mb-0 border-0">
                            <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
                               <span class="material-symbols-outlined">
                                  local_library
