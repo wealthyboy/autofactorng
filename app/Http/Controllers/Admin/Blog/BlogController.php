@@ -100,9 +100,8 @@ class BlogController extends Controller
 	public function  edit(Request $request,$id)  
 	{
 		User::canTakeAction(4);
-		$post = Information::find($id);
-		$product_attributes = Attribute::parents()->get();        
-	    return view('admin.blog.edit',compact('post','product_attributes'));
+		$blog = Blog::find($id);
+	    return view('admin.blog.edit',compact('blog'));
 	}
 
 	public function  show(Request $request,Information $post)  
