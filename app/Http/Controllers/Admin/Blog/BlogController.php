@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
+use App\Models\Blog;
 use Auth;
 use App\Http\Helper;
 use App\Models\User;
@@ -29,7 +30,7 @@ class BlogController extends Controller
 	public function  index(Request $request)  {
         
 
-		$posts = Blog::get(); 
+		$blogs = Blog::get(); 
 	    return view('admin.blog.index',compact('blogs'));
 	}
 
