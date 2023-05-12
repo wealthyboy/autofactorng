@@ -45,7 +45,7 @@
 
 <div class="col-md-3  d-none d-lg-block d-md-block d-xl-block  ">
    <div class="banner banner3">
-      <a href="#" class="d-block">
+      <a  class="d-block">
          <figure>
             <img class="img-fluid" src="/images/utils/ensure_11.jpg" style="background:#f6e1e8;" alt="banner" />
          </figure>
