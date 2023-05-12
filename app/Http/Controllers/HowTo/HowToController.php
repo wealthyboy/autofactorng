@@ -4,6 +4,7 @@ namespace App\Http\Controllers\HowTo;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Blog;
 
 class HowToController extends Controller
 {
