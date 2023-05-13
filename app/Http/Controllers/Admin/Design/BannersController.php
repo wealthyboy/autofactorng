@@ -156,7 +156,7 @@ class BannersController extends Table
      */
     public function update(Request $request, $id)
     {
-
+        dd($request->all());
         $banner = Banner::find($id);
         $this->validate($request, [
             // 'link' => 'required',
