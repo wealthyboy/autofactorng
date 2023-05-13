@@ -179,6 +179,8 @@ class BannersController extends Table
         $banner->save();
 
         dd($banner);
+
+        dd(Banner:;all());
         (new Activity)->put("Updated   " . $banner->title);
 
         return redirect()->route('banners.index');
