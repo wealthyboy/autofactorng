@@ -61,7 +61,7 @@
                <div class="input-group input-group-outline mt-3">
                   <select name="device" class="form-control select2" style="width: 100%;">
                      <option value="" selected="selected">--device--</option>
-                     <option value=" d-lg-none d-sm-block  d-md-block">Show only on sm devices </option>
+                     <option value="d-lg-none d-sm-block d-md-block">Show only on sm devices </option>
                      <option value="d-none d-lg-block d-xl-block">Show only on lg devices </option>
                   </select>
                </div>
