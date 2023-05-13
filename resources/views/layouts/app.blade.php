@@ -286,8 +286,8 @@
                      <form method="POST" id="n-letter" class="mb-0 ">
                         <div class="row g-0">
                            <div class="row g-0">
-                              <div class="col-8"><input type="text" class="form-control b rounded-0 email h-100" placeholder="Enter  your email" required=""></div>
-                              <div class="col-4 h-100">
+                              <div class="col-8"><input type="text" class="form-control b rounded-0 email coupon-button" placeholder="Enter  your email" required=""></div>
+                              <div class="col-4 coupon-button">
                                  <button class="btn btn-sm w-100 rounded-0  bg-main bold fs-3 text-white" type="submit"><!--v-if-->
                                     <span class="spinner-border spinner-border-sm n-spinner d-none" role="status" aria-hidden="true"></span>
 
