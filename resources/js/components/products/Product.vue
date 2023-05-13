@@ -100,7 +100,7 @@
                         class="btn-icon btn-add-cart product-type-simple text-white bg-dark"
                     >
                         <i class="icon-shopping-cart"></i>
-                        <small>{{
+                        <small class="fs me-2 ms-2">{{
                             carts.find((c) => c.product_id == product.id)
                                 ? "ITEM ADDED"
                                 : "ADD TO CART"
@@ -213,7 +213,7 @@
                     class="btn-icon btn-add-cart product-type-simple text-white"
                 >
                     <i class="icon-shopping-cart"></i>
-                    <small class="fs">{{
+                    <small class="fs me-2 ms-2">{{
                         carts.find((c) => c.product_id == product.id)
                             ? "ITEM ADDED"
                             : "ADD TO CART"
