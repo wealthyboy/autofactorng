@@ -44,6 +44,7 @@ class HomeController extends Controller
         $brands = Brand::where('is_featured', true)->get();
         $sliders = Banner::where(['type' => 'slider', 'device' => 'd-none d-lg-block d-xl-block'])->orderBy('sort_order', 'asc')->get();
         $mobile_sliders = Banner::where(['type' => 'slider', 'device' => 'd-lg-none d-sm-block d-md-block'])->orderBy('sort_order', 'asc')->get();
+        dd($mobile_sliders);
         $products = Product::where('is_featured', 1)->orderBy('created_at', 'DESC')->take(8)->get();
         return view('index', compact('categories', 'brands', 'featured_categories', 'sliders',  'mobile_sliders', 'products'));
     }
