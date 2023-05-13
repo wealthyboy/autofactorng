@@ -212,8 +212,13 @@
                     ]"
                     class="btn-icon btn-add-cart product-type-simple text-white"
                 >
-                    <i class="icon-shopping-cart"></i>
-                    <small>{{
+                    <small class="fs">{{
+                        carts.find((c) => c.product_id == product.id)
+                            ? "ITEM ADDED"
+                            : "ADD TO CART"
+                    }}</small>
+
+                    <small class="fs">{{
                         carts.find((c) => c.product_id == product.id)
                             ? "ITEM ADDED"
                             : "ADD TO CART"

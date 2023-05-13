@@ -9199,6 +9199,11 @@ figure .porto-loading-icon {
     transition: 0.35s
 }
 
+.product-list:hover .btn-icon small {
+    padding-left: 1.3rem;
+    transition: 0.35s
+}
+
 .product-list figure {
     max-width: 250px;
     margin-right: 1.2rem;
@@ -9280,6 +9285,11 @@ figure .porto-loading-icon {
 }
 
 .product-list .btn-icon span {
+    display: inline-block;
+    transition: 0.35s
+}
+
+.product-list .btn-icon small {
     display: inline-block;
     transition: 0.35s
 }
