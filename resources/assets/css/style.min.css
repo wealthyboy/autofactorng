@@ -8663,15 +8663,15 @@ figure .porto-loading-icon {
 }
 
 .product-list .btn-icon-wish {
-    position: relative
+    position: relative;
 }
 
 .product-list:hover {
-    box-shadow: none
+    box-shadow: none;
 }
 
 .product-list:hover figure {
-    box-shadow: none
+    box-shadow: none;
 }
 
 .product-list:hover .product-action a.btn-icon-wish {
@@ -8744,7 +8744,7 @@ figure .porto-loading-icon {
 }
 
 .product-quick-view .product-single-details .product-title {
-    width: 100%
+    width: 100%;
 }
 
 .product-quick-view .view-cart {
@@ -8756,7 +8756,7 @@ figure .porto-loading-icon {
 }
 
 .product-quick-view .product-single-details .product-single-filter:last-child {
-    margin-left: -1px
+    margin-left: -1px;
 }
 
 .image-bg-white {

@@ -28996,7 +28996,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([_defineProperty({
       'pe-none disabled': $data.added.includes($props.product.id) || $props.product.is_in_cart
     }, "pe-none disabled", !$props.product.in_stock), "btn-icon btn-add-cart product-type-simple text-white bg-dark"])
-  }, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.carts.find(function (c) {
+  }, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.carts.find(function (c) {
     return c.product_id == $props.product.id;
   }) ? "ITEM ADDED" : "ADD TO CART"), 1
   /* TEXT */
@@ -29073,7 +29073,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[_ctx.carts.find(function (c) {
       return c.product_id == $props.product.id;
     }) || $props.product.is_in_cart || !$props.product.in_stock ? 'pe-none disabled' : null], "btn-icon btn-add-cart product-type-simple text-white"])
-  }, [_hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.carts.find(function (c) {
+  }, [_hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.carts.find(function (c) {
     return c.product_id == $props.product.id;
   }) ? "ITEM ADDED" : "ADD TO CART"), 1
   /* TEXT */

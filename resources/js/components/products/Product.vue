@@ -100,11 +100,11 @@
                         class="btn-icon btn-add-cart product-type-simple text-white bg-dark"
                     >
                         <i class="icon-shopping-cart"></i>
-                        <span>{{
+                        <small>{{
                             carts.find((c) => c.product_id == product.id)
                                 ? "ITEM ADDED"
                                 : "ADD TO CART"
-                        }}</span>
+                        }}</small>
                     </a>
                 </div>
                 <!-- End .price-box -->
@@ -213,11 +213,11 @@
                     class="btn-icon btn-add-cart product-type-simple text-white"
                 >
                     <i class="icon-shopping-cart"></i>
-                    <span>{{
+                    <small>{{
                         carts.find((c) => c.product_id == product.id)
                             ? "ITEM ADDED"
                             : "ADD TO CART"
-                    }}</span>
+                    }}</small>
                 </a>
             </div>
         </div>
