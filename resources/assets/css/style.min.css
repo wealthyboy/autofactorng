@@ -8567,6 +8567,11 @@ figure .porto-loading-icon {
     transition: 0.35s
 }
 
+.product-list.btn-icon small {
+    padding-left: .8rem !important;
+    transition: 0.35s
+}
+
 .product-list:hover .btn-icon small {
     padding-left: 1.3rem;
     transition: 0.35s
