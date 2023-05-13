@@ -278,7 +278,7 @@
                   <div class="col-12 col-lg-6">
                      <div class="mc-mb-6 mc-mb-md-9 mc-mb-lg-0">
                         <div class="mb-sm-2">
-                           <h1 class="text-white mb-0">Sign up to our newsletter for updates and deals</h1>
+                           <h1 class="text-white  fs-3 mb-sm-3">Sign up to our newsletter for updates and deals</h1>
                         </div>
                      </div>
                   </div>
@@ -286,7 +286,7 @@
                      <form method="POST" id="n-letter" class="mb-0 ">
                         <div class="row g-0">
                            <div class="row g-0">
-                              <div class="col-8"><input type="text" class="form-control b rounded-0 email" placeholder="Enter  your email" required=""></div>
+                              <div class="col-8"><input type="text" class="form-control b rounded-0 email h-75" placeholder="Enter  your email" required=""></div>
                               <div class="col-4">
                                  <button class="btn btn-sm w-100 rounded-0 coupon-button bg-main bold fs-3 text-white" type="submit"><!--v-if-->
                                     <span class="spinner-border spinner-border-sm n-spinner d-none" role="status" aria-hidden="true"></span>
