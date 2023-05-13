@@ -96,6 +96,10 @@ class CartController  extends Controller
 						'price' => $cart->price,
 						'product_name' => optional($cart->product)->name,
 						'link' => optional($cart->product)->name,
+						'make' => $make;
+						'model' => $model;
+						'year' => $year;
+						'engine' => $engine;
 
 					]
 				],
