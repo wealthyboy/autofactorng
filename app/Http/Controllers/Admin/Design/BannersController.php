@@ -177,6 +177,8 @@ class BannersController extends Table
         $banner->device = $request->device;
         // $banner->mobile_sort_banner = $request->mobile_sort_banner;
         $banner->save();
+
+        dd($banner);
         (new Activity)->put("Updated   " . $banner->title);
 
         return redirect()->route('banners.index');
