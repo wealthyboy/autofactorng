@@ -22467,3 +22467,7 @@ p {
       
       
 }
+
+.product-list .btn-icon span {
+    display: block;
+}
