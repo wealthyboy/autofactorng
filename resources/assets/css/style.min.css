@@ -9200,7 +9200,7 @@ figure .porto-loading-icon {
         padding: 0
     }
     .product-list .btn-icon span {
-        display: none
+        display: block;
     }
     .product-list .btn-icon:not(.product-type-simple) i {
         margin-top: 1.1rem
