@@ -9797,6 +9797,11 @@ figure .porto-loading-icon {
     }
 }
 
+
+.product-list .btn-icon span {
+    display: block;
+}
+
 @media (max-width:575px) {
    
     .product-list {
