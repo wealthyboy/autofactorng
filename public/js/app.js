@@ -28912,9 +28912,13 @@ var _hoisted_49 = {
 var _hoisted_50 = {
   "class": "product-action"
 };
-var _hoisted_51 = {
-  "class": "fs"
-};
+
+var _hoisted_51 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
+  "class": "icon-shopping-cart"
+}, null, -1
+/* HOISTED */
+);
+
 var _hoisted_52 = {
   "class": "fs"
 };
@@ -29072,11 +29076,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[_ctx.carts.find(function (c) {
       return c.product_id == $props.product.id;
     }) || $props.product.is_in_cart || !$props.product.in_stock ? 'pe-none disabled' : null], "btn-icon btn-add-cart product-type-simple text-white"])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.carts.find(function (c) {
-    return c.product_id == $props.product.id;
-  }) ? "ITEM ADDED" : "ADD TO CART"), 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.carts.find(function (c) {
+  }, [_hoisted_51, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", _hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.carts.find(function (c) {
     return c.product_id == $props.product.id;
   }) ? "ITEM ADDED" : "ADD TO CART"), 1
   /* TEXT */
