@@ -1,5 +1,5 @@
 <template>
-    <p class="d-flex justify-content-between">
+    <p  v-if="showTotal" class="d-flex justify-content-between">
         <span class="bold" style="font-size: 28px">Total </span>
 
         <span class="price-amount amount bold float-right">

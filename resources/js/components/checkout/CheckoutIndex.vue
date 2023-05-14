@@ -124,7 +124,7 @@
 
                                 <cart-summary :showCoupon="!true" />
 
-                                <total :voucher="voucher" :amount="amount" />
+                                <total :showTotal="showTotal" :voucher="voucher" :amount="amount" />
                             </div>
                         </div>
                     </div>
