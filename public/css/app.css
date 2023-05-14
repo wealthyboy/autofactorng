@@ -42861,6 +42861,7 @@ td .cart-input {
   /* For example: */
   body {
     font-size: 48px;
+    background-color: #f0592a;
   }
 }
 .form-floating > .form-control:not(:-moz-placeholder-shown), .form-floating > .form-control-plaintext:not(:-moz-placeholder-shown) {
