@@ -42850,18 +42850,12 @@ td .cart-input {
   height: 99%;
 }
 
-@media only screen and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2), only screen and (max-device-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
-  .coupon-i {
-    height: 92% !important;
-  }
-}
 /* Target all Apple devices with a pixel ratio of 2 or higher */
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
   /* Your CSS styles here */
   /* For example: */
-  body {
-    font-size: 48px;
-    background-color: #f0592a;
+  .coupon-i {
+    height: 92% !important;
   }
 }
 .form-floating > .form-control:not(:-moz-placeholder-shown), .form-floating > .form-control-plaintext:not(:-moz-placeholder-shown) {
