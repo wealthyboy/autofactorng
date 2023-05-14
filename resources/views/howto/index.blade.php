@@ -11,11 +11,11 @@
                         <div class="container d-flex justify-content-center">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
-                                <li class="breadcrumb-item active" aria-current="page">how to<li>
+                                <li class="breadcrumb-item active" aria-current="page">VIDEO TIPS<li>
                             </ol>
                         </div>
                     </nav>
-                    <h1 class="breadcrumb-title">How To</h1>
+                    <h1 class="breadcrumb-title">VIDEO TIPS</h1>
                     <p></p>
                 </div>
             </div>
