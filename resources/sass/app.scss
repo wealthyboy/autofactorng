@@ -409,6 +409,13 @@ td .cart-input {
    height: 99%;
 }
 
+@media only screen and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2),
+only screen and (max-device-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+    .coupon-i{
+        height: 92%;
+     }
+}
+
 .form-floating > .form-control:focus, .form-floating > .form-control:not(:placeholder-shown), .form-floating > .form-control-plaintext:focus, .form-floating > .form-control-plaintext:not(:placeholder-shown) {
     padding-top: 2rem;
     padding-bottom: 0.625rem;
