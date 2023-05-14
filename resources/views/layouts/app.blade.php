@@ -210,7 +210,7 @@
                            <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
                               <span class="material-symbols-outlined">
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-  <path d="M3 4v16l18-8-18-8z"/>
+  <path d="M20.25 4.5h-16.5c-1.24 0-2.25 1.01-2.25 2.25v10.5c0 1.24 1.01 2.25 2.25 2.25h16.5c1.24 0 2.25-1.01 2.25-2.25v-10.5c0-1.24-1.01-2.25-2.25-2.25zm-9.75 9.75v-6l5.25 3-5.25 3z"/>
 </svg>
                               </span>
                               <div class="align-self-center fw-bold  fs-5">Video Tips</div>
