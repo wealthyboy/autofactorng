@@ -15,7 +15,7 @@
             >
                 shopping_cart
             </span>
-            <span class="material-symbols-outlined display-2  d-md-block d-lg-none d-sm-block">
+            <span class="material-symbols-outlined display-3  d-md-block d-lg-none d-sm-block">
                 shopping_cart
             </span>
             <span class="cart-count badge-circle">{{ cartItemCount }}</span>

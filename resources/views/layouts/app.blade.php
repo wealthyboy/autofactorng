@@ -114,7 +114,7 @@
                   @auth
                   <div class="position-relative ms-3">
                         <a href="tel:{{optional($system_settings)->store_phone }}" class="d-flex flex-column align-items-center no-hover text-black" title="account">
-                        <span class="material-symbols-outlined display-2">
+                        <span class="material-symbols-outlined display-3">
                            phone
                            </span>
                            <span class="header-right-icons  fs-5">
@@ -138,7 +138,7 @@
                   @guest
                   <div class="position-relative ms-3">
                   <a href="tel:{{optional($system_settings)->store_phone }}" class="d-flex flex-column align-items-center no-hover text-black" title="account">
-                        <span class="material-symbols-outlined display-2">
+                        <span class="material-symbols-outlined display-3">
                            phone
                            </span>
                            <span class="header-right-icons  fs-5 m">
@@ -149,7 +149,7 @@
                      <div class="position-relative me-3">
 
                      <a href="/login" class="d-flex flex-column align-items-center" title="account">
-                        <span class="material-symbols-outlined display-2">
+                        <span class="material-symbols-outlined display-3">
                            person
                         </span>
                         <span class="header-right-icons  fs-5">
