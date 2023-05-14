@@ -283,7 +283,6 @@ class Product extends Model
     }
 
 
-
     public function getFitTextAttribute()
     {
         if (request()->type == 'tyre') {

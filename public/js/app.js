@@ -22893,10 +22893,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.voucher = [];
         _this.v = response.data; //this.amount = parseInt(response.data.sub_total);
 
-        _this.$store.commit("setTotal", response.data.sub_total + _this.prices.ship_price + parseInt(_this.prices.heavy_item_price));
+        _this.$store.commit("setTotal", response.data.sub_total + _this.prices.ship_price + _this.prices.heavy_item_price);
 
-        _this.$store.commit("setCouponCode", _this.coupon_code); //this.$emit("sent", this.coupon_code);
+        _this.$store.commit("setCouponCode", _this.coupon_code);
 
+        _this.$emit("sent", _this.coupon_code);
       })["catch"](function (error) {
         _this.submiting = false;
         _this.coupon_error = error.response.data.error;
