@@ -92,7 +92,6 @@ class ProductsController extends Controller
 
         $category = optional(optional($product)->first())->categories;
 
-       dd( $category , $this->getCategory($category));
 
        
 
