@@ -47,7 +47,7 @@ class HomeController extends Controller
             $message = "This is a reminder to let you know that your auto credit plan expires in 30 days.";
          
                 \Notification::route('mail', 'jacob.atam@gmail.com')
-                    ->notify(new ReminderNotification($user, 30));
+                    ->notify(new ReminderNotification($user, $message));
             
         }
 
