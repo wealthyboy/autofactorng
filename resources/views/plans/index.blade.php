@@ -23,7 +23,7 @@
 
     <div class="row mt-5">
       @foreach($plans as $key => $plan)
-      <div class="col-lg-4 col-sm-6 mb-lg-0 mb-4   rounded ">
+      <div class="col-lg-4 col-md-4 col-sm-6 mb-lg-0 mb-4   rounded ">
         <div class="card  border-0 rounded  px-5 py-5 h-100  {{ $key == 'NORMAL DUTY' ? ' py-5 text-white bg-main' : 'bg-white '}}">
           <div class="card-header  {{ $key == 'NORMAL DUTY' ? 'text-white bg-main' : 'bg-white'}}  text-sm-start text-center pt-4 pb-3 px-4">
             <h5 class="mb-1 {{ $key == 'NORMAL DUTY' ? 'text-white' : ''}}">{{ $key }}</h5>
