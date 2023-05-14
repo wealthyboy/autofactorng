@@ -159,10 +159,10 @@ export default {
                     this.voucher = [];
                     this.v = response.data;
                     //this.amount = parseInt(response.data.sub_total);
-                    console.log(this.prices.heavy_item_price)
+                    console.log(typeof this.prices.heavy_item_price)
                     this.$store.commit(
                         "setTotal",
-                        response.data.sub_total + this.prices.ship_price + this.prices.heavy_item_price
+                        response.data.sub_total + this.prices.ship_price 
                     );
 
                     this.$store.commit("setCouponCode", this.coupon_code);
