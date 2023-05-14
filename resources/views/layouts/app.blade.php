@@ -242,9 +242,10 @@
                <div class="menu-i w-50  d-flex add-a-vehicle justify-content-evenly align-items-center border">
                   <a href="/how-to" role="button" class="w-100  ">
                      <div class="d-flex add-a-vehicle justify-content-evenly align-items-center">
-                        <span class="material-symbols-outlined">
-                            videocam
-                        </span>
+                     
+                        <span class="material-icons-outlined">
+videocam
+</span>
                         <div class="align-self-center fw-bold ">Video Tips</div>
 
                         <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
