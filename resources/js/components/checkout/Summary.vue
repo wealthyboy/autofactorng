@@ -159,10 +159,10 @@ export default {
                     this.voucher = [];
                     this.v = response.data;
                     //this.amount = parseInt(response.data.sub_total);
-                    console.log(typeof this.prices.heavy_item_price)
+                    let hp = typeof this.prices.heavy_item_price !== 'undefined' ? this.prices.heavy_item_price  : 0;
                     this.$store.commit(
                         "setTotal",
-                        response.data.sub_total + this.prices.ship_price 
+                        response.data.sub_total + this.prices.ship_price  + hp
                     );
 
                     this.$store.commit("setCouponCode", this.coupon_code);
