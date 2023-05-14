@@ -40,7 +40,7 @@ class HomeController extends Controller
 
         $featured_categories = Category::where('is_featured', true)->get();
         $categories = Category::parents()->get();
-        $user  = User::where('email' , 'damilola@autofactorng.com')->get();
+        $user  = User::where('email' , 'damilola@autofactorng.com')->first();
         if (null !== $user) {
             $message = "This is a reminder to let you know that your auto credit plan expires in 30 days.";
          
