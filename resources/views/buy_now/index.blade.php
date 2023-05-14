@@ -1,7 +1,7 @@
 @extends('layouts.checkout')
 
 @section('content')
-<section style="height: 700px;">
+<section style="height: 600px;">
    <div   class="container   full-bg">
       <div class="row">
          <div  class="col-xl-12 col-lg-12 py-4 ">
