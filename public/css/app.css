@@ -42855,6 +42855,14 @@ td .cart-input {
     height: 92% !important;
   }
 }
+/* Target all Apple devices with a pixel ratio of 2 or higher */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  /* Your CSS styles here */
+  /* For example: */
+  body {
+    font-size: 48px;
+  }
+}
 .form-floating > .form-control:not(:-moz-placeholder-shown), .form-floating > .form-control-plaintext:not(:-moz-placeholder-shown) {
   padding-top: 2rem;
   padding-bottom: 0.625rem;

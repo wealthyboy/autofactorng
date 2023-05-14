@@ -416,6 +416,15 @@ only screen and (max-device-width: 768px) and (-webkit-min-device-pixel-ratio: 2
     }
 }
 
+/* Target all Apple devices with a pixel ratio of 2 or higher */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+    /* Your CSS styles here */
+    /* For example: */
+    body {
+      font-size: 48px;
+    }
+  }
+
 .form-floating > .form-control:focus, .form-floating > .form-control:not(:placeholder-shown), .form-floating > .form-control-plaintext:focus, .form-floating > .form-control-plaintext:not(:placeholder-shown) {
     padding-top: 2rem;
     padding-bottom: 0.625rem;
