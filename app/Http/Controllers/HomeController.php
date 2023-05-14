@@ -14,6 +14,8 @@ use App\Mail\RegistrationComplete;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
+use App\Notifications\ReminderNotification;
+
 
 
 
@@ -45,7 +47,7 @@ class HomeController extends Controller
             $message = "This is a reminder to let you know that your auto credit plan expires in 30 days.";
          
                 \Notification::route('mail', optional($user)->email)
-                    ->notify(new \ReminderNotification($user, 30));
+                    ->notify(new ReminderNotification($user, 30));
             
         }
 
