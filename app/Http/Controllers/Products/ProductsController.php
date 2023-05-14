@@ -93,7 +93,7 @@ class ProductsController extends Controller
         $category = optional(optional($product)->first())->categories;
 
 
-        dd(true);
+        dd($category);
 
         if (null !==  $category && $category->contains('Spare Parts') || $category->contains('Servicing Parts') ) {
             if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
