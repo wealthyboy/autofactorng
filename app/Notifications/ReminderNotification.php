@@ -58,7 +58,7 @@ class ReminderNotification extends Notification
             ->subject('Hello ' . $this->user->name)
             ->line($this->message)
             ->action('Visit website', url(Config('app.url')))
-            ->line('Thank you for using our application!');
+            ->line('Thank you for using our service!');
     }
 
     /**
