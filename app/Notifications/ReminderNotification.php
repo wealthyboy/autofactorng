@@ -57,7 +57,9 @@ class ReminderNotification extends Notification
             ->bcc('care@autofactorng.com')
             ->subject('Hello ' . $this->user->name)
             ->line($this->message)
-            ->action('Visit website', url(Config('app.url')))
+            ->line('Plan: ' . 'Light Duty')
+           
+            ->action('Visit website', url(Config('app.url') .'/plans?type=auto_cover'))
             ->line('Thank you for using our service!');
     }
 

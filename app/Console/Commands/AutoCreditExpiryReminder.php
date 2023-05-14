@@ -51,14 +51,14 @@ class AutoCreditExpiryReminder extends Command
             $message = "This is a reminder to let you know that your auto credit plan expires in 30 days.";
             foreach ($subscribers as  $subscriber) {
                 Notification::route('mail', optional($subscriber->user)->email)
-                    ->notify(new ReminderNotification($subscriber->user, 30));
+                    ->notify(new ReminderNotification($subscriber->user, $message));
             }
         }
 
         $subscribers = Subscribe::with('user')->where("ends_at", "<", $week)->get();
 
         if (null !== $subscribers) {
-            $message = "This is a reminder to let you know that your auto credit plan expires in 30 days.";
+            $message = "This is a reminder to let you know that your auto credit plan expires in 7 days.";
             foreach ($subscribers as  $subscriber) {
                 Notification::route('mail', optional($subscriber->user)->email)
                     ->notify(new ReminderNotification($subscriber->user, $message));
