@@ -23,7 +23,7 @@ import { computed } from "vue";
 import { useStore } from "vuex";
 
 export default {
-    props: ["voucher", "amount"],
+    props: ["voucher", "amount", "showTotal"],
     setup() {
         const store = useStore();
         const total = computed(() => store.getters.total);

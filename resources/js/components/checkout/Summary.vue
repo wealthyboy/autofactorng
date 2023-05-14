@@ -85,7 +85,7 @@
             </template>
         </span>
     </p>
-    <p
+    <p v-if="showCoupon"
         class="border-top border-bottom pb-3 pt-3 d-flex justify-content-between fs-4"
     >
         <span class="text-muted">Shipping</span>
