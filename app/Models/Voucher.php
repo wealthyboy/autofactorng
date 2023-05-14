@@ -43,7 +43,7 @@ class Voucher extends Model
         if ($coupon) {
             $code = trim($coupon);
             $coupon =  Voucher::where('code', $coupon)->first();
-            if (null !== $coupon && $coupon->type == 'specific') {
+            if (null !== $coupon && $coupon->type == 'specific user') {
                 $coupon->update(['valid' => false]);
             }
         }
