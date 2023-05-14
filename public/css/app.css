@@ -42842,8 +42842,12 @@ td .cart-input {
   width: 30px !important;
 }
 
+.coupon-button {
+  height: 48px;
+}
+
 .coupon-i {
-  height: 96%;
+  height: 99%;
 }
 
 .form-floating > .form-control:not(:-moz-placeholder-shown), .form-floating > .form-control-plaintext:not(:-moz-placeholder-shown) {
