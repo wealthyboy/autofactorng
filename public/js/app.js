@@ -22893,6 +22893,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.voucher = [];
         _this.v = response.data; //this.amount = parseInt(response.data.sub_total);
 
+        console.log(_this.prices.heavy_item_price);
+
         _this.$store.commit("setTotal", response.data.sub_total + _this.prices.ship_price + _this.prices.heavy_item_price);
 
         _this.$store.commit("setCouponCode", _this.coupon_code);
