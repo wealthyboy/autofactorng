@@ -211,7 +211,7 @@
                               <span class="material-symbols-outlined">
                                  videocam
                               </span>
-                              <div class="align-self-center fw-bold  fs-5">Video Txips</div>
+                              <div class="align-self-center fw-bold  fs-5">Video Tips</div>
                               <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
                            </div>
                         </a>
