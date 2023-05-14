@@ -2,7 +2,7 @@
 
 @section('content')
 <section>
-   <div style="height: 100%;"  class="container   full-bg">
+   <div   class="container   full-bg">
       <div class="row">
          <div  class="col-xl-12 col-lg-12 py-4 ">
 
