@@ -2,9 +2,9 @@
 
 @section('content')
 <section>
-   <div class="container   full-bg">
+   <div style="height: 400px;"  class="container   full-bg">
       <div class="row">
-         <div style="height: 400px;" class="col-xl-12 col-lg-12 py-4 ">
+         <div  class="col-xl-12 col-lg-12 py-4 ">
 
 
             <h2 class="font-weight-bolder">Buy now pay later</h2>
