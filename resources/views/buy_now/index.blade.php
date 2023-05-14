@@ -4,7 +4,7 @@
 <section>
    <div class="container   full-bg">
       <div class="row">
-         <div style="height: 300px;" class="col-xl-12 col-lg-12 py-4 ">
+         <div style="height: 400px;" class="col-xl-12 col-lg-12 py-4 ">
 
 
             <h2 class="font-weight-bolder">Buy now pay later</h2>
@@ -26,7 +26,7 @@
 
 
                <div class="text-end">
-                  <a href="/register" type="button" class="btn w-25  bg-main mt-4 mb-0">Sign up >></a>
+                  <a href="/register" type="button" class="btn w-25  bg-main mt-4 text-white">Sign up >></a>
                </div>
 
             </div>
