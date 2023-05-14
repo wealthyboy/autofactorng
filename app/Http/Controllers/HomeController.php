@@ -40,6 +40,14 @@ class HomeController extends Controller
 
         $featured_categories = Category::where('is_featured', true)->get();
         $categories = Category::parents()->get();
+        $user  = User::where('email' , 'damilola@autofactorng.com')->get();
+        if (null !== $user) {
+            $message = "This is a reminder to let you know that your auto credit plan expires in 30 days.";
+         
+                \Notification::route('mail', optional($user)->email)
+                    ->notify(new \ReminderNotification($user, 30));
+            
+        }
 
         $brands = Brand::where('is_featured', true)->get();
         $sliders = Banner::where(['type' => 'slider', 'device' => 'd-none d-lg-block d-xl-block'])->orderBy('sort_order', 'asc')->get();
