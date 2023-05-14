@@ -209,7 +209,9 @@
                         <a href="/how-to" role="button" class="w-100 mb-0 border-0">
                            <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
                               <span class="material-symbols-outlined">
-                                 videocam
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+  <path d="M3 4v16l18-8-18-8z"/>
+</svg>
                               </span>
                               <div class="align-self-center fw-bold  fs-5">Video Tips</div>
                               <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
