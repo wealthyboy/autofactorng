@@ -39369,7 +39369,7 @@ var shopWithoutVehicle = function shopWithoutVehicle(_ref9, action) {
   var p = u.pathname.split('/');
   var url;
 
-  if (p[1] == 'products') {
+  if (p[1] == 'products' || p[1] == 'search') {
     url = location.href;
   } else {
     url = '/clear-cookies';
