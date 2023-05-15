@@ -149,14 +149,18 @@ export default {
                     let text = response.data.string;
                     let type = e.target.name;
 
-                    emit("do:string", { text, type });
-                    console.log(path)
+                    console.log(type)
 
-    
 
                     if (type == "engine_id" && path[1] == "products" || path[1] == "search" ) {
                         getProducts(location.href);
                     }
+
+                    emit("do:string", { text, type });
+
+    
+
+                    
 
                     if (nt == "products") {
                         // emit("do:filter", { form, text });

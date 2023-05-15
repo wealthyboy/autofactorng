@@ -24090,15 +24090,16 @@ __webpack_require__.r(__webpack_exports__);
         next[nt] = response.data.data;
         var text = response.data.string;
         var type = e.target.name;
-        emit("do:string", {
-          text: text,
-          type: type
-        });
-        console.log(path);
+        console.log(type);
 
         if (type == "engine_id" && path[1] == "products" || path[1] == "search") {
           getProducts(location.href);
         }
+
+        emit("do:string", {
+          text: text,
+          type: type
+        });
 
         if (nt == "products") {// emit("do:filter", { form, text });
         }
