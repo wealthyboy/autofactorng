@@ -101,11 +101,11 @@
         class="border-top border-bottom pb-3 pt-3 d-flex justify-content-between fs-4"
     >
         <span class="text-muted">Heavy/Large Items Charge</span>
-        <span class="float-right bold"
-            ><small>
-                {{ $filters.formatNumber(prices.heavy_item_price) }}</small
-            ></span
-        >
+        <span class="float-right bold">
+            <small>
+                {{ $filters.formatNumber(prices.heavy_item_price) }}
+            </small>
+        </span>
     </p>
 </template>
 <script>
