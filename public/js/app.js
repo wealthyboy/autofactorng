@@ -27217,7 +27217,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_total, {
     voucher: $data.voucher,
     total: _ctx.prices.total,
-    amount: $data.amount
+    amount: $data.amount,
+    showTotal: true
   }, null, 8
   /* PROPS */
   , ["voucher", "total", "amount"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {

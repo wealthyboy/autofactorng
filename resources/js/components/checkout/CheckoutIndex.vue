@@ -35,6 +35,7 @@
                                 :voucher="voucher"
                                 :total="prices.total"
                                 :amount="amount"
+                                :showTotal="true"
                             />
 
                             <div class="checkout-methods w-100 mb-5 mt-5">
