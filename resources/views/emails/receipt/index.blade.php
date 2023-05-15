@@ -499,7 +499,6 @@
                                                                <td rowspan="2" style="line-height:1px;" width="25" valign="top" align="center">
                                                                   <!-- <img src="{{ Config('app.url')}}/images/logo/number-icon-20x20.png" style="display:block;" alt="IMG" vspace="0" hspace="0" border="0"> -->
                                                                </td>
-                                                               <td rowspan="2" style="font-size:0;line-height:0;" width="14">&nbsp;</td>
                                                                <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Invoice No</td>
                                                             </tr>
                                                             <tr>
