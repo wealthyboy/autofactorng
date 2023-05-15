@@ -24096,6 +24096,10 @@ __webpack_require__.r(__webpack_exports__);
         });
         console.log(path);
 
+        if (path[1] == "search") {
+          getProducts(location.href);
+        }
+
         if (type == "engine_id" && path[1] == "products") {
           getProducts(location.href);
         }
