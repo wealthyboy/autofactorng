@@ -24085,7 +24085,6 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         var url = new URL(location.href);
         var path = url.pathname.split("/");
-        console.log(path);
         store.commit("setfitString", response.data.string);
         store.commit("setProductFitString", response.data.productFitString);
         next[nt] = response.data.data;
@@ -24095,6 +24094,7 @@ __webpack_require__.r(__webpack_exports__);
           text: text,
           type: type
         });
+        console.log(path);
 
         if (type == "engine_id" && path[1] == "products") {
           getProducts(location.href);

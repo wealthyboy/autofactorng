@@ -139,7 +139,6 @@ export default {
                 .then((response) => {
                     const url = new URL(location.href);
                     let path = url.pathname.split("/");
-                    console.log(path)
                     store.commit("setfitString", response.data.string);
                     store.commit(
                         "setProductFitString",
@@ -151,6 +150,8 @@ export default {
                     let type = e.target.name;
 
                     emit("do:string", { text, type });
+                    console.log(path)
+
                     
 
                     if (type == "engine_id" && path[1] == "products") {
