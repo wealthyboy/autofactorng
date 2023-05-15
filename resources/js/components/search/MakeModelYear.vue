@@ -95,7 +95,6 @@ export default {
         const years = ref([]);
         const store = useStore();
         let url = new URL(location.href).pathname.split("/");
-        console.log(url[1]);
 
         const next = reactive({
             makes: [],
@@ -153,7 +152,7 @@ export default {
 
 
                     if (type == "engine_id" && path[1] == "products" || path[1] == "search" ) {
-                        getProducts(location.href);
+                       // getProducts(location.href);
                         return
                     }
 

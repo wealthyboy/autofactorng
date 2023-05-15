@@ -24046,7 +24046,6 @@ __webpack_require__.r(__webpack_exports__);
     var years = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
     var url = new URL(location.href).pathname.split("/");
-    console.log(url[1]);
     var next = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       makes: [],
       models: "",
@@ -24093,7 +24092,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(type);
 
         if (type == "engine_id" && path[1] == "products" || path[1] == "search") {
-          getProducts(location.href);
+          // getProducts(location.href);
           return;
         }
 
