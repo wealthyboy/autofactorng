@@ -154,6 +154,7 @@ export default {
 
                     if (type == "engine_id" && path[1] == "products" || path[1] == "search" ) {
                         getProducts(location.href);
+                        return
                     }
 
                     emit("do:string", { text, type });
