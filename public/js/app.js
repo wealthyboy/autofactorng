@@ -24083,6 +24083,9 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_1___default().get("/make-model-year-engine", {
         params: form
       }).then(function (response) {
+        var url = new URL(location.href);
+        var path = url.pathname.split("/");
+        console.log(path);
         store.commit("setfitString", response.data.string);
         store.commit("setProductFitString", response.data.productFitString);
         next[nt] = response.data.data;
@@ -24092,8 +24095,6 @@ __webpack_require__.r(__webpack_exports__);
           text: text,
           type: type
         });
-        var url = new URL(location.href);
-        var path = url.pathname.split("/");
 
         if (type == "engine_id" && path[1] == "products") {
           getProducts(location.href);

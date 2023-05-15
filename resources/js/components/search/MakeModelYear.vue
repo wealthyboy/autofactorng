@@ -137,6 +137,9 @@ export default {
                     params: form,
                 })
                 .then((response) => {
+                    const url = new URL(location.href);
+                    let path = url.pathname.split("/");
+                    console.log(path)
                     store.commit("setfitString", response.data.string);
                     store.commit(
                         "setProductFitString",
@@ -148,8 +151,7 @@ export default {
                     let type = e.target.name;
 
                     emit("do:string", { text, type });
-                    const url = new URL(location.href);
-                    let path = url.pathname.split("/");
+                    
 
                     if (type == "engine_id" && path[1] == "products") {
                         getProducts(location.href);
