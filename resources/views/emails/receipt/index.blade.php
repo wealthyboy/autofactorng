@@ -953,9 +953,7 @@
                                                       <td class="wz2" height="10" width="30"></td>
                                                    </tr>
                                                    <tr>
-                                                      <td class="wz2" width="30"><br></td>
                                                       <td data-bgcolor="ThemeColorBG" class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: rgb(255, 255, 255); font-family: sans-serif; font-size: 15px; text-align: center; line-height: 27px; font-weight: bold; background-color: rgb(0, 0, 0, 1);" bgcolor="#67bffd"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>{{ $order->currency }}{{ $order->get_total() }}</td>
-                                                      <td class="wz2" width="30"><br></td>
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" height="10" width="30"></td>
