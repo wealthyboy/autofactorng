@@ -154,7 +154,7 @@ export default {
 
     
 
-                    if (type == "engine_id" && path[1] == "products" ||path[1] == "search" ) {
+                    if (type == "engine_id" && path[1] == "products" || path[1] == "search" ) {
                         getProducts(location.href);
                     }
 
