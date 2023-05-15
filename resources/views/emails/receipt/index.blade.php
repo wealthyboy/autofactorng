@@ -502,7 +502,7 @@
                                                                <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Invoice No</td>
                                                             </tr>
                                                             <tr>
-                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $order->invoice }}</td>
+                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left">{{ $order->invoice }}</td>
                                                             </tr>
                                                             <tr>
                                                                <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
