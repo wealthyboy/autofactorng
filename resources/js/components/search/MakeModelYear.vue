@@ -164,10 +164,6 @@ export default {
 
                     emit("do:string", { text, type });
 
-    
-
-                    
-
                     if (nt == "products") {
                         // emit("do:filter", { form, text });
                     }

@@ -102,8 +102,8 @@ export const shopWithoutVehicle = ({ commit }, action) => {
     let u = new URL(location.href)
     let p = u.pathname.split('/');
     let url;
-    if (p[1] == 'products'){
-       url = u.pathname
+    if (p[1] == 'products' ){
+       url = location.href
     } else {
        url = '/clear-cookies'
     }
