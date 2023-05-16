@@ -80,13 +80,13 @@
 </template>
 
 <script>
-import { onMounted, reactive, ref } from "vue";
+import { computed, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
 import { useActions, useGetters } from "vuex-composition-helpers";
 
 export default {
-    props: ["filter", "years"],
+    props: ["filter"],
     emits: ["do:filter", "do:string"],
     setup(props, { emit }) {
         const makes = ref([]);
@@ -94,6 +94,8 @@ export default {
         const engines = ref([]);
         const store = useStore();
         let url = new URL(location.href).pathname.split("/");
+        const years = computed(() => store.getters.years);
+
 
         const next = reactive({
             makes: [],
@@ -168,6 +170,7 @@ export default {
             form,
             next,
             getProducts,
+            years
         };
     },
 };

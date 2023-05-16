@@ -85,7 +85,7 @@
                             'make_model_year'
                         "
                     >
-                        <search @do:filter="filter" :filter="true" />
+                        <search :years="years" @do:filter="filter" :filter="true" />
                     </template>
 
                     <template
@@ -287,7 +287,7 @@ export default {
         Tyre,
         Battery,
     },
-    props: ["search_filters"],
+    props: ["search_filters", "years"],
     data() {
         return {
             has_filters: 0,

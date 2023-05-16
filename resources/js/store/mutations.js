@@ -20,6 +20,10 @@ export const setCouponCode = (state, voucher) => {
     state.coupon = voucher;
 }
 
+export const setYears = (state, years) => {
+    state.years = years;
+}
+
 export const setMessage = (state, message) => {
 
     state.message = message;

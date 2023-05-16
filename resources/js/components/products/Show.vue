@@ -25,7 +25,6 @@
         <!-- End .ratings-container -->
 
         <p v-if="product.showFitString">
-            <check-vehicle :fitText="productFitString" />
         </p>
 
         <hr class="short-divider" />
@@ -138,6 +137,7 @@ export default {
     },
     props: {
         product: Object,
+        years: Array
     },
     components: {
         CheckVehicle,

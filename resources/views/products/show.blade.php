@@ -50,7 +50,7 @@
             </div>
             <!-- End .product-single-gallery -->
 
-            <show :product="{{ $product }}" />
+            <show :years="years" :product="{{ $product }}" />
 
             <!-- End .product-single-details -->
         </div>

@@ -49,11 +49,15 @@ export default {
     components: { ModalSearch },
     props: { years: Array},
 
-    setup() {
+    setup(props) {
         const t = ref(null);
         const fitString = computed(() => store.getters.fitString);
         const showModal = computed(() => store.getters.showModal);
         const store = useStore();
+        onMounted(() => {
+            store.commit("setYears", props.years);
+        })
+
 
         function activate() {
             console.log(true);

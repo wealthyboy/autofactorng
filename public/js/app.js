@@ -21510,7 +21510,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     years: Array
   },
-  setup: function setup() {
+  setup: function setup(props) {
     var t = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
     var fitString = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return store.getters.fitString;
@@ -21519,6 +21519,9 @@ __webpack_require__.r(__webpack_exports__);
       return store.getters.showModal;
     });
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
+      store.commit("setYears", props.years);
+    });
 
     function activate() {
       console.log(true);
@@ -23373,7 +23376,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Tyre: _search_Tyre__WEBPACK_IMPORTED_MODULE_4__["default"],
     Battery: _search_Battery__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
-  props: ["search_filters"],
+  props: ["search_filters", "years"],
   data: function data() {
     return {
       has_filters: 0,
@@ -23895,7 +23898,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     productFitString: "productFitString"
   })),
   props: {
-    product: Object
+    product: Object,
+    years: Array
   },
   components: {
     CheckVehicle: _general_CheckVehicle__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -24042,7 +24046,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["filter", "years"],
+  props: ["filter"],
   emits: ["do:filter", "do:string"],
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
@@ -24051,6 +24055,9 @@ __webpack_require__.r(__webpack_exports__);
     var engines = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
     var url = new URL(location.href).pathname.split("/");
+    var years = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      return store.getters.years;
+    });
     var next = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       makes: [],
       models: "",
@@ -24115,7 +24122,8 @@ __webpack_require__.r(__webpack_exports__);
       getNext: getNext,
       form: form,
       next: next,
-      getProducts: getProducts
+      getProducts: getProducts,
+      years: years
     };
   }
 });
@@ -28487,11 +28495,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* STABLE_FRAGMENT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $props.search_filters.search_type.search == 'make_model_year' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_search, {
     key: 0,
+    years: $props.years,
     "onDo:filter": $options.filter,
     filter: true
   }, null, 8
   /* PROPS */
-  , ["onDo:filter"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.search_filters.search_type.search == 'tyre' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_tyre, {
+  , ["years", "onDo:filter"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.search_filters.search_type.search == 'tyre' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_tyre, {
     key: 1,
     "onDo:filter": $options.handleTyreFilter,
     filter: true,
@@ -29753,8 +29762,6 @@ var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_rating = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("rating");
 
-  var _component_check_vehicle = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("check-vehicle");
-
   var _component_cart_qty = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("cart-qty");
 
   var _component_general_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("general-button");
@@ -29777,11 +29784,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* UNKEYED_FRAGMENT */
   ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .product-ratings "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_6, "( " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.average_rating_count) + " Reviews )", 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .ratings-container "), $props.product.showFitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_check_vehicle, {
-    fitText: _ctx.productFitString
-  }, null, 8
-  /* PROPS */
-  , ["fitText"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [$props.product.discounted_price ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .ratings-container "), $props.product.showFitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_7)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [$props.product.discounted_price ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
     key: 0
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber($props.product.price)), 1
   /* TEXT */
@@ -30047,7 +30050,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onChange: _cache[1] || (_cache[1] = function ($event) {
       return $setup.getNext($event);
     })
-  }, [_hoisted_3, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.years, function (year) {
+  }, [_hoisted_3, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.years, function (year) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: year,
       value: year
@@ -39918,7 +39921,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "voucher": () => (/* binding */ voucher),
 /* harmony export */   "walletBalance": () => (/* binding */ walletBalance),
 /* harmony export */   "wishlist": () => (/* binding */ wishlist),
-/* harmony export */   "wishlistCount": () => (/* binding */ wishlistCount)
+/* harmony export */   "wishlistCount": () => (/* binding */ wishlistCount),
+/* harmony export */   "years": () => (/* binding */ years)
 /* harmony export */ });
 var carts = function carts(state) {
   return state.carts;
@@ -40028,6 +40032,9 @@ var productFitString = function productFitString(state) {
 var showSearch = function showSearch(state) {
   return state.showSearch;
 };
+var years = function years(state) {
+  return state.years;
+};
 
 /***/ }),
 
@@ -40105,6 +40112,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "setTotal": () => (/* binding */ setTotal),
 /* harmony export */   "setWalletBalance": () => (/* binding */ setWalletBalance),
 /* harmony export */   "setWishlist": () => (/* binding */ setWishlist),
+/* harmony export */   "setYears": () => (/* binding */ setYears),
 /* harmony export */   "setfitString": () => (/* binding */ setfitString)
 /* harmony export */ });
 var appendToCart = function appendToCart(state, items) {
@@ -40121,6 +40129,9 @@ var setCoupon = function setCoupon(state, voucher) {
 };
 var setCouponCode = function setCouponCode(state, voucher) {
   state.coupon = voucher;
+};
+var setYears = function setYears(state, years) {
+  state.years = years;
 };
 var setMessage = function setMessage(state, message) {
   state.message = message;
