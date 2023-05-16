@@ -85,8 +85,7 @@ class ProductsController extends Controller
         $product = Product::where('name', 'like', '%' . $request->q . '%')->whereHas('categories', function (Builder  $builder) use ($request) {
             $builder->where('categories.slug', 'spare-parts')
             ->orWhere('categories.slug', 'servicing-parts');
-        })->get();
-
+        });
 
         $query = Product::where('name', 'like', '%' . $request->q . '%');
 
@@ -94,8 +93,7 @@ class ProductsController extends Controller
 
         $per_page = $request->per_page ??  100;
 
-        $category =  $product;
-        dd($category);
+        $category = optional(optional(optional($product)->first())->categories)->first();
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
             $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
@@ -124,7 +122,7 @@ class ProductsController extends Controller
                 ->additional([
                     'string' => $cat,
                     'showFitStringOnCategoryPage' => true,
-                    'showSearch' => true,
+                    'showSearch' => $this->showSearch($category),
                     'productFitString' => null,
                     'fits' =>  $this->buildSearchString($request) ? true : false,
                     'search_filters' => null
