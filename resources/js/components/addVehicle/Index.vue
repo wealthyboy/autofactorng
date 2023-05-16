@@ -20,6 +20,7 @@
                     alt=""
                 />
             </div>
+            {{ years }}
 
             <div
                 class="fw-bold ms-3 fs-5 text-start text-black"

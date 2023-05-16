@@ -199,7 +199,7 @@
                      </div>
 
                      <div class="menu-i   menu-i  w-25 ms-5">
-                        <add-vehicle  :years="{{ $yrs}}"></add-vehicle>
+                        <add-vehicle  :years="{{ $yrs }}"></add-vehicle>
                      </div>
 
 
