@@ -1,5 +1,4 @@
 <template>
-    {{ years }}
     <div class="w-100 p-1 align-self-center">
         <div class="select-custom">
             <select
@@ -10,10 +9,10 @@
                 @change="getNext($event)"
             >
                 <option value="0" selected="selected">Year</option>
+
                 <option v-for="year in years" :key="year" :value="year">
                     {{ year }}
                 </option>
-
             </select>
         </div>
     </div>
@@ -81,11 +80,10 @@
 </template>
 
 <script>
-import { computed, reactive, ref } from "vue";
+import { onMounted, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
 import { useActions, useGetters } from "vuex-composition-helpers";
-
 
 export default {
     props: ["filter"],
@@ -95,9 +93,8 @@ export default {
         const models = ref([]);
         const engines = ref([]);
         const store = useStore();
-        let url = new URL(location.href).pathname.split("/");
         const years = computed(() => store.getters.years);
-
+        let url = new URL(location.href).pathname.split("/");
 
         const next = reactive({
             makes: [],
@@ -120,6 +117,21 @@ export default {
 
         const { getProducts } = useActions(["getProducts"]);
 
+        onMounted(() => {
+            if ( years.length) {
+                axios
+                .get("/api/years")
+                .then((response) => {                  
+                    store.commit("setYears", response.data);
+    
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+            }
+            
+        });
+
         function getNext(e) {
             form.type = e.target.name;
             let nt = e.target.dataset.next;
@@ -140,16 +152,18 @@ export default {
                     let text = response.data.string;
                     let type = e.target.name;
 
-                     if (type == "engine_id" && path[1] == "search" ) {
+                    console.log(type)
+
+                    if (type == "engine_id" && path[1] == "search" ) {
                         console.log(true)
-                        getProducts(location.href);
-                
+                       getProducts(location.href);
+                       return
                     }
 
 
                     if (type == "engine_id" && path[1] == "products"  ) {
                         getProducts(location.href);
-                        
+                        return
                     }
 
                     emit("do:string", { text, type });
@@ -170,8 +184,8 @@ export default {
             getNext,
             form,
             next,
+            years,
             getProducts,
-            years
         };
     },
 };

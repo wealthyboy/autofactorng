@@ -21519,10 +21519,6 @@ __webpack_require__.r(__webpack_exports__);
     var showModal = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
       return store.getters.showModal;
     });
-    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
-      console.log(props.years);
-      store.commit("setYears", props.years);
-    });
 
     function activate() {
       console.log(true);
@@ -24052,10 +24048,10 @@ __webpack_require__.r(__webpack_exports__);
     var models = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var engines = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
-    var url = new URL(location.href).pathname.split("/");
-    var years = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+    var years = computed(function () {
       return store.getters.years;
     });
+    var url = new URL(location.href).pathname.split("/");
     var next = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       makes: [],
       models: "",
@@ -24078,6 +24074,16 @@ __webpack_require__.r(__webpack_exports__);
     var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_2__.useActions)(["getProducts"]),
         getProducts = _useActions.getProducts;
 
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+      if (years.length) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/years").then(function (response) {
+          store.commit("setYears", response.data);
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      }
+    });
+
     function getNext(e) {
       form.type = e.target.name;
       var nt = e.target.dataset.next;
@@ -24091,14 +24097,17 @@ __webpack_require__.r(__webpack_exports__);
         next[nt] = response.data.data;
         var text = response.data.string;
         var type = e.target.name;
+        console.log(type);
 
         if (type == "engine_id" && path[1] == "search") {
           console.log(true);
           getProducts(location.href);
+          return;
         }
 
         if (type == "engine_id" && path[1] == "products") {
           getProducts(location.href);
+          return;
         }
 
         emit("do:string", {
@@ -24120,8 +24129,8 @@ __webpack_require__.r(__webpack_exports__);
       getNext: getNext,
       form: form,
       next: next,
-      getProducts: getProducts,
-      years: years
+      years: years,
+      getProducts: getProducts
     };
   }
 });
@@ -30036,9 +30045,7 @@ var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_16 = ["value"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.years) + " ", 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     name: "year",
     "class": "form-control",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
