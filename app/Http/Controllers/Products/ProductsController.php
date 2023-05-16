@@ -82,7 +82,7 @@ class ProductsController extends Controller
 
         $this->clearMMYCookies($request);
 
-        $product = Product::where('name', 'like', '%' . $request->q . '%')->first();
+        $product = Product::where('name', 'like', '%' . $request->q . '%')->get();
 
         $query = Product::where('name', 'like', '%' . $request->q . '%');
 
@@ -90,7 +90,8 @@ class ProductsController extends Controller
 
         $per_page = $request->per_page ??  100;
 
-        $category = optional(optional(optional($product)->first())->categories)->first();
+        $category =  $product->load('categories');
+        dd($category);
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
             $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
