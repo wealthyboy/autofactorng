@@ -16,6 +16,7 @@ class MakeModelYearEngine extends Model
             ->join('attributes', 'attributes.id', 'attribute_years.attribute_id')
             ->where('attribute_years.parent_id', '=', null)
             ->select('attributes.id', 'attributes.name')
+            ->orderBy('sort_order', 'asc')
             ->get();
     }
 
@@ -25,6 +26,7 @@ class MakeModelYearEngine extends Model
             ->join('attributes', 'attributes.id', 'attribute_years.attribute_id')
             ->where('attribute_years.parent_id', $attribute_id)
             ->select('attributes.id', 'attributes.name')
+            ->orderBy('sort_order', 'asc')
             ->get();
     }
 
