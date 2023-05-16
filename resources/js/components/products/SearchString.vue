@@ -13,6 +13,9 @@
                 <div
                     class="d-flex justify-content-center  d-md-block d-lg-none d-sm-block mt-3"
                 >
+                <div
+                    class="d-flex justify-content-center   mt-3"
+                >
                     <div
                         @click.prevent="shopWithoutVehicle('change')"
                         class="mb-2"
@@ -25,6 +28,7 @@
                             >Shop Without Vehicle</a
                         >
                     </div>
+                </div>
                 </div>
             </div>
 
