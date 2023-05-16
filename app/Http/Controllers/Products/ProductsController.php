@@ -94,12 +94,11 @@ class ProductsController extends Controller
         $per_page = $request->per_page ??  100;
 
         $category = optional(optional(optional($product)->first())->categories)->first();
+        if (null !== $category ) {
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
             dd(true);
 
-            if (null !== $category ) {
-                dd(true);
                 $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                     $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
                     $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
