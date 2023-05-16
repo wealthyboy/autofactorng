@@ -83,7 +83,6 @@ class OrdersController extends Table
 	public function store(Request $request)
 	{
 
-
 		try {
 			DB::beginTransaction();
 
@@ -176,7 +175,7 @@ class OrdersController extends Table
 
 			try {
 				$when = now()->addMinutes(5);
-				Mail::to($user->email)
+				Mail::to($request->email)
 					->bcc('damilola@autofactorng.com')
 					->bcc('jacob.atam@gmail.com')
 					->send(new OrderReceipt($order, null, null, $sub_total));
