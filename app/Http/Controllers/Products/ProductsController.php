@@ -41,7 +41,8 @@ class ProductsController extends Controller
 
         $products = $this->getProductsData($request, $builder, $category);
         $search_filters = $this->searchFilters($category);
-        (new Product())->buildSearchString($category);
+        $request->category = $category;
+       // (new Product())->buildSearchString($category);
 
 
         if ($request->ajax()) {
