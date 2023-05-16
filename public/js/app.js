@@ -24049,7 +24049,6 @@ __webpack_require__.r(__webpack_exports__);
     var makes = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var models = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var engines = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
-    var years = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
     var url = new URL(location.href).pathname.split("/");
     var next = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
@@ -24116,7 +24115,6 @@ __webpack_require__.r(__webpack_exports__);
       getNext: getNext,
       form: form,
       next: next,
-      years: years,
       getProducts: getProducts
     };
   }
@@ -25907,9 +25905,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }, _hoisted_3)];
         }),
         body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-          return [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.years) + " ", 1
-          /* TEXT */
-          ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_make_model_year, {
+          return [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_make_model_year, {
             years: $props.years,
             "onDo:string": $setup.getString
           }, null, 8
@@ -30053,7 +30049,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onChange: _cache[1] || (_cache[1] = function ($event) {
       return $setup.getNext($event);
     })
-  }, [_hoisted_3, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.years, function (year) {
+  }, [_hoisted_3, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.years, function (year) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: year,
       value: year

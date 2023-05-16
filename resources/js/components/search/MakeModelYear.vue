@@ -92,7 +92,6 @@ export default {
         const makes = ref([]);
         const models = ref([]);
         const engines = ref([]);
-        const years = ref([]);
         const store = useStore();
         let url = new URL(location.href).pathname.split("/");
 
@@ -168,7 +167,6 @@ export default {
             getNext,
             form,
             next,
-            years,
             getProducts,
         };
     },
