@@ -83,8 +83,8 @@ class ProductsController extends Controller
         $this->clearMMYCookies($request);
 
         $product = Product::where('name', 'like', '%' . $request->q . '%')->whereHas('categories', function (Builder  $builder) use ($request) {
-            $builder->where('category.slug', 'spare-parts')
-            ->orWhere('category.slug', 'servicing-parts');
+            $builder->where('categories.slug', 'spare-parts')
+            ->orWhere('categories.slug', 'servicing-parts');
         })->get();
 
 
