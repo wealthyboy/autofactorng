@@ -40278,7 +40278,8 @@ __webpack_require__.r(__webpack_exports__);
   productFitString: null,
   showSearch: false,
   total: 0,
-  coupon: null
+  coupon: null,
+  years: []
 });
 
 /***/ }),
