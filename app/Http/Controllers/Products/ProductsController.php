@@ -94,7 +94,7 @@ class ProductsController extends Controller
         $per_page = $request->per_page ??  100;
 
         $category = optional(optional(optional($product)->first())->categories)->first();
-        (new Product())->buildSearchString($category);
+        //(new Product())->buildSearchString($category);
         if (null !== $category ) {
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
