@@ -175,17 +175,15 @@ class OrdersController extends Table
 
 			try {
 				$user = User::find(1);
-
-				$u =  explode(' ', $request->first_name);
-				$user->name = isset($u[0]) ? $u[0] : null;
-				$user->last_name = isset($u[1]) ? $u[1] : null;
+				
 				$when = now()->addMinutes(5);
-				Mail::to($user->email)
+				$order->full_name = $request->first_name;
+				Mail::to($request->email)
 					->bcc('damilola@autofactorng.com')
 					->bcc('jacob.atam@gmail.com')
 					->send(new OrderReceipt($order, null, null, $sub_total));
 			} catch (\Throwable $th) {
-				dd($th);
+				
 
 				Log::info("Mail error :" . $th);
 				Log::info("Custom error :" . $th);

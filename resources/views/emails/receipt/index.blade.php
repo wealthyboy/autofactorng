@@ -380,7 +380,7 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="wz" width="30"></td>
-                                                      <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;text-align: left;line-height: 23px;">Dear {{ $order->user->fullname() }},<br>Your order has been received and is now being processed. Please find your order details below.</td>
+                                                      <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;text-align: left;line-height: 23px;">Dear {{ optional($order->user)->fullname() ?? optional($order)->full_name }},<br>Your order has been received and is now being processed. Please find your order details below.</td>
                                                       <td class="wz" width="30"></td>
                                                    </tr>
 
