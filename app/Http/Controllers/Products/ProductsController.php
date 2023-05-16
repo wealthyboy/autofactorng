@@ -87,8 +87,7 @@ class ProductsController extends Controller
             ->orWhere('categories.slug', 'servicing-parts');
         });
 
-
-
+        $query = Product::where('name', 'like', '%' . $request->q . '%');
 
         $type = $this->getType($request);
 
