@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid px-0">
     <div class="row">
-        <div class="col-xl-5  col-lg-4 ">
+    <div class="col-xl-5  col-lg-5 col-md-5">
 
             @include('_partials.back')
 
@@ -34,7 +34,7 @@
 
 
         </div>
-        <div class="position-relative  d-none d-lg-block d-md-block d-xl-block col-12  col-md-7  position-relative bg-gradient-primary h-100  px-7 border-radius-lg" style="background-image: url(&quot;/images/utils/register_autofactorng.jpeg&quot;); background-size: cover; background-repeat: no-repeat; height: 100vh !important; background-position: center center;     background-position: -10px 0px;">
+        <div class="position-relative  d-none d-lg-block d-md-block d-xl-block col-7  col-md-7  position-relative bg-gradient-primary h-100  px-7 border-radius-lg" style="background-image: url(&quot;/images/utils/sign.jpeg&quot;); background-size: cover; background-repeat: no-repeat; height: 100vh !important; background-position: center center;     background-position: --294px  0px;">
             <div class="image-overlay d-flex align-items-center">
 
                 <div class="text text-white ">
