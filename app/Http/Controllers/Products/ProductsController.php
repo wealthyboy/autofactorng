@@ -92,9 +92,7 @@ class ProductsController extends Controller
 
         $category = optional(optional(optional($product)->first())->categories)->first();
 
-
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
-        
             $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                 $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
                 $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
@@ -120,14 +118,17 @@ class ProductsController extends Controller
             return (new ProductsCollection($products))
                 ->additional([
                     'string' => $cat,
-                    'showSearch' => false
+                    'showSearch' => false,
+                    'showSearch' => $this->showSearch($category),
+                    'productFitString' => null,
+                    'fits' =>  $this->buildSearchString($request) ? true : false,
+                    'search_filters' => null
                 ]);
         }
 
         if (null !== $category) {
             $search_filters = $this->searchFilters($category);
         } else {
-
             $search_filters =  $search = collect([
                 ['name' => 'price', 'items' => $this->filterPrices()],
                 ['name' => 'year', 'items' => Helper::years()],
