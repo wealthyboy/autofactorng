@@ -24102,12 +24102,10 @@ __webpack_require__.r(__webpack_exports__);
         if (type == "engine_id" && path[1] == "search") {
           console.log(true);
           getProducts(location.href);
-          return;
         }
 
         if (type == "engine_id" && path[1] == "products") {
           getProducts(location.href);
-          return;
         }
 
         emit("do:string", {
