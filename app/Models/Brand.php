@@ -44,4 +44,9 @@ class Brand extends Model
 
         return $sort[$key];
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

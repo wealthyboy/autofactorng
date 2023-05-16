@@ -175,8 +175,10 @@ Route::controller(Products\ProductsController::class)->group(function () {
     Route::get('clear-cookies', 'clearMMYCookies');
 });
 
-Route::get('reviews/{id}',               'Api\Reviews\ReviewsController@index');
-Route::post('reviews/store',                  'Api\Reviews\ReviewsController@store');
+Route::get('reviews/{id}', 'Api\Reviews\ReviewsController@index');
+Route::post('reviews/store',  'Api\Reviews\ReviewsController@store');
+//xRoute::post('brands/{brand}', 'Brands\BrandsController@index');
+
 
 
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');

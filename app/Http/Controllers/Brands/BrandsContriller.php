@@ -12,9 +12,9 @@ class BrandsContriller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Brand $brand)
     {
-        //
+        return view('brands.index', compact('brand'));
     }
 
     /**
