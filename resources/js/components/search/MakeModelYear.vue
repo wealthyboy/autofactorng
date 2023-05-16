@@ -118,8 +118,7 @@ export default {
         const { getProducts } = useActions(["getProducts"]);
 
         onMounted(() => {
-            console,log(years.length)
-            if (!years.length) {
+            if (!years.value.length) {
                 axios
                 .get("/api/years")
                 .then((response) => {                  
