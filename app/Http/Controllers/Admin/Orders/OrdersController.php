@@ -175,7 +175,6 @@ class OrdersController extends Table
 
 			try {
 				$user = User::find(1);
-				
 				$when = now()->addMinutes(5);
 				$order->full_name = $request->first_name;
 				Mail::to($request->email)
