@@ -83,7 +83,6 @@ class OrdersController extends Table
 	public function store(Request $request)
 	{
 
-        dd(true);
 
 		try {
 			DB::beginTransaction();
@@ -182,6 +181,8 @@ class OrdersController extends Table
 					->bcc('jacob.atam@gmail.com')
 					->send(new OrderReceipt($order, null, null, $sub_total));
 			} catch (\Throwable $th) {
+				dd($th);
+
 				Log::info("Mail error :" . $th);
 				Log::info("Custom error :" . $th);
 				$err = new Error();
