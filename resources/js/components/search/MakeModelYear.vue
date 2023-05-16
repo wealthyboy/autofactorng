@@ -118,14 +118,14 @@ export default {
         const { getProducts } = useActions(["getProducts"]);
 
         onMounted(() => {
-            // axios
-            //     .get("/api/years")
-            //     .then((response) => {
-            //         years.value = response.data;
-            //     })
-            //     .catch((error) => {
-            //         console.log(error);
-            //     });
+            axios
+                .get("/api/years")
+                .then((response) => {
+                    years.value = response.data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
         });
 
         function getNext(e) {
