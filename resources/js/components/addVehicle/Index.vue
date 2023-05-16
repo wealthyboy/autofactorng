@@ -35,7 +35,7 @@
         </div>
     </a>
 
-    <modal-search></modal-search>
+    <modal-search  :years="years"></modal-search>
 </template>
 
 <script>
@@ -47,6 +47,8 @@ import ModalSearch from "./ModalSearch";
 
 export default {
     components: { ModalSearch },
+    props: { years: Array},
+
     setup() {
         const t = ref(null);
         const fitString = computed(() => store.getters.fitString);

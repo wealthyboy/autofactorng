@@ -20,7 +20,7 @@
                 <div
                     class="d-flex justify-content-between align-content-center pt-2 mx-5"
                 >
-                    <make-model-year @do:string="getString"></make-model-year>
+                    <make-model-year :years="years" @do:string="getString"></make-model-year>
                 </div>
             </template>
 
@@ -77,6 +77,7 @@ import Modal from "./Mod";
 
 export default {
     components: { Modal, MakeModelYear },
+    props: { years: Array},
     setup() {
         const showModal = computed(() => store.getters.showModal);
         const t = ref(null);

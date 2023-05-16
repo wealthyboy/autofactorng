@@ -9,10 +9,10 @@
                 @change="getNext($event)"
             >
                 <option value="0" selected="selected">Year</option>
-
                 <option v-for="year in years" :key="year" :value="year">
                     {{ year }}
                 </option>
+
             </select>
         </div>
     </div>
@@ -86,7 +86,7 @@ import axios from "axios";
 import { useActions, useGetters } from "vuex-composition-helpers";
 
 export default {
-    props: ["filter"],
+    props: ["filter", "years"],
     emits: ["do:filter", "do:string"],
     setup(props, { emit }) {
         const makes = ref([]);
@@ -117,17 +117,7 @@ export default {
 
         const { getProducts } = useActions(["getProducts"]);
 
-        onMounted(() => {
-            axios
-                .get("/api/years")
-                .then((response) => {
-                    years.value = response.data;
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-        });
-
+        
         function getNext(e) {
             form.type = e.target.name;
             let nt = e.target.dataset.next;
@@ -148,12 +138,10 @@ export default {
                     let text = response.data.string;
                     let type = e.target.name;
 
-                    console.log(type)
-
-                    if (type == "engine_id" && path[1] == "search" ) {
+                     if (type == "engine_id" && path[1] == "search" ) {
                         console.log(true)
-                       getProducts(location.href);
-                       return
+                        getProducts(location.href);
+                        return
                     }
 
 

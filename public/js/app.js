@@ -21507,6 +21507,9 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     ModalSearch: _ModalSearch__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
+  props: {
+    years: Array
+  },
   setup: function setup() {
     var t = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
     var fitString = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(function () {
@@ -21592,6 +21595,9 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Modal: _Mod__WEBPACK_IMPORTED_MODULE_4__["default"],
     MakeModelYear: _search_MakeModelYear__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  props: {
+    years: Array
   },
   setup: function setup() {
     var showModal = (0,vue__WEBPACK_IMPORTED_MODULE_2__.computed)(function () {
@@ -24036,7 +24042,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["filter"],
+  props: ["filter", "years"],
   emits: ["do:filter", "do:string"],
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
@@ -24068,14 +24074,6 @@ __webpack_require__.r(__webpack_exports__);
     var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_2__.useActions)(["getProducts"]),
         getProducts = _useActions.getProducts;
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/years").then(function (response) {
-        years.value = response.data;
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    });
-
     function getNext(e) {
       form.type = e.target.name;
       var nt = e.target.dataset.next;
@@ -24089,7 +24087,6 @@ __webpack_require__.r(__webpack_exports__);
         next[nt] = response.data.data;
         var text = response.data.string;
         var type = e.target.name;
-        console.log(type);
 
         if (type == "engine_id" && path[1] == "search") {
           console.log(true);
@@ -25743,7 +25740,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "nav-btn border-0 w-100 mb-0 no-hover text-black"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_2)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_3)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.fitString), 1
   /* TEXT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, "Add vehicle")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_6])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_modal_search)], 64
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, "Add vehicle")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_6])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_modal_search, {
+    years: $props.years
+  }, null, 8
+  /* PROPS */
+  , ["years"])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -25907,10 +25908,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }),
         body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_make_model_year, {
+            years: $props.years,
             "onDo:string": $setup.getString
           }, null, 8
           /* PROPS */
-          , ["onDo:string"])])];
+          , ["years", "onDo:string"])])];
         }),
         footer: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_10, [$setup.fitString ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", _hoisted_11)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.fitString), 1
