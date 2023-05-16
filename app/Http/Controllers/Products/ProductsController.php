@@ -80,7 +80,7 @@ class ProductsController extends Controller
 
         $page_title = "Search " . $request->q;
 
-        $this->clearMMYCookies($request);
+       // $this->clearMMYCookies($request);
 
         $product = Product::where('name', 'like', '%' . $request->q . '%')->whereHas('categories', function (Builder  $builder) use ($request) {
             $builder->where('categories.slug', 'spare-parts')
@@ -95,8 +95,9 @@ class ProductsController extends Controller
 
         $category = optional(optional(optional($product)->first())->categories)->first();
 
-
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
+            dd(true);
+
             if (null !== $category ) {
                 dd(true);
                 $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
