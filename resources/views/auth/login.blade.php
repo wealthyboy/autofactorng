@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid px-0">
     <div class="row  align-items-start">
-        <div class="col-xl-5  col-lg-4 ">
+        <div class="col-xl-5  col-lg-4 col-m-4">
 
             @include('_partials.back')
 
