@@ -98,6 +98,7 @@ class ProductsController extends Controller
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
             if (null !== $category ) {
+                dd(true);
                 $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                     $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
                     $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
