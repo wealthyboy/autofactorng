@@ -24075,6 +24075,8 @@ __webpack_require__.r(__webpack_exports__);
         getProducts = _useActions.getProducts;
 
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+      console, log(years.length);
+
       if (!years.length) {
         axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/years").then(function (response) {
           store.commit("setYears", response.data);
