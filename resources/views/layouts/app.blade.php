@@ -209,7 +209,7 @@
                         <a href="/how-to" role="button" class="w-100 mb-0 border-0">
                            <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
                               <span class="material-symbols-outlined">
-                              <i class="bi bi-camera-video"></i>
+                              <i class="bi bi-camera-video fs-1"></i>
                               </span>
                               <div class="align-self-center fw-bold  fs-5">Video Tips</div>
                               <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
@@ -244,7 +244,7 @@
                      <div class="d-flex add-a-vehicle justify-content-evenly align-items-center">
                      
                         <span class="">
-                        <i class="bi bi-camera-video"></i></span>
+                        <i class="bi bi-camera-video fs-1"></i></span>
                         <div class="align-self-center fw-bold ">Video Tips</div>
 
                         <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
