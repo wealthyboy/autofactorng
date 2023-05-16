@@ -41,7 +41,7 @@ class HomeController extends Controller
     {
 
         $featured_categories = Category::where('is_featured', true)->get();
-        $categories = Category::parents()->get();
+       // $categories = Category::parents()->get();
        
 
         $brands = Brand::where('is_featured', true)->get();
