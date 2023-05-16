@@ -82,7 +82,11 @@ class ProductsController extends Controller
 
         $this->clearMMYCookies($request);
 
-        $product = Product::where('name', 'like', '%' . $request->q . '%')->get();
+        $product = Product::where('name', 'like', '%' . $request->q . '%')->whereHas('categories', function (Builder  $builder) use ($request) {
+            $builder->where('category.slug', 'spare-parts')
+            ->orWhere('category.slug', 'servicing-parts');
+        })->get();
+
 
         $query = Product::where('name', 'like', '%' . $request->q . '%');
 
@@ -90,7 +94,7 @@ class ProductsController extends Controller
 
         $per_page = $request->per_page ??  100;
 
-        $category =  $product->load('categories');
+        $category =  $product;
         dd($category);
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
