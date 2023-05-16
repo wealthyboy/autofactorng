@@ -84,6 +84,8 @@ import { computed, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
 import { useActions, useGetters } from "vuex-composition-helpers";
+import { mapGetters, mapActions, useStore } from "vuex";
+
 
 export default {
     props: ["filter"],

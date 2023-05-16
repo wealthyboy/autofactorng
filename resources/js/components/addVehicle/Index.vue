@@ -51,12 +51,14 @@ export default {
 
     setup(props) {
         const t = ref(null);
+        const store = useStore();
+
         const fitString = computed(() => store.getters.fitString);
         const showModal = computed(() => store.getters.showModal);
-        const store = useStore();
         onMounted(() => {
-            store.commit("setYears", props.years);
+            store.commit("setYears", store.getters.years);
         })
+
 
 
         function activate() {
