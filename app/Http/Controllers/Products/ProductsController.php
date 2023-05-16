@@ -80,7 +80,7 @@ class ProductsController extends Controller
 
         $page_title = "Search " . $request->q;
 
-      // $this->clearMMYCookies($request);
+        $this->clearMMYCookies($request);
 
         $product = Product::where('name', 'like', '%' . $request->q . '%')->whereHas('categories', function (Builder  $builder) use ($request) {
             $builder->where('categories.slug', 'spare-parts')
