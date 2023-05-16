@@ -24068,12 +24068,14 @@ __webpack_require__.r(__webpack_exports__);
     var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_2__.useActions)(["getProducts"]),
         getProducts = _useActions.getProducts;
 
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/api/years").then(function (response) {
-        years.value = response.data;
-      })["catch"](function (error) {
-        console.log(error);
-      });
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {// axios
+      //     .get("/api/years")
+      //     .then((response) => {
+      //         years.value = response.data;
+      //     })
+      //     .catch((error) => {
+      //         console.log(error);
+      //     });
     });
 
     function getNext(e) {
