@@ -1,15 +1,35 @@
 <div class="col-md-9 ">
    <section class="p-0">
 
-    
+      <div class="owl-carousel owl-theme show-nav-hover slide-animate d-none  d-lg-block d-xl-block" data-owl-options="{
+           'dots': true,
+           'nav': true,
+           'loop': true,
+            'autoplay':true,
+            'autoplayTimeout':3500,
+            'autoplayHoverPause':true,
+            'responsiveClass':true
+
+        }">
+         @foreach($sliders as $key => $slider)
+
+         <div class="banner banner3 {{ $slider->device }}">
+            <a href="{{ $slider->link }}" class="d-block">
+               <figure>
+                  <img width="1920" height="700" src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
+               </figure>
+            </a>
+         </div>
+         @endforeach
+      </div>
 
 
-      <div class="owl-carousel owl-theme show-nav-hover slide-animate " data-owl-options="{
+      <div class="owl-carousel owl-theme show-nav-hover slide-animate  d-lg-none d-sm-block  d-md-block" data-owl-options="{
            'dots': true,
            'nav': true,
            'loop': false
         }">
-         @foreach($sliders as $key => $slider)
+         @foreach($mobile_sliders as $key => $slider)
 
          <div class="banner banner3  {{ $slider->device }}   d-md-block">
             <a href="{{ $slider->link }}" class="d-block">
