@@ -36,7 +36,6 @@
 
 <div class="row">
     <div class="col-12 text-center p-3">
-        <a href="/brands" type="button" class="btn btn-outline-info">More Brands</a>
     </div>
 </div>
 </div>
