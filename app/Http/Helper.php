@@ -38,7 +38,8 @@ class Helper
 
 
     static function currencyWrapper($amount)
-    {
+    {  
+        if( is_numeric($amount) || is_float($amount) )
         return '₦' . number_format($amount);
     }
 
