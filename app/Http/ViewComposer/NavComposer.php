@@ -22,7 +22,7 @@ class   NavComposer
 	public function compose(View $view)
 	{
 		$global_categories = Category::parents('sort_order', 'desc')->get();
-		$footer_info = Information::parents()->get();
+		$footer_info = Information::with('children')->parents()->get();
 		$global_promo = Promo::first();
 		$system_settings = Setting::first();
 		$yrs = Helper::years();
