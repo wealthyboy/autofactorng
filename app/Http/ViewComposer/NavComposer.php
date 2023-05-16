@@ -25,7 +25,7 @@ class   NavComposer
 		$footer_info = Information::with('children')->parents()->get();
 		$global_promo = Promo::first();
 		$system_settings = Setting::first();
-		$yrs = Helper::years();
+		$yrs = collect(Helper::years());
 		$user = auth()->check() ? auth()->user() : 0000;
 
 		//$news_letter_image = PageBanner::where('page_name','newsletter')->first();
