@@ -120,7 +120,6 @@ export default {
 
         const { getProducts } = useActions(["getProducts"]);
 
-        
         function getNext(e) {
             form.type = e.target.name;
             let nt = e.target.dataset.next;

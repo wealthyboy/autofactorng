@@ -7,7 +7,7 @@
   />
   <make-model-year
     @do:string="getString"
-    :years="years"
+    
   ></make-model-year>
 </template>
 <script>
@@ -16,7 +16,6 @@ import SearchString from "../products/SearchString";
 import MakeModelYear from "../search/MakeModelYear";
 
 export default {
-  props: ["years"],
   components: { SearchString, MakeModelYear },
 
   setup(props, { emits }) {

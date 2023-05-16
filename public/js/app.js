@@ -24146,7 +24146,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["years"],
   components: {
     SearchString: _products_SearchString__WEBPACK_IMPORTED_MODULE_1__["default"],
     MakeModelYear: _search_MakeModelYear__WEBPACK_IMPORTED_MODULE_2__["default"]
@@ -30156,11 +30155,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, null, 8
   /* PROPS */
   , ["onRemove:vehicle", "searchText"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_make_model_year, {
-    "onDo:string": $setup.getString,
-    years: $props.years
+    "onDo:string": $setup.getString
   }, null, 8
   /* PROPS */
-  , ["onDo:string", "years"])], 64
+  , ["onDo:string"])], 64
   /* STABLE_FRAGMENT */
   );
 }
