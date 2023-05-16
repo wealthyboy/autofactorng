@@ -3,7 +3,7 @@
 namespace App\Http\ViewComposer;
 
 use App\Http\Helper;
-use  App\User;
+use App\Models\User;
 use Illuminate\View\View;
 
 use Auth;

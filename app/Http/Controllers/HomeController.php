@@ -39,14 +39,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-
-        $featured_categories = Category::where('is_featured', true)->get();
-       // $categories = Category::parents()->get();
-       
-
+        $featured_categories = Category::where('is_featured', true)->get();    
         $brands = Brand::where('is_featured', true)->get();
-        $sliders = Banner::where(['type' => 'slider', 'device' => 'd-none d-lg-block d-xl-block'])->orderBy('sort_order', 'asc')->get();
-        $mobile_sliders = Banner::where(['type' => 'slider', 'device' => 'd-lg-none d-sm-block d-md-block'])->orderBy('sort_order', 'asc')->get();
+        $sliders = Banner::where(['type' => 'slider'])->orderBy('sort_order', 'asc')->get();
         $products = Product::where('is_featured', 1)->orderBy('created_at', 'DESC')->take(8)->get();
         return view('index', compact('brands', 'featured_categories', 'sliders',  'mobile_sliders', 'products'));
     }
