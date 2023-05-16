@@ -24048,7 +24048,7 @@ __webpack_require__.r(__webpack_exports__);
     var models = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var engines = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
-    var years = computed(function () {
+    var years = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return store.getters.years;
     });
     var url = new URL(location.href).pathname.split("/");

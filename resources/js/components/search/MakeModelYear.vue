@@ -80,7 +80,7 @@
 </template>
 
 <script>
-import { onMounted, reactive, ref } from "vue";
+import { computed, onMounted, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
 import { useActions, useGetters } from "vuex-composition-helpers";
