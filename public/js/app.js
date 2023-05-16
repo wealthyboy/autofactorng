@@ -21034,6 +21034,11 @@ __webpack_require__.r(__webpack_exports__);
 
     function register() {
       this.v$.$touch();
+
+      if (this.v$.$error) {
+        return;
+      }
+
       var postData = {
         url: "/change/password",
         data: form,

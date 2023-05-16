@@ -13,7 +13,7 @@
         <form  v-if="!message"  @submit.prevent="submit" class="form" method="POST" action="#">
             <template>                      
                 <p class="form-group">
-                    <label for="old_password">Old Password&nbsp;<span class="required">*</span></label>
+                    <label for="old_password">Old PPassword&nbsp;<span class="required">*</span></label>
                     <input id="old_password" 
                         v-model="form.old_password"
                         @input="removeError($event)"  
