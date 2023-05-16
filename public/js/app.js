@@ -24026,9 +24026,104 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/search/MakeModelYear.vue?vue&type=script&lang=js ***!
   \**************************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/js/components/search/MakeModelYear.vue: Identifier 'useStore' has already been declared. (6:33)\n\n\u001b[0m \u001b[90m 4 |\u001b[39m \u001b[36mimport\u001b[39m axios \u001b[36mfrom\u001b[39m \u001b[32m\"axios\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 5 |\u001b[39m \u001b[36mimport\u001b[39m { useActions\u001b[33m,\u001b[39m useGetters } \u001b[36mfrom\u001b[39m \u001b[32m\"vuex-composition-helpers\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 6 |\u001b[39m \u001b[36mimport\u001b[39m { mapGetters\u001b[33m,\u001b[39m mapActions\u001b[33m,\u001b[39m useStore } \u001b[36mfrom\u001b[39m \u001b[32m\"vuex\"\u001b[39m\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m   |\u001b[39m                                  \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 7 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 8 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 9 |\u001b[39m \u001b[36mexport\u001b[39m \u001b[36mdefault\u001b[39m {\u001b[0m\n    at instantiate (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:72:32)\n    at constructor (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:358:12)\n    at Parser.raise (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:3335:19)\n    at ScopeHandler.checkRedeclarationInScope (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:3519:19)\n    at ScopeHandler.declareName (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:3485:12)\n    at Parser.declareNameFromIdentifier (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:12058:16)\n    at Parser.checkIdentifier (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:12053:12)\n    at Parser.checkLVal (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:11979:12)\n    at Parser.finishImportSpecifier (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:16191:10)\n    at Parser.parseImportSpecifier (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:16372:17)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex-composition-helpers */ "./node_modules/vuex-composition-helpers/dist/index.js");
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["filter"],
+  emits: ["do:filter", "do:string"],
+  setup: function setup(props, _ref) {
+    var emit = _ref.emit;
+    var makes = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var models = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var engines = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
+    var url = new URL(location.href).pathname.split("/");
+    var years = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
+      return store.getters.years;
+    });
+    var next = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+      makes: [],
+      models: "",
+      engines: ""
+    });
+    var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+      year: "0",
+      make_id: "0",
+      model_id: "0",
+      engine_id: "0",
+      type: "",
+      next: "",
+      category: url[2],
+      checkForCategory: url[1] == "products" ? 1 : 0,
+      product: url[3],
+      search: url[1] == "search" ? true : false //search mode
+
+    });
+
+    var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_2__.useActions)(["getProducts"]),
+        getProducts = _useActions.getProducts;
+
+    function getNext(e) {
+      form.type = e.target.name;
+      var nt = e.target.dataset.next;
+      axios__WEBPACK_IMPORTED_MODULE_1___default().get("/make-model-year-engine", {
+        params: form
+      }).then(function (response) {
+        var url = new URL(location.href);
+        var path = url.pathname.split("/");
+        store.commit("setfitString", response.data.string);
+        store.commit("setProductFitString", response.data.productFitString);
+        next[nt] = response.data.data;
+        var text = response.data.string;
+        var type = e.target.name;
+
+        if (type == "engine_id" && path[1] == "search") {
+          console.log(true);
+          getProducts(location.href);
+        }
+
+        if (type == "engine_id" && path[1] == "products") {
+          getProducts(location.href);
+        }
+
+        emit("do:string", {
+          text: text,
+          type: type
+        });
+
+        if (nt == "products") {// emit("do:filter", { form, text });
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+
+    return {
+      makes: makes,
+      models: models,
+      engines: engines,
+      getNext: getNext,
+      form: form,
+      next: next,
+      getProducts: getProducts,
+      years: years
+    };
+  }
+});
 
 /***/ }),
 
@@ -29940,18 +30035,18 @@ var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_16 = ["value"];
-function render(_ctx, _cache) {
+function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     name: "year",
     "class": "form-control",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return _ctx.form.year = $event;
+      return $setup.form.year = $event;
     }),
     "data-next": "makes",
     onChange: _cache[1] || (_cache[1] = function ($event) {
-      return _ctx.getNext($event);
+      return $setup.getNext($event);
     })
-  }, [_hoisted_3, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.years, function (year) {
+  }, [_hoisted_3, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.years, function (year) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: year,
       value: year
@@ -29962,17 +30057,17 @@ function render(_ctx, _cache) {
   /* KEYED_FRAGMENT */
   ))], 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.form.year]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.year]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "form-control",
     onChange: _cache[2] || (_cache[2] = function ($event) {
-      return _ctx.getNext($event);
+      return $setup.getNext($event);
     }),
     name: "make",
     "data-next": "models",
     "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
-      return _ctx.form.make_id = $event;
+      return $setup.form.make_id = $event;
     })
-  }, [_hoisted_7, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.next.makes, function (make) {
+  }, [_hoisted_7, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.next.makes, function (make) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: make.id,
       value: make.id
@@ -29983,17 +30078,17 @@ function render(_ctx, _cache) {
   /* KEYED_FRAGMENT */
   ))], 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.form.make_id]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.make_id]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "form-control",
     name: "model",
     onChange: _cache[4] || (_cache[4] = function ($event) {
-      return _ctx.getNext($event);
+      return $setup.getNext($event);
     }),
     "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
-      return _ctx.form.model_id = $event;
+      return $setup.form.model_id = $event;
     }),
     "data-next": "engines"
-  }, [_hoisted_11, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.next.models, function (model) {
+  }, [_hoisted_11, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.next.models, function (model) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: model.id,
       value: model.id
@@ -30004,17 +30099,17 @@ function render(_ctx, _cache) {
   /* KEYED_FRAGMENT */
   ))], 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.form.model_id]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.model_id]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "class": "form-control",
     name: "engine_id",
     onChange: _cache[6] || (_cache[6] = function ($event) {
-      return _ctx.getNext($event);
+      return $setup.getNext($event);
     }),
     "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
-      return _ctx.form.engine_id = $event;
+      return $setup.form.engine_id = $event;
     }),
     "data-next": "products"
-  }, [_hoisted_15, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.next.engines, function (engine) {
+  }, [_hoisted_15, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.next.engines, function (engine) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
       key: engine.id,
       value: engine.id
@@ -30025,7 +30120,7 @@ function render(_ctx, _cache) {
   /* KEYED_FRAGMENT */
   ))], 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, _ctx.form.engine_id]])])])], 64
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.form.engine_id]])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
