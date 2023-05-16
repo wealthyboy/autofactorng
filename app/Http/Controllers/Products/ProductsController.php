@@ -87,11 +87,15 @@ class ProductsController extends Controller
             ->orWhere('categories.slug', 'servicing-parts');
         });
 
-        $query = Product::where('name', 'like', '%' . $request->q . '%');
+
+
 
         $type = $this->getType($request);
 
         $per_page = $request->per_page ??  100;
+
+        $query = Product::where('name', 'like', '%' . $request->q . '%')->filter($request)->latest()->paginate($per_page);
+        dd($query);
 
         $category = optional(optional(optional($product)->first())->categories)->first();
         //(new Product())->buildSearchString($category);
