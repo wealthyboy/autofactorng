@@ -21520,6 +21520,7 @@ __webpack_require__.r(__webpack_exports__);
       return store.getters.showModal;
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
+      console.log(props.years);
       store.commit("setYears", props.years);
     });
 

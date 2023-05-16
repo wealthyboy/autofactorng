@@ -56,6 +56,7 @@ export default {
         const fitString = computed(() => store.getters.fitString);
         const showModal = computed(() => store.getters.showModal);
         onMounted(() => {
+            console.log(props.years)
             store.commit("setYears", props.years);
         })
 
