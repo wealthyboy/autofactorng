@@ -307,7 +307,7 @@ class Product extends Model
     }
 
 
-    public  function buildSearchString($category = null)
+    public  function buildSearchString()
     {    
         
        // if ($category) {
