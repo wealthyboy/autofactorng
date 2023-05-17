@@ -26,7 +26,8 @@
 
 
                <div class="text-end">
-                  <a href="/register" type="button" class="btn w-25  bg-main mt-4 text-white">Sign up >></a>
+                  <a href="/register" class="btn w-25  bg-main mt-4 text-white">Sign up >></a>
+                  <a href="/register" class="bold fs-6 btn btn-primary p-2" data-bs-toggle="modal" data-bs-target="#reviewsCenteredScrollableTitle"> Be The First To Review This Product </a>
                </div>
 
             </div>
