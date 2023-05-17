@@ -29,8 +29,7 @@
             <div  id="content" class="col-md-6  mb-9 p-">
               <h2>{{ $video->title }}</h2>
              <div style="height: 45px;" class="mt-5"> <?php echo  html_entity_decode( $video->description)  ?> </div> 
-
-              <?php echo  html_entity_decode( $video->link)  ?>
+              <?php echo  html_entity_decode($video->link)  ?>
             </div>
             @endforeach
             <div class="margin-top-35">
