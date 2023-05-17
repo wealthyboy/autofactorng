@@ -12264,7 +12264,7 @@ img.slide-bg {
 }
 
 .sticky-header.header-middle.fixed {
-    height: 70px
+    height: 81px;
 }
 
 .sticky-header.deprecated-sticky:not(.fixed) .cart-dropdown,
