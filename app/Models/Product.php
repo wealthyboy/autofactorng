@@ -308,7 +308,8 @@ class Product extends Model
 
 
     public  function buildSearchString($category = null)
-    {   
+    {    
+        dd(true);
        // if ($category) {
             if (null !== request()->cookie('engine_id') &&  request()->type !== 'clear') {
                 $year = request()->cookie('year');
