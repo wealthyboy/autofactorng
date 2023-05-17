@@ -10,7 +10,7 @@ class HowToController extends Controller
 {
     public function index()
     {
-        $videos  = Blog::paginate(10);
+        $videos  = Blog::orderBy('sort_order', 'asc')->paginate(10);
         return view('howto.index', compact('videos'));
     }
 }
