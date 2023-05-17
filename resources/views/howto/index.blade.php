@@ -33,7 +33,9 @@
               <?php echo  html_entity_decode( $video->link)  ?>
             </div>
             @endforeach
-            <div class="margin-top-35"></div>
+            <div class="margin-top-35">
+               {{ $videos->links() }}
+            </div>
         </div> <!-- /row -->
     </div> <!-- /container -->
 </section>
