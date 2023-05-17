@@ -100,7 +100,7 @@ class ProductsController extends Controller
         (new Product())->buildSearchString($category);
         if (null !== $category ) {
 
-        if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
+            if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
                 // $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                 //     $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
                 //     $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
