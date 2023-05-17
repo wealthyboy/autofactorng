@@ -300,7 +300,7 @@ class Product extends Model
                 $builder->groupBy('make_model_year_engines.product_id');
             })->first();
 
-           // return  $p !== null ? 'Fits your ' . $this->buildSearchString() : self::DoesNotFit;
+           return  $p !== null ? 'Fits your ' . $this->buildSearchString() : self::DoesNotFit;
         }
 
         return $this->buildSearchString() ? 'Fits your ' . $this->buildSearchString() : self::CheckText;
