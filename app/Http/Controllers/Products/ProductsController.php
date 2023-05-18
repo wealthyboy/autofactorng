@@ -100,17 +100,17 @@ class ProductsController extends Controller
             $builder->where('year_from', '<=', $request->cookie('year'));
             $builder->where('year_to', '>=', $request->cookie('year'));
             $builder->groupBy('make_model_year_engines.product_id');
-           });
+           })->get();
+
+           if (null !== $q) {
+               foreach($q as $v){
+                 $v->is_available = true;
+                 $v->save();
+               }
+           }
         }
         
-        $q->get();
-
-        if (null !== $q) {
-            foreach($q as $v){
-              $v->is_available = true;
-              $v->save();
-            }
-        }
+       
 
 
         $query = Product::where('name', 'like', '%' . $request->q . '%');
