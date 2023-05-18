@@ -89,21 +89,16 @@ class ProductsController extends Controller
             ->orWhere('categories.slug', 'servicing-parts');
         });
 
-        $products = Product::get();
-
+        
+        $products = Product::where('is_available', true)->get();
         foreach($products as $product) {
-          $product->is_available = 0;
-          $product->save();
+            $product->is_available = 0;
+            $product->save();
         }
-
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
 
-            $products = Product::where('is_available', true)->get();
-            foreach($products as $product) {
-                $product->is_available = 0;
-                $product->save();
-            }
+            
       
           $q = Product::where('name', 'like', '%' . $request->q . '%')
            ->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
