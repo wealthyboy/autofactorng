@@ -90,11 +90,11 @@ class ProductsController extends Controller
         });
 
 
-        $q = Product::where('name', 'like', '%' . $request->q . '%');
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
             dd(true);
 
-          $q->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
+          $q = Product::where('name', 'like', '%' . $request->q . '%')
+           ->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
             $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
             $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
             $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
@@ -104,8 +104,8 @@ class ProductsController extends Controller
            })->get();
 
            if (null !== $q) {
-               foreach($q as $v){
-                 $v->is_available = true;
+               foreach($q as $key => $v){
+                 $v->is_available = $key +1;
                  $v->save();
                }
            }
