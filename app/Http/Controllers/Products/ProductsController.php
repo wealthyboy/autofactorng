@@ -127,7 +127,7 @@ class ProductsController extends Controller
         $per_page = $request->per_page ??  100;
 
         $category = optional(optional(optional($product)->first())->categories)->first();
-       (new Product())->buildSearchString($category);
+       //(new Product())->buildSearchString($category);
        // if (null !== $category ) {
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
@@ -146,10 +146,9 @@ class ProductsController extends Controller
         $products = $query->filter($request)->orderBy('is_available', 'desc')->latest()->paginate($per_page);
         $products->load('images');
         $products->appends(request()->all());
-        $category = null;
         $cat = null;
 
-        if ($products->count()) {
+        if ( $products->count() ) {
             $cat = $this->getCategory($category) ? $this->buildSearchString($request) : null;
         }
 
