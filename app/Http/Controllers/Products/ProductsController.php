@@ -148,7 +148,7 @@ class ProductsController extends Controller
 
         if ($products->count()) {
             $category = $products->first()->categories->first();
-            dd($category);
+           // dd($category);
             $cat = $this->getCategory($category) ? $this->buildSearchString($request) : null;
         }
 
