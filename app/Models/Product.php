@@ -284,10 +284,15 @@ class Product extends Model
 
 
     public function getFitTextAttribute()
-    {
+    {  
+
+        
         if (request()->type == 'tyre') {
             return 'Fits your vehicle';
         }
+
+
+        
 
         if ($this->buildSearchString()) {
             $request = request();
