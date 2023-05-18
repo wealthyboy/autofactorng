@@ -131,7 +131,7 @@ class ProductsController extends Controller
             
         //}
         
-        $products = $query->filter($request)->orderBy('is_available', 'asc')->latest()->paginate($per_page);
+        $products = $query->filter($request)->orderBy('is_available', 'desc')->latest()->paginate($per_page);
         $products->load('images');
         $products->appends(request()->all());
         $category = null;
