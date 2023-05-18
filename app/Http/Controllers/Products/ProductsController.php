@@ -90,15 +90,12 @@ class ProductsController extends Controller
         });
 
         
-        $products = Product::where('is_available', true)->get();
-        foreach($products as $product) {
-            $product->is_available = 0;
-            $product->save();
-        }
+         
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
 
-
+            
+      
           $q = Product::where('name', 'like', '%' . $request->q . '%')
            ->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
             $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
@@ -146,9 +143,11 @@ class ProductsController extends Controller
         $products = $query->filter($request)->orderBy('is_available', 'desc')->latest()->paginate($per_page);
         $products->load('images');
         $products->appends(request()->all());
+        $category = null;
         $cat = null;
 
-        if ( $products->count() ) {
+        if ($products->count()) {
+            $category = $products->first()->categories->first();
             $cat = $this->getCategory($category) ? $this->buildSearchString($request) : null;
         }
 
