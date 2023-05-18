@@ -80,7 +80,6 @@ class ProductsController extends Controller
             return redirect('404');
         }
 
-
         $page_title = "Search " . $request->q;
 
         $this->clearMMYCookies($request);
@@ -89,6 +88,25 @@ class ProductsController extends Controller
             $builder->where('categories.slug', 'spare-parts')
             ->orWhere('categories.slug', 'servicing-parts');
         });
+
+
+        $q = Product::where('name', 'like', '%' . $request->q . '%')
+          ->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
+            $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
+            $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
+            $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
+            $builder->where('year_from', '<=', $request->cookie('year'));
+            $builder->where('year_to', '>=', $request->cookie('year'));
+            $builder->groupBy('make_model_year_engines.product_id');
+        })->get();
+
+        if (null !== $q) {
+           foreach($q as $v){
+              $v->is_available = true;
+              $v->save();
+           }
+        }
+
 
         $query = Product::where('name', 'like', '%' . $request->q . '%');
 
@@ -100,20 +118,20 @@ class ProductsController extends Controller
        // (new Product())->buildSearchString($category);
        // if (null !== $category ) {
 
-            if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
-                // $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
-                //     $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
-                //     $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
-                //     $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
-                //     $builder->where('year_from', '<=', $request->cookie('year'));
-                //     $builder->where('year_to', '>=', $request->cookie('year'));
-                //     $builder->groupBy('make_model_year_engines.product_id');
-                // });
-            }
+        if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
+            $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
+                $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
+                $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
+                $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
+                $builder->where('year_from', '<=', $request->cookie('year'));
+                $builder->where('year_to', '>=', $request->cookie('year'));
+                $builder->groupBy('make_model_year_engines.product_id');
+            });
+        }
             
         //}
         
-        $products = $query->filter($request)->latest()->paginate($per_page);
+        $products = $query->filter($request)->orderBy('is_available', 'asc')->latest()->paginate($per_page);
         $products->load('images');
         $products->appends(request()->all());
         $category = null;

@@ -303,6 +303,8 @@ class Product extends Model
            return  $p !== null ? 'Fits your ' . $this->buildSearchString() : self::DoesNotFit;
         }
 
+        
+
         return $this->buildSearchString() ? 'Fits your ' . $this->buildSearchString() : self::CheckText;
     }
 
