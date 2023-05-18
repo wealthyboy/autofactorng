@@ -14,7 +14,7 @@ class AlterProductsTableAddIsAvailable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->boolval('is_available')->default(false);
+            $table->boolean('is_available')->default(false);
         });
     }
 
