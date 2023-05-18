@@ -91,11 +91,6 @@ class ProductsController extends Controller
 
         $products = Product::get();
 
-        foreach($products as $product) {
-          $product->is_available = 0;
-          $product->save();
-        }
-
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
 
