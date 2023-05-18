@@ -90,15 +90,20 @@ class ProductsController extends Controller
         });
 
 
-        $q = Product::where('name', 'like', '%' . $request->q . '%')
-          ->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
+        $q = Product::where('name', 'like', '%' . $request->q . '%');
+        if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
+
+          $q->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
             $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
             $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
             $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
             $builder->where('year_from', '<=', $request->cookie('year'));
             $builder->where('year_to', '>=', $request->cookie('year'));
             $builder->groupBy('make_model_year_engines.product_id');
-        })->get();
+           });
+        }
+        
+        $q->get();
 
         if (null !== $q) {
             foreach($q as $v){
@@ -115,7 +120,7 @@ class ProductsController extends Controller
         $per_page = $request->per_page ??  100;
 
         $category = optional(optional(optional($product)->first())->categories)->first();
-       // (new Product())->buildSearchString($category);
+       (new Product())->buildSearchString($category);
        // if (null !== $category ) {
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
