@@ -257,6 +257,11 @@ class Product extends Model
         return $sort[$key];
     }
 
+    public function getCategory()
+    {
+        return $this->categories->first()->name == 'Spare Parts' || optional($category)->name  == 'Servicing Parts' || optional($category->parent)->name  == 'Spare Parts' ||  optional($category->parent)->name  == 'Servicing Parts' ? true : false;
+    }
+
 
     public function getFitsAttribute()
     {
@@ -292,8 +297,7 @@ class Product extends Model
         }
 
 
-        
-
+        if ($this->getCategory()){
         if ($this->buildSearchString()) {
             $request = request();
             $p = Product::where('id', $this->id)->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
@@ -309,8 +313,9 @@ class Product extends Model
         }
 
         
-
+       
         return $this->buildSearchString() ? 'Fits your ' . $this->buildSearchString() : self::CheckText;
+       }
     }
 
 
