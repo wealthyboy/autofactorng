@@ -259,7 +259,7 @@ class Product extends Model
 
     public function getCategory()
     {   $category = $this->categories->first();
-        return optional($this->categories->first())->name == 'Spare Parts' || optional($category)->name  == 'Servicing Parts' || optional($category->parent)->name  == 'Spare Parts' ||  optional($category->parent)->name  == 'Servicing Parts' ? true : false;
+        return optional($this->categories->first())->name == 'Spare Parts' || optional($category)->name  == 'Servicing Parts' || optional(optional($category)->parent)->name  == 'Spare Parts' ||  optional(optional($category)->parent)->name  == 'Servicing Parts' ? true : false;
     }
 
 
