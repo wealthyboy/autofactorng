@@ -91,7 +91,8 @@ class Product extends Model
         'percentage_off',
         'image_l',
         'is_in_cart',
-        'str_len'
+        'str_len',
+        'show_fit_text'
     ];
 
 
@@ -287,15 +288,21 @@ class Product extends Model
         return  null !== $this->cart ? true : false;
     }
 
+    
 
-    public function getFitTextAttribute()
-    {  
+    public function getShowFitTextAttribute()
+    {
+        return $this->categories;
+    }
+  
+    
+      public function getFitTextAttribute()
+    {
 
         
         if (request()->type == 'tyre') {
             return 'Fits your vehicle';
         }
-
 
         if ($this->buildSearchString()) {
             $request = request();
@@ -319,7 +326,6 @@ class Product extends Model
     public  function buildSearchString($category =null)
     {    
         
-        if ($category) {
             if (null !== request()->cookie('engine_id') &&  request()->type !== 'clear') {
                 $year = request()->cookie('year');
                 $make_name = Attribute::find(request()->cookie('make_id'))->name;
@@ -327,7 +333,7 @@ class Product extends Model
                 $engine_name = optional(Engine::find(request()->cookie('engine_id')))->name;
                 return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
             }
-        }
+      //  }
        
 
         return null;
