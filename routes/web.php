@@ -128,7 +128,7 @@ Route::resource('account', 'Account\AccountController', ['names' => 'account']);
 Route::get('change/password', 'ChangePassword\ChangePasswordController@index');
 Route::post('change/password', 'ChangePassword\ChangePasswordController@changePassword');
 Route::get('wallet-balance', 'Wallets\WalletsController@walletBalnce');
-Route::get('how-to', 'HowTo\HowToController@index');
+Route::get('video-tips', 'HowTo\HowToController@index');
 
 Route::post('reset/password',                'Auth\ResetPasswordController@reset');
 

@@ -207,7 +207,7 @@
                      <product-search class="mx-5"></product-search>
 
                      <div class="menu-i menu-i  w-25 me-5">
-                        <a href="/how-to" role="button" class="w-100 mb-0 border-0">
+                        <a href="/video-tips" role="button" class="w-100 mb-0 border-0">
                            <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
                               <span class="material-symbols-outlined">
                               <i class="bi bi-camera-video fs-1"></i>
@@ -241,7 +241,7 @@
 
 
                <div class="menu-i w-50  d-flex add-a-vehicle justify-content-evenly align-items-center border">
-                  <a href="/how-to" role="button" class="w-100  ">
+                  <a href="/video-tips" role="button" class="w-100  ">
                      <div class="d-flex add-a-vehicle justify-content-evenly align-items-center">
                      
                         <span class="">
