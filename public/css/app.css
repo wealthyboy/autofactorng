@@ -3053,7 +3053,11 @@ aside .banner {
         height: 100%;
     }
 
-    
+    .banner  figure img {
+       min-height: 30rem !important;
+    }
+
+      
 }
 
 .breadcrumb-nav {

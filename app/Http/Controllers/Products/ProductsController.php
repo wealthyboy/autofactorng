@@ -117,9 +117,7 @@ class ProductsController extends Controller
            }
         }
         
-       
-
-
+    
         $query = Product::where('name', 'like', '%' . $request->q . '%');
 
         $type = $this->getType($request);
