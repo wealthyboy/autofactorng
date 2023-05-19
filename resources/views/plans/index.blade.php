@@ -34,7 +34,7 @@
             <a href="/subscribe?plan={{ str_slug($key, '_') }}" class="btn btn-sm py-3 {{ $key == 'NORMAL DUTY' ? 'text-dark bg-white' : ' text-white bg-main'}}  bg-gradient-white w-100 border-radius-md mt-4 mb-2 fs-5 bold">Subscribe now</a>
           </div>
           <hr class="horizontal dark my-0">
-          <div class="card-body {{ $key == 'NORMAL DUTY' ? 'text-center bg-main' : ''}}">
+          <div class="card-body {{ $key == 'NORMAL DUTY' ? 'text-left bg-main' : ''}}">
 
             @foreach($plan['text'] as $key => $text)
 
