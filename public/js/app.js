@@ -21729,7 +21729,7 @@ __webpack_require__.r(__webpack_exports__);
       loading.value = !loading.value;
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/password/reset/link", form).then(function (res) {
         loading.value = !loading.value;
-        message.value = "A link has been to your email or  your spam.";
+        message.value = "A link has been to your email inbox or  spam.";
         error.value = false;
       })["catch"](function (err) {
         loading.value = !loading.value;
