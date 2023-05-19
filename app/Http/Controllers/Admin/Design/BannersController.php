@@ -66,15 +66,15 @@ class BannersController extends Table
         ]);
 
         $banner->title = $request->title;
-        $banner->link  = $request->link;
-        $banner->col   = $request->col_width;
-        $banner->sm_col_width   = $request->sm_col_width;
-        $banner->md_col_width  = $request->md_col_width;
-        $banner->class         = $request->class;
-        $banner->type   = $request->type;
-        $banner->use_text   = $request->use_text ? 1 : 0;
-        $banner->description   = $request->description;
-        $banner->image   = $request->image;
+        $banner->link = $request->link;
+        $banner->col = $request->col_width;
+        $banner->sm_col_width = $request->sm_col_width;
+        $banner->md_col_width = $request->md_col_width;
+        $banner->class = $request->class;
+        $banner->type = $request->type;
+        $banner->use_text = $request->use_text ? 1 : 0;
+        $banner->description = $request->description;
+        $banner->image = $request->image;
         $banner->sort_order = $request->sort_order;
         $banner->device = $request->device;
         // $banner->mobile_sort_order = $request->mobile_sort_order;
