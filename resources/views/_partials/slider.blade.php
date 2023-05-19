@@ -16,7 +16,7 @@
          <div class="banner banner3 {{ $slider->device }}">
             <a href="{{ $slider->link }}" class="d-block">
                <figure>
-                  <img width="1920" height="700" src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
+                  <img  src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
                </figure>
             </a>
          </div>
@@ -34,7 +34,7 @@
          <div class="banner banner3  {{ $slider->device }}   d-md-block">
             <a href="{{ $slider->link }}" class="d-block">
                <figure>
-                  <img width="1920" height="700" src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
+                  <img  src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
                </figure>
             </a>
          </div>
