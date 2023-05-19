@@ -6,8 +6,6 @@
   <div class="container">
     <div class="row">
       <div class="col-md12">
-
-
         <p> Regardless of whether you're an individual or a business, minimizing risk, improving your driving experience, and having confidence in the quality of your replacement parts are all vital considerations. </p>
         <p> By signing up for a subscription plan, you will receive shopping credits equal to your subscription fee, plus an additional 10% credit bonus that you can use to purchase items on our website. </p>
         <p> Additionally, you'll gain access to exclusive advantages and discounts that must be used within one year of the purchase date. </p>
@@ -49,11 +47,6 @@
         </div>
       </div>
       @endforeach
-
-
-
-
-
 
 
       <div class="mt-5">
