@@ -74,7 +74,7 @@ export default {
                 .post("/password/reset/link", form)
                 .then((res) => {
                     loading.value = !loading.value;
-                    message.value = "A link has been to your email. Or check your spam";
+                    message.value = "A link has been to your email or  your spam.";
                     error.value = false;
                 })
                 .catch((err) => {
