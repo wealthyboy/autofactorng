@@ -136,7 +136,7 @@
                   @endauth
 
                   @guest
-                  <div class="position-relative ms-3">
+                  <div class="position-relative  me-sm-5">
                   <a href="tel:{{optional($system_settings)->store_phone }}" class="d-flex flex-column align-items-center no-hover text-black" title="account">
                         <span class="material-symbols-outlined display-3">
                            phone
