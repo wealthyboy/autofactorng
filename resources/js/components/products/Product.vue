@@ -64,7 +64,7 @@
                 </div>
                 <!-- End .product-container -->
 
-                    <p v-if="product.show_fit_text" class="product-description mt-2 w-100">
+                <p v-if="product.show_fit_text" class="product-description mt-2 w-100">
 
                     <check-vehicle :fitText="product.fitText" />
                 </p>

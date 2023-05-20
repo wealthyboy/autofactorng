@@ -24,8 +24,8 @@
 
         <!-- End .ratings-container -->
 
-        <p v-if="product.show_fit_text" class="product-description">
-                <check-vehicle :fitText="product.fitText" />
+        <p v-if="product.showFitString">
+            <check-vehicle :fitText="productFitString" />
         </p>
 
 
