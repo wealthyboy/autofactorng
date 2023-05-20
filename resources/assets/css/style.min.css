@@ -2901,6 +2901,10 @@ a:focus {
     }
 }
 
+.cart-text{
+    margin-top: -0.75rem !important;
+}
+
 .mfp-container .mfp-preloader,
 .porto-loading-icon {
     content: "";

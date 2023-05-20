@@ -19,7 +19,7 @@
                 shopping_cart
             </span>
             <span class="cart-count badge-circle">{{ cartItemCount }}</span>
-            <span class="header-right-icons  fs-5"> Cart </span>
+            <span class="header-right-icons  cart-text  fs-5"> Cart </span>
         </a>
     </div>
 
