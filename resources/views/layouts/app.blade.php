@@ -112,7 +112,7 @@
                      <h6><span>Call to order</span><a href="tel:#" class="text-dark font1">{{optional($system_settings)->store_phone }}</a></h6>
                   </div>
                   @auth
-                  <div class="position-relative  me-sm-5">
+                  <div class="position-relative  me-sm-3">
                         <a href="tel:{{optional($system_settings)->store_phone }}" class="d-flex flex-column align-items-center no-hover text-black" title="account">
                         <span class="material-symbols-outlined display-3">
                            phone
@@ -122,7 +122,7 @@
                            </span>
                         </a>
                      </div>
-                  <div class="position-relative  me-sm-5">
+                  <div class="position-relative  me-sm-3">
                      <a href="/account" class="d-flex flex-column align-items-center" title="account">
                         <span class="material-symbols-outlined display-2">
                            person
@@ -136,7 +136,7 @@
                   @endauth
 
                   @guest
-                  <div class="position-relative  me-sm-5">
+                  <div class="position-relative  me-sm-3">
                   <a href="tel:{{optional($system_settings)->store_phone }}" class="d-flex flex-column align-items-center no-hover text-black" title="account">
                         <span class="material-symbols-outlined display-3">
                            phone
