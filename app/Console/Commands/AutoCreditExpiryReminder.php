@@ -54,9 +54,9 @@ class AutoCreditExpiryReminder extends Command
         if (null !== $subscribers) {
             $message = [];
 
-            $message[] = "Your Autocover subscription is expiring in 14 days! ";
+            $message[] = "Your Autocover subscription is expiring in 30 days! ";
 
-            $message[] =  "It's important to note that any unused credits or benefits after the expiry of the validity period cannot be rolled over or transferred. ";
+            $message[] = "It's important to note that any unused credits or benefits after the expiry of the validity period cannot be rolled over or transferred. ";
 
             $message[] = "You shall be able to renew your subscription from [Date]. ";
 
@@ -73,6 +73,17 @@ class AutoCreditExpiryReminder extends Command
         $subscribers = Subscribe::with('user')->where("ends_at", "<", $week)->get();
 
         if (null !== $subscribers) {
+            $message = [];
+
+            $message[] = "Your Autocover subscription is expiring in 7 days! ";
+
+            $message[] = "It's important to note that any unused credits or benefits after the expiry of the validity period cannot be rolled over or transferred. ";
+
+            $message[] = "You shall be able to renew your subscription from [Date]. ";
+
+            $message[] = "Renew to continue enjoying exclusive benefits.";
+
+            $message[] = "Don't miss out on the convenience, savings, and perks of being a loyal subscriber.";
             foreach ($subscribers as  $subscriber) {
                 Notification::route('mail', optional($subscriber->user)->email)
                     ->notify(new ReminderNotification($subscriber->user, $message));
