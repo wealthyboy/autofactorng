@@ -1,6 +1,6 @@
 <template>
     <div class="col-xl-5 product-single-details pt-0">
-        <h1 class="product-title mb-2">{{ product.name }}</h1>
+        <h1 class="product-title mb-2">{{ product.name }} ddd</h1>
         <div class="mb-3 fs-4 fw-bold">{{ product.note }}</div>
 
         <div class="ratings-container mt-3">
@@ -150,6 +150,8 @@ export default {
     },
     mounted() {
         this.text = !this.product.in_stock ? "Out of Stock" : "Add to Cart";
+
+        console.log(this.product)
     },
     methods: {
         ...mapActions({
