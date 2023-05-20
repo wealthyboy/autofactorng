@@ -117,7 +117,7 @@
                         <span class="material-symbols-outlined display-3">
                            phone
                            </span>
-                           <span class="header-right-icons  fs-5">
+                           <span class="header-right-icons mt-1 fs-5">
                               Call 
                            </span>
                         </a>
@@ -141,7 +141,7 @@
                         <span class="material-symbols-outlined display-3">
                            phone
                            </span>
-                           <span class="header-right-icons  fs-5 m">
+                           <span class="header-right-icons  fs-5 mt-1">
                               Call 
                            </span>
                         </a>
