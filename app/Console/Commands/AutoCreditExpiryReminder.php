@@ -54,7 +54,7 @@ class AutoCreditExpiryReminder extends Command
 
             foreach ($subscribers as  $subscriber) {
                 $date = $subscriber->ends_at->addDay()->format('d/m/y');
-                $message[] = "Your Autocover subscription is expiring in 30 days! ";
+                $message[] = "Your Autocover subscription is expiring in 14 days! ";
                 $message[] = "It's important to note that any unused credits or benefits after the expiry of the validity period cannot be rolled over or transferred. ";
                 $message[] = "You shall be able to renew your subscription from {$date}";
                 $message[] = "Renew to continue enjoying exclusive benefits.";
