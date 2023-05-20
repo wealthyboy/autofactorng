@@ -51,16 +51,24 @@ class ReminderNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        $m = (new MailMessage)
             ->bcc('damilola@autofactorng.com')
             ->bcc('account@autofactorng.com')
             ->bcc('care@autofactorng.com')
-            ->subject('Hello ' . $this->user->name)
-            ->line($this->message)
-            ->line('Plan: ' . 'Light Duty')
-           
-            ->action('Visit website', url(Config('app.url') .'/plans?type=auto_cover'))
-            ->line('Thank you for using our service!');
+            ->subject('Hello ' . $this->user->name);
+            if (is_array($this->message)){
+                foreach($this->message as $meaasge) {
+                    $m->line($message); 
+                }
+            } else {
+                $m->line($this->message); 
+            }
+            
+            
+            $m->action('Visit website', url(Config('app.url') .'/plans?type=auto_cover'));
+            $m->line('Thank you for using our service!');
+
+            return $m;
     }
 
     /**
