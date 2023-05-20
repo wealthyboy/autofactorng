@@ -50,8 +50,6 @@ class AutoCreditExpiryReminder extends Command
         if (null !== $subscribers) {
             $message = [];
 
-            
-
             $subject =  "Your Subscription in 14 days";
 
             foreach ($subscribers as  $subscriber) {
@@ -77,7 +75,7 @@ class AutoCreditExpiryReminder extends Command
             $message[] = "Renew to continue enjoying exclusive benefits.";
             $message[] = "Renew today and continue enjoying all the advantages that come with being a valued subscriber";
 
-            $subject =  "Subscription Renewal Reminder;
+            $subject =  "Subscription Renewal Reminder";
 
             foreach ($subscribers as  $subscriber) {
                 Notification::route('mail', optional($subscriber->user)->email)

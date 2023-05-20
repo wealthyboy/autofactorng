@@ -17,6 +17,7 @@ class ReminderNotification extends Notification
 
     public $message;
 
+    public $subject;
 
     /**
      * Create a new notification instance.
@@ -25,11 +26,13 @@ class ReminderNotification extends Notification
      */
 
 
-    public function __construct(User $user, $message)
+    public function __construct(User $user, $message, $subject = null)
     {
         $this->user = $user;
 
         $this->message = $message;
+
+        $this->subject = $subject;
     }
 
     /**
@@ -55,7 +58,8 @@ class ReminderNotification extends Notification
             ->bcc('damilola@autofactorng.com')
             ->bcc('account@autofactorng.com')
             ->bcc('care@autofactorng.com')
-            ->subject('Hello ' . $this->user->name);
+            ->subject($this->subject)
+            ->greeting('Hello ' . $this->user->name);
             if (is_array($this->message)){
                 foreach($this->message as $meaasge) {
                     $m->line($message); 
