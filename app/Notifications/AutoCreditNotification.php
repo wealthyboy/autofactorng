@@ -57,7 +57,7 @@ class AutoCreditNotification extends Notification
             ->bcc("account@autofactorng.com")
             ->bcc("damilola@autofactorng.com")
             ->bcc("abiola@autofactorng.com")
-            ->subject('Thanks for subscribing');
+            ->subject($this->subject);
     }
 
     /**
