@@ -48,8 +48,8 @@ class AutoCreditExpiryReminder extends Command
         $subscribers = Subscribe::with('user')->where("ends_at", "<", $month)->get();
 
         if (null !== $subscribers) {
-            $message = [];
 
+            $message = [];
             $subject =  "Your Subscription in 14 days";
 
             foreach ($subscribers as  $subscriber) {
