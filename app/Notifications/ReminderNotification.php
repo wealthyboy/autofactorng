@@ -61,7 +61,7 @@ class ReminderNotification extends Notification
             ->subject($this->subject)
             ->greeting('Hello ' . $this->user->name);
             if (is_array($this->message)){
-                foreach($this->message as $meaasge) {
+                foreach($this->message as $message) {
                     $m->line($message); 
                 }
             } else {
