@@ -24,10 +24,9 @@
 
         <!-- End .ratings-container -->
 
-        {{ product }}
 
         <p v-if="product.showFitString">
-            <check-vehicle :fitText="productFitString" />
+            <check-vehicle :fitText="productFitString" />This is show
         </p>
 
 
