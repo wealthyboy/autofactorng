@@ -28,7 +28,9 @@ class OrdersController extends Table
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $this->middleware('auth');
+
         $orders = Order::has('ordered_products')->where('user_id', auth()->user()->id)->latest()->orderBy('created_at', 'desc')->paginate(450);
         $orders = $this->getColumnListings(request(), $orders);
         $nav = (new AccountSettingsNav())->nav();
