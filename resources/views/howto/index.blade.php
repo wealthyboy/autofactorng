@@ -27,7 +27,7 @@
         <div class="row justifiy-content-center">
             @foreach($videos as $video)
             <div  id="content" class="col-md-6  mb-9 p-">
-              <h2>{{ $video->title }}</h2>
+              <h2 class="mb-1">{{ $video->title }}</h2>
              <div style="height: 65px;" class="mt-5"> <?php echo  html_entity_decode( $video->description)  ?> </div> 
               <?php echo  html_entity_decode($video->link)  ?>
             </div>
