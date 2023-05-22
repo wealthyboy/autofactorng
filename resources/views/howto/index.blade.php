@@ -28,7 +28,11 @@
             @foreach($videos as $video)
             <div  id="content" class="col-md-6  mb-9 p-">
               <h2 class="mb-1">{{ $video->title }}</h2>
-             <div style="height: 65px;" class="mt-5"> <?php echo  html_entity_decode( $video->description)  ?> </div> 
+             <div style="height: 45px; " class="mt-5  d-none d-lg-block  d-xl-block"> <?php echo  html_entity_decode( $video->description)  ?> </div> 
+
+             <div style="height:  d-md-none d-lg-none d-sm-block" class="mt-5"> <?php echo  html_entity_decode( $video->description)  ?> </div> 
+             <div style="height: 65px;  d-md-block d-lg-none d-sm-none d-xl-none d-xs-none" class="mt-5"> <?php echo  html_entity_decode( $video->description)  ?> </div> 
+
               <?php echo  html_entity_decode($video->link)  ?>
             </div>
             @endforeach
