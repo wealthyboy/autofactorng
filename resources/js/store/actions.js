@@ -96,7 +96,7 @@ export const shopWithoutVehicle = ({ commit }, action) => {
     if (action == "change") {
         commit("setfitString", null);
         commit("setShowFitString", false);
-        return
+        
     }
 
     let u = new URL(location.href)
@@ -117,6 +117,9 @@ export const shopWithoutVehicle = ({ commit }, action) => {
             },
         })
         .then((res) => {
+
+            
+            
 
             if (action == "shop") {
                 commit("setModal", false);
