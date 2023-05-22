@@ -122,7 +122,7 @@
                             >
                                 <a href="#" class="dataTable-sorter">
                                     <div class="mb-0 text-xs">
-                                        {{ index }}
+                                        {{ index  }}
                                     </div>
                                 </a>
                             </th>
