@@ -15,6 +15,13 @@ class OrdersController extends Table
 
     public $link = '/orders';
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+        parent::__construct();
+    }
+
 
     public function builder()
     {
