@@ -25914,7 +25914,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, {
         header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-            "class": "bg-transparent border-0 modal-default-button",
+            "class": "bg-transparent border-0 modal-default-button me-4",
             onClick: _cache[0] || (_cache[0] = function () {
               return $setup.show && $setup.show.apply($setup, arguments);
             })
