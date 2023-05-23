@@ -99,7 +99,7 @@ class ShippingController extends Table
     public function edit($id)
     {
         //
-        User::canTakeAction(User::can);
+        User::canTakeAction(User::canEdit);
 
         $shipping = Shipping::find($id);
         $shippings = Shipping::parents()->get();
