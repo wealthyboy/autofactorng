@@ -118,9 +118,6 @@ export const shopWithoutVehicle = ({ commit }, action) => {
         })
         .then((res) => {
 
-            
-            
-
             if (action == "shop") {
                 commit("setModal", false);
             } 
