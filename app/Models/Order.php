@@ -180,6 +180,7 @@ class Order extends Model
 		return  $collection->map(function ($order) {
 			if (str_contains(request()->path(), 'admin')) {
 				return [
+					"Id" => $order->id,
 					"Invoice" => $order->invoice,
 					"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
 					"Type" => $order->order_type,
