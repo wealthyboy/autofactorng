@@ -135,11 +135,11 @@
                             v-for="(h, index) in tableData.items[0]"
                             :key="index"
                         >
-                            <td v-for="(td, i) in h" :key="i" class="">
+                            <td width="50" v-for="(td, i) in h" :key="i" class="">
                                 <div
                                     class="align-middle text-sm text-secondary"
                                 >
-                                    <div class="mb-0 text-xs">{{ td }}</div>
+                                    <div class="mb-0 text-xs">{{ td }} {{ i }}</div>
                                 </div>
                             </td>
 
