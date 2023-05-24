@@ -265,6 +265,33 @@
 
       <main class="main flex-shrink-0">
          @yield('content')
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
+         Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS.
          <modal-search></modal-search>
       </main>
 
@@ -273,85 +300,13 @@
 
       <!-- End .main -->
 
-      <footer class="footer bg-dark site-footer">
-         <div class="py-2 subscribe  border-bottom  ">
-            <div class="container-fluid bg-dark">
-               <div class="row justify-content-center align-items-center no-gutters py-4">
-                  <div class="col-12 col-lg-6">
-                     <div class="mc-mb-6 mc-mb-md-9 mc-mb-lg-0">
-                        <div class="mb-sm-2">
-                           <h1 class="text-white  fs-3 mb-sm-3">Sign up to our newsletter for updates and deals</h1>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-12 col-lg-5 offset-lg-1">
-                     <form method="POST" id="n-letter" class="mb-0 ">
-                        <div class="row g-0">
-                           <div class="row g-0">
-                              <div class="col-8"><input type="text" class="form-control b rounded-0 email coupon-i" placeholder="Enter  your email" required=""></div>
-                              <div class="col-4 coupon-i">
-                                 <button class="btn btn-sm w-100 rounded-0  bg-main bold fs-3 text-white" type="submit"><!--v-if-->
-                                    <span class="spinner-border spinner-border-sm n-spinner d-none" role="status" aria-hidden="true"></span>
+      <footer class="footer mt-auto py-3 bg-light">
+  <div class="container">
+    <span class="text-muted">Place sticky footer content here.</span>
+  </div>
+</footer>
 
-                                    Submit </button>
-                              </div>
-                           </div>
-
-                        </div>
-                     </form>
-
-                     <div class="text-white sub-message"></div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <div class="footer-middle">
-            <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
-            <div class="container-fluid bg-dark">
-               <div class="footer-middle mt-5">
-                  <div class="">
-                     @include('layouts.footer.desktop_footer')
-                  </div>
-               </div><!-- End .footer-middle -->
-
-               <div class="mobile-footer text-center  d-block d-sm-none">
-                  <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap">
-                     <a href="https://www.facebook.com/autofactorng/" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
-                     <a href="https://twitter.com/autofactorng/" class="bi bi-twitter  text-white me-5 fa-2x" target="_blank" title="Twitter"></a>
-                     <a href="http://instagram.com/autofactorng/" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
-                  </div><!-- End .footer-bottom -->
-                  <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
-                  @if ( auth()->check() && auth()->user()->isAdmin() )
-                  <p class="footer-copyright mx-3 text-white"><a target="_blank" href="/admin">Go to Admin</a></p>
-                  @endif
-
-
-               </div>
-
-               <div class="d-none d-lg-block d-md-block d-xl-block">
-                  <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap  ">
-                     <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
-                     @if ( auth()->check() && auth()->user()->isAdmin() )
-                     <p class="footer-copyright mx-3 text-white"><a target="_blank" href="/admin">Go to Admin</a></p>
-                     @endif
-                     <div class="social-icons py-3">
-                        <a href="https://www.facebook.com/autofactorng/" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
-                        <a href="https://twitter.com/autofactorng/" class="bi bi-twitter  text-white me-5 fa-2x" target="_blank" title="Twitter"></a>
-                        <a href="http://instagram.com/autofactorng/" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
-                     </div><!-- End .social-icons -->
-                  </div><!-- End .footer-bottom -->
-               </div>
-
-            </div><!-- End .container -->
-         </div>
-         <!-- End .footer-middle -->
-
-         <div class="container">
-
-         </div>
-         <!-- End .container -->
-      </footer>
-      <!-- End .footer -->
+      
    </div>
 
    <!-- End .page-wrapper -->
