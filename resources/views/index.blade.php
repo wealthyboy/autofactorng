@@ -34,17 +34,11 @@
     @include('_partials.brands')
 </div>
 
-<div class="row">
-    <div class="col-12 text-center p-3">
-    </div>
-</div>
-</div>
+
 
 
 @endsection
 
 @section('inline-scripts')
-
-
 
 @stop
