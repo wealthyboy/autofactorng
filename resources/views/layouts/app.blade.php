@@ -25,7 +25,7 @@
 </head>
 
 
-<body>
+<body class="d-flex flex-column h-100">
    <div id="app" class="page-wrapper">
 
      
@@ -263,7 +263,7 @@
       <!-- End .header -->
       <div class="coverlay overlay-close"></div>
 
-      <main class="main">
+      <main class="main flex-shrink-0">
          @yield('content')
          <modal-search></modal-search>
       </main>
