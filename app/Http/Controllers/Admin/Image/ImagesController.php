@@ -67,7 +67,7 @@ class ImagesController extends Controller
 
             //when the user clicks change remove the previuos image
             request()->validate([
-                'file' => 'required|image|mimes:jpeg,png,webp,jpg,gif',
+                'file' => 'required|image|mimes:jpeg,png,webp,jpg,gif,avif',
                 'folder' => 'required'
             ]);
 
