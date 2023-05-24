@@ -29,7 +29,7 @@
    <div id="app" class="page-wrapper">
 
      
-      <div class=" page-wrap">
+      <div class=" page-wr">
       <header class="header ">
          <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
             <div class=" d-none d-lg-block d-xl-block w-100">
