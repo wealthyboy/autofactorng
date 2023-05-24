@@ -277,7 +277,7 @@
 
       <footer class="footer bg-dark site-footer">
          <div class="py-2 subscribe  border-bottom  ">
-            <div class="container-fluid">
+            <div class="container-fluid bg-dark">
                <div class="row justify-content-center align-items-center no-gutters py-4">
                   <div class="col-12 col-lg-6">
                      <div class="mc-mb-6 mc-mb-md-9 mc-mb-lg-0">
@@ -309,7 +309,7 @@
          </div>
          <div class="footer-middle">
             <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
-            <div class="container-fluid">
+            <div class="container-fluid bg-dark">
                <div class="footer-middle mt-5">
                   <div class="">
                      @include('layouts.footer.desktop_footer')
