@@ -22504,6 +22504,11 @@ p {
     display: block;
   }
   .site-footer, .page-wrap:after {
-    height: 142px; 
+    position: absolute;
+    width: 100%;
+    /* bottom: 0; */
+    color: white;
+    background-color: #202020;
+    font-size: 12px;
   }
   
