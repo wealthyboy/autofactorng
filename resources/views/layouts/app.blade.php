@@ -28,8 +28,8 @@
 <body>
    <div id="app" class="page-wrapper">
 
-
-
+     
+      <div class=" page-wrap">
       <header class="header ">
          <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
             <div class=" d-none d-lg-block d-xl-block w-100">
@@ -268,11 +268,14 @@
          @yield('content')
          <modal-search></modal-search>
       </main>
+      </div>
+
+     
 
 
       <!-- End .main -->
 
-      <footer class="footer bg-dark">
+      <footer class="footer bg-dark site-footer">
          <div class="py-2 subscribe  border-bottom  ">
             <div class="container-fluid">
                <div class="row justify-content-center align-items-center no-gutters py-4">
@@ -313,8 +316,33 @@
                   </div>
                </div><!-- End .footer-middle -->
 
+               <div class="mobile-footer text-center  d-block d-sm-none">
+                  <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap">
+                     <a href="https://www.facebook.com/autofactorng/" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
+                     <a href="https://twitter.com/autofactorng/" class="bi bi-twitter  text-white me-5 fa-2x" target="_blank" title="Twitter"></a>
+                     <a href="http://instagram.com/autofactorng/" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
+                  </div><!-- End .footer-bottom -->
+                  <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
+                  @if ( auth()->check() && auth()->user()->isAdmin() )
+                  <p class="footer-copyright mx-3 text-white"><a target="_blank" href="/admin">Go to Admin</a></p>
+                  @endif
 
-           
+
+               </div>
+
+               <div class="d-none d-lg-block d-md-block d-xl-block">
+                  <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap  ">
+                     <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
+                     @if ( auth()->check() && auth()->user()->isAdmin() )
+                     <p class="footer-copyright mx-3 text-white"><a target="_blank" href="/admin">Go to Admin</a></p>
+                     @endif
+                     <div class="social-icons py-3">
+                        <a href="https://www.facebook.com/autofactorng/" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
+                        <a href="https://twitter.com/autofactorng/" class="bi bi-twitter  text-white me-5 fa-2x" target="_blank" title="Twitter"></a>
+                        <a href="http://instagram.com/autofactorng/" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
+                     </div><!-- End .social-icons -->
+                  </div><!-- End .footer-bottom -->
+               </div>
 
             </div><!-- End .container -->
          </div>

@@ -23129,6 +23129,23 @@ p {
 .product-list .btn-icon span {
     display: block;
 }
+
+
+.page-wrap {
+    min-height: 100%;
+    /* equal to footer height */
+    margin-bottom: -142px; 
+  }
+  .page-wrap:after {
+    content: "";
+    display: block;
+  }
+  .site-footer, .page-wrap:after {
+    height: 142px; 
+  }
+  .site-footer {
+    background: orange;
+  }
 /*!
  * Font Awesome Free 5.8.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
