@@ -309,7 +309,6 @@
             <div class="container-fluid">
                <div class="footer-middle mt-5">
                   <div class="">
-                     @include('layouts.footer.desktop_footer')
                   </div>
                </div><!-- End .footer-middle -->
 
