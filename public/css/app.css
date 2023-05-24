@@ -23141,7 +23141,7 @@ p {
     display: block;
   }
   .site-footer, .page-wrap:after {
-    max-height: 399px;
+    height: 399px;
   }
   
 /*!
