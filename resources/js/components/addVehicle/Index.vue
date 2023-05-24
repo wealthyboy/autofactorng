@@ -29,9 +29,9 @@
             </div>
             <div class="fw-bold" v-if="!fitString">Add vehicle</div>
 
-            <div>
-                <img src="/images/utils/header-arrow.svg" alt="" />
-            </div>
+           
+            <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
+
         </div>
     </a>
 
