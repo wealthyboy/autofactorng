@@ -116,7 +116,7 @@
                         <tr>
                             <th
                                 data-sortable=""
-                                class="desc"
+                                class="desc text-center"
                                 v-for="(h, index) in tableData.items[0][0]"
                                 :key="index"
                             >
@@ -135,7 +135,7 @@
                             v-for="(h, index) in tableData.items[0]"
                             :key="index"
                         >
-                            <td :width="[ i == 'Invoice' ? 50 : null]" v-for="(td, i) in h" :key="i" class="">
+                            <td :width="[ i == 'Invoice' ? 50 : null]" v-for="(td, i) in h" :key="i" class="align-middle text-center">
                                 <div
                                     class="align-middle text-sm text-secondary"
                                 >
