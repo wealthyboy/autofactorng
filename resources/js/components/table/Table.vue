@@ -135,7 +135,7 @@
                             v-for="(h, index) in tableData.items[0]"
                             :key="index"
                         >
-                            <td :width="{ 50:  i == 'Invoice'}" v-for="(td, i) in h" :key="i" class="">
+                            <td :width="[ i == 'Invoice' ? 50 : null]" v-for="(td, i) in h" :key="i" class="">
                                 <div
                                     class="align-middle text-sm text-secondary"
                                 >
