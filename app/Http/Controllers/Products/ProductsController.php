@@ -209,7 +209,7 @@ class ProductsController extends Controller
             }
         }
 
-        dd(true);
+        dd($this->getCategory($category));
 
         if ($request->type == 'tyre') {
             $query->where('radius', $request->rim);
