@@ -52,6 +52,7 @@
             aria-label="Find Parts and Products"
             aria-describedby="button-addon1"
             @input="autoComplete"
+            required="required"
             v-model="query"
             @focus="handleFocus"
             name="q"

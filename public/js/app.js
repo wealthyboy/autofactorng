@@ -30265,6 +30265,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onInput: _cache[0] || (_cache[0] = function () {
       return $setup.autoComplete && $setup.autoComplete.apply($setup, arguments);
     }),
+    required: "required",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.query = $event;
     }),
