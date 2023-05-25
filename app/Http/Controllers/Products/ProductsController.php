@@ -209,6 +209,8 @@ class ProductsController extends Controller
             }
         }
 
+        dd(true);
+
         if ($request->type == 'tyre') {
             $query->where('radius', $request->rim);
             $query->where('width', $request->width);
