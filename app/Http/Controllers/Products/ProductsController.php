@@ -40,6 +40,7 @@ class ProductsController extends Controller
         $request->session()->put('category_slug', $category->slug);
 
         $products = $this->getProductsData($request, $builder, $category);
+        dd($products);
         $search_filters = $this->searchFilters($category);
         $request->category = $category;
        // (new Product())->buildSearchString($category);
