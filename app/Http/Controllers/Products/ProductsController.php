@@ -75,7 +75,7 @@ class ProductsController extends Controller
         }
         dd($per_page);
 
-       dd($query->latest()->paginate($per_page));
+       dd($query->filter($request)->latest()->paginate(1));
 
 
         $products = $query->filter($request)->latest()->paginate($per_page);
