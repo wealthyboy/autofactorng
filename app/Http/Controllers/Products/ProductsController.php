@@ -73,7 +73,7 @@ class ProductsController extends Controller
         if ($request->type == 'battery') {
             $query->where('amphere', $request->amphere);
         }
-        dd($per_page);
+       // dd($per_page);
 
        dd($query->filter($request)->latest()->paginate(1));
 
