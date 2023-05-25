@@ -46,7 +46,7 @@ class ProductsController extends Controller
 
 
         $type = $this->getType($request);
-        $per_page = $request->per_page ?? optional($this->settings)->products_items_per_page;
+        $per_page = $request->page ?? optional($this->settings)->products_items_per_page;
 
         if ($this->getCategory($category)) {
             if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
@@ -75,7 +75,7 @@ class ProductsController extends Controller
         }
        // dd($per_page);
 
-       dd($query->filter($request)->latest()->paginate(1));
+      // dd($query->filter($request)->latest()->paginate(1));
 
 
         $products = $query->filter($request)->latest()->paginate($per_page);
