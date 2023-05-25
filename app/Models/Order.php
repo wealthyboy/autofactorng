@@ -192,6 +192,7 @@ class Order extends Model
 				return [
 					"Invoice" => $order->invoice,
 					"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
+					"Status" => $order->status,
 					"Total" => Helper::currencyWrapper($order->total),
 					"Date " => $order->created_at->format('d-m-y'),
 				];
