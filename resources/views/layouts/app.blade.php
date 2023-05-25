@@ -322,7 +322,7 @@
                   </div><!-- End .footer-bottom -->
                   <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
                   @if ( auth()->check() && auth()->user()->isAdmin() )
-                  <p class="footer-copyright mx-3 text-white"><a target="_blank" href="/admin">Go to Admin</a></p>
+                  <p class="footer-copyright mx-3 text-white"><a target="_blank" class="text-white" href="/admin">Go to Admin</a></p>
                   @endif
 
 
@@ -332,7 +332,7 @@
                   <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap  ">
                      <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
                      @if ( auth()->check() && auth()->user()->isAdmin() )
-                     <p class="footer-copyright mx-3 text-white"><a target="_blank" href="/admin">Go to Admin</a></p>
+                     <p class="footer-copyright mx-3 text-white"><a target="_blank" class="text-white" href="/admin">Go to Admin</a></p>
                      @endif
                      <div class="social-icons py-3">
                         <a href="https://www.facebook.com/autofactorng/" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
