@@ -183,6 +183,8 @@ class Order extends Model
 					"Id" => $order->id,
 					"Invoice" => $order->invoice,
 					"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
+					"Email" => $order->email,
+
 					"Type" => $order->order_type,
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 					"Total" => Helper::currencyWrapper($order->total),
