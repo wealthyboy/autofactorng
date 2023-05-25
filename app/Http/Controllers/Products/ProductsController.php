@@ -41,7 +41,9 @@ class ProductsController extends Controller
 
         $query = Product::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.slug', $category->slug);
-        });
+        })->get();
+
+        dd($query);
 
 
         $type = $this->getType($request);
