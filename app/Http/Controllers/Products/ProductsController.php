@@ -74,7 +74,7 @@ class ProductsController extends Controller
             $query->where('amphere', $request->amphere);
         }
 
-       dd($query->latest()->paginate($per_page));
+       dd($query->latest()->paginate(1));
 
 
         $products = $query->filter($request)->latest()->paginate($per_page);
