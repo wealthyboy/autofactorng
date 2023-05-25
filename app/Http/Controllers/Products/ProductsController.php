@@ -226,7 +226,7 @@ class ProductsController extends Controller
 
         $products->load('images');
         $products->appends(request()->all());
-        dd($products);
+       // dd($products);
 
         return $products;
     }
