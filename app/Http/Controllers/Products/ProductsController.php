@@ -41,9 +41,8 @@ class ProductsController extends Controller
 
         $query = Product::whereHas('categories', function (Builder  $builder) use ($category) {
             $builder->where('categories.slug', $category->slug);
-        })->get();
+        });
 
-        dd($query);
 
 
         $type = $this->getType($request);
@@ -62,7 +61,10 @@ class ProductsController extends Controller
             }
         }
 
-       // dd($query->get());
+       // dd($query);
+
+
+        dd($query->get());
 
         if ($request->type == 'tyre') {
             $query->where('radius', $request->rim);
