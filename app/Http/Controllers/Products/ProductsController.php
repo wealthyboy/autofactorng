@@ -39,7 +39,46 @@ class ProductsController extends Controller
         $request->session()->put('category', $category->name);
         $request->session()->put('category_slug', $category->slug);
 
-        $products = $this->getProductsData($request, $builder, $category);
+        $query = Product::whereHas('categories', function (Builder  $builder) use ($category) {
+            $builder->where('categories.slug', $category->slug);
+        });
+
+
+        $type = $this->getType($request);
+        $per_page = $request->per_page ?? optional($this->settings)->products_items_per_page;
+
+        if ($this->getCategory($category)) {
+            if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
+                $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
+                    $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
+                    $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
+                    $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
+                    $builder->where('year_from', '<=', $request->cookie('year'));
+                    $builder->where('year_to', '>=', $request->cookie('year'));
+                    $builder->groupBy('make_model_year_engines.product_id');
+                });
+            }
+        }
+
+       // dd($query->get());
+
+        if ($request->type == 'tyre') {
+            $query->where('radius', $request->rim);
+            $query->where('width', $request->width);
+            $query->where('height', $request->profile);
+        }
+
+        if ($request->type == 'battery') {
+            $query->where('amphere', $request->amphere);
+        }
+
+        $products = $query->filter($request)->latest()->paginate($per_page);
+
+
+        $products->load('images');
+        $products->appends(request()->all());
+
+       // $products = $this->getProductsData($request, $builder, $category);
         dd($products);
         $search_filters = $this->searchFilters($category);
         $request->category = $category;
