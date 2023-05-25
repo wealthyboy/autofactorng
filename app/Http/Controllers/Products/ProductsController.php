@@ -64,7 +64,6 @@ class ProductsController extends Controller
        // dd($query);
 
 
-        dd($query->get());
 
         if ($request->type == 'tyre') {
             $query->where('radius', $request->rim);
@@ -77,6 +76,9 @@ class ProductsController extends Controller
         }
 
         $products = $query->filter($request)->latest()->paginate($per_page);
+
+        dd($products);
+
 
 
         $products->load('images');
