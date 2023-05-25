@@ -85,7 +85,7 @@
                         </li>
                     </template>
 
-                    <template v-if="meta.current_page + 8 < meta.last_page">
+                    <template v-if="meta.current_page + 7 < meta.last_page">
                         <li
                             class="page-item d-flex justify-content-center align-items-center"
                         >
@@ -131,7 +131,7 @@
 
                     <li
                         :key="x"
-                        v-for="x in [1, 0]"
+                        v-for="x in [ 0]"
                         class="page-item d-flex justify-content-center align-items-center"
                     >
                         <a
