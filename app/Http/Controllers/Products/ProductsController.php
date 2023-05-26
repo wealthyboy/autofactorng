@@ -219,7 +219,7 @@ class ProductsController extends Controller
             $query->where('amphere', $request->amphere);
         }
 
-        $products = $query->filter($request)->latest()->paginate(28);
+        $products = $query->filter($request)->latest()->paginate(20);
         $products->load('images');
         $products->appends(request()->all());
        // dd($products);
