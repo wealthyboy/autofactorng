@@ -31,7 +31,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::post('customers/wallet/{id}', 'Admin\Customers\CustomersController@fundWallet');
     Route::post('/update/status', 'Admin\Orders\OrdersController@updateStatus');
     Route::resource('blogs',  'Admin\Blog\BlogController',['names' => 'blogs']);
-    Route::resource('credits',  'Admin\Blog\BlogController',['names' => 'credits']);
+    Route::resource('credits',  'Admin\AutoCredit\AutoCreditController',['names' => 'credits']);
 
 
 

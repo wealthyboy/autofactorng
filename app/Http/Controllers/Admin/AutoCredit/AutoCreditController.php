@@ -32,10 +32,7 @@ class AutoCreditController extends Controller
 	{
 		User::canTakeAction(1);
 	}
-
-
-	
-
+    
 
 	public function show($id)
 	{
