@@ -24102,10 +24102,10 @@ __webpack_require__.r(__webpack_exports__);
         store.commit("setProductFitString", response.data.productFitString);
         next[nt] = response.data.data;
         var text = response.data.string;
-        var type = e.target.name;
-        console.log(url.pathname);
+        var type = e.target.name; // console.log(url.pathname)
 
         if (type == "engine_id" && path[1] == "search") {
+          console.log('searct is here');
           getProducts(url.pathname);
         }
 
