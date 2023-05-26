@@ -24103,7 +24103,7 @@ __webpack_require__.r(__webpack_exports__);
         next[nt] = response.data.data;
         var text = response.data.string;
         var type = e.target.name;
-        console.log(type);
+        console.log(url.pathname);
 
         if (type == "engine_id" && path[1] == "search") {
           getProducts(url.pathname);

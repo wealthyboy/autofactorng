@@ -152,7 +152,7 @@ export default {
                     let text = response.data.string;
                     let type = e.target.name;
 
-                    console.log(type)
+                    console.log(url.pathname)
 
                     if (type == "engine_id" && path[1] == "search" ) {
                        getProducts(url.pathname);
