@@ -184,7 +184,6 @@ class ProductsController extends Controller
     }
 
 
-
     public function getProductsData(Request $request, Builder $builder, Category $category)
     {
 
@@ -194,7 +193,7 @@ class ProductsController extends Controller
 
 
         $type = $this->getType($request);
-        $per_page = 10;
+        $per_page = $request->per_page ?? $this->settings->products_items_per_page;
         if ($this->getCategory($category)) {
             if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
                 $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
@@ -221,8 +220,6 @@ class ProductsController extends Controller
         }
 
         $products = $query->filter($request)->latest()->paginate($per_page);
-
-
         $products->load('images');
         $products->appends(request()->all());
        // dd($products);
