@@ -27,7 +27,7 @@
             <template v-slot:footer>
                 <div v-if="fitString" class="col-md-6 p-1 mx-5 mt-4">
                     <h2 class="fs-5 mb-0 mb-2">Currently Shopping For:</h2>
-                    <button class="w-100 bg-transparent fit-string border-0">
+                    <button class="w-100 bg-transparent fit-string ">
                         <div class="d-flex align-items-center py-4">
                             <span class="me-3">
                                 <img
