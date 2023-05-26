@@ -28,7 +28,7 @@ class AutoCreditController extends Table
 		User::canTakeAction(User::canAccessUsers);
 		$subcribers = Subscribe::paginate(30);
 		$subcribers = $this->getColumnListings($request, $subcribers);
-		return view('admin.credits.index', compact('subcribers'));
+		return view('admin.auto_credits.index', compact('subcribers'));
 	}
 
 	/* display all users in the database */
@@ -40,14 +40,14 @@ class AutoCreditController extends Table
 
 	public function show($id)
 	{
-		return view('admin.credits.show');
+		return view('admin.auto_credits.show');
 	}
 
 
 	public function create(Request $request)
 	{
 		User::canTakeAction(User::canCreate);
-		return view('admin.credits.create');
+		return view('admin.auto_credits.create');
 	}
 
 
