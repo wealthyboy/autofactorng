@@ -25869,7 +25869,7 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_8 = {
-  "class": "w-100 bg-transparent fit-string border-0"
+  "class": "w-100 bg-transparent fit-string"
 };
 var _hoisted_9 = {
   "class": "d-flex align-items-center py-4"
@@ -25914,7 +25914,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, {
         header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-            "class": "bg-transparent border-0 modal-default-button me-4",
+            "class": "bg-transparent modal-default-button me-4",
             onClick: _cache[0] || (_cache[0] = function () {
               return $setup.show && $setup.show.apply($setup, arguments);
             })
