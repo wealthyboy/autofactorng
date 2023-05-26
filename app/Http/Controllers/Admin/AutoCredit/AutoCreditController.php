@@ -89,7 +89,7 @@ class AutoCreditController extends Table
 		return [
 			'show'  => false,
 			'right' => false,
-			'edit' => true,
+			'edit' => false,
 			'search' => true,
 			'add' => true,
 			'destroy' => true,
