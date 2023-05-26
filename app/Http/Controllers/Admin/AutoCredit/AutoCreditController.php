@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\AutoCredit;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Subcriber;
+use App\Models\Subcribe;
 use App\Models\User;
 
 
@@ -16,7 +16,7 @@ class AutoCreditController extends Controller
 
 	public function builder()
 	{
-		return Subcriber::query();
+		return Subcribe::query();
 	}
 
 
@@ -24,7 +24,7 @@ class AutoCreditController extends Controller
 	public function index(Request $request)
 	{
 		User::canTakeAction(User::canAccessUsers);
-		$subcribers = Subcriber::paginate(30);
+		$subcribers = Subcribe::paginate(30);
 		$subcribers = $this->getColumnListings($request, $subcribers);
 		return view('admin.credits.index', compact('subcribers'));
 	}
