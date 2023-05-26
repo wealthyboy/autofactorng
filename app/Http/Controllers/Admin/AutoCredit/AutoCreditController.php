@@ -62,7 +62,7 @@ class AutoCreditController extends Table
 			'show' => null,
 			'destroy' =>  [
 				'admin.credits.destroy',
-				'user'
+				'credit'
 			],
 			'create' => [
 				'admin.credits.create'
