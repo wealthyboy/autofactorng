@@ -55,13 +55,13 @@ class AutoCreditController extends Table
 	{
 		return [
 			'edit' =>  [
-				'admin.auto_credits.edit',
+				'admin.credits.edit',
 				'user'
 			],
 			'update' => null,
 			'show' => null,
 			'destroy' =>  [
-				'admin.auto_credits.destroy',
+				'admin.credits.destroy',
 				'user'
 			],
 			'create' => [
