@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Subscribe;
 use App\Models\User;
+use App\DataTable\Table;
 
 
-class AutoCreditController extends Controller
+
+class AutoCreditController extends Table
 {
     public $deleted_names = 'email';
 
