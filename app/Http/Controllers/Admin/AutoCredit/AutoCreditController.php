@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin\AutoCredit;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Subcriber;
+use App\Models\User;
+
 
 class AutoCreditController extends Controller
 {
@@ -32,7 +34,7 @@ class AutoCreditController extends Controller
 	{
 		User::canTakeAction(1);
 	}
-    
+
 
 	public function show($id)
 	{
