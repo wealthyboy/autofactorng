@@ -155,8 +155,7 @@ export default {
                     console.log(type)
 
                     if (type == "engine_id" && path[1] == "search" ) {
-                        console.log(true)
-                       getProducts(location.href);
+                       getProducts(url.pathname);
                        
                     }
 

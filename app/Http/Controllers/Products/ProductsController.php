@@ -222,8 +222,6 @@ class ProductsController extends Controller
         $products = $query->filter($request)->latest()->paginate($per_page);
         $products->load('images');
         $products->appends(request()->all());
-       // dd($products);
-
         return $products;
     }
 

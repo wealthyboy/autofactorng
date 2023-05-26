@@ -24106,8 +24106,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(type);
 
         if (type == "engine_id" && path[1] == "search") {
-          console.log(true);
-          getProducts(location.href);
+          getProducts(url.pathname);
         }
 
         if (type == "engine_id" && path[1] == "products") {
