@@ -8,7 +8,7 @@
             <template v-slot:header>
                 <h3 class="mb-0 ms-5">What Car do you need parts for today?</h3>
                 <button
-                    class="bg-transparent  modal-default-button me-4"
+                    class="bg-transparent  modal-default-button me-4 border-0"
                     @click="show"
                 >
                     <i class="fa-2x bi bi-x-lg"></i>
