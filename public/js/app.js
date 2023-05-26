@@ -24037,12 +24037,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex-composition-helpers */ "./node_modules/vuex-composition-helpers/dist/index.js");
-Object(function webpackMissingModule() { var e = new Error("Cannot find module 'console'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-
 
 
 
@@ -24055,7 +24053,7 @@ Object(function webpackMissingModule() { var e = new Error("Cannot find module '
     var makes = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var models = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var engines = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_4__.useStore)();
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_3__.useStore)();
     var years = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(function () {
       return store.getters.years;
     });
@@ -24105,7 +24103,6 @@ Object(function webpackMissingModule() { var e = new Error("Cannot find module '
         next[nt] = response.data.data;
         var text = response.data.string;
         var type = e.target.name;
-        console.log(type);
 
         if (type == "engine_id" && path[1] == "search") {
           getProducts(location.href);

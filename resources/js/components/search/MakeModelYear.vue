@@ -84,7 +84,6 @@ import { computed, onMounted, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
 import { useActions, useGetters } from "vuex-composition-helpers";
-import { time } from "console";
 
 export default {
     props: ["filter"],
@@ -153,7 +152,6 @@ export default {
                     let text = response.data.string;
                     let type = e.target.name;
 
-                    console.log(type)
 
                     if (type == "engine_id" && path[1] == "search" ) {
                         
