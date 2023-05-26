@@ -56,7 +56,7 @@ class AutoCreditController extends Table
 		return [
 			'edit' =>  [
 				'admin.credits.edit',
-				'user'
+				'credit'
 			],
 			'update' => null,
 			'show' => null,
