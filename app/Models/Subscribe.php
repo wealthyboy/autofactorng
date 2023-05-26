@@ -25,7 +25,7 @@ class Subscribe extends Model
             return [
                 "Id" => $subsciber->id,
                 "Full Name" => optional($subsciber->user)->fullname(),
-                "Plan" => $subsciber->plan,
+                "Plan" => str_replace('-', ' ', $subsciber->plan) ,
                 "Ends At" => $subsciber->ends_at,
                 "Date Added" => $subsciber->created_at->format('d-m-y'),
             ];
