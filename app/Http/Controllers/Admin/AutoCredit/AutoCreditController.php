@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\AutoCredit;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Subcribe;
+use App\Models\Subscribe;
 use App\Models\User;
 
 
@@ -12,11 +12,11 @@ class AutoCreditController extends Controller
 {
     public $deleted_names = 'email';
 
-	public $deleted_specific = 'Subscribers';
+	public $deleted_specific = 'Subscribe';
 
 	public function builder()
 	{
-		return Subcribe::query();
+		return Subscribe::query();
 	}
 
 
@@ -24,7 +24,7 @@ class AutoCreditController extends Controller
 	public function index(Request $request)
 	{
 		User::canTakeAction(User::canAccessUsers);
-		$subcribers = Subcribe::paginate(30);
+		$subcribers = Subscribe::paginate(30);
 		$subcribers = $this->getColumnListings($request, $subcribers);
 		return view('admin.credits.index', compact('subcribers'));
 	}
