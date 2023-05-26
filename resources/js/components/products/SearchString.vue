@@ -14,7 +14,7 @@
                     class="d-flex justify-content-center  d-md-block d-lg-none d-sm-block mt-3"
                 >
                 <div
-                    class="d-flex justify-content-center   mt-3"
+                    class="d-flex justify-content-center  mt-3"
                 >
                     <div
                         @click.prevent="shopWithoutVehicle('change')"
