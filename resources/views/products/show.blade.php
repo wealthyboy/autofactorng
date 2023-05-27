@@ -136,9 +136,9 @@
         <div class="products-slider owl-carousel owl-theme dots-top dots-small">
             @foreach( $product->related_products as $related_product)
             <div class="product-default">
-                <div class="ptoduct-image">
+                <div class="product-image ">
                 <figure>
-                    <a href="{{$related_product->product->link }}">
+                    <a class="d-block" href="{{$related_product->product->link }}">
                         <img src="{{ $related_product->product->image_m }}" width="280" height="280" alt="product">
                         <img src="{{ $related_product->product->image_m }}" width="280" height="280" alt="product">
                     </a>
