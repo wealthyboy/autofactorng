@@ -149,7 +149,7 @@
                 <div class="product-details">
 
 
-                    <h3 class="product-title"> <a href="{{$related_product->product->link }}">{{ $related_product->product->name }}</a> </h3>
+                    <h5> <a href="{{$related_product->product->link }}">{{ $related_product->product->name }}</a> </h5>
 
                     <div class="ratings-container">
                         @include('_partials.ratings')
