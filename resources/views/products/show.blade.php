@@ -137,7 +137,6 @@
             @foreach( $product->related_products as $related_product)
             <div class="product-default">
                 <div class="product-image ">
-                <figure>
                     <a class="d-block" href="{{$related_product->product->link }}">
                         <img src="{{ $related_product->product->image_m }}" width="280" height="280" alt="product">
                         <img src="{{ $related_product->product->image_m }}" width="280" height="280" alt="product">
@@ -146,7 +145,6 @@
                         <!-- <div class="product-label label-hot">HOT</div>
                         <div class="product-label label-sale">-20%</div> -->
                     </div>
-                </figure>
                 </div>
                
                 <div class="product-details">
