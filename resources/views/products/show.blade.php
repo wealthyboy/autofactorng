@@ -136,6 +136,7 @@
         <div class="products-slider owl-carousel owl-theme dots-top dots-small">
             @foreach( $product->related_products as $related_product)
             <div class="product-default">
+                <div class="ptoduct-image">
                 <figure>
                     <a href="{{$related_product->product->link }}">
                         <img src="{{ $related_product->product->image_m }}" width="280" height="280" alt="product">
@@ -146,6 +147,8 @@
                         <div class="product-label label-sale">-20%</div> -->
                     </div>
                 </figure>
+                </div>
+               
                 <div class="product-details">
 
 
