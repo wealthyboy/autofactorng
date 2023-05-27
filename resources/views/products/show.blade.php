@@ -138,8 +138,7 @@
             <div class="product-default">
                 <div class="product-image ">
                     <a class="d-block" href="{{$related_product->product->link }}">
-                        <img src="{{ $related_product->product->image_m }}" width="280" height="280" alt="product">
-                        <img src="{{ $related_product->product->image_m }}" width="280" height="280" alt="product">
+                        <img src="{{ $related_product->product->image_tn }}" alt="product">
                     </a>
                     <div class="label-group">
                         <!-- <div class="product-label label-hot">HOT</div>
