@@ -25,6 +25,7 @@ class Subscribe extends Model
             return [
                 "Id" => $subsciber->id,
                 "Full Name" => optional($subsciber->user)->fullname(),
+                "Email" => optional($subsciber->user)->email,
                 "Plan" => str_replace('_', ' ', $subsciber->plan) ,
                 "Ends At" => $subsciber->ends_at,
                 "Date Added" => $subsciber->created_at->format('d-m-y'),
@@ -37,7 +38,8 @@ class Subscribe extends Model
 		$sort =  [
 			"Id" => $subsciber->id,
             "Full Name" => optional($subsciber->user)->fullname(),
-            "Plan" => $subsciber->email,
+            "Email" => optional($subsciber->user)->email,
+            "Plan" => $subsciber->plan,
             "Ends At" => $subsciber->ends_at,
             "Date Added" => $subsciber->created_at->format('d-m-y'),
 		];
