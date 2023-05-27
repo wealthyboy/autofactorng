@@ -36,12 +36,12 @@ class Subscribe extends Model
 	public function sortKeys($key)
 	{
 		$sort =  [
-			"Id" => $subsciber->id,
-            "Full Name" => optional($subsciber->user)->fullname(),
-            "Email" => optional($subsciber->user)->email,
-            "Plan" => $subsciber->plan,
-            "Ends At" => $subsciber->ends_at,
-            "Date Added" => $subsciber->created_at->format('d-m-y'),
+			"Id" => 'Id',
+            "Full Name" => 'id',
+            "Email" => 'id',
+            "Plan" => 'plan',
+            "Ends At" => 'ends_at',
+			"Date Added" => 'created_at',
 		];
 
 		return $sort[$key];
