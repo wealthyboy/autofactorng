@@ -138,7 +138,7 @@
             <div class="product-default">
                 <div class="product-default  product-default-sm d-flex flex-column justify-content-center align-items-center px-2">
                     <a class="d-block" href="{{$related_product->product->link }}">
-                        <img src="{{ $related_product->product->image_tn }}" alt="product">
+                        <img src="{{ $related_product->product->image_m }}" alt="product">
                     </a>
                     <div class="label-group">
                         <!-- <div class="product-label label-hot">HOT</div>
