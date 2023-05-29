@@ -35,7 +35,6 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::resource('blogs',  'Admin\Blog\BlogController',['names' => 'blogs']);
 
 
-
     Route::resource('customers', 'Admin\Customers\CustomersController', ['name' => 'customers']);
 
     Route::get('orders/invoice/{id}', 'Admin\Orders\OrdersController@invoice')->name('order.invoice');
