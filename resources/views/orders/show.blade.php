@@ -24,9 +24,9 @@
                                 <br />{{ $order->address }}
                                 <br /> {{ $order->city }} &nbsp;
                                 <br /> {{ $order->state }},
-                                <br /> <b>Email</b>{{ $order->email }},
+                                <br /> <b>Email: </b>{{ $order->email }},
 
-                                <br /> <b>Phone Number</b> {{ $order->phone_number }},
+                                <br /> <b>Phone Number: </b> {{ $order->phone_number }},
 
                                 </span>
                             </div>
