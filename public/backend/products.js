@@ -276,6 +276,8 @@ $(document).ready(function() {
                 }
             });
 
+            console.log(year)
+
             if (year.length) {
                 messages['attribute'] = 'Enter year range for ' + year.join('&')
             }
