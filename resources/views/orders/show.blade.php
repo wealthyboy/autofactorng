@@ -24,6 +24,10 @@
                                 <br />{{ $order->address }}
                                 <br /> {{ $order->city }} &nbsp;
                                 <br /> {{ $order->state }},
+                                <br /> {{ $order->email }},
+
+                                <br /> {{ $order->phone_number }},
+
                                 </span>
                             </div>
                             <div class="col-4">
