@@ -1,223 +1,210 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="en">
 
 <head>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'PT Sans', sans-serif;
-        }
 
-        @page {
-            size: 2.8in 11in;
-            margin-top: 0cm;
-            margin-left: 0cm;
-            margin-right: 0cm;
-        }
+    <meta charset="utf-8" />
 
-        table {
-            width: 100%;
-        }
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="csrf-token" content="kXpJxRoJnj947CD6j88LvO8d0mk59l6WEikSkVZv">
+    <title>AutofactorNG | Admin</title>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
 
-        tr {
-            width: 100%;
+    <!-- Favicone Icon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+    <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" href="/img/favicon-96x96.png">
+    <link rel="apple-touch-icon" href="/img/favicon-96x96.png">
 
-        }
 
-        h1 {
-            text-align: center;
-            vertical-align: middle;
-        }
 
-        #logo {
-            width: 60%;
-            text-align: center;
-            -webkit-align-content: center;
-            align-content: center;
-            padding: 5px;
-            margin: 2px;
-            display: block;
-            margin: 0 auto;
-        }
 
-        header {
-            width: 100%;
-            text-align: center;
-            -webkit-align-content: center;
-            align-content: center;
-            vertical-align: middle;
-        }
+    <!--  Material Dashboard CSS    -->
+    </head>
+ <style>
+#invoice-POS{
+  box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
+  padding:2mm;
+  margin: 0 auto;
+  width: 44mm;
+  background: #FFF;
+  
+  
+::selection {background: #f31544; color: #FFF;}
+::moz-selection {background: #f31544; color: #FFF;}
+h1{
+  font-size: 1.5em;
+  color: #222;
+}
+h2{font-size: .9em;}
+h3{
+  font-size: 1.2em;
+  font-weight: 300;
+  line-height: 2em;
+}
+p{
+  font-size: .7em;
+  color: #666;
+  line-height: 1.2em;
+}
+ 
+#top, #mid,#bot{ /* Targets all id with 'col-' */
+  border-bottom: 1px solid #EEE;
+}
 
-        .items thead {
-            text-align: center;
-        }
+#top{min-height: 100px;}
+#mid{min-height: 80px;} 
+#bot{ min-height: 50px;}
 
-        .center-align {
-            text-align: center;
-        }
+#top .logo{
+  //float: left;
+	height: 60px;
+	width: 60px;
+	background: url(http://michaeltruong.ca/images/logo1.png) no-repeat;
+	background-size: 60px 60px;
+}
+.clientlogo{
+  float: left;
+	height: 60px;
+	width: 60px;
+	background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;
+	background-size: 60px 60px;
+  border-radius: 50px;
+}
+.info{
+  display: block;
+  //float:left;
+  margin-left: 0;
+}
+.title{
+  float: right;
+}
+.title p{text-align: right;} 
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+td{
+  //padding: 5px 0 5px 15px;
+  //border: 1px solid #EEE
+}
+.tabletitle{
+  //padding: 5px;
+  font-size: .5em;
+  background: #EEE;
+}
+.service{border-bottom: 1px solid #EEE;}
+.item{width: 24mm;}
+.itemtext{font-size: .5em;}
 
-        .bill-details td {
-            font-size: 12px;
-        }
+#legalcopy{
+  margin-top: 5mm;
+}
 
-        .receipt {
-            font-size: medium;
-        }
-
-        .items .heading {
-            font-size: 12.5px;
-            text-transform: uppercase;
-            border-top:1px solid black;
-            margin-bottom: 4px;
-            border-bottom: 1px solid black;
-            vertical-align: middle;
-        }
-
-        .items thead tr th:first-child,
-        .items tbody tr td:first-child {
-            width: 47%;
-            min-width: 47%;
-            max-width: 47%;
-            word-break: break-all;
-            text-align: left;
-        }
-
-        .items td {
-            font-size: 12px;
-            text-align: right;
-            vertical-align: bottom;
-        }
-
-        .price::before {
-             content: "\20B9";
-            font-family: Arial;
-            text-align: right;
-        }
-
-        .sum-up {
-            text-align: right !important;
-        }
-        .total {
-            font-size: 13px;
-            border-top:1px dashed black !important;
-            border-bottom:1px dashed black !important;
-        }
-        .total.text, .total.price {
-            text-align: right;
-        }
-        .total.price::before {
-            content: "\20B9"; 
-        }
-        .line {
-            border-top:1px solid black !important;
-        }
-        .heading.rate {
-            width: 20%;
-        }
-        .heading.amount {
-            width: 25%;
-        }
-        .heading.qty {
-            width: 5%
-        }
-        p {
-            padding: 1px;
-            margin: 0;
-        }
-        section, footer {
-            font-size: 12px;
-        }
-    </style>
-</head>
-
-<body>
-    <header>
-        <div id="logo" class="media" data-src="logo.png" src="./logo.png"></div>
-
-    </header>
-    <p>GST Number : 4910487129047124</p>
-    <table class="bill-details">
-        <tbody>
-            <tr>
-                <td>Date : <span>1</span></td>
-                <td>Time : <span>2</span></td>
-            </tr>
-            <tr>
-                <td>Table #: <span>3</span></td>
-                <td>Bill # : <span>4</span></td>
-            </tr>
-            <tr>
-                <th class="center-align" colspan="2"><span class="receipt">Original Receipt</span></th>
-            </tr>
-        </tbody>
-    </table>
+  
+  
+}
+ </style>
     
-    <table class="items">
-        <thead>
-            <tr>
-                <th class="heading name">Item</th>
-                <th class="heading qty">Qty</th>
-                <th class="heading rate">Rate</th>
-                <th class="heading amount">Amount</th>
-            </tr>
-        </thead>
-       
-        <tbody>
-            <tr>
-                <td>Chocolate milkshake frappe</td>
-                <td>1</td>
-                <td class="price">200.00</td>
-                <td class="price">200.00</td>
-            </tr>
-            <tr>
-                <td>Non-Veg Focaccoa S/W</td>
-                <td>2</td>
-                <td class="price">300.00</td>
-                <td class="price">600.00</td>
-            </tr>
-            <tr>
-                <td>Classic mojito</td>
-                <td>1</td>
-                <td class="price">800.00</td>
-                <td class="price">800.00</td>
-            </tr>
-            <tr>
-                <td>Non-Veg Ciabatta S/W</td>
-                <td>1</td>
-                <td class="price">500.00</td>
-                <td class="price">500.00</td>
-            </tr>
-            <tr>
-                <td colspan="3" class="sum-up line">Subtotal</td>
-                <td class="line price">12112.00</td>
-            </tr>
-            <tr>
-                <td colspan="3" class="sum-up">CGST</td>
-                <td class="price">10.00</td>
-            </tr>
-            <tr>
-                <td colspan="3" class="sum-up">SGST</td>
-                <td class="price">10.00</td>
-            </tr>
-            <tr>
-                <th colspan="3" class="total text">Total</th>
-                <th class="total price">12132.00</th>
-            </tr>
-        </tbody>
-    </table>
-    <section>
-        <p>
-            Paid by : <span>CASH</span>
+
+
+<body class="g-sidenav-show bg-gray-200">
+<div id="invoice-POS">
+    
+    <center id="top">
+      <div class="logo"></div>
+      <div class="info"> 
+      <img class="mb-2  p-2" src="https://autofactorng.com/images/afng_logo.png" alt="Logo">
+      </div><!--End Info-->
+    </center><!--End InvoiceTop-->
+    
+    <div id="mid">
+      <div class="info">
+        <h2>Contact Info</h2>
+        <p> 
+            Address : street city, state 0000</br>
+            Email   : JohnDoe@gmail.com</br>
+            Phone   : 555-555-5555</br>
         </p>
-        <p style="text-align:center">
-            Thank you for your visit!
-        </p>
-    </section>
-    <footer style="text-align:center">
-        <p>Technology Partner Dotworld Technologies</p>
-        <p>www.dotworld.in</p>
-    </footer>
+      </div>
+    </div><!--End Invoice Mid-->
+    
+    <div id="bot">
+
+					<div id="table">
+						<table>
+							<tr class="tabletitle">
+								<td class="item"><h2>Item</h2></td>
+								<td class="Hours"><h2>Qty</h2></td>
+								<td class="Rate"><h2>Sub Total</h2></td>
+							</tr>
+
+							<tr class="service">
+								<td class="tableitem"><p class="itemtext">Communication</p></td>
+								<td class="tableitem"><p class="itemtext">5</p></td>
+								<td class="tableitem"><p class="itemtext">$375.00</p></td>
+							</tr>
+
+							<tr class="service">
+								<td class="tableitem"><p class="itemtext">Asset Gathering</p></td>
+								<td class="tableitem"><p class="itemtext">3</p></td>
+								<td class="tableitem"><p class="itemtext">$225.00</p></td>
+							</tr>
+
+							<tr class="service">
+								<td class="tableitem"><p class="itemtext">Design Development</p></td>
+								<td class="tableitem"><p class="itemtext">5</p></td>
+								<td class="tableitem"><p class="itemtext">$375.00</p></td>
+							</tr>
+
+							<tr class="service">
+								<td class="tableitem"><p class="itemtext">Animation</p></td>
+								<td class="tableitem"><p class="itemtext">20</p></td>
+								<td class="tableitem"><p class="itemtext">$1500.00</p></td>
+							</tr>
+
+							<tr class="service">
+								<td class="tableitem"><p class="itemtext">Animation Revisions</p></td>
+								<td class="tableitem"><p class="itemtext">10</p></td>
+								<td class="tableitem"><p class="itemtext">$750.00</p></td>
+							</tr>
+
+
+							<tr class="tabletitle">
+								<td></td>
+								<td class="Rate"><h2>tax</h2></td>
+								<td class="payment"><h2>$419.25</h2></td>
+							</tr>
+
+							<tr class="tabletitle">
+								<td></td>
+								<td class="Rate"><h2>Total</h2></td>
+								<td class="payment"><h2>$3,644.25</h2></td>
+							</tr>
+
+						</table>
+					</div><!--End Table-->
+
+					<div id="legalcopy">
+						<p class="legal"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices. 
+						</p>
+					</div>
+
+				</div><!--End InvoiceBot-->
+  </div><!--End Invoice-->
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="/js/dashboard.js"></script>
+        <script type="text/javascript">
+            </script>
 </body>
+
 
 </html>
