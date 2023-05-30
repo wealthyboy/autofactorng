@@ -120,7 +120,6 @@ td{
 
       </div>
 
-      {{$ordered_products   }}
       
       <div class="info"> 
       <h6>
@@ -158,7 +157,7 @@ td{
                      @foreach($ordered_products as $ordered_product)
 
 							<tr class="service">
-								<td class="tableitem"><p class="itemtext">Communication</p></td>
+								<td class="tableitem"><p class="itemtext">{{ $ordered_product->Product}}</p></td>
 								<td class="tableitem"><p class="itemtext">5</p></td>
 								<td class="tableitem"><p class="itemtext">$375.00</p></td>
 							</tr>
