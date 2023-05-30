@@ -42,9 +42,9 @@ class HomeController extends Controller
         $featured_categories = Category::where('is_featured', true)->get();    
         $brands = Brand::where('is_featured', true)->get();
         $sliders = Banner::where(['type' => 'slider', 'device' => 'd-none d-lg-block d-xl-block'])->orderBy('sort_order', 'asc')->get();
-        $top_banner = Banner::where(['type' => 'banner', 'sort_order' => 1])->first();
+        $top_banners = Banner::where(['type' => 'banner', 'title' => 'Welcome Strip Banners','sort_order' => 1])->get();
         $mobile_sliders = Banner::where(['type' => 'slider', 'device' => 'd-lg-none d-sm-block d-md-block'])->orderBy('sort_order', 'asc')->get();
         $products = Product::where('is_featured', 1)->orderBy('created_at', 'DESC')->take(8)->get();
-        return view('index', compact('top_banner','brands', 'featured_categories', 'sliders',  'mobile_sliders', 'products'));
+        return view('index', compact('top_banners','brands', 'featured_categories', 'sliders',  'mobile_sliders', 'products'));
     }
 }
