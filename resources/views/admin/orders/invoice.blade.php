@@ -98,7 +98,7 @@ td{
 }
 .service{border-bottom: 1px solid #EEE;}
 .item{width: 24mm;}
-.itemtext{font-size: .5em;}
+.itemtext{font-size: .7em;}
 
 #legalcopy{
   margin-top: 5mm;
