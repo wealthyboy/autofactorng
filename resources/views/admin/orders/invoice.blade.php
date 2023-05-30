@@ -119,6 +119,8 @@ td{
       <img class="mb-2  p-2" src="https://autofactorng.com/images/afng_logo.png" alt="Logo">
 
       </div>
+
+      {{$ordered_products   }}
       
       <div class="info"> 
       <h6>
