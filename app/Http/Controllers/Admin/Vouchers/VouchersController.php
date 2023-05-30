@@ -153,7 +153,7 @@ class VouchersController  extends Table
 		$coupon->status = $request->status;
 		$coupon->save();
 
-		(new Activity)->put("Added  new vounher  with code  {$voucher->code}", null);
+		(new Activity)->put("Added  new vounher  with code  {$coupon->code}", null);
 
 		return redirect('admin/vouchers');
 	}
