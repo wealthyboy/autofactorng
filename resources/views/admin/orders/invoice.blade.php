@@ -185,7 +185,18 @@ td{
 					</div><!--End Table-->
 
 					<div id="legalcopy">
-						<p class="legal"><strong>Thank you for your business!</strong>  Payment is expected within 31 days; please process this invoice within that time. There will be a 5% interest charge per month on late invoices. 
+						<p class="legal">
+                  <h5>Thank you!</h5>
+                     Dear {{ $order->user->fullname() }},
+                     <p class=" text-sm">We hope that you enjoy your order</br>
+                        Should you need any sort of further assistance, we are always ready to assist.</br>
+                        You can reach us by phone at 09081155504, 09081155505 or by email at care@autofactorng.com
+                        <br />Tapa House, Imam Dauda Street, Eric Moore, Surulere, Lagos State.<br />
+                        Items must be returned within 5 working days after delivery.<br />
+                        Thank you for shopping with us. Have a great day.<br />
+                     </p>
+                     <p> Sincerely, autofactorng
+                     </p> 
 						</p>
 					</div>
 
