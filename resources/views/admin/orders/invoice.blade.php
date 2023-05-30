@@ -61,8 +61,8 @@ p{
 
 #top .logo{
   //float: left;
-	height: 60px;
-	width: 60px;
+	height: auto;
+	width: 100%;
 	background: url(https://autofactorng.com/images/afng_logo.png) no-repeat;
 	background-size: 60px 60px;
 }
