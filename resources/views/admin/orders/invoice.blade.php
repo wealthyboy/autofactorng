@@ -117,7 +117,6 @@ td{
     <center id="top">
       <div class="logo"></div>
       <div class="info"> 
-      <img class="mb-2  p-2" src="https://autofactorng.com/images/afng_logo.png" alt="Logo">
       </div><!--End Info-->
     </center><!--End InvoiceTop-->
     
