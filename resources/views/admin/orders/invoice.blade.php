@@ -30,6 +30,7 @@
   margin: 0 auto;
   width: 100mm;
   background: #FFF;
+}
   
   
 ::selection {background: #f31544; color: #FFF;}
@@ -105,7 +106,7 @@ td{
 
   
   
-}
+
  </style>
     
 
