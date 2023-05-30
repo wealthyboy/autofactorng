@@ -63,7 +63,7 @@ p{
   //float: left;
 	height: 60px;
 	width: 60px;
-	background: url(http://michaeltruong.ca/images/logo1.png) no-repeat;
+	background: url(https://autofactorng.com/images/afng_logo.png) no-repeat;
 	background-size: 60px 60px;
 }
 .clientlogo{
