@@ -47,7 +47,7 @@
    <div class="banner banner3">
       <a  class="d-block">
          <figure>
-            <img class="img-fluid" src="/images/utils/ensure_11.jpg" style="background:#f6e1e8;" alt="banner" />
+            <img class="img-fluid" src="/images/utils/ensure11.jpg" style="background:#f6e1e8;" alt="banner" />
          </figure>
       </a>
    </div>
