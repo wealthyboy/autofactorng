@@ -61,8 +61,8 @@ p{
 
 #top .logo{
   //float: left;
-	height: auto;
-	width: 100%;
+	height: 60px;
+	width: 60px;
 	background: url(https://autofactorng.com/images/afng_logo.png) no-repeat;
 	background-size: 60px 60px;
 }
@@ -115,7 +115,11 @@ td{
 <div id="invoice-POS">
     
     <center id="top">
-      <div class="logo"></div>
+      <div class="alogo">
+      <img class="mb-2  p-2" src="https://autofactorng.com/images/afng_logo.png" alt="Logo">
+
+      </div>
+      
       <div class="info"> 
       </div><!--End Info-->
     </center><!--End InvoiceTop-->
