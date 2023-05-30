@@ -314,17 +314,17 @@ export default {
     },
 
     mounted() {
-        let d = new Date();
-        let uri = new URL(this.url),
-            url;
 
-        console.log(uri);
+        let d = new Date();
+        let uri = new URL(this.url),url;
+
         if (uri.search) {
             this.searchMode = false;
             url = "&get=" + d.getTime();
         } else {
             url = "?get=" + d.getTime();
         }
+
         this.getProducts(this.url + url);
     },
 
@@ -430,6 +430,11 @@ export default {
         },
     },
 };
+
+window.onpopstate = function () {
+    location.reload()
+};
+
 </script>
 
 <style>
