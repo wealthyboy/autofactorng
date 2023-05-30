@@ -151,15 +151,15 @@ td{
 							<tr class="tabletitle">
 								<td class="item"><h2>Item</h2></td>
 								<td class="Hours"><h2>Qty</h2></td>
-								<td class="Rate"><h2>Sub Total</h2></td>
+								<td class="Rate"><h2>Price</h2></td>
 							</tr>
 
                      @foreach($ordered_products as $ordered_product)
 
 							<tr class="service">
-								<td class="tableitem"><p class="itemtext">{{ $ordered_product['Product']}}</p></td>
-								<td class="tableitem"><p class="itemtext">5</p></td>
-								<td class="tableitem"><p class="itemtext">$375.00</p></td>
+								<td class="tableitem"><p class="itemtext">{{ $ordered_product->product_name }}</p></td>
+								<td class="tableitem"><p class="itemtext">{{ $ordered_product->quantity }}</p></td>
+								<td class="tableitem"><p class="itemtext">{{ $ordered_product->price}}</p></td>
 							</tr>
                      @endforeach
 
