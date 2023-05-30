@@ -2,7 +2,7 @@
 <div class="container-fluid text-center mt-3">
     <div class="row">
         <div class="col-12">
-            <div class="{{ $top_banner->device }}">
+            <div class="">
             <img src="{{ $top_banner->image }}" class=" img-fluid" alt="" srcset="">
 
             </div>
