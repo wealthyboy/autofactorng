@@ -25,13 +25,13 @@
 
 
       <div class="owl-carousel owl-theme show-nav-hover slide-animate  d-lg-none d-sm-block  d-md-block" data-owl-options="{
-           'dots': true,
+         'dots': true,
            'nav': true,
            'loop': true,
-           'autoplay':true,
+            'autoplay':true,
             'autoplayTimeout':3500,
             'autoplayHoverPause':true,
-            'responsiveClass':true,
+            'responsiveClass':true
 
         }">
          @foreach($mobile_sliders as $key => $slider)
