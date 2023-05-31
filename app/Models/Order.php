@@ -110,8 +110,12 @@ class Order extends Model
 				$cart->delete();
 			}
 		}
+        try {
+			ReviewProduct::dispatch($user, $order)->delay(now()->addMinutes(1));
 
-		ReviewProduct::dispatch($user, $order)->delay(now()->addMinutes(1));
+		} catch (\Throwable $th) {
+			throw $th;
+		}
 
 		return $order;
 	}
