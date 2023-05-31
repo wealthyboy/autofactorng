@@ -92,3 +92,7 @@ app.config.globalProperties.$filters = {
 app.use(store)
 
 app.mount('#app');
+
+window.addEventListener('popstate', () => {
+    alert(true);
+ })

@@ -23398,7 +23398,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     showFitString: "showFitString",
     showSearch: "showSearch"
   })),
-  mounted: function mounted() {
+  created: function created() {
     var d = new Date();
     var uri = new URL(this.url),
         url;
@@ -39201,6 +39201,9 @@ app.config.globalProperties.$filters = {
 };
 app.use(_store__WEBPACK_IMPORTED_MODULE_1__["default"]);
 app.mount('#app');
+window.addEventListener('popstate', function () {
+  alert(true);
+});
 
 /***/ }),
 

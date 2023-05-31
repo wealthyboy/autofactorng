@@ -313,7 +313,7 @@ export default {
         }),
     },
 
-    mounted() {
+    created() {
         let d = new Date();
         let uri = new URL(this.url),
             url;
