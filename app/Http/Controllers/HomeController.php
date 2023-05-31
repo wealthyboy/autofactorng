@@ -15,6 +15,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use App\Notifications\ReminderNotification;
+use App\Models\CategoryBrand;
 
 
 
@@ -39,7 +40,7 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        App\Models\CategoryBrand::where(['category_id' => 10, 'brand_id' => 17 ])->first()->delete();
+        CategoryBrand::where(['category_id' => 10, 'brand_id' => 17 ])->first()->delete();
         $featured_categories = Category::where('is_featured', true)->get();    
         $brands = Brand::where('is_featured', true)->get();
         $sliders = Banner::where(['type' => 'slider', 'device' => 'd-none d-lg-block d-xl-block'])->orderBy('sort_order', 'asc')->get();
