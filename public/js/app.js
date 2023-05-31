@@ -31926,7 +31926,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
           loop: !1,
           margin: 10,
           autoplay: 1,
-          dots: !1,
+          dots: 1,
           items: 2,
           responsive: {
             576: {
