@@ -111,7 +111,7 @@ class Order extends Model
 			}
 		}
         try {
-			ReviewProduct::dispatch($user, $order)->delay(now()->addMinutes(1));
+			ReviewProduct::dispatch($user, $order);
 
 		} catch (\Throwable $th) {
 			throw $th;
