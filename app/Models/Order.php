@@ -112,7 +112,7 @@ class Order extends Model
 			}
 		}
         try {
-			Notification::route('mail', optional($user)->email)
+			\Notification::route('mail', optional($user)->email)
 			->notify(new ProductReviewNotification($user, $order));
 
 
