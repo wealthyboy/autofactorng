@@ -46,42 +46,45 @@ class AutoCreditExpiryReminder extends Command
         $month = Carbon::now()->addMonth();
 
         $subscribers = Subscribe::with('user')->where("ends_at", "<", $month)->get();
+        $user = User::find('email', 'abiola@autofactorng.com')->first();
 
-        if (null !== $subscribers) {
+        //if (null !== $subscribers) {
 
             $message = [];
-            $subject =  "Your Subscription in 14 days";
+            $subject =  "Your Subscription Expires in 14 days";
 
-            foreach ($subscribers as  $subscriber) {
-                $date = $subscriber->ends_at->addDay()->format('d/m/y');
+           // foreach ($subscribers as  $subscriber) {
+                $date = now()->format('d/m/y'); //$subscriber->ends_at->addDay()->format('d/m/y');
                 $message[] = "Your Autocover subscription is expiring in 14 days! ";
                 $message[] = "It's important to note that any unused credits or benefits after the expiry of the validity period cannot be rolled over or transferred. ";
                 $message[] = "You shall be able to renew your subscription from {$date}";
                 $message[] = "Renew to continue enjoying exclusive benefits.";
                 $message[] = "Don't miss out on the convenience, savings, and perks of being a loyal subscriber.";
-                Notification::route('mail', optional($subscriber->user)->email)
-                    ->notify(new ReminderNotification($subscriber->user, $message, $subject));
-            }
-        }
+                Notification::route('mail', 'abiola@autofactorng.com')
+                    ->notify(new ReminderNotification($user, $message, $subject));
+           // }
+       // }
 
-        $subscribers = Subscribe::with('user')->where("ends_at", "<", $week)->get();
+        // $subscribers = Subscribe::with('user')->where("ends_at", "<", $week)->get();
+        // $subject =  "Your Subscription has expired";
 
-        if (null !== $subscribers) {
-            $message = [];
 
-            $message[] = "Here's a reminder that your Autocover subscription has expired. ";
-            $message[] = "Simply visit our website and follow the straightforward steps to renew your subscription. ";
-            $message[] = "If you have any questions or need assistance with the renewal process, our dedicated support team is here to help.";
-            $message[] = "Renew to continue enjoying exclusive benefits.";
-            $message[] = "Renew today and continue enjoying all the advantages that come with being a valued subscriber";
+        // if (null !== $subscribers) {
+        //     $subject =  "Subscription Renewal Reminder";
 
-            $subject =  "Subscription Renewal Reminder";
+        //     $message[] = "Here's a friendly reminder that your Autocover subscription has expired. ";
+        //     $message[] = "Simply visit our website and follow the straightforward steps to renew your subscription. ";
+        //     $message[] = "If you have any questions or need assistance with the renewal process, our dedicated support team is here to help.";
+        //     $message[] = "Renew today and continue enjoying all the advantages that come with being a valued subscriber";
+        //     $message[] = "Thank you for choosing AutofactorNG";
 
-            foreach ($subscribers as  $subscriber) {
-                Notification::route('mail', optional($subscriber->user)->email)
-                    ->notify(new ReminderNotification($subscriber->user, $message, $subject));
-            }
-        }
+        //     $subject =  "Subscription Renewal Reminder";
+
+        //     foreach ($subscribers as  $subscriber) {
+        //         Notification::route('mail', optional($subscriber->user)->email)
+        //             ->notify(new ReminderNotification($subscriber->user, $message, $subject));
+        //     }
+        // }
 
 
         // $subscribers = Subscribe::with('user')->where("ends_at", ">=", $week)->get();
