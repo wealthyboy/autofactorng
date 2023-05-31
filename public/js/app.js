@@ -31843,7 +31843,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         },
         ".testimonials-carousel": {
           lazyLoad: !1,
-          autoHeight: !0,
+          autoHeight: 0,
           responsive: {
             992: {
               items: 2
@@ -31853,7 +31853,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         ".featured-products": {
           loop: !1,
           margin: 30,
-          autoplay: !1,
+          autoplay: 1,
           responsive: {
             0: {
               items: 2
@@ -31870,7 +31870,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         ".cats-slider": {
           loop: !1,
           margin: 20,
-          autoplay: !1,
+          autoplay: 1,
           nav: !0,
           dots: !1,
           items: 2,
@@ -31892,7 +31892,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         ".products-slider.5col": {
           loop: !1,
           margin: 20,
-          autoplay: !1,
+          autoplay: 1,
           dots: !1,
           items: 2,
           responsive: {
@@ -31910,7 +31910,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         ".products-slider": {
           loop: !1,
           margin: 20,
-          autoplay: !1,
+          autoplay: 1,
           dots: !0,
           items: 2,
           responsive: {
@@ -31925,7 +31925,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         ".related-products-slider": {
           loop: !1,
           margin: 10,
-          autoplay: !1,
+          autoplay: 1,
           dots: !1,
           items: 2,
           responsive: {
