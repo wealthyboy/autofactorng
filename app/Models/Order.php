@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\ProductReviewNotification;
 
 class Order extends Model
 {
@@ -111,6 +112,10 @@ class Order extends Model
 			}
 		}
         try {
+			Notification::route('mail', optional($user)->email)
+			->notify(new ProductReviewNotification($user, $order));
+
+
 			ReviewProduct::dispatch($user, $order);
 
 		} catch (\Throwable $th) {
