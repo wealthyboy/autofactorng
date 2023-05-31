@@ -94,5 +94,5 @@ app.use(store)
 app.mount('#app');
 
 window.addEventListener('popstate', () => {
-    alert(true);
+    location.reload()
  })

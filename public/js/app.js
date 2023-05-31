@@ -39202,7 +39202,7 @@ app.config.globalProperties.$filters = {
 app.use(_store__WEBPACK_IMPORTED_MODULE_1__["default"]);
 app.mount('#app');
 window.addEventListener('popstate', function () {
-  alert(true);
+  location.reload();
 });
 
 /***/ }),
