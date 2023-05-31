@@ -112,7 +112,7 @@ class Order extends Model
 			}
 		}
         try {
-			$delay = now()->addMinutes(10);
+			$delay = now()->addMinutes(3);
 
 			\Notification::route('mail', optional($user)->email)
 			->notify((new ProductReviewNotification($user, $order))->delay($delay));
