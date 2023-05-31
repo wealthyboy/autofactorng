@@ -112,11 +112,13 @@ class Order extends Model
 			}
 		}
         try {
+			$delay = now()->addMinutes(10);
+
 			\Notification::route('mail', optional($user)->email)
-			->notify(new ProductReviewNotification($user, $order));
+			->notify((new ProductReviewNotification($user, $order))->delay($delay));
 
 
-			ReviewProduct::dispatch($user, $order);
+			//ReviewProduct::dispatch($user, $order);
 
 		} catch (\Throwable $th) {
 			throw $th;
