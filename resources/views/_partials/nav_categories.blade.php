@@ -22,7 +22,7 @@
                         <ul class="p-0">
                             @foreach( $category->children as $category)
                             <li role="button" class="cursor-pointer">
-                                <a class="d-block no-hover" href="{{  $category->link ? $category->link : '/products/'.$category->slug }}?t={{time(}}">
+                                <a class="d-block no-hover" href="{{  $category->link ? $category->link : '/products/'.$category->slug }}?t={{time()}}">
                                     <div class="w-100 category-link">
                                         {{ $category->name }}
                                     </div>
@@ -34,7 +34,7 @@
                         @else
                         <ul>
                             <li class="py-3">
-                                <a href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}?t={{time(}}">
+                                <a href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}?t={{time()}}">
                                     All {{ $category->name }}
                                 </a>
 
