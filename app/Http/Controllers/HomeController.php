@@ -39,7 +39,7 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        CategoryBrand::where(['category_id' => 10, 'brand_id' => 17 ])->first()->delete();
+        App\Models\CategoryBrand::where(['category_id' => 10, 'brand_id' => 17 ])->first()->delete();
         $featured_categories = Category::where('is_featured', true)->get();    
         $brands = Brand::where('is_featured', true)->get();
         $sliders = Banner::where(['type' => 'slider', 'device' => 'd-none d-lg-block d-xl-block'])->orderBy('sort_order', 'asc')->get();
