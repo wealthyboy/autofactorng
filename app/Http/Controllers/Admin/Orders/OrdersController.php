@@ -55,7 +55,7 @@ class OrdersController extends Table
 		$setting = Setting::first();
 		$sub_total  =  $this->subTotal($order);
 		$ordered_products = $order->ordered_products()->paginate(20);
-		$ordered_products =  $order->ordered_products();
+		$ordered_products = (new OrderedProduct())->getListingData($ordered_products);
 		$summaries = [];
 		$summaries['Sub-Total'] =  Helper::currencyWrapper($sub_total);
 
@@ -79,6 +79,8 @@ class OrdersController extends Table
 		$objs = $this->showData($id);
 		return view('admin.orders.invoice', compact('no_card', 'summaries', 'objs', 'setting', 'order', 'ordered_products'));
 	}
+
+
 
 	public function store(Request $request)
 	{
