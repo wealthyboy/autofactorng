@@ -3,6 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Notifications\ProductReviewNotification;
+use App\Models\Order;
+use Carbon\Carbon;
 
 class OrderReview extends Command
 {
@@ -11,7 +14,7 @@ class OrderReview extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'order:review';
 
     /**
      * The console command description.
@@ -36,7 +39,20 @@ class OrderReview extends Command
      * @return int
      */
     public function handle()
-    {
-        return 0;
+    {   
+        $week = Carbon::now()->addWeeks(7);
+        $orders = Order::has('user')->get();
+
+        if (null !== $orders) {
+            foreach ($orders as  $order) {
+                $date = $subscriber->ends_at->addDay()->format('d/m/y');
+
+                if ($order->created_at->diffInWeeks($week) >= 7 ) {
+                    Notification::route('mail', optional($order->user)->email)
+                    ->notify(new ProductReviewNotification($user, $order));
+                }
+ 
+            }
+        }
     }
 }
