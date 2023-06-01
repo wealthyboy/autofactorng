@@ -46,6 +46,7 @@ class HomeController extends Controller
 
         foreach ( $s as $j) {
             $j->ends_at = $j->ends_at->addMonths(10);
+            $j->save();
         }
         $featured_categories = Category::where('is_featured', true)->get();    
         $brands = Brand::where('is_featured', true)->get();
