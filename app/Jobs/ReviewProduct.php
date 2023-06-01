@@ -29,7 +29,6 @@ class ReviewProduct implements ShouldQueue
     public function __construct(User $user, Order $order)
     {
         $this->order = $order;
-
         $this->user = $user;
     }
 

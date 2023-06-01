@@ -318,7 +318,6 @@ export default {
         let uri = new URL(this.url),
             url;
 
-        console.log(uri);
         if (uri.search) {
             this.searchMode = false;
             url = "&get=" + d.getTime();

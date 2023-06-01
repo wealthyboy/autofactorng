@@ -3,6 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Models\Subscribe;
+use App\Models\User;
+
 use App\Notifications\ReminderNotification;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
