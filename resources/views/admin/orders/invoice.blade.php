@@ -244,8 +244,7 @@ footer {
         </thead>
         <tbody>
           <tr>
-          <td class="desc">
-         </td>
+        
 
             <td class="desc"><h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
             <td class="unit">$40.00</td>
