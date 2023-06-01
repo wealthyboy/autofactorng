@@ -15,7 +15,7 @@ class AutoCreditExpiry extends Command
      *
      * @var string
      */
-    protected $signature = 'send:autocreditreminder';
+    protected $signature = 'send:autocreditexpiry';
 
     /**
      * The console command description.
@@ -51,14 +51,15 @@ class AutoCreditExpiry extends Command
 
             $message = [];
             $subject =  "Your Subscription in 14 days";
+            $message[] = "Your Autocover subscription is expiring in 14 days! ";
+            $message[] = "It's important to note that any unused credits or benefits after the expiry of the validity period cannot be rolled over or transferred. ";
+            $message[] = "You shall be able to renew your subscription from {$date}";
+            $message[] = "Renew to continue enjoying exclusive benefits.";
+            $message[] = "Don't miss out on the convenience, savings, and perks of being a loyal subscriber.";
 
             foreach ($subscribers as  $subscriber) {
                 $date = $subscriber->ends_at->addDay()->format('d/m/y');
-                $message[] = "Your Autocover subscription is expiring in 14 days! ";
-                $message[] = "It's important to note that any unused credits or benefits after the expiry of the validity period cannot be rolled over or transferred. ";
-                $message[] = "You shall be able to renew your subscription from {$date}";
-                $message[] = "Renew to continue enjoying exclusive benefits.";
-                $message[] = "Don't miss out on the convenience, savings, and perks of being a loyal subscriber.";
+                
                 Notification::route('mail', optional($subscriber->user)->email)
                     ->notify(new ReminderNotification($subscriber->user, $message, $subject));
             }
