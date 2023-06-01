@@ -48,7 +48,7 @@ class AutoCreditExpiryReminder extends Command
         $month = Carbon::now()->addMonth();
 
         $subscribers = Subscribe::with('user')->where("ends_at", "<", $month)->get();
-        $user = User::find('email', 'abiola@autofactorng.com')->first();
+        $user = User::where('email', 'abiola@autofactorng.com')->first();
 
         //if (null !== $subscribers) {
 
