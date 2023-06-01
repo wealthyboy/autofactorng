@@ -49,6 +49,7 @@ class AutoCreditReminder extends Command
         
 
         $subscribers = Subscribe::has('user')->where("ends_at", ">=", $today)->get();
+        dd($subscribers);
 
         if (null !== $subscribers) {
             $message_2 = [];
