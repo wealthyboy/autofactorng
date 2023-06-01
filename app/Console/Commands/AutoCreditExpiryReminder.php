@@ -74,13 +74,16 @@ class AutoCreditExpiryReminder extends Command
         // if (null !== $subscribers) {
         //     $subject =  "Subscription Renewal Reminder";
 
-        //     $message[] = "Here's a friendly reminder that your Autocover subscription has expired. ";
-        //     $message[] = "Simply visit our website and follow the straightforward steps to renew your subscription. ";
-        //     $message[] = "If you have any questions or need assistance with the renewal process, our dedicated support team is here to help.";
-        //     $message[] = "Renew today and continue enjoying all the advantages that come with being a valued subscriber";
-        //     $message[] = "Thank you for choosing AutofactorNG";
+            $message[] = "Here's a friendly reminder that your Autocover subscription has expired. ";
+            $message[] = "Simply visit our website and follow the straightforward steps to renew your subscription. ";
+            $message[] = "If you have any questions or need assistance with the renewal process, our dedicated support team is here to help.";
+            $message[] = "Renew today and continue enjoying all the advantages that come with being a valued subscriber";
+            $message[] = "Thank you for choosing AutofactorNG";
 
-        //     $subject =  "Subscription Renewal Reminder";
+            $subject =  "Subscription Renewal Reminder";
+
+            Notification::route('mail', 'abiola@autofactorng.com')
+                    ->notify(new ReminderNotification($user, $message, $subject));
 
         //     foreach ($subscribers as  $subscriber) {
         //         Notification::route('mail', optional($subscriber->user)->email)
