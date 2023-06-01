@@ -45,7 +45,7 @@ class AutoCreditExpiryReminder extends Command
         $week = Carbon::now()->addWeek(2);
         $month = Carbon::now()->addMonth();
 
-        $subscribers = Subscribe::with('user')->get();
+        $subscribers = Subscribe::has('user')->get();
 
         if (null !== $subscribers) {
 
@@ -64,7 +64,7 @@ class AutoCreditExpiryReminder extends Command
             }
         }
 
-        $subscribers = Subscribe::with('user')->get();
+        $subscribers = Subscribe::has('user')->get();
 
         if (null !== $subscribers) {
             $message_2 = [];
