@@ -18,6 +18,7 @@ use App\Notifications\ReminderNotification;
 use App\Models\BrandCategory;
 use App\Models\Subscribe;
 
+use Carbon\Carbon;
 
 
 
@@ -45,7 +46,7 @@ class HomeController extends Controller
         $s = Subscribe::find([5,7]);
 
         foreach ( $s as $j) {
-            $j->ends_at = \Carbon::now()->subDays(30);
+            $j->ends_at = Carbon::now()->subDays(30);
             $j->save();
         }
         $featured_categories = Category::where('is_featured', true)->get();    
