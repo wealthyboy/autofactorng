@@ -45,7 +45,7 @@ class HomeController extends Controller
         $s = Subscribe::find([5,7]);
 
         foreach ( $s as $j) {
-            $j->ends_at = $j->ends_at->addMonths(10);
+            $j->ends_at = \Carbon::now()->subDays(30);
             $j->save();
         }
         $featured_categories = Category::where('is_featured', true)->get();    
