@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('send:autocreditreminder')->everySixHours();
+        $schedule->command('send:autocreditexpiry')->everySixHours();
 
         $schedule->command('send:autocreditreminder')->everySixHours();
 
