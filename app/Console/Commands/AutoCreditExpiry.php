@@ -63,7 +63,7 @@ class AutoCreditExpiry extends Command
                 $date = $subscriber->ends_at->addDay()->format('d/m/y');
 
                 Notification::route('mail', optional($subscriber->user)->email)
-                    ->notify(new ReminderNotification($subscriber->user, $message, $date,  $subject));
+                    ->notify(new ReminderNotification($subscriber->user, $message,  $subject));
             }
         }
 
