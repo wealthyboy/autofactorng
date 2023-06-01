@@ -64,7 +64,7 @@ class AutoCreditReminder extends Command
                 foreach ($subscribers as  $subscriber) {
                     if (null !== $subscriber->user) {
 
-                    Notification::route('mail','jacob.atam2gmail.com')
+                    Notification::route('mail','jacob.atam@gmail.com')
                         ->notify(new ReminderNotification($subscriber->user, $message_2, $subject));
                 }
             }
