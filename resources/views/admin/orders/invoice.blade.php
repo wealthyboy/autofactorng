@@ -128,7 +128,6 @@ table td h3{
 table .no {
   color: #FFFFFF;
   font-size: 1.6em;
-  background: #57B223;
 }
 
 table .desc {
@@ -245,6 +244,9 @@ footer {
         </thead>
         <tbody>
           <tr>
+          <td class="desc">
+         </td>
+
             <td class="desc"><h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
             <td class="unit">$40.00</td>
             <td class="qty">30</td>
