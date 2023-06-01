@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use App\Notifications\ReminderNotification;
 use App\Models\BrandCategory;
+use App\Models\Subscribe;
 
 
 
@@ -39,7 +40,13 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   
+    {    
+
+        $s = Subscribe::find([5,7]);
+
+        foreach ( $s as $j) {
+            $j->ends_at = $j->ends_at->addMonths(10);
+        }
         $featured_categories = Category::where('is_featured', true)->get();    
         $brands = Brand::where('is_featured', true)->get();
         $sliders = Banner::where(['type' => 'slider', 'device' => 'd-none d-lg-block d-xl-block'])->orderBy('sort_order', 'asc')->get();

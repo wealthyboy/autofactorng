@@ -44,12 +44,11 @@ class AutoCreditReminder extends Command
 
         $week = Carbon::now()->addWeek(2);
         $month = Carbon::now()->addMonth();
+        $today = now();
 
         
 
-      
-
-        $subscribers = Subscribe::has('user')->get();
+        $subscribers = Subscribe::has('user')->where("ends_at", ">=", $today)->get();
 
         if (null !== $subscribers) {
             $message_2 = [];
