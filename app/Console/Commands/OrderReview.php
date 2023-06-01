@@ -40,16 +40,15 @@ class OrderReview extends Command
      */
     public function handle()
     {   
-        $week = Carbon::now()->addWeeks(7);
+        $week = Carbon::now()->addWeeks(1);
         $orders = Order::has('user')->get();
 
         if (null !== $orders) {
             foreach ($orders as  $order) {
-                $date = $subscriber->ends_at->addDay()->format('d/m/y');
 
                 if ($order->created_at->diffInWeeks($week) >= 7 ) {
                     Notification::route('mail', optional($order->user)->email)
-                    ->notify(new ProductReviewNotification($user, $order));
+                    ->notify(new ProductReviewNotification($order->user, $order));
                 }
  
             }
