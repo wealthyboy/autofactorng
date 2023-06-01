@@ -640,7 +640,7 @@ a.product-image {
     top: 50%;
     margin-top: -0.35rem;
     margin-left: -0.35rem;
-    background-color: #f26100 !important;
+    background-color: #ccc !important;
     opacity: 0;
     visibility: hidden;
     transform: scale(0);
@@ -10626,7 +10626,6 @@ html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%
 }
-
 
 
 body:not(.loaded)>:not(.loading-overlay) {
