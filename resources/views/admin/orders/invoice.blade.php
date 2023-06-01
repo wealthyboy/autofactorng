@@ -82,7 +82,7 @@ h2.name {
 }
 
 #invoice h1 {
-  color: #0087C3;
+  color: #000;
   font-size: 2.4em;
   line-height: 1em;
   font-weight: normal;
@@ -111,7 +111,7 @@ table td {
 
 table th {
   white-space: nowrap;        
-  font-weight: normal;
+  font-weight: bold;
 }
 
 table td {
@@ -119,9 +119,9 @@ table td {
 }
 
 table td h3{
-  color: #57B223;
+   color: #000;
   font-size: 1.2em;
-  font-weight: normal;
+  font-weight: bold;
   margin: 0 0 0.2em 0;
 }
 
@@ -171,7 +171,7 @@ table tfoot tr:first-child td {
 }
 
 table tfoot tr:last-child td {
-  color: #57B223;
+  color: #000;
   font-size: 1.4em;
   border-top: 1px solid #57B223; 
 
@@ -237,7 +237,6 @@ footer {
       <table border="0" cellspacing="0" cellpadding="0">
         <thead>
           <tr>
-            <th class="no">#</th>
             <th class="desc">DESCRIPTION</th>
             <th class="unit">UNIT PRICE</th>
             <th class="qty">QUANTITY</th>
@@ -246,21 +245,18 @@ footer {
         </thead>
         <tbody>
           <tr>
-            <td class="no">01</td>
             <td class="desc"><h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
             <td class="unit">$40.00</td>
             <td class="qty">30</td>
             <td class="total">$1,200.00</td>
           </tr>
           <tr>
-            <td class="no">02</td>
             <td class="desc"><h3>Website Development</h3>Developing a Content Management System-based Website</td>
             <td class="unit">$40.00</td>
             <td class="qty">80</td>
             <td class="total">$3,200.00</td>
           </tr>
           <tr>
-            <td class="no">03</td>
             <td class="desc"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
             <td class="unit">$40.00</td>
             <td class="qty">20</td>
