@@ -147,18 +147,14 @@ export default {
                     .then((res) => { 
                         if ( res.data == 'Already subscribed' ) {
                             alert("You have  already subscribed")
-                            return
+                            location.href="/"
                         }
                     }).catch((er) => {
                         return
                     })
                     
-            }
-           
-
-
-
-            paymentIsComplete.value = false;
+            }  else {
+                paymentIsComplete.value = false;
             paymentIsProcessing.value = true;
             var handler = PaystackPop.setup({
                 key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
@@ -208,6 +204,12 @@ export default {
                 },
             });
             handler.openIframe();
+            }
+           
+
+
+
+           
         }
         return {
             getAmount,
