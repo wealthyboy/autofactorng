@@ -147,7 +147,7 @@ class OrdersController extends Table
 				$total = $total + $heavy_or_large_item;
 			}
 
-			$order->total = $total;
+			$order->total = is_array($total) ? array_shift($total) : $total;
 			$order->save();
 
 
