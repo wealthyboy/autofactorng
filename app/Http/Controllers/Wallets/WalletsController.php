@@ -71,7 +71,6 @@ class WalletsController extends Table
     public function store(Request $request)
     {   
 
-
         $user = $request->user();
         $input = $request->all();
         $original_amount =  $input['amount'];
@@ -80,6 +79,9 @@ class WalletsController extends Table
 
         if ($request->auto_credit) { 
             $subscribe = Subscribe::where('user_id', $user->id)->first();
+            if ($subscribe->ends_at->isPast()) {
+               return response()->json("Already subscribed");
+            }
 
         }
 

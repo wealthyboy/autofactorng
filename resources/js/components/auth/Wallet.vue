@@ -140,6 +140,23 @@ export default {
             if (this.v$.$error) {
                 return;
             }
+            
+            if (props.auto_credit) {
+                axios
+                    .post("/wallets", form)
+                    .then((res) => { 
+                        if ( res.data == 'Already subscribed' ) {
+                            alert("You have  already subscribed")
+                            return
+                        }
+                    }).catch((er) => {
+                        return
+                    })
+                    
+            }
+           
+
+
 
             paymentIsComplete.value = false;
             paymentIsProcessing.value = true;

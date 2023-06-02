@@ -17,10 +17,9 @@
            
 
             @if ( session('plan'))
-            <div class="row mb-5" id="signInMessage">
-               <span class="sign-in-prompt" data-testid="sign-in-message">You already Subscribed</span>
-            </div>
-
+               <div class="row mb-5" id="signInMessage">
+                  <span class="sign-in-prompt" data-testid="sign-in-message">You already Subscribed</span>
+               </div>
             @endif
 
 
@@ -38,7 +37,7 @@
             <div class="row mb-5" id="signInMessage">
                <span class="sign-in-prompt" data-testid="sign-in-message">Welcome.</span>
             </div>
-            <subscribe :price_range="{{ collect($price_range) }}"></subscribe>
+            <subscribe :plan="{{ session('plan') }}" :price_range="{{ collect($price_range) }}"></subscribe>
             @endguest
 
 

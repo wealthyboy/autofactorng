@@ -22329,6 +22329,17 @@ __webpack_require__.r(__webpack_exports__);
         return;
       }
 
+      if (props.auto_credit) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/wallets", form).then(function (res) {
+          if (res.data == 'Already subscribed') {
+            alert("You have  already subscribed");
+            return;
+          }
+        })["catch"](function (er) {
+          return;
+        });
+      }
+
       paymentIsComplete.value = false;
       paymentIsProcessing.value = true;
       var handler = PaystackPop.setup({
