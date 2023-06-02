@@ -45,7 +45,7 @@ class AutoCreditExpiry extends Command
         $week = Carbon::now()->addWeek(2);
         $month = Carbon::now()->addMonth();
 
-        $subscribers = Subscribe::has('user')->where("ends_at", ">=", $week)->get();
+        $subscribers = Subscribe::has('user')->where('sent_expiry', false)->where("ends_at", ">=", $week)->get();
 
         if (null !== $subscribers) {
 
@@ -53,16 +53,18 @@ class AutoCreditExpiry extends Command
             $subject = "Your Subscription in 14 days";
             $message[] = "Your Autocover subscription is expiring in 14 days! ";
             $message[] = "It's important to note that any unused credits or benefits after the expiry of the validity period cannot be rolled over or transferred. ";
+            $message[] = "You shall be able to renew your subscription from {$week}";
             $message[] = "Renew to continue enjoying exclusive benefits.";
             $message[] = "Don't miss out on the convenience, savings, and perks of being a loyal subscriber.";
 
             foreach ($subscribers as  $subscriber) {
                 $date = $subscriber->ends_at->addDay()->format('d/m/y');
-                $subscriber->user->date = $date;
+
                 Notification::route('mail', optional($subscriber->user)->email)
                     ->notify(new ReminderNotification($subscriber->user, $message,  $subject));
                   $subscriber->sent_expiry = 1;
                   $subscriber->save();
+
             }
         }
 
