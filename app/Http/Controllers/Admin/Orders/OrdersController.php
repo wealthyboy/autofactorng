@@ -174,6 +174,8 @@ class OrdersController extends Table
 				}
 			}
 
+			dd($order);
+
 			try {
 				$user = User::find(1);
 				$when = now()->addMinutes(5);
