@@ -22239,19 +22239,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _vuelidate_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vuelidate/core */ "./node_modules/@vuelidate/core/dist/index.esm.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
-/* harmony import */ var _message_SimpleMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../message/SimpleMessage */ "./resources/js/components/message/SimpleMessage.vue");
-/* harmony import */ var _general_Button_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../general/Button.vue */ "./resources/js/components/general/Button.vue");
-/* harmony import */ var _Forms_Input__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../Forms/Input */ "./resources/js/components/Forms/Input.vue");
-/* harmony import */ var _message_Message__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../message/Message */ "./resources/js/components/message/Message.vue");
-/* harmony import */ var _utils_ValidationRules__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../utils/ValidationRules */ "./resources/js/utils/ValidationRules.js");
-/* harmony import */ var vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vuex-composition-helpers */ "./node_modules/vuex-composition-helpers/dist/index.js");
-/* harmony import */ var _utils_Payment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../utils/Payment */ "./resources/js/utils/Payment.js");
-/* harmony import */ var _utils_Functions__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/Functions */ "./resources/js/utils/Functions.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _vuelidate_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vuelidate/core */ "./node_modules/@vuelidate/core/dist/index.esm.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _message_SimpleMessage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../message/SimpleMessage */ "./resources/js/components/message/SimpleMessage.vue");
+/* harmony import */ var _general_Button_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../general/Button.vue */ "./resources/js/components/general/Button.vue");
+/* harmony import */ var _Forms_Input__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Forms/Input */ "./resources/js/components/Forms/Input.vue");
+/* harmony import */ var _message_Message__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../message/Message */ "./resources/js/components/message/Message.vue");
+/* harmony import */ var _utils_ValidationRules__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../utils/ValidationRules */ "./resources/js/utils/ValidationRules.js");
+/* harmony import */ var vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vuex-composition-helpers */ "./node_modules/vuex-composition-helpers/dist/index.js");
+/* harmony import */ var _utils_Payment__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../utils/Payment */ "./resources/js/utils/Payment.js");
+/* harmony import */ var _utils_Functions__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../utils/Functions */ "./resources/js/utils/Functions.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm-bundler.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -22268,45 +22276,45 @@ __webpack_require__.r(__webpack_exports__);
   props: ["user", "price_range", "auto_credit"],
   emits: ["wallet:funded"],
   components: {
-    SimpleMessage: _message_SimpleMessage__WEBPACK_IMPORTED_MODULE_3__["default"],
-    GeneralButton: _general_Button_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
-    GeneralInput: _Forms_Input__WEBPACK_IMPORTED_MODULE_5__["default"],
-    Message: _message_Message__WEBPACK_IMPORTED_MODULE_6__["default"]
+    SimpleMessage: _message_SimpleMessage__WEBPACK_IMPORTED_MODULE_4__["default"],
+    GeneralButton: _general_Button_vue__WEBPACK_IMPORTED_MODULE_5__["default"],
+    GeneralInput: _Forms_Input__WEBPACK_IMPORTED_MODULE_6__["default"],
+    Message: _message_Message__WEBPACK_IMPORTED_MODULE_7__["default"]
   },
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
-    var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
-    var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
-    var scriptLoaded = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
-    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_11__.useStore)();
-    var error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
+    var loading = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
+    var post_server_error = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
+    var scriptLoaded = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(null);
+    var store = (0,vuex__WEBPACK_IMPORTED_MODULE_12__.useStore)();
+    var error = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
     var price_range = props.price_range ? props.price_range : [1000, 9000000];
-    var paymentIsProcessing = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
-    var paymentIsComplete = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
-    var amount = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
-    var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
-    var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
-    var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
+    var paymentIsProcessing = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
+    var paymentIsComplete = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(false);
+    var amount = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(null);
+    var text = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)("Submit");
+    var message = (0,vue__WEBPACK_IMPORTED_MODULE_3__.ref)(null);
+    var form = (0,vue__WEBPACK_IMPORTED_MODULE_3__.reactive)({
       amount: "",
       type: "Wallet",
       auto_credit: props.auto_credit
     });
-    (0,vue__WEBPACK_IMPORTED_MODULE_2__.onMounted)(function () {
+    (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
       scriptLoaded.value = new Promise(function (resolve) {
-        (0,_utils_Payment__WEBPACK_IMPORTED_MODULE_9__.loadScript)(function () {
+        (0,_utils_Payment__WEBPACK_IMPORTED_MODULE_10__.loadScript)(function () {
           resolve();
         });
       });
     });
 
-    var _useGetters = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_8__.useGetters)(["wallet", "walletBalance"]),
+    var _useGetters = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_9__.useGetters)(["wallet", "walletBalance"]),
         wallet = _useGetters.wallet,
         walletBalance = _useGetters.walletBalance;
 
-    var rules = (0,_utils_ValidationRules__WEBPACK_IMPORTED_MODULE_7__.walletRules)(price_range);
-    var v$ = (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_0__.useVuelidate)(rules, form);
+    var rules = (0,_utils_ValidationRules__WEBPACK_IMPORTED_MODULE_8__.walletRules)(price_range);
+    var v$ = (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_1__.useVuelidate)(rules, form);
 
-    var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_8__.useActions)(["makePost", "clearErr", "getWalletBalance", "getTableData"]),
+    var _useActions = (0,vuex_composition_helpers__WEBPACK_IMPORTED_MODULE_9__.useActions)(["makePost", "clearErr", "getWalletBalance", "getTableData"]),
         clearErr = _useActions.clearErr,
         makePost = _useActions.makePost,
         getWalletBalance = _useActions.getWalletBalance,
@@ -22316,75 +22324,103 @@ __webpack_require__.r(__webpack_exports__);
       form.amount = e.target.value;
 
       if (props.price_range.length && form.amount >= props.price_range[0]) {
-        amount.value = (0,_utils_Functions__WEBPACK_IMPORTED_MODULE_10__.autoCredit)(form.amount, props.price_range[0], props.price_range[1]);
+        amount.value = (0,_utils_Functions__WEBPACK_IMPORTED_MODULE_11__.autoCredit)(form.amount, props.price_range[0], props.price_range[1]);
       } else {
         amount.value = "";
       }
     }
 
     function fund() {
-      this.v$.$touch();
+      return _fund.apply(this, arguments);
+    }
 
-      if (this.v$.$error) {
-        return;
-      }
+    function _fund() {
+      _fund = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var handler;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.v$.$touch();
 
-      if (props.auto_credit) {
-        axios__WEBPACK_IMPORTED_MODULE_1___default().post("/wallets", form).then(function (res) {
-          if (res.data == 'Already subscribed') {
-            alert("You have  already subscribed");
-            location.href = "/";
-          }
-        })["catch"](function (er) {
-          return;
-        });
-      } else {
-        paymentIsComplete.value = false;
-        paymentIsProcessing.value = true;
-        var handler = PaystackPop.setup({
-          key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943",
-          //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
-          email: props.user.email,
-          amount: form.amount * 100,
-          currency: "NGN",
-          first_name: props.user.name,
-          metadata: {
-            custom_fields: [{
-              amount: form.amount,
-              customer_id: props.user.id,
-              type: "Wallet"
-            }]
-          },
-          callback: function callback(response) {
-            error.value = false;
-            console.log(false);
-            axios__WEBPACK_IMPORTED_MODULE_1___default().post("/wallets", form).then(function (res) {
-              paymentIsComplete.value = true;
-              paymentIsProcessing.value = false;
-              store.commit("setWalletBalance", res.data);
-              location.href = "/wallets";
-              setTimeout(function () {
+                if (!this.v$.$error) {
+                  _context.next = 3;
+                  break;
+                }
+
+                return _context.abrupt("return");
+
+              case 3:
+                if (!props.auto_credit) {
+                  _context.next = 6;
+                  break;
+                }
+
+                _context.next = 6;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/wallets", form).then(function (res) {
+                  if (res.data == 'Already subscribed') {
+                    alert("You have  already subscribed");
+                    return;
+                  }
+                })["catch"](function (er) {
+                  return;
+                });
+
+              case 6:
                 paymentIsComplete.value = false;
-                message.value = null;
-              }, 3000);
-            })["catch"](function (error) {
-              paymentIsComplete.value = false;
-              paymentIsProcessing.value = false;
-              message.value = "Error processing your request";
-              setTimeout(function () {
-                message.value = null;
-              }, 3000);
-            });
-            message.value = "Your money has been added";
-            emit("wallet:funded");
-          },
-          onClose: function onClose() {
-            paymentIsComplete.value = false;
-            paymentIsProcessing.value = false;
+                paymentIsProcessing.value = true;
+                handler = PaystackPop.setup({
+                  key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943",
+                  //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
+                  email: props.user.email,
+                  amount: form.amount * 100,
+                  currency: "NGN",
+                  first_name: props.user.name,
+                  metadata: {
+                    custom_fields: [{
+                      amount: form.amount,
+                      customer_id: props.user.id,
+                      type: "Wallet"
+                    }]
+                  },
+                  callback: function callback(response) {
+                    error.value = false;
+                    console.log(false);
+                    axios__WEBPACK_IMPORTED_MODULE_2___default().post("/wallets", form).then(function (res) {
+                      paymentIsComplete.value = true;
+                      paymentIsProcessing.value = false;
+                      store.commit("setWalletBalance", res.data);
+                      location.href = "/wallets";
+                      setTimeout(function () {
+                        paymentIsComplete.value = false;
+                        message.value = null;
+                      }, 3000);
+                    })["catch"](function (error) {
+                      paymentIsComplete.value = false;
+                      paymentIsProcessing.value = false;
+                      message.value = "Error processing your request";
+                      setTimeout(function () {
+                        message.value = null;
+                      }, 3000);
+                    });
+                    message.value = "Your money has been added";
+                    emit("wallet:funded");
+                  },
+                  onClose: function onClose() {
+                    paymentIsComplete.value = false;
+                    paymentIsProcessing.value = false;
+                  }
+                });
+                handler.openIframe();
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
           }
-        });
-        handler.openIframe();
-      }
+        }, _callee, this);
+      }));
+      return _fund.apply(this, arguments);
     }
 
     return {
