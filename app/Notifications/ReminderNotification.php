@@ -63,6 +63,10 @@ class ReminderNotification extends Notification
             if (is_array($this->message)){
                 foreach($this->message as $message) {
                     $m->line($message); 
+                    if ($this->user->date) {
+                        $m->line("You shall be able to renew your subscription from {$this->user->date}"); 
+                    }
+  
                 }
             } else {
                 $m->line($this->message); 
