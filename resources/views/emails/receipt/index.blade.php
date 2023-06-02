@@ -841,7 +841,7 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;">
-                                                         <div href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;"> ₦{{ $order->heavy_item_price ?  number_format($order->heavy_item_price) : 0}} </div>
+                                                         <div href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;"> ₦{{ $order->heavy_item_price }} </div>
                                                       </td>
                                                    </tr>
                                                    <tr>
