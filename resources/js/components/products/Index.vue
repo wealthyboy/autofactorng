@@ -336,7 +336,6 @@ export default {
             let url = u.pathname;
             location.href = url
 
-            
             document.getElementById("filter-form").reset();
             this.getProducts(url);
         },

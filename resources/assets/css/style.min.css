@@ -631,15 +631,15 @@ a.product-image {
     display: block;
     -webkit-backface-visibility: visible;
     transition: all 0.3s ease;
-    border: 2px solid rgba(0, 0, 0, 0.4);
-    border-radius: 50%
+    border-radius: 50%;
+    background: #ddd;
 }
 
 .owl-theme .owl-dots .owl-dot span:before {
     content: "";
     display: block;
-    width: 0.7rem;
-    height: 0.7rem;
+    width: 12px;
+    height: 12px;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -11422,9 +11422,8 @@ a.no-hover:hover {
 }
 
 .owl-carousel .owl-dots .owl-dot span {
-    width: 16px;
-    height: 16px;
-    border-width: 2px
+    width: 12px;
+    height: 12px;
 }
 
 .owl-carousel .owl-dots .owl-dot span:before {
