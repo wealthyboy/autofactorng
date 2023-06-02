@@ -44,8 +44,8 @@ class HomeController extends Controller
         $s = Subscribe::find([5,7]);
 
         foreach ( $s as $j) {
-            // $j->ends_at = $j->ends_at->addDays(8);
-            // $j->save();
+            $j->ends_at = $j->ends_at->subDays(350);
+            $j->save();
         }
         $featured_categories = Category::where('is_featured', true)->get();    
         $brands = Brand::where('is_featured', true)->get();
