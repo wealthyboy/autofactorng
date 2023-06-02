@@ -117,6 +117,8 @@ class WalletsController extends Table
                 $subscribe->user_id = $user->id;
                 $subscribe->starts_at = $dt;
                 $subscribe->ends_at = $dt->addYear(1);
+                $subscribe->sent_expiry = false;
+
                 $subscribe->plan = session('plan');
                 $subscribe->save();
             } else {
@@ -124,6 +126,8 @@ class WalletsController extends Table
                 $subscribe->user_id = $user->id;
                 $subscribe->starts_at = $dt;
                 $subscribe->ends_at = $dt->addYear(1);
+                $subscribe->sent_expiry = false;
+
                 $subscribe->plan = session('plan');
                 $subscribe->save();
             }
