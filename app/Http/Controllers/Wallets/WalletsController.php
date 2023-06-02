@@ -69,12 +69,21 @@ class WalletsController extends Table
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+
+
         $user = $request->user();
         $input = $request->all();
         $original_amount =  $input['amount'];
         $amount = (10 * $input['amount']) / 100;
         $amount = $input['amount'] +  $amount;
+
+        if ($request->auto_credit) { 
+            $subscribe = Subscribe::where('user_id', $user->id)->first();
+
+        }
+
+     
         // return $amount;
 
         $wallet = new Wallet;
@@ -116,7 +125,7 @@ class WalletsController extends Table
             if (null !== $subscribe) {
                 $subscribe->user_id = $user->id;
                 $subscribe->starts_at = $dt;
-                $subscribe->ends_at = $dt->addYear(1);
+                $subscribe->ends_at = $dt->addYear();
                 $subscribe->sent_expiry = false;
 
                 $subscribe->plan = session('plan');
@@ -125,7 +134,7 @@ class WalletsController extends Table
                 $subscribe = new Subscribe;
                 $subscribe->user_id = $user->id;
                 $subscribe->starts_at = $dt;
-                $subscribe->ends_at = $dt->addYear(1);
+                $subscribe->ends_at = $dt->addYear();
                 $subscribe->sent_expiry = false;
 
                 $subscribe->plan = session('plan');
@@ -136,7 +145,7 @@ class WalletsController extends Table
             $auto_credit['plan'] = session('plan');
             $auto_credit['amount'] =  $original_amount;
             $auto_credit['credit'] =  $amount;
-            $auto_credit['expiry'] = $dt->addYear(1)->format('d/m/y');
+            $auto_credit['expiry'] = $dt->addYear()->format('d/m/y');
             $user->notify(new AutoCreditNotification($user, $auto_credit));
         }
 

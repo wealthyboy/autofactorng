@@ -19,7 +19,13 @@ class SubscribeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+
+        if (null !== session('plan')) {
+            abort(404);
+        }
+
+        
         $links =  [
             'light_duty',
             'normal_duty',
