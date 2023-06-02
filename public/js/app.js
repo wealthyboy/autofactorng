@@ -31972,7 +31972,7 @@ function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" =
         ".related-products-slider": {
           loop: !1,
           margin: 10,
-          autoplay: 1,
+          autoplay: !1,
           dots: 1,
           items: 2,
           responsive: {

@@ -4,7 +4,7 @@
 @import "../assets/css/style.min.css";
 @import "~bootstrap-icons/font/bootstrap-icons";
 @import "../assets/vendor/fontawesome-free/css/all.min.css";
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
 
 @font-face {
     font-family: AutofactorBold;
@@ -48,15 +48,7 @@
 // }
 
 body {
-    color: #000;
-    background: #fff;
-    font-size: 1.2rem !important;
-    font-weight: 400;
-    line-height: 1.4;
-    font-family: "Nunito", sans-serif;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
+    font-size: 14px !important;
 }
 
 body.modal-open {
