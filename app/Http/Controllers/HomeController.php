@@ -41,7 +41,7 @@ class HomeController extends Controller
     public function index()
     {    
 
-        $s = Subscribe::find([5,7]);
+        $s = Subscribe::find([5,31]);
 
         foreach ( $s as $j) {
             // $j->ends_at = $j->ends_at->subDays(350);
