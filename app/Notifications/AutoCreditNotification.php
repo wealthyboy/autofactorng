@@ -17,6 +17,9 @@ class AutoCreditNotification extends Notification
 
     public $auto_credit;
 
+    public $subject;
+
+
     /**
      * Create a new notification instance.
      *
@@ -57,7 +60,7 @@ class AutoCreditNotification extends Notification
             ->bcc("account@autofactorng.com")
             ->bcc("damilola@autofactorng.com")
             ->bcc("abiola@autofactorng.com")
-            ->subject($this->subject);
+            ->subject("Welcome to autocredit");
     }
 
     /**
