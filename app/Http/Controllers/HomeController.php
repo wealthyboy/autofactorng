@@ -41,7 +41,12 @@ class HomeController extends Controller
     public function index()
     {    
 
-     
+        $s = Subscribe::find([5,7]);
+
+        foreach ( $s as $j) {
+            $j->ends_at = Carbon::now()->addDays(44);
+            $j->save();
+        }
         $featured_categories = Category::where('is_featured', true)->get();    
         $brands = Brand::where('is_featured', true)->get();
         $sliders = Banner::where(['type' => 'slider', 'device' => 'd-none d-lg-block d-xl-block'])->orderBy('sort_order', 'asc')->get();
