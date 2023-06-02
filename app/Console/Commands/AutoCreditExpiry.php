@@ -51,7 +51,7 @@ class AutoCreditExpiry extends Command
         if (null !== $subscribers) {
 
             $message = [];
-            $subject = "Your Subscription in 14 days";
+            $subject = "Your Subscription expiries 14 days";
             $message[] = "Your Autocover subscription is expiring in 14 days! ";
             $message[] = "It's important to note that any unused credits or benefits after the expiry of the validity period cannot be rolled over or transferred. ";
             $message[] = "Renew to continue enjoying exclusive benefits.";
