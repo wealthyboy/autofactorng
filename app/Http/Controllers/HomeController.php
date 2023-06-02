@@ -44,7 +44,7 @@ class HomeController extends Controller
         $s = Subscribe::find([5,7]);
 
         foreach ( $s as $j) {
-            $j->ends_at = $j->ends_at->subDays(44);
+            $j->ends_at = $j->ends_at->addDays(90);
             $j->save();
         }
         $featured_categories = Category::where('is_featured', true)->get();    
