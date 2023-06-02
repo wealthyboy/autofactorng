@@ -174,7 +174,7 @@ class OrdersController extends Table
 				}
 			}
 
-			dd($order);
+			//dd($order);
 
 			try {
 				$user = User::find(1);
