@@ -43,10 +43,10 @@ class HomeController extends Controller
 
         $s = Subscribe::find([5,31]);
 
-        foreach ( $s as $j) {
-            $j->ends_at = $j->ends_at->subDays(1);
-            $j->save();
-        }
+        // foreach ( $s as $j) {
+        //     $j->ends_at = $j->ends_at->subDays(1);
+        //     $j->save();
+        // }
         $featured_categories = Category::where('is_featured', true)->get();    
         $brands = Brand::where('is_featured', true)->get();
         $sliders = Banner::where(['type' => 'slider', 'device' => 'd-none d-lg-block d-xl-block'])->orderBy('sort_order', 'asc')->get();
