@@ -58,12 +58,15 @@ class AutoCreditExpiry extends Command
             $message[] = "Don't miss out on the convenience, savings, and perks of being a loyal subscriber.";
 
             foreach ($subscribers as  $subscriber) {
-                $date = $subscriber->ends_at->addDay()->format('d/m/y');
+                $date = $subscriber->ends_at->addDays(14)->format('d/m/y');
                 $subscriber->user->date =  $date;
-                Notification::route('mail', optional($subscriber->user)->email)
-                    ->notify(new ReminderNotification($subscriber->user, $message,  $subject));
-                  $subscriber->sent_expiry = 1;
-                  $subscriber->save();
+                if (null !== $subscriber->user) {
+
+                    Notification::route('mail', optional($subscriber->user)->email)
+                        ->notify(new ReminderNotification($subscriber->user, $message,  $subject));
+                    $subscriber->sent_expiry = 1;
+                    $subscriber->save();
+                }
 
             }
         }
