@@ -59,6 +59,7 @@ class AutoCreditExpiry extends Command
 
             foreach ($subscribers as  $subscriber) {
                 $date = $subscriber->ends_at->addDay()->format('d/m/y');
+                $subscriber->user->date =  $date;
 
                 Notification::route('mail', optional($subscriber->user)->email)
                     ->notify(new ReminderNotification($subscriber->user, $message,  $subject));
