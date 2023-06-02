@@ -27,7 +27,7 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Subject</label>
-                        <input type="text" value="{{ isset($order) ? $order->subject : 'Thanks For Ordering' }}" class="form-control" name="subject" required>
+                        <input type="text" value="{{ 'Confirmation Of Order' }}" class="form-control" name="subject" required>
                      </div>
                   </div>
 
@@ -84,7 +84,7 @@
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Shipping</label>
-                        <input type="number" class="form-control" name="shipping_price">
+                        <input type="number" class="form-control" required name="shipping_price">
                      </div>
                   </div>
                   <div class="col-sm-3 col-12">
