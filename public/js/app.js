@@ -22360,6 +22360,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/wallets", form).then(function (res) {
                   if (res.data == 'Already subscribed') {
                     alert("You have  already subscribed");
+                    location.href = "/";
                     return;
                   }
                 })["catch"](function (er) {

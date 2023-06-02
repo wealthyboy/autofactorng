@@ -147,6 +147,8 @@ export default {
                     .then((res) => { 
                         if ( res.data == 'Already subscribed' ) {
                             alert("You have  already subscribed")
+                            location.href = "/";
+
                             return
                         }
                     }).catch((er) => {
