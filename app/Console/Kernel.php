@@ -19,6 +19,10 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('send:autocreditreminder')->everySixHours();
 
+
+        $schedule->command('order:review')->everySixHours();
+
+
     }
 
     /**
