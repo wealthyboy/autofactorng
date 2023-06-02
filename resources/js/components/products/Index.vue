@@ -332,9 +332,10 @@ export default {
             getProducts: "getProducts",
         }),
         clearfilters() {
-            location.reload()
             let u = new URL(location.href);
             let url = u.pathname;
+            location.href = url
+
             
             document.getElementById("filter-form").reset();
             this.getProducts(url);
