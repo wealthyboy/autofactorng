@@ -47,7 +47,7 @@ class OrderReview extends Command
 
         if (null !== $orders) {
             foreach ($orders as  $order) {
-                if ($order->created_at->diffInWeeks($week) >= 7 ) {
+                if ($order->created_at->diffInWeeks($week) < 7 ) {
                     Notification::route('mail', optional($order->user)->email)
                     ->notify(new ProductReviewNotification($order->user, $order));
                     $orders->allow_review =false;
