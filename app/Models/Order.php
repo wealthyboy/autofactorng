@@ -60,6 +60,7 @@ class Order extends Model
 		$order->shipping_price = data_get($input, 'shipping_price');
 		$order->invoice = substr(rand(100000, time()), 0, 7);
 		$order->payment_type = $payment_method;
+		$order->allow_review = 1;
 		$order->total = $input['total'];
 		$order->first_name = optional($user->active_address)->first_name;
 		$order->last_name = optional($user->active_address)->last_name;
@@ -114,8 +115,7 @@ class Order extends Model
         try {
 			$delay = now()->addMinutes(10);
 
-			\Notification::route('mail', optional($user)->email)
-			->notify((new ProductReviewNotification($user, $order))->delay($delay));
+			
 
 
 			//ReviewProduct::dispatch($user, $order);

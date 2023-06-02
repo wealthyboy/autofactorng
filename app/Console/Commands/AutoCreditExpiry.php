@@ -49,8 +49,6 @@ class AutoCreditExpiry extends Command
 
         if (null !== $subscribers) {
 
-
-
             $message = [];
             $subject = "Your Subscription in 14 days";
             $message[] = "Your Autocover subscription is expiring in 14 days! ";
@@ -64,19 +62,11 @@ class AutoCreditExpiry extends Command
 
                 Notification::route('mail', optional($subscriber->user)->email)
                     ->notify(new ReminderNotification($subscriber->user, $message,  $subject));
+                  //  $subscribers->
             }
         }
 
-       
-
-
-        // $subscribers = Subscribe::with('user')->where("ends_at", ">=", $week)->get();
-
-        // if (null !== $subscribers) {
-        //     foreach ($subscribers as  $subscriber) {
-        //         Notification::route('mail', optional($subscriber->user)->email)
-        //             ->notify(new ReminderNotification($subscriber->user, 14));
-        //     }
-        // }
+    
     }
 }
+//
