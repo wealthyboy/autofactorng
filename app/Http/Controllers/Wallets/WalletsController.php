@@ -79,7 +79,7 @@ class WalletsController extends Table
 
         if ($request->auto_credit) { 
             $subscribe = Subscribe::where('user_id', $user->id)->first();
-            if (null !== $subscribe && $subscribe->ends_at->isPast()) {
+            if (null !== $subscribe &&  session('plan')) {
                return response()->json("Already subscribed");
             }
 
