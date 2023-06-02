@@ -173,7 +173,6 @@ class OrdersController extends Table
 					$order->coupon_value = '----';
 				}
 			}
-            dd($sub_total, $order);
 
 			try {
 				$user = User::find(1);
