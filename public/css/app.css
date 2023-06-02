@@ -12059,6 +12059,7 @@ a.no-hover:hover {
 .owl-carousel .owl-dots .owl-dot span {
     width: 12px;
     height: 12px;
+    margin-top: 4px;
 }
 
 .owl-carousel .owl-dots .owl-dot span:before {
