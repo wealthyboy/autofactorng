@@ -42,12 +42,11 @@ class AutoCreditExpiry extends Command
     public function handle()
     {
 
-        $weeks = Carbon::now()->addDays(12);
+        $weeks = Carbon::now()->addDays(14);
         $month = Carbon::now()->addMonth();
 
         $subscribers = Subscribe::has('user')->where("ends_at", "<", $weeks)->get();
 
-        dd($subscribers);
 
         if (null !== $subscribers) {
 
