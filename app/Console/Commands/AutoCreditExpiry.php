@@ -47,7 +47,7 @@ class AutoCreditExpiry extends Command
 
         $subscribers = Subscribe::has('user')->where("ends_at", "<", $weeks)->get();
 
-
+     
         if (null !== $subscribers) {
 
             $message = [];
@@ -58,7 +58,7 @@ class AutoCreditExpiry extends Command
             $message[] = "Don't miss out on the convenience, savings, and perks of being a loyal subscriber.";
 
             foreach ($subscribers as  $subscriber) {
-                $date = $subscriber->ends_at->addDays(14)->format('d/m/y');
+                $date = $subscriber->ends_at->format('d/m/y');
                 $subscriber->user->date =  $date;
                 if (null !== $subscriber->user) {
 
