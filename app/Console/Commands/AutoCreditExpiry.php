@@ -45,7 +45,7 @@ class AutoCreditExpiry extends Command
         $week = Carbon::now()->addWeek(2);
         $month = Carbon::now()->addMonth();
 
-        $subscribers = Subscribe::has('user')->where("ends_at", ">=", $week)->get();
+        $subscribers = Subscribe::has('user')->where("ends_at", "<", $week)->get();
 
         if (null !== $subscribers) {
 

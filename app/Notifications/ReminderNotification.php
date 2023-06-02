@@ -55,7 +55,6 @@ class ReminderNotification extends Notification
     public function toMail($notifiable)
     {
         $m = (new MailMessage)
-            ->bcc('damilola@autofactorng.com')
             ->bcc('account@autofactorng.com')
             ->bcc('care@autofactorng.com')
             ->subject($this->subject)
