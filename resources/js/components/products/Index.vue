@@ -335,8 +335,7 @@ export default {
             location.reload()
             let u = new URL(location.href);
             let url = u.pathname;
-            window.history.pushState({}, "", url);
-            this.showClearFilter = false;
+            
             document.getElementById("filter-form").reset();
             this.getProducts(url);
         },
