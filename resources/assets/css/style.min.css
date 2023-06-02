@@ -605,6 +605,11 @@ a.product-image {
     margin-top: 2.5rem
 }
 
+.owl-theme .owl-dots { 
+    background-color: #ffffff;
+}
+
+
 .owl-theme .owl-dots {
     line-height: 1;
     text-align: center;
