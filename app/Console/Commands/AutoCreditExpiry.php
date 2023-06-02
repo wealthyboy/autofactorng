@@ -47,7 +47,7 @@ class AutoCreditExpiry extends Command
 
         $subscribers = Subscribe::has('user')->where("ends_at", "<", $weeks)->get();
 
-        dd($weeks);
+        dd($subscribers);
 
         if (null !== $subscribers) {
 
