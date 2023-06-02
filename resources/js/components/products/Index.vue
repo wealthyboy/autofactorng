@@ -332,6 +332,7 @@ export default {
             getProducts: "getProducts",
         }),
         clearfilters() {
+            location.reload()
             let u = new URL(location.href);
             let url = u.pathname;
             window.history.pushState({}, "", url);

@@ -23464,6 +23464,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     getProducts: "getProducts"
   })), {}, {
     clearfilters: function clearfilters() {
+      location.reload();
       var u = new URL(location.href);
       var url = u.pathname;
       window.history.pushState({}, "", url);
