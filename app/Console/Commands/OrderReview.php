@@ -42,13 +42,13 @@ class OrderReview extends Command
      */
     public function handle()
     {   
-        $week = Carbon::now()->addWeeks(1);
+        $week = Carbon::now();
         $orders = Order::has('user')->where('allow_review', 1)->get();
 
 
         if (null !== $orders) {
             foreach ($orders as  $order) {
-                dd($order->created_at->diffInWeeks($week));
+                dd($order->created_at->diffInWeek($week));
                 if ($order->created_at->diffInWeeks($week) >= 7 ) {
                    // dd($order->created_at);
 
