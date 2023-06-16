@@ -45,6 +45,8 @@ class OrderReview extends Command
         $week = Carbon::now()->addWeeks(1);
         $orders = Order::has('user')->where('allow_review', 1)->get();
 
+        dd($orders);
+
         if (null !== $orders) {
             foreach ($orders as  $order) {
                 if ($order->created_at->diffInWeeks($week) >= 7 ) {
