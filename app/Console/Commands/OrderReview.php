@@ -48,7 +48,7 @@ class OrderReview extends Command
 
         if (null !== $orders) {
             foreach ($orders as  $order) {
-                dd($order->created_at->diffInWeek($week));
+                dd($order->created_at->diffInWeeks($week));
                 if ($order->created_at->diffInWeeks($week) >= 7 ) {
                    // dd($order->created_at);
 
