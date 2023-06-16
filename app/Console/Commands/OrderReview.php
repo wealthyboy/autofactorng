@@ -48,17 +48,17 @@ class OrderReview extends Command
 
         if (null !== $orders) {
             foreach ($orders as  $order) {
-                dd($order->created_at->diffInWeeks($week));
-                if ($order->created_at->diffInWeeks($week) >= 7 ) {
+                if ($order->created_at->diffInWeeks($week) >= 1 ) {
                    // dd($order->created_at);
 
                     Notification::route('mail', optional($order->user)->email)
                     ->notify(new ProductReviewNotification($order->user, $order));
                     $orders->allow_review =false;
                     $order->save();
+
+                    dd("Mail sent");
                 }
 
-                dd($order);
 
  
             }
