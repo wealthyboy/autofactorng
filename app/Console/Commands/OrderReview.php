@@ -45,7 +45,7 @@ class OrderReview extends Command
         $week = Carbon::now()->addWeeks(1);
         $orders = Order::has('user')->where('allow_review', 1)->get();
 
-        dd($orders);
+        dd($orders->created_at);
 
         if (null !== $orders) {
             foreach ($orders as  $order) {
