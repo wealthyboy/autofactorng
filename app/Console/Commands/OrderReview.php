@@ -56,7 +56,6 @@ class OrderReview extends Command
                     $orders->allow_review =false;
                     $order->save();
 
-                    dd("Mail sent");
                 }
 
 
