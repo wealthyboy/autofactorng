@@ -61,7 +61,6 @@ class AutoCreditExpiryReminder extends Command
                 $message[] = "Don't miss out on the convenience, savings, and perks of being a loyal subscriber.";
                 Notification::route('mail', optional($subscriber->user)->email)
                     ->notify(new ReminderNotification($subscriber->user, $message, $subject));
-
                     $subscriber->sent_reminder = 1;
                     $subscriber->save();
             }
