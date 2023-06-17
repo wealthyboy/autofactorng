@@ -50,7 +50,7 @@ class AutoCreditExpiryReminder extends Command
         if (null !== $subscribers) {
 
             $message = [];
-            $subject =  "Your Subscription in 14 days";
+            $subject =  "Your Subscription ends in 14 days";
 
             foreach ($subscribers as  $subscriber) {
                 $date = $subscriber->ends_at->addDay()->format('d/m/y');
