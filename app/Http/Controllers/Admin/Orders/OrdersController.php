@@ -184,8 +184,8 @@ class OrdersController extends Table
 					->bcc('orders@autofactorng.com')
 					->send(new OrderReceipt($order, null, null, $sub_total));
 			} catch (\Throwable $th) {
-				
-                dd($th);
+
+				dd($th);
 				Log::info("Mail error :" . $th);
 				Log::info("Custom error :" . $th);
 				$err = new Error();
@@ -267,7 +267,7 @@ class OrdersController extends Table
 		$order  =  Order::find($id);
 		$statuses = static::order_status();
 		$sub_total = $this->subTotal($order);
-		$ordered_products = $order->ordered_products()->paginate(10);
+		$ordered_products = $order->ordered_products()->paginate(200);
 		$orders = (new OrderedProduct())->getListingData($ordered_products);
 		$summaries = [];
 		$summaries['Sub-Total'] =  Helper::currencyWrapper($sub_total);
