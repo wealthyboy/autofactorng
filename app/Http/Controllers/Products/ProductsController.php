@@ -279,7 +279,7 @@ class ProductsController extends Controller
             session(['model' => Attribute::find($request->model_id)->name]);
             session(['engine' => optional(Attribute::find($request->engine_id))->name]);
             session(['year' => $request->year]);
-            dd(Attribute::find($request->engine_id)->name);
+            dd(Attribute::find($request->engine_id));
         }
 
         if ($request->checkForCategory == true && $this->getCategory($category)) {
