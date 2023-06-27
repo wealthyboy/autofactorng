@@ -272,13 +272,14 @@ class ProductsController extends Controller
         $category = Category::where('slug', $request->category)->first();
         $cookie = null;
         $catString = null;
+        dd($request->all());
 
-        if ($request->engine_id === true) {
+
+        if ($request->engine_id) {
             session('make', Attribute::find(request()->make_id)->name);
             session('model', Attribute::find(request()->model_id)->name);
             session('engine', Attribute::find(request()->engine_id)->name);
             session('year', request()->year);
-            dd($request->all());
         }
 
         if ($request->checkForCategory == true && $this->getCategory($category)) {
