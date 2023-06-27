@@ -431,6 +431,11 @@ class ProductsController extends Controller
             \Cookie::queue(\Cookie::forget('make_id'));
             \Cookie::queue(\Cookie::forget('model_id'));
             \Cookie::queue(\Cookie::forget('year'));
+
+            session(['make' => '']);
+            session(['model' => '']);
+            session(['engine' => '']);
+            session(['year' => '']);
         }
     }
 
