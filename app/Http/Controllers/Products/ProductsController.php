@@ -273,7 +273,7 @@ class ProductsController extends Controller
         $cookie = null;
         $catString = null;
 
-        if ($request->filled('engine_id')) {
+        if ($request->has('engine_id')) {
             session('make', Attribute::find(request()->make_id)->name);
             session('model', Attribute::find(request()->model_id)->name);
             session('engine', Attribute::find(request()->engine_id)->name);
