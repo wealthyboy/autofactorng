@@ -31,7 +31,6 @@ class CheckoutController extends Controller
     {
         $carts =  Cart::all_items_in_cart();
 
-        dd($carts);
         if (!$carts->count()) {
             return redirect()->to('/cart');
         }
