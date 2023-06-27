@@ -218,7 +218,7 @@ class Product extends Model
             return self::where($type, '!=', null)->select($type)->groupBy($type)->orderBy($type, 'asc')->get();
         }
 
-        return   self::where($type, '!=', null)->select($type)->groupBy($type)->orderBy($type, 'asc')->get();
+        return self::where($type, '!=', null)->select($type)->groupBy($type)->orderBy($type, 'asc')->get();
     }
 
 
@@ -259,7 +259,8 @@ class Product extends Model
     }
 
     public function getCategory()
-    {   $category = $this->categories->first();
+    {
+        $category = $this->categories->first();
         return optional($this->categories->first())->name == 'Spare Parts' || optional($category)->name  == 'Servicing Parts' || optional(optional($category)->parent)->name  == 'Spare Parts' ||  optional(optional($category)->parent)->name  == 'Servicing Parts' ? true : false;
     }
 
@@ -288,19 +289,19 @@ class Product extends Model
         return  null !== $this->cart ? true : false;
     }
 
-    
+
 
     public function getShowFitTextAttribute()
     {
         $category = $this->categories->first();
         return optional($this->categories->first())->name == 'Spare Parts' || optional($category)->name  == 'Servicing Parts' || optional(optional($category)->parent)->name  == 'Spare Parts' ||  optional(optional($category)->parent)->name  == 'Servicing Parts' ? true : false;
     }
-  
-    
-      public function getFitTextAttribute()
+
+
+    public function getFitTextAttribute()
     {
 
-        
+
         if (request()->type == 'tyre') {
             return 'Fits your vehicle';
         }
@@ -316,26 +317,27 @@ class Product extends Model
                 $builder->groupBy('make_model_year_engines.product_id');
             })->first();
 
-           return  $p !== null ? 'Fits your ' . $this->buildSearchString() : self::DoesNotFit;
+            return  $p !== null ? 'Fits your ' . $this->buildSearchString() : self::DoesNotFit;
         }
 
-       
+
         return $this->buildSearchString() ? 'Fits your ' . $this->buildSearchString() : self::CheckText;
     }
 
 
-    public  function buildSearchString($category =null)
-    {    
-        
-            if (null !== request()->cookie('engine_id') &&  request()->type !== 'clear') {
-                $year = request()->cookie('year');
-                $make_name = Attribute::find(request()->cookie('make_id'))->name;
-                $model_name = Attribute::find(request()->cookie('model_id'))->name;
-                $engine_name = optional(Engine::find(request()->cookie('engine_id')))->name;
-                return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
-            }
-      //  }
-       
+    public  function buildSearchString($category = null)
+    {
+
+        if (null !== request()->cookie('engine_id') &&  request()->type !== 'clear') {
+
+            $year = request()->cookie('year');
+            $make_name = Attribute::find(request()->cookie('make_id'))->name;
+            $model_name = Attribute::find(request()->cookie('model_id'))->name;
+            $engine_name = optional(Engine::find(request()->cookie('engine_id')))->name;
+            return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
+        }
+        //  }
+
 
         return null;
     }

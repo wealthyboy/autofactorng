@@ -46,10 +46,11 @@ class CartController  extends Controller
 			$cart->user_id    = optional($request->user())->id;
 		}
 		$price = null !== $product->discounted_price ?  $product->discounted_price :  $product->price;
-		$make = optional(Attribute::find($request->cookie('make_id')))->name;
-		$model = optional(Attribute::find($request->cookie('model_id')))->name;
-		$year = $request->cookie('year');
-		$engine = optional(Engine::find($request->cookie('engine_id')))->name;
+		$make = session('make');
+		$model = session('model');
+		$year = session('year');
+		$year = session('engine');
+		$engine = optional(Engine::find(session('engine_id')))->name;
 		if (\Cookie::get('cart') !== null) {
 			$remember_token  = \Cookie::get('cart');
 			$cart = Cart::firstOrNew(
