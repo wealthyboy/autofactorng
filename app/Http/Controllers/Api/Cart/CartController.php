@@ -69,7 +69,7 @@ class CartController  extends Controller
 
 
 			$carts = Cart::all_items_in_cart();
-			$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $cookie->getValue())->get();
+			$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $remember_token)->get();
 			$sub_total =  $total[0]->items_total;
 
 			return response()->json([
