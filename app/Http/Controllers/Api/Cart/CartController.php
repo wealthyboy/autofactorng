@@ -51,7 +51,6 @@ class CartController  extends Controller
 		$year = $request->cookie('year');
 		$engine = optional(Engine::find($request->cookie('engine_id')))->name;
 		if (\Cookie::get('cart') !== null) {
-			dd($make);
 			$remember_token  = \Cookie::get('cart');
 			$result = $cart->updateOrCreate(
 				['product_id' => $request->product_id, 'remember_token' => $remember_token],
