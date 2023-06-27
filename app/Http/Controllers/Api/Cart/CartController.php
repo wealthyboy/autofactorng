@@ -66,7 +66,9 @@ class CartController  extends Controller
 				]
 			);
 
-			return $this->loadCart($request);
+
+
+			return $result;
 		} else {
 			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
 			session()->put('cart', $value);
