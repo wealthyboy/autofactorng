@@ -52,19 +52,23 @@ class CartController  extends Controller
 		$engine = optional(Engine::find($request->cookie('engine_id')))->name;
 		if (\Cookie::get('cart') !== null) {
 			$remember_token  = \Cookie::get('cart');
-			$result = $cart->updateOrCreate(
-				['product_id' => $request->product_id, 'remember_token' => $remember_token],
-				[
-					'product_id' => $request->product_id,
-					'quantity' => $request->quantity,
-					'price' => $price,
-					'total' => $price * $request->quantity,
-					'make' => $make,
-					'model' => $model,
-					'year' => $year,
-					'engine' => $engine,
-				]
+			$cart = Cart::firstOrNew(
+				['product_id' => $request->product_id, 'remember_token' => $remember_token]
 			);
+
+			$cart->product_id = $request->product_id;
+			$cart->quantity = $request->quantity;
+			$cart->price = $price;
+			$cart->total = $price * $request->quantity;
+			$cart->make = $make;
+			$cart->model = $model;
+			$cart->year = $year;
+			$cart->engine = $engine;
+			$cart->save();
+
+			return $cart;
+
+
 
 			//return $this->loadCart($request);
 		} else {
