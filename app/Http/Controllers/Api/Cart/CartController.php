@@ -67,36 +67,7 @@ class CartController  extends Controller
 			);
 
 
-
-			$carts = Cart::all_items_in_cart();
-			$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $remember_token)->get();
-			$sub_total =  $total[0]->items_total;
-
-			return response()->json([
-				'data' => [
-
-					0 => [
-						'cart_id' => $cart->id,
-						'product_id' => $cart->product_id,
-						'image' => optional($cart->product)->image_m,
-						'quantity' => $cart->quantity,
-						'price' => $cart->price,
-						'product_name' => optional($cart->product)->name,
-						'link' => optional($cart->product)->name,
-						'make' => $make,
-						'model' => $model,
-						'year' => $year,
-						'engine' => $engine
-
-					]
-				],
-				'meta' => [
-					'sub_total' => $sub_total,
-					'currency' => '₦',
-					'currency_code' => '₦',
-					'user' => $request->user()
-				],
-			]);
+			return $this->loadCart($request);
 		} else {
 			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
 			session()->put('cart', $value);
