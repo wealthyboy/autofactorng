@@ -69,7 +69,7 @@ class CartController  extends Controller
 
 			$carts = Cart::all_items_in_cart();
 
-			return $carts;
+			return $cart;
 
 
 			// return response()->json([
