@@ -89,7 +89,7 @@ class CartController  extends Controller
 			$c  = response()->json([
 				'data' => [
 
-					$ca
+					array_shift($ca)
 
 				],
 				'meta' => [
@@ -99,12 +99,6 @@ class CartController  extends Controller
 					'user' => $request->user()
 				],
 			]);
-
-
-
-
-
-			return $c;
 		} else {
 			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
 			session()->put('cart', $value);
