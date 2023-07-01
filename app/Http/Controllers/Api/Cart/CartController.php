@@ -71,7 +71,7 @@ class CartController  extends Controller
 			$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $remember_token)->get();
 			$sub_total =  $total[0]->items_total;
 
-			$ca = $carts->map(function ($cart) {
+			$cart = $carts->map(function ($cart) {
 				return [
 					'id' => $cart->id,
 					'product_id' => $cart->product_id,
@@ -86,10 +86,8 @@ class CartController  extends Controller
 			});
 
 
-			$c  = response()->json([
-				'data' =>
-
-				$ca,
+			return response()->json([
+				'data' => $cart,
 				'meta' => [
 					'sub_total' => $sub_total,
 					'currency' => '₦',
@@ -97,8 +95,6 @@ class CartController  extends Controller
 					'user' => $request->user()
 				],
 			]);
-
-			return $c;
 		} else {
 			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
 			session()->put('cart', $value);
