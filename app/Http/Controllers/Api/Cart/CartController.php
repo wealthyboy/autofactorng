@@ -67,35 +67,35 @@ class CartController  extends Controller
 			$cart->engine = $engine;
 			$cart->save();
 
-			return Cart::with(["product"])->where(['remember_token' => $remember_token])->get();
+			$carts = Cart::with(["product"])->where(['remember_token' => $remember_token])->get();
+			$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $remember_token)->get();
+			$sub_total =  $total[0]->items_total;
 
-			return $cart;
+			return response()->json([
+				'data' => [
 
+					$carts->map(function ($cart) {
+						return [
+							'id' => $cart->id,
+							'product_id' => $cart->product_id,
+							'product' => $cart->product,
+							'image' => optional($cart->product)->image_tn,
+							'quantity' => $cart->quantity,
+							'price' => Cart::ConvertCurrencyRate($cart->price),
+							'currency' => optional($cart->product)->currency,
+							'product_name' => optional($cart->product)->name,
+							'link' => optional($cart->product)->link,
+						];
+					})
 
-			// return response()->json([
-			// 	'data' => [
-
-			// 		$collection->map(function ($ordered_product) {
-			// 			return [
-			// 				"Product" => $ordered_product->product_name,
-			// 				"Price" =>  Helper::currencyWrapper($ordered_product->price),
-			// 				"Quantity" => $ordered_product->quantity,
-			// 				"make" =>  $ordered_product->make,
-			// 				"model" => $ordered_product->model,
-			// 				"year" =>  $ordered_product->year,
-			// 				"engine" =>  $ordered_product->engine,
-			// 				"Sub Total" =>  Helper::currencyWrapper($ordered_product->total),
-			// 			];
-			// 		})
-
-			// 	],
-			// 	'meta' => [
-			// 		'sub_total' => $sub_total,
-			// 		'currency' => '₦',
-			// 		'currency_code' => '₦',
-			// 		'user' => $request->user()
-			// 	],
-			// ]);
+				],
+				'meta' => [
+					'sub_total' => $sub_total,
+					'currency' => '₦',
+					'currency_code' => '₦',
+					'user' => $request->user()
+				],
+			]);
 
 
 
