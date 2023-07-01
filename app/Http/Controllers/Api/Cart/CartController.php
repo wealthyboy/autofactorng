@@ -67,7 +67,7 @@ class CartController  extends Controller
 			$cart->engine = $engine;
 			$cart->save();
 
-			$carts = Cart::all_items_in_cart();
+			return Cart::with(["product"])->where(['remember_token' => $remember_token])->get();
 
 			return $cart;
 
