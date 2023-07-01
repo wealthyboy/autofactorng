@@ -85,10 +85,12 @@ class CartController  extends Controller
 				];
 			});
 
+			return $c;
+
 			return response()->json([
 				'data' => [
 
-					$c
+					array_shift($c)
 
 				],
 				'meta' => [
