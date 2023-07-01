@@ -67,8 +67,39 @@ class CartController  extends Controller
 			$cart->engine = $engine;
 			$cart->save();
 
+			$carts = Cart::all_items_in_cart();
 
-			return $this->loadCart($request);
+			return $carts;
+
+
+			// return response()->json([
+			// 	'data' => [
+
+			// 		$collection->map(function ($ordered_product) {
+			// 			return [
+			// 				"Product" => $ordered_product->product_name,
+			// 				"Price" =>  Helper::currencyWrapper($ordered_product->price),
+			// 				"Quantity" => $ordered_product->quantity,
+			// 				"make" =>  $ordered_product->make,
+			// 				"model" => $ordered_product->model,
+			// 				"year" =>  $ordered_product->year,
+			// 				"engine" =>  $ordered_product->engine,
+			// 				"Sub Total" =>  Helper::currencyWrapper($ordered_product->total),
+			// 			];
+			// 		})
+
+			// 	],
+			// 	'meta' => [
+			// 		'sub_total' => $sub_total,
+			// 		'currency' => '₦',
+			// 		'currency_code' => '₦',
+			// 		'user' => $request->user()
+			// 	],
+			// ]);
+
+
+
+			//return $this->loadCart($request);
 		} else {
 			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
 			session()->put('cart', $value);
