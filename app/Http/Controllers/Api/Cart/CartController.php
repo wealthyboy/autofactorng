@@ -89,7 +89,7 @@ class CartController  extends Controller
 			$c  = response()->json([
 				'data' => [
 
-					array_shift($ca)
+					$ca[0]
 
 				],
 				'meta' => [
