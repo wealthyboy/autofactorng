@@ -71,22 +71,24 @@ class CartController  extends Controller
 			$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $remember_token)->get();
 			$sub_total =  $total[0]->items_total;
 
+			$c = $carts->map(function ($cart) {
+				return [
+					'id' => $cart->id,
+					'product_id' => $cart->product_id,
+					'product' => $cart->product,
+					'image' => optional($cart->product)->image_tn,
+					'quantity' => $cart->quantity,
+					'price' => Cart::ConvertCurrencyRate($cart->price),
+					'currency' => optional($cart->product)->currency,
+					'product_name' => optional($cart->product)->name,
+					'link' => optional($cart->product)->link,
+				];
+			});
+
 			return response()->json([
 				'data' => [
 
-					$carts->map(function ($cart) {
-						return [
-							'id' => $cart->id,
-							'product_id' => $cart->product_id,
-							'product' => $cart->product,
-							'image' => optional($cart->product)->image_tn,
-							'quantity' => $cart->quantity,
-							'price' => Cart::ConvertCurrencyRate($cart->price),
-							'currency' => optional($cart->product)->currency,
-							'product_name' => optional($cart->product)->name,
-							'link' => optional($cart->product)->link,
-						];
-					})
+					$c
 
 				],
 				'meta' => [
