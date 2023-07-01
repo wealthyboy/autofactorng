@@ -25,10 +25,7 @@ class CartIndexResource extends JsonResource
             'currency' => optional($this->product)->currency,
             'product_name' => optional($this->product)->name,
             'link' => optional($this->product)->link,
-            'make' => $this->make,
-            'model' => $this->model,
-            'year' => $this->year,
-            'engine' => $this->engine
+
 
         ];
     }
