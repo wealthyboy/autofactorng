@@ -120,7 +120,7 @@ class CartController  extends Controller
 	{
 
 		$carts = Cart::all_items_in_cart();
-		$sub_total =  Cart::sum_items_in_cart();
+		$sub_total = Cart::sum_items_in_cart();
 		$rate = \Cookie::get('rate');
 		return  CartIndexResource::collection($carts)->additional([
 			'meta' => [
