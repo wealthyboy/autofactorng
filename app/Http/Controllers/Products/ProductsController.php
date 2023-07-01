@@ -278,6 +278,7 @@ class ProductsController extends Controller
             session(['make' => Attribute::find($request->make_id)->name]);
             session(['model' => Attribute::find($request->model_id)->name]);
             session(['engine' => optional(Attribute::find($request->engine_id))->name]);
+            dd(session('engine'));
             session(['year' => $request->year]);
         }
 
@@ -319,13 +320,11 @@ class ProductsController extends Controller
             }
 
 
-            if ($request->cookie('engine_id') || $request->filled('engine_id')) {
+            if ($request->filled('engine_id')) {
                 session('make', Attribute::find(request()->cookie('make_id'))->name);
                 session('model', Attribute::find(request()->cookie('model_id'))->name);
                 session('engine', Attribute::find(request()->cookie('engine_id'))->name);
                 session('year', request()->cookie('year'));
-
-
 
                 $productFitString =  null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
             } else {
