@@ -72,7 +72,7 @@ class CartController  extends Controller
 			$sub_total =  $total[0]->items_total;
 
 			$ca = $carts->map(function ($cart) {
-				return [
+				return array_shift([
 					'id' => $cart->id,
 					'product_id' => $cart->product_id,
 					'product' => $cart->product,
@@ -82,14 +82,14 @@ class CartController  extends Controller
 					'currency' => optional($cart->product)->currency,
 					'product_name' => optional($cart->product)->name,
 					'link' => optional($cart->product)->link,
-				];
+				]);
 			});
 
 
 			$c  = response()->json([
 				'data' => [
 
-					$ca[0]
+					$ca
 
 				],
 				'meta' => [
