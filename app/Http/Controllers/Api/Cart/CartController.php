@@ -65,7 +65,7 @@ class CartController  extends Controller
 			$cart->model = $model;
 			$cart->year = $year;
 			$cart->engine = $engine;
-			$cart->save();
+			return $cart->save();
 
 
 			return $this->loadCart($request);
