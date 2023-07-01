@@ -65,10 +65,10 @@ class CartController  extends Controller
 			$cart->model = $model;
 			$cart->year = $year;
 			$cart->engine = $engine;
-			return $cart->save();
+			$cart->save();
 
 
-			return $this->loadCart($request);
+			return $cart;
 		} else {
 			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
 			session()->put('cart', $value);
