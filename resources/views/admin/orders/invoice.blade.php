@@ -287,7 +287,7 @@
         <tr>
           <td colspan="2"></td>
           <td colspan="2">GRAND TOTAL</td>
-          <td>$6,500.00</td>
+          <td>{{ $summaries['Total'] }}</td>
         </tr>
       </tfoot>
     </table>
