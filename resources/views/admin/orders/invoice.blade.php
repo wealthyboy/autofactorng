@@ -241,7 +241,7 @@
       <thead>
         <tr>
           <th class="desc">ITEM</th>
-          <th class="unit">PRICE</th>
+          <th class="desc">PRICE</th>
           <th class="qty">QUANTITY</th>
           <th class="qty"></th>
           <th class="qty">TOTAL</th>
@@ -257,10 +257,10 @@
             <td class="desc">
               <h3>{{ $ordered_product->product_name }}</h3>
             </td>
-            <td class="unit">{{ $order->currency }}₦{{ number_format( $ordered_product->price) }}</td>
+            <td class="desc">{{ $order->currency }}₦{{ number_format( $ordered_product->price) }}</td>
             <td class="qty ">{{ $ordered_product->quantity }}</td>
             <td class="unit"></td>
-            <td class="unit">{{ $order->currency }}₦{{ number_format( $ordered_product->price *  $ordered_product->quantity) }}</td>
+            <td class="desc">{{ $order->currency }}₦{{ number_format( $ordered_product->price *  $ordered_product->quantity) }}</td>
 
           </tr>
 
