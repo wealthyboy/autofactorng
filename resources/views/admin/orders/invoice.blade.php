@@ -281,7 +281,7 @@
         <tr>
           <td colspan="2"></td>
           <td colspan="2">Discount</td>
-          <td>{{ $order->currency }}₦{{ number_format($order->shipping_price)  }}</td>
+          <td>{{ $order->currency }}₦{{ $summaries[' Discount']  }}</td>
         </tr>
         <tr>
           <td colspan="2"></td>
