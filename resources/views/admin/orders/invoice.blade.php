@@ -275,14 +275,15 @@
         </tr>
         <tr>
           <td colspan="2"></td>
-          <td colspan="2">Shipping</td>
-          <td>{{ $order->currency }}{{$summaries['Shipping'] }}</td>
-        </tr>
-        <tr>
-          <td colspan="2"></td>
           <td colspan="2">Discount</td>
           <td>{{ $order->currency }}{{ ''  }}</td>
         </tr>
+        <tr>
+          <td colspan="2"></td>
+          <td colspan="2">Shipping</td>
+          <td>{{ $order->currency }}{{$summaries['Shipping'] }}</td>
+        </tr>
+
         <tr>
           <td colspan="2"></td>
           <td colspan="2">Heavy/Large item charge</td>
