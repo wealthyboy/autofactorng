@@ -239,7 +239,7 @@
           <th class="desc">ITEM</th>
           <th class="unit">PRICE</th>
           <th class="qty">QUANTITY</th>
-          <th class="total">TOTAL</th>
+          <th class="total"></th>
           <th class="total">TOTAL</th>
 
         </tr>
@@ -255,8 +255,8 @@
             </td>
             <td class="unit">{{ $order->currency }}{{ number_format( $ordered_product->price) }}</td>
             <td class="qty">{{ $ordered_product->quantity }}</td>
-            <td class="total">{{ $order->currency }}{{ number_format( $ordered_product->price) }}</td>
-            <td class="total">WW</td>
+            <td class="unit"></td>
+            <td class="unit">{{ $order->currency }}{{ number_format( $ordered_product->price) }}</td>
 
           </tr>
 
