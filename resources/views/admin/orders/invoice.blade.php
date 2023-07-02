@@ -211,10 +211,10 @@
       <img src="https://autofactor.ng/images/logo/autofactor_logo.png">
     </div>
     <div id="company">
-      <h2 class="name">Company Name</h2>
-      <div>455 Foggy Heights, AZ 85004, US</div>
-      <div>(602) 519-0450</div>
-      <div><a href="mailto:company@example.com">company@example.com</a></div>
+      <h2 class="name">AutofactorNG</h2>
+      <div>{{ $setting->store_address }}</div>
+      <div>{{ $setting->store_phone }}</div>
+      <div><a href="mailto:{{ $setting->store_email }}">{{ $setting->store_email }}</a></div>
     </div>
     </div>
   </header>
@@ -222,21 +222,22 @@
     <div id="details" class="clearfix">
       <div id="client">
         <div class="to">INVOICE TO:</div>
-        <h2 class="name">John Doe</h2>
-        <div class="address">796 Silver Harbour, TX 79273, US</div>
-        <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+        <h2 class="name">{{ $order->first_name  .''.  $order->last_name }}</h2>
+        <div class="address">{{ $order->address }}, {{ $order->city }} {{ $order->state }}</div>
+        <div class="email"><a href="mailto:john@example.com">{{ $order->email }}</a></div>
+        <div class="email"><a href="tel:{{ $order->phone }}">{{ $order->email }}</a></div>
+
       </div>
       <div id="invoice">
-        <h1>INVOICE 3-2-1</h1>
-        <div class="date">Date of Invoice: 01/06/2014</div>
-        <div class="date">Due Date: 30/06/2014</div>
+        <h1>INVOICE </h1>
+        <div class="date">Date of Invoice: {{ $order->created_at->format('d/m/y') }}</div>
       </div>
     </div>
     <table border="0" cellspacing="0" cellpadding="0">
       <thead>
         <tr>
-          <th class="desc">DESCRIPTION</th>
-          <th class="unit">UNIT PRICE</th>
+          <th class="desc">ITEM</th>
+          <th class="unit">PRICE</th>
           <th class="qty">QUANTITY</th>
           <th class="total">TOTAL</th>
           <th class="total">TOTAL</th>

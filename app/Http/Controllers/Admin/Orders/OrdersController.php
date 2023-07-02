@@ -53,12 +53,11 @@ class OrdersController extends Table
 	{
 		$order = Order::find($id);
 		$setting = Setting::first();
-		$sub_total  =  $this->subTotal($order);
+		$sub_total = $this->subTotal($order);
 		$ordered_products = $order->ordered_products()->paginate(20);
 		$ordered_products = (new OrderedProduct())->getListingData($ordered_products);
 		$summaries = [];
-		$summaries['Sub-Total'] =  Helper::currencyWrapper($sub_total);
-
+		$summaries['Sub-Total'] = Helper::currencyWrapper($sub_total);
 
 		if ($order->coupon) {
 			$summaries[optional($order->voucher())->amount . ' % Discount'] =  '-₦' . number_format((optional($order->voucher())->amount / 100) * $sub_total);
