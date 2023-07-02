@@ -254,6 +254,8 @@
           <td class="unit">$40.00</td>
           <td class="qty">30</td>
           <td class="total">$1,200.00</td>
+          <td class="total">WW</td>
+
         </tr>
 
       </tbody>
