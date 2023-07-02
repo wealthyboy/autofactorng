@@ -76,7 +76,7 @@ class OrdersController extends Table
 		$summaries['Heavy Item Charge'] = Helper::currencyWrapper($order->heavy_item_price);
 		$summaries['Total'] = Helper::currencyWrapper($order->total);
 		$objs = $this->showData($id);
-		return view('admin.orders.invoice', compact('no_card', 'summaries', 'objs', 'setting', 'order', 'ordered_products'));
+		return view('admin.orders.invoice', compact('no_card', 'summaries', 'objs', 'sub_total', 'setting', 'order', 'ordered_products'));
 	}
 
 
