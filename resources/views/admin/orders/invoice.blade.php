@@ -257,10 +257,10 @@
             <td class="desc">
               <h3>{{ $ordered_product->product_name }}</h3>
             </td>
-            <td class="unit">{{ $order->currency }}{{ number_format( $ordered_product->price) }}</td>
+            <td class="unit">{{ $order->currency }}₦{{ number_format( $ordered_product->price) }}</td>
             <td class="qty ">{{ $ordered_product->quantity }}</td>
             <td class="unit"></td>
-            <td class="unit">{{ $order->currency }}{{ number_format( $ordered_product->price) }}</td>
+            <td class="unit">{{ $order->currency }}₦{{ number_format( $ordered_product->price) }}</td>
 
           </tr>
 
