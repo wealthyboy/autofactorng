@@ -301,8 +301,8 @@
       <div class="notice">
         We hope that you enjoy your order</br>
         Should you need any sort of further assistance, we are always ready to assist.</br>
-        You can reach us by phone at 09081155504, 09081155505 or by email at care@autofactorng.com
-        <div style="font-size: 1.2em;" id="thanks"> Items must be returned within 5 working days after delivery.</div>
+        You can reach us by phone at 09081155504, 09081155505 or by email at care@autofactorng.com</br>
+        Items must be returned within 5 working days after delivery.
 
       </div>
     </div>
