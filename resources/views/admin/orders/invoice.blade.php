@@ -216,7 +216,7 @@
     </div>
     <div id="company">
       <h2 class="name">AutofactorNG</h2>
-      <div>{{ $setting->store_address }}</div>
+      <div>{{ $setting->address }}</div>
       <div>{{ $setting->store_phone }}</div>
       <div><a href="mailto:{{ $setting->store_email }}">{{ $setting->store_email }}</a></div>
     </div>
