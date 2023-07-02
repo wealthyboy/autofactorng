@@ -253,9 +253,9 @@
             <td class="desc">
               <h3>{{ $ordered_product->product_name }}</h3>
             </td>
-            <td class="unit">$40.00</td>
-            <td class="qty">30</td>
-            <td class="total">$1,200.00</td>
+            <td class="unit">{{ $order->currency }}{{ number_format( $ordered_product->price) }}</td>
+            <td class="qty">{{ $ordered_product->quantity }}</td>
+            <td class="total">{{ $order->currency }}{{ number_format( $ordered_product->price) }}</td>
             <td class="total">WW</td>
 
           </tr>
@@ -276,12 +276,12 @@
         </tr>
         <tr>
           <td colspan="2"></td>
-          <td colspan="2">Shipping</td>
+          <td colspan="2">Discount</td>
           <td>{{ $order->currency }}{{ number_format($order->shipping_price)  }}</td>
         </tr>
         <tr>
           <td colspan="2"></td>
-          <td colspan="2">Shipping</td>
+          <td colspan="2">Heavy/Large item charge</td>
           <td>{{ $order->currency }}{{ number_format($order->shipping_price)  }}</td>
         </tr>
         <tr>
