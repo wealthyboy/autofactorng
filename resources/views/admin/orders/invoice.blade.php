@@ -281,7 +281,7 @@
         <tr>
           <td colspan="2"></td>
           <td colspan="2">Discount</td>
-          <td>{{ $order->currency }}₦{{ $summaries[' Discount']  }}</td>
+          <td>{{ $order->currency }}₦{{ ''  }}</td>
         </tr>
         <tr>
           <td colspan="2"></td>
