@@ -245,30 +245,44 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <?php foreach ($order->ordered_products as $ordered_product) { ?>
+
+          <tr>
 
 
-          <td class="desc">
-            <h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity
-          </td>
-          <td class="unit">$40.00</td>
-          <td class="qty">30</td>
-          <td class="total">$1,200.00</td>
-          <td class="total">WW</td>
+            <td class="desc">
+              <h3>{{ $ordered_product->product_name }}</h3>
+            </td>
+            <td class="unit">$40.00</td>
+            <td class="qty">30</td>
+            <td class="total">$1,200.00</td>
+            <td class="total">WW</td>
 
-        </tr>
+          </tr>
+
+        <?php } ?>
 
       </tbody>
       <tfoot>
         <tr>
           <td colspan="2"></td>
           <td colspan="2">SUBTOTAL</td>
-          <td>{{ '' }}</td>
+          <td>{{ $order->currency }}{{ number_format($sub_total) }}</td>
         </tr>
         <tr>
           <td colspan="2"></td>
-          <td colspan="2">TAX 25%</td>
-          <td>$1,300.00</td>
+          <td colspan="2">Shipping</td>
+          <td>{{ $order->currency }}{{ number_format($order->shipping_price)  }}</td>
+        </tr>
+        <tr>
+          <td colspan="2"></td>
+          <td colspan="2">Shipping</td>
+          <td>{{ $order->currency }}{{ number_format($order->shipping_price)  }}</td>
+        </tr>
+        <tr>
+          <td colspan="2"></td>
+          <td colspan="2">Shipping</td>
+          <td>{{ $order->currency }}{{ number_format($order->shipping_price)  }}</td>
         </tr>
         <tr>
           <td colspan="2"></td>
@@ -280,7 +294,11 @@
     <div id="thanks">Thank you!</div>
     <div id="notices">
       <div>NOTICE:</div>
-      <div class="notice">MESSAGE GOEAS HERE</div>
+      <div class="notice">
+        We hope that you enjoy your order</br>
+        Should you need any sort of further assistance, we are always ready to assist.</br>
+        You can reach us by phone at 09081155504, 09081155505 or by email at care@autofactorng.com
+      </div>
     </div>
   </main>
 
