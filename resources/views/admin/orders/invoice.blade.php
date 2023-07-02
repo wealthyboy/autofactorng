@@ -276,17 +276,17 @@
         <tr>
           <td colspan="2"></td>
           <td colspan="2">Shipping</td>
-          <td>{{ $order->currency }}₦{{$summaries['Shipping'] }}</td>
+          <td>{{ $order->currency }}{{$summaries['Shipping'] }}</td>
         </tr>
         <tr>
           <td colspan="2"></td>
           <td colspan="2">Discount</td>
-          <td>{{ $order->currency }}₦{{ ''  }}</td>
+          <td>{{ $order->currency }}{{ ''  }}</td>
         </tr>
         <tr>
           <td colspan="2"></td>
           <td colspan="2">Heavy/Large item charge</td>
-          <td>{{ $order->currency }}₦{{ $summaries['Heavy Item Charge']  }}</td>
+          <td>{{ $order->currency }}{{ $summaries['Heavy Item Charge']  }}</td>
         </tr>
         <tr>
           <td colspan="2"></td>
