@@ -260,7 +260,7 @@
             <td class="unit">{{ $order->currency }}₦{{ number_format( $ordered_product->price) }}</td>
             <td class="qty ">{{ $ordered_product->quantity }}</td>
             <td class="unit"></td>
-            <td class="unit">{{ $order->currency }}₦{{ number_format( $ordered_product->price) }}</td>
+            <td class="unit">{{ $order->currency }}₦{{ number_format( $ordered_product->price *  $ordered_product->quantity) }}</td>
 
           </tr>
 
