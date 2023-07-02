@@ -239,8 +239,8 @@
           <th class="desc">ITEM</th>
           <th class="unit">PRICE</th>
           <th class="qty">QUANTITY</th>
-          <th class="total"></th>
-          <th class="total">TOTAL</th>
+          <th class="qty"></th>
+          <th class="qty">TOTAL</th>
 
         </tr>
       </thead>
