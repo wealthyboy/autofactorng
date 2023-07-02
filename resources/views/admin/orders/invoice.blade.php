@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Example 2</title>
+  <title>{{ }}</title>
   <link rel="stylesheet" href="style.css" media="all" />
 </head>
 <style>
@@ -225,7 +225,7 @@
         <h2 class="name">{{ $order->first_name  .''.  $order->last_name }}</h2>
         <div class="address">{{ $order->address }}, {{ $order->city }} {{ $order->state }}</div>
         <div class="email"><a href="mailto:john@example.com">{{ $order->email }}</a></div>
-        <div class="email"><a href="tel:{{ $order->phone }}">{{ $order->email }}</a></div>
+        <div class="email"><a href="tel:{{ $order->phone }}">{{ $order->phone }}</a></div>
 
       </div>
       <div id="invoice">
