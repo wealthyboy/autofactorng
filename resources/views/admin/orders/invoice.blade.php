@@ -297,7 +297,7 @@
     </table>
     <div id="thanks">Thank you!</div>
     <div id="notices">
-      <div>NOTICE:</div>
+      <div></div>
       <div class="notice">
         We hope that you enjoy your order</br>
         Should you need any sort of further assistance, we are always ready to assist.</br>
