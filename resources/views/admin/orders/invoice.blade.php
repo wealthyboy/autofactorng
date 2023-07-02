@@ -271,22 +271,22 @@
         <tr>
           <td colspan="2"></td>
           <td colspan="2">SUBTOTAL</td>
-          <td>{{ $order->currency }}{{ number_format($sub_total) }}</td>
+          <td>{{ $order->currency }}₦{{ number_format($sub_total) }}</td>
         </tr>
         <tr>
           <td colspan="2"></td>
           <td colspan="2">Shipping</td>
-          <td>{{ $order->currency }}{{ number_format($order->shipping_price)  }}</td>
+          <td>{{ $order->currency }}₦{{$summaries['Shipping'] }}</td>
         </tr>
         <tr>
           <td colspan="2"></td>
           <td colspan="2">Discount</td>
-          <td>{{ $order->currency }}{{ number_format($order->shipping_price)  }}</td>
+          <td>{{ $order->currency }}₦{{ number_format($order->shipping_price)  }}</td>
         </tr>
         <tr>
           <td colspan="2"></td>
           <td colspan="2">Heavy/Large item charge</td>
-          <td>{{ $order->currency }}{{ number_format($order->shipping_price)  }}</td>
+          <td>{{ $order->currency }}₦{{ $summaries['Heavy Item Charge']  }}</td>
         </tr>
         <tr>
           <td colspan="2"></td>
