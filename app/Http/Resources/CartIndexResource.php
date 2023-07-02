@@ -26,7 +26,6 @@ class CartIndexResource extends JsonResource
             'product_name' => optional($this->product)->name,
             'link' => optional($this->product)->link,
 
-
         ];
     }
 }
