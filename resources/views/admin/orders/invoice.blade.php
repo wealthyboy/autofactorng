@@ -193,6 +193,10 @@
     font-size: 1.2em;
   }
 
+  td.qty {
+    text-align: center;
+  }
+
   footer {
     color: #777777;
     width: 100%;
@@ -254,7 +258,7 @@
               <h3>{{ $ordered_product->product_name }}</h3>
             </td>
             <td class="unit">{{ $order->currency }}{{ number_format( $ordered_product->price) }}</td>
-            <td class="qty">{{ $ordered_product->quantity }}</td>
+            <td class="qty ">{{ $ordered_product->quantity }}</td>
             <td class="unit"></td>
             <td class="unit">{{ $order->currency }}{{ number_format( $ordered_product->price) }}</td>
 
