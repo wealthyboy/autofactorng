@@ -59,6 +59,8 @@ class OrdersController extends Table
 		$summaries = [];
 		$summaries['Sub-Total'] = Helper::currencyWrapper($sub_total);
 
+		$summaries['Discount'] = '';
+
 		if ($order->coupon) {
 			$summaries['Discount'] =  '-₦' . number_format((optional($order->voucher())->amount / 100) * $sub_total);
 		}
