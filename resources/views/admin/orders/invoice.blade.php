@@ -276,7 +276,7 @@
         <tr>
           <td colspan="2"></td>
           <td colspan="2">Discount</td>
-          <td>{{ $order->currency }}{{ ''  }}</td>
+          <td>{{ $summaries['Discount']  }}</td>
         </tr>
         <tr>
           <td colspan="2"></td>

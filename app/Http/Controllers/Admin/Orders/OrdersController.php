@@ -60,14 +60,14 @@ class OrdersController extends Table
 		$summaries['Sub-Total'] = Helper::currencyWrapper($sub_total);
 
 		if ($order->coupon) {
-			$summaries[optional($order->voucher())->amount . ' % Discount'] =  '-₦' . number_format((optional($order->voucher())->amount / 100) * $sub_total);
+			$summaries['Discount'] =  '-₦' . number_format((optional($order->voucher())->amount / 100) * $sub_total);
 		}
 
 		if ($order->discount) {
 			if ($order->percentage_type == 'percentage') {
-				$summaries[$order->discount . ' % Discount'] =  '-₦' . number_format(($order->discount / 100) * $sub_total);
+				$summaries['Discount'] =  '-₦' . number_format(($order->discount / 100) * $sub_total);
 			} else {
-				$summaries[' Discount'] = number_format($order->discount);
+				$summaries['Discount'] = number_format($order->discount);
 			}
 		}
 
@@ -153,7 +153,6 @@ class OrdersController extends Table
 			$order->heavy_item_price = $request->heavy_item_price ?? '---';
 
 			if ($order->coupon) {
-
 				$order->coupon_value = '-₦' . number_format(
 					(optional($order->voucher())->amount / 100) * $sub_total
 				);
