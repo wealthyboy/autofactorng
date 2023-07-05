@@ -1,8 +1,6 @@
 <template>
     <template v-if="paymentIsComplete">
-        <complete
-            :message="'Your Order has been placed. Check your email for further details'"
-        />
+        <complete :message="'Your Order has been placed. Check your email for further details'" />
     </template>
     <div v-if="loading" class="full-bg">
         <page-loader :loading="loading" />
@@ -31,81 +29,48 @@
 
                         <div v-if="addresses.length">
                             <cart-summary :showCoupon="!false" />
-                            <total
-                                :voucher="voucher"
-                                :total="prices.total"
-                                :amount="amount"
-                                :showTotal="true"
-                            />
+                            <total :voucher="voucher" :total="prices.total" :amount="amount" :showTotal="true" />
 
                             <div class="checkout-methods w-100 mb-5 mt-5">
-                                <a
-                                    href="#"
-                                    @click.prevent="checkoutWithCredit"
-                                    :class="{
-                                        'pe-none':
-                                            prices.total >
-                                            walletBalance?.auto_credit,
-                                        disabled:
-                                            prices.total >
-                                            walletBalance?.auto_credit,
-                                    }"
-                                    class="btn btn-block btn-dark w-100 mb-2"
-                                >
+                                <a href="#" @click.prevent="checkoutWithCredit" :class="{
+                                    'pe-none':
+                                        prices.total >
+                                        walletBalance?.auto_credit,
+                                    disabled:
+                                        prices.total >
+                                        walletBalance?.auto_credit,
+                                }" class="btn btn-block btn-dark w-100 mb-2">
                                     Pay with auto credits
-                                    <i class="fa fa-arrow-right"></i
-                                ></a>
+                                    <i class="fa fa-arrow-right"></i></a>
 
-                                <a
-                                    v-if="walletBalance"
-                                    href="#"
-                                    @click.prevent="checkoutWithWallet($event)"
-                                    :class="{
-                                        'pe-none':
-                                            prices.total >
-                                            parseInt(
-                                                walletBalance.wallet_balance
-                                            ),
-                                        disabled:
-                                            prices.total >
-                                            parseInt(
-                                                walletBalance.wallet_balance
-                                            ),
-                                    }"
-                                    class="btn btn-block btn-dark w-100 mb-2"
-                                >
+                                <a v-if="walletBalance" href="#" @click.prevent="checkoutWithWallet($event)" :class="{
+                                    'pe-none':
+                                        prices.total >
+                                        parseInt(
+                                            walletBalance.wallet_balance
+                                        ),
+                                    disabled:
+                                        prices.total >
+                                        parseInt(
+                                            walletBalance.wallet_balance
+                                        ),
+                                }" class="btn btn-block btn-dark w-100 mb-2">
                                     Pay with wallet
-                                    <i class="fa fa-arrow-right"></i
-                                ></a>
+                                    <i class="fa fa-arrow-right"></i></a>
 
-                                <a
-                                    href="#"
-                                    :class="{
-                                        'pe-none': !prices.isLagos,
+                                <a href="#" :class="{
+                                    'pe-none': !prices.isLagos,
 
-                                        disabled: !prices.isLagos,
-                                    }"
-                                    @click.prevent="checkoutWithLagos($event)"
-                                    class="btn btn-block btn-dark w-100 mb-2"
-                                >
+                                    disabled: !prices.isLagos,
+                                }" @click.prevent="checkoutWithLagos($event)"
+                                    class="btn btn-block btn-dark w-100 mb-2">
                                     Pay on delivery (Lagos only)
-                                    <i class="fa fa-arrow-right"></i
-                                ></a>
-                                <a
-                                    href="#"
-                                    @click.prevent="payWithZilla"
-                                    class="btn btn-block btn-dark w-100 mb-2"
-                                >
+                                    <i class="fa fa-arrow-right"></i></a>
+                                <a href="#" @click.prevent="payWithZilla" class="btn btn-block btn-dark w-100 mb-2">
                                     Buy now pay later
-                                    <i class="fa fa-arrow-right"></i
-                                ></a>
-                                <a
-                                    href="#"
-                                    @click.prevent="makePayment"
-                                    class="btn btn-block btn-dark w-100"
-                                >
-                                    Pay Now<i class="fa fa-arrow-right"></i
-                                ></a>
+                                    <i class="fa fa-arrow-right"></i></a>
+                                <a href="#" @click.prevent="makePayment" class="btn btn-block btn-dark w-100">
+                                    Pay Now<i class="fa fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -115,9 +80,7 @@
             <div class="col-5">
                 <div class="card border-0">
                     <div class="col-md-12 d-none d-lg-block mb-3">
-                        <div
-                            class="cart-collateralse bg-white pb-3 pt-3 pl-3 pt-3 pr-3"
-                        >
+                        <div class="cart-collateralse bg-white pb-3 pt-3 pl-3 pt-3 pr-3">
                             <div class="cart_totalse px-4">
                                 <div class="head py-3">
                                     <h3 class="mb-0 fs-3">SUMMARY</h3>
@@ -195,7 +158,7 @@ export default {
             coupon_code: "coupon_code",
         }),
 
-        activeAddress() {},
+        activeAddress() { },
     },
 
     created() {
@@ -323,12 +286,12 @@ export default {
                     uuid: uuid,
                     total: context.total,
                 })
-                .then((response) => {})
-                .catch((error) => {});
+                .then((response) => { })
+                .catch((error) => { });
 
             const config = {
                 publicKey:
-                    "PK_SANDBOX_841e808769a00159352bfd9544448d1f5a1341b7e3890128522c05a50695f5dd",
+                    "PK_PROD_aba91b1cc44c9b02ba589d626856c898f7029b532566c8de52ab3b360b1b53ac",
                 onSuccess: function (response) {
                     context.paymentIsProcessing = false;
                     context.paymentIsComplete = true;

@@ -58,11 +58,10 @@ class OrdersController extends Table
 		$ordered_products = (new OrderedProduct())->getListingData($ordered_products);
 		$summaries = [];
 		$summaries['Sub-Total'] = Helper::currencyWrapper($sub_total);
-
 		$summaries['Discount'] = '';
 
 		if ($order->coupon) {
-			$summaries['Discount'] =  '-₦' . number_format((optional($order->voucher())->amount / 100) * $sub_total);
+			$summaries['Discount'] = '-₦' . number_format((optional($order->voucher())->amount / 100) * $sub_total);
 		}
 
 		if ($order->discount) {
