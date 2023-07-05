@@ -22835,7 +22835,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
               case 12:
                 config = {
-                  publicKey: "PK_SANDBOX_841e808769a00159352bfd9544448d1f5a1341b7e3890128522c05a50695f5dd",
+                  publicKey: "PK_PROD_aba91b1cc44c9b02ba589d626856c898f7029b532566c8de52ab3b360b1b53ac",
                   onSuccess: function onSuccess(response) {
                     context.paymentIsProcessing = false;
                     context.paymentIsComplete = true;
