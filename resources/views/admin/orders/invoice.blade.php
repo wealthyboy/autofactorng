@@ -72,7 +72,7 @@
 
   h2.name {
     font-size: 1.4em;
-    font-weight: normal;
+    font-weight: bold;
     margin: 0;
   }
 
