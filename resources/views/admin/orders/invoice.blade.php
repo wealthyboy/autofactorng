@@ -307,7 +307,8 @@
         Items must be returned within 5 working days after delivery.
       </div>
     </div>
-    <div id="thanks ">Thank you!</div>
+
+    <div id="thanks">Thank you!</div>
 
   </main>
 
