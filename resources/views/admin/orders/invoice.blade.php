@@ -219,7 +219,6 @@
       <img src="https://autofactor.ng/images/logo/autofactor_logo.png">
     </div>
     <div id="company">
-      <h2 class="name">AutofactorNG</h2>
       <div>Tapa House, Imam Dauda Street<br /> Off Eric Moore</br> Surulere,Lagos</div>
       <div>{{ $setting->store_phone }}</div>
       <div><a href="mailto:{{ $setting->store_email }}">{{ $setting->store_email }}</a></div>
