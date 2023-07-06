@@ -192,8 +192,7 @@
 
     padding-left: 6px;
     border-left: 6px solid #0087C3;
-    position: absolute;
-    bottom: 0;
+
   }
 
   #notices .notice {
@@ -205,7 +204,7 @@
   }
 
   .mb-4 {
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
   }
 
   footer {
