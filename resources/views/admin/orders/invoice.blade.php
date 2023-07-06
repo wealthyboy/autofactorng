@@ -299,6 +299,8 @@
       </tfoot>
     </table>
     <div id="notices">
+      <div id="thanks">Thank you!</div>
+
       <div></div>
       <div class="notice">
         We hope that you enjoy your order</br>
@@ -308,7 +310,6 @@
       </div>
     </div>
 
-    <div id="thanks">Thank you!</div>
 
   </main>
 
