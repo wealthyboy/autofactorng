@@ -57,7 +57,7 @@
 
 
   #details {
-    margin-bottom: 50px;
+    margin-bottom: 5px;
   }
 
   #client {
