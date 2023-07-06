@@ -221,7 +221,6 @@
     <div id="company">
       <div>Tapa House, Imam Dauda Street<br /> Off Eric Moore</br> Surulere,Lagos</div>
       <div>{{ $setting->store_phone }}</div>
-      <div><a href="mailto:{{ $setting->store_email }}">{{ $setting->store_email }}</a></div>
     </div>
     </div>
   </header>
