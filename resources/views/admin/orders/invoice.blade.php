@@ -103,10 +103,14 @@
 
   table th,
   table td {
-    padding: 20px;
+    padding: 5px 10px 5px 10px;
     background: #EEEEEE;
     text-align: center;
     border-bottom: 1px solid #FFFFFF;
+  }
+
+  .text-center {
+    text-align: center !important;
   }
 
   table th {
@@ -260,7 +264,7 @@
             <td class="desc">{{ $order->currency }}₦{{ number_format( $ordered_product->price) }}</td>
             <td class="qty ">{{ $ordered_product->quantity }}</td>
             <td class="desc"></td>
-            <td class="desc">{{ $order->currency }}₦{{ number_format( $ordered_product->price *  $ordered_product->quantity) }}</td>
+            <td class="desc text-center">{{ $order->currency }}₦{{ number_format( $ordered_product->price *  $ordered_product->quantity) }}</td>
 
           </tr>
 
