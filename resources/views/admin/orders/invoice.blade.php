@@ -228,7 +228,7 @@
     <div id="details" class="clearfix">
       <div id="client">
         <div class="to">INVOICE TO:</div>
-        <h2 class="name">{{ $order->first_name  .''.  $order->last_name }}</h2>
+        <h2 class="name">{{ $order->first_name  .' '.  $order->last_name }}</h2>
         <div class="address">{{ $order->address }}, {{ $order->city }} {{ $order->state }}</div>
         <div class="email"><a href="mailto:john@example.com">{{ $order->email }}</a></div>
         <div class="email"><a href="tel:{{ $order->phone }}">{{ $order->phone_number }}</a></div>
