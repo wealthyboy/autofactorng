@@ -185,7 +185,7 @@
 
   #thanks {
     font-size: 2em;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
   }
 
   #notices {
