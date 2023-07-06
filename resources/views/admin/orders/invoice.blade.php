@@ -26,7 +26,7 @@
   body {
     position: relative;
     width: 21cm;
-    height: 29.7cm;
+    height: 20.7cm;
     margin: 0 auto;
     color: #555555;
     background: #FFFFFF;
