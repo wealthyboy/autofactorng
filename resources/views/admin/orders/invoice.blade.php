@@ -185,7 +185,7 @@
 
   #thanks {
     font-size: 2em;
-    margin-bottom: 10px;
+    margin-top: 10px;
   }
 
   #notices {
@@ -307,7 +307,7 @@
         Items must be returned within 5 working days after delivery.
       </div>
     </div>
-    <div id="thanks">Thank you!</div>
+    <div id="thanks ">Thank you!</div>
 
   </main>
 
