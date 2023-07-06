@@ -204,6 +204,10 @@
     text-align: center;
   }
 
+  .mb-4 {
+    margin-bottom: 2rem;
+  }
+
   footer {
     color: #777777;
     width: 100%;
@@ -272,7 +276,7 @@
         <?php } ?>
 
       </tbody>
-      <tfoot>
+      <tfoot class="mb-4">
         <tr>
           <td colspan="2"></td>
           <td colspan="2">SUBTOTAL</td>
