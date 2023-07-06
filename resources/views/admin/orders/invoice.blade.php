@@ -160,7 +160,7 @@
   }
 
   table tfoot td {
-    padding: 10px 20px;
+    padding: 5px 20px;
     background: #FFFFFF;
     border-bottom: none;
     font-size: 1.2em;
