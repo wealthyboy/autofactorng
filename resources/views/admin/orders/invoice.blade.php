@@ -295,7 +295,7 @@
         </tr>
         <tr>
           <td colspan="2"></td>
-          <td colspan="2">GRAND TOTAL</td>
+          <td colspan="2">TOTAL</td>
           <td>{{ $summaries['Total'] }}</td>
         </tr>
       </tfoot>
