@@ -22829,13 +22829,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   shipping_id: context.shipping_id,
                   shipping_price: context.prices.ship_price,
                   user_id: context.cart_meta.user.id,
+                  heavy_item_price: context.prices.heavy_item_price || 0,
                   uuid: uuid,
                   total: context.total
                 }).then(function (response) {})["catch"](function (error) {});
 
               case 12:
                 config = {
-                  publicKey: "PK_PROD_aba91b1cc44c9b02ba589d626856c898f7029b532566c8de52ab3b360b1b53ac",
+                  publicKey: "SK_SANDBOX_50252493a35ff349b14877a8ae5ebed9a15b52227164b40d7953c0afbe829ac4",
                   onSuccess: function onSuccess(response) {
                     context.paymentIsProcessing = false;
                     context.paymentIsComplete = true;
