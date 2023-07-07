@@ -292,7 +292,7 @@ export default {
 
             const config = {
                 publicKey:
-                    "PK_PROD_aba91b1cc44c9b02ba589d626856c898f7029b532566c8de52ab3b360b1b53ac",
+                    "SK_SANDBOX_50252493a35ff349b14877a8ae5ebed9a15b52227164b40d7953c0afbe829ac4",
                 onSuccess: function (response) {
                     context.paymentIsProcessing = false;
                     context.paymentIsComplete = true;
