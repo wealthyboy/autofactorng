@@ -31,8 +31,8 @@ class CartController extends Controller
         $pending_cart->coupon = $request->coupon;
         $pending_cart->delivery_note = $request->delivery_note;
         $pending_cart->shipping_id = $request->shipping_id;
+        $pending_cart->heavy_item_price = $request->heavy_item_price;
         $pending_cart->shipping_price = $request->shipping_price;
-
         $pending_cart->uuid = $request->uuid;
         $pending_cart->total = $request->total;
         $pending_cart->save();

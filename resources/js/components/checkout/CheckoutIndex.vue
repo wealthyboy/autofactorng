@@ -283,6 +283,7 @@ export default {
                     shipping_id: context.shipping_id,
                     shipping_price: context.prices.ship_price,
                     user_id: context.cart_meta.user.id,
+                    heavy_item_price: context.prices.heavy_item_price || 0,
                     uuid: uuid,
                     total: context.total,
                 })

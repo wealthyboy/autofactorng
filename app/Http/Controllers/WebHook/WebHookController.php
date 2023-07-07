@@ -124,9 +124,10 @@ class WebHookController extends Controller
             $order->coupon = $pending_cart->coupon;
             $order->status = 'Processing';
             $order->shipping_price = $pending_cart->shipping_price;
-            $order->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
+            $order->invoice = substr(rand(100000, time()), 0, 7);
+            $order->heavy_item_price = $pending_cart->heavy_item_price;
             $order->tracking = time();
-
+            $order->order_type = "Zilla";
             $order->payment_type = 'Online Zilla';
             $order->total = $pending_cart->total;
             $order->ip = $request->ip();
