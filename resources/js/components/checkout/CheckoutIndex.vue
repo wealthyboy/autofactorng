@@ -30,7 +30,9 @@
                         <div v-if="addresses.length">
                             <cart-summary :showCoupon="!false" />
                             <total :voucher="voucher" :total="prices.total" :amount="amount" :showTotal="true" />
+                            <div class="text-info">
 
+                            </div>
                             <div class="checkout-methods w-100 mb-5 mt-5">
                                 <a href="#" @click.prevent="checkoutWithCredit" :class="{
                                     'pe-none':
@@ -158,7 +160,9 @@ export default {
             coupon_code: "coupon_code",
         }),
 
-        activeAddress() { },
+        activeAddress() {
+
+        },
     },
 
     created() {
@@ -275,6 +279,7 @@ export default {
 
             const connect = new Connect();
             let uuid = new Date().getTime();
+            let zillaPercent = (5 * context.total) / 100;
 
             await axios
                 .post("/cart/meta", {
@@ -285,14 +290,14 @@ export default {
                     user_id: context.cart_meta.user.id,
                     heavy_item_price: context.prices.heavy_item_price || 0,
                     uuid: uuid,
-                    total: context.total,
+                    total: context.total + zillaPercent,
                 })
                 .then((response) => { })
                 .catch((error) => { });
 
             const config = {
                 publicKey:
-                    "SK_SANDBOX_50252493a35ff349b14877a8ae5ebed9a15b52227164b40d7953c0afbe829ac4",
+                    "PK_PROD_aba91b1cc44c9b02ba589d626856c898f7029b532566c8de52ab3b360b1b53ac",
                 onSuccess: function (response) {
                     context.paymentIsProcessing = false;
                     context.paymentIsComplete = true;
@@ -300,7 +305,7 @@ export default {
                 },
                 clientOrderReference: uuid,
                 title: "Buy now pay later",
-                amount: context.total,
+                amount: context.total + zillaPercent,
             };
             connect.openNew(config);
         },
