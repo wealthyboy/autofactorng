@@ -468,7 +468,6 @@ class ProductsController extends Controller
         $product->load('images');
         $user = request()->user();
         $product->showFitString = $this->getCategory($category);
-        dd($product);
         $category = session('category');
         $category_slug = session('category_slug');
         return view('products.show', compact('category', 'category_slug', 'user', 'product'));

@@ -5,27 +5,20 @@
 
         <div class="ratings-container mt-3">
             <div class="product-rating">
-                <rating
-                    :active="true"
-                    v-for="x in product.average_rating / 20"
-                />
-                <rating
-                    :active="false"
-                    v-for="x in (100 - product.average_rating) / 20"
-                />
+                <rating :active="true" v-for="x in product.average_rating / 20" />
+                <rating :active="false" v-for="x in (100 - product.average_rating) / 20" />
             </div>
 
             <!-- End .product-ratings -->
 
-            <a href="#ratings-container" class="rating-link"
-                >( {{ product.average_rating_count }} Reviews )</a
-            >
+            <a href="#ratings-container" class="rating-link">( {{ product.average_rating_count }} Reviews )</a>
         </div>
 
         <!-- End .ratings-container -->
 
 
         <p v-if="product.showFitString">
+            {{ productFitString }}
             <check-vehicle :fitText="productFitString" />
         </p>
 
@@ -56,16 +49,9 @@
         <!-- End .price-box -->
 
         <div class="product-action">
-            <general-button
-                class="btn btn-block btn-dark w-100 py-4"
-                :text="text"
-                :type="button"
-                :loading="loading"
-                :class="{
-                    'pe-none disabled': !product.in_stock,
-                }"
-                @click.prevent="addToCart(product.id)"
-            />
+            <general-button class="btn btn-block btn-dark w-100 py-4" :text="text" :type="button" :loading="loading" :class="{
+                'pe-none disabled': !product.in_stock,
+            }" @click.prevent="addToCart(product.id)" />
         </div>
         <!-- End .product-action -->
 
@@ -78,20 +64,10 @@
 
     <transition name="alert">
         <div class="minipopup-area">
-            <div
-                class="minipopup-box"
-                :class="{ active: productIsAdded }"
-                style="top: 0px"
-            >
+            <div class="minipopup-box" :class="{ active: productIsAdded }" style="top: 0px">
                 <div class="product">
                     <figure class="product-media">
-                        <a :href="product.link"
-                            ><img
-                                :src="product.image_m"
-                                alt="product"
-                                width="60"
-                                height="60"
-                        /></a>
+                        <a :href="product.link"><img :src="product.image_m" alt="product" width="60" height="60" /></a>
                     </figure>
                     <div class="product-detail">
                         <a :href="product.link" class="product-name">{{
@@ -101,15 +77,10 @@
                     </div>
                 </div>
                 <div class="product-action">
-                    <a href="/cart" class="btn viewcart">View Cart</a
-                    ><a href="/checkout" class="btn btn-dark checkout"
-                        >Checkout</a
-                    >
+                    <a href="/cart" class="btn viewcart">View Cart</a><a href="/checkout"
+                        class="btn btn-dark checkout">Checkout</a>
                 </div>
-                <button
-                    @click="productIsAdded = false"
-                    class="mfp-close"
-                ></button>
+                <button @click="productIsAdded = false" class="mfp-close"></button>
             </div>
         </div>
     </transition>
