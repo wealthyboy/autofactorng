@@ -23956,7 +23956,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   mounted: function mounted() {
     this.text = !this.product.in_stock ? "Out of Stock" : "Add to Cart";
-    console.log(this.product);
+    this.$store.commit("setProductFitString", this.product.fitsProducts);
   },
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_4__.mapActions)({
     addProductToCart: "addProductToCart"

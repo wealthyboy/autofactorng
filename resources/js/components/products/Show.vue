@@ -121,8 +121,7 @@ export default {
     },
     mounted() {
         this.text = !this.product.in_stock ? "Out of Stock" : "Add to Cart";
-
-        console.log(this.product)
+        this.$store.commit("setProductFitString", this.product.fitsProducts);
     },
     methods: {
         ...mapActions({

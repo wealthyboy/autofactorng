@@ -319,12 +319,12 @@ class ProductsController extends Controller
             }
 
 
-            if ($request->filled('engine_id')) {
-
-
-                $productFitString =  null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
+            if (null !== session('engine_id')) {
+                $productFitString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
+                session(['fitsProducts' => $productFitString]);
             } else {
-                $productFitString =  Product::CheckText;
+                $productFitString = Product::CheckText;
+                session(['fitsProducts' => Product::CheckText]);
             }
         }
 
@@ -468,6 +468,7 @@ class ProductsController extends Controller
         $product->load('images');
         $user = request()->user();
         $product->showFitString = $this->getCategory($category);
+        $product->fitsProducts = session('fitsProducts');
         $category = session('category');
         $category_slug = session('category_slug');
         return view('products.show', compact('category', 'category_slug', 'user', 'product'));
