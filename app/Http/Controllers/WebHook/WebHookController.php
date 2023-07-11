@@ -171,7 +171,6 @@ class WebHookController extends Controller
 
             Order::sendMail($user, $order, $sub_total);
 
-
             Voucher::inValidate($pending_cart->coupon);
 
             //delete cart
