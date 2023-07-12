@@ -473,10 +473,9 @@ class ProductsController extends Controller
     public function show(Request $request, Category $category, Product $product)
     {
         $product->load('images');
-        dd(\Cookie::get('fitsProducts'));
         $user = request()->user();
         $product->showFitString = $this->getCategory($category);
-        $product->fitsProducts =  \Cookie::get('fitsProducts');
+        $product->fitsProducts = session('fitsProducts');
         $category = session('category');
         $category_slug = session('category_slug');
         return view('products.show', compact('category', 'category_slug', 'user', 'product'));
