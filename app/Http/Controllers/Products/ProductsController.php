@@ -333,7 +333,6 @@ class ProductsController extends Controller
         }
 
         if ($productFitString) {
-            dd(true);
             session(['fitsProducts' => Product::DoesNotFit]);
         }
 
