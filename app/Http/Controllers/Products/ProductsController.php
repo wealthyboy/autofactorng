@@ -468,6 +468,7 @@ class ProductsController extends Controller
     public function show(Request $request, Category $category, Product $product)
     {
         $product->load('images');
+        dd(\Cookie::get('fitsProducts'));
         $user = request()->user();
         $product->showFitString = $this->getCategory($category);
         $product->fitsProducts =  \Cookie::get('fitsProducts');
