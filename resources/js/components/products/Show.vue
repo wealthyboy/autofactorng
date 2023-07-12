@@ -18,7 +18,7 @@
 
 
         <p v-if="product.showFitString">
-            <check-vehicle :fitText="product.fitsProducts" />
+            <check-vehicle :fitText="productFitString" />
         </p>
 
 
