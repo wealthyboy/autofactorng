@@ -329,8 +329,15 @@ class ProductsController extends Controller
         }
 
         if (null !== $catString) {
-            session(['fitsProducts' => 'Fits your ' . $this->buildSearchString($request) ??  Product::DoesNotFit]);
-        } else {
+            session(['fitsProducts' =>  'Fits your ' . $this->buildSearchString($request)]);
+        }
+
+        if ($productFitString) {
+            session(['fitsProducts' => Product::DoesNotFit]);
+        }
+
+
+        if ($productFitString) {
             session(['fitsProducts' => Product::CheckText]);
         }
 
