@@ -75,6 +75,16 @@ class ProductController extends Table
         $profiles = Product::getFilterLists('height');
         $ampheres = Product::getFilterLists('amphere');
 
+
+        $products =  Product::whereHas('categories', function ($query) {
+            $query->where('categories.name', 'body-light-parts');
+        })->orderBy('created_at', 'desc')->get();
+
+        foreach ($products as $product) {
+            $product->condition_is_present = 1;
+            $product->save();
+        }
+
         if (request()->filled('search')) {
             $products = $this->filter(request());
         }
