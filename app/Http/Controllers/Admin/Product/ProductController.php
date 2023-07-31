@@ -76,14 +76,7 @@ class ProductController extends Table
         $ampheres = Product::getFilterLists('amphere');
 
 
-        $products =  Product::whereHas('categories', function ($query) {
-            $query->where('categories.slug', 'spare-parts-body-light-parts');
-        })->orderBy('created_at', 'desc')->get();
 
-        foreach ($products as $product) {
-            $product->condition_is_present = 1;
-            $product->save();
-        }
 
         if (request()->filled('search')) {
             $products = $this->filter(request());
@@ -95,12 +88,12 @@ class ProductController extends Table
                 $query->where('categories.name', 'like', '%' . $request->q . '%')
                     ->orWhere('products.name', 'like', '%' . $request->q  . '%')
                     ->orWhere('products.sku', 'like', '%' .  $request->q  . '%');
-            })->groupBy('products.id')->orderBy('created_at', 'desc')->paginate(5)->appends(request()->all());
+            })->groupBy('products.id')->orderBy('created_at', 'desc')->paginate(100)->appends(request()->all());
         }
 
         if (!request()->filled('q') && !request()->filled('search')) {
             $products = Product::with('categories')
-                ->orderBy('created_at', 'desc')->paginate(5);
+                ->orderBy('created_at', 'desc')->paginate(100);
         }
 
 
