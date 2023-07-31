@@ -340,6 +340,7 @@ class ProductController extends Table
         $product->cost_per_item = 2000;
         $product->keywords = $request->keywords;
         $product->meta_description = $request->meta_description;
+        $product->condition_is_present = $request->condition_is_present;
         $product->description = $request->description;
         $product->phy_desc = $request->phy_desc;
         $product->save();
