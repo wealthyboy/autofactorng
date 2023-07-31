@@ -77,7 +77,7 @@ class ProductController extends Table
 
 
         $products =  Product::whereHas('categories', function ($query) {
-            $query->where('categories.name', 'body-light-parts');
+            $query->where('categories.slug', 'body-light-parts');
         })->orderBy('created_at', 'desc')->get();
 
         foreach ($products as $product) {
