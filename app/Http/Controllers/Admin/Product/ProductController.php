@@ -95,6 +95,8 @@ class ProductController extends Table
 
 
         $products = $this->getColumnListings(request(), $products);
+
+        dd($products);
         $years = Helper::years();
         $makes = Attribute::where('type', 'make')->get();
         return view('admin.products.index', compact('ampheres', 'profiles', 'widths', 'rims', 'products', 'makes', 'brands', 'categories', 'attributes', 'years'));
