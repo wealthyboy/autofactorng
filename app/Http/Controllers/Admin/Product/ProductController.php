@@ -466,6 +466,7 @@ class ProductController extends Table
         User::canTakeAction(User::canUpdate);
         $brands = Brand::all();
         $product = Product::find($id);
+        dd($product);
         $categories = Category::parents()->get();
         $attributes = Attribute::parents()->orderBy('sort_order', 'asc')->get();
         $years = Helper::years();
