@@ -340,7 +340,7 @@ class ProductController extends Table
         $product->cost_per_item = 2000;
         $product->keywords = $request->keywords;
         $product->meta_description = $request->meta_description;
-        $product->condition_is_present = $request->condition_is_present;
+        $product->condition_is_present = $request->condition_is_present ? 1 : 0;
         $product->description = $request->description;
         $product->phy_desc = $request->phy_desc;
         $product->save();
@@ -467,7 +467,7 @@ class ProductController extends Table
         User::canTakeAction(User::canUpdate);
         $brands = Brand::all();
         $product = Product::find($id);
-        dd($product);
+        // dd($product);
         $categories = Category::parents()->get();
         $attributes = Attribute::parents()->orderBy('sort_order', 'asc')->get();
         $years = Helper::years();
