@@ -90,13 +90,14 @@ class ProductController extends Table
 
         if (!request()->filled('q') && !request()->filled('search')) {
             $products = Product::with('categories')
-                ->orderBy('created_at', 'desc')->paginate(100);
+                ->orderBy('created_at', 'desc')->paginate(10);
         }
 
 
         $products = $this->getColumnListings(request(), $products);
 
-        dd($products);
+        dd(Product::with('categories')
+            ->orderBy('created_at', 'desc')->paginate(10));
         $years = Helper::years();
         $makes = Attribute::where('type', 'make')->get();
         return view('admin.products.index', compact('ampheres', 'profiles', 'widths', 'rims', 'products', 'makes', 'brands', 'categories', 'attributes', 'years'));
