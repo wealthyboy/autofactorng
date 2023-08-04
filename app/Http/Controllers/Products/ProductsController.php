@@ -273,9 +273,6 @@ class ProductsController extends Controller
         $cookie = null;
         $catString = null;
 
-        dd($request->engine_id);
-
-
         if ($request->engine_id) {
             session(['make' => Attribute::find($request->make_id)->name]);
             session(['model' => Attribute::find($request->model_id)->name]);
@@ -321,7 +318,7 @@ class ProductsController extends Controller
             }
 
 
-            if (null !== session('engine_id')) {
+            if (null !==  $request->cookie('engine_id')) {
                 $productFitString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
                 session(['fitsProducts' => $productFitString]);
             } else {
