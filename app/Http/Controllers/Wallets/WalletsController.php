@@ -69,7 +69,7 @@ class WalletsController extends Table
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
 
         $user = $request->user();
         $input = $request->all();
@@ -77,19 +77,16 @@ class WalletsController extends Table
         $amount = (10 * $input['amount']) / 100;
         $amount = $input['amount'] +  $amount;
 
-        if ($request->auto_credit) { 
+        if ($request->auto_credit) {
             $subscribe = Subscribe::where('user_id', $user->id)->first();
             if (null !== $subscribe && $subscribe->ends_at->isFuture()) {
                 if ($request->ajax()) {
                     return response()->json("Already subscribed");
-
                 }
-
             }
-
         }
 
-     
+
         // return $amount;
 
         $wallet = new Wallet;
@@ -149,16 +146,14 @@ class WalletsController extends Table
 
             $auto_credit = [];
             $auto_credit['plan'] = session('plan');
-            $auto_credit['amount'] =  $original_amount;
-            $auto_credit['credit'] =  $amount;
+            $auto_credit['amount'] = $original_amount;
+            $auto_credit['credit'] = $amount;
             $auto_credit['expiry'] = $dt->addYear()->format('d/m/y');
             $user->notify(new AutoCreditNotification($user, $auto_credit));
         }
 
         $wallet_balance  = auth()->user()->wallet_balance;
         $total  = (int) optional($wallet_balance)->balance + optional($wallet_balance)->auto_credit;
-
-
 
         return response()->json([
             'wallet_balance' => (int) optional($wallet_balance)->balance,
