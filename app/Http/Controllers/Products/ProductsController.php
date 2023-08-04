@@ -484,7 +484,7 @@ class ProductsController extends Controller
         $product->fitsProducts = session('fitsProducts');
         $category = session('category');
         $category_slug = session('category_slug');
-        dd($product,   $category_slug);
+        // dd($product,   $category_slug);
 
         return view('products.show', compact('category', 'category_slug', 'user', 'product'));
     }
