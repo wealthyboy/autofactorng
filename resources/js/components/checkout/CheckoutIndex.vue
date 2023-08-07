@@ -67,7 +67,7 @@
                                     Pay on delivery (Lagos only)
                                     <i class="fa fa-arrow-right"></i></a>
                                 <a href="#" @click.prevent="payWithZilla" class="btn btn-block btn-dark w-100 mb-2">
-                                    Buy now pay later @5% intrest
+                                    Buy now pay later @5% interest
                                     <i class="fa fa-arrow-right"></i></a>
                                 <a href="#" @click.prevent="makePayment" class="btn btn-block btn-dark w-100">
                                     Pay Now<i class="fa fa-arrow-right"></i></a>
