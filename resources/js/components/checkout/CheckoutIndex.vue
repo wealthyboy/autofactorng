@@ -59,17 +59,15 @@
                                 }" class="btn btn-block btn-dark w-100 mb-2">
                                     Pay with wallet
                                     <i class="fa fa-arrow-right"></i></a>
-
                                 <a href="#" :class="{
                                     'pe-none': !prices.isLagos,
-
                                     disabled: !prices.isLagos,
                                 }" @click.prevent="checkoutWithLagos($event)"
                                     class="btn btn-block btn-dark w-100 mb-2">
                                     Pay on delivery (Lagos only)
                                     <i class="fa fa-arrow-right"></i></a>
                                 <a href="#" @click.prevent="payWithZilla" class="btn btn-block btn-dark w-100 mb-2">
-                                    Buy now pay later
+                                    Buy now pay later @5% intrest
                                     <i class="fa fa-arrow-right"></i></a>
                                 <a href="#" @click.prevent="makePayment" class="btn btn-block btn-dark w-100">
                                     Pay Now<i class="fa fa-arrow-right"></i></a>
@@ -297,7 +295,7 @@ export default {
 
             const config = {
                 publicKey:
-                    "PK_PROD_aba91b1cc44c9b02ba589d626856c898f7029b532566c8de52ab3b360b1b53ac",
+                    "PK_SANDBOX_841e808769a00159352bfd9544448d1f5a1341b7e3890128522c05a50695f5dd",  // "PK_PROD_aba91b1cc44c9b02ba589d626856c898f7029b532566c8de52ab3b360b1b53ac",
                 onSuccess: function (response) {
                     context.paymentIsProcessing = false;
                     context.paymentIsComplete = true;
