@@ -26798,7 +26798,7 @@ var _hoisted_1 = {
   "class": "position-relative me-3"
 };
 var _hoisted_2 = {
-  href: "#",
+  href: "javascript:void(0)",
   title: "Cart",
   role: "button",
   "data-toggle": "dropdown",
