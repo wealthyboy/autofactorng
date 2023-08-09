@@ -34,7 +34,7 @@
                </div>
 
 
-               <div class="price-box mt-4">
+               <div class="price-box mt-2">
                   @if($product->discounted_price)
                   <div>
                      <span class="old-price bold">{{ $product->currency }}{{ $product->formatted_sale_price }}</span>
