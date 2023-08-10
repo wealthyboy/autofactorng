@@ -22832,7 +22832,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                   user_id: context.cart_meta.user.id,
                   heavy_item_price: context.prices.heavy_item_price || 0,
                   uuid: uuid,
-                  total: context.total + zillaPercent
+                  total: context.total
                 }).then(function (response) {})["catch"](function (error) {});
 
               case 13:
