@@ -83,6 +83,8 @@ class CartController  extends Controller
 					'product_name' => optional($cart->product)->name,
 					'link' => optional($cart->product)->link,
 					'year' => optional($cart)->year,
+					'model' => optional($cart)->model,
+
 				];
 			});
 
