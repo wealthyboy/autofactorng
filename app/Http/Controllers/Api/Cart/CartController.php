@@ -82,6 +82,7 @@ class CartController  extends Controller
 					'currency' => optional($cart->product)->currency,
 					'product_name' => optional($cart->product)->name,
 					'link' => optional($cart->product)->link,
+					'year' => optional($cart)->year,
 				];
 			});
 

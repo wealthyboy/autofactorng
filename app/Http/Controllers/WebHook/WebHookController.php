@@ -88,9 +88,6 @@ class WebHookController extends Controller
     }
 
 
-
-
-
     public function zilla(Request $request, Order $order)
     {
 
@@ -103,9 +100,7 @@ class WebHookController extends Controller
             $user  = User::findOrFail($pending_cart->user_id);
             $carts = Cart::find($cartIds);
 
-            // Log::info($data);
-
-
+            //Log::info($data);
             //Log::info($pending_cart);
 
             foreach ($carts as $cart) {
@@ -139,8 +134,7 @@ class WebHookController extends Controller
             $order->city  = optional($user->active_address)->city;
             $order->state = optional(optional($user->active_address)->address_state)->name;
             $order->country = optional(optional($user->active_address)->address_country)->name;
-
-            // $order = Order::checkout($input, $payment_method,  $ip,  $carts,  $user);
+            //$order = Order::checkout($input, $payment_method,  $ip,  $carts,  $user);
 
             $order->save();
 
