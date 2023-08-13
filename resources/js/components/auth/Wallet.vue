@@ -114,6 +114,8 @@ export default {
                 return;
             }
 
+            return
+
             console.log("KHERE Iol")
 
             if (props.auto_credit) {

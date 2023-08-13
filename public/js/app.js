@@ -22351,25 +22351,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return");
 
               case 3:
-                console.log("KHERE Iol");
+                return _context.abrupt("return");
 
-                if (!props.auto_credit) {
-                  _context.next = 7;
-                  break;
-                }
-
-                _context.next = 7;
-                return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/wallets", form).then(function (res) {
-                  if (res.data == 'Already subscribed') {
-                    alert("You have  already subscribed");
-                    location.href = "/";
-                    return;
-                  }
-                })["catch"](function (er) {
-                  return;
-                });
-
-              case 7:
+              case 8:
                 paymentIsComplete.value = false;
                 paymentIsProcessing.value = true;
                 handler = PaystackPop.setup({
@@ -22416,7 +22400,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
                 handler.openIframe();
 
-              case 11:
+              case 12:
               case "end":
                 return _context.stop();
             }
