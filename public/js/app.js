@@ -22351,7 +22351,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return");
 
               case 3:
-                console.log("KHERE");
+                console.log("KHERE Iol");
 
                 if (!props.auto_credit) {
                   _context.next = 7;

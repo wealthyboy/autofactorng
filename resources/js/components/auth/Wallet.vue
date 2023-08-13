@@ -114,7 +114,7 @@ export default {
                 return;
             }
 
-            console.log("KHERE")
+            console.log("KHERE Iol")
 
             if (props.auto_credit) {
                 await axios
