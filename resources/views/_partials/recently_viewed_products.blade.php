@@ -27,7 +27,6 @@
                   </div>
                </a>
 
-
                <div class="ratings-container">
                   @include('_partials.ratings')
                   <!-- End .product-ratings -->

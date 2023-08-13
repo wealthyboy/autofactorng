@@ -67,6 +67,8 @@ class CartController  extends Controller
 			$cart->engine = $engine;
 			$cart->save();
 
+
+
 			$carts = Cart::with(["product"])->where(['remember_token' => $remember_token])->get();
 			$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $remember_token)->get();
 			$sub_total =  $total[0]->items_total;
@@ -143,7 +145,6 @@ class CartController  extends Controller
 			])->withCookie($cookie);
 		}
 	}
-
 
 	public function loadCart(Request $request)
 	{

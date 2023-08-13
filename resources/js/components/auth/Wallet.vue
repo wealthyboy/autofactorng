@@ -1,16 +1,9 @@
 <template>
     <message :message="message" :error="error" />
 
-    <div
-        v-if="paymentIsProcessing"
-        class="d-flex justify-content-center align-content-center page-loading w-100 h-100"
-    >
+    <div v-if="paymentIsProcessing" class="d-flex justify-content-center align-content-center page-loading w-100 h-100">
         <div class="align-self-center text-center">
-            <div
-                class="spinner-border"
-                style="width: 7rem; height: 7rem; color: red"
-                role="status"
-            >
+            <div class="spinner-border" style="width: 7rem; height: 7rem; color: red" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
             <div class="mt-4">Please wait. We are processing your request.</div>
@@ -21,35 +14,15 @@
         </div>
     </div>
 
-    <form
-        v-if="!paymentIsProcessing && !paymentIsComplete"
-        action=""
-        class="mb-0"
-        method="post"
-        @submit.prevent="fund"
-    >
+    <form v-if="!paymentIsProcessing && !paymentIsComplete" action="" class="mb-0" method="post" @submit.prevent="fund">
         <div class="form-floating mb-3">
-            <general-input
-                :error="v$.amount"
-                v-model="form.amount"
-                id="wallet"
-                name="Amount"
-                type="text"
-                @input="getAmount($event)"
-            />
+            <general-input :error="v$.amount" v-model="form.amount" id="wallet" name="Amount" type="text"
+                @input="getAmount($event)" />
 
-            <simple-message
-                class="link-success fs-6 text-end fw-2 fs-5"
-                :message="amount"
-            />
+            <simple-message class="link-success fs-6 text-end fw-2 fs-5" :message="amount" />
         </div>
 
-        <general-button
-            type="submit"
-            :text="text"
-            class="btn btn-dark w-100 mb-3 p-3"
-            :loading="loading"
-        />
+        <general-button type="submit" :text="text" class="btn btn-dark w-100 mb-3 p-3" :loading="loading" />
     </form>
 </template>
 
@@ -135,17 +108,19 @@ export default {
             }
         }
 
-      async  function fund() {
+        async function fund() {
             this.v$.$touch();
             if (this.v$.$error) {
                 return;
             }
-            
+
+            console.log("KHERE")
+
             if (props.auto_credit) {
-              await  axios
+                await axios
                     .post("/wallets", form)
-                    .then((res) => { 
-                        if ( res.data == 'Already subscribed' ) {
+                    .then((res) => {
+                        if (res.data == 'Already subscribed') {
                             alert("You have  already subscribed")
                             location.href = "/";
 
@@ -154,9 +129,9 @@ export default {
                     }).catch((er) => {
                         return
                     })
-                    
-            }  
-           
+
+            }
+
 
 
 
