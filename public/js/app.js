@@ -26650,7 +26650,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.fund && $setup.fund.apply($setup, arguments);
     }, ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" fwefwefew "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     error: $setup.v$.amount,
     modelValue: $setup.form.amount,
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {

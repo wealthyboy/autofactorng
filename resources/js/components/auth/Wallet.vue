@@ -16,6 +16,7 @@
 
     <form v-if="!paymentIsProcessing && !paymentIsComplete" action="" class="mb-0" method="post" @submit.prevent="fund">
         <div class="form-floating mb-3">
+            fwefwefew
             <general-input :error="v$.amount" v-model="form.amount" id="wallet" name="Amount" type="text"
                 @input="getAmount($event)" />
 
