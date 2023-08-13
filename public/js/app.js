@@ -22351,9 +22351,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return");
 
               case 3:
-                return _context.abrupt("return");
+                if (props.auto_credit) {
+                  _context.next = 6;
+                  break;
+                }
 
-              case 8:
+                _context.next = 6;
+                return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/wallets", form).then(function (res) {
+                  if (res.data == 'Already subscribed') {
+                    alert("You have  already subscribed");
+                    location.href = "/";
+                    return;
+                  }
+                })["catch"](function (er) {
+                  return;
+                });
+
+              case 6:
                 paymentIsComplete.value = false;
                 paymentIsProcessing.value = true;
                 handler = PaystackPop.setup({
@@ -22400,7 +22414,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
                 handler.openIframe();
 
-              case 12:
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -26650,7 +26664,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onSubmit: _cache[2] || (_cache[2] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
       return $setup.fund && $setup.fund.apply($setup, arguments);
     }, ["prevent"]))
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" fwefwefew "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_general_input, {
     error: $setup.v$.amount,
     modelValue: $setup.form.amount,
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
