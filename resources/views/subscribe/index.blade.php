@@ -14,12 +14,12 @@
                </a>
             </div>
 
-           
 
-            @if ( session('plan'))
-               <div class="row mb-5" id="signInMessage">
-                  <span class="sign-in-prompt" data-testid="sign-in-message">You already Subscribed</span>
-               </div>
+
+            @if ( session('plan') && $user->hasActiveSubscription())
+            <div class="row mb-5" id="signInMessage">
+               <span class="sign-in-prompt" data-testid="sign-in-message">You already Subscribed</span>
+            </div>
             @endif
 
 
