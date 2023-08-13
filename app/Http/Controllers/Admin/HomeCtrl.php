@@ -36,7 +36,6 @@ class HomeCtrl extends Controller
      public function index()
      {
 
-          BrandCategory::where(['category_id' => 30, 'brand_id' => 5])->first()->delete();
           $top_selling_product = OrderedProduct::select('product_id')
                ->groupBy('product_id')
                ->orderByRaw('COUNT(*) DESC')
