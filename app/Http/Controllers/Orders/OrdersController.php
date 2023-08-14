@@ -35,7 +35,7 @@ class OrdersController extends Table
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $this->middleware('auth');
 
         $orders = Order::has('ordered_products')->where('user_id', auth()->user()->id)->latest()->orderBy('created_at', 'desc')->paginate(450);
@@ -116,7 +116,7 @@ class OrdersController extends Table
             'delete' => false,
             'export' => true,
             'order' => true,
-            
+
         ];
     }
 
@@ -139,6 +139,7 @@ class OrdersController extends Table
                     return [
                         "order id" => '#' . optional($order)->id,
                         "Customer" =>  \Auth::user()->fullname(),
+                        "Order Type" =>  $order->payment_type,
                         "Total" => '₦' . optional($order)->total,
                         "Date Added" => $order->created_at->format('d-m-y')
                     ];
