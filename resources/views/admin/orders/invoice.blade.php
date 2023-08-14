@@ -243,6 +243,8 @@
       <div id="invoice">
         <h1>INVOICE </h1>
         <div class="date">Date of Invoice: {{ $order->created_at->format('d/m/y') }}</div>
+        <div class="date">Invoice No: {{ $order->invoice }}</div>
+
       </div>
     </div>
     <table border="0" cellspacing="0" cellpadding="0">
