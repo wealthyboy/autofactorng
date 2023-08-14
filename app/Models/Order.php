@@ -112,10 +112,10 @@ class Order extends Model
 				$cart->delete();
 			}
 		}
-        try {
+		try {
 			$delay = now()->addMinutes(10);
 
-			
+
 			//ReviewProduct::dispatch($user, $order);
 
 		} catch (\Throwable $th) {
@@ -132,9 +132,9 @@ class Order extends Model
 		try {
 			$when = now()->addMinutes(5);
 			Mail::to($user->email)
-			//->cc('jacob.atam@gmail.com')
-			->bcc('orders@autofactorng.com')
-			->send(new OrderReceipt($order, null, null, $sub_total));
+				//->cc('jacob.atam@gmail.com')
+				->bcc('orders@autofactorng.com')
+				->send(new OrderReceipt($order, null, null, $sub_total));
 		} catch (\Throwable $th) {
 			Log::info("Mail error :" . $th);
 			$err = new Error();
@@ -193,7 +193,7 @@ class Order extends Model
 					"Invoice" => $order->invoice,
 					"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
 					"Email" => $order->email,
-
+					"Order Type" =>  $order->payment_type,
 					"Type" => $order->order_type,
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 					"Total" => Helper::currencyWrapper($order->total),

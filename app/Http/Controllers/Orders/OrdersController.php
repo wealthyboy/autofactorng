@@ -139,7 +139,6 @@ class OrdersController extends Table
                     return [
                         "order id" => '#' . optional($order)->id,
                         "Customer" =>  \Auth::user()->fullname(),
-                        "Order Type" =>  $order->payment_type,
                         "Total" => '₦' . optional($order)->total,
                         "Date Added" => $order->created_at->format('d-m-y')
                     ];
