@@ -54,7 +54,7 @@ class WalletNotification extends Notification
                 ['u' => $this->user],
             )
             ->bcc("care@autofactorng.com")
-            ->bcc("account@autofactorng.com")
+            ->cc("jacob.atam@gmail.com")
             ->bcc("damilola@autofactorng.com")
             ->bcc("abiola@autofactorng.com")
             ->subject("Welcome to Auto Cover");
