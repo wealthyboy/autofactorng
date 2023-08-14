@@ -11,6 +11,8 @@ use App\Events\NewBid;
 use App\Models\Subscribe;
 use App\Models\WalletBalance;
 use App\Notifications\AutoCreditNotification;
+use App\Notifications\WalletNotification;
+
 use Carbon\Carbon;
 
 class WalletsController extends Table
@@ -95,6 +97,12 @@ class WalletsController extends Table
         $wallet->status = $request->auto_credit ?  'Added to auto credit' : 'Added to wallet';
         $wallet->save();
 
+        if (!$request->auto_credit) {
+            $user->amount = $request->amount;
+            $user->notify(new WalletNotification($user));
+        }
+
+
         $balance = WalletBalance::where('user_id', $user->id)->first();
 
         if (!$request->auto_credit) {
@@ -146,14 +154,16 @@ class WalletsController extends Table
 
             $auto_credit = [];
             $auto_credit['plan'] = session('plan');
-            $auto_credit['amount'] = $original_amount;
-            $auto_credit['credit'] = $amount;
+            $auto_credit['amount'] =  $original_amount;
+            $auto_credit['credit'] =  $amount;
             $auto_credit['expiry'] = $dt->addYear()->format('d/m/y');
             $user->notify(new AutoCreditNotification($user, $auto_credit));
         }
 
         $wallet_balance  = auth()->user()->wallet_balance;
         $total  = (int) optional($wallet_balance)->balance + optional($wallet_balance)->auto_credit;
+
+
 
         return response()->json([
             'wallet_balance' => (int) optional($wallet_balance)->balance,
