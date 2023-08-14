@@ -168,7 +168,7 @@ class CustomersController extends Table
             throw $th;
         }
 
-        return redirect()->to('/admin/customers')->with(['message' => 'Wallet Added']);
+        return redirect()->to('/admin/customers')->with('message', 'Wallet Added');
     }
 
 
