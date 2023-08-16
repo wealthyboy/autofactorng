@@ -56,7 +56,6 @@ class ReminderNotification extends Notification
     {
         $m = (new MailMessage)
             ->bcc('account@autofactorng.com')
-            ->bcc('jacob.atam@gmail.com')
             ->bcc('care@autofactorng.com')
             ->subject($this->subject)
             ->greeting('Hello ' . $this->user->name);
