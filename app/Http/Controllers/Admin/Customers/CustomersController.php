@@ -162,7 +162,7 @@ class CustomersController extends Table
 
         try {
             $message = '₦' . number_format($request->amount) . " has been " . $wallet_status . '.';
-            $user->notify(new ReminderNotification($user, $message));
+            // $user->notify(new ReminderNotification($user, $message));
         } catch (\Throwable $th) {
             throw $th;
         }
