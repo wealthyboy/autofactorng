@@ -121,7 +121,7 @@ class CustomersController extends Table
         $wallet->status = $request->status;
         $wallet_status = null;
         if ($request->type == 'auto_credit' && $request->status == 'added') {
-            $wallet_status =  'Added to your your auto credit';
+            $wallet_status =  'Added to  your auto credit';
         }
 
         if ($request->type == 'auto_credit' && $request->status == 'removed') {
@@ -133,7 +133,7 @@ class CustomersController extends Table
         }
 
         if ($request->type == 'wallet' && $request->status == 'removed') {
-            $wallet_status =  'Removed from your wallet';
+            $wallet_status = 'Removed from your wallet';
         }
 
         $wallet->status = $wallet_status;
@@ -166,6 +166,8 @@ class CustomersController extends Table
         } catch (\Throwable $th) {
             throw $th;
         }
+        $message = strpos($wallet_status, 'Removed') === true ? 'Removed' : 'Added';
+        $message = '₦' . number_format($request->amount) . " has been " . $message . '.';
 
         return redirect()->to('/admin/customers')->with('message', $message);
     }
