@@ -128,7 +128,6 @@ class CustomersController extends Table
             $wallet_status =  'Removed from auto credit';
         }
 
-
         if ($request->type == 'wallet' && $request->status == 'added') {
             $wallet_status =  'Added to your wallet';
         }
@@ -136,6 +135,7 @@ class CustomersController extends Table
         if ($request->type == 'wallet' && $request->status == 'removed') {
             $wallet_status =  'Removed from your wallet';
         }
+
         $wallet->status = $wallet_status;
         $wallet->save();
 
@@ -147,7 +147,6 @@ class CustomersController extends Table
 
             $wallet->balance = $request->status == 'added' ? (int) optional($balance)->balance + $request->amount :  optional($balance)->balance  - $request->amount;
             $wallet->user_id = $id;
-
             $wallet->save();
         }
 
@@ -168,7 +167,7 @@ class CustomersController extends Table
             throw $th;
         }
 
-        return redirect()->to('/admin/customers')->with('message', 'Wallet Added');
+        return redirect()->to('/admin/customers')->with('message', $message);
     }
 
 
