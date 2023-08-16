@@ -166,6 +166,8 @@ class CustomersController extends Table
         } catch (\Throwable $th) {
             throw $th;
         }
+
+        dd(strpos($wallet_status, 'Removed'));
         $message = strpos($wallet_status, 'Removed') === true ? 'Removed' : 'Added';
         $message = '₦' . number_format($request->amount) . " has been " . $message . '.';
 
