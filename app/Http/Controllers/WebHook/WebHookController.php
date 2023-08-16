@@ -122,8 +122,8 @@ class WebHookController extends Controller
             $order->invoice = substr(rand(100000, time()), 0, 7);
             $order->heavy_item_price = $pending_cart->heavy_item_price;
             $order->tracking = time();
-            $order->order_type = "Zilla";
-            $order->payment_type = 'Online Zilla';
+            $order->order_type = "Online";
+            $order->payment_type = 'Zilla';
             $order->total = $pending_cart->total;
             $order->ip = $request->ip();
             $order->first_name = optional($user->active_address)->first_name;
