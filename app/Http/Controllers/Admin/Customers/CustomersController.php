@@ -167,9 +167,7 @@ class CustomersController extends Table
             throw $th;
         }
 
-        dd(strpos($wallet_status, 'Removed'));
-        $message = strpos($wallet_status, 'Removed') === true ? 'Removed' : 'Added';
-        $message = '₦' . number_format($request->amount) . " has been " . $message . '.';
+        $message = '₦' . number_format($request->amount) . " has been " . $request->status . '.';
 
         return redirect()->to('/admin/customers')->with('message', $message);
     }
