@@ -135,7 +135,6 @@ class WebHookController extends Controller
             $order->state = optional(optional($user->active_address)->address_state)->name;
             $order->country = optional(optional($user->active_address)->address_country)->name;
             //$order = Order::checkout($input, $payment_method,  $ip,  $carts,  $user);
-
             $order->save();
 
             foreach ($carts   as $cart) {
