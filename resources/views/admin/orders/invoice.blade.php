@@ -244,7 +244,7 @@
         <h1>INVOICE </h1>
         <div class="date">Date of Invoice: {{ $order->created_at->format('d/m/y') }}</div>
         <div class="date">Invoice No: {{ $order->invoice }}</div>
-        <div class="date">Payment Type: {{ $order->payment_method }}</div>
+        <div class="date">Payment Type: {{ $order->payment_type  ?? '---'}}</div>
 
 
       </div>

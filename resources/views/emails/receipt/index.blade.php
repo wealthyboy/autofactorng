@@ -446,6 +446,9 @@
                                                                   {{ $order->address }}<br /> {{ $order->city }} &nbsp;
                                                                   <br /> {{ $order->state }}&nbsp;
                                                                   <br />Phone number: {{ $order->phone_number }}&nbsp;
+                                                                  <br />
+                                                                  <div class="date">Payment Type: {{ $order->payment_type  ?? '---'}}</div>
+
 
                                                                </td>
                                                             </tr>
