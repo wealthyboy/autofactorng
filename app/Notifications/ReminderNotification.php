@@ -58,24 +58,22 @@ class ReminderNotification extends Notification
             ->bcc('account@autofactorng.com')
             ->bcc('care@autofactorng.com')
             ->subject($this->subject)
-            ->greeting('Hello ' .$this->user->name);
-            if (is_array($this->message)){
-                foreach($this->message as $message) {
-                    $m->line($message); 
-                
-                }
-                if ($this->user->date) {
-                    $m->line("You shall be able to renew your subscription from {$this->user->date}"); 
-                }
-            } else {
-                $m->line($this->message); 
+            ->greeting('Hello ' . $this->user->name);
+        if (is_array($this->message)) {
+            foreach ($this->message as $message) {
+                $m->line($message);
             }
-            
-            
-            $m->action('Visit website', url(Config('app.url') .'/plans?type=auto_cover'));
-            $m->line('Thank you for using our service!');
+            if ($this->user->date) {
+                $m->line("You shall be able to renew your subscription from {$this->user->date}");
+            }
+        } else {
+            $m->line($this->message);
+        }
 
-            return $m;
+
+        $m->line('Thank you for using our service!');
+
+        return $m;
     }
 
     /**
