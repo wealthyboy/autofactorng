@@ -51,12 +51,7 @@ class CartController  extends Controller
 		$year = session('year');
 		$engine = session('engine');
 
-		// dd(
-		// 	$make,
-		// 	$model,
-		// 	$year,
-		// 	$engine
-		// );
+
 		//$engine = optional(Engine::find(session('engine_id')))->name;
 		if (\Cookie::get('cart') !== null) {
 			$remember_token  = \Cookie::get('cart');

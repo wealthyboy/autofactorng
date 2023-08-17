@@ -273,12 +273,7 @@ class ProductsController extends Controller
         $cookie = null;
         $catString = null;
 
-        if ($request->engine_id) {
-            session(['make' => Attribute::find($request->make_id)->name]);
-            session(['model' => Attribute::find($request->model_id)->name]);
-            session(['engine' => optional(Engine::find($request->engine_id))->name]);
-            session(['year' => $request->year]);
-        }
+
 
         if ($request->checkForCategory == true && $this->getCategory($category)) {
             $catString = $this->buildSearchString($request);
@@ -455,6 +450,10 @@ class ProductsController extends Controller
             $make_name = optional(Attribute::find($request->cookie('make_id')))->name;
             $model_name = optional(Attribute::find($request->cookie('model_id')))->name;
             $engine_name = optional(Engine::find($request->cookie('engine_id')))->name;
+            session(['make' => $make_name]);
+            session(['model' => $model_name]);
+            session(['engine' => $engine_name]);
+            session(['year' => $year]);
             return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
         }
 
@@ -464,6 +463,10 @@ class ProductsController extends Controller
             $make_name = optional(Attribute::find($request->make_id))->name;
             $model_name = optional(Attribute::find($request->model_id))->name;
             $engine_name = optional(Engine::find($request->engine_id))->name;
+            session(['make' => $make_name]);
+            session(['model' => $model_name]);
+            session(['engine' => $engine_name]);
+            session(['year' => $year]);
             return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
         }
 
