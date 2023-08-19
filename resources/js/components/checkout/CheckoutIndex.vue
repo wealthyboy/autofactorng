@@ -73,10 +73,10 @@
                                     Pay Now<i class="fa fa-arrow-right"></i></a>
                                 <div class="text-dark">
 
-                                    <div class="bold">
+                                    <div class="bold m-0">
                                         Note
                                     </div>
-                                    <div>
+                                    <div class="m-0">
                                         Lagos Delivery: Within 24Hours
                                     </div>
                                     <div class="m-0">
