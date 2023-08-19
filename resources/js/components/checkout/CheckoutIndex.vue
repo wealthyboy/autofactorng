@@ -73,9 +73,9 @@
                                     Pay Now<i class="fa fa-arrow-right"></i></a>
                                 <div class="text-dark">
 
-                                    <h5 class="m-0 mt-3 mb-3 bold">
+                                    <div class="m-0 mt-4 mb-3 bold">
                                         Note
-                                    </h5>
+                                    </div>
                                     <div>
                                         Lagos Delivery: Within 24Hours
                                     </div>
