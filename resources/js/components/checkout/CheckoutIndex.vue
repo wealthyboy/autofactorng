@@ -71,6 +71,18 @@
                                     <i class="fa fa-arrow-right"></i></a>
                                 <a href="#" @click.prevent="makePayment" class="btn btn-block btn-dark w-100">
                                     Pay Nowd<i class="fa fa-arrow-right"></i></a>
+                                <div class="text-dark">
+
+                                    <h4>
+                                        Note
+                                    </h4>
+                                    <p>
+                                        Lagos Delivery: Within 24Hours
+                                    </p>
+                                    <p>
+                                        Outside Lagos Delivery: 2-4 Days.
+                                    </p>
+                                </div>
 
 
                             </div>
@@ -82,18 +94,7 @@
 
                 </div>
 
-                <div class="text-dark   w-100 bg-main bold fs-3 text-white">
 
-                    <h4>
-                        Note
-                    </h4>
-                    <p>
-                        Lagos Delivery: Within 24Hours
-                    </p>
-                    <p>
-                        Outside Lagos Delivery: 2-4 Days.
-                    </p>
-                </div>
             </div>
 
             <div class=" col-5">
