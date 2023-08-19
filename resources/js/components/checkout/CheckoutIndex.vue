@@ -79,7 +79,7 @@
                                     <p>
                                         Lagos Delivery: Within 24Hours
                                     </p>
-                                    <p>
+                                    <p class="m-0">
                                         Outside Lagos Delivery: 2-4 Days.
                                     </p>
                                 </div>
