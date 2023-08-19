@@ -73,7 +73,7 @@
                                     Pay Now<i class="fa fa-arrow-right"></i></a>
                                 <div class="text-dark">
 
-                                    <div class="m-0 mt-4 mb-3 bold">
+                                    <div class="bold">
                                         Note
                                     </div>
                                     <div>
