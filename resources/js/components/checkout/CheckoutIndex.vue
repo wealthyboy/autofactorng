@@ -71,7 +71,7 @@
                                     <i class="fa fa-arrow-right"></i></a>
                                 <a href="#" @click.prevent="makePayment" class="btn btn-block btn-dark w-100">
                                     Pay Now<i class="fa fa-arrow-right"></i></a>
-                                <div class="text-dark">
+                                <div class="text-dark mt-4">
 
                                     <div class="bold m-0">
                                         Note
