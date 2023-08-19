@@ -82,39 +82,39 @@
 
                 </div>
 
-                <div class="text-dark   w-100 bg-main bold fs-3 text-white"">
+                <div class="text-dark   w-100 bg-main bold fs-3 text-white">
 
-                            <h4>
-                                Note
-                            </h4>
-                            <p>
-                                Lagos Delivery: Within 24Hours
-                            </p>
-                            <p>
-                                Outside Lagos Delivery: 2-4 Days.
-                            </p>
-                        </div>
-                    </div>
+                    <h4>
+                        Note
+                    </h4>
+                    <p>
+                        Lagos Delivery: Within 24Hours
+                    </p>
+                    <p>
+                        Outside Lagos Delivery: 2-4 Days.
+                    </p>
+                </div>
+            </div>
 
-                    <div class=" col-5">
-                    <div class="card border-0">
-                        <div class="col-md-12 d-none d-lg-block mb-3">
-                            <div class="cart-collateralse bg-white pb-3 pt-3 pl-3 pt-3 pr-3">
-                                <div class="cart_totalse px-4">
-                                    <div class="head py-3">
-                                        <h3 class="mb-0 fs-3">SUMMARY</h3>
-                                    </div>
-
-                                    <cart-summary :showCoupon="!true" />
-
-                                    <total :showTotal="showTotal" :voucher="voucher" :amount="amount" />
+            <div class=" col-5">
+                <div class="card border-0">
+                    <div class="col-md-12 d-none d-lg-block mb-3">
+                        <div class="cart-collateralse bg-white pb-3 pt-3 pl-3 pt-3 pr-3">
+                            <div class="cart_totalse px-4">
+                                <div class="head py-3">
+                                    <h3 class="mb-0 fs-3">SUMMARY</h3>
                                 </div>
+
+                                <cart-summary :showCoupon="!true" />
+
+                                <total :showTotal="showTotal" :voucher="voucher" :amount="amount" />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </template>
 
 <script>
