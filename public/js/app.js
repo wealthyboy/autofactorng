@@ -27175,7 +27175,7 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_8 = {
-  "class": "card border-0 mt-3"
+  "class": "card border-0 mt-3 mb-4"
 };
 var _hoisted_9 = {
   "class": "col-md-12 bg-white"

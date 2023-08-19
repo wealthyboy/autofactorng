@@ -18,7 +18,7 @@
                     </div>
                 </div>
 
-                <div class="card border-0 mt-3">
+                <div class="card border-0 mt-3 mb-4">
                     <div class="col-md-12 bg-white">
                         <div class="pt-3 pb-2">
                             <span class="float-right">
