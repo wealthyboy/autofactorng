@@ -33,7 +33,7 @@
                             <div class="text-info">
 
                             </div>
-                            <div class="checkout-methods w-100 mb-5 mt-5">
+                            <div class="checkout-methods w-100 mb-4">
                                 <a href="#" @click.prevent="checkoutWithCredit" :class="{
                                     'pe-none':
                                         prices.total >

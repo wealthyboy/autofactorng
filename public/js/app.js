@@ -27204,7 +27204,7 @@ var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_13 = {
-  "class": "checkout-methods w-100 mb-5 mt-5"
+  "class": "checkout-methods w-100 mb-4"
 };
 
 var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", {
