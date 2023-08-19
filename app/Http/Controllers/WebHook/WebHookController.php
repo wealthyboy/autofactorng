@@ -61,10 +61,7 @@ class WebHookController extends Controller
                 $sub_total = Order::subTotal($order);
 
                 Order::getCoupon($order, $sub_total);
-
                 Order::sendMail($user, $order, $sub_total);
-
-
                 Voucher::inValidate($input['coupon']);
 
                 return http_response_code(200);
