@@ -75,20 +75,22 @@
 
                             </div>
 
-                            <div>
 
-                                <div>
-                                    Note
-                                </div>
-                                <p>
-                                    Lagos Delivery: Within 24Hours
-                                </p>
-                                <p>
-                                    Outside Lagos Delivery: 2-4 Days.
-
-                                </p>
-                            </div>
                         </div>
+
+                    </div>
+                    <div class="text-dark">
+
+                        <div>
+                            Note
+                        </div>
+                        <p>
+                            Lagos Delivery: Within 24Hours
+                        </p>
+                        <p>
+                            Outside Lagos Delivery: 2-4 Days.
+
+                        </p>
                     </div>
                 </div>
             </div>
