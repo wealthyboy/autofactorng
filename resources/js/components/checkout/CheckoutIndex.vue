@@ -76,12 +76,12 @@
                                     <h5 class="m-0 mt-3 mb-3">
                                         Note
                                     </h5>
-                                    <p>
+                                    <div>
                                         Lagos Delivery: Within 24Hours
-                                    </p>
-                                    <p class="m-0">
+                                    </div>
+                                    <div class="m-0">
                                         Outside Lagos Delivery: 2-4 Days.
-                                    </p>
+                                    </div>
                                 </div>
 
 
