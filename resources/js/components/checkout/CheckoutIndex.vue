@@ -70,12 +70,12 @@
                                     Buy now pay later (5% interest)
                                     <i class="fa fa-arrow-right"></i></a>
                                 <a href="#" @click.prevent="makePayment" class="btn btn-block btn-dark w-100">
-                                    Pay Nowd<i class="fa fa-arrow-right"></i></a>
+                                    Pay Now<i class="fa fa-arrow-right"></i></a>
                                 <div class="text-dark">
 
-                                    <h4>
+                                    <h5 class="m-0 mt-3">
                                         Note
-                                    </h4>
+                                    </h5>
                                     <p>
                                         Lagos Delivery: Within 24Hours
                                     </p>
