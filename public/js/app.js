@@ -23357,12 +23357,16 @@ __webpack_require__.r(__webpack_exports__);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       filter: []
     });
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {// props.obj?.forEach(el => {
-      //     if (props.brands.includes(el.name.toLowerCase())) {
-      //         form.filter.push(el.name)
-      //     }
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+      var _props$objs;
+
+      (_props$objs = props.objs) === null || _props$objs === void 0 ? void 0 : _props$objs.forEach(function (el) {
+        if (props.brands.includes(el.name.toLowerCase())) {
+          form.filter.push(el.name);
+        }
+      });
     });
-    console.log(findCommonElement(props.brands, props.obj));
+    console.log(findCommonElement(props.brands, props.objs));
 
     function findCommonElement(array1, array2) {
       // Loop for array1

@@ -42,13 +42,14 @@ export default {
         });
 
         onMounted(() => {
-            // props.obj?.forEach(el => {
-            //     if (props.brands.includes(el.name.toLowerCase())) {
-            //         form.filter.push(el.name)
-            //     }
+            props.objs?.forEach(el => {
+                if (props.brands.includes(el.name.toLowerCase())) {
+                    form.filter.push(el.name)
+                }
+            })
         })
 
-        console.log(findCommonElement(props.brands, props.obj))
+        console.log(findCommonElement(props.brands, props.objs))
 
 
 
