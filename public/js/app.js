@@ -28375,7 +28375,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return $setup.form.filter = $event;
       }),
       type: "checkbox",
-      "class": "form-check-input"
+      "class": "form-check-input",
+      checked: "checked"
     }, null, 40
     /* PROPS, HYDRATE_EVENTS */
     , _hoisted_10)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.form.filter]]), _hoisted_11], 8

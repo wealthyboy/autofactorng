@@ -21,8 +21,10 @@
                                 :value="obj.slug" :name="name + '[]'" :id="obj.name + obj.id" v-model="form.filter"
                                 type="checkbox" class="form-check-input" checked="checked" />
 
+
                             <input v-else @change="activateFilter($event)" :value="obj.slug" :name="name + '[]'"
-                                :id="obj.name + obj.id" v-model="form.filter" type="checkbox" class="form-check-input" />
+                                :id="obj.name + obj.id" v-model="form.filter" type="checkbox" class="form-check-input"
+                                checked="checked" />
                             <span class="checkmark"></span>
                         </label>
                     </div>
