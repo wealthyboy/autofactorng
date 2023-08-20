@@ -1,41 +1,23 @@
 <template>
     <div class="accordion accordion-flush" id="accordionFilter">
         <div class="accordion-item">
-            <h2
-                class="accordion-header text-uppercase border-bottom"
-                :id="'flush-heading' + name"
-            >
-                <button
-                    class="accordion-button collapsed text-uppercase fs-3"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    :data-bs-target="'#flush-collapse' + name"
-                    aria-expanded="false"
-                    :aria-controls="'flush-collapse' + name"
-                >
+            <h2 class="accordion-header text-uppercase border-bottom" :id="'flush-heading' + name">
+                <button class="accordion-button collapsed text-uppercase fs-3" type="button" data-bs-toggle="collapse"
+                    :data-bs-target="'#flush-collapse' + name" aria-expanded="false"
+                    :aria-controls="'flush-collapse' + name">
                     {{ name }}
                 </button>
             </h2>
-            <div
-                :id="'flush-collapse' + name"
-                class="accordion-collapse collapse show"
-                :aria-labelledby="'flush-heading' + name"
-                data-bs-parent="#accordionFilter"
-            >
+            <div :id="'flush-collapse' + name" class="accordion-collapse collapse show"
+                :aria-labelledby="'flush-heading' + name" data-bs-parent="#accordionFilter">
                 <div class="accordion-body">
                     <div v-for="obj in objs" :key="obj.id" class="form-check">
                         <label :for="obj.name + obj.id" class="container">
                             <span class="checkbox-label fs-5">
                                 {{ obj.name }}
                             </span>
-                            <input
-                                @change="activateFilter($event)"
-                                :value="obj.slug"
-                                :name="name + '[]'"
-                                :id="obj.name + obj.id"
-                                type="checkbox"
-                                class="form-check-input"
-                            />
+                            <input @change="activateFilter($event)" :value="obj.slug" :name="name + '[]'"
+                                :id="obj.name + obj.id" type="checkbox" class="form-check-input" checked />
                             <span class="checkmark"></span>
                         </label>
                     </div>

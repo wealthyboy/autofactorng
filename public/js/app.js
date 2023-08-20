@@ -28313,7 +28313,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       name: $props.name + '[]',
       id: obj.name + obj.id,
       type: "checkbox",
-      "class": "form-check-input"
+      "class": "form-check-input",
+      checked: ""
     }, null, 40
     /* PROPS, HYDRATE_EVENTS */
     , _hoisted_9), _hoisted_10], 8
