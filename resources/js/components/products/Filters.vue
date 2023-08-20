@@ -8,6 +8,7 @@
                     {{ name }}
                 </button>
             </h2>
+            {{ brands }}
             <div :id="'flush-collapse' + name" class="accordion-collapse collapse show"
                 :aria-labelledby="'flush-heading' + name" data-bs-parent="#accordionFilter">
                 <div class="accordion-body">
@@ -17,7 +18,7 @@
                                 {{ obj.name }}
                             </span>
                             <input @change="activateFilter($event)" :value="obj.slug" :name="name + '[]'"
-                                :id="obj.name + obj.id" type="checkbox" class="form-check-input" checked />
+                                :id="obj.name + obj.id" type="checkbox" class="form-check-input" :checked="" />
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -31,7 +32,7 @@
 
 <script>
 export default {
-    props: ["name", "objs", "clearFilter"],
+    props: ["name", "objs", "clearFilter", "brands"],
     emits: ["activate:filter"],
     setup(props, { emit }) {
         function activateFilter(e) {

@@ -66,6 +66,7 @@ class ProductsController extends Controller
             'category',
             'page_title',
             'search_filters',
+            'brands'
 
         ));
     }

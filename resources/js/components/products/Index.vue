@@ -9,222 +9,121 @@
 
             <div class="underline w-100"></div>
 
-            <search-string
-                v-if="!productIsLoading && showFitString && fitString"
-                @remove:vehicle="shopWithoutVehicle"
-                :searchText="fitString"
-                class=""
-            />
-            <div
-                v-if="!productIsLoading && !showFitString && !searchMode"
-                class="cta-border cta-bg light mb-4"
-            >
-                <div
-                    v-if="search_filters.search_type.search"
-                    class="title w-100 mt-2 d-sm-block d-lg-none text-center"
-                >
-                    <template
-                        v-if="
-                            search_filters.search_type.search ==
-                            'make_model_year'
-                        "
-                    >
+            <search-string v-if="!productIsLoading && showFitString && fitString" @remove:vehicle="shopWithoutVehicle"
+                :searchText="fitString" class="" />
+            <div v-if="!productIsLoading && !showFitString && !searchMode" class="cta-border cta-bg light mb-4">
+                <div v-if="search_filters.search_type.search" class="title w-100 mt-2 d-sm-block d-lg-none text-center">
+                    <template v-if="search_filters.search_type.search ==
+                        'make_model_year'
+                        ">
                         <h3 class="mb-0 fs-3">ADD YOUR VEHICLE</h3>
                         <div>Find an exact match for your vehicle.</div>
                     </template>
-                    <template
-                        v-if="search_filters.search_type.search == 'tyre'"
-                    >
+                    <template v-if="search_filters.search_type.search == 'tyre'">
                         <h3 class="mt-4 mb-1">SELECT YOUR TYRE SIZE</h3>
                         <div>Find an exact match for your vehicle.</div>
                     </template>
 
-                    <template
-                        v-if="search_filters.search_type.search == 'battery'"
-                    >
+                    <template v-if="search_filters.search_type.search == 'battery'">
                         <h3 class="mt-4 mb-1">SELECT YOUR BATTERY SIZE</h3>
                         <div>Find an exact match for your vehicle.</div>
                     </template>
                 </div>
 
-                <div
-                    v-if="search_filters.search_type.search"
-                    class="d-flex justify-content-between align-content-center py-4"
-                >
+                <div v-if="search_filters.search_type.search"
+                    class="d-flex justify-content-between align-content-center py-4">
                     <div class="title w-100 p-2 d-none d-lg-block">
-                        <template
-                            v-if="
-                                search_filters.search_type.search ==
-                                'make_model_year'
-                            "
-                        >
+                        <template v-if="search_filters.search_type.search ==
+                            'make_model_year'
+                            ">
                             <h3 class="mb-0 fs-3">ADD YOUR VEHICLE</h3>
                             <div>Find an exact match for your vehicle.</div>
                         </template>
-                        <template
-                            v-if="search_filters.search_type.search == 'tyre'"
-                        >
+                        <template v-if="search_filters.search_type.search == 'tyre'">
                             <h3 class="mb-0 fs-3">SELECT YOUR TYRE SIZE</h3>
                             <div>Find an exact match for your vehicle.</div>
                             <img src="/images/utils/tyre_size.jpeg" alt="" />
                         </template>
 
-                        <template
-                            v-if="
-                                search_filters.search_type.search == 'battery'
-                            "
-                        >
+                        <template v-if="search_filters.search_type.search == 'battery'
+                            ">
                             <h3 class="mb-0 fs-3">SELECT YOUR BATTERY SIZE</h3>
                             <div>Find an exact match for your vehicle.</div>
                         </template>
                     </div>
 
-                    <template
-                        v-if="
-                            search_filters.search_type.search ==
-                            'make_model_year'
-                        "
-                    >
+                    <template v-if="search_filters.search_type.search ==
+                        'make_model_year'
+                        ">
                         <search :years="years" @do:filter="filter" :filter="true" />
                     </template>
 
-                    <template
-                        v-if="search_filters.search_type.search == 'tyre'"
-                    >
-                        <tyre
-                            @do:filter="handleTyreFilter"
-                            :filter="true"
-                            :rims="search_filters.rim.items"
-                            :widths="search_filters.width.items"
-                            :profiles="search_filters.profile.items"
-                        />
+                    <template v-if="search_filters.search_type.search == 'tyre'">
+                        <tyre @do:filter="handleTyreFilter" :filter="true" :rims="search_filters.rim.items"
+                            :widths="search_filters.width.items" :profiles="search_filters.profile.items" />
                     </template>
 
-                    <template
-                        v-if="search_filters.search_type.search == 'battery'"
-                    >
-                        <battery
-                            @do:filter="handleBatteryFilter"
-                            :filter="true"
-                            :ampheres="search_filters.amphere.items"
-                        />
+                    <template v-if="search_filters.search_type.search == 'battery'">
+                        <battery @do:filter="handleBatteryFilter" :filter="true" :ampheres="search_filters.amphere.items" />
                     </template>
                 </div>
             </div>
 
             <div v-if="!productIsLoading && showClearFilter" class="mb-4 mt-4">
-                <a
-                    href="#"
-                    @click.prevent="clearfilters"
-                    class="border text-dark p-3"
-                >
+                <a href="#" @click.prevent="clearfilters" class="border text-dark p-3">
                     <i class="fa fa-times"></i> Clear Filters
                 </a>
             </div>
-            <product-nav
-                v-if="meta"
-                @handle:per_page="perPage"
-                @handle:sorting="sort"
-                :meta="meta"
-                @handle:listing="listing"
-                :class="{ 'd-none': productIsLoading }"
-            />
+            <product-nav v-if="meta" @handle:per_page="perPage" @handle:sorting="sort" :meta="meta"
+                @handle:listing="listing" :class="{ 'd-none': productIsLoading }" />
 
             <div class="row pb-4">
                 <template v-if="productIsLoading">
-                    <div
-                        v-for="x in 61"
-                        :key="x"
-                        class="col-sm-12 col-6 product-default left-details product-list mb-2"
-                    >
-                        <figure
-                            style="height: 200px; width: 200px"
-                            class="j-preview"
-                        >
+                    <div v-for="x in 61" :key="x" class="col-sm-12 col-6 product-default left-details product-list mb-2">
+                        <figure style="height: 200px; width: 200px" class="j-preview">
                             <a href="#"> </a>
                         </figure>
                         <div class="product-details">
-                            <div
-                                style="height: 10px; width: 400px"
-                                class="j-preview mb-2"
-                            ></div>
+                            <div style="height: 10px; width: 400px" class="j-preview mb-2"></div>
 
-                            <div
-                                style="height: 10px; width: 350px"
-                                class="j-preview mb-2"
-                            ></div>
+                            <div style="height: 10px; width: 350px" class="j-preview mb-2"></div>
                             <!-- End .product-container -->
 
-                            <div
-                                style="height: 10px; width: 200px"
-                                class="j-preview mb-2"
-                            ></div>
+                            <div style="height: 10px; width: 200px" class="j-preview mb-2"></div>
 
-                            <div
-                                style="height: 50px; width: 200px"
-                                class="j-preview"
-                            ></div>
+                            <div style="height: 50px; width: 200px" class="j-preview"></div>
                         </div>
                         <!-- End .product-details -->
                     </div>
                 </template>
 
                 <template v-if="!productIsLoading && products.length">
-                    <product
-                        v-for="product in products"
-                        :key="product.id"
-                        :product="product"
-                        :list="list"
-                        :showFitText="
-                            search_filters.search_type.search ==
+                    <product v-for="product in products" :key="product.id" :product="product" :list="list" :showFitText="search_filters.search_type.search ==
                             'make_model_year'
-                                ? true
-                                : false
-                        "
-                    ></product>
+                            ? true
+                            : false
+                        "></product>
                 </template>
 
                 <template v-if="!productIsLoading && !products.length">
                     <div class="h-100 col-md-12">
-                        <div
-                            class="d-flex col-md-12 justify-content-center align-items-center"
-                        >
-                            <img
-                                src="/images/utils/no-product.png"
-                                width="300"
-                                height="300"
-                                alt=""
-                                srcset=""
-                            />
+                        <div class="d-flex col-md-12 justify-content-center align-items-center">
+                            <img src="/images/utils/no-product.png" width="300" height="300" alt="" srcset="" />
                         </div>
                     </div>
                 </template>
             </div>
 
-            <nav
-                v-if="!productIsLoading && products.length && meta"
-                class="toolbox toolbox-pagination"
-            >
+            <nav v-if="!productIsLoading && products.length && meta" class="toolbox toolbox-pagination">
                 <div class="toolbox-item ms-sm-3 mb-sm-3 toolbox-show">
-                    <span
-                        >{{ meta.from }}- {{ meta.to }} of
-                        {{ meta.total }} Records</span
-                    >
+                    <span>{{ meta.from }}- {{ meta.to }} of
+                        {{ meta.total }} Records</span>
                 </div>
                 <!-- End .toolbox-item -->
-                <div
-                    v-if="meta.total > meta.per_page"
-                    class="pagination-wraper"
-                >
+                <div v-if="meta.total > meta.per_page" class="pagination-wraper">
                     <div class="pagination">
-                        <ul
-                            class="pagination-numbers d-flex justify-content-center ps-sm-0"
-                        >
-                            <pagination
-                                :useUrl="true"
-                                :meta="meta"
-                                @pagination:switched="getP"
-                            />
+                        <ul class="pagination-numbers d-flex justify-content-center ps-sm-0">
+                            <pagination :useUrl="true" :meta="meta" @pagination:switched="getP" />
                         </ul>
                     </div>
                 </div>
@@ -236,24 +135,13 @@
         <aside class="sidebar-shop col-lg-3 order-lg-first mobile-sidebar">
             <div class="sidebar-wrapper">
                 <form action="" method="get" id="filter-form">
-                    <filters
-                        v-if="
-                            search_filters.brand &&
-                            search_filters.brand.items.length
-                        "
-                        :name="'brands'"
-                        :objs="search_filters.brand.items"
-                        @handle:filter="handleFilter"
-                        :clearFilters="clearFilters"
-                    ></filters>
+                    <filters v-if="search_filters.brand &&
+                        search_filters.brand.items.length
+                        " :name="'brands'" :objs="search_filters.brand.items" :brands="brands"
+                        @handle:filter="handleFilter" :clearFilters="clearFilters"></filters>
 
-                    <filters
-                        class=""
-                        :name="'prices'"
-                        :objs="search_filters.price.items"
-                        @handle:filter="handleFilter"
-                        :clearFilters="clearFilters"
-                    ></filters>
+                    <filters class="" :name="'prices'" :objs="search_filters.price.items" @handle:filter="handleFilter"
+                        :clearFilters="clearFilters"></filters>
                 </form>
             </div>
             <!-- End .sidebar-wrapper -->
@@ -449,6 +337,7 @@ export default {
     0% {
         background-position: -468px 0;
     }
+
     100% {
         background-position: 468px 0;
     }

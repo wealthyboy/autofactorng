@@ -23348,7 +23348,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["name", "objs", "clearFilter"],
+  props: ["name", "objs", "clearFilter", "brands"],
   emits: ["activate:filter"],
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
@@ -28291,7 +28291,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT, PROPS */
   , _hoisted_4)], 8
   /* PROPS */
-  , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.brands) + " ", 1
+  /* TEXT */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     id: 'flush-collapse' + $props.name,
     "class": "accordion-collapse collapse show",
     "aria-labelledby": 'flush-heading' + $props.name,
@@ -28645,11 +28647,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 0,
     name: 'brands',
     objs: $props.search_filters.brand.items,
+    brands: _ctx.brands,
     "onHandle:filter": $options.handleFilter,
     clearFilters: $data.clearFilters
   }, null, 8
   /* PROPS */
-  , ["objs", "onHandle:filter", "clearFilters"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_filters, {
+  , ["objs", "brands", "onHandle:filter", "clearFilters"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_filters, {
     "class": "",
     name: 'prices',
     objs: $props.search_filters.price.items,
