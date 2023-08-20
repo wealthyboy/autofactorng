@@ -16,8 +16,12 @@
                             <span class="checkbox-label fs-5">
                                 {{ obj.name }}
                             </span>
-                            <input :checked="brands?.includes(obj.name.toLowerCase()) ? 'checked' : false"
-                                @change="activateFilter($event)" :value="obj.slug" :name="name + '[]'"
+
+                            <input v-if="brands?.includes(obj.name.toLowerCase())" checked @change="activateFilter($event)"
+                                :value="obj.slug" :name="name + '[]'" :id="obj.name + obj.id" v-model="form.filter"
+                                type="checkbox" class="form-check-input" />
+
+                            <input v-else @change="activateFilter($event)" :value="obj.slug" :name="name + '[]'"
                                 :id="obj.name + obj.id" v-model="form.filter" type="checkbox" class="form-check-input" />
                             <span class="checkmark"></span>
                         </label>

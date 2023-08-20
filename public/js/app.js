@@ -28307,9 +28307,10 @@ var _hoisted_7 = ["for"];
 var _hoisted_8 = {
   "class": "checkbox-label fs-5"
 };
-var _hoisted_9 = ["checked", "value", "name", "id"];
+var _hoisted_9 = ["value", "name", "id"];
+var _hoisted_10 = ["value", "name", "id"];
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "checkmark"
 }, null, -1
 /* HOISTED */
@@ -28346,8 +28347,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "container"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(obj.name), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-      checked: (_$props$brands = $props.brands) !== null && _$props$brands !== void 0 && _$props$brands.includes(obj.name.toLowerCase()) ? 'checked' : false,
+    ), (_$props$brands = $props.brands) !== null && _$props$brands !== void 0 && _$props$brands.includes(obj.name.toLowerCase()) ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+      key: 0,
+      checked: "",
       onChange: _cache[0] || (_cache[0] = function ($event) {
         return $setup.activateFilter($event);
       }),
@@ -28361,7 +28363,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "form-check-input"
     }, null, 40
     /* PROPS, HYDRATE_EVENTS */
-    , _hoisted_9), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.form.filter]]), _hoisted_10], 8
+    , _hoisted_9)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.form.filter]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+      key: 1,
+      onChange: _cache[2] || (_cache[2] = function ($event) {
+        return $setup.activateFilter($event);
+      }),
+      value: obj.slug,
+      name: $props.name + '[]',
+      id: obj.name + obj.id,
+      "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+        return $setup.form.filter = $event;
+      }),
+      type: "checkbox",
+      "class": "form-check-input"
+    }, null, 40
+    /* PROPS, HYDRATE_EVENTS */
+    , _hoisted_10)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.form.filter]]), _hoisted_11], 8
     /* PROPS */
     , _hoisted_7)]);
   }), 128
