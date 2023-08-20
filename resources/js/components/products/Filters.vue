@@ -17,9 +17,9 @@
                                 {{ obj.name }} {{ form.filter }}
                             </span>
 
-                            <input v-if="brands?.includes(obj.name.toLowerCase())" checked @change="activateFilter($event)"
+                            <input v-if="brands?.includes(obj.name.toLowerCase())" @change="activateFilter($event)"
                                 :value="obj.slug" :name="name + '[]'" :id="obj.name + obj.id" v-model="form.filter"
-                                type="checkbox" class="form-check-input" />
+                                type="checkbox" class="form-check-input" checked />
 
                             <input v-else @change="activateFilter($event)" :value="obj.slug" :name="name + '[]'"
                                 :id="obj.name + obj.id" v-model="form.filter" type="checkbox" class="form-check-input" />

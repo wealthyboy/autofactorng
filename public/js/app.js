@@ -28349,7 +28349,6 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     ), (_$props$brands = $props.brands) !== null && _$props$brands !== void 0 && _$props$brands.includes(obj.name.toLowerCase()) ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
       key: 0,
-      checked: "",
       onChange: _cache[0] || (_cache[0] = function ($event) {
         return $setup.activateFilter($event);
       }),
@@ -28360,7 +28359,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         return $setup.form.filter = $event;
       }),
       type: "checkbox",
-      "class": "form-check-input"
+      "class": "form-check-input",
+      checked: ""
     }, null, 40
     /* PROPS, HYDRATE_EVENTS */
     , _hoisted_9)), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.form.filter]]) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
