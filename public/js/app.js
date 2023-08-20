@@ -23354,7 +23354,7 @@ __webpack_require__.r(__webpack_exports__);
   emits: ["activate:filter"],
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
-    var form = reactive({
+    var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       filter: []
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {

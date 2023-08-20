@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import { onMounted } from 'vue';
+import { onMounted, reactive } from 'vue';
 
 export default {
     props: ["name", "objs", "clearFilter", "brands", "reactive"],
