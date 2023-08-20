@@ -18,7 +18,7 @@
                                 {{ obj.name }}
                             </span>
                             <input @change="activateFilter($event)" :value="obj.slug" :name="name + '[]'"
-                                :id="obj.name + obj.id" type="checkbox" class="form-check-input" :checked="" />
+                                :id="obj.name + obj.id" type="checkbox" class="form-check-input" />
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -31,10 +31,16 @@
 </template>
 
 <script>
+import { onMounted } from 'vue';
+
 export default {
     props: ["name", "objs", "clearFilter", "brands"],
     emits: ["activate:filter"],
     setup(props, { emit }) {
+
+        onMounted(() => {
+            console.log(brands)
+        })
         function activateFilter(e) {
             const qs = [];
 
