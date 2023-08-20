@@ -8,7 +8,6 @@
                     {{ name }}
                 </button>
             </h2>
-            {{ brands }}
             <div :id="'flush-collapse' + name" class="accordion-collapse collapse show"
                 :aria-labelledby="'flush-heading' + name" data-bs-parent="#accordionFilter">
                 <div class="accordion-body">
@@ -18,7 +17,7 @@
                                 {{ obj.name }}
                             </span>
                             <input @change="activateFilter($event)" :value="obj.slug" :name="name + '[]'"
-                                :id="obj.name + obj.id" type="checkbox" class="form-check-input" />
+                                :id="obj.name + obj.id" v-model="form.filters" type="checkbox" class="form-check-input" />
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -38,9 +37,22 @@ export default {
     emits: ["activate:filter"],
     setup(props, { emit }) {
 
+        const form = reactive({
+            filter: [],
+        });
+
         onMounted(() => {
-            console.log(props.brands)
+            props.obj.forEach(el => {
+                if (props.brands.includes(el.name.toLowerCase())) {
+                    form.filter.push(el.name)
+                }
+            })
         })
+
+
+
+
+
         function activateFilter(e) {
             const qs = [];
 

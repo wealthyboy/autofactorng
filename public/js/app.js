@@ -23354,8 +23354,15 @@ __webpack_require__.r(__webpack_exports__);
   emits: ["activate:filter"],
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
+    var form = reactive({
+      filter: []
+    });
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      console.log(props.brands);
+      props.obj.forEach(function (el) {
+        if (props.brands.includes(el.name.toLowerCase())) {
+          form.filter.push(el.name);
+        }
+      });
     });
 
     function activateFilter(e) {
@@ -28296,9 +28303,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT, PROPS */
   , _hoisted_4)], 8
   /* PROPS */
-  , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.brands) + " ", 1
-  /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     id: 'flush-collapse' + $props.name,
     "class": "accordion-collapse collapse show",
     "aria-labelledby": 'flush-heading' + $props.name,
@@ -28312,18 +28317,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "container"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(obj.name), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       onChange: _cache[0] || (_cache[0] = function ($event) {
         return $setup.activateFilter($event);
       }),
       value: obj.slug,
       name: $props.name + '[]',
       id: obj.name + obj.id,
+      "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+        return _ctx.form.filters = $event;
+      }),
       type: "checkbox",
       "class": "form-check-input"
     }, null, 40
     /* PROPS, HYDRATE_EVENTS */
-    , _hoisted_9), _hoisted_10], 8
+    , _hoisted_9), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.form.filters]]), _hoisted_10], 8
     /* PROPS */
     , _hoisted_7)]);
   }), 128
