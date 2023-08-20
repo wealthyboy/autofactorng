@@ -43,6 +43,7 @@ export default {
 
         onMounted(() => {
             props.objs?.forEach(el => {
+                console.log(el.name.toLowerCase())
                 if (props.brands.includes(el.name.toLowerCase())) {
                     form.filter.push(el.name)
                 }

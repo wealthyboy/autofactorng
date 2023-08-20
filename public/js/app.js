@@ -23361,6 +23361,8 @@ __webpack_require__.r(__webpack_exports__);
       var _props$objs;
 
       (_props$objs = props.objs) === null || _props$objs === void 0 ? void 0 : _props$objs.forEach(function (el) {
+        console.log(el.name.toLowerCase());
+
         if (props.brands.includes(el.name.toLowerCase())) {
           form.filter.push(el.name);
         }
