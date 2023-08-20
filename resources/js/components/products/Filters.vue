@@ -49,7 +49,7 @@ export default {
             })
         })
 
-        console.log(findCommonElement(props.brands, props.objs))
+        // console.log(findCommonElement(props.brands, props.objs))
 
 
 

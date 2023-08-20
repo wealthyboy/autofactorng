@@ -23365,8 +23365,7 @@ __webpack_require__.r(__webpack_exports__);
           form.filter.push(el.name);
         }
       });
-    });
-    console.log(findCommonElement(props.brands, props.objs));
+    }); // console.log(findCommonElement(props.brands, props.objs))
 
     function findCommonElement(array1, array2) {
       // Loop for array1
