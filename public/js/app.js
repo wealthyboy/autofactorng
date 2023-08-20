@@ -23366,7 +23366,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(el.name.toLowerCase());
 
         if ((_props$brands = props.brands) !== null && _props$brands !== void 0 && _props$brands.includes(el.name.toLowerCase())) {
-          form.filter.push(el.id);
+          form.filter.push(el.name);
         }
       });
     }); // console.log(findCommonElement(props.brands, props.objs))
@@ -28345,7 +28345,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
       "for": obj.name + obj.id,
       "class": "container"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(obj.name), 1
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(obj.name) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.form.filter), 1
     /* TEXT */
     ), (_$props$brands = $props.brands) !== null && _$props$brands !== void 0 && _$props$brands.includes(obj.name.toLowerCase()) ? (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)(((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
       key: 0,

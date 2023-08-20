@@ -14,7 +14,7 @@
                     <div v-for="obj in objs" :key="obj.id" class="form-check">
                         <label :for="obj.name + obj.id" class="container">
                             <span class="checkbox-label fs-5">
-                                {{ obj.name }}
+                                {{ obj.name }} {{ form.filter }}
                             </span>
 
                             <input v-if="brands?.includes(obj.name.toLowerCase())" checked @change="activateFilter($event)"
@@ -50,7 +50,7 @@ export default {
             props.objs?.forEach(el => {
                 console.log(el.name.toLowerCase())
                 if (props.brands?.includes(el.name.toLowerCase())) {
-                    form.filter.push(el.id)
+                    form.filter.push(el.name)
                 }
             })
         })
