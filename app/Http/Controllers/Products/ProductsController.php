@@ -59,13 +59,14 @@ class ProductsController extends Controller
         }
 
         $brands = $request->brands;
-        dd($brands);
+        // dd($brands);
 
 
         return  view('products.index', compact(
             'category',
             'page_title',
             'search_filters',
+
         ));
     }
 
