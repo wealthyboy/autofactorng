@@ -23340,9 +23340,70 @@ __webpack_require__.r(__webpack_exports__);
 /*!**********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/products/Filters.vue?vue&type=script&lang=js ***!
   \**********************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/js/components/products/Filters.vue: Unexpected token, expected \",\" (22:5)\n\n\u001b[0m \u001b[90m 20 |\u001b[39m         console\u001b[33m.\u001b[39mlog(findCommonElement(props\u001b[33m.\u001b[39mbrands\u001b[33m,\u001b[39m props\u001b[33m.\u001b[39mobj))\u001b[0m\n\u001b[0m \u001b[90m 21 |\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 22 |\u001b[39m     })\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 23 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 24 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 25 |\u001b[39m     \u001b[36mfunction\u001b[39m findCommonElement(array1\u001b[33m,\u001b[39m array2) {\u001b[0m\n    at instantiate (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:72:32)\n    at constructor (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:358:12)\n    at Parser.raise (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:3335:19)\n    at Parser.unexpected (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:3373:16)\n    at Parser.expect (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:4002:28)\n    at Parser.parseObjectLike (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:13486:14)\n    at Parser.parseExprAtom (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:12890:23)\n    at Parser.parseExprSubscripts (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:12540:23)\n    at Parser.parseUpdate (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:12519:21)\n    at Parser.parseMaybeUnary (/Applications/XAMPP/xamppfiles/htdocs/autofactorng/node_modules/@babel/parser/lib/index.js:12490:23)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ["name", "objs", "clearFilter", "brands", "reactive"],
+  emits: ["activate:filter"],
+  setup: function setup(props, _ref) {
+    var emit = _ref.emit;
+    var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+      filter: []
+    });
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {// props.obj?.forEach(el => {
+      //     if (props.brands.includes(el.name.toLowerCase())) {
+      //         form.filter.push(el.name)
+      //     }
+    });
+    console.log(findCommonElement(props.brands, props.obj));
+
+    function findCommonElement(array1, array2) {
+      // Loop for array1
+      for (var i = 0; i < array1.length; i++) {
+        // Loop for array2
+        for (var j = 0; j < array2.length; j++) {
+          // Compare the element of each and
+          // every element from both of the
+          // arrays
+          if (array1[i] === array2[j]) {
+            // Return if common element found
+            return true;
+          }
+        }
+      } // Return if no common element exist
+
+
+      return false;
+    }
+
+    function activateFilter(e) {
+      var qs = []; // if (sort_by.value !== "") {
+      //   qs.push(sort_by.name + "=" + sort_by.value);
+      // }
+
+      $(".form-check-input").serializeArray().forEach(function (element) {
+        qs.push(element.name + "=" + element.value);
+      });
+      var filterString = "?" + qs.join("&");
+      emit("handle:filter", {
+        filterString: filterString
+      });
+    }
+
+    return {
+      activateFilter: activateFilter,
+      form: form,
+      findCommonElement: findCommonElement
+    };
+  }
+});
 
 /***/ }),
 
@@ -28247,27 +28308,27 @@ var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 /* HOISTED */
 );
 
-function render(_ctx, _cache) {
+function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
     "class": "accordion-header text-uppercase border-bottom",
-    id: 'flush-heading' + _ctx.name
+    id: 'flush-heading' + $props.name
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "accordion-button collapsed text-uppercase fs-3",
     type: "button",
     "data-bs-toggle": "collapse",
-    "data-bs-target": '#flush-collapse' + _ctx.name,
+    "data-bs-target": '#flush-collapse' + $props.name,
     "aria-expanded": "false",
-    "aria-controls": 'flush-collapse' + _ctx.name
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.name), 9
+    "aria-controls": 'flush-collapse' + $props.name
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.name), 9
   /* TEXT, PROPS */
   , _hoisted_4)], 8
   /* PROPS */
   , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    id: 'flush-collapse' + _ctx.name,
+    id: 'flush-collapse' + $props.name,
     "class": "accordion-collapse collapse show",
-    "aria-labelledby": 'flush-heading' + _ctx.name,
+    "aria-labelledby": 'flush-heading' + $props.name,
     "data-bs-parent": "#accordionFilter"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.objs, function (obj) {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.objs, function (obj) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: obj.id,
       "class": "form-check"
@@ -28278,19 +28339,19 @@ function render(_ctx, _cache) {
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       onChange: _cache[0] || (_cache[0] = function ($event) {
-        return _ctx.activateFilter($event);
+        return $setup.activateFilter($event);
       }),
       value: obj.slug,
-      name: _ctx.name + '[]',
+      name: $props.name + '[]',
       id: obj.name + obj.id,
       "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-        return _ctx.form.filter = $event;
+        return $setup.form.filter = $event;
       }),
       type: "checkbox",
       "class": "form-check-input"
     }, null, 40
     /* PROPS, HYDRATE_EVENTS */
-    , _hoisted_9), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.form.filter]]), _hoisted_10], 8
+    , _hoisted_9), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, $setup.form.filter]]), _hoisted_10], 8
     /* PROPS */
     , _hoisted_7)]);
   }), 128
