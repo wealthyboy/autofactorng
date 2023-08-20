@@ -23431,7 +23431,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Tyre: _search_Tyre__WEBPACK_IMPORTED_MODULE_4__["default"],
     Battery: _search_Battery__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
-  props: ["search_filters", "years"],
+  props: ["search_filters", "years", "brands"],
   data: function data() {
     return {
       has_filters: 0,
@@ -28651,7 +28651,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 0,
     name: 'brands',
     objs: $props.search_filters.brand.items,
-    brands: _ctx.brands,
+    brands: $props.brands,
     "onHandle:filter": $options.handleFilter,
     clearFilters: $data.clearFilters
   }, null, 8

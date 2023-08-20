@@ -99,9 +99,9 @@
 
                 <template v-if="!productIsLoading && products.length">
                     <product v-for="product in products" :key="product.id" :product="product" :list="list" :showFitText="search_filters.search_type.search ==
-                            'make_model_year'
-                            ? true
-                            : false
+                        'make_model_year'
+                        ? true
+                        : false
                         "></product>
                 </template>
 
@@ -175,7 +175,7 @@ export default {
         Tyre,
         Battery,
     },
-    props: ["search_filters", "years"],
+    props: ["search_filters", "years", "brands"],
     data() {
         return {
             has_filters: 0,
