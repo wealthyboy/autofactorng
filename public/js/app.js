@@ -28325,13 +28325,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       name: $props.name + '[]',
       id: obj.name + obj.id,
       "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
-        return _ctx.form.filters = $event;
+        return _ctx.form.filter = $event;
       }),
       type: "checkbox",
       "class": "form-check-input"
     }, null, 40
     /* PROPS, HYDRATE_EVENTS */
-    , _hoisted_9), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.form.filters]]), _hoisted_10], 8
+    , _hoisted_9), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelCheckbox, _ctx.form.filter]]), _hoisted_10], 8
     /* PROPS */
     , _hoisted_7)]);
   }), 128
