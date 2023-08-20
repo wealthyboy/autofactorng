@@ -42,36 +42,64 @@ export default {
         });
 
         onMounted(() => {
-            props.obj.forEach(el => {
-                if (props.brands.includes(el.name.toLowerCase())) {
-                    form.filter.push(el.name)
-                }
-            })
+            // props.obj?.forEach(el => {
+            //     if (props.brands.includes(el.name.toLowerCase())) {
+            //         form.filter.push(el.name)
+            //     }
         })
 
+        console.log(findCommonElement(props.brands, props.obj))
+
+    })
 
 
+    function findCommonElement(array1, array2) {
 
+    // Loop for array1
+    for (let i = 0; i < array1.length; i++) {
 
-        function activateFilter(e) {
-            const qs = [];
+        // Loop for array2
+        for (let j = 0; j < array2.length; j++) {
 
-            // if (sort_by.value !== "") {
-            //   qs.push(sort_by.name + "=" + sort_by.value);
-            // }
-            $(".form-check-input")
-                .serializeArray()
-                .forEach((element) => {
-                    qs.push(element.name + "=" + element.value);
-                });
-            let filterString = "?" + qs.join("&");
-            emit("handle:filter", { filterString });
+            // Compare the element of each and
+            // every element from both of the
+            // arrays
+            if (array1[i] === array2[j]) {
+
+                // Return if common element found
+                return true;
+            }
         }
+    }
 
-        return {
-            activateFilter,
-            form
-        };
+    // Return if no common element exist
+    return false;
+}
+
+
+
+
+
+function activateFilter(e) {
+    const qs = [];
+
+    // if (sort_by.value !== "") {
+    //   qs.push(sort_by.name + "=" + sort_by.value);
+    // }
+    $(".form-check-input")
+        .serializeArray()
+        .forEach((element) => {
+            qs.push(element.name + "=" + element.value);
+        });
+    let filterString = "?" + qs.join("&");
+    emit("handle:filter", { filterString });
+}
+
+return {
+    activateFilter,
+    form,
+    findCommonElement
+};
     },
 };
 </script>
