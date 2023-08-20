@@ -28307,7 +28307,7 @@ var _hoisted_7 = ["for"];
 var _hoisted_8 = {
   "class": "checkbox-label fs-5"
 };
-var _hoisted_9 = ["value", "name", "id"];
+var _hoisted_9 = ["checked", "value", "name", "id"];
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "checkmark"
@@ -28336,15 +28336,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "aria-labelledby": 'flush-heading' + $props.name,
     "data-bs-parent": "#accordionFilter"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.objs, function (obj) {
+    var _$props$brands;
+
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: obj.id,
       "class": "form-check"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
       "for": obj.name + obj.id,
       "class": "container"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(obj.name) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.form.filter), 1
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(obj.name), 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      checked: (_$props$brands = $props.brands) !== null && _$props$brands !== void 0 && _$props$brands.includes(obj.name.toLowerCase()) ? true : false,
       onChange: _cache[0] || (_cache[0] = function ($event) {
         return $setup.activateFilter($event);
       }),

@@ -14,9 +14,10 @@
                     <div v-for="obj in objs" :key="obj.id" class="form-check">
                         <label :for="obj.name + obj.id" class="container">
                             <span class="checkbox-label fs-5">
-                                {{ obj.name }} {{ form.filter }}
+                                {{ obj.name }}
                             </span>
-                            <input @change="activateFilter($event)" :value="obj.slug" :name="name + '[]'"
+                            <input :checked="brands?.includes(obj.name.toLowerCase()) ? true : false"
+                                @change="activateFilter($event)" :value="obj.slug" :name="name + '[]'"
                                 :id="obj.name + obj.id" v-model="form.filter" type="checkbox" class="form-check-input" />
                             <span class="checkmark"></span>
                         </label>
