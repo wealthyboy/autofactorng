@@ -23355,7 +23355,7 @@ __webpack_require__.r(__webpack_exports__);
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      console.log(brands);
+      console.log(props.brands);
     });
 
     function activateFilter(e) {

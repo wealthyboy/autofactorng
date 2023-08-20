@@ -39,7 +39,7 @@ export default {
     setup(props, { emit }) {
 
         onMounted(() => {
-            console.log(brands)
+            console.log(props.brands)
         })
         function activateFilter(e) {
             const qs = [];
