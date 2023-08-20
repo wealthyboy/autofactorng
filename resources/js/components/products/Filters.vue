@@ -33,7 +33,7 @@
 import { onMounted } from 'vue';
 
 export default {
-    props: ["name", "objs", "clearFilter", "brands"],
+    props: ["name", "objs", "clearFilter", "brands", "reactive"],
     emits: ["activate:filter"],
     setup(props, { emit }) {
 
