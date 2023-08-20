@@ -45,6 +45,7 @@ class ProductsController extends Controller
         // (new Product())->buildSearchString($category);
 
 
+
         if ($request->ajax()) {
             return (new ProductsCollection($products))
                 ->additional([
@@ -56,6 +57,9 @@ class ProductsController extends Controller
                     'search_filters' => null
                 ]);
         }
+
+        $brands = $request->brands;
+        dd($brands);
 
 
         return  view('products.index', compact(
