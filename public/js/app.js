@@ -28308,9 +28308,16 @@ var _hoisted_8 = {
   "class": "checkbox-label fs-5"
 };
 var _hoisted_9 = ["value", "name", "id"];
-var _hoisted_10 = ["value", "name", "id"];
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "checkmark"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_11 = ["value", "name", "id"];
+
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "checkmark"
 }, null, -1
 /* HOISTED */
@@ -28337,7 +28344,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "aria-labelledby": 'flush-heading' + $props.name,
     "data-bs-parent": "#accordionFilter"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.objs, function (obj) {
-    var _$props$brands;
+    var _$props$brands, _$props$brands2;
 
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: obj.id,
@@ -28360,7 +28367,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       checked: true
     }, null, 40
     /* PROPS, HYDRATE_EVENTS */
-    , _hoisted_9)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+    , _hoisted_9)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_10, !((_$props$brands2 = $props.brands) !== null && _$props$brands2 !== void 0 && _$props$brands2.includes(obj.name.toLowerCase())) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
       key: 1,
       onChange: _cache[1] || (_cache[1] = function ($event) {
         return $setup.activateFilter($event);
@@ -28372,7 +28379,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "form-check-input"
     }, null, 40
     /* PROPS, HYDRATE_EVENTS */
-    , _hoisted_10)), _hoisted_11], 8
+    , _hoisted_11)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_12], 8
     /* PROPS */
     , _hoisted_7)]);
   }), 128

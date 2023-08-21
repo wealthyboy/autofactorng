@@ -20,11 +20,14 @@
                             <input v-if="brands?.includes(obj.name.toLowerCase())" @change="activateFilter($event)"
                                 :value="obj.slug" :name="name + '[]'" :id="obj.name + obj.id" type="checkbox"
                                 class="form-check-input" :checked="true" />
-
-
-                            <input v-else @change="activateFilter($event)" :value="obj.slug" :name="name + '[]'"
-                                :id="obj.name + obj.id" type="checkbox" class="form-check-input" />
                             <span class="checkmark"></span>
+
+
+                            <input v-if="!brands?.includes(obj.name.toLowerCase())" @change="activateFilter($event)"
+                                :value="obj.slug" :name="name + '[]'" :id="obj.name + obj.id" type="checkbox"
+                                class="form-check-input" />
+                            <span class="checkmark"></span>
+
                         </label>
                     </div>
 
