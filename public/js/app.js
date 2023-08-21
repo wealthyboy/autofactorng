@@ -28357,7 +28357,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       id: obj.name + obj.id,
       type: "checkbox",
       "class": "form-check-input",
-      checked: "checked"
+      checked: true
     }, null, 40
     /* PROPS, HYDRATE_EVENTS */
     , _hoisted_9)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
