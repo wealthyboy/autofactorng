@@ -367,8 +367,6 @@ class ProductsController extends Controller
             session(['fitsProducts' => Product::CheckText]);
         }
 
-
-
         if (null !== $type) {
             session()->put($type, $data[$type]);
             $cookie = cookie($type, $data[$type], 60 * 60 * 7);
