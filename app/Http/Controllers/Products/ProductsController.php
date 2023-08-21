@@ -46,16 +46,17 @@ class ProductsController extends Controller
 
             foreach ($product->images as $image) {
                 $file = basename($image);
+                dd($file);
                 $path = public_path('images/products/' . $file);
-                $canvas = \Image::canvas(600, 600);
+                // $canvas = \Image::canvas(600, 600);
 
-                $image  = \Image::make($path)->resize(600, 600, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-                $canvas->insert($image, 'center');
-                $canvas->save(
-                    public_path('images/products/l/' . $file)
-                );
+                // $image  = \Image::make($path)->resize(600, 600, function ($constraint) {
+                //     $constraint->aspectRatio();
+                // });
+                // $canvas->insert($image, 'center');
+                // $canvas->save(
+                //     public_path('images/products/l/' . $file)
+                // );
             }
         }
 
