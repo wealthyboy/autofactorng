@@ -114,15 +114,13 @@ export default {
                 return;
             }
 
-            console.log(props.auto_credit)
-
 
             if (props.auto_credit) {
                 await axios
                     .post("/wallets", form)
                     .then((res) => {
                         if (res.data == 'Already subscribed') {
-                            alert("You have  already subscribed")
+                            alert("You have already subscribed")
                             location.href = "/";
 
                             return
@@ -138,54 +136,54 @@ export default {
 
             paymentIsComplete.value = false;
             paymentIsProcessing.value = true;
-            // var handler = PaystackPop.setup({
-            //     key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
-            //     email: props.user.email,
-            //     amount: form.amount * 100,
-            //     currency: "NGN",
-            //     first_name: props.user.name,
-            //     metadata: {
-            //         custom_fields: [
-            //             {
-            //                 amount: form.amount,
-            //                 customer_id: props.user.id,
-            //                 type: "Wallet",
-            //             },
-            //         ],
-            //     },
-            //     callback: function (response) {
-            //         error.value = false;
-            //         console.log(false);
-            //         axios
-            //             .post("/wallets", form)
-            //             .then((res) => {
-            //                 paymentIsComplete.value = true;
-            //                 paymentIsProcessing.value = false;
-            //                 store.commit("setWalletBalance", res.data);
-            //                 location.href = "/wallets";
+            var handler = PaystackPop.setup({
+                key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
+                email: props.user.email,
+                amount: form.amount * 100,
+                currency: "NGN",
+                first_name: props.user.name,
+                metadata: {
+                    custom_fields: [
+                        {
+                            amount: form.amount,
+                            customer_id: props.user.id,
+                            type: "Wallet",
+                        },
+                    ],
+                },
+                callback: function (response) {
+                    error.value = false;
+                    console.log(false);
+                    axios
+                        .post("/wallets", form)
+                        .then((res) => {
+                            paymentIsComplete.value = true;
+                            paymentIsProcessing.value = false;
+                            store.commit("setWalletBalance", res.data);
+                            location.href = "/wallets";
 
-            //                 setTimeout(() => {
-            //                     paymentIsComplete.value = false;
-            //                     message.value = null;
-            //                 }, 3000);
-            //             })
-            //             .catch((error) => {
-            //                 paymentIsComplete.value = false;
-            //                 paymentIsProcessing.value = false;
-            //                 message.value = "Error processing your request";
-            //                 setTimeout(() => {
-            //                     message.value = null;
-            //                 }, 3000);
-            //             });
-            //         message.value = "Your money has been added";
-            //         emit("wallet:funded");
-            //     },
-            //     onClose: function () {
-            //         paymentIsComplete.value = false;
-            //         paymentIsProcessing.value = false;
-            //     },
-            // });
-            // handler.openIframe();
+                            setTimeout(() => {
+                                paymentIsComplete.value = false;
+                                message.value = null;
+                            }, 3000);
+                        })
+                        .catch((error) => {
+                            paymentIsComplete.value = false;
+                            paymentIsProcessing.value = false;
+                            message.value = "Error processing your request";
+                            setTimeout(() => {
+                                message.value = null;
+                            }, 3000);
+                        });
+                    message.value = "Your money has been added";
+                    emit("wallet:funded");
+                },
+                onClose: function () {
+                    paymentIsComplete.value = false;
+                    paymentIsProcessing.value = false;
+                },
+            });
+            handler.openIframe();
         }
         return {
             getAmount,
