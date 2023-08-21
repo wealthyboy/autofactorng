@@ -187,11 +187,16 @@ class ProductsController extends Controller
             ])->keyBy('name');
         }
 
+        $brands = $request->brands;
+        $prices = $request->prices;
+
 
         return  view('products.index', compact(
             'category',
             'page_title',
             'search_filters',
+            'brands',
+            'prices'
         ));
     }
 
