@@ -114,15 +114,15 @@ class ImagesController extends Controller
                 );
 
                 $canvas = \Image::canvas(600, 600);
-                try {
 
-                    $image  = \Image::make($path)->resize(600, 600, function ($constraint) {
-                        $constraint->aspectRatio();
-                    });
-                    $canvas->insert($image, 'center');
-                    $canvas->save(
-                        public_path('images/products/l/' . $file)
-                    );
+
+                $image  = \Image::make($path)->resize(600, 600, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $canvas->insert($image, 'center');
+                $canvas->save(
+                    public_path('images/products/l/' . $file)
+                );
 
                 $canvas = \Image::canvas(150, 200);
                 $image  = \Image::make($path)->resize(150, 200, function ($constraint) {
