@@ -18,13 +18,12 @@
                             </span>
 
                             <input v-if="brands?.includes(obj.name.toLowerCase())" @change="activateFilter($event)"
-                                :value="obj.slug" :name="name + '[]'" :id="obj.name + obj.id" v-model="form.filter"
-                                type="checkbox" class="form-check-input" checked="checked" />
+                                :value="obj.slug" :name="name + '[]'" :id="obj.name + obj.id" type="checkbox"
+                                class="form-check-input" checked="checked" />
 
 
                             <input v-else @change="activateFilter($event)" :value="obj.slug" :name="name + '[]'"
-                                :id="obj.name + obj.id" v-model="form.filter" type="checkbox" class="form-check-input"
-                                checked="checked" />
+                                :id="obj.name + obj.id" type="checkbox" class="form-check-input" :checked="true" />
                             <span class="checkmark"></span>
                         </label>
                     </div>
