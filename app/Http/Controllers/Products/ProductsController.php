@@ -49,15 +49,17 @@ class ProductsController extends Controller
                 $path = public_path('images/products/' . $file);
                 dd($path);
 
-                // $canvas = \Image::canvas(600, 600);
+                $canvas = \Image::canvas(600, 600);
 
-                // $image  = \Image::make($path)->resize(600, 600, function ($constraint) {
-                //     $constraint->aspectRatio();
-                // });
-                // $canvas->insert($image, 'center');
-                // $canvas->save(
-                //     public_path('images/products/l/' . $file)
-                // );
+                if (\Image::make($path))
+
+                    $image  = \Image::make($path)->resize(600, 600, function ($constraint) {
+                        $constraint->aspectRatio();
+                    });
+                $canvas->insert($image, 'center');
+                $canvas->save(
+                    public_path('images/products/l/' . $file)
+                );
             }
         }
 
