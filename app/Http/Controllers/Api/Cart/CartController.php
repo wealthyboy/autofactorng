@@ -32,7 +32,6 @@ class CartController  extends Controller
 	public function store(Request $request)
 	{
 
-		Cart::truncate();
 		$this->validate($request, [
 			'product_id' => 'required|exists:products,id',
 			'quantity' => 'required|min:1',
