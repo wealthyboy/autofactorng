@@ -47,7 +47,6 @@ class ProductsController extends Controller
             foreach ($product->images as $image) {
                 $file = basename($image);
                 $path = public_path('images/products/' . $file);
-                dd($path);
 
                 $canvas = \Image::canvas(600, 600);
 
