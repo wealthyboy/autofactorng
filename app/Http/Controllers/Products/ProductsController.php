@@ -40,6 +40,26 @@ class ProductsController extends Controller
         $request->session()->put('category_slug', $category->slug);
 
         $products = $this->getProductsData($request, $builder, $category);
+
+
+        foreach ($products as $product) {
+
+            foreach ($product->images as $image) {
+                $file = basename($image);
+                $path = public_path('images/products/' . $file);
+                $canvas = \Image::canvas(600, 600);
+
+                $image  = \Image::make($path)->resize(600, 600, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $canvas->insert($image, 'center');
+                $canvas->save(
+                    public_path('images/products/l/' . $file)
+                );
+            }
+        }
+
+
         $search_filters = $this->searchFilters($category);
         $request->category = $category;
         // (new Product())->buildSearchString($category);

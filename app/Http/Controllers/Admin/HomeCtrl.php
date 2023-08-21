@@ -37,22 +37,7 @@ class HomeCtrl extends Controller
      public function index(Request $request)
      {
 
-          $products = Product::where('slug', 'genuine-crankshaft-position-sensor-23731-ja10b')->get();
 
-          foreach ($products as $product) {
-               $path = $product->images[0]->image;
-               $file = basename($path);
-               $path = public_path('images/products/' . $file);
-               $canvas = \Image::canvas(600, 600);
-
-               $image  = \Image::make($path)->resize(600, 600, function ($constraint) {
-                    $constraint->aspectRatio();
-               });
-               $canvas->insert($image, 'center');
-               $canvas->save(
-                    public_path('images/products/l/' . $file)
-               );
-          }
 
           $top_selling_product = OrderedProduct::select('product_id')
                ->groupBy('product_id')
