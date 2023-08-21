@@ -24,7 +24,7 @@
 
 
 
-            @if ( !session('plan') && $user && !$user->hasActiveSubscription())
+            @if ( $user && !$user->hasActiveSubscription() && )
             <div class="row mb-5" id="signInMessage">
                <span class="sign-in-prompt" data-testid="sign-in-message">Enter your subscription amount:</span>
             </div>
