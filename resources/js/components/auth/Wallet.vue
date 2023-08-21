@@ -114,8 +114,10 @@ export default {
                 return;
             }
 
+            console.log(props.auto_credit)
 
-            if (!props.auto_credit) {
+
+            if (props.auto_credit) {
                 await axios
                     .post("/wallets", form)
                     .then((res) => {

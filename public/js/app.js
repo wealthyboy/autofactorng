@@ -22350,12 +22350,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return _context.abrupt("return");
 
               case 3:
-                if (props.auto_credit) {
-                  _context.next = 6;
+                console.log(props.auto_credit);
+
+                if (!props.auto_credit) {
+                  _context.next = 7;
                   break;
                 }
 
-                _context.next = 6;
+                _context.next = 7;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default().post("/wallets", form).then(function (res) {
                   if (res.data == 'Already subscribed') {
                     alert("You have  already subscribed");
@@ -22366,7 +22368,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return;
                 });
 
-              case 6:
+              case 7:
                 paymentIsComplete.value = false;
                 paymentIsProcessing.value = true; // var handler = PaystackPop.setup({
                 //     key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
@@ -22416,7 +22418,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 // });
                 // handler.openIframe();
 
-              case 8:
+              case 9:
               case "end":
                 return _context.stop();
             }
