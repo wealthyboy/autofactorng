@@ -76,6 +76,7 @@ class Product extends Model
     ];
 
     public $appends = [
+        'image_l',
         'image_m',
         'category_name',
         'image_to_show',

@@ -59,6 +59,8 @@ class ProductsController extends Controller
         }
 
         $brands = $request->brands;
+        $prices = $request->prices;
+
         // dd($brands);
 
 
@@ -66,8 +68,8 @@ class ProductsController extends Controller
             'category',
             'page_title',
             'search_filters',
-            'brands'
-
+            'brands',
+            'prices'
         ));
     }
 

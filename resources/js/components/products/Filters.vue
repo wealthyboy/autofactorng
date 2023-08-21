@@ -17,13 +17,13 @@
                                 {{ obj.name }}
                             </span>
 
-                            <input v-if="brands?.includes(obj.name.toLowerCase())" @change="activateFilter($event)"
+                            <input v-if="model?.includes(obj.name.toLowerCase())" @change="activateFilter($event)"
                                 :value="obj.slug" :name="name + '[]'" :id="obj.name + obj.id" type="checkbox"
                                 class="form-check-input" :checked="true" />
                             <span class="checkmark"></span>
 
 
-                            <input v-if="!brands?.includes(obj.name.toLowerCase())" @change="activateFilter($event)"
+                            <input v-if="!model?.includes(obj.name.toLowerCase())" @change="activateFilter($event)"
                                 :value="obj.slug" :name="name + '[]'" :id="obj.name + obj.id" type="checkbox"
                                 class="form-check-input" />
                             <span class="checkmark"></span>
@@ -42,7 +42,7 @@
 import { onMounted, reactive } from 'vue';
 
 export default {
-    props: ["name", "objs", "clearFilter", "brands", "reactive"],
+    props: ["name", "objs", "clearFilter", "model", "reactive"],
     emits: ["activate:filter"],
     setup(props, { emit }) {
 
@@ -50,14 +50,7 @@ export default {
             filter: [],
         });
 
-        onMounted(() => {
-            props.objs?.forEach(el => {
-                console.log(el.name.toLowerCase())
-                if (props.brands?.includes(el.name.toLowerCase())) {
-                    form.filter.push(el.name)
-                }
-            })
-        })
+
 
         // console.log(findCommonElement(props.brands, props.objs))
 

@@ -23350,25 +23350,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ["name", "objs", "clearFilter", "brands", "reactive"],
+  props: ["name", "objs", "clearFilter", "model", "reactive"],
   emits: ["activate:filter"],
   setup: function setup(props, _ref) {
     var emit = _ref.emit;
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       filter: []
-    });
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      var _props$objs;
-
-      (_props$objs = props.objs) === null || _props$objs === void 0 ? void 0 : _props$objs.forEach(function (el) {
-        var _props$brands;
-
-        console.log(el.name.toLowerCase());
-
-        if ((_props$brands = props.brands) !== null && _props$brands !== void 0 && _props$brands.includes(el.name.toLowerCase())) {
-          form.filter.push(el.name);
-        }
-      });
     }); // console.log(findCommonElement(props.brands, props.objs))
 
     function findCommonElement(array1, array2) {
@@ -23465,7 +23452,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     Tyre: _search_Tyre__WEBPACK_IMPORTED_MODULE_4__["default"],
     Battery: _search_Battery__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
-  props: ["search_filters", "years", "brands"],
+  props: ["search_filters", "years", "brands", "prices"],
   data: function data() {
     return {
       has_filters: 0,
@@ -28344,7 +28331,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "aria-labelledby": 'flush-heading' + $props.name,
     "data-bs-parent": "#accordionFilter"
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.objs, function (obj) {
-    var _$props$brands, _$props$brands2;
+    var _$props$model, _$props$model2;
 
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: obj.id,
@@ -28354,7 +28341,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": "container"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(obj.name), 1
     /* TEXT */
-    ), (_$props$brands = $props.brands) !== null && _$props$brands !== void 0 && _$props$brands.includes(obj.name.toLowerCase()) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+    ), (_$props$model = $props.model) !== null && _$props$model !== void 0 && _$props$model.includes(obj.name.toLowerCase()) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
       key: 0,
       onChange: _cache[0] || (_cache[0] = function ($event) {
         return $setup.activateFilter($event);
@@ -28367,7 +28354,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       checked: true
     }, null, 40
     /* PROPS, HYDRATE_EVENTS */
-    , _hoisted_9)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_10, !((_$props$brands2 = $props.brands) !== null && _$props$brands2 !== void 0 && _$props$brands2.includes(obj.name.toLowerCase())) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
+    , _hoisted_9)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_10, !((_$props$model2 = $props.model) !== null && _$props$model2 !== void 0 && _$props$model2.includes(obj.name.toLowerCase())) ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("input", {
       key: 1,
       onChange: _cache[1] || (_cache[1] = function ($event) {
         return $setup.activateFilter($event);
@@ -28707,20 +28694,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     key: 0,
     name: 'brands',
     objs: $props.search_filters.brand.items,
-    brands: $props.brands,
+    model: $props.brands,
     "onHandle:filter": $options.handleFilter,
     clearFilters: $data.clearFilters
   }, null, 8
   /* PROPS */
-  , ["objs", "brands", "onHandle:filter", "clearFilters"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_filters, {
-    "class": "",
+  , ["objs", "model", "onHandle:filter", "clearFilters"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_filters, {
+    model: $props.prices,
     name: 'prices',
     objs: $props.search_filters.price.items,
     "onHandle:filter": $options.handleFilter,
     clearFilters: $data.clearFilters
   }, null, 8
   /* PROPS */
-  , ["objs", "onHandle:filter", "clearFilters"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .sidebar-wrapper ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .col-lg-3 ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .row ")], 2112
+  , ["model", "objs", "onHandle:filter", "clearFilters"])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .sidebar-wrapper ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .col-lg-3 ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" End .row ")], 2112
   /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
   );
 }

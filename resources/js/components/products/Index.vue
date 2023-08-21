@@ -137,11 +137,11 @@
                 <form action="" method="get" id="filter-form">
                     <filters v-if="search_filters.brand &&
                         search_filters.brand.items.length
-                        " :name="'brands'" :objs="search_filters.brand.items" :brands="brands"
+                        " :name="'brands'" :objs="search_filters.brand.items" :model="brands"
                         @handle:filter="handleFilter" :clearFilters="clearFilters"></filters>
 
-                    <filters class="" :name="'prices'" :objs="search_filters.price.items" @handle:filter="handleFilter"
-                        :clearFilters="clearFilters"></filters>
+                    <filters :model="prices" :name="'prices'" :objs="search_filters.price.items"
+                        @handle:filter="handleFilter" :clearFilters="clearFilters"></filters>
                 </form>
             </div>
             <!-- End .sidebar-wrapper -->
@@ -175,7 +175,7 @@ export default {
         Tyre,
         Battery,
     },
-    props: ["search_filters", "years", "brands"],
+    props: ["search_filters", "years", "brands", "prices"],
     data() {
         return {
             has_filters: 0,

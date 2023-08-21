@@ -38,6 +38,9 @@ trait ImageFiles
     }
 
 
+
+
+
     public function getAddImagesAttribute()
     {
         return '';
