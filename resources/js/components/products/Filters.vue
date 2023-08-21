@@ -14,7 +14,7 @@
                     <div v-for="obj in objs" :key="obj.id" class="form-check">
                         <label :for="obj.name + obj.id" class="container">
                             <span class="checkbox-label fs-5">
-                                {{ obj.name }} {{ form.filter }}
+                                {{ obj.name }}
                             </span>
 
                             <input v-if="brands?.includes(obj.name.toLowerCase())" @change="activateFilter($event)"
