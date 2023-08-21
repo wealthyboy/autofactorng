@@ -64,9 +64,7 @@ class CartController  extends Controller
 			$cart->total = $price * $request->quantity;
 			$cart->make = $make;
 			$cart->model = $model;
-
 			$cart->user_id    = optional($request->user())->id;
-
 			$cart->year = $year;
 			$cart->engine = $engine;
 			$cart->save();
@@ -118,7 +116,6 @@ class CartController  extends Controller
 			$cart->year = $year;
 			$cart->engine = $engine;
 			$cart->user_id = optional($request->user())->id;
-
 			$cart->save();
 			$carts = Cart::all_items_in_cart();
 			$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $cookie->getValue())->get();

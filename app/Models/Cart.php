@@ -43,6 +43,7 @@ class Cart extends Model
         $cookie = \Cookie::get('cart');
         if (optional(auth()->user())->id) {
             $carts = Cart::with(["product"])->where(['user_id' => optional(auth()->user())->id])->get();
+            dd(true);
         } else {
             $carts = Cart::with(["product"])->where(['carts.remember_token' => $cookie])->get();
         }
