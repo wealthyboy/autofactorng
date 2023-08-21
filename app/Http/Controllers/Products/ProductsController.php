@@ -42,10 +42,9 @@ class ProductsController extends Controller
         $products = $this->getProductsData($request, $builder, $category);
 
         foreach ($products as $product) {
-            dd($product->images);
 
             foreach ($product->images as $image) {
-                $file = basename($image);
+                $file = basename($image->image);
                 $path = public_path('images/products/' . $file);
 
                 $canvas = \Image::canvas(600, 600);
