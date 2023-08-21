@@ -41,8 +41,8 @@ class Cart extends Model
     {
         //SELECT ALL FROM THE USER ID && FROM THE USER COOKIE
         $cookie = \Cookie::get('cart');
-        $carts = Cart::with(["product"])->where(['carts.remember_token' => $cookie])->get();
-        //static::sync($carts);
+        $carts = Cart::with(["product"])->where(['carts.remember_token' => $cookie])->orWhere('user_ud', optional(auth()->user())->id)->get();
+        static::sync($carts);
         return $carts;
     }
 
