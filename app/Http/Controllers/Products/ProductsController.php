@@ -41,8 +41,8 @@ class ProductsController extends Controller
 
         $products = $this->getProductsData($request, $builder, $category);
 
-
         foreach ($products as $product) {
+            dd($product->images);
 
             foreach ($product->images as $image) {
                 $file = basename($image);
