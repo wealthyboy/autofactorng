@@ -48,6 +48,8 @@ class HomeCtrl extends Controller
 
 
           foreach ($users as $user) {
+
+               dd($user);
                // $user->delete();
                $user = new User;
                $user->id = $user['id'];
