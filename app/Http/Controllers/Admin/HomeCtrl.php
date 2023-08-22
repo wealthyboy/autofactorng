@@ -49,7 +49,7 @@ class HomeCtrl extends Controller
 
           foreach ($users as $user) {
 
-               dd($user);
+               dd($user['first_name']);
                // $user->delete();
                $user = new User;
                $user->id = $user['id'];
