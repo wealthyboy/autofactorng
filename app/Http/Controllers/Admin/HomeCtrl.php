@@ -39,7 +39,7 @@ class HomeCtrl extends Controller
 
           //dd(SHA1('QQQQQQQQ') === '4419f47b2cc7b4ba75ace0ef1246c5d2655ae8c0');
 
-          $users = User::where('password', 'jacob.atam@gmail.com')->get();
+          $users = User::where('email', 'jacob.atam@gmail.com')->get();
 
           foreach ($users as $user) {
 
@@ -51,12 +51,7 @@ class HomeCtrl extends Controller
           $user->name = 'JAcob';
           $user->last_name = 'Atam';
           $user->email = 'jacob.atam@gmail.com';
-          $user->phone_number =  '08069389886';
-          $user->address = '15 daranijo street';
-          $user->state_id = '2';
-          $user->city = 'lagos';
-          $user->landmark = 'landmark';
-          $user->username = 'username';
+          $user->phone_number = '08069389886';
           $user->password = bcrypt('password');
           $user->is_verified =  1;
           $user->created_at = now();
