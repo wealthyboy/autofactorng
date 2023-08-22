@@ -49,24 +49,23 @@ class HomeCtrl extends Controller
 
           foreach ($users as $user) {
 
-               dd($user['first_name']);
                // $user->delete();
-               $user = new User;
-               $user->id = $user['id'];
-               $user->name = $user['first_name'];
-               $user->last_name = $user['last_name'];
-               $user->email = $user['email'];
-               $user->phone_number =  $user['phone'];
+               $u = new User;
+               $u->id = $user['id'];
+               $u->name = $user['first_name'];
+               $u->last_name = $user['last_name'];
+               $u->email = $user['email'];
+               $u->phone_number =  $user['phone'];
                // $user->address = $user[];
                // $user->state_id = $user[];
                // $user->landmark =  $user[];
-               $user->password =  bcrypt($user['password']);
-               $user->old_password = $user['password'];
-               $user->is_verified =  1;
-               $user->created_at =  now();
-               $user->is_old = 1;
-               $user->type = 'subs';
-               $user->save();
+               $u->password =  bcrypt($user['password']);
+               $u->old_password = $user['password'];
+               $u->is_verified =  1;
+               $u->created_at =  now();
+               $u->is_old = 1;
+               $u->type = 'subs';
+               $u->save();
           }
 
 
