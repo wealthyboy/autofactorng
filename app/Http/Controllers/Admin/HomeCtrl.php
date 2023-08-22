@@ -6264,6 +6264,8 @@ class HomeCtrl extends Controller
                     $u->save();
                }
           } catch (\Exception $e) {
+
+               dd($e);
           }
 
 
