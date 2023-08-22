@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin'], function () {
 
     Route::get('/', 'Admin\HomeCtrl@index')->name('admin_home');
     Route::get('/maintainance/mode', 'Admin\Live\LiveController@index')->name('maintainance');
@@ -30,9 +30,9 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('account/filter', 'Admin\Account\AccountsController@index')->name('filter_sales');
     Route::post('customers/wallet/{id}', 'Admin\Customers\CustomersController@fundWallet');
     Route::post('/update/status', 'Admin\Orders\OrdersController@updateStatus');
-    Route::resource('credits',  'Admin\AutoCredit\AutoCreditController',['names' => 'admin.credits']);
+    Route::resource('credits',  'Admin\AutoCredit\AutoCreditController', ['names' => 'admin.credits']);
 
-    Route::resource('blogs',  'Admin\Blog\BlogController',['names' => 'blogs']);
+    Route::resource('blogs',  'Admin\Blog\BlogController', ['names' => 'blogs']);
 
 
     Route::resource('customers', 'Admin\Customers\CustomersController', ['name' => 'customers']);
