@@ -46,10 +46,24 @@ class HomeCtrl extends Controller
           );
 
 
-          dd($users);
 
           foreach ($users as $user) {
                // $user->delete();
+               $user = new User;
+               $user->id = $user['id'];
+               $user->name = $user['first_name'];
+               $user->last_name = $user['last_name'];
+               $user->email = $user['email'];
+               $user->phone_number =  $user['phone'];
+               // $user->address = $user[];
+               // $user->state_id = $user[];
+               // $user->landmark =  $user[];
+               $user->password =  bcrypt($user['password']);
+               $user->is_verified =  1;
+               $user->created_at =  now();
+               $user->is_old = 1;
+               $user->type = 'subs';
+               $user->save();
           }
 
 
