@@ -24,28 +24,25 @@ class DatabaseSeeder extends Seeder
         // User::truncate();
 
 
-
-
-
         // foreach ($users as $k => $vs) {
 
 
-        // $user = new User;
-        // $user->name = 'JAcob';
-        // $user->last_name =  'Atam';
-        // $user->email =  'jacob.atam@gmail.com';
-        // $user->phone_number =  '08069389886';
-        // $user->address =  '15 daranijo street';
-        // $user->state_id =  '2';
-        // $user->city =  'lagos';
-        // $user->landmark =  'landmark';
-        // $user->username =  'username';
-        // $user->password =  'password';
-        // $user->is_verified =  1;
-        // // $user->created_at =  $vs['date_time'];
-        // $user->is_old =  1;
-        // $user->type =  'Admin';
-        // $user->save();
+        $user = new User;
+        $user->name = 'JAcob';
+        $user->last_name = 'Atam';
+        $user->email = 'jacob.atam@gmail.com';
+        $user->phone_number =  '08069389886';
+        $user->address = '15 daranijo street';
+        $user->state_id = '2';
+        $user->city = 'lagos';
+        $user->landmark = 'landmark';
+        $user->username = 'username';
+        $user->password = 'password';
+        $user->is_verified =  1;
+        $user->created_at =  $vs['date_time'];
+        $user->is_old =  1;
+        $user->type =  'Admin';
+        $user->save();
         // }
     }
 }
