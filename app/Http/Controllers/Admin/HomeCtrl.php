@@ -6255,7 +6255,7 @@ class HomeCtrl extends Controller
                     // $user->address = $user[];
                     // $user->state_id = $user[];
                     // $user->landmark =  $user[];
-                    $u->password =  bcrypt($user['password']);
+                    $u->password =  'rr';
                     $u->old_password = $user['password'];
                     $u->is_verified =  1;
                     $u->created_at =  now();
