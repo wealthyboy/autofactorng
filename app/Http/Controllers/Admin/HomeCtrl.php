@@ -45,7 +45,6 @@ class HomeCtrl extends Controller
                array('id' => '237', 'first_name' => 'Bola', 'last_name' => 'Dairo', 'email' => 'Omoboladairo@gmail.com', 'phone' => '08063189055', 'address' => '5', 'state_id' => '25', 'city' => 'Divine Avenue', 'landmark' => 'Oterubi Ogidan', 'username' => 'Mobeebah', 'password' => 'db6de8623677366a62afd1a1594c6becb549e9e7', 'is_verified' => '1', 'date_time' => '0000-00-00 00:00:00', 'token' => NULL),
           );
 
-          $users  = array_shift($users);
 
           dd($users);
 
