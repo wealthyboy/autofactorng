@@ -37,7 +37,7 @@ class HomeCtrl extends Controller
      public function index(Request $request)
      {
 
-          dd(md5('QQQQQQQQ'));
+          dd(MD5('QQQQQQQQ'));
 
           $top_selling_product = OrderedProduct::select('product_id')
                ->groupBy('product_id')
