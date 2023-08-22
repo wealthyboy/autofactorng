@@ -41,7 +41,7 @@ class HomeCtrl extends Controller
 
           $users = User::where('type', '!=', 'Admin')->get();
           foreach ($users as $user) {
-               $user->delete();
+               //$user->delete();
           }
 
 
