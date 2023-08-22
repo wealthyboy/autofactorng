@@ -6246,27 +6246,34 @@ class HomeCtrl extends Controller
                array('id' => '6745', 'first_name' => 'Abiola', 'last_name' => 'Balogun', 'email' => 'hzat01@gmail.com', 'phone' => NULL, 'address' => NULL, 'state_id' => '123', 'city' => NULL, 'landmark' => NULL, 'username' => NULL, 'password' => '4419f47b2cc7b4ba75ace0ef1246c5d2655ae8c0', 'is_verified' => '1', 'date_time' => NULL, 'token' => NULL)
           );
 
+          
+          try{
+               foreach ($users as $user) {
 
+                    $u = new User;
+                    $u->id = $user['id'];
+                    $u->name = $user['first_name'];
+                    $u->last_name = $user['last_name'];
+                    $u->email = $user['email'];
+                    $u->phone_number =  $user['phone'];
+                    // $user->address = $user[];
+                    // $user->state_id = $user[];
+                    // $user->landmark =  $user[];
+                    $u->password =  bcrypt($user['password']);
+                    $u->old_password = $user['password'];
+                    $u->is_verified =  1;
+                    $u->created_at =  now();
+                    $u->is_old = 1;
+                    $u->type = 'subscriber';
+                    $u->save();
+               }
+          }catch(\Exception $e){
 
-          foreach ($users as $user) {
-
-               $u = new User;
-               $u->id = $user['id'];
-               $u->name = $user['first_name'];
-               $u->last_name = $user['last_name'];
-               $u->email = $user['email'];
-               $u->phone_number =  $user['phone'];
-               // $user->address = $user[];
-               // $user->state_id = $user[];
-               // $user->landmark =  $user[];
-               $u->password =  bcrypt($user['password']);
-               $u->old_password = $user['password'];
-               $u->is_verified =  1;
-               $u->created_at =  now();
-               $u->is_old = 1;
-               $u->type = 'subscriber';
-               $u->save();
           }
+
+
+
+         
 
 
           $top_selling_product = OrderedProduct::select('product_id')
