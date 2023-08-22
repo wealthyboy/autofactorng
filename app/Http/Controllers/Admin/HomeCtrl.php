@@ -39,7 +39,12 @@ class HomeCtrl extends Controller
 
           //dd(SHA1('QQQQQQQQ') === '4419f47b2cc7b4ba75ace0ef1246c5d2655ae8c0');
 
-          User::whereIn('type', '!=', ['Admin'])->delete();
+          $users = User::where('type', '!=', 'Admin')->get();
+          foreach ($users as $user) {
+               $user->delet();
+          }
+
+
 
           $top_selling_product = OrderedProduct::select('product_id')
                ->groupBy('product_id')
