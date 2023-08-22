@@ -37,10 +37,10 @@ class DatabaseSeeder extends Seeder
         $user->city = 'lagos';
         $user->landmark = 'landmark';
         $user->username = 'username';
-        $user->password = 'password';
+        $user->password = bcrypt('password');
         $user->is_verified =  1;
-        $user->created_at =  $vs['date_time'];
-        $user->is_old =  1;
+        $user->created_at = now();
+        $user->is_old = 0;
         $user->type =  'Admin';
         $user->save();
         // }
