@@ -184,13 +184,13 @@ class CustomersController extends Table
 
     public function destroy(Request $request, $id)
     {
-        User::canTakeAction(User::canDelete);
+        // User::canTakeAction(User::canDelete);
 
         $customers = User::find($request->selected)->pluck('email')->toArray();
 
         $this->builder->whereIn('id', $request->selected)->delete();
 
-        (new Activity)->put("Deleted a  " . implode(',', $customers));
+        // (new Activity)->put("Deleted a  " . implode(',', $customers));
 
         if ($this->useJson) {
             return;
