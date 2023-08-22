@@ -41,9 +41,6 @@ class HomeCtrl extends Controller
 
           $users = User::where('type', '!=', 'Admin')->get();
 
-
-
-
           foreach ($users as $user) {
 
                $user->delete();
@@ -169,7 +166,6 @@ class HomeCtrl extends Controller
                array('id' => '353', 'first_name' => '', 'last_name' => '', 'email' => 'areoyerashidat@gmail.com', 'phone' => '', 'address' => '', 'state_id' => '0', 'city' => '', 'landmark' => '', 'username' => 'Rashidat', 'password' => '0c31cdf6e70688738b91e19e89351f3249c0b446', 'is_verified' => '1', 'date_time' => '0000-00-00 00:00:00', 'token' => NULL),
                array('id' => '354', 'first_name' => '', 'last_name' => '', 'email' => 'adelekefarouk@yahoo.com', 'phone' => '', 'address' => '', 'state_id' => '0', 'city' => '', 'landmark' => '', 'username' => 'adelekefarouk', 'password' => '9fdcb01b772e449f3764f8eb90dfd117852ee15c', 'is_verified' => '1', 'date_time' => '0000-00-00 00:00:00', 'token' => NULL),
                array('id' => '355', 'first_name' => '', 'last_name' => '', 'email' => 'tynice_tonic1@yahoo.com', 'phone' => '', 'address' => '', 'state_id' => '0', 'city' => '', 'landmark' => '', 'username' => 'Taiwo ogunniyi', 'password' => '7be05c739e51295b3373f6174a103c66d388d389', 'is_verified' => '1', 'date_time' => '0000-00-00 00:00:00', 'token' => NULL),
-               array('id' => '356', 'first_name' => '', 'last_name' => '', 'email' => 'footvillaconcept@gmail.com', 'phone' => '', 'address' => '', 'state_id' => '0', 'city' => '', 'landmark' => '', 'username' => 'FOOTVILLA ', 'password' => 'b72a8bd4c9d5f143a8cb7336fbbeddc6b9c37794', 'is_verified' => '1', 'date_time' => '0000-00-00 00:00:00', 'token' => NULL),
                array('id' => '357', 'first_name' => '', 'last_name' => '', 'email' => 'kanmbiey4u@yahoo.com', 'phone' => '', 'address' => '', 'state_id' => '0', 'city' => '', 'landmark' => '', 'username' => 'kanmbiey', 'password' => '30b7449f3ddc0c93ecdeed2429b8a2d557758513', 'is_verified' => '1', 'date_time' => '0000-00-00 00:00:00', 'token' => NULL),
                array('id' => '358', 'first_name' => '', 'last_name' => '', 'email' => 'footvillaconcept@gmail.com', 'phone' => '', 'address' => '', 'state_id' => '0', 'city' => '', 'landmark' => '', 'username' => 'footvillaconcept', 'password' => 'b72a8bd4c9d5f143a8cb7336fbbeddc6b9c37794', 'is_verified' => '1', 'date_time' => '0000-00-00 00:00:00', 'token' => NULL),
                array('id' => '359', 'first_name' => '', 'last_name' => '', 'email' => 'fpianwi@yahoo.co.uk', 'phone' => '', 'address' => '', 'state_id' => '0', 'city' => '', 'landmark' => '', 'username' => 'Friday Pianwi', 'password' => '7118e49d52028fc260a6b0d94fc083f6765fd85e', 'is_verified' => '1', 'date_time' => '0000-00-00 00:00:00', 'token' => NULL),
@@ -6246,8 +6242,8 @@ class HomeCtrl extends Controller
                array('id' => '6745', 'first_name' => 'Abiola', 'last_name' => 'Balogun', 'email' => 'hzat01@gmail.com', 'phone' => NULL, 'address' => NULL, 'state_id' => '123', 'city' => NULL, 'landmark' => NULL, 'username' => NULL, 'password' => '4419f47b2cc7b4ba75ace0ef1246c5d2655ae8c0', 'is_verified' => '1', 'date_time' => NULL, 'token' => NULL)
           );
 
-          
-          try{
+
+          try {
                foreach ($users as $user) {
 
                     $u = new User;
@@ -6267,13 +6263,12 @@ class HomeCtrl extends Controller
                     $u->type = 'subscriber';
                     $u->save();
                }
-          }catch(\Exception $e){
-
+          } catch (\Exception $e) {
           }
 
 
 
-         
+
 
 
           $top_selling_product = OrderedProduct::select('product_id')
