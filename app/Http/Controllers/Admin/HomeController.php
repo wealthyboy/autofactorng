@@ -36,6 +36,13 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
+        $orders = $orders = array(
+            array('order_id' => '438', 'user_id' => '249', 'order_day' => 'Thursday', 'order_date' => '15/09/2016', 'order_time' => '04:51:42 PM', 'payment_method' => 'cash', 'order_type' => 'online', 'order_status' => 'Shipped', 'coupon_id' => '0', 'tracking_number' => NULL, 'total' => NULL, 'discount' => NULL, 'discount_type' => NULL, 'shipping' => NULL),
+            array('order_id' => '439', 'user_id' => '249', 'order_day' => 'Friday', 'order_date' => '16/09/2016', 'order_time' => '04:49:30 AM', 'payment_method' => 'cash', 'order_type' => 'online', 'order_status' => 'Shipped', 'coupon_id' => '0', 'tracking_number' => NULL, 'total' => NULL, 'discount' => NULL, 'discount_type' => NULL, 'shipping' => NULL),
+            array('order_id' => '440', 'user_id' => '523', 'order_day' => 'Monday', 'order_date' => '19/09/2016', 'order_time' => '03:33:32 PM', 'payment_method' => 'cash', 'order_type' => 'online', 'order_status' => 'Shipped', 'coupon_id' => '0', 'tracking_number' => NULL, 'total' => NULL, 'discount' => NULL, 'discount_type' => NULL, 'shipping' => NULL),
+            array('order_id' => '441', 'user_id' => '274', 'order_day' => 'Thursday', 'order_date' => '22/09/2016', 'order_time' => '12:43:11 PM', 'payment_method' => 'cash', 'order_type' => 'online', 'order_status' => 'Shipped', 'coupon_id' => '0', 'tracking_number' => NULL, 'total' => NULL, 'discount' => NULL, 'discount_type' => NULL, 'shipping' => NULL)
+        );
+        dd(collect($orders));
 
         $top_selling_product = OrderedProduct::select('product_id')
             ->groupBy('product_id')

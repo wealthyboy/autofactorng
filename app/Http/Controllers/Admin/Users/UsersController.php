@@ -142,7 +142,6 @@ class UsersController extends Table
 
 		(new Activity)->put("Updated a user with email " . $request->email);
 
-
 		return redirect('/admin/users');
 	}
 
