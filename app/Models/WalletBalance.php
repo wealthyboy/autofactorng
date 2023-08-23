@@ -10,6 +10,12 @@ class WalletBalance extends Model
 {
     use HasFactory, ColumnFillable;
 
+    protected $fillable = [
+        'amount',
+        'user_id',
+        'balance'
+    ];
+
     public static function deductFromWallet($amount)
     {
         $wallet = new Wallet();

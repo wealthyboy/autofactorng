@@ -9,6 +9,11 @@ class Wallet extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'amount',
+        'user_id',
+        'status'
+    ];
 
     public function getListingData($collection)
     {
