@@ -67,7 +67,7 @@ class UsersController extends Table
 
 	public function create(Request $request)
 	{
-		User::canTakeAction(User::canCreate);
+		//User::canTakeAction(User::canCreate);
 		$permissions = Permission::get();
 		return view('admin.users.create', compact('permissions'));
 	}
