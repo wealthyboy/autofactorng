@@ -115,7 +115,7 @@ class UsersController extends Table
 			'permission_id' => $request->permission_id
 		]);
 
-		(new Activity)->put("Added a new user with email " . $request->email);
+		//(new Activity)->put("Added a new user with email " . $request->email);
 
 
 		return redirect('/admin/users');
