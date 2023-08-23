@@ -38,61 +38,7 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        //OrderedProduct::truncate();
-        $orders = collect($this->orders());
 
-        // if (!$request->skip) {
-        //     $orders = collect($orders)->shift(500);
-        // } else {
-        //     $orders = collect($orders)->skip($request->skip);
-        // }
-
-        // foreach ($orders as $order) {
-        //     $user = User::find($order['user_id']);
-
-        //     // $date_string = explode($order['order_date']);
-        //     //Creating a DateTime object
-        //     $date_time_Obj = date_create(implode('-', explode('/', $order['order_date'])));
-        //     //formatting the date to print it
-        //     $format = date_format($date_time_Obj, "d-m-Y H:i:s");
-
-        //     $o = new Order;
-        //     $o->id = $order['order_id'];
-        //     $o->user_id = $order['user_id'];
-        //     $o->created_at = $format;
-        //     $o->payment_type = $order['payment_method'];
-        //     $o->order_type = $order['order_type'];
-        //     $o->total = $order['total'];
-        //     $o->first_name = optional($user)->name;
-        //     $o->last_name = optional($user)->last_name;
-        //     $o->email = optional($user)->email;
-        //     $o->tracking = $order['tracking_number'];
-        //     $o->phone_number =  optional($user)->phone_number;
-        //     $o->address =  optional($user)->address;
-        //     $o->city =  optional($user)->city;
-        //     $o->state =  optional($user)->state_id;
-        //     $o->save();
-        // }
-
-        Wallet::truncate();
-        WalletBalance::truncate();
-
-        foreach ($orders as $order) {
-            $insert = [
-                'amount' => $order['amount'],
-                'user_id' => $order['user_id'],
-                'status' => 'added',
-            ];
-
-            Wallet::Insert($insert);
-
-            $insert = [
-                'balance' => $order['amount'],
-                'user_id' => $order['user_id'],
-            ];
-
-            WalletBalance::Insert($insert);
-        }
 
         $top_selling_product = OrderedProduct::select('product_id')
             ->groupBy('product_id')
