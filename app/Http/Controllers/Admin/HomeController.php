@@ -38,7 +38,61 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
+        //OrderedProduct::truncate();
+        $orders = collect($this->orders());
 
+        // if (!$request->skip) {
+        //     $orders = collect($orders)->shift(500);
+        // } else {
+        //     $orders = collect($orders)->skip($request->skip);
+        // }
+
+        // foreach ($orders as $order) {
+        //     $user = User::find($order['user_id']);
+
+        //     // $date_string = explode($order['order_date']);
+        //     //Creating a DateTime object
+        //     $date_time_Obj = date_create(implode('-', explode('/', $order['order_date'])));
+        //     //formatting the date to print it
+        //     $format = date_format($date_time_Obj, "d-m-Y H:i:s");
+
+        //     $o = new Order;
+        //     $o->id = $order['order_id'];
+        //     $o->user_id = $order['user_id'];
+        //     $o->created_at = $format;
+        //     $o->payment_type = $order['payment_method'];
+        //     $o->order_type = $order['order_type'];
+        //     $o->total = $order['total'];
+        //     $o->first_name = optional($user)->name;
+        //     $o->last_name = optional($user)->last_name;
+        //     $o->email = optional($user)->email;
+        //     $o->tracking = $order['tracking_number'];
+        //     $o->phone_number =  optional($user)->phone_number;
+        //     $o->address =  optional($user)->address;
+        //     $o->city =  optional($user)->city;
+        //     $o->state =  optional($user)->state_id;
+        //     $o->save();
+        // }
+
+        Wallet::truncate();
+        WalletBalance::truncate();
+
+        foreach ($orders as $order) {
+            $insert = [
+                'amount' => $order['amount'],
+                'user_id' => $order['user_id'],
+                'status' => 'added',
+            ];
+
+            Wallet::Insert($insert);
+
+            $insert = [
+                'balance' => $order['amount'],
+                'user_id' => $order['user_id'],
+            ];
+
+            WalletBalance::Insert($insert);
+        }
 
         $top_selling_product = OrderedProduct::select('product_id')
             ->groupBy('product_id')
@@ -70,6 +124,7 @@ class HomeController extends Controller
             array('id' => '10', 'user_id' => '2604', 'created_at' => '2020-08-05 09:58:45', 'updated_at' => '2020-08-05 09:58:45', 'deleted_at' => NULL, 'amount' => '10000.00', 'sent_by' => NULL, 'addition' => '1'),
             array('id' => '11', 'user_id' => '2604', 'created_at' => '2020-08-05 09:59:52', 'updated_at' => '2020-08-05 09:59:52', 'deleted_at' => NULL, 'amount' => '10000.00', 'sent_by' => NULL, 'addition' => '1'),
             array('id' => '12', 'user_id' => '2603', 'created_at' => '2020-08-06 15:31:24', 'updated_at' => '2020-08-10 22:03:13', 'deleted_at' => NULL, 'amount' => '0.00', 'sent_by' => NULL, 'addition' => '1'),
+            array('id' => '13', 'user_id' => NULL, 'created_at' => '2020-08-08 21:29:11', 'updated_at' => '2020-08-08 21:29:35', 'deleted_at' => NULL, 'amount' => '8000.00', 'sent_by' => NULL, 'addition' => '1'),
             array('id' => '14', 'user_id' => '2670', 'created_at' => '2020-10-12 14:07:36', 'updated_at' => '2020-10-12 14:07:36', 'deleted_at' => NULL, 'amount' => '1000.00', 'sent_by' => NULL, 'addition' => '1'),
             array('id' => '15', 'user_id' => '2390', 'created_at' => '2020-10-12 14:37:11', 'updated_at' => '2020-10-12 14:37:11', 'deleted_at' => NULL, 'amount' => '100.00', 'sent_by' => NULL, 'addition' => '1'),
             array('id' => '16', 'user_id' => '2283', 'created_at' => '2020-10-12 18:25:40', 'updated_at' => '2020-10-12 19:30:14', 'deleted_at' => NULL, 'amount' => '24900.00', 'sent_by' => NULL, 'addition' => '1'),
@@ -107,7 +162,7 @@ class HomeController extends Controller
             array('id' => '48', 'user_id' => '4558', 'created_at' => '2023-01-03 10:13:31', 'updated_at' => '2023-01-03 10:13:31', 'deleted_at' => NULL, 'amount' => '700.00', 'sent_by' => NULL, 'addition' => '1'),
             array('id' => '49', 'user_id' => '1055', 'created_at' => '2023-03-07 14:49:27', 'updated_at' => '2023-03-09 09:06:41', 'deleted_at' => NULL, 'amount' => '3900.00', 'sent_by' => NULL, 'addition' => '1'),
             array('id' => '50', 'user_id' => '3028', 'created_at' => '2023-03-16 15:48:42', 'updated_at' => '2023-04-26 14:18:12', 'deleted_at' => NULL, 'amount' => '0.00', 'sent_by' => NULL, 'addition' => '1'),
-            array('id' => '51', 'user_id' => '2321', 'created_at' => '2023-04-17 15:11:52', 'updated_at' => '2023-07-31 15:01:24', 'deleted_at' => NULL, 'amount' => '60000.00', 'sent_by' => NULL, 'addition' => '1'),
+            array('id' => '51', 'user_id' => '2321', 'created_at' => '2023-04-17 15:11:52', 'updated_at' => '2023-08-23 13:09:04', 'deleted_at' => NULL, 'amount' => '60000.00', 'sent_by' => NULL, 'addition' => '1'),
             array('id' => '52', 'user_id' => '3419', 'created_at' => '2023-05-09 09:44:16', 'updated_at' => '2023-08-04 09:32:29', 'deleted_at' => NULL, 'amount' => '24500.00', 'sent_by' => NULL, 'addition' => '1')
         );
     }
