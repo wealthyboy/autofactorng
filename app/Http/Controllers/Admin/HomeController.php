@@ -74,6 +74,8 @@ class HomeController extends Controller
         //     $o->save();
         // }
 
+        Wallet::truncate();
+        WalletBalance::truncate();
 
         foreach ($orders as $order) {
             $insert = [
@@ -122,7 +124,6 @@ class HomeController extends Controller
             array('id' => '10', 'user_id' => '2604', 'created_at' => '2020-08-05 09:58:45', 'updated_at' => '2020-08-05 09:58:45', 'deleted_at' => NULL, 'amount' => '10000.00', 'sent_by' => NULL, 'addition' => '1'),
             array('id' => '11', 'user_id' => '2604', 'created_at' => '2020-08-05 09:59:52', 'updated_at' => '2020-08-05 09:59:52', 'deleted_at' => NULL, 'amount' => '10000.00', 'sent_by' => NULL, 'addition' => '1'),
             array('id' => '12', 'user_id' => '2603', 'created_at' => '2020-08-06 15:31:24', 'updated_at' => '2020-08-10 22:03:13', 'deleted_at' => NULL, 'amount' => '0.00', 'sent_by' => NULL, 'addition' => '1'),
-            array('id' => '13', 'user_id' => NULL, 'created_at' => '2020-08-08 21:29:11', 'updated_at' => '2020-08-08 21:29:35', 'deleted_at' => NULL, 'amount' => '8000.00', 'sent_by' => NULL, 'addition' => '1'),
             array('id' => '14', 'user_id' => '2670', 'created_at' => '2020-10-12 14:07:36', 'updated_at' => '2020-10-12 14:07:36', 'deleted_at' => NULL, 'amount' => '1000.00', 'sent_by' => NULL, 'addition' => '1'),
             array('id' => '15', 'user_id' => '2390', 'created_at' => '2020-10-12 14:37:11', 'updated_at' => '2020-10-12 14:37:11', 'deleted_at' => NULL, 'amount' => '100.00', 'sent_by' => NULL, 'addition' => '1'),
             array('id' => '16', 'user_id' => '2283', 'created_at' => '2020-10-12 18:25:40', 'updated_at' => '2020-10-12 19:30:14', 'deleted_at' => NULL, 'amount' => '24900.00', 'sent_by' => NULL, 'addition' => '1'),
