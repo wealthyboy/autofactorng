@@ -172,6 +172,12 @@ class Order extends Model
 		return $this->belongsTo(Shipping::class);
 	}
 
+
+	public function orderEmail()
+	{
+		return $this->hasOne(OrderEmail::class);
+	}
+
 	public function getShipPriceAttribute()
 	{
 		return  $this->shipping_price ?? optional($this->shipping)->converted_price;
@@ -191,8 +197,8 @@ class Order extends Model
 				return [
 					"Id" => $order->id,
 					"Invoice" => $order->invoice,
-					"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
-					"Email" => $order->email,
+					"Customer" => $order->fullName() || optional($order->orderEmail)->fullName,
+					"Email" =>  $order->email || optional($order->orderEmail)->email,
 					"Payment Type" =>  $order->payment_type,
 					"Type" => $order->order_type,
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
