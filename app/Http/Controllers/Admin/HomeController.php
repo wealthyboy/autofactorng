@@ -40,7 +40,7 @@ class HomeController extends Controller
     {
       
 
-       dd(User::get(5));
+       dd(User::paginate(5));
 
         $top_selling_product = OrderedProduct::select('product_id')
             ->groupBy('product_id')
