@@ -40,7 +40,6 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        UserPermission::all();
         // Order::truncate();
         // OrderedProduct::truncate();
         $top_selling_product = OrderedProduct::select('product_id')
