@@ -51,19 +51,20 @@
                     </div>
 
                     <span v-if="walletBalance"
-                        class="mx-3 d-none d-lg-block d-md-block   d-sm-block d-xl-block fw-bold">Auto Credit:
+                        class="mx-3 d-none d-lg-block d-md-block   d-xl-block  d-sm-block fw-bold">Auto Credit:
                         {{
                             $filters.formatNumber(walletBalance.auto_credit) ||
                             "0.00"
                         }}</span>
                     <span v-if="walletBalance"
-                        class="mx-3 d-none d-lg-block d-md-block d-sm-block  d-xl-block fw-bold">Wallet Balance:
+                        class="mx-3 d-none d-lg-block d-md-block d-sm-block  d-xl-block d-sm-block fw-bold">Wallet Balance:
                         {{
                             $filters.formatNumber(
                                 walletBalance.wallet_balance
                             ) || "0.00"
                         }}</span>
-                    <span v-if="walletBalance" class="d-none d-lg-block d-md-block d-sm-block d-xl-block fw-bold">Total:
+                    <span v-if="walletBalance"
+                        class="d-none d-lg-block d-md-block d-sm-block d-xl-block d-sm-block fw-bold">Total:
                         {{
                             $filters.formatNumber(walletBalance.total) || "0.00"
                         }}</span>
