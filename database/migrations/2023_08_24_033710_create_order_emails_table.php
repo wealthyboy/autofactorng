@@ -21,7 +21,7 @@ class CreateOrderEmailsTable extends Migration
             $table->string('payment')->nullable();
             $table->string('landmark')->nullable();
             $table->string('address')->nullable();
-            $table->string('email')->nullable();
+            $table->string('email', 255)->nullable();
             $table->string('shipping')->nullable();
             $table->integer('state_id')->nullable();
             $table->timestamps();
