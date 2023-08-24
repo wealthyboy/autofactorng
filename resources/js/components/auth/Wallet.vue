@@ -68,6 +68,7 @@ export default {
             amount: "",
             type: "Wallet",
             auto_credit: props.auto_credit,
+            confirmed: false
         });
 
         onMounted(() => {
@@ -155,6 +156,7 @@ export default {
                 callback: function (response) {
                     error.value = false;
                     console.log(false);
+                    form.confirmed = 1
                     axios
                         .post("/wallets", form)
                         .then((res) => {

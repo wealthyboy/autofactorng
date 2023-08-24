@@ -88,7 +88,7 @@ class WalletsController extends Table
             }
         }
 
-        if ($request->auto_credit && $request->filled('check')) {
+        if (!$request->confirmed) {
             return response()->json(null, 200);
         }
 

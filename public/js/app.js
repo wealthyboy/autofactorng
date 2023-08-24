@@ -22297,7 +22297,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_3__.reactive)({
       amount: "",
       type: "Wallet",
-      auto_credit: props.auto_credit
+      auto_credit: props.auto_credit,
+      confirmed: false
     });
     (0,vue__WEBPACK_IMPORTED_MODULE_3__.onMounted)(function () {
       scriptLoaded.value = new Promise(function (resolve) {
@@ -22388,6 +22389,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   callback: function callback(response) {
                     error.value = false;
                     console.log(false);
+                    form.confirmed = 1;
                     axios__WEBPACK_IMPORTED_MODULE_2___default().post("/wallets", form).then(function (res) {
                       paymentIsComplete.value = true;
                       paymentIsProcessing.value = false;
