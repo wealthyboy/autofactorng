@@ -54,6 +54,9 @@ class LoginController extends Controller
         $this->validateLogin($request);
 
         $user = User::where('email', $request->email)->first();
+        if (sha1($request->password) == $user->old_password) {
+            dd(true);
+        }
         dd($user);
 
         if (null !== $user && $user->is_old == true && $user->is_updated == false) {
