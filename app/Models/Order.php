@@ -194,11 +194,24 @@ class Order extends Model
 
 		return  $collection->map(function ($order) {
 			if (str_contains(request()->path(), 'admin')) {
+				if (null !== $order->orderEmail) {
+					return [
+						"Id" => $order->id,
+						"Invoice" => $order->invoice,
+						"Customer" => optional($order->orderEmail)->fullname,
+						"Email" => optional($order->orderEmail)->email,
+						"Payment Type" =>  $order->payment,
+						"Type" => 'offline',
+						"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
+						"Total" => Helper::currencyWrapper($order->total),
+						"Date" => $order->created_at->format('d-m-y'),
+					];
+				}
 				return [
 					"Id" => $order->id,
 					"Invoice" => $order->invoice,
-					"Customer" => $order->fullName() || optional($order->orderEmail)->fullName,
-					"Email" =>  $order->email || optional($order->orderEmail)->email,
+					"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
+					"Email" => $order->email,
 					"Payment Type" =>  $order->payment_type,
 					"Type" => $order->order_type,
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
