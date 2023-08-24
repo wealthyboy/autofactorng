@@ -55,35 +55,25 @@ class LoginController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
-        dd(sha1($request->password));
-        if (sha1($request->password) == $user->old_password) {
-            dd(true);
-        }
-        dd($user);
-
         if (null !== $user && $user->is_old == true && $user->is_updated == false) {
-            // $response = Http::get("https://autofactorng.com/apilogin.php?pword={$request->password}&uname={$request->email}");
+            $response = Http::get("https://autofactorng.com/apilogin.php?pword={$request->password}&uname={$request->email}");
 
-            if (sha1($request->password) == $user->old_password) {
-                dd(true);
+            $response = $response->body();
+            if ($response == "logged in") {
+                $user->password = bcrypt($request->password);
+                $user->is_updated = 1;
+                $user->save();
+
+                if ($this->attemptLogin($request)) {
+                    if ($request->ajax()) {
+                        return response()->json([
+                            'loggenIn' => true,
+                            'url' => \Session::get('url.intended', url('/'))
+                        ]);
+                    }
+                    return $this->sendLoginResponse($request);
+                }
             }
-
-
-            $user->password = bcrypt($request->password);
-            $user->is_updated = 1;
-            $user->save();
-        }
-
-
-
-        if ($this->attemptLogin($request)) {
-            if ($request->ajax()) {
-                return response()->json([
-                    'loggenIn' => true,
-                    'url' => \Session::get('url.intended', url('/'))
-                ]);
-            }
-            return $this->sendLoginResponse($request);
         }
 
 
