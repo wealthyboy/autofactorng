@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Models\BrandCategory;
 use App\Models\Error;
+use App\Models\Order;
 use App\Models\OrderEmail;
 use App\Models\OrderedProduct;
 use App\Models\Product;
@@ -38,8 +39,9 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-      
 
+        Order::truncate();
+        OrderedProduct::truncate();
         $top_selling_product = OrderedProduct::select('product_id')
             ->groupBy('product_id')
             ->orderByRaw('COUNT(*) DESC')
@@ -54,6 +56,4 @@ class HomeController extends Controller
 
         return view('admin.index', compact('stats'));
     }
-
-   
 }

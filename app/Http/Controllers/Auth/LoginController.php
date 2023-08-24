@@ -57,6 +57,7 @@ class LoginController extends Controller
 
         if (null !== $user && $user->is_old == true && $user->is_updated == false) {
             $response = Http::get("https://autofactorng.com/apilogin.php?pword={$request->password}&uname={$request->email}");
+
             $response = $response->body();
             if ($response == "logged in") {
                 $user->password = bcrypt($request->password);
