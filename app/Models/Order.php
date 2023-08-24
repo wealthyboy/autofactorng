@@ -52,6 +52,7 @@ class Order extends Model
 
 		$order = new self;
 		$cart  = new Cart();
+		$order->id = 16477;
 		$order->user_id = $user->id;
 		$order->address_id = $user->active_address->id;
 		$order->coupon = $input['coupon'];
