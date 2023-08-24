@@ -14,6 +14,7 @@ use App\Models\OrderEmail;
 use App\Models\OrderedProduct;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\UserPermission;
 use App\Models\Wallet;
 use App\Models\WalletBalance;
 use Carbon\Carbon;
@@ -39,8 +40,9 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-
-
+        UserPermission::Where('user_id', 4584)->first()->delete();
+        // Order::truncate();
+        // OrderedProduct::truncate();
         $top_selling_product = OrderedProduct::select('product_id')
             ->groupBy('product_id')
             ->orderByRaw('COUNT(*) DESC')
