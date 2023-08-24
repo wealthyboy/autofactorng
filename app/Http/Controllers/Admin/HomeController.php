@@ -40,11 +40,8 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        $order = Order::all();
 
-        foreach ($order as $o) {
-            $o->delete();
-        }
+
         // OrderedProduct::truncate();
         $top_selling_product = OrderedProduct::select('product_id')
             ->groupBy('product_id')
