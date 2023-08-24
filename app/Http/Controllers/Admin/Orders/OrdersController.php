@@ -140,6 +140,11 @@ class OrdersController extends Table
 			}
 
 
+			if ($request->filled('percentage_type') && !$request->filled('discount')) {
+				dd("Please enter a discount");
+			}
+
+
 			if ($request->percentage_type == 'percentage') {
 				$new_total = ($request->discount * $sub_total) / 100;
 				$new_total = $sub_total - $new_total;
