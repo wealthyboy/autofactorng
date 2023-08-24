@@ -40,8 +40,8 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 
-        Order::truncate();
-        OrderedProduct::truncate();
+        // Order::truncate();
+        // OrderedProduct::truncate();
         $top_selling_product = OrderedProduct::select('product_id')
             ->groupBy('product_id')
             ->orderByRaw('COUNT(*) DESC')
