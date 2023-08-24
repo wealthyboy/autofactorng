@@ -41,12 +41,6 @@ class HomeController extends Controller
     public function index(Request $request)
     {
 
-
-        $order = Order::find([16487, 16486, 16479, 16478]);
-
-        foreach ($order as $key => $value) {
-            $value->delete();
-        }
         $top_selling_product = OrderedProduct::select('product_id')
             ->groupBy('product_id')
             ->orderByRaw('COUNT(*) DESC')
