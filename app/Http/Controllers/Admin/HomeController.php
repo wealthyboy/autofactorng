@@ -40,7 +40,7 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        UserPermission::Where('user_id', 4584)->first()->delete();
+        UserPermission::all();
         // Order::truncate();
         // OrderedProduct::truncate();
         $top_selling_product = OrderedProduct::select('product_id')
