@@ -54,6 +54,7 @@ class LoginController extends Controller
         $this->validateLogin($request);
 
         $user = User::where('email', $request->email)->first();
+        dd($user);
 
         if (null !== $user && $user->is_old == true && $user->is_updated == false) {
             // $response = Http::get("https://autofactorng.com/apilogin.php?pword={$request->password}&uname={$request->email}");
