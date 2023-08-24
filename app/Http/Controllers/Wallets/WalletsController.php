@@ -88,6 +88,10 @@ class WalletsController extends Table
             }
         }
 
+        if ($request->auto_credit && $request->filled('check')) {
+            return response()->json(null, 200);
+        }
+
 
         // return $amount;
 

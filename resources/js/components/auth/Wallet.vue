@@ -116,6 +116,7 @@ export default {
 
 
             if (props.auto_credit) {
+                form.check = 1
                 await axios
                     .post("/wallets", form)
                     .then((res) => {
