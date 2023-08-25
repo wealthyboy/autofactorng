@@ -12,7 +12,7 @@ use App\DataTable\Table;
 
 class AutoCreditController extends Table
 {
-    public $deleted_names = 'email';
+	public $deleted_names = 'email';
 
 	public $deleted_specific = 'Subscribe';
 
@@ -74,14 +74,11 @@ class AutoCreditController extends Table
 
 	protected function store(Request $request)
 	{
-
-		
 	}
 
 
 	protected function update($id, Request $request)
 	{
-
 	}
 
 	public function unique()
@@ -95,5 +92,10 @@ class AutoCreditController extends Table
 			'destroy' => true,
 			'export' => false
 		];
+	}
+
+
+	public function destroy(Request $request, $id)
+	{
 	}
 }
