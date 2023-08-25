@@ -8,7 +8,6 @@
 /public/images/category
 /public/images/brands
 
-/storage/*.key
 /vendor
 .env
 .env.backup
