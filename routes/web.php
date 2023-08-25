@@ -18,8 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
     Route::get('/', 'Admin\HomeController@index')->name('admin_home');
