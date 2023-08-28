@@ -1,0 +1,497 @@
+// Variables
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+@import "../assets/css/style.min.css";
+@import "~bootstrap-icons/font/bootstrap-icons";
+@import "../assets/vendor/fontawesome-free/css/all.min.css";
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+
+@font-face {
+    font-family: AutofactorBold;
+    src: url(../fonts/AutoFactorCond-Heavy.woff2);
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: AutofactorMedium;
+    src: url(../fonts/AutoFactorCond-Medium.woff2);
+    font-weight: bold;
+}
+
+// @font-face {
+//     font-family: luxurySaleFont5;
+//     src: url(../fonts/ProximaNovaAltCondensedExtrabold.otf);
+//     font-weight: bold;
+// }
+
+// @font-face {
+//     font-family: luxurySaleFont8;
+//     src: url(../fonts/GalaxiePolaris-Medium.otf);
+//     font-weight: bold;
+// }
+
+// @font-face {
+//     font-family: PolarisBook;
+//     src: url(../fonts/ProximaNovaAltRegular.otf);
+//     font-weight: bold;
+// }
+
+// @font-face {
+//     font-family: Polaris-Bold;
+//     src: url(../fonts/GalaxiePolaris-Bold.otf);
+//     font-weight: bold;
+// }
+
+// @font-face {
+//     font-family: luxurysale7;
+//     src: url(../fonts/ProximaNovaAltCondensedThin.otf);
+// }
+
+body {
+    font-size: 14px !important;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+
+
+b,
+strong {
+    font-weight: 700;
+    font-family: AutofactorBold, sans-serif !important;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-bottom: 1.8rem;
+    color: #222529;
+    font-weight: 700;
+    line-height: 1.1;
+    font-family: AutofactorMedium, sans-serif;
+    font-size: 2.3rem;
+}
+
+.bold{
+    font-weight: 700;
+    font-family: AutofactorBold, sans-serif !important;
+}
+
+.semi-bold{
+    font-family: AutofactorMedium, sans-serif !important;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+a{
+    color: #202124 ;
+    text-decoration: none !important;
+}
+
+
+.h-0 {
+    height: 0px !important;
+
+}
+
+// :not(.btn-add-cart){
+//     color: #fff !important ;
+//     text-decoration: none !important;
+// }
+
+
+
+.badge-circle{
+    color: #fff !important;
+}
+
+
+
+div#offcanvas {
+    top: 178px;
+}
+
+.logo {
+    max-width: 236px
+}
+
+.dropdown-items {
+    width: 100%;
+    background-color: #ffffff;
+    top: 50px;
+    z-index: 1000;
+}
+
+span.header-right-icons{
+    margin-top: -9px;
+}
+
+.member-heading{
+    margin-right: 20rem !important;
+}
+
+.search-products-icon {
+    /* line-height: 16px; */
+    background: none;
+    border: none;
+    padding: 0 16px;
+    position: absolute;
+    z-index: 200;
+    top: 26%;
+}
+
+.header-bottom {
+    box-shadow: 0 1px 5px 0 rgb(32 33 36 / 12%), 0 2px 2px 0 rgb(32 33 36 / 14%), 0 3px 1px -2px rgb(32 33 36 / 20%);
+    background: #f2f2f2;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+input.search-products {
+    padding-left: 5rem;
+    font-size: 14px;
+}
+
+
+/* Customize the label (the container) */
+
+label.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.checkbox-label {
+    position: relative;
+    top: 2px;
+}
+
+
+/* Hide the browser's default checkbox */
+
+.container input[type=checkbox] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+/* Create a custom checkbox */
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+
+/* On mouse-over, add a grey background color */
+
+.container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+
+/* When the checkbox is checked, add a blue background */
+
+.container input:checked~.checkmark {
+    background-color: #f0592a;
+}
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+/* Show the checkmark when checked */
+
+.container input:checked~.checkmark:after {
+    display: block;
+}
+
+
+/* Style the checkmark/indicator */
+
+.container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.coverlay {
+    position: fixed;
+    /* Sit on top of the page content */
+    display: none;
+    /* Hidden by default */
+    width: 100%;
+    /* Full width (cover the whole page) */
+    height: 100%;
+    /* Full height (cover the whole page) */
+    top: 177px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black background with opacity */
+    z-index: 2;
+    /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer;
+    /* Add a pointer on hover */
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    /* opacity: 0; */
+    transition: .5s ease;
+    /* background-color: brown; */
+    background-color: rgba(0,0,0,0.7);
+}
+
+.product-desc ul  { padding: 0 !important; }
+    .product-desc ul li {
+    padding: 10px;
+}
+
+.product-desc ul li:nth-child(even) {
+    background-color: #ddd;
+}
+
+
+
+// Fonts
+.owl-theme .owl-dots {
+    position: relative;
+    top: -30px;
+    
+    max-width: 119px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.prod-thumbnail .owl-item{
+    width: 89px !important;
+}
+
+@media (max-width:500px) {
+
+    .cta-simple{
+        padding: 0px 0px;
+    }
+}
+
+.fit-string{
+    width: 100%;
+    background-color: #fff;
+    border: none;
+    box-shadow: 0 1px 4px 0 rgb(32 33 36 / 12%), 0 2px 2px 0 rgb(32 33 36 / 14%), 0 3px 1px -2px rgb(32 33 36 / 20%);
+    border-left: 3px solid #f26100;
+    border-radius: 4px;
+}
+
+.v-line{
+    background: #e5e5e5;
+    width: 1px;
+    height: 35px;
+    margin: 0 20px;
+}
+
+.check-vehicle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fffcf2;
+    border: none;
+    border-bottom: 2px solid #ffc600;
+    cursor: pointer;
+    font-size: 13.5px;
+    padding: 8px 12px;
+    min-height: 40px;
+    text-align: left;
+    width: 100%;
+}
+
+
+.image-category{
+    max-width: 120px;
+    width: 124px;
+    height: 124px;
+    overflow: hidden;
+}
+
+.underline {
+    width: 84px;
+    height: 4px;
+    background-color: #f26100;
+    transform: skewX(-30deg);
+}
+
+.accordion-button:not(.collapsed){
+    background-color: #fff !important;
+    color: #000;
+}
+
+.accordion-button:focus{
+    border-color: none !important;
+    box-shadow: none !important;
+}
+
+.accordion-button{
+    font-size: 1.7rem !important;
+}
+
+
+.cart-button {
+    border: 1px solid #e5e5e5;
+}
+
+.cart-input{
+    width: 84px;
+    height: 40px;
+    text-align: center;
+    margin: 0 16px;
+    border: 0;
+    border-bottom: 2px solid #f26100 !important;
+}
+
+td .cart-input {
+    width: 30px !important;
+}
+
+
+.coupon-button{
+    height: 46px;
+ }
+
+
+
+.coupon-i{
+   height: 99%;
+}
+
+
+
+/* Target all Apple devices with a pixel ratio of 2 or higher */
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+    /* Your CSS styles here */
+    /* For example: */
+    .coupon-i{
+        height: 92% !important;
+    }
+  }
+
+.form-floating > .form-control:focus, .form-floating > .form-control:not(:placeholder-shown), .form-floating > .form-control-plaintext:focus, .form-floating > .form-control-plaintext:not(:placeholder-shown) {
+    padding-top: 2rem;
+    padding-bottom: 0.625rem;
+}
+.form-floating > .form-control, .form-floating > .form-control-plaintext {
+    padding: 1rem 0.75rem;
+}
+.form-floating > .form-control, .form-floating > .form-control-plaintext, .form-floating > .form-select {
+    height: calc(4.5rem + 2px);
+    line-height: 1.25;
+}
+
+.form-floating > label {
+    padding: 1.3rem 0.75rem;
+}
+
+.chat-on-watsapp {
+    height: 50px;
+    background-color: none;
+    position: fixed;
+    bottom: 124px;
+    right: 0;
+    font-weight: bold;
+    font-size: 1.35rem;
+    text-align: center;
+    z-index: 1000;
+    padding-top: 1em;
+}
+
+.full-bg {
+    height: 65vh;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    z-index: 0;
+}
+
+select#floatingSelect{
+    height: 4.65rem !important;
+}
+
+.list-group-item {
+    list-style-type: disc !important;
+}
+
+textarea:focus, 
+textarea.form-control:focus, 
+input.form-control:focus, 
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus, 
+input[type=number]:focus, 
+[type=text].form-control:focus, 
+[type=password].form-control:focus, 
+[type=email].form-control:focus, 
+[type=tel].form-control:focus, 
+[contenteditable].form-control:focus {
+  box-shadow: none !important;
+}
+
+
+footer a {
+    color: #fff !important;
+}
+
+
+@media (min-width:576px) {
+    .coverlay {
+    }
+}
+
+.mobile-nav .dropdown-menu.show {
+    width: 191px !important;
+}
