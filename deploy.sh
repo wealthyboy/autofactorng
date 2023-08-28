@@ -1,18 +1,10 @@
 # Change to the project directory
 
-cd /home/forge/autofactor.ng
+cd /var/www/autofactorng.com
 
 php artisan down || true
 
-git pull origin $FORGE_SITE_BRANCH
-$FORGE_COMPOSER install --no-interaction --prefer-dist --optimize-autoloader
-
-( flock -w 10 9 || exit 1
-    echo 'Restarting FPM...'; sudo -S service $FORGE_PHP_FPM reload ) 9>/tmp/fpmlock
-
-if [ -f artisan ]; then
-    $FORGE_PHP artisan migrate --force
-fi
+git pull origin master
 
 # Turn on maintenance mode
 
@@ -46,7 +38,7 @@ php artisan view:cache
 #npm install
 
 # Build assets using Laravel Mix
-npm run prod
+#:wqnpm run prod
 
 # Turn off maintenance mode
 php artisan up
