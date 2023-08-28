@@ -237,7 +237,7 @@ export default {
             this.payment_is_processing = true;
             this.payment_method = "card";
             var handler = PaystackPop.setup({
-                key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
+                key: "pk_live_f781064afdc5336a6210015e9ff17014d28a4f8b", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
                 email: context.cart_meta.user.email,
                 amount: context.total * 100,
                 currency: "NGN",
@@ -315,7 +315,7 @@ export default {
 
             const config = {
                 publicKey:
-                    "PK_SANDBOX_841e808769a00159352bfd9544448d1f5a1341b7e3890128522c05a50695f5dd",  // "PK_PROD_aba91b1cc44c9b02ba589d626856c898f7029b532566c8de52ab3b360b1b53ac",
+                    "PK_PROD_aba91b1cc44c9b02ba589d626856c898f7029b532566c8de52ab3b360b1b53ac",  // "PK_PROD_aba91b1cc44c9b02ba589d626856c898f7029b532566c8de52ab3b360b1b53ac",
                 onSuccess: function (response) {
                     context.paymentIsProcessing = false;
                     context.paymentIsComplete = true;
