@@ -184,7 +184,7 @@ class CustomersController extends Table
 
     public function destroy(Request $request, $id)
     {
-        // User::canTakeAction(User::canDelete);
+        User::canTakeAction(User::canDelete);
 
         $customers = User::find($request->selected)->pluck('email')->toArray();
 
