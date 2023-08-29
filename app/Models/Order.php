@@ -133,7 +133,7 @@ class Order extends Model
 		try {
 			$when = now()->addMinutes(5);
 			Mail::to($user->email)
-				//->cc('jacob.atam@gmail.com')
+				->replyTo('noreply@autofactorng.com', 'AutofactorNg')
 				->bcc('orders@autofactorng.com')
 				->send(new OrderReceipt($order, null, null, $sub_total));
 		} catch (\Throwable $th) {
