@@ -247,6 +247,7 @@ class OrdersController extends Table
 			'search' => true,
 			'add' => true,
 			'delete' => false,
+			'destroy' => true,
 			'export' => true,
 			'order' => true
 		];
