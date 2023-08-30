@@ -133,7 +133,7 @@ class Order extends Model
 		try {
 			$when = now()->addMinutes(5);
 			Mail::to($user->email)
-				->cc('care@autofactorng.com')
+				->cc('orders@autofactorng.com')
                 ->bcc('info@autofactorng.com')
 
 				->send(new OrderReceipt($order, null, null, $sub_total));
