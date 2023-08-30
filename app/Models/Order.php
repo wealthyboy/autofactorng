@@ -134,6 +134,7 @@ class Order extends Model
 			$when = now()->addMinutes(5);
 			Mail::to($user->email)
 				->bcc('order@autofactorng.com')
+                ->alwaysReplyTo('order@autofactorng.com')
 
 				->send(new OrderReceipt($order, null, null, $sub_total));
 
