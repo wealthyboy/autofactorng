@@ -1,19 +1,9 @@
 <template>
   <message :message="post_server_error" />
 
-  <div
-    v-if="reg_complete"
-    class="d-flex justify-content-center align-content-center  page-loading w-100 h-100"
-  >
-    <div
-      v-if="reg_complete && paymentIsProcessing"
-      class="align-self-center text-center"
-    >
-      <div
-        class="spinner-border"
-        style="width: 7rem; height: 7rem; color:red;"
-        role="status"
-      >
+  <div v-if="reg_complete" class="d-flex justify-content-center align-content-center  page-loading w-100 h-100">
+    <div v-if="reg_complete && paymentIsProcessing" class="align-self-center text-center">
+      <div class="spinner-border" style="width: 7rem; height: 7rem; color:red;" role="status">
         <span class="visually-hidden">Loading...</span>
 
       </div>
@@ -21,105 +11,63 @@
 
     </div>
 
-    <div
-      v-if="paymentIsComplete"
-      class="align-self-center text-center"
-    >
+    <div v-if="paymentIsComplete" class="align-self-center text-center">
       <div class="mt-4">Your payment has been been added.</div>
       <div class="mt-4"> <a href="/">Continue</a> </div>
     </div>
 
   </div>
 
-  <form
-    v-if="!reg_complete"
-    method="POST"
-    @submit.prevent="subscribe"
-  >
+  <form v-if="!reg_complete" method="POST" @submit.prevent="subscribe">
     <div class="row ">
       <p class="form-group p-1 col-6">
       <div class="form-floating">
-        <general-input
-          id="first_name"
-          :error="v$.first_name"
-          v-model="form.first_name"
-          name="First name"
-          type="text"
-        />
+        <general-input id="first_name" :error="v$.first_name" v-model="form.first_name" name="First name" type="text" />
 
       </div>
       </p>
 
       <p class="form-group  p-1 col-6">
       <div class="form-floating">
-        <general-input
-          id="last_name"
-          :error="v$.last_name"
-          v-model="form.last_name"
-          name="Last name"
-          type="text"
-        />
+        <general-input id="last_name" :error="v$.last_name" v-model="form.last_name" name="Last name" type="text" />
 
       </div>
       </p>
 
       <p class="form-group p-1 col-6">
       <div class="form-floating">
-        <general-input
-          id="email"
-          :error="v$.email"
-          v-model="form.email"
-          name="Email"
-          type="text"
-          :server_errors="server_errors.email"
-        />
+        <general-input id="email" :error="v$.email" v-model="form.email" name="Email" type="text"
+          :server_errors="server_errors.email" />
 
       </div>
       </p>
 
-     
 
-     
 
-     
+
+
+
 
       <p class="form-group  p-1 col-12">
       <div class="form-floating">
-        <general-input
-          id="amount"
-          :error="v$.amount"
-          v-model="form.amount"
-          name="Amount"
-          type="text"
-          @blur="getAmount"
+        <general-input id="amount" :error="v$.amount" v-model="form.amount" name="Amount" type="text" @blur="getAmount" />
 
-        />
 
-  
 
-        <simple-message
-          class="link-success fs-6 text-end fw-2  fs-4"
-          :message="amount"
-        />
+        <simple-message class="link-success fs-6 text-end fw-2  fs-4" :message="amount" />
 
       </div>
 
-      
+
       </p>
 
-      <general-button
-        type="submit"
-        :text="text"
-        class="btn btn-dark w-100 p-3"
-        :loading="loading"
-      />
+      <general-button type="submit" :text="text" class="btn btn-dark w-100 p-3" :loading="loading" />
 
     </div>
 
   </form>
-
 </template>
-  <script>
+<script>
 import { useVuelidate } from "@vuelidate/core";
 import { useActions } from "vuex-composition-helpers";
 
@@ -181,16 +129,16 @@ export default {
 
     function getAmount() {
       if (
-          props.price_range.length &&
-          form.amount >= props.price_range[0]
+        props.price_range.length &&
+        form.amount >= props.price_range[0]
       ) {
-          amount.value = autoCredit(
-              form.amount,
-              props.price_range[0],
-              props.price_range[1]
-          );
+        amount.value = autoCredit(
+          form.amount,
+          props.price_range[0],
+          props.price_range[1]
+        );
       } else {
-          amount.value = "";
+        amount.value = "";
       }
 
     }
@@ -219,7 +167,7 @@ export default {
           paymentIsProcessing.value = true;
 
           var handler = PaystackPop.setup({
-            key: "pk_test_dbbb0722afea0970f4e88d2b1094d90a85a58943", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
+            key: "pk_live_f781064afdc5336a6210015e9ff17014d28a4f8b", //'pk_live_c4f922bc8d4448065ad7bd3b0a545627fb2a084f',//'pk_test_844112398c9a22ef5ca147e85860de0b55a14e7c',
             email: u.email,
             amount: form.amount * 100,
             currency: "NGN",
@@ -239,7 +187,7 @@ export default {
                 .then((res) => {
                   paymentIsComplete.value = true;
                   paymentIsProcessing.value = false;
-                  location.href="/wallets"
+                  location.href = "/wallets"
                 })
                 .catch((error) => {
                   message.value = "Error";
@@ -260,7 +208,7 @@ export default {
         })
         .catch((error) => {
           if (error.response.data)
-          server_errors.value = error.response.data.errors;
+            server_errors.value = error.response.data.errors;
           clearErr(server_errors);
         });
     }
