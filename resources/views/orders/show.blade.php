@@ -12,7 +12,6 @@
         <div class="row">
 
             @include('_partials.nav')
-
             <div class="col-md-9 bg--light  pb-3">
                 <h2 class="page-title">Your Order</h2>
                 <section class="top mb-3">
