@@ -326,6 +326,8 @@ export default {
                 amount: context.total + zillaPercent,
             };
             connect.openNew(config);
+
+
         },
 
         applyCoupon: function (c) {
