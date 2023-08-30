@@ -66,7 +66,7 @@
                                         <td colspan="3">
                                             <div class="media">
                                                 <div class="image-category">
-                                                    <img class="align-self-start mr-3 img-fluid" src="{{ optional($order_product->product)->image_tn  }} " alt="{{ optional($order_product->product)->name  }}">
+                                                    <img class="align-self-start mr-3 img-fluid" src="{{ optional($order_product->product)->image_m  }} " alt="{{ optional($order_product->product)->name  }}">
                                                 </div>
                                                 <div class="media-body ml-3 ">
                                                     <div class="font-weight-bolder">
