@@ -21742,8 +21742,8 @@ __webpack_require__.r(__webpack_exports__);
         resMessage.value = err.response.data.message;
         error.value = true;
 
-        if (typeof err.response.data !== 'undefined') {
-          resMessage.value = err.response.data.errors.email;
+        if (typeof err.response.data !== 'undefined' && err.response.data.errors.email == 'We can\'t find a user with that email address.') {
+          resMessage.value = "You do not have an account with us.  ";
           html.value = "<a href='/register'>Click here to register</a>";
           return;
         }
