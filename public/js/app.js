@@ -21740,6 +21740,7 @@ __webpack_require__.r(__webpack_exports__);
         if (typeof err.response.data !== 'undefined' && err.response.data.message == 'The given data was invalid.') {
           resMessage.value = "You do not have an account with us.  ";
           html.value = "<a href='/regiater'>Click here to register</a>";
+          return;
         }
 
         resMessage.value = "Error processing your request";
