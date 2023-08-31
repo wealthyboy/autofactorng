@@ -4,7 +4,7 @@
             <div :class="[error ? 'alert-danger' : 'alert-success']" class="alert alert-rounded justify-content-between">
                 <div class="fs-5 fw-bold">{{ message }} <span class="ml-3" v-html="html"></span> </div>
                 <div>
-                    <span role="button" @click="show = !show" class="material-symbols-outlined">
+                    <span role="button" @click="showMessage" class="material-symbols-outlined">
                         close
                     </span>
                 </div>
@@ -25,8 +25,16 @@ export default {
 
     setup() {
         const show = ref(true);
+        const showMessage = () => {
+            show.value = !show.value
+            setInterval(() => {
+                show.value = true
+            }, 2000)
+        }
+
         return {
             show,
+            showMessage
         };
     },
 };

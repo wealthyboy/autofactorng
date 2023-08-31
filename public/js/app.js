@@ -23146,8 +23146,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   setup: function setup() {
     var show = (0,vue_demi__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
+
+    var showMessage = function showMessage() {
+      show.value = !show.value;
+      setInterval(function () {
+        show.value = true;
+      }, 2000);
+    };
+
     return {
-      show: show
+      show: show,
+      showMessage: showMessage
     };
   }
 });
@@ -27851,8 +27860,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , _hoisted_4)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     role: "button",
-    onClick: _cache[0] || (_cache[0] = function ($event) {
-      return $setup.show = !$setup.show;
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $setup.showMessage && $setup.showMessage.apply($setup, arguments);
     }),
     "class": "material-symbols-outlined"
   }, " close ")])], 2
