@@ -71,7 +71,7 @@ export default {
                 .catch((err) => {
                     loading.value = !loading.value;
                     resMessage.value = err.response.data.message
-                    if (typeof err.response.data !== 'undefined' && err.response.data.message == 'The given data was invalid') {
+                    if (typeof err.response.data !== 'undefined' && err.response.data.message == 'The given data was invalid.') {
                         resMessage.value = "You do not have an account with us.  ";
                         html.value = "<a href='/regiater'>Click here to register</a>"
                     }
