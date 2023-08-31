@@ -21720,6 +21720,10 @@ __webpack_require__.r(__webpack_exports__);
     });
     var v$ = (0,_vuelidate_core__WEBPACK_IMPORTED_MODULE_0__.useVuelidate)(rules, form);
 
+    function deleteMessage(params) {
+      resMessage.value = null;
+    }
+
     function forgotPassword() {
       this.v$.$touch();
 
@@ -21751,6 +21755,7 @@ __webpack_require__.r(__webpack_exports__);
       form: form,
       v$: v$,
       forgotPassword: forgotPassword,
+      deleteMessage: deleteMessage,
       loading: loading,
       text: text,
       resMessage: resMessage,
@@ -23144,23 +23149,17 @@ __webpack_require__.r(__webpack_exports__);
       defualts: false
     }
   },
+  emits: ['delete-message'],
   setup: function setup(props) {
     var show = (0,vue_demi__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
-    var resMessage = (0,vue_demi__WEBPACK_IMPORTED_MODULE_0__.ref)(props.message);
 
     var showMessage = function showMessage() {
-      show.value = !show.value;
-      var s = setInterval(function () {
-        show.value = true;
-        resMessage.value = null;
-      }, 2000);
-      clearInterval(s);
+      emit('delete');
     };
 
     return {
       show: show,
-      showMessage: showMessage,
-      resMessage: resMessage
+      showMessage: showMessage
     };
   }
 });
@@ -26087,12 +26086,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$setup.resMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_message, {
     key: 0,
+    onDeleteMessage: $setup.deleteMessage,
     error: $setup.error,
     message: $setup.resMessage,
     html: $setup.html
   }, null, 8
   /* PROPS */
-  , ["error", "message", "html"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+  , ["onDeleteMessage", "error", "message", "html"])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     action: "",
     "class": "mb-0",
     method: "post",
@@ -27842,27 +27842,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  key: 0
-};
-var _hoisted_2 = {
   key: 0,
   "class": ""
 };
-var _hoisted_3 = {
+var _hoisted_2 = {
   "class": "fs-5 fw-bold"
 };
-var _hoisted_4 = ["innerHTML"];
+var _hoisted_3 = ["innerHTML"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return $setup.show ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [$setup.resMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [$props.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[$props.error ? 'alert-danger' : 'alert-success'], "alert alert-rounded justify-content-between"])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.resMessage) + " ", 1
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.resMessage) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "ml-3",
     innerHTML: $props.html
   }, null, 8
   /* PROPS */
-  , _hoisted_4)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  , _hoisted_3)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     role: "button",
     onClick: _cache[0] || (_cache[0] = function () {
       return $setup.showMessage && $setup.showMessage.apply($setup, arguments);
@@ -27870,7 +27867,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "material-symbols-outlined"
   }, " close ")])], 2
   /* CLASS */
-  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true);
+  )])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
 }
 
 /***/ }),

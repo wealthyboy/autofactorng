@@ -1,6 +1,6 @@
 <template>
-    <div v-if="show">
-        <div v-if="resMessage" class="">
+    <div>
+        <div v-if="message" class="">
             <div :class="[error ? 'alert-danger' : 'alert-success']" class="alert alert-rounded justify-content-between">
                 <div class="fs-5 fw-bold">{{ resMessage }} <span class="ml-3" v-html="html"></span> </div>
                 <div>
@@ -21,24 +21,16 @@ export default {
         html: { type: String, defualts: false },
         error: { type: Boolean, required: true, defualts: false },
     },
-
+    emits: ['delete-message'],
     setup(props) {
         const show = ref(true);
-        const resMessage = ref(props.message)
         const showMessage = () => {
-            show.value = !show.value
-            let s = setInterval(() => {
-                show.value = true
-                resMessage.value = null
-            }, 2000)
-
-            clearInterval(s)
+            emit('delete')
         }
 
         return {
             show,
             showMessage,
-            resMessage
         };
     },
 };

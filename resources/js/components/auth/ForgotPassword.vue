@@ -1,5 +1,5 @@
 <template>
-    <message v-if="resMessage" :error="error" :message="resMessage" :html="html" />
+    <message v-if="resMessage" @delete-message="deleteMessage" :error="error" :message="resMessage" :html="html" />
 
     <form action="" class="mb-0" method="post" @submit.prevent="forgotPassword">
         <div class="form-floating mb-3">
@@ -55,6 +55,10 @@ export default {
 
         const v$ = useVuelidate(rules, form);
 
+        function deleteMessage(params) {
+            resMessage.value = null
+        }
+
         function forgotPassword() {
             this.v$.$touch();
             if (this.v$.$error) {
@@ -73,6 +77,7 @@ export default {
                     resMessage.value = err.response.data.message
                     error.value = true;
 
+
                     if (typeof err.response.data !== 'undefined' && err.response.data.message == 'The given data was invalid.') {
                         resMessage.value = "You do not have an account with us.  ";
                         html.value = "<a href='/register'>Click here to register</a>"
@@ -81,10 +86,9 @@ export default {
 
                     resMessage.value = "Error processing your request"
 
-
                 });
         }
-        return { form, v$, forgotPassword, loading, text, resMessage, error, html };
+        return { form, v$, forgotPassword, deleteMessage, loading, text, resMessage, error, html };
 
 
     },
