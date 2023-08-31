@@ -79,8 +79,8 @@ export default {
                     error.value = true;
 
 
-                    if (typeof err.response.data !== 'undefined' && err.response.data.message == 'The given data was invalid.') {
-                        resMessage.value = "You do not have an account with us.  ";
+                    if (typeof err.response.data !== 'undefined') {
+                        resMessage.value = err.response.data.errors.email
                         html.value = "<a href='/register'>Click here to register</a>"
                         return
                     }
