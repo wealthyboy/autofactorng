@@ -86,6 +86,8 @@ export default {
                     }
 
                     resMessage.value = "Error processing your request"
+                    html.value = null
+
 
                 });
         }

@@ -21749,6 +21749,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         resMessage.value = "Error processing your request";
+        html.value = null;
       });
     }
 
