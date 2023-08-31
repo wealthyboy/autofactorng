@@ -1,5 +1,5 @@
 <template>
-    <message :error="error" :message="message" />
+    <message :error="error" :message="resMessage" />
 
     <form action="" class="mb-0" method="post" @submit.prevent="forgotPassword">
         <div class="form-floating mb-3">
@@ -32,7 +32,7 @@ export default {
     setup(props, { emit }) {
         const loading = ref(false);
         const text = ref("Submit");
-        const message = ref(null);
+        const resMessage = ref(null);
         const html = ref(null);
 
         const error = ref(null);
@@ -65,21 +65,21 @@ export default {
                 .post("/password/reset/link", form)
                 .then((res) => {
                     loading.value = !loading.value;
-                    message.value = "A link has been to your email inbox or  spam.";
+                    resMessage.value = "A link has been to your email inbox or  spam.";
                     error.value = false;
                 })
                 .catch((err) => {
                     loading.value = !loading.value;
-                    console.log(err.response.data)
+                    resMessage.value = err.response.data.message
                     if (typeof err.response.data !== 'undefined' && err.response.data.message == 'The given data was invalid') {
-                        message.value = "You do not have an account with us.  ";
+                        resMessage.value = "You do not have an account with us.  ";
                         html.value = "<a href='/regiater'>Click here to register</a>"
                     }
 
                     error.value = true;
                 });
         }
-        return { form, v$, forgotPassword, loading, text, message, error, html };
+        return { form, v$, forgotPassword, loading, text, resMessage, error, html };
 
 
     },
