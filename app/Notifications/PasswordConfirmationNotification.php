@@ -43,7 +43,7 @@ class PasswordConfirmationNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->bcc('damilola@autofactorng.com')
+            ->bcc('d@autofactorng.com')
             ->greeting('Hello ' . $this->user->name)
             ->line('Your password reset was successful');
     }
