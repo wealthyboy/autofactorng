@@ -7,6 +7,8 @@ use App\Utils\AccountSettingsNav;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\PasswordConfirmationNotification;
+
 
 
 class ChangePasswordController extends Controller
@@ -46,6 +48,8 @@ class ChangePasswordController extends Controller
                 'password' => Hash::make($request->password)
             ])->save();
             //event(new ChangePassword($request->user()));
+            $user->notify(new PasswordConfirmationNotification($user));
+
             return response()->json([
                 'message' => 'Password updated'
             ], 200);
