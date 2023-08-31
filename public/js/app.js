@@ -21705,6 +21705,7 @@ __webpack_require__.r(__webpack_exports__);
     var loading = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(false);
     var text = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)("Submit");
     var message = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
+    var html = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var error = (0,vue__WEBPACK_IMPORTED_MODULE_2__.ref)(null);
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
       email: ""
@@ -21733,7 +21734,12 @@ __webpack_require__.r(__webpack_exports__);
         error.value = false;
       })["catch"](function (err) {
         loading.value = !loading.value;
-        message.value = "Error processing your request";
+
+        if (typeof err.response.data !== 'undefined' && err.response.data.message == 'The given data was invalid') {
+          message.value = "You do not have an account with us.  ";
+          html.value = "<a href='/regiater'>Click here to register</a>";
+        }
+
         error.value = true;
       });
     }
@@ -21745,7 +21751,8 @@ __webpack_require__.r(__webpack_exports__);
       loading: loading,
       text: text,
       message: message,
-      error: error
+      error: error,
+      html: html
     };
   }
 });
@@ -23116,13 +23123,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var vue_demi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-demi */ "./node_modules/vue-demi/lib/index.mjs");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     message: {
       type: String,
       required: true
+    },
+    html: {
+      type: String,
+      defualts: false
     },
     error: {
       type: Boolean,
@@ -23131,7 +23142,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   setup: function setup() {
-    var show = (0,vue_demi__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
+    var show = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
     return {
       show: show
     };
@@ -27822,12 +27833,19 @@ var _hoisted_2 = {
 var _hoisted_3 = {
   "class": "fs-5 fw-bold"
 };
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "ml-3"
+}, null, -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return $setup.show ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [$props.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[$props.error ? 'alert-danger' : 'alert-success'], "alert alert-rounded justify-content-between"])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.message), 1
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.message) + " ", 1
   /* TEXT */
-  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  ), _hoisted_4]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     role: "button",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $setup.show = !$setup.show;

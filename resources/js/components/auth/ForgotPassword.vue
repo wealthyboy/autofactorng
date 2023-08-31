@@ -3,21 +3,10 @@
 
     <form action="" class="mb-0" method="post" @submit.prevent="forgotPassword">
         <div class="form-floating mb-3">
-            <general-input
-                :error="v$.email"
-                v-model="form.email"
-                id="email"
-                name="Email"
-                type="email"
-            />
+            <general-input :error="v$.email" v-model="form.email" id="email" name="Email" type="email" />
         </div>
 
-        <general-button
-            type="submit"
-            :text="text"
-            class="btn btn-dark w-100 p-3"
-            :loading="loading"
-        />
+        <general-button type="submit" :text="text" class="btn btn-dark w-100 p-3" :loading="loading" />
     </form>
 </template>
 
@@ -44,6 +33,8 @@ export default {
         const loading = ref(false);
         const text = ref("Submit");
         const message = ref(null);
+        const html = ref(null);
+
         const error = ref(null);
 
         const form = reactive({
@@ -79,11 +70,17 @@ export default {
                 })
                 .catch((err) => {
                     loading.value = !loading.value;
-                    message.value = "Error processing your request";
+                    if (typeof err.response.data !== 'undefined' && err.response.data.message == 'The given data was invalid') {
+                        message.value = "You do not have an account with us.  ";
+                        html.value = "<a href='/regiater'>Click here to register</a>"
+                    }
+
                     error.value = true;
                 });
         }
-        return { form, v$, forgotPassword, loading, text, message, error };
+        return { form, v$, forgotPassword, loading, text, message, error, html };
+
+
     },
 };
 </script>

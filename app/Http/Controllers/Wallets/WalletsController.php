@@ -136,11 +136,12 @@ class WalletsController extends Table
             $subscribe = Subscribe::where('user_id', $user->id)->first();
 
             $dt = Carbon::now();
+            $year = $dt->addYear();
 
             if (null !== $subscribe) {
                 $subscribe->user_id = $user->id;
                 $subscribe->starts_at = $dt;
-                $subscribe->ends_at = $dt->addYear();
+                $subscribe->ends_at = $year;
                 $subscribe->sent_expiry = false;
 
                 $subscribe->plan = session('plan');
@@ -149,7 +150,7 @@ class WalletsController extends Table
                 $subscribe = new Subscribe;
                 $subscribe->user_id = $user->id;
                 $subscribe->starts_at = $dt;
-                $subscribe->ends_at = $dt->addYear();
+                $subscribe->ends_at = $year;
                 $subscribe->sent_expiry = false;
 
                 $subscribe->plan = session('plan');
@@ -160,7 +161,7 @@ class WalletsController extends Table
             $auto_credit['plan'] = session('plan');
             $auto_credit['amount'] =  $original_amount;
             $auto_credit['credit'] =  $amount;
-            $auto_credit['expiry'] = $dt->addYear()->format('d/m/y');
+            $auto_credit['expiry'] = $year->format('d/m/y');
             $user->notify(new AutoCreditNotification($user, $auto_credit));
         }
 
