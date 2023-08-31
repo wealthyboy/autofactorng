@@ -1,5 +1,5 @@
 <template>
-    <message v-if="resMessage" :error="error" :message="resMessage" />
+    <message v-if="resMessage" :error="error" :message="resMessage" :html="html" />
 
     <form action="" class="mb-0" method="post" @submit.prevent="forgotPassword">
         <div class="form-floating mb-3">
@@ -71,12 +71,16 @@ export default {
                 .catch((err) => {
                     loading.value = !loading.value;
                     resMessage.value = err.response.data.message
+                    error.value = true;
+
                     if (typeof err.response.data !== 'undefined' && err.response.data.message == 'The given data was invalid.') {
                         resMessage.value = "You do not have an account with us.  ";
                         html.value = "<a href='/regiater'>Click here to register</a>"
                     }
 
-                    error.value = true;
+                    resMessage.value = "Error processing your request"
+
+
                 });
         }
         return { form, v$, forgotPassword, loading, text, resMessage, error, html };
