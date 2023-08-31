@@ -70,6 +70,7 @@ export default {
                 })
                 .catch((err) => {
                     loading.value = !loading.value;
+                    console.log(err.response.data)
                     if (typeof err.response.data !== 'undefined' && err.response.data.message == 'The given data was invalid') {
                         message.value = "You do not have an account with us.  ";
                         html.value = "<a href='/regiater'>Click here to register</a>"
