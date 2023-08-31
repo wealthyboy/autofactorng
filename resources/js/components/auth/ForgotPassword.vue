@@ -77,8 +77,6 @@ export default {
                     loading.value = !loading.value;
                     resMessage.value = err.response.data.message
                     error.value = true;
-
-
                     if (typeof err.response.data !== 'undefined' && err.response.data.errors.email == 'We can\'t find a user with that email address.') {
                         resMessage.value = "You do not have an account with us.  ";
                         html.value = "<a href='/register'>Click here to register</a>"
@@ -87,8 +85,6 @@ export default {
 
                     resMessage.value = "Error processing your request"
                     html.value = null
-
-
                 });
         }
         return { form, v$, forgotPassword, deleteMessage, loading, text, resMessage, error, html };
