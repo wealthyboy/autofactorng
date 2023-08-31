@@ -23154,7 +23154,7 @@ __webpack_require__.r(__webpack_exports__);
     var show = (0,vue_demi__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
 
     var showMessage = function showMessage() {
-      emit('delete');
+      emit('delete-message');
     };
 
     return {

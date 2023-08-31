@@ -25,7 +25,7 @@ export default {
     setup(props) {
         const show = ref(true);
         const showMessage = () => {
-            emit('delete')
+            emit('delete-message')
         }
 
         return {
