@@ -1,5 +1,5 @@
 <template>
-    <message :error="error" :message="resMessage" />
+    <message v-if="resMessage" :error="error" :message="resMessage" />
 
     <form action="" class="mb-0" method="post" @submit.prevent="forgotPassword">
         <div class="form-floating mb-3">
