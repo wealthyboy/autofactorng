@@ -49,9 +49,8 @@ class ChangePasswordController extends Controller
             $request->user()->fill([
                 'password' => Hash::make($request->password)
             ])->save();
-
+            //event(new ChangePassword($request->user()));
             $user->notify(new PasswordConfirmationNotification($user));
-
 
             return response()->json([
                 'message' => 'Password updated'
