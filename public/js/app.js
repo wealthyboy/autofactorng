@@ -21739,7 +21739,6 @@ __webpack_require__.r(__webpack_exports__);
         error.value = false;
       })["catch"](function (err) {
         loading.value = !loading.value;
-        resMessage.value = err.response.data.message;
         error.value = true;
 
         if (typeof err.response.data !== 'undefined' && err.response.data.errors.email == 'We can\'t find a user with that email address.') {

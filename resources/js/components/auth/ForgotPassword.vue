@@ -75,7 +75,6 @@ export default {
                 })
                 .catch((err) => {
                     loading.value = !loading.value;
-                    resMessage.value = err.response.data.message
                     error.value = true;
                     if (typeof err.response.data !== 'undefined' && err.response.data.errors.email == 'We can\'t find a user with that email address.') {
                         resMessage.value = "You do not have an account with us.  ";
