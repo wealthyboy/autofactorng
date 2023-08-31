@@ -2,7 +2,7 @@
     <div>
         <div v-if="message" class="">
             <div :class="[error ? 'alert-danger' : 'alert-success']" class="alert alert-rounded justify-content-between">
-                <div class="fs-5 fw-bold">{{ resMessage }} <span class="ml-3" v-html="html"></span> </div>
+                <div class="fs-5 fw-bold">{{ message }} <span class="ml-3" v-html="html"></span> </div>
                 <div>
                     <span role="button" @click="showMessage" class="material-symbols-outlined">
                         close
@@ -22,7 +22,7 @@ export default {
         error: { type: Boolean, required: true, defualts: false },
     },
     emits: ['delete-message'],
-    setup(props) {
+    setup(props, { emit }) {
         const show = ref(true);
         const showMessage = () => {
             emit('delete-message')
