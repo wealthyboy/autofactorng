@@ -23144,19 +23144,23 @@ __webpack_require__.r(__webpack_exports__);
       defualts: false
     }
   },
-  setup: function setup() {
+  setup: function setup(props) {
     var show = (0,vue_demi__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
+    var resMessage = (0,vue_demi__WEBPACK_IMPORTED_MODULE_0__.ref)(props.message);
 
     var showMessage = function showMessage() {
       show.value = !show.value;
-      setInterval(function () {
+      var s = setInterval(function () {
         show.value = true;
+        resMessage.value = null;
       }, 2000);
+      clearInterval(s);
     };
 
     return {
       show: show,
-      showMessage: showMessage
+      showMessage: showMessage,
+      resMessage: resMessage
     };
   }
 });
@@ -27849,9 +27853,9 @@ var _hoisted_3 = {
 };
 var _hoisted_4 = ["innerHTML"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return $setup.show ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [$props.message ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  return $setup.show ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [$setup.resMessage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([[$props.error ? 'alert-danger' : 'alert-success'], "alert alert-rounded justify-content-between"])
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.message) + " ", 1
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.resMessage) + " ", 1
   /* TEXT */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "ml-3",
