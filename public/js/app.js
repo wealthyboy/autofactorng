@@ -21735,6 +21735,7 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_1___default().post("/password/reset/link", form).then(function (res) {
         loading.value = !loading.value;
         resMessage.value = "A link has been to your email inbox or  spam.";
+        html.value = null;
         error.value = false;
       })["catch"](function (err) {
         loading.value = !loading.value;

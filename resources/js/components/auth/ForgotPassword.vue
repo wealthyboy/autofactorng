@@ -70,6 +70,7 @@ export default {
                 .then((res) => {
                     loading.value = !loading.value;
                     resMessage.value = "A link has been to your email inbox or  spam.";
+                    html.value = null
                     error.value = false;
                 })
                 .catch((err) => {
