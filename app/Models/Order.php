@@ -93,6 +93,7 @@ class Order extends Model
 
 
 			foreach ($carts   as $cart) {
+
 				$insert = [
 					'order_id' => $order->id,
 					'product_id' => $cart->product_id,
