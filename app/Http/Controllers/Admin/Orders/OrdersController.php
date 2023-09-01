@@ -153,12 +153,12 @@ class OrdersController extends Table
 			}
 
 			if (!$request->filled('percentage_type')) {
-				$total =  array_sum($total) + $shipping;
+				$total =  array_sum($total) + $shipping  + $heavy_or_large_item;
 			}
 
 			//dd($total);
 
-			$order->total = is_array($total) ? array_sum($total)  : $total + $heavy_or_large_item;
+			$order->total = is_array($total) ? array_sum($total)  : $total
 			$order->save();
 
 
