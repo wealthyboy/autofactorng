@@ -85,6 +85,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'phone_number' => $data['phone_number']
         ]);
+
         $coupon = new Voucher;
         $coupon->code =  str_random(6);
         $coupon->user_id = $user->id;
