@@ -21747,6 +21747,11 @@ __webpack_require__.r(__webpack_exports__);
           return;
         }
 
+        if (typeof err.response.data !== 'undefined' && err.response.data.errors.email == 'Please wait before retrying.') {
+          resMessage.value = "You do not have an account with us.  ";
+          return;
+        }
+
         resMessage.value = "Error processing your request";
         html.value = null;
       });
