@@ -83,7 +83,7 @@ export default {
                     }
 
                     if (typeof err.response.data !== 'undefined' && err.response.data.errors.email == 'Please wait before retrying.') {
-                        resMessage.value = "You do not have an account with us.  ";
+                        resMessage.value = "Please wait before retrying. ";
                         return
                     }
 
