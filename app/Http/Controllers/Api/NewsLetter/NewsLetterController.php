@@ -20,9 +20,8 @@ class NewsLetterController extends Controller
      *
      * @return void
      */
-    public function __construct(Request $request, NewsletterContract $newsletter)
+    public function __construct(Request $request)
     {
-        $this->newsletter = $newsletter;
     }
 
     /**
