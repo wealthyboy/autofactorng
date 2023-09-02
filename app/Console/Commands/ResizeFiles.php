@@ -41,6 +41,9 @@ class ResizeFiles extends Command
     {
         $path = public_path('images/prodcts');
         $files = File::allFiles($path);
-        dd($files);
+        foreach ($files as $file) {
+            echo $file . '<br/>';
+        }
+        //dd($files);
     }
 }
