@@ -99,24 +99,24 @@ class RegisterController extends Controller
 
         try {
 
-            $Mailchimp = new Mailchimp(config('services.mailchimp.secret'));
-            $Mailchimp_Lists = new Mailchimp_Lists($Mailchimp);
+            // $Mailchimp = new Mailchimp(config('services.mailchimp.secret'));
+            // $Mailchimp_Lists = new Mailchimp_Lists($Mailchimp);
 
-            $Mailchimp_Lists->subscribe(
-                config('services.mailchimp.list'),
-                'email_address' => $data['email']),
-                array('FNAME' => 'jacob', 'LNAME' => 'asaAS'),   // Set the first name and last name for the new subscriber.
+            // $Mailchimp_Lists->subscribe(
+            //     config('services.mailchimp.list'),
+            //     'email_address' => $data['email']),
+            //     array('FNAME' => 'jacob', 'LNAME' => 'asaAS'),   // Set the first name and last name for the new subscriber.
 
-            );
+            // );
 
 
             $email = $data['email'];
             $list_id = config('services.mailchimp.list');
             $api_key = config('services.mailchimp.secret');
 
-            $data_center = substr($api_key,strpos($api_key,'-')+1);
+            $data_center = substr($api_key, strpos($api_key, '-') + 1);
 
-            $url = 'https://'. $data_center .'.api.mailchimp.com/3.0/lists/'. $list_id .'/members';
+            $url = 'https://' . $data_center . '.api.mailchimp.com/3.0/lists/' . $list_id . '/members';
 
             $json = json_encode([
                 'email_address' => $email,
@@ -139,7 +139,7 @@ class RegisterController extends Controller
                 if (200 == $status_code) {
                     echo "The user added successfully to the Mailchimp.";
                 }
-            } catch(Exception $e) {
+            } catch (Exception $e) {
                 echo $e->getMessage();
             }
         } catch (UserAlreadySubscribedException $e) {
