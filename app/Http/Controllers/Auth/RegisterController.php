@@ -99,7 +99,7 @@ class RegisterController extends Controller
 
 
         try {
-            $client = new  Mailchimp;
+            $client = new  Mailchimp(config('services.mailchimp.secret'));
 
             (new MailChimpNewsletter($client))->subscribe(
                 config('services.mailchimp.list'),
