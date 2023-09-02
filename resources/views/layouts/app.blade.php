@@ -466,7 +466,7 @@
             .then((response) => {
                form.addClass('d-none')
                console.log(response.message)
-               $('#s-messge').removeClass('d-none').html(response.message)
+               $('#s-messge').removeClass('d-none').html("Thanks for subscribing")
                setInterval(() => {
                   form.removeClass('d-none')
                   $('#s-messge').addClass('hide').html()
