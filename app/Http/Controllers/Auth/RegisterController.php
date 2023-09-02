@@ -105,7 +105,7 @@ class RegisterController extends Controller
             $Mailchimp_Lists->subscribe(
                 config('services.mailchimp.list'),
                 $data['email'],
-                null,   // Set the first name and last name for the new subscriber.
+                array('FNAME' => 'jacob', 'EMAIL' => $data['email'], 'LNAME' => 'asaAS'),   // Set the first name and last name for the new subscriber.
                 'text',    // Specify the e-mail message type: 'html' or 'text'
                 FALSE,     // Set double opt-in: If this is set to TRUE, the user receives a message to confirm they want to be added to the list.
                 TRUE
