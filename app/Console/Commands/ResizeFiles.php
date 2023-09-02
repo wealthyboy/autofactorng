@@ -41,16 +41,16 @@ class ResizeFiles extends Command
     {
         $path = public_path('images/prodcts');
         $files = File::allFiles($path);
-        $canvas = \Image::canvas(600, 600);
 
         foreach ($files as $file) {
-
+            $canvas = \Image::canvas(600, 600);
             $image  = \Image::make($file)->resize(600, 600, function ($constraint) {
                 $constraint->aspectRatio();
             });
+            $file =  basename($file);
             $canvas->insert($image, 'center');
             $canvas->save(
-                public_path('images/products/l/' . basename($file))
+                public_path('images/products/l/' . $file)
             );
 
             //echo  basename($file);
