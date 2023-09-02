@@ -28,7 +28,7 @@
 <body>
    <div id="app" class="page-wrapper">
 
-     
+
       <header class="header ">
          <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
             <div class=" d-none d-lg-block d-xl-block w-100">
@@ -43,7 +43,7 @@
                         <img src="https://autofactor.ng/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
                      </a>
                   </div>
-                 
+
                   <!-- End .header-left -->
 
                   <div class="header-right w-lg-max">
@@ -112,15 +112,15 @@
                   </div>
                   @auth
                   <div class="position-relative  me-s">
-                        <a href="tel:{{optional($system_settings)->store_phone }}" class="d-flex flex-column align-items-center no-hover text-black" title="account">
+                     <a href="tel:{{optional($system_settings)->store_phone }}" class="d-flex flex-column align-items-center no-hover text-black" title="account">
                         <span class="material-symbols-outlined display-3">
                            phone
-                           </span>
-                           <span class="header-right-icons  cart-text fs-5">
-                              Call 
-                           </span>
-                        </a>
-                     </div>
+                        </span>
+                        <span class="header-right-icons  cart-text fs-5">
+                           Call
+                        </span>
+                     </a>
+                  </div>
                   <div class="position-relative  me-s">
                      <a href="/account" class="d-flex flex-column align-items-center" title="account">
                         <span class="material-symbols-outlined display-2">
@@ -136,16 +136,16 @@
 
                   @guest
                   <div class="position-relative  me-s">
-                  <a href="tel:{{optional($system_settings)->store_phone }}" class="d-flex flex-column align-items-center no-hover text-black" title="account">
+                     <a href="tel:{{optional($system_settings)->store_phone }}" class="d-flex flex-column align-items-center no-hover text-black" title="account">
                         <span class="material-symbols-outlined display-3">
                            phone
-                           </span>
-                           <span class="header-right-icons  cart-text fs-5">
-                              Call 
-                           </span>
-                        </a>
-                     </div>
-                     <div class="position-relative ">
+                        </span>
+                        <span class="header-right-icons  cart-text fs-5">
+                           Call
+                        </span>
+                     </a>
+                  </div>
+                  <div class="position-relative ">
 
                      <a href="/login" class="d-flex flex-column align-items-center" title="account">
                         <span class="material-symbols-outlined display-3">
@@ -199,7 +199,7 @@
 
 
                      <div class="menu-i   menu-i  w-25 ms-5">
-                        <add-vehicle  :years="{{ $yrs }}"></add-vehicle>
+                        <add-vehicle :years="{{ $yrs }}"></add-vehicle>
                      </div>
 
 
@@ -209,7 +209,7 @@
                         <a href="/video-tips" role="button" class="w-100 mb-0 border-0">
                            <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
                               <span class="material-symbols-outlined">
-                              <i class="bi bi-camera-video fs-1"></i>
+                                 <i class="bi bi-camera-video fs-1"></i>
                               </span>
                               <div class="align-self-center fw-bold  fs-5">Video Tips</div>
                               <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
@@ -242,9 +242,9 @@
                <div class="menu-i w-50  d-flex add-a-vehicle justify-content-evenly align-items-center border">
                   <a href="/video-tips" role="button" class="w-100  ">
                      <div class="d-flex add-a-vehicle justify-content-evenly align-items-center">
-                     
+
                         <span class="">
-                        <i class="bi bi-camera-video fs-1"></i></span>
+                           <i class="bi bi-camera-video fs-1"></i></span>
                         <div class="align-self-center fw-bold ">Video Tips</div>
 
                         <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
@@ -268,7 +268,7 @@
          <modal-search></modal-search>
       </main>
 
-     
+
 
 
       <!-- End .main -->
@@ -285,10 +285,11 @@
                      </div>
                   </div>
                   <div class="col-12 col-lg-5 offset-lg-1">
+                     <h1 id="s-messge" class="text-white  fs-3 mb-sm-3"></h1>
                      <form method="POST" id="n-letter" class="mb-0 ">
                         <div class="row g-0">
                            <div class="row g-0">
-                              <div class="col-8"><input type="text" class="form-control b rounded-0 email coupon-i" placeholder="Enter  your email" required=""></div>
+                              <div class="col-8"><input id="email" type="text" class="form-control b rounded-0 email coupon-i" placeholder="Enter  your email" required=""></div>
                               <div class="col-4 coupon-i">
                                  <button class="btn btn-sm w-100 rounded-0  bg-main bold fs-3 text-white" type="submit"><!--v-if-->
                                     <span class="spinner-border spinner-border-sm n-spinner d-none" role="status" aria-hidden="true"></span>
@@ -350,7 +351,7 @@
 
          </div>
          <!-- End .container -->
-</div>
+      </div>
       <!-- End .footer -->
    </div>
 
@@ -455,6 +456,7 @@
          let email = $(this).serialize()
          let spinner = $(".n-spinner")
          spinner.removeClass('d-none')
+         let form = $(this)
 
 
          axios
@@ -462,9 +464,16 @@
                email: $('.email').val()
             })
             .then((response) => {
+               form.addClass('d-none')
+               form.removeClass('d-none')
+               setInterval(() => {
+                  form.removeClass('d-none')
+                  $('#s-messge').addClass('hide').html()
+               }, 3000)
                spinner.addClass('d-none')
             })
             .catch((error) => {
+               $(this).removeClass('d-none')
                spinner.addClass('d-none')
             });
 
