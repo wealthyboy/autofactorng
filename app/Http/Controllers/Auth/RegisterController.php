@@ -112,7 +112,7 @@ class RegisterController extends Controller
             'email_address' => $email,
             'status'        => 'subscribed', //pass 'subscribed' or 'pending'
             'merge_fields'  => [
-                'FNAME' =>  $data['name'],
+                'FNAME' =>  $data['first_name'],
                 'LNAME' =>  $data['last_name']
             ]
         ]);
