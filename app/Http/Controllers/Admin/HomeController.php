@@ -19,6 +19,8 @@ use App\Models\Wallet;
 use App\Models\WalletBalance;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+
 
 
 
@@ -40,6 +42,14 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
+        // $products =  $products =  Product::whereHas('categories', function ($query) use ($request) {
+        //     $query->where('categories.slug', 'spare-parts-suspension-parts');
+
+        // })->orderBy('created_at', 'desc')->get();
+
+        $path = public_path('images/prodcts');
+        $files = File::allFiles($path);
+        dd($files);
 
         $top_selling_product = OrderedProduct::select('product_id')
             ->groupBy('product_id')
