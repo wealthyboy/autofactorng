@@ -97,9 +97,14 @@ class RegisterController extends Controller
             'phone_number' => $data['phone_number']
         ]);
 
-
         try {
-            $client = new  Mailchimp(config('services.mailchimp.secret'));
+            $client = new  Mailchimp(
+                config('services.mailchimp.secret'),
+                array('FNAME' => 'jacob', 'LNAME' => 'asa'),   // Set the first name and last name for the new subscriber.
+                'text',    // Specify the e-mail message type: 'html' or 'text'
+                FALSE,     // Set double opt-in: If this is set to TRUE, the user receives a message to confirm they want to be added to the list.
+                TRUE
+            );
 
             (new MailChimpNewsletter($client))->subscribe(
                 config('services.mailchimp.list'),
