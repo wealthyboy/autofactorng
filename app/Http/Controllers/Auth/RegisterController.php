@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
+use App\Services\Newsletter\Contracts\NewsletterContract;
+use App\Services\Newsletter\Exceptions\UserAlreadySubscribedException;
 
 class RegisterController extends Controller
 {
@@ -35,14 +37,20 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+
+    public $newsletter;
+
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(NewsletterContract $newsletter)
     {
         $this->middleware('guest');
+
+        $this->newsletter = $newsletter;
     }
 
     /**
@@ -85,6 +93,17 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'phone_number' => $data['phone_number']
         ]);
+
+
+        try {
+            $this->newsletter->subscribe(
+                config('services.mailchimp.list'),
+                $data['email']
+            );
+        } catch (UserAlreadySubscribedException $e) {
+            //dd($e->getMessage());
+        }
+
 
         $coupon = new Voucher;
         $coupon->code =  str_random(6);
