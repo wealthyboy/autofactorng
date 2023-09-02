@@ -49,7 +49,7 @@ class HomeController extends Controller
 
         $path = public_path('images/prodcts');
         $files = File::allFiles($path);
-        dd($files);
+        //dd($files);
 
         $top_selling_product = OrderedProduct::select('product_id')
             ->groupBy('product_id')
