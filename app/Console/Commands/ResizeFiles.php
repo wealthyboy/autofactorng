@@ -44,6 +44,5 @@ class ResizeFiles extends Command
         foreach ($files as $file) {
             echo  basename($file);
         }
-        //dd($files);
     }
 }
