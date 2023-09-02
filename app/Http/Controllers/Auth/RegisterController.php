@@ -14,6 +14,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use App\Services\Newsletter\Contracts\NewsletterContract;
 use App\Services\Newsletter\Exceptions\UserAlreadySubscribedException;
+use App\Services\Newsletter\MailChimpNewsletter;
+use Mailchimp;
+
 
 class RegisterController extends Controller
 {
@@ -46,11 +49,11 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct(NewsletterContract $newsletter)
+    public function __construct()
     {
         $this->middleware('guest');
 
-        $this->newsletter = $newsletter;
+        // $this->newsletter = $newsletter;
     }
 
     /**
@@ -96,7 +99,9 @@ class RegisterController extends Controller
 
 
         try {
-            $this->newsletter->subscribe(
+            $client = new  Mailchimp;
+
+            (new MailChimpNewsletter($client))->subscribe(
                 config('services.mailchimp.list'),
                 $data['email']
             );
