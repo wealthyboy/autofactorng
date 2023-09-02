@@ -93,7 +93,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'noreply@autofactorng.com'),
-        'name' => env('MAIL_FROM_NAME', 'AutofactorNg'),
+        'name' => env('MAIL_FROM_NAME', 'AutofactorNG')
     ],
 
     /*
