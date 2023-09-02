@@ -102,6 +102,8 @@ class RegisterController extends Controller
             $Mailchimp = new Mailchimp(config('services.mailchimp.secret'));
             $Mailchimp_Lists = new Mailchimp_Lists($Mailchimp);
 
+            return config('services.mailchimp.list');
+
 
             $Mailchimp_Lists->subscribe(
                 config('services.mailchimp.list'),
