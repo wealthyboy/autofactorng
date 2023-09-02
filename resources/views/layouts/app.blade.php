@@ -465,7 +465,7 @@
             })
             .then((response) => {
                form.addClass('d-none')
-               form.removeClass('d-none')
+               $('#s-messge').removeClass('d-none').html(response.message)
                setInterval(() => {
                   form.removeClass('d-none')
                   $('#s-messge').addClass('hide').html()
