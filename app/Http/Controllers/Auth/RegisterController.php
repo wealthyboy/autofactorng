@@ -99,7 +99,7 @@ class RegisterController extends Controller
 
         try {
 
-            $Mailchimp = new Mailchimp(config('services.mailchimp.secret'),);
+            $Mailchimp = new Mailchimp(config('services.mailchimp.secret'));
             $Mailchimp_Lists = new Mailchimp_Lists($Mailchimp);
 
 
