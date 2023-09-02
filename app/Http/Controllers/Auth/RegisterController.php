@@ -16,7 +16,7 @@ use App\Services\Newsletter\Contracts\NewsletterContract;
 use App\Services\Newsletter\Exceptions\UserAlreadySubscribedException;
 use App\Services\Newsletter\MailChimpNewsletter;
 use Mailchimp;
-
+use Mailchimp_Lists;
 
 class RegisterController extends Controller
 {
@@ -98,17 +98,18 @@ class RegisterController extends Controller
         ]);
 
         try {
-            $client = new  Mailchimp(
-                config('services.mailchimp.secret'),
+
+            $Mailchimp = new Mailchimp(config('services.mailchimp.secret'),);
+            $Mailchimp_Lists = new Mailchimp_Lists($Mailchimp);
+
+
+            $Mailchimp_Lists->subscribe(
+                config('services.mailchimp.list'),
+                $data['email'],
                 array('FNAME' => 'jacob', 'LNAME' => 'asa'),   // Set the first name and last name for the new subscriber.
                 'text',    // Specify the e-mail message type: 'html' or 'text'
                 FALSE,     // Set double opt-in: If this is set to TRUE, the user receives a message to confirm they want to be added to the list.
                 TRUE
-            );
-
-            (new MailChimpNewsletter($client))->subscribe(
-                config('services.mailchimp.list'),
-                $data['email']
             );
         } catch (UserAlreadySubscribedException $e) {
             //dd($e->getMessage());
