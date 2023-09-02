@@ -44,7 +44,7 @@ class ResizeFiles extends Command
 
         foreach ($files as $file) {
             $canvas = \Image::canvas(600, 600);
-            $image  = \Image::make($file)->resize(600, 600, function ($constraint) {
+            $image = \Image::make($file)->resize(600, 600, function ($constraint) {
                 $constraint->aspectRatio();
             });
             $file =  basename($file);
