@@ -285,7 +285,7 @@
                      </div>
                   </div>
                   <div class="col-12 col-lg-5 offset-lg-1">
-                     <h1 id="s-messge" class="text-white  fs-3 mb-sm-3">Thanks for subscribing</h1>
+                     <h1 id="s-messge" class="text-white  fs-3 mb-sm-3"></h1>
                      <form method="POST" id="n-letter" class="mb-0 ">
                         <div class="row g-0">
                            <div class="row g-0">
@@ -478,8 +478,6 @@
                spinner.addClass('d-none')
             });
 
-         quickbooks_accounts
-         marketplace_id,
 
 
       })
