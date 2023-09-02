@@ -97,6 +97,8 @@ class RegisterController extends Controller
             'phone_number' => $data['phone_number']
         ]);
 
+        dd($data['email']);
+
         try {
 
             $Mailchimp = new Mailchimp(config('services.mailchimp.secret'));
