@@ -47,13 +47,11 @@ class ResizeFiles extends Command
             $image = \Image::make($file)->resize(600, 600, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $file =  basename($file);
+            $file = basename($file);
             $canvas->insert($image, 'center');
             $canvas->save(
                 public_path('images/products/l/' . $file)
             );
-
-            //echo  basename($file);
         }
     }
 }

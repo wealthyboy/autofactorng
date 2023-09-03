@@ -464,6 +464,7 @@
                email: $('.email').val()
             })
             .then((response) => {
+               $('.email').val('')
                form.addClass('d-none')
                $('#s-messge').removeClass('d-none').html("Thanks for subscribing")
                setInterval(() => {
