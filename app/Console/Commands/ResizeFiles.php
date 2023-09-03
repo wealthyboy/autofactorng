@@ -50,7 +50,7 @@ class ResizeFiles extends Command
             $image = \Image::make($file->getPathname())->resize(600, 600, function ($constraint) {
                 $constraint->aspectRatio();
             });
-            $file = basename($file->getFilename());
+            $file = $file->getFilename();
             $canvas->insert($image, 'center');
             $canvas->save(
                 public_path('images/products/l/' . $file)
