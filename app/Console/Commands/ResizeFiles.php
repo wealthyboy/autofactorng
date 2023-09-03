@@ -45,16 +45,24 @@ class ResizeFiles extends Command
         $canvas = \Image::canvas(600, 600);
 
         foreach ($files as $file) {
+            //  dd($file->getPathname());
+            if (!file_exists(public_path('images/products/l/' . $file->getFilename()))) {
+                if (file_exists(public_path('images/prodcts/' . $file->getFilename())))
+                    File::move(
+                        public_path('images/prodcts/' . $file->getFilename()),
 
+                        public_path('images/products/l/' . $file->getFilename())
+                    );
+            }
             // dd($file->getPathname());
-            $image = \Image::make($file->getPathname())->resize(600, 600, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-            $file = $file->getFilename();
-            $canvas->insert($image, 'center');
-            $canvas->save(
-                public_path('images/products/l/' . $file)
-            );
+            // $image = \Image::make($file->getPathname())->resize(600, 600, function ($constraint) {
+            //     $constraint->aspectRatio();
+            // });
+            // $file = $file->getFilename();
+            // $canvas->insert($image, 'center');
+            // $canvas->save(
+            //     public_path('images/products/l/' . $file)
+            // );
         }
     }
 }
