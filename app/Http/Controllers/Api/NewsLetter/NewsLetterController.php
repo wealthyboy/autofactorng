@@ -63,7 +63,7 @@ class NewsLetterController extends Controller
 
         $json = json_encode([
             'email_address' => $email,
-            'status'        => 'subscribed', //pass 'subscribed' or 'pending'
+            'status' => 'subscribed', //pass 'subscribed' or 'pending'
         ]);
 
         try {
@@ -79,6 +79,7 @@ class NewsLetterController extends Controller
             $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
         } catch (\Exception $e) {
+            dd($e);
             return response()->json(
                 [
                     'message' => $e->getMessage()
