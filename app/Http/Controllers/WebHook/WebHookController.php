@@ -80,7 +80,7 @@ class WebHookController extends Controller
 
     public function gitHub()
     {
-        $output =  shell_exec('sh /home/forge/autofactor.ng/deploy.sh');
+        $output =  shell_exec('sh /var/www/autofactorng.com/deploy.sh');
         return  $output;
     }
 
