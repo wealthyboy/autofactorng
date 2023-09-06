@@ -31,7 +31,7 @@ class PermissionsController extends Table
      */
     public function index()
     {
-        User::canTakeAction(User::canAccessPermissions);
+        // User::canTakeAction(User::canAccessPermissions);
         $permissions = $this->getColumnListings(request(), Permission::paginate(100));
         return view('admin.permissions.index', compact('permissions'));
     }
@@ -103,7 +103,6 @@ class PermissionsController extends Table
         $permission->name = $request->name;
         $permission->code = implode('', $request->code);
         $permission->save();
-        // Log Activity
         $activity->put(" Created new permission called {$request->name}");
         return redirect()->route('permissions.index');
     }
