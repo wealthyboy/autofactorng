@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Customers;
 
 use App\DataTable\Table;
+use App\Exports\CustomerExport;
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use Illuminate\Http\Request;
@@ -20,7 +21,6 @@ class CustomersController extends Table
     public $deleted_names = 'email';
 
     public $link = '/admin/customers';
-
 
     public $deleted_specific = 'user with emails';
 
@@ -72,7 +72,6 @@ class CustomersController extends Table
     public function show($id)
     {
         $user = User::find($id);
-        // dd($user);
         return view('admin.customers.show', compact('user', 'id'));
     }
 
@@ -106,7 +105,8 @@ class CustomersController extends Table
             'search' => true,
             'add' => false,
             'destroy' => true,
-            'export' => true
+            'export' => true,
+            'export_name' => 'CustomerExport'
         ];
     }
 
