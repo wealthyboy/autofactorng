@@ -32,7 +32,7 @@ class UsersController extends Table
 	/* display all users in the database */
 	public function index(Request $request)
 	{
-		User::canTakeAction(User::canAccessUsers);
+		User::canTakeAction(User::canAccessAdminUsers);
 		$users = User::admin()->paginate(30);
 		$users = $this->getColumnListings($request, $users);
 		return view('admin.users.index', compact('users'));

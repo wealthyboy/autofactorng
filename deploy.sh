@@ -14,7 +14,7 @@ git pull origin master --no-edit
 #git pull origin master
 
 # Install/update composer dependecies
-#composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
 # Run database migrations
 php artisan migrate --force
