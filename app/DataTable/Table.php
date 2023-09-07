@@ -166,11 +166,14 @@ abstract class Table extends Controller
     protected function buildSearch(Builder $builder, Request $request)
     {
         //$queryParts = $this->resolveQueryParts($request->operator, $request->value);
-        $query =  $this->builder()->where(function (Builder $query) use ($request) {
+        $term = '%' . $request->gq . '%';
+
+        $query =  $this->builder()->where(function (Builder $query) use ($request, $term) {
             $query->where('id', 'like', '%' . $request->gq . '%');
             foreach ($this->getDatabaseColumnNames() as $key => $value) {
-                $query->orWhere($value, 'like', '%' . $request->gq . '%');
+                $query->orWhere($value, 'like', $term);
             }
+            $query->orWhereRaw("concat(fname, ' ', last_name) LIKE ?", [$term]);
         });
 
         if ($request->filled('key')) {
