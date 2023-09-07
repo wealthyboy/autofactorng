@@ -126,10 +126,6 @@
                                 </a>
                             </td>
 
-
-
-
-
                             <td class="text-xs font-weight-normal">
                                 <a href="{{  route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null  ]) }}" rel="tooltip" class="" data-original-title="" title="Edit">
                                     <span class="material-symbols-outlined text-secondary position-relative text-lg">redo</span>
