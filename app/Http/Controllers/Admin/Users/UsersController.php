@@ -33,7 +33,7 @@ class UsersController extends Table
 	public function index(Request $request)
 	{
 		User::canTakeAction(User::canAccessAdminUsers);
-		dd(true);
+		dd($request->user()->users_permission->load('permission'));
 		$users = User::admin()->paginate(30);
 		$users = $this->getColumnListings($request, $users);
 		return view('admin.users.index', compact('users'));
