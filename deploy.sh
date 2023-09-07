@@ -4,7 +4,7 @@ cd /var/www/autofactorng.com
 
 php artisan down || true
 
-git pull origin master
+git pull origin master --no-edit
 
 # Turn on maintenance mode
 
