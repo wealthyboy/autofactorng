@@ -173,7 +173,10 @@ abstract class Table extends Controller
             foreach ($this->getDatabaseColumnNames() as $key => $value) {
                 $query->orWhere($value, 'like', $term);
             }
-            $query->orWhereRaw("concat(name, ' ', last_name) LIKE ?", [$term]);
+
+            if (in_array('name', $this->getDatabaseColumnNames()) &&  in_array('last_name', $this->getDatabaseColumnNames())) {
+                $query->orWhereRaw("concat(name, ' ', last_name) LIKE ?", [$term]);
+            }
         });
 
         if ($request->filled('key')) {
