@@ -188,8 +188,6 @@ abstract class Table extends Controller
                 ->appends(request()->all());
         }
 
-
-
         // return $this->builder()->where($request->column, $queryParts['operator'], $queryParts['value']);
     }
 
