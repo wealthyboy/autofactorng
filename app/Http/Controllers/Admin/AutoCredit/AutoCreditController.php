@@ -25,7 +25,7 @@ class AutoCreditController extends Table
 	/* display all users in the database */
 	public function index(Request $request)
 	{
-		User::canTakeAction(User::canAccessUsers);
+		//User::canTakeAction(User::canAccessUsers);
 		$subcribers = Subscribe::paginate(30);
 		$subcribers = $this->getColumnListings($request, $subcribers);
 		return view('admin.credits.index', compact('subcribers'));

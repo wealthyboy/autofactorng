@@ -32,7 +32,7 @@ class UsersController extends Table
 	/* display all users in the database */
 	public function index(Request $request)
 	{
-		//User::canTakeAction(User::canAccessUsers);
+		User::canTakeAction(User::canAccessUsers);
 		$users = User::admin()->paginate(30);
 		$users = $this->getColumnListings($request, $users);
 		return view('admin.users.index', compact('users'));
@@ -67,7 +67,7 @@ class UsersController extends Table
 
 	public function create(Request $request)
 	{
-		//User::canTakeAction(User::canCreate);
+		User::canTakeAction(User::canCreate);
 		$permissions = Permission::get();
 		return view('admin.users.create', compact('permissions'));
 	}
