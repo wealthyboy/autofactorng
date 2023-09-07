@@ -23,6 +23,7 @@ abstract class Table extends Controller
 
     public $builder;
 
+    public $exportName;
 
     public $deleted_specific = 'products';
 

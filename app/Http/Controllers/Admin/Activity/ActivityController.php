@@ -72,7 +72,9 @@ class ActivityController extends Table
 			'add' => false,
 			'destroy' => true,
 			'export' => true,
-			'order' => false
+			'order' => false,
+			'export_name' => 'ActivityExport'
+
 		];
 	}
 }

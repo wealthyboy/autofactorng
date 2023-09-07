@@ -221,7 +221,9 @@ class ProductController extends Table
             'add' => true,
             'destroy' => true,
             'export' => true,
-            'product' => true
+            'product' => true,
+            'export_name' => 'ProductsExport'
+
         ];
     }
 

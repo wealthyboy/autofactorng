@@ -249,7 +249,8 @@ class OrdersController extends Table
 			'delete' => false,
 			'destroy' => true,
 			'export' => true,
-			'order' => true
+			'order' => true,
+			'export_name' => 'OrdersExport'
 		];
 	}
 

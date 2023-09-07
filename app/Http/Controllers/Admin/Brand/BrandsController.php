@@ -94,7 +94,9 @@ class BrandsController extends Table
 			'search' => true,
 			'add' => true,
 			'destroy' => true,
-			'export' => false
+			'export' => false,
+			'export_name' => 'BrandExport'
+
 		];
 	}
 
