@@ -2,6 +2,7 @@
 
 namespace App\Exports;
 
+use App\Models\Activity;
 use App\Models\Customer;
 use App\Models\CustomerWarehouse;
 use App\Models\User;
@@ -12,13 +13,10 @@ class CustomerExport extends Exporter
   public function headings(): array
   {
     return [
-      'Customer ID',
-      'Customer Since',
-      'First Name',
-      'Last Name',
-      'Phone',
-      'Email',
-      'Lead',
+      "Id",
+      "User",
+      "Activity",
+      "Date Added",
     ];
   }
 
@@ -26,22 +24,20 @@ class CustomerExport extends Exporter
   {
     ini_set('memory_limit', -1);
     // $items = data_get($this->filter, 'items', []);
-    $query = User::query();
+    $query = Activity::query();
     // if (!data_get($this->filter, 'all_items')) {
     //   $query->whereIn('customer_id', $items);
     // }
 
-    $users = $query->get();
+    $activities = $query->get();
 
-    return $users->map(function (User $user) {
+    return $activities->map(function (Activity $activity) {
 
       return [
-        $user->id,
-        Carbon::parse($user->created_at)->format('m-d-Y'),
-        $user->first_name,
-        $user->last_name,
-        $user->phone_number,
-        $user->email,
+        $activity->id,
+        optional($activity->user)->name,
+        $activity->action,
+        $activity->created_at->format('d-m-y'),
       ];
     });
   }
