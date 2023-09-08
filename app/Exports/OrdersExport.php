@@ -9,7 +9,7 @@ use App\Models\Order;
 use App\Models\User;
 use Carbon\Carbon;
 
-class OrderExport extends Exporter
+class OrdersExport extends Exporter
 {
     public function headings(): array
     {
