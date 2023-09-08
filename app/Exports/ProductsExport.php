@@ -8,7 +8,7 @@ use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
 
-class CustomerExport extends Exporter
+class ProductsExport extends Exporter
 {
   public function headings(): array
   {

@@ -328,9 +328,6 @@ class ProductController extends Table
         $product->note = $request->note;
         $product->slug = str_slug($name);
         $product->in_stock = 1;
-
-
-
         $product->price =  $request->price;
         $product->sale_price =   $request->sale_price;
         $product->sale_price_starts = $request->sale_price_starts;
