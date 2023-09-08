@@ -38,9 +38,8 @@ class CustomerExport extends Exporter
       return [
         $user->id,
         Carbon::parse($user->created_at)->format('m-d-Y'),
-        $user->first_name,
+        $user->name,
         $user->last_name,
-
         $user->phone_number,
         $user->email,
       ];
