@@ -15,7 +15,7 @@ class ExportsController extends Controller
      */
     public function index(Request $request)
     {
-        $class =  $request->model;
+        $class =  '\\App\\Exports\\' . $request->model;
         $filename =  $request->name;
         return Excel::download(new $class(), $filename,  \Maatwebsite\Excel\Excel::CSV);
     }
