@@ -12,7 +12,7 @@
             @endif
 
             @if ( isset($models['unique']['export']) && $models['unique']['export'])
-            <a href="/admin/export?model={{$models['unique']['export_name']}}" class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv" type="button" name="button">Export</a>
+            <a href="/admin/export?model={{$models['unique']['export_name']}}&name={{$name}}" class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv" type="button" name="button">Export</a>
             @endif
         </div>
     </div>

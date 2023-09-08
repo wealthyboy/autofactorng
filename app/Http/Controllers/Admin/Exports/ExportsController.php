@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Exports;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ExportsController extends Controller
 {
@@ -14,8 +15,9 @@ class ExportsController extends Controller
      */
     public function index(Request $request)
     {
-        dd(true);
-        return Excel::download(new $class($filter), $filename,  \Maatwebsite\Excel\Excel::CSV);
+        $class =  $request->model;
+        $filename =  $request->name;
+        return Excel::download(new $class(), $filename,  \Maatwebsite\Excel\Excel::CSV);
     }
 
     /**
