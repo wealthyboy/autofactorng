@@ -10,9 +10,9 @@ class Exporter implements FromCollection, WithHeadings
 {
     protected $filter;
 
-    public function __construct($filter)
+    public function __construct()
     {
-        $this->filter = $filter;
+        // $this->filter = $filter;
     }
 
     public function collection()
