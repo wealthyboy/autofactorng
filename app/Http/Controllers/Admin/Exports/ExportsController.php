@@ -12,9 +12,10 @@ class ExportsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        dd(true);
+        return Excel::download(new $class($filter), $filename,  \Maatwebsite\Excel\Excel::CSV);
     }
 
     /**

@@ -21,6 +21,8 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
     Route::get('/', 'Admin\HomeController@index')->name('admin_home');
+    Route::get('/export', 'Admin\Exports\ExportsController@index');
+
     Route::get('/maintainance/mode', 'Admin\Live\LiveController@index')->name('maintainance');
     Route::get('live', 'Admin\Live\LiveController@activate');
     Route::resource('activities', 'Admin\Activity\ActivityController', ['names' => 'admin.activities']);
