@@ -223,7 +223,6 @@ class ProductController extends Table
             'export' => true,
             'product' => true,
             'export_name' => 'ProductsExport'
-
         ];
     }
 
@@ -642,8 +641,6 @@ class ProductController extends Table
         foreach ($request->year_to as $attribute_id => $year) {
             if ($year) {
                 $product_years = MakeModelYearEngine::where(['attribute_id' => $attribute_id, 'product_id' => $product->id])->get();
-
-
                 foreach ($product_years as $product_year) {
                     $product_year->year_to = $year;
                     $product_year->save();

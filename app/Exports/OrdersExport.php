@@ -42,7 +42,6 @@ class OrdersExport extends Exporter
 
 
         return $orders->map(function (Order $order) {
-
             return [
                 $order->id,
                 $order->invoice,

@@ -213,7 +213,7 @@ class Order extends Model
 					"Invoice" => $order->invoice,
 					"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
 					"Email" => $order->email,
-					"Payment Type" =>  $order->payment_type,
+					"Payment Type" => $order->payment_type,
 					"Type" => $order->order_type,
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 					"Total" => Helper::currencyWrapper($order->total),
