@@ -13,17 +13,12 @@
    <meta name="description" content="Autofactor">
    <meta name="author" content="">
 
-   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
    <!-- Favicon -->
    <!-- <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.png"> -->
    <!-- Main CSS File -->
 
    <link rel="stylesheet" href="/css/app.css">
-
-
-
-
    <!-- Google tag (gtag.js) -->
    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZEG8EJ1VC"></script>
    <script>
