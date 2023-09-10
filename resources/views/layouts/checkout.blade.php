@@ -49,12 +49,12 @@
                     <div class="header-left col-lg-2 w-auto pl-0">
 
                         <a href="/" class="logo">
-                            <img src="https://autofactor.ng/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
+                            <img src="https://autofactorng.com/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
                         </a>
                     </div>
 
                     <div class="header-right w-lg-max">
-                       
+
                         <div class="dropdown cart-dropdown">
                         </div>
                         <!-- End .dropdown -->
