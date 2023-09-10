@@ -210,7 +210,6 @@
                               <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" class="ms-2" alt="" srcset="">
                               <div class="text-xs">Close</div>
                            </span>
-
                         </a>
                      </div>
 
@@ -460,7 +459,6 @@
 
    <!-- Plugins JS File -->
    <script src="/js/jquery.min.js"></script>
-   <script src="/js/app.js"></script>
 
 
    @yield('page-scripts')
