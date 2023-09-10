@@ -54,7 +54,7 @@
                         <span class="mt-3 fs-5">Menu</span>
                      </button>
                      <a href="/" class="logo">
-                        <img src="https://autofactor.ng/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
+                        <img src="https://autofactorng.com/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
                      </a>
                   </div>
 
@@ -114,7 +114,7 @@
                      <span class=" fs-5">Menu</span>
                   </button>
                   <a href="/" class="logo ms-4">
-                     <img src="https://autofactor.ng/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
+                     <img src="https://autofactorng.com/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
                   </a>
 
                   <div class="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0"></div>
