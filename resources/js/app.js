@@ -3,9 +3,7 @@ require('./bootstrap');
 window.Vue = require('vue');
 import { createApp } from "vue";
 import store from './store'
-import VModal from 'vue-js-modal'
 
-import 'vue-js-modal/dist/styles.css'
 
 
 
@@ -94,5 +92,5 @@ app.use(store)
 app.mount('#app');
 
 window.addEventListener('popstate', () => {
-   // location.reload()
- })
+    // location.reload()
+})
