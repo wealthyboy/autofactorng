@@ -101,6 +101,8 @@ Route::get('/notification', function () {
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/test', [App\Http\Controllers\HomeController::class, 'test']);
+
 Route::get('plans', [App\Http\Controllers\Plans\PlansController::class, 'index']);
 Route::get('subscribe', [App\Http\Controllers\Subscribe\SubscribeController::class, 'index']);
 Route::get('checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'index']);
@@ -146,6 +148,7 @@ Route::get('checkout', 'Checkout\CheckoutController@index')->name('checkout');
 Route::post('checkout/confirm', 'Checkout\CheckoutController@confirm');
 
 Route::post('checkout/coupon', 'Checkout\CheckoutController@coupon');
+
 
 
 
