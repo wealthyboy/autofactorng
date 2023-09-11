@@ -2,9 +2,9 @@
     <div class="position-relative me-3">
         <a href="javascript:void(0)" title="Cart" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false" data-display="static" class="d-flex flex-column align-items-center cart-toggle">
-            <img src="/images/utils/shopping-cart.sv" alt="" srcset="">
-
-
+            <span class="material-symbols-outlined display-5 d-none d-lg-block d-xl-block">
+                shopping_cart
+            </span>
             <span class="material-symbols-outlined display-3    d-md-block d-lg-none d-sm-block">
                 shopping_cart
             </span>
