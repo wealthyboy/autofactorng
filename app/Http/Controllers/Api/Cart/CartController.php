@@ -80,7 +80,7 @@ class CartController  extends Controller
 					'id' => $cart->id,
 					'product_id' => $cart->product_id,
 					'product' => $cart->product,
-					'image' => optional($cart->product)->image_tn,
+					'image' => optional($cart->product)->image_m,
 					'quantity' => $cart->quantity,
 					'price' => Cart::ConvertCurrencyRate($cart->price),
 					'currency' => optional($cart->product)->currency,
