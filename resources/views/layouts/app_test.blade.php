@@ -175,7 +175,8 @@
                         @endguest
 
 
-
+                        <div class="dropdown cart-dropdown">
+                        </div>
                         <!-- End .dropdown -->
 
 
@@ -188,15 +189,64 @@
                 <!-- End .container -->
             </div>
             <!-- End .header-middle -->
+            @include('_partials.nav_categories')
+
+            <div class="header-bottom sticky-header d-none d-lg-block" data-sticky-options="{'mobile': false}">
+                <div class="container-fluid">
+                    <nav class="main-nav w-100 ">
+                        <div class="d-flex align-items-center">
+                            <div class="menu-icon">
+
+                                <a data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0 border-0" role="button">
+                                    <span class="menu-open d-flex flex-column align-items-center">
+                                        <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="" class="ms-1" srcset="">
+                                        <div class="">Menu</div>
+                                    </span>
+
+                                    <span class="menu-close d-none d-flex flex-column align-items-center">
+                                        <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" class="ms-2" alt="" srcset="">
+                                        <div class="text-xs">Close</div>
+                                    </span>
+                                </a>
+                            </div>
 
 
+                            <div class="menu-i   menu-i  w-25 ms-5">
+                                <add-vehicle :years="{{ $yrs }}"></add-vehicle>
+                            </div>
+
+
+
+                            <div class="menu-i menu-i  w-25 me-5">
+                                <a href="/video-tips" role="button" class="w-100 mb-0 border-0">
+                                    <div class="d-flex add-a-vehicle justify-content-evenly align-content-center">
+                                        <span class="material-symbols-outlined">
+                                            <i class="bi bi-camera-video fs-1"></i>
+                                        </span>
+                                        <div class="align-self-center fw-bold  fs-5">Video Tips</div>
+                                        <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- End .container -->
+            </div>
+            <!-- End .header-bottom -->
+            <div class="container-fluid   d-md-block d-lg-none d-sm-block">
+            </div>
 
 
 
             <div class="container-fluid   d-md-block d-lg-none d-sm-block">
 
                 <div class="d-flex w-100">
+                    <div class="menu-i w-50 me-1">
 
+                        <button class="nav-btn  w-100 mb-0 py-4 bg-transparent  border">
+                        </button>
+                    </div>
 
 
                     <div class="menu-i w-50  d-flex add-a-vehicle justify-content-evenly align-items-center border">
@@ -224,6 +274,7 @@
 
         <main class="main">
             @yield('content')
+            <modal-search></modal-search>
         </main>
 
 
@@ -268,7 +319,9 @@
                 <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
                 <div class="container-fluid bg-dark">
                     <div class="footer-middle mt-5">
-
+                        <div class="">
+                            @include('layouts.footer.desktop_footer')
+                        </div>
                     </div><!-- End .footer-middle -->
 
                     <div class="mobile-footer text-center  d-block d-sm-none">
@@ -327,7 +380,49 @@
             <nav class="mobile-nav">
                 <div class="d-flex  border-bottom px-4  justify-content-between"></div>
 
+                <div class="accordion accordion-flush" id="accordionNav">
+                    @foreach( $global_categories as $category)
 
+                    <div class="accordion-item">
+                        <h2 class="accordion-header mb-0 py-3" id="flush-heading{{$category->id}}">
+                            <button class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $category->id }}" aria-expanded="false" aria-controls="flush-collapse{{ $category->id }}">
+                                {{ $category->name }}
+                            </button>
+                        </h2>
+                        <div id="flush-collapse{{ $category->id }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ $category->id}}" data-bs-parent="#accordionNav">
+                            <div class="accordion-body">
+
+                                @if ($category->children->count())
+                                <ul>
+                                    @foreach( $category->children as $category)
+                                    <li class="py-2">
+                                        <a href="{{  $category->link ? $category->link : '/products/'.$category->slug }}?t={{time()}}">
+
+                                            {{ $category->name }}
+                                        </a>
+
+                                    </li>
+                                    @endforeach
+                                </ul>
+                                @else
+                                <ul>
+                                    <li class="py-3">
+                                        <a href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}?t={{time()}}">
+                                            All {{ $category->name }}
+                                        </a>
+
+                                    </li>
+                                </ul>
+                                @endif
+
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+
+
+
+                </div>
 
             </nav>
             <!-- End .mobile-nav -->
