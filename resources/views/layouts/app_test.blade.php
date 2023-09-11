@@ -101,7 +101,6 @@
 
 
                             <div class="dropdown cart-dropdown">
-                                <cart-side-bar></cart-side-bar>
                             </div>
                             <!-- End .dropdown -->
                         </div>
@@ -329,49 +328,7 @@
             <nav class="mobile-nav">
                 <div class="d-flex  border-bottom px-4  justify-content-between"></div>
 
-                <div class="accordion accordion-flush" id="accordionNav">
-                    @foreach( $global_categories as $category)
 
-                    <div class="accordion-item">
-                        <h2 class="accordion-header mb-0 py-3" id="flush-heading{{$category->id}}">
-                            <button class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ $category->id }}" aria-expanded="false" aria-controls="flush-collapse{{ $category->id }}">
-                                {{ $category->name }}
-                            </button>
-                        </h2>
-                        <div id="flush-collapse{{ $category->id }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ $category->id}}" data-bs-parent="#accordionNav">
-                            <div class="accordion-body">
-
-                                @if ($category->children->count())
-                                <ul>
-                                    @foreach( $category->children as $category)
-                                    <li class="py-2">
-                                        <a href="{{  $category->link ? $category->link : '/products/'.$category->slug }}?t={{time()}}">
-
-                                            {{ $category->name }}
-                                        </a>
-
-                                    </li>
-                                    @endforeach
-                                </ul>
-                                @else
-                                <ul>
-                                    <li class="py-3">
-                                        <a href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}?t={{time()}}">
-                                            All {{ $category->name }}
-                                        </a>
-
-                                    </li>
-                                </ul>
-                                @endif
-
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-
-
-
-                </div>
 
             </nav>
             <!-- End .mobile-nav -->
@@ -401,7 +358,6 @@
 
     <!-- Plugins JS File -->
     <script src="/js/jquery.min.js"></script>
-    <script src="/js/app.js?id={{ rand(1,2000)}}"></script>
 
 
     @yield('page-scripts')
