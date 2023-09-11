@@ -4,7 +4,6 @@
 @import "../assets/css/style.min.css";
 @import "~bootstrap-icons/font/bootstrap-icons";
 @import "../assets/vendor/fontawesome-free/css/all.min.css";
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
 
 @font-face {
     font-family: AutofactorBold;
@@ -83,12 +82,12 @@ h6 {
     font-size: 2.3rem;
 }
 
-.bold{
+.bold {
     font-weight: 700;
     font-family: AutofactorBold, sans-serif !important;
 }
 
-.semi-bold{
+.semi-bold {
     font-family: AutofactorMedium, sans-serif !important;
 }
 
@@ -96,8 +95,8 @@ a {
     text-decoration: none !important;
 }
 
-a{
-    color: #202124 ;
+a {
+    color: #202124;
     text-decoration: none !important;
 }
 
@@ -114,7 +113,7 @@ a{
 
 
 
-.badge-circle{
+.badge-circle {
     color: #fff !important;
 }
 
@@ -135,11 +134,11 @@ div#offcanvas {
     z-index: 1000;
 }
 
-span.header-right-icons{
+span.header-right-icons {
     margin-top: -9px;
 }
 
-.member-heading{
+.member-heading {
     margin-right: 20rem !important;
 }
 
@@ -286,11 +285,14 @@ label.container {
     /* opacity: 0; */
     transition: .5s ease;
     /* background-color: brown; */
-    background-color: rgba(0,0,0,0.7);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
-.product-desc ul  { padding: 0 !important; }
-    .product-desc ul li {
+.product-desc ul {
+    padding: 0 !important;
+}
+
+.product-desc ul li {
     padding: 10px;
 }
 
@@ -304,24 +306,24 @@ label.container {
 .owl-theme .owl-dots {
     position: relative;
     top: -30px;
-    
+
     max-width: 119px !important;
     margin-left: auto !important;
     margin-right: auto !important;
 }
 
-.prod-thumbnail .owl-item{
+.prod-thumbnail .owl-item {
     width: 89px !important;
 }
 
 @media (max-width:500px) {
 
-    .cta-simple{
+    .cta-simple {
         padding: 0px 0px;
     }
 }
 
-.fit-string{
+.fit-string {
     width: 100%;
     background-color: #fff;
     border: none;
@@ -330,7 +332,7 @@ label.container {
     border-radius: 4px;
 }
 
-.v-line{
+.v-line {
     background: #e5e5e5;
     width: 1px;
     height: 35px;
@@ -353,7 +355,7 @@ label.container {
 }
 
 
-.image-category{
+.image-category {
     max-width: 120px;
     width: 124px;
     height: 124px;
@@ -367,17 +369,17 @@ label.container {
     transform: skewX(-30deg);
 }
 
-.accordion-button:not(.collapsed){
+.accordion-button:not(.collapsed) {
     background-color: #fff !important;
     color: #000;
 }
 
-.accordion-button:focus{
+.accordion-button:focus {
     border-color: none !important;
     box-shadow: none !important;
 }
 
-.accordion-button{
+.accordion-button {
     font-size: 1.7rem !important;
 }
 
@@ -386,7 +388,7 @@ label.container {
     border: 1px solid #e5e5e5;
 }
 
-.cart-input{
+.cart-input {
     width: 84px;
     height: 40px;
     text-align: center;
@@ -400,40 +402,49 @@ td .cart-input {
 }
 
 
-.coupon-button{
+.coupon-button {
     height: 46px;
- }
+}
 
 
 
-.coupon-i{
-   height: 99%;
+.coupon-i {
+    height: 99%;
 }
 
 
 
 /* Target all Apple devices with a pixel ratio of 2 or higher */
 @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+
     /* Your CSS styles here */
     /* For example: */
-    .coupon-i{
+    .coupon-i {
         height: 92% !important;
     }
-  }
+}
 
-.form-floating > .form-control:focus, .form-floating > .form-control:not(:placeholder-shown), .form-floating > .form-control-plaintext:focus, .form-floating > .form-control-plaintext:not(:placeholder-shown) {
+.form-floating>.form-control:focus,
+.form-floating>.form-control:not(:placeholder-shown),
+.form-floating>.form-control-plaintext:focus,
+.form-floating>.form-control-plaintext:not(:placeholder-shown) {
     padding-top: 2rem;
     padding-bottom: 0.625rem;
 }
-.form-floating > .form-control, .form-floating > .form-control-plaintext {
+
+.form-floating>.form-control,
+.form-floating>.form-control-plaintext {
     padding: 1rem 0.75rem;
 }
-.form-floating > .form-control, .form-floating > .form-control-plaintext, .form-floating > .form-select {
+
+.form-floating>.form-control,
+.form-floating>.form-control-plaintext,
+.form-floating>.form-select {
     height: calc(4.5rem + 2px);
     line-height: 1.25;
 }
 
-.form-floating > label {
+.form-floating>label {
     padding: 1.3rem 0.75rem;
 }
 
@@ -458,7 +469,7 @@ td .cart-input {
     z-index: 0;
 }
 
-select#floatingSelect{
+select#floatingSelect {
     height: 4.65rem !important;
 }
 
@@ -466,19 +477,19 @@ select#floatingSelect{
     list-style-type: disc !important;
 }
 
-textarea:focus, 
-textarea.form-control:focus, 
-input.form-control:focus, 
-input[type=text]:focus, 
-input[type=password]:focus, 
-input[type=email]:focus, 
-input[type=number]:focus, 
-[type=text].form-control:focus, 
-[type=password].form-control:focus, 
-[type=email].form-control:focus, 
-[type=tel].form-control:focus, 
+textarea:focus,
+textarea.form-control:focus,
+input.form-control:focus,
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus,
+input[type=number]:focus,
+[type=text].form-control:focus,
+[type=password].form-control:focus,
+[type=email].form-control:focus,
+[type=tel].form-control:focus,
 [contenteditable].form-control:focus {
-  box-shadow: none !important;
+    box-shadow: none !important;
 }
 
 
@@ -488,8 +499,7 @@ footer a {
 
 
 @media (min-width:576px) {
-    .coverlay {
-    }
+    .coverlay {}
 }
 
 .mobile-nav .dropdown-menu.show {
