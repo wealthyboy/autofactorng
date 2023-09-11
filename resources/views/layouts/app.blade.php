@@ -19,7 +19,7 @@
    <!-- <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.png"> -->
    <!-- Main CSS File -->
 
-   <link rel="stylesheet" href="/css/app.css">
+   <link rel="stylesheet" href="/css/app.css?id={{ rand(1,2000)}}">
 
 
    <!-- Google tag (gtag.js) -->
@@ -459,7 +459,7 @@
 
    <!-- Plugins JS File -->
    <script src="/js/jquery.min.js"></script>
-   <script src="/js/app.js"></script>
+   <script src="/js/app.js?id={{ rand(1,2000)}}"></script>
 
 
    @yield('page-scripts')
