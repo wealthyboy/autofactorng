@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app_test')
 
 @section('content')
 @include('_partials.top_banner')
