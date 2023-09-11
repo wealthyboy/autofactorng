@@ -25,12 +25,9 @@ mix.styles(
     "public/css/admin.css"
 );
 
-mix.scripts(
-    [
-        "resources/js/main.js",
-    ],
-    "public/js/script.js"
-);
+mix.js("resources/js/scripts.js", "public/js");
+
+
 
 mix.scripts(
     [
