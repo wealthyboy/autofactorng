@@ -1,15 +1,14 @@
 
 try {
-    require('bootstrap')
-    require('../assets/js/optional/isotope.pkgd.min.js')
-    require('../assets/js/plugins.min.js')
-    require('../assets/js/jquery.appear.min.js')
-    require('../assets/js/nouislider.min.js')
-    require('../assets/js/main.min.js')
+
 
 } catch (e) {
 
 }
+
+window.axios = require('axios');
+
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 
 
