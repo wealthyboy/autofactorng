@@ -19,6 +19,7 @@
     <!-- <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.png"> -->
     <!-- Main CSS File -->
 
+    <link rel="stylesheet" href="/css/app.css?id={{ rand(1,2000)}}">
 
 
     <!-- Google tag (gtag.js) -->
@@ -100,6 +101,7 @@
 
 
                             <div class="dropdown cart-dropdown">
+                                <cart-side-bar></cart-side-bar>
                             </div>
                             <!-- End .dropdown -->
                         </div>
@@ -176,6 +178,7 @@
 
 
                         <div class="dropdown cart-dropdown">
+                            <cart-side-bar></cart-side-bar>
                         </div>
                         <!-- End .dropdown -->
 
@@ -216,6 +219,7 @@
                             </div>
 
 
+                            <product-search class="mx-5"></product-search>
 
                             <div class="menu-i menu-i  w-25 me-5">
                                 <a href="/video-tips" role="button" class="w-100 mb-0 border-0">
@@ -235,6 +239,7 @@
             </div>
             <!-- End .header-bottom -->
             <div class="container-fluid   d-md-block d-lg-none d-sm-block">
+                <product-search></product-search>
             </div>
 
 
@@ -245,6 +250,7 @@
                     <div class="menu-i w-50 me-1">
 
                         <button class="nav-btn  w-100 mb-0 py-4 bg-transparent  border">
+                            <add-vehicle></add-vehicle>
                         </button>
                     </div>
 
@@ -266,6 +272,7 @@
 
         </header>
 
+        <make-message></make-message>
 
 
 
@@ -452,7 +459,8 @@
 
     <!-- Plugins JS File -->
     <script src="/js/jquery.min.js"></script>
-
+    <script src="/js/script.js?id={{ rand(1,2000)}}"></script>
+    <script src="/js/app.js?id={{ rand(1,2000)}}"></script>
 
     @yield('page-scripts')
     <script type="text/javascript">

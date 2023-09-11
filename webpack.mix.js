@@ -27,6 +27,13 @@ mix.styles(
 
 mix.scripts(
     [
+        "resources/js/main.js",
+    ],
+    "public/js/script.js"
+);
+
+mix.scripts(
+    [
         "resources/admin_assets/js/core/popper.min.js",
         "resources/admin_assets/js/core/bootstrap.min.js",
         "resources/admin_assets/js/plugins/perfect-scrollbar.min.js",
