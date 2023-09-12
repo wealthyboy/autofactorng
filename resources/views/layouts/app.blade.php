@@ -20,6 +20,9 @@
    <!-- Main CSS File -->
 
    <link rel="stylesheet" href="/css/app.css?id={{ rand(1,2000)}}">
+   <!-- Plugins JS File -->
+   <script src="/js/jquery.min.js"></script>
+   <script src="/js/scripts.js?id={{ rand(1,2000)}}"></script>
 
 
    <!-- Google tag (gtag.js) -->
@@ -457,9 +460,7 @@
 
    <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
 
-   <!-- Plugins JS File -->
-   <script src="/js/jquery.min.js"></script>
-   <script src="/js/scripts.js?id={{ rand(1,2000)}}"></script>
+
    <script src="/js/app.js?id={{ rand(1,2000)}}"></script>
 
    @yield('page-scripts')
