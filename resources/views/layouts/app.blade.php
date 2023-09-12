@@ -177,6 +177,7 @@
 
 
                   <div class="dropdown cart-dropdown">
+
                      <cart-side-bar></cart-side-bar>
                   </div>
                   <!-- End .dropdown -->
