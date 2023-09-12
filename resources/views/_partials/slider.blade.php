@@ -8,7 +8,8 @@
             'autoplay':true,
             'autoplayTimeout':3500,
             'autoplayHoverPause':true,
-            'responsiveClass':true
+            'responsiveClass':true,
+            'lazyLoad': true
 
         }">
          @foreach($sliders as $key => $slider)
@@ -16,7 +17,7 @@
          <div class="banner banner3 {{ $slider->device }}">
             <a href="{{ $slider->link }}" class="d-block">
                <figure>
-                  <img  src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
+                  <img data-src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
                </figure>
             </a>
          </div>
@@ -39,7 +40,7 @@
          <div class="banner banner3  {{ $slider->device }}   d-md-block">
             <a href="{{ $slider->link }}" class="d-block">
                <figure>
-                  <img  src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
+                  <img data-src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
                </figure>
             </a>
          </div>
@@ -50,7 +51,7 @@
 
 <div class="col-lg-3  d-none d-lg-block  d-xl-block  ">
    <div class="banner banner3">
-      <a  class="d-block">
+      <a class="d-block">
          <figure>
             <img class="img-fluid" src="/images/utils/ensure11.jpg" style="background:#f6e1e8;" alt="banner" />
          </figure>

@@ -459,6 +459,7 @@
 
    <!-- Plugins JS File -->
    <script src="/js/jquery.min.js"></script>
+   <script src="/js/scripts.js?id={{ rand(1,2000)}}"></script>
    <script src="/js/app.js?id={{ rand(1,2000)}}"></script>
 
    @yield('page-scripts')
