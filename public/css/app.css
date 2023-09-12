@@ -11613,7 +11613,7 @@ body {
     overflow-x: hidden;
 }
 
-body:not(.loaded)>:not(.loading-overlay) {
+/* body:not(.loaded)>:not(.loading-overlay) {
     visibility: hidden !important;
     transition: none !important
 }
@@ -11621,7 +11621,7 @@ body:not(.loaded)>:not(.loading-overlay) {
 body:not(.loaded)>:not(.loading-overlay) * {
     visibility: hidden !important;
     transition: none !important
-}
+} */
 
 ::-moz-selection {
     background-color: #000;
@@ -11754,10 +11754,10 @@ body.modal-open {
     z-index: 999999
 }
 
-.loaded>.loading-overlay {
+/* .loaded>.loading-overlay {
     opacity: 0;
     visibility: hidden
-}
+} */
 
 .bounce-loader {
     position: absolute;
