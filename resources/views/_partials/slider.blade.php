@@ -1,5 +1,8 @@
 <div class="col-md-12 col-lg-9">
-   <section class="p-0">
+   <section style="background:#f6e1e8; height: 450px;">
+
+   </section>
+   <section class="p-0 d-none">
 
       <div class="owl-carousel owl-theme show-nav-hover slide-animate d-none  d-lg-block d-xl-block" data-owl-options="{
            'dots': true,
