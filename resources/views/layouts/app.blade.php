@@ -469,8 +469,12 @@
       @yield('inline-scripts')
 
       $(function() {
-         $('.slider-loader').addClass('d-none')
-         $('.slider-section').removeClass('d-none')
+
+
+         setInterval(() => {
+            $('.slider-loader').addClass('d-none')
+            $('.slider-section').removeClass('d-none')
+         }, 3000)
       });
 
       $('#n-letter').on('submit', function(e) {
