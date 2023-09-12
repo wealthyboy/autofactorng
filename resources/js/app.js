@@ -19,6 +19,8 @@ import Products from "./components/products/Index";
 import Show from "./components/products/Show";
 import Reviews from "./components/products/Reviews";
 import CartSideBar from "./components/cart/CartSideBarMenu";
+import TestSideBar from "./components/cart/TestCart";
+
 import Login from "./components/auth/Login";
 import ResetPassword from "./components/auth/ResetPassword";
 
@@ -54,6 +56,8 @@ const app = createApp({})
 app.component('ProductsItems', Products)
 app.component('Show', Show)
 app.component('CartSideBar', CartSideBar)
+app.component('TestSideBar', TestSideBar)
+
 
 app.component('CheckoutIndex', CheckoutIndex)
 app.component('Login', Login)

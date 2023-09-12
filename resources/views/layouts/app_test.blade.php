@@ -101,7 +101,7 @@
 
 
                             <div class="dropdown cart-dropdown">
-                                <cart-side-bar></cart-side-bar>
+                                <test-side-bar></test-side-bar>
                             </div>
                             <!-- End .dropdown -->
                         </div>

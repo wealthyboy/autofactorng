@@ -22,9 +22,6 @@
    <link rel="stylesheet" href="/css/app.css?id={{ rand(1,2000)}}">
    <script src="/js/jquery.min.js"></script>
    <script src="/js/scripts.js?id={{ rand(1,2000)}}"></script>
-
-
-
    <!-- Google tag (gtag.js) -->
    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZEG8EJ1VC"></script>
    <script>
@@ -34,7 +31,6 @@
          dataLayer.push(arguments);
       }
       gtag('js', new Date());
-
       gtag('config', 'G-BZEG8EJ1VC');
    </script>
 
@@ -114,7 +110,7 @@
             <div class="container-fluid w-100  d-md-block d-lg-none d-sm-block">
 
 
-               <div class="header-lefts   d-flex justify-content-between align-items-center w-100">
+               <div class="header-lefts  d-flex justify-content-between align-items-center w-100">
                   <button class="mobile-menu-toggler  no-hover mr-2 d-flex flex-column align-items-center display-3" type="button">
                      <i class="fas fa-bars"></i>
                      <span class=" fs-5">Menu</span>
