@@ -471,10 +471,10 @@
       $(function() {
 
 
-         setInterval(() => {
-            $('.slider-loader').addClass('d-none')
-            $('.slider-section').removeClass('d-none')
-         }, 3000)
+
+         $('.slider-loader').addClass('d-none')
+         $('.slider-section').removeClass('d-none')
+
       });
 
       $('#n-letter').on('submit', function(e) {
