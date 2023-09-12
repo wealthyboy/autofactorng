@@ -1,5 +1,5 @@
 <div class="col-md-12 col-lg-9">
-   <section class="slider-loader" style="background:#f6e1e8; height: 450px;">
+   <section class="slider-loader" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%); height: 450px;">
 
    </section>
    <section class="p-0  slider-section d-none">
