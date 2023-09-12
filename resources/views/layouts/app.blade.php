@@ -138,10 +138,10 @@
                      </a>
                   </div>
                   <div class="position-relative  me-s">
-                     <a href="/account" class="d-flex flex-column align-items-center" title="account">
-                        <span class="material-symbols-outlined display-2">
-                           person
-                        </span>
+                     <a href="/account" class="d-flex flex-column align-items-center user" title="account">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                           <path d="M480.159-502Q395-502 336.5-561 278-620 278-704.5T336.341-847q58.34-58 143.5-58Q565-905 623.5-847.112 682-789.225 682-704q0 84-58.341 143-58.34 59-143.5 59ZM114-86v-159q0-46.774 23.789-84.467Q161.578-367.161 201-387q66-34 136.174-51t142.541-17Q554-455 624-438t135 50q39.422 19.693 63.211 57.111Q846-293.472 846-245.055V-86H114Z" />
+                        </svg>
                         <span class="header-right-icons  fs-5">
                            Account
                         </span>
@@ -163,10 +163,10 @@
                   </div>
                   <div class="position-relative ">
 
-                     <a href="/login" class="d-flex flex-column align-items-center" title="account">
-                        <span class="material-symbols-outlined display-3">
-                           person
-                        </span>
+                     <a href="/login" class="d-flex flex-column align-items-center user" title="account">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                           <path d="M480.159-502Q395-502 336.5-561 278-620 278-704.5T336.341-847q58.34-58 143.5-58Q565-905 623.5-847.112 682-789.225 682-704q0 84-58.341 143-58.34 59-143.5 59ZM114-86v-159q0-46.774 23.789-84.467Q161.578-367.161 201-387q66-34 136.174-51t142.541-17Q554-455 624-438t135 50q39.422 19.693 63.211 57.111Q846-293.472 846-245.055V-86H114Z" />
+                        </svg>
                         <span class="header-right-icons   fs-5">
                            Sign In
                         </span>

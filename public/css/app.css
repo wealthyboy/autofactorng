@@ -43205,7 +43205,8 @@ input.search-products {
   font-size: 14px;
 }
 
-.cart-toggle svg {
+.cart-toggle svg,
+.user svg {
   height: 3rem;
   width: 3rem;
   margin-bottom: 5px;
