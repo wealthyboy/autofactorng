@@ -468,8 +468,8 @@
       @yield('inline-scripts')
 
       $(function() {
-         $('slider-loader').addClass('d-none')
-         $('slider-section').removeClass('d-none')
+         $('.slider-loader').addClass('d-none')
+         $('.slider-section').removeClass('d-none')
       });
 
       $('#n-letter').on('submit', function(e) {
