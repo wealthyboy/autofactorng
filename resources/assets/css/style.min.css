@@ -10908,7 +10908,7 @@ body {
     overflow-x: hidden;
 }
 
-body:not(.loaded)>:not(.loading-overlay) {
+/* body:not(.loaded)>:not(.loading-overlay) {
     visibility: hidden !important;
     transition: none !important
 }
@@ -10916,7 +10916,7 @@ body:not(.loaded)>:not(.loading-overlay) {
 body:not(.loaded)>:not(.loading-overlay) * {
     visibility: hidden !important;
     transition: none !important
-}
+} */
 
 ::-moz-selection {
     background-color: #000;
