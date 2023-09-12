@@ -1,13 +1,7 @@
 <div class="col-md-12 col-lg-9">
    <section class="slider-loader" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%); height: 450px;">
 
-      <div class="banner banner3 {{ $sliders[0]->device }}">
-         <a href="{{ $sliders[0]->link }}" class="d-block">
-            <figure>
-               <img src="{{ $sliders[0]->image }}" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);;min-height:36rem;" alt="banner" />
-            </figure>
-         </a>
-      </div>
+
    </section>
    <section class="p-0  slider-section d-none">
 
