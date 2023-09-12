@@ -32,7 +32,9 @@
             'autoplay':true,
             'autoplayTimeout':3500,
             'autoplayHoverPause':true,
-            'responsiveClass':true
+            'responsiveClass':true,
+            'lazyLoad': true
+
 
         }">
          @foreach($mobile_sliders as $key => $slider)
