@@ -2,12 +2,10 @@
     <div class="position-relative me-3">
         <a href="javascript:void(0)" title="Cart" role="button" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false" data-display="static" class="d-flex flex-column align-items-center cart-toggle">
-            <span class="material-symbols-outlined display-5 d-none d-lg-block d-xl-block">
-                shopping_cart
-            </span>
-            <span class="material-symbols-outlined display-3    d-md-block d-lg-none d-sm-block">
-                shopping_cart
-            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                <path
+                    d="M268.119-77.694q-34.118 0-58.041-23.958-23.923-23.958-23.923-58.076t23.958-58.041q23.959-23.923 58.077-23.923 34.118 0 58.041 23.958 23.923 23.958 23.923 58.077 0 34.118-23.959 58.041-23.958 23.922-58.076 23.922Zm411.691 0q-34.118 0-58.041-23.958-23.923-23.958-23.923-58.076t23.959-58.041q23.958-23.923 58.076-23.923t58.041 23.958q23.923 23.958 23.923 58.077 0 34.118-23.958 58.041-23.959 23.922-58.077 23.922ZM195.846-817.999h681.46L668.461-443.694H316l-42.77 76.002h490.615v85.998H131.309l118.385-221.999-145.539-308.308H22.001v-85.998h135.845l38 80Z" />
+            </svg>
             <span class="cart-count badge-circle">{{ cartItemCount }}</span>
             <span class="header-right-icons  cart-text  fs-5"> Cart </span>
         </a>
