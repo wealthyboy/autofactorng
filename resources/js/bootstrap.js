@@ -1,11 +1,12 @@
+window._ = require('lodash');
 
 try {
-    // require('bootstrap')
-    // require('../assets/js/optional/isotope.pkgd.min.js')
-    // require('../assets/js/plugins.min.js')
-    // require('../assets/js/jquery.appear.min.js')
-    // require('../assets/js/nouislider.min.js')
-    // require('../assets/js/main.min.js')
+    require('bootstrap')
+    require('../assets/js/optional/isotope.pkgd.min.js')
+    require('../assets/js/plugins.min.js')
+    require('../assets/js/jquery.appear.min.js')
+    require('../assets/js/nouislider.min.js')
+    require('../assets/js/main.min.js')
 
 } catch (e) {
 
