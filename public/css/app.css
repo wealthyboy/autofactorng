@@ -12950,7 +12950,7 @@ header a {
 
 .badge-circle {
     position: absolute;
-    top: 1px;
+    top: -3px;
     right: 0;
     width: 1.6rem;
     border-radius: 50%;
@@ -43203,6 +43203,12 @@ span.header-right-icons {
 input.search-products {
   padding-left: 5rem;
   font-size: 14px;
+}
+
+.cart-toggle svg {
+  height: 3rem;
+  width: 3rem;
+  margin-bottom: 5px;
 }
 
 /* Customize the label (the container) */

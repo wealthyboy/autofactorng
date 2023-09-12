@@ -12241,7 +12241,7 @@ header a {
 
 .badge-circle {
     position: absolute;
-    top: 1px;
+    top: -3px;
     right: 0;
     width: 1.6rem;
     border-radius: 50%;
