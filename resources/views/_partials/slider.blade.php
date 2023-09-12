@@ -1,8 +1,8 @@
 <div class="col-md-12 col-lg-9">
-   <section style="background:#f6e1e8; height: 450px;">
+   <section class="slider-loader" style="background:#f6e1e8; height: 450px;">
 
    </section>
-   <section class="p-0 d-none">
+   <section class="p-0  slider-section d-none">
 
       <div class="owl-carousel owl-theme show-nav-hover slide-animate d-none  d-lg-block d-xl-block" data-owl-options="{
            'dots': true,
@@ -20,7 +20,7 @@
          <div class="banner banner3 {{ $slider->device }}">
             <a href="{{ $slider->link }}" class="d-block">
                <figure>
-                  <img class="owl-lazy" data-src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
+                  <img src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
                </figure>
             </a>
          </div>
@@ -45,7 +45,7 @@
          <div class="banner banner3  {{ $slider->device }}   d-md-block">
             <a href="{{ $slider->link }}" class="d-block">
                <figure>
-                  <img class="owl-lazy" data-src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
+                  <img src="{{ $slider->image }}" style="background:#f6e1e8;min-height:36rem;" alt="banner" />
                </figure>
             </a>
          </div>
