@@ -20,6 +20,8 @@
    <!-- Main CSS File -->
 
    <link rel="stylesheet" href="/css/app.css?id={{ rand(1,2000)}}">
+   <script src="/js/jquery.min.js"></script>
+   <script src="/js/scripts.js?id={{ rand(1,2000)}}"></script>
 
 
 
@@ -458,8 +460,7 @@
 
    <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
    <!-- Plugins JS File -->
-   <script src="/js/jquery.min.js"></script>
-   <script src="/js/scripts.js?id={{ rand(1,2000)}}"></script>
+
 
    <script src="/js/app.js?id={{ rand(1,2000)}}"></script>
 
