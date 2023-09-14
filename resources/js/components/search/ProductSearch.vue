@@ -84,8 +84,15 @@ export default {
                         q,
                     },
                 });
-                categories.value = res.categories;
-                products.value = res.products;
+                if (res.categories.length || res.products.length) {
+                    categories.value = res.categories;
+                    products.value = res.products;
+                    return
+                }
+
+                dBlock.value = "d-none";
+
+
             } catch (error) { }
         }
 
