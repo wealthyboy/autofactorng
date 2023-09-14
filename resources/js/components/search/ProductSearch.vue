@@ -88,7 +88,11 @@ export default {
                     categories.value = res.categories;
                     products.value = res.products;
                     return
+                } else {
+                    categories.value = []
+                    products.value = [];
                 }
+
 
 
 
