@@ -77,7 +77,6 @@ export default {
                 return;
             }
 
-            dBlock.value = "d-block";
             try {
                 const { data: res } = await http.get("/auto-complete", {
                     params: {
@@ -85,12 +84,12 @@ export default {
                     },
                 });
                 if (res.categories.length || res.products.length) {
+                    dBlock.value = "d-block";
                     categories.value = res.categories;
                     products.value = res.products;
                     return
                 }
 
-                dBlock.value = "d-none";
 
 
             } catch (error) { }
