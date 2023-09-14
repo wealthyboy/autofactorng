@@ -32,10 +32,10 @@
         <input type="text" class="form-control search-products rounded-start" placeholder="Find Parts and Products"
             aria-label="Find Parts and Products" aria-describedby="button-addon1" @input="autoComplete" required="required"
             v-model="query" @focus="handleFocus" name="q" />
-        <div @click="cancel" :class="'coverlay' + ' ' + dBlock"></div>
+        <div v-if="query" @click="cancel" :class="'coverlay' + ' ' + dBlock"></div>
 
         <template
-            v-if="query && (typeof categories !== 'undefined') && categories.length || (typeof products !== 'undefined') && products.length">
+            v-if="(typeof categories !== 'undefined') && categories.length || (typeof products !== 'undefined') && products.length">
             <div v-if="query" :class="[categories.length || products.length ? ' ' : dNone]"
                 class="dropdown-items position-absolute rounded-start">
                 <ul class="mt-4 p-0">
