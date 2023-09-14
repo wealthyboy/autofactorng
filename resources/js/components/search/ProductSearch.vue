@@ -90,7 +90,7 @@ export default {
                     return
                 } else {
                     categories.value = []
-                    products.value = [];
+                    products.value = [{ id: 1, name: "No products found" }];
                 }
 
 
