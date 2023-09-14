@@ -35,7 +35,7 @@
         <div @click="cancel" :class="'coverlay' + ' ' + dBlock"></div>
 
         <template
-            v-if="(typeof categories !== 'undefined') && categories.length || (typeof products !== 'undefined') && products.length">
+            v-if="query && (typeof categories !== 'undefined') && categories.length || (typeof products !== 'undefined') && products.length">
             <div v-if="query" :class="[categories.length || products.length ? ' ' : dNone]"
                 class="dropdown-items position-absolute rounded-start">
                 <ul class="mt-4 p-0">
