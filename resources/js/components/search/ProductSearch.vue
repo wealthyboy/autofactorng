@@ -71,9 +71,8 @@ export default {
                 height: "100%",
             });
             let q = query.value;
-            console.log(q)
 
-            if (q == '' || q == null || q == 'undefined') {
+            if (typeof q === '' || typeof q === null || typeof q == 'undefined') {
                 dBlock.value = "d-none";
                 return;
             }
