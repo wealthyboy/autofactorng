@@ -1,16 +1,7 @@
 <template>
-    <form
-        method="get"
-        action="/search"
-        class="input-group position-relative w-100 rounded-start mb-0 mt-md-3"
-    >
-        <button
-            class="search-products-icon"
-            type="submit"
-            data-testid="locationSearch-scroll"
-        >
-            <span
-                style="
+    <form method="get" action="/search" class="input-group position-relative w-100 rounded-start mb-0 mt-md-3">
+        <button class="search-products-icon" type="submit" data-testid="locationSearch-scroll">
+            <span style="
                     box-sizing: border-box;
                     display: inline-block;
                     overflow: hidden;
@@ -22,13 +13,7 @@
                     margin: 0px;
                     padding: 0px;
                     position: relative;
-                "
-                ><img
-                    alt="Search"
-                    src="/images/utils/icon-search-20x20.svg"
-                    decoding="async"
-                    data-nimg="fixed"
-                    style="
+                "><img alt="Search" src="/images/utils/icon-search-20x20.svg" decoding="async" data-nimg="fixed" style="
                         position: absolute;
                         inset: 0px;
                         box-sizing: border-box;
@@ -42,37 +27,29 @@
                         max-width: 100%;
                         min-height: 100%;
                         max-height: 100%;
-                    "
-            /></span>
+                    " /></span>
         </button>
-        <input
-            type="text"
-            class="form-control search-products rounded-start"
-            placeholder="Find Parts and Products"
-            aria-label="Find Parts and Products"
-            aria-describedby="button-addon1"
-            @input="autoComplete"
-            required="required"
-            v-model="query"
-            @focus="handleFocus"
-            name="q"
-        />
+        <input type="text" class="form-control search-products rounded-start" placeholder="Find Parts and Products"
+            aria-label="Find Parts and Products" aria-describedby="button-addon1" @input="autoComplete" required="required"
+            v-model="query" @focus="handleFocus" name="q" />
         <div @click="cancel" :class="'coverlay' + ' ' + dBlock"></div>
 
-        <div
-            :class="[categories.length || products.length ? ' ' : dNone]"
-            class="dropdown-items position-absolute rounded-start"
-        >
-            <ul class="mt-4 p-0">
-                <li v-for="product in products" :key="product" role="button">
-                    <a class="py-3 no-hover" :href="product.link">
-                        <div class="w-100 category-link">
-                            {{ product.name }}
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <template v-if="(typeof categories !== 'undefined') && (typeof products !== 'undefined')">
+            <div :class="[categories.length || products.length ? ' ' : dNone]"
+                class="dropdown-items position-absolute rounded-start">
+                <ul class="mt-4 p-0">
+                    <li v-for="product in products" :key="product" role="button">
+                        <a class="py-3 no-hover" :href="product.link">
+                            <div class="w-100 category-link">
+                                {{ product.name }}
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </template>
+
+
     </form>
 </template>
 <script>
@@ -103,7 +80,7 @@ export default {
                 });
                 categories.value = res.categories;
                 products.value = res.products;
-            } catch (error) {}
+            } catch (error) { }
         }
 
         function handleFocus() {
