@@ -34,7 +34,8 @@
             v-model="query" @focus="handleFocus" name="q" />
         <div @click="cancel" :class="'coverlay' + ' ' + dBlock"></div>
 
-        <template v-if="(typeof categories !== 'undefined') && (typeof products !== 'undefined')">
+        <template
+            v-if="(typeof categories !== 'undefined') && categories.length || (typeof products !== 'undefined') && products.length">
             <div :class="[categories.length || products.length ? ' ' : dNone]"
                 class="dropdown-items position-absolute rounded-start">
                 <ul class="mt-4 p-0">
@@ -70,6 +71,10 @@ export default {
                 height: "100%",
             });
             let q = query.value;
+
+            if (q == '' || q == null || q == 'undefined') {
+                return;
+            }
 
             dBlock.value = "d-block";
             try {
