@@ -73,6 +73,7 @@ export default {
             let q = query.value;
 
             if (q == '' || q == null || q == 'undefined') {
+                dBlock.value = "d-none";
                 return;
             }
 
