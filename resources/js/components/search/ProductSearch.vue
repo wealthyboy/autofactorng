@@ -36,7 +36,7 @@
 
         <template
             v-if="(typeof categories !== 'undefined') && categories.length || (typeof products !== 'undefined') && products.length">
-            <div :class="[categories.length || products.length ? ' ' : dNone]"
+            <div v-if="query" :class="[categories.length || products.length ? ' ' : dNone]"
                 class="dropdown-items position-absolute rounded-start">
                 <ul class="mt-4 p-0">
                     <li v-for="product in products" :key="product" role="button">
