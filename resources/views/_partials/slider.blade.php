@@ -17,7 +17,7 @@
          @foreach($sliders as $key => $slider)
 
          <div class="banner banner3 {{ $slider->device }}">
-            <a href="{{ $sliders[0]->link }}" class="d-block">
+            <a href="{{ $slider->link }}" class="d-block">
                <figure>
                   <img class="owl-lazy" data-src="{{ $slider->image }}" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);;min-height:36rem;" alt="banner" />
                </figure>
