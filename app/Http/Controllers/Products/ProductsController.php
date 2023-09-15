@@ -34,7 +34,12 @@ class ProductsController extends Controller
      */
     public function  index(Request $request, Builder $builder, Category $category)
     {
-        $page_title = implode(" ", explode('-', $category->slug));
+
+        $page_title = $category->name;
+        $meta_tag_keywords = $category->keywords;
+        $page_meta_description = $category->meta_description;
+
+
         $this->clearMMYCookies($request);
         $request->session()->put('category', $category->name);
         $request->session()->put('category_slug', $category->slug);
@@ -73,7 +78,11 @@ class ProductsController extends Controller
             'page_title',
             'search_filters',
             'brands',
-            'prices'
+            'prices',
+            'meta_tag_keywords',
+            'meta_tag_keywords',
+            'page_title',
+
         ));
     }
 
@@ -496,6 +505,15 @@ class ProductsController extends Controller
      */
     public function show(Request $request, Category $category, Product $product)
     {
+
+        $page_title = "{$product->name}";
+        $favorites = '';
+        $data = [];
+        $page_title = $product->meta_title;
+        $meta_tag_keywords = $product->keywords;
+        $page_meta_description = $product->meta_description;
+
+
         $product->load('images');
         $user = request()->user();
         $product->showFitString = $this->getCategory($category);
@@ -504,6 +522,6 @@ class ProductsController extends Controller
         $category_slug = session('category_slug');
         // dd($product,   $category_slug);
 
-        return view('products.show', compact('category', 'category_slug', 'user', 'product'));
+        return view('products.show', compact('page_title', 'meta_tag_keywords', 'page_meta_description', 'category', 'category_slug', 'user', 'product'));
     }
 }
