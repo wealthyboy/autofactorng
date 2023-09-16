@@ -6553,7 +6553,7 @@ h4.product-title.Grid {
 
 
     h4.product-title.title {
-        height: 80px;
+        /* height: 80px; */
     }
 
     .product-note {
