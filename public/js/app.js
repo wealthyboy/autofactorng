@@ -26273,7 +26273,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   , _hoisted_39)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'title': $props.product.str_len > 30
-    }, "product-title"])
+    }, "product-title title"])
   }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $props.product.link
   }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.product.name), 9
