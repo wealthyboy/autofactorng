@@ -25849,7 +25849,7 @@ var _hoisted_11 = {
 var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
   value: "",
   selected: "selected"
-}, " Default sorting ", -1
+}, " Sort ", -1
 /* HOISTED */
 );
 
