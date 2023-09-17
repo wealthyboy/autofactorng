@@ -129,7 +129,7 @@
                      <i class="fas fa-bars"></i>
                      <span class=" fs-5">Menu</span>
                   </button>
-                  <a href="/" class="logo   me-4">
+                  <a href="/" class=" logo   me-4 ms-md-4">
                      <img src="https://autofactorng.com/images/logo/autofactor_logo.png" alt="Autofactor  Logo">
                   </a>
 
