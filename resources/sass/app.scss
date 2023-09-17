@@ -513,7 +513,11 @@ footer a {
 }
 
 
-@media (min-width:900px) and (max-width:940px) {
+@media (min-width:800px) and (max-width:940px) {
+
+    body {
+        background-color: red;
+    }
 
     span.material-symbols-outlined.display-3 {
         margin-right: 25px;
