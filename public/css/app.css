@@ -7235,6 +7235,7 @@ h4.product-title.Grid {
 
 @media (max-width:575px) {
 
+
     .toolbox .layout-modes {
         display: none
     }
@@ -43532,4 +43533,10 @@ footer a {
 }
 .mobile-nav .dropdown-menu.show {
   width: 191px !important;
+}
+
+@media (max-width: 575px) {
+  body {
+    background-color: red;
+  }
 }
