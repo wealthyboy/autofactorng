@@ -20647,11 +20647,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       return store.getters.reviews;
     });
     var form = (0,vue__WEBPACK_IMPORTED_MODULE_2__.reactive)({
-      description: null,
-      rating: null,
+      description: "",
+      rating: "",
       product_id: props.product.id,
       image: null,
-      title: null
+      title: ""
     });
 
     function hasLoggedIn() {
@@ -20693,6 +20693,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     function submitReview() {
       if (form.rating == "") {
         noRating.value = true;
+        return false;
+      }
+
+      if (form.title === "") {
+        alert("Enter a title");
+        return false;
+      }
+
+      if (form.description === "") {
+        alert("Enter a description");
         return false;
       }
 
