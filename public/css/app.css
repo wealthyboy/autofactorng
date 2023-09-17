@@ -43155,6 +43155,10 @@ a {
   height: 0px !important;
 }
 
+.side-banner {
+  height: 450px;
+}
+
 .badge-circle {
   color: #fff !important;
 }
