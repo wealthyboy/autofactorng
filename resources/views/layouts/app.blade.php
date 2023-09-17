@@ -17,7 +17,11 @@
    <link rel="stylesheet" preload href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
    <!-- Favicon -->
-   <!-- <link rel="icon" type="image/x-icon" href="assets/images/icons/favicon.png"> -->
+   <link rel="icon" type="image/x-icon" href="/images/favicon_io/favicon-32x32.png">
+   <link rel="shortcut icon" type="image/x-icon" href="/images/favicon_io/favicon.ico">
+   <link rel="icon" href="/images/favicon_io/favicon.ico" type="image/x-icon">
+   <link rel="icon" type="image/png" href="/images/favicon_io/favicon-96x96.png">
+   <link rel="apple-touch-icon" href="/images/favicon_io/favicon-96x96.png">
    <!-- Main CSS File -->
 
    <link rel="stylesheet" href="/css/app.css?id={{ rand(1,2000)}}">

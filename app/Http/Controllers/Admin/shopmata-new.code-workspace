@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../../../.."
+		},
+		{
+			"path": "../../../../../myshortlet.com"
 		}
 	],
 	"settings": {}
