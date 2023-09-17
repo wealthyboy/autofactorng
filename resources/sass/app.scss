@@ -513,11 +513,14 @@ footer a {
 }
 
 
-@media (min-width: 850px) {
+@media (min-width:900px) and (max-width:940px) {
+
     span.material-symbols-outlined.display-3 {
         margin-right: 25px;
         font-size: 3rem;
     }
+
+
 
     a.d-flex.flex-column.align-items-center.user {
         margin-right: 20px;
