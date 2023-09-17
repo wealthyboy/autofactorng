@@ -506,7 +506,7 @@ class ProductsController extends Controller
     public function show(Request $request, Category $category, Product $product)
     {
 
-        $page_title = "{$product->name}";
+        $page_title = "Shop | " . $product->name;
         $favorites = '';
         $data = [];
         $page_title = $product->meta_title;
