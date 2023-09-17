@@ -514,6 +514,10 @@ footer a {
 
 
 @media (min-width:900px) and (max-width:940px) {
+    body {
+        background-color: red;
+    }
+
     span.material-symbols-outlined.display-3 {
         margin-right: 25px;
         font-size: 3rem;
@@ -529,11 +533,4 @@ footer a {
 
 .mobile-nav .dropdown-menu.show {
     width: 191px !important;
-}
-
-
-@media (max-width:905px) {
-    body {
-        background-color: red;
-    }
 }
