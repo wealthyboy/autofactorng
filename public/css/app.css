@@ -43521,7 +43521,7 @@ footer a {
   color: #fff !important;
 }
 
-@media only screen and (min-width: 900px) and (max-width: 930px) {
+@media (min-width: 806px) {
   body {
     background-color: red;
   }
