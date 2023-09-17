@@ -20,7 +20,6 @@
    <link rel="icon" type="image/x-icon" href="/images/favicon_io/favicon-32x32.png">
    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon_io/favicon.ico">
    <link rel="icon" href="/images/favicon_io/favicon.ico" type="image/x-icon">
-   <link rel="icon" type="image/png" href="/images/favicon_io/favicon-96x96.png">
    <link rel="apple-touch-icon" href="/images/favicon_io/favicon-96x96.png">
    <!-- Main CSS File -->
 
