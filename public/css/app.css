@@ -43522,10 +43522,6 @@ footer a {
 }
 
 @media (max-width: 806px) {
-  body {
-    background-color: red;
-  }
-
   span.material-symbols-outlined.display-3 {
     margin-right: 25px;
     font-size: 3rem;
