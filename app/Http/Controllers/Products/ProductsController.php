@@ -507,6 +507,7 @@ class ProductsController extends Controller
     {
 
         $page_title = "Shop | " . $product->name;
+        dd($page_title);
         $favorites = '';
         $data = [];
         $page_title = $product->meta_title;
