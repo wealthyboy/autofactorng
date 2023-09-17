@@ -43535,7 +43535,7 @@ footer a {
   width: 191px !important;
 }
 
-@media (max-width: 575px) {
+@media (max-width: 675px) {
   body {
     background-color: red;
   }
