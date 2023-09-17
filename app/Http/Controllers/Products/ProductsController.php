@@ -511,8 +511,6 @@ class ProductsController extends Controller
         $data = [];
         $meta_tag_keywords = $product->keywords;
         $page_meta_description = $product->meta_description;
-
-
         $product->load('images');
         $user = request()->user();
         $product->showFitString = $this->getCategory($category);
