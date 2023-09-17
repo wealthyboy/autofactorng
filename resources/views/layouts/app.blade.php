@@ -166,10 +166,11 @@
 
                   @guest
                   <div class="position-relative  me-sm-4">
-                     <a href="tel:{{optional($system_settings)->store_phone }}" class="d-flex flex-column align-items-center no-hover text-black" title="account">
-                        <span class="material-symbols-outlined display-3">
-                           phone
-                        </span>
+                     <a href="tel:{{optional($system_settings)->store_phone }}" class="d-flex flex-column align-items-center no-hover text-black user" title="account">
+
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                           <path d="M812.119-74q-137.217 0-269.668-58.5T301-299Q192-407 133.5-540.782T75-811.245q0-32.898 20.643-53.826Q116.286-886 149-886h175q37.389 0 60.694 18Q408-850 416-816l27 130q5 30-1.5 52.5T416-595l-106 94q15 25 36.5 50.5T396-397q26 25 49 44t44 32l108-102q19-19 41.814-25T689-448l127 29q34.125 10 52.062 31Q886-367 886-333v184q0 33.143-21 54.071Q844-74 812.119-74ZM244-624l62-54-14-72h-78q3 35 9.957 65.441Q230.914-654.118 244-624Zm370 373q32 14 66 22.5t70 14.5v-80l-74-18-62 61ZM244-624Zm370 373Z" />
+                        </svg>
                         <span class="header-right-icons  cart-text fs-5">
                            Call
                         </span>
