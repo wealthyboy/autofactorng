@@ -3653,9 +3653,7 @@ a:focus {
     }
 }
 
-.cart-text {
-    margin-top: -0.75rem !important;
-}
+.cart-text {}
 
 .mfp-container .mfp-preloader,
 .porto-loading-icon {
