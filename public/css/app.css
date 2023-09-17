@@ -43155,8 +43155,8 @@ a {
   height: 0px !important;
 }
 
-.side-banner {
-  height: 450px;
+.banner.banner3.side-banner img {
+  height: 450px !important;
 }
 
 .badge-circle {
