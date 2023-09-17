@@ -54,7 +54,7 @@
 </div>
 
 <div class="col-lg-3  d-none d-lg-block  d-xl-block  ">
-   <div class="banner banner3">
+   <div class="banner banner3 side-banner">
       <a class="d-block">
          <figure>
             <img class="img-fluid" src="/images/utils/ensure11.jpg" style="background:#f6e1e8;" alt="banner" />
