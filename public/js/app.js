@@ -20697,12 +20697,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }
 
       if (form.title === "") {
-        alert("Enter a title");
+        store.commit("setMessage", "Enter a title");
         return false;
       }
 
       if (form.description === "") {
-        alert("Enter a description");
+        store.commit("setMessage", "Enter your  description");
         return false;
       }
 
