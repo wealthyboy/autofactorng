@@ -512,7 +512,12 @@ footer a {
     .coverlay {}
 }
 
+@media (min-width: 768px) {
+    body {
+        background-color: #f0592a;
 
+    }
+}
 
 
 .mobile-nav .dropdown-menu.show {
