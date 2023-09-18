@@ -498,6 +498,7 @@ class ProductsController extends Controller
             session(['model' => $model_name]);
             session(['engine' => $engine_name]);
             session(['year' => $year]);
+            session(['fitsProducts' => Product::CheckText]);
             return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
         }
 
