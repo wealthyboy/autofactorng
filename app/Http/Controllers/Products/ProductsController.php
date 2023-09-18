@@ -339,13 +339,19 @@ class ProductsController extends Controller
             }
 
 
-            if (null !==  $request->cookie('engine_id')) {
+            if (null !== $request->cookie('engine_id')) {
                 $productFitString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
                 session(['fitsProducts' => $productFitString]);
-            } else {
-                $productFitString = Product::CheckText;
-                session(['fitsProducts' => Product::CheckText]);
             }
+
+            if ($request->filled('engine_id')) {
+                $productFitString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
+                session(['fitsProducts' => $productFitString]);
+            }
+
+
+            $productFitString = Product::CheckText;
+            session(['fitsProducts' => Product::CheckText]);
         }
 
         if (null !== $catString) {
@@ -355,7 +361,6 @@ class ProductsController extends Controller
         if ($productFitString) {
             session(['fitsProducts' => Product::DoesNotFit]);
         }
-
 
         if (null == $productFitString) {
             session(['fitsProducts' => Product::CheckText]);
@@ -517,7 +522,6 @@ class ProductsController extends Controller
         $product->fitsProducts = session('fitsProducts');
         $category = session('category');
         $category_slug = session('category_slug');
-
         return view('products.show', compact('page_title', 'meta_tag_keywords', 'page_meta_description', 'category', 'category_slug', 'user', 'product'));
     }
 }
