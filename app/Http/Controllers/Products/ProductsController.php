@@ -353,9 +353,7 @@ class ProductsController extends Controller
             session(['fitsProducts' =>  'Fits your ' . $this->buildSearchString($request)]);
         }
 
-        if ($productFitString) {
-            session(['fitsProducts' => Product::DoesNotFit]);
-        }
+
 
         if (null == $productFitString) {
             session(['fitsProducts' => Product::CheckText]);
