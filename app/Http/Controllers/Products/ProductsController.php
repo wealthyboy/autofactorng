@@ -513,7 +513,7 @@ class ProductsController extends Controller
      */
     public function show(Request $request, Category $category, Product $product)
     {
-        dd(session('fitsProducts'));
+        session(['fitsProducts' => null]);
         $page_title = "Shop | " . $product->name;
         $favorites = '';
         $data = [];
