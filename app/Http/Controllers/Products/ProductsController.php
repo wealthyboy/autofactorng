@@ -524,7 +524,7 @@ class ProductsController extends Controller
         $product->load('images');
         $user = request()->user();
         $product->showFitString = $this->getCategory($category);
-        $product->fitsProducts = session('fitsProducts');
+        $product->fitsProducts = Product::CheckText;
         $category = session('category');
         $category_slug = session('category_slug');
         return view('products.show', compact('page_title', 'meta_tag_keywords', 'page_meta_description', 'category', 'category_slug', 'user', 'product'));
