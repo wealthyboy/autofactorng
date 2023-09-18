@@ -350,8 +350,8 @@ class ProductsController extends Controller
             }
 
 
-            $productFitString = Product::CheckText;
-            session(['fitsProducts' => Product::CheckText]);
+            $productFitString = Product::DoesNotFit;
+            session(['fitsProducts' => Product::DoesNotFit]);
         }
 
         if (null !== $catString) {
