@@ -112,8 +112,9 @@ a {
 // }
 
 
-.banner.banner3.side-banner img {
+.banner.banner3.side-banner {
     height: 450px !important;
+    overflow: hidden;
 }
 
 .badge-circle {
