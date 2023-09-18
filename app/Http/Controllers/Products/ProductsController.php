@@ -342,16 +342,18 @@ class ProductsController extends Controller
             if (null !== $request->cookie('engine_id')) {
                 $productFitString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
                 session(['fitsProducts' => $productFitString]);
+            } else {
+                $productFitString = Product::CheckText;
+                session(['fitsProducts' => Product::CheckText]);
             }
 
             if ($request->filled('engine_id')) {
                 $productFitString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
                 session(['fitsProducts' => $productFitString]);
+            } else {
+                $productFitString = Product::DoesNotFit;
+                session(['fitsProducts' => Product::DoesNotFit]);
             }
-
-
-            $productFitString = Product::DoesNotFit;
-            session(['fitsProducts' => Product::DoesNotFit]);
         }
 
         if (null !== $catString) {
