@@ -327,7 +327,7 @@ class ProductsController extends Controller
 
                 $productFitString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
                 session(['fitsProducts' => $productFitString]);
-                dd(true);
+                dd(true, 'e3');
             }
 
             if ($request->cookie('engine_id') &&  $request->engine_id) {
@@ -341,7 +341,7 @@ class ProductsController extends Controller
                 })->first();
                 $productFitString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
                 session(['fitsProducts' => $productFitString]);
-                dd(true);
+                dd(true, 'e');
             }
         }
 
