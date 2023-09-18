@@ -315,7 +315,7 @@ class ProductsController extends Controller
 
             $product = Product::where('slug', $request->product)->first();
 
-            if ($request->filled('engine_id')) {
+            if ($request->filled('engine_id') && $request->engine_id !== 0) {
                 $p = Product::where('id', $product->id)->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                     $builder->where('make_model_year_engines.attribute_id', $request->model_id);
                     $builder->where('make_model_year_engines.parent_id', $request->make_id);
@@ -324,9 +324,12 @@ class ProductsController extends Controller
                     $builder->where('year_to', '>=', $request->year);
                     $builder->groupBy('make_model_year_engines.product_id');
                 })->first();
+
+                $productFitString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
+                session(['fitsProducts' => $productFitString]);
             }
 
-            if ($request->cookie('engine_id')) {
+            if ($request->cookie('engine_id') &&  $request->engine_id !== 0) {
                 $p = Product::where('id', $product->id)->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                     $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
                     $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
@@ -335,15 +338,6 @@ class ProductsController extends Controller
                     $builder->where('year_to', '>=', $request->cookie('year'));
                     $builder->groupBy('make_model_year_engines.product_id');
                 })->first();
-            }
-
-
-            if (null !== $request->cookie('engine_id')) {
-                $productFitString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
-                session(['fitsProducts' => $productFitString]);
-            }
-
-            if ($request->filled('engine_id')) {
                 $productFitString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
                 session(['fitsProducts' => $productFitString]);
             }
@@ -352,7 +346,6 @@ class ProductsController extends Controller
         if (null !== $catString) {
             session(['fitsProducts' =>  'Fits your ' . $this->buildSearchString($request)]);
         }
-
 
 
         if (null == $productFitString) {
