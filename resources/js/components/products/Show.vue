@@ -16,7 +16,7 @@
 
         <!-- End .ratings-container -->
 
-        {{ productFitString }}
+
         <p v-if="product.showFitString">
             <check-vehicle :fitText="productFitString" />
         </p>
@@ -120,7 +120,7 @@ export default {
     },
     mounted() {
         this.text = !this.product.in_stock ? "Out of Stock" : "Add to Cart";
-        //  this.$store.commit("setProductFitString", this.product.fitsProducts);
+        this.$store.commit("setProductFitString", this.product.fitsProducts);
     },
     methods: {
         ...mapActions({

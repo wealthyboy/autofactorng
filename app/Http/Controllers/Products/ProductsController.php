@@ -300,7 +300,6 @@ class ProductsController extends Controller
         $catString = null;
 
 
-
         if ($request->checkForCategory == true && $this->getCategory($category)) {
             $catString = $this->buildSearchString($request);
         }
@@ -351,8 +350,8 @@ class ProductsController extends Controller
                 $productFitString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
                 session(['fitsProducts' => $productFitString]);
             } else {
-                $productFitString = Product::DoesNotFit;
-                session(['fitsProducts' => Product::DoesNotFit]);
+                $productFitString = Product::CheckText;
+                session(['fitsProducts' => Product::CheckText]);
             }
         }
 
@@ -524,7 +523,7 @@ class ProductsController extends Controller
         $product->load('images');
         $user = request()->user();
         $product->showFitString = $this->getCategory($category);
-        $product->fitsProducts = Product::CheckText;
+        $product->fitsProducts = session('fitsProducts');
         $category = session('category');
         $category_slug = session('category_slug');
         return view('products.show', compact('page_title', 'meta_tag_keywords', 'page_meta_description', 'category', 'category_slug', 'user', 'product'));
