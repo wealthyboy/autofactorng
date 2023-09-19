@@ -99,7 +99,6 @@ class ImagesController extends Controller
             $path = public_path('images/' . $request->folder . '/' . $file);
             if ($request->folder == 'products') {
 
-                $path = $request->file('file')->store('images/l');
 
 
                 // $img  = \Image::make($path)->fit(400, 400)->save(
