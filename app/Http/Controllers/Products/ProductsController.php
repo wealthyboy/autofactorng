@@ -364,7 +364,9 @@ class ProductsController extends Controller
         }
 
 
-
+        if (null == $productFitString) {
+            session(['fitsProducts' => Product::CheckText]);
+        }
 
         if (null !== $type) {
             session()->put($type, $data[$type]);
