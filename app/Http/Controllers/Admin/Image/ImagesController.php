@@ -104,7 +104,7 @@ class ImagesController extends Controller
                 $path = public_path('images/' . $request->folder . '/' . $file);
             }
 
-            return $path['path'];
+            return $path;
 
 
             if ($request->folder == 'products') {
