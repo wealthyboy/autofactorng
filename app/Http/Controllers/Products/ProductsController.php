@@ -300,6 +300,9 @@ class ProductsController extends Controller
         $catString = null;
 
 
+
+
+
         if ($request->checkForCategory == true && $this->getCategory($category)) {
             $catString = $this->buildSearchString($request);
         }
@@ -360,7 +363,11 @@ class ProductsController extends Controller
             session(['fitsProducts' =>  'Fits your ' . $this->buildSearchString($request)]);
         }
 
-        if (null == $productFitString && !$request->cookie('engine_id')) {
+        if ($request->cookie('engine_id') && $request->year  && !$request->make_id && !$request->model_id && !$request->engine_id) {
+        }
+
+
+        if (null == $productFitString) {
             session(['fitsProducts' => Product::CheckText]);
         }
 
@@ -370,13 +377,15 @@ class ProductsController extends Controller
         }
 
         $data = MakeModelYearEngine::getMakeModelYearSearch($request);
+
+
         $res =  response()->json(
             [
                 'type' => $request->type,
                 'data' => $data,
                 'string' => $catString,
                 'show' => $request->filled('search') &&  $request->search == false  || null !== $type ? false : true,
-                'productFitString' => $productFitString,
+                'productFitString' => session('fitsProducts'),
                 'p' => $p,
 
             ]
