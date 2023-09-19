@@ -364,7 +364,6 @@ class ProductsController extends Controller
         }
 
         if (null == $productFitString  && $request->year  && $request->engine_id) {
-        {
             session(['fitsProducts' => Product::CheckText]);
         }
 
