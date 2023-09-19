@@ -342,7 +342,7 @@ class ProductsController extends Controller
                 session(['fitsProducts' => $productFitString]);
             }
 
-            if ($request->cookie('engine_id') && !$request->engine_id) {
+            if ($request->cookie('engine_id') &&  !$request->year  && !$request->make_id && !$request->model_id && !$request->engine_id) {
                 $p = Product::where('id', $product->id)->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                     $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
                     $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
