@@ -363,11 +363,8 @@ class ProductsController extends Controller
             session(['fitsProducts' =>  'Fits your ' . $this->buildSearchString($request)]);
         }
 
-        if ($request->cookie('engine_id') && $request->year  && !$request->make_id && !$request->model_id && !$request->engine_id) {
-        }
-
-
-        if (null == $productFitString) {
+        if (null == $productFitString  && $request->year  && $request->engine_id) {
+        {
             session(['fitsProducts' => Product::CheckText]);
         }
 
