@@ -113,7 +113,8 @@ a {
 
 
 .banner.banner3.side-banner {
-    height: auto !important;
+    max-height: 450px !important;
+    overflow: hidden;
 }
 
 .banner.banner3.side-banner img {
