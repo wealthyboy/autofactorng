@@ -364,9 +364,7 @@ class ProductsController extends Controller
         }
 
 
-        if (null == $productFitString  && $request->year  && $request->engine_id) {
-            session(['fitsProducts' => Product::CheckText]);
-        }
+
 
         if (null !== $type) {
             session()->put($type, $data[$type]);
@@ -374,7 +372,6 @@ class ProductsController extends Controller
         }
 
         $data = MakeModelYearEngine::getMakeModelYearSearch($request);
-
 
         $res =  response()->json(
             [
