@@ -113,12 +113,12 @@ a {
 
 
 .banner.banner3.side-banner {
-    height: 450px !important;
-    overflow: hidden;
+    height: auto !important;
 }
 
 .banner.banner3.side-banner img {
     height: 100%;
+    border: 1px solid red;
 }
 
 .badge-circle {
