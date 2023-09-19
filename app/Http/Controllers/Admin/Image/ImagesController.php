@@ -104,9 +104,6 @@ class ImagesController extends Controller
                 $path = public_path('images/' . $request->folder . '/' . $file);
             }
 
-            dd($path);
-
-
             if ($request->folder == 'products') {
 
                 $canvas = \Image::canvas(400, 400);
