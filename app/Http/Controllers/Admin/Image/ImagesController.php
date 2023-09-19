@@ -94,16 +94,15 @@ class ImagesController extends Controller
             //     \File::makeDirectory(public_path('images/' . $request->folder . '/tn'), 0755, true);
             // }
 
-            $path = $request->folder == 'products' ? $request->file('file')->store('images/products/l') : $request->file('file')->store('images/' . $request->folder);
+            if ($request->folder == 'products') {
+                $path = $request->file('file')->store('images/products/l');
+            } else {
+                $path = $request->file('file')->store('images/' . $request->folder);
+            }
+
             $file = basename($path);
             $path = public_path('images/' . $request->folder . '/' . $file);
             if ($request->folder == 'products') {
-
-
-
-                // $img  = \Image::make($path)->fit(400, 400)->save(
-                //     public_path('images/products/m/'.$file)
-                // );
 
                 $canvas = \Image::canvas(400, 400);
                 $image  = \Image::make($path)->resize(400, 400, function ($constraint) {
