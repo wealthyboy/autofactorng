@@ -78,27 +78,29 @@ class ImagesController extends Controller
             }
 
 
-            $path    =  public_path('images/' . $request->folder);
-            $path_m  =  public_path('images/' . $request->folder . '/tm');
-            $path_tn =  public_path('images/' . $request->folder . '/tn');
+            $path = public_path('images/' . $request->folder);
+            $path_m = public_path('images/' . $request->folder . '/tm');
+            $path_tn = public_path('images/' . $request->folder . '/tn');
 
+            // if (!\File::exists($path)) {
+            //     \File::makeDirectory(public_path('images/' . $request->folder), 0755, true);
+            // }
 
-            if (!\File::exists($path)) {
-                \File::makeDirectory(public_path('images/' . $request->folder), 0755, true);
-            }
+            // if (!\File::exists($path_m)) {
+            //     \File::makeDirectory(public_path('images/' . $request->folder . '/tm'), 0755, true);
+            // }
 
-            if (!\File::exists($path_m)) {
-                \File::makeDirectory(public_path('images/' . $request->folder . '/tm'), 0755, true);
-            }
+            // if (!\File::exists($path_tn)) {
+            //     \File::makeDirectory(public_path('images/' . $request->folder . '/tn'), 0755, true);
+            // }
 
-            if (!\File::exists($path_tn)) {
-                \File::makeDirectory(public_path('images/' . $request->folder . '/tn'), 0755, true);
-            }
-
-            $path = $request->file('file')->store('images/' . $request->folder);
+            $path = $request->folder == 'products' ? $request->file('file')->store('images/products/l') ? $request->file('file')->store('images/' . $request->folder) : 
             $file = basename($path);
             $path = public_path('images/' . $request->folder . '/' . $file);
             if ($request->folder == 'products') {
+
+                $path = $request->file('file')->store('images/l');
+
 
                 // $img  = \Image::make($path)->fit(400, 400)->save(
                 //     public_path('images/products/m/'.$file)
