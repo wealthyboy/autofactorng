@@ -54,11 +54,27 @@
 </div>
 
 <div class="col-lg-3  d-none d-lg-block  d-xl-block  ">
-   <div class="banner banner3 side-banner">
-      <a class="d-block">
-         <figure>
-            <img class="img-fluid" src="/images/utils/ensure11.jpg" style="background:#f6e1e8;" alt="banner" />
-         </figure>
-      </a>
-   </div>
+   <section class="p-0  slider-section d-none">
+
+      <div class="owl-carousel owl-theme show-nav-hover slide-animate d-none  d-lg-block d-xl-block" data-owl-options="{
+     'dots': true,
+     'nav': true,
+     'loop': true,
+      'autoplay':true,
+      'autoplayTimeout':3500,
+      'autoplayHoverPause':true,
+      'responsiveClass':true,
+      'lazyLoad': true
+
+  }">
+
+         <div class="banner banner3 ">
+            <a class="d-block">
+               <figure>
+                  <img src="/images/utils/ensure11.jpg" style="background:#f6e1e8;" alt="banner" />
+               </figure>
+            </a>
+         </div>
+      </div>
+   </section>
 </div>
