@@ -113,7 +113,7 @@ class ImagesController extends Controller
                     public_path('images/products/tm/' . $file)
                 );
 
-                copy($path, public_path('images/products/l'));
+                copy($path, $file);
 
                 // $canvas = \Image::canvas(600, 600);
 
@@ -135,7 +135,7 @@ class ImagesController extends Controller
                     public_path('images/products/tn/' . $file)
                 );
 
-                return $path = asset('images/' . $request->folder . '/' . $file);
+                return $path = asset('images/' . $request->folder . '/l/' . $file);
             }
 
             $img  = \Image::make($path)->fit(465, 465)->save(
