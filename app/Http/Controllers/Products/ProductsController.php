@@ -376,7 +376,7 @@ class ProductsController extends Controller
                 'data' => $data,
                 'string' => $catString,
                 'show' => $request->filled('search') &&  $request->search == false  || null !== $type ? false : true,
-                'productFitString' => $productFitString,
+                'productFitString' => !$this->buildSearchString($request) ?  $productFitString : session('fitsProducts'),
                 'p' => $p,
                 's' => session('fitsProducts'),
             ]
