@@ -375,30 +375,20 @@ class ProductsController extends Controller
         $data = MakeModelYearEngine::getMakeModelYearSearch($request);
 
         if ($request->year  && !$request->engine_id) {
-            $res =  response()->json(
-                [
-                    'type' => $request->type,
-                    'data' => $data,
-                    'string' => $catString,
-                    'show' => $request->filled('search') &&  $request->search == false  || null !== $type ? false : true,
-                    'p' => $p,
-                    's' => session('fitsProducts'),
-                ]
-            );
-        } else {
-            $res =  response()->json(
-                [
-                    'type' => $request->type,
-                    'data' => $data,
-                    'string' => $catString,
-                    'show' => $request->filled('search') &&  $request->search == false  || null !== $type ? false : true,
-                    'productFitString' => $productFitString,
-                    'p' => $p,
-                    's' => session('fitsProducts'),
-                ]
-            );
+            $productFitString = session('fitsProducts');
         }
 
+        $res =  response()->json(
+            [
+                'type' => $request->type,
+                'data' => $data,
+                'string' => $catString,
+                'show' => $request->filled('search') &&  $request->search == false  || null !== $type ? false : true,
+                'productFitString' => $this->buildSearchString($request) ?  $productFitString :  session('fitsProducts'),
+                'p' => $p,
+                's' => session('fitsProducts'),
+            ]
+        );
 
         if (null !== $type) {
             $res->withCookie($cookie);
