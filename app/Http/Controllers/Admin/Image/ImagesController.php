@@ -113,9 +113,12 @@ class ImagesController extends Controller
                     public_path('images/products/tm/' . $file)
                 );
 
-                $e = copy($path, $file);
+                copy($path, $file);
 
-                return $e;
+                Storage::move(
+                    $path,
+                    public_path('images/products/l/' . $file)
+                );
 
                 // $canvas = \Image::canvas(600, 600);
 
@@ -137,7 +140,7 @@ class ImagesController extends Controller
                     public_path('images/products/tn/' . $file)
                 );
 
-                return                     public_path('images/products/l/' . $file)
+                return   public_path('images/products/l/' . $file);
 
 
                 return $path = asset('images/' . $request->folder . '/l/' . $file);
