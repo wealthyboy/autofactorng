@@ -300,6 +300,11 @@ class ProductsController extends Controller
         $catString = null;
 
 
+        if ($request->year  && !$request->engine_id) {
+            $productFitString = session('fitsProducts');
+        } else {
+            $productFitString = null;
+        }
 
 
 
@@ -312,7 +317,6 @@ class ProductsController extends Controller
         }
 
         $p = null;
-        $productFitString = null;
 
         if ($request->filled('product')) {
 
