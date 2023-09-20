@@ -137,7 +137,7 @@ class ImagesController extends Controller
                     public_path('images/products/tn/' . $file)
                 );
 
-                return $path = asset('images/' . $request->folder . '/' . $file);
+                return $path = asset('images/products/l/' . $file);
             }
 
             $img  = \Image::make($path)->fit(465, 465)->save(
