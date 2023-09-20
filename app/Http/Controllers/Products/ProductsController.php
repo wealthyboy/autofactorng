@@ -298,8 +298,6 @@ class ProductsController extends Controller
         $category = Category::where('slug', $request->category)->first();
         $cookie = null;
         $catString = null;
-        $productFitString = null;
-
 
         if ($request->checkForCategory == true && $this->getCategory($category)) {
             $catString = $this->buildSearchString($request);
@@ -353,6 +351,7 @@ class ProductsController extends Controller
                         $builder->groupBy('make_model_year_engines.product_id');
                     })->first();
                     $productFitString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
+                    dd($productFitString);
                     session(['fitsProducts' => $productFitString]);
                 }
             }
@@ -361,8 +360,6 @@ class ProductsController extends Controller
         if (null !== $p && null !== $catString &&  $this->buildSearchString($request)) {
             session(['fitsProducts' =>  'Fits your ' . $this->buildSearchString($request)]);
         }
-
-
 
         if (null !== $type) {
             session()->put($type, $data[$type]);
@@ -381,7 +378,7 @@ class ProductsController extends Controller
                 'data' => $data,
                 'string' => $catString,
                 'show' => $request->filled('search') &&  $request->search == false  || null !== $type ? false : true,
-                'productFitString' => $this->buildSearchString($request) ?  $productFitString :  session('fitsProducts'),
+                'productFitString' => $productFitString,
                 'p' => $p,
                 's' => session('fitsProducts'),
             ]
