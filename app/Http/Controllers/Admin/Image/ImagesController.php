@@ -113,7 +113,7 @@ class ImagesController extends Controller
                     public_path('images/products/tm/' . $file)
                 );
 
-                copy(  $path , public_path('images/products/l') )
+                copy($path, public_path('images/products/l'));
 
                 // $canvas = \Image::canvas(600, 600);
 
