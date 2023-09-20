@@ -114,7 +114,6 @@ class ImagesController extends Controller
                     public_path('images/products/tm/' . $file)
                 );
 
-                copy($path, $file);
 
                 Storage::move(
                     $path,
