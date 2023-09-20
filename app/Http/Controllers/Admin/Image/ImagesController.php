@@ -113,7 +113,9 @@ class ImagesController extends Controller
                     public_path('images/products/tm/' . $file)
                 );
 
-                copy($path, $file);
+                $e = copy($path, $file);
+
+                return $e;
 
                 // $canvas = \Image::canvas(600, 600);
 
@@ -134,6 +136,9 @@ class ImagesController extends Controller
                 $canvas->save(
                     public_path('images/products/tn/' . $file)
                 );
+
+                return                     public_path('images/products/l/' . $file)
+
 
                 return $path = asset('images/' . $request->folder . '/l/' . $file);
             }
