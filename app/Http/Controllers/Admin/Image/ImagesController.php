@@ -137,9 +137,6 @@ class ImagesController extends Controller
                     public_path('images/products/tn/' . $file)
                 );
 
-                return   public_path('images/products/l/' . $file);
-
-
                 return $path = asset('images/' . $request->folder . '/l/' . $file);
             }
 
