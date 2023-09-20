@@ -530,8 +530,11 @@ footer a {
     width: 191px !important;
 }
 
+
+
 @media (min-width: 1200px) {
     .banner.banner3.side-banner {
+        max-height: 47.3rem !important;
         overflow: hidden;
         height: 47.3rem !important;
     }
