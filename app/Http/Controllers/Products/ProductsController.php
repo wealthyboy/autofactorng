@@ -362,7 +362,7 @@ class ProductsController extends Controller
             }
         }
 
-        if (null !== $catString) {
+        if (null !== $catString &&  $this->buildSearchString($request)) {
             session(['fitsProducts' =>  'Fits your ' . $this->buildSearchString($request)]);
         }
 
@@ -508,7 +508,7 @@ class ProductsController extends Controller
             return $year . ' ' . $make_name . ' ' . $model_name . ' ' . $engine_name;
         }
 
-        return '';
+        return null;
     }
 
     /**
