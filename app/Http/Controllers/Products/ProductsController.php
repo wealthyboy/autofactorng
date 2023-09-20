@@ -307,7 +307,6 @@ class ProductsController extends Controller
         }
 
 
-
         if ($request->checkForCategory == true && $this->getCategory($category)) {
             $catString = $this->buildSearchString($request);
         }
@@ -318,7 +317,7 @@ class ProductsController extends Controller
 
         $p = null;
 
-        if ($request->filled('product')) {
+        if ($request->filled('product') && $request->engine_id || $request->cookie('engine_id')) {
 
             $product = Product::where('slug', $request->product)->first();
 
