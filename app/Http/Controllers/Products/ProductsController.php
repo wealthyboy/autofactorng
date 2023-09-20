@@ -388,6 +388,8 @@ class ProductsController extends Controller
                 'show' => $request->filled('search') &&  $request->search == false  || null !== $type ? false : true,
                 'productFitString' => $productFitString,
                 'p' => $p,
+                's' => session('fitsProducts'),
+
 
             ]
         );
