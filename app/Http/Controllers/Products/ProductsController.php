@@ -306,7 +306,6 @@ class ProductsController extends Controller
             $productFitString = null;
         }
 
-
         if ($request->checkForCategory == true && $this->getCategory($category)) {
             $catString = $this->buildSearchString($request);
         }
@@ -370,7 +369,7 @@ class ProductsController extends Controller
 
 
         if (null == $productFitString) {
-            session(['fitsProducts' => Product::CheckText]);
+            // session(['fitsProducts' => Product::CheckText]);
         }
 
         if (null !== $type) {
@@ -389,8 +388,6 @@ class ProductsController extends Controller
                 'productFitString' => $productFitString,
                 'p' => $p,
                 's' => session('fitsProducts'),
-
-
             ]
         );
 
