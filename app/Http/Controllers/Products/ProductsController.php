@@ -356,7 +356,7 @@ class ProductsController extends Controller
             }
         }
 
-        dd(session('fitsProducts'));
+        // dd(session('fitsProducts'));
 
         if (null !== $p && null !== $catString &&  $this->buildSearchString($request)) {
             session(['fitsProducts' =>  'Fits your ' . $this->buildSearchString($request)]);
@@ -369,9 +369,6 @@ class ProductsController extends Controller
 
         $data = MakeModelYearEngine::getMakeModelYearSearch($request);
 
-        if ($request->year  && !$request->engine_id) {
-            $productFitString = session('fitsProducts');
-        }
 
         $res =  response()->json(
             [
