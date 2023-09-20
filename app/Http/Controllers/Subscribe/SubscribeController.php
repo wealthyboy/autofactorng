@@ -19,9 +19,9 @@ class SubscribeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
 
-       
+
 
         $links =  [
             'light_duty',
@@ -60,6 +60,7 @@ class SubscribeController extends Controller
         ];
 
         $user =  auth()->check() ?  true : false;
-        return view('subscribe.index', compact('price_range', 'user'));
+        $page_title = "Subscribe to our auto credit";
+        return view('subscribe.index', compact('price_range', 'user', 'page_title'));
     }
 }
