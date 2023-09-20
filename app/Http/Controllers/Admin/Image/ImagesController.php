@@ -78,33 +78,35 @@ class ImagesController extends Controller
             }
 
 
-            $path = public_path('images/' . $request->folder);
-            $path_m = public_path('images/' . $request->folder . '/tm');
-            $path_tn = public_path('images/' . $request->folder . '/tn');
+            $path    =  public_path('images/' . $request->folder);
+            $path_m  =  public_path('images/' . $request->folder . '/tm');
+            $path_tn =  public_path('images/' . $request->folder . '/tn');
 
-            // if (!\File::exists($path)) {
-            //     \File::makeDirectory(public_path('images/' . $request->folder), 0755, true);
-            // }
 
-            // if (!\File::exists($path_m)) {
-            //     \File::makeDirectory(public_path('images/' . $request->folder . '/tm'), 0755, true);
-            // }
-
-            // if (!\File::exists($path_tn)) {
-            //     \File::makeDirectory(public_path('images/' . $request->folder . '/tn'), 0755, true);
-            // }
-
-            if ($request->folder == 'products') {
-                $path = $request->file('file')->store('images/products/l');
-                $file = basename($path);
-                $path = public_path('images/products/l' . $file);
-            } else {
-                $path = $request->file('file')->store('images/' . $request->folder);
-                $file = basename($path);
-                $path = public_path('images/' . $request->folder . '/' . $file);
+            if (!\File::exists($path)) {
+                \File::makeDirectory(public_path('images/' . $request->folder), 0755, true);
             }
 
+            if (!\File::exists($path_m)) {
+                \File::makeDirectory(public_path('images/' . $request->folder . '/tm'), 0755, true);
+            }
+
+            if (!\File::exists($path_tn)) {
+                \File::makeDirectory(public_path('images/' . $request->folder . '/tn'), 0755, true);
+            }
+
+            $path = $request->file('file')->store('images/' . $request->folder);
+            $file = basename($path);
+            $path = public_path('images/' . $request->folder . '/' . $file);
             if ($request->folder == 'products') {
+
+                $path = $request->file('file')->store('images/products/l');
+                $file = basename($path);
+                $path = public_path('images/' . $request->folder . '/' . $file);
+
+                // $img  = \Image::make($path)->fit(400, 400)->save(
+                //     public_path('images/products/m/'.$file)
+                // );
 
                 $canvas = \Image::canvas(400, 400);
                 $image  = \Image::make($path)->resize(400, 400, function ($constraint) {
@@ -115,16 +117,16 @@ class ImagesController extends Controller
                     public_path('images/products/tm/' . $file)
                 );
 
-                $canvas = \Image::canvas(600, 600);
+                // $canvas = \Image::canvas(600, 600);
 
 
-                $image  = \Image::make($path)->resize(600, 600, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-                $canvas->insert($image, 'center');
-                $canvas->save(
-                    public_path('images/products/l/' . $file)
-                );
+                // $image  = \Image::make($path)->resize(600, 600, function ($constraint) {
+                //     $constraint->aspectRatio();
+                // });
+                // $canvas->insert($image, 'center');
+                // $canvas->save(
+                //     public_path('images/products/l/' . $file)
+                // );
 
                 $canvas = \Image::canvas(150, 200);
                 $image  = \Image::make($path)->resize(150, 200, function ($constraint) {
