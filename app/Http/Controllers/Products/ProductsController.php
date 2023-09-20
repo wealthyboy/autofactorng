@@ -298,12 +298,10 @@ class ProductsController extends Controller
         $category = Category::where('slug', $request->category)->first();
         $cookie = null;
         $catString = null;
-
+        $productFitString = null;
 
         if ($request->year  && !$request->engine_id) {
             $productFitString = session('fitsProducts');
-        } else {
-            $productFitString = null;
         }
 
         if ($request->checkForCategory == true && $this->getCategory($category)) {
@@ -368,9 +366,6 @@ class ProductsController extends Controller
         }
 
 
-        if (null == $productFitString) {
-            // session(['fitsProducts' => Product::CheckText]);
-        }
 
         if (null !== $type) {
             session()->put($type, $data[$type]);
@@ -379,17 +374,31 @@ class ProductsController extends Controller
 
         $data = MakeModelYearEngine::getMakeModelYearSearch($request);
 
-        $res =  response()->json(
-            [
-                'type' => $request->type,
-                'data' => $data,
-                'string' => $catString,
-                'show' => $request->filled('search') &&  $request->search == false  || null !== $type ? false : true,
-                'productFitString' => $productFitString,
-                'p' => $p,
-                's' => session('fitsProducts'),
-            ]
-        );
+        if ($request->year  && !$request->engine_id) {
+            $res =  response()->json(
+                [
+                    'type' => $request->type,
+                    'data' => $data,
+                    'string' => $catString,
+                    'show' => $request->filled('search') &&  $request->search == false  || null !== $type ? false : true,
+                    'p' => $p,
+                    's' => session('fitsProducts'),
+                ]
+            );
+        } else {
+            $res =  response()->json(
+                [
+                    'type' => $request->type,
+                    'data' => $data,
+                    'string' => $catString,
+                    'show' => $request->filled('search') &&  $request->search == false  || null !== $type ? false : true,
+                    'productFitString' => $productFitString,
+                    'p' => $p,
+                    's' => session('fitsProducts'),
+                ]
+            );
+        }
+
 
         if (null !== $type) {
             $res->withCookie($cookie);
