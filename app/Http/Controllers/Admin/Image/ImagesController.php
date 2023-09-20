@@ -96,6 +96,7 @@ class ImagesController extends Controller
             }
 
             $path = $request->file('file')->store('images/' . $request->folder);
+            return $path;
             $file = basename($path);
             $path = public_path('images/' . $request->folder . '/' . $file);
             if ($request->folder == 'products') {
