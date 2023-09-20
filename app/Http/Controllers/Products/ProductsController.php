@@ -351,11 +351,12 @@ class ProductsController extends Controller
                         $builder->groupBy('make_model_year_engines.product_id');
                     })->first();
                     $productFitString = null !== $p ? 'Fits your ' . $this->buildSearchString($request) : Product::DoesNotFit;
-                    dd($productFitString);
                     session(['fitsProducts' => $productFitString]);
                 }
             }
         }
+
+        dd(session('fitsProducts'));
 
         if (null !== $p && null !== $catString &&  $this->buildSearchString($request)) {
             session(['fitsProducts' =>  'Fits your ' . $this->buildSearchString($request)]);
