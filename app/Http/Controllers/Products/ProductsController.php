@@ -300,9 +300,6 @@ class ProductsController extends Controller
         $catString = null;
         $productFitString = null;
 
-        if ($request->year  && !$request->engine_id) {
-            $productFitString = session('fitsProducts');
-        }
 
         if ($request->checkForCategory == true && $this->getCategory($category)) {
             $catString = $this->buildSearchString($request);
