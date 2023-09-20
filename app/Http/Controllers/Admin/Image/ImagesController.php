@@ -79,8 +79,6 @@ class ImagesController extends Controller
 
 
             $path    =  public_path('images/' . $request->folder);
-            $l  =  public_path('images/' . $request->folder . '/l');
-
             $path_m  =  public_path('images/' . $request->folder . '/tm');
             $path_tn =  public_path('images/' . $request->folder . '/tn');
 
@@ -93,24 +91,14 @@ class ImagesController extends Controller
                 \File::makeDirectory(public_path('images/' . $request->folder . '/tm'), 0755, true);
             }
 
-            if (!\File::exists($l)) {
-                \File::makeDirectory(public_path('images/' . $request->folder . '/l'), 0755, true);
-            }
-
             if (!\File::exists($path_tn)) {
                 \File::makeDirectory(public_path('images/' . $request->folder . '/tn'), 0755, true);
             }
-            $path = $request->file('file')->store('images/products/l');
-            return $path;
+
             $path = $request->file('file')->store('images/' . $request->folder);
             $file = basename($path);
             $path = public_path('images/' . $request->folder . '/' . $file);
             if ($request->folder == 'products') {
-
-                $path = $request->file('file')->store('images/products/l');
-                return $path;
-                $file = basename($path);
-                $path = public_path('images/' . $request->folder . '/' . $file);
 
                 // $img  = \Image::make($path)->fit(400, 400)->save(
                 //     public_path('images/products/m/'.$file)
@@ -124,6 +112,8 @@ class ImagesController extends Controller
                 $canvas->save(
                     public_path('images/products/tm/' . $file)
                 );
+
+                copy(  $path , public_path('images/products/l') )
 
                 // $canvas = \Image::canvas(600, 600);
 
@@ -145,7 +135,7 @@ class ImagesController extends Controller
                     public_path('images/products/tn/' . $file)
                 );
 
-                return $path = asset('images/products/l/' . $file);
+                return $path = asset('images/' . $request->folder . '/' . $file);
             }
 
             $img  = \Image::make($path)->fit(465, 465)->save(
