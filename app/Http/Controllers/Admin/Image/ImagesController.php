@@ -140,7 +140,7 @@ class ImagesController extends Controller
                 return $path = asset('images/' . $request->folder . '/l/' . $file);
             }
 
-            $path = $request->file('file')->store('images/' . $request->folder . '/l');
+            $path = $request->file('file')->store('images/' . $request->folder);
             $file = basename($path);
             $path = public_path('images/' . $request->folder . '/' . $file);
 
