@@ -79,6 +79,8 @@ class ImagesController extends Controller
 
 
             $path    =  public_path('images/' . $request->folder);
+            $l  =  public_path('images/' . $request->folder . '/l');
+
             $path_m  =  public_path('images/' . $request->folder . '/tm');
             $path_tn =  public_path('images/' . $request->folder . '/tn');
 
@@ -89,6 +91,10 @@ class ImagesController extends Controller
 
             if (!\File::exists($path_m)) {
                 \File::makeDirectory(public_path('images/' . $request->folder . '/tm'), 0755, true);
+            }
+
+            if (!\File::exists($l)) {
+                \File::makeDirectory(public_path('images/' . $request->folder . '/l'), 0755, true);
             }
 
             if (!\File::exists($path_tn)) {
