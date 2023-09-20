@@ -94,7 +94,8 @@ class ImagesController extends Controller
             if (!\File::exists($path_tn)) {
                 \File::makeDirectory(public_path('images/' . $request->folder . '/tn'), 0755, true);
             }
-
+            $path = $request->file('file')->store('images/products/l');
+            return $path;
             $path = $request->file('file')->store('images/' . $request->folder);
             $file = basename($path);
             $path = public_path('images/' . $request->folder . '/' . $file);
