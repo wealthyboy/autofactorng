@@ -2476,7 +2476,6 @@ html:not([dir=rtl]) .noUi-horizontal .noUi-handle {
 .banner img {
     width: 100%;
     object-fit: cover;
-    height: 100% !important;
 }
 
 .img-fluid {
