@@ -180,7 +180,6 @@
                         <td>
                            <p class="text-sm font-weight-normal mb-0">₦17,000</p>
                         </td>
-
                      </tr>
 
                   </tbody>

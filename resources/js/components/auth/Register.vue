@@ -1,128 +1,69 @@
 <template>
   <message :message="post_server_error" />
 
-  <form
-    method="POST"
-    @submit.prevent="register"
-  >
+  <form method="POST" @submit.prevent="register">
     <div class="row ">
       <p class="form-group p-1 col-6">
       <div class="form-floating">
-        <general-input
-          id="first_name"
-          :error="v$.first_name"
-          v-model="form.first_name"
-          name="First name"
-          type="text"
-        />
+        <general-input id="first_name" :error="v$.first_name" v-model="form.first_name" name="First name" type="text" />
 
       </div>
       </p>
 
       <p class="form-group  p-1 col-6">
       <div class="form-floating">
-        <general-input
-          id="last_name"
-          :error="v$.last_name"
-          v-model="form.last_name"
-          name="Last name"
-          type="text"
-        />
+        <general-input id="last_name" :error="v$.last_name" v-model="form.last_name" name="Last name" type="text" />
 
       </div>
       </p>
 
       <p class="form-group p-1 col-6">
       <div class="form-floating">
-        <general-input
-          id="email"
-          :error="v$.email"
-          v-model="form.email"
-          name="Email"
-          type="text"
-          :server_errors="server_errors.email"
-        />
+        <general-input id="email" :error="v$.email" v-model="form.email" name="Email" type="text"
+          :server_errors="server_errors.email" />
 
       </div>
       </p>
 
       <p class="form-group  p-1 col-6">
       <div class="form-floating">
-        <general-input
-          id="phone_number"
-          :error="v$.phone_number"
-          v-model="form.phone_number"
-          name="Phone Number"
-          type="text"
-          :server_errors="server_errors.phone_number"
-        />
+        <general-input id="phone_number" :error="v$.phone_number" v-model="form.phone_number" name="Phone Number"
+          type="text" :server_errors="server_errors.phone_number" />
 
       </div>
       </p>
 
       <p class="form-group p-1 col-6">
       <div class="form-floating">
-        <general-input
-          id="password"
-          :error="v$.password"
-          v-model="form.password"
-          name="Password"
-          type="password"
-          :server_errors="server_errors.password"
-        />
+        <general-input id="password" :error="v$.password" v-model="form.password" name="Password" type="password"
+          :server_errors="server_errors.password" />
 
       </div>
       </p>
 
       <p class="form-group  p-1 col-6">
       <div class="form-floating">
-        <general-input
-          id="password_confirmation"
-          :error="v$.password_confirmation"
-          v-model="form.password_confirmation"
-          name="Confirm Password"
-          type="password"
-        />
+        <general-input id="password_confirmation" :error="v$.password_confirmation" v-model="form.password_confirmation"
+          name="Confirm Password" type="password" />
 
       </div>
       </p>
 
-      <p
-        v-if="subscribe"
-        subscribe
-        class="form-group  p-1 col-12"
-      >
+      <p v-if="subscribe" subscribe class="form-group  p-1 col-12">
       <div class="form-floating">
-        <general-input
-          id="amount"
-          :error="v$.amount"
-          v-model="form.amount"
-          name="Amount"
-          type="text"
-        />
+        <general-input id="amount" :error="v$.amount" v-model="form.amount" name="Amount" type="text" />
 
       </div>
       </p>
 
-      <general-button
-        type="submit"
-        :text="text"
-        class="btn btn-dark w-100 p-3"
-        :loading="loading"
-      />
+      <general-button type="submit" :text="text" class="btn btn-dark w-100 p-3" :loading="loading" />
 
     </div>
     <p class="text-center border-top pt-5">
       By registering your details, you agree with our
-      <a
-        class="color--primary bold"
-        href="/pages/terms-conditions"
-      >Terms & Conditions</a>
+      <a class="color--primary bold" href="/pages/terms-and-conditions">Terms & Conditions</a>
       , and
-      <a
-        class="color--primary bold"
-        href="/pages/privacy-policy"
-      >Privacy and Cookie Policy.</a>
+      <a class="color--primary bold" href="/pages/privacy-policy">Privacy and Cookie Policy.</a>
     </p>
   </form>
 </template>
@@ -163,9 +104,9 @@ export default {
 
     function register() {
       this.v$.$touch();
-            if (this.v$.$error) {
-                return;
-            }
+      if (this.v$.$error) {
+        return;
+      }
 
       const postData = {
         url: "/register",
