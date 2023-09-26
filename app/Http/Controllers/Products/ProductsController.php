@@ -523,6 +523,9 @@ class ProductsController extends Controller
         $product->fitsProducts = session('fitsProducts');
         $category = session('category');
         $category_slug = session('category_slug');
+        if ($request->test) {
+            return view('products.show2', compact('page_title', 'meta_tag_keywords', 'page_meta_description', 'category', 'category_slug', 'user', 'product'));
+        }
         return view('products.show', compact('page_title', 'meta_tag_keywords', 'page_meta_description', 'category', 'category_slug', 'user', 'product'));
     }
 }

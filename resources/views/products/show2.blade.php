@@ -22,16 +22,26 @@
 
                 </div>
             </div>
-            <div class="col-lg-6  col-12 product-single-gallery">
-                <div class="sidebar-wrapper"></div>
+            <div class="col-lg-6 product-single-gallery d-lg-flex order-0 order-lg-0">
+                <div class="product-slider-container mb-auto">
+                    <div class="label-group">
+                        <div class="product-label label-hot">HOT</div>
+                        <div class="product-label label-sale">-16%</div>
+                    </div>
 
-                <div class="product-slider-container">
                     <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
-                        @foreach($product->images as $image)
                         <div class="product-item">
-                            <img class="product-single-image" src="{{ $image->image_l }}" width="468" height="468" alt="product" />
+                            <img class="product-single-image" src="assets/images/products/zoom/product-1-big.jpg" data-zoom-image="assets/images/products/zoom/product-1-big.jpg" width="468" height="468" alt="product" />
                         </div>
-                        @endforeach
+                        <div class="product-item">
+                            <img class="product-single-image" src="assets/images/products/zoom/product-2-big.jpg" data-zoom-image="assets/images/products/zoom/product-2-big.jpg" width="468" height="468" alt="product" />
+                        </div>
+                        <div class="product-item">
+                            <img class="product-single-image" src="assets/images/products/zoom/product-3-big.jpg" data-zoom-image="assets/images/products/zoom/product-3-big.jpg" width="468" height="468" alt="product" />
+                        </div>
+                        <div class="product-item">
+                            <img class="product-single-image" src="assets/images/products/zoom/product-4-big.jpg" data-zoom-image="assets/images/products/zoom/product-4-big.jpg" width="468" height="468" alt="product" />
+                        </div>
                     </div>
                     <!-- End .product-single-carousel -->
                     <span class="prod-full-screen">
@@ -39,17 +49,22 @@
                     </span>
                 </div>
 
-                <div class="prod-thumbnail owl-dots transparent-dots flex-column d-sm-none" id='carousel-custom-dots'>
-
-                    @foreach($product->images as $image)
-                    <div class="owl-dot mb-2">
-                        <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
+                <div class="prod-thumbnail thumb-vertical owl-dots d-lg-block order-lg-first" id='carousel-custom-dots'>
+                    <div class="owl-dot">
+                        <img src="assets/images/products/zoom/product-1.jpg" width="110" height="110" alt="product-thumbnail" />
                     </div>
-                    @endforeach
+                    <div class="owl-dot">
+                        <img src="assets/images/products/zoom/product-2.jpg" width="110" height="110" alt="product-thumbnail" />
+                    </div>
+                    <div class="owl-dot">
+                        <img src="assets/images/products/zoom/product-3.jpg" width="110" height="110" alt="product-thumbnail" />
+                    </div>
+                    <div class="owl-dot">
+                        <img src="assets/images/products/zoom/product-4.jpg" width="110" height="110" alt="product-thumbnail" />
+                    </div>
                 </div>
-
-
             </div>
+
             <!-- End .product-single-gallery -->
 
             <show :product="{{ $product }}" />
