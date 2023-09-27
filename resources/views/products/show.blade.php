@@ -19,12 +19,19 @@
         <div class="row">
 
 
-            <div class="col-lg-7 product-single-gallery d-lg-flex order-0 order-lg-0">
-                <div class="product-slider-container mb-auto product-single-gallery">
+            <div class="col-lg-1 d-none d-lg-block d-xl-block">
+                <div class="prod-thumbnail owl-dots flex-column">
+                    @foreach($product->images as $image)
+                    <div class="owl-dot mb-2">
+                        <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
+                    </div>
+                    @endforeach
 
-
+                </div>
+            </div>
+            <div class="col-lg-6  col-12 product-single-gallery">
+                <div class="product-slider-container">
                     <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
-
                         @foreach($product->images as $image)
                         <div class="product-item">
                             <img class="product-single-image" src="{{ $image->image_l }}" width="468" height="468" alt="product" />
@@ -37,16 +44,18 @@
                     </span>
                 </div>
 
-                <div class="prod-thumbnail thumb-vertical owl-dots d-lg-block order-lg-first d-flex" id='carousel-custom-dots'>
-
-
+                <div class="prod-thumbnail owl-dots d-block d-sm-none">
                     @foreach($product->images as $image)
-                    <div class="owl-dot ">
+                    <div class="owl-dot mb-2">
                         <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
                     </div>
                     @endforeach
+
                 </div>
+
+
             </div>
+            <!-- End .product-single-gallery -->
 
             <show :product="{{ $product }}" />
 
