@@ -25,22 +25,21 @@
             <div class="col-lg-6 product-single-gallery d-lg-flex order-0 order-lg-0">
                 <div class="product-slider-container mb-auto">
                     <div class="label-group">
-                        <div class="product-label label-hot">HOT</div>
-                        <div class="product-label label-sale">-16%</div>
+
                     </div>
 
                     <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
                         <div class="product-item">
-                            <img class="product-single-image" src="assets/images/products/zoom/product-1-big.jpg" data-zoom-image="assets/images/products/zoom/product-1-big.jpg" width="468" height="468" alt="product" />
+                            <img class="product-single-image" src="https://autofactorng.com/images/products/l/qg6yP5bVulilJy2p8z6dMJNqSE4dB9NOB4XthR8s.png" data-zoom-image="https://autofactorng.com/images/products/l/qg6yP5bVulilJy2p8z6dMJNqSE4dB9NOB4XthR8s.png" width="468" height="468" alt="product" />
                         </div>
                         <div class="product-item">
-                            <img class="product-single-image" src="assets/images/products/zoom/product-2-big.jpg" data-zoom-image="assets/images/products/zoom/product-2-big.jpg" width="468" height="468" alt="product" />
+                            <img class="product-single-image" src="https://autofactorng.com/images/products/l/qg6yP5bVulilJy2p8z6dMJNqSE4dB9NOB4XthR8s.png" data-zoom-image="https://autofactorng.com/images/products/l/qg6yP5bVulilJy2p8z6dMJNqSE4dB9NOB4XthR8s.png" width="468" height="468" alt="product" />
                         </div>
                         <div class="product-item">
-                            <img class="product-single-image" src="assets/images/products/zoom/product-3-big.jpg" data-zoom-image="assets/images/products/zoom/product-3-big.jpg" width="468" height="468" alt="product" />
+                            <img class="product-single-image" src="https://autofactorng.com/images/products/l/qg6yP5bVulilJy2p8z6dMJNqSE4dB9NOB4XthR8s.png" data-zoom-image="https://autofactorng.com/images/products/l/qg6yP5bVulilJy2p8z6dMJNqSE4dB9NOB4XthR8s.png" width="468" height="468" alt="product" />
                         </div>
                         <div class="product-item">
-                            <img class="product-single-image" src="assets/images/products/zoom/product-4-big.jpg" data-zoom-image="assets/images/products/zoom/product-4-big.jpg" width="468" height="468" alt="product" />
+                            <img class="product-single-image" src="https://autofactorng.com/images/products/l/qg6yP5bVulilJy2p8z6dMJNqSE4dB9NOB4XthR8s.png" data-zoom-image="https://autofactorng.com/images/products/l/qg6yP5bVulilJy2p8z6dMJNqSE4dB9NOB4XthR8s.png" width="468" height="468" alt="product" />
                         </div>
                     </div>
                     <!-- End .product-single-carousel -->
@@ -51,16 +50,16 @@
 
                 <div class="prod-thumbnail thumb-vertical owl-dots d-lg-block order-lg-first" id='carousel-custom-dots'>
                     <div class="owl-dot">
-                        <img src="assets/images/products/zoom/product-1.jpg" width="110" height="110" alt="product-thumbnail" />
+                        <img src="https://autofactorng.com/images/products/l/qg6yP5bVulilJy2p8z6dMJNqSE4dB9NOB4XthR8s.png" width="110" height="110" alt="product-thumbnail" />
                     </div>
                     <div class="owl-dot">
-                        <img src="assets/images/products/zoom/product-2.jpg" width="110" height="110" alt="product-thumbnail" />
+                        <img src="https://autofactorng.com/images/products/l/qg6yP5bVulilJy2p8z6dMJNqSE4dB9NOB4XthR8s.png" width="110" height="110" alt="product-thumbnail" />
                     </div>
                     <div class="owl-dot">
-                        <img src="assets/images/products/zoom/product-3.jpg" width="110" height="110" alt="product-thumbnail" />
+                        <img src="https://autofactorng.com/images/products/l/qg6yP5bVulilJy2p8z6dMJNqSE4dB9NOB4XthR8s.png" width="110" height="110" alt="product-thumbnail" />
                     </div>
                     <div class="owl-dot">
-                        <img src="assets/images/products/zoom/product-4.jpg" width="110" height="110" alt="product-thumbnail" />
+                        <img src="https://autofactorng.com/images/products/l/qg6yP5bVulilJy2p8z6dMJNqSE4dB9NOB4XthR8s.png" width="110" height="110" alt="product-thumbnail" />
                     </div>
                 </div>
             </div>
