@@ -236,7 +236,9 @@ label.container {
     background-color: #ccc;
 }
 
-.product-single-carousel.owl-carousel.owl-theme.show-nav-hover.owl-loaded.owl-drag {
+.product-single-carousel {
+
+    justify-content: center;
     display: flex;
 }
 
