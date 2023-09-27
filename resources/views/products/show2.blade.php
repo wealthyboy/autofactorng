@@ -14,104 +14,19 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-3 order-1 order-lg-0">
-                <div class="product-single-details">
-                    <h1 class="product-title mb-1">Men Black Sports Shoes</h1>
 
-                    <div class="product-nav">
-                        <div class="product-prev">
-                            <a href="#">
-                                <span class="product-link"></span>
-
-                                <span class="product-popup">
-                                    <span class="box-content">
-                                        <img alt="product" width="150" height="150" src="assets/images/products/product-3.jpg" style="padding-top: 0px;">
-
-                                        <span>Circled Ultimate 3D Speaker</span>
-                                    </span>
-                                </span>
-                            </a>
-                        </div>
-
-                        <div class="product-next">
-                            <a href="#">
-                                <span class="product-link"></span>
-
-                                <span class="product-popup">
-                                    <span class="box-content">
-                                        <img alt="product" width="150" height="150" src="assets/images/products/product-4.jpg" style="padding-top: 0px;">
-
-                                        <span>Blue Backpack for the Young</span>
-                                    </span>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="ratings-container">
-                        <div class="product-ratings">
-                            <span class="ratings" style="width:60%"></span>
-                            <!-- End .ratings -->
-                            <span class="tooltiptext tooltip-top"></span>
-                        </div>
-                        <!-- End .product-ratings -->
-
-                        <a href="#" class="rating-link">( 6 Reviews )</a>
-                    </div>
-                    <!-- End .ratings-container -->
-
-                    <hr class="short-divider">
-
-                    <div class="price-box pt-1">
-                        <span class="product-price">$119.00</span>
-                        <span class="product-price"> – <span>$130.00</span></span>
-                    </div>
-
-                    <div class="product-desc">
-                        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non.</p>
-                    </div>
-                    <!-- End .product-desc -->
-
-                    <ul class="single-info-list">
-                        <!---->
-                        <li>
-                            SKU: <strong>PT0005</strong>
-                        </li>
-
-                        <li>
-                            CATEGORIES:
-                            <strong><a href="#" class="product-category">CLOTHING</a></strong>,
-                            <strong><a href="#" class="product-category">SHOES</a></strong>,
-                            <strong><a href="#" class="product-category">T-SHIRTS</a></strong>,
-                            <strong><a href="#" class="product-category">WATCHES</a></strong>
-                        </li>
-                    </ul>
-
-                    <a href="wishlist.html" class="btn-icon-wish add-wishlist justify-content-start pl-0" title="Add to Wishlist"><i class="icon-wishlist-2"></i><span>Add to
-                            Wishlist</span></a>
-                </div>
-            </div>
 
             <div class="col-lg-6 product-single-gallery d-lg-flex order-0 order-lg-0">
                 <div class="product-slider-container mb-auto">
-                    <div class="label-group">
-                        <div class="product-label label-hot">HOT</div>
-                        <div class="product-label label-sale">-16%</div>
-                    </div>
+
 
                     <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
+
+                        @foreach($product->images as $image)
                         <div class="product-item">
-                            <img class="product-single-image" src="assets/images/products/zoom/product-1-big.jpg" data-zoom-image="assets/images/products/zoom/product-1-big.jpg" width="468" height="468" alt="product" />
+                            <img class="product-single-image" src="{{ $image->image_l }}" width="468" height="468" alt="product" />
                         </div>
-                        <div class="product-item">
-                            <img class="product-single-image" src="assets/images/products/zoom/product-2-big.jpg" data-zoom-image="assets/images/products/zoom/product-2-big.jpg" width="468" height="468" alt="product" />
-                        </div>
-                        <div class="product-item">
-                            <img class="product-single-image" src="assets/images/products/zoom/product-3-big.jpg" data-zoom-image="assets/images/products/zoom/product-3-big.jpg" width="468" height="468" alt="product" />
-                        </div>
-                        <div class="product-item">
-                            <img class="product-single-image" src="assets/images/products/zoom/product-4-big.jpg" data-zoom-image="assets/images/products/zoom/product-4-big.jpg" width="468" height="468" alt="product" />
-                        </div>
+                        @endforeach
                     </div>
                     <!-- End .product-single-carousel -->
                     <span class="prod-full-screen">
@@ -119,19 +34,14 @@
                     </span>
                 </div>
 
-                <div class="prod-thumbnail thumb-vertical owl-dots d-lg-block order-lg-first" id='carousel-custom-dots'>
-                    <div class="owl-dot">
-                        <img src="assets/images/products/zoom/product-1.jpg" width="110" height="110" alt="product-thumbnail" />
+                <div class="prod-thumbnail thumb-vertical owl-dots d-lg-block order-lg-first d-flex" id='carousel-custom-dots'>
+
+
+                    @foreach($product->images as $image)
+                    <div class="owl-dot ">
+                        <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
                     </div>
-                    <div class="owl-dot">
-                        <img src="assets/images/products/zoom/product-2.jpg" width="110" height="110" alt="product-thumbnail" />
-                    </div>
-                    <div class="owl-dot">
-                        <img src="assets/images/products/zoom/product-3.jpg" width="110" height="110" alt="product-thumbnail" />
-                    </div>
-                    <div class="owl-dot">
-                        <img src="assets/images/products/zoom/product-4.jpg" width="110" height="110" alt="product-thumbnail" />
-                    </div>
+                    @endforeach
                 </div>
             </div>
 
