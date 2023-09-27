@@ -10,7 +10,7 @@
         </ol>
     </nav>
 
-    <div class="product-single-container product-single-default product-center-vertical">
+    <div class="product-single-container products-show product-single-default product-center-vertical">
         <div class="cart-message d-none">
             <strong class="single-cart-notice">“Men Black Sports Shoes”</strong>
             <span>has been added to your cart.</span>
