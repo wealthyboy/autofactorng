@@ -130,8 +130,12 @@ a {
     // width: 100% !important;
 }
 
-.owl-carousel .owl-stage-outer .owl-stage {
+.prod-thumbnail .owl-stage-outer .owl-stage {
     transform: none !important;
+}
+
+.prod-thumbnail .owl-nav {
+    display: none !important;
 }
 
 div#offcanvas {
