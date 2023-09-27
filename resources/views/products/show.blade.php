@@ -19,7 +19,7 @@
         <div class="row">
 
 
-            <div class="col-lg-6 product-single-gallery d-lg-flex order-0 order-lg-0">
+            <div class="col-lg-7 product-single-gallery d-lg-flex order-0 order-lg-0">
                 <div class="product-slider-container mb-auto">
 
 
