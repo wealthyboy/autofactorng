@@ -127,8 +127,13 @@ a {
 }
 
 .prod-thumbnail .owl-stage {
+    // width: 100% !important;
+}
+
+.owl-stage {
     width: 100% !important;
 }
+
 
 div#offcanvas {
     top: 178px;
@@ -323,6 +328,8 @@ label.container {
 .product-desc ul li:nth-child(even) {
     background-color: #ddd;
 }
+
+
 
 
 
