@@ -31,7 +31,7 @@
             </div>
             <div class="col-lg-6  col-12 product-single-gallery">
                 <div class="product-slider-container">
-                    <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
+                    <div class="product-single-carousel owl-carousel owl-theme ">
                         @foreach($product->images as $image)
                         <div class="product-item">
                             <img class="product-single-image" src="{{ $image->image_l }}" width="468" height="468" alt="product" />
@@ -39,9 +39,7 @@
                         @endforeach
                     </div>
                     <!-- End .product-single-carousel -->
-                    <span class="prod-full-screen">
-                        <i class="icon-plus"></i>
-                    </span>
+
                 </div>
 
                 <div class="prod-thumbnail owl-dots d-block d-sm-none">
