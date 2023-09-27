@@ -237,18 +237,15 @@ label.container {
 }
 
 .product-single-carousel {
-
     justify-content: center;
     display: flex;
 }
-
 
 /* When the checkbox is checked, add a blue background */
 
 .container input:checked~.checkmark {
     background-color: #f0592a;
 }
-
 
 /* Create the checkmark/indicator (hidden when not checked) */
 
