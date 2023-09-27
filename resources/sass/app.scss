@@ -130,7 +130,9 @@ a {
     // width: 100% !important;
 }
 
-
+.owl-carousel .owl-stage-outer {
+    transform: none !important;
+}
 
 div#offcanvas {
     top: 178px;
