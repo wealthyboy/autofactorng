@@ -20,7 +20,7 @@
 
 
             <div class="col-lg-7 product-single-gallery d-lg-flex order-0 order-lg-0">
-                <div class="product-slider-container mb-auto">
+                <div class="product-slider-container mb-auto product-single-gallery">
 
 
                     <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
