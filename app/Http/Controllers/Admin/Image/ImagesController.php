@@ -164,7 +164,7 @@ class ImagesController extends Controller
     {
         $file = basename($request->image_url);
         $class = '\\App\\Models\\' . $request->model;
-        if ($file   && file_exists(public_path('images/' . $request->folder . '/' . $file))) {
+        if ($file  && file_exists(public_path('images/' . $request->folder . '/l/' . $file))) {
             unlink(public_path('images/' . $request->folder . '/' . $file));
             //  unlink(public_path('images/' . $request->folder . '/m/' . $file));
             // unlink(public_path('images/' . $request->folder . '/tn/' . $file));
@@ -175,7 +175,6 @@ class ImagesController extends Controller
                     $model = $class::find($request->image_id);
                     if ($model) {
                         $model->delete();
-                        dd($model);
                     }
                     return response(null, 200);
                 } else {
