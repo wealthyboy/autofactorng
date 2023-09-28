@@ -351,11 +351,16 @@ label.container {
 }
 
 @media (max-width:500px) {
-
     .cta-simple {
         padding: 0px 0px;
     }
+
+    .category-content {
+        height: 220px !important;
+    }
 }
+
+
 
 .fit-string {
     width: 100%;
