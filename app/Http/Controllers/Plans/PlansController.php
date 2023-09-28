@@ -16,7 +16,10 @@ class PlansController extends Controller
     {
         $type = request()->type;
         $plans = $this->plansData();
-        return view('plans.index', compact('type', 'plans'));
+        $page_title = "Subscibe for aautocover";
+        $meta_tag_keywords = "plan, buy car par parts on credit, spare parts, ";
+        $page_meta_description = "plan, buy car par parts on credit, spare parts, ";
+        return view('plans.index', compact('page_meta_description', 'meta_tag_keywords', 'page_title', 'type', 'plans'));
     }
 
 
