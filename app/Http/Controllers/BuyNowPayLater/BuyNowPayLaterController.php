@@ -18,7 +18,6 @@ class BuyNowPayLaterController extends Controller
         $page_title = "Buy now pay later";
         $meta_tag_keywords = "plan, buy car par parts on credit, spare parts, ";
         $page_meta_description = "plan, buy car par parts on credit, spare parts, ";
-
         return view('buy_now.index', compact('page_meta_description', 'meta_tag_keywords', 'page_title'));
     }
 
