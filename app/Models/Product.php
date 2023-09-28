@@ -235,7 +235,7 @@ class Product extends Model
             $price =  $product->discounted_price ?  $product->discounted_price . ' - ' . $product->price : $product->price;
             return [
                 "Id" => $product->id,
-                "Image" => $product->image_m,
+                "Image" => $product->image_tm,
                 "Name" => $product->name,
                 "Category" => implode(', ', $product->categories->pluck('name')->toArray()),
                 "Price" => $price,
