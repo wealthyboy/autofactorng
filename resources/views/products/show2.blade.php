@@ -18,34 +18,27 @@
 
         <div class="row">
 
+            <div class="prod-thumbnail col-lg-1" id='carousel-custom-tn'>
 
-            <div class="col-lg-7 product-single-gallery d-lg-flex order-0 order-lg-0">
-                <div class="product-slider-container mb-auto product-single-gallery">
-
-
-                    <div class="product-single-carousel owl-carousel owl-theme show-nav-hover">
-
+                @foreach($product->images as $image)
+                <div class="th">
+                    <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
+                </div>
+                @endforeach
+            </div>
+            <div class="col-lg-6 product-single-gallery d-lg-flex order-0 order-lg-0">
+                <div class="">
+                    <div class="">
                         @foreach($product->images as $image)
                         <div class="product-item">
-                            <img class="product-single-image" src="{{ $image->image_l }}" width="468" height="468" alt="product" />
+                            <img class="product-single-image" src="{{ $image->image_l }}" alt="product" />
                         </div>
                         @endforeach
                     </div>
                     <!-- End .product-single-carousel -->
-                    <span class="prod-full-screen">
-                        <i class="icon-plus"></i>
-                    </span>
                 </div>
 
-                <div class="prod-thumbnail thumb-vertical owl-dots d-lg-block order-lg-first d-flex" id='carousel-custom-dots'>
 
-
-                    @foreach($product->images as $image)
-                    <div class="owl-dot ">
-                        <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
-                    </div>
-                    @endforeach
-                </div>
             </div>
 
             <show :product="{{ $product }}" />
