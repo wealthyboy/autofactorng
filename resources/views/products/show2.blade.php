@@ -18,23 +18,30 @@
 
         <div class="row custom-single-default">
 
-
-
-            <div class="col-lg-6  order-0 order-lg-0">
-                <div class="d-lg-flex justify-content-center align-items-center order-0 order-lg-0">
-                    <div id="sync1" class="custom-single-carousel owl-carousel owl-theme ">
-
-                        @foreach($product->images as $image)
-                        <div class="product-item">
-                            <img class="product-single-image" src="{{ $image->image_l }}" alt="product" />
-                        </div>
-                        @endforeach
-                        <!-- End .product-single-carousel -->
+            <div class="prod-thum col-lg-1 d-none d-lg-block d-xl-block">
+                <div id="sync2" class="owl-ca sync2">
+                    @foreach($product->images as $image)
+                    <div role="button" class="th border owl-item mb-2">
+                        <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
                     </div>
+                    @endforeach
                 </div>
 
+            </div>
 
-                <div id="sync2" class="owl-ca d-">
+            <div class="col-lg-6  col-12 d-lg-flex justify-content-center align-items-center order-0 order-lg-0">
+                <div id="sync1" class="custom-single-carousel owl-carousel owl-theme ">
+
+                    @foreach($product->images as $image)
+                    <div class="product-item">
+                        <img class="product-single-image" src="{{ $image->image_l }}" alt="product" />
+                    </div>
+                    @endforeach
+                    <!-- End .product-single-carousel -->
+                </div>
+
+                <div id="sync2" class="owl-ca d-flex sync2 d-block d-sm-none">
+
                     @foreach($product->images as $image)
                     <div role="button" class="th border owl-item mb-2">
                         <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
