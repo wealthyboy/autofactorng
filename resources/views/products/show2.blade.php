@@ -27,7 +27,8 @@
                 @endforeach
             </div>
             <div class="col-lg-6  d-lg-flex justify-content-center align-items-center order-0 order-lg-0">
-                <div class="d-flex flex-column  custom-single-carousel">
+                <div class=" custom-single-carousel owl-carousel owl-theme ">
+
                     @foreach($product->images as $image)
                     <div class="product-item border">
                         <img class="product-single-image" src="{{ $image->image_l }}" alt="product" />
