@@ -39,7 +39,6 @@ class ProductsController extends Controller
         $meta_tag_keywords = $category->keywords;
         $page_meta_description = $category->meta_description;
 
-
         $this->clearMMYCookies($request);
         $request->session()->put('category', $category->name);
         $request->session()->put('category_slug', $category->slug);
