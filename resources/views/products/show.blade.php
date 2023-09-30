@@ -11,44 +11,46 @@
     </nav>
 
     <div class="product-single-container products-show product-single-default product-center-vertical">
+        <div class="cart-message d-none">
+            <strong class="single-cart-notice">“Men Black Sports Shoes”</strong>
+            <span>has been added to your cart.</span>
+        </div>
 
+        <div class="row custom-single-default">
 
-        <div class="row">
-            <div class="col-lg-1 d-none d-lg-block d-xl-block">
-                <div class="prod-thumbnail owl-dots flex-column">
+            <div class="prod-thum col-lg-1 d-none d-lg-block d-xl-block">
+                <div id="sync2" class="owl-ca sync2">
                     @foreach($product->images as $image)
-                    <div class="owl-dot mb-2">
+                    <div role="button" class="th border owl-item mb-2">
                         <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
                     </div>
                     @endforeach
-
                 </div>
+
             </div>
-            <div class="col-lg-6  col-12 product-single-gallery">
-                <div class="product-slider-container">
-                    <div class="product-single-carousel owl-carousel owl-theme ">
-                        @foreach($product->images as $image)
-                        <div class="product-item">
-                            <img class="product-single-image" src="{{ $image->image_l }}" width="468" height="468" alt="product" />
-                        </div>
-                        @endforeach
+
+            <div class="col-lg-6  col-12 d-lg-flex justify-content-center align-items-center order-0 order-lg-0">
+                <div id="sync1" class="custom-single-carousel owl-carousel owl-theme ">
+
+                    @foreach($product->images as $image)
+                    <div class="product-item">
+                        <img class="product-single-image" src="{{ $image->image_l }}" alt="product" />
                     </div>
+                    @endforeach
                     <!-- End .product-single-carousel -->
-
                 </div>
 
-                <div class="prod-thumbnail owl-dots d-block d-sm-none">
+                <div id="sync2" class="owl-ca d-flex flex-wrap justify-content-center sync2 d-block d-sm-none mb-4">
+
                     @foreach($product->images as $image)
-                    <div class="owl-dot mb-2">
+                    <div role="button" class="th border owl-item mb-2 me-3">
                         <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
                     </div>
                     @endforeach
-
                 </div>
 
 
             </div>
-            <!-- End .product-single-gallery -->
 
             <show :product="{{ $product }}" />
 

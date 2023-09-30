@@ -40,7 +40,7 @@
                     <!-- End .product-single-carousel -->
                 </div>
 
-                <div id="sync2" class="owl-ca d-flex flex-wrap justify-content-center sync2 d-block d-sm-none">
+                <div id="sync2" class="owl-ca d-flex flex-wrap justify-content-center sync2 d-block d-sm-none mb-4">
 
                     @foreach($product->images as $image)
                     <div role="button" class="th border owl-item mb-2 me-3">
