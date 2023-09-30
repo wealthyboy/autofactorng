@@ -18,16 +18,7 @@
 
         <div class="row custom-single-default">
 
-            <div class="prod-thum col-lg-1">
-                <div id="sync2" class="owl-ca ">
-                    @foreach($product->images as $image)
-                    <div role="button" class="th border owl-item mb-2">
-                        <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
-                    </div>
-                    @endforeach
-                </div>
 
-            </div>
 
             <div class="col-lg-6  d-lg-flex justify-content-center align-items-center order-0 order-lg-0">
                 <div id="sync1" class="custom-single-carousel owl-carousel owl-theme ">
