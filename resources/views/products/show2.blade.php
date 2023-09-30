@@ -19,7 +19,7 @@
         <div class="row custom-single-default">
 
             <div class="prod-thum col-lg-1">
-                <div id="sync2" class="owl-carousel  owl-theme ">
+                <div id="sync2" class="owl-ca ">
                     @foreach($product->images as $image)
                     <div class="th border">
                         <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
