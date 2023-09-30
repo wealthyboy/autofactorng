@@ -75,8 +75,11 @@ class ProductController extends Table
         $profiles = Product::getFilterLists('height');
         $ampheres = Product::getFilterLists('amphere');
 
+        $product = Product::find(2763);
 
-
+        foreach ($product->images as $image) {
+            $image->delete();
+        }
 
         if (request()->filled('search')) {
             $products = $this->filter(request());

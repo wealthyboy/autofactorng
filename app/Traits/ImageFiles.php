@@ -37,22 +37,16 @@ trait ImageFiles
         return $this->image_tn;
     }
 
-
-
-
-
     public function getAddImagesAttribute()
     {
         return '';
     }
-
 
     public function tn_path()
     {
         $image = basename($this->images[0]->image);
         return  asset('images/' . $this->folder . '/tn/' . $image);
     }
-
 
     public function m_path()
     {
@@ -62,7 +56,6 @@ trait ImageFiles
         }
         return '/images/utils/No_image_available.svg.png';
     }
-
 
     public function imageSize($size)
     {
