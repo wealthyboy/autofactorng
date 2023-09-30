@@ -40,6 +40,14 @@
                     <!-- End .product-single-carousel -->
                 </div>
 
+                <div id="sync2" class="owl-ca ">
+                    @foreach($product->images as $image)
+                    <div role="button" class="th border owl-item mb-2">
+                        <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
+                    </div>
+                    @endforeach
+                </div>
+
 
             </div>
 
