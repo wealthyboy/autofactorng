@@ -41,7 +41,7 @@
                 </div>
 
 
-                <div class="d-none d-none d-sm-block d-md-block">
+                <div class=" d-md-block d-lg-none d-sm-block">
                     <div id="sync2" class="owl-ca d-flex flex-wrap justify-content-center sync2  mb-4">
 
                         @foreach($product->images as $image)
