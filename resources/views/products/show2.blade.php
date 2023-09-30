@@ -18,7 +18,7 @@
 
         <div class="row">
 
-            <div class="prod-thumbnail col-lg-1" id='carousel-custom-tn'>
+            <div class="prod-thum col-lg-1" id='carousel-custom-tn'>
 
                 @foreach($product->images as $image)
                 <div class="th">
