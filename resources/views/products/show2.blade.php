@@ -16,9 +16,9 @@
             <span>has been added to your cart.</span>
         </div>
 
-        <div class="row">
+        <div class="row custom-single-default">
 
-            <div class="prod-thum col-lg-1" id='carousel-custom-tn'>
+            <div class="prod-thum col-lg-1" id='custom-carousel-dots'>
 
                 @foreach($product->images as $image)
                 <div class="th border">
@@ -27,7 +27,7 @@
                 @endforeach
             </div>
             <div class="col-lg-6  d-lg-flex justify-content-center align-items-center order-0 order-lg-0">
-                <div class="d-flex flex-column ">
+                <div class="d-flex flex-column  custom-single-carousel">
                     @foreach($product->images as $image)
                     <div class="product-item border">
                         <img class="product-single-image" src="{{ $image->image_l }}" alt="product" />

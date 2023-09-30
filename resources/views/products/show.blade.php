@@ -11,14 +11,9 @@
     </nav>
 
     <div class="product-single-container products-show product-single-default product-center-vertical">
-        <div class="cart-message d-none">
-            <strong class="single-cart-notice">“Men Black Sports Shoes”</strong>
-            <span>has been added to your cart.</span>
-        </div>
+
 
         <div class="row">
-
-
             <div class="col-lg-1 d-none d-lg-block d-xl-block">
                 <div class="prod-thumbnail owl-dots flex-column">
                     @foreach($product->images as $image)
