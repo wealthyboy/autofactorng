@@ -22,7 +22,7 @@
 
             <div class="col-lg-6  order-0 order-lg-0">
                 <div class="d-lg-flex justify-content-center align-items-center order-0 order-lg-0">
-                    <div id=" sync1" class="custom-single-carousel owl-carousel owl-theme ">
+                    <div id="sync1" class="custom-single-carousel owl-carousel owl-theme ">
 
                         @foreach($product->images as $image)
                         <div class="product-item">
