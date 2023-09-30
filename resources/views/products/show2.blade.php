@@ -19,13 +19,7 @@
         <div class="row custom-single-default">
 
             <div class="prod-thum col-lg-1">
-                <div id="sync1" class="owl-carousel  owl-theme ">
-                    @foreach($product->images as $image)
-                    <div class="th border">
-                        <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
-                    </div>
-                    @endforeach
-                </div>
+
 
             </div>
 
@@ -38,6 +32,14 @@
                     </div>
                     @endforeach
                     <!-- End .product-single-carousel -->
+                </div>
+
+                <div id="sync1" class="owl-carousel  owl-theme ">
+                    @foreach($product->images as $image)
+                    <div class="th border">
+                        <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
+                    </div>
+                    @endforeach
                 </div>
 
 
