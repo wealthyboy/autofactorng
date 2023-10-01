@@ -70,8 +70,9 @@
 
                   </thead>
                   <tbody>
+                     @foreach($statistics['orders'] as $order)
+
                      <tr>
-                        @foreach($statistics['orders'] as $order)
                         <td>
                            <div class="d-flex px-2 py-1">
                               <div>
@@ -99,9 +100,10 @@
                               </div>
                            </div>
                         </td>
-                        @endforeach
 
                      </tr>
+                     @endforeach
+
 
                   </tbody>
                </table>
