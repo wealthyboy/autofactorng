@@ -177,7 +177,7 @@
                      <li class="nav-item ">
                         <a class="nav-link text-white {{ $helper->active_link(['credits']) }}" href="{{ route('admin.credits.index') }}">
                            <span class="sidenav-mini-icon"> S </span>
-                           <span class="sidenav-normal  ms-2  ps-1"> Auto  Credit </span>
+                           <span class="sidenav-normal  ms-2  ps-1"> Auto Credit </span>
                         </a>
                      </li>
                      <li class="nav-item ">
@@ -193,7 +193,7 @@
 
             <li class=" nav-item">
                <a class="nav-link text-white {{ $helper->active_link(['blog']) }}" href="/admin/blogs">
-               <span class="sidenav-mini-icon"> B </span>
+                  <span class="sidenav-mini-icon"> B </span>
                   <span class="nav-link-text ms-2 ps-1"> Blog </span>
                </a>
             </li>
@@ -461,6 +461,8 @@
    <script type="text/javascript">
       @yield('inline-scripts')
    </script>
+
+
 </body>
 
 

@@ -62,11 +62,11 @@ class HomeController extends Controller
         $stats = [];
         $stats['sales'] = 0;
         $stats['Customers'] = (new User())->customers()->count();
-        $stats['activities'] = Activity::latest()->paginate(10);
+        $statistics['activities'] = Activity::latest()->paginate(10);
 
 
         // $stats['top_sells'] = 0;
 
-        return view('admin.index', compact('stats'));
+        return view('admin.index', compact('stats', 'statistics'));
     }
 }

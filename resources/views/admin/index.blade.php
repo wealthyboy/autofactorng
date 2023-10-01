@@ -4,9 +4,7 @@
 
 <div class="row">
    @foreach($stats as $key => $stat)
-   @if(array_key_exists('activities', $stats))
-   @continue
-   @endif
+
 
    <div class="col-sm-6 mt-sm-0 mt-4">
       <div class="card">
@@ -135,7 +133,7 @@
          </div>
          <div class="card-body p-3">
             <div class="timeline timeline-one-side">
-               @foreach($stats['activities'] as $activity)
+               @foreach($statistics['activities'] as $activity)
                <div class="timeline-block mb-3">
                   <span class="timeline-step">
                      <i class="material-symbols-outlined">
@@ -145,6 +143,8 @@
                   <div class="timeline-content">
                      <h6 class="text-dark text-sm font-weight-bold mb-0"></h6>
                      <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{ optional($activity->user)->name }} - {{ $activity->action }}</p>
+                     <p class="text-info font-weight-bold text-xs mt-1 mb-0">{{ $activity->created_at }}</p>
+
                   </div>
                </div>
                @endforeach
