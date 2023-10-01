@@ -81,7 +81,7 @@ class HomeController extends Controller
             // ->whereMonth('created_at', now()->)
             ->with('product')
             ->first();
-        $statistics['top_product'] = $top_price;
+        $statistics['top_price'] = $top_price;
 
 
 
