@@ -145,7 +145,7 @@
                               </div>
                               <div class="d-flex flex-column justify-content-center">
                                  <h6 class="mb-0 text-sm">{{ $statistics['top_product']->product_name }} </h6>
-                                 <p class="text-sm font-weight-normal text-secondary mb-0"><span class="text-success">8.232</span> orders</p>
+                                 <!-- <p class="text-sm font-weight-normal text-secondary mb-0"><span class="text-success">8.232</span> orders</p> -->
                               </div>
                            </div>
                         </td>

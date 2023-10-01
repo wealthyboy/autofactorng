@@ -83,6 +83,10 @@ class HomeController extends Controller
             ->first();
         $statistics['top_price'] = $top_price;
 
+        $orders = Order::latest()->paginate(5);
+        $statistics['top_price'] = $top_price;
+        $statistics['orders'] = $orders;
+
 
 
 
