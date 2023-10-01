@@ -86,7 +86,7 @@
                               <div>
                               </div>
                               <div class="d-flex flex-column justify-content-center">
-                                 <h6 class="mb-0 text-sm"> optional($order->orderEmail)->email</h6>
+                                 <h6 class="mb-0 text-sm">{{ optional($order->orderEmail)->email }}</h6>
                               </div>
                            </div>
                         </td>
