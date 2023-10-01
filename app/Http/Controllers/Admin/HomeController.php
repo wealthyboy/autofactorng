@@ -74,7 +74,7 @@ class HomeController extends Controller
             ->with('product_variation')
             ->first();
 
-        dd($top_product);
+        dd(date('m'));
 
 
         // $stats['top_sells'] = 0;
