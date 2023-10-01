@@ -150,7 +150,7 @@
                            </div>
                         </td>
                         <td>
-                           <p class="text-sm font-weight-normal mb-0">₦{{ $statistics['top_product']->price }}</p>
+                           <p class="text-sm font-weight-normal mb-0">₦{{ $statistics['top_price']->price }}</p>
                         </td>
                      </tr>
 
