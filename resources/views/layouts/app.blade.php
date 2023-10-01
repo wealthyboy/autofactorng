@@ -486,7 +486,6 @@
       $(function() {
 
 
-
          $('.slider-loader').addClass('d-none')
          $('.slider-section').removeClass('d-none')
 

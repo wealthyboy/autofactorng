@@ -47,6 +47,9 @@ class HomeController extends Controller
         //     $query->where('categories.slug', 'spare-parts-suspension-parts');
 
         // })->orderBy('created_at', 'desc')->get();
+        Carbon::setWeekStartsAt(Carbon::SUNDAY);
+        Carbon::setWeekEndsAt(Carbon::SUNDAY);
+
 
         $path = public_path('images/prodcts');
         $files = File::allFiles($path);
@@ -63,6 +66,15 @@ class HomeController extends Controller
         $stats['Orders'] = Order::count();
         $stats['Customers'] = (new User())->customers()->count();
         $statistics['activities'] = Activity::latest()->paginate(10);
+
+        $top_product = OrderedProduct::select('product_name')
+            ->groupBy('product_name')
+            ->orderByRaw('COUNT(*) DESC')
+            ->whereMonth('created_at', date('m'))
+            ->with('product_variation')
+            ->first();
+
+        dd($top_product);
 
 
         // $stats['top_sells'] = 0;

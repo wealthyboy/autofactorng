@@ -6,7 +6,7 @@
    @foreach($stats as $key => $stat)
 
 
-   <div class="col-sm-4 mt-sm-0 mt-4">
+   <div class="col-sm-3 mt-sm-0 mt-4">
       <div class="card">
          <div class="card-body p-3 position-relative">
             <div class="row">
@@ -19,7 +19,7 @@
                <div class="col-5">
                   <div class="dropdown text-end">
                      <a href="javascript:;" class="cursor-pointer text-secondary" id="dropdownUsers2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="text-xs text-secondary">Today</span>
+                        <span class="text-xs text-secondary">Total</span>
                      </a>
                      <ul class="dropdown-menu dropdown-menu-end px-2 py-3" aria-labelledby="dropdownUsers2">
                         <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 7 days</a></li>
@@ -44,10 +44,9 @@
          <div class="card-header pb-0">
             <div class="row">
                <div class="col-lg-6 col-7">
-                  <h6>Projects</h6>
+                  <h6>Orders</h6>
                   <p class="text-sm mb-0">
                      <i class="fa fa-check text-info" aria-hidden="true"></i>
-                     <span class="font-weight-bold ms-1">30 done</span> this month
                   </p>
                </div>
                <div class="col-lg-6 col-5 my-auto text-end">
