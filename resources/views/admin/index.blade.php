@@ -125,38 +125,6 @@
             </div>
          </div>
       </div>
-   </div>
-   <div class="col-lg-4 col-md-6">
-      <div class="card h-100">
-         <div class="card-header pb-0">
-            <h6>Activity</h6>
-         </div>
-         <div class="card-body p-3">
-            <div class="timeline timeline-one-side">
-               @foreach($statistics['activities'] as $activity)
-               <div class="timeline-block mb-3">
-                  <span class="timeline-step">
-                     <i class="material-symbols-outlined">
-                        local_activity
-                     </i>
-                  </span>
-                  <div class="timeline-content">
-                     <h6 class="text-dark text-sm font-weight-bold mb-0"></h6>
-                     <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{ optional($activity->user)->name }} - {{ $activity->action }}</p>
-                     <p class="text-info font-weight-bold text-xs mt-1 mb-0">{{ $activity->created_at }}</p>
-
-                  </div>
-               </div>
-               @endforeach
-
-            </div>
-         </div>
-      </div>
-   </div>
-</div>
-
-<div class="row mt-4">
-   <div class="col-12">
       <div class="card mb-4">
          <div class="card-header pb-0">
             <h6>Top Selling Products</h6>
@@ -194,7 +162,35 @@
          </div>
       </div>
    </div>
+   <div class="col-lg-4 col-md-6">
+      <div class="card h-100">
+         <div class="card-header pb-0">
+            <h6>Activity</h6>
+         </div>
+         <div class="card-body p-3">
+            <div class="timeline timeline-one-side">
+               @foreach($statistics['activities'] as $activity)
+               <div class="timeline-block mb-3">
+                  <span class="timeline-step">
+                     <i class="material-symbols-outlined">
+                        local_activity
+                     </i>
+                  </span>
+                  <div class="timeline-content">
+                     <h6 class="text-dark text-sm font-weight-bold mb-0"></h6>
+                     <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{ optional($activity->user)->name }} - {{ $activity->action }}</p>
+                     <p class="text-info font-weight-bold text-xs mt-1 mb-0">{{ $activity->created_at }}</p>
+
+                  </div>
+               </div>
+               @endforeach
+
+            </div>
+         </div>
+      </div>
+   </div>
 </div>
+
 
 
 
