@@ -78,7 +78,7 @@
                               <div>
                               </div>
                               <div class="d-flex flex-column justify-content-center">
-                                 <h6 class="mb-0 text-sm">{{ optional($order->orderEmail)->fullname  }}</h6>
+                                 <h6 class="mb-0 text-sm">{{null !== $order->user ? $order->user->fullname() : $order->fullName() }}</h6>
                               </div>
                            </div>
                         </td>
@@ -87,7 +87,7 @@
                               <div>
                               </div>
                               <div class="d-flex flex-column justify-content-center">
-                                 <h6 class="mb-0 text-sm">{{ optional($order->orderEmail)->email }}</h6>
+                                 <h6 class="mb-0 text-sm">{{ optional($order->orderEmail)->email ?? $order->email }}</h6>
                               </div>
                            </div>
                         </td>
