@@ -34,6 +34,10 @@
 
 </div>
 
+<section id="auth-button"></section>
+<section id="view-selector"></section>
+<section id="timeline"></section>
+
 <div class="row mb-4 row mt-4">
    <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
       <div class="card">
@@ -133,15 +137,19 @@
          </div>
          <div class="card-body p-3">
             <div class="timeline timeline-one-side">
+               @foreach($stats['activities'] as $activity)
                <div class="timeline-block mb-3">
                   <span class="timeline-step">
-                     <i class="material-icons text-success text-gradient">notifications</i>
+                     <i class="material-icons-outlined">
+                        local_activity
+                     </i>
                   </span>
                   <div class="timeline-content">
-                     <h6 class="text-dark text-sm font-weight-bold mb-0">$2400, Design changes</h6>
-                     <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">22 DEC 7:20 PM</p>
+                     <h6 class="text-dark text-sm font-weight-bold mb-0"></h6>
+                     <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{ $activity->name }}</p>
                   </div>
                </div>
+               $endforeach
 
             </div>
          </div>
@@ -194,3 +202,9 @@
 
 
 @endsection
+
+@section('inline-scripts')
+
+
+
+@stop
