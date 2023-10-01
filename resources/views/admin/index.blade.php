@@ -142,7 +142,6 @@
                         <td>
                            <div class="d-flex px-3 py-1">
                               <div>
-                                 <img src="{{ $statistics['top_product'] }} " class="avatar me-3" alt="image">
                               </div>
                               <div class="d-flex flex-column justify-content-center">
                                  <h6 class="mb-0 text-sm">{{ $statistics['top_product']->product_name }} </h6>
@@ -151,7 +150,7 @@
                            </div>
                         </td>
                         <td>
-                           <p class="text-sm font-weight-normal mb-0">₦17,000</p>
+                           <p class="text-sm font-weight-normal mb-0">₦{{ $statistics['top_product']->price }}</p>
                         </td>
                      </tr>
 

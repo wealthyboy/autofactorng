@@ -67,7 +67,7 @@ class HomeController extends Controller
         $stats['Customers'] = (new User())->customers()->count();
         $statistics['activities'] = Activity::latest()->paginate(10);
 
-        $top_product = OrderedProduct::select('product_name')
+        $top_product = OrderedProduct::select('product_name', 'price')
             ->groupBy('product_name')
             ->orderByRaw('COUNT(*) DESC')
             // ->whereMonth('created_at', now()->)
