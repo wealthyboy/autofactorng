@@ -149,7 +149,7 @@
                      <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{ $activity->name }}</p>
                   </div>
                </div>
-               $endforeach
+               @endforeach
 
             </div>
          </div>
