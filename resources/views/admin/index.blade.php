@@ -4,6 +4,10 @@
 
 <div class="row">
    @foreach($stats as $key => $stat)
+   @if(array_key_exists('activities', $stats))
+   @continue
+   @endif
+
    <div class="col-sm-6 mt-sm-0 mt-4">
       <div class="card">
          <div class="card-body p-3 position-relative">
@@ -34,9 +38,7 @@
 
 </div>
 
-<section id="auth-button"></section>
-<section id="view-selector"></section>
-<section id="timeline"></section>
+
 
 <div class="row mb-4 row mt-4">
    <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
@@ -129,11 +131,7 @@
    <div class="col-lg-4 col-md-6">
       <div class="card h-100">
          <div class="card-header pb-0">
-            <h6>Orders overview</h6>
-            <p class="text-sm">
-               <i class="fa fa-arrow-up text-success" aria-hidden="true"></i>
-               <span class="font-weight-bold">24%</span> this month
-            </p>
+            <h6>Activity</h6>
          </div>
          <div class="card-body p-3">
             <div class="timeline timeline-one-side">
@@ -146,7 +144,7 @@
                   </span>
                   <div class="timeline-content">
                      <h6 class="text-dark text-sm font-weight-bold mb-0"></h6>
-                     <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{ $activity->action }}</p>
+                     <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{ optional($activity->user)->name }} - {{ $activity->action }}</p>
                   </div>
                </div>
                @endforeach
