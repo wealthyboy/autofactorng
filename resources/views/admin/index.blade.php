@@ -140,13 +140,13 @@
                @foreach($stats['activities'] as $activity)
                <div class="timeline-block mb-3">
                   <span class="timeline-step">
-                     <i class="material-icons-outlined">
+                     <i class="material-symbols-outlined">
                         local_activity
                      </i>
                   </span>
                   <div class="timeline-content">
                      <h6 class="text-dark text-sm font-weight-bold mb-0"></h6>
-                     <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{ $activity->name }}</p>
+                     <p class="text-secondary font-weight-bold text-xs mt-1 mb-0">{{ $activity->action }}</p>
                   </div>
                </div>
                @endforeach
