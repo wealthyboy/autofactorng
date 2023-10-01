@@ -68,7 +68,7 @@ class HomeController extends Controller
         $statistics['activities'] = Activity::latest()->paginate(10);
 
         $top_product = OrderedProduct::select('*')
-            ->groupBy('product_name')
+            ->groupBy('ordered_products.product_name')
             ->orderByRaw('COUNT(*) DESC')
             // ->whereMonth('created_at', now()->)
             ->with('product')
