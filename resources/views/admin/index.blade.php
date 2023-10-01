@@ -6,7 +6,7 @@
    @foreach($stats as $key => $stat)
 
 
-   <div class="col-sm-6 mt-sm-0 mt-4">
+   <div class="col-sm-4 mt-sm-0 mt-4">
       <div class="card">
          <div class="card-body p-3 position-relative">
             <div class="row">
@@ -40,7 +40,7 @@
 
 <div class="row mb-4 row mt-4">
    <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
-      <div class="card">
+      <div class="card mb-4">
          <div class="card-header pb-0">
             <div class="row">
                <div class="col-lg-6 col-7">
