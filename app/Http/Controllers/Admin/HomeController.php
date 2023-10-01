@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
+use App\Models\Activity;
 use App\Models\BrandCategory;
 use App\Models\Error;
 use App\Models\Order;
@@ -61,6 +62,9 @@ class HomeController extends Controller
         $stats = [];
         $stats['sales'] = 0;
         $stats['Customers'] = (new User())->customers()->count();
+        $stats['activities'] = Activity::latest()->paginate(10);
+
+
         // $stats['top_sells'] = 0;
 
         return view('admin.index', compact('stats'));
