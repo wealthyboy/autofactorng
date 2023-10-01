@@ -70,11 +70,11 @@ class HomeController extends Controller
         $top_product = OrderedProduct::select('product_name')
             ->groupBy('product_name')
             ->orderByRaw('COUNT(*) DESC')
-            ->whereMonth('created_at', date('m'))
+            //  ->whereMonth('created_at', date('m'))
             ->with('product_variation')
             ->first();
 
-        dd(date('m'));
+        dd($top_product);
 
 
         // $stats['top_sells'] = 0;
