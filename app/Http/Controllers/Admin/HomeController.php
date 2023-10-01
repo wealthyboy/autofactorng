@@ -60,7 +60,7 @@ class HomeController extends Controller
             ->first();
 
         $stats = [];
-        $stats['sales'] = 0;
+        $stats['Orders'] = Order::count();
         $stats['Customers'] = (new User())->customers()->count();
         $statistics['activities'] = Activity::latest()->paginate(10);
 
