@@ -71,10 +71,12 @@ class HomeController extends Controller
             ->groupBy('product_name')
             ->orderByRaw('COUNT(*) DESC')
             // ->whereMonth('created_at', now()->)
+            ->with('product')
 
             ->first();
+        $statistics['top_product'] = $top_product;
 
-        dd($top_product);
+
 
 
         // $stats['top_sells'] = 0;

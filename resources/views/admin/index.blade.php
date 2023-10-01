@@ -142,10 +142,10 @@
                         <td>
                            <div class="d-flex px-3 py-1">
                               <div>
-                                 <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/ecommerce/blue-shoe.jpg" class="avatar me-3" alt="image">
+                                 <img src="{{ $statistics['top_product']->image }} " class="avatar me-3" alt="image">
                               </div>
                               <div class="d-flex flex-column justify-content-center">
-                                 <h6 class="mb-0 text-sm">Denso Horn </h6>
+                                 <h6 class="mb-0 text-sm">{{ $statistics['top_product']->product_name }} </h6>
                                  <p class="text-sm font-weight-normal text-secondary mb-0"><span class="text-success">8.232</span> orders</p>
                               </div>
                            </div>
