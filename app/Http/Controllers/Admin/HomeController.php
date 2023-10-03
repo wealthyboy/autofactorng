@@ -70,8 +70,6 @@ class HomeController extends Controller
 
         $top_product = OrderedProduct::has('order')->select('product_name')
             ->selectRaw('COUNT(*) AS count')
-            ->selectRaw('quantity AS qty')
-
             ->groupBy('product_name')
             ->orderByDesc('count')
             ->limit(5)
