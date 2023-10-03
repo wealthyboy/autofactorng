@@ -70,12 +70,12 @@ class HomeController extends Controller
 
         $top_product = OrderedProduct::has('order')->select('product_name')
             ->selectRaw('COUNT(*) AS count')
+
             ->groupBy('product_name')
             ->orderByDesc('count')
             ->limit(5)
             ->get();
 
-        dd($top_product);
         $statistics['top_product'] = $top_product;
 
         $top_price = OrderedProduct::select('price')
