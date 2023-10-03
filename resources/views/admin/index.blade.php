@@ -124,21 +124,22 @@
                      </tr>
                   </thead>
                   <tbody>
+                     @foreach($statistics['top_product'] as $top_product)
                      <tr>
                         <td>
                            <div class="d-flex px-3 py-1">
                               <div>
                               </div>
                               <div class="d-flex flex-column justify-content-center">
-                                 <h6 class="mb-0 text-sm">{{ $statistics['top_product']->product_name }} </h6>
-                                 <!-- <p class="text-sm font-weight-normal text-secondary mb-0"><span class="text-success">8.232</span> orders</p> -->
+                                 <h6 class="mb-0 text-sm">{{ $top_product->product_name }} </h6>
+                                 <p class="text-sm font-weight-normal text-secondary mb-0"><span class="text-success">{{ $top_product->count}}</span> orders</p>
                               </div>
                            </div>
                         </td>
                         <td>
-                           <p class="text-sm font-weight-normal mb-0">₦{{ $statistics['top_price']->price }}</p>
                         </td>
                      </tr>
+                     @endforeach
 
                   </tbody>
                </table>

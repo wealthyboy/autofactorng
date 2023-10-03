@@ -74,12 +74,7 @@ class HomeController extends Controller
             ->orderByDesc('count')
             ->limit(5)
             ->get();
-        dd($top_product);
-        // ->select(DB::raw('article_id'), DB::raw('count(*) as count'))
-        //     ->groupBy('article_id')
-        //     ->orderBy('count', 'desc')
-        //     ->take(5)
-        //     ->get();
+
         $statistics['top_product'] = $top_product;
 
         $top_price = OrderedProduct::select('price')
