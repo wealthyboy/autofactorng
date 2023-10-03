@@ -126,11 +126,13 @@
                      <tr>
                         <td>
                            <div class="d-flex px-3 py-1">
-                              <div>
-                              </div>
+
                               <div class="d-flex flex-column justify-content-center">
                                  <h6 class="mb-0 text-sm">{{ $top_product->product_name }} </h6>
                                  <p class="text-sm font-weight-normal text-secondary mb-0"><span class="text-success">{{ $top_product->count}}</span> orders</p>
+                              </div>
+                              <div>
+                                 {{$top_product->qty}}
                               </div>
                            </div>
                         </td>
