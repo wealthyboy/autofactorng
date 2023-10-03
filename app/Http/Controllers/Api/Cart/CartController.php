@@ -56,6 +56,7 @@ class CartController  extends Controller
 
 		//$engine = optional(Engine::find(session('engine_id')))->name;
 		if (\Cookie::get('cart') !== null) {
+			dd($cookie);
 			$remember_token  = \Cookie::get('cart');
 			$cart = Cart::firstOrNew(
 				['product_id' => $request->product_id, 'remember_token' => $remember_token]
