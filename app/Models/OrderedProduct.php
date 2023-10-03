@@ -123,6 +123,12 @@ class OrderedProduct extends Model
     }
 
 
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+
     public  function sum_items($order_id)
     {
         $total = \DB::table('ordered_products')->select(\DB::raw('SUM(total) as items_total'))->where('order_id', $order_id)->get();
