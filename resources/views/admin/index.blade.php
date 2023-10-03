@@ -44,10 +44,8 @@
          <div class="card-header pb-0">
             <div class="row">
                <div class="col-lg-6 col-7">
-                  <h6>Orders</h6>
-                  <p class="text-sm mb-0">
-                     <i class="fa fa-check text-info" aria-hidden="true"></i>
-                  </p>
+                  <h6>Recent Orders</h6>
+
                </div>
                <div class="col-lg-6 col-5 my-auto text-end">
                   <div class="dropdown float-lg-end pe-4">
