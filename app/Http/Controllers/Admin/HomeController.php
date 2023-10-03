@@ -55,7 +55,7 @@ class HomeController extends Controller
         $files = File::allFiles($path);
         //dd($files);
 
-        $top_selling_product = OrderedProduct::select('product_id')
+        $top_selling_product = OrderedProduct::has('order')->select('product_id')
             ->groupBy('product_id')
             ->orderByRaw('COUNT(*) DESC')
             ->whereMonth('created_at', date('m'))
@@ -67,11 +67,8 @@ class HomeController extends Controller
         $stats['Customers'] = (new User())->customers()->count();
         $statistics['activities'] = Activity::latest()->paginate(10);
 
-        dd(OrderedProduct::where('product_name', 'Prestone All Vehicles 50/50 Antifreeze+Coolant 3.78Liters')->get());
 
-
-
-        $top_product = OrderedProduct::select('product_name')
+        $top_product = OrderedProduct::has('order')->select('product_name')
             ->selectRaw('COUNT(*) AS count')
             ->groupBy('product_name')
             ->orderByDesc('count')
