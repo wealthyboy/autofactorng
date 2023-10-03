@@ -75,7 +75,6 @@ class HomeController extends Controller
             ->orderByDesc('count')
             ->limit(1)
             ->first();
-        dd($top_product);
         $statistics['top_product'] = $top_product;
 
         $top_price = OrderedProduct::select('price')
