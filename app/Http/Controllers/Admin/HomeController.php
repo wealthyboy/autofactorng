@@ -75,6 +75,7 @@ class HomeController extends Controller
             ->limit(5)
             ->get();
 
+        dd($top_product);
         $statistics['top_product'] = $top_product;
 
         $top_price = OrderedProduct::select('price')
