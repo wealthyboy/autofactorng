@@ -96,6 +96,13 @@ class Cart extends Model
     {
         $cookie = \Cookie::get('cart');
         $total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $cookie)->get();
+
+
+        if (optional(auth()->user())->id) {
+            $total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('user_id', optional(auth()->user())->id)->get();
+        } else {
+            $total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $cookie)->get();
+        }
         return     $total = $total[0]->items_total;
     }
 
