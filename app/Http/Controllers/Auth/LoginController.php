@@ -112,7 +112,7 @@ class LoginController extends Controller
     {
 
         $carts = Cart::where(['user_id' => optional(auth()->user())->id])->get();
-        Cart::sync($carts);
+        Cart::hide($carts);
 
         $this->guard()->logout();
 
