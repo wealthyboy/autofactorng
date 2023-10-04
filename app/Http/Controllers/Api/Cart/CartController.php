@@ -53,6 +53,7 @@ class CartController  extends Controller
 
 		//$engine = optional(Engine::find(session('engine_id')))->name;
 		if (\Cookie::get('cart') !== null) {
+
 			$remember_token  = \Cookie::get('cart');
 			$cart = Cart::firstOrNew(
 				['product_id' => $request->product_id, 'remember_token' => $remember_token]
@@ -67,9 +68,8 @@ class CartController  extends Controller
 			$cart->user_id = optional($request->user())->id;
 			$cart->year = $year;
 			$cart->engine = $engine;
+			$cart->remember_token = $remember_token;
 			$cart->save();
-
-
 
 			$carts = Cart::with(["product"])->where(['remember_token' => $remember_token])->get();
 			$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $remember_token)->get();
@@ -91,6 +91,7 @@ class CartController  extends Controller
 
 				];
 			});
+
 
 
 			return response()->json([
@@ -151,7 +152,9 @@ class CartController  extends Controller
 
 	public function loadCart(Request $request)
 	{
-
+		if (\Cookie::get('cart') !== null) {
+			$remember_token  = \Cookie::get('cart');
+		}
 		$carts = Cart::all_items_in_cart();
 		$sub_total = Cart::sum_items_in_cart();
 		$rate = \Cookie::get('rate');

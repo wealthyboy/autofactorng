@@ -51,9 +51,8 @@ class HomeController extends Controller
         Carbon::setWeekEndsAt(Carbon::SUNDAY);
 
 
-        $path = public_path('images/prodcts');
-        $files = File::allFiles($path);
-        //dd($files);
+
+
 
         $top_selling_product = OrderedProduct::has('order')->select('product_id')
             ->groupBy('product_id')

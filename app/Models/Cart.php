@@ -41,6 +41,7 @@ class Cart extends Model
     {
         //SELECT ALL FROM THE USER ID && FROM THE USER COOKIE
         $cookie = \Cookie::get('cart');
+        //dd($cookie);
         $carts = Cart::with(["product"])->where(['carts.remember_token' => $cookie])->get();
         static::sync($carts);
 
@@ -68,14 +69,24 @@ class Cart extends Model
     public  static function sync($carts)
     {
         if (null == $carts) return null;
+
+        $cookie = \Cookie::get('cart');
+
+
         foreach ($carts as $cart) {
 
             if (null == $cart->product) {
                 $cart->delete();
             }
 
+            if (!$cart->user_id) {
+                $cart->update([
+                    'user_id' => optional(auth()->user())->id,
+                ]);
+            }
+
             $cart->update([
-                'user_id' => optional(auth()->user())->id
+                'remember_token' => null !== $cookie ? $cookie : $cart->remember_token
             ]);
         }
     }

@@ -21,6 +21,8 @@ class CartIndexResource extends JsonResource
             'product' => $this->product,
             'image' => optional($this->product)->image_m,
             'quantity' => $this->quantity,
+            'user_id' => $this->user_id,
+            'remember_token' => $this->remember_token,
             'price' => Cart::ConvertCurrencyRate($this->price),
             'currency' => optional($this->product)->currency,
             'product_name' => optional($this->product)->name,
