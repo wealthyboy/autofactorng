@@ -49,14 +49,10 @@ class CartController  extends Controller
 		$model = session('model');
 		$year = session('year');
 		$engine = session('engine');
-		$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
-		session()->put('cart', $value);
-		$cookie = cookie('cart', session()->get('cart'), 60 * 60 * 7);
 
 
 		//$engine = optional(Engine::find(session('engine_id')))->name;
 		if (\Cookie::get('cart') !== null) {
-			dd($cookie);
 			$remember_token  = \Cookie::get('cart');
 			$cart = Cart::firstOrNew(
 				['product_id' => $request->product_id, 'remember_token' => $remember_token]
@@ -105,9 +101,11 @@ class CartController  extends Controller
 					'currency_code' => '₦',
 					'user' => $request->user()
 				],
-			])->withCookie($cookie);;
+			]);
 		} else {
-
+			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
+			session()->put('cart', $value);
+			$cookie = cookie('cart', session()->get('cart'), 60 * 60 * 7);
 			$cart->product_id = $request->product_id;
 			$cart->quantity = $request->quantity;
 			$cart->price = $price;
