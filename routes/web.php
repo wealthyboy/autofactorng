@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Cart;
 use App\Models\Order;
 use App\Models\User;
 use App\Notifications\WelcomeNotification;
@@ -100,11 +101,6 @@ Route::get('/notification', function () {
         ->toMail($user);
 });
 
-Route::get('/cart/test', function () {
-    $carts = Cart::all_items_in_cart();
-    $sub_total = Cart::sum_items_in_cart();
-    dd($carts);
-});
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/test', [App\Http\Controllers\HomeController::class, 'test']);
