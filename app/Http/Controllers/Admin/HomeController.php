@@ -53,7 +53,6 @@ class HomeController extends Controller
 
 
 
-
         $top_selling_product = OrderedProduct::has('order')->select('product_id')
             ->groupBy('product_id')
             ->orderByRaw('COUNT(*) DESC')
@@ -62,9 +61,22 @@ class HomeController extends Controller
             ->first();
 
         $stats = [];
-        $stats['Orders'] = Order::count();
+        $stats['Orders'] = Order::whereMonth('created_at', date('m'))->count();
         $stats['Customers'] = (new User())->customers()->count();
+        $stats['New Customers'] = Order::join('users', 'users.id', '=', 'orders.user_id')
+            ->whereMonth('orders.created_at', date('m'))
+            ->select('orders.*')
+            ->count();
+
+
+        $stats['Return Customers'] = Order::join('users', 'users.id', '=', 'orders.user_id')
+            ->whereMonth('orders.created_at', date('m'))
+            ->select('orders.*')
+            ->count();
+
+
         $statistics['activities'] = Activity::latest()->paginate(10);
+
 
 
         $top_product = OrderedProduct::has('order')->select('product_name')
