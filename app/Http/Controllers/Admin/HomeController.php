@@ -72,11 +72,10 @@ class HomeController extends Controller
             ->count();
 
 
-        $stats['Return Customers'] = User::whereHas('orders', function ($query) {
-            $query->whereMonth('created_at', date('m'));
-        })->select('id')
+        $stats['Return Customers'] = Order::has('user')->select('id')
             ->groupBy('id')
-            ->selectRaw('COUNT(*) as user_count')
+            ->selectRaw('COUNT(user_id) as user_count')
+            ->whereMonth('created_at', date('m'))
             ->having('user_count', '>', 1)
             ->count();
 
