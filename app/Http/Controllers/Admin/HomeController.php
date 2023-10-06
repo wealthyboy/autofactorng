@@ -69,7 +69,9 @@ class HomeController extends Controller
             ->groupBy('id')
             ->selectRaw('COUNT(*) as user_count')
             ->having('user_count', '=', 1)
-            ->count();
+            ->get();
+
+        dd($stats);
 
 
         $stats['Return Customers'] = Order::select('id')
