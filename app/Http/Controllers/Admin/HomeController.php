@@ -51,7 +51,8 @@ class HomeController extends Controller
         Carbon::setWeekEndsAt(Carbon::SUNDAY);
 
 
-
+        $now = Carbon::now();
+        // dd($now->month);
 
         $top_selling_product = OrderedProduct::has('order')->select('product_id')
             ->groupBy('product_id')
@@ -63,16 +64,8 @@ class HomeController extends Controller
         $stats = [];
         $stats['Orders'] = Order::whereMonth('created_at', date('m'))->count();
         $stats['Customers'] = (new User())->customers()->count();
-        $stats['New Customers'] = Order::whereMonth('created_at', date('m'))->select('email')
-            ->groupBy('email')
-            ->selectRaw('COUNT(email) as user_count')
-            ->having('user_count', '=', 1)
-            ->get();
 
-        //$stats['Return Customers'] = // $stats['Orders'] - $stats['New Customers']; null;
-
-        dd($this->getSingleEmailOrders());
-
+        $stats['New Customers'] = $this->getSingleEmailOrders();
         $statistics['activities'] = Activity::latest()->paginate(10);
 
 
@@ -114,7 +107,7 @@ class HomeController extends Controller
             ->havingRaw('COUNT(email) = 1')
             ->pluck('email');
 
-        $orders = Order::whereIn('email', $singleEmails)->get();
+        $orders = Order::whereIn('email', $singleEmails)->whereMonth('created_at', now()->month)->count();
 
         return $orders;
     }

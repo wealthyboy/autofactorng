@@ -18,7 +18,7 @@
                <div class="col-5">
                   <div class="dropdown text-end">
                      <a href="javascript:;" class="cursor-pointer text-secondary" id="dropdownUsers2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="text-xs text-secondary"><?php echo e(date("F", strtotime(date("Y") ."-". date('m') ."-01"))); ?></span>
+                        <span class="text-xs text-secondary"><?php echo e($key == 'Customers' ? 'Total' : date("F", strtotime(date("Y") ."-". date('m') ."-01"))); ?></span>
                      </a>
                      <ul class="dropdown-menu dropdown-menu-end px-2 py-3" aria-labelledby="dropdownUsers2">
                         <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 7 days</a></li>
