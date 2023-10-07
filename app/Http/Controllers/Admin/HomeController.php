@@ -69,7 +69,7 @@ class HomeController extends Controller
             ->having('user_count', '=', 1)
             ->get();
 
-        $stats['Return Customers'] = $stats['Orders'] - $stats['New Customers'];
+        //$stats['Return Customers'] = // $stats['Orders'] - $stats['New Customers']; null;
 
         dd($stats);
 
