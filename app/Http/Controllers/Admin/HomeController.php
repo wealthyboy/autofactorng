@@ -67,7 +67,7 @@ class HomeController extends Controller
             ->groupBy('email')
             ->selectRaw('COUNT(email) as user_count')
             ->having('user_count', '=', 1)
-            ->count();
+            ->get();
 
         $stats['Return Customers'] = $stats['Orders'] - $stats['New Customers'];
 
