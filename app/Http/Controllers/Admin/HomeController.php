@@ -71,7 +71,7 @@ class HomeController extends Controller
 
         //$stats['Return Customers'] = // $stats['Orders'] - $stats['New Customers']; null;
 
-        dd($stats);
+        dd($this->getSingleEmailOrdersForThisMonth());
 
         $statistics['activities'] = Activity::latest()->paginate(10);
 
@@ -104,5 +104,23 @@ class HomeController extends Controller
         // $stats['top_sells'] = 0;
 
         return view('admin.index', compact('stats', 'statistics'));
+    }
+
+    public function getSingleEmailOrdersForThisMonth()
+    {
+        $singleEmails = \DB::table('orders')
+            ->select('email')
+            ->where(DB::raw('MONTH(order_date)'), '=', Carbon::now()->month)
+            ->where(DB::raw('YEAR(order_date)'), '=', Carbon::now()->year)
+            ->groupBy('email')
+            ->havingRaw('COUNT(email) = 1')
+            ->pluck('email');
+
+        $orders = Order::whereIn('email', $singleEmails)
+            ->where(DB::raw('MONTH(order_date)'), '=', Carbon::now()->month)
+            ->where(DB::raw('YEAR(order_date)'), '=', Carbon::now()->year)
+            ->get();
+
+        return $orders;
     }
 }
