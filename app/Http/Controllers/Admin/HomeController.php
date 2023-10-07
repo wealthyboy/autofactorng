@@ -66,6 +66,8 @@ class HomeController extends Controller
         $stats['Customers'] = (new User())->customers()->count();
 
         $stats['New Customers'] = $this->getSingleEmailOrders();
+        $stats['Return Customers'] =  $stats['Orders'] - $this->getSingleEmailOrders();
+
         $statistics['activities'] = Activity::latest()->paginate(10);
 
 
