@@ -71,6 +71,8 @@ class HomeController extends Controller
 
         $stats['Return Customers'] = $stats['Orders'] - $stats['New Customers'];
 
+        dd($stats);
+
         $statistics['activities'] = Activity::latest()->paginate(10);
 
 
