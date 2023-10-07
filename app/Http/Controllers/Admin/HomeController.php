@@ -69,7 +69,7 @@ class HomeController extends Controller
             ->groupBy('id')
             ->selectRaw('COUNT(*) as user_count')
             ->having('user_count', '=', 1)
-            ->get();
+            ->count();
 
 
 
