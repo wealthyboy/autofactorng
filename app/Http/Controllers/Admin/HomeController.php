@@ -73,12 +73,7 @@ class HomeController extends Controller
 
 
 
-        $stats['Return Customers'] = Order::select('id')
-            ->groupBy('id')
-            ->selectRaw('COUNT(email) as user_count')
-            ->whereMonth('created_at', date('m'))
-            ->having('user_count', '=', 1)
-            ->count();
+        $stats['Return Customers'] = $stats['Orders'] - $stats['New Customers'];
 
         $statistics['activities'] = Activity::latest()->paginate(10);
 
