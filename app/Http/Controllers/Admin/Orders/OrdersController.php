@@ -338,9 +338,6 @@ class OrdersController extends Table
 
 		//status == delivered
 
-		if () {
-			
-		}
 
 		if ($request->value == 'Delivered') {
 			$order_statuses = OrderStatus::where('order_id', $request->id)->get();
@@ -445,7 +442,6 @@ class OrdersController extends Table
 		$order = Order::find($request->id);
 		if ($request->column == 'Dispatch') {
 			$order->dispatch =  $request->value;
-
 		}
 
 		if ($request->column == 'Status') {
