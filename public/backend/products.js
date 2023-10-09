@@ -10,33 +10,33 @@ function resetFile(input) {
     input.unwrap();
 }
 
-$(".search_products").on('input', function(e) {
+$(".search_products").on('input', function (e) {
     var $self = $(this),
         payLoad = { 'product_name': $self.val() }
     $.ajax({
         type: "GET",
         url: "/admin/related/products",
         data: payLoad,
-    }).done(function(response) {
+    }).done(function (response) {
         $("#related_products").html('').append(response)
     });
 })
 
-$('.update_price').on('blur', function(e) {
+$('.update_price').on('blur', function (e) {
     let self = $(this);
     $.ajax({
-    url: "/admin/products/update-price/" + self.data('id'),
-    method: "POST",
-    data: {price: self.html(), 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-    }).then((res) =>{
-         alert("Price Updated")
+        url: "/admin/products/update-price/" + self.data('id'),
+        method: "POST",
+        data: { price: self.html(), 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+    }).then((res) => {
+        alert("Price Updated")
     }).fail((error) => {
-    alert("Something went wrong")
-    
-    })
- })
+        alert("Something went wrong")
 
-$(document).on('click', '.add_product', function(e) {
+    })
+})
+
+$(document).on('click', '.add_product', function (e) {
     e.preventDefault()
     $(this).parentsUntil('tbody').clone().appendTo(".related_products");
     $(this).parentsUntil('tbody').remove()
@@ -44,7 +44,7 @@ $(document).on('click', '.add_product', function(e) {
     $("tbody.related_products td").children('input.d-none').removeClass('hide')
 })
 
-$(document).on('click', '.remove_related_product', function(e) {
+$(document).on('click', '.remove_related_product', function (e) {
     e.preventDefault()
     $(this).parentsUntil('tbody').remove()
     e.preventDefault()
@@ -52,13 +52,13 @@ $(document).on('click', '.remove_related_product', function(e) {
     $.ajax({
         type: "delete",
         url: $(this).attr('href'),
-    }).done(function(response) {
+    }).done(function (response) {
 
     });
 })
 
 
-$(document).on('click', '.remove-image', function(e) {
+$(document).on('click', '.remove-image', function (e) {
     e.preventDefault();
     e.stopPropagation()
     let self = $(this)
@@ -86,7 +86,7 @@ $(document).on('click', '.remove-image', function(e) {
         url: '/admin/delete/image?folder=products',
         type: 'POST',
         data: payload,
-        success: function(data) {
+        success: function (data) {
             $("#" + randid).remove()
             if (parent.find('.j-complete').length == 0) {
                 upload_text.removeClass('hide')
@@ -98,7 +98,7 @@ $(document).on('click', '.remove-image', function(e) {
             }
 
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
             self.text('Delete')
         }
     });
@@ -135,7 +135,7 @@ function getFile(e, name, model = null, multiple = true) {
         cache: false,
         contentType: false,
         processData: false,
-        success: function(data) {
+        success: function (data) {
             if (data.path) {
                 let rand = Math.floor((Math.random() * 1000000000) + 1)
                 let html = '';
@@ -144,7 +144,7 @@ function getFile(e, name, model = null, multiple = true) {
                 html += '<div  class="j-preview j-no-multiple">'
                 html += '<img class="img-thumnail" src="' + data.path + '" />'
                 html += '<div id="remove_image" class="remove_image remove-image">'
-                    //this will allow for multiple images
+                //this will allow for multiple images
                 html += '<a  class="remove-image" data-model="' + model + '"  data-randid="' + rand + '" data-url="' + data.path + '"  href="#">Remove</a>'
                 html += '</div>'
                 html += '<input type="hidden" class="file_upload_input stored_image_url"  value="' + data.path + '"  name="' + name + '">'
@@ -161,7 +161,7 @@ function getFile(e, name, model = null, multiple = true) {
                 target.insertAdjacentHTML('beforeend', html)
             }
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
             var divs = document.querySelectorAll(".j-loading"),
                 i;
             for (i = 0; i < divs.length; ++i) {
@@ -179,15 +179,15 @@ function getFile(e, name, model = null, multiple = true) {
 
 
 
-$(document).ready(function() {
+$(document).ready(function () {
 
-    $(document).on('click', '.delete-panel', function(e) {
+    $(document).on('click', '.delete-panel', function (e) {
         e.preventDefault()
         $(this).parent().parent('.variation-panel').remove();
         $.ajax({
             type: "delete",
             url: $(this).attr('href'),
-        }).done(function(response) {
+        }).done(function (response) {
 
         });
     })
@@ -200,14 +200,14 @@ $(document).ready(function() {
         }); // flatpickr
     }
 
-    $('#heavy_item').on('click', function() {
+    $('#heavy_item').on('click', function () {
         var elements = document.getElementsByClassName("large-items");
         for (let i = 0; i < elements.length; i++) {
             elements[i].classList.toggle('d-none')
         }
     })
 
-    $(document).find('.remove-section-lagos').on('click', function(e) {
+    $(document).find('.remove-section-lagos').on('click', function (e) {
         let self = $(this);
         console.log(self.parent().parent())
     })
@@ -217,14 +217,14 @@ $(document).ready(function() {
     let cat = $('input[name="category_id[]"]');
     let parent_attr = $('.parent-attr')
 
-    cat.on('click', function() {
+    cat.on('click', function () {
         if ($(this).is(':checked') == true) {
             delete messages.categories;
             $('.categories').html('')
         }
     })
 
-    parent_attr.on('click', function() {
+    parent_attr.on('click', function () {
         if ($(this).is(':checked') == true) {
             delete messages.attribute;
             $('.attribute').html('')
@@ -232,7 +232,7 @@ $(document).ready(function() {
     })
 
 
-    $('#form-product').on('submit', function() {
+    $('#form-product').on('submit', function () {
         let no_validate = $('.no-validation')
         if ($('input[name="category_id[]"]').is(':checked') == false) {
             messages['categories'] = 'Add categories : Always add parent/child of any category'
@@ -245,7 +245,7 @@ $(document).ready(function() {
             }
             // check if car model is checked
             let models = []
-            $('.parent-attr:checkbox:checked').each(function(i, e) {
+            $('.parent-attr:checkbox:checked').each(function (i, e) {
                 let self = $(this);
                 let car_model_slug = self.data('slug');
                 let parent_name = self.data('name');
@@ -259,9 +259,9 @@ $(document).ready(function() {
             }
 
             let year = []
-                // check if car model's engine is checked
+            // check if car model's engine is checked
             let car_models = [];
-            $('.car-models:checkbox:checked').each(function(i, e) {
+            $('.car-models:checkbox:checked').each(function (i, e) {
                 let self = $(this);
                 let car_model_slug = self.data('slug');
                 let car_model_name = self.data('name');
@@ -310,15 +310,15 @@ $(document).ready(function() {
 
         let formData = self.serializeArray();
         formData.push({ name: "phy_desc", value: desc });
-        formData.push({ name : "description", value: description })
+        formData.push({ name: "description", value: description })
 
         $.ajax({
             type: self.data('method'),
             url: self.attr('action'),
             data: formData
-        }).done(function(response) {
+        }).done(function (response) {
             window.location.replace('/admin/products');
-        }).catch(function(xhr, status, error) {
+        }).catch(function (xhr, status, error) {
             // error handling
             button.attr('disabled', false)
             buttonSpinner.addClass('d-none')
@@ -334,28 +334,29 @@ $(document).ready(function() {
 
     //s.initMaterialWizard();
 
-    setTimeout(function() {
+    setTimeout(function () {
         $('.card.wizard-card').addClass('active');
     }, 600);
 });
 
-$('.change-status').on('change', function(e){
-    let self  = $(this)
+$('.change-status').on('change', function (e) {
+    let self = $(this)
     $.ajax({
         type: 'POST',
         url: '/admin/update/status',
         data: {
             id: self.data('id'),
             model: self.data('model'),
+            column: self.data('column'),
             value: self.val(),
         }
-    }).done(function(response) {
-       alert("Status changed")
-    }).catch(function(xhr, status, error) {
+    }).done(function (response) {
+        alert("Order updated")
+    }).catch(function (xhr, status, error) {
         // error handling
-        alert("Status changed failed")
+        alert("Order update failed")
     });
-    
+
 })
 
 if (document.querySelector('#phy_description')) {
@@ -364,7 +365,7 @@ if (document.querySelector('#phy_description')) {
         width: '100%',
         toolbar: [
             '/',
-            { name: 'paragraph', groups: ['list', 'indent', ], items: ['BulletedList'] },
+            { name: 'paragraph', groups: ['list', 'indent',], items: ['BulletedList'] },
             '/',
         ]
     })
@@ -375,11 +376,11 @@ if (document.querySelector('#phy_description')) {
             width: '100%',
             toolbar: [
                 '/',
-                { name: 'paragraph', groups: ['list', 'indent', ], items: ['BulletedList'] },
+                { name: 'paragraph', groups: ['list', 'indent',], items: ['BulletedList'] },
                 '/',
             ]
         })
-    
+
     }
 
 }
@@ -514,10 +515,10 @@ function addProductRow() {
 
 
 var Img = {
-    loadImage: function() {},
-    deleteImage: function(opts = {}) {
+    loadImage: function () { },
+    deleteImage: function (opts = {}) {
         let fileName, activator, parent;
-        $(document).on("click", opts.activator, function(e) {
+        $(document).on("click", opts.activator, function (e) {
             e.preventDefault();
             activator = $(this);
             parent = activator.parents(".uploadloaded_image");
@@ -534,7 +535,7 @@ var Img = {
                 url: opts.url,
                 type: "POST",
                 data: params,
-                beforeSend: function() {
+                beforeSend: function () {
                     $(document)
                         .find("label#main_image-error")
                         .remove();
@@ -545,13 +546,13 @@ var Img = {
                         '<img id="image_loader" src="/images/loaders/ajax-loader.gif" class="upload_spinner">'
                     );
                 },
-                success: function(data) {
+                success: function (data) {
                     parent.find("img.upload_spinner").remove();
                     parent.find("div.upload-text").removeClass("hide");
                     parent.find("img#stored_image").remove();
                     parent.find("input.stored_image").val("");
                 },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
                     parent.find("img.upload_spinner").remove();
                     //parent.find('div.upload-text').removeClass('hide');
                     parent.find("img#stored_image").removeClass("hide");
@@ -560,13 +561,13 @@ var Img = {
             });
         });
     },
-    initUploadImage: function(opts = {}) {
+    initUploadImage: function (opts = {}) {
         let fileName, activator, parent;
         console.log(opts.inputFile)
-        $(document).on("click", opts.activator, function(e) { opts.inputFile.click() })
+        $(document).on("click", opts.activator, function (e) { opts.inputFile.click() })
 
         if (opts.inputFile !== null) {
-            opts.inputFile.on("change", function(e) {
+            opts.inputFile.on("change", function (e) {
                 parent = $(this).parents(".uploadloaded_image");
                 var image_url = parent.find("input.file_upload_input").val();
                 var image_id = parent.find("input.stored_image_id").val();
@@ -595,7 +596,7 @@ var Img = {
                     url: opts.url,
                     type: "POST",
                     data: formData,
-                    beforeSend: function(xhr) {
+                    beforeSend: function (xhr) {
                         // opts.inputFile.attr('disabled',true)
                         //$(opts.activator).addClass('uploading')
                         $(document)
@@ -611,11 +612,11 @@ var Img = {
                     cache: false,
                     contentType: false,
                     processData: false,
-                    complete: function() {
+                    complete: function () {
                         //opts.inputFile.attr('disabled',false)
                         // $(opts.activator).removeClass('uploading')
                     },
-                    success: function(data) {
+                    success: function (data) {
                         let path = $.trim(data.path);
                         console.log(data);
                         parent.find("img.upload_spinner").remove();
@@ -632,7 +633,7 @@ var Img = {
                         let image = localStorage.getItem("first_image");
                         parent.find("input.stored_image").val(path);
                     },
-                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
                         parent.find("img.upload_spinner").remove();
                         parent.find("div.upload-text").removeClass("hide");
                     },

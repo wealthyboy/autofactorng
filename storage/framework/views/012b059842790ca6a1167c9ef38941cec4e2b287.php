@@ -92,12 +92,12 @@
                                 <div class="align-middle  text-sm">
 
                                     <?php if(is_array($v)): ?>
-                                    <select style="width: 100px;" class="form-control mt-3 change-status" data-column="status" data-id="<?php echo e(isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null); ?>" data-model="Order" name="[]">
-
+                                    <select name="" style="width: 100px;" class="form-control  change-status border px-1 text-xs" data-column="<?php echo e($k); ?>" data-id="<?php echo e(isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null); ?>" data-model="Order" name="[]">
                                         <?php $__currentLoopData = $v; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $l => $lv): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <?php if($l == 'selected'): ?>
                                         <option value="<?php echo e($lv); ?>" selected><?php echo e($lv); ?></option>
                                         <?php else: ?>
+
                                         <option value="<?php echo e($lv); ?>"><?php echo e($lv); ?></option>
                                         <?php endif; ?>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -193,23 +193,25 @@ class Order extends Model
 				if (null !== $order->orderEmail) {
 					return [
 						"Id" => $order->id,
+						"Invoice" => $order->invoice,
 						"Customer" => optional($order->orderEmail)->fullname,
 						"Email" => optional($order->orderEmail)->email,
 						"Payment Type" =>  $order->payment,
 						"Type" => 'offline',
 						"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
-						"Dispatch" => array_merge($this->dispatch(), ['selected' => $order->dispatch]),
+						"Dispatch" => array_merge($this->dispatch(), ['selected' => $order->dispatch ?? 'Select dispatch']),
 						"Total" => Helper::currencyWrapper($order->total),
 						"Date" => $order->created_at->format('d-m-y'),
 					];
 				}
 				return [
 					"Id" => $order->id,
+					"Invoice" => $order->invoice,
 					"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
 					"Email" => $order->email,
 					"Payment Type" => $order->payment_type,
 					"Type" => $order->order_type,
-					"Dispatch" => array_merge($this->dispatch(), ['selected' => $order->dispatch]),
+					"Dispatch" => array_merge($this->dispatch(), ['selected' => $order->dispatch ?? 'Select Dispatch']),
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 					"Total" => Helper::currencyWrapper($order->total),
 					"Date" => $order->created_at->format('d-m-y'),
@@ -258,7 +260,8 @@ class Order extends Model
 		return [
 			'David',
 			'Stephen',
-			'Emem'
+			'Emem',
+			'WayBill'
 		];
 	}
 
