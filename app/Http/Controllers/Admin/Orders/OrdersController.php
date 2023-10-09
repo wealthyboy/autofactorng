@@ -448,7 +448,6 @@ class OrdersController extends Table
 			$order->status =  $request->value;
 		}
 
-		$order->status =  $request->value;
 		$order->save();
 		return $order;
 	}
