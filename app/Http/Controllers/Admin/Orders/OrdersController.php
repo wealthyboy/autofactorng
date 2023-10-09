@@ -98,9 +98,6 @@ class OrdersController extends Table
 			$order = new Order;
 			$order->fill($input);
 			$order->save();
-
-
-
 			foreach (Order::$statuses as $key => $status) {
 				$order_status = new OrderStatus();
 				$order_status->is_updated = false;

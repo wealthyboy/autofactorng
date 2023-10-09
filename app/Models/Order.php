@@ -204,6 +204,7 @@ class Order extends Model
 						"Payment Type" =>  $order->payment,
 						"Type" => 'offline',
 						"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
+						"Dispatch" => array_merge($this->dispatch(), ['selected' => $order->dispatch]),
 						"Total" => Helper::currencyWrapper($order->total),
 						"Date" => $order->created_at->format('d-m-y'),
 					];
@@ -215,6 +216,7 @@ class Order extends Model
 					"Email" => $order->email,
 					"Payment Type" => $order->payment_type,
 					"Type" => $order->order_type,
+					"Dispatch" => array_merge($this->dispatch(), ['selected' => $order->dispatch]),
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 					"Total" => Helper::currencyWrapper($order->total),
 					"Date" => $order->created_at->format('d-m-y'),
@@ -256,6 +258,15 @@ class Order extends Model
 	public  function order_statuses()
 	{
 		return $this->hasMany(OrderStatus::class);
+	}
+
+	public  function dispatch()
+	{
+		return [
+			'David',
+			'Stephen',
+			'Emem'
+		];
 	}
 
 
