@@ -116,10 +116,6 @@ class Order extends Model
 		}
 		try {
 			$delay = now()->addMinutes(10);
-
-
-			//ReviewProduct::dispatch($user, $order);
-
 		} catch (\Throwable $th) {
 			throw $th;
 		}
@@ -163,7 +159,6 @@ class Order extends Model
 
 	public static function subTotal(Order $order)
 	{
-
 		$total =  DB::table('ordered_products')->select(DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
 		return $sub_total = $total[0]->items_total ?? '0.00';
 	}
@@ -198,7 +193,6 @@ class Order extends Model
 				if (null !== $order->orderEmail) {
 					return [
 						"Id" => $order->id,
-						"Invoice" => $order->invoice,
 						"Customer" => optional($order->orderEmail)->fullname,
 						"Email" => optional($order->orderEmail)->email,
 						"Payment Type" =>  $order->payment,
@@ -211,7 +205,6 @@ class Order extends Model
 				}
 				return [
 					"Id" => $order->id,
-					"Invoice" => $order->invoice,
 					"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
 					"Email" => $order->email,
 					"Payment Type" => $order->payment_type,
