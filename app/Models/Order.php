@@ -268,7 +268,8 @@ class Order extends Model
 			'Stephen',
 			'Emem',
 			'WayBill',
-			'Ext Dispatch'
+			'Ext Dispatch',
+			'Pick Up'
 		];
 	}
 

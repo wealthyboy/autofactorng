@@ -409,7 +409,6 @@ class OrdersController extends Table
 
 
 		if ($request->value == 'Processing') {
-
 			$order_statuses = OrderStatus::where(['order_id' => $request->id])->where('status', '!=', 'Confirmed')->get();
 			if (null !== $order_statuses) {
 				foreach ($order_statuses as $order_status) {
@@ -420,7 +419,6 @@ class OrdersController extends Table
 
 
 			$order_status = OrderStatus::where(['order_id' => $request->id])->where('status', '=', 'Processing')->first();
-
 			if (null !== $order_status) {
 				$order_status->is_updated = true;
 				$order_status->save();
