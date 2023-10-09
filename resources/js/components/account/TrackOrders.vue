@@ -1,11 +1,10 @@
 <template>
-  <message :message="post_server_error" />
 
   <ul class="progress-indicator stacked nocenter mb-3">
-    <template v-if="completed.length">
+    <template v-if="null !== completed">
 
       <li
-        v-for="complete in completed"
+        v-for="complete in completed.order_statuses"
         :key="complete.id"
         :class="[ complete.is_updated === 1 && complete.status === 'Delivered' ? 'completed' : 'updated' ]"
         class="list-g"
@@ -128,13 +127,14 @@ export default {
 
       makePost(postData)
         .then((res) => {
+          alert(true)
           loading.value = false;
           completed.value = res.data.completed;
           uncompleted.value = Object.values(res.data.uncompleted);
         })
         .catch((error) => {
-          server_errors.value = error.response.data.errors;
-          clearErr(server_errors);
+          //server_errors.value = error.response.data.errors;
+         // clearErr(server_errors);
         });
     }
 
