@@ -190,6 +190,12 @@ class Order extends Model
 
 		return  $collection->map(function ($order) {
 			if (str_contains(request()->path(), 'admin')) {
+				$d =  $this->dispatch();
+				if (($key = array_search($order->dispatch, $this->dispatch())) !== false) {
+					unset($this->dispatch()[$key]);
+					$d = array_diff($this->dispatch(), array($order->dispatch));
+				}
+
 				if (null !== $order->orderEmail) {
 					return [
 						"Id" => $order->id,
@@ -199,7 +205,7 @@ class Order extends Model
 						"Payment Type" =>  $order->payment,
 						"Type" => 'offline',
 						"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
-						"Dispatch" => array_merge($this->dispatch(), ['selected' => $order->dispatch ?? 'Select dispatch']),
+						"Dispatch" => array_merge($d, ['selected' => $order->dispatch ?? 'Select dispatch']),
 						"Total" => Helper::currencyWrapper($order->total),
 						"Date" => $order->created_at->format('d-m-y'),
 					];
@@ -211,7 +217,7 @@ class Order extends Model
 					"Email" => $order->email,
 					"Payment Type" => $order->payment_type,
 					"Type" => $order->order_type,
-					"Dispatch" => array_merge($this->dispatch(), ['selected' => $order->dispatch ?? 'Select Dispatch']),
+					"Dispatch" => array_merge($d, ['selected' => $order->dispatch ?? 'Select Dispatch']),
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 					"Total" => Helper::currencyWrapper($order->total),
 					"Date" => $order->created_at->format('d-m-y'),
@@ -261,7 +267,8 @@ class Order extends Model
 			'David',
 			'Stephen',
 			'Emem',
-			'WayBill'
+			'WayBill',
+			'Ext Dispatch'
 		];
 	}
 
