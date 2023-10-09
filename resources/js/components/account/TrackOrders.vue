@@ -1,5 +1,5 @@
 <template>
-
+ 
   <ul class="progress-indicator stacked nocenter mb-3">
     <template v-if="null !== completed">
 
@@ -127,14 +127,13 @@ export default {
 
       makePost(postData)
         .then((res) => {
-          alert(true)
           loading.value = false;
           completed.value = res.data.completed;
           uncompleted.value = Object.values(res.data.uncompleted);
         })
         .catch((error) => {
-          //server_errors.value = error.response.data.errors;
-         // clearErr(server_errors);
+          server_errors.value = error.response.data.errors;
+         clearErr(server_errors);
         });
     }
 
