@@ -19,7 +19,7 @@
          <div class="banner banner3 {{ $slider->device }}">
             <a href="{{ $slider->link }}" class="d-block">
                <figure>
-                  <img class="owl-lazy" data-src="{{ $slider->image }}" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);;min-height:36rem;" alt="banner" />
+                  <img class="owl-lazy" data-src="{{ $slider->image }}" title="{{ $slider->title }}" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);;min-height:36rem;" alt="{{ $slider->title }}" />
                </figure>
             </a>
          </div>
@@ -44,7 +44,7 @@
          <div class="banner banner3  {{ $slider->device }}   d-md-block">
             <a href="{{ $slider->link }}" class="d-block">
                <figure>
-                  <img class="owl-lazy" data-src="{{ $slider->image }}" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);min-height:36rem;" alt="banner" />
+                  <img class="owl-lazy" data-src="{{ $slider->image }}" title="{{ $slider->title }}" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);min-height:36rem;" alt="{{ $slider->title }}" />
                </figure>
             </a>
          </div>
