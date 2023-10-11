@@ -2,7 +2,7 @@
     <div class="col-md-6 mb-sm-1">
         <a href="/plans?type=auto_cover" class="d-block p-0 ">
             <div class="align-self-center text-center">
-                <img title="Auto cover " class="img-fluid" src="/images/utils/Autocover4.jpg" alt="auto cover" srcset="">
+                <img title="Auto cover " class="img-fluid" src="/images/utils/Autocover4.jpg" alt="Autocover4" srcset="">
             </div>
         </a>
     </div>

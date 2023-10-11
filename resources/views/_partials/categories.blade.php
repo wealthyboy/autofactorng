@@ -10,13 +10,13 @@
             <div class="d-flex justify-content-center align-items-center">
                 <div class="align-self-center text-center">
                     <div class="image-category">
-                        <img src="{{ $category->image }}" alt="" srcset="">
+                        <img src="{{ $category->image }}" alt=" {{$category->name }}" tittle="shop for {{ $category->name }} in nigeria" srcset="">
                     </div>
                 </div>
 
             </div>
             <div class="text-center">
-                <div class="mt-1 semi-bold fs-3">{{ $category->name }}</div>
+                <div title="shop for {{ $category->name }}" class="mt-1 semi-bold fs-3">{{ $category->name }}</div>
             </div>
         </a>
 
