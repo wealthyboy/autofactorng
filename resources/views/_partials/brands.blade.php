@@ -6,10 +6,10 @@
 <div class="row g-0">
     @foreach($brands as $key => $brand)
     <div data-animation-name="fadeInUpShorter" class="col-6  col-md-3     appear-animate ">
-        <a  class="d-block p-0 border">
+        <a class="d-block p-0 border">
             <div class="d-flex justify-content-center align-items-center">
                 <div class="d-flex justify-content-center align-items-center text-center image-category">
-                    <img src="{{ $brand->image }}" alt="" srcset="">
+                    <img title="We have genuine {{ $brand->name }} for you" src="{{ $brand->image }}" alt="{{ $brand->name }} " srcset="">
                 </div>
             </div>
         </a>
