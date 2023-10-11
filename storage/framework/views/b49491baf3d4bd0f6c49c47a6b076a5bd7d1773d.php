@@ -19,7 +19,7 @@
          <div class="banner banner3 <?php echo e($slider->device); ?>">
             <a href="<?php echo e($slider->link); ?>" class="d-block">
                <figure>
-                  <img class="owl-lazy" data-src="<?php echo e($slider->image); ?>" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);;min-height:36rem;" alt="banner" />
+                  <img class="owl-lazy" data-src="<?php echo e($slider->image); ?>" title="<?php echo e($slider->title); ?>" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);;min-height:36rem;" alt="<?php echo e($slider->title); ?>" />
                </figure>
             </a>
          </div>
@@ -44,7 +44,7 @@
          <div class="banner banner3  <?php echo e($slider->device); ?>   d-md-block">
             <a href="<?php echo e($slider->link); ?>" class="d-block">
                <figure>
-                  <img class="owl-lazy" data-src="<?php echo e($slider->image); ?>" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);min-height:36rem;" alt="banner" />
+                  <img class="owl-lazy" data-src="<?php echo e($slider->image); ?>" title="<?php echo e($slider->title); ?>" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);min-height:36rem;" alt="<?php echo e($slider->title); ?>" />
                </figure>
             </a>
          </div>

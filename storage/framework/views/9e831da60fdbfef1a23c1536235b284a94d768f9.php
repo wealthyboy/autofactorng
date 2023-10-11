@@ -10,13 +10,13 @@
             <div class="d-flex justify-content-center align-items-center">
                 <div class="align-self-center text-center">
                     <div class="image-category">
-                        <img src="<?php echo e($category->image); ?>" alt="" srcset="">
+                        <img src="<?php echo e($category->image); ?>" alt=" <?php echo e($category->name); ?>" tittle="shop for <?php echo e($category->name); ?> in nigeria" srcset="">
                     </div>
                 </div>
 
             </div>
             <div class="text-center">
-                <div class="mt-1 semi-bold fs-3"><?php echo e($category->name); ?></div>
+                <div title="shop for <?php echo e($category->name); ?>" class="mt-1 semi-bold fs-3"><?php echo e($category->name); ?></div>
             </div>
         </a>
 
