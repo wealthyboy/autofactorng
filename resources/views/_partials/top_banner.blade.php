@@ -7,7 +7,7 @@
                 <img src="{{ $top_banner->image }}" class=" img-fluid" alt="5% percent off banner " title="{{  $top_banner->title  }}" srcset="">
 
             </div>
-        </div>5% percent off banner
+        </div>
         @endforeach
 
     </div><!-- End .container -->
