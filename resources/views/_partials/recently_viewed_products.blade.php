@@ -13,7 +13,7 @@
    <div class="product-default  product-default-sm d-flex flex-column justify-content-center align-items-center px-2">
       <figure class="image-category mt-3">
          <a href="{{ $product->link }}">
-            <img src="{{ $product->image_m }}" alt="product">
+            <img title="Click to buy car parts,  {{ $product->name }}" src="{{ $product->image_m }}" alt="{{ $product->name }}">
          </a>
       </figure>
       <a href="#">
@@ -23,7 +23,7 @@
 
                <a href="{{ $product->link }}">
                   <div class="pr">
-                     <div class="text-black">{{ $product->name }}</div>
+                     <div title="Click to buy car parts,  {{ $product->name }}" class="text-black">{{ $product->name }}</div>
                   </div>
                </a>
 
