@@ -352,9 +352,9 @@
                             <p class="footer-copyright mx-3 text-white"><a target="_blank" class="text-white" href="/admin">Go to Admin</a></p>
                             @endif
                             <div class="social-icons py-3">
-                                <a href="https://www.facebook.com/autofactorng/" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
-                                <a href="https://twitter.com/autofactorng/" class="bi bi-twitter  text-white me-5 fa-2x" target="_blank" title="Twitter"></a>
-                                <a href="http://instagram.com/autofactorng/" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
+                                <a rel='noopener' href="https://www.facebook.com/autofactorng/" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
+                                <a rel='noopener' href="https://twitter.com/autofactorng/" class="bi bi-twitter  text-white me-5 fa-2x" target="_blank" title="Twitter"></a>
+                                <arel='noopener' href="http://instagram.com/autofactorng/" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
                             </div><!-- End .social-icons -->
                         </div><!-- End .footer-bottom -->
                     </div>
@@ -444,13 +444,13 @@
 
 
     <div class="watsapp me-3">
-        <a class="chat-on-watsapp d-flex justify-content-between align-items-center" target="_blank" href="https://wa.me/+23409081155505">
+        <a class="chat-on-watsapp d-flex justify-content-between align-items-center" target="_blank" rel='noopener' href="https://wa.me/+23409081155505">
             <span class="d-flex flex-column me-2">
                 <span class="fs-6">Need Help?</span>
                 <span class="fs-5">Chat with us</span>
             </span>
             <span class="me-1">
-                <img src="/images/utils/afng-whatsapp.png" alt="" width="35" srcset="">
+                <img src="/images/utils/afng-whatsapp.png" alt="whatsapp" width="35" srcset="">
             </span>
         </a>
     </div>
