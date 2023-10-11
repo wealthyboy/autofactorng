@@ -30,8 +30,9 @@
             <div class="fw-bold" v-if="!fitString">Add vehicle</div>
 
            
-            <div class="align-self-center"><img                     alt="Shop auto parts online inn Nigeria, Benz "
- src="/images/utils/header-arrow.svg" alt=""></div>
+            <div class="align-self-center"><img                     
+                title="Shop auto parts online inn Nigeria, Benz "
+ src="/images/utils/header-arrow.svg" alt="header arrow"></div>
 
         </div>
     </a>
