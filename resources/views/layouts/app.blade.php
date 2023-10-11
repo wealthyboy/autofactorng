@@ -220,12 +220,12 @@
 
                         <a data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0 border-0" role="button">
                            <span class="menu-open d-flex flex-column align-items-center">
-                              <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="" class="ms-1" srcset="">
+                              <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="hamburger" title="Click here to start shopping auto parts in nigeria" class="ms-1" srcset="">
                               <div class="">Menu</div>
                            </span>
 
                            <span class="menu-close d-none d-flex flex-column align-items-center">
-                              <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" class="ms-2" alt="" srcset="">
+                              <img data-bs-toggle="offcanvas" alt="Close" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" class="ms-2" alt="close button" srcset="">
                               <div class="text-xs">Close</div>
                            </span>
                         </a>
@@ -246,7 +246,7 @@
                                  <i class="bi bi-camera-video fs-1"></i>
                               </span>
                               <div class="align-self-center fw-bold  fs-5">Video Tips</div>
-                              <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
+                              <div class="align-self-center"><img src="/images/utils/header-arrow.svg"></div>
                            </div>
                         </a>
                      </div>
@@ -468,7 +468,7 @@
             <span class="fs-5">Chat with us</span>
          </span>
          <span class="me-1">
-            <img src="/images/utils/afng-whatsapp.png" alt="" width="35" srcset="">
+            <img src="/images/utils/afng-whatsapp.png" alt="whatsapp" title="contact us on whatsapp" width="35" srcset="">
          </span>
       </a>
    </div>

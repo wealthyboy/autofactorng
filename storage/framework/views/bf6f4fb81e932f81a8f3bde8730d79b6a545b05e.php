@@ -7,7 +7,7 @@
    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-   <title><?php echo e(isset($page_title) ? $page_title .' |  '.config('app.name') :  $system_settings->meta_title); ?></title>
+   <title><?php echo e(isset($page_title) ? $page_title . ' |  ' . config('app.name') :  $system_settings->meta_title); ?></title>
 
    <meta name="description" content="<?php echo e(isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description); ?>">
    <meta name="keywords" content="<?php echo e(isset($meta_tag_keywords) ? $meta_tag_keywords : $system_settings->meta_tag_keywords); ?>" />
@@ -23,7 +23,7 @@
    <link rel="apple-touch-icon" href="/images/favicon_io/favicon-96x96.png">
    <!-- Main CSS File -->
 
-   <link rel="stylesheet" href="/css/app.css?id=<?php echo e(rand(1,2000)); ?>">
+   <link rel="stylesheet" href="/css/app.css?id=<?php echo e(rand(1, 2000)); ?>">
 
 
 
@@ -86,32 +86,32 @@
                         <img alt="phone" src="/assets/images/phone.png" width="30" height="30" class="pb-1">
                         <h6><span>Call to order</span><a href="tel:#" class="text-dark font1"><?php echo e(optional($system_settings)->store_phone); ?></a></h6>
                      </div>
-                     <?php if(auth()->guard()->check()): ?>
-                     <div class="position-relative me-5">
-                        <a href="/account" class="d-flex flex-column align-items-center no-hover text-black user" title="account">
-                           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-                              <path d="M480.159-502Q395-502 336.5-561 278-620 278-704.5T336.341-847q58.34-58 143.5-58Q565-905 623.5-847.112 682-789.225 682-704q0 84-58.341 143-58.34 59-143.5 59ZM114-86v-159q0-46.774 23.789-84.467Q161.578-367.161 201-387q66-34 136.174-51t142.541-17Q554-455 624-438t135 50q39.422 19.693 63.211 57.111Q846-293.472 846-245.055V-86H114Z" />
-                           </svg>
-                           <span class="header-right-icons">
-                              Account
-                           </span>
-                        </a>
-                     </div>
+                     <?php if (auth()->guard()->check()) : ?>
+                        <div class="position-relative me-5">
+                           <a href="/account" class="d-flex flex-column align-items-center no-hover text-black user" title="account">
+                              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                                 <path d="M480.159-502Q395-502 336.5-561 278-620 278-704.5T336.341-847q58.34-58 143.5-58Q565-905 623.5-847.112 682-789.225 682-704q0 84-58.341 143-58.34 59-143.5 59ZM114-86v-159q0-46.774 23.789-84.467Q161.578-367.161 201-387q66-34 136.174-51t142.541-17Q554-455 624-438t135 50q39.422 19.693 63.211 57.111Q846-293.472 846-245.055V-86H114Z" />
+                              </svg>
+                              <span class="header-right-icons">
+                                 Account
+                              </span>
+                           </a>
+                        </div>
 
                      <?php endif; ?>
 
-                     <?php if(auth()->guard()->guest()): ?>
-                     <div class="position-relative me-5 ">
-                        <a href="/login" class="d-flex flex-column align-items-center no-hover text-black user" title="account">
-                           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-                              <path d="M480.159-502Q395-502 336.5-561 278-620 278-704.5T336.341-847q58.34-58 143.5-58Q565-905 623.5-847.112 682-789.225 682-704q0 84-58.341 143-58.34 59-143.5 59ZM114-86v-159q0-46.774 23.789-84.467Q161.578-367.161 201-387q66-34 136.174-51t142.541-17Q554-455 624-438t135 50q39.422 19.693 63.211 57.111Q846-293.472 846-245.055V-86H114Z" />
-                           </svg>
-                           <span class="header-right-icons">
-                              Sign In
-                           </span>
-                        </a>
+                     <?php if (auth()->guard()->guest()) : ?>
+                        <div class="position-relative me-5 ">
+                           <a href="/login" class="d-flex flex-column align-items-center no-hover text-black user" title="account">
+                              <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                                 <path d="M480.159-502Q395-502 336.5-561 278-620 278-704.5T336.341-847q58.34-58 143.5-58Q565-905 623.5-847.112 682-789.225 682-704q0 84-58.341 143-58.34 59-143.5 59ZM114-86v-159q0-46.774 23.789-84.467Q161.578-367.161 201-387q66-34 136.174-51t142.541-17Q554-455 624-438t135 50q39.422 19.693 63.211 57.111Q846-293.472 846-245.055V-86H114Z" />
+                              </svg>
+                              <span class="header-right-icons">
+                                 Sign In
+                              </span>
+                           </a>
 
-                     </div>
+                        </div>
                      <?php endif; ?>
 
 
@@ -142,55 +142,55 @@
                      <img alt="phone" src="/assets/images/phone.png" width="30" height="30" class="pb-1">
                      <h6><span>Call to order</span><a href="tel:#" class="text-dark font1"><?php echo e(optional($system_settings)->store_phone); ?></a></h6>
                   </div>
-                  <?php if(auth()->guard()->check()): ?>
-                  <div class="position-relative  me-sm-3">
-                     <a href="tel:<?php echo e(optional($system_settings)->store_phone); ?>" class="d-flex flex-column align-items-center no-hover text-black user" title="account">
+                  <?php if (auth()->guard()->check()) : ?>
+                     <div class="position-relative  me-sm-3">
+                        <a href="tel:<?php echo e(optional($system_settings)->store_phone); ?>" class="d-flex flex-column align-items-center no-hover text-black user" title="account">
 
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-                           <path d="M812.119-74q-137.217 0-269.668-58.5T301-299Q192-407 133.5-540.782T75-811.245q0-32.898 20.643-53.826Q116.286-886 149-886h175q37.389 0 60.694 18Q408-850 416-816l27 130q5 30-1.5 52.5T416-595l-106 94q15 25 36.5 50.5T396-397q26 25 49 44t44 32l108-102q19-19 41.814-25T689-448l127 29q34.125 10 52.062 31Q886-367 886-333v184q0 33.143-21 54.071Q844-74 812.119-74ZM244-624l62-54-14-72h-78q3 35 9.957 65.441Q230.914-654.118 244-624Zm370 373q32 14 66 22.5t70 14.5v-80l-74-18-62 61ZM244-624Zm370 373Z" />
-                        </svg>
-                        <span class="header-right-icons  cart-text fs-5">
-                           Call
-                        </span>
-                     </a>
-                  </div>
-                  <div class="position-relative  me-sm-3">
-                     <a href="/account" class="d-flex flex-column align-items-center user" title="account">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-                           <path d="M480.159-502Q395-502 336.5-561 278-620 278-704.5T336.341-847q58.34-58 143.5-58Q565-905 623.5-847.112 682-789.225 682-704q0 84-58.341 143-58.34 59-143.5 59ZM114-86v-159q0-46.774 23.789-84.467Q161.578-367.161 201-387q66-34 136.174-51t142.541-17Q554-455 624-438t135 50q39.422 19.693 63.211 57.111Q846-293.472 846-245.055V-86H114Z" />
-                        </svg>
-                        <span class="header-right-icons  fs-5">
-                           Account
-                        </span>
-                     </a>
-                  </div>
+                           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                              <path d="M812.119-74q-137.217 0-269.668-58.5T301-299Q192-407 133.5-540.782T75-811.245q0-32.898 20.643-53.826Q116.286-886 149-886h175q37.389 0 60.694 18Q408-850 416-816l27 130q5 30-1.5 52.5T416-595l-106 94q15 25 36.5 50.5T396-397q26 25 49 44t44 32l108-102q19-19 41.814-25T689-448l127 29q34.125 10 52.062 31Q886-367 886-333v184q0 33.143-21 54.071Q844-74 812.119-74ZM244-624l62-54-14-72h-78q3 35 9.957 65.441Q230.914-654.118 244-624Zm370 373q32 14 66 22.5t70 14.5v-80l-74-18-62 61ZM244-624Zm370 373Z" />
+                           </svg>
+                           <span class="header-right-icons  cart-text fs-5">
+                              Call
+                           </span>
+                        </a>
+                     </div>
+                     <div class="position-relative  me-sm-3">
+                        <a href="/account" class="d-flex flex-column align-items-center user" title="account">
+                           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                              <path d="M480.159-502Q395-502 336.5-561 278-620 278-704.5T336.341-847q58.34-58 143.5-58Q565-905 623.5-847.112 682-789.225 682-704q0 84-58.341 143-58.34 59-143.5 59ZM114-86v-159q0-46.774 23.789-84.467Q161.578-367.161 201-387q66-34 136.174-51t142.541-17Q554-455 624-438t135 50q39.422 19.693 63.211 57.111Q846-293.472 846-245.055V-86H114Z" />
+                           </svg>
+                           <span class="header-right-icons  fs-5">
+                              Account
+                           </span>
+                        </a>
+                     </div>
 
                   <?php endif; ?>
 
-                  <?php if(auth()->guard()->guest()): ?>
-                  <div class="position-relative  me-sm-3">
-                     <a href="tel:<?php echo e(optional($system_settings)->store_phone); ?>" class="d-flex flex-column align-items-center no-hover text-black user" title="account">
+                  <?php if (auth()->guard()->guest()) : ?>
+                     <div class="position-relative  me-sm-3">
+                        <a href="tel:<?php echo e(optional($system_settings)->store_phone); ?>" class="d-flex flex-column align-items-center no-hover text-black user" title="account">
 
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-                           <path d="M812.119-74q-137.217 0-269.668-58.5T301-299Q192-407 133.5-540.782T75-811.245q0-32.898 20.643-53.826Q116.286-886 149-886h175q37.389 0 60.694 18Q408-850 416-816l27 130q5 30-1.5 52.5T416-595l-106 94q15 25 36.5 50.5T396-397q26 25 49 44t44 32l108-102q19-19 41.814-25T689-448l127 29q34.125 10 52.062 31Q886-367 886-333v184q0 33.143-21 54.071Q844-74 812.119-74ZM244-624l62-54-14-72h-78q3 35 9.957 65.441Q230.914-654.118 244-624Zm370 373q32 14 66 22.5t70 14.5v-80l-74-18-62 61ZM244-624Zm370 373Z" />
-                        </svg>
-                        <span class="header-right-icons  cart-text fs-5">
-                           Call
-                        </span>
-                     </a>
-                  </div>
-                  <div class="position-relative   me-sm-3">
+                           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                              <path d="M812.119-74q-137.217 0-269.668-58.5T301-299Q192-407 133.5-540.782T75-811.245q0-32.898 20.643-53.826Q116.286-886 149-886h175q37.389 0 60.694 18Q408-850 416-816l27 130q5 30-1.5 52.5T416-595l-106 94q15 25 36.5 50.5T396-397q26 25 49 44t44 32l108-102q19-19 41.814-25T689-448l127 29q34.125 10 52.062 31Q886-367 886-333v184q0 33.143-21 54.071Q844-74 812.119-74ZM244-624l62-54-14-72h-78q3 35 9.957 65.441Q230.914-654.118 244-624Zm370 373q32 14 66 22.5t70 14.5v-80l-74-18-62 61ZM244-624Zm370 373Z" />
+                           </svg>
+                           <span class="header-right-icons  cart-text fs-5">
+                              Call
+                           </span>
+                        </a>
+                     </div>
+                     <div class="position-relative   me-sm-3">
 
-                     <a href="/login" class="d-flex flex-column align-items-center user" title="account">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
-                           <path d="M480.159-502Q395-502 336.5-561 278-620 278-704.5T336.341-847q58.34-58 143.5-58Q565-905 623.5-847.112 682-789.225 682-704q0 84-58.341 143-58.34 59-143.5 59ZM114-86v-159q0-46.774 23.789-84.467Q161.578-367.161 201-387q66-34 136.174-51t142.541-17Q554-455 624-438t135 50q39.422 19.693 63.211 57.111Q846-293.472 846-245.055V-86H114Z" />
-                        </svg>
-                        <span class="header-right-icons   fs-5">
-                           Sign In
-                        </span>
-                     </a>
+                        <a href="/login" class="d-flex flex-column align-items-center user" title="account">
+                           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                              <path d="M480.159-502Q395-502 336.5-561 278-620 278-704.5T336.341-847q58.34-58 143.5-58Q565-905 623.5-847.112 682-789.225 682-704q0 84-58.341 143-58.34 59-143.5 59ZM114-86v-159q0-46.774 23.789-84.467Q161.578-367.161 201-387q66-34 136.174-51t142.541-17Q554-455 624-438t135 50q39.422 19.693 63.211 57.111Q846-293.472 846-245.055V-86H114Z" />
+                           </svg>
+                           <span class="header-right-icons   fs-5">
+                              Sign In
+                           </span>
+                        </a>
 
-                  </div>
+                     </div>
                   <?php endif; ?>
 
 
@@ -220,12 +220,12 @@
 
                         <a data-bs-toggle="offcanvas" data-bs-target="#offcanvas" class="nav-btn menu-nav-btn mb-0 pb-0 border-0" role="button">
                            <span class="menu-open d-flex flex-column align-items-center">
-                              <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="" class="ms-1" srcset="">
+                              <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/hamburger.svg" alt="Benz parts, toypta parts, auto parts Nigeria" class="ms-1" srcset="">
                               <div class="">Menu</div>
                            </span>
 
                            <span class="menu-close d-none d-flex flex-column align-items-center">
-                              <img data-bs-toggle="offcanvas" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" class="ms-2" alt="" srcset="">
+                              <img data-bs-toggle="offcanvas" alt="" data-bs-target="#offcanvas" src="/images/utils/close-dark.svg" class="ms-2" alt="Mazda parts, Benz parts, toypta parts, auto parts Nigeria" srcset="">
                               <div class="text-xs">Close</div>
                            </span>
                         </a>
@@ -356,8 +356,8 @@
                      <a href="http://instagram.com/autofactorng/" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
                   </div><!-- End .footer-bottom -->
                   <p class="footer-copyright py-3 pr-4 mb-0">© <?php echo e(config('app.name')); ?>. <?php echo e(date('Y')); ?>. All Rights Reserved</p>
-                  <?php if( auth()->check() && auth()->user()->isAdmin() ): ?>
-                  <p class="footer-copyright mx-3 text-white"><a target="_blank" class="text-white" href="/admin">Go to Admin</a></p>
+                  <?php if (auth()->check() && auth()->user()->isAdmin()) : ?>
+                     <p class="footer-copyright mx-3 text-white"><a target="_blank" class="text-white" href="/admin">Go to Admin</a></p>
                   <?php endif; ?>
 
 
@@ -366,8 +366,8 @@
                <div class="d-none d-lg-block d-md-block d-xl-block">
                   <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap  ">
                      <p class="footer-copyright py-3 pr-4 mb-0">© <?php echo e(config('app.name')); ?>. <?php echo e(date('Y')); ?>. All Rights Reserved</p>
-                     <?php if( auth()->check() && auth()->user()->isAdmin() ): ?>
-                     <p class="footer-copyright mx-3 text-white"><a target="_blank" class="text-white" href="/admin">Go to Admin</a></p>
+                     <?php if (auth()->check() && auth()->user()->isAdmin()) : ?>
+                        <p class="footer-copyright mx-3 text-white"><a target="_blank" class="text-white" href="/admin">Go to Admin</a></p>
                      <?php endif; ?>
                      <div class="social-icons py-3">
                         <a href="https://www.facebook.com/autofactorng/" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
@@ -406,47 +406,57 @@
             <div class="d-flex  border-bottom px-4  justify-content-between"></div>
 
             <div class="accordion accordion-flush" id="accordionNav">
-               <?php $__currentLoopData = $global_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+               <?php $__currentLoopData = $global_categories;
+               $__env->addLoop($__currentLoopData);
+               foreach ($__currentLoopData as $category) : $__env->incrementLoopIndices();
+                  $loop = $__env->getLastLoop(); ?>
 
-               <div class="accordion-item">
-                  <h2 class="accordion-header mb-0 py-3" id="flush-heading<?php echo e($category->id); ?>">
-                     <button class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?php echo e($category->id); ?>" aria-expanded="false" aria-controls="flush-collapse<?php echo e($category->id); ?>">
-                        <?php echo e($category->name); ?>
+                  <div class="accordion-item">
+                     <h2 class="accordion-header mb-0 py-3" id="flush-heading<?php echo e($category->id); ?>">
+                        <button class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?php echo e($category->id); ?>" aria-expanded="false" aria-controls="flush-collapse<?php echo e($category->id); ?>">
+                           <?php echo e($category->name); ?>
 
-                     </button>
-                  </h2>
-                  <div id="flush-collapse<?php echo e($category->id); ?>" class="accordion-collapse collapse" aria-labelledby="flush-heading<?php echo e($category->id); ?>" data-bs-parent="#accordionNav">
-                     <div class="accordion-body">
+                        </button>
+                     </h2>
+                     <div id="flush-collapse<?php echo e($category->id); ?>" class="accordion-collapse collapse" aria-labelledby="flush-heading<?php echo e($category->id); ?>" data-bs-parent="#accordionNav">
+                        <div class="accordion-body">
 
-                        <?php if($category->children->count()): ?>
-                        <ul>
-                           <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                           <li class="py-2">
-                              <a href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>?t=<?php echo e(time()); ?>">
+                           <?php if ($category->children->count()) : ?>
+                              <ul>
+                                 <?php $__currentLoopData = $category->children;
+                                 $__env->addLoop($__currentLoopData);
+                                 foreach ($__currentLoopData as $category) : $__env->incrementLoopIndices();
+                                    $loop = $__env->getLastLoop(); ?>
+                                    <li class="py-2">
+                                       <a href="<?php echo e($category->link ? $category->link : '/products/' . $category->slug); ?>?t=<?php echo e(time()); ?>">
 
-                                 <?php echo e($category->name); ?>
+                                          <?php echo e($category->name); ?>
 
-                              </a>
+                                       </a>
 
-                           </li>
-                           <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </ul>
-                        <?php else: ?>
-                        <ul>
-                           <li class="py-3">
-                              <a href="<?php echo e($category->children->count() ? '#' : '/products/'.$category->slug); ?>?t=<?php echo e(time()); ?>">
-                                 All <?php echo e($category->name); ?>
+                                    </li>
+                                 <?php endforeach;
+                                 $__env->popLoop();
+                                 $loop = $__env->getLastLoop(); ?>
+                              </ul>
+                           <?php else : ?>
+                              <ul>
+                                 <li class="py-3">
+                                    <a href="<?php echo e($category->children->count() ? '#' : '/products/' . $category->slug); ?>?t=<?php echo e(time()); ?>">
+                                       All <?php echo e($category->name); ?>
 
-                              </a>
+                                    </a>
 
-                           </li>
-                        </ul>
-                        <?php endif; ?>
+                                 </li>
+                              </ul>
+                           <?php endif; ?>
 
+                        </div>
                      </div>
                   </div>
-               </div>
-               <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+               <?php endforeach;
+               $__env->popLoop();
+               $loop = $__env->getLastLoop(); ?>
 
 
 
@@ -480,7 +490,7 @@
    <!-- Plugins JS File -->
 
    <script src="/js/jquery.min.js"></script>
-   <script src="/js/app.js?id=<?php echo e(rand(1,2000)); ?>"></script>
+   <script src="/js/app.js?id=<?php echo e(rand(1, 2000)); ?>"></script>
 
    <?php echo $__env->yieldContent('page-scripts'); ?>
    <script type="text/javascript">

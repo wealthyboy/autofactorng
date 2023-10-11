@@ -11,13 +11,13 @@
                 <img
                     v-if="fitString"
                     src="/images/utils/icon-vehicle-selected-d.svg"
-                    alt=""
+                    alt="Shop auto parts online"
                 />
 
                 <img
                     v-if="!fitString"
                     src="/images/utils/vehicle-new.svg"
-                    alt=""
+                    alt="Shop auto parts online"
                 />
             </div>
 
@@ -30,7 +30,8 @@
             <div class="fw-bold" v-if="!fitString">Add vehicle</div>
 
            
-            <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
+            <div class="align-self-center"><img                     alt="Shop auto parts online inn Nigeria, Benz "
+ src="/images/utils/header-arrow.svg" alt=""></div>
 
         </div>
     </a>
