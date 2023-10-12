@@ -1,6 +1,6 @@
 <div itemtype="https://schema.org/category" class="offcanvas  nav-categories offcanvas-start w-25" tabindex="-1" id="offcanvas" data-bs-keyboard="false" data-bs-backdrop="false">
     <div class="offcanvas-header">
-        <h6 title="Shop auto parts at autofactorng" class="offcanvas-title d-none d-sm-block" id="offcanvas">Shop All</h6>
+        <h1 title="Shop auto parts at autofactorng" class="offcanvas-title d-none d-sm-block" id="offcanvas">Shop All</h1>
         <a type="button" class="panel-close border-0 bg-transparent bg-transparent" data-bs-dismiss="offcanvas" aria-label="Close">
             <img src="/images/utils/close-dark.svg" class="p-3" alt="Close button" title="Shop auto parts in nigeria" srcset="">
         </a>
@@ -10,12 +10,12 @@
             <?php $__currentLoopData = $global_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
             <div itemscope itemtype="https://schema.org/Text" class="accordion-item ">
-                <h1 class="accordion-header" id="flush-heading<?php echo e($category->id); ?>">
+                <div class="accordion-header semi-bold fs-3" id="flush-heading<?php echo e($category->id); ?>">
                     <button itemprop="name" class="accordion-button collapsed text-uppercase" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<?php echo e($category->id); ?>" aria-expanded="false" aria-controls="flush-collapse<?php echo e($category->id); ?>">
                         <?php echo e($category->name); ?>
 
                     </button>
-                </h1>
+                </div>
                 <div id="flush-collapse<?php echo e($category->id); ?>" class="accordion-collapse collapse" aria-labelledby="flush-heading<?php echo e($category->id); ?>" data-bs-parent="#accordionNav">
                     <div class="accordion-body p-0">
 
@@ -24,7 +24,7 @@
                             <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <li role="button" class=" cursor-pointer">
                                 <a class="d-block no-hover" href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>">
-                                    <div itemprop="name" class=" w-100 category-link">
+                                    <div itemprop="name" class=" w-100 category-link ">
                                         <?php echo e($category->name); ?>
 
                                     </div>
@@ -40,6 +40,8 @@
                                     All <?php echo e($category->name); ?>
 
                                 </a>
+
+
 
                             </li>
                         </ul>
