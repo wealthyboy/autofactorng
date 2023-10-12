@@ -1,4 +1,4 @@
-<div class="col-md-12 col-lg-9">
+<div itemscope itemtype="https://schema.org/Product" class="col-md-12 col-lg-9">
    <section class="slider-loader" style="background:#ccc; height: 450px;">
    </section>
    <section class="p-0  slider-section d-none">
@@ -17,9 +17,9 @@
          @foreach($sliders as $key => $slider)
 
          <div class="banner banner3 {{ $slider->device }}">
-            <a href="{{ $slider->link }}" class="d-block">
+            <a itemprop="link" href="{{ $slider->link }}" class="d-block">
                <figure>
-                  <img class="owl-lazy" data-src="{{ $slider->image }}" title="{{ $slider->title }}" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);;min-height:36rem;" alt="{{ $slider->title }}" />
+                  <img itemprop="image" class="owl-lazy" data-src="{{ $slider->image }}" title="{{ $slider->title }}" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);;min-height:36rem;" alt="{{ $slider->title }}" />
                </figure>
             </a>
          </div>
@@ -42,9 +42,9 @@
          @foreach($mobile_sliders as $key => $slider)
 
          <div class="banner banner3  {{ $slider->device }}   d-md-block">
-            <a href="{{ $slider->link }}" class="d-block">
+            <a itemprop="link" href="{{ $slider->link }}" class="d-block">
                <figure>
-                  <img class="owl-lazy" data-src="{{ $slider->image }}" title="{{ $slider->title }}" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);min-height:36rem;" alt="{{ $slider->title }}" />
+                  <img itemprop="image" class="owl-lazy" data-src="{{ $slider->image }}" title="{{ $slider->title }}" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);min-height:36rem;" alt="{{ $slider->title }}" />
                </figure>
             </a>
          </div>
@@ -57,7 +57,7 @@
    <div class="banner banner3 side-banner">
       <a class="d-block">
          <figure>
-            <img class="img-fluid" title="auto parts in nigeria" src="/images/utils/ensure11.jpg" style="background:#f6e1e8;" alt="banner" />
+            <img class="img-fluid" itemprop="image" title="auto parts in nigeria" src="/images/utils/ensure11.jpg" style="background:#f6e1e8;" alt="banner" />
          </figure>
       </a>
    </div>

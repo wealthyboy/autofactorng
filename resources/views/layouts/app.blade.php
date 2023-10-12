@@ -24,9 +24,6 @@
    <!-- Main CSS File -->
 
    <link rel="stylesheet" href="/css/app.css?id={{ rand(1,2000)}}">
-
-
-
    <meta property="og:site_name" content="Autofactorng Co">
    <meta property="og:url" content="https://autofactorng.com/">
    <meta property="og:title" content=" autofactorng">
