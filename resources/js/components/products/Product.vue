@@ -1,11 +1,11 @@
 <template>
     <div v-if="list == 'Grid'" class="col-6 border col-sm-4 col-md-3">
-        <div class="product-default">
-            <div class="position-relative product-info-box">
+        <div itemscope itemtype="https://schema.org/Product" class="product-default">
+            <div itemscope itemtype="https://schema.org/AggregateOffer" class="position-relative product-info-box">
                 <figure class="product-image-box-h position-relative">
                     <a :href="product.link" class="product-image-grid">
-                        <img :src="product.image_m" width="250" height="250" alt="product" />
-                        <img :src="product.image_m" width="250" height="250" alt="product" />
+                        <img  itemprop="image" :src="product.image_m" width="250" height="250" alt="product" />
+                        <img  itemprop="image" :src="product.image_m" width="250" height="250" alt="product" />
                     </a>
                 </figure>
                 <div v-if="product.percentage_off" class="label-group">
@@ -48,13 +48,13 @@
 
                 <div class="price-box mt-3">
                     <template v-if="product.discounted_price">
-                        <span class="old-price me-3 bold text-danger">{{ product.currency
+                        <span  itemprop="Price" class="old-price me-3 bold text-danger">{{ product.currency
                         }}{{ product.formatted_price }}</span>
-                        <span class="product-price bold">{{ product.currency
+                        <span  itemprop="Price" class="product-price bold">{{ product.currency
                         }}{{ product.formatted_sale_price }}</span>
                     </template>
                     <template v-else>
-                        <span class="product-price bold">{{ product.currency
+                        <span  itemprop="Price"  class="product-price bold">{{ product.currency
                         }}{{ product.formatted_price }}</span>
                     </template>
                 </div>
@@ -81,7 +81,7 @@
     </div>
 
     <div v-if="list == 'List'" class="col-sm-12 col-6 border product-default left-details product-list mb-2">
-        <div class="position-relative product-info-box">
+        <div  itemscope itemtype="https://schema.org/Product"  class="position-relative product-info-box">
             <figure class="product-image-box position-relative">
                 <a :href="product.link">
                     <img :src="product.image_m" width="250" height="250" alt="product" />
