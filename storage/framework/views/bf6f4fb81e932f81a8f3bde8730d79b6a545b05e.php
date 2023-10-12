@@ -24,9 +24,6 @@
    <!-- Main CSS File -->
 
    <link rel="stylesheet" href="/css/app.css?id=<?php echo e(rand(1,2000)); ?>">
-
-
-
    <meta property="og:site_name" content="Autofactorng Co">
    <meta property="og:url" content="https://autofactorng.com/">
    <meta property="og:title" content=" autofactorng">
@@ -246,7 +243,7 @@
                                  <i class="bi bi-camera-video fs-1"></i>
                               </span>
                               <div class="align-self-center fw-bold  fs-5">Video Tips</div>
-                              <div class="align-self-center"><img src="/images/utils/header-arrow.svg"></div>
+                              <div class="align-self-center"><img alt="Click here to get video tips on how to service your vehicle" src="/images/utils/header-arrow.svg"></div>
                            </div>
                         </a>
                      </div>
@@ -281,7 +278,7 @@
                            <i class="bi bi-camera-video fs-1"></i></span>
                         <div class="align-self-center fw-bold ">Video Tips</div>
 
-                        <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
+                        <div class="align-self-center"><img alt="Click here to get video tips on how to service your vehicle" src="/images/utils/header-arrow.svg" alt=""></div>
                      </div>
                   </a>
                </div>

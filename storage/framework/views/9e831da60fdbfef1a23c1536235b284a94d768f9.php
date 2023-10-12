@@ -5,8 +5,8 @@
 </div>
 <div class="row g-0">
     <?php $__currentLoopData = $featured_categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-    <div data-animation-name="fadeInUpShorter" class="col-6 col-lg-3 col-md-6 appear-animate">
-        <a href="<?php echo e($category->link()); ?>" class="d-block p-0 border category-content  py-5 no-hover">
+    <div data-animation-name="fadeInUpShorter" itemscope itemtype="https://schema.org/category" class="col-6 col-lg-3 col-md-6 appear-animate">
+        <a href="<?php echo e($category->link()); ?>" class="d-block p-0 border category-content  py-5 no-hover" itemscope itemtype="https://schema.org/Text">
             <div class="d-flex justify-content-center align-items-center">
                 <div class="align-self-center text-center">
                     <div class="image-category">
@@ -16,7 +16,7 @@
 
             </div>
             <div class="text-center">
-                <div title="shop for <?php echo e($category->name); ?>" class="mt-1 semi-bold fs-3"><?php echo e($category->name); ?></div>
+                <div itemprop="name" title="shop for <?php echo e($category->name); ?>" class="mt-1 semi-bold fs-3"><?php echo e($category->name); ?></div>
             </div>
         </a>
 
