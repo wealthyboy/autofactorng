@@ -17,7 +17,7 @@
          @foreach($sliders as $key => $slider)
 
          <div class="banner banner3 {{ $slider->device }}">
-            <a itemprop="link" href="{{ $slider->link }}" class="d-block">
+            <a href="{{ $slider->link }}" class="d-block">
                <figure>
                   <img itemprop="image" class="owl-lazy" data-src="{{ $slider->image }}" title="{{ $slider->title }}" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);;min-height:36rem;" alt="{{ $slider->title }}" />
                </figure>
@@ -42,7 +42,7 @@
          @foreach($mobile_sliders as $key => $slider)
 
          <div class="banner banner3  {{ $slider->device }}   d-md-block">
-            <a itemprop="link" href="{{ $slider->link }}" class="d-block">
+            <a href="{{ $slider->link }}" class="d-block">
                <figure>
                   <img itemprop="image" class="owl-lazy" data-src="{{ $slider->image }}" title="{{ $slider->title }}" style="background:radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);min-height:36rem;" alt="{{ $slider->title }}" />
                </figure>
