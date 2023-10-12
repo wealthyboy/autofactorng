@@ -57,7 +57,7 @@
    <div class="banner banner3 side-banner">
       <a class="d-block">
          <figure>
-            <img class="img-fluid" itemprop="image" title="auto parts in nigeria" src="/images/utils/ensure11.jpg" style="background:#f6e1e8;" alt="banner" />
+            <img itemprop="image" class="img-fluid" itemprop="image" title="auto parts in nigeria" src="/images/utils/ensure11.jpg" style="background:#f6e1e8;" alt="banner" />
          </figure>
       </a>
    </div>
