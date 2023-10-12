@@ -243,7 +243,7 @@
                                  <i class="bi bi-camera-video fs-1"></i>
                               </span>
                               <div class="align-self-center fw-bold  fs-5">Video Tips</div>
-                              <div class="align-self-center"><img src="/images/utils/header-arrow.svg"></div>
+                              <div class="align-self-center"><img alt="Click here to get video tips on how to service your vehicle" src="/images/utils/header-arrow.svg"></div>
                            </div>
                         </a>
                      </div>
@@ -278,7 +278,7 @@
                            <i class="bi bi-camera-video fs-1"></i></span>
                         <div class="align-self-center fw-bold ">Video Tips</div>
 
-                        <div class="align-self-center"><img src="/images/utils/header-arrow.svg" alt=""></div>
+                        <div class="align-self-center"><img alt="Click here to get video tips on how to service your vehicle" src="/images/utils/header-arrow.svg" alt=""></div>
                      </div>
                   </a>
                </div>
