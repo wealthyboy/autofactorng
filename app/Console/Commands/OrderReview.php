@@ -45,6 +45,8 @@ class OrderReview extends Command
         $week = Carbon::now();
         $order = Order::where(['email' => 'hzat01@gmail.com'])->first();
 
+        dd(\DB::table('failed_jobs')->get());
+
         if (null !== $order) {
             Notification::route('mail', 'hzat01@gmail.com')
                 ->notify(new ProductReviewNotification($order->user, $order));
