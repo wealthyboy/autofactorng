@@ -43,21 +43,17 @@ class OrderReview extends Command
     public function handle()
     {
         $week = Carbon::now();
-        $order = Order::where(['email' => 'damilola@autofactorng.com'])->first();
+        $orders = Order::has('user')->where('allow_review', 1)->get();
 
-
-        if (null !== $order) {
-            Notification::route('mail', 'damilola@autofactorng.com')
-                ->notify(new ProductReviewNotification($order->user, $order));
-
-            //foreach ($orders as  $order) {
-            // if ($order->created_at->diffInWeeks($week) >= 1 ) {
-            //     Notification::route('mail', optional($order->user)->email)
-            //     ->notify(new ProductReviewNotification($order->user, $order));
-            //     $order->allow_review = false;
-            //     $order->save();
-            // }
-            //}
+        if (null !== $orders) {
+            foreach ($orders as  $order) {
+                if ($order->created_at->diffInWeeks($week) >= 1) {
+                    Notification::route('mail', optional($order->user)->email)
+                        ->notify(new ProductReviewNotification($order->user, $order));
+                    $order->allow_review = false;
+                    $order->save();
+                }
+            }
         }
     }
 }
