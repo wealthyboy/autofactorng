@@ -43,7 +43,8 @@ class OrderReview extends Command
     public function handle()
     {
         $week = Carbon::now();
-        $order = Order::has('user')->where(['email' => 'hzat01@gmail.com'])->first();
+        $order = Order::where(['email' => 'hzat01@gmail.com'])->first();
+        dd($order);
 
         if (null !== $order) {
             Notification::route('mail', 'hzat01@gmail.com')
