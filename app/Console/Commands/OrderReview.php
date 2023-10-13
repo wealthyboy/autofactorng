@@ -43,12 +43,11 @@ class OrderReview extends Command
     public function handle()
     {
         $week = Carbon::now();
-        $order = Order::where(['email' => 'hzat01@gmail.com'])->first();
+        $order = Order::where(['email' => 'damilola@autofactorng.com'])->first();
 
-        dd(\DB::table('failed_jobs')->get());
 
         if (null !== $order) {
-            Notification::route('mail', 'hzat01@gmail.com')
+            Notification::route('mail', 'damilola@autofactorng.com')
                 ->notify(new ProductReviewNotification($order->user, $order));
 
             //foreach ($orders as  $order) {
