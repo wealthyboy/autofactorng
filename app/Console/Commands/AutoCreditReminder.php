@@ -48,7 +48,7 @@ class AutoCreditReminder extends Command
 
 
 
-        $subscribers = Subscribe::has('user')->where('sent_reminder',  1)->where("ends_at", "<", $today)->get();
+        $subscribers = Subscribe::has('user')->get();
 
         if (null !== $subscribers) {
 
@@ -58,8 +58,7 @@ class AutoCreditReminder extends Command
             $message_2[] = "If you have any questions or need assistance with the renewal process, our dedicated support team is here to help.";
             $message_2[] = "Renew to continue enjoying exclusive benefits.";
             $message_2[] = "Renew today and continue enjoying all the advantages that come with being a valued subscriber";
-
-            $subject =  "Subscription Renewal Reminder";
+            $subject = "Subscription Renewal Reminder";
 
             foreach ($subscribers as  $subscriber) {
                 if (null !== $subscriber->user) {
