@@ -45,9 +45,6 @@ class AutoCreditReminder extends Command
         $week = Carbon::now()->addWeek(2);
         $month = Carbon::now()->addMonth();
         $today = now();
-
-
-
         $subscribers = Subscribe::has('user')->get();
 
         if (null !== $subscribers) {

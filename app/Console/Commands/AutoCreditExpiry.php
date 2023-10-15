@@ -46,9 +46,6 @@ class AutoCreditExpiry extends Command
         $month = Carbon::now()->addMonth();
         $subscribers = Subscribe::has('user')->get();
 
-        dd($subscribers);
-
-
         if (null !== $subscribers) {
 
             $message = [];
