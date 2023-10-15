@@ -48,7 +48,7 @@ class AutoCreditReminder extends Command
 
 
 
-        $subscribers = Subscribe::has('user')->where('sent_reminder' . 1)->where("ends_at", "<", $today)->get();
+        $subscribers = Subscribe::has('user')->where('sent_reminder',  1)->where("ends_at", "<", $today)->get();
 
         if (null !== $subscribers) {
 

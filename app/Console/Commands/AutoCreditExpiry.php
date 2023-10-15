@@ -44,10 +44,11 @@ class AutoCreditExpiry extends Command
 
         $weeks = Carbon::now()->addDays(14);
         $month = Carbon::now()->addMonth();
-
         $subscribers = Subscribe::has('user')->where('sent_expiry', false)->where("ends_at", "<", $weeks)->get();
 
-     
+        dd($subscribers);
+
+
         if (null !== $subscribers) {
 
             $message = [];
@@ -59,19 +60,15 @@ class AutoCreditExpiry extends Command
 
             foreach ($subscribers as  $subscriber) {
                 $date = $subscriber->ends_at->format('d/m/y');
-                $subscriber->user->date =  $date;
+                $subscriber->user->date = $date;
                 if (null !== $subscriber->user) {
-
                     Notification::route('mail', optional($subscriber->user)->email)
                         ->notify(new ReminderNotification($subscriber->user, $message,  $subject));
                     $subscriber->sent_expiry = 1;
                     $subscriber->save();
                 }
-
             }
         }
-
-    
     }
 }
 //

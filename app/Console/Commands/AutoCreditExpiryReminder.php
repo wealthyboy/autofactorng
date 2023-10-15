@@ -44,14 +44,11 @@ class AutoCreditExpiryReminder extends Command
 
         $week = Carbon::now()->addWeek(2);
         $month = Carbon::now()->addMonth();
-
         $subscribers = Subscribe::has('user')->where('sent_reminder', false)->get();
 
         if (null !== $subscribers) {
-
             $message = [];
             $subject =  "Your Subscription ends in 14 days";
-
             foreach ($subscribers as  $subscriber) {
                 $date = $subscriber->ends_at->addDay()->format('d/m/y');
                 $message[] = "Your Autocover subscription is expiring in 14 days! ";
@@ -61,12 +58,12 @@ class AutoCreditExpiryReminder extends Command
                 $message[] = "Don't miss out on the convenience, savings, and perks of being a loyal subscriber.";
                 Notification::route('mail', optional($subscriber->user)->email)
                     ->notify(new ReminderNotification($subscriber->user, $message, $subject));
-                    $subscriber->sent_reminder = 1;
-                    $subscriber->save();
+                $subscriber->sent_reminder = 1;
+                $subscriber->save();
             }
         }
 
-       
+
 
 
         // $subscribers = Subscribe::with('user')->where("ends_at", ">=", $week)->get();

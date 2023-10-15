@@ -2,11 +2,15 @@
 
 namespace App\Console;
 
+use App\Console\Commands\AutoCreditExpiry;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
+
+
+
     /**
      * Define the application's command schedule.
      *
@@ -15,11 +19,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('send:autocreditexpiry')->twiceDaily();
-
-        $schedule->command('send:autocreditreminder')->twiceDaily();
-
-
+        $schedule->command('send:autocreditexpiry')->everyMinute();
+        $schedule->command('send:autocreditreminder')->everyMinute();
         $schedule->command('order:review')->twiceDaily();
     }
 
@@ -31,7 +32,6 @@ class Kernel extends ConsoleKernel
     protected function commands()
     {
         $this->load(__DIR__ . '/Commands');
-
         require base_path('routes/console.php');
     }
 }
