@@ -36,7 +36,7 @@
    <meta name="twitter:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
 
    <!-- Google tag (gtag.js) -->
-   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BZEG8EJ1VC"></script>
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N1LDFM3NYC"></script>
    <script>
       window.dataLayer = window.dataLayer || [];
 
@@ -44,7 +44,8 @@
          dataLayer.push(arguments);
       }
       gtag('js', new Date());
-      gtag('config', 'G-BZEG8EJ1VC');
+
+      gtag('config', 'G-N1LDFM3NYC');
    </script>
 
 
