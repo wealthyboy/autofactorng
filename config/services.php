@@ -29,6 +29,9 @@ return [
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],
+    'goggle' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+    ],
 
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),

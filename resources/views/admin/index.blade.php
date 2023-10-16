@@ -195,7 +195,7 @@ gapi.analytics.ready(function() {
 
 // Step 3: Authorize the user.
 
-var CLIENT_ID = {{ config('services.goggle.google_client_id') }};
+var CLIENT_ID = {{ config('services.goggle.client_id') }};
 
 gapi.analytics.auth.authorize({
 container: 'auth-button',
