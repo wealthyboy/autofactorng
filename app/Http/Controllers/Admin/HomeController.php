@@ -43,16 +43,12 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        // $products =  $products =  Product::whereHas('categories', function ($query) use ($request) {
-        //     $query->where('categories.slug', 'spare-parts-suspension-parts');
 
-        // })->orderBy('created_at', 'desc')->get();
         Carbon::setWeekStartsAt(Carbon::SUNDAY);
         Carbon::setWeekEndsAt(Carbon::SUNDAY);
 
-
+        // dd(config('services.goggle.client_id'));
         $now = Carbon::now();
-        // dd($now->month);
 
         $top_selling_product = OrderedProduct::has('order')->select('product_id')
             ->groupBy('product_id')

@@ -35,6 +35,13 @@
 
 </div>
 
+<!-- Step 1: Create the containing elements. -->
+
+<section id="auth-button"></section>
+<section id="view-selector"></section>
+<section id="timeline"></section>
+
+
 
 
 <div class="row mb-4 row mt-4">
@@ -184,7 +191,54 @@
 
 <?php $__env->startSection('inline-scripts'); ?>
 
+gapi.analytics.ready(function() {
 
+// Step 3: Authorize the user.
+
+var CLIENT_ID = '<?php echo e(config('services.goggle.client_id')); ?>';
+
+gapi.analytics.auth.authorize({
+container: 'auth-button',
+clientid: CLIENT_ID,
+});
+
+// Step 4: Create the view selector.
+
+var viewSelector = new gapi.analytics.ViewSelector({
+container: 'view-selector'
+});
+
+// Step 5: Create the timeline chart.
+
+var timeline = new gapi.analytics.googleCharts.DataChart({
+reportType: 'ga',
+query: {
+'dimensions': 'ga:date',
+'metrics': 'ga:sessions',
+'start-date': '30daysAgo',
+'end-date': 'yesterday',
+},
+chart: {
+type: 'LINE',
+container: 'timeline'
+}
+});
+
+// Step 6: Hook up the components to work together.
+
+gapi.analytics.auth.on('success', function(response) {
+viewSelector.execute();
+});
+
+viewSelector.on('change', function(ids) {
+var newIds = {
+query: {
+ids: ids
+}
+}
+timeline.set(newIds).execute();
+});
+});
 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/XAMPP/xamppfiles/htdocs/autofactorng/resources/views/admin/index.blade.php ENDPATH**/ ?>
