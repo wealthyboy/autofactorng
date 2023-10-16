@@ -45,7 +45,7 @@ class AutoCreditReminder extends Command
         $week = Carbon::now()->addWeek(2);
         $month = Carbon::now()->addMonth();
         $today = now();
-        $subscribers = Subscribe::has('user')->where('sent_expiry', false)->get();
+        $subscribers = Subscribe::has('user')->where('sent_reminder', false)->get();
 
         if (null !== $subscribers) {
 
