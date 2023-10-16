@@ -59,6 +59,7 @@ class AutoCreditReminder extends Command
 
             foreach ($subscribers as  $subscriber) {
                 if ($subscriber->ends_at->isPast() &&  null !== $subscriber->user) {
+                    $subscriber->user->url = 'https://autofactorng.com/plans?type=auto_cover';
                     Notification::route('mail', optional($subscriber->user)->email)
                         ->notify(new ReminderNotification($subscriber->user, $message_2, $subject));
                     $subscriber->sent_reminder = false;
