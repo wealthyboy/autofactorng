@@ -58,7 +58,7 @@ class AutoCreditReminder extends Command
             $subject = "Subscription Renewal Reminder";
 
             foreach ($subscribers as  $subscriber) {
-                if ($subscriber->created_at->isPast() &&  null !== $subscriber->user) {
+                if ($subscriber->ends_at->isPast() &&  null !== $subscriber->user) {
                     Notification::route('mail', optional($subscriber->user)->email)
                         ->notify(new ReminderNotification($subscriber->user, $message_2, $subject));
                     $subscriber->sent_reminder = false;
