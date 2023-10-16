@@ -40,7 +40,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $week = Carbon::now()->addWeeks(2);
+        $week = Carbon::now()->yesterday();
         $subscriber = Subscribe::has('user')->first();
         $subscriber->ends_at = $week;
         $subscriber->save();

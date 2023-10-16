@@ -45,7 +45,7 @@ class AutoCreditReminder extends Command
         $week = Carbon::now()->addWeek(2);
         $month = Carbon::now()->addMonth();
         $today = now();
-        $subscribers = Subscribe::has('user')->get();
+        $subscribers = Subscribe::has('user')->where('sent_expiry', false)->get();
 
         if (null !== $subscribers) {
 
@@ -58,10 +58,10 @@ class AutoCreditReminder extends Command
             $subject = "Subscription Renewal Reminder";
 
             foreach ($subscribers as  $subscriber) {
-                if (null !== $subscriber->user) {
-                    // Notification::route('mail', optional($subscriber->user)->email)
-                    //     ->notify(new ReminderNotification($subscriber->user, $message_2, $subject));
-                    // $subscriber->sent_reminder = false;
+                if ($subscriber->created_at->isPast() &&  null !== $subscriber->user) {
+                    Notification::route('mail', optional($subscriber->user)->email)
+                        ->notify(new ReminderNotification($subscriber->user, $message_2, $subject));
+                    $subscriber->sent_reminder = false;
                     $subscriber->save();
                 }
             }
