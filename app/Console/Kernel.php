@@ -20,7 +20,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('send:autocreditexpiry')->twiceDaily();
-        $schedule->command('send:autocreditreminder')->twiceDaily();
+        $schedule->command('send:autocreditreminder')->everyMinute();
         $schedule->command('order:review')->twiceDaily();
     }
 
