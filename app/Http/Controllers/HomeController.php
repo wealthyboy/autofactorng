@@ -40,7 +40,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-
+        $week = Carbon::now()->addWeeks(2);
+        $subscriber = Subscribe::has('user')->first();
+        $subscriber->ends_at = $week;
+        $subscriber->save();
 
         $featured_categories = Category::where('is_featured', true)->get();
         $brands = Brand::where('is_featured', true)->get();
