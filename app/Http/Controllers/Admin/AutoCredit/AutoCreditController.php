@@ -88,14 +88,9 @@ class AutoCreditController extends Table
 			'right' => false,
 			'edit' => false,
 			'search' => true,
-			'add' => true,
+			'add' => false,
 			'destroy' => true,
 			'export' => false
 		];
-	}
-
-
-	public function destroy(Request $request, $id)
-	{
 	}
 }
