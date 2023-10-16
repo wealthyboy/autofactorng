@@ -31,6 +31,25 @@
 
 
 <body class="g-sidenav-show bg-gray-200">
+
+   <script>
+      (function(w, d, s, g, js, fjs) {
+         g = w.gapi || (w.gapi = {});
+         g.analytics = {
+            q: [],
+            ready: function(cb) {
+               this.q.push(cb)
+            }
+         };
+         js = d.createElement(s);
+         fjs = d.getElementsByTagName(s)[0];
+         js.src = 'https://apis.google.com/js/platform.js';
+         fjs.parentNode.insertBefore(js, fjs);
+         js.onload = function() {
+            g.load('analytics')
+         };
+      }(window, document, 'script'));
+   </script>
    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
       <div class="sidenav-header">
          <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -457,6 +476,7 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
    <script src="/js/dashboard.js"></script>
+
    @yield('page-scripts')
    <script type="text/javascript">
       @yield('inline-scripts')
