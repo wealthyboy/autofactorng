@@ -69,7 +69,7 @@ class ReminderNotification extends Notification
         } else {
             $m->line($this->message);
         }
-        $m->action('Click here to visit our website', 'https://autofactorng.com');
+        $m->action('Click here to visit our website', 'https://autofactorng.com/plans?type=auto_cover');
         $m->line('Thank you for using our service!');
 
         return $m;
