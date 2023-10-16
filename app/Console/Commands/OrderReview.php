@@ -45,14 +45,6 @@ class OrderReview extends Command
     {
         $week = Carbon::now();
         $orders = Order::has('user')->where('allow_review', 1)->get();
-        $user = User::where('email', 'hzat01@gmail.com')->first();
-
-        $order = Order::has('user')->where('email', 'hzat01@gmail.com')->first();
-
-
-        Notification::route('mail', 'hzat01@gmail.com')
-            ->notify(new ProductReviewNotification($user, $order));
-
 
         if (null !== $orders) {
             foreach ($orders as  $order) {
