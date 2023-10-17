@@ -62,7 +62,7 @@ class AutoCreditReminder extends Command
                     $subscriber->user->url = 'https://autofactorng.com/plans?type=auto_cover';
                     Notification::route('mail', optional($subscriber->user)->email)
                         ->notify(new ReminderNotification($subscriber->user, $message_2, $subject));
-                    $subscriber->sent_reminder = false;
+                    $subscriber->sent_reminder = true;
                     $subscriber->save();
                 }
             }
