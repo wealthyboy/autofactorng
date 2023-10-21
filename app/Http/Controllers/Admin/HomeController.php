@@ -45,14 +45,6 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-        $url = explode('//', 'https://autofactor.ng/images/products/B40OubN8cnaohiZfhYB8Q4Oglv80oiQ59JX4ZLQ9.png');
-        $url = explode('/', $url[1]);
-
-        $images = Image::all();
-
-
-
-
 
 
         Carbon::setWeekStartsAt(Carbon::SUNDAY);
