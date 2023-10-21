@@ -118,7 +118,6 @@ class ProductsController extends Controller
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
 
-
             $q = Product::where('name', 'like', '%' . $request->q . '%')
                 ->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                     $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));

@@ -10,6 +10,8 @@ use App\Category;
 use App\Models\Activity;
 use App\Models\BrandCategory;
 use App\Models\Error;
+use App\Models\Image;
+use App\Models\Imgae;
 use App\Models\Order;
 use App\Models\OrderEmail;
 use App\Models\OrderedProduct;
@@ -43,6 +45,20 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
+        $url = explode('//', 'https://autofactor.ng/images/products/B40OubN8cnaohiZfhYB8Q4Oglv80oiQ59JX4ZLQ9.png');
+        $url = explode('/', $url[1]);
+
+        $images = Image::all();
+
+
+        foreach ($images as $key => $image) {
+            $url = explode('//', $image->image);
+            $url = explode('/', $url[1]);
+            $image->image = $url[0] === 'autofactor.ng' ? 'https://autofactorng.com/' . $url[1] . '/' . $url[2] . '/' . $url[3] :  $image->image;
+            $image->save();
+        }
+
+
 
         Carbon::setWeekStartsAt(Carbon::SUNDAY);
         Carbon::setWeekEndsAt(Carbon::SUNDAY);
@@ -60,7 +76,6 @@ class HomeController extends Controller
         $stats = [];
         $stats['Orders'] = Order::whereMonth('created_at', date('m'))->count();
         $stats['Customers'] = (new User())->customers()->count();
-
         $stats['New Customers'] = $this->getSingleEmailOrders();
         $stats['Return Customers'] =  $stats['Orders'] - $this->getSingleEmailOrders();
 
