@@ -53,10 +53,11 @@ class HomeController extends Controller
 
         foreach ($images as $key => $image) {
             $url = explode('//', $image->image);
-            dd($url);
-            $url = explode('/', $url[1]);
-            $image->image = $url[0] === 'autofactor.ng' ? 'https://autofactorng.com/' . $url[1] . '/' . $url[2] . '/' . $url[3] :  $image->image;
-            $image->save();
+            if (isset($url[1])) {
+                $url = explode('/', $url[1]);
+                $image->image = $url[0] === 'autofactor.ng' ? 'https://autofactorng.com/' . $url[1] . '/' . $url[2] . '/' . $url[3] :  $image->image;
+                $image->save();
+            }
         }
 
 
