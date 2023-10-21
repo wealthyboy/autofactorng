@@ -190,9 +190,9 @@
                         @foreach($product->images as $image)
                         <div id="{{ $image->id }}" class="j-complete">
                            <div class="j-preview">
-                              <img class="img-thumnail" src="{{ $image->image }}">
+                              <img class="img-thumnail" src="{{ $image->image_l }}">
                               <div id="remove_image" class="remove_image remove-image">
-                                 <a class="remove-image" data-id="{{ $image->id }}" data-randid="{{ $image->id }}" data-model="Image" data-type="complete" data-url="{{ $image->image }}" href="#">Remove</a>
+                                 <a class="remove-image" data-id="{{ $image->id }}" data-randid="{{ $image->id }}" data-model="Image" data-type="complete" data-url="{{ $image->image_l }}" href="#">Remove</a>
                               </div>
 
                            </div>
