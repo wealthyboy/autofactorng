@@ -222,7 +222,7 @@
 <body>
   <header class="clearfix">
     <div id="logo">
-      <img src="https://autofactor.ng/images/logo/autofactor_logo.png">
+      <img src="https://autofactorng.com/images/logo/autofactor_logo.png">
     </div>
     <div id="company">
       <div>Tapa House, Imam Dauda Street<br /> Off Eric Moore</br> Surulere,Lagos</div>
