@@ -134,6 +134,11 @@ trait FormatPrice
     return  number_format($this->price);
   }
 
+  public function getcurrentPriceAttribute()
+  {
+    return  $this->salePrice() ??  $this->price;
+  }
+
 
   public function getFormattedSalePriceAttribute()
   {

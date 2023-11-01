@@ -93,7 +93,8 @@ class Product extends Model
         'image_l',
         'is_in_cart',
         'str_len',
-        'show_fit_text'
+        'show_fit_text',
+        'current_price'
     ];
 
 

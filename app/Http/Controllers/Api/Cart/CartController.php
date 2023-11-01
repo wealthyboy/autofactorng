@@ -61,7 +61,7 @@ class CartController  extends Controller
 
 			$cart->product_id = $request->product_id;
 			$cart->quantity = $request->quantity;
-			$cart->price = $price;
+			$cart->price = $product->current_price;
 			$cart->total = $price * $request->quantity;
 			$cart->make = $make;
 			$cart->model = $model;
@@ -109,7 +109,7 @@ class CartController  extends Controller
 			$cookie = cookie('cart', session()->get('cart'), 60 * 60 * 7);
 			$cart->product_id = $request->product_id;
 			$cart->quantity = $request->quantity;
-			$cart->price = $price;
+			$cart->price = $product->current_price;
 			$cart->total = $price * $request->quantity;
 			$cart->remember_token = $cookie->getValue();
 			$cart->make = $make;
