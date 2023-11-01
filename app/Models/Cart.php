@@ -81,13 +81,14 @@ class Cart extends Model
             if (!$cart->user_id) {
                 $cart->update([
                     'user_id' => optional(auth()->user())->id,
-                    'price' => optional($cart->product)->current_price
                 ]);
             }
 
             $cart->update([
                 'remember_token' => null !== $cookie ? $cookie : $cart->remember_token,
-                'price' => optional($cart->product)->current_price
+                'price' => optional($cart->product)->current_price,
+                'total' => optional($cart->product)->current_price * $cart->quantity
+
             ]);
         }
     }
