@@ -43,7 +43,7 @@
          };
          js = d.createElement(s);
          fjs = d.getElementsByTagName(s)[0];
-         js.src = 'https://apis.google.com/js/platform.js';
+         js.src = 'https://accounts.google.com/gsi/client';
          fjs.parentNode.insertBefore(js, fjs);
          js.onload = function() {
             g.load('analytics')

@@ -88,7 +88,6 @@ class Cart extends Model
                 'remember_token' => null !== $cookie ? $cookie : $cart->remember_token,
                 'price' => optional($cart->product)->current_price,
                 'total' => optional($cart->product)->current_price * $cart->quantity
-
             ]);
         }
     }
