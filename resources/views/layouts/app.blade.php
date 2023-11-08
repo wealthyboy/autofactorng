@@ -26,7 +26,7 @@
    <link rel="stylesheet" href="/css/app.css?id={{ rand(1,2000)}}">
    <meta property="og:site_name" content="Autofactorng Co">
    <meta property="og:url" content="https://autofactorng.com/">
-   <meta property="og:title" content=" autofactorng">
+   <meta property="og:title" content=" {{ isset($page_title) ? $page_title .'   '.config('app.name') :  $system_settings->meta_title  }}">
    <meta property="og:type" content="website">
    <meta property="og:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
    <meta property="og:image:alt" content="">
