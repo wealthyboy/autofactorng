@@ -510,7 +510,7 @@ class ProductsController extends Controller
     public function show(Request $request, Category $category, Product $product)
     {
         session(['fitsProducts' => null]);
-        $page_title = "Shop | " . $product->name;
+        $page_title = "Shop - " . $product->name;
         $favorites = '';
         $data = [];
         $meta_tag_keywords = $product->keywords;
