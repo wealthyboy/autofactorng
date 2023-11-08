@@ -152,6 +152,9 @@ class Product extends Model
         return '₦';
     }
 
+
+
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -244,6 +247,9 @@ class Product extends Model
             ];
         });
     }
+
+
+
 
 
     public function sortKeys($key)
