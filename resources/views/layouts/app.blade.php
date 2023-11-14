@@ -42,7 +42,7 @@
 
 
    @if(isset($product))
-   <meta name="twitter:image" content="{{$product->image}}" />
+   <meta name="twitter:image" content="{{ $seo['image']}}" />
    <meta name="twitter:label1" content="Price">
    <meta name="twitter:data1" content="{{$product->price}}">
    <meta name="twitter:label2" content="Availability">
@@ -53,7 +53,7 @@
    <meta property="og:availability" content="instock">
    <meta property="product:availability" content="instock">
    <meta property="product:condition" content="new">
-   <meta property="og:url" content="{{$product->image}}">
+   <meta property="og:url" content="{{ $seo['image']}}">
    @endif
 
 
