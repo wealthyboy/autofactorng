@@ -44,6 +44,8 @@ class ProductsController extends Controller
         $seo['meta_tag_keywords'] = $category->keywords;
         $seo['page_meta_description'] = $category->meta_description;
         $seo['image'] = $category->image;
+        $seo['type'] = 'article';
+
         $schema = null;
 
 
@@ -531,6 +533,8 @@ class ProductsController extends Controller
         $seo['meta_tag_keywords'] = $product->keywords;
         $seo['page_meta_description'] = $product->meta_description;
         $seo['image'] = $product->image_m;
+        $seo['type'] = 'product';
+
         $schema = null;
         if ($request->test) {
             return view('products.show2', compact('page_title', 'meta_tag_keywords', 'page_meta_description', 'category', 'category_slug', 'user', 'product'));

@@ -25,7 +25,7 @@
 
    <link rel="stylesheet" href="/css/app.css?id={{ rand(1,2000)}}">
    <meta property="og:locale" content="en_US">
-   <meta property="og:type" content="{{ isset($seo['type']) ? $seo['type'] : $system_settings->meta_tag_keywords }}">
+   <meta property="og:type" content="{{ isset($seo['type']) ? $seo['type'] : 'website' }}">
    <meta property="og:title" content="{{ isset($seo['title']) ? $seo['title'] : $system_settings->meta_tag_keywords }}">
    <meta property="og:site_name" content="Autofactorng">
    <meta property="og:url" content="{{ isset($seo['url']) ? $seo['url'] : 'https://autofactorng.com' }}">
@@ -39,7 +39,6 @@
    <meta name="twitter:title" content="{{ isset($seo['title']) ? $seo['title'] : $system_settings->title }}">
    <meta name="twitter:description" content="{{ isset($seo['page_meta_description']) ? $seo['page_meta_description'] : $system_settings->meta_description }}">
    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-
 
 
    @if(isset($product))
