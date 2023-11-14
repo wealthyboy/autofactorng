@@ -19,7 +19,7 @@
         <div class="row custom-single-default">
 
             <div class="prod-thum col-lg-1 d-none d-lg-block d-xl-block">
-                <div id="sync2" titles="{{ $product->name }}" class="owl-ca sync2">
+                <div id="sync2" title="{{ $product->name }}" class="owl-ca sync2">
                     @foreach($product->images as $image)
                     <div role="button" class="th border owl-item mb-2">
                         <img src="{{ $image->image_m }}" width="110" height="110" alt="{{ $product->name }}" />
