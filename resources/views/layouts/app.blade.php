@@ -59,7 +59,7 @@
 
 
    <script type="application/ld+json" class="yoast-schema-graph">
-   {{ $schema }}
+   {{ isset($schema) ? $schema : '' }}
    </script>
 
 
