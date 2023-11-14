@@ -54,7 +54,6 @@ class WalletNotification extends Notification
                 ['u' => $this->user],
             )
             ->bcc("care@autofactorng.com")
-            ->cc("jacob.atam@gmail.com")
             ->bcc("damilola@autofactorng.com")
             ->bcc("abiola@autofactorng.com")
             ->subject("Wallet Notification");

@@ -39,20 +39,22 @@ class ProductsController extends Controller
         $meta_tag_keywords = $category->keywords;
         $page_meta_description = $category->meta_description;
 
+        $seo = [];
+        $seo['page_title'] = $category->name;
+        $seo['meta_tag_keywords'] = $category->keywords;
+        $seo['page_meta_description'] = $category->meta_description;
+        $seo['image'] = $category->image;
+        $schema = null;
+
+
         $this->clearMMYCookies($request);
         $request->session()->put('category', $category->name);
         $request->session()->put('category_slug', $category->slug);
 
         $products = $this->getProductsData($request, $builder, $category);
-
-
-
-
         $search_filters = $this->searchFilters($category);
         $request->category = $category;
         // (new Product())->buildSearchString($category);
-
-
 
         if ($request->ajax()) {
             return (new ProductsCollection($products))
@@ -69,6 +71,7 @@ class ProductsController extends Controller
         $brands = $request->brands;
         $prices = $request->prices;
 
+
         // dd($brands);
 
 
@@ -81,6 +84,8 @@ class ProductsController extends Controller
             'meta_tag_keywords',
             'meta_tag_keywords',
             'page_title',
+            'seo',
+            'schema'
 
         ));
     }
@@ -521,9 +526,15 @@ class ProductsController extends Controller
         $product->fitsProducts = session('fitsProducts');
         $category = session('category');
         $category_slug = session('category_slug');
+        $seo = [];
+        $seo['page_title'] = "Shop - " . $product->name;
+        $seo['meta_tag_keywords'] = $product->keywords;
+        $seo['page_meta_description'] = $product->meta_description;
+        $seo['image'] = $product->image_m;
+        $schema = null;
         if ($request->test) {
             return view('products.show2', compact('page_title', 'meta_tag_keywords', 'page_meta_description', 'category', 'category_slug', 'user', 'product'));
         }
-        return view('products.show', compact('page_title', 'meta_tag_keywords', 'page_meta_description', 'category', 'category_slug', 'user', 'product'));
+        return view('products.show', compact('seo', 'schema', 'page_title', 'meta_tag_keywords', 'page_meta_description', 'category', 'category_slug', 'user', 'product'));
     }
 }

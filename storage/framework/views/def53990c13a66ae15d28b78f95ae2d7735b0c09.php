@@ -18,10 +18,10 @@
         <div class="row custom-single-default">
 
             <div class="prod-thum col-lg-1 d-none d-lg-block d-xl-block">
-                <div id="sync2" class="owl-ca sync2">
+                <div id="sync2" titles="<?php echo e($product->name); ?>" class="owl-ca sync2">
                     <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div role="button" class="th border owl-item mb-2">
-                        <img src="<?php echo e($image->image_m); ?>" width="110" height="110" alt="product-thumbnail" />
+                        <img src="<?php echo e($image->image_m); ?>" width="110" height="110" alt="<?php echo e($product->name); ?>" />
                     </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
@@ -29,11 +29,11 @@
             </div>
 
             <div class="col-lg-6  col-12 d-lg-flex justify-content-center align-items-center order-0 order-lg-0">
-                <div id="sync1" class="custom-single-carousel owl-carousel owl-theme ">
+                <div title="<?php echo e($product->name); ?>" id="sync1" class="custom-single-carousel owl-carousel owl-theme ">
 
                     <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <div class="product-item">
-                        <img class="product-single-image" src="<?php echo e($image->image_l); ?>" alt="product" />
+                    <div title="" class="product-item">
+                        <img class="product-single-image" src="<?php echo e($image->image_l); ?>" alt="<?php echo e($product->name); ?>" />
                     </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     <!-- End .product-single-carousel -->
@@ -41,11 +41,11 @@
 
 
                 <div class=" d-md-block d-lg-none d-sm-block">
-                    <div id="sync2" class="owl-ca d-flex flex-wrap justify-content-center sync2  mb-4">
+                    <div id="sync2" title="<?php echo e($product->name); ?>" class="owl-ca d-flex flex-wrap justify-content-center sync2  mb-4">
 
                         <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <div role="button" class="th border owl-item mb-2 me-3">
-                            <img src="<?php echo e($image->image_m); ?>" width="110" height="110" alt="product-thumbnail" />
+                            <img src="<?php echo e($image->image_m); ?>" width="110" height="110" alt="<?php echo e($product->name); ?>" />
                         </div>
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>

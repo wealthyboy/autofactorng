@@ -24,16 +24,52 @@
    <!-- Main CSS File -->
 
    <link rel="stylesheet" href="/css/app.css?id={{ rand(1,2000)}}">
-   <meta property="og:site_name" content="Autofactorng Co">
-   <meta property="og:url" content="https://autofactorng.com/">
-   <meta property="og:title" content=" {{ isset($page_title) ? $page_title .'   '.config('app.name') :  $system_settings->meta_title  }}">
-   <meta property="og:type" content="website">
-   <meta property="og:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
-   <meta property="og:image:alt" content="">
+   <meta property="og:locale" content="en_US">
+   <meta property="og:type" content="{{ isset($seo['type']) ? $seo['type'] : $system_settings->meta_tag_keywords }}">
+   <meta property="og:title" content="{{ isset($seo['title']) ? $seo['title'] : $system_settings->meta_tag_keywords }}">
+   <meta property="og:site_name" content="Autofactorng">
+   <meta property="og:url" content="{{ isset($seo['url']) ? $seo['url'] : 'https://autofactorng.com' }}">
+   <meta property="og:description" content="{{ isset($seo['page_meta_description']) ? $seo['page_meta_description'] : $system_settings->meta_description }}">
+   <meta property="og:image:width" content="720" />
+   <meta property="og:image:height" content="700" />
+   <meta property="og:image:type" content="image/jpeg" />
+   <meta property="og:image" content="{{ isset($seo['image']) ? $seo['image'] : 'https://autofactorng.com/images/banners/g8z2bdon0BZoBziUHUOsuqKwj0a4dVoKGQj4m51W.jpg' }}" />
    <meta name="twitter:site" content="@autofactorng">
    <meta name="twitter:card" content="summary_large_image">
-   <meta name="twitter:title" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
-   <meta name="twitter:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
+   <meta name="twitter:title" content="{{ isset($seo['title']) ? $seo['title'] : $system_settings->title }}">
+   <meta name="twitter:description" content="{{ isset($seo['page_meta_description']) ? $seo['page_meta_description'] : $system_settings->meta_description }}">
+   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+
+
+   @if(isset($product))
+   <meta name="twitter:image" content="{{$product->image}}" />
+   <meta name="twitter:label1" content="Price">
+   <meta name="twitter:data1" content="{{$product->price}}">
+   <meta name="twitter:label2" content="Availability">
+   <meta name="twitter:data2" content="In stock">
+   <meta property="product:brand" content="{{$product->brand_name}}">
+   <meta property="product:price:amount" content="{{$product->price}}">
+   <meta property="product:price:currency" content="NGN">
+   <meta property="og:availability" content="instock">
+   <meta property="product:availability" content="instock">
+   <meta property="product:condition" content="new">
+   <meta property="og:url" content="{{$product->image}}">
+   @endif
+
+
+
+   <script type="application/ld+json" class="yoast-schema-graph">
+   {{ $schema }}
+   </script>
+
+
+   <!-- <link rel="alternate" type="application/rss+xml" title="MyParts Nigeria » Feed" href="https://mypartsng.com/feed/">
+   <link rel="alternate" type="application/rss+xml" title="MyParts Nigeria » Comments Feed" href="https://mypartsng.com/comments/feed/">
+   <link rel="alternate" type="application/rss+xml" title="MyParts Nigeria » Octane Booster by Lucas Oil Comments Feed" href="https://mypartsng.com/product/octane-booster-by-lucas-oil/feed/"> -->
+
+
+
 
    <!-- Google tag (gtag.js) -->
    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N1LDFM3NYC"></script>
@@ -50,6 +86,9 @@
 
 
 </head>
+
+
+
 
 
 <body>

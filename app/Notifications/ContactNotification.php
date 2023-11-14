@@ -43,11 +43,10 @@ class ContactNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                     ->greeting('Hello! Hautesignatures. You have a new Message')
-                    ->line('Name: '. $this->message->full_name)
-                    ->line('Email: '.  $this->message->email)
-                    ->line('Message: '.  $this->message->message);
-
+            ->greeting('Hello!. You have a new Message')
+            ->line('Name: ' . $this->message->full_name)
+            ->line('Email: ' .  $this->message->email)
+            ->line('Message: ' .  $this->message->message);
     }
 
     /**

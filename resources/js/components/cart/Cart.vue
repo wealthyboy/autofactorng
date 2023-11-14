@@ -5,16 +5,12 @@
                 <div class="d-flex">
                     <a :href="cart.product.link" class="product-image">
                         <figure class="image-category">
-                            <img :src="cart.image" alt="product" />
+                            <img :src="cart.image" :alt="cart.product.name" />
                         </figure>
                     </a>
                     <div class="ms-4">
                         <div>
-                            <a
-                                class="text-secondary fs-5"
-                                :href="cart.product.link"
-                                >{{ cart.product.name }}</a
-                            >
+                            <a class="text-secondary fs-5" :href="cart.product.link">{{ cart.product.name }}</a>
                         </div>
                         <div class="fs-2 bold mt-3">
                             {{ $filters.formatNumber(cart.price) }}
@@ -22,19 +18,11 @@
                     </div>
                 </div>
             </div>
-            <div
-                class="col-md-6 d-flex align-items-center justify-content-between"
-            >
-                <div
-                    class="d-flex justify-content-between align-items-center flex-grow-1"
-                >
+            <div class="col-md-6 d-flex align-items-center justify-content-between">
+                <div class="d-flex justify-content-between align-items-center flex-grow-1">
                     <cart-qty :cart="cart" @qty:updated="handleQty" />
                     <div class="d-flex flex-column">
-                        <a
-                            href="#"
-                            class="position-relative bold text-main"
-                            @click.prevent="removeFromCart(cart.id)"
-                        >
+                        <a href="#" class="position-relative bold text-main" @click.prevent="removeFromCart(cart.id)">
                             remove
                         </a>
                     </div>

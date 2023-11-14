@@ -19,10 +19,10 @@
         <div class="row custom-single-default">
 
             <div class="prod-thum col-lg-1 d-none d-lg-block d-xl-block">
-                <div id="sync2" class="owl-ca sync2">
+                <div id="sync2" titles="{{ $product->name }}" class="owl-ca sync2">
                     @foreach($product->images as $image)
                     <div role="button" class="th border owl-item mb-2">
-                        <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
+                        <img src="{{ $image->image_m }}" width="110" height="110" alt="{{ $product->name }}" />
                     </div>
                     @endforeach
                 </div>
@@ -30,11 +30,11 @@
             </div>
 
             <div class="col-lg-6  col-12 d-lg-flex justify-content-center align-items-center order-0 order-lg-0">
-                <div id="sync1" class="custom-single-carousel owl-carousel owl-theme ">
+                <div title="{{ $product->name }}" id="sync1" class="custom-single-carousel owl-carousel owl-theme ">
 
                     @foreach($product->images as $image)
-                    <div class="product-item">
-                        <img class="product-single-image" src="{{ $image->image_l }}" alt="product" />
+                    <div title="" class="product-item">
+                        <img class="product-single-image" src="{{ $image->image_l }}" alt="{{ $product->name }}" />
                     </div>
                     @endforeach
                     <!-- End .product-single-carousel -->
@@ -42,11 +42,11 @@
 
 
                 <div class=" d-md-block d-lg-none d-sm-block">
-                    <div id="sync2" class="owl-ca d-flex flex-wrap justify-content-center sync2  mb-4">
+                    <div id="sync2" title="{{ $product->name }}" class="owl-ca d-flex flex-wrap justify-content-center sync2  mb-4">
 
                         @foreach($product->images as $image)
                         <div role="button" class="th border owl-item mb-2 me-3">
-                            <img src="{{ $image->image_m }}" width="110" height="110" alt="product-thumbnail" />
+                            <img src="{{ $image->image_m }}" width="110" height="110" alt="{{ $product->name }}" />
                         </div>
                         @endforeach
                     </div>
