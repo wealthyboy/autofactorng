@@ -532,7 +532,7 @@ class ProductsController extends Controller
         $seo['page_title'] = "Shop - " . $product->name;
         $seo['meta_tag_keywords'] = $product->keywords;
         $seo['page_meta_description'] = $product->meta_description;
-        $seo['image'] = $product->image_m;
+        $seo['image'] = $product->images[0]->image_m;
         $seo['type'] = 'product';
 
         $schema = null;
