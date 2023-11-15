@@ -8,7 +8,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
    <title>{{ isset($page_title) ? $page_title .'   '.config('app.name') :  $system_settings->meta_title  }}</title>
-   <meta property="og:title" content="{{ isset($seo['title']) ? $seo['title'] : $system_settings->meta_title }}">
+   <meta property="og:title" content="{{ isset($seo['page_title']) ? $seo['page_title'] : $system_settings->meta_title }}">
    <meta name="description" content="{{ isset($seo['page_meta_description'])  ? $seo['page_meta_description'] : $system_settings->page_meta_description }}">
    <meta name="keywords" content="{{  isset($seo['meta_tag_keywords'])  ? $seo['meta_tag_keywords'] : $system_settings->meta_tag_keywords }}" />
    <link rel="canonical" href="{{ Config('app.url') }}">
@@ -47,6 +47,8 @@
    <meta name="twitter:label2" content="Availability">
    <meta name="twitter:data2" content="In stock">
    <meta property="product:brand" content="{{$product->brand_name}}">
+   <meta property="product:name" content="{{$product->name}}">
+
    <meta property="product:price:amount" content="{{$product->price}}">
    <meta property="product:price:currency" content="NGN">
    <meta property="product:description" content="{{$product->description}}">
