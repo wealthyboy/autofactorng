@@ -8,7 +8,7 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
    <title>{{ isset($page_title) ? $page_title .'   '.config('app.name') :  $system_settings->meta_title  }}</title>
-   <meta property="og:title" content="{{ isset($seo['title']) ? $seo['title'] : $system_settings->title }}">
+   <meta property="og:title" content="{{ isset($seo['title']) ? $seo['title'] : $system_settings->meta_title }}">
    <meta name="description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
    <meta name="keywords" content="{{ isset($meta_tag_keywords) ? $meta_tag_keywords : $system_settings->meta_tag_keywords }}" />
    <link rel="canonical" href="{{ Config('app.url') }}">
@@ -26,7 +26,6 @@
    <link rel="stylesheet" href="/css/app.css?id={{ rand(1,2000)}}">
    <meta property="og:locale" content="en_US">
    <meta property="og:type" content="{{ isset($seo['type']) ? $seo['type'] : 'website' }}">
-   <meta property="og:title" content="{{ isset($seo['title']) ? $seo['title'] : $system_settings->title }}">
 
    <meta property="og:site_name" content="Autofactorng">
    <meta property="og:url" content="{{ isset($seo['url']) ? $seo['url'] : 'https://autofactorng.com' }}">
@@ -37,7 +36,7 @@
    <meta property="og:image" content="{{ isset($seo['image']) ? $seo['image'] : 'https://autofactorng.com/images/logo/autofactor_logo.png' }}" />
    <meta name="twitter:site" content="@autofactorng">
    <meta name="twitter:card" content="summary_large_image">
-   <meta name="twitter:title" content="{{ isset($seo['title']) ? $seo['title'] : $system_settings->title }}">
+   <meta name="twitter:title" content="{{ isset($seo['title']) ? $seo['title'] : $system_settings->meta_title }}">
    <meta name="twitter:description" content="{{ isset($seo['page_meta_description']) ? $seo['page_meta_description'] : $system_settings->meta_description }}">
    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
