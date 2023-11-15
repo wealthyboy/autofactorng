@@ -34,7 +34,7 @@
    <meta property="og:image:width" content="720" />
    <meta property="og:image:height" content="700" />
    <meta property="og:image:type" content="image/jpeg" />
-   <meta property="og:image" content="{{ isset($seo['image']) ? $seo['image'] : 'https://autofactorng.com/images/banners/g8z2bdon0BZoBziUHUOsuqKwj0a4dVoKGQj4m51W.jpg' }}" />
+   <meta property="og:image" content="{{ isset($seo['image']) ? $seo['image'] : 'https://autofactorng.com/images/logo/autofactor_logo.png' }}" />
    <meta name="twitter:site" content="@autofactorng">
    <meta name="twitter:card" content="summary_large_image">
    <meta name="twitter:title" content="{{ isset($seo['title']) ? $seo['title'] : $system_settings->title }}">
