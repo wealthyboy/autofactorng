@@ -44,7 +44,7 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Meta Title</label>
-                        <input type="text" class="form-control" name="meta_title">
+                        <input type="text" class="form-control" value="{{ $cat->title }}" name="meta_title">
                      </div>
                   </div>
                </div>

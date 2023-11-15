@@ -102,9 +102,8 @@ class CategoryController extends Table
         $category->meta_description = $request->meta_description;
         $category->keywords = $request->keywords;
         $category->search_type = $request->search_type;
-
         $category->text_color = $request->text_color;
-        $category->title = $request->title;
+        $category->title = $request->meta_title;
         $category->slug = $slug;
         $category->sort_order = $request->sort_order;
         $category->is_featured = $request->is_featured ? 1 : 0;
@@ -200,7 +199,7 @@ class CategoryController extends Table
         $category->banner_image = $request->banner_image;
         $category->link = $request->link;
         $category->is_active = $request->is_active ? 1 : 0;
-        $category->parent_id     = $request->parent_id;
+        $category->parent_id = $request->parent_id;
         $category->description = $request->description;
         $category->image_custom_link = $request->image_custom_link;
         $category->image = $request->image;
@@ -208,7 +207,7 @@ class CategoryController extends Table
         $category->meta_description = $request->meta_description;
         $category->search_type = $request->search_type;
         $category->keywords = $request->keywords;
-        $category->title = $request->title;
+        $category->title = $request->meta_title;
         $category->is_featured = $request->is_featured ? 1 : 0;
         $category->slug = $slug;
         $category->save();
