@@ -9,7 +9,7 @@
         <a href="{{ $category->link() }}" class="d-block p-0 border category-content  py-5 no-hover" itemscope itemtype="https://schema.org/Text">
             <div class="d-flex justify-content-center align-items-center">
                 <div class="align-self-center text-center">
-                    <div title="shop all {{$category->name }} " class="image-category">
+                    <div title="{{$category->name }} category" class="image-category">
                         <img src="{{ $category->image }}" alt=" {{$category->name }}" tittle="shop for {{ $category->name }} in nigeria" srcset="">
                     </div>
                 </div>
