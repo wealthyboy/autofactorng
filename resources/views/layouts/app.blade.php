@@ -48,7 +48,6 @@
    <meta name="twitter:data2" content="In stock">
    <meta property="product:brand" content="{{$product->brand_name}}">
    <meta property="product:name" content="{{$product->name}}">
-
    <meta property="product:price:amount" content="{{$product->price}}">
    <meta property="product:price:currency" content="NGN">
    <meta property="product:description" content="{{$product->description}}">

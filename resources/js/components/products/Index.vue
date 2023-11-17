@@ -281,7 +281,6 @@ export default {
             url.searchParams.set("amphere", data.amphere);
             url.searchParams.set("type", data.type);
             url.searchParams.set("t", new Date().getTime());
-
             window.history.pushState({}, "", url);
             this.showClearFilter = true;
             this.getProducts(location.href);
@@ -302,7 +301,6 @@ export default {
             url.searchParams.set("search", "true");
             url.searchParams.set("t", new Date().getTime());
             window.history.pushState({}, "", url);
-
             this.showClearFilter = true;
             this.getProducts(location.href);
         },

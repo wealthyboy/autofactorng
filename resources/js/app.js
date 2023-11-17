@@ -97,5 +97,10 @@ app.use(store)
 app.mount('#app');
 
 window.addEventListener('popstate', () => {
-    // location.reload()
+    console.log('User clicked back button');
 })
+
+
+window.addEventListener('beforeunload', () => {
+    console.log(new URL(location.href));
+});

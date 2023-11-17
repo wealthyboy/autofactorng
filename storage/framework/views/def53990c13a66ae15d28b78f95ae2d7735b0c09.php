@@ -18,7 +18,7 @@
         <div class="row custom-single-default">
 
             <div class="prod-thum col-lg-1 d-none d-lg-block d-xl-block">
-                <div id="sync2" titles="<?php echo e($product->name); ?>" class="owl-ca sync2">
+                <div id="sync2" title="<?php echo e($product->name); ?>" class="owl-ca sync2">
                     <?php $__currentLoopData = $product->images; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <div role="button" class="th border owl-item mb-2">
                         <img src="<?php echo e($image->image_m); ?>" width="110" height="110" alt="<?php echo e($product->name); ?>" />

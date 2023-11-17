@@ -48,9 +48,7 @@ class HomeController extends Controller
         $top_banners = Banner::where(['type' => 'banner', 'sort_order' => 1])->get();
         $mobile_sliders = Banner::where(['type' => 'slider', 'device' => 'd-lg-none d-sm-block d-md-block'])->orderBy('sort_order', 'asc')->get();
         $products = Product::where('is_featured', 1)->orderBy('created_at', 'DESC')->take(8)->get();
-        $user = User::where('email', 'jacob.atam@gmail.com')->first();
-        $user->password = bcrypt('11223344');
-        $user->save();
+
 
         $schema = [
 

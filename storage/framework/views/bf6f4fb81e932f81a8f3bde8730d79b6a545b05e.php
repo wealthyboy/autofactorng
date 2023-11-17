@@ -8,9 +8,9 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
    <title><?php echo e(isset($page_title) ? $page_title .'   '.config('app.name') :  $system_settings->meta_title); ?></title>
-
-   <meta name="description" content="<?php echo e(isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description); ?>">
-   <meta name="keywords" content="<?php echo e(isset($meta_tag_keywords) ? $meta_tag_keywords : $system_settings->meta_tag_keywords); ?>" />
+   <meta property="og:title" content="<?php echo e(isset($seo['page_title']) ? $seo['page_title'] : $system_settings->meta_title); ?>">
+   <meta name="description" content="<?php echo e(isset($seo['page_meta_description'])  ? $seo['page_meta_description'] : $system_settings->page_meta_description); ?>">
+   <meta name="keywords" content="<?php echo e(isset($seo['meta_tag_keywords'])  ? $seo['meta_tag_keywords'] : $system_settings->meta_tag_keywords); ?>" />
    <link rel="canonical" href="<?php echo e(Config('app.url')); ?>">
    <meta name="author" content="AuofactorNG">
 
@@ -25,42 +25,43 @@
 
    <link rel="stylesheet" href="/css/app.css?id=<?php echo e(rand(1,2000)); ?>">
    <meta property="og:locale" content="en_US">
-   <meta property="og:type" content="<?php echo e(isset($seo['type']) ? $seo['type'] : $system_settings->meta_tag_keywords); ?>">
-   <meta property="og:title" content="<?php echo e(isset($seo['title']) ? $seo['title'] : $system_settings->meta_tag_keywords); ?>">
+   <meta property="og:type" content="<?php echo e(isset($seo['type']) ? $seo['type'] : 'website'); ?>">
    <meta property="og:site_name" content="Autofactorng">
    <meta property="og:url" content="<?php echo e(isset($seo['url']) ? $seo['url'] : 'https://autofactorng.com'); ?>">
    <meta property="og:description" content="<?php echo e(isset($seo['page_meta_description']) ? $seo['page_meta_description'] : $system_settings->meta_description); ?>">
    <meta property="og:image:width" content="720" />
    <meta property="og:image:height" content="700" />
    <meta property="og:image:type" content="image/jpeg" />
-   <meta property="og:image" content="<?php echo e(isset($seo['image']) ? $seo['image'] : 'https://autofactorng.com/images/banners/g8z2bdon0BZoBziUHUOsuqKwj0a4dVoKGQj4m51W.jpg'); ?>" />
+   <meta property="og:image" content="<?php echo e(isset($seo['image']) ? $seo['image'] : 'https://autofactorng.com/images/logo/autofactor_logo.png'); ?>" />
    <meta name="twitter:site" content="@autofactorng">
    <meta name="twitter:card" content="summary_large_image">
-   <meta name="twitter:title" content="<?php echo e(isset($seo['title']) ? $seo['title'] : $system_settings->title); ?>">
+   <meta name="twitter:title" content="<?php echo e(isset($seo['title']) ? $seo['title'] : $system_settings->meta_title); ?>">
    <meta name="twitter:description" content="<?php echo e(isset($seo['page_meta_description']) ? $seo['page_meta_description'] : $system_settings->meta_description); ?>">
    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
 
-
    <?php if(isset($product)): ?>
-   <meta name="twitter:image" content="<?php echo e($product->image); ?>" />
+   <meta name="twitter:image" content="<?php echo e($seo['image']); ?>" />
    <meta name="twitter:label1" content="Price">
    <meta name="twitter:data1" content="<?php echo e($product->price); ?>">
    <meta name="twitter:label2" content="Availability">
    <meta name="twitter:data2" content="In stock">
    <meta property="product:brand" content="<?php echo e($product->brand_name); ?>">
+   <meta property="product:name" content="<?php echo e($product->name); ?>">
    <meta property="product:price:amount" content="<?php echo e($product->price); ?>">
    <meta property="product:price:currency" content="NGN">
+   <meta property="product:description" content="<?php echo e($product->description); ?>">
+
    <meta property="og:availability" content="instock">
    <meta property="product:availability" content="instock">
    <meta property="product:condition" content="new">
-   <meta property="og:url" content="<?php echo e($product->image); ?>">
+   <meta property="og:url" content="<?php echo e($seo['image']); ?>">
    <?php endif; ?>
 
 
 
    <script type="application/ld+json" class="yoast-schema-graph">
-   <?php echo e($schema); ?>
+   <?php echo e(isset($schema) ? $schema : ''); ?>
 
    </script>
 
