@@ -459,7 +459,7 @@
                         <ul>
                            @foreach( $category->children as $category)
                            <li class="py-2">
-                              <a href="{{  $category->link ? $category->link : '/products/'.$category->slug }}?t={{time()}}">
+                              <a href="{{  $category->link ? $category->link : '/products/'.$category->slug }}?">
 
                                  {{ $category->name }}
                               </a>
@@ -470,7 +470,7 @@
                         @else
                         <ul>
                            <li class="py-3">
-                              <a href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}?t={{time()}}">
+                              <a href="{{ $category->children->count() ? '#' : '/products/'.$category->slug }}">
                                  All {{ $category->name }}
                               </a>
 
