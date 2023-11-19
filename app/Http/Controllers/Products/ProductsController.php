@@ -35,12 +35,12 @@ class ProductsController extends Controller
     public function  index(Request $request, Builder $builder, Category $category)
     {
 
-        $page_title = $category->meta_title;
+        $page_title = $category->title;
         $meta_tag_keywords = $category->keywords;
         $page_meta_description = $category->meta_description;
 
         $seo = [];
-        $seo['page_title'] =  $category->meta_title;
+        $seo['page_title'] =  $category->title;
         $seo['meta_tag_keywords'] = $category->keywords;
         $seo['page_meta_description'] = $category->meta_description;
         $seo['image'] = $category->image;
