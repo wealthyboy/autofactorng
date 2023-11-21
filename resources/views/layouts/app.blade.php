@@ -60,8 +60,7 @@
 
 
 
-   <script type="application/ld+json" class="yoast-schema-graph">
-   {{ isset($schema) ? $schema : '' }}
+   <script type="application/ld+json" class="">
    </script>
 
 
