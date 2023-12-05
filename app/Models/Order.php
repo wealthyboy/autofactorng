@@ -22,6 +22,7 @@ class Order extends Model
 
 	public static $statuses = [
 		"Confirmed" => "Confirmed",
+		"Cancelled" => "Cancelled",
 		"Processing" => "Processing",
 		"Shipped" => "Shipped",
 		"Delivered" => "Delivered",

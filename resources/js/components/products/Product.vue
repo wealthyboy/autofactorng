@@ -34,7 +34,7 @@
                     {{ product.note }}
                 </div>
 
-                <div v-if="product.average_rating_count >= 1" class="product-rating mb-2">
+                <div itemprop="rating" v-if="product.average_rating_count >= 1" class="product-rating mb-2">
                     <rating :active="true" v-for="x in product.average_rating / 20" />
                     <rating :active="false" v-for="x in (100 - product.average_rating) / 20" />
                     <!-- End .ratings -->

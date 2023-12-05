@@ -61,11 +61,10 @@ class HomeController extends Controller
             ->first();
 
         $stats = [];
-        $stats['Orders'] = Order::whereMonth('created_at', date('m'))->count();
+        $stats['Orders'] = Order::where('status', '!=', 'Cancelled')->whereMonth('created_at', date('m'))->count();
         $stats['Customers'] = (new User())->customers()->count();
         $stats['New Customers'] = $this->getSingleEmailOrders();
         $stats['Return Customers'] =  $stats['Orders'] - $this->getSingleEmailOrders();
-
         $statistics['activities'] = Activity::latest()->paginate(10);
 
 
