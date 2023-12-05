@@ -9,7 +9,7 @@
     <title>Checkout| Autofactorng</title>
 
     <meta name="keywords" content="" />
-    <meta name="description" content="PAutofactor">
+    <meta name="description" content="Autofactor">
     <meta name="author" content="SW-THEMES">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
