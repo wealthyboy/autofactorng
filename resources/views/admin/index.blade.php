@@ -136,7 +136,7 @@
                            <div class="d-flex px-3 py-1">
 
                               <div class="d-flex flex-column justify-content-center">
-                                 <h6 class="mb-0 text-sm">{{ $$top_buyer->name ->name }} {{ $top_buyer->email }}</h6>
+                                 <h6 class="mb-0 text-sm">{{ $top_buyer->name }} {{ $top_buyer->email }}</h6>
                                  <p class="text-sm font-weight-normal text-secondary mb-0"><span class="text-success">{{ $top_buyer->count}}</span> orders</p>
                               </div>
 
