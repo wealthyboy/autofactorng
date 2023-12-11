@@ -90,6 +90,16 @@ class HomeController extends Controller
         $statistics['top_price'] = $top_price;
         $statistics['orders'] = $orders;
 
+        $topBuyers = Order::select('user_id', 'first_name', 'email')
+            ->selectRaw('COUNT(*) as order_count')
+            ->join('users', 'orders.user_id', '=', 'users.id') // Assuming there is a users table with 'first_name' and 'email'
+            ->groupBy('user_id', 'first_name', 'email')
+            ->orderByDesc('order_count')
+            ->limit(15)
+            ->get();
+        $statistics['top_buyers'] = $topBuyers;
+
+
 
 
 

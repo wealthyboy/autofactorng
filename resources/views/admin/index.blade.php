@@ -115,6 +115,43 @@
             </div>
          </div>
       </div>
+
+      <div class="card mb-4">
+         <div class="card-header pb-0">
+            <h6>Top Buys</h6>
+         </div>
+         <div class="card-body px-0 pt-0 pb-2">
+            <div class="table-responsive p-0">
+               <table class="table align-items-center mb-0">
+                  <thead>
+                     <tr>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Product</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Value</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     @foreach($statistics['top_buyers'] as $top_buyer)
+                     <tr>
+                        <td>
+                           <div class="d-flex px-3 py-1">
+
+                              <div class="d-flex flex-column justify-content-center">
+                                 <h6 class="mb-0 text-sm">{{ $$top_buyer->name ->name }} {{ $top_buyer->email }}</h6>
+                                 <p class="text-sm font-weight-normal text-secondary mb-0"><span class="text-success">{{ $top_buyer->count}}</span> orders</p>
+                              </div>
+
+                           </div>
+                        </td>
+                        <td>
+                        </td>
+                     </tr>
+                     @endforeach
+
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
       <div class="card mb-4">
          <div class="card-header pb-0">
             <h6>Top Selling Products</h6>

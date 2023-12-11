@@ -338,7 +338,6 @@ class OrdersController extends Table
 
 		//status == delivered
 
-
 		if ($request->value == 'Delivered') {
 			$order_statuses = OrderStatus::where('order_id', $request->id)->get();
 			if (null !== $order_statuses) {
