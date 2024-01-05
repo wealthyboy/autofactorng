@@ -61,7 +61,15 @@ trait FormatPrice
       return  $percent;
     }
 
-    return $this->calPercentageOff($this->price, $this->sale_price);
+    if (null !== $this->sale_price  && null !== $this->sale_price_starts) {
+      if (optional($this->sale_price_starts)->isPast() || optional($this->sale_price_starts)->isToday()) {
+        if (optional($this->sale_price_ends)->isFuture() &&  !optional($this->sale_price_starts)->isFuture()) {
+          return $this->calPercentageOff($this->price, $this->sale_price);
+        }
+      }
+    }
+
+    return null;
   }
 
   public function calPercentageOff($price, $sale_price)
@@ -75,6 +83,7 @@ trait FormatPrice
 
   public function getPercentageOffAttribute()
   {
+
     return $this->percentageOff();
   }
 
@@ -86,6 +95,16 @@ trait FormatPrice
 
   public function salePrice()
   {
+
+    if (null !== $this->sale_price  && null !== $this->sale_price_starts) {
+      if (optional($this->sale_price_starts)->isPast() || optional($this->sale_price_starts)->isToday()) {
+        if (optional($this->sale_price_ends)->isFuture() &&  !optional($this->sale_price_starts)->isFuture()) {
+          return $this->sale_price;
+        }
+      }
+    }
+
+
     $category = null;
     if ($this->categories->count() > 1) {
       $category = $this->categories[1];
@@ -102,13 +121,7 @@ trait FormatPrice
     }
 
 
-    if (null !== $this->sale_price  && null !== $this->sale_price_starts) {
-      if (optional($this->sale_price_starts)->isPast() || optional($this->sale_price_starts)->isToday()) {
-        if (optional($this->sale_price_ends)->isFuture() &&  !optional($this->sale_price_starts)->isFuture()) {
-          return $this->sale_price;
-        }
-      }
-    }
+
 
     return null;
   }

@@ -8983,6 +8983,11 @@ figure .porto-loading-icon {
         border-right: none
     }
 
+    .product-default .label-group {
+
+        left: 4.8rem
+    }
+
     .divide-line>.col-sm-2:nth-child(n) {
         border-right: 1px solid rgba(0, 0, 0, 0.09);
         border-bottom: 1px solid rgba(0, 0, 0, 0.09)

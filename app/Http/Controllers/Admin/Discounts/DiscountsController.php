@@ -154,6 +154,7 @@ class DiscountsController extends Table
             'percentage_discount' => 'required',
             'expires' => 'required',
         ]);
+
         $discount->category_id = $request->category_id;
         $discount->amount = $request->percentage_discount;
         $discount->expires = $request->expires;

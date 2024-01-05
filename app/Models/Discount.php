@@ -27,7 +27,7 @@ class Discount extends Model
                 "Id" =>  $discount->id,
                 "Amount Percent" =>  $discount->amount,
                 "Category" => optional($discount->category)->name,
-                "Date Added" =>  $discount->created_at->format('d-m-y'),
+                "Expires" =>  $discount->expires,
             ];
         });
     }
@@ -38,7 +38,7 @@ class Discount extends Model
             "Id" => 'id',
             "Amount Percent" => 'amount',
             "Category" => 'category_id',
-            "Date Added" => 'created_at',
+            "Expires" => 'expires',
         ];
 
         return $sort[$key];

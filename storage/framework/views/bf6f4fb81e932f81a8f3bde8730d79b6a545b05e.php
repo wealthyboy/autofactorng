@@ -60,9 +60,7 @@
 
 
 
-   <script type="application/ld+json" class="yoast-schema-graph">
-   <?php echo e(isset($schema) ? $schema : ''); ?>
-
+   <script type="application/ld+json" class="">
    </script>
 
 
@@ -461,7 +459,7 @@
                         <ul>
                            <?php $__currentLoopData = $category->children; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                            <li class="py-2">
-                              <a href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>?t=<?php echo e(time()); ?>">
+                              <a href="<?php echo e($category->link ? $category->link : '/products/'.$category->slug); ?>?">
 
                                  <?php echo e($category->name); ?>
 
@@ -473,7 +471,7 @@
                         <?php else: ?>
                         <ul>
                            <li class="py-3">
-                              <a href="<?php echo e($category->children->count() ? '#' : '/products/'.$category->slug); ?>?t=<?php echo e(time()); ?>">
+                              <a href="<?php echo e($category->children->count() ? '#' : '/products/'.$category->slug); ?>">
                                  All <?php echo e($category->name); ?>
 
                               </a>
