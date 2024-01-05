@@ -8983,10 +8983,7 @@ figure .porto-loading-icon {
         border-right: none
     }
 
-    .product-default .label-group {
 
-        left: 4.8rem
-    }
 
     .divide-line>.col-sm-2:nth-child(n) {
         border-right: 1px solid rgba(0, 0, 0, 0.09);
@@ -9434,6 +9431,10 @@ figure .porto-loading-icon {
     .product-list {
         flex-direction: column;
         -ms-flex-direction: column
+    }
+
+    .product-default .label-group {
+        left: 4.8rem
     }
 
     .product-list figure {
