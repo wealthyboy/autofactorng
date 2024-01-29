@@ -22,7 +22,7 @@ class Wallet extends Model
                 "Ref Id" => '#' . optional($wallet)->id,
                 "Amount" => '₦' . number_format(optional($wallet)->amount),
                 "Status" =>  optional($wallet)->status,
-                "Date Added" => $wallet->created_at->format('d-m-y')
+                "Date Added" => optional($wallet->created_at)->format('d-m-y')
             ];
         });
     }
