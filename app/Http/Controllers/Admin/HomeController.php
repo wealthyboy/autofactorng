@@ -52,6 +52,10 @@ class HomeController extends Controller
 
         // dd(config('services.goggle.client_id'));
         $now = Carbon::now();
+        if ($request->category && $request->brand_id) {
+            $brand_cat = BrandCategory::where(['category_id' => 30, 'brand_id' => 3])->first()->delete();
+            $brand_cat = BrandCategory::where(['category_id' => 30, 'brand_id' => 9])->first()->delete();
+        }
 
         $top_selling_product = OrderedProduct::has('order')->select('product_id')
             ->groupBy('product_id')

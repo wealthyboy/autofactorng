@@ -12,9 +12,7 @@ use App\Http\Helper;
 use App\Models\User;
 use Illuminate\Validation\Rule;
 use App\Models\Attribute;
-
-
-
+use App\Models\BrandCategory;
 
 class CategoryController extends Table
 {
@@ -37,7 +35,7 @@ class CategoryController extends Table
      */
     public function index()
     {
-
+        BrandCategory::find(30);
         $categories = Category::parents()->get();
         return view('admin.category.index', compact('categories'));
     }
