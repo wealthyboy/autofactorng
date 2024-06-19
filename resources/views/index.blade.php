@@ -40,16 +40,6 @@
 
 @section('inline-scripts')
 
-document.addEventListener("DOMContentLoaded", function() {
-var images = document.querySelectorAll('.image-class');
 
-console.log(images)
-images.forEach(function(image) {
-var dataImage = image.getAttribute('data-src');
-if (dataImage) {
-image.setAttribute('src', dataImage);
-}
-});
-});
 
 @stop
