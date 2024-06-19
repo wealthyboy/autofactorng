@@ -106,9 +106,11 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 Route::get('/test', [App\Http\Controllers\HomeController::class, 'test']);
 
 Route::get('plans', [App\Http\Controllers\Plans\PlansController::class, 'index']);
+Route::get('buy-now-pay-later', [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index']);
+
+
 Route::get('subscribe', [App\Http\Controllers\Subscribe\SubscribeController::class, 'index']);
 Route::get('checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'index']);
-Route::get('buy-now-pay-later', [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index']);
 Route::get('products/{category}', 'Products\ProductsController@index');
 Route::get('product/{category}/{product}', 'Products\ProductsController@show');
 Route::get('make-model-year-engine', 'Products\ProductsController@makeModelYearSearch');

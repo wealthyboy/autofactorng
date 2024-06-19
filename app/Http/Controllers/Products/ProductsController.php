@@ -40,7 +40,7 @@ class ProductsController extends Controller
         $page_meta_description = $category->meta_description;
 
         $seo = [];
-        $seo['page_title'] =  $category->title;
+        $seo['page_title'] = $category->title;
         $seo['meta_tag_keywords'] = $category->keywords;
         $seo['page_meta_description'] = $category->description;
         $seo['image'] = $category->image;

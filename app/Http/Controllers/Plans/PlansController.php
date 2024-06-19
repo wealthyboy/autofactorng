@@ -14,7 +14,7 @@ class PlansController extends Controller
      */
     public function index()
     {
-        $type = request()->type;
+        $type = 'auto_cover';
         $plans = $this->plansData();
         $page_title = "Subscibe for autocover";
         $meta_tag_keywords = "plan, buy car par parts on credit, spare parts, ";
