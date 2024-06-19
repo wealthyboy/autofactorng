@@ -191,8 +191,6 @@ class OrdersController extends Table
 					->bcc('order@autofactorng.com')
 					->send(new OrderReceipt($order, null, null, $sub_total));
 			} catch (\Throwable $th) {
-
-				dd($th);
 				Log::info("Mail error :" . $th);
 				Log::info("Custom error :" . $th);
 				$err = new Error();
@@ -202,15 +200,11 @@ class OrdersController extends Table
 
 			// Send Mail
 			(new Activity)->put("Added a new order with email and phone number  " . $request->email . ' and ' . $request->phone_number);
+
 			DB::commit();
-
-
 			return  redirect()->route('admin.orders.index');
-			//code...
 		} catch (\Throwable $th) {
-			//throw $th;
-			dd($th);
-
+			DB::rollBack();
 			return  redirect()->route('admin.orders.index')->with('errors', 'Something went wrong');
 		}
 	}
@@ -238,7 +232,7 @@ class OrdersController extends Table
 	public function unique()
 	{
 		return [
-			'show'  => true,
+			'show' => true,
 			'right' => false,
 			'edit' => false,
 			'search' => true,
@@ -273,13 +267,14 @@ class OrdersController extends Table
 	public function show($id)
 	{
 
-		$order  =  Order::find($id);
+		$order = Order::find($id);
 		$statuses = static::order_status();
 		$sub_total = $this->subTotal($order);
 		$ordered_products = $order->ordered_products()->paginate(200);
 		$orders = (new OrderedProduct())->getListingData($ordered_products);
 		$summaries = [];
 		$summaries['Sub-Total'] =  Helper::currencyWrapper($sub_total);
+
 		if ($order->coupon) {
 			$summaries[optional($order->voucher())->amount . ' % Discount'] =  '-₦' . number_format((optional($order->voucher())->amount / 100) * $sub_total);
 		}
@@ -287,7 +282,6 @@ class OrdersController extends Table
 		if ($order->discount) {
 			$summaries['Discount'] = $order->percentage_type == 'percentage' ? $order->discount . '  % off'  :  '-' . $order->discount;
 		}
-
 
 		$summaries['Shipping'] = Helper::currencyWrapper($order->shipping_price);
 		$summaries['Heavy Item Charge'] = Helper::currencyWrapper($order->heavy_item_price);
