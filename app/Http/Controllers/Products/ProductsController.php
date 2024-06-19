@@ -42,7 +42,7 @@ class ProductsController extends Controller
         $seo = [];
         $seo['page_title'] =  $category->title;
         $seo['meta_tag_keywords'] = $category->keywords;
-        $seo['page_meta_description'] = $category->meta_description;
+        $seo['page_meta_description'] = $category->description;
         $seo['image'] = $category->image;
         $seo['type'] = 'article';
 
@@ -521,7 +521,7 @@ class ProductsController extends Controller
         $favorites = '';
         $data = [];
         $meta_tag_keywords = $product->keywords;
-        $page_meta_description = $product->meta_description;
+        $page_meta_description = $product->description;
         $product->load('images');
         $user = request()->user();
         $product->showFitString = $this->getCategory($category);
