@@ -44,7 +44,7 @@
          <div class="banner banner3  {{ $slider->device }}   d-md-block">
             <a href="{{ $slider->link }}" class="d-block">
                <figure>
-                  <img itemprop="image" class="owl-lazy bgoloader" data-src="{{ $slider->image }}" title="{{ $slider->title }}" alt="{{ $slider->title }}" />
+                  <img itemprop="image" class="owl-lazy bgoloader " data-src="{{ $slider->image }}" title="{{ $slider->title }}" alt="{{ $slider->title }}" />
                </figure>
             </a>
          </div>

@@ -10,7 +10,7 @@
             <div class="d-flex justify-content-center align-items-center">
                 <div class="align-self-center text-center">
                     <div title="{{$category->name }} category" class="image-category">
-                        <img src="{{ $category->image }}" alt=" {{$category->name }}" tittle="shop for {{ $category->name }} in nigeria" srcset="">
+                        <img data-src="{{ $category->image }}" class="image-class" alt="{{$category->name }}" tittle="shop for {{ $category->name }} in nigeria">
                     </div>
                 </div>
 
