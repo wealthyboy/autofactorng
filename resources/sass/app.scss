@@ -557,3 +557,48 @@ footer a {
         height: 47.3rem !important;
     }
 }
+
+.bgoloader {
+    background: radial-gradient(circle at 1.2% 5%, rgb(255, 94, 157) 34.7%, rgb(255, 78, 6) 92.3%);
+
+    min-height: 36rem;
+}
+
+.bsloader {
+    background: #f6e1e8;
+}
+
+.loader2 {
+    background: #ccc;
+    height: 450px;
+}
+
+.pd-search {
+    position: absolute;
+    inset: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+    border: none;
+    margin: auto;
+    display: block;
+    width: 0px;
+    height: 0px;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+}
+
+.pd-search2 {
+    box-sizing: border-box;
+    display: inline-block;
+    overflow: hidden;
+    width: 20px;
+    height: 20px;
+    background: none;
+    opacity: 1;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+}
