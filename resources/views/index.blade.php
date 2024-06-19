@@ -43,7 +43,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 var images = document.querySelectorAll('.image-class');
 images.forEach(function(image) {
-var dataImage = image.getAttribute('data-image');
+var dataImage = image.getAttribute('data-src');
 if (dataImage) {
 image.setAttribute('src', dataImage);
 }
