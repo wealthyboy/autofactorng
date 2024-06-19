@@ -9,7 +9,7 @@
 
    <title><?php echo e(isset($page_title) ? $page_title .'   '.config('app.name') :  $system_settings->meta_title); ?></title>
    <meta property="og:title" content="<?php echo e(isset($seo['page_title']) ? $seo['page_title'] : $system_settings->meta_title); ?>">
-   <meta name="description" content="<?php echo e(isset($seo['page_meta_description'])  ? $seo['page_meta_description'] : $system_settings->page_meta_description); ?>">
+   <meta name="description" content="<?php echo e(isset($seo['page_meta_description'])  ? $seo['page_meta_description'] : $system_settings->meta_description); ?>">
    <meta name="keywords" content="<?php echo e(isset($seo['meta_tag_keywords'])  ? $seo['meta_tag_keywords'] : $system_settings->meta_tag_keywords); ?>" />
    <link rel="canonical" href="<?php echo e(Config('app.url')); ?>">
    <meta name="author" content="AuofactorNG">
@@ -523,7 +523,21 @@
    <script type="text/javascript">
       <?php echo $__env->yieldContent('inline-scripts'); ?>
 
+
+
       $(function() {
+
+         var images = document.querySelectorAll('.image-class');
+
+         if (images) {
+            images.forEach(function(image) {
+               var dataImage = image.getAttribute('data-src');
+               if (dataImage) {
+                  image.setAttribute('src', dataImage);
+               }
+            });
+         }
+
 
 
          $('.slider-loader').addClass('d-none')

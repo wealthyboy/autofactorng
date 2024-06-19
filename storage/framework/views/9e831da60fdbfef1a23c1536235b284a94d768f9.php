@@ -10,7 +10,7 @@
             <div class="d-flex justify-content-center align-items-center">
                 <div class="align-self-center text-center">
                     <div title="<?php echo e($category->name); ?> category" class="image-category">
-                        <img src="<?php echo e($category->image); ?>" alt=" <?php echo e($category->name); ?>" tittle="shop for <?php echo e($category->name); ?> in nigeria" srcset="">
+                        <img data-src="<?php echo e($category->image); ?>" class="image-class" alt="<?php echo e($category->name); ?>" tittle="shop for <?php echo e($category->name); ?> in nigeria">
                     </div>
                 </div>
 
