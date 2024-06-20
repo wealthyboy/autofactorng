@@ -24,7 +24,7 @@
 
    <link rel="preload" href="/css/app.css?id={{ rand(1,2000)}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
    <noscript>
-      <link rel="stylesheet" href="https://autofactorng.com/css/app.css?id=387">
+      <link rel="stylesheet" href="/css/app.css?id=387">
    </noscript>
    <meta property="og:locale" content="en_US">
    <meta property="og:type" content="{{ isset($seo['type']) ? $seo['type'] : 'website' }}">
