@@ -14,7 +14,10 @@
    <link rel="canonical" href="{{ Config('app.url') }}">
    <meta name="author" content="AuofactorNG">
 
-   <link rel="stylesheet" preload href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+   <link rel="stylesheet" rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+
+
 
    <!-- Favicon -->
    <link rel="icon" type="image/x-icon" href="/images/favicon_io/favicon-32x32.png">
@@ -23,7 +26,10 @@
    <link rel="apple-touch-icon" href="/images/favicon_io/favicon-96x96.png">
    <!-- Main CSS File -->
 
-   <link rel="stylesheet" href="/css/app.css?id={{ rand(1,2000)}}">
+   <link rel="preload" href="/css/app.css?id={{ rand(1,2000)}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+   <noscript>
+      <link rel="stylesheet" href="https://autofactorng.com/css/app.css?id=387">
+   </noscript>
    <meta property="og:locale" content="en_US">
    <meta property="og:type" content="{{ isset($seo['type']) ? $seo['type'] : 'website' }}">
    <meta property="og:site_name" content="Autofactorng">
@@ -514,7 +520,6 @@
    <!-- Plugins JS File -->
 
    <script src="/js/jquery.min.js"></script>
-   <script src="/js/app.js?id={{ rand(1,2000)}}"></script>
 
    @yield('page-scripts')
    <script type="text/javascript">
