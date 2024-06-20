@@ -388,9 +388,9 @@
 
                <div class="mobile-footer text-center  d-block d-sm-none">
                   <div class="footer-bottom text-white d-flex  justify-content-between align-items-center flex-wrap">
-                     <a href="https://www.facebook.com/autofactorng/" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
-                     <a href="https://twitter.com/autofactorng/" class="bi bi-twitter  text-white me-5 fa-2x" target="_blank" title="Twitter"></a>
-                     <a href="http://instagram.com/autofactorng/" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
+                     <a href="https://www.facebook.com/autofactorng/" rel="noreferrer" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
+                     <a href="https://twitter.com/autofactorng/" rel="noreferrer" rel="noreferrer" class="bi bi-twitter  text-white me-5 fa-2x" target="_blank" title="Twitter"></a>
+                     <a href="http://instagram.com/autofactorng/" rel="noreferrer" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
                   </div><!-- End .footer-bottom -->
                   <p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
                   @if ( auth()->check() && auth()->user()->isAdmin() )
@@ -407,9 +407,9 @@
                      <p class="footer-copyright mx-3 text-white"><a target="_blank" class="text-white" href="/admin">Go to Admin</a></p>
                      @endif
                      <div class="social-icons py-3">
-                        <a href="https://www.facebook.com/autofactorng/" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
-                        <a href="https://twitter.com/autofactorng/" class="bi bi-twitter  text-white me-5 fa-2x" target="_blank" title="Twitter"></a>
-                        <a href="http://instagram.com/autofactorng/" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
+                        <a href="https://www.facebook.com/autofactorng/" rel="noreferrer" class="bi bi-facebook text-white  me-5 fa-2x" target="_blank" title="Facebook"></a>
+                        <a href="https://twitter.com/autofactorng/" rel="noreferrer" class="bi bi-twitter  text-white me-5 fa-2x" target="_blank" title="Twitter"></a>
+                        <a href="http://instagram.com/autofactorng/" rel="noreferrer" class="bi bi-instagram  text-white  fa-2x" target="_blank" title="Linkedin"></a>
                      </div><!-- End .social-icons -->
                   </div><!-- End .footer-bottom -->
                </div>
@@ -499,7 +499,7 @@
 
 
    <div class="watsapp me-3">
-      <a class="chat-on-watsapp d-flex justify-content-between align-items-center" target="_blank" href="https://wa.me/+23409081155505">
+      <a class="chat-on-watsapp d-flex justify-content-between align-items-center" target="_blank" rel="noreferrer" href="https://wa.me/+23409081155505">
          <span class="d-flex flex-column me-2">
             <span class="fs-6">Need Help?</span>
             <span class="fs-5">Chat with us</span>
