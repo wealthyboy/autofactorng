@@ -22,7 +22,7 @@
    <link rel="apple-touch-icon" href="/images/favicon_io/favicon-96x96.png">
    <!-- Main CSS File -->
 
-   <link rel="preload" href="/css/app.css?id={{ rand(1,2000)}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+   <link href="/css/app.css?id={{ rand(1,2000)}}">
    <noscript>
       <link rel="stylesheet" href="/css/app.css?id=387">
    </noscript>
