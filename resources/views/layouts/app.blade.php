@@ -23,9 +23,6 @@
    <!-- Main CSS File -->
 
    <link rel="preload" href="https://autofactorng.com/css/app.css?id={{ rand(1,2000)}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-   <script src="/js/jquery.min.js" defer></script>
-
-   <script src="https://autofactorng.com/js/app.js?id={{ rand(1,2000)}}" defer></script>
    <noscript>
       <link rel="stylesheet" href="https://autofactorng.com/css/app.css?id=387">
    </noscript>
@@ -518,10 +515,8 @@
    <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
    <!-- Plugins JS File -->
 
-
-   <script src="/js/jquery.min.js" defer></script>
-
-   <script src="https://cdn.autofactorng.com/js/app.js?id={{ rand(1,2000)}}" defer></script>
+   <script src="/js/jquery.min.js"></script>
+   <script src="/js/app.js?id={{ rand(1,2000)}}"></script>
 
 
 
