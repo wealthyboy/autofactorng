@@ -14,8 +14,8 @@
    <link rel="canonical" href="{{ Config('app.url') }}">
    <meta name="author" content="AuofactorNG">
 
-   <link rel="stylesheet" rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
+   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 
 
