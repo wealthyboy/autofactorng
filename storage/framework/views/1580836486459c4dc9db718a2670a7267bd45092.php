@@ -13,7 +13,7 @@
    <div itemscope itemtype="https://schema.org/Product" class="product-default  product-default-sm d-flex flex-column justify-content-center align-items-center px-2">
       <figure class="image-category mt-3">
          <a title="Click to buy car parts, <?php echo e($product->name); ?>" href="<?php echo e($product->link); ?>">
-            <img itemprop="image" class="owl-lazy" title="Click to buy car parts,  <?php echo e($product->name); ?>" data-src="<?php echo e($product->image_m); ?>" alt="<?php echo e($product->name); ?>">
+            <img itemprop="image" class="image-class" title="Click to buy car parts,  <?php echo e($product->name); ?>" data-src="<?php echo e($product->image_m); ?>" alt="<?php echo e($product->name); ?>">
          </a>
       </figure>
       <a href="#">
