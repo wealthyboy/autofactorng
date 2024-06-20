@@ -14,7 +14,6 @@
    <link rel="canonical" href="<?php echo e(Config('app.url')); ?>">
    <meta name="author" content="AuofactorNG">
 
-   <link rel="stylesheet" preload href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
    <!-- Favicon -->
    <link rel="icon" type="image/x-icon" href="/images/favicon_io/favicon-32x32.png">
@@ -23,7 +22,13 @@
    <link rel="apple-touch-icon" href="/images/favicon_io/favicon-96x96.png">
    <!-- Main CSS File -->
 
-   <link rel="stylesheet" href="/css/app.css?id=<?php echo e(rand(1,2000)); ?>">
+   <link rel="preload" href="https://autofactorng.com/css/app.css?id=<?php echo e(rand(1,2000)); ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
+   <script src="/js/jquery.min.js" defer></script>
+
+   <script src="https://autofactorng.com/js/app.js?id=<?php echo e(rand(1,2000)); ?>" defer></script>
+   <noscript>
+      <link rel="stylesheet" href="https://autofactorng.com/css/app.css?id=387">
+   </noscript>
    <meta property="og:locale" content="en_US">
    <meta property="og:type" content="<?php echo e(isset($seo['type']) ? $seo['type'] : 'website'); ?>">
    <meta property="og:site_name" content="Autofactorng">
@@ -516,8 +521,12 @@
    <a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
    <!-- Plugins JS File -->
 
-   <script src="/js/jquery.min.js"></script>
-   <script src="/js/app.js?id=<?php echo e(rand(1,2000)); ?>"></script>
+
+   <script src="/js/jquery.min.js" defer></script>
+
+   <script src="https://cdn.autofactorng.com/js/app.js?id=<?php echo e(rand(1,2000)); ?>" defer></script>
+
+
 
    <?php echo $__env->yieldContent('page-scripts'); ?>
    <script type="text/javascript">

@@ -10,7 +10,7 @@
         <a class="d-block p-0 border">
             <div class="d-flex justify-content-center align-items-center">
                 <div class="d-flex justify-content-center align-items-center text-center image-category">
-                    <img itemprop="image" class="image-class img-fluid" title="We have genuine <?php echo e($brand->name); ?> for you" data-src="<?php echo e($brand->image); ?>" alt="<?php echo e($brand->name); ?> ">
+                    <img srcset=" <?php echo e($brand->image); ?> 480w, <?php echo e($brand->image); ?> 768w,  <?php echo e($brand->image); ?> 1200w" sizes="(max-width: 480px) 480px, (max-width: 768px) 768px, 1200px" itemprop="image" class="image-class img-fluid" title="We have genuine <?php echo e($brand->name); ?> for you" data-src="<?php echo e($brand->image); ?>" alt="<?php echo e($brand->name); ?> ">
                 </div>
             </div>
         </a>
