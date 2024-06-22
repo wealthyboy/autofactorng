@@ -27,7 +27,11 @@
    <link rel="apple-touch-icon" href="/images/favicon_io/favicon-96x96.png">
    <!-- Main CSS File -->
 
-   <link rel="stylesheet" href="/css/app.css?id=<?php echo e(rand(1,2000)); ?>">
+   <link rel="stylesheet" href="https://autofactorng.com/css/app.css">
+
+
+   <link rel="preload" href="https://autofactorng.com/css/app.css?id=1632" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
    <noscript>
       <link rel="stylesheet" href="/css/app.css?id=387">
    </noscript>
@@ -39,7 +43,7 @@
    <meta property="og:image:width" content="720" />
    <meta property="og:image:height" content="700" />
    <meta property="og:image:type" content="image/jpeg" />
-   <meta property="og:image" content="<?php echo e(isset($seo['image']) ? $seo['image'] : 'https://autofactorng.com/images/logo/autofactor_logo.png'); ?>" />
+   <meta property="og:image" content="<?php echo e(isset($seo['image']) ? $seo['image'] : '/images/logo/autofactor_logo.png'); ?>" />
    <meta name="twitter:site" content="@autofactorng">
    <meta name="twitter:card" content="summary_large_image">
    <meta name="twitter:title" content="<?php echo e(isset($seo['title']) ? $seo['title'] : $system_settings->meta_title); ?>">

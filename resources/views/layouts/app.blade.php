@@ -10,13 +10,12 @@
    <title>{{ isset($page_title) ? $page_title .'   '.config('app.name') :  $system_settings->meta_title  }}</title>
    <meta property="og:title" content="{{ isset($seo['page_title']) ? $seo['page_title'] : $system_settings->meta_title }}">
    <meta name="description" content="{{ isset($seo['page_meta_description'])  ? $seo['page_meta_description'] : $system_settings->meta_description }}">
-   <meta name="keywords" content="{{  isset($seo['meta_tag_keywords'])  ? $seo['meta_tag_keywords'] : $system_settings->meta_tag_keywords }}" />
+   <meta name="keywords" content="{{ isset($seo['meta_tag_keywords'])  ? $seo['meta_tag_keywords'] : $system_settings->meta_tag_keywords }}" />
    <link rel="canonical" href="{{ Config('app.url') }}">
    <meta name="author" content="AuofactorNG">
    <link rel="preload" href="https://autofactorng.com/fonts/AutoFactorCond-Heavy.woff2" as="font" type="font/woff2" crossorigin>
    <link rel="preload" href="https://autofactorng.com/fonts/AutoFactorCond-Medium.woff2" as="font" type="font/woff2" crossorigin>
    <link rel="preload" href="https://autofactorng.com/css/app.css" as="style">
-   <link rel="preload" href="https://autofactorng.com/js/app.js" as="script">
 
 
 
@@ -27,7 +26,11 @@
    <link rel="apple-touch-icon" href="/images/favicon_io/favicon-96x96.png">
    <!-- Main CSS File -->
 
-   <link rel="stylesheet" href="/css/app.css?id={{ rand(1,2000)}}">
+   <link rel="stylesheet" href="https://autofactorng.com/css/app.css">
+
+
+   <link rel="preload" href="https://autofactorng.com/css/app.css?id={{ rand(1,2000)}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
    <noscript>
       <link rel="stylesheet" href="/css/app.css?id=387">
    </noscript>
@@ -39,7 +42,7 @@
    <meta property="og:image:width" content="720" />
    <meta property="og:image:height" content="700" />
    <meta property="og:image:type" content="image/jpeg" />
-   <meta property="og:image" content="{{ isset($seo['image']) ? $seo['image'] : 'https://autofactorng.com/images/logo/autofactor_logo.png' }}" />
+   <meta property="og:image" content="{{ isset($seo['image']) ? $seo['image'] : '/images/logo/autofactor_logo.png' }}" />
    <meta name="twitter:site" content="@autofactorng">
    <meta name="twitter:card" content="summary_large_image">
    <meta name="twitter:title" content="{{ isset($seo['title']) ? $seo['title'] : $system_settings->meta_title }}">
