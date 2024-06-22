@@ -28,9 +28,7 @@
    <link rel="stylesheet" href="https://autofactorng.com/css/app.css">
 
 
-   <noscript>
-      <link rel="stylesheet" href="/css/app.css?id=387">
-   </noscript>
+
    <meta property="og:locale" content="en_US">
    <meta property="og:type" content="{{ isset($seo['type']) ? $seo['type'] : 'website' }}">
    <meta property="og:site_name" content="Autofactorng">
