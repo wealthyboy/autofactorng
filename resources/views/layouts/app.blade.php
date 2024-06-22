@@ -28,7 +28,6 @@
 
    <link rel="stylesheet" href="https://autofactorng.com/css/app.css">
 
-
    <link rel="preload" href="https://autofactorng.com/css/app.css?id={{ rand(1,2000)}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
    <noscript>
