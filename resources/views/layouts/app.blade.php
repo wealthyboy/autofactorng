@@ -10,11 +10,12 @@
    <title>{{ isset($page_title) ? $page_title .'   '.config('app.name') :  $system_settings->meta_title  }}</title>
    <meta property="og:title" content="{{ isset($seo['page_title']) ? $seo['page_title'] : $system_settings->meta_title }}">
    <meta name="description" content="{{ isset($seo['page_meta_description'])  ? $seo['page_meta_description'] : $system_settings->meta_description }}">
-   <meta name="keywords" content="{{ isset($seo['meta_tag_keywords'])  ? $seo['meta_tag_keywords'] : $system_settings->meta_tag_keywords }}" />
+   <meta name="keywords" content="{{  isset($seo['meta_tag_keywords'])  ? $seo['meta_tag_keywords'] : $system_settings->meta_tag_keywords }}" />
    <link rel="canonical" href="{{ Config('app.url') }}">
    <meta name="author" content="AuofactorNG">
-   <link rel="preload" href="https://autofactorng.com/fonts/AutoFactorCond-Heavy.woff2" as="font" type="font/woff2" crossorigin>
-   <link rel="preload" href="https://autofactorng.com/fonts/AutoFactorCond-Medium.woff2" as="font" type="font/woff2" crossorigin>
+
+
+   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 
 
@@ -23,12 +24,14 @@
    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon_io/favicon.ico">
    <link rel="icon" href="/images/favicon_io/favicon.ico" type="image/x-icon">
    <link rel="apple-touch-icon" href="/images/favicon_io/favicon-96x96.png">
+   <link rel="preload" href="https://autofactorng.com/fonts/AutoFactorCond-Heavy.woff2" as="font" type="font/woff2" crossorigin>
+   <link rel="preload" href="https://autofactorng.com/fonts/AutoFactorCond-Medium.woff2" as="font" type="font/woff2" crossorigin>
    <!-- Main CSS File -->
 
-   <link rel="stylesheet" href="https://autofactorng.com/css/app.css">
-
-
-
+   <link rel="stylesheet" href="https://autofactorng.com/css/app.css?id={{ rand(1,2000)}}">
+   <noscript>
+      <link rel="stylesheet" href="https://autofactorng.com/css/app.css?id=387">
+   </noscript>
    <meta property="og:locale" content="en_US">
    <meta property="og:type" content="{{ isset($seo['type']) ? $seo['type'] : 'website' }}">
    <meta property="og:site_name" content="Autofactorng">
@@ -520,7 +523,6 @@
 
    <script src="/js/jquery.min.js"></script>
    <script src="/js/app.js?id={{ rand(1,2000)}}"></script>
-
 
 
    @yield('page-scripts')
