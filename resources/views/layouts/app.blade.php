@@ -13,6 +13,11 @@
    <meta name="keywords" content="{{  isset($seo['meta_tag_keywords'])  ? $seo['meta_tag_keywords'] : $system_settings->meta_tag_keywords }}" />
    <link rel="canonical" href="{{ Config('app.url') }}">
    <meta name="author" content="AuofactorNG">
+   <link rel="preload" href="https://autofactorng.com/fonts/AutoFactorCond-Heavy.woff2" as="font" type="font/woff2" crossorigin>
+   <link rel="preload" href="https://autofactorng.com/fonts/AutoFactorCond-Medium.woff2" as="font" type="font/woff2" crossorigin>
+   <link rel="preload" href="https://autofactorng.com/css/app.css" as="style">
+   <link rel="preload" href="https://autofactorng.com/js/app.js" as="script">
+
 
 
    <!-- Favicon -->
