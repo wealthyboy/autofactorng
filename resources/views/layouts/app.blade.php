@@ -15,7 +15,6 @@
    <meta name="author" content="AuofactorNG">
    <link rel="preload" href="https://autofactorng.com/fonts/AutoFactorCond-Heavy.woff2" as="font" type="font/woff2" crossorigin>
    <link rel="preload" href="https://autofactorng.com/fonts/AutoFactorCond-Medium.woff2" as="font" type="font/woff2" crossorigin>
-   <link rel="preload" href="https://autofactorng.com/css/app.css" as="style">
 
 
 
@@ -28,7 +27,6 @@
 
    <link rel="stylesheet" href="https://autofactorng.com/css/app.css">
 
-   <link rel="preload" href="https://autofactorng.com/css/app.css?id={{ rand(1,2000)}}" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
    <noscript>
       <link rel="stylesheet" href="/css/app.css?id=387">
