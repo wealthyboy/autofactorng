@@ -14,8 +14,9 @@
    <link rel="canonical" href="<?php echo e(Config('app.url')); ?>">
    <meta name="author" content="AuofactorNG">
 
-
    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+   <link rel="preload" href="https://autofactorng.com/css/app.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 
 
@@ -24,11 +25,9 @@
    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon_io/favicon.ico">
    <link rel="icon" href="/images/favicon_io/favicon.ico" type="image/x-icon">
    <link rel="apple-touch-icon" href="/images/favicon_io/favicon-96x96.png">
-   <link rel="preload" href="https://autofactorng.com/fonts/AutoFactorCond-Heavy.woff2" as="font" type="font/woff2" crossorigin>
-   <link rel="preload" href="https://autofactorng.com/fonts/AutoFactorCond-Medium.woff2" as="font" type="font/woff2" crossorigin>
    <!-- Main CSS File -->
 
-   <link rel="stylesheet" href="https://autofactorng.com/css/app.css?id=<?php echo e(rand(1,2000)); ?>">
+   <link rel="stylesheet" href="/css/app.css?id=<?php echo e(rand(10, 3000)); ?>">
    <noscript>
       <link rel="stylesheet" href="https://autofactorng.com/css/app.css?id=387">
    </noscript>
