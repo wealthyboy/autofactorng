@@ -24,11 +24,9 @@
    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon_io/favicon.ico">
    <link rel="icon" href="/images/favicon_io/favicon.ico" type="image/x-icon">
    <link rel="apple-touch-icon" href="/images/favicon_io/favicon-96x96.png">
-   <link rel="preload" href="https://autofactorng.com/fonts/AutoFactorCond-Heavy.woff2" as="font" type="font/woff2" crossorigin>
-   <link rel="preload" href="https://autofactorng.com/fonts/AutoFactorCond-Medium.woff2" as="font" type="font/woff2" crossorigin>
    <!-- Main CSS File -->
 
-   <link rel="stylesheet" href="https://autofactorng.com/css/app.css?id={{ rand(1,2000)}}">
+   <link rel="stylesheet" href="https://autofactorng.com/css/app.css">
    <noscript>
       <link rel="stylesheet" href="https://autofactorng.com/css/app.css?id=387">
    </noscript>
