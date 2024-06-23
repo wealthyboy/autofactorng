@@ -265,8 +265,8 @@ class Order extends Model
 	public  function dispatch()
 	{
 		return [
-			'David',
-			'Stephen',
+			'New Dispatch',
+			'Henry',
 			'Emem',
 			'WayBill',
 			'Ext Dispatch',
