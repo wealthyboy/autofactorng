@@ -84,7 +84,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <a href="/" class="logo"><img src="https://autofactor.ng/images/logo/autofactor_logo.png"
+                        <a href="/" class="logo"><img src="https://autofactorng.com/images/logo/autofactor_logo.png"
                                 alt="Autofactor  Logo" /></a>
                         <button type="button" data-bs-dismiss="modal" aria-label="Close" ref="btnclose" id="btn-close"
                             class="bg-transparent">
