@@ -1,16 +1,13 @@
-@extends('layouts.checkout')
+@extends('layouts.app')
 
 @section('content')
 <section style="height: 580px;">
-   <div   class="container   full-bg">
+   <div class="container   full-bg">
       <div class="row">
-         <div  class="col-xl-12 col-lg-12 py-4 ">
+         <div class="col-xl-12 col-lg-12 py-4 ">
 
 
             <h2 class="font-weight-bolder">Buy now pay later</h2>
-
-
-
             <div class="card-body">
 
                <p>A plan that affords you the breathing space you need to meet your car autoparts and accessories needs without breaking the bank.</p>

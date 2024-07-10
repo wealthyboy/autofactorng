@@ -626,3 +626,10 @@ footer a {
     padding: 0px;
     position: relative;
 }
+
+.list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #342c27;
+    border-color: #342c27;
+}
