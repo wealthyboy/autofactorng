@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class MakeModelYearEngine extends Model
+class MakeModelYear extends Model
 {
     use HasFactory;
 
@@ -54,7 +54,7 @@ class MakeModelYearEngine extends Model
             if ($request->filled('model_id')) {
                 $response = self::getEngines($request->model_id, $request->year);
             }
-
+ 
             return $response;
         }
 

@@ -62,7 +62,9 @@ class HomeController extends Controller
             ->first();
 
         $stats = [];
-        $stats['Orders'] = Order::where('status', '!=', 'Cancelled')->whereMonth('created_at', date('m'))->count();
+        $stats['Orders'] = Order::where('status', '!=', 'Cancelled')->whereMonth('created_at', Carbon::now()->month)
+        ->whereYear('created_at', Carbon::now()->year)
+        ->count();
         $stats['Customers'] = (new User())->customers()->count();
         $stats['New Customers'] = $this->getSingleEmailOrders();
         $stats['Return Customers'] =  $stats['Orders'] - $this->getSingleEmailOrders();

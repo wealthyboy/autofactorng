@@ -8,9 +8,9 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
    <title>{{ isset($page_title) ? $page_title .'   '.config('app.name') :  $system_settings->meta_title  }}</title>
-   <meta property="og:title" content="{{ isset($seo['page_title']) ? $seo['page_title'] : $system_settings->meta_title }}">
-   <meta name="description" content="{{ isset($seo['page_meta_description'])  ? $seo['page_meta_description'] : $system_settings->meta_description }}">
-   <meta name="keywords" content="{{  isset($seo['meta_tag_keywords'])  ? $seo['meta_tag_keywords'] : $system_settings->meta_tag_keywords }}" />
+   <meta property="og:title" content="{{ isset($seo['page_title']) ? $seo['page_title'] : optional($system_settings)->meta_title }}">
+   <meta name="description" content="{{ isset($seo['page_meta_description'])  ? $seo['page_meta_description'] : optional($system_settings)->meta_description }}">
+   <meta name="keywords" content="{{  isset($seo['meta_tag_keywords'])  ? $seo['meta_tag_keywords'] : optional($system_settings)->meta_tag_keywords }}" />
    <link rel="canonical" href="{{ Config('app.url') }}">
    <meta name="author" content="AuofactorNG">
 
@@ -28,18 +28,16 @@
    <!-- Main CSS File -->
 
    <link rel="stylesheet" href="/css/app.css?id={{ rand(10, 3000) }}">
-   <noscript>
-      <link rel="stylesheet" href="https://autofactorng.com/css/app.css?id=387">
-   </noscript>
+ 
    <meta property="og:locale" content="en_US">
    <meta property="og:type" content="{{ isset($seo['type']) ? $seo['type'] : 'website' }}">
    <meta property="og:site_name" content="Autofactorng">
-   <meta property="og:url" content="{{ isset($seo['url']) ? $seo['url'] : 'https://autofactorng.com' }}">
-   <meta property="og:description" content="{{ isset($seo['page_meta_description']) ? $seo['page_meta_description'] : $system_settings->meta_description }}">
+   <meta property="og:url" content="{{ isset($seo['url']) ? $seo['url'] : 'https://autoglass.ng' }}">
+   <meta property="og:description" content="{{ isset($seo['page_meta_description']) ? $seo['page_meta_description'] : optional($system_settings)->meta_description }}">
    <meta property="og:image:width" content="720" />
    <meta property="og:image:height" content="700" />
    <meta property="og:image:type" content="image/jpeg" />
-   <meta property="og:image" content="{{ isset($seo['image']) ? $seo['image'] : 'https://autofactorng.com/images/logo/autofactor_logo.png' }}" />
+   <meta property="og:image" content="{{ isset($seo['image']) ? $seo['image'] : 'https://autoglass.ng/images/logo/autofactor_logo.png' }}" />
    <meta name="twitter:site" content="@autofactorng">
    <meta name="twitter:card" content="summary_large_image">
    <meta name="twitter:title" content="{{ isset($seo['title']) ? $seo['title'] : $system_settings->meta_title }}">
