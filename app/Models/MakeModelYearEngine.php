@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class MakeModelYear extends Model
+class MakeModelYearEngine extends Model
 {
     use HasFactory;
 
