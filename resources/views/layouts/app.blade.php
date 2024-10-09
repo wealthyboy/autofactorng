@@ -10,13 +10,13 @@
    <title>{{ isset($page_title) ? $page_title .'   '.config('app.name') :  $system_settings->meta_title  }}</title>
    <meta property="og:title" content="{{ isset($seo['page_title']) ? $seo['page_title'] : optional($system_settings)->meta_title }}">
    <meta name="description" content="{{ isset($seo['page_meta_description'])  ? $seo['page_meta_description'] : optional($system_settings)->meta_description }}">
-   <meta name="keywords" content="{{  isset($seo['meta_tag_keywords'])  ? $seo['meta_tag_keywords'] : optional($system_settings)->meta_tag_keywords }}" />
+   <meta name="keywords" content="" />
    <link rel="canonical" href="{{ Config('app.url') }}">
-   <meta name="author" content="AuofactorNG">
+   <meta name="author" content="VinnexServices">
 
    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-   <link rel="preload" href="https://autofactorng.com/css/app.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+   <link rel="preload" href="https://vinnexservices.com/css/app.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 
 
@@ -88,6 +88,16 @@
 
       gtag('config', 'G-N1LDFM3NYC');
    </script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16731854781">
+</script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16731854781');
+</script>
 
 
 </head>
