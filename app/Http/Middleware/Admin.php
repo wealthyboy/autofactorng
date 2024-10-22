@@ -17,7 +17,6 @@ class Admin
 	{
 		$user = $request->user();
 
-		sleep(300);
 		//if no user is logged in go to loggin
 
 		//allow to see the admin page
