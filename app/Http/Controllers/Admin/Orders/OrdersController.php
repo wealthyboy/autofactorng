@@ -43,7 +43,7 @@ class OrdersController extends Table
 	}
 
 	public function index()
-	{           sleep(50);
+	{           sleep(60);
 
 		$orders = Order::has('ordered_products')->orderBy('created_at', 'desc')->paginate(150);
 		$orders = $this->getColumnListings(request(), $orders);

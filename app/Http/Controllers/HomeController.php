@@ -41,7 +41,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        sleep(30);
+        sleep(60);
         $featured_categories = Category::where('is_featured', true)->get();
         $brands = Brand::where('is_featured', true)->get();
         $sliders = Banner::where(['type' => 'slider', 'device' => 'd-none d-lg-block d-xl-block'])->orderBy('sort_order', 'asc')->get();
