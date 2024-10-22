@@ -53,6 +53,9 @@ class HomeController extends Controller
         // dd(config('services.goggle.client_id'));
         $now = Carbon::now();
 
+        sleep(30);
+
+
 
         $top_selling_product = OrderedProduct::has('order')->select('product_id')
             ->groupBy('product_id')
