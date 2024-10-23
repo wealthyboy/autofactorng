@@ -53,7 +53,6 @@ class HomeController extends Controller
         // dd(config('services.goggle.client_id'));
         $now = Carbon::now();
 
-        sleep(120);
 
 
 

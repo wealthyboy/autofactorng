@@ -34,7 +34,6 @@ class ProductsController extends Controller
      */
     public function  index(Request $request, Builder $builder, Category $category)
     {
-        sleep(120);
 
         $page_title = $category->title;
         $meta_tag_keywords = $category->keywords;
@@ -518,7 +517,6 @@ class ProductsController extends Controller
     public function show(Request $request, Category $category, Product $product)
     {
         session(['fitsProducts' => null]);
-        sleep(120);
 
         $page_title = "Shop - " . $product->name;
         $favorites = '';
