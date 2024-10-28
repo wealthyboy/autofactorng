@@ -37,7 +37,6 @@ class AddressController extends Controller
 
     public function index(Request $request)
     {
-        // sleep(30);
         return $this->allAddress();
     }
 
