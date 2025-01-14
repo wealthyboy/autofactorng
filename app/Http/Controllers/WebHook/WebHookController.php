@@ -34,48 +34,34 @@ class WebHookController extends Controller
     public function payment(Request $request)
     {
 
-        try {
-            DB::beginTransaction();
+
+        Log::info($request->all());
+        $input =  $request->data['metadata']['custom_fields'][0];
+
+        if ($input['type'] == 'order_from_paystack') {
 
             Log::info($request->all());
-            $input =  $request->data['metadata']['custom_fields'][0];
+            $input = $request->data['metadata']['custom_fields'][0];
+            $user = User::findOrFail($input['customer_id']);
+            $carts = Cart::find($input['cart']);
 
-            if ($input['type'] == 'order_from_paystack') {
-
-                Log::info($request->all());
-                $input    =  $request->data['metadata']['custom_fields'][0];
-                $user     =  User::findOrFail($input['customer_id']);
-                $carts    =  Cart::find($input['cart']);
-
-                if (null == $carts) {
-                    return  http_response_code(200);
-                }
-
-                $payment_method = $request->data['authorization']['channel'];
-                $ip = $request->data['ip_address'];
-                $order = Order::checkout($input, $payment_method,  $ip,  $carts,  $user);
-                $admin_emails = explode(',', $this->settings->alert_email);
-                $sub_total = Order::subTotal($order);
-
-                Order::getCoupon($order, $sub_total);
-                Order::sendMail($user, $order, $sub_total);
-                Voucher::inValidate($input['coupon']);
-
-                DB::commit();
-
-
-                return http_response_code(200);
+            if (null == $carts) {
+                return  http_response_code(200);
             }
-        } catch (\Throwable $th) {
 
-            Log::info("Custom error :" . $th);
-            Log::info("Custom error :" . $th);
-            $err = new Error();
-            $err->error = $th->getMessage();
-            $err->save();
+            $payment_method = $request->data['authorization']['channel'];
+            $ip = $request->data['ip_address'];
+            $order = Order::checkout($input, $payment_method,  $ip,  $carts,  $user);
+            $admin_emails = explode(',', $this->settings->alert_email);
+            $sub_total = Order::subTotal($order);
 
-            DB::rollBack();
+            Order::getCoupon($order, $sub_total);
+            Order::sendMail($user, $order, $sub_total);
+            Voucher::inValidate($input['coupon']);
+
+            return http_response_code(200);
         }
+      
 
         return http_response_code(200);
     }
@@ -91,7 +77,6 @@ class WebHookController extends Controller
     {
 
 
-        try {
             $data = json_decode($request->data);
             $uuid = $data->clientOrderReference;
             $pending_cart = PendingCart::where('uuid', $uuid)->first();
@@ -167,15 +152,11 @@ class WebHookController extends Controller
 
             //delete cart
 
-        } catch (\Throwable $th) {
-            Log::info("Custom error :" . $th);
-            $err = new Error();
-            $err->error = $th;
-            $err->save();
-            // Notification::route('mail', 'jacob.atam@gmail.com')
-            //     ->notify(new ErrorNotification($th));
-        }
-
+            // Log::info("Custom error :" . $th);
+            // $err = new Error();
+            // $err->error = $th;
+            // $err->save();
+           
         return http_response_code(200);
     }
 }
