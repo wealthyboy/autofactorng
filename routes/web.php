@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
     Route::get('/', 'Admin\HomeController@index')->name('admin_home');
     Route::get('/export', 'Admin\Exports\ExportsController@index');
