@@ -40,7 +40,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('admin'); 
+        $this->middleware('admin'); 
     }
 
     public function index(Request $request)
