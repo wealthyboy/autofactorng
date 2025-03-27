@@ -67,10 +67,12 @@
                                         prices.total >
                                         parseInt(walletBalance.wallet_balance)
                                             ? "(Add  ₦" +
-                                              (prices.total -
-                                                  parseInt(
-                                                      walletBalance.wallet_balance
-                                                  )) +
+                                              $filters.formatNumber(
+                                                  prices.total -
+                                                      parseInt(
+                                                          walletBalance.wallet_balance
+                                                      )
+                                              ) +
                                               ")"
                                             : ""
                                     }}
