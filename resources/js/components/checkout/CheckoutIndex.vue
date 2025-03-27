@@ -67,10 +67,10 @@
                                         prices.total >
                                         parseInt(walletBalance.wallet_balance)
                                             ? "Add" +
-                                              prices.total -
-                                              parseInt(
-                                                  walletBalance.wallet_balance
-                                              )
+                                              (prices.total -
+                                                  parseInt(
+                                                      walletBalance.wallet_balance
+                                                  ))
                                             : ""
                                     }}
                                     <i class="fa fa-arrow-right"></i
