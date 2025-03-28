@@ -73,19 +73,22 @@
                                     }"
                                 >
                                     Pay with wallet
-                                    {{
-                                        parseInt(walletBalance.wallet_balance) >
-                                        1
-                                            ? "(Add  " +
-                                              $filters.formatNumber(
-                                                  prices.total -
-                                                      parseInt(
-                                                          walletBalance.wallet_balance
-                                                      )
-                                              ) +
-                                              ")"
-                                            : ""
-                                    }}
+                                    <span class="bold">
+                                        {{
+                                            parseInt(
+                                                walletBalance.wallet_balance
+                                            ) > 1
+                                                ? "(Add  " +
+                                                  $filters.formatNumber(
+                                                      total -
+                                                          parseInt(
+                                                              walletBalance.wallet_balance
+                                                          )
+                                                  ) +
+                                                  ")"
+                                                : ""
+                                        }}</span
+                                    >
                                     <i class="fa fa-arrow-right"></i
                                 ></a>
                                 <a
@@ -211,6 +214,11 @@ export default {
         }),
 
         activeAddress() {},
+        remainingBalance() {
+            return (
+                this.prices.total - parseInt(this.walletBalance.wallet_balance)
+            );
+        },
     },
 
     created() {
@@ -236,8 +244,7 @@ export default {
         checkoutWithWallet: function (e) {
             if (parseInt(this.walletBalance.wallet_balance) > 1) {
                 let total =
-                    this.prices.total -
-                    parseInt(this.walletBalance.wallet_balance);
+                    this.total - parseInt(this.walletBalance.wallet_balance);
 
                 let context = this;
                 var cartIds = [];

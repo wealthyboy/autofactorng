@@ -4,6 +4,7 @@
 /public/images/products
 /public/images/banners/*
 /public/images/brands
+ storage/framework/views/*
 
 /public/images/category
 /public/images/brands

@@ -194,7 +194,6 @@ class CheckoutController extends Controller
             $error['error'] = 'Coupon is invalid ';
             return response()->json($error, 422);
         } else {
-
             if ($coupon->is_fixed) {
                 $new_total = $cart_total - $coupon->amount;
                 $total['sub_total'] = round($new_total, 0);
@@ -204,6 +203,9 @@ class CheckoutController extends Controller
                 $total['percent'] = $coupon->amount . '%  percent off';
                 return response()->json($total, 200);
             }
+
+           // dd("wwww");
+
 
             $new_total = ($coupon->amount * $cart_total) / 100;
             $new_total = $cart_total - $new_total;
