@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         $user->name = 'JAcob';
         $user->last_name = 'Atam';
         $user->email = 'jacob.atam@gmail.com';
-        $user->phone_number =  '08069389886';
+       // $user->phone_number =  '08069389886';
         $user->address = '15 daranijo street';
         $user->state_id = '2';
         $user->city = 'lagos';

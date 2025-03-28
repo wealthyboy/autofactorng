@@ -61,11 +61,21 @@
                                     href="#"
                                     @click.prevent="checkoutWithWallet($event)"
                                     class="btn btn-block btn-dark w-100 mb-2"
+                                    :class="{
+                                        'pe-none':
+                                            parseInt(
+                                                walletBalance.wallet_balance
+                                            ) < 1,
+                                        disabled:
+                                            parseInt(
+                                                walletBalance.wallet_balance
+                                            ) < 1,
+                                    }"
                                 >
                                     Pay with wallet
                                     {{
-                                        prices.total >
-                                        parseInt(walletBalance.wallet_balance)
+                                        parseInt(walletBalance.wallet_balance) >
+                                        1
                                             ? "(Add  " +
                                               $filters.formatNumber(
                                                   prices.total -
@@ -224,7 +234,68 @@ export default {
         }),
 
         checkoutWithWallet: function (e) {
-            this.checkout(e, "Wallet", "Pay with wallet");
+            if (parseInt(this.walletBalance.wallet_balance) > 1) {
+                let total =
+                    this.prices.total -
+                    parseInt(this.walletBalance.wallet_balance);
+
+                let context = this;
+                var cartIds = [];
+                this.carts.forEach(function (cart, key) {
+                    cartIds.push(cart.id);
+                });
+
+                if (!this.addresses.length) {
+                    this.error =
+                        "You need to save your address before placing your order";
+                    return false;
+                }
+
+                let form = document.getElementById("checkout-form-2");
+                this.order_text = "Please wait. We are almost done......";
+                this.payment_is_processing = true;
+                this.payment_method = "card";
+                var handler = PaystackPop.setup({
+                    key: "pk_live_f781064afdc5336a6210015e9ff17014d28a4f8b",
+                    email: context.cart_meta.user.email,
+                    amount: total * 100,
+                    currency: "NGN",
+                    first_name: context.cart_meta.user.name,
+                    metadata: {
+                        custom_fields: [
+                            {
+                                display_name: context.cart_meta.user.name,
+                                customer_id: context.cart_meta.user.id,
+                                coupon: context.coupon_code,
+                                type: "order_from_paystack",
+                                wallet: context.walletBalance.wallet_balance,
+                                shipping_id: context.shipping_id,
+                                shipping_price: context.prices.ship_price,
+                                heavy_item_price:
+                                    context.prices.heavy_item_price,
+                                cart: cartIds,
+                                total: context.total,
+                            },
+                        ],
+                    },
+                    callback: function (response) {
+                        if (response.status == "success") {
+                            context.paymentIsComplete = true;
+                        } else {
+                            this.error = "We could not complete your payment";
+                            context.order_text = "Place Order";
+                        }
+                    },
+                    onClose: function () {
+                        context.order_text = "Place Order";
+                        context.checkingout = false;
+                        context.payment_is_processing = false;
+                    },
+                });
+                handler.openIframe();
+            } else {
+                this.checkout(e, "Wallet", "Pay with wallet");
+            }
         },
 
         checkoutWithLagos: function (e) {

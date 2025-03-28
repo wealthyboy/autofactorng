@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Order;
 use App\Models\OrderedProduct;
 use App\Models\Cart;
+use App\Models\WalletBalance;
 
 use App\Models\Voucher;
 
@@ -52,6 +53,9 @@ class WebHookController extends Controller
             $payment_method = $request->data['authorization']['channel'];
             $ip = $request->data['ip_address'];
             $order = Order::checkout($input, $payment_method,  $ip,  $carts,  $user);
+            if ($amount = data_get($input, 'wallet')) {
+                WalletBalance::deductFromWallet($amount, $user);
+            }
             $admin_emails = explode(',', $this->settings->alert_email);
             $sub_total = Order::subTotal($order);
 
