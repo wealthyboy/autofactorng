@@ -488,7 +488,7 @@ class ProductController extends Table
         
             return response()->download($zipFilePath)->deleteFileAfterSend(true);
         } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+            dd($e->getMessage());
         }
     }
 
