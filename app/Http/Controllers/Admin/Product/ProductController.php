@@ -479,10 +479,13 @@ class ProductController extends Table
                 }
                 $zip->close();
             } else {
+                dd(false);
                 return response()->json(['error' => 'Could not create ZIP file'], 500);
             }
         
             if (!File::exists($zipFilePath)) {
+                dd($zipFilePath);
+
                 return response()->json(['error' => 'ZIP file was not created'], 500);
             }
         
