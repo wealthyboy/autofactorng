@@ -460,7 +460,10 @@ class ProductController extends Table
 
     public function downloadProducts()
     {   
-        dd(true);
+        try  
+
+
+
         $folderPath = public_path('images/products'); // Change this if your folder is in a different location
         $zipFileName = 'products.zip';
         $zipFilePath = public_path($zipFileName);
@@ -476,7 +479,7 @@ class ProductController extends Table
             return response()->json(['error' => 'Could not create ZIP file'], 500);
         }
 
-        return response()->download($zipFilePath)->deleteFileAfterSend(true);
+        return response()->download($zipFilePath);
     }
 
 
