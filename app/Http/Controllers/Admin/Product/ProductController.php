@@ -27,7 +27,7 @@ use App\Models\BrandCategory;
 use App\Models\EngineProduct;
 use App\Models\ShippingRate;
 use ZipArchive;
-use File;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -466,35 +466,35 @@ class ProductController extends Table
         
 
         try {
-            $folderPath = public_path('images/products'); 
+            $folderPath = public_path('images/products');
             $zipFileName = 'products.zip';
-            $zipFilePath = public_path($zipFileName);
-        
-            if (!is_dir($folderPath)) {
+            $zipFilePath = storage_path('app/' . $zipFileName); // Use storage instead of public
+            
+            if (!File::exists($folderPath)) {
                 return response()->json(['error' => 'Source folder does not exist'], 404);
             }
-        
+    
             $zip = new ZipArchive;
-        
-            if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
-                $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($folderPath));
-        
-                foreach ($iterator as $file) {
-                    if ($file->isFile()) { // Ensure it's a file
-                        $relativePath = substr($file->getPathname(), strlen($folderPath) + 1);
-                        $zip->addFile($file->getPathname(), $relativePath);
-                    }
-                }
-        
-                $zip->close();
-            } else {
+            if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRUE) {
                 return response()->json(['error' => 'Could not create ZIP file'], 500);
             }
-        
-            if (!file_exists($zipFilePath)) {
+    
+            // Use RecursiveIteratorIterator to process files efficiently
+            $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($folderPath));
+    
+            foreach ($files as $file) {
+                if (!$file->isDir()) {
+                    $zip->addFile($file->getRealPath(), str_replace($folderPath . '/', '', $file->getRealPath()));
+                }
+            }
+    
+            $zip->close();
+    
+            // Check if ZIP exists before returning
+            if (!File::exists($zipFilePath)) {
                 return response()->json(['error' => 'ZIP file was not created'], 500);
             }
-        
+    
             return response()->download($zipFilePath)->deleteFileAfterSend(true);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
