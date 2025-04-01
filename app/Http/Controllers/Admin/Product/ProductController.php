@@ -472,6 +472,9 @@ class ProductController extends Table
             }
         
             $zip = new ZipArchive;
+
+            dd($zip);
+
             if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
                 $files = File::allFiles($folderPath);
                 foreach ($files as $file) {
