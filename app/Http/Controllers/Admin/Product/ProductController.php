@@ -462,24 +462,34 @@ class ProductController extends Table
     {   
         
 
-
-
-        $folderPath = public_path('images/products'); // Change this if your folder is in a different location
-        $zipFileName = 'products.zip';
-        $zipFilePath = public_path($zipFileName);
-
-        $zip = new ZipArchive;
-        if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
-            $files = File::allFiles($folderPath);
-            foreach ($files as $file) {
-                $zip->addFile($file->getRealPath(), $file->getRelativePathname());
+        try {
+            $folderPath = public_path('images/products'); // Change this if your folder is in a different location
+            $zipFileName = 'products.zip';
+            $zipFilePath = public_path($zipFileName);
+        
+            if (!File::exists($folderPath)) {
+                return response()->json(['error' => 'Source folder does not exist'], 404);
             }
-            $zip->close();
-        } else {
-            return response()->json(['error' => 'Could not create ZIP file'], 500);
+        
+            $zip = new ZipArchive;
+            if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
+                $files = File::allFiles($folderPath);
+                foreach ($files as $file) {
+                    $zip->addFile($file->getRealPath(), $file->getRelativePathname());
+                }
+                $zip->close();
+            } else {
+                return response()->json(['error' => 'Could not create ZIP file'], 500);
+            }
+        
+            if (!File::exists($zipFilePath)) {
+                return response()->json(['error' => 'ZIP file was not created'], 500);
+            }
+        
+            return response()->download($zipFilePath)->deleteFileAfterSend(true);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
-
-        return response()->download($zipFilePath);
     }
 
 
