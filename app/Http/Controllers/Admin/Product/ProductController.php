@@ -26,6 +26,8 @@ use App\Models\AttributeYear;
 use App\Models\BrandCategory;
 use App\Models\EngineProduct;
 use App\Models\ShippingRate;
+use ZipArchive;
+use File;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
@@ -219,6 +221,7 @@ class ProductController extends Table
             'destroy' => true,
             'export' => true,
             'product' => true,
+            'download' => true,
             'export_name' => 'ProductsExport'
         ];
     }
@@ -227,7 +230,6 @@ class ProductController extends Table
     public function makeModelYearSearch(Request $request)
     {
         $collections = MakeModelYearEngine::getMakeModelYearSearch($request);
-
         return view('admin._partials.options', compact('collections'));
     }
 
@@ -452,6 +454,27 @@ class ProductController extends Table
 
         (new Activity)->put("Added a product called" . $name);
         return response()->json($product);
+    }
+
+
+    public function downloadProducts()
+    {
+        $folderPath = public_path('images/products'); // Change this if your folder is in a different location
+        $zipFileName = 'products.zip';
+        $zipFilePath = public_path($zipFileName);
+
+        $zip = new ZipArchive;
+        if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
+            $files = File::allFiles($folderPath);
+            foreach ($files as $file) {
+                $zip->addFile($file->getRealPath(), $file->getRelativePathname());
+            }
+            $zip->close();
+        } else {
+            return response()->json(['error' => 'Could not create ZIP file'], 500);
+        }
+
+        return response()->download($zipFilePath)->deleteFileAfterSend(true);
     }
 
 

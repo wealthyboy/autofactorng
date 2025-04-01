@@ -45,6 +45,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::resource('location', 'Admin\Location\LocationController', ['names' => 'location']);
     Route::resource('engines', 'Admin\Engines\EnginesController', ['names' => 'engines']);
 
+
     //Route::post('register','Admin\Users\UsersController@create')->name('create.admin.users');
 
     Route::resource('permissions', 'Admin\Permission\PermissionsController', ['names' => 'permissions']);
@@ -72,6 +73,9 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::delete('/related_products/{id}', 'Admin\RelatedProducts\RelatedProductsController@destroy');
 
     Route::resource('products', 'Admin\Product\ProductController', ['names' => 'products']);
+
+    Route::get('/download-products', 'Admin\Product\ProductController@downloadProducts');
+
 
     Route::resource('category', 'Admin\Category\CategoryController', ['name' => 'category']);
     Route::post('category/delete/image', 'Admin\Category\CategoryController@undo');

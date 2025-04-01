@@ -14,6 +14,10 @@
             @if ( isset($models['unique']['export']) && $models['unique']['export'])
             <a href="/admin/export?model={{$models['unique']['export_name']}}&name={{$name}}" class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv" type="button" name="button">Export</a>
             @endif
+
+            @if ( isset($models['unique']['download']) && $models['unique']['download'])
+            <a href="/admin/download-products" class="btn btn-outline-primary btn-sm export mb-0 mt-sm-0 mt-1" data-type="csv" type="button" name="button">Download</a>
+            @endif
         </div>
     </div>
 </div>
