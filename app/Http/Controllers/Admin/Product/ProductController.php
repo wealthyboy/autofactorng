@@ -28,6 +28,7 @@ use App\Models\EngineProduct;
 use App\Models\ShippingRate;
 use ZipArchive;
 use File;
+use Illuminate\Support\Facades\Response;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
@@ -463,39 +464,38 @@ class ProductController extends Table
         
 
         try {
-            $folderPath = public_path('images/products'); // Change this if your folder is in a different location
+            $folderPath = public_path('images/products'); 
             $zipFileName = 'products.zip';
             $zipFilePath = public_path($zipFileName);
         
-            if (!File::exists($folderPath)) {
+            if (!is_dir($folderPath)) {
                 return response()->json(['error' => 'Source folder does not exist'], 404);
             }
         
             $zip = new ZipArchive;
-
-
+        
             if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
-                $files = File::allFiles($folderPath);
-                dd($files);
-
-                foreach ($files as $file) {
-                    $zip->addFile($file->getRealPath(), $file->getRelativePathname());
+                $iterator = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($folderPath));
+        
+                foreach ($iterator as $file) {
+                    if ($file->isFile()) { // Ensure it's a file
+                        $relativePath = substr($file->getPathname(), strlen($folderPath) + 1);
+                        $zip->addFile($file->getPathname(), $relativePath);
+                    }
                 }
+        
                 $zip->close();
             } else {
-                dd(false);
                 return response()->json(['error' => 'Could not create ZIP file'], 500);
             }
         
-            if (!File::exists($zipFilePath)) {
-                dd($zipFilePath);
-
+            if (!file_exists($zipFilePath)) {
                 return response()->json(['error' => 'ZIP file was not created'], 500);
             }
         
             return response()->download($zipFilePath)->deleteFileAfterSend(true);
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
