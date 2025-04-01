@@ -457,8 +457,10 @@ class ProductController extends Table
     }
 
 
+
     public function downloadProducts()
-    {
+    {   
+        dd(true);
         $folderPath = public_path('images/products'); // Change this if your folder is in a different location
         $zipFileName = 'products.zip';
         $zipFilePath = public_path($zipFileName);
