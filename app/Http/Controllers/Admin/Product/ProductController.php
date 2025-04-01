@@ -460,7 +460,7 @@ class ProductController extends Table
 
     public function downloadProducts()
     {   
-        try  
+        
 
 
 
