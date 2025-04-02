@@ -7,7 +7,7 @@
         </a>
     </div>
     <div class="col-md-6 ">
-        <a href="/buy-now-pay-later" class="d-block p-0 ">
+        <a href="#" class="d-block p-0 ">
             <div class="align-self-center text-center">
                 <img title="buy now pay later" class="img-fluid image-class" data-src="/images/utils/Autofactor_club.jpg" alt="Buy pay later" srcset="">
             </div>
