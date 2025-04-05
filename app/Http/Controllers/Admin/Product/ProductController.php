@@ -9,6 +9,9 @@ namespace App\Http\Controllers\Admin\Product;
 use App\DataTable\Table;
 use App\Models\Brand;
 use Illuminate\Support\Str;
+use ZipStream\ZipStream;
+use ZipStream\Option\Archive;
+use Illuminate\Support\Facades\File;
 
 
 use App\Models\Image;
@@ -27,7 +30,6 @@ use App\Models\BrandCategory;
 use App\Models\EngineProduct;
 use App\Models\ShippingRate;
 use ZipArchive;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
@@ -467,35 +469,33 @@ class ProductController extends Table
 
         try {
             $folderPath = public_path('images/products');
-            $zipFileName = 'products.zip';
-            $zipFilePath = storage_path('app/' . $zipFileName); // Use storage instead of public
-            
-            if (!File::exists($folderPath)) {
-                return response()->json(['error' => 'Source folder does not exist'], 404);
-            }
-    
-            $zip = new ZipArchive;
-            if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) !== TRUE) {
-                return response()->json(['error' => 'Could not create ZIP file'], 500);
-            }
-    
-            // Use RecursiveIteratorIterator to process files efficiently
-            $files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($folderPath));
-    
-            foreach ($files as $file) {
-                if (!$file->isDir()) {
-                    $zip->addFile($file->getRealPath(), str_replace($folderPath . '/', '', $file->getRealPath()));
-                }
-            }
-    
-            $zip->close();
-    
-            // Check if ZIP exists before returning
-            if (!File::exists($zipFilePath)) {
-                return response()->json(['error' => 'ZIP file was not created'], 500);
-            }
-    
-            return response()->download($zipFilePath)->deleteFileAfterSend(true);
+
+    // Check if folder exists
+    if (!is_dir($folderPath)) {
+        return response()->json(['error' => 'Folder does not exist.'], 404);
+    }
+
+    // Create a new Archive options object
+    $options = new Archive();
+    $options->setSendHttpHeaders(true); // Ensures that the correct headers are sent for the zip file
+
+    // Instantiate ZipStream with the Archive options object
+    $zipStream = new ZipStream('products.zip', $options);
+
+    // Get all files in the folder
+    $files = File::allFiles($folderPath);
+
+    foreach ($files as $file) {
+        // Generate the relative path inside the zip
+        $relativePath = str_replace($folderPath . DIRECTORY_SEPARATOR, '', $file->getRealPath());
+        
+        // Add each file to the zip
+        $zipStream->addFileFromPath($relativePath, $file->getRealPath());
+    }
+
+    // Finish the zip stream and send it to the browser
+    $zipStream->finish();
+    exit;
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
