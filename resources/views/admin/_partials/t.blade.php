@@ -43,10 +43,9 @@
                 <table class="table table-flush dataTable-table  align-items-center mb-0">
                     <thead>
                         <tr class="table-heading">
-                            @if( isset($models['meta']['show_checkbox']) && $models['meta']['show_checkbox'])
-
+                            @if( $models['unique']['show_checkbox'])
                             <th data-sortable="" class="">
-                                <div class="form-check ">
+                                <div class="form-check">
                                     <input onclick="$('input[name*=\'selected[]\']').prop('checked', this.checked)" class="form-check-input" type="checkbox" id="customCheck5">
                                 </div>
                             </th>
@@ -66,7 +65,7 @@
                     <tbody>
                         @foreach($models['items'][0] as $key => $value)
                         <tr class="table-body">
-                            @if( isset($models['meta']['show_checkbox']) && $models['meta']['show_checkbox'])
+                            @if( $models['unique']['show_checkbox'])
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="form-check">

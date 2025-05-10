@@ -22,7 +22,6 @@ class TrackUserActivity
         $response = $next($request);
         $sessionId = session()->getId();
         $path = $request->fullUrl();
-
         UserTracking::updateOrInsert(
             ['session_id' => $sessionId,  'page_url' => $path],
             [
@@ -36,7 +35,7 @@ class TrackUserActivity
                 'method' => $request->method(),
                 'product_id' => $request->routeIs('products.show') ? optional($request->route('product'))->id : null,
                 'ip_address' => $request->ip(),
-                'action' => $request->getQueryString() ? 'search' : "viewed",
+                'action' => $request->action ?  $request->action : "viewed",
                 'page_url' => $request->fullUrl(),
                 'visited_at' => now(),
                 'created_at' => now(),

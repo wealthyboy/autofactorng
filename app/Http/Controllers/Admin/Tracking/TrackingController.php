@@ -84,23 +84,18 @@ class TrackingController extends Table
         return view('admin.tracking.index', compact('trackings', 'sourceCounts'));
     }
 
-
-
-
-
     /**
      * Show the form for creating a new resource.
      *
      * return \Illuminate\Http\Response
      */
-    public function create()
+    public function show($id)
     {
-        User::canTakeAction(User::canCreate);
-        return view('admin.forum.create');
+
+        $userTracking = UserTracking::find($id);
+        $userTrackings = UserTracking::where('ip_address', $userTracking->ip_address)->orderByDesc('id')->get();
+        return view('admin.tracking.show', compact('userTrackings'));
     }
-
-    public function show() {}
-
 
     public function routes()
     {
@@ -134,52 +129,13 @@ class TrackingController extends Table
             'edit' => false,
             'search' => false,
             'add' => false,
-            'destroy' => true,
+            'destroy' => false,
             'export' => false,
             'product' => false,
+            'show_checkbox' => false
         ];
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * param  \Illuminate\Http\Request  $request
-     * return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $forum = Topic::create($request->all());
-        return  redirect()->to('/admin/forum');
-    }
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        User::canTakeAction(User::canUpdate);
-        $topic = Topic::find($id);
-        return view('admin.forum.edit', compact('topic'));
-    }
-
-
-    public function update(Request $request, $id)
-    {
-
-
-        // $this->validate($request, [
-        //     'category_id' => 'required',
-        //     'product_name' => 'required',
-        // ]);
-
-
-        $data = $request->all();
-        $topic = Topic::find($id);
-        $topic->update($data);
-        return  redirect()->to('/admin/forum');
-    }
+    public function update(Request $request, $id) {}
 }

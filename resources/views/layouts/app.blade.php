@@ -28,7 +28,7 @@
    <!-- Main CSS File -->
 
    <link rel="stylesheet" href="/css/app.css?id={{ rand(10, 3000) }}">
- 
+
    <meta property="og:locale" content="en_US">
    <meta property="og:type" content="{{ isset($seo['type']) ? $seo['type'] : 'website' }}">
    <meta property="og:site_name" content="Autofactorng">
@@ -89,14 +89,17 @@
       gtag('config', 'G-N1LDFM3NYC');
    </script>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16731854781"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16731854781"></script>
+   <script>
+      window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'AW-16731854781');
-</script>
+      function gtag() {
+         dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'AW-16731854781');
+   </script>
 
 
 
@@ -515,7 +518,7 @@
 
 
    <div class="watsapp me-3">
-      <a class="chat-on-watsapp d-flex justify-content-between align-items-center" target="_blank" rel="noreferrer" href="https://wa.me/+23409081155505">
+      <a data-track="whatsapp" class="chat-on-watsapp d-flex justify-content-between align-items-center" target="_blank" href="https://wa.me/+23409081155505">
          <span class="d-flex flex-column me-2">
             <span class="fs-6">Need Help?</span>
             <span class="fs-5">Chat with us</span>
@@ -540,14 +543,24 @@
 
 
       $(function() {
-
-
-
-
-
          $('.slider-loader').addClass('d-none')
          $('.slider-section').removeClass('d-none')
+      });
 
+      $('a[data-track="whatsapp"]').on('click', function(e) {
+
+         const link = $(this).attr('href');
+
+         $.ajax({
+            url: '/',
+            method: 'GET',
+            data: {
+               _token: '{{ csrf_token() }}',
+               action: 'whatsapp_click',
+               url: link
+            },
+
+         });
       });
 
       $('#n-letter').on('submit', function(e) {

@@ -59,6 +59,7 @@ abstract class Table extends Controller
             'add' => false,
             'delete' => false,
             'export' => true,
+            'show_checkbox' => true,
             'actions' => []
         ];
     }
