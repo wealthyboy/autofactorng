@@ -112,8 +112,9 @@
 
                             @if (isset($models['unique']['show']) && $models['unique']['show'])
                             <td>
-                                <a href="{{ $models['meta']['urls'][$key]['url'] }}" data-bs-toggle="tooltip" data-bs-original-title="View">
+                                <a href="{{  route($models['routes']['show'][0], [ $models['routes']['show'][1] => isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null  ]) }}" data-bs-toggle="tooltip" data-bs-original-title="View">
                                     <i class="material-symbols-outlined text-secondary position-relative text-lg">preview</i>
+
                                 </a>
                             </td>
                             @endif
@@ -125,7 +126,7 @@
                                     <i class="material-symbols-outlined text-secondary position-relative text-lg">receipt</i>
                                 </a>
                             </td>
-
+                            rum
                             <td class="text-xs font-weight-normal">
                                 <a href="{{  route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null  ]) }}" rel="tooltip" class="" data-original-title="" title="Edit">
                                     <span class="material-symbols-outlined text-secondary position-relative text-lg">redo</span>
@@ -189,7 +190,7 @@
             <div class="col-6 col-sm-4 col-md-3 col-lg-12">
                 <div href="#" class="icon-box nounderline text-center p-5">
                     <i class=""></i>
-                    <h5 class="porto-sicon-title mx-2">No data yet</h5>
+                    <h5 class="porto-sicon-title mx-2">{{ isset($message) ? $messag : "You have no records"}}</h5>
                 </div>
             </div>
         </div>

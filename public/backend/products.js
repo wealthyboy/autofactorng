@@ -305,8 +305,17 @@ $(document).ready(function () {
         let bText = $('#submit-product-form-text')
         bText.text('Saving....');
         $(".text-danger").remove();
-        let desc = CKEDITOR.instances['phy_description'].getData();
-        let description = CKEDITOR.instances['m-description'].getData();
+
+        let desc,phy_description;
+        
+
+        if (document.querySelector('#phy_description')) {
+            phy_description = CKEDITOR.instances['phy_description'].getData();
+        } 
+
+        if (document.querySelector('#m-description')) {
+            description = CKEDITOR.instances['m-description'].getData();
+        } 
 
         let formData = self.serializeArray();
         formData.push({ name: "phy_desc", value: desc });
@@ -369,8 +378,9 @@ if (document.querySelector('#phy_description')) {
             '/',
         ]
     })
+}
 
-    if (document.querySelector('#phy_description')) {
+    if (document.querySelector('#m-description')) {
         CKEDITOR.replace('m-description', {
             height: '200px',
             width: '100%',
@@ -383,7 +393,8 @@ if (document.querySelector('#phy_description')) {
 
     }
 
-}
+
+
 
 
 

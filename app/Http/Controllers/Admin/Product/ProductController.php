@@ -193,6 +193,25 @@ class ProductController extends Table
         return view('admin.products.create', compact('amps', 'brands', 'categories', 'attributes', 'years', 'helper'));
     }
 
+    public function show()
+    {
+        $filename = 'products_dump.sql';
+
+
+        $command = sprintf(
+            'mysqldump -u%s -p%s %s products --no-create-info',
+            config('database.connections.mysql.username'),
+            config('database.connections.mysql.password'),
+            config('database.connections.mysql.database')
+        );
+
+        $path = storage_path("app/{$filename}");
+
+        exec($command . " > " . escapeshellarg($path));
+
+        return response()->download($path)->deleteFileAfterSend(true);
+    }
+
 
     public function routes()
     {
@@ -464,42 +483,43 @@ class ProductController extends Table
 
 
     public function downloadProducts()
-    {   
-        
+    {
+
 
         try {
             $folderPath = public_path('images/products');
 
-    // Check if folder exists
-    if (!is_dir($folderPath)) {
-        return response()->json(['error' => 'Folder does not exist.'], 404);
-    }
+            // Check if folder exists
+            if (!is_dir($folderPath)) {
+                return response()->json(['error' => 'Folder does not exist.'], 404);
+            }
 
-    // Create a new Archive options object
-    $options = new Archive();
-    $options->setSendHttpHeaders(true); // Ensures that the correct headers are sent for the zip file
+            // Create a new Archive options object
+            $options = new Archive();
+            $options->setSendHttpHeaders(true); // Ensures that the correct headers are sent for the zip file
 
-    // Instantiate ZipStream with the Archive options object
-    $zipStream = new ZipStream('products.zip', $options);
+            // Instantiate ZipStream with the Archive options object
+            $zipStream = new ZipStream('products.zip', $options);
 
-    // Get all files in the folder
-    $files = File::allFiles($folderPath);
+            // Get all files in the folder
+            $files = File::allFiles($folderPath);
 
-    foreach ($files as $file) {
-        // Generate the relative path inside the zip
-        $relativePath = str_replace($folderPath . DIRECTORY_SEPARATOR, '', $file->getRealPath());
-        
-        // Add each file to the zip
-        $zipStream->addFileFromPath($relativePath, $file->getRealPath());
-    }
+            foreach ($files as $file) {
+                // Generate the relative path inside the zip
+                $relativePath = str_replace($folderPath . DIRECTORY_SEPARATOR, '', $file->getRealPath());
 
-    // Finish the zip stream and send it to the browser
-    $zipStream->finish();
-    exit;
+                // Add each file to the zip
+                $zipStream->addFileFromPath($relativePath, $file->getRealPath());
+            }
+
+            // Finish the zip stream and send it to the browser
+            $zipStream->finish();
+            exit;
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
 
 
     /**

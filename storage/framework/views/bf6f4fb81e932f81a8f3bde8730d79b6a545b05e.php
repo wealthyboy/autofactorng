@@ -8,15 +8,15 @@
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
    <title><?php echo e(isset($page_title) ? $page_title .'   '.config('app.name') :  $system_settings->meta_title); ?></title>
-   <meta property="og:title" content="<?php echo e(isset($seo['page_title']) ? $seo['page_title'] : $system_settings->meta_title); ?>">
-   <meta name="description" content="<?php echo e(isset($seo['page_meta_description'])  ? $seo['page_meta_description'] : $system_settings->meta_description); ?>">
-   <meta name="keywords" content="<?php echo e(isset($seo['meta_tag_keywords'])  ? $seo['meta_tag_keywords'] : $system_settings->meta_tag_keywords); ?>" />
+   <meta property="og:title" content="<?php echo e(isset($seo['page_title']) ? $seo['page_title'] : optional($system_settings)->meta_title); ?>">
+   <meta name="description" content="<?php echo e(isset($seo['page_meta_description'])  ? $seo['page_meta_description'] : optional($system_settings)->meta_description); ?>">
+   <meta name="keywords" content="" />
    <link rel="canonical" href="<?php echo e(Config('app.url')); ?>">
-   <meta name="author" content="AuofactorNG">
+   <meta name="author" content="VinnexServices">
 
    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-   <link rel="preload" href="https://autofactorng.com/css/app.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+   <link rel="preload" href="https://vinnexservices.com/css/app.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 
 
@@ -28,14 +28,12 @@
    <!-- Main CSS File -->
 
    <link rel="stylesheet" href="/css/app.css?id=<?php echo e(rand(10, 3000)); ?>">
-   <noscript>
-      <link rel="stylesheet" href="https://autofactorng.com/css/app.css?id=387">
-   </noscript>
+ 
    <meta property="og:locale" content="en_US">
    <meta property="og:type" content="<?php echo e(isset($seo['type']) ? $seo['type'] : 'website'); ?>">
    <meta property="og:site_name" content="Autofactorng">
    <meta property="og:url" content="<?php echo e(isset($seo['url']) ? $seo['url'] : 'https://autofactorng.com'); ?>">
-   <meta property="og:description" content="<?php echo e(isset($seo['page_meta_description']) ? $seo['page_meta_description'] : $system_settings->meta_description); ?>">
+   <meta property="og:description" content="<?php echo e(isset($seo['page_meta_description']) ? $seo['page_meta_description'] : optional($system_settings)->meta_description); ?>">
    <meta property="og:image:width" content="720" />
    <meta property="og:image:height" content="700" />
    <meta property="og:image:type" content="image/jpeg" />
@@ -90,6 +88,17 @@
 
       gtag('config', 'G-N1LDFM3NYC');
    </script>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-16731854781"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-16731854781');
+</script>
+
+
 
 
 </head>

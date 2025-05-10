@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\ColumnFillable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +14,7 @@ use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
-	use HasApiTokens, HasFactory, Notifiable;
+	use HasApiTokens, HasFactory, Notifiable, ColumnFillable;
 
 	//Code: 1 Account ,2 Create , 3 Read , 4 Update ,5 Delete, 6 Reports, 7 Users, 8 Activity, 9 Enable/Disble
 
@@ -36,14 +37,7 @@ class User extends Authenticatable
 	 *
 	 * @var array<int, string>
 	 */
-	protected $fillable = [
-		'name',
-		'last_name',
-		'email',
-		'password',
-		'phone_number',
-		'type'
-	];
+
 
 	/**
 	 * The attributes that should be hidden for serialization.
