@@ -161,6 +161,47 @@
             </li>
 
 
+            <li class="nav-item">
+               <a data-bs-toggle="collapse" href="settings.html#Forum" class="nav-link text-white {{ $helper->active_link(['forum','car_reviews']) }}" aria-controls="Forum" role="button" aria-expanded="false">
+                  <i class="material-symbols-outlined">question_answer</i>
+                  <span class="nav-link-text ms-2 ps-1">Forum</span>
+               </a>
+               <div class="collapse {{ $helper->active_link(['forum','car-reviews','forum-category']) ? 'show' : ''}}" id="Forum">
+                  <ul class="nav">
+
+                     <li class="nav-item ">
+                        <a class="nav-link text-white {{ $helper->active_link(['forums']) }}" href="/admin/forums">
+                           <span class="sidenav-mini-icon"> F </span>
+                           <span class="sidenav-normal  ms-2  ps-1"> Forum <b class="caret"></b></span>
+                        </a>
+                     </li>
+
+                     <li class="nav-item ">
+                        <a class="nav-link text-white {{ $helper->active_link(['forum-category']) }}" href="/admin/forum-category">
+                           <span class="sidenav-mini-icon"> C </span>
+                           <span class="sidenav-normal  ms-2  ps-1"> Forum Category <b class="caret"></b></span>
+                        </a>
+                     </li>
+
+                     <li class="nav-item ">
+                        <a class="nav-link text-white {{ $helper->active_link(['car-reviews']) }}" href="/admin/car-reviews">
+                           <span class="sidenav-mini-icon"> C </span>
+                           <span class="sidenav-normal  ms-2  ps-1"> Car Reviews <b class="caret"></b></span>
+                        </a>
+                     </li>
+
+                  </ul>
+               </div>
+            </li>
+
+            <li class=" nav-item">
+               <a class="nav-link text-white {{ $helper->active_link(['trackings']) }}" href="/admin/trackings">
+                  <i class="material-symbols-outlined opacity-10">track_changes</i>
+                  <span class="nav-link-text ms-2 ps-1"> Tracking </span>
+               </a>
+            </li>
+
+
 
 
             <li class="nav-item">

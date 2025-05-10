@@ -44,6 +44,9 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('orders/dispatch/{id}', 'Admin\Orders\OrdersController@dispatchNote')->name('order.dispatch.note');
     Route::resource('location', 'Admin\Location\LocationController', ['names' => 'location']);
     Route::resource('engines', 'Admin\Engines\EnginesController', ['names' => 'engines']);
+    Route::get('products/download-products-sql', 'Admin\Product\ProductController@downloadProductSql');
+
+
 
 
     //Route::post('register','Admin\Users\UsersController@create')->name('create.admin.users');
@@ -54,10 +57,9 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::post('upload', 'Admin\Uploads\UploadsController@store');
     Route::get('delete/upload', 'Admin\Uploads\UploadsController@destroy');
     Route::resource('users',  'Admin\Users\UsersController', ['names' => 'admin.users']);
+    Route::resource('forums',  'Admin\Forums\ForumController', ['names' => 'admin.forums']);
+
     Route::post('/products/update-price/{id}', 'Admin\Product\ProductController@updatePrice');
-
-
-
     Route::resource('banners', 'Admin\Design\BannersController', ['names' => 'banners']);
     Route::resource('pages', 'Admin\Information\InformationController', ['names' => 'pages']);
     Route::resource('settings', 'Admin\Settings\SettingsController', ['names' => 'settings']);
@@ -89,6 +91,10 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::post('promo-text/create/{id}', 'Admin\PromoText\PromoTextController@store');
     Route::get('promo-text/delete/{id}', 'Admin\PromoText\PromoTextController@destroy')->name('delete.promo.text');
     Route::resource('discounts', 'Admin\Discounts\DiscountsController', ['names' => 'discounts']);
+    Route::resource('forum', 'Admin\Forums\ForumController', ['names' => 'forums']);
+    Route::resource('trackings', 'Admin\Tracking\TrackingController', ['names' => 'trackings']);
+    Route::resource('car-reviews', 'Admin\CarReviews\CarReviewsController', ['names' => 'admin.car_reviews']);
+    Route::resource('forum-category', 'Admin\ForumCategory\ForumCategoryController', ['names' => 'admin.forum-category']);
 });
 
 
@@ -105,63 +111,58 @@ Route::get('/notification', function () {
         ->toMail($user);
 });
 
-
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
-Route::get('/test', [App\Http\Controllers\HomeController::class, 'test']);
-
-Route::get('plans', [App\Http\Controllers\Plans\PlansController::class, 'index']);
-Route::get('buy-now-pay-later', [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index']);
+Route::group(['middleware' => ['tracking']], function () {
 
 
-Route::get('subscribe', [App\Http\Controllers\Subscribe\SubscribeController::class, 'index']);
-Route::get('checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'index']);
-Route::get('products/{category}', 'Products\ProductsController@index');
-Route::get('product/{category}/{product}', 'Products\ProductsController@show');
-Route::get('make-model-year-engine', 'Products\ProductsController@makeModelYearSearch');
-Route::get('auto-complete', 'Products\ProductsController@autoComplete');
-Route::get('search', 'Products\ProductsController@search');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
+    Route::get('/test', [App\Http\Controllers\HomeController::class, 'test']);
+
+    Route::get('plans', [App\Http\Controllers\Plans\PlansController::class, 'index']);
+    Route::get('buy-now-pay-later', [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index']);
+
+
+    Route::get('subscribe', [App\Http\Controllers\Subscribe\SubscribeController::class, 'index']);
+    Route::get('checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'index']);
+    Route::get('products/{category}', 'Products\ProductsController@index');
+    Route::get('product/{category}/{product}', 'Products\ProductsController@show');
+    Route::get('make-model-year-engine', 'Products\ProductsController@makeModelYearSearch');
+    Route::get('auto-complete', 'Products\ProductsController@autoComplete');
+    Route::get('search', 'Products\ProductsController@search');
+    Route::resource('forum', 'Forum\ForumController', ['names' => 'forum']);
 
 
 
+    Route::get('cart', 'Cart\CartController@index');
+    Route::post('cart/meta', 'Cart\CartController@meta');
 
-Route::get('/mailable', function () {
-    $order = Order::find(14205);
-    $total =  DB::table('ordered_products')->select(\DB::raw('SUM(ordered_products.price*ordered_products.quantity) as items_total'))->where('order_id', $order->id)->get();
-    $sub_total = $total[0]->items_total ?? '0.00';
-    $order->currency = '₦';
+    Route::resource('account', 'Account\AccountController', ['names' => 'account']);
+    Route::get('change/password', 'ChangePassword\ChangePasswordController@index');
+    Route::post('change/password', 'ChangePassword\ChangePasswordController@changePassword');
+    Route::get('wallet-balance', 'Wallets\WalletsController@walletBalnce');
+    Route::get('video-tips', 'HowTo\HowToController@index');
 
-    return  new App\Mail\OrderReceipt($order, null, null, $sub_total);
+    Route::post('reset/password',                'Auth\ResetPasswordController@reset');
+
+    Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'wallets']);
+
+    Route::resource('orders', 'Orders\OrdersController', ['names' => 'orders']);
+    Route::get('tracking', 'TrackOrder\TrackOrdersController@index');
+    Route::post('tracking', 'TrackOrder\TrackOrdersController@getOrderStatus');
+
+    Route::resource('address', 'Address\AddressController', ['names' => 'address']);
+
+    Route::get('checkout', 'Checkout\CheckoutController@index')->name('checkout');
+    Route::post('checkout/confirm', 'Checkout\CheckoutController@confirm');
+
+    Route::post('checkout/coupon', 'Checkout\CheckoutController@coupon');
 });
 
-Route::get('cart', 'Cart\CartController@index');
-Route::post('cart/meta', 'Cart\CartController@meta');
-
-Route::resource('account', 'Account\AccountController', ['names' => 'account']);
-Route::get('change/password', 'ChangePassword\ChangePasswordController@index');
-Route::post('change/password', 'ChangePassword\ChangePasswordController@changePassword');
-Route::get('wallet-balance', 'Wallets\WalletsController@walletBalnce');
-Route::get('video-tips', 'HowTo\HowToController@index');
-
-Route::post('reset/password',                'Auth\ResetPasswordController@reset');
-
-Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'wallets']);
-
-Route::resource('orders', 'Orders\OrdersController', ['names' => 'orders']);
-Route::get('tracking', 'TrackOrder\TrackOrdersController@index');
-Route::post('tracking', 'TrackOrder\TrackOrdersController@getOrderStatus');
-
-Route::resource('address', 'Address\AddressController', ['names' => 'address']);
-
-Route::get('checkout', 'Checkout\CheckoutController@index')->name('checkout');
-Route::post('checkout/confirm', 'Checkout\CheckoutController@confirm');
-
-Route::post('checkout/coupon', 'Checkout\CheckoutController@coupon');
 
 
 
 
 
-Route::group(['prefix' => '/api'], function () {
+Route::group(['prefix' => '/api', 'middleware' => ['tracking']], function () {
     Route::get('products/{category}',             'Api\Products\ProductsController@index');
     Route::get('filters/products/{category}',     'Api\Products\ProductsController@filters');
     Route::get('product/{category}/{product}',    'Api\Products\ProductsController@show');
@@ -176,7 +177,7 @@ Route::group(['prefix' => '/api'], function () {
     Route::delete('wishlist/delete/{id}',   'Api\Favorites\FavoritesController@destroy');
     Route::get('blog/{blog}',   'Api\Blog\BlogController@show');
     Route::get('years',   'Api\Years\YearsController@index');
-    Route::post('newsletter/signup',              'Api\NewsLetter\NewsLetterController@store');
+    Route::post('newsletter/signup',  'Api\NewsLetter\NewsLetterController@store');
 });
 
 Route::get('errors',                  'Errors\ErrorsController@index');

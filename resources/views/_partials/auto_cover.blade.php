@@ -7,7 +7,7 @@
         </a>
     </div>
     <div class="col-md-6 ">
-        <a  class="d-block p-0 ">
+        <a href="/forum" class="d-block p-0 ">
             <div class="align-self-center text-center">
                 <img title="Autofactor club" class="img-fluid image-class" data-src="/images/utils/Autofactor_club.jpg" alt="Buy pay later" srcset="">
             </div>
