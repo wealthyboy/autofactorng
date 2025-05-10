@@ -8,7 +8,7 @@
 
         <div class="card-header mb-0 d-flex  border-botoom">
             <h5 class="me-2 mb-0">Page URL:</h5>
-            <span class="" style="max-width: 300px;" title="{{ $data->page_url }}">
+            <span class="" title="{{ $data->page_url }}">
                 {{ $data->page_url }}
             </span>
         </div>
