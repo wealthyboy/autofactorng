@@ -47,8 +47,19 @@ export default {
             });
             let q = query.value;
 
+            if ( q =='') { 
+                $("html, body").css({
+                    overflow: "auto",
+                    height: "auto",
+                });
+            }
+
+
+
             if (typeof q === '' || typeof q === null || typeof q == 'undefined') {
+
                 dBlock.value = "d-none";
+               
                 return;
             }
 
@@ -72,7 +83,8 @@ export default {
         }
 
         function handleFocus() {
-            console.log(true);
+            console.log(query.value)
+
         }
 
         function cancel() {
