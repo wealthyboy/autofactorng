@@ -246,7 +246,8 @@ class OrdersController extends Table
 			'destroy' => true,
 			'export' => true,
 			'order' => true,
-			'export_name' => 'OrdersExport'
+			'export_name' => 'OrdersExport',
+			'show_checkbox' => true
 		];
 	}
 
