@@ -43,10 +43,11 @@ class OrdersController extends Table
 	}
 
 	public function index()
-	{          
+	{
 
 		$orders = Order::has('ordered_products')->orderBy('created_at', 'desc')->paginate(150);
 		$orders = $this->getColumnListings(request(), $orders);
+
 		return view('admin.orders.index', compact('orders'));
 	}
 
@@ -87,126 +88,126 @@ class OrdersController extends Table
 	{
 
 		//try {
-			//DB::beginTransaction();
+		//DB::beginTransaction();
 
-			$email = explode(',', $request->email);
-			$user = User::where('email', $email[0])->first();
-			$input = $request->except('_token');
-			$input['invoice'] = substr(rand(100000, time()), 0, 7);
-			$input['order_type'] = "Offline";
-			$input['user_id'] = null !== $user ? $user->id : null;
-			$input['status'] = "Confirmed";
-			$order = new Order;
-			$order->fill($input);
-			$order->save();
-			foreach (Order::$statuses as $key => $status) {
-				$order_status = new OrderStatus();
-				$order_status->is_updated = false;
-				$order_status->status = $status;
-				$order_status->order_id = $order->id;
-				$order_status->save();
-			}
+		$email = explode(',', $request->email);
+		$user = User::where('email', $email[0])->first();
+		$input = $request->except('_token');
+		$input['invoice'] = substr(rand(100000, time()), 0, 7);
+		$input['order_type'] = "Offline";
+		$input['user_id'] = null !== $user ? $user->id : null;
+		$input['status'] = "Confirmed";
+		$order = new Order;
+		$order->fill($input);
+		$order->save();
+		foreach (Order::$statuses as $key => $status) {
+			$order_status = new OrderStatus();
+			$order_status->is_updated = false;
+			$order_status->status = $status;
+			$order_status->order_id = $order->id;
+			$order_status->save();
+		}
 
-			$order_status = OrderStatus::where(['status' => 'Confirmed', 'order_id' => $order->id])->first();
+		$order_status = OrderStatus::where(['status' => 'Confirmed', 'order_id' => $order->id])->first();
 
-			if (null !== $order_status) {
-				$order_status->is_updated = true;
-				$order_status->save();
-			}
+		if (null !== $order_status) {
+			$order_status->is_updated = true;
+			$order_status->save();
+		}
 
-			$total = [];
+		$total = [];
 
-			foreach ($input['products']['product_name'] as $key => $v) {
-				$product =  new OrderedProduct;
-				$product->product_name = $v;
-				$product->order_id = $order->id;
-				$product->quantity = $input['products']['quantity'][$key];
-				$product->tracker = rand(100000, time());
-				$product->price = $input['products']['price'][$key];
-				$product->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
-				$total[] = $input['products']['price'][$key] * $input['products']['quantity'][$key];
-				$product->save();
-			}
+		foreach ($input['products']['product_name'] as $key => $v) {
+			$product =  new OrderedProduct;
+			$product->product_name = $v;
+			$product->order_id = $order->id;
+			$product->quantity = $input['products']['quantity'][$key];
+			$product->tracker = rand(100000, time());
+			$product->price = $input['products']['price'][$key];
+			$product->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
+			$total[] = $input['products']['price'][$key] * $input['products']['quantity'][$key];
+			$product->save();
+		}
 
-			$sub_total = array_sum($total);
-			$shipping = $request->shipping_price;
-			$heavy_or_large_item = $request->heavy_item_price;
-			if ($request->percentage_type == 'fixed') {
-				$new_total = $sub_total - $request->discount;
-				$total = $new_total + $shipping;
-				$total = $total + $heavy_or_large_item;
-			}
-
-
-			if ($request->filled('percentage_type') && !$request->filled('discount')) {
-				dd("Please enter a discount");
-			}
+		$sub_total = array_sum($total);
+		$shipping = $request->shipping_price;
+		$heavy_or_large_item = $request->heavy_item_price;
+		if ($request->percentage_type == 'fixed') {
+			$new_total = $sub_total - $request->discount;
+			$total = $new_total + $shipping;
+			$total = $total + $heavy_or_large_item;
+		}
 
 
-			if ($request->percentage_type == 'percentage') {
-				$new_total = ($request->discount * $sub_total) / 100;
-				$new_total = $sub_total - $new_total;
-				$total = $new_total + $shipping;
-				$total = $total + $heavy_or_large_item;
-			}
-
-			if (!$request->filled('percentage_type')) {
-				$total =  array_sum($total) + $shipping  + $heavy_or_large_item;
-			}
-
-			//dd($total);
-
-			$order->total = is_array($total) ? array_sum($total)  : $total;
-			$order->save();
+		if ($request->filled('percentage_type') && !$request->filled('discount')) {
+			dd("Please enter a discount");
+		}
 
 
-			$order->heavy_item_price = $request->heavy_item_price ?? '---';
+		if ($request->percentage_type == 'percentage') {
+			$new_total = ($request->discount * $sub_total) / 100;
+			$new_total = $sub_total - $new_total;
+			$total = $new_total + $shipping;
+			$total = $total + $heavy_or_large_item;
+		}
 
-			if ($order->coupon) {
-				$order->coupon_value = '-₦' . number_format(
-					(optional($order->voucher())->amount / 100) * $sub_total
-				);
-				$order->coupon = optional($order->voucher())->amount . '% Discount';
-			} else {
-				if ($order->discount) {
-					if ($order->percentage_type == 'percentage') {
-						$order->coupon = $order->discount . '% Discount';
-						$order->coupon_value = '-' . number_format(($order->discount  / 100) * $sub_total);
-					} else {
-						$order->coupon = 'Discount';
-						$order->coupon_value = '-' . number_format($order->discount);
-					}
+		if (!$request->filled('percentage_type')) {
+			$total =  array_sum($total) + $shipping  + $heavy_or_large_item;
+		}
+
+		//dd($total);
+
+		$order->total = is_array($total) ? array_sum($total)  : $total;
+		$order->save();
+
+
+		$order->heavy_item_price = $request->heavy_item_price ?? '---';
+
+		if ($order->coupon) {
+			$order->coupon_value = '-₦' . number_format(
+				(optional($order->voucher())->amount / 100) * $sub_total
+			);
+			$order->coupon = optional($order->voucher())->amount . '% Discount';
+		} else {
+			if ($order->discount) {
+				if ($order->percentage_type == 'percentage') {
+					$order->coupon = $order->discount . '% Discount';
+					$order->coupon_value = '-' . number_format(($order->discount  / 100) * $sub_total);
 				} else {
-					$order->coupon = 'Coupon';
-					$order->coupon_value = '----';
+					$order->coupon = 'Discount';
+					$order->coupon_value = '-' . number_format($order->discount);
 				}
+			} else {
+				$order->coupon = 'Coupon';
+				$order->coupon_value = '----';
 			}
+		}
 
-			//dd($order);
+		//dd($order);
 
-			//try {
-				$user = User::find(1);
-				$when = now()->addMinutes(5);
-				$order->full_name = $request->first_name;
-				Mail::to($request->email)
-					->bcc('order@autofactorng.com')
-					->send(new OrderReceipt($order, null, null, $sub_total));
+		//try {
+		$user = User::find(1);
+		$when = now()->addMinutes(5);
+		$order->full_name = $request->first_name;
+		Mail::to($request->email)
+			->bcc('order@autofactorng.com')
+			->send(new OrderReceipt($order, null, null, $sub_total));
 		//	} catch (\Throwable $th) {
-				// Log::info("Mail error :" . $th);
-				// Log::info("Custom error :" . $th);
-				// $err = new Error();
-				// $err->error = $th->getMessage();
-				// $err->save();
-			//}
+		// Log::info("Mail error :" . $th);
+		// Log::info("Custom error :" . $th);
+		// $err = new Error();
+		// $err->error = $th->getMessage();
+		// $err->save();
+		//}
 
-			// Send Mail
-			(new Activity)->put("Added a new order with email and phone number  " . $request->email . ' and ' . $request->phone_number);
+		// Send Mail
+		(new Activity)->put("Added a new order with email and phone number  " . $request->email . ' and ' . $request->phone_number);
 
-			//DB::commit();
-			return  redirect()->route('admin.orders.index');
+		//DB::commit();
+		return  redirect()->route('admin.orders.index');
 		//} catch (\Throwable $th) {
-			//DB::rollBack();
-			return  redirect()->route('admin.orders.index')->with('errors', 'Something went wrong');
+		//DB::rollBack();
+		return  redirect()->route('admin.orders.index')->with('errors', 'Something went wrong');
 		//}
 	}
 
@@ -218,7 +219,10 @@ class OrdersController extends Table
 				'order'
 			],
 			'update' => null,
-			'show' => null,
+			'show' =>  [
+				'admin.orders.show',
+				'order'
+			],
 			'destroy' =>  [
 				'admin.orders.destroy',
 				'order'
