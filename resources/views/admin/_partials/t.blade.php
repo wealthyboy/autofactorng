@@ -43,9 +43,10 @@
                 <table class="table table-flush dataTable-table  align-items-center mb-0">
                     <thead>
                         <tr class="table-heading">
-                            @if( isset($models['unique']['show_checkbox']) && $models['unique']['show_checkbox'])
+                            @if( isset($models['meta']['show_checkbox']) && $models['meta']['show_checkbox'])
+
                             <th data-sortable="" class="">
-                                <div class="form-check">
+                                <div class="form-check ">
                                     <input onclick="$('input[name*=\'selected[]\']').prop('checked', this.checked)" class="form-check-input" type="checkbox" id="customCheck5">
                                 </div>
                             </th>
@@ -61,10 +62,11 @@
                             @endforeach
                         </tr>
                     </thead>
+
                     <tbody>
                         @foreach($models['items'][0] as $key => $value)
                         <tr class="table-body">
-                            @if( isset($models['unfique']['show_checkbox']) && $models['unique']['show_checkbox'])
+                            @if( isset($models['meta']['show_checkbox']) && $models['meta']['show_checkbox'])
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="form-check">
@@ -110,9 +112,8 @@
 
                             @if (isset($models['unique']['show']) && $models['unique']['show'])
                             <td>
-                                <a href="{{  route($models['routes']['show'][0], [ $models['routes']['show'][1] => isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null  ]) }}" data-bs-toggle="tooltip" data-bs-original-title="View">
+                                <a href="{{ $models['meta']['urls'][$key]['url'] }}" data-bs-toggle="tooltip" data-bs-original-title="View">
                                     <i class="material-symbols-outlined text-secondary position-relative text-lg">preview</i>
-
                                 </a>
                             </td>
                             @endif
@@ -124,7 +125,7 @@
                                     <i class="material-symbols-outlined text-secondary position-relative text-lg">receipt</i>
                                 </a>
                             </td>
-                            rum
+
                             <td class="text-xs font-weight-normal">
                                 <a href="{{  route($models['routes']['edit'][0], [ $models['routes']['edit'][1] => isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null  ]) }}" rel="tooltip" class="" data-original-title="" title="Edit">
                                     <span class="material-symbols-outlined text-secondary position-relative text-lg">redo</span>
@@ -188,7 +189,7 @@
             <div class="col-6 col-sm-4 col-md-3 col-lg-12">
                 <div href="#" class="icon-box nounderline text-center p-5">
                     <i class=""></i>
-                    <h5 class="porto-sicon-title mx-2">{{ isset($message) ? $messag : "You have no records"}}</h5>
+                    <h5 class="porto-sicon-title mx-2">{{ isset($message)  ??  "You have no records"}}</h5>
                 </div>
             </div>
         </div>
