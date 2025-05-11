@@ -129,6 +129,8 @@ Route::group(['middleware' => ['tracking']], function () {
     Route::get('auto-complete', 'Products\ProductsController@autoComplete');
     Route::get('search', 'Products\ProductsController@search');
     Route::resource('forum', 'Forum\ForumController', ['names' => 'forum']);
+    Route::resource('car-reviews', 'CarReviews\CarReviewsController', ['names' => 'car.reviews']);
+
 
 
 

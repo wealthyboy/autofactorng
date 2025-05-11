@@ -14,6 +14,9 @@ class TrackingController extends Table
 {
     protected $settings;
 
+    public $link = '/admin/trackings';
+
+
     public $deleted_names = 'name';
 
     public $deleted_specific = 'UserTracking';

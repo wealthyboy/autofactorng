@@ -38,7 +38,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
         <div class="container">
-            <a class="navbar-brand fw-bold text-orange" href="#"><span class="text-white">AUTOFACTOR</span> <span class="text-warning">NG</span></a>
+            <a class="navbar-brand fw-bold text-orange" href="/forum"><span class="text-white">AUTOFACTOR</span> <span class="text-warning">NG</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -46,7 +46,7 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="/forum">Forum</a></li>
                     <li class="nav-item"><a class="nav-link" href="/car-reviews">Car Reviews</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/">Video Tips & Tutorials</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/video-tips">Video Tips & Tutorials</a></li>
                 </ul>
                 <div class="d-flex gap-2">
                     <a href="#" class="btn btn-outline-light">My Account</a>

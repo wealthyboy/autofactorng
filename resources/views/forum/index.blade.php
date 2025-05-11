@@ -3,7 +3,7 @@
 @section('content')
 <section class="forum-hero d-flex align-items-center">
     <div class="container">
-        <h1 class="display-5 fw-bold">AUTODOC FORUM – a community for people and cars</h1>
+        <h1 class="display-5 fw-bold">AUTOFACTOR FORUM – a community for people and cars</h1>
         <ul class="mt-3 list-unstyled">
             <li><i class="bi bi-check-circle-fill text-warning me-2"></i> Answers to your questions about cars and components</li>
             <li><i class="bi bi-check-circle-fill text-warning me-2"></i> Advice on fixing car malfunctions from experienced motorists</li>

@@ -3,12 +3,22 @@
 namespace App\Models;
 
 use App\Traits\ColumnFillable;
+use App\Traits\ImageFiles;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class CarReview extends Model
 {
-    use HasFactory, ColumnFillable;
+    use HasFactory, ColumnFillable, ImageFiles;
+
+    public $folder = "car_reviews";
+
+    public $appends = [
+        'image_l',
+        'image_m',
+        'image_to_show',
+        'm_image'
+    ];
 
 
     public function getListingData($collection)

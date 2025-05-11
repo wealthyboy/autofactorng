@@ -57,6 +57,27 @@ trait ImageFiles
         return '/images/utils/No_image_available.svg.png';
     }
 
+    public function singleImage($size)
+    {
+        if ($this->image) {
+            $image = basename($this->image);
+            return asset('images/' . $this->folder . '/' . $size . '/' . $image);
+        }
+        return '/images/utils/No_image_available.svg.png';
+    }
+
+
+
+    public function getMImageAttribute()
+    {
+        if ($this->image) {
+            $image = basename($this->image);
+            return asset('images/' . $this->folder . '/tm/' . $image);
+        }
+        return '/images/utils/No_image_available.svg.png';
+    }
+
+
     public function imageSize($size)
     {
         if (optional($this->images)->count()) {
