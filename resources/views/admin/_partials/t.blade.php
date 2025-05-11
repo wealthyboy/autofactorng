@@ -61,11 +61,10 @@
                             @endforeach
                         </tr>
                     </thead>
-
                     <tbody>
                         @foreach($models['items'][0] as $key => $value)
                         <tr class="table-body">
-                            @if( isset($models['unique']['show_checkbox']) && $models['unique']['show_checkbox'])
+                            @if( isset($models['unfique']['show_checkbox']) && $models['unique']['show_checkbox'])
                             <td>
                                 <div class="d-flex align-items-center">
                                     <div class="form-check">
