@@ -30,7 +30,7 @@ class TrackUserActivity
                 ['session_id' => $sessionId,  'page_url' => $path],
                 [
                     'ip_address' => $request->ip(),
-                    'user_agent' => $this->detectDevice(),
+                    'user_agent' => $this->detectDevice($request),
                     'referer' => $request->headers->get('referer'),
                     'user_id' => optional(auth()->user())->id,
                     'first_name' => optional(auth()->user())->name,
