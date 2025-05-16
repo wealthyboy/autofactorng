@@ -20,27 +20,27 @@
 
   <form v-if="!reg_complete" method="POST" @submit.prevent="subscribe">
     <div class="row ">
-      <p class="form-group p-1 col-6">
+      <div class="form-group p-1 col-6">
       <div class="form-floating">
         <general-input id="first_name" :error="v$.first_name" v-model="form.first_name" name="First name" type="text" />
 
       </div>
-      </p>
+    </div>
 
-      <p class="form-group  p-1 col-6">
+      <div class="form-group  p-1 col-6">
       <div class="form-floating">
         <general-input id="last_name" :error="v$.last_name" v-model="form.last_name" name="Last name" type="text" />
 
       </div>
-      </p>
+    </div>
 
-      <p class="form-group p-1 col-6">
+      <div class="form-group p-1 col-6">
       <div class="form-floating">
         <general-input id="email" :error="v$.email" v-model="form.email" name="Email" type="text"
           :server_errors="server_errors.email" />
 
       </div>
-      </p>
+    </div>
 
 
 
@@ -48,7 +48,7 @@
 
 
 
-      <p class="form-group  p-1 col-12">
+      <div class="form-group  p-1 col-12">
       <div class="form-floating">
         <general-input id="amount" :error="v$.amount" v-model="form.amount" name="Amount" type="text" @blur="getAmount" />
 
@@ -59,7 +59,7 @@
       </div>
 
 
-      </p>
+    </div>
 
       <general-button type="submit" :text="text" class="btn btn-dark w-100 p-3" :loading="loading" />
 

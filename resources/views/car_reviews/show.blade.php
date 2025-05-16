@@ -2,25 +2,15 @@
 
 @section('content')
 
-
-<section class="breadcrumb no-banner  justify-content-center">
-    <div class="breadcrumb-content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12  text-center border-bottom">
-                    <nav aria-label="breadcrumb" class="breadcrumb-nav breadcrumb-link mt-3">
-                        <div class="container d-flex justify-content-center">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/"><i class="icon-home"></i></a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Car Reviews
-                                <li>
-                            </ol>
-                        </div>
-                    </nav>
-                    <h1 class="breadcrumb-title">Car Reviews</h1>
-                    <p></p>
-                </div>
-            </div>
+<section class="hero">
+    <div class="container">
+        <h1 class="fw-bold display-5">Car Talk’s Golden Wrench Awards</h1>
+        <p class="lead mt-3">
+            Car Talk is the only place where mechanics and owners have a direct say in our evaluation of cars, parts, and services.
+        </p>
+        <div class="position-relative mt-5">
+            <img src="cars-lineup.png" alt="Cars" class="cars img-fluid">
+            <img src="golden-wrench-logo.png" alt="Golden Wrench Badge" class="logo-badge">
         </div>
     </div>
 </section>

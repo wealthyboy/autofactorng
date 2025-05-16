@@ -10,7 +10,7 @@
     id="change-password"
   >
     <div class="row ">
-      <p class="form-group p-1 col-12">
+      <div class="form-group p-1 col-12">
       <div class="form-floating">
         <general-input
           id="old_password"
@@ -21,9 +21,9 @@
         />
 
       </div>
-      </p>
+      </div>
 
-      <p class="form-group  p-1 col-12">
+      <div class="form-group  p-1 col-12">
       <div class="form-floating">
         <general-input
           id="password"
@@ -33,9 +33,9 @@
           type="password"
         />
       </div>
-      </p>
+      </div>
 
-      <p class="form-group  p-1 col-12">
+      <div class="form-group  p-1 col-12">
       <div class="form-floating">
         <general-input
           id="phone_number"
@@ -46,7 +46,7 @@
           :server_errors="server_errors.password_confirmation"
         />
       </div>
-      </p>
+    </div>
 
       <general-button
         type="submit"

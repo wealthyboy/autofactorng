@@ -65,7 +65,7 @@ class WebHookController extends Controller
 
             return http_response_code(200);
         }
-      
+
 
         return http_response_code(200);
     }
@@ -74,93 +74,5 @@ class WebHookController extends Controller
     {
         $output = shell_exec('sh /var/www/autofactorng.com/deploy.sh');
         return  $output;
-    }
-
-
-    public function zilla(Request $request, Order $order)
-    {
-
-
-            $data = json_decode($request->data);
-            $uuid = $data->clientOrderReference;
-            $pending_cart = PendingCart::where('uuid', $uuid)->first();
-            $cartIds = explode('|', $pending_cart->cart_ids);
-            $user  = User::findOrFail($pending_cart->user_id);
-            $carts = Cart::find($cartIds);
-
-            //Log::info($data);
-            //Log::info($pending_cart);
-
-            foreach ($carts as $cart) {
-                if ($cart->quantity  < 1) {
-                    $cart->delete();
-                }
-            }
-
-            if (null == $carts) {
-                return  http_response_code(200);
-            }
-
-            $currency = '₦';
-            $order->user_id = $user->id;
-            $order->address_id = optional($user->active_address)->id;
-            $order->coupon = $pending_cart->coupon;
-            $order->status = 'Processing';
-            $order->shipping_price = $pending_cart->shipping_price;
-            $order->invoice = substr(rand(100000, time()), 0, 7);
-            $order->heavy_item_price = $pending_cart->heavy_item_price;
-            $order->tracking = time();
-            $order->order_type = "Online";
-            $order->payment_type = 'Zilla';
-            $order->total = $pending_cart->total;
-            $order->ip = $request->ip();
-            $order->first_name = optional($user->active_address)->first_name;
-            $order->last_name = optional($user->active_address)->last_name;
-            $order->address = optional($user->active_address)->address;
-            $order->email = $user->email;
-            $order->phone_number = $user->phone_number;
-            $order->city = optional($user->active_address)->city;
-            $order->state = optional(optional($user->active_address)->address_state)->name;
-            $order->country = optional(optional($user->active_address)->address_country)->name;
-            //$order = Order::checkout($input, $payment_method,  $ip,  $carts,  $user);
-            $order->save();
-
-            foreach ($carts   as $cart) {
-                $insert = [
-                    'order_id' => $order->id,
-                    'product_id' => $cart->product_id,
-                    'product_name' => optional($cart->product)->name,
-                    'quantity' => $cart->quantity,
-                    //'status' => "Processing",
-                    'user_id' =>  $user->id,
-                    'tracker' => time(),
-                    'make' => $cart->make,
-                    'model' => $cart->model,
-                    'year' => $cart->year,
-                    'engine' => $cart->engine,
-                    'price' => $cart->ConvertCurrencyRate($cart->price),
-                    'total' => $cart->ConvertCurrencyRate($cart->quantity * $cart->price),
-                    'created_at' => \Carbon\Carbon::now()
-                ];
-                OrderedProduct::Insert($insert);
-                $cart->delete();
-            }
-
-            $sub_total = Order::subTotal($order);
-
-            Order::getCoupon($order, $sub_total);
-
-            Order::sendMail($user, $order, $sub_total);
-
-            Voucher::inValidate($pending_cart->coupon);
-
-            //delete cart
-
-            // Log::info("Custom error :" . $th);
-            // $err = new Error();
-            // $err->error = $th;
-            // $err->save();
-           
-        return http_response_code(200);
     }
 }

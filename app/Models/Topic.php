@@ -29,6 +29,8 @@ class Topic extends Model
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 
+
+
     public function latestUsers()
     {
         return $this->users()->latest()->take(3);

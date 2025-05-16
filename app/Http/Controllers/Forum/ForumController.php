@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\ForumCategory;
 use App\Models\Topic;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class ForumController extends Controller
 {
@@ -33,14 +35,27 @@ class ForumController extends Controller
         // Pagination
         $topics = $query->paginate(10)->withQueryString();
 
+
+
         // Fetch categories and tags for filters
         $categories = ForumCategory::all();
 
         if ($request->ajax()) {
+
             return view('forum.partials.topics', compact('topics'))->render();
         }
 
-        return view('forum.index', compact('topics', 'categories'));
+        $page_title = "AutofactorNg Forum - Discuss Cars, Repairs, and More";
+        $meta_tag_keywords = "AutofactorNg, forum, cars, auto repair, car maintenance, car troubleshooting, automotive discussions";
+        $page_meta_description = "Join the AutofactorNg forum to discuss car issues, get advice, share experiences, and connect with other automotive enthusiasts.";
+
+        $seo = [];
+        $seo['page_title'] = $page_title;
+        $seo['meta_tag_keywords'] = $meta_tag_keywords;
+        $seo['page_meta_description'] = $page_meta_description;
+        $seo['type'] = 'article';
+
+        return view('forum.index', compact('topics', 'categories', 'seo', 'page_title', 'meta_tag_keywords', 'page_meta_description'));
     }
 
 
@@ -73,7 +88,38 @@ class ForumController extends Controller
      */
     public function show($id)
     {
-        //
+        $topic = Topic::with([
+            'category',
+            'user',
+            'users',
+            'replies' => function ($query) {
+                $query->whereNull('parent_id')->with([
+                    'user',
+                    'children' => function ($q) {
+                        $q->with('user'); // optionally limit children depth
+                    }
+                ]);
+            }
+        ])->findOrFail($id);
+
+        $topic = [
+            'id' => $topic->id,
+            'content' => $topic->content,
+            'date' => Carbon::parse($topic->created_at)->shortRelativeDiffForHumans(),
+            'views_count' => $topic->views_count,
+            'user' => $topic->user,
+            'users' => $topic->users,
+            'category' => $topic->category,
+            'replies' => $topic->replies,
+            'likes_count' => $topic->likes_count,
+            'title' => $topic->title
+        ];
+
+        if (request()->ajax()) {
+            return response()->json($topic);
+        }
+
+        return view('forum.show', compact('topic'));
     }
 
     /**
@@ -86,6 +132,26 @@ class ForumController extends Controller
     {
         //
     }
+
+
+    // TopicController
+    // public function toggleLike(Topic $topic)
+    // {
+    //     $user = auth()->user();
+    //     $topic->likes()->toggle($user->id);
+
+    //     return response()->json(['success' => true]);
+    // }
+
+    // ReplyController
+    public function toggleLike(Reply $reply)
+    {
+        $user = auth()->user();
+        $reply->likes()->toggle($user->id);
+
+        return response()->json(['success' => true]);
+    }
+
 
     /**
      * Update the specified resource in storage.

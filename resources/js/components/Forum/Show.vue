@@ -1,0 +1,96 @@
+<template>
+    <div class="container my-4">
+
+      <template v-if="loading">
+         <PostSkeleton v-for="n in 5" :key="n" />
+      </template>
+
+
+
+     <template v-else>
+      {{ showModal }}
+
+      <Topic
+        :topic="topic"
+        @toggle-like="toggleTopicLike"
+      />
+  
+      <!-- Replies Header -->
+      <h6 class="mb-3">Replies ({{ topic.replies?.length }})</h6>
+  
+      <!-- Replies -->
+      <ReplyCard
+        v-for="reply in topic.replies"
+        :key="reply.id"
+        :reply="reply"
+        @toggle-like="toggleReplyLike"
+      />
+     </template>
+      <!-- MAIN TOPIC -->
+      
+  
+      <!-- Reply Modal -->
+      <ReplyModal
+      v-if="showModal"
+      :topic="selectedTopic"
+      @close="showModal = false"
+      
+    />
+    
+    </div>
+  </template>
+  
+  <script setup>
+  import { ref, onMounted } from 'vue'
+  import axios from 'axios'
+  
+  import Topic from './Topic.vue'
+  import ReplyCard from './ReplyCard.vue'
+  import ReplyModal from './ReplyModal.vue'
+  import PostSkeleton from "./PostSkeleton"
+
+  
+  const topic = ref({})
+  const loading = ref(true)
+
+  
+  onMounted(async () => {
+    try {
+      const response = await axios.get(location.href) // Pass topic ID as prop if needed
+        topic.value = response.data
+      } catch (e) {
+      console.error(e)
+    } finally {
+      loading.value = false
+    }
+   
+  })
+  
+  function addReply(reply) {
+    topic.value.replies.push(reply)
+  }
+  
+  async function toggleTopicLike() {
+    await axios.post(`/api/topics/${topic.value.id}/toggle-like`)
+    topic.value.liked_by_user = !topic.value.liked_by_user
+    topic.value.likes_count += topic.value.liked_by_user ? 1 : -1
+  }
+  
+  async function toggleReplyLike(replyId) {
+    const reply = topic.value.replies.find(r => r.id === replyId)
+    await axios.post(`/api/replies/${replyId}/toggle-like`)
+    reply.liked_by_user = !reply.liked_by_user
+    reply.likes_count += reply.liked_by_user ? 1 : -1
+  }
+
+
+  const topics = ref([]) // your list of topics
+  const showModal = ref(false)
+  const selectedTopic = ref(null)
+
+  function showReplyModal(topic) {
+    selectedTopic.value = topic
+    showModal.value = true
+  }
+  </script>
+  

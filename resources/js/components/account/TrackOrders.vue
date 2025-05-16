@@ -41,7 +41,7 @@
     @submit.prevent="track"
   >
     <div class=" ">
-      <p class="form-group p-1">
+      <div class="form-group p-1">
       <div class="form-floating">
         <general-input
           id="order_id"
@@ -53,7 +53,7 @@
         />
 
       </div>
-      </p>
+    </div>
 
       <general-button
         type="submit"

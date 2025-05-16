@@ -19,7 +19,7 @@
             </div>
         </div>
   
-        <p class="form-group  p-1 col-12">
+        <div class="form-group  p-1 col-12">
             <div class="form-floating">
             <general-input
                 id="password_confirmation"
@@ -30,7 +30,7 @@
             />
     
             </div>
-        </p>
+          </div>
   
   
         <general-button

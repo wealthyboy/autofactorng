@@ -1,6 +1,17 @@
 @extends('layouts.forum')
 
 @section('content')
+<section class="hero">
+    <div class="container">
+        <h1 class="fw-bold display-5">Car Talk’s Golden Wrench Awards</h1>
+        <p class="lead mt-3">
+            Car Talk is the only place where mechanics and owners have a direct say in our evaluation of cars, parts, and services.
+        </p>
+        <div class="position-relative mt-5">
+            <img src="/images/utils/golden-wrench-feature (2).jpg" alt="Golden Wrench Badge" class="logo-badge">
+        </div>
+    </div>
+</section>
 <div class="container">
     <h2 class="mb-4">Latest Car Reviews</h2>
 

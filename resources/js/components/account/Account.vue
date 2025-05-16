@@ -7,7 +7,7 @@
   >
     <div class="row ">
 
-      <p class=" p-1 col-12 ">
+      <div class=" p-1 col-12 ">
       <div class="form-floating">
         <general-input
           id="first_name"
@@ -19,9 +19,9 @@
 
       </div>
 
-      </p>
+      </div>
 
-      <p class="form-group  p-1 col-12">
+      <div class="form-group  p-1 col-12">
       <div class="form-floating">
         <general-input
           id="last_name"
@@ -32,9 +32,9 @@
         />
 
       </div>
-      </p>
+    </div>
 
-      <p class="form-group  p-1 col-12">
+      <div class="form-group  p-1 col-12">
       <div class="form-floating">
         <general-input
           id="phone_number"
@@ -46,7 +46,7 @@
         />
 
       </div>
-      </p>
+    </div>
 
       <general-button
         type="submit"

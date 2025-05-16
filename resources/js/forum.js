@@ -1,4 +1,4 @@
-require('./bootstrap')
+require('./forumBootstrap')
 
 window.Vue = require('vue');
 import { createApp } from "vue";

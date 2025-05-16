@@ -4,7 +4,7 @@
     method="POST"
   >
     <div class="row ">
-      <p class="form-group p-1 col-6">
+      <div class="form-group p-1 col-6">
       <div class="form-floating">
         <general-input
           id="first_name"
@@ -15,9 +15,9 @@
         />
 
       </div>
-      </p>
+    </div>
 
-      <p class="form-group  p-1 col-6">
+      <div class="form-group  p-1 col-6">
       <div class="form-floating">
         <general-input
           id="last_name"
@@ -28,9 +28,9 @@
         />
 
       </div>
-      </p>
+    </div>
 
-      <p class="form-group p-1 col-12">
+      <div class="form-group p-1 col-12">
       <div class="form-floating">
         <general-input
           id="address"
@@ -42,9 +42,9 @@
         />
 
       </div>
-      </p>
+    </div>
 
-      <p class="form-group p-1 col-6">
+      <div class="form-group p-1 col-6">
       <div class="form-floating">
         <general-input
           id="city"
@@ -56,9 +56,9 @@
         />
 
       </div>
-      </p>
+    </div>
 
-      <p class="form-group  p-1 col-6">
+      <div class="form-group  p-1 col-6">
       <div class="form-floating mb-2 ">
         <general-select
           id="State"
@@ -81,7 +81,7 @@
 
         </general-select>
       </div>
-      </p>
+    </div>
 
       <div class="d-flex justify-content-between">
         <general-button

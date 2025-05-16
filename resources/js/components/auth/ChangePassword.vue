@@ -6,7 +6,7 @@
 
         <form v-if="!message" @submit.prevent="submit" class="form" method="POST" action="#">
             <template>
-                <p class="form-group">
+                <div class="form-group">
                     <label for="old_password">Old PPassword&nbsp;<span class="required">*</span></label>
                     <input id="old_password" v-model="form.old_password" @input="removeError($event)" @blur="vInput($event)"
                         :class="{ 'has-danger': errors.old_password }" type="password" class="form-control required"
@@ -14,16 +14,16 @@
                     <span class="text-danger" role="" v-if="errors.old_password">
                         <strong class="text-danger">{{ formatError(errors.old_password) }}</strong>
                     </span>
-                </p>
-                <p class="form-group">
+                </div>
+                <div class="form-group">
                     <label for="password">New Password&nbsp;<span class="required">*</span></label>
                     <input id="password" v-model="form.password" @input="removeError($event)" @blur="vInput($event)"
                         type="password" class="form-control required" name="password">
                     <span role="" v-if="errors.password">
                         <strong class="text-danger">{{ formatError(errors.password) }}</strong>
                     </span>
-                </p>
-                <p class="form-group">
+                </div>
+                <div class="form-group">
                     <label for="password_confirmation">Confirm Password&nbsp;<span class="required">*</span></label>
                     <input id="password_confirmation" v-model="form.password_confirmation" @input="removeError($event)"
                         @blur="vInput($event)" :class="{ 'has-danger': errors.password_confirmation }" type="password"
@@ -31,7 +31,7 @@
                     <span role="" v-if="errors.password_confirmation">
                         <strong class="text-danger">{{ formatError(errors.password_confirmation) }}</strong>
                     </span>
-                </p>
+                </div>
             </template>
             <p class="form-group text-right">
                 <general-button type="submit" :text="text" class="btn btn-dark w-100 p-3" :loading="loading" />
