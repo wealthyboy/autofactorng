@@ -56,7 +56,6 @@ return [
 
     'asset_url' => env('ASSET_URL', null),
 
-    'timezone' => env('APP_TIMEZONE', 'UTC'),
 
 
     /*
@@ -70,7 +69,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
 
     /*
     |--------------------------------------------------------------------------
