@@ -47,8 +47,6 @@ class TrackingController extends Table
         $from = request('from');
         $to = request('to');
 
-        UserTracking::truncate();
-
         // Default to today if no date filter is set
         $startDate = $from ? Carbon::parse($from)->startOfDay() : now()->startOfDay();
         $endDate = $to ? Carbon::parse($to)->endOfDay() : now()->endOfDay();
