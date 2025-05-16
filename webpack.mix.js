@@ -15,7 +15,8 @@ mix.js('resources/js/app.js', 'public/js')
     .vue()
     .sass('resources/sass/app.scss', 'public/css');
 
-
+    mix.js('resources/js/forum.js', 'public/js')
+    .vue()
 
 mix.styles(
     [
@@ -26,8 +27,6 @@ mix.styles(
 );
 
 //mix.js("resources/js/scripts.js", "public/js");
-
-
 
 mix.scripts(
     [

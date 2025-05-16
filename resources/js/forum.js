@@ -102,21 +102,6 @@ app.mount('#app');
 
 
 
-$(function () {
-
-    var images = document.querySelectorAll('.image-class');
-
-    if (images) {
-        images.forEach(function (image) {
-            var dataImage = image.getAttribute('data-src');
-            if (dataImage) {
-                image.setAttribute('src', dataImage);
-            }
-        });
-    }
-
-
-});
 
 
 

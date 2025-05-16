@@ -11,6 +11,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
+
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\ProductReviewNotification;
 
@@ -114,14 +116,78 @@ class Order extends Model
 				$cart->status = 'paid';
 				$cart->delete();
 			}
+
+			self::sendWhatsAppMessage(self::formatPhoneNumberForWhatsApp($order->phone_number), 	$order->first_name);
 		}
+
+
+
+
 		try {
 			$delay = now()->addMinutes(10);
 		} catch (\Throwable $th) {
 			throw $th;
 		}
 
+
+
 		return $order;
+	}
+
+
+	static function formatPhoneNumberForWhatsApp(string $phone): string
+	{
+		// Remove all spaces or special characters
+		$phone = preg_replace('/\D/', '', $phone);
+
+		// If it starts with '0', remove the zero
+		if (str_starts_with($phone, '0')) {
+			$phone = substr($phone, 1);
+		}
+
+		// Add '234' if it doesn't already start with it
+		if (!str_starts_with($phone, '234')) {
+			$phone = '234' . $phone;
+		}
+
+		return $phone;
+	}
+
+
+	static function sendWhatsAppMessage($to, $name)
+	{
+		$accessToken = config('services.whatsapp.access_token');
+		$phoneNumberId = config('services.whatsapp.phone_number_id');
+		$version = config('services.whatsapp.api_version');
+
+		$url = "https://graph.facebook.com/{$version}/{$phoneNumberId}/messages";
+
+		$response = Http::withToken($accessToken)
+			->withHeaders([
+				'Content-Type' => 'application/json',
+			])
+			->post($url, [
+				'messaging_product' => 'whatsapp',
+				'to' => $to,
+				'type' => 'template',
+				'template' => [
+					'name' => 'delivery_confirmation_2', // use your actual template name
+					'language' => [
+						'code' => 'en_US'
+					],
+					'components' => [
+						[
+							'type' => 'body',
+							'parameters' => [
+								['type' => 'text', 'text' => $name] // Replaces {{1}}
+							]
+						]
+					]
+				]
+			]);
+
+
+		return $response->json($response);
 	}
 
 

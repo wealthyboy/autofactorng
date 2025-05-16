@@ -238,7 +238,7 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js"></script>
-    <script src="/js/app.js?id={{ rand(1,2000)}}"></script>
+    <script src="/js/forum.js?id={{ rand(1,2000)}}"></script>
 
 
     @stack('scripts')

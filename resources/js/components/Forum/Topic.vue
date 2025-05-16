@@ -41,7 +41,7 @@
     </div>
   </div>
 
-     <div class="mt-1 mx-5">
+     <div class="mt-1 mx-5  border-raised mb-2">
         <div class="d-flex align-items-center mb-2">
           <div class="me-4 text-center">
             <strong class="text-danger">{{ topic.views_count }}</strong><br />
@@ -51,9 +51,14 @@
             <strong class="text-danger">{{ topic.likes_count }}  45</strong><br />
             <small class="text-muted">likes</small>
           </div>
+
           <div class="me-4 text-center">
-            <strong class="text-danger">{{ topic.users.length }}</strong><br />
-            <small class="text-muted">users</small>
+            <strong class="text-danger">{{ topic.likes_count }}  45</strong><br />
+            <small class="text-muted">likes</small>
+          </div>
+          <div class="me-4 text-center">
+            <strong class="text-danger">{{ topic.replies.length }}</strong><br />
+            <small class="text-muted">replies</small>
           </div>
 
           <!-- Avatars -->

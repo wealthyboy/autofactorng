@@ -102,6 +102,7 @@ class ForumController extends Controller
             }
         ])->findOrFail($id);
 
+
         $topic = [
             'id' => $topic->id,
             'content' => $topic->content,

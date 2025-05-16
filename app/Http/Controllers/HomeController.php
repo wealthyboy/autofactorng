@@ -40,7 +40,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-  
+
         $featured_categories = Category::where('is_featured', true)->get();
         $brands = Brand::where('is_featured', true)->get();
         $sliders = Banner::where(['type' => 'slider', 'device' => 'd-none d-lg-block d-xl-block'])->orderBy('sort_order', 'asc')->get();
@@ -48,7 +48,6 @@ class HomeController extends Controller
         $mobile_sliders = Banner::where(['type' => 'slider', 'device' => 'd-lg-none d-sm-block d-md-block'])->orderBy('sort_order', 'asc')->get();
         $products = Product::where('is_featured', 1)->orderBy('created_at', 'DESC')->take(8)->get();
 
-       
 
 
         $schema = [
@@ -83,7 +82,8 @@ class HomeController extends Controller
                     "@type" => "ReadAction",
                     "target" => ["https://autofactorng.com/"]
                 ]
-            ], [
+            ],
+            [
                 "@type" => "ImageObject",
                 "inLanguage" => "en-US",
                 "@id" => "https://autofactorng.com/#primaryimage",
@@ -92,7 +92,8 @@ class HomeController extends Controller
                 "width" => 720,
                 "height" => 700,
                 "caption" => "Auto Parts MyParts Nigeria"
-            ], [
+            ],
+            [
                 "@type" => "BreadcrumbList",
                 "@id" => "https://autofactorng.com/#breadcrumb",
                 "itemListElement" => [
@@ -100,7 +101,8 @@ class HomeController extends Controller
                     "position" => 1,
                     "name" => "Home"
                 ]
-            ], [
+            ],
+            [
                 "@type" => "WebSite",
                 "@id" => "https://autofactorng.com/#website",
                 "url" => "https://autofactorng.com/",

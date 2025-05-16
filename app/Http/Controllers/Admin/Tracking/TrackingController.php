@@ -91,20 +91,6 @@ class TrackingController extends Table
     }
 
 
-    public function detectDevice(Request $request)
-    {
-        $userAgent = $request->header('User-Agent');
-
-        if (preg_match('/mobile/i', $userAgent)) {
-            $device = 'mobile';
-        } elseif (preg_match('/tablet|ipad/i', $userAgent)) {
-            $device = 'tablet';
-        } else {
-            $device = 'desktop';
-        }
-
-        return $device;
-    }
 
     /**
      * Show the form for creating a new resource.

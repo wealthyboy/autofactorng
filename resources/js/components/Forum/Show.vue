@@ -8,17 +8,13 @@
 
 
      <template v-else>
-      {{ showModal }}
 
       <Topic
         :topic="topic"
         @toggle-like="toggleTopicLike"
+        @open-reply-modal="showReplyModal"
       />
   
-      <!-- Replies Header -->
-      <h6 class="mb-3">Replies ({{ topic.replies?.length }})</h6>
-  
-      <!-- Replies -->
       <ReplyCard
         v-for="reply in topic.replies"
         :key="reply.id"
@@ -89,6 +85,7 @@
   const selectedTopic = ref(null)
 
   function showReplyModal(topic) {
+    console.log(true)
     selectedTopic.value = topic
     showModal.value = true
   }
