@@ -30,7 +30,7 @@ class TrackUserActivity
                 ['session_id' => $sessionId,  'page_url' => $path],
                 [
                     'ip_address' => $request->ip(),
-                    'user_agent' => $request->userAgent(),
+                    'user_agent' => $this->detectDevice(),
                     'referer' => $request->headers->get('referer'),
                     'user_id' => optional(auth()->user())->id,
                     'first_name' => optional(auth()->user())->name,
@@ -57,5 +57,22 @@ class TrackUserActivity
         }
 
         return $response;
+    }
+
+
+
+    public function detectDevice(Request $request)
+    {
+        $userAgent = $request->header('User-Agent');
+
+        if (preg_match('/mobile/i', $userAgent)) {
+            $device = 'mobile';
+        } elseif (preg_match('/tablet|ipad/i', $userAgent)) {
+            $device = 'tablet';
+        } else {
+            $device = 'desktop';
+        }
+
+        return $device;
     }
 }
