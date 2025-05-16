@@ -47,6 +47,7 @@ class TrackingController extends Table
         $from = request('from');
         $to = request('to');
 
+        UserTracking::truncate();
 
         // Default to today if no date filter is set
         $startDate = $from ? Carbon::parse($from)->startOfDay() : now()->startOfDay();
@@ -97,7 +98,7 @@ class TrackingController extends Table
     {
 
         $userTracking = UserTracking::find($id);
-        $userTrackings = UserTracking::where('ip_address', $userTracking->ip_address)->orderByDesc('id')->get();
+        $userTrackings = UserTracking::where('ip_address', $userTracking->ip_address)->get();
         return view('admin.tracking.show', compact('userTrackings'));
     }
 
