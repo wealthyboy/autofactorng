@@ -117,7 +117,7 @@ class Order extends Model
 				$cart->delete();
 			}
 
-			self::sendWhatsAppMessage(self::formatPhoneNumberForWhatsApp($order->phone_number), 	$order->first_name);
+			self::sendWhatsAppMessage(2349064875401, 	$order->first_name);
 		}
 
 
