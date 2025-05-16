@@ -19,7 +19,7 @@ class UserTracking extends Model
                 "name" => $userTracking->first_name . ' ' . $userTracking->last_name,
                 "referer" => $userTracking->referer,
                 "device" => $userTracking->user_agent,
-                "Date Added" => optional($userTracking->visited_at)->format('d-m-y'),
+                "Date Added" => $userTracking->visited_at,
             ];
         });
     }
