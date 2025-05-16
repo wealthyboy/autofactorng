@@ -17,7 +17,9 @@ class UserTracking extends Model
                 "Id" => $userTracking->id,
                 "ip" => $userTracking->ip_address,
                 "name" => $userTracking->first_name . ' ' . $userTracking->last_name,
-                "Date Added" => optional($userTracking->created_at)->format('d-m-y'),
+                "referer" => $userTracking->referer,
+                "device" => $userTracking->user_agent,
+                "Date Added" => optional($userTracking->visited_at)->format('d-m-y'),
             ];
         });
     }
