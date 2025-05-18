@@ -31,18 +31,27 @@
 
     <div class="col-md-12">
         <div class="row mb-3" bis_skin_checked="1">
-            <div class="col-lg-3 col-md-6 col-sm-6" bis_skin_checked="1">
+            <div class="col-lg-2 col-md-6 col-sm-6" bis_skin_checked="1">
                 <div class="card card-stats" bis_skin_checked="1">
-                    <div class="card-header card-header-warning card-header-icon" bis_skin_checked="1">
+                    <div class="card-header text-center card-header-warning card-header-icon" bis_skin_checked="1">
                         <h4 class="card-category"><a href="?referer=google">Google</a></h4>
                         <h3 class="card-title">{{$sourceCounts['google']}}</h3>
                     </div>
 
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6" bis_skin_checked="1">
+            <div class="col-lg-2 col-md-6 col-sm-6" bis_skin_checked="1">
                 <div class="card card-stats" bis_skin_checked="1">
-                    <div class="card-header card-header-rose card-header-icon" bis_skin_checked="1">
+                    <div class="card-header text-center  card-header-warning card-header-icon" bis_skin_checked="1">
+                        <h4 class="card-category"><a href="?referer=google">Youtube</a></h4>
+                        <h3 class="card-title">{{$sourceCounts['youtube']}}</h3>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6 col-sm-6" bis_skin_checked="1">
+                <div class="card card-stats" bis_skin_checked="1">
+                    <div class="card-header text-center  card-header-rose card-header-icon" bis_skin_checked="1">
 
                         <h4 class="card-category"><a href="?referer=instagram">Instagram</a></h4>
                         <h3 class="card-title">{{$sourceCounts['instagram']}}</h3>
@@ -52,7 +61,7 @@
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6" bis_skin_checked="1">
                 <div class="card card-stats" bis_skin_checked="1">
-                    <div class="card-header card-header-success card-header-icon" bis_skin_checked="1">
+                    <div class="card-header text-center  card-header-success card-header-icon" bis_skin_checked="1">
                         <h4 class="card-category"><a href="?referer=facebook">Facebook</a></h4>
                         <h3 class="card-title">{{$sourceCounts['facebook']}}</h3>
                     </div>
@@ -62,13 +71,46 @@
 
             <div class="col-lg-3 col-md-6 col-sm-6" bis_skin_checked="1">
                 <div class="card card-stats" bis_skin_checked="1">
-                    <div class="card-header card-header-success card-header-icon" bis_skin_checked="1">
+                    <div class="card-header text-center  card-header-success card-header-icon" bis_skin_checked="1">
                         <h4 class="card-category"><a href="?referer=others">Others</a></h4>
                         <h3 class="card-title">{{$sourceCounts['others']}}</h3>
                     </div>
 
                 </div>
             </div>
+
+        </div>
+        <div class="row mb-3" bis_skin_checked="1">
+            <div class="col-lg-4 col-md-6 col-sm-6" bis_skin_checked="1">
+                <div class="card card-stats" bis_skin_checked="1">
+                    <div class="card-header text-center  card-header-warning card-header-icon" bis_skin_checked="1">
+                        <h4 class="card-category">Returning IP/Visitor</h4>
+                        <h3 class="card-title">{{$visitorStats['returning_visitors']}}</h3>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6" bis_skin_checked="1">
+                <div class="card card-stats" bis_skin_checked="1">
+                    <div class="card-header text-center card-header-rose card-header-icon" bis_skin_checked="1">
+
+                        <h4 class="card-category">New IP/Visitor
+                        </h4>
+                        <h3 class="card-title">{{$visitorStats['new_visitors']}}</h3>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-6" bis_skin_checked="1">
+                <div class="card card-stats" bis_skin_checked="1">
+                    <div class="card-header text-center  card-header-success card-header-icon" bis_skin_checked="1">
+                        <h4 class="card-category">Total daily visitor</h4>
+                        <h3 class="card-title">{{$visitorStats['total_visitors']}}</h3>
+                    </div>
+
+                </div>
+            </div>
+
 
         </div>
         @include('admin._partials.t', ['models' => $trackings, 'name' => 'Tracking'])

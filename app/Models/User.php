@@ -30,8 +30,6 @@ class User extends Authenticatable
 	const canAccessPermissions = 10;
 
 
-
-
 	/**
 	 * The attributes that are mass assignable.
 	 *

@@ -22,16 +22,25 @@ class Reply extends Model
         return $this->belongsTo(User::class);
     }
 
+
+    public function date()
+    {
+        return $this->
+    }
+
     // A reply can have a parent reply
     public function parent()
     {
         return $this->belongsTo(Reply::class, 'parent_id');
     }
 
-    // A reply can have many nested replies
-
+    //A reply can have many nested replies
     public function children()
     {
         return $this->hasMany(Reply::class, 'parent_id');
     }
 }
+
+
+
+

@@ -1,40 +1,38 @@
 <template>
-    <div class="container my-4">
-
-      <template v-if="loading">
-         <PostSkeleton v-for="n in 5" :key="n" />
-      </template>
-
-
-
-     <template v-else>
-
+  <div class="container my-4" ref="scrollContainer" @scroll="handleScroll" style="overflow-y: auto; max-height: 80vh">
+    <template v-if="!loading">
       <Topic
         :topic="topic"
         @toggle-like="toggleTopicLike"
         @open-reply-modal="showReplyModal"
       />
-  
+
       <ReplyCard
         v-for="reply in topic.replies"
         :key="reply.id"
         :reply="reply"
         @toggle-like="toggleReplyLike"
+        @open-reply-modal="showReplyModal"
       />
-     </template>
-      <!-- MAIN TOPIC -->
-      
-  
-      <!-- Reply Modal -->
-      <ReplyModal
+
+      <!-- Loading Spinner -->
+      <div v-if="loadingMore" class="text-center py-3">
+        <div class="spinner-border text-primary" role="status"></div>
+      </div>
+
+      <div v-if="!hasMoreReplies" class="text-center text-muted my-3">
+        No more replies.
+      </div>
+    </template>
+
+    <!-- Reply Modal -->
+    <ReplyModal
       v-if="showModal"
       :topic="selectedTopic"
       @close="showModal = false"
-      
     />
-    
-    </div>
-  </template>
+  </div>
+</template>
   
   <script setup>
   import { ref, onMounted } from 'vue'
@@ -51,12 +49,17 @@
 
   
   onMounted(async () => {
+
     try {
       const response = await axios.get(location.href) // Pass topic ID as prop if needed
         topic.value = response.data
       } catch (e) {
       console.error(e)
     } finally {
+      const skeleton = document.getElementById('post-skelenton');
+      if (skeleton) {
+        skeleton.classList.add('d-none');
+      }
       loading.value = false
     }
    

@@ -117,7 +117,7 @@ class Order extends Model
 				$cart->delete();
 			}
 
-			self::sendWhatsAppMessage(2349081155505, 	$order->first_name);
+			self::sendWhatsAppMessage(2349081155505, $order->first_name);
 		}
 
 

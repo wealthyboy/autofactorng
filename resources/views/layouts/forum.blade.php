@@ -155,6 +155,44 @@
             pointer-events: auto;
             visibility: visible;
         }
+
+        .skeleton-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #dee2e6;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        .skeleton-line {
+            height: 12px;
+            background-color: #dee2e6;
+            border-radius: 4px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.5
+            }
+
+            100% {
+                opacity: 1
+            }
+        }
+
+        #skeleton-wrapper {
+            transition: opacity 0.3s ease;
+        }
+
+        #skeleton-wrapper.d-none {
+            opacity: 0;
+            pointer-events: none;
+        }
     </style>
 </head>
 

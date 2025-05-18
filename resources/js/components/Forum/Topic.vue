@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex gap-1 mb-1">
     <!-- Avatar (outside card) -->
-    <InitialAvatar :name="topic.user.name" :size="48" class="avatar-shadow" />
+    <InitialAvatar :name="topic.user.name" :size="48" class="avatar-shadow mt-3" />
 
     <!-- Post Content Card -->
     <div class="card w-100 border rounded-4 px-3 py-2">
@@ -9,7 +9,7 @@
         <!-- Header -->
         <div class="d-flex justify-content-between align-items-center border-bottom py-3">
             <div>
-              <h5 class="card-title mb-1">{{ topic.title }}</h5>
+              <h5 class="card-title mb-1">{{ topic.user.name }}</h5>
               <p class="text-muted mb-0">
                 <i class="bi bi-folder2-open me-1"></i>{{ topic.category.name }}
               </p>

@@ -68,7 +68,7 @@ class TrackingController extends Table
             ->paginate(20);
 
 
-        $knownSources = ['google', 'instagram', 'twitter', 'facebook'];
+        $knownSources = ['google', 'instagram', 'twitter', 'facebook', 'youtube'];
 
         $otherCount = UserTracking::whereBetween('created_at', [$startDate, $endDate])
             ->where(function ($query) use ($knownSources) {
@@ -82,12 +82,35 @@ class TrackingController extends Table
             'instagram' => UserTracking::whereBetween('created_at', [$startDate, $endDate])->where('referer', 'like', '%instagram%')->count(),
             'twitter' => UserTracking::whereBetween('created_at', [$startDate, $endDate])->where('referer', 'like', '%twitter%')->count(),
             'facebook' => UserTracking::whereBetween('created_at', [$startDate, $endDate])->where('referer', 'like', '%facebook%')->count(),
+            'youtube' => UserTracking::whereBetween('created_at', [$startDate, $endDate])->where('referer', 'like', '%youtube%')->count(),
             'others' => $otherCount,
         ];
 
+
+        $currentIPs = UserTracking::whereBetween('created_at', [$startDate, $endDate])
+            ->distinct('ip_address')
+            ->pluck('ip_address');
+
+        $returningIPs = UserTracking::where('created_at', '<', $startDate)
+            ->whereIn('ip_address', $currentIPs)
+            ->distinct('ip_address')
+            ->pluck('ip_address');
+
+        // Calculate counts
+        $newVisitorCount = $currentIPs->diff($returningIPs)->count();
+        $returningVisitorCount = $returningIPs->count();
+        $totalVisitorCount = $currentIPs->count();
+
+        $visitorStats = [
+            'new_visitors' => $newVisitorCount,
+            'returning_visitors' => $returningVisitorCount,
+            'total_visitors' => $totalVisitorCount,
+        ];
+
+
         $trackings = $this->getColumnListings(request(), $visits);
 
-        return view('admin.tracking.index', compact('trackings', 'sourceCounts'));
+        return view('admin.tracking.index', compact('trackings', 'sourceCounts', 'visitorStats'));
     }
 
 

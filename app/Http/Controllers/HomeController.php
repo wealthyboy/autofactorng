@@ -50,6 +50,7 @@ class HomeController extends Controller
 
 
 
+
         $schema = [
 
             "@context" => "https://schema.org",
