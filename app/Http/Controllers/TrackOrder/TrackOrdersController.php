@@ -18,6 +18,7 @@ class TrackOrdersController extends Controller
     public function index()
     {
         $nav = (new AccountSettingsNav())->nav();
+
         return view('tracking.index', compact('nav'));
     }
 
