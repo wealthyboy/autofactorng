@@ -40,7 +40,6 @@ class TrackOrdersController extends Controller
         $order = Order::where(
             [
                 'invoice' => $request->invoice,
-                'user_id' => auth()->user()->id
             ]
         )->first();
         return response()->json([
