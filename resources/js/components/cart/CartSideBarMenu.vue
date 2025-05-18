@@ -90,7 +90,7 @@ export default {
     },
 
     mounted() {
-        this.getCart();
+        this.getCart(true);
     },
     computed: {
         ...mapGetters({

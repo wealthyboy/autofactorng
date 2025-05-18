@@ -25,6 +25,13 @@ class TrackUserActivity
         $sessionId = session()->getId();
         $path = $request->fullUrl();
 
+        if (request()->ignore === 1) {
+            return $next;
+        }
+
+
+
+
         if (!Str::contains(request()->path(), 'admin')) {
             UserTracking::updateOrInsert(
                 ['session_id' => $sessionId,  'page_url' => $path],

@@ -75,10 +75,11 @@ export const getProducts = ({ commit }, url) => {
         });
 };
 
-export const getCart = ({ commit }) => {
+export const getCart = ({ commit }, ignore = false) => {
     commit("setLoading", true);
+    let ig = ignore ? "?ignore=true": ""
     return axios
-        .get("/api/cart")
+        .get("/api/cart" +ig)
         .then(response => {
             commit("setCart", response.data);
             commit("setCartMeta", response.data.meta);

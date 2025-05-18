@@ -120,7 +120,7 @@ export default {
       onMounted(() => {
           if (!years.value.length) {
               axios
-              .get("/api/years")
+              .get("/api/years?ignore=true")
               .then((response) => {                  
                   store.commit("setYears", response.data);
   

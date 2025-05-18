@@ -95,7 +95,7 @@ export default {
         })
     },
     mounted() {
-        this.getCart();
+        this.getCart(true);
     },
     methods: {
         ...mapActions({

@@ -116,6 +116,7 @@ export default {
                 params: {
                     category,
                     product,
+                    ignore: true
                 },
             }).then((res) => {
                 store.commit("setfitString", res.data.string);
