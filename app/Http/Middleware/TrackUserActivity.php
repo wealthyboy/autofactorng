@@ -26,7 +26,7 @@ class TrackUserActivity
         $path = $request->fullUrl();
 
         if ($request->ajax() && $request->ignore === "true") {
-            return $next;
+            return $response;
         }
 
         if (!Str::contains(request()->path(), 'admin')) {
