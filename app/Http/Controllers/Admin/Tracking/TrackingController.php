@@ -107,8 +107,10 @@ class TrackingController extends Table
             'total_visitors' => $totalVisitorCount,
         ];
 
+        // dd($visits);
 
-        $trackings = $this->getColumnListings(request(), $visits);
+
+        $trackings = $visits;
 
         return view('admin.tracking.index', compact('trackings', 'sourceCounts', 'visitorStats'));
     }

@@ -10,6 +10,10 @@ class Reply extends Model
 {
     use HasFactory, ColumnFillable;
 
+    public $appends = [
+        'date'
+    ];
+
     // A reply belongs to a topic
     public function topic()
     {
@@ -23,10 +27,7 @@ class Reply extends Model
     }
 
 
-    public function date()
-    {
-        return $this->
-    }
+
 
     // A reply can have a parent reply
     public function parent()
@@ -39,8 +40,9 @@ class Reply extends Model
     {
         return $this->hasMany(Reply::class, 'parent_id');
     }
+
+    public function getDateAttribute()
+    {
+        return optional($this->created_at)->shortRelativeDiffForHumans();
+    }
 }
-
-
-
-

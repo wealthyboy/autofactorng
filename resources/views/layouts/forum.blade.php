@@ -215,13 +215,11 @@
                     </ul>
 
                     <div class="d-flex gap-2">
-
-
                         @auth
-                        <a href="{{ route('account') }}" class="btn btn-outline-light">My Account</a>
-                        <a href="{{ route('topics.create') }}" class="btn pm-color text-white">New Topic</a>
+                        <a href="#" class="btn pm-color text-white">New Topic</a>
+
                         @else
-                        <a href="{{ route('login') }}" class="btn pm-color text-white">Login</a>
+                        <a href="/login" class="btn pm-color text-white">Login</a>
                         @endauth
                     </div>
                 </div>

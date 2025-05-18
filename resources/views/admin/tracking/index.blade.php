@@ -113,7 +113,106 @@
 
 
         </div>
-        @include('admin._partials.t', ['models' => $trackings, 'name' => 'Tracking'])
+
+        <div class="card">
+            <div class="card-header ps-2">
+                <h4 class="m-0">Tracking</h4>
+            </div>
+            <div class="table-responsive mt-1">
+
+                <form action="#" method="post" enctype="multipart/form-data" id="form-table" class="is-filled">
+                    @csrf
+                    @method('DELETE')
+                    <table class="table table-flush dataTable-table  align-items-center mb-0">
+                        <thead>
+                            <tr class="table-heading">
+                                <th data-sortable="" class="">
+                                    <a href="" class="{{ isset($no_card) ? '' : 'dataTable-sorter' }}">
+                                        <h6 class="mb-0 text-xs">
+                                            Ip
+                                        </h6>
+                                    </a>
+                                </th>
+                                <th data-sortable="" class="">
+                                    <a href="" class="{{ isset($no_card) ? '' : 'dataTable-sorter' }}">
+                                        <h6 class="mb-0 text-xs">
+                                            Name
+                                        </h6>
+                                    </a>
+                                </th>
+                                <th data-sortable="" class="">
+                                    <a href="" class="{{ isset($no_card) ? '' : 'dataTable-sorter' }}">
+                                        <h6 class="mb-0 text-xs">
+                                            Referer
+                                        </h6>
+                                    </a>
+                                </th>
+                                <th data-sortable="" class="">
+                                    <a href="" class="{{ isset($no_card) ? '' : 'dataTable-sorter' }}">
+                                        <h6 class="mb-0 text-xs">
+                                            Device
+                                        </h6>
+                                    </a>
+                                </th>
+                                <th data-sortable="" class="">
+                                    <a href="" class="{{ isset($no_card) ? '' : 'dataTable-sorter' }}">
+                                        <h6 class="mb-0 text-xs">
+                                            Date Added
+                                        </h6>
+                                    </a>
+                                </th>
+
+                                <th data-sortable="" class="">
+                                </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach($trackings as $tracking)
+                            <tr class="table-body">
+
+                                <td class="">
+                                    <div class="align-middle  text-sm">
+                                        <h6>{{ $tracking->ip_address }}</h6>
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="align-middle  text-sm">
+                                        <h6>{{ $tracking->first_name }}</h6>
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="align-middle  text-sm">
+                                        <h6>{{ $tracking->referer }}</h6>
+                                    </div>
+                                </td>
+                                <td class="">
+                                    <div class="align-middle  text-sm">
+                                        <h6>{{ $tracking->user_agent }}</h6>
+                                    </div>
+                                </td>
+
+                                <td class="">
+                                    <div class="align-middle  text-sm">
+                                        <h6>{{ $tracking->created_at }}</h6>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <a href="/admin/trackings/{{$tracking->id}}" data-bs-toggle="tooltip" data-bs-original-title="View">
+                                        <i class="material-symbols-outlined text-secondary position-relative text-lg">preview</i>
+                                    </a>
+                                </td>
+
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                    </table>
+
+                </form>
+            </div>
+        </div>
     </div>
     @endsection
     @section('inline-scripts')

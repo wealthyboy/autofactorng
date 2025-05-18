@@ -12,7 +12,7 @@
             <div>
               <h5 class="card-title mb-1">{{ reply.user.name }}</h5>
             </div>
-            <small class="text-muted d-none d-lg-inline text-black">{{ reply.created_at }}</small>
+            <small class="text-muted d-none d-lg-inline text-black">{{ reply.date }}</small>
           </div>
 
           <!-- Content -->

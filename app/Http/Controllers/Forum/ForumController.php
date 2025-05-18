@@ -103,6 +103,8 @@ class ForumController extends Controller
         ])->findOrFail($id);
 
 
+
+
         $topic = [
             'id' => $topic->id,
             'content' => $topic->content,
@@ -113,7 +115,8 @@ class ForumController extends Controller
             'category' => $topic->category,
             'replies' => $topic->replies,
             'likes_count' => $topic->likes_count,
-            'title' => $topic->title
+            'title' => $topic->title,
+            'isLoggedIn' => optional(auth()->user())->id
         ];
 
         if (request()->ajax()) {
