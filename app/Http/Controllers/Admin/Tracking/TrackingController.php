@@ -62,11 +62,14 @@ class TrackingController extends Table
             })
             ->groupBy('ip_address') // 👈 Group by IP address
             ->orderByDesc('id')
-            ->paginate(20);
+            ->get();
 
 
         $visitIds = $visits->pluck('id');
-        $uniqueVisits = \App\Models\UserTracking::whereIn('id', $visitIds)->get();
+        $uniqueVisits = \App\Models\UserTracking::whereIn('id', $visitIds)
+            ->orderByDesc('id')
+            ->paginate(20);
+
 
 
         $knownSources = ['google', 'instagram', 'twitter', 'facebook', 'youtube'];
