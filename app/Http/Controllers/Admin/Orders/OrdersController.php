@@ -338,13 +338,13 @@ class OrdersController extends Table
 
 		//status == delivered
 
-		$order = Order::find($request->id);
 
-		if ($request->value == 'Cancelled') {
+		if ($request->value === 'Cancelled') {
+			$order = Order::find($request->id);
 			$order->is_cancelled = true;
 			$order->save();
 
-			return response()->json(null, 200);
+			return response()->json($order, 200);
 		}
 
 		if ($request->value == 'Processing') {
