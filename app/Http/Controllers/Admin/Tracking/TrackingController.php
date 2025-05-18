@@ -64,7 +64,9 @@ class TrackingController extends Table
             ->orderByDesc('id')
             ->paginate(20);
 
-        dd($visits);
+
+        $visitIds = $visits->pluck('id');
+        $uniqueVisits = \App\Models\UserTracking::whereIn('id', $visitIds)->get();
 
 
         $knownSources = ['google', 'instagram', 'twitter', 'facebook', 'youtube'];
@@ -109,7 +111,7 @@ class TrackingController extends Table
         // dd($visits);
 
 
-        $trackings = $visits;
+        $trackings = $uniqueVisits;
 
         return view('admin.tracking.index', compact('trackings', 'sourceCounts', 'visitorStats'));
     }
