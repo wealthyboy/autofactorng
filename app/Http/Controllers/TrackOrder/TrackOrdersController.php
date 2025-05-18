@@ -18,7 +18,6 @@ class TrackOrdersController extends Controller
     public function index()
     {
         $nav = (new AccountSettingsNav())->nav();
-
         return view('tracking.index', compact('nav'));
     }
 
@@ -38,7 +37,7 @@ class TrackOrdersController extends Controller
 
         $order_statuses  = Order::$statuses;
 
-        $order = Order::with('order_statuses')->where(
+        $order = Order::where(
             [
                 'invoice' => $request->invoice,
                 'user_id' => auth()->user()->id
