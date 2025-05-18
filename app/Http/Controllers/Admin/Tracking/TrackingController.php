@@ -76,10 +76,10 @@ class TrackingController extends Table
 
         $otherCount = UserTracking::whereBetween('created_at', [$startDate, $endDate])
             ->where(function ($query) use ($knownSources) {
-                foreach ($knownSources as $source) {
-                    $query->orWhere('referer', 'like', '%' . $source . '%');
-                }
-            }, 'and', true) // wrap in NOT
+                collect($knownSources)->each(function ($source) use ($query) {
+                    $query->where('referer', 'not like', '%' . $source . '%');
+                });
+            })
             ->orWhereNull('referer')
             ->count();
 
