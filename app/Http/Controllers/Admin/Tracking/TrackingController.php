@@ -55,15 +55,12 @@ class TrackingController extends Table
         $endDate = $to ? Carbon::parse($to)->endOfDay() : now()->endOfDay();
 
         $visits = \DB::table('user_trackings')
+            ->selectRaw('MIN(id) as id') // Select the first record per IP
             ->whereBetween('created_at', [$startDate, $endDate])
-            ->whereIn('id', function ($query) {
-                $query->selectRaw('MIN(id)')
-                    ->from('user_trackings')
-                    ->groupBy('session_id');
-            })
             ->when($source, function ($query, $source) {
                 $query->where('referer', 'like', "%{$source}%");
             })
+            ->groupBy('ip_address') // 👈 Group by IP address
             ->orderByDesc('id')
             ->paginate(20);
 
