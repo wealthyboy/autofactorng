@@ -37,14 +37,23 @@ class TrackOrdersController extends Controller
 
         $order_statuses  = Order::$statuses;
 
-        $order = Order::where(
+        $o = Order::where(
             [
                 'invoice' => $request->invoice,
+                'user_id' => auth()->user()->id
+            ]
+        )->first();
+
+        $order = Order::with('order_statuses')->where(
+            [
+                'invoice' => $request->invoice,
+                'user_id' => auth()->user()->id
             ]
         )->first();
         return response()->json([
             'completed' => $order,
-            'status' => $order
+            'status' => $order,
+            'is_cancelled' => $o->is_cancelled
         ]);
     }
 
