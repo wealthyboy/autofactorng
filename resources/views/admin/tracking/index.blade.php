@@ -212,6 +212,15 @@
 
                 </form>
             </div>
+
+            <div class="card-footer">
+                <div class=" d-flex justify-content-between  mt-3">
+                    <p class="text-sm text-gray-700 leading-5">
+                        Showing <span>{{ $trackings->firstItem() }} - {{ $trackings->lastItem() }} of {{ $trackings->total() }} Records</span>
+                    </p>
+                    {{ $trackings->links() }}
+                </div>
+            </div>
         </div>
     </div>
     @endsection
