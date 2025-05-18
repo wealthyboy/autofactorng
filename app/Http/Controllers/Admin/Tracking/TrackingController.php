@@ -64,6 +64,8 @@ class TrackingController extends Table
             ->orderByDesc('id')
             ->paginate(20);
 
+        dd($visits);
+
 
         $knownSources = ['google', 'instagram', 'twitter', 'facebook', 'youtube'];
 
