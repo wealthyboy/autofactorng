@@ -25,12 +25,9 @@ class TrackUserActivity
         $sessionId = session()->getId();
         $path = $request->fullUrl();
 
-        if (request()->ignore === 1) {
+        if ($request->ajax() && $request->ignore === "true") {
             return $next;
         }
-
-
-
 
         if (!Str::contains(request()->path(), 'admin')) {
             UserTracking::updateOrInsert(
