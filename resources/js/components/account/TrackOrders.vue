@@ -1,6 +1,6 @@
 <template>
 
-<div v-if="completed.is_cancelled" class="d-flex justify-content-center align-items-center" style="height: 200px;">
+<div v-if="null ==  completed || completed.is_cancelled" class="d-flex justify-content-center align-items-center" style="height: 200px;">
     <div class="text-center">
       <h6 class="text-danger">
         This order has been cancelled. If you believe this is an error, please contact support.
@@ -8,7 +8,7 @@
     </div>
   </div>
  
-  <ul v-if="!completed.is_cancelled" class="progress-indicator stacked nocenter mb-3">
+  <ul v-if="null !==  completed && !completed.is_cancelled" class="progress-indicator stacked nocenter mb-3">
     <template v-if="null !== completed">
 
       <li
@@ -40,8 +40,6 @@
         <span v-if="complete.is_updated || complete.status == 'Confirmed'" class="subdued text-success"> {{ complete.formated_date }}</span>
       </li>
     </template>
-    
-
   </ul>
 
    

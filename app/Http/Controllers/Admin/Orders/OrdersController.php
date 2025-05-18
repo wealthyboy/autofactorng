@@ -342,6 +342,8 @@ class OrdersController extends Table
 		if ($request->value === 'Cancelled') {
 			$order = Order::find($request->id);
 			$order->is_cancelled = true;
+			$order->status =  $request->value;
+
 			$order->save();
 
 			return response()->json($order, 200);
@@ -356,8 +358,8 @@ class OrdersController extends Table
 				}
 			}
 
-
 			$order_status = OrderStatus::where(['order_id' => $request->id])->where('status', '=', 'Processing')->first();
+
 			if (null !== $order_status) {
 				$order_status->is_updated = true;
 				$order_status->save();
