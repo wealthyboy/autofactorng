@@ -80,6 +80,9 @@ class Order extends Model
 		if ($order->save()) {
 
 			foreach (Order::$statuses as $key => $status) {
+				if ($status === 'Cancelled') {
+					continue; // Skip this status
+				}
 				$order_status = new OrderStatus();
 				$order_status->is_updated = false;
 				$order_status->status = $status;

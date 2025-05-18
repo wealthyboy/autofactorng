@@ -338,6 +338,32 @@ class OrdersController extends Table
 
 		//status == delivered
 
+		$order = Order::find($request->id);
+
+		if ($request->value == 'Cancelled') {
+			$order->is_cancelled = true;
+			$order->save();
+
+			return response()->json(null, 200);
+		}
+
+		if ($request->value == 'Processing') {
+			$order_statuses = OrderStatus::where(['order_id' => $request->id])->where('status', '!=', 'Confirmed')->get();
+			if (null !== $order_statuses) {
+				foreach ($order_statuses as $order_status) {
+					$order_status->is_updated = false;
+					$order_status->save();
+				}
+			}
+
+
+			$order_status = OrderStatus::where(['order_id' => $request->id])->where('status', '=', 'Processing')->first();
+			if (null !== $order_status) {
+				$order_status->is_updated = true;
+				$order_status->save();
+			}
+		}
+
 		if ($request->value == 'Delivered') {
 			$order_statuses = OrderStatus::where('order_id', $request->id)->get();
 			if (null !== $order_statuses) {
@@ -423,6 +449,9 @@ class OrdersController extends Table
 				$order_status->save();
 			}
 		}
+
+
+
 
 
 

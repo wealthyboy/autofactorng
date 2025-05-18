@@ -1,6 +1,14 @@
 <template>
+
+<div v-if="completed.is_cancelled" class="d-flex justify-content-center align-items-center" style="height: 200px;">
+    <div class="text-center">
+      <h5 class="text-danger">
+        This order has been cancelled. If you believe this is an error, please contact support.
+      </h5>
+    </div>
+  </div>
  
-  <ul class="progress-indicator stacked nocenter mb-3">
+  <ul else class="progress-indicator stacked nocenter mb-3">
     <template v-if="null !== completed">
 
       <li
@@ -35,6 +43,8 @@
     
 
   </ul>
+
+   
 
   <form
     method="POST"
