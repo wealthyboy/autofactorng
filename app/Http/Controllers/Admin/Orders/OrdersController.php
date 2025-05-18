@@ -474,6 +474,7 @@ class OrdersController extends Table
 
 		if ($request->column == 'Status') {
 			$order->status =  $request->value;
+			$order->is_cancelled = false;
 		}
 
 		$order->save();
