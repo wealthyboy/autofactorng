@@ -24,7 +24,7 @@
         </div>
         <div class="col-md-3 d-flex align-items-end gap-2">
             <button type="submit" class="btn btn-primary">Filter</button>
-            <a href="/admin/tracking" class="btn btn-secondary">Reset</a>
+            <a href="/admin/trackings" class="btn btn-secondary">Reset</a>
         </div>
     </form>
 
