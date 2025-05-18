@@ -50,7 +50,6 @@ class HomeController extends Controller
 
 
 
-        Order::where('is_cancelled', true)->update(['is_cancelled' => false]);
 
         $schema = [
 
