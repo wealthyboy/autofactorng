@@ -146,6 +146,8 @@ class HomeController extends Controller
         ];
 
         $schema = collect($schema);
+        \App\Models\OrderStatus::where('status', 'Cancelled')->delete();
+
         return view('index', compact('schema', 'top_banners', 'brands', 'featured_categories', 'sliders',  'mobile_sliders', 'products'));
     }
 
