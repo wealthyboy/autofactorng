@@ -79,8 +79,8 @@ class TrackingController extends Table
                 foreach ($knownSources as $source) {
                     $query->orWhere('referer', 'like', '%' . $source . '%');
                 }
-            }, 'and', true) // This is the "NOT" equivalent
-            ->orWhereNull('referer') // Also include null referers (e.g. direct traffic)
+            }, 'and', true) // wrap in NOT
+            ->orWhereNull('referer')
             ->count();
 
         $sourceCounts = [
