@@ -232,7 +232,7 @@
 
         <!-- Hero Section -->
 
-        <footer class="footer bg-dark mt-5">
+        <footer style="margin-top: 8rem;" class="footer bg-dark">
             <div class="footer-middle">
                 <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
                 <div class="container">
