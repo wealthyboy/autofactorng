@@ -83,6 +83,10 @@
   let editorInstance = null
 
   onMounted(async () => {
+    const formSkelenton = document.getElementById('form-skelenton');
+    if (formSkelenton){
+        formSkelenton.classList.add('d-none')
+    }
     const editorInstance = await ClassicEditor.create(editorRef.value)
       editorInstance.model.document.on('change:data', () => {
         form.value.content = editorInstance.getData()
@@ -103,6 +107,8 @@
       }
     }
   )
+
+  
   
   function previewImage(e) {
     const file = e.target.files[0]
@@ -143,13 +149,18 @@
     data.append('forum_category_id', form.value.forum_category_id)
 
 
+
+
     if (props.parentId) data.append('parent_id', props.parentId)
     if (form.value.image) data.append('image', form.value.image)
   
     try {
         if (!confirm('Are you sure you want to submit this post?')) return;
         await axios.post('/topic', data)
+
       close()
+
+      location.href = '/forum'
     } catch (err) {
       console.error(err)
       alert('Failed to submit reply')

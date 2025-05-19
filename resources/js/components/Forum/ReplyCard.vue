@@ -17,7 +17,6 @@
 
           <!-- Content -->
           <p class="mt-2 py-3 mb-2">
-            {{ showFullContent }}
             <span v-if="!showFullContent" v-html="truncatedContent"></span>
             <span v-else v-html="reply.content"></span>
             <template v-if="isTruncated">
@@ -85,6 +84,8 @@ const showReplies = ref(false)
 const toggleReplies = () => {
   showReplies.value = !showReplies.value
 }
+
+
 
 // ✅ Safely check for children replies
 const hasChildren = computed(() => {

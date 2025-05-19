@@ -18,7 +18,15 @@
         </div>
 
         <!-- Content -->
-        <p class="mt-2 mb-2">{{ topic.content }}</p>
+        <p class="mt-2 py-3 mb-2">
+            <span v-if="!showFullContent" v-html="truncatedContent"></span>
+            <span v-else v-html="topic.content"></span>
+            <template v-if="isTruncated">
+              <button class="btn btn-link btn-sm p-0 ps-1" @click="showFullContent = !showFullContent">
+                {{ showFullContent ? 'Read less' : 'Read more' }}
+              </button>
+            </template>
+          </p>
 
         <!-- Footer: icons and reply -->
         <div class="d-flex align-items-center justify-content-between text-muted mt-3">
@@ -44,16 +52,16 @@
      <div class="mt-1 mx-5  border-raised mb-2">
         <div class="d-flex align-items-center mb-2">
           <div class="me-4 text-center">
-            <strong class="text-danger">{{ topic.views_count }}</strong><br />
+            <strong class="text-danger">{{ topic.views_count || 0 }}</strong><br />
             <small class="text-muted">views</small>
           </div>
           <div class="me-4 text-center">
-            <strong class="text-danger">{{ topic.likes_count }}  45</strong><br />
+            <strong class="text-danger">{{ topic.likes_count  || 0 }} </strong><br />
             <small class="text-muted">likes</small>
           </div>
 
           <div class="me-4 text-center">
-            <strong class="text-danger">{{ topic.likes_count }}  45</strong><br />
+            <strong class="text-danger">{{ topic.likes_count || 0 }}  </strong><br />
             <small class="text-muted">likes</small>
           </div>
           <div class="me-4 text-center">
@@ -88,15 +96,35 @@
 </template>
 
 <script setup>
+import { ref, computed } from 'vue'
+
 import InitialAvatar from './InitialAvatar.vue'
-defineProps(['topic'])
+const props = defineProps(['topic'])
 defineEmits(['toggle-like','open-reply-modal'])
+
+const topic = props.topic
+
 
 // Utility: pick a color per user ID for avatar backgrounds
 function getRandomColor(seed) {
   const colors = ['#a0d911', '#fadb14', '#13c2c2', '#eb2f96', '#722ed1', '#1890ff'];
   return colors[parseInt(seed) % colors.length];
 }
+
+
+const maxLength = 300 // You can adjust this threshold
+
+const showFullContent = ref(false)
+
+const isTruncated = computed(() => topic.content.length > maxLength)
+
+const truncatedContent = computed(() => {
+  if (isTruncated.value) {
+    return topic.content.slice(0, maxLength) + '...'
+  }
+  return topic.content
+})
+
 </script>
 <style scoped>
 

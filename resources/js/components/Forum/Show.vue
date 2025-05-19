@@ -20,10 +20,9 @@
         <div class="spinner-border text-primary" role="status"></div>
       </div>
 
-      <Auth />
+      <Auth  v-if="showLogin"/>
 
       <div v-if="!hasMoreReplies" class="text-center text-muted my-3">
-        No more replies.
       </div>
     </template>
 
@@ -50,6 +49,8 @@
   
   const topic = ref({})
   const loading = ref(true)
+  const showLogin = ref(false)
+
 
   
   onMounted(async () => {
@@ -96,5 +97,13 @@
     selectedTopic.value = topic
     showModal.value = true
   }
+
+
+  function showLoginModal(topic) {
+    showLogin.value = true
+  }
+
+
+  
   </script>
   
