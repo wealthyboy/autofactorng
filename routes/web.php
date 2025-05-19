@@ -91,7 +91,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::post('promo-text/create/{id}', 'Admin\PromoText\PromoTextController@store');
     Route::get('promo-text/delete/{id}', 'Admin\PromoText\PromoTextController@destroy')->name('delete.promo.text');
     Route::resource('discounts', 'Admin\Discounts\DiscountsController', ['names' => 'discounts']);
-    Route::resource('forum', 'Admin\Forums\ForumController', ['names' => 'forums']);
+    Route::resource('forum', 'Admin\Forums\ForumController', ['names' => 'admin.forums']);
     Route::resource('trackings', 'Admin\Tracking\TrackingController', ['names' => 'trackings']);
     Route::resource('car-reviews', 'Admin\CarReviews\CarReviewsController', ['names' => 'admin.car_reviews']);
     Route::resource('forum-category', 'Admin\ForumCategory\ForumCategoryController', ['names' => 'admin.forum-category']);
@@ -120,7 +120,6 @@ Route::group(['middleware' => ['tracking']], function () {
     Route::get('plans', [App\Http\Controllers\Plans\PlansController::class, 'index']);
     Route::get('buy-now-pay-later', [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index']);
 
-
     Route::get('subscribe', [App\Http\Controllers\Subscribe\SubscribeController::class, 'index']);
     Route::get('checkout', [App\Http\Controllers\Checkout\CheckoutController::class, 'index']);
     Route::get('products/{category}', 'Products\ProductsController@index');
@@ -130,32 +129,23 @@ Route::group(['middleware' => ['tracking']], function () {
     Route::get('search', 'Products\ProductsController@search');
     Route::resource('forum', 'Forum\ForumController', ['names' => 'forum']);
     Route::resource('car-reviews', 'CarReviews\CarReviewsController', ['names' => 'car.reviews']);
-
-
-
+    Route::resource('topic', 'Topics\TopicsController', ['names' => 'topics']);
 
     Route::get('cart', 'Cart\CartController@index');
     Route::post('cart/meta', 'Cart\CartController@meta');
-
     Route::resource('account', 'Account\AccountController', ['names' => 'account']);
     Route::get('change/password', 'ChangePassword\ChangePasswordController@index');
     Route::post('change/password', 'ChangePassword\ChangePasswordController@changePassword');
     Route::get('wallet-balance', 'Wallets\WalletsController@walletBalnce');
     Route::get('video-tips', 'HowTo\HowToController@index');
-
-    Route::post('reset/password',                'Auth\ResetPasswordController@reset');
-
+    Route::post('reset/password', 'Auth\ResetPasswordController@reset');
     Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'wallets']);
-
     Route::resource('orders', 'Orders\OrdersController', ['names' => 'orders']);
     Route::get('tracking', 'TrackOrder\TrackOrdersController@index');
     Route::post('tracking', 'TrackOrder\TrackOrdersController@getOrderStatus');
-
     Route::resource('address', 'Address\AddressController', ['names' => 'address']);
-
     Route::get('checkout', 'Checkout\CheckoutController@index')->name('checkout');
     Route::post('checkout/confirm', 'Checkout\CheckoutController@confirm');
-
     Route::post('checkout/coupon', 'Checkout\CheckoutController@coupon');
 });
 

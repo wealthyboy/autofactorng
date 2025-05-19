@@ -1,6 +1,8 @@
 <template>
 
-<div v-if="null ==  completed || completed.is_cancelled" class="d-flex justify-content-center align-items-center" style="height: 200px;">
+
+   <div v-if="completed" >
+    <div v-if=" completed.is_cancelled" class="d-flex justify-content-center align-items-center" style="height: 200px;">
     <div class="text-center">
       <h6 class="text-danger">
         This order has been cancelled. If you believe this is an error, please contact support.
@@ -41,6 +43,8 @@
       </li>
     </template>
   </ul>
+   </div>
+
 
    
 
@@ -61,6 +65,10 @@
         />
 
       </div>
+
+      <small v-if="null === completed" class="text-danger">
+           Order not found
+      </small>
     </div>
 
       <general-button

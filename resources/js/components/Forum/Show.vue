@@ -20,6 +20,8 @@
         <div class="spinner-border text-primary" role="status"></div>
       </div>
 
+      <Auth />
+
       <div v-if="!hasMoreReplies" class="text-center text-muted my-3">
         No more replies.
       </div>
@@ -40,6 +42,8 @@
   
   import Topic from './Topic.vue'
   import ReplyCard from './ReplyCard.vue'
+  import Auth from './Auth.vue'
+
   import ReplyModal from './ReplyModal.vue'
   import PostSkeleton from "./PostSkeleton"
 

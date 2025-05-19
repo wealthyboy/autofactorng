@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
-<form action="{{ route('admin.car_reviews.store') }}" class="" method="post" enctype="multipart/form-data" id="car_reviews">
+<form action="{{ route('admin.forums.store') }}" class="" method="post" enctype="multipart/form-data" id="car_reviews">
    @csrf
    <div class="row">
       <div class="col-md-7">
@@ -22,10 +22,12 @@
                   </div>
 
                   <div class="col-sm-12 col-12 mt-3">
-                     <div class="input-group input-group-outline">
-                        <label class="form-label"> Teaser</label>
-                        <input type="text" class="form-control" name="teaser" required id="teaser">
-                     </div>
+                     <select name="forum_category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">
+                        <option selected value=""> Select Category</option>
+                        @foreach($categories as $category)
+                        <option class="" value="{{ $category->id }}">{{ $category->name }} </option>
+                        @endforeach
+                     </select>
                   </div>
 
 

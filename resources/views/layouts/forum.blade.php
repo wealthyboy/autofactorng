@@ -216,10 +216,9 @@
 
                     <div class="d-flex gap-2">
                         @auth
-                        <a href="#" class="btn pm-color text-white">New Topic</a>
-
+                        <a href="/topic/create" class="btn pm-color text-white">New Topic</a>
                         @else
-                        <a href="/login" class="btn pm-color text-white">Login</a>
+                        <a href="/login?forum={{ csrf_token() }}" class="btn pm-color text-white">Login</a>
                         @endauth
                     </div>
                 </div>

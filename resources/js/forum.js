@@ -48,6 +48,8 @@ import ProductSearch from "./components/search/ProductSearch"
 import ModalMakeModelYear from "./components/search/ModalMakeModelYear"
 import AddVehicleSearch from "./components/search/AddVehicle"
 import SignUp from "./components/newsletter/SignUp"
+import NewTopic from "./components/Forum/NewTopic";
+import ForumIndex from "./components/Forum/Index";
 
 import ModalSearch from "./components/addVehicle/ModalSearch"
 
@@ -72,6 +74,8 @@ app.component('TrackOrders', TrackOrders)
 app.component('Addresses', Addresses)
 app.component('ShipAddresses', Addresses)
 app.component('ShowForum', ShowForum)
+app.component('NewTopic', NewTopic)
+app.component('ForumIndex', ForumIndex)
 
 app.component('FundWallet', FundWallet)
 app.component('GeneralTable', Table)

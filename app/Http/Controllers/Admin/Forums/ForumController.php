@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Forums;
 use App\DataTable\Table;
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
+use App\Models\ForumCategory;
 use App\Models\Setting;
 use App\Models\Topic;
 use App\Models\User;
@@ -56,7 +57,8 @@ class ForumController extends  Table
     public function create()
     {
         User::canTakeAction(User::canCreate);
-        return view('admin.forum.create');
+        $categories = ForumCategory::get();
+        return view('admin.forum.create', compact('categories'));
     }
 
     public function show() {}
@@ -120,19 +122,13 @@ class ForumController extends  Table
     {
         User::canTakeAction(User::canUpdate);
         $topic = Topic::find($id);
-        return view('admin.forum.edit', compact('topic'));
+        $categories = ForumCategory::get();
+        return view('admin.forum.edit', compact('topic', 'categories'));
     }
 
 
     public function update(Request $request, $id)
     {
-
-
-        // $this->validate($request, [
-        //     'category_id' => 'required',
-        //     'product_name' => 'required',
-        // ]);
-
 
         $data = $request->all();
         $topic = Topic::find($id);

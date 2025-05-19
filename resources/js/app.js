@@ -23,6 +23,7 @@ import TestSideBar from "./components/cart/TestCart";
 import ShowForum from "./components/Forum/Show";
 
 
+
 import Login from "./components/auth/Login";
 import ResetPassword from "./components/auth/ResetPassword";
 
@@ -65,6 +66,10 @@ app.component('CheckoutIndex', CheckoutIndex)
 app.component('Login', Login)
 app.component('Register', Register)
 app.component('CartSummary', CartSummary)
+app.component('NewTopic', NewTopic)
+app.component('ForumIndex', ForumIndex)
+
+
 app.component('Modal', Modal)
 app.component('Account', Account)
 app.component('ChangePassword', ChangePassword)

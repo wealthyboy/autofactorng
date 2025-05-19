@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
-<form action="{{ route('admin.car_reviews.update',['car_review'=>$carReview->id])  }}" class="" method="post" data-method="POST" enctype="multipart/form-data" id="car_reviews">
+<form action="{{ route('admin.forums.update',['forum'=>$topic->id])  }}" class="" method="post" data-method="POST" enctype="multipart/form-data" id="car_reviews">
    @method('PATCH')
    @csrf
    <div class="row">
@@ -18,28 +18,37 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Title </label>
-                        <input type="text" class="form-control" value="{{$carReview->title}}" name="title" required id="title">
+                        <input type="text" class="form-control" value="{{$topic->title}}" name="title" required id="title">
                      </div>
                   </div>
 
                   <div class="col-sm-12 col-12 mt-3">
-                     <div class="input-group input-group-outline">
-                        <label class="form-label"> Teaser</label>
-                        <input type="text" class="form-control" value="{{$carReview->teaser}}" name="teaser" required id="teaser">
-                     </div>
+                     <select name="forum_category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">
+                        <option selected value=""> Select Category</option>
+                        @foreach($categories as $category)
+
+                        @if($topic->id)
+                        <option class="" value="{{ $category->id }}" {{ $topic->forum_category_id === $category->id  ? "selected" : "" }}>{{ $category->name }} </option>
+                        @else
+                        <option class="" value="{{ $category->id }}">{{ $category->name }} </option>
+                        @endif
+                        @endforeach
+                     </select>
                   </div>
+
+
                </div>
-               <div class="row mt-3">
+               <div class="row mt-1">
                   <div class="col-sm-12 col-12">
                      <label class="form-label">Description</label>
                      <div class="input-group input-group-outline">
-                        <textarea id="m-description" type="text" class="form-control" name="content" rows="8" required>{{ $carReview->content ?? old('description') }}</textarea>
+                        <textarea id="m-description" type="text" class="form-control" name="content" rows="8" required>{{ $topic->content ?? old('description') }}</textarea>
                      </div>
                   </div>
                </div>
 
                <div class="col-12 my-3">
-                  @include('admin._partials.single_image', ['model' => $carReview])
+                  @include('admin._partials.single_image', ['model' => $topic])
                </div>
 
                <div class="d-flex justify-content-end mt-4">
