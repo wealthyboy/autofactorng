@@ -57,7 +57,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::post('upload', 'Admin\Uploads\UploadsController@store');
     Route::get('delete/upload', 'Admin\Uploads\UploadsController@destroy');
     Route::resource('users',  'Admin\Users\UsersController', ['names' => 'admin.users']);
-    Route::resource('forums',  'Admin\Forums\ForumController', ['names' => 'admin.forums']);
+    //Route::resource('forums',  'Admin\Forums\ForumController', ['names' => 'admin.forums']);
 
     Route::post('/products/update-price/{id}', 'Admin\Product\ProductController@updatePrice');
     Route::resource('banners', 'Admin\Design\BannersController', ['names' => 'banners']);
@@ -91,7 +91,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::post('promo-text/create/{id}', 'Admin\PromoText\PromoTextController@store');
     Route::get('promo-text/delete/{id}', 'Admin\PromoText\PromoTextController@destroy')->name('delete.promo.text');
     Route::resource('discounts', 'Admin\Discounts\DiscountsController', ['names' => 'discounts']);
-    Route::resource('forum', 'Admin\Forums\ForumController', ['names' => 'admin.forums']);
+    Route::resource('forums', 'Admin\Forums\ForumController', ['names' => 'admin.forums']);
     Route::resource('trackings', 'Admin\Tracking\TrackingController', ['names' => 'trackings']);
     Route::resource('car-reviews', 'Admin\CarReviews\CarReviewsController', ['names' => 'admin.car_reviews']);
     Route::resource('forum-category', 'Admin\ForumCategory\ForumCategoryController', ['names' => 'admin.forum-category']);
