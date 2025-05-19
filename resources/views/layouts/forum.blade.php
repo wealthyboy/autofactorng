@@ -196,7 +196,7 @@
     </style>
 </head>
 
-<body>
+<body class="h-full flex flex-col">
     <div id="app" class="page-wrapper">
 
         <!-- Navbar -->
@@ -226,13 +226,13 @@
         </nav>
 
 
-        <main class="">
+        <main class="flex-grow">
             @yield('content')
         </main>
 
         <!-- Hero Section -->
 
-        <footer class="footer bg-dark">
+        <footer class="footer bg-dark mt-5">
             <div class="footer-middle">
                 <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
                 <div class="container">

@@ -42,8 +42,8 @@ class TopicsController extends Controller
         $input['user_id'] = auth()->user()->id;
         $topic = Topic::create($input);
 
-        Notification::route('mail', 'care@autofactorng.com')
-            ->notify(new NewTopicCreated($topic));
+        // Notification::route('mail', 'care@autofactorng.com')
+        //     ->notify(new NewTopicCreated($topic));
         return $topic;
     }
 
