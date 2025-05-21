@@ -227,6 +227,14 @@
             outline: none !important;
             box-shadow: none !important;
         }
+
+        .logo {
+            max-width: 200px;
+        }
+
+        .logo img {
+            width: 200px;
+        }
     </style>
 </head>
 
