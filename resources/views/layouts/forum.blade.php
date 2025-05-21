@@ -235,6 +235,12 @@
         .logo img {
             width: 200px;
         }
+
+        .how-to iframe {
+            width: 100% !important;
+
+            height: 400px !important;
+        }
     </style>
 </head>
 
