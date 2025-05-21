@@ -71,6 +71,16 @@
             }
         }
 
+        .review-hero {
+            background-image: url('/images/utils/golden-wrench-feature.jpg');
+            /* Replace with your image */
+            background-size: cover;
+            background-position: center;
+            height: 300px;
+            position: relative;
+            color: white;
+        }
+
         .forum-hero {
             background-image: url('/images/utils/worker.jpg');
             /* Replace with your image */

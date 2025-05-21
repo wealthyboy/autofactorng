@@ -2,7 +2,7 @@
   <div>
     <div class="d-flex gap-1 mb-3 mt-3">
       <!-- Avatar -->
-      <InitialAvatar :name="reply.user.name" :size="48" class="avatar-shadow mt-3" />
+      <InitialAvatar :name="reply.user.name" :size="40" class="avatar-shadow mt-3" />
 
       <!-- Post Content Card -->
       <div class="card w-100 border rounded-4 px-3 py-2">
