@@ -236,9 +236,8 @@
             width: 200px;
         }
 
-        .how-to iframe {
+        iframe {
             width: 100% !important;
-
             height: 400px !important;
         }
     </style>

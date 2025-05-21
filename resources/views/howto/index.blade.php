@@ -25,13 +25,13 @@
 </section>
 <section id="home">
     <div class="container-fluid">
-        <div class="row justifiy-content-center">
+        <div class="row how-to justifiy-content-center">
             @foreach($videos as $video)
             <div id="content" class="col-md-6  mb-9 p-">
                 <h2 class="mb-1">{{ $video->title }}</h2>
-                <div style="height: 45px; " class="mt-5  d-none d-lg-block  d-xl-block mb-4"> <?php echo  html_entity_decode($video->description)  ?> </div>
-                <div style="height:" class="mt-5  d-md-none d-lg-none d-sm-block mb-4"> <?php echo  html_entity_decode($video->description)  ?> </div>
-                <div style="height: 65px;  " class="mt-5 d-md-block d-lg-none d-sm-none d-xl-none d-xs-none mb-4"> <?php echo  html_entity_decode($video->description)  ?> </div>
+                <div style="height: 45px; " class="mt-3  d-none d-lg-block  d-xl-block mb-4"> <?php echo  html_entity_decode($video->description)  ?> </div>
+                <div style="height:" class="mt-3  d-md-none d-lg-none d-sm-block mb-4"> <?php echo  html_entity_decode($video->description)  ?> </div>
+                <div style="height: 65px;  " class="mt-3 d-md-block d-lg-none d-sm-none d-xl-none d-xs-none mb-4"> <?php echo  html_entity_decode($video->description)  ?> </div>
 
                 <?php echo  html_entity_decode($video->link)  ?>
             </div>
