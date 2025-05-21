@@ -254,14 +254,16 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="/forum">Forum</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/car-reviews">Car Reviews</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/video-tips">Video Tips & Tutorials</a></li>
-                    </ul>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="d-flex flex-grow-1 justify-content-start justify-content-md-center">
+                        <ul class="navbar-nav">
+                            <li class="nav-item"><a class="nav-link" href="/forum">Forum</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/car-reviews">Car Reviews</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/video-tips">Video Tips & Tutorials</a></li>
+                        </ul>
+                    </div>
 
-                    <div class="d-flex gap-2">
+                    <div class="d-flex gap-2 ms-auto">
                         @auth
                         <a href="/topic/create" class="btn pm-color text-white">New Topic</a>
                         @else
@@ -269,6 +271,7 @@
                         @endauth
                     </div>
                 </div>
+
             </div>
         </nav>
 
