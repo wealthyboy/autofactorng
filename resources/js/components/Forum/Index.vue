@@ -55,8 +55,8 @@
       <div class="flex-grow-1">Topic</div>
       <div class="text-end  d-none d-md-flex " style="width: 80px;"></div>
       <div class="text-end  d-none d-md-flex " style="width: 80px;">Replies</div>
-      <div class="text-end  d-none d-md-flex " style="width: 80px;"><i class="bi bi-eye"></i> Views</div>
-      <div class="text-end  d-none d-md-flex " style="width: 100px;"><i class="bi bi-clock"></i> Activity</div>
+      <div class="text-end  d-none d-md-flex " style="width: 80px;"> Views</div>
+      <div class="text-end  d-none d-md-flex " style="width: 100px;"> Activity</div>
     </div>
 
     <!-- Topics -->
@@ -76,7 +76,7 @@
 
 
 
-        <div    class="mt-1  border-raised mb-2  d-lg-none">
+        <div class="mt-1  border-raised mb-2  d-lg-none">
           <div class="d-flex align-items-center mb-2">
             <div class="me-4 text-center">
               <strong class="text-danger">{{ topic.views_count || 0 }}</strong><br />
@@ -84,7 +84,7 @@
             </div>
 
             <div class="me-4 text-center">
-              <strong class="text-danger">{{ topic.replies.length }}</strong><br />
+              <strong class="text-danger">{{ topic.replies.length || 0 }}</strong><br />
               <small class="text-muted">replies</small>
             </div>
 
@@ -129,13 +129,13 @@
         </div>
       </div>
 
-      <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center">
+      <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center ">
         {{ topic.replies?.length || 0 }}
       </div>
-      <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center">
-        {{ topic.views_count }}
+      <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center me-2">
+        {{ topic.views_count  || 0 }}
       </div>
-      <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center">
+      <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center me-4">
         {{ topic.date }}
       </div>
     </div>

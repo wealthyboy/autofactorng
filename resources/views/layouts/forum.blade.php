@@ -257,7 +257,7 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <div class="d-flex flex-grow-1 justify-content-start justify-content-md-center">
                         <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="/forum">Forum</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/forum">Car Community</a></li>
                             <li class="nav-item"><a class="nav-link" href="/car-reviews">Car Reviews</a></li>
                             <li class="nav-item"><a class="nav-link" href="/video-tips">Video Tips & Tutorials</a></li>
                         </ul>

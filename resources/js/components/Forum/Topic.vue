@@ -18,9 +18,14 @@
         </div>
 
         <!-- Content -->
-         <div>
-          <img  v-if="topic.image" :src="'/' +topic.image" class="img-fluid rounded" alt="">
-         </div>
+        <div class="mb-3 text-center">
+            <img
+              v-if="topic.image"
+              :src="'/' + topic.image"
+              class="img-fluid rounded shadow-sm reply-image"
+              alt="topic image"
+            />
+          </div>
         <p class="mt-2 py-3 mb-2">
             <span v-if="!showFullContent" v-html="truncatedContent"></span>
             <span v-else v-html="topic.content"></span>
@@ -139,5 +144,18 @@ const truncatedContent = computed(() => {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.reply-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 400px; /* Prevent overly tall images */
+  object-fit: cover; /* Crop to maintain uniform look */
+  border: 1px solid #dee2e6; /* Light border */
+}
+
+.reply-image:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease-in-out;
 }
 </style>

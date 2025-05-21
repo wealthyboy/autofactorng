@@ -51,7 +51,7 @@ class NewTopicCreated extends Notification
             ->greeting('Hello Admin,')
             ->line('A new topic has been created by ' . $this->topic->user->name)
             ->line('Title: ' . $this->topic->title)
-            ->action('View Topic', url('/forum/' . $this->topic))
+            ->action('View Topic', url('/forum/' . $this->topic->id))
             ->line('Thank you for using Autofactor!');
     }
 

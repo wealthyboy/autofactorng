@@ -40,6 +40,13 @@ class TopicsController extends Controller
 
         $input = $request->all();
         $input['user_id'] = auth()->user()->id;
+
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('topics', 'public');
+            $input['image'] = $path;
+        }
+
         $topic = Topic::create($input);
 
         Notification::route('mail', 'care@autofactorng.com')
@@ -71,7 +78,7 @@ class TopicsController extends Controller
 
 
 
-
+        dd($topic);
 
         $topic = [
             'id' => $topic->id,
@@ -82,6 +89,7 @@ class TopicsController extends Controller
             'users' => $topic->users,
             'category' => $topic->category,
             'replies' => $topic->replies,
+            'image' => $topic->image,
             'likes_count' => $topic->likes_count,
             'title' => $topic->title,
             'isLoggedIn' => optional(auth()->user())->id

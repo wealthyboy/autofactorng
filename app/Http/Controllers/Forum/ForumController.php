@@ -118,6 +118,7 @@ class ForumController extends Controller
             'category' => $topic->category,
             'replies' => $topic->replies,
             'likes_count' => $topic->likes_count,
+            'image' => $topic->image,
             'title' => $topic->title,
             'isLoggedIn' => optional(auth()->user())->id
         ];
