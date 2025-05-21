@@ -9,7 +9,9 @@
             <li><i class="bi bi-check-circle-fill text-pm-color me-2"></i> Advice on fixing car malfunctions from experienced motorists</li>
             <li><i class="bi bi-check-circle-fill text-pm-color me-2"></i> Friends and like-minded people</li>
         </ul>
+        @guest
         <a href="/register" class="btn pm-color btn-lg mt-4 text-white fw-bold">REGISTER</a>
+        @endguest
     </div>
 </section>
 
