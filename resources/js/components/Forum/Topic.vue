@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex gap-1 mb-1">
     <!-- Avatar (outside card) -->
-    <InitialAvatar :name="topic.user.name" :size="48" class="avatar-shadow mt-3" />
+    <InitialAvatar :name="topic.user.name" :size="32" class="avatar-shadow mt-3" />
 
     <!-- Post Content Card -->
     <div class="card w-100 border rounded-4 px-3 py-2">

@@ -76,39 +76,38 @@
 
 
 
-        <div   v-if="showTopicInfo"
-        class="mt-1 mx-5 border-raised mb-2 ">
-  <div class="d-flex align-items-center mb-2">
-    <div class="me-4 text-center">
-      <strong class="text-danger">{{ topic.views_count || 0 }}</strong><br />
-      <small class="text-muted">views</small>
-    </div>
+        <div    class="mt-1  border-raised mb-2  d-lg-none">
+          <div class="d-flex align-items-center mb-2">
+            <div class="me-4 text-center">
+              <strong class="text-danger">{{ topic.views_count || 0 }}</strong><br />
+              <small class="text-muted">views</small>
+            </div>
 
-    <div class="me-4 text-center">
-      <strong class="text-danger">{{ topic.replies.length }}</strong><br />
-      <small class="text-muted">replies</small>
-    </div>
+            <div class="me-4 text-center">
+              <strong class="text-danger">{{ topic.replies.length }}</strong><br />
+              <small class="text-muted">replies</small>
+            </div>
 
-    <!-- Avatars -->
-    <div class="d-flex">
-      <div
-        v-for="(user, index) in topic.latest_users"
-        :key="user.id"
-        class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold"
-        :style="{
-          width: '32px',
-          height: '32px',
-          backgroundColor: getRandomColor(user.id),
-          marginLeft: index !== 0 ? '-12px' : '0',
-          zIndex: topic.latest_users.length - index,
-          border: '2px solid #fff',
-        }"
-      >
-        <span style="font-size: 0.9rem">{{ user.name.charAt(0).toUpperCase() }}</span>
-      </div>
-    </div>
-  </div>
-</div>
+            <!-- Avatars -->
+            <div class="d-flex">
+              <div
+                v-for="(user, index) in topic.latest_users"
+                :key="user.id"
+                class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold"
+                :style="{
+                  width: '32px',
+                  height: '32px',
+                  backgroundColor: getRandomColor(user.id),
+                  marginLeft: index !== 0 ? '-12px' : '0',
+                  zIndex: topic.latest_users.length - index,
+                  border: '2px solid #fff',
+                }"
+              >
+                <span style="font-size: 0.9rem">{{ user.name.charAt(0).toUpperCase() }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="d-flex  d-none d-md-flex thread-row justify-content-center meta-cell">

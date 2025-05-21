@@ -63,11 +63,11 @@ class ReplyController extends Controller
 
 
         if ($topic->user_id !== auth()->id()) {
-            //$topic->user->notify(new NewReplyNotification($reply));
+            $topic->user->notify(new NewReplyNotification($reply));
         }
 
-        // Notification::route('mail', 'care@autofactorng.com')
-        //     ->notify(new NewReplyNotification($reply));
+        Notification::route('mail', 'care@autofactorng.com')
+            ->notify(new NewReplyNotification($reply));
 
 
         $topic = Topic::with([

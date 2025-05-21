@@ -32,7 +32,7 @@
   const avatarStyle = computed(() => ({
     width: `${props.size}px`,
     height: `${props.size}px`,
-    fontSize: `${props.size / 2}px`,
+    fontSize: 18 + 'px',
     backgroundColor: stringToColor(props.name || 'A'),
   }))
   </script>

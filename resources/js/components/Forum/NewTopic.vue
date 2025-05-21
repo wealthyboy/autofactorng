@@ -49,7 +49,7 @@
           </div>
   
           <div class="d-flex justify-content-end">
-            <button type="submit" class="btn btn-primary w-50" :disabled="loading">
+            <button type="submit" class="btn  c-btn w-50" :disabled="loading">
               {{ loading ? 'Submitting...' : 'Submit' }}
             </button>
           </div>

@@ -6,8 +6,14 @@
       
       class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex justify-content-center align-items-center"
       @click.self="close"
-    >
-      <div class="card w-50 p-4 animate__animated animate__bounceInUp">
+
+    > 
+    <div class="container">
+
+  
+    <div class="row">
+      <div class="col-md-6 col-12  mx-auto">
+      <div class="card  p-4 animate__animated animate__bounceInUp">
         <h5 class="text-left mb-3">Post Your Reply</h5>
   
         <form @submit.prevent="submitReply">
@@ -34,6 +40,9 @@
           </div>
         </form>
       </div>
+      </div>
+      </div>
+    </div>
     </div>
     </transition>
   </template>
@@ -126,7 +135,10 @@
     try {
       const res = await axios.post('/reply', data)
       emit('submitted',res.data)
+
       close()
+
+      location.reload()
     } catch (err) {
       console.error(err)
       alert('Failed to submit reply')

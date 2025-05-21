@@ -174,7 +174,7 @@ class Order extends Model
 				'to' => $to,
 				'type' => 'template',
 				'template' => [
-					'name' => 'delivery_confirmation_2', // use your actual template name
+					'name' => 'admin_order', // use your actual template name
 					'language' => [
 						'code' => 'en_US'
 					],

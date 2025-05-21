@@ -44,7 +44,7 @@
 
                 <!-- Buttons Skeleton -->
                 <div class="d-flex justify-content-between mt-3 placeholder-glow">
-                    <div class="btn btn-primary disabled placeholder col-5"></div>
+                    <div class="btn  c-btn disabled placeholder col-5"></div>
                     <div class="btn btn-link disabled placeholder col-3"></div>
                 </div>
             </form>

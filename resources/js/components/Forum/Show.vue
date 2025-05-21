@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-3" ref="scrollContainer" @scroll="handleScroll" style="overflow-y: auto; max-height: 80vh">
+  <div class="mt-3" ref="scrollContainer" @scroll="handleScroll">
 
     
     <template v-if="!loading">
@@ -66,29 +66,42 @@
     }
   })
 
-    try {
-      const response = await axios.get(location.href) // Pass topic ID as prop if needed
-        topic.value = response.data
-      } catch (e) {
-      console.error(e)
-    } finally {
-      const skeleton = document.getElementById('post-skelenton');
-      if (skeleton) {
-        skeleton.classList.add('d-none');
-      }
-      loading.value = false
-    }
+  loading.value = true
+  fetchTopic()
    
   })
+
+
+  async function fetchTopic() {
+  try {
+    const response = await axios.get(location.href) // Pass topic ID as prop if needed
+    topic.value = response.data
+  } catch (e) {
+    console.error(e)
+  } finally {
+    const skeleton = document.getElementById('post-skelenton')
+    if (skeleton) {
+      skeleton.classList.add('d-none')
+    }
+    loading.value = false
+  }
+}
+
   
   function addReply(reply) {
     topic.value.replies.push(reply)
   }
 
   function updateTopic(res) {
+    console.log(res)
     topic.value = res
     showModal.value = false
+   // fetchTopic()
+
   }
+
+
+
   
   async function toggleTopicLike() {
     await axios.post(`/topics/${topic.value.id}/toggle-like`)
