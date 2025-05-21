@@ -70,7 +70,7 @@
           </h5>
         </div>
         <div class="thread-meta">
-          <i class="bi bi-folder2-open me-1"></i> {{ topic.category?.name }}
+          <i class="bi bi-folder2-open me-1 "></i> <span class="text-pm-color">{{ topic.category?.name }}</span> 
         </div>
         <div v-html="topic.content?.slice(0, 120) +'...'" class="text-muted small mt-1"></div>
 
@@ -110,45 +110,44 @@
         </div>
       </div>
 
-      <div class="d-flex  d-none d-md-flex thread-row justify-content-center meta-cell">
-        <div
-          v-for="user in topic.latest_users"
-          :key="user.id"
-          class="avatar bg-primary text-white rounded-circle d-flex mt-1 align-items-center justify-content-center me-1"
+        <div class="d-flex  d-none d-md-flex thread-row justify-content-center meta-cell">
+          <div
+            v-for="user in topic.latest_users"
+            :key="user.id"
+            class="avatar bg-primary text-white rounded-circle d-flex mt-1 align-items-center justify-content-center me-1"
 
-          :style="{
-                width: '32px',
-                height: '32px',
-                backgroundColor: getRandomColor(user.id),
-                marginLeft: index !== 0 ? '-12px' : '0',
-                zIndex: topic.latest_users.length - index,
-                border: '2px solid #fff',
-          }"
-        >
-          {{ user.name?.charAt(0) }}
+            :style="{
+                  width: '32px',
+                  height: '32px',
+                  backgroundColor: getRandomColor(user.id),
+                  marginLeft: index !== 0 ? '-12px' : '0',
+                  zIndex: topic.latest_users.length - index,
+                  border: '2px solid #fff',
+            }"
+          >
+            {{ user.name?.charAt(0) }}
+          </div>
+        </div>
+
+        <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center ">
+          {{ topic.replies?.length || 0 }}
+        </div>
+        <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center me-2">
+          {{ topic.views_count  || 0 }}
+        </div>
+        <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center me-4">
+          {{ topic.date }}
         </div>
       </div>
 
-      <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center ">
-        {{ topic.replies?.length || 0 }}
+      <div class="text-center mt-3" v-if="loading">
+        <div class="spinner-border" role="status"></div>
       </div>
-      <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center me-2">
-        {{ topic.views_count  || 0 }}
-      </div>
-      <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center me-4">
-        {{ topic.date }}
-      </div>
-    </div>
-
-    <div class="text-center mt-3" v-if="loading">
-      <div class="spinner-border" role="status"></div>
-    </div>
      </template>
 
      <template v-if="!topics.length && !loading">
         <div class="text-center mb-4">
           No discussions found. Try a different category or filter.
-
         </div>
      </template>
  
