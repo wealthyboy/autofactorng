@@ -10,6 +10,10 @@ class Topic extends Model
 {
     use HasFactory, ColumnFillable;
 
+    public $appends = [
+        'date'
+    ];
+
 
     public function user()
     {
@@ -36,6 +40,11 @@ class Topic extends Model
         return $this->users()->latest()->take(3);
     }
 
+
+    public function getDateAttribute()
+    {
+        return optional($this->created_at)->shortRelativeDiffForHumans();
+    }
 
     public function replies()
     {

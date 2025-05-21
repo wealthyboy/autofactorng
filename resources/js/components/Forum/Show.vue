@@ -1,10 +1,12 @@
 <template>
-  <div class="container my-4" ref="scrollContainer" @scroll="handleScroll" style="overflow-y: auto; max-height: 80vh">
+  <div class="mt-3" ref="scrollContainer" @scroll="handleScroll" style="overflow-y: auto; max-height: 80vh">
+
+    
     <template v-if="!loading">
       <Topic
         :topic="topic"
         @toggle-like="toggleTopicLike"
-        @open-reply-modal="showReplyModal"
+        @open-reply-modal="showTopicReplyModal"
       />
 
       <ReplyCard
@@ -12,6 +14,7 @@
         :key="reply.id"
         :reply="reply"
         @toggle-like="toggleReplyLike"
+        :depth="0"
         @open-reply-modal="showReplyModal"
       />
 
@@ -20,8 +23,9 @@
         <div class="spinner-border text-primary" role="status"></div>
       </div>
 
-      <Auth  v-if="showLogin"/>
-
+          <Auth        
+             @close="showLogin = false"
+              :reload="true" v-if="showLogin"/>
       <div v-if="!hasMoreReplies" class="text-center text-muted my-3">
       </div>
     </template>
@@ -29,14 +33,15 @@
     <!-- Reply Modal -->
     <ReplyModal
       v-if="showModal"
-      :topic="selectedTopic"
+      :selected="selected"
       @close="showModal = false"
+      @submitted="updateTopic"
     />
   </div>
 </template>
   
   <script setup>
-  import { ref, onMounted } from 'vue'
+  import { ref, onMounted, reactive } from 'vue'
   import axios from 'axios'
   
   import Topic from './Topic.vue'
@@ -54,6 +59,12 @@
 
   
   onMounted(async () => {
+
+    window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      window.location.reload()
+    }
+  })
 
     try {
       const response = await axios.get(location.href) // Pass topic ID as prop if needed
@@ -73,9 +84,14 @@
   function addReply(reply) {
     topic.value.replies.push(reply)
   }
+
+  function updateTopic(res) {
+    topic.value = res
+    showModal.value = false
+  }
   
   async function toggleTopicLike() {
-    await axios.post(`/api/topics/${topic.value.id}/toggle-like`)
+    await axios.post(`/topics/${topic.value.id}/toggle-like`)
     topic.value.liked_by_user = !topic.value.liked_by_user
     topic.value.likes_count += topic.value.liked_by_user ? 1 : -1
   }
@@ -90,11 +106,34 @@
 
   const topics = ref([]) // your list of topics
   const showModal = ref(false)
-  const selectedTopic = ref(null)
+  const selected = reactive({})
 
-  function showReplyModal(topic) {
-    console.log(true)
-    selectedTopic.value = topic
+  function showReplyModal(reply) {
+    
+    if (!topic.value.isLoggedIn) {
+      showLogin.value = true
+      return  
+    }
+    selected.isReply = true
+    selected.reply = reply
+    selected.topic_id = reply.topic_id
+    selected.reply_id = reply.id
+    showModal.value = true
+  }
+
+
+  function showTopicReplyModal(reply) 
+  {
+    
+    if (!topic.value.isLoggedIn) {
+      showLogin.value = true
+      return  
+    }
+
+    selected.isReply = false
+    selected.topic = topic
+    selected.topic_id = topic.value.id
+    selected.reply_id = null
     showModal.value = true
   }
 

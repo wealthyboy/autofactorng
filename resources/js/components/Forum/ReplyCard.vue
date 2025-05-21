@@ -10,12 +10,20 @@
           <!-- Header -->
           <div class="d-flex justify-content-between align-items-center border-bottom py-3">
             <div>
-              <h5 class="card-title mb-1">{{ reply.user.name }}</h5>
+              <h5 class="card-title mb-1 fw-bold">{{ reply.user.name }}</h5>
             </div>
-            <small class="text-muted d-none d-lg-inline text-black">{{ reply.date }}</small>
+            <small class="text-muted  text-black">{{ reply.date }}</small>
           </div>
 
           <!-- Content -->
+          <div class="mb-3 text-center">
+            <img
+              v-if="reply.image"
+              :src="'/' + reply.image"
+              class="img-fluid rounded shadow-sm reply-image"
+              alt="reply image"
+            />
+          </div>
           <p class="mt-2 py-3 mb-2">
             <span v-if="!showFullContent" v-html="truncatedContent"></span>
             <span v-else v-html="reply.content"></span>
@@ -28,11 +36,10 @@
 
           <!-- Footer: Actions -->
           <div class="d-flex align-items-center justify-content-between text-muted mt-3">
-            <small class="d-md-none">{{ reply.created_at }}</small>
             <div class="d-flex align-items-center justify-content-between gap-3 w-100">
             
               <!-- Replies Toggle Button -->
-              <button v-if="hasChildren" class="btn btn-sm btn-link text-decoration-none p-0" @click="toggleReplies">
+              <button v-if="hasChildren" class="btn btn-sm btn-link text-decoration-none p-0 " @click="toggleReplies">
                 <i class="bi" :class="showReplies ? 'bi-chevron-up' : 'bi-chevron-down'"></i>
                 {{ reply.children.length }} {{ reply.children.length === 1 ? 'Reply' : 'Replies' }}
 
@@ -42,10 +49,10 @@
                <!-- Reply Button -->
               
 
-              <div class="ms-auto">
+              <div class="ms-auto" v-if="depth !== 1">
                 <button                 
                    @click="$emit('open-reply-modal', reply)"
-                   class="btn btn-sm btn-link text-decoration-none d-flex p-0">
+                   class="btn btn-sm btn-link text-decoration-none d-flex p-0 text-pm-color ">
                   <i class="bi bi-reply me-1"></i> Reply
                 </button>
               </div>
@@ -59,6 +66,7 @@
             v-for="child in reply.children"
             :key="child.id"
             :reply="child"
+            :depth="depth + 1"
             @toggle-like="$emit('toggle-like', $event)"
           />
         </div>
@@ -73,7 +81,15 @@ import InitialAvatar from './InitialAvatar.vue'
 import ReplyCard from './ReplyCard.vue'
 
 // Correct way to access props in <script setup>
-const props = defineProps(['reply'])
+const props = defineProps({
+  reply: Object,
+  depth: {
+    type: Number,
+    default: 0,
+  },
+})
+
+
 defineEmits(['toggle-like', 'open-reply-modal'])
 
 // Accessing the prop correctly
@@ -105,3 +121,17 @@ const truncatedContent = computed(() => {
   return reply.content
 })
 </script>
+<style scoped>
+  .reply-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 400px; /* Prevent overly tall images */
+  object-fit: cover; /* Crop to maintain uniform look */
+  border: 1px solid #dee2e6; /* Light border */
+}
+
+.reply-image:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s ease-in-out;
+}
+</style>

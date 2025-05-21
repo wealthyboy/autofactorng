@@ -1,22 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\Topics;
+namespace App\Http\Controllers\Replies;
 
 use App\Http\Controllers\Controller;
-use App\Models\ForumCategory;
+use App\Models\Reply;
 use App\Models\Topic;
+use App\Notifications\NewReplyNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\NewTopicCreated;
 
-class TopicsController extends Controller
+
+
+class ReplyController extends Controller
 {
-
-    public function __construct()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        $this->middleware('auth');
+        //
     }
-
 
     /**
      * Show the form for creating a new resource.
@@ -25,8 +31,7 @@ class TopicsController extends Controller
      */
     public function create()
     {
-        $categories = ForumCategory::get();
-        return view('topic.create', compact('categories'));
+        //
     }
 
     /**
@@ -38,23 +43,33 @@ class TopicsController extends Controller
     public function store(Request $request)
     {
 
-        $input = $request->all();
-        $input['user_id'] = auth()->user()->id;
-        $topic = Topic::create($input);
 
-        Notification::route('mail', 'care@autofactorng.com')
-            ->notify(new NewTopicCreated($topic));
-        return $topic;
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
+        $reply = new Reply();
+        $topic_id = $request->topic_id;
+        $parent_id = request('reply_id');
+        $reply->user_id = auth()->id();
+        $reply->topic_id = $request->topic_id;
+        $reply->parent_id = is_numeric($parent_id) ? $parent_id : null;
+        $reply->content = $request->content;
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('replies', 'public');
+            $reply->image = $path;
+        }
+
+        $reply->save();
+        $topic = Topic::find($request->topic_id);
+
+
+        if ($topic->user_id !== auth()->id()) {
+            //$topic->user->notify(new NewReplyNotification($reply));
+        }
+
+        // Notification::route('mail', 'care@autofactorng.com')
+        //     ->notify(new NewReplyNotification($reply));
+
+
         $topic = Topic::with([
             'category',
             'user',
@@ -67,10 +82,7 @@ class TopicsController extends Controller
                     }
                 ])->orderByDesc('id');
             }
-        ])->findOrFail($id);
-
-
-
+        ])->findOrFail($topic_id);
 
 
         $topic = [
@@ -88,6 +100,18 @@ class TopicsController extends Controller
         ];
 
         return response()->json($topic);
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**

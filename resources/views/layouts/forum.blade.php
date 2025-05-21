@@ -19,7 +19,9 @@
     <link rel="icon" href="/images/favicon_io/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="/images/favicon_io/favicon-96x96.png">
 
-
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
 
@@ -142,6 +144,20 @@
             overflow-y: auto;
         }
 
+        .c-button,
+        .c-btn {
+            background-color: #f26100 !important;
+            border-color: #f26100 !important;
+            color: white !important;
+        }
+
+        .c-button:hover,
+        .c-btn:hover {
+            background-color: #d25500 !important;
+            /* slightly darker for hover */
+            border-color: #d25500 !important;
+        }
+
         #replyFormContainer {
             opacity: 0;
             pointer-events: none;
@@ -193,6 +209,14 @@
             opacity: 0;
             pointer-events: none;
         }
+
+        input:focus,
+        textarea:focus,
+        select:focus,
+        button:focus {
+            outline: none !important;
+            box-shadow: none !important;
+        }
     </style>
 </head>
 
@@ -232,7 +256,11 @@
 
         <!-- Hero Section -->
 
-        <footer style="margin-top: 8rem;" class="footer bg-dark">
+        <div class="bg-light" style="height: 8rem;">
+
+        </div>
+
+        <footer class="footer bg-dark">
             <div class="footer-middle">
                 <!-- -------   END PRE-FOOTER 4 - title & description and input    -------- -->
                 <div class="container">

@@ -1,28 +1,69 @@
 <template>
-    <div
+
+<transition name="fade">
+
+ 
+            <div
       style="z-index: 2000"
       
       class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex justify-content-center align-items-center"
       @click.self="close"
     >
-      <div class="w-100 w-md-75 w-lg-50 mx-auto">
-        <div v-if="showLogin"  class="card  p-4">
-          <login />  
-          <div class="text-center mt-3">
-            Dont have an account yet? <a @click.prevent="toggleForm" href="#" class="color--primary bold">Create One</a>
-          </div>
+    <div class="container  animate__animated animate__bounceInUp">
+
+    
+      <div class="row">
+          <div class="col-md-6 col-12  mx-auto">
+
+         
+           
+      <div class="w-100 w-md-75 w-lg-50 mx-auto position-relative">
+        <div  v-if="showLogin"  class="card  p-4">
+
+          <button
+    @click="close"
+    type="button"
+    class="btn-close position-absolute top-0 end-0 m-3"
+    aria-label="Close"
+  ></button>
+
+          <div class="card-title text-center border-bottom">
+              <h2 class="fw-bold">Login</h2>
+              <p>Login to perform that operation</p>
+            </div>
+          <login :reload="true" />  
+          <small class="text-center mt-3">
+            Dont have an account yet? <a @click.prevent="toggleForm" href="#" class="fw-bold text-black bold">Create One</a>
+          </small>
       </div>
-      <div  class="card  p-4" v-else>
-        <div class="register">
-            <Register />
+      <div  class="card  p-4   position-relative"  v-else>
+
+        <button
+    @click="close"
+    type="button"
+    class="btn-close position-absolute top-0 end-0 m-3"
+    aria-label="Close"
+  ></button>
+
+        <div class="card-title text-center border-bottom">
+              <h2 class="fw-bold">Register</h2>
         </div>
-        <div class="text-center mt-3">
-            Already  have an account? <a @click.prevent="toggleForm" href="#" class="color--primary bold">Login</a>
-          </div>
+        <div class="register">
+            <Register  :reload="true" />
+        </div>
+        <small class="text-center mt-3">
+            Already  have an account? <a @click.prevent="toggleForm" href="#" class="fw-bold text-black bold">Login</a>
+          </small>
       </div>
       </div>
       
     </div>
+          </div>
+      </div>
+    </div>
+
+    </transition>
+  
   </template>
   
   <script setup>
@@ -52,21 +93,13 @@
   const showLogin = ref(true)
 
     function toggleForm() {
-
-        showLogin.value = !showLogin.value
+      showLogin.value = !showLogin.value
     }
   
   watch(
     () => props.show,
     async (visible) => {
-      if (visible && !editorInstance) {
-        editorInstance = await ClassicEditor.create(editorRef.value, {
-          removePlugins: ['ImageUpload', 'MediaEmbed'],
-        })
-        editorInstance.model.document.on('change:data', () => {
-          form.value.content = editorInstance.getData()
-        })
-      }
+      
     }
   )
   
@@ -86,13 +119,7 @@
     imageUrl.value = null
   }
   
-  function close() {
-    form.value.content = ''
-    form.value.image = null
-    if (imageUrl.value) URL.revokeObjectURL(imageUrl.value)
-    imageUrl.value = null
-  
-    if (editorInstance) editorInstance.setData('')
+  function close() {  
   
     emit('close')
   }

@@ -61,7 +61,7 @@ import Message from "../message/Message";
 import { loginRules } from "../../utils/ValidationRules";
 
 export default {
-    props: ["redirect"],
+    props: ["redirect", "reload"],
     emits: ["has:loggedIn"],
     components: {
         SimpleMessage,
@@ -91,6 +91,11 @@ export default {
             axios
                 .post("/login", form)
                 .then((res) => {
+                    if (props.reload){
+                        location.reload()
+                        return;
+                    }
+                    
                     if (props.redirect) {
                         window.location.href = res.data.url;
                     }

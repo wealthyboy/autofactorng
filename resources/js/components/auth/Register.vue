@@ -81,7 +81,7 @@ import { registerRules } from "../../utils/ValidationRules";
 import { registerData } from "../../utils/FormData";
 
 export default {
-  props: ["subscribe"],
+  props: ["subscribe", "reload"],
   emits: ["switched"],
   components: {
     SimpleMessage,
@@ -120,6 +120,12 @@ export default {
 
       makePost(postData)
         .then((res) => {
+
+          if (props.reload){
+              location.reload()
+              return;
+          }
+
           window.location.href = res.data.url;
         })
         .catch((error) => {

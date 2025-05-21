@@ -1,11 +1,13 @@
 <template>
+    <transition name="fade">
+
     <div
       style="z-index: 2000"
       
       class="position-fixed top-0 start-0 w-100 h-100 bg-dark bg-opacity-50 d-flex justify-content-center align-items-center"
       @click.self="close"
     >
-      <div class="card w-50 p-4">
+      <div class="card w-50 p-4 animate__animated animate__bounceInUp">
         <h5 class="text-left mb-3">Post Your Reply</h5>
   
         <form @submit.prevent="submitReply">
@@ -20,19 +22,20 @@
             <div v-if="imageUrl" class="mt-2 position-relative">
               <img v-if="imageUrl" :src="imageUrl" alt="Preview" class="img-thumbnail mt-2" style="max-width: 150px; height: auto;" />
 
-              <button type="button" class="btn-close position-absolute top-0 " @click="removeImage"></button>
+              <button type="button" class="btn-close c-btn position-absolute top-0 " @click="removeImage"></button>
             </div>
           </div>
   
           <div class="d-flex justify-content-between">
-            <button type="submit" class="btn btn-primary w-50" :disabled="loading">
+            <button type="submit" class="btn c-btn  w-50" :disabled="loading">
               {{ loading ? 'Submitting...' : 'Submit' }}
             </button>
-            <button type="button" class="btn btn-link" @click="close">Cancel</button>
+            <button type="button" class="btn btn-link text-pm-color " @click="close">Cancel</button>
           </div>
         </form>
       </div>
     </div>
+    </transition>
   </template>
   
   <script setup>
@@ -42,6 +45,7 @@
     show: Boolean,
     parentId: [Number, null],
     topicId: Number,
+    selected: Object
   })
   
   const emit = defineEmits(['close', 'submitted'])
@@ -61,7 +65,7 @@
       editorInstance.model.document.on('change:data', () => {
         form.value.content = editorInstance.getData()
       })
-   
+
   })
   
   watch(
@@ -83,8 +87,6 @@
     if (file && file.size <= 20 * 1024 * 1024) {
       form.value.image = file
       imageUrl.value = URL.createObjectURL(file)
-
-     
     } else {
       alert('Image must be less than 20MB')
     }
@@ -110,16 +112,20 @@
   async function submitReply() {
     if (loading.value) return
     loading.value = true
+
+    console.log(props.selected)
   
     const data = new FormData()
     data.append('content', form.value.content)
-    data.append('topic_id', props.topicId)
+    data.append('topic_id', props.selected.topic_id)
+    data.append('reply_id', props.selected.reply_id)
+
     if (props.parentId) data.append('parent_id', props.parentId)
     if (form.value.image) data.append('image', form.value.image)
   
     try {
-      await axios.post('/replies', data)
-      emit('submitted')
+      const res = await axios.post('/reply', data)
+      emit('submitted',res.data)
       close()
     } catch (err) {
       console.error(err)
@@ -136,4 +142,16 @@
     }
   })
   </script>
+
+  <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
+
   

@@ -9,7 +9,7 @@
         <!-- Header -->
         <div class="d-flex justify-content-between align-items-center border-bottom py-3">
             <div>
-              <h5 class="card-title mb-1">{{ topic.user.name }}</h5>
+              <h5 class="card-title mb-1 fw-bold">{{ topic.user.name }}</h5>
               <p class="text-muted mb-0">
                 <i class="bi bi-folder2-open me-1"></i>{{ topic.category.name }}
               </p>
@@ -18,6 +18,9 @@
         </div>
 
         <!-- Content -->
+         <div>
+          <img  v-if="topic.image" :src="'/' +topic.image" class="img-fluid rounded" alt="">
+         </div>
         <p class="mt-2 py-3 mb-2">
             <span v-if="!showFullContent" v-html="truncatedContent"></span>
             <span v-else v-html="topic.content"></span>
@@ -34,11 +37,9 @@
             <small class="text-muted d-md-none">{{ topic.date }}</small>
           </div>
           <div class="d-flex align-items-center gap-3">
-            <button @click="$emit('toggle-like')" class="btn btn-sm p-1" :class="topic.liked_by_user ? 'btn-success' : 'btn-outline-success'">
-              <i class="bi bi-hand-thumbs-up"></i> {{ topic.likes_count }}
-            </button>
+           
             <button
-                class="btn btn-sm btn-link text-decoration-none p-0"
+                class="btn btn-sm btn-link text-decoration-none p-0 text-pm-color "
                 @click="$emit('open-reply-modal', topic)"
               >
                 <i class="bi bi-reply me-1"></i> Reply
@@ -55,15 +56,9 @@
             <strong class="text-danger">{{ topic.views_count || 0 }}</strong><br />
             <small class="text-muted">views</small>
           </div>
-          <div class="me-4 text-center">
-            <strong class="text-danger">{{ topic.likes_count  || 0 }} </strong><br />
-            <small class="text-muted">likes</small>
-          </div>
+        
 
-          <div class="me-4 text-center">
-            <strong class="text-danger">{{ topic.likes_count || 0 }}  </strong><br />
-            <small class="text-muted">likes</small>
-          </div>
+        
           <div class="me-4 text-center">
             <strong class="text-danger">{{ topic.replies.length }}</strong><br />
             <small class="text-muted">replies</small>
@@ -90,7 +85,7 @@
             </div>
           </div>
         </div>
-        </div>
+    </div>
 
       
 </template>
@@ -104,15 +99,13 @@ defineEmits(['toggle-like','open-reply-modal'])
 
 const topic = props.topic
 
-
-// Utility: pick a color per user ID for avatar backgrounds
 function getRandomColor(seed) {
   const colors = ['#a0d911', '#fadb14', '#13c2c2', '#eb2f96', '#722ed1', '#1890ff'];
   return colors[parseInt(seed) % colors.length];
 }
 
 
-const maxLength = 300 // You can adjust this threshold
+const maxLength = 300;
 
 const showFullContent = ref(false)
 

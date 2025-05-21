@@ -18,7 +18,9 @@ class ForumController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Topic::with(['category', 'latestUsers']);
+        $query = Topic::with(['replies', 'category', 'latestUsers']);
+
+        $categories = ForumCategory::get();
 
         // Filtering by category
         if ($request->filled('category')) {
@@ -28,21 +30,16 @@ class ForumController extends Controller
         }
 
         // Sorting
-        $sort = $request->get('sort', 'updated_at');
-        $direction = $request->get('direction', 'desc');
-        $query->orderBy($sort, $direction);
-
+        if ($request->filled('sort')) {
+            $query->orderBy('id', $request->sort); // Example: top = most viewed
+        }
         // Pagination
         $topics = $query->paginate(10)->withQueryString();
 
-
-
         // Fetch categories and tags for filters
-        $categories = ForumCategory::all();
 
         if ($request->ajax()) {
-
-            return view('forum.partials.topics', compact('topics'))->render();
+            return response()->json($topics);
         }
 
         $page_title = "AutofactorNg Forum - Discuss Cars, Repairs, and More";
@@ -54,6 +51,7 @@ class ForumController extends Controller
         $seo['meta_tag_keywords'] = $meta_tag_keywords;
         $seo['page_meta_description'] = $page_meta_description;
         $seo['type'] = 'article';
+
 
         return view('forum.index', compact('topics', 'categories', 'seo', 'page_title', 'meta_tag_keywords', 'page_meta_description'));
     }
@@ -88,6 +86,9 @@ class ForumController extends Controller
      */
     public function show($id)
     {
+
+        $key = 'viewed_topic_' . $id;
+
         $topic = Topic::with([
             'category',
             'user',
@@ -98,12 +99,14 @@ class ForumController extends Controller
                     'children' => function ($q) {
                         $q->with('user'); // optionally limit children depth
                     }
-                ]);
+                ])->orderByDesc('id');
             }
         ])->findOrFail($id);
 
-
-
+        if (!session()->has($key)) {
+            $topic->increment('views_count');
+            session()->put($key, true);
+        }
 
         $topic = [
             'id' => $topic->id,

@@ -130,6 +130,8 @@ Route::group(['middleware' => ['tracking']], function () {
     Route::resource('forum', 'Forum\ForumController', ['names' => 'forum']);
     Route::resource('car-reviews', 'CarReviews\CarReviewsController', ['names' => 'car.reviews']);
     Route::resource('topic', 'Topics\TopicsController', ['names' => 'topics']);
+    Route::post('reply', [App\Http\Controllers\Replies\ReplyController::class, 'store']);
+
 
     Route::get('cart', 'Cart\CartController@index');
     Route::post('cart/meta', 'Cart\CartController@meta');
