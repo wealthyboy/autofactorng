@@ -213,14 +213,21 @@ class Order extends Model
 				'template' => [
 					'name' => 'admin_order', // use your actual template name
 					'language' => [
-						'code' => 'en_US'
+						'code' => 'en'
 					],
-
+					'components' => [
+						[
+							'type' => 'body',
+							'parameters' => [
+								['type' => 'text', 'text' => $name] // Replaces {{1}}
+							]
+						]
+					]
 				]
 			]);
 
 
-		return $response->json($response);
+		return $response;
 	}
 
 
