@@ -40,9 +40,31 @@ class ForumController extends  Table
      *
      * return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $topics = Topic::orderBy('created_at', 'desc')->paginate(100);
+        $query = Topic::query();
+
+        if ($search = $request->input('title')) {
+            $query->where('title', 'LIKE', '%' . $search . '%');
+            // or fulltext if you added that:
+            // $query->whereRaw("MATCH(title) AGAINST(? IN BOOLEAN MODE)", [$search]);
+        }
+
+
+
+        $topics = $query->latest()->paginate(10);
+
+
+        if ($request->has('pin')) {
+            $topic = Topic::find($request->pin);
+            if ($topic) {
+
+                $topic->pinned = $topic->pinned ? !$topic->pinned : true;
+                $topic->save();
+            }
+        }
+
+
         $topics = $this->getColumnListings(request(), $topics);
         return view('admin.forum.index', compact('topics'));
     }
@@ -73,6 +95,8 @@ class ForumController extends  Table
             ],
             'update' => null,
             'show' => null,
+            'pin' => true,
+
             'destroy' =>  [
                 'admin.forums.destroy',
                 'forum'
@@ -95,7 +119,10 @@ class ForumController extends  Table
             'add' => true,
             'destroy' => true,
             'export' => false,
+            'pin' => true,
             'product' => false,
+            'forum' => true,
+
         ];
     }
 

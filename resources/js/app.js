@@ -66,8 +66,6 @@ app.component('CheckoutIndex', CheckoutIndex)
 app.component('Login', Login)
 app.component('Register', Register)
 app.component('CartSummary', CartSummary)
-app.component('NewTopic', NewTopic)
-app.component('ForumIndex', ForumIndex)
 
 
 app.component('Modal', Modal)

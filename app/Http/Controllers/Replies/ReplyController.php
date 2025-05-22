@@ -55,8 +55,9 @@ class ReplyController extends Controller
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('replies', 'public');
-            $reply->image = $path;
+            $reply->image  = asset($path);
         }
+
 
         $reply->save();
         $topic = Topic::find($request->topic_id);

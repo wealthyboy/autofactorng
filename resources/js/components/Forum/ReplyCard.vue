@@ -16,10 +16,10 @@
           </div>
 
           <!-- Content -->
-          <div class="mb-3 text-center">
+          <div class="mb-3 text-center  m-2">
             <img
               v-if="reply.image"
-              :src="'/' + reply.image"
+              :src="reply.image"
               class="img-fluid rounded shadow-sm reply-image"
               alt="reply image"
             />

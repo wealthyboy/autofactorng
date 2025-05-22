@@ -26,8 +26,7 @@
           <div class="mb-3">
             <input type="file" class="form-control" @change="previewImage" accept="image/*" />
             <div v-if="imageUrl" class="mt-2 position-relative">
-              <img v-if="imageUrl" :src="imageUrl" alt="Preview" class="img-thumbnail mt-2" style="max-width: 150px; height: auto;" />
-
+              <img v-if="imageUrl" :src="imageUrl" alt="Preview" class="img-thumbnail mt-2" style="max-width: 150px; height: 100px;" />
               <button type="button" class="btn-close c-btn position-absolute top-0 " @click="removeImage"></button>
             </div>
           </div>
@@ -119,10 +118,16 @@
   }
   
   async function submitReply() {
+
+    if (!form.value.content.trim()) {
+      alert('Reply content cannot be empty.')
+      return
+    }
     if (loading.value) return
     loading.value = true
 
-    console.log(props.selected)
+
+
   
     const data = new FormData()
     data.append('content', form.value.content)

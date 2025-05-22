@@ -66,7 +66,7 @@
         <div class="thread-title" :class="{ pinned: topic.pinned }">
           <i v-if="topic.pinned" class="bi bi-pin-angle-fill text-warning me-1"></i>
           <h5 class="mb-1">
-            <a :href="`/forum/${topic.id}`" class="text-dark fw-bold">{{ topic.title }}</a>
+            <a :href="`/forum/${topic.id}`" class="text-dark fw-bold text-decoration-none">{{ topic.title }}</a>
           </h5>
         </div>
         <div class="thread-meta">
@@ -130,10 +130,13 @@
         </div>
 
         <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center ">
-          {{ topic.replies?.length || 0 }}
+          <a class="text-decoration-none" :href="`/forum/${topic.id}`">
+            {{ topic.replies?.length || 0 }}
+          </a> 
         </div>
-        <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center me-2">
+        <div class="meta-cell cursor-pointer d-flex  d-none d-md-flex justify-content-center align-items-center me-2">
           {{ topic.views_count  || 0 }}
+         
         </div>
         <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center me-4">
           {{ topic.date }}

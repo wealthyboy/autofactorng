@@ -44,7 +44,7 @@ class TopicsController extends Controller
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('topics', 'public');
-            $input['image'] = $path;
+            $input['image'] = asset($path);
         }
 
         $topic = Topic::create($input);
@@ -77,8 +77,6 @@ class TopicsController extends Controller
         ])->findOrFail($id);
 
 
-
-        dd($topic);
 
         $topic = [
             'id' => $topic->id,

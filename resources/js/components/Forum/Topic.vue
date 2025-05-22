@@ -18,10 +18,10 @@
         </div>
 
         <!-- Content -->
-        <div class="mb-3 text-center">
+        <div class="mb-3 text-center m-2">
             <img
               v-if="topic.image"
-              :src="'/' + topic.image"
+              :src="topic.image"
               class="img-fluid rounded shadow-sm reply-image"
               alt="topic image"
             />

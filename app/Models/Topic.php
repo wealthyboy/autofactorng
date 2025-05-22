@@ -57,7 +57,8 @@ class Topic extends Model
             return [
                 "Id" => $carReview->id,
                 "title" => $carReview->title,
-                "Image" => $carReview->image,
+                "Category" => optional($carReview->category)->name,
+                "Image" => null !== $carReview->image ?  $carReview->image : '/images/utils/No_image_available.svg.png',
                 "Date Added" => $carReview->created_at->format('d-m-y'),
             ];
         });
@@ -69,6 +70,7 @@ class Topic extends Model
         $sort =  [
             "Id" => 'id',
             "Image" => 'id',
+            "Category" => 'forum_category_id',
             "title" => 'product_name',
             "Date Added" => 'created_at',
         ];

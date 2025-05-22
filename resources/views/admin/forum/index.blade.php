@@ -1,6 +1,8 @@
 @extends('admin.layouts.app')
 @section('content')
 
+
+
 @include('admin._partials.t', ['models' => $topics, 'name' => 'Topics'])
 </div>
 @endsection

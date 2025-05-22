@@ -120,7 +120,7 @@ class Order extends Model
 				$cart->delete();
 			}
 
-			self::sendWhatsAppMessage(2349081155505, $order->first_name);
+			self::sendWhatsApMessage(2349081155505, $order->first_name);
 		}
 
 
@@ -186,6 +186,36 @@ class Order extends Model
 							]
 						]
 					]
+				]
+			]);
+
+
+		return $response->json($response);
+	}
+
+
+	static function sendWhatsApMessage($to, $name)
+	{
+		$accessToken = config('services.whatsapp.access_token');
+		$phoneNumberId = config('services.whatsapp.phone_number_id');
+		$version = config('services.whatsapp.api_version');
+
+		$url = "https://graph.facebook.com/{$version}/{$phoneNumberId}/messages";
+
+		$response = Http::withToken($accessToken)
+			->withHeaders([
+				'Content-Type' => 'application/json',
+			])
+			->post($url, [
+				'messaging_product' => 'whatsapp',
+				'to' => $to,
+				'type' => 'template',
+				'template' => [
+					'name' => 'admin_order', // use your actual template name
+					'language' => [
+						'code' => 'en_US'
+					],
+
 				]
 			]);
 

@@ -41,6 +41,8 @@
 
     
           <div class="mb-3">
+            <label for="content" class="form-label">Upload a photo</label>
+
             <input type="file" class="form-control" @change="previewImage" accept="image/*" />
             <div v-if="imageUrl" class="mt-2 position-relative">
               <img v-if="imageUrl" :src="imageUrl" alt="Preview" class="img-thumbnail mt-2" style="max-width: 150px; height: auto;" />
