@@ -20,6 +20,11 @@ class ForumController extends Controller
     {
         $query = Topic::with(['replies', 'category', 'latestUsers']);
 
+        $pinnedTopics = Topic::with(['category', 'replies', 'latestUsers'])
+            ->where('pinned', true)
+            ->latest()
+            ->get();
+
         $categories = ForumCategory::get();
 
         // Filtering by category
@@ -36,10 +41,15 @@ class ForumController extends Controller
         // Pagination
         $topics = $query->paginate(10)->withQueryString();
 
+        $data = [
+            'topics' => $topics,
+            'pinnedTopics' => $pinnedTopics
+        ];
+
         // Fetch categories and tags for filters
 
         if ($request->ajax()) {
-            return response()->json($topics);
+            return response()->json($data);
         }
 
         $page_title = "AutofactorNg Forum - Discuss Cars, Repairs, and More";

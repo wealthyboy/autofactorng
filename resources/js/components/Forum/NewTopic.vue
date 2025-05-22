@@ -18,7 +18,11 @@
                 class="form-control"
                 v-model="form.title"
                 placeholder="Enter a title "
+                :class="{ 'is-invalid': errors.title }"
+
                 />
+                <div class="text-danger mt-1" v-if="errors.title">{{ errors.title }}</div>
+
             </div>
             <div class="mb-3">
                 <label for="category" class="form-label">Category</label>
@@ -26,17 +30,23 @@
                     id="category"
                     class="form-select"
                     v-model="form.forum_category_id"
+                    :class="{ 'is-invalid': errors.forum_category_id }"
+
                 >
                     <option disabled value="">Select a category</option>
                     <option v-for="category in categories" :key="category.id" :value="category.id">
                         {{ category.name }}
                     </option>
                 </select>
+                <div class="text-danger mt-1" v-if="errors.forum_category_id">{{ errors.forum_category_id }}</div>
+
             </div>
           <div ref="editorRef" class="mb-3"></div>
           <div class="mb-3">
               <label for="content" class="form-label">Content</label>
               <textarea id="editor" ref="editorRef" name="content" class="form-control" rows="" placeholder="Write your post here..."></textarea>
+              <div class="text-danger mt-1" v-if="errors.content">{{ errors.content }}</div>
+
           </div>
 
     
@@ -80,6 +90,7 @@
   })
   const imageUrl = ref(null)
   const loading = ref(false)
+  const errors = ref({})
   
   const editorRef = ref(null)
   let editorInstance = null
@@ -143,6 +154,32 @@
   
   async function submitReply() {
     if (loading.value) return
+
+
+    errors.value = {
+    title: '',
+    forum_category_id: '',
+    content: ''
+  }
+
+  let valid = true
+
+  if (!form.value.title.trim()) {
+    setError('title', 'Title is required.')
+    valid = false
+  }
+  if (!form.value.forum_category_id) {
+    setError('forum_category_id', 'Category is required.')
+    valid = false
+  }
+  if (!form.value.content.trim()) {
+    setError('content', 'Content is required.')
+    valid = false
+  }
+
+  if (!valid) return
+
+
     loading.value = true
   
     const data = new FormData()
@@ -170,6 +207,14 @@
       loading.value = false
     }
   }
+
+
+  function setError(field, message) {
+    errors.value[field] = message
+    setTimeout(() => {
+      errors.value[field] = ''
+    }, 4000) // clear after 4s
+  }
   
   onBeforeUnmount(() => {
     if (editorInstance) {
@@ -178,4 +223,9 @@
     }
   })
   </script>
+  <style scoped>
+  .is-invalid {
+  border-color: #dc3545 !important;
+}
+</style>
   

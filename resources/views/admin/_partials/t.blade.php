@@ -105,8 +105,8 @@
                                 </th>
                                 @endif
                                 @foreach($models['items'][0][0] as $key => $value)
-                                <th data-sortable="" class="{{ isset($models['meta']['sort']) ?  $models['meta']['sort'] : 'desc' }} ">
-                                    <a href="{{ request()->url() }}?key={{ $key }}&sort={{ $models['meta']['sort'] }}{{ $models['meta']['q'] }}" class="{{ isset($no_card) ? '' : 'dataTable-sorter' }}">
+                                <th data-sortable="" class="{{ isset($models['meta']['sort']) ?  $models['meta']['sort'] : 'desc ' }}  text-center">
+                                    <a href="{{ request()->url() }}?key={{ $key }}&sort={{ $models['meta']['sort'] }}{{ $models['meta']['q'] }}" class="{{ isset($no_card) ? '' : 'dataTable-sorter' }} text-center">
                                         <h6 class="mb-0 text-xs">
                                             {{ $key }}
                                         </h6>
@@ -141,7 +141,7 @@
                                     </div>
                                     @else
 
-                                    <div class="align-middle  text-sm">
+                                    <div class="align-middle text-center  text-sm">
 
                                         @if(is_array($v))
                                         <select name="" style="width: 100px;" class="form-control  change-status border px-1 text-xs" data-column="{{$k}}" data-id="{{ isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null }}" data-model="Order" name="[]">
@@ -155,7 +155,7 @@
                                             @endforeach
                                         </select>
                                         @else
-                                        <h6 data-price="{{ $k == 'Price' ? $v  : '' }}" data-id="{{ isset( $models['items'][0][$key]['Id']) ?   $models['items'][0][$key]['Id'] : null }}" class=" <?php echo  $k == 'Price' ?  'update_price' : '' ?> mb-0 text-xs" {{ $k == 'Price' ? 'contenteditable' : null }}>{{ $v }}</h6>
+                                        <h6 data-price="{{ $k == 'Price' ? $v  : '' }}" data-id="{{ isset( $models['items'][0][$key]['Id']) ?   $models['items'][0][$key]['Id'] : null }}" class=" text-center <?php echo  $k == 'Price' ?  'update_price' : '' ?> mb-0 text-xs" {{ $k == 'Price' ? 'contenteditable' : null }}>{{ $v }}</h6>
                                         @endif
                                     </div>
                                     @endif

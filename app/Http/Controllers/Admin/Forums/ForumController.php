@@ -58,7 +58,6 @@ class ForumController extends  Table
         if ($request->has('pin')) {
             $topic = Topic::find($request->pin);
             if ($topic) {
-
                 $topic->pinned = $topic->pinned ? !$topic->pinned : true;
                 $topic->save();
             }

@@ -60,8 +60,91 @@
     </div>
 
     <!-- Topics -->
-     <template  v-if="topics.length">
-      <div v-for="topic in topics" :key="topic.id" class="d-flex thread-row border border-bottom p-3">
+
+      <div v-for="topic in pinnedTopics" :key="topic.id" class="d-flex thread-row border border-bottom p-3">
+      <div class="topic-cell">
+        <div class="thread-title d-flex">
+          <i  class="bi bi-pin-angle-fill text-warning me-1"  title="Pinned"></i>
+           <i class="bi bi-lock-fill text-dark" title="Locked"></i>
+          <h5 class="mb-1">
+            <a :href="`/forum/${topic.id}`" class="text-dark fw-bold text-decoration-none">{{ topic.title }}</a>
+          </h5>
+        </div>
+        <div class="thread-meta">
+          <i class="bi bi-folder2-open me-1 "></i> <span class="text-pm-color">{{ topic.category?.name }}</span> 
+        </div>
+        <div v-html="topic.content?.slice(0, 120) +'...'" class="text-muted small mt-1"></div>
+
+
+
+        <div class="mt-1  border-raised mb-2  d-lg-none">
+          <div class="d-flex align-items-center mb-2">
+            <div class="me-4 text-center">
+              <strong class="text-danger">{{ topic.views_count || 0 }}</strong><br />
+              <small class="text-muted">views</small>
+            </div>
+
+            <div class="me-4 text-center">
+              <strong class="text-danger">{{ topic.replies.length || 0 }}</strong><br />
+              <small class="text-muted">replies</small>
+            </div>
+
+            <!-- Avatars -->
+            <div class="d-flex">
+              <div
+                v-for="(user, index) in topic.latest_users"
+                :key="user.id"
+                class="rounded-circle d-flex align-items-center justify-content-center text-white fw-bold"
+                :style="{
+                  width: '32px',
+                  height: '32px',
+                  backgroundColor: getRandomColor(user.id),
+                  marginLeft: index !== 0 ? '-12px' : '0',
+                  zIndex: topic.latest_users.length - index,
+                  border: '2px solid #fff',
+                }"
+              >
+                <span style="font-size: 0.9rem">{{ user.name.charAt(0).toUpperCase() }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <div class="d-flex  d-none d-md-flex thread-row justify-content-center meta-cell">
+          <div
+            v-for="user in topic.latest_users"
+            :key="user.id"
+            class="avatar bg-primary text-white rounded-circle d-flex mt-1 align-items-center justify-content-center me-1"
+
+            :style="{
+                  width: '32px',
+                  height: '32px',
+                  backgroundColor: getRandomColor(user.id),
+                  marginLeft: index !== 0 ? '-12px' : '0',
+                  zIndex: topic.latest_users.length - index,
+                  border: '2px solid #fff',
+            }"
+          >
+            {{ user.name?.charAt(0) }}
+          </div>
+        </div>
+
+        <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center ">
+          <a class="text-decoration-none" :href="`/forum/${topic.id}`">
+            {{ topic.replies?.length || 0 }}
+          </a> 
+        </div>
+        <div class="meta-cell cursor-pointer d-flex  d-none d-md-flex justify-content-center align-items-center me-2">
+          {{ topic.views_count  || 0 }}
+         
+        </div>
+        <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center me-4">
+          {{ topic.date }}
+        </div>
+      </div>
+     <template  v-if="regularTopics.length">
+      <div v-for="topic in regularTopics" :key="topic.id" class="d-flex thread-row border border-bottom p-3">
       <div class="topic-cell">
         <div class="thread-title" :class="{ pinned: topic.pinned }">
           <i v-if="topic.pinned" class="bi bi-pin-angle-fill text-warning me-1"></i>
@@ -148,7 +231,7 @@
       </div>
      </template>
 
-     <template v-if="!topics.length && !loading">
+     <template v-if="!pinnedTopics.length && !loading">
         <div class="text-center mb-4">
           No discussions found. Try a different category or filter.
         </div>
@@ -169,7 +252,9 @@ const props = defineProps({
   categories: Array
 })
 
-const topics = ref([])
+const regularTopics = ref([])
+const pinnedTopics = ref([])
+
 const page = ref(1)
 const loading = ref(false)
 const hasMore = ref(true)
@@ -182,7 +267,7 @@ const fetchTopics = async (reset = false) => {
 
   loading.value = true
   if (reset) {
-    topics.value = []
+    regularTopics.value = []
     page.value = 1
     hasMore.value = true
   }
@@ -195,11 +280,13 @@ const fetchTopics = async (reset = false) => {
     }
     const res = await axios.get(`/forum`, { params })
 
-    const fetched = res.data.data
+    const fetched = res.data.topics.data
+    pinnedTopics.value = res.data.pinnedTopics
+
     if (fetched.length === 0) {
       hasMore.value = false
     } else {
-      topics.value.push(...fetched)
+      regularTopics.value.push(...fetched)
       page.value++
     }
   } catch (err) {

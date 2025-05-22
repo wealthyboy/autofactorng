@@ -58,6 +58,7 @@ class Topic extends Model
                 "Id" => $carReview->id,
                 "title" => $carReview->title,
                 "Category" => optional($carReview->category)->name,
+                "Pinned" => $carReview->pinned ? 'Pinned' : 'Not Pinned',
                 "Image" => null !== $carReview->image ?  $carReview->image : '/images/utils/No_image_available.svg.png',
                 "Date Added" => $carReview->created_at->format('d-m-y'),
             ];
@@ -71,7 +72,8 @@ class Topic extends Model
             "Id" => 'id',
             "Image" => 'id',
             "Category" => 'forum_category_id',
-            "title" => 'product_name',
+            "Title" => 'product_name',
+            "Pinned" => 'pinned',
             "Date Added" => 'created_at',
         ];
 
