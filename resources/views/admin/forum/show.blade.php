@@ -26,7 +26,7 @@
             <img src="{{ $reply->image }}" alt="Reply Image" class="img-thumbnail mt-2" style="max-width: 200px;">
             @endif
 
-            <form action="/admin/forums/reply/{{ $reply->id) }}/delete" method="POST" class="mt-2">
+            <form action="" method="POST" class="mt-2">
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-danger btn-sm" onclick="return confirm('Delete this reply?')">Delete</button>
