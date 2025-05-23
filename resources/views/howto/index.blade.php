@@ -28,15 +28,17 @@
         <div class="row how-to justifiy-content-center">
             @foreach($videos as $video)
             <div id="content" class="col-md-6  mb-9 p-">
+
+
+
+                <?php echo  html_entity_decode($video->link)  ?>
+
                 <div style="height: 201px;">
                     <h2 class="mb-1 fw-bold">{{ $video->title }}</h2>
                     <div class="mt-3  d-none d-lg-block  d-xl-block "> <?php echo  html_entity_decode($video->description)  ?> </div>
                     <div style="height:" class="mt-3  d-md-none d-lg-none d-sm-block mb-5"> <?php echo  html_entity_decode($video->description)  ?> </div>
                     <div style="height: 69px;" class="mt-3 d-md-block d-lg-none d-sm-none d-xl-none d-xs-none mb-5"> <?php echo  html_entity_decode($video->description)  ?> </div>
                 </div>
-
-
-                <?php echo  html_entity_decode($video->link)  ?>
             </div>
             @endforeach
             <div class="margin-top-35">
