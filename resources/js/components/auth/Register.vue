@@ -89,7 +89,7 @@ export default {
     GeneralInput,
     Message,
   },
-  setup(p, { emit }) {
+  setup(props, { emit }) {
     const loading = ref(false);
     const text = ref("Submit");
     const message = ref(null);
@@ -118,6 +118,8 @@ export default {
         method: "post",
       };
 
+      console.log(true)
+
       makePost(postData)
         .then((res) => {
 
@@ -129,6 +131,7 @@ export default {
           window.location.href = res.data.url;
         })
         .catch((error) => {
+          console.log(error)
           server_errors.value = error.response.data.errors;
           clearErr(server_errors);
         });

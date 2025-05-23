@@ -6,7 +6,7 @@
       @click.self="close"
     >
       <div class="card  p-4">
-        <h5 class="text-left mb-3">Add A Post</h5>
+        <h5 class="text-left mb-3 fw-semibold">Add A Post</h5>
   
         <form @submit.prevent="submitReply">
 

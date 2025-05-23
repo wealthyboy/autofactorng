@@ -249,7 +249,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
             <div class="container">
-                <a href="/forum" class="logo"><img src="https://autofactorng.com/images/logo/autofactor_logo.png" alt="Autofactor  Logo"></a>
+                <a href="/" class="logo"><img src="https://autofactorng.com/images/logo/autofactor_logo.png" alt="Autofactor  Logo"></a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
@@ -257,9 +257,9 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <div class="d-flex flex-grow-1 justify-content-start justify-content-md-center">
                         <ul class="navbar-nav">
-                            <li class="nav-item"><a class="nav-link" href="/forum">Car Community</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/car-reviews">Car Reviews</a></li>
-                            <li class="nav-item"><a class="nav-link" href="/video-tips">Video Tips & Tutorials</a></li>
+                            <li class="nav-item"><a class="nav-link   fw-semibold" href="/forum">Car Community</a></li>
+                            <li class="nav-item"><a class="nav-link   fw-semibold" href="/car-reviews">Car Reviews</a></li>
+                            <li class="nav-item"><a class="nav-link   fw-semibold" href="/video-tips">Video Tips & Tutorials</a></li>
                         </ul>
                     </div>
 

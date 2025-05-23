@@ -273,13 +273,14 @@ const fetchTopics = async (reset = false) => {
   }
 
   try {
+
     const params = {
       page: page.value,
       category: selectedCategory.value?.name || null,
       sort: activeTab.value
     }
-    const res = await axios.get(`/forum`, { params })
 
+    const res = await axios.get(`/forum`, { params })
     const fetched = res.data.topics.data
     pinnedTopics.value = res.data.pinnedTopics
 
@@ -289,6 +290,8 @@ const fetchTopics = async (reset = false) => {
       regularTopics.value.push(...fetched)
       page.value++
     }
+
+    
   } catch (err) {
     console.error('Failed to fetch topics:', err)
   } finally {
