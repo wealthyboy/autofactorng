@@ -233,7 +233,6 @@
 
      <template v-if="!pinnedTopics.length && !loading">
         <div class="text-center mb-4">
-          No discussions found. Try a different category or filter.
         </div>
      </template>
  
