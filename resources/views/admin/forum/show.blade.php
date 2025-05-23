@@ -34,8 +34,6 @@
         </div>
 
         @foreach($reply->children as $child)
-
-
         <div style="margin-left: 4rem;" class="card mb-3 ml-3">
             <div class="card-body">
                 <p class="card-text">{!! $child->content !!}</p>
