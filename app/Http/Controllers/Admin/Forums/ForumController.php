@@ -6,6 +6,7 @@ use App\DataTable\Table;
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use App\Models\ForumCategory;
+use App\Models\Reply;
 use App\Models\Setting;
 use App\Models\Topic;
 use App\Models\User;
@@ -167,5 +168,14 @@ class ForumController extends  Table
         $topic = Topic::find($id);
         $topic->update($data);
         return  redirect()->to('/admin/forum');
+    }
+
+    public function deleteReply(Request $request, $id)
+    {
+
+
+        $reply = Reply::find($id);
+        $reply->delete();
+        return  redirect()->back();
     }
 }
