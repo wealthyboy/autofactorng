@@ -21,6 +21,7 @@ class ForumController extends  Table
 
     public $deleted_specific = 'Topics';
 
+    public $link = '/admin/forums';
 
     public function __construct()
     {
@@ -82,8 +83,14 @@ class ForumController extends  Table
         return view('admin.forum.create', compact('categories'));
     }
 
-    public function show() {}
+    public function show($id)
+    {
+        $topic = Topic::with('replies')->find($id);
 
+
+
+        return view('admin.forum.show', compact('topic'));
+    }
 
     public function routes()
     {
@@ -93,7 +100,7 @@ class ForumController extends  Table
                 'forum'
             ],
             'update' => null,
-            'show' => null,
+            'show' => true,
             'pin' => true,
 
             'destroy' =>  [
@@ -111,7 +118,7 @@ class ForumController extends  Table
     public function unique()
     {
         return [
-            'show'  => false,
+            'show'  => true,
             'right' => false,
             'edit' => true,
             'search' => false,

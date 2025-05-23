@@ -29,8 +29,6 @@
             @foreach($videos as $video)
             <div id="content" class="col-md-6  mb-9 p-">
 
-
-
                 <?php echo  html_entity_decode($video->link)  ?>
 
                 <div style="height: 201px;">
