@@ -26,13 +26,10 @@ class Topic extends Model
     }
 
 
-
-
     public function users()
     {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
-
 
 
     public function latestUsers()
@@ -58,7 +55,8 @@ class Topic extends Model
                 "Id" => $carReview->id,
                 "title" => $carReview->title,
                 "Category" => optional($carReview->category)->name,
-                "Pinned" => $carReview->pinned ? 'Pinned' : 'Not Pinned',
+                "Replies" => optional($carReview->replies)->count(),
+                "Pinned" => $carReview->pinned ? 'Not Pinned' : 'Pinned',
                 "Image" => null !== $carReview->image ?  $carReview->image : '/images/utils/No_image_available.svg.png',
                 "Date Added" => $carReview->created_at->format('d-m-y'),
             ];
@@ -72,7 +70,8 @@ class Topic extends Model
             "Id" => 'id',
             "Image" => 'id',
             "Category" => 'forum_category_id',
-            "Title" => 'product_name',
+            "Title" => 'title',
+            "Replies" => 'id',
             "Pinned" => 'pinned',
             "Date Added" => 'created_at',
         ];
