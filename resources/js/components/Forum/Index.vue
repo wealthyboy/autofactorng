@@ -65,7 +65,6 @@
       <div class="topic-cell">
         <div class="thread-title d-flex">
           <i  class="bi bi-pin-angle-fill text-warning me-1"  title="Pinned"></i>
-           <i class="bi bi-lock-fill text-dark" title="Locked"></i>
           <h5 class="mb-1">
             <a :href="`/forum/${topic.id}`" class="text-dark fw-bold text-decoration-none">{{ topic.title }}</a>
           </h5>
@@ -147,7 +146,6 @@
       <div v-for="topic in regularTopics" :key="topic.id" class="d-flex thread-row border border-bottom p-3">
       <div class="topic-cell">
         <div class="thread-title" :class="{ pinned: topic.pinned }">
-          <i v-if="topic.pinned" class="bi bi-pin-angle-fill text-warning me-1"></i>
           <h5 class="mb-1">
             <a :href="`/forum/${topic.id}`" class="text-dark fw-bold text-decoration-none">{{ topic.title }}</a>
           </h5>

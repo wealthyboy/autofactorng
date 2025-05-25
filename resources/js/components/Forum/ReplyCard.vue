@@ -16,14 +16,7 @@
           </div>
 
           <!-- Content -->
-          <div class="mb-3 text-center  m-2">
-            <img
-              v-if="reply.image"
-              :src="reply.image"
-              class="img-fluid rounded shadow-sm reply-image"
-              alt="reply image"
-            />
-          </div>
+         
           <p class="mt-2 py-3 mb-2">
             <span v-if="!showFullContent" v-html="truncatedContent"></span>
             <span v-else v-html="reply.content"></span>
@@ -33,6 +26,14 @@
               </button>
             </template>
           </p>
+          <div class="mb-3 text-left  m-2">
+            <img
+              v-if="reply.image"
+              :src="reply.image"
+              class="img-fluid rounded shadow-sm reply-image"
+              alt="reply image"
+            />
+          </div>
 
           <!-- Footer: Actions -->
           <div class="d-flex align-items-center justify-content-between text-muted mt-3">

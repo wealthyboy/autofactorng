@@ -107,7 +107,13 @@ abstract class Table extends Controller
         try {
 
             if ($request->filled('key')) {
-                $collections = $this->builder()->orderBy($builder->sortKeys($request->key), $request->sort)->paginate(100)->appends(request()->all());
+
+                $collections = $this->builder()->orderBy(
+                    $builder->sortKeys($request->key),
+                    $request->sort
+                )->paginate(100)
+                    ->appends(request()->all());
+
                 $records = $builder->getListingData($collections);
             }
 
@@ -119,7 +125,6 @@ abstract class Table extends Controller
 
 
             if (!$request->filled('key')) {
-                //dd($collections);
                 $records = $builder->getListingData($collections);
             }
 

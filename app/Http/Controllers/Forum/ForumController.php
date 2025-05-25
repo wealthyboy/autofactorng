@@ -113,8 +113,11 @@ class ForumController extends Controller
             }
         ])->findOrFail($id);
 
+
+
         if (!session()->has($key)) {
-            $topic->increment('views_count');
+            $topic->views_count = 1;
+            $topic->save();
             session()->put($key, true);
         }
 
@@ -130,7 +133,9 @@ class ForumController extends Controller
             'likes_count' => $topic->likes_count,
             'image' => $topic->image,
             'title' => $topic->title,
-            'isLoggedIn' => optional(auth()->user())->id
+            'isLoggedIn' => optional(auth()->user())->id,
+            'isAdmin' => $topic->user->users_permission ? true : false
+
         ];
 
         if (request()->ajax()) {

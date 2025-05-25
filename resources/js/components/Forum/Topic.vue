@@ -9,7 +9,7 @@
         <!-- Header -->
         <div class="d-flex justify-content-between align-items-center border-bottom py-3">
             <div>
-              <h5 class="card-title mb-1 fw-bold">{{ topic.user.name }}</h5>
+              <h5 class="card-title mb-1 fw-bold">{{topic.isAdmin ? 'Admin' : topic.user.name }}</h5>
               <p class="text-muted mb-0">
                 <i class="bi bi-folder2-open me-1"></i>{{ topic.category.name }}
               </p>

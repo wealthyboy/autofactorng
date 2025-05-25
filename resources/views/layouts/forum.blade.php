@@ -240,6 +240,31 @@
             width: 100% !important;
             height: 400px !important;
         }
+
+
+        .custom-pagination nav {
+            display: flex;
+            justify-content: center;
+        }
+
+        .custom-pagination .pagination {
+            margin: 0;
+        }
+
+        .custom-pagination .page-item .page-link {
+            color: #0d6efd;
+            border: 1px solid #dee2e6;
+            padding: 0.5rem 0.75rem;
+            margin: 0 3px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .custom-pagination .page-item.active .page-link {
+            background-color: #0d6efd;
+            color: white;
+            border-color: #0d6efd;
+        }
     </style>
 </head>
 
@@ -258,7 +283,6 @@
                     <div class="d-flex flex-grow-1 justify-content-start justify-content-md-center">
                         <ul class="navbar-nav">
                             <li class="nav-item"><a class="nav-link   fw-semibold me-4" href="/forum">Car Community</a></li>
-                            <li class="nav-item"><a class="nav-link   fw-semibold me-4" href="/car-reviews">Car Reviews</a></li>
                             <li class="nav-item"><a class="nav-link   fw-semibold me-4" href="/video-tips">Video Tips & Tutorials</a></li>
                         </ul>
                     </div>

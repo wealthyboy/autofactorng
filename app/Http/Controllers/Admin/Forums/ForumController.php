@@ -148,8 +148,12 @@ class ForumController extends  Table
      */
     public function store(Request $request)
     {
-        $forum = Topic::create($request->all());
-        return  redirect()->to('/admin/forum');
+
+        $input =  $request->all();
+        $input['user_id'] = auth()->user()->id;
+        $forum = Topic::create($input);
+
+        return  redirect()->to('/admin/forums');
     }
 
 
@@ -172,6 +176,7 @@ class ForumController extends  Table
 
         $data = $request->all();
         $topic = Topic::find($id);
+
         $topic->update($data);
         return  redirect()->to('/admin/forum');
     }

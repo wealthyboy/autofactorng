@@ -78,6 +78,9 @@ class TopicsController extends Controller
 
 
 
+
+
+
         $topic = [
             'id' => $topic->id,
             'content' => $topic->content,

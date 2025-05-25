@@ -39,7 +39,7 @@
                 </div>
             </div>
             @endforeach
-            <div class="margin-top-35">
+            <div class="margin-top-35 custom-pagination">
                 {{ $videos->links() }}
             </div>
         </div> <!-- /row -->
