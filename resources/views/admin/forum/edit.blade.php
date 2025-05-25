@@ -75,5 +75,5 @@
 <script src="{{ asset('backend/products.js') }}"></script>
 @stop
 @section('inline-scripts')
-@include('admin._partials.image_js',['folder' => 'car_reviews'])
+@include('admin._partials.image_js',['folder' => 'forum'])
 @stop
