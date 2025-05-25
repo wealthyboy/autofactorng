@@ -116,7 +116,8 @@ class ForumController extends Controller
 
 
         if (!session()->has($key)) {
-            $topic->views_count = 1;
+            $count =  $topic->views_count + 1;
+            $topic->views_count = $count;
             $topic->save();
             session()->put($key, true);
         }
