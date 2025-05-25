@@ -39,7 +39,7 @@ class ForumController extends Controller
             $query->orderBy('id', $request->sort); // Example: top = most viewed
         }
         // Pagination
-        $topics = $query->where('oinned', false)->paginate(10)->withQueryString();
+        $topics = $query->where('pinned', false)->paginate(10)->withQueryString();
 
         $data = [
             'topics' => $topics,
