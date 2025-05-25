@@ -394,6 +394,16 @@ if (document.querySelector('#phy_description')) {
     }
 
 
+    if (document.querySelector('#forum-description')) {
+        CKEDITOR.replace('forum-description', {
+            height: '200px',
+            width: '100%',
+            
+        })
+
+    }
+
+
 
 
 
