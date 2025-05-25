@@ -252,7 +252,7 @@
         }
 
         .custom-pagination .page-item .page-link {
-            color: #0d6efd;
+            color: #d25500;
             border: 1px solid #dee2e6;
             padding: 0.5rem 0.75rem;
             margin: 0 3px;
@@ -261,9 +261,9 @@
         }
 
         .custom-pagination .page-item.active .page-link {
-            background-color: #0d6efd;
+            background-color: #d25500;
             color: white;
-            border-color: #0d6efd;
+            border-color: #d25500;
         }
     </style>
 </head>
