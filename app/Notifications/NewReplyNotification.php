@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\Reply;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -11,14 +12,17 @@ class NewReplyNotification extends Notification
 {
     use Queueable;
 
+
+    public $reply;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Reply $reply)
     {
-        //
+        $this->reply = $reply;
     }
 
     /**
@@ -40,10 +44,13 @@ class NewReplyNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        $topic = $this->reply->topic;
+
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+            ->subject('New Reply on: ' . $topic->title)
+            ->greeting('Hello!')
+            ->line('A new reply has been posted on the topic: "' . $topic->title . '"')
+            ->action('View Full Topic', url('/forum/' . $topic->id));
     }
 
     /**

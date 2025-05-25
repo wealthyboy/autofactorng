@@ -38,6 +38,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
     Route::resource('customers', 'Admin\Customers\CustomersController', ['name' => 'customers']);
 
+
     Route::get('orders/invoice/{id}', 'Admin\Orders\OrdersController@invoice')->name('order.invoice');
     Route::post('orders/status', 'Admin\Orders\OrdersController@updateStatus');
 
@@ -92,6 +93,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('promo-text/delete/{id}', 'Admin\PromoText\PromoTextController@destroy')->name('delete.promo.text');
     Route::resource('discounts', 'Admin\Discounts\DiscountsController', ['names' => 'discounts']);
     Route::resource('forums', 'Admin\Forums\ForumController', ['names' => 'admin.forums']);
+    Route::post('reply/{id}/delete', 'Admin\Forums\ForumController@deleteReply');
+
     Route::resource('trackings', 'Admin\Tracking\TrackingController', ['names' => 'trackings']);
     Route::resource('car-reviews', 'Admin\CarReviews\CarReviewsController', ['names' => 'admin.car_reviews']);
     Route::resource('forum-category', 'Admin\ForumCategory\ForumCategoryController', ['names' => 'admin.forum-category']);

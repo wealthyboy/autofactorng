@@ -56,7 +56,7 @@ class Topic extends Model
                 "title" => $carReview->title,
                 "Category" => optional($carReview->category)->name,
                 "Replies" => optional($carReview->replies)->count(),
-                "Pinned" => $carReview->pinned ? 'Not Pinned' : 'Pinned',
+                "Pinned" => $carReview->pinned === true  ? ' Pinned' : 'Not Pinned',
                 "Image" => null !== $carReview->image ?  $carReview->image : '/images/utils/No_image_available.svg.png',
                 "Date Added" => $carReview->created_at->format('d-m-y'),
             ];

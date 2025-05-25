@@ -26,9 +26,12 @@
             <img src="{{ $reply->image }}" alt="Reply Image" class="img-thumbnail mt-2" style="max-width: 200px;">
             @endif
 
-            <form action="/admin/replies/{{ $reply->id }}/delete" method="POST" class="mt-2">
+            <form action="" method="GET" class="mt-2">
                 @csrf
                 @method('DELETE')
+
+                <input type="hidden" value="{{ $reply->id }}" name="reply_id">
+
                 <button class="btn btn-danger btn-sm" onclick="return confirm('Delete this reply?')">Delete</button>
             </form>
         </div>
@@ -42,9 +45,12 @@
                 <img src="{{ $child->image }}" alt="Reply Image" class="img-thumbnail mt-2" style="max-width: 200px;">
                 @endif
 
-                <form action="/admin/replies/{{ $child->id }}/delete" method="POST" class="mt-2">
+                <form action="" method="GET" class="mt-2">
                     @csrf
                     @method('DELETE')
+
+                    <input type="hidden" value="{{ $reply->id }}" name="reply_id">
+
                     <button class="btn btn-danger btn-sm" onclick="return confirm('Delete this reply?')">Delete</button>
                 </form>
             </div>

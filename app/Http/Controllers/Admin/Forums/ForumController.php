@@ -86,10 +86,16 @@ class ForumController extends  Table
 
     public function show($id)
     {
+        $reply_id = request()->reply_id;
+        if ($reply_id) {
+            $reply = Reply::find($reply_id);
+            $reply->delete();
+            return  redirect()->back();
+        }
+
+
+
         $topic = Topic::with('replies')->find($id);
-
-
-
         return view('admin.forum.show', compact('topic'));
     }
 
