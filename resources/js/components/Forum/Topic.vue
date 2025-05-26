@@ -165,6 +165,15 @@ function handleLike() {
 </script>
 <style scoped>
 
+.liked {
+  background-color: #d25500;
+  color: white !important;
+  border-radius: 0.375rem;
+  padding: 0.25rem 0.5rem;
+  transition: transform 0.2s ease-in-out;
+  transform: scale(1.05);
+}
+
 .like-button.liked {
   animation: zoom-out 0.3s ease-in-out;
 }

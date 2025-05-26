@@ -63,7 +63,7 @@
                 class="btn btn-sm btn-link text-decoration-none p-0 text-danger like-button me-4"
                 :class="{ 'liked': isLiked }"
               > 
-              {{ reply.likes_count  }}
+              {{ reply.likes_count   }}
 
                 <i class="bi bi-hand-thumbs-up "></i> 
                 

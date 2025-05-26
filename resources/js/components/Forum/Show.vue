@@ -109,15 +109,22 @@
       showLogin.value = true
       return  
     }    
-    await axios.post(`/forum/${topic.value.id}/toggle-like`)
+    const res =  await axios.post(`/forum/${topic.value.id}/toggle-like`)
+
     topic.value.liked_by_user = !topic.value.liked_by_user
-    topic.value.likes_count += topic.value.liked_by_user ? 1 : -1
+    topic.value.likes_count += res.data.liked === true ? 1 : -1
   }
   
   async function toggleReplyLike(reply) {
-    await axios.post(`/forum/${reply.id}/reply-like`)
+
+    if (!topic.value.isLoggedIn) {
+      showLogin.value = true
+      return  
+    } 
+
+    const res =  await axios.post(`/forum/${reply.id}/reply-like`)
     reply.liked_by_user = !reply.liked_by_user
-    reply.likes_count += reply.liked_by_user ? 1 : -1
+    reply.likes_count += res.data.liked === true ? 1 : -1
   }
 
 
