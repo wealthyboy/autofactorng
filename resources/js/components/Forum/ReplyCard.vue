@@ -36,8 +36,10 @@
           </div>
 
           <!-- Footer: Actions -->
-          <div class="d-flex align-items-center justify-content-between text-muted mt-3">
-            <div class="d-flex align-items-center justify-content-between gap-3 w-100">
+          <div class="">
+            <div class="d-flex justify-content-end align-items-center gap-3 me-4">
+
+             
             
               <!-- Replies Toggle Button -->
               <button v-if="hasChildren" class="btn btn-sm btn-link text-decoration-none p-0 " @click="toggleReplies">
@@ -48,9 +50,25 @@
 
 
                <!-- Reply Button -->
+
+
+               
               
 
-              <div class="ms-auto" v-if="depth !== 1">
+              <div class="ms-auto d-flex" v-if="depth !== 1">
+
+                <button
+                @click="$emit('toggle-like', reply)"
+
+                class="btn btn-sm btn-link text-decoration-none p-0 text-danger like-button me-4"
+                :class="{ 'liked': isLiked }"
+              > 
+              {{ reply.likes_count  }}
+
+                <i class="bi bi-hand-thumbs-up "></i> 
+                
+                Like
+              </button>
                 <button                 
                    @click="$emit('open-reply-modal', reply)"
                    class="btn btn-sm btn-link text-decoration-none d-flex p-0 text-pm-color ">
@@ -90,8 +108,11 @@ const props = defineProps({
   },
 })
 
+const isLiked = ref(false)
 
-defineEmits(['toggle-like', 'open-reply-modal'])
+
+
+const emit = defineEmits(['toggle-like', 'open-reply-modal'])
 
 // Accessing the prop correctly
 const reply = props.reply
@@ -101,7 +122,6 @@ const showReplies = ref(false)
 const toggleReplies = () => {
   showReplies.value = !showReplies.value
 }
-
 
 
 // ✅ Safely check for children replies
@@ -123,6 +143,24 @@ const truncatedContent = computed(() => {
 })
 </script>
 <style scoped>
+
+
+.like-button.liked {
+  animation: zoom-out 0.3s ease-in-out;
+}
+
+@keyframes zoom-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
   .reply-image {
   max-width: 100%;
   height: auto;

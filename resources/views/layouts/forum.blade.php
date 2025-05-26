@@ -280,7 +280,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <div class="d-flex flex-grow-1 justify-content-start justify-content-md-center">
+                    <div class="d-flex flex-grow-1 justify-content-start justify-content-md-center ">
                         <ul class="navbar-nav">
                             <li class="nav-item"><a class="nav-link   fw-semibold me-4" href="/forum">Car Community</a></li>
                             <li class="nav-item"><a class="nav-link   fw-semibold me-4" href="/video-tips">Video Tips & Tutorials</a></li>
@@ -288,11 +288,7 @@
                     </div>
 
                     <div class="d-flex gap-2 ms-auto">
-                        @auth
-                        <a href="/topic/create" class="btn pm-color text-white">New Topic</a>
-                        @else
-                        <a href="/login?forum={{ csrf_token() }}" class="btn pm-color text-white">Login</a>
-                        @endauth
+
                     </div>
                 </div>
 

@@ -183,12 +183,7 @@
                         </a>
                      </li>
 
-                     <li class="nav-item ">
-                        <a class="nav-link text-white {{ $helper->active_link(['car-reviews']) }}" href="/admin/car-reviews">
-                           <span class="sidenav-mini-icon"> C </span>
-                           <span class="sidenav-normal  ms-2  ps-1"> Car Reviews <b class="caret"></b></span>
-                        </a>
-                     </li>
+
 
                   </ul>
                </div>

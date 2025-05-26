@@ -64,6 +64,17 @@ class Topic extends Model
     }
 
 
+    public function likes()
+    {
+        return $this->belongsToMany(User::class, 'topic_likes')->withTimestamps();
+    }
+
+    public function likesCount()
+    {
+        return $this->likes->count();
+    }
+
+
     public function sortKeys($key)
     {
         $sort =  [

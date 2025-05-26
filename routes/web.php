@@ -130,7 +130,12 @@ Route::group(['middleware' => ['tracking']], function () {
     Route::get('make-model-year-engine', 'Products\ProductsController@makeModelYearSearch');
     Route::get('auto-complete', 'Products\ProductsController@autoComplete');
     Route::get('search', 'Products\ProductsController@search');
+    Route::post('forum/{topic}/toggle-like', 'Forum\ForumController@toggle');
+    Route::post('forum/{replyId}/reply-like', 'Forum\ForumController@toggleReplyLikes');
+
+
     Route::resource('forum', 'Forum\ForumController', ['names' => 'forum']);
+
     Route::resource('car-reviews', 'CarReviews\CarReviewsController', ['names' => 'car.reviews']);
     Route::resource('topic', 'Topics\TopicsController', ['names' => 'topics']);
     Route::post('reply', [App\Http\Controllers\Replies\ReplyController::class, 'store']);

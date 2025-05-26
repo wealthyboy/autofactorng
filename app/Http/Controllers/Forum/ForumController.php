@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Forum;
 
 use App\Http\Controllers\Controller;
 use App\Models\ForumCategory;
+use App\Models\Reply;
 use App\Models\Topic;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
@@ -88,6 +89,30 @@ class ForumController extends Controller
         //
     }
 
+
+    public function toggle(Request $request, \App\Models\Topic $topic)
+    {
+        $user = auth()->user();
+
+        if (! $user) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        // Toggle like
+        if ($topic->likes()->where('user_id', $user->id)->exists()) {
+            $topic->likes()->detach($user->id);
+            $liked = false;
+        } else {
+            $topic->likes()->attach($user->id);
+            $liked = true;
+        }
+
+        return response()->json([
+            'liked' => $liked,
+            'likes_count' => $topic->likes()->count(),
+        ]);
+    }
+
     /**
      * Display the specified resource.
      *
@@ -99,19 +124,26 @@ class ForumController extends Controller
 
         $key = 'viewed_topic_' . $id;
 
-        $topic = Topic::with([
-            'category',
-            'user',
-            'users',
-            'replies' => function ($query) {
-                $query->whereNull('parent_id')->with([
-                    'user',
-                    'children' => function ($q) {
-                        $q->with('user'); // optionally limit children depth
-                    }
-                ])->orderByDesc('id');
-            }
-        ])->findOrFail($id);
+        $topic = Topic::withCount('likes')
+            ->with([
+                'category',
+                'user',
+                'users',
+                'replies' => function ($query) {
+                    $query->whereNull('parent_id')
+                        ->withCount('likes') // 👍 This adds likes_count to replies
+                        ->with([
+                            'user',
+                            'children' => function ($q) {
+                                $q->with('user')
+                                    ->withCount('likes'); // Also add likes count to children replies
+                            }
+                        ])
+                        ->orderByDesc('id');
+                }
+            ])->findOrFail($id);
+
+
 
 
 
@@ -127,6 +159,7 @@ class ForumController extends Controller
             'content' => $topic->content,
             'date' => Carbon::parse($topic->created_at)->shortRelativeDiffForHumans(),
             'views_count' => $topic->views_count,
+            'likes_count' => $topic->likes_count,
             'user' => $topic->user,
             'users' => $topic->users,
             'category' => $topic->category,
@@ -158,6 +191,25 @@ class ForumController extends Controller
     }
 
 
+    public function toggleReplyLikes(Request $request, $replyId)
+    {
+        $reply = Reply::findOrFail($replyId);
+        $user = auth()->user();
+
+        $existingLike = $reply->likes()->where('user_id', $user->id)->first();
+
+        if ($existingLike) {
+            $existingLike->delete();
+            $reply->decrement('likes_count');
+            return response()->json(['liked' => false, 'likes_count' => $reply->likes_count]);
+        } else {
+            $reply->likes()->create(['user_id' => $user->id]);
+            $reply->increment('likes_count');
+            return response()->json(['liked' => true, 'likes_count' => $reply->likes_count]);
+        }
+    }
+
+
     // TopicController
     // public function toggleLike(Topic $topic)
     // {
@@ -168,13 +220,7 @@ class ForumController extends Controller
     // }
 
     // ReplyController
-    public function toggleLike(Reply $reply)
-    {
-        $user = auth()->user();
-        $reply->likes()->toggle($user->id);
 
-        return response()->json(['success' => true]);
-    }
 
 
     /**

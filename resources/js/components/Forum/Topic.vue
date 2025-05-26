@@ -27,14 +27,15 @@
             />
           </div>
         <p class="mt-2 py-3 mb-2">
-            <span v-if="!showFullContent" v-html="truncatedContent"></span>
-            <span v-else v-html="topic.content"></span>
-            <template v-if="isTruncated">
-              <button class="btn btn-link btn-sm p-0 ps-1" @click="showFullContent = !showFullContent">
-                {{ showFullContent ? 'Read less' : 'Read more' }}
-              </button>
-            </template>
-          </p>
+          <span v-if="!showFullContent" v-html="truncatedContent"></span>
+          <span v-else v-html="topic.content"></span>
+          <template v-if="isTruncated">
+            <button class="btn btn-link btn-sm p-0 ps-1" @click="showFullContent = !showFullContent">
+              {{ showFullContent ? 'Read less' : 'Read more' }}
+            </button>
+          </template>
+        </p>
+
 
         <!-- Footer: icons and reply -->
         <div class="d-flex align-items-center justify-content-between text-muted mt-3">
@@ -42,6 +43,15 @@
             <small class="text-muted d-md-none">{{ topic.date }}</small>
           </div>
           <div class="d-flex align-items-center gap-3">
+
+            <button
+              class="btn btn-sm btn-link text-decoration-none p-0 text-danger like-button"
+              :class="{ 'liked': isLiked }"
+              @click="handleLike"
+            >
+
+              <i class="bi bi-hand-thumbs-up me-1"></i> Like
+            </button>
            
             <button
                 class="btn btn-sm btn-link text-decoration-none p-0 text-pm-color "
@@ -49,6 +59,8 @@
               >
                 <i class="bi bi-reply me-1"></i> Reply
               </button>
+
+              
           </div>
         </div>
       </div>
@@ -60,6 +72,11 @@
           <div class="me-4 text-center">
             <strong class="text-danger">{{ topic.views_count || 0 }}</strong><br />
             <small class="text-muted">views</small>
+          </div>
+
+          <div class="me-4 text-center">
+            <strong class="text-danger">{{ topic.likes_count || 0 }}</strong><br />
+            <small class="text-muted">likes</small>
           </div>
         
 
@@ -100,7 +117,8 @@ import { ref, computed } from 'vue'
 
 import InitialAvatar from './InitialAvatar.vue'
 const props = defineProps(['topic'])
-defineEmits(['toggle-like','open-reply-modal'])
+const emit = defineEmits(['toggle-like', 'open-reply-modal'])
+
 
 const topic = props.topic
 
@@ -123,8 +141,45 @@ const truncatedContent = computed(() => {
   return topic.content
 })
 
+const isLiked = ref(false)
+
+
+function handleLike() {
+
+  if ( topic.isLoggedIn) {
+    emit('toggle-like', topic.id)
+    return
+  }
+  
+  isLiked.value = true
+
+  // Emit to parent
+  emit('toggle-like', topic.id)
+
+  // Reset animation class after animation ends
+  setTimeout(() => {
+    isLiked.value = false
+  }, 300) // match this to your CSS animation duration
+}
+
 </script>
 <style scoped>
+
+.like-button.liked {
+  animation: zoom-out 0.3s ease-in-out;
+}
+
+@keyframes zoom-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
 .card .avatar {
   font-size: 1.2rem;

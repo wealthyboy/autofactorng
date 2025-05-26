@@ -13,6 +13,10 @@
         @guest
         <a href="/register" class="btn pm-color btn-lg mt-4 text-white fw-bold">REGISTER</a>
         @endguest
+
+        @auth
+        <a href="/topic/create" class="btn pm-color btn-lg mt-4 text-white fw-bold">ADD NEW TOPIC</a>
+        @endauth
     </div>
 </section>
 

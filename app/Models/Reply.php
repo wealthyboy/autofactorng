@@ -45,4 +45,9 @@ class Reply extends Model
     {
         return optional($this->created_at)->shortRelativeDiffForHumans();
     }
+
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
+    }
 }

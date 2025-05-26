@@ -21,13 +21,13 @@
       <!-- Loading Spinner -->
       <div v-if="loadingMore" class="text-center py-3">
         <div class="spinner-border text-primary" role="status"></div>
-      </div>
+       </div>
 
           <Auth        
-             @close="showLogin = false"
-              :reload="true" v-if="showLogin"/>
-      <div v-if="!hasMoreReplies" class="text-center text-muted my-3">
-      </div>
+            @close="showLogin = false"
+            :reload="true" v-if="showLogin" 
+          />
+       <div v-if="!hasMoreReplies" class="text-center text-muted my-3"></div>
     </template>
 
     <!-- Reply Modal -->
@@ -104,14 +104,18 @@
 
   
   async function toggleTopicLike() {
-    await axios.post(`/topics/${topic.value.id}/toggle-like`)
+
+    if (!topic.value.isLoggedIn) {
+      showLogin.value = true
+      return  
+    }    
+    await axios.post(`/forum/${topic.value.id}/toggle-like`)
     topic.value.liked_by_user = !topic.value.liked_by_user
     topic.value.likes_count += topic.value.liked_by_user ? 1 : -1
   }
   
-  async function toggleReplyLike(replyId) {
-    const reply = topic.value.replies.find(r => r.id === replyId)
-    await axios.post(`/api/replies/${replyId}/toggle-like`)
+  async function toggleReplyLike(reply) {
+    await axios.post(`/forum/${reply.id}/reply-like`)
     reply.liked_by_user = !reply.liked_by_user
     reply.likes_count += reply.liked_by_user ? 1 : -1
   }
