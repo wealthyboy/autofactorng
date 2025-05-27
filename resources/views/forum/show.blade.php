@@ -5,7 +5,7 @@
     <div class="">
         <div id="post-skelenton" class="container my-4">
             <div class="row">
-                <div class="col-md-8 mx-auto">
+                <div class="col-lg-8 mx-auto">
                     @for ($i = 0; $i < 6; $i++)
                         <div class="card mb-3">
                         <div class="card-body">
@@ -39,7 +39,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-md-8 mx-auto">
+            <div class="col-lg-8 mx-auto">
                 <show-forum :topicShow='@json($topic)' />
             </div>
         </div>

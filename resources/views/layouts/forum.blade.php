@@ -280,7 +280,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <div class="d-flex flex-grow-1 justify-content-start justify-content-md-center ">
+                    <div class="d-flex flex-grow-1 justify-content-start justify-content-lg-center mt-3 mt-lg-0">
                         <ul class="navbar-nav">
                             <li class="nav-item"><a class="nav-link   fw-semibold me-4" href="/forum">Car Community</a></li>
                             <li class="nav-item"><a class="nav-link   fw-semibold me-4" href="/video-tips">Video Tips & Tutorials</a></li>

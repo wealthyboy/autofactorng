@@ -45,11 +45,10 @@ class ForumController extends Controller
         // Pagination
         $topics = $query->where('pinned', false)->paginate(10)->withQueryString();
 
-
-
         $data = [
             'topics' => $topics,
-            'pinnedTopics' => $pinnedTopics
+            'pinnedTopics' => $pinnedTopics,
+            'isLoggedIn' => optional(auth()->user())->id
         ];
 
         // Fetch categories and tags for filters

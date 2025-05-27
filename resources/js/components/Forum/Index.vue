@@ -53,13 +53,12 @@
     <!-- Header row -->
     <div class="d-flex fw-bold border p-3 align-items-center ">
       <div class="flex-grow-1">Topic</div>
-      <div class="text-end  d-none d-md-flex " style="width: 80px;"></div>
-      <div class="text-end  d-none d-md-flex " style="width: 80px;">Replies</div>
-      <div class="text-end  d-none d-md-flex " style="width: 80px;"> Views</div>
-      <div class="text-end  d-none d-md-flex " style="width: 100px;"> Activity</div>
-      <div class=" text-end  d-lg-none ">
+      <div class="text-end  d-none d-lg-flex" style="width: 80px;"></div>
+      <div class="text-end  d-none d-lg-flex" style="width: 80px;">Replies</div>
+      <div class="text-end  d-none d-lg-flex" style="width: 80px;"> Views</div>
+      <div class="text-end  d-none d-lg-flex" style="width: 100px;"> Activity</div>
+      <div v-if="isLoggedIn" class=" text-end  d-lg-none ">
         <a style="font-size: small;" href="/topic/create" class="btn pm-color btn-lg text-white fw-bold fs-6">ADD NEW TOPIC</a>
-
       </div>
     </div>
 
@@ -122,7 +121,7 @@
         </div>
       </div>
 
-        <div class="d-flex  d-none d-md-flex thread-row justify-content-center meta-cell">
+        <div class="d-flex  d-none d-lg-flex thread-row justify-content-center meta-cell">
           <div
             v-for="user in topic.latest_users"
             :key="user.id"
@@ -141,16 +140,16 @@
           </div>
         </div>
 
-        <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center ">
+        <div class="meta-cell d-flex  d-none d-lg-flex justify-content-center align-items-center ">
           <a class="text-decoration-none" :href="`/forum/${topic.id}`">
             {{ topic.replies?.length || 0 }}
           </a> 
         </div>
-        <div class="meta-cell cursor-pointer d-flex  d-none d-md-flex justify-content-center align-items-center me-2">
+        <div class="meta-cell cursor-pointer d-flex  d-none d-lg-flex justify-content-center align-items-center me-2">
           {{ topic.views_count  || 0 }}
          
         </div>
-        <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center me-4">
+        <div class="meta-cell d-flex  d-none d-lg-flex justify-content-center align-items-center me-4">
           {{ topic.date }}
         </div>
       </div>
@@ -208,7 +207,7 @@
         </div>
       </div>
 
-        <div class="d-flex  d-none d-md-flex thread-row justify-content-center meta-cell">
+        <div class="d-flex  d-none d-lg-flex thread-row justify-content-center meta-cell">
           <div
             v-for="user in topic.latest_users"
             :key="user.id"
@@ -227,16 +226,16 @@
           </div>
         </div>
 
-        <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center ">
+        <div class="meta-cell d-flex  d-none d-lg-flex justify-content-center align-items-center ">
           <a class="text-decoration-none" :href="`/forum/${topic.id}`">
             {{ topic.replies?.length || 0 }}
           </a> 
         </div>
-        <div class="meta-cell cursor-pointer d-flex  d-none d-md-flex justify-content-center align-items-center me-2">
+        <div class="meta-cell cursor-pointer d-flex  d-none d-lg-flex justify-content-center align-items-center me-2">
           {{ topic.views_count  || 0 }}
          
         </div>
-        <div class="meta-cell d-flex  d-none d-md-flex justify-content-center align-items-center me-4">
+        <div class="meta-cell d-flex  d-none d-lg-flex justify-content-center align-items-center me-4">
           {{ topic.date }}
         </div>
       </div>
@@ -273,6 +272,8 @@ const page = ref(1)
 const loading = ref(false)
 const hasMore = ref(true)
 const selectedCategory = ref(null)
+const isLoggedIn = ref(null)
+
 const activeTab = ref('desc')
 const isLoading = ref(false)
 
@@ -297,6 +298,8 @@ const fetchTopics = async (reset = false) => {
     const res = await axios.get(`/forum`, { params })
     const fetched = res.data.topics.data
     pinnedTopics.value = res.data.pinnedTopics
+    isLoggedIn.value = res.data.isLoggedIn
+
 
     if (fetched.length === 0) {
       hasMore.value = false
