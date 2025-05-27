@@ -13,7 +13,7 @@
 
     
       <div class="row">
-          <div class="col-md-6 col-12  mx-auto">
+          <div class="col-lg-6 col-12  mx-auto">
 
          
            
