@@ -4,22 +4,26 @@
 <div class="bg-light">
     <div class="">
         <div id="post-skelenton" class="container my-4">
-            @for ($i = 0; $i < 6; $i++)
-                <div class="card mb-3">
-                <div class="card-body">
-                    <div class="d-flex mb-2">
-                        <div class="skeleton-avatar me-3"></div>
-                        <div class="flex-grow-1">
-                            <div class="skeleton-line w-25 mb-1"></div>
-                            <div class="skeleton-line w-50"></div>
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    @for ($i = 0; $i < 6; $i++)
+                        <div class="card mb-3">
+                        <div class="card-body">
+                            <div class="d-flex mb-2">
+                                <div class="skeleton-avatar me-3"></div>
+                                <div class="flex-grow-1">
+                                    <div class="skeleton-line w-25 mb-1"></div>
+                                    <div class="skeleton-line w-50"></div>
+                                </div>
+                            </div>
+                            <div class="skeleton-line w-100 mb-2"></div>
+                            <div class="skeleton-line w-100 mb-2"></div>
+                            <div class="skeleton-line w-75"></div>
                         </div>
-                    </div>
-                    <div class="skeleton-line w-100 mb-2"></div>
-                    <div class="skeleton-line w-100 mb-2"></div>
-                    <div class="skeleton-line w-75"></div>
                 </div>
+                @endfor
+            </div>
         </div>
-        @endfor
 
     </div>
 
