@@ -19,14 +19,17 @@ class ForumController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Topic::with(['replies', 'category', 'latestUsers']);
 
-        $pinnedTopics = Topic::with(['category', 'replies', 'latestUsers'])
+        $pinnedTopics = Topic::withCount('likes')->with(['category', 'replies', 'latestUsers'])
             ->where('pinned', true)
             ->latest()
             ->get();
 
+        $query = Topic::withCount('likes')->with(['replies', 'category', 'latestUsers']);
+
+
         $categories = ForumCategory::get();
+
 
         // Filtering by category
         if ($request->filled('category')) {
@@ -41,6 +44,8 @@ class ForumController extends Controller
         }
         // Pagination
         $topics = $query->where('pinned', false)->paginate(10)->withQueryString();
+
+
 
         $data = [
             'topics' => $topics,

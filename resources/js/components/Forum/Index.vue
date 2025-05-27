@@ -51,12 +51,16 @@
   </div>
 
     <!-- Header row -->
-    <div class="d-flex fw-bold border p-3 ">
+    <div class="d-flex fw-bold border p-3 align-items-center ">
       <div class="flex-grow-1">Topic</div>
       <div class="text-end  d-none d-md-flex " style="width: 80px;"></div>
       <div class="text-end  d-none d-md-flex " style="width: 80px;">Replies</div>
       <div class="text-end  d-none d-md-flex " style="width: 80px;"> Views</div>
       <div class="text-end  d-none d-md-flex " style="width: 100px;"> Activity</div>
+      <div class=" text-end  d-lg-none ">
+        <a style="font-size: small;" href="/topic/create" class="btn pm-color btn-lg text-white fw-bold fs-6">ADD NEW TOPIC</a>
+
+      </div>
     </div>
 
     <!-- Topics -->
@@ -84,8 +88,16 @@
             </div>
 
             <div class="me-4 text-center">
-              <strong class="text-danger">{{ topic.replies.length || 0 }}</strong><br />
+              <strong class="text-danger">
+                <a class="text-decoration-none" :href="`/forum/${topic.id}`">
+                  {{ topic.replies.length || 0 }}
+                </a></strong><br />
               <small class="text-muted">replies</small>
+            </div>
+
+            <div class="me-4 text-center">
+              <strong class="text-danger">{{ topic.likes_count  || 0  }}</strong><br />
+              <small class="text-muted">Likes</small>
             </div>
 
             <!-- Avatars -->
@@ -167,6 +179,11 @@
             <div class="me-4 text-center">
               <strong class="text-danger">{{ topic.replies.length || 0 }}</strong><br />
               <small class="text-muted">replies</small>
+            </div>
+
+            <div class="me-4 text-center">
+              <strong class="text-danger">{{ topic.likes_count  || 0  }}</strong><br />
+              <small class="text-muted">Likes</small>
             </div>
 
             <!-- Avatars -->

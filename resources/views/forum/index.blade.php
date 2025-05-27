@@ -11,11 +11,11 @@
             <li><i class="bi bi-check-circle-fill text-pm-color me-2"></i> ⁠⁠Friends and like-minded individuals</li>
         </ul>
         @guest
-        <a href="/register" class="btn pm-color btn-lg mt-4 text-white fw-bold">REGISTER</a>
+        <a href="/login" class="btn pm-color btn-lg mt-4 text-white fw-bold fs-6">LOGIN / REGISTER</a>
         @endguest
 
         @auth
-        <a href="/topic/create" class="btn pm-color btn-lg mt-4 text-white fw-bold">ADD NEW TOPIC</a>
+        <a href="/topic/create" class="btn pm-color btn-lg mt-4 text-white fw-bold fs-6">ADD NEW TOPIC</a>
         @endauth
     </div>
 </section>
