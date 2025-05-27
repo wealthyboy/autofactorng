@@ -58,7 +58,8 @@
       <div class="text-end  d-none d-lg-flex" style="width: 80px;"> Views</div>
       <div class="text-end  d-none d-lg-flex" style="width: 100px;"> Activity</div>
       <div v-if="isLoggedIn" class=" text-end  d-lg-none ">
-        <a style="font-size: small;" href="/topic/create" class="btn pm-color btn-lg text-white fw-bold fs-6">ADD NEW TOPIC</a>
+        <a href="/topic/create" type="button" class="btn btn-outline-dark btn-sm">ADD NEW TOPIC</a>
+
       </div>
     </div>
 
