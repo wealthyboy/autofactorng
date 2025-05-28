@@ -113,9 +113,6 @@ const forumValue = params.get('forum');
                 .post("/login", form)
                 .then((res) => {
 
-
-                    console.log(lo)
-
                     if (hasToken && hasForum) {
                         window.location.href = '/forum';
                     }
