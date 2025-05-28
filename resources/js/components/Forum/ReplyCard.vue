@@ -10,7 +10,7 @@
           <!-- Header -->
           <div class="d-flex justify-content-between align-items-center border-bottom py-3">
             <div>
-              <h5 class="card-title mb-1 fw-bold">{{ reply.user.name }}</h5>
+              <h5 class="card-title mb-1 fw-bold">{{ reply.is_admin ? 'Admin' : reply.user.name }}</h5>
             </div>
             <small class="text-muted  text-black">{{ reply.date }}</small>
           </div>

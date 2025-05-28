@@ -87,10 +87,20 @@ export default {
             if (this.v$.$error) {
                 return;
             }
+
+        
             loading.value = !loading.value;
             axios
                 .post("/login", form)
                 .then((res) => {
+
+                    
+                    if (res.data.forum === true){
+                        location.href = '/forum'
+                        return;
+                    }
+
+
                     if (props.reload){
                         location.reload()
                         return;

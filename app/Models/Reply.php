@@ -11,7 +11,8 @@ class Reply extends Model
     use HasFactory, ColumnFillable;
 
     public $appends = [
-        'date'
+        'date',
+        'is_admin'
     ];
 
     // A reply belongs to a topic
@@ -44,6 +45,12 @@ class Reply extends Model
     public function getDateAttribute()
     {
         return optional($this->created_at)->shortRelativeDiffForHumans();
+    }
+
+
+    public function getIsAdminAttribute()
+    {
+        return $this->user->users_permission  !== null ? true : false;
     }
 
     public function likes()

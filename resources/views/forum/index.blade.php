@@ -11,7 +11,7 @@
             <li><i class="bi bi-check-circle-fill text-pm-color me-2"></i> ⁠⁠Friends and like-minded individuals</li>
         </ul>
         @guest
-        <a href="/login" class="btn pm-color btn-lg mt-4 text-white fw-bold fs-6">LOGIN / REGISTER</a>
+        <a href="/login?token={{csrf_token()}}&forum=1" class="btn pm-color btn-lg mt-4 text-white fw-bold fs-6">LOGIN / REGISTER</a>
         @endguest
 
         @auth

@@ -44,6 +44,18 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function showLoginForm()
+    {
+        $token = request()->query('token');
+        $forum = request()->query('forum');
+
+
+        if (hash_equals(csrf_token(), $token) &&  $forum) {
+            session()->put('forum', true);
+        }
+        return view('auth.login');
+    }
+
 
     /**
      * Handle a login request to the application.
@@ -94,7 +106,8 @@ class LoginController extends Controller
             if ($request->ajax()) {
                 return response()->json([
                     'loggenIn' => true,
-                    'url' => \Session::get('url.intended', url('/'))
+                    'url' => \Session::get('url.intended', url('/')),
+                    'forum' => session('forum')
                 ]);
             }
             return $this->sendLoginResponse($request);

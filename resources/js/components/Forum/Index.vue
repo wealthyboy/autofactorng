@@ -54,11 +54,12 @@
     <div class="d-flex fw-bold border p-3 align-items-center ">
       <div class="flex-grow-1">Topic</div>
       <div class="text-end  d-none d-lg-flex" style="width: 80px;"></div>
-      <div class="text-end  d-none d-lg-flex" style="width: 80px;">Replies</div>
-      <div class="text-end  d-none d-lg-flex" style="width: 80px;"> Views</div>
+      <div class="text-end  d-none d-lg-flex" style="width: 80px;">  Replies</div>
+      <div class="text-end  d-none d-lg-flex" style="width: 80px;">  Likes</div>
+      <div class="text-end  d-none d-lg-flex" style="width: 80px;">  Views</div>
       <div class="text-end  d-none d-lg-flex" style="width: 100px;"> Activity</div>
       <div v-if="isLoggedIn" class=" text-end  d-lg-none ">
-        <a href="/topic/create" type="button" class="btn btn-outline-dark btn-sm">ADD NEW TOPIC</a>
+        <a href="/topic/create" type="button" class="btn btn-outline-dark">ADD NEW TOPIC</a>
 
       </div>
     </div>
@@ -87,13 +88,7 @@
               <small class="text-muted">views</small>
             </div>
 
-            <div class="me-4 text-center">
-              <strong class="text-danger">
-                <a class="text-decoration-none" :href="`/forum/${topic.id}`">
-                  {{ topic.replies.length || 0 }}
-                </a></strong><br />
-              <small class="text-muted">replies</small>
-            </div>
+          
 
             <div class="me-4 text-center">
               <strong class="text-danger">{{ topic.likes_count  || 0  }}</strong><br />
@@ -146,6 +141,11 @@
             {{ topic.replies?.length || 0 }}
           </a> 
         </div>
+
+        <div class="meta-cell d-flex  d-none d-lg-flex justify-content-center align-items-center ">
+            {{ topic.likes_count || 0 }}
+        </div>
+
         <div class="meta-cell cursor-pointer d-flex  d-none d-lg-flex justify-content-center align-items-center me-2">
           {{ topic.views_count  || 0 }}
          
@@ -231,6 +231,10 @@
           <a class="text-decoration-none" :href="`/forum/${topic.id}`">
             {{ topic.replies?.length || 0 }}
           </a> 
+        </div>
+
+        <div class="meta-cell d-flex  d-none d-lg-flex justify-content-center align-items-center ">
+            {{ topic.likes_count || 0 }}
         </div>
         <div class="meta-cell cursor-pointer d-flex  d-none d-lg-flex justify-content-center align-items-center me-2">
           {{ topic.views_count  || 0 }}
