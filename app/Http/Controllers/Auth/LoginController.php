@@ -50,7 +50,7 @@ class LoginController extends Controller
         $forum = request()->query('forum');
 
 
-        if ($token  && hash_equals(csrf_token(), $token) &&  $forum) {
+        if ($token  && hash_equals(csrf_token(), $token)) {
             session()->put('forum', true);
         }
         return view('auth.login');
