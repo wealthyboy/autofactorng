@@ -82,6 +82,25 @@ export default {
         const rules = loginRules(form);
         const v$ = useVuelidate(rules, form);
 
+        const currentUrl = window.location.href;
+
+// Create a URL object
+const url = new URL(currentUrl);
+
+// Get the search parameters
+const params = new URLSearchParams(url.search);
+
+// Check for specific parameters
+const hasToken = params.has('token');
+const hasForum = params.has('forum');
+
+// Optional: get the values
+const tokenValue = params.get('token');
+const forumValue = params.get('forum');
+
+// Output the result
+
+
         function login() {
             this.v$.$touch();
             if (this.v$.$error) {
@@ -94,7 +113,14 @@ export default {
                 .post("/login", form)
                 .then((res) => {
 
-                    
+
+                    console.log(lo)
+
+                    if (hasToken && hasForum) {
+                        window.location.href = '/forum';
+                    }
+
+
                     if (res.data.forum === true){
                         location.href = '/forum'
                         return;
