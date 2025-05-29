@@ -256,6 +256,7 @@ class ProductsController extends Controller
         return $products;
     }
 
+
     public function filterPrices()
     {
         $collection = collect([

@@ -115,6 +115,14 @@ class Order extends Model
 					'created_at' => \Carbon\Carbon::now()
 				];
 
+				$product = Product::find($cart->product_id);
+
+				if ($product->quantity > 1) {
+					$newQuantity = $product->quantity - $cart->quantity;
+					$product->quantity = $newQuantity > 0 ?  $newQuantity : 0;
+					$product->save();
+				}
+
 				OrderedProduct::Insert($insert);
 				$cart->status = 'paid';
 				$cart->delete();

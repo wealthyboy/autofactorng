@@ -60,7 +60,14 @@
                   </div>
 
                   <div class="col-sm-6 col-12">
-                     <div class="input-group input-group-outline">
+                     <div class="input-group input-group-outline ">
+                        <label class="form-label"> Quantity</label>
+                        <input type="number" class="form-control" value="{{ isset($product) ? $product->quantity : old('quantity') }}" name="quantity">
+                     </div>
+                  </div>
+
+                  <div class="col-sm-6 col-12">
+                     <div class="input-group input-group-outline mt-3">
                         <label class="form-label">Sale Price</label>
                         <input type="number" class="form-control" name="sale_price" value="{{ isset($product) ? $product->sale_price : old('sale_price') }}">
                      </div>
@@ -71,7 +78,7 @@
                         <input name="sale_price_starts" value="{{ $product->sale_price_starts  }}" class="form-control datetimepicker" type="text" data-input>
                      </div>
                   </div>
-                  <div class="col-sm-6 col-12 mt-3">
+                  <div class="col-sm-12 col-12 mt-3">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Sales End Date</label>
                         <input name="sale_price_ends" value="{{ $product->sale_price_ends  }}" class="form-control datetimepicker" type="text" data-input>

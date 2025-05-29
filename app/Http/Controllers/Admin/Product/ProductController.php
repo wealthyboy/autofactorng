@@ -351,6 +351,8 @@ class ProductController extends Table
         $product->slug = str_slug($name);
         $product->in_stock = 1;
         $product->price =  $request->price;
+        $product->quantity =  $request->quantity;
+
         $product->sale_price =   $request->sale_price;
         $product->sale_price_starts = $request->sale_price_starts;
         $product->sale_price_ends = $request->sale_price_ends;
@@ -571,8 +573,7 @@ class ProductController extends Table
     public function updatePrice(Request $request, $id)
     {
         $product = Product::find($id);
-        $product->price = $request->price;
-        $product->save();
+        $product->update($request->all());
     }
 
 

@@ -56,6 +56,13 @@
 
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
+                        <label class="form-label"> Quantity</label>
+                        <input type="number" class="form-control" name="quantity">
+                     </div>
+                  </div>
+
+                  <div class="col-sm-6 col-12 mt-3">
+                     <div class="input-group input-group-outline">
                         <label class="form-label">Sale Price</label>
                         <input type="number" class="form-control" name="sale_price">
                      </div>
@@ -66,7 +73,7 @@
                         <input name="sale_price_starts" class="form-control datetimepicker" type="text" data-input>
                      </div>
                   </div>
-                  <div class="col-sm-6 col-12 mt-3">
+                  <div class="col-sm-12 col-12 mt-3">
                      <div class="input-group input-group-outline">
                         <label class="form-label">Sales End Date</label>
                         <input name="sale_price_ends" class="form-control datetimepicker" type="text" data-input>
@@ -93,8 +100,6 @@
                         </select>
                      </div>
                   </div>
-
-
                </div>
 
                <div class="row mt-3">

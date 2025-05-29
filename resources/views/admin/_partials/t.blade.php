@@ -155,7 +155,7 @@
                                             @endforeach
                                         </select>
                                         @else
-                                        <h6 data-price="{{ $k == 'Price' ? $v  : '' }}" data-id="{{ isset( $models['items'][0][$key]['Id']) ?   $models['items'][0][$key]['Id'] : null }}" class=" text-center <?php echo  $k == 'Price' ?  'update_price' : '' ?> mb-0 text-xs" {{ $k == 'Price' ? 'contenteditable' : null }}>{{ $v }}</h6>
+                                        <h6 data-price="{{ $k == 'Price' ? $v  : '' }}" data-price="{{ $k == 'Quantity' ? $v  : '' }}" data-id="{{ isset( $models['items'][0][$key]['Id']) ?   $models['items'][0][$key]['Id'] : null }}" class=" text-center  <?php echo  $k == 'Quantity' ?  'update_quantity' : '' ?>  <?php echo  $k == 'Price' ?  'update_price' : '' ?> mb-0 text-xs" {{ $k == 'Quantity'  ? 'contenteditable' : null }} {{ $k == 'Price'  ? 'contenteditable' : null }}>{{ $v }}</h6>
                                         @endif
                                     </div>
                                     @endif
