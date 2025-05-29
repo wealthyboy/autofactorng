@@ -2,6 +2,7 @@
 
 use App\Models\Cart;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
 use App\Notifications\WelcomeNotification;
 use Illuminate\Support\Facades\DB;
@@ -113,6 +114,13 @@ Route::get('/notification', function () {
     return (new WelcomeNotification($user))
         ->toMail($user);
 });
+
+
+Route::get('/reset-quantities', function () {
+    Product::query()->update(['quantity' => 0]);
+    return 'All product quantities set to 0.';
+});
+
 
 Route::group(['middleware' => ['tracking']], function () {
 
