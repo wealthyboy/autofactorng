@@ -129,7 +129,6 @@ class OrdersController extends Table
 			$total[] = $input['products']['price'][$key] * $input['products']['quantity'][$key];
 			$OrderedProduct->save();
 
-
 			$name = $input['products']['product_name'][$key];
 			$qty = $input['products']['quantity'][$key];
 			$product = Product::where('product_name', $name)->first();
@@ -138,6 +137,8 @@ class OrdersController extends Table
 			if (null !== $product && $product->quantity > 1) {
 				//remember ther's a model observer that sends an email when price is updated
 				$newQuantity = $product->quantity - $qty;
+
+				dd($newQuantity);
 				$product->quantity = $newQuantity > 0 ?  $newQuantity : 0;
 				$product->save();
 			}
