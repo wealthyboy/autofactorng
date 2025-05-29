@@ -32,7 +32,19 @@ $('.update_price').on('blur', function (e) {
         alert("Price Updated")
     }).fail((error) => {
         alert("Something went wrong")
+    })
+})
 
+$('.update_quantity').on('blur', function (e) {
+    let self = $(this);
+    $.ajax({
+        url: "/admin/products/update-price/" + self.data('id'),
+        method: "POST",
+        data: { quantity: self.html(), 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+    }).then((res) => {
+        alert("Quanity Updated")
+    }).fail((error) => {
+        alert("Something went wrong")
     })
 })
 
@@ -398,7 +410,11 @@ if (document.querySelector('#phy_description')) {
         CKEDITOR.replace('forum-description', {
             height: '200px',
             width: '100%',
-            
+            toolbar: [
+                '/',
+                { name: 'paragraph', groups: ['list', 'indent',], items: ['BulletedList'] },
+                '/',
+            ]
         })
 
     }
