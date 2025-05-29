@@ -6,7 +6,7 @@
 @endsection
 
 @section('page-scripts')
-<script src="{{ asset('backend/products.js') }}"></script>
+<script src="{{ asset('backend/products.js?id='.rand(5353535, 2)) }}"></script>
 @stop
 
 
