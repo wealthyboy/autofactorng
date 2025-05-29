@@ -133,7 +133,7 @@ class OrdersController extends Table
 			$qty = $input['products']['quantity'][$key];
 			$product = Product::where('product_name', $v)->first();
 
-			dd($product);
+			dd($name, $v);
 
 			if (null !== $product && $product->quantity > 1) {
 				//remember ther's a model observer that sends an email when price is updated
