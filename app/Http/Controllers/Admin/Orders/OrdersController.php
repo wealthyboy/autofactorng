@@ -18,6 +18,7 @@ use App\Mail\ReviewMail;
 use App\Models\Activity;
 use App\Models\Error;
 use App\Models\OrderStatus;
+use App\Models\Product;
 use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -118,15 +119,25 @@ class OrdersController extends Table
 		$total = [];
 
 		foreach ($input['products']['product_name'] as $key => $v) {
-			$product =  new OrderedProduct;
-			$product->product_name = $v;
-			$product->order_id = $order->id;
-			$product->quantity = $input['products']['quantity'][$key];
-			$product->tracker = rand(100000, time());
-			$product->price = $input['products']['price'][$key];
-			$product->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
+			$OrderedProduct =  new OrderedProduct;
+			$OrderedProduct->product_name = $v;
+			$OrderedProduct->order_id = $order->id;
+			$OrderedProduct->quantity = $input['products']['quantity'][$key];
+			$OrderedProduct->tracker = rand(100000, time());
+			$OrderedProduct->price = $input['products']['price'][$key];
+			$OrderedProduct->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
 			$total[] = $input['products']['price'][$key] * $input['products']['quantity'][$key];
-			$product->save();
+			$OrderedProduct->save();
+
+
+
+			$product = Product::where('product_name', $input['products']['product_name'][$key])->first();
+
+			if (null !== $product && $product->quantity > 1) {
+				$newQuantity = $product->quantity - $input['products']['quantity'][$key];
+				$product->quantity = $newQuantity > 0 ?  $newQuantity : 0;
+				$product->save();
+			}
 		}
 
 		$sub_total = array_sum($total);
