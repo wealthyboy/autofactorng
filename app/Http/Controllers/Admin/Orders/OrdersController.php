@@ -123,18 +123,21 @@ class OrdersController extends Table
 			$OrderedProduct->product_name = $v;
 			$OrderedProduct->order_id = $order->id;
 			$OrderedProduct->quantity = $input['products']['quantity'][$key];
-			$OrderedProduct->tracker = rand(100000, time());
+			//$OrderedProduct->tracker = rand(100000, time());
 			$OrderedProduct->price = $input['products']['price'][$key];
 			$OrderedProduct->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
 			$total[] = $input['products']['price'][$key] * $input['products']['quantity'][$key];
 			$OrderedProduct->save();
 
 
+			$name = $input['products']['product_name'][$key];
+			$qty = $input['products']['quantity'][$key];
+			$product = Product::where('product_name', $name)->first();
 
-			$product = Product::where('product_name', $input['products']['product_name'][$key])->first();
 
 			if (null !== $product && $product->quantity > 1) {
-				$newQuantity = $product->quantity - $input['products']['quantity'][$key];
+				//remember ther's a model observer that sends an email when price is updated
+				$newQuantity = $product->quantity - $qty;
 				$product->quantity = $newQuantity > 0 ?  $newQuantity : 0;
 				$product->save();
 			}
