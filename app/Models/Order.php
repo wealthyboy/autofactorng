@@ -119,10 +119,11 @@ class Order extends Model
 
 
 				if ($product->quantity > 0) {
-					dd($product);
 
 					$newQuantity = $product->quantity - $cart->quantity;
-					$product->quantity = $newQuantity > 0 ? $newQuantity : 0;
+					dd($newQuantity);
+
+					$product->quantity = $newQuantity >= 0 ? $newQuantity : 0;
 					$product->save();
 				}
 
