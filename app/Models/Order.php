@@ -117,13 +117,16 @@ class Order extends Model
 
 				$product = Product::find($cart->product_id);
 
-				dd($product);
 
 				if ($product->quantity > 0) {
+					dd($product);
+
 					$newQuantity = $product->quantity - $cart->quantity;
 					$product->quantity = $newQuantity > 0 ? $newQuantity : 0;
 					$product->save();
 				}
+
+				dd(true);
 
 				OrderedProduct::Insert($insert);
 				$cart->status = 'paid';
