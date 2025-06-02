@@ -117,9 +117,11 @@ class Order extends Model
 
 				$product = Product::find($cart->product_id);
 
+				dd($product);
+
 				if ($product->quantity > 0) {
 					$newQuantity = $product->quantity - $cart->quantity;
-					$product->quantity = $newQuantity > 0 ?  $newQuantity : 0;
+					$product->quantity = $newQuantity > 0 ? $newQuantity : 0;
 					$product->save();
 				}
 
