@@ -62,7 +62,7 @@
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline ">
                         <label class="form-label"> Quantity</label>
-                        <input type="number" class="form-control" value="{{ isset($product) ? $product->quantity : old('quantity') }}" name="quantity">
+                        <input type="number" class="form-control" value="{{ $product->quantity  }}" name="quantity">
                      </div>
                   </div>
 

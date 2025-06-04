@@ -362,7 +362,7 @@ class ProductController extends Table
         $product->width = $request->width;
         $product->height = $request->height;
         $product->title = $request->title;
-        $product->quantity = 1000000;
+        $product->quantity = $request->quantity;
         $product->cost_per_item = 2000;
         $product->keywords = $request->keywords;
         $product->meta_description = $request->meta_description;
@@ -576,8 +576,6 @@ class ProductController extends Table
         $product->update($request->all());
     }
 
-
-
     public function update(Request $request, $id)
     {
 
@@ -599,6 +597,7 @@ class ProductController extends Table
         $data['is_featured'] = $request->is_featured ? 1 : 0;
         $data['in_stock'] = $request->in_stock ? 1 : 0;
         $data['cost_per_item'] = 33333;
+        $data['quantity'] = $request->quantity;
         $product = Product::find($id);
         $product->update($data);
 
