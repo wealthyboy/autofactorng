@@ -288,7 +288,6 @@ $(document).ready(function () {
                 }
             });
 
-            console.log(year)
 
             if (year.length) {
                 messages['attribute'] = 'Enter year range for ' + year.join('&')
@@ -330,7 +329,7 @@ $(document).ready(function () {
         } 
 
         let formData = self.serializeArray();
-        formData.push({ name: "phy_desc", value: desc });
+        formData.push({ name: "phy_desc", value: phy_description });
         formData.push({ name: "description", value: description })
 
         $.ajax({

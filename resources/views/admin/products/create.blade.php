@@ -172,15 +172,12 @@
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                      <label class="form-label">Physical Description</label>
-
                      <div class="input-group input-group-outline">
-                        <textarea style="width: 100%;" type="text" class="form-control" name="phy_desc" rows="8" id="phy_description">
+                        <textarea style="width: 100%;" type="text" class="form-control" name="phy_descfff" rows="8" id="phy_description">
                         </textarea>
                      </div>
                   </div>
                </div>
-
-
 
 
                <div class="col-12 my-3">
