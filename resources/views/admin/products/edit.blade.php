@@ -66,6 +66,8 @@
                      </div>
                   </div>
 
+
+
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline mt-3">
                         <label class="form-label">Sale Price</label>
@@ -175,7 +177,7 @@
                   <div class="col-sm-12 col-12">
                      <label class="form-label">Physical Description</label>
                      <div class="input-group input-group-outline">
-                        <textarea type="text" class="form-control" name="phy_desccfff" rows="8" id="phy_description">
+                        <textarea type="text" class="form-control" name="phy_desc" rows="8" id="phy_description">
                         {{ $product->phy_desc }}
                         </textarea>
                      </div>
