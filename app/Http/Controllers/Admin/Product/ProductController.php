@@ -351,9 +351,9 @@ class ProductController extends Table
         $product->slug = str_slug($name);
         $product->in_stock = 1;
         $product->price =  $request->price;
-        $product->quantity =  $request->quantity;
+        $product->quantity = $request->quantity ? $request->quantity : 0;
 
-        $product->sale_price =   $request->sale_price;
+        $product->sale_price = $request->sale_price;
         $product->sale_price_starts = $request->sale_price_starts;
         $product->sale_price_ends = $request->sale_price_ends;
         $product->volts = $request->volts;
@@ -370,7 +370,6 @@ class ProductController extends Table
         $product->description = $request->description;
         $product->phy_desc = $request->phy_desc;
         $product->save();
-
         $product->sku = $product->id . $this->generateSku();
         $product->save();
 
@@ -597,7 +596,7 @@ class ProductController extends Table
         $data['is_featured'] = $request->is_featured ? 1 : 0;
         $data['in_stock'] = $request->in_stock ? 1 : 0;
         $data['cost_per_item'] = 33333;
-        $data['quantity'] = $request->quantity;
+        $data['quantity'] = $request->quantity ? $request->quantity : 0;;
         $product = Product::find($id);
         $product->update($data);
 
