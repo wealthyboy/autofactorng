@@ -134,7 +134,7 @@ class Order extends Model
 					'location' => optional(optional($user->active_address)->address_state)->name
 				];
 
-				self::appendOrderRow($spreedSheetData);
+				//self::appendOrderRow($spreedSheetData);
 
 
 				OrderedProduct::Insert($insert);
