@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use Google_Client;
+use Google_Service_Sheets;
+use Google_Service_Sheets_ValueRange;
+
 use Carbon\Carbon;
 use Revolution\Google\Sheets\Facades\Sheets;
 
@@ -107,7 +111,7 @@ class Order extends Model
 					'product_id' => $cart->product_id,
 					'product_name' => optional($cart->product)->name,
 					'quantity' => $cart->quantity,
-					'tracker' => time(),
+					//'tracker' => time(),
 					'price' => $cart->price,
 					'total' => $cart->quantity * $cart->price,
 					'make' => $cart->make,
@@ -134,7 +138,7 @@ class Order extends Model
 					'location' => optional(optional($user->active_address)->address_state)->name
 				];
 
-				//self::appendOrderRow($spreedSheetData);
+				self::appendOrderRow($spreedSheetData);
 
 
 				OrderedProduct::Insert($insert);
@@ -216,33 +220,57 @@ class Order extends Model
 	}
 
 
+
+
 	static function appendOrderRow(
-		array $data,
-		string $sheetName = 'Sheet1',
-		string $valueInputOption = 'RAW',
-		string $insertDataOption = 'OVERWRITE'
+		array  $data,
+		string $sheetName        = 'Sheet1',
+		string $valueInputOption = 'RAW',        // or USER_ENTERED
+		string $insertDataOption = 'OVERWRITE'   // or INSERT_ROWS
 	): void {
-		$values = [
-			Carbon::now()->format('Y‑m‑d'), // Date  → column A
-			$data['order_id'],           // Order Number → B
-			$data['customer_name'],          // Customer Name → C
-			$data['item'],                   // Item → D
-			(int)  $data['quantity'],        // Quantity → E
-			(float)$data['unit_price'],      // Unit Price → F
-			$data['location'],               // Location → G
+
+		/* ----------------------------------------------------------
+     | 1. Build the row you want to append (7 columns A‑G)
+     * ----------------------------------------------------------*/
+		$row = [
+			Carbon::now()->format('Y-m-d'),  // Date → A
+			$data['order_id']      ?? '',    // Order No → B
+			$data['customer_name'] ?? '',    // Customer  → C
+			$data['item']          ?? '',    // Item      → D
+			(int)   ($data['quantity']    ?? 0),   // Qty → E
+			(float) ($data['unit_price']  ?? 0),   // Price → F
+			$data['location']      ?? '',    // Location  → G
 		];
 
+		/* ----------------------------------------------------------
+     | 2. Boot the Google Sheets client (service‑account JSON)
+     * ----------------------------------------------------------*/
+		$client = new Google_Client();
+		$client->setApplicationName('My Sheets App');
+		$client->setScopes([Google_Service_Sheets::SPREADSHEETS]);
+		$client->setAuthConfig(storage_path('app/google/credentials.json'));
 
-		Sheets::spreadsheet(config('services.sheets.client_id'))
-			->sheet($sheetName)
-			->append(
-				[$values],  // must be 2‑D array
+		$service = new Google_Service_Sheets($client);
 
-				$valueInputOption,
-				$insertDataOption
+		/* ----------------------------------------------------------
+     | 3. Append the row
+     * ----------------------------------------------------------*/
+		$spreadsheetId = config('services.sheets.client_id'); // add this key to services.php
 
-			);
+		$body   = new Google_Service_Sheets_ValueRange([
+			'values' => [$row],          // MUST be 2‑D
+		]);
+
+		$params = [
+			'valueInputOption' => $valueInputOption,  // RAW or USER_ENTERED
+			'insertDataOption' => $insertDataOption,  // OVERWRITE or INSERT_ROWS
+		];
+
+		// Using the sheet (tab) name as the range is fine for append()
+		$service->spreadsheets_values
+			->append($spreadsheetId, $sheetName, $body, $params);
 	}
+
 
 
 	static function sendWhatsApMessage($to, $name)
