@@ -237,10 +237,10 @@ class Order extends Model
 			->sheet($sheetName)
 			->append(
 				[$values],  // must be 2‑D array
-				[
-					$valueInputOption,
-					$insertDataOption
-				]
+
+				$valueInputOption,
+				$insertDataOption
+
 			);
 	}
 
