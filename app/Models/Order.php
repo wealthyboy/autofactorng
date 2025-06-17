@@ -228,7 +228,7 @@ class Order extends Model
 			$data['location'],               // Location → G
 		];
 
-		Sheets::spreadsheet(config('sheets.spreadsheet_id'))
+		Sheets::spreadsheet(config('services.sheets.spreadsheet_id'))
 			->sheet($sheetName)
 			->append(
 				[$values],                   // must be 2‑D array
