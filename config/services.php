@@ -33,7 +33,8 @@ return [
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],
-    'goggle' => [
+    'sheets' => [
+        'service_account_credentials_json' => env('GOOGLE_APPLICATION_CREDENTIALS'),
         'client_id' => env('GOOGLE_CLIENT_ID'),
     ],
 
