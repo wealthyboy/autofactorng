@@ -26,16 +26,13 @@ return [
         'list' => env('MAILCHIMP_LISTID'),
     ],
 
-    'sheets' => [
-        'spreadsheet_id' => env('GOOGLE_SPREADSHEET_ID')
-    ],
 
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],
     'sheets' => [
         'service_account_credentials_json' => env('GOOGLE_APPLICATION_CREDENTIALS'),
-        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_id' => env('GOOGLE_SPREADSHEET_ID'),
     ],
 
     'ses' => [
