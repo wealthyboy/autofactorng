@@ -265,10 +265,10 @@ class Order extends Model
 			'insertDataOption' => $insertDataOption,  // OVERWRITE or INSERT_ROWS
 		];
 
-		logger([
-			'spreadsheetId' => $spreadsheetId,   // should be the long ID string
-			'sheetName'     => $sheetName,       // e.g. Sheet1
-		]);
+		dd(
+			$spreadsheetId,   // should be the long ID string
+			$sheetName,       // e.g. Sheet1
+		);
 
 		// Using the sheet (tab) name as the range is fine for append()
 		$service->spreadsheets_values
