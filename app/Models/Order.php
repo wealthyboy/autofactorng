@@ -110,7 +110,7 @@ class Order extends Model
 					'product_id' => $cart->product_id,
 					'product_name' => optional($cart->product)->name,
 					'quantity' => $cart->quantity,
-					//'tracker' => time(),
+					'tracker' => time(),
 					'price' => $cart->price,
 					'total' => $cart->quantity * $cart->price,
 					'make' => $cart->make,
