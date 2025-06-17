@@ -216,8 +216,12 @@ class Order extends Model
 	}
 
 
-	static function appendOrderRow(array $data, string $sheetName = 'Sheet1'): void
-	{
+	static function appendOrderRow(
+		array $data,
+		string $sheetName = 'Sheet1',
+		string $valueInputOption = 'RAW',
+		string $insertDataOption = 'OVERWRITE'
+	): void {
 		$values = [
 			Carbon::now()->format('Y‑m‑d'), // Date  → column A
 			$data['order_id'],           // Order Number → B
@@ -232,10 +236,10 @@ class Order extends Model
 		Sheets::spreadsheet(config('services.sheets.client_id'))
 			->sheet($sheetName)
 			->append(
-				[$values],                   // must be 2‑D array
+				[$values],  // must be 2‑D array
 				[
-					'valueInputOption'  => 'USER_ENTERED', // lets Google recognise numbers
-					'insertDataOption'  => 'INSERT_ROWS', // always insert a new row
+					$valueInputOption,
+					$insertDataOption
 				]
 			);
 	}
