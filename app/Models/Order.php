@@ -228,7 +228,16 @@ class Order extends Model
 			$data['location'],               // Location → G
 		];
 
-		dd(config('services.sheets.spreadsheet_id'));
+
+		Sheets::spreadsheet(config('services.sheets.client_id'))
+			->sheet($sheetName)
+			->append(
+				[$values],                   // must be 2‑D array
+				[
+					'valueInputOption'  => 'USER_ENTERED', // lets Google recognise numbers
+					'insertDataOption'  => 'INSERT_ROWS', // always insert a new row
+				]
+			);
 	}
 
 
