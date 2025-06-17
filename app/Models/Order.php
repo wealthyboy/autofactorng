@@ -223,7 +223,7 @@ class Order extends Model
 
 	static function appendOrderRow(
 		array  $data,
-		string $sheetName        = 'Order Processing Tracker',
+		string $sheetName        = 'SHEET1',
 		string $valueInputOption = 'RAW',        // or USER_ENTERED
 		string $insertDataOption = 'OVERWRITE'   // or INSERT_ROWS
 	): void {
