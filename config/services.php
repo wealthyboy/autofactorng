@@ -28,7 +28,7 @@ return [
 
     'sheets' => [
         'spreadsheet_id' => env('GOOGLE_SPREADSHEET_ID')
-    ]
+    ],
 
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
