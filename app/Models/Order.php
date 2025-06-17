@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
+use Revolution\Google\Sheets\Facades\Sheets;
 
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\ProductReviewNotification;
@@ -123,6 +125,17 @@ class Order extends Model
 					$product->save();
 				}
 
+				$spreedSheetData = [
+					'order_id' => $order->id,
+					'customer_name' => $order->first_name . ' ' . $order->last_name,
+					'item' => optional($cart->product)->name,
+					'quantity' => $cart->quantity,
+					'unit_price' => $cart->price,
+					'location' => optional(optional($user->active_address)->address_state)->name
+				];
+
+				self::appendOrderRow($spreedSheetData);
+
 
 				OrderedProduct::Insert($insert);
 				$cart->status = 'paid';
@@ -200,6 +213,30 @@ class Order extends Model
 
 
 		return $response->json($response);
+	}
+
+
+	static function appendOrderRow(array $data, string $sheetName = 'Sheet1'): void
+	{
+		$values = [
+			Carbon::now()->format('Y‑m‑d'), // Date  → column A
+			$data['order_id'],           // Order Number → B
+			$data['customer_name'],          // Customer Name → C
+			$data['item'],                   // Item → D
+			(int)  $data['quantity'],        // Quantity → E
+			(float)$data['unit_price'],      // Unit Price → F
+			$data['location'],               // Location → G
+		];
+
+		Sheets::spreadsheet(config('sheets.spreadsheet_id'))
+			->sheet($sheetName)
+			->append(
+				[$values],                   // must be 2‑D array
+				[
+					'valueInputOption'  => 'USER_ENTERED', // lets Google recognise numbers
+					'insertDataOption'  => 'INSERT_ROWS', // always insert a new row
+				]
+			);
 	}
 
 

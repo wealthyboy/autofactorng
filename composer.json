@@ -20,7 +20,8 @@
         "laravel/ui": "^3.4",
         "maatwebsite/excel": "^3.1",
         "maennchen/zipstream-php": "^2.",
-        "mailchimp/mailchimp": "^2.0"
+        "mailchimp/mailchimp": "^2.0",
+        "revolution/laravel-google-sheets": "^6.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
