@@ -119,7 +119,7 @@ class OrdersController extends Table
 		$total = [];
 
 		foreach ($input['products']['product_name'] as $key => $v) {
-			$OrderedProduct =  new OrderedProduct;
+			$OrderedProduct = new OrderedProduct;
 			$OrderedProduct->product_name = $v;
 			$OrderedProduct->order_id = $order->id;
 			$OrderedProduct->quantity = $input['products']['quantity'][$key];
@@ -134,12 +134,21 @@ class OrdersController extends Table
 			$product = Product::where('name', $v)->first();
 
 			if (null !== $product && $product->quantity > 1) {
-				//remember ther's a model observer that sends an email when price is updated
 				$newQuantity = $product->quantity - $qty;
-
 				$product->quantity = $newQuantity > 0 ?  $newQuantity : 0;
 				$product->save();
 			}
+
+			$spreedSheetData = [
+				'invoice' => $order->invoice,
+				'customer_name' => $request->first_name,
+				'item' => $v,
+				'quantity' => $qty,
+				'unit_price' => $OrderedProduct->price,
+				'location' => "From admin no state"
+			];
+
+			Order::appendOrderRow($spreedSheetData);
 		}
 
 		$sub_total = array_sum($total);
@@ -222,6 +231,58 @@ class OrdersController extends Table
 		//DB::rollBack();
 		return  redirect()->route('admin.orders.index')->with('errors', 'Something went wrong');
 		//}
+	}
+
+
+	static function appendOrderRow(
+		array  $data,
+		string $sheetName        = 'SHEET1',
+		string $valueInputOption = 'RAW',        // or USER_ENTERED
+		string $insertDataOption = 'OVERWRITE'   // or INSERT_ROWS
+	): void {
+
+		/* ----------------------------------------------------------
+     | 1. Build the row you want to append (7 columns A‑G)
+     * ----------------------------------------------------------*/
+		$row = [
+			Carbon::now()->format('Y-m-d'),  // Date → A
+			$data['order_id'] ?? '',    // Order No → B
+			$data['customer_name'] ?? '',    // Customer  → C
+			$data['item'] ?? '', // Item      → D
+			(int) ($data['quantity'] ?? 0),   // Qty → E
+			(float) ($data['unit_price']  ?? 0),   // Price → F
+			$data['location']      ?? '',    // Location  → G
+		];
+
+		/* ----------------------------------------------------------
+     | 2. Boot the Google Sheets client (service‑account JSON)
+     * ----------------------------------------------------------*/
+		$client = new Google_Client();
+		$client->setApplicationName('My Sheets App');
+		$client->setScopes([Google_Service_Sheets::SPREADSHEETS]);
+		$client->setAuthConfig(storage_path('app/google/credentials.json'));
+
+		$service = new Google_Service_Sheets($client);
+
+		/* ----------------------------------------------------------
+     | 3. Append the row
+     * ----------------------------------------------------------*/
+		$spreadsheetId = config('services.sheets.client_id'); // add this key to services.php
+
+		$body   = new Google_Service_Sheets_ValueRange([
+			'values' => [$row],          // MUST be 2‑D
+		]);
+
+		$params = [
+			'valueInputOption' => $valueInputOption,  // RAW or USER_ENTERED
+			'insertDataOption' => $insertDataOption,  // OVERWRITE or INSERT_ROWS
+		];
+
+
+
+		// Using the sheet (tab) name as the range is fine for append()
+		$service->spreadsheets_values
+			->append($spreadsheetId, $sheetName, $body, $params);
 	}
 
 	public function routes()
