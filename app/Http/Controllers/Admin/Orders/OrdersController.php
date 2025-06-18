@@ -118,12 +118,13 @@ class OrdersController extends Table
 
 		$total = [];
 
+
 		foreach ($input['products']['product_name'] as $key => $v) {
 			$OrderedProduct = new OrderedProduct;
 			$OrderedProduct->product_name = $v;
 			$OrderedProduct->order_id = $order->id;
 			$OrderedProduct->quantity = $input['products']['quantity'][$key];
-			$OrderedProduct->tracker = rand(100000, time());
+			//$OrderedProduct->tracker = rand(100000, time());
 			$OrderedProduct->price = $input['products']['price'][$key];
 			$OrderedProduct->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
 			$total[] = $input['products']['price'][$key] * $input['products']['quantity'][$key];
@@ -145,10 +146,12 @@ class OrdersController extends Table
 				'item' => $v,
 				'quantity' => $qty,
 				'unit_price' => $OrderedProduct->price,
-				'location' => "From admin no state"
+				'location' => $request->address
 			];
 
-			//Order::appendOrderRow($spreedSheetData);
+			//dd($spreedSheetData);
+
+			Order::appendOrderRow($spreedSheetData, "!A1:Z1000");
 		}
 
 		$sub_total = array_sum($total);
