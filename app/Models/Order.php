@@ -129,7 +129,7 @@ class Order extends Model
 				}
 
 				$spreedSheetData = [
-					'order_id' => $order->id,
+					'invoice' => $order->invoice,
 					'customer_name' => $order->first_name . ' ' . $order->last_name,
 					'item' => optional($cart->product)->name,
 					'quantity' => $cart->quantity,
@@ -137,7 +137,8 @@ class Order extends Model
 					'location' => optional(optional($user->active_address)->address_state)->name
 				];
 
-				self::appendOrderRow($spreedSheetData);
+				self::appendOrderRow($spreedSheetData, "!A1:Z1000");
+
 
 
 				OrderedProduct::Insert($insert);
@@ -223,22 +224,20 @@ class Order extends Model
 
 	static function appendOrderRow(
 		array  $data,
-		string $sheetName        = 'SHEET1',
-		string $valueInputOption = 'RAW',        // or USER_ENTERED
-		string $insertDataOption = 'OVERWRITE'   // or INSERT_ROWS
+		string $sheetName = 'Sheet1!A:D',
+		string $valueInputOption = 'RAW',
+		string $insertDataOption = 'OVERWRITE'
 	): void {
 
-		/* ----------------------------------------------------------
-     | 1. Build the row you want to append (7 columns A‑G)
-     * ----------------------------------------------------------*/
+
 		$row = [
-			Carbon::now()->format('Y-m-d'),  // Date → A
-			$data['order_id']      ?? '',    // Order No → B
-			$data['customer_name'] ?? '',    // Customer  → C
-			$data['item']          ?? '',    // Item      → D
-			(int)   ($data['quantity']    ?? 0),   // Qty → E
-			(float) ($data['unit_price']  ?? 0),   // Price → F
-			$data['location']      ?? '',    // Location  → G
+			Carbon::now()->format('Y-m-d'),
+			$data['order_id'] ?? '',
+			$data['customer_name'] ?? '',
+			$data['item'] ?? '',
+			(int) ($data['quantity'] ?? 0),
+			(float) ($data['unit_price'] ?? 0),
+			$data['location'] ?? '',
 		];
 
 		/* ----------------------------------------------------------
