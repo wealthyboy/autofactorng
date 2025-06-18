@@ -148,7 +148,7 @@ class OrdersController extends Table
 				'location' => "From admin no state"
 			];
 
-			Order::appendOrderRow($spreedSheetData);
+			//Order::appendOrderRow($spreedSheetData);
 		}
 
 		$sub_total = array_sum($total);
