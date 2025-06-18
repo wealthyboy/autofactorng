@@ -60,6 +60,7 @@ class Order extends Model
 
 		$order = new self;
 		$cart  = new Cart();
+		$inv = substr(rand(100000, time()), 0, 7);
 
 		$order->user_id = $user->id;
 		$order->address_id = $user->active_address->id;
@@ -67,7 +68,7 @@ class Order extends Model
 		$order->heavy_item_price = isset($input['heavy_item_price']) ? $input['heavy_item_price'] : null;
 		$order->status = 'Confirmed';
 		$order->shipping_price = data_get($input, 'shipping_price');
-		$order->invoice = substr(rand(100000, time()), 0, 7);
+		$order->invoice = $inv;
 		$order->payment_type = $payment_method;
 		$order->allow_review = 1;
 		$order->total = $input['total'];
@@ -129,7 +130,7 @@ class Order extends Model
 				}
 
 				$spreedSheetData = [
-					'invoice' => $order->invoice,
+					'invoice_number' => $inv,
 					'customer_name' => $order->first_name . ' ' . $order->last_name,
 					'item' => optional($cart->product)->name,
 					'quantity' => $cart->quantity,
@@ -138,8 +139,6 @@ class Order extends Model
 				];
 
 				self::appendOrderRow($spreedSheetData, "!A1:Z1000");
-
-
 
 				OrderedProduct::Insert($insert);
 				$cart->status = 'paid';
@@ -232,7 +231,7 @@ class Order extends Model
 
 		$row = [
 			Carbon::now()->format('Y-m-d'),
-			$data['order_id'] ?? '',
+			$data['invoice_number'] ?? '',
 			$data['customer_name'] ?? '',
 			$data['item'] ?? '',
 			(int) ($data['quantity'] ?? 0),

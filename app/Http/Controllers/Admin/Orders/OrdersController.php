@@ -90,11 +90,12 @@ class OrdersController extends Table
 
 		//try {
 		//DB::beginTransaction();
+		$inv = substr(rand(100000, time()), 0, 7);
 
 		$email = explode(',', $request->email);
 		$user = User::where('email', $email[0])->first();
 		$input = $request->except('_token');
-		$input['invoice'] = substr(rand(100000, time()), 0, 7);
+		$input['invoice'] = $inv;
 		$input['order_type'] = "Offline";
 		$input['user_id'] = null !== $user ? $user->id : null;
 		$input['status'] = "Confirmed";
@@ -124,7 +125,7 @@ class OrdersController extends Table
 			$OrderedProduct->product_name = $v;
 			$OrderedProduct->order_id = $order->id;
 			$OrderedProduct->quantity = $input['products']['quantity'][$key];
-			$OrderedProduct->tracker = rand(100000, time());
+			//$OrderedProduct->tracker = rand(100000, time());
 			$OrderedProduct->price = $input['products']['price'][$key];
 			$OrderedProduct->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
 			$total[] = $input['products']['price'][$key] * $input['products']['quantity'][$key];
@@ -140,8 +141,9 @@ class OrdersController extends Table
 				$product->save();
 			}
 
+
 			$spreedSheetData = [
-				'invoice' => $order->invoice,
+				'invoice_number' => $inv,
 				'customer_name' => $request->first_name,
 				'item' => $v,
 				'quantity' => $qty,
