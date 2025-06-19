@@ -88,161 +88,161 @@ class OrdersController extends Table
 	public function store(Request $request)
 	{
 
-		try {
-			DB::beginTransaction();
-			$inv = substr(rand(100000, time()), 0, 7);
+		// try {
+		// 	DB::beginTransaction();
+		$inv = substr(rand(100000, time()), 0, 7);
 
-			$email = explode(',', $request->email);
-			$user = User::where('email', $email[0])->first();
-			$input = $request->except('_token');
-			$input['invoice'] = $inv;
-			$input['order_type'] = "Offline";
-			$input['user_id'] = null !== $user ? $user->id : null;
-			$input['status'] = "Confirmed";
-			$order = new Order;
-			$order->fill($input);
-			$order->save();
-			foreach (Order::$statuses as $key => $status) {
-				$order_status = new OrderStatus();
-				$order_status->is_updated = false;
-				$order_status->status = $status;
-				$order_status->order_id = $order->id;
-				$order_status->save();
-			}
-
-			$order_status = OrderStatus::where(['status' => 'Confirmed', 'order_id' => $order->id])->first();
-
-			if (null !== $order_status) {
-				$order_status->is_updated = true;
-				$order_status->save();
-			}
-
-			$total = [];
-
-
-			foreach ($input['products']['product_name'] as $key => $v) {
-				$OrderedProduct = new OrderedProduct;
-				$OrderedProduct->product_name = $v;
-				$OrderedProduct->order_id = $order->id;
-				$OrderedProduct->quantity = $input['products']['quantity'][$key];
-				$OrderedProduct->tracker = rand(100000, time());
-				$OrderedProduct->price = $input['products']['price'][$key];
-				$OrderedProduct->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
-				$total[] = $input['products']['price'][$key] * $input['products']['quantity'][$key];
-				$OrderedProduct->save();
-
-				$name = $input['products']['product_name'][$key];
-				$v = strtolower(rtrim($v));
-
-
-				$qty = $input['products']['quantity'][$key];
-				$product = Product::where('search_name', $this->normalise($v))->first();
-
-				if ($request->email === 'jacob.atam@gmail.com') {
-					dd($product, $v);
-				}
-
-				if (null !== $product && $product->quantity > 1) {
-					$newQuantity = $product->quantity - $qty;
-					$product->quantity = $newQuantity > 0 ?  $newQuantity : 0;
-					$product->save();
-				}
-
-
-				$spreedSheetData = [
-					'invoice_number' => $inv,
-					'customer_name' => $request->first_name,
-					'item' => $v,
-					'quantity' => $qty,
-					'unit_price' => $OrderedProduct->price,
-					'location' => $request->address
-				];
-
-				//dd($spreedSheetData);
-
-				Order::appendOrderRow($spreedSheetData, "!A1:Z1000");
-			}
-
-			$sub_total = array_sum($total);
-			$shipping = $request->shipping_price;
-			$heavy_or_large_item = $request->heavy_item_price;
-			if ($request->percentage_type == 'fixed') {
-				$new_total = $sub_total - $request->discount;
-				$total = $new_total + $shipping;
-				$total = $total + $heavy_or_large_item;
-			}
-
-
-			if ($request->filled('percentage_type') && !$request->filled('discount')) {
-				dd("Please enter a discount");
-			}
-
-
-			if ($request->percentage_type == 'percentage') {
-				$new_total = ($request->discount * $sub_total) / 100;
-				$new_total = $sub_total - $new_total;
-				$total = $new_total + $shipping;
-				$total = $total + $heavy_or_large_item;
-			}
-
-			if (!$request->filled('percentage_type')) {
-				$total =  array_sum($total) + $shipping  + $heavy_or_large_item;
-			}
-
-			//dd($total);
-
-			$order->total = is_array($total) ? array_sum($total)  : $total;
-			$order->save();
-
-
-			$order->heavy_item_price = $request->heavy_item_price ?? '---';
-
-			if ($order->coupon) {
-				$order->coupon_value = '-₦' . number_format(
-					(optional($order->voucher())->amount / 100) * $sub_total
-				);
-				$order->coupon = optional($order->voucher())->amount . '% Discount';
-			} else {
-				if ($order->discount) {
-					if ($order->percentage_type == 'percentage') {
-						$order->coupon = $order->discount . '% Discount';
-						$order->coupon_value = '-' . number_format(($order->discount  / 100) * $sub_total);
-					} else {
-						$order->coupon = 'Discount';
-						$order->coupon_value = '-' . number_format($order->discount);
-					}
-				} else {
-					$order->coupon = 'Coupon';
-					$order->coupon_value = '----';
-				}
-			}
-
-			//dd($order);
-
-			//try {
-			$user = User::find(1);
-			$when = now()->addMinutes(5);
-			$order->full_name = $request->first_name;
-			Mail::to($request->email)
-				->bcc('order@autofactorng.com')
-				->send(new OrderReceipt($order, null, null, $sub_total));
-			//	} catch (\Throwable $th) {
-			// Log::info("Mail error :" . $th);
-			// Log::info("Custom error :" . $th);
-			// $err = new Error();
-			// $err->error = $th->getMessage();
-			// $err->save();
-			//}
-
-			// Send Mail
-			(new Activity)->put("Added a new order with email and phone number  " . $request->email . ' and ' . $request->phone_number);
-
-			DB::commit();
-			return  redirect()->route('admin.orders.index');
-		} catch (\Throwable $th) {
-			DB::rollBack();
-			return  redirect()->route('admin.orders.index')->with('errors', 'Something went wrong');
+		$email = explode(',', $request->email);
+		$user = User::where('email', $email[0])->first();
+		$input = $request->except('_token');
+		$input['invoice'] = $inv;
+		$input['order_type'] = "Offline";
+		$input['user_id'] = null !== $user ? $user->id : null;
+		$input['status'] = "Confirmed";
+		$order = new Order;
+		$order->fill($input);
+		$order->save();
+		foreach (Order::$statuses as $key => $status) {
+			$order_status = new OrderStatus();
+			$order_status->is_updated = false;
+			$order_status->status = $status;
+			$order_status->order_id = $order->id;
+			$order_status->save();
 		}
+
+		$order_status = OrderStatus::where(['status' => 'Confirmed', 'order_id' => $order->id])->first();
+
+		if (null !== $order_status) {
+			$order_status->is_updated = true;
+			$order_status->save();
+		}
+
+		$total = [];
+
+
+		foreach ($input['products']['product_name'] as $key => $v) {
+			$OrderedProduct = new OrderedProduct;
+			$OrderedProduct->product_name = $v;
+			$OrderedProduct->order_id = $order->id;
+			$OrderedProduct->quantity = $input['products']['quantity'][$key];
+			$OrderedProduct->tracker = rand(100000, time());
+			$OrderedProduct->price = $input['products']['price'][$key];
+			$OrderedProduct->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
+			$total[] = $input['products']['price'][$key] * $input['products']['quantity'][$key];
+			$OrderedProduct->save();
+
+			$name = $input['products']['product_name'][$key];
+			$v = strtolower(rtrim($v));
+
+
+			$qty = $input['products']['quantity'][$key];
+			$product = Product::where('search_name', $this->normalise($v))->first();
+
+			if ($request->email === 'jacob.atam@gmail.com') {
+				dd($product, $v);
+			}
+
+			if (null !== $product && $product->quantity > 1) {
+				$newQuantity = $product->quantity - $qty;
+				$product->quantity = $newQuantity > 0 ?  $newQuantity : 0;
+				$product->save();
+			}
+
+
+			$spreedSheetData = [
+				'invoice_number' => $inv,
+				'customer_name' => $request->first_name,
+				'item' => $v,
+				'quantity' => $qty,
+				'unit_price' => $OrderedProduct->price,
+				'location' => $request->address
+			];
+
+			//dd($spreedSheetData);
+
+			Order::appendOrderRow($spreedSheetData, "!A1:Z1000");
+		}
+
+		$sub_total = array_sum($total);
+		$shipping = $request->shipping_price;
+		$heavy_or_large_item = $request->heavy_item_price;
+		if ($request->percentage_type == 'fixed') {
+			$new_total = $sub_total - $request->discount;
+			$total = $new_total + $shipping;
+			$total = $total + $heavy_or_large_item;
+		}
+
+
+		if ($request->filled('percentage_type') && !$request->filled('discount')) {
+			dd("Please enter a discount");
+		}
+
+
+		if ($request->percentage_type == 'percentage') {
+			$new_total = ($request->discount * $sub_total) / 100;
+			$new_total = $sub_total - $new_total;
+			$total = $new_total + $shipping;
+			$total = $total + $heavy_or_large_item;
+		}
+
+		if (!$request->filled('percentage_type')) {
+			$total =  array_sum($total) + $shipping  + $heavy_or_large_item;
+		}
+
+		//dd($total);
+
+		$order->total = is_array($total) ? array_sum($total)  : $total;
+		$order->save();
+
+
+		$order->heavy_item_price = $request->heavy_item_price ?? '---';
+
+		if ($order->coupon) {
+			$order->coupon_value = '-₦' . number_format(
+				(optional($order->voucher())->amount / 100) * $sub_total
+			);
+			$order->coupon = optional($order->voucher())->amount . '% Discount';
+		} else {
+			if ($order->discount) {
+				if ($order->percentage_type == 'percentage') {
+					$order->coupon = $order->discount . '% Discount';
+					$order->coupon_value = '-' . number_format(($order->discount  / 100) * $sub_total);
+				} else {
+					$order->coupon = 'Discount';
+					$order->coupon_value = '-' . number_format($order->discount);
+				}
+			} else {
+				$order->coupon = 'Coupon';
+				$order->coupon_value = '----';
+			}
+		}
+
+		//dd($order);
+
+		//try {
+		$user = User::find(1);
+		$when = now()->addMinutes(5);
+		$order->full_name = $request->first_name;
+		Mail::to($request->email)
+			->bcc('order@autofactorng.com')
+			->send(new OrderReceipt($order, null, null, $sub_total));
+		//	} catch (\Throwable $th) {
+		// Log::info("Mail error :" . $th);
+		// Log::info("Custom error :" . $th);
+		// $err = new Error();
+		// $err->error = $th->getMessage();
+		// $err->save();
+		//}
+
+		// Send Mail
+		(new Activity)->put("Added a new order with email and phone number  " . $request->email . ' and ' . $request->phone_number);
+
+		//DB::commit();
+		return  redirect()->route('admin.orders.index');
+		//} catch (\Throwable $th) {
+		//DB::rollBack();
+		//return  redirect()->route('admin.orders.index')->with('errors', 'Something went wrong');
+		//}
 	}
 
 
