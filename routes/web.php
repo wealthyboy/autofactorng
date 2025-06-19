@@ -109,10 +109,9 @@ Auth::routes();
 
 
 Route::get('/notification', function () {
-    $user = User::find(1);
+    $dd =  self::sendWhatsApMessage(2349081155505, "jacob");
 
-    return (new WelcomeNotification($user))
-        ->toMail($user);
+    dd($dd);
 });
 
 
