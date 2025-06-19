@@ -132,7 +132,8 @@ class OrdersController extends Table
 				$OrderedProduct->save();
 
 				$name = $input['products']['product_name'][$key];
-				$v = rtrim($v);
+				$v = strtolower(rtrim($v));
+
 
 				$qty = $input['products']['quantity'][$key];
 				$product = Product::where('name', $v)->first();
