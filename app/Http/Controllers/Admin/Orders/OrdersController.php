@@ -132,8 +132,12 @@ class OrdersController extends Table
 			$OrderedProduct->save();
 
 			$name = $input['products']['product_name'][$key];
+			$v = rtrim($v);
+
 			$qty = $input['products']['quantity'][$key];
 			$product = Product::where('name', $v)->first();
+
+			Log::info($product,);
 
 			if (null !== $product && $product->quantity > 1) {
 				$newQuantity = $product->quantity - $qty;
