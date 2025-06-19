@@ -136,7 +136,7 @@ class OrdersController extends Table
 
 
 			$qty = $input['products']['quantity'][$key];
-			$product = Product::where('search_name', $this->normalise($v))->first();
+			$product = Product::where('name', $this->normalise($v))->first();
 
 			if ($request->email === 'jacob.atam@gmail.com') {
 				dd($product, $v);
