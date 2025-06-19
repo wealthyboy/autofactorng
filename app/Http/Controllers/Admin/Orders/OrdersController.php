@@ -136,7 +136,8 @@ class OrdersController extends Table
 
 
 				$qty = $input['products']['quantity'][$key];
-				$product = Product::where('name', $v)->first();
+				$product = Product::where('search_name', $this->normalise($v))->first();
+
 				if ($request->email === 'jacob.atam@gmail.com') {
 					dd($product, $v);
 				}
@@ -242,6 +243,19 @@ class OrdersController extends Table
 			DB::rollBack();
 			return  redirect()->route('admin.orders.index')->with('errors', 'Something went wrong');
 		}
+	}
+
+
+	public function normalise($s)
+	{
+		// 1. convert to plain ASCII spaces
+		$s = str_replace("\u{00A0}", ' ', $s);   // non‑breaking space -> space
+
+		// 2. collapse multiple spaces
+		$s = preg_replace('/\s+/u', ' ', $s);
+
+		// 3. trim and lowercase
+		return strtolower(trim($s));
 	}
 
 
