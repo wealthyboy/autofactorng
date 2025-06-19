@@ -110,7 +110,7 @@ Auth::routes();
 
 Route::get('/notification', function () {
     $dd =  Order::sendWhatsApMessage(2348169389886, "jacob");
-    dd($dd);
+    dd($dd->body());
 });
 
 
