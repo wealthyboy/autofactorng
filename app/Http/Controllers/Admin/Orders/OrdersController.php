@@ -145,11 +145,7 @@ class OrdersController extends Table
 
 
 
-				if ($request->email === 'jacob.atam@gmail.com') {
-					$product = Product::where('slug', str_slug($v))->get();
 
-					dd($product, $v);
-				}
 
 
 				$spreedSheetData = [
