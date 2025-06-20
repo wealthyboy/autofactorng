@@ -138,7 +138,7 @@ class OrdersController extends Table
 				$product = Product::where('name', $this->normalise($v))->first();
 
 				if ($request->email === 'jacob.atam@gmail.com') {
-					$product = Product::find(38);
+					$product = Product::where('slug', str_slug($v))->first();
 
 					dd($product, $v);
 				}
