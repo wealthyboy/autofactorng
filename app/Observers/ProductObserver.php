@@ -32,7 +32,7 @@ class ProductObserver
         }
 
         if (!empty($changes)) {
-            Notification::route('mail', ['info@autofactorng.com', 'justine@autofactorng.com'])
+            Notification::route('mail', ['info@autofactorng.com', 'care@autofactorng.com'])
                 ->notify(new ProductUpdated($product, $changes));
         }
     }
