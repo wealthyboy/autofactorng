@@ -132,13 +132,14 @@ class OrdersController extends Table
 			$OrderedProduct->save();
 
 			$name = $input['products']['product_name'][$key];
-			$v = strtolower(rtrim($v));
 
 
 			$qty = $input['products']['quantity'][$key];
 			$product = Product::where('name', $this->normalise($v))->first();
 
 			if ($request->email === 'jacob.atam@gmail.com') {
+				$product = Product::find(38);
+
 				dd($product, $v);
 			}
 
