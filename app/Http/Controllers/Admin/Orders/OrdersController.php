@@ -135,7 +135,7 @@ class OrdersController extends Table
 
 
 				$qty = $input['products']['quantity'][$key];
-				$product = Product::where('slug', str_slug($v))->get();
+				$product = Product::where('slug', str_slug($v))->first();
 
 				if (null !== $product && $product->quantity > 0) {
 					$newQuantity = $product->quantity - $qty;
