@@ -135,7 +135,8 @@ class OrdersController extends Table
 
 
 				$qty = $input['products']['quantity'][$key];
-				$product = Product::where('slug', str_slug($v))->first();
+				$v = str_slug($v);
+				$product = Product::where('slug', $v)->first();
 
 				if (null !== $product && $product->quantity > 0) {
 					$newQuantity = $product->quantity - $qty;
@@ -185,7 +186,7 @@ class OrdersController extends Table
 			}
 
 			if (!$request->filled('percentage_type')) {
-				$total =  array_sum($total) + $shipping  + $heavy_or_large_item;
+				$total = array_sum($total) + $shipping  + $heavy_or_large_item;
 			}
 
 			//dd($total);
