@@ -137,16 +137,18 @@ class OrdersController extends Table
 				$qty = $input['products']['quantity'][$key];
 				$product = Product::where('name', $this->normalise($v))->first();
 
+				if (null !== $product && $product->quantity > 0) {
+					$newQuantity = $product->quantity - $qty;
+					$product->quantity = $newQuantity >= 0 ? $newQuantity : 0;
+					$product->save();
+				}
+
+
+
 				if ($request->email === 'jacob.atam@gmail.com') {
 					$product = Product::where('slug', str_slug($v))->get();
 
 					dd($product, $v);
-				}
-
-				if (null !== $product && $product->quantity > 1) {
-					$newQuantity = $product->quantity - $qty;
-					$product->quantity = $newQuantity > 0 ?  $newQuantity : 0;
-					$product->save();
 				}
 
 
