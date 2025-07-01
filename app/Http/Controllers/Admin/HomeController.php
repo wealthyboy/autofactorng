@@ -40,7 +40,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin'); 
+        $this->middleware('admin');
     }
 
     public function index(Request $request)
@@ -62,14 +62,12 @@ class HomeController extends Controller
 
         $stats = [];
         $stats['Orders'] = Order::where('status', '!=', 'Cancelled')->whereMonth('created_at', Carbon::now()->month)
-        ->whereYear('created_at', Carbon::now()->year)
-        ->count();
+            ->whereYear('created_at', Carbon::now()->year)
+            ->count();
         $stats['Customers'] = (new User())->customers()->count();
         $stats['New Customers'] = $this->getSingleEmailOrders();
-        $stats['Return Customers'] =  $stats['Orders'] - $this->getSingleEmailOrders();
+        $stats['Return Customers'] = $stats['Orders'] - $this->getSingleEmailOrders();
         $statistics['activities'] = Activity::latest()->paginate(10);
-
-
 
         $top_product = OrderedProduct::has('order')->select('product_name')
             ->selectRaw('COUNT(*) AS count')
@@ -111,14 +109,24 @@ class HomeController extends Controller
 
     public function getSingleEmailOrders()
     {
-        $singleEmails = \DB::table('orders')
-            ->select('email')
-            ->groupBy('email')
-            ->havingRaw('COUNT(email) = 1')
-            ->pluck('email');
 
-        $orders = Order::whereIn('email', $singleEmails)->whereMonth('created_at', now()->month)->count();
 
-        return $orders;
+        $startOfMonth = Carbon::now()->startOfMonth();
+        $endOfMonth = Carbon::now()->endOfMonth();
+
+        $newCustomersCount = Order::whereBetween('created_at', [$startOfMonth, $endOfMonth])
+            ->whereNotExists(function ($query) {
+                $query->select(DB::raw(1))
+                    ->from('orders as o2')
+                    ->whereColumn('o2.email', 'orders.email')
+                    ->where('o2.created_at', '<', Carbon::now()->startOfMonth());
+            })
+            ->distinct('email')
+            ->count('email');
+
+
+
+
+        return $newCustomersCount;
     }
 }
