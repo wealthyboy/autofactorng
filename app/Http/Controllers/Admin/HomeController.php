@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Models\Activity;
 use App\Models\BrandCategory;
+use Illuminate\Support\Facades\DB;
+
 use App\Models\Error;
 use App\Models\Image;
 use App\Models\Imgae;
