@@ -111,10 +111,15 @@ class ProductsController extends Controller
 
         $this->clearMMYCookies($request);
 
-        $product = Product::where('name', 'like', '%' . $request->q . '%')->whereHas('categories', function (Builder  $builder) use ($request) {
-            $builder->where('categories.slug', 'spare-parts')
-                ->orWhere('categories.slug', 'servicing-parts');
-        });
+        $product = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%'])
+            ->whereHas('categories', function (Builder $builder) use ($request) {
+                $builder->where(function ($q) {
+                    $q->where('categories.slug', 'spare-parts')
+                        ->orWhere('categories.slug', 'servicing-parts');
+                });
+            });
+
+
 
 
         $products = Product::where('is_available', true)->get();
@@ -125,7 +130,7 @@ class ProductsController extends Controller
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
 
-            $q = Product::where('name', 'like', '%' . $request->q . '%')
+            $q = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%'])
                 ->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                     $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
                     $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
@@ -312,7 +317,6 @@ class ProductsController extends Controller
         if ($request->checkForCategory == 0) {
             $catString = $this->buildSearchString($request);
         }
-
         $p = null;
 
         if ($request->filled('product')) {
@@ -406,13 +410,14 @@ class ProductsController extends Controller
     {
 
         if ($request->q) {
+
             $categories = Category::where('name', 'like', '%' . $request->q . '%')
                 ->take(5)
                 ->pluck('name')
                 ->toArray();
 
 
-            $products =  $product = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%'])
+            $products = $product = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%'])
                 ->take(10)
                 ->get();
 
