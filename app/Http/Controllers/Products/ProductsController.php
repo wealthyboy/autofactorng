@@ -149,7 +149,7 @@ class ProductsController extends Controller
         }
 
 
-        $query = Product::where('name', 'like', '%' . $request->q . '%');
+        $query =  Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%']);
 
         $type = $this->getType($request);
 
