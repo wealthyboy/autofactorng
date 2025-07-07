@@ -307,8 +307,8 @@ export default {
 
         checkoutWithLagos: function (e) {
 
-            if (this.total > 300000) {
-                alert("Payment on Delivery is only allowed for orders ₦300,000 or less.");
+            if (this.total >= 300000) {
+                alert("No Payment On Delivery On Orders Above ₦300,000");
                 return;
             }
 
