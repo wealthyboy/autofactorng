@@ -68,7 +68,9 @@ class TrackingController extends Table
         $visitIds = $visits->pluck('id');
         $uniqueVisits = \App\Models\UserTracking::whereIn('id', $visitIds)
             ->orderByDesc('id')
-            ->paginate(20);
+            ->paginate(20)
+            ->appends(request()->query()); // appends all current query strings
+
 
 
 
