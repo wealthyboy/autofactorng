@@ -111,13 +111,10 @@ class ProductsController extends Controller
 
         $this->clearMMYCookies($request);
 
-        $product = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%'])
-            ->whereHas('categories', function (Builder $builder) use ($request) {
-                $builder->where(function ($q) {
-                    $q->where('categories.slug', 'spare-parts')
-                    ->orWhere('categories.slug', 'servicing-parts');
-                });
-            })->get();
+        $product = Product::where('name', 'like', '%' . $request->q . '%')->whereHas('categories', function (Builder  $builder) use ($request) {
+            $builder->where('categories.slug', 'spare-parts')
+                ->orWhere('categories.slug', 'servicing-parts');
+        });
 
 
         $products = Product::where('is_available', true)->get();
@@ -415,7 +412,7 @@ class ProductsController extends Controller
                 ->toArray();
 
 
-            $products = Product::where('name', 'like', '%' . $request->q . '%')
+            $products =  $product = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%'])
                 ->take(10)
                 ->get();
 
