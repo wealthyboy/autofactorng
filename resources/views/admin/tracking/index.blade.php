@@ -46,7 +46,7 @@
                         <h4 class="card-category"><a href="?referer=youtube">Youtube</a></h4>
                         <h3 class="card-title">{{$sourceCounts['youtube']}}</h3>
                     </div>
-                    b
+                    
                 </div>
             </div>
             <div class="col-lg-2 col-md-6 col-sm-6" bis_skin_checked="1">
