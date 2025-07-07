@@ -306,6 +306,12 @@ export default {
         },
 
         checkoutWithLagos: function (e) {
+
+            if (this.total > 300000) {
+                alert("You cannot checkout. Your total must be ₦300,000 or less.");
+                return;
+            }
+            
             this.checkout(
                 e,
                 "payment_on_delivery",
