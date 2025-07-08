@@ -60,19 +60,20 @@
                 </div>
 
                 <div class="product-action text-left">
-                    <a @click.prevent="addToCart(product.id)" href="#" :class="{
-                        'pe-none disabled':
-                            added.includes(product.id) ||
-                            product.is_in_cart,
-                        'pe-none disabled': !product.in_stock,
-                    }" class="btn-icon btn-add-cart product-type-simple text-white bg-dark">
-                        <i class="icon-shopping-cart"></i>
-                        <small class="fs me-2 ms-2">{{
-                            carts.find((c) => c.product_id == product.id)
-                            ? "ITEM ADDED"
-                            : "ADD TO CART"
-                        }}</small>
-                    </a>
+                     <a @click.prevent="addToCart($event, product.id)" href="#" :class="[
+                    carts.find((c) => c.product_id == product.id) ||
+                        
+                        !product.in_stock
+                        ? 'pe-none disabled'
+                        : null,
+                ]" class="btn-icon btn-add-cart product-type-simple text-white">
+                    <i class="icon-shopping-cart"></i>
+                    <small class="fs me-2 ms-2">{{
+                        carts.find((c) => c.product_id == product.id)
+                        ? "ITEM ADDED"
+                        : "ADD TO CART"
+                    }}</small>
+                </a>
                 </div>
                 <!-- End .price-box -->
             </div>
@@ -195,10 +196,11 @@ export default {
             e.target.classList.add("pe-none");
             
             if (this.loadingProducts.includes(product_id) || this.carts.find((c) => c.product_id == product_id)) return;
-            e.target.innerHTML = `<i class="icon-shopping-cart"></i><small class="fs me-2 ms-2">ADDING...</small>`;
 
 
             this.loadingProducts.push(product_id);
+            e.target.innerHTML = `<small class="fs me-2 ms-2">ADDING...</small>`;
+
             this.loading = true;
             this.addProductToCart({
                 product_id: product_id,
