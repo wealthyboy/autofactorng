@@ -66,13 +66,13 @@
                         !product.in_stock
                         ? 'pe-none disabled'
                         : null,
-                ]" class="btn-icon btn-add-cart product-type-simple text-white">
-                    <i class="icon-shopping-cart"></i>
-                    <small class="fs me-2 ms-2">{{
+                ]" class="btn-icon  d-flex  btn-add-cart product-type-simple text-white">
+                    <i class="icon-shopping-cart me-2"></i>
+                    <span class="fs">{{
                         carts.find((c) => c.product_id == product.id)
                         ? "ITEM ADDED"
                         : "ADD TO CART"
-                    }}</small>
+                    }}</span>
                 </a>
                 </div>
                 <!-- End .price-box -->
@@ -142,13 +142,13 @@
                         !product.in_stock
                         ? 'pe-none disabled'
                         : null,
-                ]" class="btn-icon btn-add-cart product-type-simple text-white">
-                    <i class="icon-shopping-cart"></i>
-                    <small class="fs me-2 ms-2">{{
+                ]" class="btn-icon  d-flex btn-add-cart  product-type-simple text-white">
+                    <i class="icon-shopping-cart me-2"></i>
+                    <span class="fs">{{
                         carts.find((c) => c.product_id == product.id)
                         ? "ITEM ADDED"
                         : "ADD TO CART"
-                    }}</small>
+                    }}</span>
                 </a>
             </div>
         </div>
@@ -199,7 +199,7 @@ export default {
 
 
             this.loadingProducts.push(product_id);
-            e.target.innerHTML = `<small class="fs">ADDING...</small>`;
+            e.target.innerHTML = `<span class="">ADDING...</span>`;
 
             this.loading = true;
             this.addProductToCart({
@@ -215,7 +215,7 @@ export default {
                     this.cText = "Add To Bag";
                     this.loading = false;
                      e.target.classList.remove("disabled", "pe-none");
-                     e.target.innerHTML = `<i class="icon-shopping-cart"></i><small class="fs me-2 ms-2">ADD TO CART</small>`;
+                     e.target.innerHTML = `<i class="icon-shopping-cart"></i><small class="">ADD TO CART</small>`;
                 });
         },
     },
