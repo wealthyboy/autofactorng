@@ -135,20 +135,20 @@
             </div>
             <!-- End .price-box -->
             <div class="product-action">
-                <a @click.prevent="addToCart($event, product.id)" href="#" :class="[
+                <button @click.prevent="addToCart($event, product.id)" :class="[
                     carts.find((c) => c.product_id == product.id) ||
                         product.is_in_cart ||
                         !product.in_stock
                         ? 'pe-none disabled'
                         : null,
-                ]" class="btn-icon btn-add-cart product-type-simple text-white">
+                ]"   class="btn-icon btn-add-cart product-type-simple text-white">
                     <i class="icon-shopping-cart"></i>
                     <small class="fs me-2 ms-2">{{
                         carts.find((c) => c.product_id == product.id)
                         ? "ITEM ADDED"
                         : "ADD TO CART"
                     }}</small>
-                </a>
+                </button>
             </div>
         </div>
         <!-- End .product-details -->
@@ -189,7 +189,13 @@ export default {
         }),
 
         addToCart: function (e, product_id) {
-            e.target.classList.add("disabled");
+            const button = e.currentTarget; // safer than e.target
+            button.disabled = true;
+            button.classList.add("disabled");
+
+            const originalText = button.innerHTML;
+            button.innerHTML = `Adding...`;
+
             this.loading = true;
             this.addProductToCart({
                 product_id: product_id,
@@ -198,13 +204,14 @@ export default {
                 .then(() => {
                     this.cText = "Add To Bag";
                     this.loading = false;
-                    setTimeout(() => {
-                        e.target.classList.add("disabled");
-                    }, 8000);
+                    button.innerHTML = `✔ Item Added`;
                 })
                 .catch((error) => {
                     this.cText = "Add To Bag";
                     this.loading = false;
+                    button.innerHTML = ` Add To Cart`;
+
+                    
                 });
         },
     },
