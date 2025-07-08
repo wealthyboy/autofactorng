@@ -199,7 +199,7 @@ export default {
 
 
             this.loadingProducts.push(product_id);
-            e.target.innerHTML = `<small class="fs me-2 ms-2">ADDING...</small>`;
+            e.target.innerHTML = `<small class="fs">ADDING...</small>`;
 
             this.loading = true;
             this.addProductToCart({
