@@ -112,10 +112,13 @@ class ProductsController extends Controller
         $this->clearMMYCookies($request);
 
         $product = Product::where(function ($query) use ($request) {
-            $keywords = preg_split('/\s+/', $request->q); // Split into words by space
-            foreach ($keywords as $word) {
-                $query->whereRaw("REPLACE(LOWER(name), '-', '') LIKE ?", ['%' . strtolower(str_replace('-', '', $word)) . '%']);
-            }
+            $keywords = preg_split('/\s+/', $request->q);
+            $query->where(function ($q) use ($keywords) {
+                foreach ($keywords as $word) {
+                    $word = strtolower(str_replace('-', '', $word));
+                    $q->orWhereRaw("REPLACE(LOWER(name), '-', '') LIKE ?", ["%$word%"]);
+                }
+            });
         });
 
         dd($product->get());
