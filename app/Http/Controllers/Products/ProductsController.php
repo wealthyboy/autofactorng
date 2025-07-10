@@ -153,13 +153,8 @@ class ProductsController extends Controller
             foreach ($keywords as $word) {
                 $query->whereRaw("REPLACE(LOWER(name), '-', '') LIKE ?", ['%' . strtolower(str_replace('-', '', $word)) . '%']);
             }
-        })
-            ->whereHas('categories', function (Builder $builder) {
-                $builder->where(function ($q) {
-                    $q->where('categories.slug', 'spare-parts')
-                        ->orWhere('categories.slug', 'servicing-parts');
-                });
-            });
+        });
+
 
         $type = $this->getType($request);
 
@@ -173,7 +168,7 @@ class ProductsController extends Controller
             // $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
             //     $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
             //     $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
-            //     $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
+            //     $builder->where('make_model_ year_engines.engine_id', $request->cookie('engine_id'));
             //     $builder->where('year_from', '<=', $request->cookie('year'));
             //     $builder->where('year_to', '>=', $request->cookie('year'));
             //     $builder->groupBy('make_model_year_engines.product_id');
