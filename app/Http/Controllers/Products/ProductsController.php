@@ -111,8 +111,13 @@ class ProductsController extends Controller
 
         $this->clearMMYCookies($request);
 
-        $product = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%'])
-            ->whereHas('categories', function (Builder $builder) use ($request) {
+        $product = Product::where(function ($query) use ($request) {
+            $keywords = preg_split('/\s+/', $request->q); // Split into words by space
+            foreach ($keywords as $word) {
+                $query->whereRaw("REPLACE(LOWER(name), '-', '') LIKE ?", ['%' . strtolower(str_replace('-', '', $word)) . '%']);
+            }
+        })
+            ->whereHas('categories', function (Builder $builder) {
                 $builder->where(function ($q) {
                     $q->where('categories.slug', 'spare-parts')
                         ->orWhere('categories.slug', 'servicing-parts');
