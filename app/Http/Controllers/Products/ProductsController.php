@@ -133,7 +133,15 @@ class ProductsController extends Controller
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
 
-            $q = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%'])
+            $q = Product::where(function ($query) use ($request) {
+            $keywords = preg_split('/\s+/', $request->q);
+            $query->where(function ($q) use ($keywords) {
+                foreach ($keywords as $word) {
+                    $word = strtolower(str_replace('-', '', $word));
+                    $q->orWhereRaw("REPLACE(LOWER(name), '-', '') LIKE ?", ["%$word%"]);
+                }
+            });
+        })
                 ->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                     $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
                     $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
