@@ -118,6 +118,8 @@ class ProductsController extends Controller
             }
         });
 
+        dd($product->get());
+
 
 
 
