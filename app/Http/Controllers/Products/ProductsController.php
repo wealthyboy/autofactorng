@@ -119,13 +119,8 @@ class ProductsController extends Controller
                     $q->orWhereRaw("REPLACE(LOWER(name), '-', '') LIKE ?", ["%$word%"]);
                 }
             });
-        })
-            ->whereHas('categories', function (Builder $builder) use ($request) {
-                $builder->where(function ($q) {
-                    $q->where('categories.slug', 'spare-parts')
-                        ->orWhere('categories.slug', 'servicing-parts');
-                });
-            });
+        });
+
 
 
 
