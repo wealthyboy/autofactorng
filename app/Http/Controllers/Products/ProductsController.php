@@ -144,7 +144,24 @@ class ProductsController extends Controller
         }
 
 
-        $query = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%']);
+        $query = Product::where(function ($query) use ($request) {
+            $input = strtolower(trim($request->q));
+            $input = str_replace('-', '', $input);
+
+            // Remove common stop words like "for", "with", etc.
+            $stopWords = ['for', 'the', 'and', 'or', 'with', 'of', 'a', 'in'];
+            $keywords = array_filter(preg_split('/\s+/', $input), function ($word) use ($stopWords) {
+                return !in_array($word, $stopWords);
+            });
+
+            // Match full string first
+            $query->whereRaw("REPLACE(LOWER(name), '-', '') LIKE ?", ["%{$input}%"]);
+
+            // If no full match, try to match keywords
+            foreach ($keywords as $word) {
+                $query->orWhereRaw("REPLACE(LOWER(name), '-', '') LIKE ?", ["%$word%"]);
+            }
+        });
 
         $type = $this->getType($request);
 
