@@ -96,7 +96,8 @@ class ProductController extends Table
             $products =  Product::whereHas('categories', function ($query) use ($name) {
                 $query->where('categories.slug', 'like', '%' . $name . '%')
                     ->orWhere('products.slug', 'like', '%' . $name  . '%')
-                    ->orWhere('products.sku', 'like', '%' .  $name  . '%');
+                    ->orWhere('products.sku', 'like', '%' .  $name  . '%')
+                    ->orWhere('products.slug', '=', $name);
             })->groupBy('products.id')->orderBy('created_at', 'desc')->paginate(100)->appends(request()->all());
         }
 
