@@ -412,15 +412,7 @@ class ProductsController extends Controller
                 ->toArray();
 
 
-            $products = $product = Product::where(function ($query) use ($request) {
-                $keywords = preg_split('/\s+/', $request->q);
-                $query->where(function ($q) use ($keywords) {
-                    foreach ($keywords as $word) {
-                        $word = strtolower(str_replace('-', '', $word));
-                        $q->orWhereRaw("REPLACE(LOWER(name), '-', '') LIKE ?", ["%$word%"]);
-                    }
-                });
-            })
+            $products = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%'])
                 ->take(10)
                 ->get();
 
