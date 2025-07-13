@@ -111,15 +111,7 @@ class ProductsController extends Controller
 
         $this->clearMMYCookies($request);
 
-        $product = Product::where(function ($query) use ($request) {
-            $keywords = preg_split('/\s+/', $request->q);
-            $query->where(function ($q) use ($keywords) {
-                foreach ($keywords as $word) {
-                    $word = strtolower(str_replace('-', '', $word));
-                    $q->orWhereRaw("REPLACE(LOWER(name), '-', '') LIKE ?", ["%$word%"]);
-                }
-            });
-        });
+        $product = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%']);
 
 
 
@@ -133,15 +125,7 @@ class ProductsController extends Controller
 
         if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
 
-            $q = Product::where(function ($query) use ($request) {
-                $keywords = preg_split('/\s+/', $request->q);
-                $query->where(function ($q) use ($keywords) {
-                    foreach ($keywords as $word) {
-                        $word = strtolower(str_replace('-', '', $word));
-                        $q->orWhereRaw("REPLACE(LOWER(name), '-', '') LIKE ?", ["%$word%"]);
-                    }
-                });
-            })
+            $q = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%'])
                 ->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
                     $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
                     $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
@@ -160,15 +144,7 @@ class ProductsController extends Controller
         }
 
 
-        $query =  Product::where(function ($query) use ($request) {
-            $keywords = preg_split('/\s+/', $request->q);
-            $query->where(function ($q) use ($keywords) {
-                foreach ($keywords as $word) {
-                    $word = strtolower(str_replace('-', '', $word));
-                    $q->orWhereRaw("REPLACE(LOWER(name), '-', '') LIKE ?", ["%$word%"]);
-                }
-            });
-        });
+        $query = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%']);
 
         $type = $this->getType($request);
 
