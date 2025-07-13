@@ -1,12 +1,13 @@
 <template>
     <form method="get" action="/search" class="input-group position-relative w-100 rounded-start mb-0 mt-md-3">
-        <button class="search-products-icon" type="submit" data-testid="locationSearch-scroll">
-            <span class="pd-search2"><img alt="Search" src="/images/utils/icon-search-20x20.svg" decoding="async"
-                    data-nimg="fixed" class="pd-search" /></span>
-        </button>
+       
         <input type="text" class="form-control search-products rounded-start" placeholder="Find Parts and Products"
             aria-label="Find Parts and Products" aria-describedby="button-addon1" @input="autoComplete" required="required"
             v-model="query" @focus="handleFocus" name="q" />
+              <button type="submit" class="btn btn-light border px-3 d-flex align-items-center" style="z-index: 2;     height: 46px;">
+      <img src="/images/utils/icon-search-20x20.svg" alt="Search" width="20" height="20" class="me-2" />
+      <span class="fw-semibold">Search</span>
+              </button>
         <div v-if="query" @click="cancel" :class="'coverlay' + ' ' + dBlock"></div>
 
         <template
@@ -20,6 +21,19 @@
                                 {{ product.name }}
                             </div>
                         </a>
+                    </li>
+                </ul>
+            </div>
+        </template>
+
+         <template
+            v-if="!products.length">
+            <div v-if="query" 
+                class="dropdown-items position-absolute rounded-start">
+                <ul class="mt-4 p-0">
+                    <li>
+                       <div class="fw-bold mb-1 button px-5">Can't find it? Check our menu for more options!</div>
+
                     </li>
                 </ul>
             </div>

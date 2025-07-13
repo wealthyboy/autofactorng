@@ -185,7 +185,7 @@
                <div class="header-lefts  d-flex justify-content-between align-items-center w-100">
                   <button class="mobile-menu-toggler  no-hover mr-2 d-flex flex-column align-items-center display-3" type="button">
                      <i class="fas fa-bars"></i>
-                     <span class=" fs-5">Menu</span>
+                     <span class=" fs-5 bold">Menu</span>
                   </button>
                   <a href="/" class="logo  me-4 ms-sm-4">
                      <img src="https://autofactorng.com/images/logo/autofactor_logo.png" alt="Autofactor  Logo">

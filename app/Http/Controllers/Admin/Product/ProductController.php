@@ -82,16 +82,21 @@ class ProductController extends Table
         $profiles = Product::getFilterLists('height');
         $ampheres = Product::getFilterLists('amphere');
 
+
+
+
         if (request()->filled('search')) {
             $products = $this->filter(request());
         }
 
         if (request()->filled('q')) {
             $request = request();
-            $products =  Product::whereHas('categories', function ($query) use ($request) {
-                $query->where('categories.name', 'like', '%' . $request->q . '%')
-                    ->orWhere('products.name', 'like', '%' . $request->q  . '%')
-                    ->orWhere('products.sku', 'like', '%' .  $request->q  . '%');
+            $name = $request->q;
+            $name = str_slug($name);
+            $products =  Product::whereHas('categories', function ($query) use ($name) {
+                $query->where('categories.slug', 'like', '%' . $name . '%')
+                    ->orWhere('products.slug', 'like', '%' . $name  . '%')
+                    ->orWhere('products.sku', 'like', '%' .  $name  . '%');
             })->groupBy('products.id')->orderBy('created_at', 'desc')->paginate(100)->appends(request()->all());
         }
 

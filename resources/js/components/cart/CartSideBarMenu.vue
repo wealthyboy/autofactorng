@@ -46,7 +46,10 @@
                             <img :src="cart.image" :alt="cart.title" width="80" height="80" />
                         </a>
                         <a href="#" class="btn-remove" title="Remove Product"
-                            @click.prevent="removeFromCart(cart.id)"><span>×</span></a>
+                            >
+                            <span @click.prevent="removeFromCart(cart.id)" v-if="removingItemId !== cart.id">×</span>
+                            <div v-else class="spinner-border spinner-border-sm text-danger" role="status"></div>
+                        </a>
                     </figure>
                 </div>
                 <!-- End .product -->
@@ -86,6 +89,7 @@ export default {
         return {
             user: Window.auth,
             token: null,
+            removingItemId: null
         };
     },
 
@@ -106,10 +110,22 @@ export default {
             deleteCart: "deleteCart",
         }),
         removeFromCart(cart_id) {
+            this.removingItemId = cart_id;
+
             this.deleteCart({
                 cart_id: cart_id,
+            }).finally(() => {
+               this.removingItemId = null;
             });
         },
     },
 };
 </script>
+<style scoped>
+ .btn-remove .spinner-border {
+  width: 1rem;
+  height: 1rem;
+  margin-top: -2px;
+}
+</style>
+

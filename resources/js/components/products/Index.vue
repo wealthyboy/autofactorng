@@ -107,12 +107,15 @@
 
                 <template v-if="!productIsLoading && !products.length">
                     <div class="h-100 col-md-12">
-                        <div class="d-flex col-md-12 justify-content-center align-items-center">
-                            <img src="/images/utils/no-product.png" width="300" height="300" alt="" srcset="" />
+                        <div class=" col-md-12 text-center  py-4 justify-content-center align-items-center">
+                            <p class="fw-bold display-6 mb-1">Oops! We couldn't find what you were looking for.</p>
+                            <p class="mb-0">
+                                Try checking the menu at the top-left of the page to explore our categories and find what you need.
+                            </p>
                         </div>
                     </div>
                 </template>
-            </div>
+            </div> 
 
             <nav v-if="!productIsLoading && products.length && meta" class="toolbox toolbox-pagination">
                 <div class="toolbox-item ms-sm-3 mb-sm-3 toolbox-show">
