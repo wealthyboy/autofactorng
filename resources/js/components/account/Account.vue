@@ -1,5 +1,10 @@
 <template>
   <message :message="post_server_error" />
+  <message 
+    @delete-message="removeMessage"
+    :message="message"
+  />
+
 
   <form
     method="POST"
@@ -95,8 +100,14 @@ export default {
     const rules = accountRules(form);
     const v$ = useVuelidate(rules, form);
     const { clearErr, makePost } = useActions(["makePost", "clearErr"]);
+    
     function change(page) {
       emit("switched", page);
+    }
+
+    function removeMessage() {
+        message.value = "";
+
     }
 
     function register() {
@@ -127,6 +138,7 @@ export default {
       loading,
       v$,
       register,
+      removeMessage,
       text,
       message,
       server_errors,
