@@ -27,8 +27,8 @@
         </template>
 
          <template
-            v-if="!products.length">
-            <div v-if="query" 
+            v-if="!products.length && isEmpty">
+            <div  v-if="query " 
                 class="dropdown-items position-absolute rounded-start">
                 <ul class="mt-4 p-0">
                     <li>
@@ -53,6 +53,7 @@ export default {
         const products = ref([]);
         const dNone = ref("d-none");
         const dBlock = ref("");
+        const isEmpty = ref(true);
 
         async function autoComplete() {
             $("html, body").css({
@@ -105,6 +106,7 @@ export default {
             categories.value = [];
             products.value = [];
             dBlock.value = "";
+            isEmpty.value = null
             $("html, body").css({
                 overflow: "auto",
                 height: "auto",
@@ -146,6 +148,7 @@ export default {
             dNone,
             dBlock,
             cancel,
+            isEmpty,
             handleFocus,
         };
     },
