@@ -4,7 +4,7 @@
         <input type="text" class="form-control search-products rounded-start" placeholder="Find Parts and Products"
             aria-label="Find Parts and Products" aria-describedby="button-addon1" @input="autoComplete" required="required"
             v-model="query" @focus="handleFocus" name="q" />
-              <button type="submit" class="btn btn-light border px-3 d-flex align-items-center" style="z-index: 2;     height: 46px;">
+              <button type="submit" class="btn btn-light border px-3 d-flex align-items-center" style="z-index: 2;height: 46px;margin-right: 54px;">
       <img src="/images/utils/icon-search-20x20.svg" alt="Search" width="15" height="15" class="me-2" />
       <span class="fw-semibold bold">Search</span>
               </button>
