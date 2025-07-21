@@ -58,6 +58,8 @@ export default {
         const isEmpty = ref(true);
 
         async function autoComplete() {
+            noProducts.value = false
+
             $("html, body").css({
                 overflow: "hidden",
                 height: "100%",
@@ -80,6 +82,8 @@ export default {
             }
 
             try {
+                 
+
                 const { data: res } = await http.get("/auto-complete", {
                     params: {
                         q,
