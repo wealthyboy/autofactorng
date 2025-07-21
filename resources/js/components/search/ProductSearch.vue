@@ -27,7 +27,7 @@
         </template>
 
          <template
-            v-if="!products.length && isEmpty">
+            v-if="!noProducts.length && isEmpty">
             <div  v-if="query " 
                 class="dropdown-items position-absolute rounded-start">
                 <ul class="mt-4 p-0">
@@ -51,6 +51,10 @@ export default {
         const query = ref(null);
         const categories = ref([]);
         const products = ref([]);
+        const noProducts = ref([{
+            id: 2
+        }]);
+
         const dNone = ref("d-none");
         const dBlock = ref("");
         const isEmpty = ref(true);
@@ -74,7 +78,6 @@ export default {
             if (typeof q === '' || typeof q === null || typeof q == 'undefined') {
 
                 dBlock.value = "d-none";
-               
                 return;
             }
 
@@ -84,6 +87,8 @@ export default {
                         q,
                     },
                 });
+
+                 
                 if (res.categories.length || res.products.length) {
                     dBlock.value = "d-block";
                     categories.value = res.categories;
@@ -92,6 +97,8 @@ export default {
                 } else {
                     categories.value = []
                     products.value = [];
+
+                    noProducts.value = []
                 }
 
             } catch (error) { }
@@ -150,6 +157,7 @@ export default {
             cancel,
             isEmpty,
             handleFocus,
+            noProducts
         };
     },
 };
