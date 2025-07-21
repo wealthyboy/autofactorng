@@ -27,7 +27,7 @@
         </template>
 
          <template
-            v-if="!noProducts.length">
+            v-if="noProducts">
             <div  v-if="query " 
                 class="dropdown-items position-absolute rounded-start">
                 <ul class="mt-4 p-0">
