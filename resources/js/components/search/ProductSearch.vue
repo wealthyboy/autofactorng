@@ -11,7 +11,7 @@
         <div v-if="query" @click="cancel" :class="'coverlay' + ' ' + dBlock"></div>
 
         <template
-            v-if="(typeof categories !== 'undefined') && categories.length || (typeof products !== 'undefined') && products.length">
+            v-if="(typeof categories !== 'undefined') && categories.length || (typeof products !== 'undefined') && products.length && !noProducts">
             <div v-if="query" :class="[categories.length || products.length ? ' ' : dNone]"
                 class="dropdown-items position-absolute rounded-start">
                 <ul class="mt-4 p-0">
@@ -27,7 +27,7 @@
         </template>
 
          <template
-            v-if="!noProducts.length && isEmpty">
+            v-if="!noProducts.length">
             <div  v-if="query " 
                 class="dropdown-items position-absolute rounded-start">
                 <ul class="mt-4 p-0">
@@ -51,9 +51,7 @@ export default {
         const query = ref(null);
         const categories = ref([]);
         const products = ref([]);
-        const noProducts = ref([{
-            id: 2
-        }]);
+        const noProducts = ref(false);
 
         const dNone = ref("d-none");
         const dBlock = ref("");
@@ -97,8 +95,8 @@ export default {
                 } else {
                     categories.value = []
                     products.value = [];
-
-                    noProducts.value = []
+                    noProducts.value = true
+                    return
                 }
 
             } catch (error) { }
