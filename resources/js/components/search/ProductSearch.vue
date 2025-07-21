@@ -95,6 +95,8 @@ export default {
                     dBlock.value = "d-block";
                     categories.value = res.categories;
                     products.value = res.products;
+                    noProducts.value = false
+
                     return
                 } else {
                     categories.value = []
