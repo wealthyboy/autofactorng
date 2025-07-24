@@ -57,7 +57,17 @@ export default {
         const dBlock = ref("");
         const isEmpty = ref(true);
 
-        async function autoComplete() {
+        function debounce(fn, delay) {
+            let timeout;
+            return function (...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    fn.apply(this, args);
+                }, delay);
+            };
+        }
+
+        async function autoCompleteRaw () {
             noProducts.value = false
 
             $("html, body").css({
@@ -95,7 +105,7 @@ export default {
 
                 categories.value = []
                     products.value = [];
-                noProducts.value = true
+                   noProducts.value = true
 
                  
                 if (res.categories.length || res.products.length) {
@@ -115,6 +125,9 @@ export default {
 
             } catch (error) { }
         }
+
+        const autoComplete = debounce(autoCompleteRaw, 800); // Fire after 500ms of no typing
+
 
         function handleFocus() {
             console.log(query.value)
