@@ -17,9 +17,7 @@
 
             <template v-slot:body>
                 <div class="mx-5">Find an exact match for your vehicle.</div>
-                <div
-                    class="d-flex justify-content-between align-content-center pt-2 mx-5"
-                >
+                <div class="d-flex justify-content-between align-content-center pt-2 mx-5">
                     <make-model-year  @do:string="getString"></make-model-year>
                 </div>
             </template>
