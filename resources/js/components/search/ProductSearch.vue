@@ -82,6 +82,8 @@ export default {
             }
 
             try {
+
+
                  
 
                 const { data: res } = await http.get("/auto-complete", {
@@ -90,15 +92,17 @@ export default {
                     },
                 });
 
+
+                categories.value = []
+                    products.value = [];
+                noProducts.value = true
+
                  
                 if (res.categories.length || res.products.length) {
                     dBlock.value = "d-block";
 
-                    setTimeout(() => {
-                       categories.value = res.categories;
-                       products.value = res.products;
-                    }, 3000);
-                   
+                    categories.value = res.categories;
+                    products.value = res.products;
                     noProducts.value = false
 
                     return
