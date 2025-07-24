@@ -104,17 +104,15 @@ export default {
 
 
                 categories.value = []
-                    products.value = [];
-                   noProducts.value = true
+                products.value = [];
+                noProducts.value = false
 
                  
-                if (res.categories.length || res.products.length) {
+                if ( res.products.length) {
                     dBlock.value = "d-block";
-
                     categories.value = res.categories;
                     products.value = res.products;
                     noProducts.value = false
-
                     return
                 } else {
                     categories.value = []
@@ -131,9 +129,7 @@ export default {
 
         function handleFocus() {
             console.log(query.value)
-
         }
-
         function cancel() {
             categories.value = [];
             products.value = [];
