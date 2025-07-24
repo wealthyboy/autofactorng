@@ -93,8 +93,12 @@ export default {
                  
                 if (res.categories.length || res.products.length) {
                     dBlock.value = "d-block";
-                    categories.value = res.categories;
-                    products.value = res.products;
+
+                    setTimeout(() => {
+                       categories.value = res.categories;
+                       products.value = res.products;
+                    }, 3000);
+                   
                     noProducts.value = false
 
                     return
