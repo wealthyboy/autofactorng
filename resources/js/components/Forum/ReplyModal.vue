@@ -160,7 +160,7 @@
   })
   </script>
 
-  <style scoped>
+  <style >
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s ease;
@@ -169,6 +169,14 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+.ck-editor__editable {
+  min-height: 250px !important;
+  max-height: 250px !important;
+  overflow-y: auto !important;
+}
+
+
 </style>
 
   

@@ -1,39 +1,45 @@
 <template>
-    <form method="get" action="/search" class="input-group position-relative w-100 rounded-start mb-0 mt-md-3">
+    <form method="get" action="/search" class="input-group position-relative w-100  rounded-start mb-0 mt-md-3">
           
         <input type="text" class="form-control search-products rounded-start" placeholder="Find Parts and Products"
             aria-label="Find Parts and Products" aria-describedby="button-addon1" @input="autoComplete" required="required"
-            v-model="query" @focus="handleFocus" name="q" />
-              <button type="submit" class="btn btn-light border px-3 d-flex align-items-center" style="z-index: 2;height: 46px;right: 0; ">
-      <img src="/images/utils/icon-search-20x20.svg" alt="Search" width="15" height="15" class="me-2" />
-      <span class="fw-semibold bold">Search</span>
-              </button>
-        <div v-if="query" @click="cancel" :class="'coverlay' + ' ' + dBlock"></div>
-
-        <template
-            v-if="(typeof categories !== 'undefined') && categories.length || (typeof products !== 'undefined') && products.length && !noProducts">
-            <div v-if="query" :class="[categories.length || products.length ? ' ' : dNone]"
-                class="dropdown-items position-absolute rounded-start">
-                <ul class="mt-4 p-0">
-                    <li v-for="product in products" :key="product" role="button">
-                        <a class="py-3 no-hover" :href="product.link">
-                            <div class="w-100 category-link">
-                                {{ product.name }}
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+            v-model="query" @focus="handleFocus" @blur="isTyping = false" name="q" />
+              
+            <div v-if="isTyping"  class="d-flex align-items-center position-absolute  search-spinner right-0 px-2">
+                <div class="spinner-border spinner-border-md text-secondary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
             </div>
-        </template>
+
+            <button type="submit" class="btn btn-light border px-3 d-flex align-items-center" style="z-index: 2;height: 46px;right: 0; ">
+                <img src="/images/utils/icon-search-20x20.svg" alt="Search" width="15" height="15" class="me-2" />
+                <span class="fw-semibold bold">Search </span>
+            </button>
+           <div v-if="query" @click="cancel" :class="'coverlay' + ' ' + dBlock"></div>
+
+            <template
+            v-if="(typeof categories !== 'undefined') && categories.length || (typeof products !== 'undefined') && products.length && !noProducts">
+                <div v-if="query" :class="[categories.length || products.length ? ' ' : dNone]"
+                    class="dropdown-items position-absolute rounded-start">
+                    <ul class="mt-4 p-0">
+                        <li v-for="product in products" :key="product" role="button">
+                            <a class="py-3 no-hover" :href="product.link">
+                                <div class="w-100 category-link">
+                                    {{ product.name }}
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </template>
 
          <template
             v-if="noProducts">
-            <div  v-if="query " 
+            <div  v-if="query" 
                 class="dropdown-items position-absolute rounded-start">
                 <ul class="mt-4 p-0">
                     <li>
                        <div class="fw-bold mb-1 button px-5">Can't find it? Check our menu for more options!</div>
-
                     </li>
                 </ul>
             </div>
@@ -56,6 +62,7 @@ export default {
         const dNone = ref("d-none");
         const dBlock = ref("");
         const isEmpty = ref(true);
+        const isTyping = ref(false)
 
         function debounce(fn, delay) {
             let timeout;
@@ -69,6 +76,7 @@ export default {
 
         async function autoCompleteRaw () {
             noProducts.value = false
+
 
             $("html, body").css({
                 overflow: "hidden",
@@ -107,6 +115,9 @@ export default {
                 products.value = [];
                 noProducts.value = false
 
+                isTyping.value = false
+
+
                  
                 if ( res.products.length) {
                     dBlock.value = "d-block";
@@ -128,7 +139,11 @@ export default {
 
 
         function handleFocus() {
-            console.log(query.value)
+            console.log(true)
+          
+                isTyping.value = true;
+            
+           // autoComplete();   
         }
         function cancel() {
             categories.value = [];
@@ -168,6 +183,7 @@ export default {
         }
 
         return {
+            isTyping,
             autoComplete,
             query,
             categories,
@@ -188,5 +204,24 @@ input.search-products {
     padding-left: 1rem;
     font-size: 14px;
 }
+
+.search-spinner {
+    z-index: 300;
+    right: 115px;
+    top: 12px;
+}
+
+@media (max-width: 767px) {
+
+.search-spinner {
+    z-index: 300;
+    right: 73px;
+    top: 12px;
+}
+
+   
+}
+
+
 </style>
 
