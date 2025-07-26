@@ -207,7 +207,7 @@ input.search-products {
 
 .search-spinner {
     z-index: 300;
-    right: 115px;
+    right: 95px;
     top: 12px;
 }
 
