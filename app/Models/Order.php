@@ -17,6 +17,7 @@ use Carbon\Carbon;
 use Google_Client;
 use Google_Service_Sheets;
 use Google_Service_Sheets_ValueRange;
+use App\Observers\ProductObserver;
 
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\ProductReviewNotification;
@@ -38,6 +39,8 @@ class Order extends Model
 	public function ordered_products()
 	{
 		return $this->hasMany(OrderedProduct::class);
+
+		
 	}
 
 	public function user()
@@ -126,7 +129,17 @@ class Order extends Model
 				if ($product->quantity > 0) {
 					$newQuantity = $product->quantity - $cart->quantity;
 					$product->quantity = $newQuantity >= 0 ? $newQuantity : 0;
+
+					ProductObserver::$context = [
+						'order_id' => $order->id,
+						'user_id'  => $user->id, // or auth()->id() if available
+					];
+
 					$product->save();
+
+					// Reset context after save to avoid affecting other updates
+					ProductObserver::$context = [];
+
 				}
 
 				$spreedSheetData = [
@@ -147,8 +160,6 @@ class Order extends Model
 
 			self::sendWhatsApMessage(2349081155505, $order->first_name);
 		}
-
-
 
 
 		try {

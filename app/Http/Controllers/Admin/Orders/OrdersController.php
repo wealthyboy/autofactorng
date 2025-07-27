@@ -23,6 +23,8 @@ use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use App\Observers\ProductObserver;
+
 
 class OrdersController extends Table
 {
@@ -141,6 +143,13 @@ class OrdersController extends Table
 				if (null !== $product && $product->quantity > 0) {
 					$newQuantity = $product->quantity - $qty;
 					$product->quantity = $newQuantity >= 0 ? $newQuantity : 0;
+
+
+					ProductObserver::$context = [
+						'order_id' => $order->id,
+						'user_id'  => auth()->id()
+					];
+
 					$product->save();
 				}
 

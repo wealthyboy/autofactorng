@@ -10,13 +10,16 @@ class ProductUpdated extends Notification
 {
     use Queueable;
 
-    public $product;
+   public $product;
     public $changes;
+    public $context;
 
-    public function __construct($product, $changes)
+    public function __construct($product, $changes, $context = [])
     {
         $this->product = $product;
         $this->changes = $changes;
+         $this->context = $context;
+
     }
 
     public function via($notifiable)
@@ -37,6 +40,17 @@ class ProductUpdated extends Notification
 
         if (isset($this->changes['quantity'])) {
             $mail->line("**Quantity changed**: {$this->changes['quantity']['old']} → {$this->changes['quantity']['new']}");
+        }
+
+         if (!empty($this->context['order_id'])) {
+            $mail->line("Order ID: {$this->context['order_id']}");
+        }
+
+        if (!empty($this->context['user_id'])) {
+            $user = \App\Models\User::find($this->context['user_id']);
+            if ($user) {
+                $mail->line("Updated by: {$user->name} ({$user->email})");
+            }
         }
 
         $mail->line('Thank you.');

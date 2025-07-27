@@ -12,6 +12,8 @@ use Illuminate\Support\Str;
 use ZipStream\ZipStream;
 use ZipStream\Option\Archive;
 use Illuminate\Support\Facades\File;
+use App\Observers\ProductObserver;
+
 
 
 use App\Models\Image;
@@ -578,6 +580,10 @@ class ProductController extends Table
     public function updatePrice(Request $request, $id)
     {
         $product = Product::find($id);
+        ProductObserver::$context = [
+						'order_id' => null,
+						'user_id'  => auth()->id()
+					];
         $product->update($request->all());
     }
 
