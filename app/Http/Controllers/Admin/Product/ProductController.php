@@ -610,6 +610,10 @@ class ProductController extends Table
         $data['cost_per_item'] = 33333;
         $data['quantity'] = $request->quantity ? $request->quantity : 0;;
         $product = Product::find($id);
+         ProductObserver::$context = [
+						'order_id' => null,
+						'user_id'  => auth()->id()
+					];
         $product->update($data);
 
         if (!empty($request->category_id)) {
