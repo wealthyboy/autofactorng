@@ -131,7 +131,7 @@ class Order extends Model
 					$product->quantity = $newQuantity >= 0 ? $newQuantity : 0;
 
 					ProductObserver::$context = [
-						'order_id' => $order->id,
+						'order_id' => $order->invoice,
 						'user_id'  => $user->id, // or auth()->id() if available
 					];
 

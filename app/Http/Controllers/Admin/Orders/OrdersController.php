@@ -50,7 +50,6 @@ class OrdersController extends Table
 
 		$orders = Order::has('ordered_products')->orderBy('created_at', 'desc')->paginate(150);
 		$orders = $this->getColumnListings(request(), $orders);
-
 		return view('admin.orders.index', compact('orders'));
 	}
 
@@ -146,7 +145,7 @@ class OrdersController extends Table
 
 
 					ProductObserver::$context = [
-						'order_id' => $order->id,
+						'order_id' => $order->invoice,
 						'user_id'  => auth()->id()
 					];
 
