@@ -4,10 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-
-namespace App\Http\Middleware;
-
-use Closure;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use App\Models\UserTracking;
 use Carbon\Carbon;
@@ -21,46 +18,63 @@ class TrackUserActivity
     public function handle(Request $request, Closure $next)
     {
 
-        $response = $next($request);
-        $sessionId = session()->getId();
-        $path = $request->fullUrl();
+         $response = $next($request);
 
-        if ($request->ajax() && $request->ignore === "true") {
+        if ( $request->debug === "ja" ) {
+             // Skip admin and ignored AJAX requests
+        if (
+            $request->ajax() && $request->ignore === "true" ||
+            Str::contains($request->path(), 'admin')
+        ) {
             return $response;
         }
 
-        if (!Str::contains(request()->path(), 'admin')) {
+        $sessionId = session()->getId();
+        $path = $request->fullUrl();
+        $user = auth()->user();
+
+        // Throttle or defer this logic if needed (e.g. using queues)
+        $trackingData = [
+            'session_id' => $sessionId,
+            'page_url' => $path,
+            'ip_address' => $request->ip(),
+            'user_agent' => $this->detectDevice($request),
+            'referer' => $request->headers->get('referer'),
+            'user_id' => optional($user)->id,
+            'first_name' => optional($user)->name,
+            'last_name' => optional($user)->last_name,
+            'visited_at' => now(),
+            'method' => $request->method(),
+            'product_id' => $request->routeIs('products.show') ? optional($request->route('product'))->id : null,
+            'action' => $request->input('action', 'viewed'),
+            'created_at' => now(),
+        ];
+
+        // Cache per session to avoid multiple writes per session per second
+        $cacheKey = "user_tracking_{$sessionId}_{$path}";
+        if (!Cache::has($cacheKey)) {
             UserTracking::updateOrInsert(
-                ['session_id' => $sessionId,  'page_url' => $path],
-                [
-                    'ip_address' => $request->ip(),
-                    'user_agent' => $this->detectDevice($request),
-                    'referer' => $request->headers->get('referer'),
-                    'user_id' => optional(auth()->user())->id,
-                    'first_name' => optional(auth()->user())->name,
-                    'last_name' => optional(auth()->user())->last_name,
-                    'visited_at' => now(),
-                    'method' => $request->method(),
-                    'product_id' => $request->routeIs('products.show') ? optional($request->route('product'))->id : null,
-                    'ip_address' => $request->ip(),
-                    'action' => $request->action ?  $request->action : "viewed",
-                    'page_url' => $request->fullUrl(),
-                    'visited_at' => now(),
-                    'created_at' => now(),
-                    'referer' => $request->headers->get('referer'),
-                ]
+                ['session_id' => $sessionId, 'page_url' => $path],
+                $trackingData
             );
+            Cache::put($cacheKey, true, 30); // 30 seconds debounce to avoid overloading
+    }
+
+    // Track ID just once
+    if (!Session::has('tracking_id')) {
+        $lastId = Cache::remember('last_tracking_id', 30, function () {
+            return UserTracking::latest('id')->value('id');
+        });
+
+        if ($lastId) {
+            Session::put('tracking_id', $lastId);
+        }
+    }
         }
 
+       
 
-        if (!Session::has('tracking_id')) {
-            $last_id = UserTracking::latest('id')->value('id');
-            if ($last_id) {
-                Session::put('tracking_id', $last_id);
-            }
-        }
-
-        return $response;
+       return $response;
     }
 
 
