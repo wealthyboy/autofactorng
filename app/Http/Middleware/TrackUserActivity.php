@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Http\Request;
 use App\Models\UserTracking;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
@@ -20,8 +19,9 @@ class TrackUserActivity
 
          $response = $next($request);
 
-        if ( $request->debug === "ja" ) {
-             // Skip admin and ignored AJAX requests
+      
+
+        // Skip admin and ignored AJAX requests
         if (
             $request->ajax() && $request->ignore === "true" ||
             Str::contains($request->path(), 'admin')
@@ -51,6 +51,7 @@ class TrackUserActivity
         ];
 
         // Cache per session to avoid multiple writes per session per second
+        
         $cacheKey = "user_tracking_{$sessionId}_{$path}";
         if (!Cache::has($cacheKey)) {
             UserTracking::updateOrInsert(
@@ -58,7 +59,7 @@ class TrackUserActivity
                 $trackingData
             );
             Cache::put($cacheKey, true, 30); // 30 seconds debounce to avoid overloading
-    }
+        }
 
     // Track ID just once
     if (!Session::has('tracking_id')) {
@@ -70,9 +71,6 @@ class TrackUserActivity
             Session::put('tracking_id', $lastId);
         }
     }
-        }
-
-       
 
        return $response;
     }
