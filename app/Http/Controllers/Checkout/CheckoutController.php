@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use App\Models\AbandonedCart;
+
 
 class CheckoutController extends Controller
 {
@@ -30,6 +32,18 @@ class CheckoutController extends Controller
     public function index()
     {
         $carts =  Cart::all_items_in_cart();
+
+        $user = Auth::user();
+        $cartItems = Cart::where('user_id', $user->id)->get(); 
+
+        AbandonedCart::updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'cart_items' => $cartItems->toJson(),
+                'checkout_started_at' => now(),
+                'recovered' => false,
+            ]
+        );
 
         if (!$carts->count()) {
             return redirect()->to('/cart');
