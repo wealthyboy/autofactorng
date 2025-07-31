@@ -20,4 +20,9 @@ class AbandonedCart extends Model
         'checkout_started_at',
         'recovered',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
