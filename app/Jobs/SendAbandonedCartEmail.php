@@ -37,7 +37,7 @@ class SendAbandonedCartEmail implements ShouldQueue
 
         foreach ($carts as $cart) {
             $user = $cart->user;
-            $items = json_decode($cart->cart_items);
+            $items = $cart->cart_items;
 
             Mail::to($user->email)->send(new AbandonedCartMail($user, $items));
 
