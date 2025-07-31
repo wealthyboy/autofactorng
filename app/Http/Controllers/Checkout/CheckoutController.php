@@ -37,15 +37,7 @@ class CheckoutController extends Controller
         $user = Auth::user();
         $cartItems = Cart::where('user_id', $user->id)->get(); 
 
-        $formattedItems = $cartItems->map(function ($cart) {
-            return [
-                'product_id' => $cart->product_id,
-                'name' => $cart->product->name ?? 'Unknown Product',
-                'image_url' => $cart->product->image_m ?? '',
-                'price' => $cart->product->price ?? 0,
-                'quantity' => $cart->quantity,
-            ];
-        });
+      
 
 
         $abandonedCart = AbandonedCart::updateOrCreate(
