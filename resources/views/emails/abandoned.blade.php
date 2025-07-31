@@ -1,12 +1,19 @@
 @component('mail::message')
-# Introduction
+# Hey {{ $user->name }}, 
 
-The body of your message.
+Your cart is still parked, and those parts are itching to get your car back on the road.
 
-@component('mail::button', ['url' => ''])
-Button Text
+
+@foreach($items as $item)
+- **{{ $item->name }}**
+  <br>
+  <img src="{{ $item->image_url }}" width="100">
+@endforeach
+
+@component('mail::button', ['url' => route('checkout')])
+Return to Checkout
 @endcomponent
 
-Thanks,<br>
+Thanks,  
 {{ config('app.name') }}
 @endcomponent
