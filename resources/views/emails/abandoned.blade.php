@@ -4,7 +4,7 @@
 Your cart is still parked, and those parts are itching to get your car back on the road.
 
 
-@foreach($items as $item)
+@foreach($item->items as $item)
 - **{{ $item->name }}**
   <br>
   <img src="{{ $item->image_url }}" width="100">
