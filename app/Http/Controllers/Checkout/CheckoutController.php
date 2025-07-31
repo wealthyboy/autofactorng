@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Models\AbandonedCart;
+use App\Models\AbandonedCartItem;
 
 
 class CheckoutController extends Controller
@@ -46,14 +47,29 @@ class CheckoutController extends Controller
             ];
         });
 
-        AbandonedCart::updateOrCreate(
+
+        $abandonedCart = AbandonedCart::updateOrCreate(
             ['user_id' => $user->id],
-            [
-                'cart_items' => $formattedItems->toArray(),
-                'checkout_started_at' => now(),
-                'recovered' => false,
-            ]
+            ['checkout_started_at' => now(), 'recovered' => false]
         );
+
+        // Prepare and insert abandoned cart items
+        $items = $cartItems->map(function ($cart) use ($abandonedCart) {
+            return [
+                'abandoned_cart_id' => $abandonedCart->id,
+                'product_id' => $cart->product_id,
+                'name' => $cart->product->name ?? 'Unknown Product',
+                'image_url' => $cart->product->image_m ?? '',
+                'price' => $cart->product->price ?? 0,
+              
+            ];
+        });
+
+        // Optional: delete existing items before re-inserting (if you want fresh snapshot)
+        $abandonedCart->items()->delete();
+
+        // Insert new items
+        AbandonedCartItem::insert($items->toArray());
 
         if (!$carts->count()) {
             return redirect()->to('/cart');

@@ -12,12 +12,12 @@ class AbandonedCartMail extends Mailable
     use Queueable, SerializesModels;
 
     public $user;
-    public $items;
+    public $item;
 
-    public function __construct($user, $items)
+    public function __construct($user, $item)
     {
         $this->user = $user;
-        $this->items = $items;
+        $this->item = $item;
     }
 
     /**
@@ -32,7 +32,7 @@ class AbandonedCartMail extends Mailable
                 ->markdown('emails.abandoned')
                 ->with([
                     'user' => $this->user,
-                    'items' => $this->items,
+                    'item' => $this->item,
                 ]);
     }
 }

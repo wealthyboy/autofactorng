@@ -10,19 +10,28 @@ class AbandonedCart extends Model
     use HasFactory;
 
     protected $casts = [
-        'cart_items' => 'array',
         'checkout_started_at' => 'datetime',
     ];
 
     protected $fillable = [
         'user_id',
-        'cart_items',
         'checkout_started_at',
         'recovered',
+      
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+     public function abandoned_cart_items()
+    {
+        return $this->hasMany(AbandonedCartItem::class);
+    }
+
+    public function items()
+    {
+        return $this->hasMany(AbandonedCartItem::class);
     }
 }
