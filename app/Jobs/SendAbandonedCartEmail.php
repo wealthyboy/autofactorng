@@ -9,6 +9,10 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\AbandonedCart;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\AbandonedCartMail;
+
+
 
 class SendAbandonedCartEmail implements ShouldQueue
 {
