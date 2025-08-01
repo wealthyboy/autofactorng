@@ -115,6 +115,29 @@ Route::get('/notification', function () {
 });
 
 
+Route::get('/mailable-preview', function () {
+    $user = \App\Models\User::first();
+
+    $cart = new \App\Models\AbandonedCart(); // fake or existing abandoned cart
+    $cart->items = collect([
+        (object)[
+            'name' => 'Brake Pads',
+            'price' => 300,
+
+            'image_url' => 'https://autofactorng.com/images/products/tm/1J9LViEgMN8dU7Lb0zPSq23pe5eDoYhNjQTTFiLg.png'
+        ],
+        (object)[
+            'name' => 'Oil Filter',
+            'price' => 300,
+
+            'image_url' => 'https://autofactorng.com/images/products/tm/1J9LViEgMN8dU7Lb0zPSq23pe5eDoYhNjQTTFiLg.png'
+        ],
+    ]);
+
+    return new \App\Mail\AbandonedCartMail($user, $cart);
+});
+
+
 Route::get('/reset-quantities', function () {
     Product::query()->update(['quantity' => 0]);
     return 'All product quantities set to 0.';
