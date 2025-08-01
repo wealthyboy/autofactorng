@@ -39,12 +39,17 @@ class SendAbandonedCartEmail implements ShouldQueue
         ->where('checkout_started_at', '<=', now()->subMinute())
         ->get();
 
-        foreach ($carts as $cart) {
+        if (null !==. $carts) {
+             foreach ($carts as $cart) {
+
             $user = $cart->user;
 
             Mail::to($user->email)->send(new AbandonedCartMail($user, $cart));
 
             $cart->update(['recovered' => true]); 
+          }
         }
+
+       
     }
 }
