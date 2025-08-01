@@ -28,6 +28,7 @@ class AbandonedCartMail extends Mailable
     public function build()
     {  
         $this->item->user = $this->user;
+        
         return $this->subject("Don't Leave Your Parts Hanging")
                 ->cc('care@autofactorng.com')
                 ->markdown('emails.abandoned_cart.index')

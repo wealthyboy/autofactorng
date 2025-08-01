@@ -209,15 +209,7 @@
                                                          <tr>
                                                             <td height="27"></td>
                                                          </tr>
-                                                         <tr>
-                                                            <td align="center">
-                                                               <table align="center" border="0" cellpadding="0" cellspacing="0" bgcolor="#27af9a" style="border-radius: 15px; background-color: #27af9a; min-width: 110px;" data-bgcolor="blue-btn-bg">
-                                                                  <tbody>
-                                                                    
-                                                                  </tbody>
-                                                               </table>
-                                                            </td>
-                                                         </tr>
+                                                        
                                                          <tr>
                                                             <td height="38"></td>
                                                          </tr>
