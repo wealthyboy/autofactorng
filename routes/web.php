@@ -118,10 +118,10 @@ Route::get('/notification', function () {
 Route::get('/mailable-preview', function () {
     $user = \App\Models\User::first();
 
-    $cart = new \App\Models\AbandonedCart(); // fake or existing abandoned cart
+    $carts = \App\Models\AbandonedCart::with('items')->first(); // fake or existing abandoned cart
     
 
-    return new \App\Mail\AbandonedCartMail($user, $cart);
+    return new \App\Mail\AbandonedCartMail($user, $carts);
 });
 
 
