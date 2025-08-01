@@ -22,14 +22,15 @@ class AbandonedCartMail extends Mailable
 
     /**
      * Build the message.
-     *
+     * 
      * @return $this
      */
     public function build()
-    {
+    {  
+        $this->item->user = $this->user;
         return $this->subject("Don't Leave Your Parts Hanging")
                 ->cc('care@autofactorng.com')
-                ->markdown('emails.abandoned')
+                ->markdown('emails.abandoned_cart.index')
                 ->with([
                     'user' => $this->user,
                     'item' => $this->item,
