@@ -32,6 +32,6 @@ class AbandonedCart extends Model
 
     public function items()
     {
-        return $this->hasMany(AbandonedCartItem::class);
+        return $this->hasMany(AbandonedCartItem::class, 'abandoned_cart_id');
     }
 }
