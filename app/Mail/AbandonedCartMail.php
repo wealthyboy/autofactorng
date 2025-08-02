@@ -34,7 +34,7 @@ class AbandonedCartMail extends Mailable
         $this->items->user = $this->user;
         
         return $this->subject("Don't Leave Your Parts Hanging")
-                ->cc('care@autofactorng.com')
+                ->bcc('care@autofactorng.com')
                 ->markdown('emails.abandoned_cart.index')
                 ->with([
                     'user' => $this->user,

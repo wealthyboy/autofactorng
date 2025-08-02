@@ -10,6 +10,8 @@ use App\Models\Product;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Setting;
+use App\Models\AbandonedCart;
+
 
 use Storage;
 use App\Http\Resources\CartIndexResource;
@@ -93,6 +95,25 @@ class CartController  extends Controller
 			});
 
 
+			if (auth()->check()) {
+				$cartItems = Cart::with('product')->where('user_id', $user->id)->get(); 
+
+                $items = $cartItems->map(function ($cart)  {
+				    return [
+						'product_id' => $cart->product_id,
+						'name' => $cart->product->name ?? 'Unknown Product',
+						'image_url' => $cart->product->image_m ?? '',
+						'price' => $cart->product->price ?? 0,
+					];
+				});
+
+				$abandonedCart = AbandonedCart::updateOrCreate(
+					['user_id' => $user->id],
+					['checkout_started_at' => now(), 'recovered' => false, 'cart_items' =>  $items]
+				);
+			}
+
+
 
 			return response()->json([
 				'data' => $cart,
@@ -121,6 +142,29 @@ class CartController  extends Controller
 			$carts = Cart::all_items_in_cart();
 			$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $cookie->getValue())->get();
 			$sub_total =  $total[0]->items_total;
+
+			if (auth()->check()) {
+				$cartItems = Cart::with('product')->where('user_id', $user->id)->get(); 
+
+                $items = $cartItems->map(function ($cart)  {
+				    return [
+						'product_id' => $cart->product_id,
+						'name' => $cart->product->name ?? 'Unknown Product',
+						'image_url' => $cart->product->image_m ?? '',
+						'price' => $cart->product->price ?? 0,
+					];
+				});
+
+				$abandonedCart = AbandonedCart::updateOrCreate(
+					['user_id' => $user->id],
+					['checkout_started_at' => now(), 'recovered' => false, 'cart_items' =>  $items]
+				);
+			}
+
+
+
+
+			
 
 			return response()->json([
 				'data' => [
