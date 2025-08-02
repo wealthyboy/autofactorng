@@ -12,14 +12,13 @@ class AbandonedCart extends Model
     protected $casts = [
         'checkout_started_at' => 'datetime',
         'cart_items' => 'array',
-
     ];
 
     protected $fillable = [
         'user_id',
         'checkout_started_at',
         'recovered',
-      
+        'cart_items
     ];
 
     public function user()
