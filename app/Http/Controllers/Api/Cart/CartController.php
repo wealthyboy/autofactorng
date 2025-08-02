@@ -218,12 +218,31 @@ class CartController  extends Controller
 	}
 
 	public function destroy(Request $request, $cart_id)
-	{
-
+	{ 
+		
 		if ($request->ajax()) {
 			$cart =  Cart::find($cart_id);
 			if (null !== $cart) {
 				$cart->delete();
+			}
+
+			$user = $request->user();
+           if (auth()->check()) {
+				$cartItems = Cart::with('product')->where('user_id', $user->id)->get(); 
+
+                $items = $cartItems->map(function ($cart)  {
+				    return [
+						'product_id' => $cart->product_id,
+						'name' => $cart->product->name ?? 'Unknown Product',
+						'image_url' => $cart->product->image_m ?? '',
+						'price' => $cart->product->price ?? 0,
+					];
+				});
+
+				$abandonedCart = AbandonedCart::updateOrCreate(
+					['user_id' => $user->id],
+					['checkout_started_at' => now(), 'recovered' => false, 'cart_items' =>  $items]
+				);
 			}
 			return $this->loadCart($request);
 		}
