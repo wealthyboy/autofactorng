@@ -52,6 +52,8 @@ class CartController  extends Controller
 		$year = session('year');
 		$engine = session('engine');
 
+		$user = $request->user();
+
 
 		//$engine = optional(Engine::find(session('engine_id')))->name;
 		if (\Cookie::get('cart') !== null) {
@@ -96,6 +98,8 @@ class CartController  extends Controller
 
 
 			if (auth()->check()) {
+
+				
 				$cartItems = Cart::with('product')->where('user_id', $user->id)->get(); 
 
                 $items = $cartItems->map(function ($cart)  {
