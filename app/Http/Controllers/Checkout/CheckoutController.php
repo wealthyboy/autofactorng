@@ -37,16 +37,7 @@ class CheckoutController extends Controller
         $user = Auth::user();
         $cartItems = Cart::where('user_id', $user->id)->get(); 
 
-      
-
-
-        $abandonedCart = AbandonedCart::updateOrCreate(
-            ['user_id' => $user->id],
-            ['checkout_started_at' => now(), 'recovered' => false]
-        );
-
-        // Prepare and insert abandoned cart items
-        $items = $cartItems->map(function ($cart) use ($abandonedCart) {
+         $items = $cartItems->map(function ($cart) use ($abandonedCart) {
             return [
                 'abandoned_cart_id' => $abandonedCart->id,
                 'product_id' => $cart->product_id,
@@ -56,6 +47,14 @@ class CheckoutController extends Controller
               
             ];
         });
+
+        $abandonedCart = AbandonedCart::updateOrCreate(
+            ['user_id' => $user->id],
+            ['checkout_started_at' => now(), 'recovered' => false, 'cart_items' =>  $items]
+        );
+
+        // Prepare and insert abandoned cart items
+       
 
         // Optional: delete existing items before re-inserting (if you want fresh snapshot)
         $abandonedCart->items()->delete();
