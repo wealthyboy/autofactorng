@@ -71,7 +71,7 @@
 <body class="body">
    <div class="container-fluid">
       <div class="row">
-         <div style="background-color: #333;" class="col-md-12">
+         <div style="background-color: #33;" class="col-md-12">
             <div class="navigation mb-1 pointer">
                <table data-group="navigation" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border: 0px; border-collapse: collapse; margin: 0 auto;" data-module="navigation-11" data-thumb="http://www.stampready.net/dashboard/editor/user_uploads/zip_uploads/2019/04/01/quA5rxOyIJGf1ltjV7sLaSM8/Full/thumbnails/nav-11.jpg">
                   <tbody>
