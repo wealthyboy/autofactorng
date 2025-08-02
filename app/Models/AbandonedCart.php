@@ -18,7 +18,7 @@ class AbandonedCart extends Model
         'user_id',
         'checkout_started_at',
         'recovered',
-        'cart_items
+        'cart_items'
     ];
 
     public function user()
