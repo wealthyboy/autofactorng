@@ -71,12 +71,12 @@
 <body class="body">
    <div class="container-fluid">
       <div class="row">
-         <div style="background-color: #33;" class="col-md-12">
+         <div style="background-color: #ffffff;" class="col-md-12">
             <div class="navigation mb-1 pointer">
                <table data-group="navigation" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border: 0px; border-collapse: collapse; margin: 0 auto;" data-module="navigation-11" data-thumb="http://www.stampready.net/dashboard/editor/user_uploads/zip_uploads/2019/04/01/quA5rxOyIJGf1ltjV7sLaSM8/Full/thumbnails/nav-11.jpg">
                   <tbody>
                      <tr>
-                        <td align="center" style="background-color: #ededed" bgcolor="#ededed" data-bgcolor="body-bg">
+                        <td align="center" style="background-color: #ffffff" bgcolor="#ededed" data-bgcolor="body-bg">
                            <table class="container-main" align="center" border="0" cellpadding="0" cellspacing="0" style="min-width: 100%;">
                               <tbody>
                                  <tr class="main-row">
@@ -119,11 +119,10 @@
                </table>
             </div>
             <div class="titles mb-1 pointer">
-              <div style="display:none;" class="cancel-button "><a id="#" href="#">X</a></div>
               <table data-group="titles" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border: 0px; border-collapse: collapse; margin: 0 auto;" data-module="title-variant-8" data-thumb="http://www.stampready.net/dashboard/editor/user_uploads/zip_uploads/2019/04/01/quA5rxOyIJGf1ltjV7sLaSM8/Full/thumbnails/var-8.jpg">
                   <tbody>
                      <tr>
-                        <td align="center" style="background-color: #ededed" bgcolor="#ededed" data-bgcolor="body-bg">
+                        <td align="center" style="background-color: #ffffff" bgcolor="#ffffff" data-bgcolor="body-bg">
                            <table class="container-main" align="center" border="0" cellpadding="0" cellspacing="0" style="min-width: 100%;">
                               <tbody>
                                  <tr class="main-row">
@@ -202,7 +201,7 @@
                <table data-group="sale" class="main-table" id="sale1" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border: 0px; border-collapse: collapse; margin: 0 auto;" data-module="sale-2" data-thumb="">
                   <tbody>
                      <tr>
-                        <td align="center" style="background-color: #ededed" bgcolor="#ededed" data-bgcolor="body-bg">
+                        <td align="center" style="background-color: #ffffff" bgcolor="#ededed" data-bgcolor="body-bg">
                            <table class="container-main" align="center" border="0" cellpadding="0" cellspacing="0" style="min-width: 100%;">
                               <tbody>
                                  <tr class="main-row">
