@@ -33,7 +33,7 @@ class AbandonedCartMail extends Mailable
     {  
         $this->items->user = $this->user;
         
-        return $this->subject("Don't Leave Your Parts Hanging")
+        return $this->subject("Need Help With Your Cart?")
                 ->bcc('care@autofactorng.com')
                 ->markdown('emails.abandoned_cart.index')
                 ->with([
