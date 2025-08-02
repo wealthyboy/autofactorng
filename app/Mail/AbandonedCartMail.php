@@ -12,12 +12,16 @@ class AbandonedCartMail extends Mailable
     use Queueable, SerializesModels;
 
     public $user;
-    public $item;
+    public $items;
 
-    public function __construct($user, $item)
+  
+
+
+
+     public function __construct($user, $cart)
     {
         $this->user = $user;
-        $this->item = $item;
+        $this->items = collect($cart->cart_items); 
     }
 
     /**
@@ -27,14 +31,14 @@ class AbandonedCartMail extends Mailable
      */
     public function build()
     {  
-        $this->item->user = $this->user;
+        $this->items->user = $this->user;
         
         return $this->subject("Don't Leave Your Parts Hanging")
                 ->cc('care@autofactorng.com')
                 ->markdown('emails.abandoned_cart.index')
                 ->with([
                     'user' => $this->user,
-                    'item' => $this->item,
+                    'items' => $this->items,
                 ]);
     }
 }

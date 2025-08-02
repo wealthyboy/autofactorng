@@ -11,6 +11,8 @@ class AbandonedCart extends Model
 
     protected $casts = [
         'checkout_started_at' => 'datetime',
+        'cart_items' => 'array',
+
     ];
 
     protected $fillable = [

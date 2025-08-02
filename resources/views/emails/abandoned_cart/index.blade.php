@@ -135,7 +135,7 @@
                                              </tr>
                                              <tr>
                                                 <td  data-color="#000000" data-fontweight="600" data-fontsize="20"  data-letterspacing="0.05" data-lineheight="25"  data-align="left" class="text" style="text-align:left; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size:20px; line-height: 25px; text-decoration: none; color: #000000; font-weight:600; text-transform: uppercase; letter-spacing: 0.05em" data-size="var-8-title-size" data-color="var-8-title-color" data-link-color="var-8-link-color" data-link-style="color: blue;">
-                                                   Hey {{ $item->user->name }}
+                                                   Hey {{ $items->user->name }}
                                                 </td>
                                              </tr>
                                              <tr>
@@ -181,20 +181,20 @@
                                        <table data-repeatable="" width="600" align="center" class="container" border="0" cellpadding="0" cellspacing="0" style="width:600px;">
                                           <tbody>
                                              <tr>
-                                                 @foreach($item->items as $cartItem)
+                                                 @foreach($items as $cartItem)
 
                                                 <th width="280" align="left" class="container-wrap" valign="top" style="vertical-align: top; width:280px;">
                                                    <table width="280" align="left" class="container" border="0" cellpadding="0" cellspacing="0" style="width:280px;">
                                                       <tbody>
                                                          <tr>
-                                                            <td align="center" class="container-image container-image1"><img class="p-img" src="{{$cartItem->image_url}}" width="100%" height="auto" alt="" style="width: 100%; max-width: 100px; display: block; border: 0px;"></td>
+                                                            <td align="center" class="container-image container-image1"><img class="p-img" src="{{$cartItem['image_url'] }}" width="100%" height="auto" alt="" style="width: 100%; max-width: 100px; display: block; border: 0px;"></td>
                                                          </tr>
                                                          <tr>
                                                             <td height="17"></td>
                                                          </tr>
                                                          <tr>
                                                             <td class="text" data-fontweight="700"  data-letterspacing="0.05" data-lineheight="20"  data-fontsize="20" data-align="center" style="text-align:center; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size:20px; line-height: 20px; text-decoration: none; color: #000000; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em" data-size="sale-2-title-size" data-color="sale-2-title-color" data-link-color="sale-2-link-color" data-link-style="color: blue;">
-                                                             {{ $cartItem->name }}
+                                                             {{ $cartItem['name']  }}
                                                             </td>
                                                          </tr>
                                                          <tr>
@@ -203,7 +203,7 @@
                                                       
                                                          <tr>
                                                             <td class="text" data-fontweight="700" data-fontsize="25" data-letterspacing="0.05" data-lineheight="25"  data-align="center"  style="text-align:center; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size:25px; line-height: 25px; text-decoration: none; color: #000000; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em" data-size="sale-2-price-size" data-color="sale-2-price-color" data-link-color="sale-2-link-color" data-link-style="color: blue;">
-                                                               ₦{{$cartItem->price}}
+                                                               ₦{{ $cartItem['price'] }}
                                                             </td>
                                                          </tr>
                                                          <tr>
