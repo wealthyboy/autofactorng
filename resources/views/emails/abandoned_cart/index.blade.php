@@ -88,7 +88,7 @@
                                              </tr>
                                              <tr>
                                                 <td align="center">
-                                                   <a href="https://autofactorng.com"><img src="https://autofactorng.com/images/logo/autofactor_logo.png" data-crop="false" width="auto" height="auto" alt="" style="display:block; width:100px;"></a>
+                                                   <a href="https://autofactorng.com"><img src="https://autofactorng.com/images/logo/autofactor_logo.png" data-crop="false" width="auto" height="auto" alt="" style="display:block; width:197px;"></a>
                                                 </td>
                                              </tr>
                                              <tr>
@@ -146,6 +146,43 @@
                                                    Your cart is still parked, and those parts are itching to get your car back on the road.
                                                 </td>
                                              </tr>
+                                              <tr>
+                                                <td height="10"></td>
+                                             </tr>
+                                              <tr>
+   <td style="padding: 10px 0;">
+      <table border="0" cellpadding="0" cellspacing="0" style="width: auto;">
+         <tr>
+            <!-- Text -->
+            <td data-color="#000000" class="text"
+                data-fontsize="12"
+                data-fontweight="600"
+                data-letterspacing="0.05"
+                data-lineheight="20"
+                data-align="left"
+                style="font-weight: bold; text-align:left; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size:12px; line-height:19px; color:#444444; font-weight:400;"
+                data-size="var-6-text-size"
+                data-color="var-6-text-color"
+                data-link-color="var-6-link-color"
+                data-link-style="color: blue;">
+               Need assistance? Chat with us
+            </td>
+
+            <!-- Icon -->
+            <td style="padding-left: 8px;">
+               <a href="https://wa.me/+23409081155505" style="display: inline-block;">
+                  <img src="{{ url('/images/icons/whatsapp.png') }}"
+                       alt="WhatsApp"
+                       width="44"
+                       height="44"
+                       style="display: block; width: 44px; height: 44px; border: 0;">
+               </a>
+            </td>
+         </tr>
+      </table>
+   </td>
+</tr>
+
                                              <tr>
                                                 <td height="25"></td>
                                              </tr>
@@ -162,7 +199,6 @@
             </div>
             
             <div class="sale1 mb-1 pointer">
-               <div  style="display:none;" class="cancel-button"><a id="#" href="#">X</a></div>
                <table data-group="sale" class="main-table" id="sale1" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border: 0px; border-collapse: collapse; margin: 0 auto;" data-module="sale-2" data-thumb="">
                   <tbody>
                      <tr>
@@ -180,46 +216,41 @@
                                        </table>
                                        <table data-repeatable="" width="600" align="center" class="container" border="0" cellpadding="0" cellspacing="0" style="width:600px;">
                                           <tbody>
-                                             <tr>
-                                                 @foreach($items as $cartItem)
+                                               @foreach($items as $cartItem)
+<tr style="border:2px solid #ccc;">
+   <td align="center" valign="top">
+      <table width="600" align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px;">
+         <tr>
+            <!-- Left column: Image -->
+            <td width="20" align="left" style="padding: 10px;">
+               <img src="{{ $cartItem['image_url'] }}" width="100" style="max-width:100px; display:block; border:0;" alt="">
+            </td>
 
-                                                <th width="280" align="left" class="container-wrap" valign="top" style="vertical-align: top; width:280px;">
-                                                   <table width="280" align="left" class="container" border="0" cellpadding="0" cellspacing="0" style="width:280px;">
-                                                      <tbody>
-                                                         <tr>
-                                                            <td align="center" class="container-image container-image1"><img class="p-img" src="{{$cartItem['image_url'] }}" width="100%" height="auto" alt="" style="width: 100%; max-width: 100px; display: block; border: 0px;"></td>
-                                                         </tr>
-                                                         <tr>
-                                                            <td height="17"></td>
-                                                         </tr>
-                                                         <tr>
-                                                            <td class="text" data-fontweight="700"  data-letterspacing="0.05" data-lineheight="20"  data-fontsize="20" data-align="center" style="text-align:center; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size:20px; line-height: 20px; text-decoration: none; color: #000000; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em" data-size="sale-2-title-size" data-color="sale-2-title-color" data-link-color="sale-2-link-color" data-link-style="color: blue;">
-                                                             {{ $cartItem['name']  }}
-                                                            </td>
-                                                         </tr>
-                                                         <tr>
-                                                            <td height="11"></td>
-                                                         </tr>
-                                                      
-                                                         <tr>
-                                                            <td class="text" data-fontweight="700" data-fontsize="25" data-letterspacing="0.05" data-lineheight="25"  data-align="center"  style="text-align:center; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size:25px; line-height: 25px; text-decoration: none; color: #000000; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em" data-size="sale-2-price-size" data-color="sale-2-price-color" data-link-color="sale-2-link-color" data-link-style="color: blue;">
-                                                               ₦{{ $cartItem['price'] }}
-                                                            </td>
-                                                         </tr>
-                                                         <tr>
-                                                            <td height="27"></td>
-                                                         </tr>
-                                                        
-                                                         <tr>
-                                                            <td height="38"></td>
-                                                         </tr>
-                                                      </tbody>
-                                                   </table>
-                                                </th>
-                                                @endforeach
-                                             
-                                              
-                                             </tr>
+            <!-- Right column: Name and Price -->
+            <td width="400" valign="middle" align="left" style="padding: 10px;">
+               <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                  <tr>
+                     <td class="text" style="text-align:left; font-family: 'Montserrat', Arial, sans-serif; font-size:15px; line-height:24px; font-weight:700; color:#000000; text-transform: uppercase;">
+                        {{ $cartItem['name'] }}
+                     </td>
+                  </tr>
+                  <tr>
+                     <td height="10"></td>
+                  </tr>
+                  <tr>
+                     <td class="text" style="text-align:left; font-family: 'Montserrat', Arial, sans-serif; font-size:15px; line-height:28px; font-weight:700; color:#000000; text-transform: uppercase;">
+                        ₦{{ $cartItem['price'] }}
+                     </td>
+                  </tr>
+               </table>
+            </td>
+         </tr>
+         <tr><td colspan="2" height="30"></td></tr> 
+      </table>
+   </td>
+</tr>
+@endforeach
+
                                             
                                           </tbody>
                                        </table>
@@ -250,9 +281,9 @@
                                              
                                              <tr>
 
-                                                <td class="text"  data-color="#000000"  style="vertical-align:top; text-align:center; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size:13px; line-height: 20px; text-decoration: none; color: #000000; font-weight: 400;" data-size="footer-4-rights-size" data-color="footer-4-rights-color" data-link-color="footer-4-link-color" data-link-style="color: blue;">
-                                                   <a href="https://autofactorng.com/checkout" class="anchor-link  anchor"  data-size="blue-btn-txt-size" data-color="blue-btn-txt-color" style="color:#ffffff;">Checkout</a>
-                                               
+                                                <td class="text"  -color="#000000"  style="vertical-align:top; text-align:center; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size:13px; line-height: 20px; text-decoration: none; color: #000000; font-weight: 400;" data-size="footer-4-rights-size" data-color="footer-4-rights-color" data-link-color="footer-4-link-color" data-link-style="color: blue;">
+                                                   <a href="{{ url('/checkout') }}" class="anchor-link  anchor"  data-size="blue-btn-txt-size" data-color="blue-btn-txt-color" style="color:#ffffff;">Checkout</a>
+                                             
                                                 </td>
 
                                              </tr>
@@ -293,7 +324,7 @@
                                              </tr>
                                              <tr>
                                                 <td class="text"  data-color="#000000"  style="vertical-align:top; text-align:center; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size:13px; line-height: 20px; text-decoration: none; color: #444444; font-weight: 400;" data-size="footer-4-rights-size" data-color="footer-4-rights-color" data-link-color="footer-4-link-color" data-link-style="color: blue;">
-                                                  © 2025 Autofactorng. All rights reserved.                                                
+                                                  © {{date('Y')}} Autofactorng. All rights reserved.                                                
                                                 </td>
                                              </tr>
                                              <tr>
@@ -312,7 +343,11 @@
                                                                <table data-repeatable="" border="0" cellpadding="0" cellspacing="0" style="display:table-cell;vertical-align:middle;">
                                                                   <tbody>
                                                                      <tr>
-                                                                        <td align="center" style="padding-right:6px;" valign="middle"><img src="/images/icons/t-icon-blue.png" border="0" data-crop="false" width="auto" height="auto" alt="" style="display:block; border: 0px; width: auto;"></td>
+                                                                        <td align="center" style="padding-right:6px;" valign="middle">
+                                                                           <a href="https://www.facebook.com/autofactorng/">
+                                                                              <img src="{{ url('/images/icons/facebook.png') }}" border="0" data-crop="false" width="100" height="100" alt="" style="height: 40px; display:block; max-width: 40px; width: 40px; border: 0px; width: auto;">
+                                                                           </a>
+                                                                        </td>
                                                                      </tr>
                                                                   </tbody>
                                                                </table>
@@ -328,7 +363,12 @@
                                                                <table data-repeatable="" border="0" cellpadding="0" cellspacing="0" style="display:table-cell;vertical-align:middle;">
                                                                   <tbody>
                                                                      <tr>
-                                                                        <td align="center" style="padding:0 6px;" valign="middle"><img src="/images/icons/f-icon-blue.png" border="0" data-crop="false" width="auto" height="auto" alt="" style="display:block; border: 0px; width: auto;"></td>
+                                                                        <td align="center" style="padding:0 6px;" valign="middle">
+                                                                           <a href="http://instagram.com/autofactorng/">
+                                                                              <img src="{{ url('/images/icons/icon-ig.png') }}" border="0" data-crop="false" width="auto" height="auto" alt="" style="height: 40px; display:block; max-width: 40px; width: 40px; border: 0px; width: auto;">
+
+                                                                           </a>
+                                                                        </td>
                                                                      </tr>
                                                                   </tbody>
                                                                </table>
@@ -349,7 +389,10 @@
                                                                <table data-repeatable="" border="0" cellpadding="0" cellspacing="0" style="display:table-cell;vertical-align:middle;">
                                                                   <tbody>
                                                                      <tr>
-                                                                        <td align="center" style="padding:0 6px;" valign="middle"><img src="/images/icons/ins-icon-blue.png" border="0" data-crop="false" width="auto" height="auto" alt="" style="display:block; border: 0px; width: auto;"></td>
+                                                                        <td align="center" style="padding:0 6px;" valign="middle">
+                                                                           <a href="">
+                                                                           </a>
+                                                                        </td>
                                                                      </tr>
                                                                   </tbody>
                                                                </table>

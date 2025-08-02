@@ -36,19 +36,19 @@ class SendAbandonedCartEmail implements ShouldQueue
      public function handle()
 {
     $carts = AbandonedCart::with(['user', 'items'])
-        ->where('recovered', false)
-        ->where('checkout_started_at', '<=', now()->subMinute())
-        ->get();
+    ->where('recovered', false)
+    ->where('checkout_started_at', '<=', now()->subHour())
+    ->get();
 
-    // if ($carts->isNotEmpty()) {
-    //     foreach ($carts as $cart) {
-    //             $user = $cart->user;
+    if ($carts->isNotEmpty()) {
+        foreach ($carts as $cart) {
+                $user = $cart->user;
 
-    //             if ($user && $user->email) {
-    //                 Mail::to($user->email)->send(new AbandonedCartMail($user, $cart));
-    //                 $cart->delete();
-    //             }
-    //         }
-    //     }
-    // }
+                if ($user && $user->email) {
+                    Mail::to($user->email)->send(new AbandonedCartMail($user, $cart));
+                    $cart->delete();
+                }
+            }
+        }
+    }
 }
