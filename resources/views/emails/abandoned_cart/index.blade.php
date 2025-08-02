@@ -222,9 +222,17 @@
       <table width="600" align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px;">
          <tr>
             <!-- Left column: Image -->
-            <td width="20" align="left" style="padding: 10px;">
-               <img src="{{ $cartItem['image_url'] }}" width="100" style="max-width:100px; display:block; border:0;" alt="">
-            </td>
+            <td align="left" style="padding: 10px;">
+   <table width="100" border="0" cellpadding="0" cellspacing="0">
+      <tr>
+         <td style="width: 100px;">
+            <img src="{{ $cartItem['image_url'] }}" 
+                 alt="" 
+                 style="display: block; width: 100%; max-width: 100px; height: auto; border: 0;">
+         </td>
+      </tr>
+   </table>
+</td>
 
             <!-- Right column: Name and Price -->
             <td width="400" valign="middle" align="left" style="padding: 10px;">
