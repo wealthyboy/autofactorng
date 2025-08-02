@@ -40,15 +40,15 @@ class SendAbandonedCartEmail implements ShouldQueue
         ->where('checkout_started_at', '<=', now()->subMinute())
         ->get();
 
-    if ($carts->isNotEmpty()) {
-        foreach ($carts as $cart) {
-                $user = $cart->user;
+    // if ($carts->isNotEmpty()) {
+    //     foreach ($carts as $cart) {
+    //             $user = $cart->user;
 
-                if ($user && $user->email) {
-                    Mail::to($user->email)->send(new AbandonedCartMail($user, $cart));
-                    $cart->delete();
-                }
-            }
-        }
-    }
+    //             if ($user && $user->email) {
+    //                 Mail::to($user->email)->send(new AbandonedCartMail($user, $cart));
+    //                 $cart->delete();
+    //             }
+    //         }
+    //     }
+    // }
 }
