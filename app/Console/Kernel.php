@@ -5,7 +5,7 @@ namespace App\Console;
 use App\Console\Commands\AutoCreditExpiry;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use SendAbandonedCartEmail;
+use App\Jobs\SendAbandonedCartEmail;
 
 
 class Kernel extends ConsoleKernel
