@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Http\Helper;
 use App\Jobs\ReviewProduct;
 use App\Mail\OrderReceipt;
-use App\Mail\AbandonedCart;
+use App\Models\AbandonedCart;
 
 use App\Traits\ColumnFillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -158,7 +158,7 @@ class Order extends Model
 				OrderedProduct::Insert($insert);
 				$cart->status = 'paid';
 
-			   AbandonedCart::where('user_id', $user->id)->delete();
+			    AbandonedCart::where('user_id', $user->id)->delete();
 
 				$cart->delete();
 			}
