@@ -116,10 +116,15 @@ Route::get('/notification', function () {
 
 
 Route::get('/mailable-preview', function () {
-    $user = \App\Models\User::find(7055);
+    $user = \App\Models\User::first();
 
-    $carts = \App\Models\AbandonedCart::with('items')->first(); // fake or existing abandoned cart    
 
+    $carts = \App\Models\AbandonedCart::with('items')->first(); // fake or existing abandoned cart
+    
+    \Mail::to($user->email)->send(new \App\Mail\AbandonedCartMail($user, $carts));
+
+    
+    
     return new \App\Mail\AbandonedCartMail($user, $carts);
 });
 

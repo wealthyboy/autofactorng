@@ -65,7 +65,15 @@
          .bg-cov-perc {background-size: 100% 79% !important;}
          .border-none {border:0 !important;}
       }
+
+      @media only screen and (max-width: 480px) {
+  td[align="center"][valign="top"] {
+    width: 50% !important;
+    display: inline-block !important;
+  }
+}
    </style>
+
 
 </head>
 <body class="body">
@@ -76,7 +84,7 @@
                <table data-group="navigation" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border: 0px; border-collapse: collapse; margin: 0 auto;" data-module="navigation-11" data-thumb="http://www.stampready.net/dashboard/editor/user_uploads/zip_uploads/2019/04/01/quA5rxOyIJGf1ltjV7sLaSM8/Full/thumbnails/nav-11.jpg">
                   <tbody>
                      <tr>
-                        <td align="center" style="background-color: #ffffff" bgcolor="#ededed" data-bgcolor="body-bg">
+                        <td align="center" style="background-color: #ededed" bgcolor="#ededed" data-bgcolor="body-bg">
                            <table class="container-main" align="center" border="0" cellpadding="0" cellspacing="0" style="min-width: 100%;">
                               <tbody>
                                  <tr class="main-row">
@@ -119,10 +127,11 @@
                </table>
             </div>
             <div class="titles mb-1 pointer">
+              <div style="display:none;" class="cancel-button "><a id="#" href="#">X</a></div>
               <table data-group="titles" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border: 0px; border-collapse: collapse; margin: 0 auto;" data-module="title-variant-8" data-thumb="http://www.stampready.net/dashboard/editor/user_uploads/zip_uploads/2019/04/01/quA5rxOyIJGf1ltjV7sLaSM8/Full/thumbnails/var-8.jpg">
                   <tbody>
                      <tr>
-                        <td align="center" style="background-color: #ffffff" bgcolor="#ffffff" data-bgcolor="body-bg">
+                        <td align="center" style="background-color: #ededed" bgcolor="#ededed" data-bgcolor="body-bg">
                            <table class="container-main" align="center" border="0" cellpadding="0" cellspacing="0" style="min-width: 100%;">
                               <tbody>
                                  <tr class="main-row">
@@ -170,7 +179,7 @@
             <!-- Icon -->
             <td style="padding-left: 8px;">
                <a href="https://wa.me/+23409081155505" style="display: inline-block;">
-                  <img src="{{ url('/images/icons/whatsapp.png') }}"
+                  <img src="https://autofactorng.com/images/icons/whatsapp.png"
                        alt="WhatsApp"
                        width="44"
                        height="44"
@@ -201,7 +210,7 @@
                <table data-group="sale" class="main-table" id="sale1" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border: 0px; border-collapse: collapse; margin: 0 auto;" data-module="sale-2" data-thumb="">
                   <tbody>
                      <tr>
-                        <td align="center" style="background-color: #ffffff" bgcolor="#ededed" data-bgcolor="body-bg">
+                        <td align="center" style="background-color: #ededed" bgcolor="#ededed" data-bgcolor="body-bg">
                            <table class="container-main" align="center" border="0" cellpadding="0" cellspacing="0" style="min-width: 100%;">
                               <tbody>
                                  <tr class="main-row">
@@ -213,54 +222,46 @@
                                              </tr>
                                           </tbody>
                                        </table>
-                                       <table data-repeatable="" width="600" align="center" class="container" border="0" cellpadding="0" cellspacing="0" style="width:600px;">
-                                          <tbody>
-                                               @foreach($items as $cartItem)
-<tr style="border:2px solid #ccc;">
-   <td align="center" valign="top">
-      <table width="600" align="center" border="0" cellpadding="0" cellspacing="0" style="width:600px;">
-         <tr>
-            <!-- Left column: Image -->
-            <td align="left" style="padding: 10px;">
-   <table width="100" border="0" cellpadding="0" cellspacing="0">
-      <tr>
-         <td style="width: 100px;">
-            <img src="{{ $cartItem['image_url'] }}" 
-                 alt="" 
-                 style="display: block; width: 100%; max-width: 100px; height: auto; border: 0;">
-         </td>
-      </tr>
-   </table>
-</td>
-
-            <!-- Right column: Name and Price -->
-            <td width="400" valign="middle" align="left" style="padding: 10px;">
-               <table border="0" cellpadding="0" cellspacing="0" width="100%">
-                  <tr>
-                     <td class="text" style="text-align:left; font-family: 'Montserrat', Arial, sans-serif; font-size:15px; line-height:24px; font-weight:700; color:#000000; text-transform: uppercase;">
-                        {{ $cartItem['name'] }}
-                     </td>
-                  </tr>
-                  <tr>
-                     <td height="10"></td>
-                  </tr>
-                  <tr>
-                     <td class="text" style="text-align:left; font-family: 'Montserrat', Arial, sans-serif; font-size:15px; line-height:28px; font-weight:700; color:#000000; text-transform: uppercase;">
-                        ₦{{ $cartItem['price'] }}
-                     </td>
-                  </tr>
-               </table>
-            </td>
-         </tr>
-         <tr><td colspan="2" height="30"></td></tr> 
+         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:600px; margin: 0 auto;">
+  <tr>
+    @foreach($items as $index => $cartItem)
+    <td align="center" valign="top" width="33.33%" style="padding: 4px;">
+      <!--[if (gte mso 9)|(IE)]>
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr><td>
+      <![endif]-->
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border:1px solid #ddd; border-radius:5px;">
+        <tr>
+          <td align="center" style="padding: 0;">
+            <img src="{{ $cartItem['image_url'] }}" alt="{{ $cartItem['name'] }}" style="display: block; width: 100%; max-width: 160px; height: auto; border: 0;">
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="padding: 6px 4px 2px; font-family: Arial, sans-serif; font-size: 13px; font-weight: bold; color: #333;">
+            {{ \Illuminate\Support\Str::limit($cartItem['name'], 22) }}
+          </td>
+        </tr>
+        <tr>
+          <td align="center" style="font-size: 14px; color: #000; font-weight: bold; padding-bottom: 8px;">
+            ₦{{ number_format($cartItem['price']) }}
+          </td>
+        </tr>
       </table>
-   </td>
-</tr>
-@endforeach
+      <!--[if (gte mso 9)|(IE)]>
+        </td></tr></table>
+      <![endif]-->
+    </td>
 
-                                            
-                                          </tbody>
-                                       </table>
+    @if(($index + 1) % 3 == 0)
+      </tr><tr>
+    @endif
+
+    @endforeach
+  </tr>
+</table>
+
+
+
                                     </td>
                                  </tr>
                               </tbody>
@@ -271,8 +272,8 @@
                </table>
             </div>
             
-             <div class="footer mb-1 pointer">
-               <table data-group="footer" class="main-table" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border: 0px; border-collapse: collapse; margin: 0 auto;" data-module="footer-4" data-thumb="">
+             <div  style="margin-top: 30px;" class="footer mb-1 pointer">
+               <table  data-group="footer" class="main-table" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border: 0px; border-collapse: collapse; margin: 0 auto;" data-module="footer-4" data-thumb="">
                   <tbody>
                      <tr>
                         <td align="center" style="background-color: #ffffff" bgcolor="#ffffff" data-bgcolor="body-bg">
@@ -285,6 +286,7 @@
                                                <tr>
                                                 <td height="10"></td>
                                              </tr>
+                                             
                                              
                                              <tr>
 
@@ -315,7 +317,6 @@
         
             
             <div class="footer mb-1 pointer">
-               <div style="display:none;" class="cancel-button"><a id="#" href="#">X</a></div>
                <table data-group="footer" class="main-table" width="100%" align="center" border="0" cellpadding="0" cellspacing="0" style="border: 0px; border-collapse: collapse; margin: 0 auto;" data-module="footer-4" data-thumb="">
                   <tbody>
                      <tr>
@@ -352,7 +353,7 @@
                                                                      <tr>
                                                                         <td align="center" style="padding-right:6px;" valign="middle">
                                                                            <a href="https://www.facebook.com/autofactorng/">
-                                                                              <img src="{{ url('/images/icons/facebook.png') }}" border="0" data-crop="false" width="100" height="100" alt="" style="height: 40px; display:block; max-width: 40px; width: 40px; border: 0px; width: auto;">
+                                                                              <img src="https://autofactorng.com/images/icons/facebook.png" border="0" data-crop="false" width="100" height="100" alt="" style="height: 40px; display:block; max-width: 40px; width: 40px; border: 0px; width: auto;">
                                                                            </a>
                                                                         </td>
                                                                      </tr>
@@ -372,7 +373,7 @@
                                                                      <tr>
                                                                         <td align="center" style="padding:0 6px;" valign="middle">
                                                                            <a href="http://instagram.com/autofactorng/">
-                                                                              <img src="{{ url('/images/icons/icon-ig.png') }}" border="0" data-crop="false" width="auto" height="auto" alt="" style="height: 40px; display:block; max-width: 40px; width: 40px; border: 0px; width: auto;">
+                                                                              <img src="https://autofactorng.com/images/icons/icon-ig.png" border="0" data-crop="false" width="auto" height="auto" alt="" style="height: 40px; display:block; max-width: 40px; width: 40px; border: 0px; width: auto;">
 
                                                                            </a>
                                                                         </td>
