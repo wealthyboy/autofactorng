@@ -37,7 +37,7 @@ class SendAbandonedCartEmail implements ShouldQueue
 {
     $carts = AbandonedCart::with(['user', 'items'])
         ->where('recovered', false)
-        ->where('checkout_started_at', '<=', now()->subMinute())
+        ->where('checkout_started_at', '<=', now()->subHour())
         ->get();
 
     if ($carts->isNotEmpty()) {
