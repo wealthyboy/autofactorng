@@ -215,7 +215,7 @@ class Order extends Model
 				'to' => $to,
 				'type' => 'template',
 				'template' => [
-					'name' => 'admin_order', // use your actual template name
+					'name' => 'delivery_update_4', // use your actual template name
 					'language' => [
 						'code' => 'en_US'
 					],
