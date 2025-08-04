@@ -220,6 +220,8 @@ class CartController  extends Controller
 	public function destroy(Request $request, $cart_id)
 	{ 
 		
+		$carts = Cart::all_items_in_cart();
+
 		if ($request->ajax()) {
 			$cart =  Cart::find($cart_id);
 			if (null !== $cart) {
@@ -229,7 +231,6 @@ class CartController  extends Controller
 			$user = $request->user();
            if (auth()->check()) {
 				$cartItems = Cart::with('product')->where('user_id', $user->id)->get(); 
-
                 $items = $cartItems->map(function ($cart)  {
 				    return [
 						'product_id' => $cart->product_id,
@@ -243,7 +244,14 @@ class CartController  extends Controller
 					['user_id' => $user->id],
 					['checkout_started_at' => now(), 'recovered' => false, 'cart_items' =>  $items]
 				);
+
+				if ( $carts->isEmpty() ) {
+				   AbandonedCart::where('user_id', $user->id)->delete();
+			    }
 			}
+
+			
+
 			return $this->loadCart($request);
 		}
 	}
