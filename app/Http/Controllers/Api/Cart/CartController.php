@@ -220,7 +220,6 @@ class CartController  extends Controller
 	public function destroy(Request $request, $cart_id)
 	{ 
 		
-		$carts = Cart::all_items_in_cart();
 
 		if ($request->ajax()) {
 			$cart =  Cart::find($cart_id);
@@ -245,9 +244,11 @@ class CartController  extends Controller
 					['checkout_started_at' => now(), 'recovered' => false, 'cart_items' =>  $items]
 				);
 
+				$carts = Cart::all_items_in_cart();
+
 				if ( $carts->isEmpty() ) {
-				   AbandonedCart::where('user_id', $user->id)->delete();
-			    }
+					AbandonedCart::where('user_id', $user->id)->delete();
+				}
 			}
 
 			
