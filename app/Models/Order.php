@@ -228,8 +228,7 @@ class Order extends Model
 						]
 					]
 				]
-			]);
-
+		]);
 
 		return $response->json($response);
 	}
