@@ -57,40 +57,34 @@
                                 ></a>
 
                                 <a
-                                    v-if="walletBalance"
-                                    href="#"
-                                    @click.prevent="checkoutWithWallet($event)"
-                                    class="btn btn-block btn-dark w-100 mb-2"
-                                    :class="{
-                                        'pe-none':
-                                            parseInt(
-                                                walletBalance.wallet_balance
-                                            ) < 1,
-                                        disabled:
-                                            parseInt(
-                                                walletBalance.wallet_balance
-                                            ) < 1,
-                                    }"
-                                >
-                                    Pay with wallet
-                                    <span class="bold">
-                                        {{
-                                            parseInt(
-                                                walletBalance.wallet_balance
-                                            ) > 1
-                                                ? "(Add  " +
-                                                  $filters.formatNumber(
-                                                      total -
-                                                          parseInt(
-                                                              walletBalance.wallet_balance
-                                                          )
-                                                  ) +
-                                                  ")"
-                                                : ""
-                                        }}</span
-                                    >
-                                    <i class="fa fa-arrow-right"></i
-                                ></a>
+    v-if="walletBalance"
+    href="#"
+    @click.prevent="checkoutWithWallet($event)"
+    class="btn btn-block btn-dark w-100 mb-2"
+    :class="{
+        'pe-none': parseFloat(walletBalance.wallet_balance) < 1,
+        disabled: parseFloat(walletBalance.wallet_balance) < 1,
+    }"
+>
+    Pay with wallet
+    <span class="bold">
+        {{
+            parseFloat(walletBalance.wallet_balance) >= total
+                ? "(Wallet balance: " +
+                  $filters.formatNumber(walletBalance.wallet_balance) +
+                  ")"
+                : "(Add " +
+                  $filters.formatNumber(
+                      total - parseFloat(walletBalance.wallet_balance)
+                  ) +
+                  " — " +
+                  $filters.formatNumber(walletBalance.wallet_balance) +
+                  " balance)"
+        }}
+    </span>
+    <i class="fa fa-arrow-right"></i>
+</a>
+
                                 <a
                                     href="#"
                                     :class="{
