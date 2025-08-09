@@ -231,16 +231,16 @@ class OrdersController extends Table
 			$user = User::find(1);
 			$when = now()->addMinutes(5);
 			$order->full_name = $request->first_name;
-			// Mail::to($request->email)
-			// 	->bcc('order@autofactorng.com')
-			// 	->send(new OrderReceipt($order, null, null, $sub_total));
-			//	} catch (\Throwable $th) {
-			// Log::info("Mail error :" . $th);
-			// Log::info("Custom error :" . $th);
-			// $err = new Error();
-			// $err->error = $th->getMessage();
-			// $err->save();
-			//}
+			Mail::to($request->email)
+				->bcc('order@autofactorng.com')
+				->send(new OrderReceipt($order, null, null, $sub_total));
+				} catch (\Throwable $th) {
+			Log::info("Mail error :" . $th);
+			Log::info("Custom error :" . $th);
+			$err = new Error();
+			$err->error = $th->getMessage();
+			$err->save();
+			}
 
 			// Send Mail
 			(new Activity)->put("Added a new order with email and phone number  " . $request->email . ' and ' . $request->phone_number);
