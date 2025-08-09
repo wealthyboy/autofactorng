@@ -248,7 +248,9 @@ class OrdersController extends Table
 			//DB::commit();
 			return  redirect()->route('admin.orders.index');
 		} catch (\Throwable $th) {
-			DB::rollBack();
+
+			dd($th);
+			//DB::rollBack();
 			return  redirect()->route('admin.orders.index')->with('errors', 'Something went wrong');
 		}
 	}
