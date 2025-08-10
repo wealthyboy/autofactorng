@@ -120,12 +120,17 @@ Route::get('/mailable-preview', function () {
 
 
     $carts = \App\Models\AbandonedCart::with('items')->first(); // fake or existing abandoned cart
+
+    	$r = Order::sendWhatsApMessage(2348169389886, '456465');
+
+        dd($r->body());
+
     
-    \Mail::to($user->email)->send(new \App\Mail\AbandonedCartMail($user, $carts));
+   /// \Mail::to($user->email)->send(new \App\Mail\AbandonedCartMail($user, $carts));
 
     
     
-    return new \App\Mail\AbandonedCartMail($user, $carts);
+  //  return new \App\Mail\AbandonedCartMail($user, $carts);
 });
 
 
@@ -224,3 +229,6 @@ Route::post('webhook/payment/zilla',     'WebHook\WebHookController@zilla');
 //Route::post('contact/store',     'Contact\ContactController@store');
 Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
 Route::get('pages/{information}', 'Pages\PagesController@index');
+
+Route::post('/emailapi-service', 'EmailApiController@sendEmail');
+
