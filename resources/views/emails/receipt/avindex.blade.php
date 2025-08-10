@@ -13,10 +13,11 @@
          mso-table-rspace: 0pt;
       }
 
+
       td,
       th {
          border-collapse: collapse;
-      }
+      }`
 
       a {
          text-decoration: none;
@@ -403,12 +404,12 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="wz" width="30"></td>
-                                                      <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #000;font-family: sans-serif;font-size: 13px;font-weight: lighter;text-align: left;line-height: 23px;">Dear {{ $user_reservation->guest_user->fullname() }},<br>Thank you for choosing Avenue montaigne for your stay. We are pleased to inform you that your reservation request is CONFIRMED and your reservation details are as follows.
+                                                      <td class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #000;font-family: sans-serif;font-size: 13px;font-weight: lighter;text-align: left;line-height: 23px;">Dear {{ $user_reservation['guest_user']['name'] }} {{ $user_reservation['guest_user']['last_name'] }},<br>Thank you for choosing Avenue montaigne for your stay. We are pleased to inform you that your reservation request is CONFIRMED and your reservation details are as follows.
                                                          <br />
                                                          <b>Note: You’re required to present a valid ID upon arrival to check-in. You can also self check-in by clicking the link below to upload your ID
 
                                                             <br />
-                                                            <a style="text-align:left; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size:14px; line-height: 14px; text-decoration: none; color: #27af9a; font-weight:600; text-transform: uppercase; letter-spacing: 0.05em" class="" href="https://avenuemontaigne.ng/check-in?id={{$user_reservation->id}}">Click here to Check-in</a>
+                                                            <a style="text-align:left; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size:14px; line-height: 14px; text-decoration: none; color: #27af9a; font-weight:600; text-transform: uppercase; letter-spacing: 0.05em" class="" href="https://avenuemontaigne.ng/check-in?id={{$user_reservation['id']}}">Click here to Check-in</a>
                                                          </b>
 
                                                       </td>
@@ -466,10 +467,10 @@
                                                             </tr>
 
                                                             <tr>
-                                                               <td colspan="3" class="RegularTextTD" data-color="RegularTXT" style="margin-left: 3px;color: #000;font-family: sans-serif;font-size: 13px;font-weight: lighter;line-height: 23px; margin-bottom: 6px;"> {{ $user_reservation->property->address }} <br />
+                                                               <td colspan="3" class="RegularTextTD" data-color="RegularTXT" style="margin-left: 3px;color: #000;font-family: sans-serif;font-size: 13px;font-weight: lighter;line-height: 23px; margin-bottom: 6px;"> 37 Cooper road, ikoyi, Lagos. <br />
 
-                                                                  <div style="font-size: 18px;font-weight: bold;  margin-bottom: 6px;">Check-in Time: <span style="font-size: 13px;font-weight: normal;"> {{ optional($user_reservation->property)->check_in_time }}</span></div>
-                                                                  <div style="font-size: 18px;font-weight: bold;  margin-bottom: 6px;">Check-out Time: <span style="font-size: 13px;font-weight: normal;"> {{ optional($user_reservation->property)->check_out_time }}</span></div>
+                                                                  <div style="font-size: 18px;font-weight: bold;  margin-bottom: 6px;">Check-in Time: <span style="font-size: 13px;font-weight: normal;"> 2:00 PM</span></div>
+                                                                  <div style="font-size: 18px;font-weight: bold;  margin-bottom: 6px;">Check-out Time: <span style="font-size: 13px;font-weight: normal;"> 12:00 PM</span></div>
 
                                                                </td>
                                                             </tr>
@@ -525,7 +526,7 @@
                                                                <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Booking No</td>
                                                             </tr>
                                                             <tr>
-                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $user_reservation->invoice }}</td>
+                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $user_reservation['invoice'] }}</td>
                                                             </tr>
                                                             <tr>
                                                                <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
@@ -553,7 +554,7 @@
                                                                <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Receipt Date</td>
                                                             </tr>
                                                             <tr>
-                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $user_reservation->created_at->toFormattedDateString()  }}</td>
+                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ 'date'  }}</td>
                                                             </tr>
                                                             <tr>
                                                                <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
@@ -581,7 +582,7 @@
                                                                <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Receipt Total</td>
                                                             </tr>
                                                             <tr>
-                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $user_reservation->currency ?? '₦'}}{{ number_format($user_reservation->total) }}</td>
+                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $user_reservation['currency'] ?? '₦'}}{{ number_format($user_reservation['total']) }}</td>
                                                             </tr>
                                                             <tr>
                                                                <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
@@ -647,7 +648,7 @@
       </tr>
    </table>
    <div class="pofbg"></div>
-   <?php foreach ($user_reservation->reservations as $reservation) { ?>
+   <?php foreach ($user_reservation['reservations'] as $reservation) { ?>
       <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="InvoiceItemDetailsModule" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
          <tr>
             <td align="center">
@@ -676,7 +677,7 @@
                                                                         <tbody>
                                                                            <tr>
                                                                               <td align="right" class="container-image">
-                                                                                 <img class="p-img" src="{{ optional($reservation->apartment)->image_g }}" width="100%" height="auto" alt="locl" style="width: 100%; max-width: 150px; display: block; border: 0px;">
+                                                                                 <img class="p-img" src="{{ $reservation['apartment']['image_g'] }}" width="100%" height="auto" alt="locl" style="width: 100%; max-width: 150px; display: block; border: 0px;">
 
                                                                               </td>
                                                                            </tr>
@@ -693,7 +694,7 @@
 
                                                                                        <tr>
                                                                                           <td class="text" style="text-align:left; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size:14px; line-height: 14px; text-decoration: none; color: #27af9a; font-weight:600; text-transform: uppercase; letter-spacing: 0.05em">
-                                                                                             {{ optional($reservation->apartment)->name ?? optional($reservation->property)->name }}
+                                                                                             {{ $reservation['apartment']['name']  }}
                                                                                           </td>
                                                                                        </tr>
                                                                                        <tr>
@@ -701,7 +702,7 @@
                                                                                        </tr>
                                                                                        <tr>
                                                                                           <td class="text" data-color="#000000" data-fontsize="13" data-fontweight="400" data-letterspacing="0.05" data-lineheight="20" data-color="" data-align="left" style="text-align:left; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size:13px; line-height: 20px; text-decoration: none; color: #444444; font-weight:400;" data-size="img-left-text-size" data-color="img-left-text-color" data-link-color="img-left-link-color" data-link-style="color: blue;">
-                                                                                             <b>Check-in</b> : {{ optional($reservation->checkin)->isoFormat('dddd, MMMM Do YYYY') }}
+                                                                                             <b>Check-in</b> : {{ $reservation['checkin_date'] }}
                                                                                           </td>
                                                                                        </tr>
                                                                                        <tr>
@@ -710,7 +711,7 @@
 
                                                                                        <tr>
                                                                                           <td class="text" data-color="#000000" data-fontsize="13" data-fontweight="400" data-letterspacing="0.05" data-lineheight="20" data-color="" data-align="left" style="text-align:left; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size:13px; line-height: 20px; text-decoration: none; color: #444444; font-weight:400;" data-size="img-left-text-size" data-color="img-left-text-color" data-link-color="img-left-link-color" data-link-style="color: blue;">
-                                                                                             <b>Check-out</b>: {{ optional($reservation->checkout)->isoFormat('dddd, MMMM Do YYYY') }}
+                                                                                             <b>Check-out</b>: {{ $reservation['checkout_date'] }}
                                                                                           </td>
                                                                                        </tr>
                                                                                        <tr>
@@ -720,7 +721,7 @@
 
                                                                                        <tr>
                                                                                           <td class="text" data-color="#000000" data-fontsize="13" data-fontweight="400" data-letterspacing="0.05" data-lineheight="20" data-color="" data-align="left" style="text-align:left; font-family: 'Open Sans', Arial, Helvetica, sans-serif; font-size:13px; line-height: 20px; text-decoration: none; color: #444444; font-weight:400;" data-size="img-left-text-size" data-color="img-left-text-color" data-link-color="img-left-link-color" data-link-style="color: blue;">
-                                                                                             {{ $user_reservation->currency ?? '₦' }}{{ $reservation->price * $reservation->rate }} per night
+                                                                                             {{ $user_reservation['currency'] ?? '₦' }}{{ $reservation['price'] * $reservation['rate'] }} per night
                                                                                           </td>
                                                                                        </tr>
                                                                                        <tr>
@@ -807,7 +808,7 @@
                                           </tr>
                                           <tr>
                                              <td class="wz2" width="30"><br></td>
-                                             <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $user_reservation->currency ?? '₦'}}{{ number_format($user_reservation->original_amount)   }}</td>
+                                             <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $user_reservation['currency'] ?? '₦'}}{{ number_format($user_reservation['original_amount']) }}</td>
                                              <td class="wz2" width="30"><br></td>
                                           </tr>
                                           <tr>
@@ -825,7 +826,7 @@
                                           <tr>
                                              <td class="wz2" width="30"><br></td>
                                              <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>
-                                             {{ $user_reservation->payment_type === 'checkin' ?  'Discount' : 'Coupon' }} 
+                                             {{ $user_reservation['payment_type'] === 'checkin' ?  'Discount' : 'Coupon' }} 
                                           
                                           </td>
                                              <td class="wz2" width="30"><br></td>
@@ -843,10 +844,10 @@
                                           <tr>
                                              <td class="wz2" width="30"><br></td>
                                              <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a> 
-                                                @if ( $user_reservation->payment_type === 'checkin' )
-                                                   {{ $user_reservation->discount ?  $user_reservation->discount : "" }} 
+                                                @if ( $user_reservation['payment_type'] === 'checkin' )
+                                                   {{ $user_reservation['discount'] ?  $user_reservation['discount'] : "" }} 
                                                 @else
-                                                  {{ $user_reservation->coupon ?  $user_reservation->coupon.'  -%'.$user_reservation->voucher()->amount . 'off'  : '---' }} 
+                                                  {{ $user_reservation['coupon'] ?  $user_reservation['coupon'].'  -%'.$user_reservation['discount'] . 'off'  : '---' }} 
                                                 @endif
                                              </td>
                                              <td class="wz2" width="30"><br></td>
@@ -882,7 +883,7 @@
                                           </tr>
                                           <tr>
                                              <td class="wz2" width="30"><br></td>
-                                             <td data-bgcolor="ThemeColorBG" class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: rgb(255, 255, 255); font-family: sans-serif; font-size: 15px; text-align: center; line-height: 27px; font-weight: bold; background-color:#342c27;" bgcolor="#67bffd"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>{{ $user_reservation->currency ?? '₦' }}{{ number_format($user_reservation->total) }}</td>
+                                             <td data-bgcolor="ThemeColorBG" class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: rgb(255, 255, 255); font-family: sans-serif; font-size: 15px; text-align: center; line-height: 27px; font-weight: bold; background-color:#342c27;" bgcolor="#67bffd"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>{{ $user_reservation->currency ?? '₦' }}{{ number_format($user_reservation['total']) }}</td>
                                              <td class="wz2" width="30"><br></td>
                                           </tr>
                                           <tr>
@@ -901,7 +902,7 @@
          </td>
       </tr>
    </table>
-   <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="FooterModule" data-thumb="http://www.emailtemplatebuilders.com/INVOICE-Generator/03_TBThumbnails/module-10.jpg" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+   <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="FooterModule"  class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
       <tr>
          <td align="center">
             <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: rgb(234, 235, 235);" width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">

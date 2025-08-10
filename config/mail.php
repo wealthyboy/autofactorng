@@ -47,7 +47,7 @@ return [
         'zeptmail' => [
             'transport' => 'smtp',
             'host' => env('AVMAIL_HOST', 'smtp.zeptomail.com'),
-            'port' => env('AVMAIL_PORT', 587),
+            'port' => env('AVMAIL_PORT', 465),
             'username' => env('AVMAIL_USERNAME'),
             'password' => env('AVMAIL_PASSWORD'),
             'encryption' => env('AVMAIL_ENCRYPTION', 'tls'),

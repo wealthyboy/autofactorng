@@ -12,11 +12,11 @@ class EmailApiController extends Controller
     {
         // Validate incoming payload
         $validated = $request->validate([
-            'to'       => 'required|email',
-            'bcc'      => 'nullable|array',
-            'bcc.*'    => 'email',
-            'subject'  => 'required|string',
-            'data'     => 'required|array', // contains variables for the Mailable
+            'to' => 'required|email',
+            'bcc' => 'nullable|array',
+            'bcc.*' => 'email',
+            'subject' => 'required|string',
+            'data' => 'required|array', // contains variables for the Mailable
         ]);
 
         try {
@@ -36,7 +36,7 @@ class EmailApiController extends Controller
             return response()->json(['status' => 'success'], 200);
         } catch (\Throwable $th) {
             \Log::error("Email sending failed: " . $th->getMessage());
-            return response()->json(['status' => 'error', 'message' => $th->getMessage()], 500);
+            return response()->json(['status' => 'error', 'message' => $th->getMessage()], 400);
         }
     }
 }
