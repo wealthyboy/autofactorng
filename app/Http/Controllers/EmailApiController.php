@@ -26,7 +26,7 @@ class EmailApiController extends Controller
                 $validated['data']['settings']
             );
 
-               $mailer = Mail::mailer('zeptomail')->to($validated['to']);
+               $mailer = Mail::mailer('zeptmail')->to($validated['to']);
                 if (!empty($validated['bcc'])) {
                     $mailer->bcc($validated['bcc']);
                 }
