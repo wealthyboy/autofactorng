@@ -64,13 +64,11 @@
                 ? "(Wallet balance: " +
                   $filters.formatNumber(walletBalance.wallet_balance) +
                   ")"
-                : "(Add " +
+                : "Add " +
                   $filters.formatNumber(
                       total - parseFloat(walletBalance.wallet_balance)
-                  ) +
-                  " — " +
-                  $filters.formatNumber(walletBalance.wallet_balance) +
-                  " balance)"
+                  ) 
+                 
         }}
     </span>
     <i class="fa fa-arrow-right"></i>
