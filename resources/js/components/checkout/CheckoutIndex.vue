@@ -42,14 +42,7 @@
                                 <a
                                     href="#"
                                     @click.prevent="checkoutWithCredit"
-                                    :class="{
-                                        'pe-none':
-                                            prices.total >
-                                            walletBalance?.auto_credit,
-                                        disabled:
-                                            prices.total >
-                                            walletBalance?.auto_credit,
-                                    }"
+                                    
                                     class="btn btn-block btn-dark w-100 mb-2"
                                 >
                                     Pay with auto credits
@@ -62,8 +55,6 @@
     @click.prevent="checkoutWithWallet($event)"
     class="btn btn-block btn-dark w-100 mb-2"
     :class="{
-        'pe-none': parseFloat(walletBalance.wallet_balance) < 1,
-        disabled: parseFloat(walletBalance.wallet_balance) < 1,
     }"
 >
     Pay with wallet
@@ -236,6 +227,12 @@ export default {
         }),
 
         checkoutWithWallet: function (e) {
+            if (parseInt(this.walletBalance.wallet_balance) > this.total){
+                this.checkout(e, "Wallet", "Pay with wallet");
+                return
+
+            }
+
             if (parseInt(this.walletBalance.wallet_balance) > 1) {
                 let total =
                     this.total - parseInt(this.walletBalance.wallet_balance);
