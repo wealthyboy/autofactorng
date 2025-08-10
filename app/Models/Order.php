@@ -153,7 +153,7 @@ class Order extends Model
 					'location' => optional(optional($user->active_address)->address_state)->name
 				];
 
-				self::appendOrderRow($spreedSheetData, "!A1:Z1000");
+				//self::appendOrderRow($spreedSheetData, "!A1:Z1000");
 
 				OrderedProduct::Insert($insert);
 				$cart->status = 'paid';
