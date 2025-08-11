@@ -153,7 +153,7 @@ class Order extends Model
 					'location' => optional(optional($user->active_address)->address_state)->name
 				];
 
-				//self::appendOrderRow($spreedSheetData, "!A1:Z1000");
+				self::appendOrderRow($spreedSheetData, "!A1:Z1000");
 
 				OrderedProduct::Insert($insert);
 				$cart->status = 'paid';
@@ -163,7 +163,7 @@ class Order extends Model
 				$cart->delete();
 			}
 
-			self::sendWhatsApMessage(2349081155505, $order->first_name);
+			//self::sendWhatsApMessage(2349081155505, $order->first_name);
 		}
 
 
