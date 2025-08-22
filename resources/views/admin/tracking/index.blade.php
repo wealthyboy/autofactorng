@@ -4,6 +4,12 @@
 
 <div class="row">
     <form method="GET" class="row g-3 mb-4">
+         <div class="col-md-3">
+            <div class="input-group input-group-outline">
+                <label class="form-label">Ip</label>
+                <input type="text" name="ip" class="form-control" value="{{ request('ip') }}">
+            </div>
+        </div>
         <div class="col-md-3">
             <div class="input-group input-group-outline">
                 <label class="form-label">Source</label>

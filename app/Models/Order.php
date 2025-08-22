@@ -20,7 +20,6 @@ use Google_Client;
 use Google_Service_Sheets;
 use Google_Service_Sheets_ValueRange;
 use App\Observers\ProductObserver;
-
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\ProductReviewNotification;
 
@@ -87,13 +86,13 @@ class Order extends Model
 		$order->city = optional($user->active_address)->city;
 		$order->state = optional(optional($user->active_address)->address_state)->name;
 		$order->ip = $ip;
-
 		if ($order->save()) {
 
 			foreach (Order::$statuses as $key => $status) {
 				if ($status === 'Cancelled') {
 					continue; // Skip this status
 				}
+				
 				$order_status = new OrderStatus();
 				$order_status->is_updated = false;
 				$order_status->status = $status;
@@ -403,6 +402,7 @@ class Order extends Model
 						"Customer" => optional($order->orderEmail)->fullname,
 						"Email" => optional($order->orderEmail)->email,
 						"Payment Type" =>  $order->payment,
+						"Ip Address" =>  $order->ip,
 						"Type" => 'offline',
 						"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 						"Dispatch" => array_merge($d, ['selected' => $order->dispatch ?? 'Select dispatch']),

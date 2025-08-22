@@ -112,12 +112,8 @@ class ProductsController extends Controller
         $this->clearMMYCookies($request);
 
         $product = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%']);
-
-
-
-
-
         $products = Product::where('is_available', true)->get();
+
         foreach ($products as $product) {
             $product->is_available = 0;
             $product->save();
@@ -250,7 +246,12 @@ class ProductsController extends Controller
             $query->where('amphere', $request->amphere);
         }
 
-        $products = $query->filter($request)->latest()->paginate($per_page);
+        if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
+            $products = $query->filter($request)->inRandomOrder()->paginate($per_page);
+        } else {
+            $products = $query->filter($request)->latest()->paginate($per_page);
+        }
+
         $products->load('images');
         $products->appends(request()->all());
         return $products;
