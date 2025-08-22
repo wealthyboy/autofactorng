@@ -175,6 +175,18 @@
 
                         <tbody>
                             @foreach($trackings as $tracking)
+
+                            @php
+                                // If current record has no first_name, try to fetch one from same IP
+                                $firstName = $tracking->first_name;
+
+                                if (empty($firstName)) {
+                                    $firstName = \App\Models\UserTracking::where('ip_address', $tracking->ip_address)
+                                        ->whereNotNull('first_name')
+                                        ->orderBy('id') // you can also use ->latest('id') if you prefer last
+                                        ->value('first_name');
+                                }
+                            @endphp
                             <tr class="table-body">
 
                                 <td class="">
@@ -184,7 +196,7 @@
                                 </td>
                                 <td class="">
                                     <div class="align-middle  text-sm">
-                                        <h6>{{ $tracking->first_name }}</h6>
+                                        <h6>{{ $firstName }}</h6>
                                     </div>
                                 </td>
                                 <td class="">
