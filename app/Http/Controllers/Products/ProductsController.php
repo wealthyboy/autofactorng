@@ -250,7 +250,6 @@ class ProductsController extends Controller
             $products = $query->filter($request)->latest()->paginate($per_page);
         } else {
             $products = $query->filter($request)->inRandomOrder()->paginate($per_page);
-
         }
 
         $products->load('images');

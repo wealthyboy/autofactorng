@@ -54,7 +54,7 @@ class WebHookController extends Controller
                 }
 
                 $payment_method = $request->data['authorization']['channel'];
-                $ip             = $request->data['ip_address'];
+                $ip = $request->data['ip_address'];
 
                 // Create order
                 $order = Order::checkout($input, $payment_method, $ip, $carts, $user);
