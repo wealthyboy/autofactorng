@@ -416,6 +416,8 @@ class Order extends Model
 					"Customer" => null !== $order->user ? $order->user->fullname() : $order->fullName(),
 					"Email" => $order->email,
 					"Payment Type" => $order->payment_type,
+					"Ip Address" => $order->ip,
+
 					"Type" => $order->order_type,
 					"Dispatch" => array_merge($d, ['selected' => $order->dispatch ?? 'Select Dispatch']),
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
