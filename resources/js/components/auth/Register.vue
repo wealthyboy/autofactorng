@@ -28,7 +28,7 @@
       <div class="form-group  p-1 col-6">
       <div class="form-floating">
         <general-input id="phone_number" :error="v$.phone_number" v-model="form.phone_number" name="Phone Number"
-          type="text" :server_errors="server_errors.phone_number" />
+          type="number" :server_errors="server_errors.phone_number" />
 
       </div>
       </div>
