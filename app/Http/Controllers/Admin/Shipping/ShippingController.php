@@ -72,10 +72,11 @@ class ShippingController extends Table
         $shipping->name = $request->name;
         $shipping->price = $request->price;
         $shipping->location_id = $request->location_id;
-        $shipping->parent_id   = $request->parent_id;
+        $shipping->parent_id = $request->parent_id;
         $shipping->save();
 
         if ($request->has('zones')) {
+
             foreach ($request->zones as $zoneData) {
                 if (!empty($zoneData['zone']) || !empty($zoneData['description']) || !empty($zoneData['price'])) {
                     $shipping->zones()->create([
@@ -150,6 +151,9 @@ class ShippingController extends Table
 
          if ($request->has('zones')) {
             $shipping->zones()->delete();
+
+             dd($request->zones )
+
 
             foreach ($request->zones as $zoneData) {
                 if (!empty($zoneData['zone']) || !empty($zoneData['description']) || !empty($zoneData['price'])) {
