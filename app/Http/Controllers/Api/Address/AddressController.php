@@ -56,7 +56,7 @@ class AddressController extends Controller
         $ship_price = $default_address ? optional(optional($default_address->address_state)->shipping)->price : null;
         $large_item_price = [];
         $is_lagos = null !== $default_address && optional($default_address)->state == 'Lagos' ? 1 : 0;
-        $location = $is_lagos ? Location::where('name', optional($default_address)->state)->first() : null;
+        $location =  Location::where('name', optional($default_address)->state)->first() ?? null;
         $zones = null !== $location ? optional($location->shipping)->zones : null;
         $prices['isLagos'] = $is_lagos;
         $prices['is_zones'] = $is_lagos;
