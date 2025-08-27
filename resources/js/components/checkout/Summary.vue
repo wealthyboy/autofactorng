@@ -100,17 +100,15 @@
 
             <div class="list-group">
             <label   
-  :for="`shipping-${index}-${method.zone.replace(/\s+/g, '-').toLowerCase()}`"
- v-for="(method, index) in prices.zones"
+                    :for="`shipping-${index}-${method.zone.replace(/\s+/g, '-').toLowerCase()}`"
+                    v-for="(method, index) in prices.zones"
                     :key="index" class="list-group-item d-flex justify-content-between align-items-center">
                 <div>
                 <input       
-                        :id="`shipping-${index}-${method.zone.replace(/\s+/g, '-').toLowerCase()}`"
-
-
-                     @change="emitPrice(method)"
+                    :id="`shipping-${index}-${method.zone.replace(/\s+/g, '-').toLowerCase()}`"
+                    @change="emitPrice(method)"
                     v-model="selectedMethod"
-                    :value="method.price" type="radio" name="shipping" class="custom-control-input">
+                    :value="method" type="radio" name="shipping" class="custom-control-input">
                 <span class="font-weight-bold">{{ method.zone }}</span>
                 <div class="text-muted small">
                      {{ method.description }}
