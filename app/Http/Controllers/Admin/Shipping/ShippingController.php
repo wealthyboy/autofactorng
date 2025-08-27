@@ -152,11 +152,12 @@ class ShippingController extends Table
          if ($request->has('zones')) {
             $shipping->zones()->delete();
 
-             dd($request->zones);
 
 
             foreach ($request->zones as $zoneData) {
                 if (!empty($zoneData['zone']) || !empty($zoneData['description']) || !empty($zoneData['price'])) {
+                                 dd($request->zones);
+
                     $shipping->zones()->create([
                         'zone' => $zoneData['zone'] ?? null,
                         'description' => $zoneData['description'] ?? null,
