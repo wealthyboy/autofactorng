@@ -147,10 +147,10 @@ class ShippingController extends Table
         // $shipping->sort_order  = $request->sort_order;
         $shipping->parent_id   = $request->parent_id;
         $shipping->save();
+        $shipping->zones()->delete();
 
 
          if ($request->has('zones')) {
-            $shipping->zones()->delete();
 
 
 
