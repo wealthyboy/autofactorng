@@ -94,7 +94,7 @@
        </div>
        
 
-       <div class="card">
+       <div  v-if="prices.zones"  class="card">
         <div class="card-body">
             <h5 class="mb-3 font-weight-bold">Shipping method</h5>
 

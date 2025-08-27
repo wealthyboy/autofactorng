@@ -315,6 +315,8 @@ export default {
                 return;
             }
 
+           
+
             this.checkout(
                 e,
                 "payment_on_delivery",
@@ -350,6 +352,11 @@ export default {
             if (!this.addresses.length) {
                 this.error =
                     "You need to save your address before placing your order";
+                return false;
+            }
+
+            if (!this.ship_price || this.ship_price < 1) {
+                alert("Select your shipping")
                 return false;
             }
 
@@ -403,6 +410,11 @@ export default {
             this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price 
             e.target.innerText = "Please wait.......";
             e.target.classList.add("disabled");
+
+            if (!this.ship_price || this.ship_price < 1) {
+                alert("Select your shipping")
+                return false;
+            }
             axios
                 .post("/checkout/confirm", {
                     coupon: this.coupon_code,
