@@ -104,7 +104,7 @@
                 <div>
                 <input  @change="emitPrice(method)"
                     v-model="selectedMethod"
-                    :value="method.price" type="radio" name="shipping" class="custom-control-input" checked>
+                    :value="method.price" type="radio" name="shipping" class="custom-control-input">
                 <span class="font-weight-bold">{{ method.zone }}</span>
                 <div class="text-muted small">
                      {{ method.description }}
