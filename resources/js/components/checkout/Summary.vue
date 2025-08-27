@@ -99,11 +99,12 @@
             <h5 class="mb-3 font-weight-bold">Shipping Options</h5>
 
             <div class="list-group">
-            <label    :for="`shipping-${index}`"
+            <label   
+             :for="`shipping-${index}-${method.price}`" 
  v-for="(method, index) in prices.zones"
                     :key="index" class="list-group-item d-flex justify-content-between align-items-center">
                 <div>
-                <input        :id="`shipping-${index}`"
+                <input        :id="`shipping-${index}-${method.price}`"
  @change="emitPrice(method)"
                     v-model="selectedMethod"
                     :value="method.price" type="radio" name="shipping" class="custom-control-input">
