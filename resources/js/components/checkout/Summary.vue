@@ -100,14 +100,14 @@
 
             <div class="list-group">
             <label   
-  :for="`shipping-${index}-${Math.floor(Math.random()*10000)}`"
+  :for="`shipping-${index}-8278172`"
  v-for="(method, index) in prices.zones"
                     :key="index" class="list-group-item d-flex justify-content-between align-items-center">
                 <div>
                 <input       
-                      :id="`shipping-${index}-${Math.floor(Math.random()*10000)}`"
+                      :id="`shipping-${index}-8278172`"
 
- @change="emitPrice(method)"
+                     @change="emitPrice(method)"
                     v-model="selectedMethod"
                     :value="method.price" type="radio" name="shipping" class="custom-control-input">
                 <span class="font-weight-bold">{{ method.zone }}</span>
