@@ -107,8 +107,7 @@
                 <input       
                     :id="`shipping-${index}-${method.zone.replace(/\s+/g, '-').toLowerCase()}`"
                     @change="emitPrice(method)"
-                    v-model="selectedMethod"
-                    :value="method" type="radio" name="shipping" class="custom-control-input">
+                     type="radio" name="shipping" class="custom-control-input">
                 <span class="font-weight-bold">{{ method.zone }}</span>
                 <div class="text-muted small">
                      {{ method.description }}
