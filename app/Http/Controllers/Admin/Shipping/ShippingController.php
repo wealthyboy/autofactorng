@@ -152,7 +152,7 @@ class ShippingController extends Table
          if ($request->has('zones')) {
             $shipping->zones()->delete();
 
-             dd($request->zones )
+             dd($request->zones);
 
 
             foreach ($request->zones as $zoneData) {
