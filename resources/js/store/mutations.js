@@ -164,3 +164,8 @@ export const setShowSearch = (state, trueOrFalse) => {
 export const setTotal = (state, total) => {
     state.total = total;
 }
+
+
+export const setOriginalTotal = (state, total) => {
+    state.original_total = total;
+}

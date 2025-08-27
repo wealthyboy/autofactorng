@@ -6,7 +6,7 @@
             <span class="currencySymbol" style="font-size: 28px">
                 <template v-if="voucher">
                     <span class="text-danger fs-3">
-                        <del>{{ $filters.formatNumber(total) }} </del></span
+                        <del>{{ $filters.formatNumber(total) }}</del></span
                     >
                     {{ $filters.formatNumber(amount) }}
                     <p class="fs-5">{{ voucher[0].percent }}</p>

@@ -17,6 +17,10 @@
                             <h3 class="mb-0 fs-3">1. SHIPPING ADDRESSS</h3>
                         </div>
                         <ship-address />
+
+
+
+                        
                     </div>
                 </div>
 
@@ -30,7 +34,7 @@
                         </div>
 
                         <div v-if="addresses.length">
-                            <cart-summary :showCoupon="!false" />
+                            <cart-summary @price-selected="priceSelected" :showCoupon="!false" />
                             <total
                                 :voucher="voucher"
                                 :total="prices.total"
@@ -50,29 +54,29 @@
                                 ></a>
 
                                 <a
-    v-if="walletBalance"
-    href="#"
-    @click.prevent="checkoutWithWallet($event)"
-    class="btn btn-block btn-dark w-100 mb-2"
-    :class="{
-    }"
->
-    Pay with wallet
-    <span class="bold">
-        {{
-            parseFloat(walletBalance.wallet_balance) >= total
-                ? "(Wallet balance: " +
-                  $filters.formatNumber(walletBalance.wallet_balance) +
-                  ")"
-                : "Add " +
-                  $filters.formatNumber(
-                      total - parseFloat(walletBalance.wallet_balance)
-                  ) 
-                 
-        }}
-    </span>
-    <i class="fa fa-arrow-right"></i>
-</a>
+                                    v-if="walletBalance"
+                                    href="#"
+                                    @click.prevent="checkoutWithWallet($event)"
+                                    class="btn btn-block btn-dark w-100 mb-2"
+                                    :class="{
+                                    }" 
+                                >
+                                    Pay with wallet
+                                    <span class="bold">
+                                        {{
+                                            parseFloat(walletBalance.wallet_balance) >= total
+                                                ? "(Wallet balance: " +
+                                                $filters.formatNumber(walletBalance.wallet_balance) +
+                                                ")"
+                                                : "Add " +
+                                                $filters.formatNumber(
+                                                    total - parseFloat(walletBalance.wallet_balance)
+                                                ) 
+                                                
+                                        }}
+                                    </span>
+                                    <i class="fa fa-arrow-right"></i>
+                                </a>
 
                                 <a
                                     href="#"
@@ -145,7 +149,6 @@ import ErrorMessage from "../messages/components/Error";
 import CartSummary from "./Summary";
 import Total from "./Total";
 import Complete from "../utils/Complete.vue";
-import Connect from "@usezilla/zilla-connect";
 import PageLoader from "../utils/PageLoader";
 
 export default {
@@ -161,6 +164,7 @@ export default {
     props: {
         csrf: Object,
     },
+
     data() {
         return {
             locations: [],
@@ -182,6 +186,7 @@ export default {
             paymentIsComplete: false,
             loading: true,
             t: null,
+            ship_price: 0
         };
     },
     computed: {
@@ -194,6 +199,7 @@ export default {
             walletBalance: "walletBalance",
             total: "total",
             coupon_code: "coupon_code",
+            original_total: "original_total"
         }),
 
         activeAddress() {},
@@ -211,6 +217,8 @@ export default {
             this.loading = false;
         });
     },
+    mounted(){
+    },
     methods: {
         ...mapActions({
             createAddress: "createAddress",
@@ -225,15 +233,21 @@ export default {
         }),
 
         checkoutWithWallet: function (e) {
+            this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price 
+
             if (parseInt(this.walletBalance.wallet_balance) > this.total){
+                console.log("total")
                 this.checkout(e, "Wallet", "Pay with wallet");
                 return
-
             }
+
+
 
             if (parseInt(this.walletBalance.wallet_balance) > 1) {
                 let total =
                     this.total - parseInt(this.walletBalance.wallet_balance);
+
+                let gatewayAmount = Math.round(total * 100);
 
                 let context = this;
                 var cartIds = [];
@@ -254,7 +268,7 @@ export default {
                 var handler = PaystackPop.setup({
                     key: "pk_live_f781064afdc5336a6210015e9ff17014d28a4f8b",
                     email: context.cart_meta.user.email,
-                    amount: total * 100,
+                    amount: gatewayAmount,
                     currency: "NGN",
                     first_name: context.cart_meta.user.name,
                     metadata: {
@@ -266,7 +280,7 @@ export default {
                                 type: "order_from_paystack",
                                 wallet: context.walletBalance.wallet_balance,
                                 shipping_id: context.shipping_id,
-                                shipping_price: context.prices.ship_price,
+                                shipping_price: context.ship_price,
                                 heavy_item_price:
                                     context.prices.heavy_item_price,
                                 cart: cartIds,
@@ -312,9 +326,23 @@ export default {
             this.checkout(e, "auto_credit", "Pay with auto credit");
         },
 
+        priceSelected(res){
+            if (!res.coupon) {
+                this.ship_price = res.price
+                let oldTotal = this.original_total
+                let total = parseInt(oldTotal) + parseInt(this.ship_price)
+                this.$store.commit(
+                    "setTotal",
+                total
+                );
+            }
+            
+        },
+
         makePayment: function (e) {
             let context = this;
             var cartIds = [];
+            this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price;
             this.carts.forEach(function (cart, key) {
                 cartIds.push(cart.id);
             });
@@ -343,7 +371,7 @@ export default {
                             coupon: context.coupon_code,
                             type: "order_from_paystack",
                             shipping_id: context.shipping_id,
-                            shipping_price: context.prices.ship_price,
+                            shipping_price: context.ship_price,
                             heavy_item_price: context.prices.heavy_item_price,
                             cart: cartIds,
                             total: context.total,
@@ -367,73 +395,19 @@ export default {
             handler.openIframe();
         },
 
-        async payWithZilla() {
-            if (this.cart_meta.sub_total < 1) {
-                return;
-            }
-            let context = this;
-            var cartIds = [];
-            this.carts.forEach(function (cart, key) {
-                cartIds.push(cart.id);
-            });
-
-            if (!this.addresses.length) {
-                this.error =
-                    "You need to save your address before placing your order";
-                return false;
-            }
-
-            // this.paymentIsProcessing = true;
-            // this.order_text = "Please wait. We are almost done......";
-            // this.payment_is_processing = true;
-            // this.payment_method = "card";
-
-            const connect = new Connect();
-            let uuid = new Date().getTime();
-            let zillaPercent = (5 * context.total) / 100;
-
-            await axios
-                .post("/cart/meta", {
-                    cartId: cartIds.join("|"),
-                    coupon: context.coupon_code,
-                    shipping_id: context.shipping_id,
-                    shipping_price: context.prices.ship_price,
-                    user_id: context.cart_meta.user.id,
-                    heavy_item_price: context.prices.heavy_item_price || 0,
-                    uuid: uuid,
-                    total: context.total,
-                })
-                .then((response) => {})
-                .catch((error) => {});
-
-            const config = {
-                publicKey:
-                    "PK_PROD_aba91b1cc44c9b02ba589d626856c898f7029b532566c8de52ab3b360b1b53ac", // "PK_PROD_aba91b1cc44c9b02ba589d626856c898f7029b532566c8de52ab3b360b1b53ac",
-                onSuccess: function (response) {
-                    context.paymentIsProcessing = false;
-                    context.paymentIsComplete = true;
-                    context.order_text = "Place Order";
-                },
-                clientOrderReference: uuid,
-                title: "Buy now pay later",
-                amount: context.total + zillaPercent,
-            };
-            connect.openNew(config);
-        },
-
         applyCoupon: function (c) {
             this.coupon = c;
             console.log(c);
         },
         checkout: function (e, type = null, text) {
+            this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price 
             e.target.innerText = "Please wait.......";
             e.target.classList.add("disabled");
-
             axios
                 .post("/checkout/confirm", {
                     coupon: this.coupon_code,
                     payment_method: type,
-                    shipping_price: this.prices.ship_price,
+                    shipping_price: this.ship_price,
                     heavy_item_price: this.prices.heavy_item_price || 0,
                     total: this.total,
                 })

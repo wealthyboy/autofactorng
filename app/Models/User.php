@@ -155,6 +155,12 @@ class User extends Authenticatable
 	}
 
 
+	public function hasZones()
+	{
+		return $this->ActiveAddress();
+	}
+
+
 	public function activities()
 	{
 		return $this->hasMany(Activity::class);

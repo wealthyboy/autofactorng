@@ -35,6 +35,7 @@ export default {
     showSearch: false,
     total: 0,
     coupon: null,
-    years: []
+    years: [],
+    original_total: 0
 
 }

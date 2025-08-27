@@ -153,3 +153,7 @@ export const years = (state) => {
     return state.years
 }
 
+export const original_total = (state) => {
+    return state.original_total
+}
+

@@ -20,4 +20,9 @@ class Shipping extends Model
     {
         return $this->belongsToMany(Shipping::class);
     }
+
+    public function zones()
+    {
+        return $this->hasMany(ShippingZone::class);
+    }
 }

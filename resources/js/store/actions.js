@@ -470,8 +470,18 @@ export const setADl = ({ commit }, response) => {
     commit("setDefaultShipping", response.data.meta.default_shipping);
     commit("setDefaultAddress", response.data.meta.default_address);
 
-    commit("setTotal", response.data.meta.prices.total);
+    if (!response.data.meta.prices.zones) {
+        commit("setTotal", response.data.meta.prices.total);
+    } else {
+        commit("setTotal", response.data.meta.prices.sub_total);
+    }
 
+
+    if (!response.data.meta.prices.zones) {
+        commit("setOriginalTotal", response.data.meta.prices.total);
+    } else {
+        commit("setOriginalTotal", response.data.meta.prices.sub_total);
+    }
 };
 
 export const clearError = ({ commit }) => {

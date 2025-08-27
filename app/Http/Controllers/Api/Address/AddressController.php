@@ -56,14 +56,17 @@ class AddressController extends Controller
         $ship_price = $default_address ? optional(optional($default_address->address_state)->shipping)->price : null;
         $large_item_price = [];
         $is_lagos = null !== $default_address && optional($default_address)->state == 'Lagos' ? 1 : 0;
+        $location = $is_lagos ? Location::where('name', optional($default_address)->state)->first() : null;
+        $zones = null !== $location ? optional($location->shipping)->zones : null;
         $prices['isLagos'] = $is_lagos;
-
+        $prices['is_zones'] = $is_lagos;
+ 
         foreach ($carts as $key => $cart) {
             if ($cart->product->condition_is_present) {
                 $heavy_item_prices = ShippingRate::where(['product_id' => $cart->product_id, 'is_lagos' => $is_lagos])->get();
                 foreach ($heavy_item_prices as $heavy_item_price) {
                     if ($heavy_item_price->condition == '=') {
-                        $large_item_price[] = $cart->quantity == $heavy_item_price->tag_value ? $heavy_item_price->price :  null;
+                        $large_item_price[] = $cart->quantity === $heavy_item_price->tag_value ? $heavy_item_price->price :  null;
                     }
 
                     if ($heavy_item_price->condition == '>') {
@@ -80,9 +83,10 @@ class AddressController extends Controller
             $prices['heavy_item_price'] = $hp;
         }
 
-        $prices['ship_price'] =  $ship_price;
-        $prices['total'] =   $sub_total + $ship_price + $hp;
+        $prices['ship_price'] = $ship_price;
+        $prices['total'] = $sub_total + $ship_price + $hp;
         $prices['sub_total'] = $sub_total;
+        $prices['zones'] = $zones;
 
 
         return AddressResource::collection(
@@ -92,7 +96,7 @@ class AddressController extends Controller
                 'prices' => collect($prices),
                 'default_shipping' => null,
                 'states' => Location::all(),
-                'default_address' =>  $default_address,
+                'default_address' => $default_address,
                 'large_item_price' => $large_item_price
             ]
         ]);

@@ -92,6 +92,47 @@
                     </div>
                 </div>
 
+                <h5 class="mt-3">Zones</h5>
+                 <div class="mt-3" id="zones-wrapper">
+                    @if(isset($shipping) && $shipping->zones->count())
+                        @foreach($shipping->zones as $i => $zone)
+                            <div class="zone-row row g-2 mb-3">
+                                <div class="col-md-5">
+                                    <input type="text" name="zones[{{ $i }}][zone]" value="{{ $zone->zone }}" class="form-control border px-2" placeholder="Zone">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="text" name="zones[{{ $i }}][description]" value="{{ $zone->description }}" class="form-control border px-2" placeholder="Description">
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="number" name="zones[{{ $i }}][price]" value="{{ $zone->price }}" class="form-control border px-2" placeholder="Price">
+                                </div>
+                                <div class="col-md-1 d-flex align-items-center">
+                                    <button type="button" class="btn btn-danger btn-sm remove-row border">&times;</button>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        {{-- Default empty row if creating a new shipping --}}
+                        <div class="zone-row row g-2 mb-3">
+                            <div class="col-md-5">
+                                <input type="text" name="zones[0][zone]" class="form-control border px-2" placeholder="Zone">
+                            </div>
+                            <div class="col-md-4">
+                                <input type="text" name="zones[0][description]" class="form-control border px-2" placeholder="Description">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="number" name="zones[0][price]" class="form-control border px-2" placeholder="Price">
+                            </div>
+                            <div class="col-md-1 d-flex align-items-center">
+                                <button type="button" class="btn btn-danger btn-sm remove-row border">&times;</button>
+                            </div>
+                        </div>
+                    @endif
+                </div>
+
+                <button type="button" id="add-zone" class="btn btn-outline-primary btn-sm mb-3">+ Add Zone</button>
+
+
           
                 <div class="d-flex justify-content-end mt-4">
                     <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
@@ -109,6 +150,36 @@
    setTimeout(function () {
       const example = new Choices(parent_id);
    }, 1);
+
+ $(document).ready(function () {
+    let index = 1;
+    // Add new row
+    $("#add-zone").on("click", function () {
+        let newRow = `
+        <div class="zone-row row g-2 mb-3">
+            <div class="col-md-5">
+                <input type="text" name="zones[${index}][zone]" class="form-control border px-2" placeholder="Zone">
+            </div>
+            <div class="col-md-4">
+                <input type="text" name="zones[${index}][description]" class="form-control border px-2" placeholder="Description">
+            </div>
+            <div class="col-md-2">
+                <input type="number" name="zones[${index}][price]" class="form-control border px-2" placeholder="Price">
+            </div>
+            <div class="col-md-1 d-flex align-items-center">
+                <button type="button" class="btn btn-danger btn-sm remove-row">&times;</button>
+            </div>
+        </div>`;
+        
+        $("#zones-wrapper").append(newRow);
+        index++;
+    });
+
+    // Remove row
+    $(document).on("click", ".remove-row", function () {
+        $(this).closest(".zone-row").remove();
+    });
+});
    
 @stop
 

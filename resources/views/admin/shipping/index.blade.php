@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
 <div class="row">
-    <div class="col-md-7">
+    <div class="col-md-9">
         <div class="card">
             <div class="card-header p-3 pt-2">
                 <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
@@ -68,6 +68,13 @@
                             </div>
                         </div>
                     </div>
+
+                       <div class="mt-3" id="zones-wrapper">
+                           
+                        </div>
+
+                        <button type="button" id="add-zone" class="btn btn-outline-primary btn-sm mb-3">+ Add Zone</button>
+
                     <div class="d-flex justify-content-end mt-4">
                         <button type="submit" name="button" class="btn bg-gradient-dark m-0 ms-2">Submit</button>
                     </div>
@@ -76,7 +83,7 @@
         </div>
     </div>
 
-    <div class="col-md-5">
+    <div class="col-md-3">
         <div class="card">
             <div class="card-header p-3 pt-2">
                 <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
@@ -133,5 +140,37 @@ var parent_id = document.getElementById('parent_id');
 setTimeout(function () {
 const example = new Choices(parent_id);
 }, 1);
+
+
+$(document).ready(function () {
+    let index = 1;
+
+    // Add new row
+    $("#add-zone").on("click", function () {
+        let newRow = `
+        <div class="zone-row row g-2 mb-3">
+            <div class="col-md-5">
+                <input type="text" name="zones[${index}][zone]" class="form-control border px-2" placeholder="Zone">
+            </div>
+            <div class="col-md-4">
+                <input type="text" name="zones[${index}][description]" class="form-control border px-2" placeholder="Description">
+            </div>
+            <div class="col-md-2">
+                <input type="number" name="zones[${index}][price]" class="form-control border px-2" placeholder="Price">
+            </div>
+            <div class="col-md-1 d-flex align-items-center">
+                <button type="button" class="btn btn-danger btn-sm remove-row">&times;</button>
+            </div>
+        </div>`;
+        
+        $("#zones-wrapper").append(newRow);
+        index++;
+    });
+
+    // Remove row
+    $(document).on("click", ".remove-row", function () {
+        $(this).closest(".zone-row").remove();
+    });
+});
 
 @stop
