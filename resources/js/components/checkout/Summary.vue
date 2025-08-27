@@ -100,12 +100,13 @@
 
             <div class="list-group">
             <label   
-  :for="`shipping-${index}-8278172`"
+  :for="`shipping-${index}-${method.zone.replace(/\s+/g, '-').toLowerCase()}`"
  v-for="(method, index) in prices.zones"
                     :key="index" class="list-group-item d-flex justify-content-between align-items-center">
                 <div>
                 <input       
-                      :id="`shipping-${index}-8278172`"
+                        :id="`shipping-${index}-${method.zone.replace(/\s+/g, '-').toLowerCase()}`"
+
 
                      @change="emitPrice(method)"
                     v-model="selectedMethod"
