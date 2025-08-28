@@ -35,9 +35,10 @@ class CheckoutController extends Controller
         $carts =  Cart::all_items_in_cart();
 
         $user = Auth::user();
-        $cartItems = Cart::where('user_id', $user->id)->get(); 
+        $cartItems = Cart::with('product')->where('user_id', $user->id)->get(); 
 
-         $items = $cartItems->map(function ($cart)  {
+
+        $items = $cartItems->map(function ($cart)  {
             return [
                 'product_id' => $cart->product_id,
                 'name' => $cart->product->name ?? 'Unknown Product',
@@ -168,6 +169,9 @@ class CheckoutController extends Controller
             ->where('status', 1)
             ->first();
 
+        $order =  Order::where('coupon', $request->coupon)
+            ->first();
+
         $error = array();
 
         if (empty($coupon)) {
@@ -179,6 +183,20 @@ class CheckoutController extends Controller
             $error['error'] = 'Coupon has expired';
             return response()->json($error, 422);
         }
+        
+
+        if ($coupon->belongs_to_user && $coupon->user_id !== optional(auth()->user())->id) {
+            $error['error'] = 'Coupon does not belongs to you';
+            return response()->json($error, 422);
+        }
+
+        if ($coupon->belongs_to_user && null !== $order) {
+            $error['error'] = 'Coupon has been used';
+            return response()->json($error, 422);
+        }
+
+
+       
 
 
         if ($cart_total < $coupon->from_value) {

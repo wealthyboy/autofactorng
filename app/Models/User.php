@@ -28,6 +28,8 @@ class User extends Authenticatable
 	const canAccessAdminUsers = 7;
 	const canEnableSite = 9;
 	const canAccessPermissions = 10;
+	const canAccessExport = 11;
+
 
 
 	/**

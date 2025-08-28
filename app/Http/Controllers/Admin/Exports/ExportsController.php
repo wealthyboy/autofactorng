@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Exports;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\User;
 
 class ExportsController extends Controller
 {
@@ -16,7 +17,8 @@ class ExportsController extends Controller
     public function index(Request $request)
     {
         $class =  '\\App\\Exports\\' . $request->model;
-        $filename =  $request->name;
+        $filename = $request->name;
+        User::canTakeAction(User::canAccessExport);
         return Excel::download(new $class(), $filename,  \Maatwebsite\Excel\Excel::CSV);
     }
 

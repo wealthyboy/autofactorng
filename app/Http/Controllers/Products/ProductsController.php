@@ -211,51 +211,64 @@ class ProductsController extends Controller
     }
 
 
-    public function getProductsData(Request $request, Builder $builder, Category $category)
-    {
+   public function getProductsData(Request $request, Builder $builder, Category $category)
+{
+    $query = Product::whereHas('categories', function (Builder $builder) use ($category) {
+        $builder->where('categories.slug', $category->slug);
+    });
 
-        $query = Product::whereHas('categories', function (Builder  $builder) use ($category) {
-            $builder->where('categories.slug', $category->slug);
-        });
+    $type = $this->getType($request);
+    $per_page = $request->per_page ?? $this->settings->products_items_per_page;
 
-
-        $type = $this->getType($request);
-        $per_page = $request->per_page ?? $this->settings->products_items_per_page;
-        if ($this->getCategory($category)) {
-            if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
-                $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
-                    $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
-                    $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
-                    $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
-                    $builder->where('year_from', '<=', $request->cookie('year'));
-                    $builder->where('year_to', '>=', $request->cookie('year'));
-                    $builder->groupBy('make_model_year_engines.product_id');
-                });
-            }
+    if ($this->getCategory($category)) {
+        if (null !== $request->cookie('engine_id') && $request->type !== 'clear') {
+            $query->whereHas('make_model_year_engines', function (Builder $builder) use ($request) {
+                $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
+                $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
+                $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
+                $builder->where('year_from', '<=', $request->cookie('year'));
+                $builder->where('year_to', '>=', $request->cookie('year'));
+                $builder->groupBy('make_model_year_engines.product_id');
+            });
         }
-
-        // dd($query->get());
-
-        if ($request->type == 'tyre') {
-            $query->where('radius', $request->rim);
-            $query->where('width', $request->width);
-            $query->where('height', $request->profile);
-        }
-
-        if ($request->type == 'battery') {
-            $query->where('amphere', $request->amphere);
-        }
-
-        if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
-            $products = $query->filter($request)->latest()->paginate($per_page);
-        } else {
-            $products = $query->filter($request)->inRandomOrder()->paginate($per_page);
-        }
-
-        $products->load('images');
-        $products->appends(request()->all());
-        return $products;
     }
+
+    if ($request->type == 'tyre') {
+        $query->where('radius', $request->rim);
+        $query->where('width', $request->width);
+        $query->where('height', $request->profile);
+    }
+
+    if ($request->type == 'battery') {
+        $query->where('amphere', $request->amphere);
+    }
+
+    if (null !== $request->cookie('engine_id') && $request->type !== 'clear') {
+        // normal pagination (ordered)
+        $products = $query->filter($request)->latest()->paginate($per_page);
+    } else {
+        // manual shuffle + pagination to avoid duplicate products across pages
+        $allProducts = $query->filter($request)->get();
+        $shuffled = $allProducts->shuffle();
+
+        $page = $request->get('page', 1);
+        $pagedData = $shuffled->slice(($page - 1) * $per_page, $per_page)->values();
+
+        $products = new \Illuminate\Pagination\LengthAwarePaginator(
+            $pagedData,
+            $shuffled->count(),
+            $per_page,
+            $page,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
+    }
+
+    $products->load('images');
+    $products->appends($request->all());
+
+    return $products;
+}
+
 
 
     public function filterPrices()

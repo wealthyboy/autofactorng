@@ -19,7 +19,9 @@ class Permission extends Model
         'Add Admin Users' => 7,
         'Activity' => 8,
         'permissions' => 10,
-        'Enable/Disble Site' => 9
+        'Enable/Disble Site' => 9,
+        'Export' => 11,
+
     ];
 
 

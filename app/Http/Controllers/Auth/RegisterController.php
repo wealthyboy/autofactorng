@@ -89,7 +89,7 @@ class RegisterController extends Controller
     {
 
 
-        $user =  User::create([
+        $user = User::create([
             'name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
@@ -103,17 +103,16 @@ class RegisterController extends Controller
         $email = $data['email'];
         $list_id = config('services.mailchimp.list');
         $api_key = config('services.mailchimp.secret');
-
         $data_center = substr($api_key, strpos($api_key, '-') + 1);
 
         $url = 'https://' . $data_center . '.api.mailchimp.com/3.0/lists/' . $list_id . '/members';
 
         $json = json_encode([
             'email_address' => $email,
-            'status'        => 'subscribed', //pass 'subscribed' or 'pending'
-            'merge_fields'  => [
-                'FNAME' =>  $data['first_name'],
-                'LNAME' =>  $data['last_name']
+            'status' => 'subscribed', //pass 'subscribed' or 'pending'
+            'merge_fields' => [
+                'FNAME' => $data['first_name'],
+                'LNAME' => $data['last_name']
             ]
         ]);
 
@@ -135,7 +134,7 @@ class RegisterController extends Controller
 
 
         $coupon = new Voucher;
-        $coupon->code =  str_random(6);
+        $coupon->code = str_random(6);
         $coupon->user_id = $user->id;
         $coupon->amount = 5;
         $coupon->type = 'specific';
@@ -143,10 +142,10 @@ class RegisterController extends Controller
         $coupon->from_value = null;
         $coupon->is_fixed = 0;
         $coupon->status = 1;
+        $coupon->belongs_to_user = 1;
         $coupon->save();
-
         $user->coupon = $coupon->code;
-
+        $user->save();
         $user->notify(new WelcomeNotification($user));
 
         return $user;

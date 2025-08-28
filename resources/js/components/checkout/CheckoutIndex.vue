@@ -234,8 +234,7 @@ export default {
 
         checkoutWithWallet: function (e) {
             this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price 
-
-            if (parseInt(this.walletBalance.wallet_balance) > this.total){
+            if (Number(this.walletBalance.wallet_balance) > Number(this.total)){
                 console.log("total")
                 this.checkout(e, "Wallet", "Pay with wallet");
                 return
@@ -243,11 +242,13 @@ export default {
 
 
 
-            if (parseInt(this.walletBalance.wallet_balance) > 1) {
+            if (parseInt(this.walletBalance.wallet_balance) <= this.total) {
                 let total =
                     this.total - parseInt(this.walletBalance.wallet_balance);
 
                 let gatewayAmount = Math.round(total * 100);
+
+                console.log(gatewayAmount)
 
                 let context = this;
                 var cartIds = [];
@@ -330,12 +331,13 @@ export default {
 
         priceSelected(res){
             if (!res.coupon) {
+                console.log(res.price)
                 this.ship_price = res.price
                 let oldTotal = this.original_total
                 let total = parseInt(oldTotal) + parseInt(this.ship_price)
                 this.$store.commit(
                     "setTotal",
-                total
+                    total
                 );
             }
             

@@ -403,6 +403,7 @@ class Order extends Model
 						"Email" => optional($order->orderEmail)->email,
 						"Payment Type" => $order->payment,
 						"Ip Address" => $order->ip,
+						"Coupon" => $order->coupon,
 						"Type" => 'offline',
 						"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 						"Dispatch" => array_merge($d, ['selected' => $order->dispatch ?? 'Select dispatch']),
@@ -417,7 +418,7 @@ class Order extends Model
 					"Email" => $order->email,
 					"Payment Type" => $order->payment_type,
 					"Ip Address" => $order->ip,
-
+					"Coupon" => $order->coupon,
 					"Type" => $order->order_type,
 					"Dispatch" => array_merge($d, ['selected' => $order->dispatch ?? 'Select Dispatch']),
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
@@ -442,7 +443,8 @@ class Order extends Model
 			"Invoice" => 'invoice',
 			"Customer" => 'first_name',
 			"Email" => 'email',
-			"Total" =>  'total',
+			"Coupon" => 'coupon',
+			"Total" => 'total',
 			"Date Added" => 'created_at',
 		];
 

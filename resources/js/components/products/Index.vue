@@ -109,7 +109,7 @@
                     <div class="h-100 col-md-12">
                         <div class=" col-md-12 text-center  py-4 justify-content-center align-items-center">
                             <p class="fw-bold display-6 mb-1">Oops! We couldn't find what you were looking for.</p>
-                            <p class="mb-0">
+                            <p v-if="!hasCategory" class="mb-0">
                                 Try checking the menu at the top-left of the page to explore our categories and find what you need.
                             </p>
                         </div>
