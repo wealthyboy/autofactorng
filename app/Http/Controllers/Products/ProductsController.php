@@ -100,114 +100,115 @@ class ProductsController extends Controller
 
 
 
-    public function search(Request $request, Builder $builder)
-{
-    if (!$request->q) {
-        return redirect('404');
-    }
+    public function  search(Request $request, Builder $builder)
+    {
 
-    $page_title = "Search " . $request->q;
-
-    $this->clearMMYCookies($request);
-
-    // Normalize search term: remove -, / and spaces
-    $searchTerm = str_replace(['-', '/', ' '], '', $request->q);
-
-    // Base query with normalization applied to both sides
-    $query = Product::whereRaw(
-        "REPLACE(REPLACE(REPLACE(name, '-', ''), '/', ''), ' ', '') LIKE ?",
-        ['%' . $searchTerm . '%']
-    );
-
-    // Reset all products availability to 0
-    Product::where('is_available', true)->update(['is_available' => 0]);
-
-    // If engine filters are active, mark only matching products as available
-    if ($request->cookie('engine_id') && $request->type !== 'clear') {
-        $engineMatches = Product::whereRaw(
-                "REPLACE(REPLACE(REPLACE(name, '-', ''), '/', ''), ' ', '') LIKE ?",
-                ['%' . $searchTerm . '%']
-            )
-            ->whereHas('make_model_year_engines', function (Builder $builder) use ($request) {
-                $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'))
-                        ->where('make_model_year_engines.parent_id', $request->cookie('make_id'))
-                        ->where('make_model_year_engines.engine_id', $request->cookie('engine_id'))
-                        ->where('year_from', '<=', $request->cookie('year'))
-                        ->where('year_to', '>=', $request->cookie('year'))
-                        ->groupBy('make_model_year_engines.product_id');
-            })
-            ->get();
-
-        foreach ($engineMatches as $product) {
-            $product->update(['is_available' => 1]);
+        if (!$request->q) {
+            return redirect('404');
         }
+
+        $page_title = "Search " . $request->q;
+
+        $this->clearMMYCookies($request);
+
+        $product = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%']);
+        $products = Product::where('is_available', true)->get();
+
+        foreach ($products as $product) {
+            $product->is_available = 0;
+            $product->save();
+        }
+
+        if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
+
+            $q = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%'])
+                ->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
+                    $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
+                    $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
+                    $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
+                    $builder->where('year_from', '<=', $request->cookie('year'));
+                    $builder->where('year_to', '>=', $request->cookie('year'));
+                    $builder->groupBy('make_model_year_engines.product_id');
+                })->get();
+
+            if (null !== $q) {
+                foreach ($q as $key => $v) {
+                    $v->is_available = 1;
+                    $v->save();
+                }
+            }
+        }
+
+
+        $query = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%']);
+
+        $type = $this->getType($request);
+
+        $per_page = $request->per_page ??  100;
+
+        $category = optional(optional(optional($product)->first())->categories)->first();
+        // (new Product())->buildSearchString($category);
+        // if (null !== $category ) {
+
+        if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
+            // $query->whereHas('make_model_year_engines', function (Builder  $builder) use ($request) {
+            //     $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
+            //     $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
+            //     $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
+            //     $builder->where('year_from', '<=', $request->cookie('year'));
+            //     $builder->where('year_to', '>=', $request->cookie('year'));
+            //     $builder->groupBy('make_model_year_engines.product_id');
+            // });
+        }
+
+        //}
+
+        $products = $query->filter($request)->orderBy('is_available', 'desc')->latest()->paginate($per_page);
+        $products->load('images');
+        $products->appends(request()->all());
+        $category = null;
+        $cat = null;
+
+        if ($products->count()) {
+            $category = $products->first()->categories->first();
+            $cat = $this->getCategory($category) ? $this->buildSearchString($request) : null;
+        }
+
+        if ($request->ajax()) {
+            return (new ProductsCollection($products))
+                ->additional([
+                    'string' => $cat,
+                    'showFitStringOnCategoryPage' => $this->getCategory($category)  && null != $this->buildSearchString($request) ? true : false,
+                    'showSearch' => $this->showSearch($category),
+                    'productFitString' => null,
+                    'fits' =>  $this->buildSearchString($request) ? true : false,
+                    'search_filters' => null
+                ]);
+        }
+
+        if (null !== $category) {
+            $search_filters = $this->searchFilters($category);
+        } else {
+            $search_filters =  $search = collect([
+                ['name' => 'price', 'items' => $this->filterPrices()],
+                ['name' => 'year', 'items' => Helper::years()],
+                ['name' => 'search_type', 'search' => 'make_model_year'],
+                ['name' => 'show_fit_text', 'search' => 'make_model_year'],
+            ])->keyBy('name');
+        }
+
+        $brands = $request->brands;
+        $prices = $request->prices;
+
+
+        return  view('products.index', compact(
+            'category',
+            'page_title',
+            'search_filters',
+            'brands',
+            'prices'
+        ));
     }
-
-    // Pagination
-    $per_page = $request->per_page ?? 100;
-    $products = $query->filter($request)
-        ->orderBy('is_available', 'desc')
-        ->latest()
-        ->paginate($per_page);
-
-    $products->load('images');
-    $products->appends($request->all());
-
-    // Determine category if available
-    $category = $products->count() ? $products->first()->categories->first() : null;
-    $cat = $category && $this->getCategory($category) ? $this->buildSearchString($request) : null;
-
-    // Handle Ajax response
-    if ($request->ajax()) {
-        return (new ProductsCollection($products))
-            ->additional([
-                'string' => $cat,
-                'showFitStringOnCategoryPage' => $this->getCategory($category) && $this->buildSearchString($request) ? true : false,
-                'showSearch' => $this->showSearch($category),
-                'productFitString' => null,
-                'fits' => $this->buildSearchString($request) ? true : false,
-                'search_filters' => null
-            ]);
-    }
-
-    // Build filters
-    $search_filters = $category
-        ? $this->searchFilters($category)
-        : collect([
-            ['name' => 'price', 'items' => $this->filterPrices()],
-            ['name' => 'year', 'items' => Helper::years()],
-            ['name' => 'search_type', 'search' => 'make_model_year'],
-            ['name' => 'show_fit_text', 'search' => 'make_model_year'],
-        ])->keyBy('name');
-
-    $brands = $request->brands;
-    $prices = $request->prices;
-
-    return view('products.index', compact(
-        'category',
-        'page_title',
-        'search_filters',
-        'brands',
-        'prices'
-    ));
-}
-
-
-/**
- * Normalize search term by stripping separators
- */
-protected function normalizeSearchTerm(string $term): string
-{
-    return str_replace(['-', '/', ' '], '', $term);
-}
-
-/**
- * Check if fitment filter should apply
- */
-protected function shouldApplyFitmentFilter(Request $request): bool
-{
-    return $request->cookie('engine_id') !== null && $request->type !== 'clear';
-}
 
 
    public function getProductsData(Request $request, Builder $builder, Category $category)
