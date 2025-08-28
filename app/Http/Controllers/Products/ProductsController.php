@@ -106,34 +106,46 @@ class ProductsController extends Controller
         return redirect('404');
     }
 
+    $page_title = "Search " . $request->q;
+
     $this->clearMMYCookies($request);
 
-    $page_title = "Search " . $request->q;
-    $searchTerm = $this->normalizeSearchTerm($request->q);
+    // Normalize search term: remove -, / and spaces
+    $searchTerm = str_replace(['-', '/', ' '], '', $request->q);
 
-    // 🔎 Base query
+    // Base query with normalization applied to both sides
     $query = Product::whereRaw(
         "REPLACE(REPLACE(REPLACE(name, '-', ''), '/', ''), ' ', '') LIKE ?",
         ['%' . $searchTerm . '%']
     );
 
-    // 🚗 Apply fitment filter (if engine_id cookie exists)
-    if ($this->shouldApplyFitmentFilter($request)) {
-        $query->whereHas('make_model_year_engines', function (Builder $builder) use ($request) {
-            $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'))
-                ->where('make_model_year_engines.parent_id', $request->cookie('make_id'))
-                ->where('make_model_year_engines.engine_id', $request->cookie('engine_id'))
-                ->where('year_from', '<=', $request->cookie('year'))
-                ->where('year_to', '>=', $request->cookie('year'))
-                ->groupBy('make_model_year_engines.product_id');
-        });
+    // Reset all products availability to 0
+    Product::where('is_available', true)->update(['is_available' => 0]);
+
+    // If engine filters are active, mark only matching products as available
+    if ($request->cookie('engine_id') && $request->type !== 'clear') {
+        $engineMatches = Product::whereRaw(
+                "REPLACE(REPLACE(REPLACE(name, '-', ''), '/', ''), ' ', '') LIKE ?",
+                ['%' . $searchTerm . '%']
+            )
+            ->whereHas('make_model_year_engines', function (Builder $builder) use ($request) {
+                $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'))
+                        ->where('make_model_year_engines.parent_id', $request->cookie('make_id'))
+                        ->where('make_model_year_engines.engine_id', $request->cookie('engine_id'))
+                        ->where('year_from', '<=', $request->cookie('year'))
+                        ->where('year_to', '>=', $request->cookie('year'))
+                        ->groupBy('make_model_year_engines.product_id');
+            })
+            ->get();
+
+        foreach ($engineMatches as $product) {
+            $product->update(['is_available' => 1]);
+        }
     }
 
+    // Pagination
     $per_page = $request->per_page ?? 100;
-
-    // 📦 Final products query
-    $products = $query
-        ->filter($request)
+    $products = $query->filter($request)
         ->orderBy('is_available', 'desc')
         ->latest()
         ->paginate($per_page);
@@ -141,23 +153,24 @@ class ProductsController extends Controller
     $products->load('images');
     $products->appends($request->all());
 
-    // 📂 Category & search filters
+    // Determine category if available
     $category = $products->count() ? $products->first()->categories->first() : null;
     $cat = $category && $this->getCategory($category) ? $this->buildSearchString($request) : null;
 
-    // 📡 Handle AJAX response
+    // Handle Ajax response
     if ($request->ajax()) {
-        return (new ProductsCollection($products))->additional([
-            'string' => $cat,
-            'showFitStringOnCategoryPage' => $this->getCategory($category) && $cat ? true : false,
-            'showSearch' => $this->showSearch($category),
-            'productFitString' => null,
-            'fits' => $cat ? true : false,
-            'search_filters' => null
-        ]);
+        return (new ProductsCollection($products))
+            ->additional([
+                'string' => $cat,
+                'showFitStringOnCategoryPage' => $this->getCategory($category) && $this->buildSearchString($request) ? true : false,
+                'showSearch' => $this->showSearch($category),
+                'productFitString' => null,
+                'fits' => $this->buildSearchString($request) ? true : false,
+                'search_filters' => null
+            ]);
     }
 
-    // 🛠 Filters for non-AJAX response
+    // Build filters
     $search_filters = $category
         ? $this->searchFilters($category)
         : collect([
@@ -167,14 +180,18 @@ class ProductsController extends Controller
             ['name' => 'show_fit_text', 'search' => 'make_model_year'],
         ])->keyBy('name');
 
-    return view('products.index', [
-        'category' => $category,
-        'page_title' => $page_title,
-        'search_filters' => $search_filters,
-        'brands' => $request->brands,
-        'prices' => $request->prices,
-    ]);
+    $brands = $request->brands;
+    $prices = $request->prices;
+
+    return view('products.index', compact(
+        'category',
+        'page_title',
+        'search_filters',
+        'brands',
+        'prices'
+    ));
 }
+
 
 /**
  * Normalize search term by stripping separators
