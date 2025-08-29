@@ -418,15 +418,17 @@ export default {
         },
         checkout: function (e, type = null, text) {
             this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price 
-            e.target.innerText = "Please wait.......";
-            e.target.classList.add("disabled");
-            this.checkoutLagos = true
-            this.checkoutWithWallet = true
+          
 
             if (!this.ship_price || this.ship_price < 1) {
                 alert("Select your shipping")
                 return false;
             }
+
+              e.target.innerText = "Please wait.......";
+            e.target.classList.add("disabled");
+            this.checkoutLagos = true
+            this.checkoutWithWallet = true
             axios
                 .post("/checkout/confirm", {
                     coupon: this.coupon_code,
