@@ -211,7 +211,7 @@ class ProductsController extends Controller
     }
 
 
- public function getProductsData(Request $request, Builder $builder, Category $category)
+   public function getProductsData(Request $request, Builder $builder, Category $category)
 {
     $query = Product::whereHas('categories', function (Builder $builder) use ($category) {
         $builder->where('categories.slug', $category->slug);
@@ -220,7 +220,7 @@ class ProductsController extends Controller
     $type = $this->getType($request);
     $per_page = $request->per_page ?? $this->settings->products_items_per_page;
 
-    // Engine filtering
+    // filter by engine cookies if category matches
     if ($this->getCategory($category)) {
         if (null !== $request->cookie('engine_id') && $request->type !== 'clear') {
             $query->whereHas('make_model_year_engines', function (Builder $builder) use ($request) {
@@ -234,55 +234,30 @@ class ProductsController extends Controller
         }
     }
 
-    // Tyre filter
+    // tyre filter
     if ($request->type == 'tyre') {
         $query->where('radius', $request->rim);
         $query->where('width', $request->width);
         $query->where('height', $request->profile);
     }
 
-    // Battery filter
+    // battery filter
     if ($request->type == 'battery') {
         $query->where('amphere', $request->amphere);
     }
 
     if (null !== $request->cookie('engine_id') && $request->type !== 'clear') {
-        // Normal pagination
         $products = $query->filter($request)->latest()->paginate($per_page);
     } else {
-        // 👇 Random without duplicates across pages
-        $page = $request->get('page', 1);
+        $seed = crc32($request->fullUrl()); 
 
-        // Track seen IDs in session (unique per search)
-        $sessionKey = 'seen_products_' . md5($request->fullUrlWithoutQuery('page'));
-        $seenIds = session($sessionKey, []);
-
-        // Exclude already seen IDs
-        $query->whereNotIn('id', $seenIds);
-
-        // Get products for this page (random order)
         $products = $query->filter($request)
-            ->inRandomOrder()
-            ->take($per_page)
-            ->get();
-
-        // Merge current IDs into session
-        $newSeenIds = array_merge($seenIds, $products->pluck('id')->toArray());
-        session([$sessionKey => $newSeenIds]);
-
-        // Convert to paginator manually
-        $products = new \Illuminate\Pagination\LengthAwarePaginator(
-            $products,
-            count($newSeenIds), // total seen so far (approximation)
-            $per_page,
-            $page,
-            ['path' => $request->url(), 'query' => $request->query()]
-        );
+            ->orderByRaw("RAND($seed)")
+            ->paginate($per_page);
     }
 
     $products->load('images');
     $products->appends($request->all());
-
     return $products;
 }
 
