@@ -180,6 +180,7 @@ export default {
             scriptLoaded: null,
             submiting: false,
             coupon_error: null,
+            checkoutLagos: null,
             token: Window.csrf,
             payment_method: null,
             pageIsLoading: true,
@@ -235,12 +236,16 @@ export default {
         checkoutWithWallet: function (e) {
             this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price 
             if (Number(this.walletBalance.wallet_balance) > Number(this.total)){
+                if ( this.checkoutWithWallet ) {
+                   return;
+                }
                 console.log("total")
                 this.checkout(e, "Wallet", "Pay with wallet");
                 return
             }
 
-
+            
+           
 
             if (parseInt(this.walletBalance.wallet_balance) <= this.total) {
                 let total =
@@ -310,13 +315,16 @@ export default {
         },
 
         checkoutWithLagos: function (e) {
-
+     
             if (this.total >= 300000) {
                 alert("No Payment On Delivery On Orders Above ₦300,000.\nKindly Use The Pay Now Option.");
                 return;
             }
 
-           
+            if ( this.checkoutLagos ) {
+                return;
+            }
+            
 
             this.checkout(
                 e,
@@ -412,6 +420,8 @@ export default {
             this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price 
             e.target.innerText = "Please wait.......";
             e.target.classList.add("disabled");
+            this.checkoutLagos = true
+            this.checkoutWithWallet = true
 
             if (!this.ship_price || this.ship_price < 1) {
                 alert("Select your shipping")
