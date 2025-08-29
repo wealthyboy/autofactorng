@@ -211,7 +211,7 @@ class ProductsController extends Controller
     }
 
 
-    public function getProductsData(Request $request, Builder $builder, Category $category)
+   public function getProductsData(Request $request, Builder $builder, Category $category)
 {
     $query = Product::whereHas('categories', function (Builder $builder) use ($category) {
         $builder->where('categories.slug', $category->slug);
@@ -250,30 +250,12 @@ class ProductsController extends Controller
         // normal ordered pagination
         $products = $query->filter($request)->latest()->paginate($per_page);
     } else {
-        // fetch all results
-        $allProducts = $query->filter($request)->get();
-
-        // create a stable seed based on query URL (so shuffle order is consistent across pages)
+        // ✅ Use MySQL RAND() with a seed for consistent random order
         $seed = crc32($request->fullUrl()); 
-        mt_srand($seed);
 
-        // shuffle in a stable way
-        $shuffled = $allProducts->shuffle();
-
-        // reset RNG seed so it doesn’t affect other code
-        mt_srand();
-
-        // manual pagination
-        $page = $request->get('page', 1);
-        $pagedData = $shuffled->slice(($page - 1) * $per_page, $per_page)->values();
-
-        $products = new \Illuminate\Pagination\LengthAwarePaginator(
-            $pagedData,
-            $shuffled->count(),
-            $per_page,
-            $page,
-            ['path' => $request->url(), 'query' => $request->query()]
-        );
+        $products = $query->filter($request)
+            ->orderByRaw("RAND($seed)")
+            ->paginate($per_page);
     }
 
     $products->load('images');
@@ -281,6 +263,7 @@ class ProductsController extends Controller
 
     return $products;
 }
+
 
 
 
