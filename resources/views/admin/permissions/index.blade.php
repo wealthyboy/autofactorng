@@ -2,7 +2,7 @@
 @section('content')
 <div class="row">
    <div class="alert alert-info text-white">
-      <span><strong>Code: 1 Account ,2 Create , 3 Read , 4 Update ,5 Delete, 6 Reports, 7 Users, 8 Activity, 9 Enable/Disble, 10 Permission, Export 11</strong></span>
+      <span><strong>Code: 1 Account ,2 Create , 3 Read , 4 Update ,5 Delete, 6 Reports, 7 Users, 8 Activity, 9 Enable/Disble, 10 Permission,11  Export</strong></span>
    </div>
    @include('admin._partials.t', ['models' => $permissions, 'name' => 'Permissions'])
 </div>
