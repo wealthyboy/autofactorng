@@ -216,7 +216,7 @@ class ProductsController extends Controller
     }
 
 
-    public function getProductsData(Request $request, Builder $builder, Category $category)
+   public function getProductsData(Request $request, Builder $builder, Category $category)
 {
     $query = Product::whereHas('categories', function (Builder $builder) use ($category) {
         $builder->where('categories.slug', $category->slug);
@@ -257,7 +257,14 @@ class ProductsController extends Controller
     } else {
         // ✅ Random pagination without duplicates across pages
         $page = $request->get('page', 1);
+
+        // Session key is based on URL + filters (excluding page param)
         $sessionKey = 'random_products_' . md5($request->fullUrlWithoutQuery('page'));
+
+        // If filters/search changed → reset session
+        if ($page == 1) {
+            session()->forget($sessionKey);
+        }
 
         // If not cached yet, generate randomized ID order once
         if (!session()->has($sessionKey)) {
@@ -272,7 +279,7 @@ class ProductsController extends Controller
         // Slice IDs for current page
         $pageIds = array_slice($allIds, ($page - 1) * $per_page, $per_page);
 
-        // ⚡ Corrected: apply same filters + whereIn
+        // Apply same filters + constrain by IDs
         $pageProducts = $query->filter($request)
             ->whereIn('id', $pageIds)
             ->with('images')
@@ -295,6 +302,7 @@ class ProductsController extends Controller
 
     return $products;
 }
+
 
 
 
