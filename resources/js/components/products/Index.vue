@@ -9,6 +9,9 @@
 
             <div class="underline w-100"></div>
 
+            <p>Total products: {{ products.length }}</p>
+<p>Total randomized: {{ randomizedProducts.length }}</p>
+
             <search-string v-if="!productIsLoading && showFitString && fitString" @remove:vehicle="shopWithoutVehicle"
                 :searchText="fitString" class="" />
             <div v-if="!productIsLoading && !showFitString && !searchMode" class="cta-border cta-bg light mb-4">
@@ -209,20 +212,11 @@ export default {
             // ["products", "tyres"] → length > 1 means category exists
             return parts.length > 1 && parts[0] === "products";
         },
-        randomizedProducts() {
-        let stored = sessionStorage.getItem("randomized_products");
-        if (stored) {
-            return JSON.parse(stored);
-        }
-
-        // Shuffle once
-        let shuffled = [...this.products].sort(() => Math.random() - 0.5);
-
-        // Save to session storage
-        sessionStorage.setItem("randomized_products", JSON.stringify(shuffled));
-
-        return shuffled;
-      }
+         randomizedProducts() {
+    return this.products && this.products.length 
+      ? [...this.products].sort(() => Math.random() - 0.5) 
+      : [];
+  }
     },
 
     created() {
