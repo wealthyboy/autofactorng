@@ -54,11 +54,16 @@ class ProductsController extends Controller
         $request->session()->put('category_slug', $category->slug);
 
         $products = $this->getProductsData($request, $builder, $category);
+
         $search_filters = $this->searchFilters($category);
         $request->category = $category;
         // (new Product())->buildSearchString($category);
 
+
         if ($request->ajax()) {
+
+
+
             return (new ProductsCollection($products))
                 ->additional([
                     'string' => $this->buildSearchString($request),
@@ -211,16 +216,15 @@ class ProductsController extends Controller
     }
 
 
-   public function getProductsData(Request $request, Builder $builder, Category $category)
+    public function getProductsData(Request $request, Builder $builder, Category $category)
 {
     $query = Product::whereHas('categories', function (Builder $builder) use ($category) {
         $builder->where('categories.slug', $category->slug);
     });
 
-    $type = $this->getType($request);
     $per_page = $request->per_page ?? $this->settings->products_items_per_page;
 
-    // filter by engine cookies if category matches
+    // Engine filter
     if ($this->getCategory($category)) {
         if (null !== $request->cookie('engine_id') && $request->type !== 'clear') {
             $query->whereHas('make_model_year_engines', function (Builder $builder) use ($request) {
@@ -234,32 +238,67 @@ class ProductsController extends Controller
         }
     }
 
-    // tyre filter
+    // Tyre filter
     if ($request->type == 'tyre') {
-        $query->where('radius', $request->rim);
-        $query->where('width', $request->width);
-        $query->where('height', $request->profile);
+        $query->where('radius', $request->rim)
+              ->where('width', $request->width)
+              ->where('height', $request->profile);
     }
 
-    // battery filter
+    // Battery filter
     if ($request->type == 'battery') {
         $query->where('amphere', $request->amphere);
     }
 
+    // ✅ If engine filter applied → normal pagination
     if (null !== $request->cookie('engine_id') && $request->type !== 'clear') {
         $products = $query->filter($request)->latest()->paginate($per_page);
     } else {
-        $seed = crc32($request->fullUrl()); 
+        // ✅ Random unique pagination
+        $page = $request->get('page', 1);
 
-        $products = $query->filter($request)
-            ->orderByRaw("RAND($seed)")
-            ->paginate($per_page);
+        $sessionKey = 'seen_products_' . md5($request->fullUrlWithoutQuery('page'));
+        $seenIds = session($sessionKey, []);
+
+        // Total count of products (original query)
+        $total = $query->filter($request)->count();
+
+        // Reset if all products already shown
+        if (count($seenIds) >= $total) {
+            $seenIds = [];
+            session()->forget($sessionKey);
+        }
+
+        // Exclude already seen
+        $workingQuery = (clone $query)->whereNotIn('id', $seenIds);
+
+        // Pick random products for this page
+        $pageProducts = $workingQuery->filter($request)
+            ->inRandomOrder()
+            ->take($per_page)
+            ->get();
+
+        // Merge seen IDs into session
+        $newSeenIds = array_merge($seenIds, $pageProducts->pluck('id')->toArray());
+        session([$sessionKey => $newSeenIds]);
+
+        // Build paginator
+        $products = new \Illuminate\Pagination\LengthAwarePaginator(
+            $pageProducts,
+            $total,
+            $per_page,
+            $page,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
     }
 
     $products->load('images');
     $products->appends($request->all());
+
     return $products;
 }
+
+
 
 
 
