@@ -216,92 +216,142 @@ class ProductsController extends Controller
     }
 
 
-   public function getProductsData(Request $request, Builder $builder, Category $category)
+    public function getProductsData(Request $request, Builder $builder, Category $category)
 {
-    $query = Product::whereHas('categories', function (Builder $builder) use ($category) {
-        $builder->where('categories.slug', $category->slug);
-    });
+    $base = Product::query()
+        ->whereHas('categories', function (Builder $q) use ($category) {
+            $q->where('categories.slug', $category->slug);
+        });
 
-    $type = $this->getType($request);
-    $per_page = $request->per_page ?? $this->settings->products_items_per_page;
+    $perPage = $request->per_page ?? $this->settings->products_items_per_page;
 
     // Engine filtering
     if ($this->getCategory($category)) {
         if (null !== $request->cookie('engine_id') && $request->type !== 'clear') {
-            $query->whereHas('make_model_year_engines', function (Builder $builder) use ($request) {
-                $builder->where('make_model_year_engines.attribute_id', $request->cookie('model_id'));
-                $builder->where('make_model_year_engines.parent_id', $request->cookie('make_id'));
-                $builder->where('make_model_year_engines.engine_id', $request->cookie('engine_id'));
-                $builder->where('year_from', '<=', $request->cookie('year'));
-                $builder->where('year_to', '>=', $request->cookie('year'));
-                $builder->groupBy('make_model_year_engines.product_id');
+            $base->whereHas('make_model_year_engines', function (Builder $q) use ($request) {
+                $q->where('make_model_year_engines.attribute_id', $request->cookie('model_id'))
+                  ->where('make_model_year_engines.parent_id',  $request->cookie('make_id'))
+                  ->where('make_model_year_engines.engine_id',  $request->cookie('engine_id'))
+                  ->where('year_from', '<=', $request->cookie('year'))
+                  ->where('year_to',   '>=', $request->cookie('year'))
+                  ->groupBy('make_model_year_engines.product_id');
             });
         }
     }
 
     // Tyre filter
-    if ($request->type == 'tyre') {
-        $query->where('radius', $request->rim);
-        $query->where('width', $request->width);
-        $query->where('height', $request->profile);
+    if ($request->type === 'tyre') {
+        $base->where('radius', $request->rim)
+             ->where('width',  $request->width)
+             ->where('height', $request->profile);
     }
 
     // Battery filter
-    if ($request->type == 'battery') {
-        $query->where('amphere', $request->amphere);
+    if ($request->type === 'battery') {
+        $base->where('amphere', $request->amphere);
     }
 
+    // If engine filter applied → keep normal (ordered) pagination
     if (null !== $request->cookie('engine_id') && $request->type !== 'clear') {
-        // Normal ordered pagination
-        $products = $query->filter($request)->latest()->paginate($per_page);
-    } else {
-        // ✅ Random pagination without duplicates across pages
-        $page = $request->get('page', 1);
+        $products = $base->filter($request)->latest()->paginate($perPage);
+        $products->load('images');
+        $products->appends($request->all());
+        return $products;
+    }
 
-        // Session key is based on URL + filters (excluding page param)
-        $sessionKey = 'random_products_' . md5($request->fullUrlWithoutQuery('page'));
+    // ---------- Stable random pagination (no duplicates across pages) ----------
 
-        // If filters/search changed → reset session
-        if ($page == 1) {
-            session()->forget($sessionKey);
-        }
+    $page = max(1, (int) $request->get('page', 1));
 
-        // If not cached yet, generate randomized ID order once
-        if (!session()->has($sessionKey)) {
-            $allIds = $query->filter($request)->pluck('id')->toArray();
-            shuffle($allIds);
-            session([$sessionKey => $allIds]);
-        }
+    // Build a stable fingerprint for the current filter state (exclude volatile params)
+    $queryForKey = collect($request->query())
+        ->except(['page', 't', '_', '_token'])
+        ->sortKeys()                           // order-insensitive
+        ->all();
 
-        $allIds = session($sessionKey);
-        $total = count($allIds);
+    $fingerprint = md5(json_encode([
+        'category_id' => $category->id,
+        'filters'     => $queryForKey,
+        // include cookies that change the dataset
+        'engine_id'   => $request->cookie('engine_id'),
+        'model_id'    => $request->cookie('model_id'),
+        'make_id'     => $request->cookie('make_id'),
+        'year'        => $request->cookie('year'),
+        'type'        => $request->type,
+        'per_page'    => $perPage,             // if perPage changes → new shuffle
+    ]));
 
-        // Slice IDs for current page
-        $pageIds = array_slice($allIds, ($page - 1) * $per_page, $per_page);
+    $sessionKey = 'random_products_'.$fingerprint;
 
-        // Apply same filters + constrain by IDs
-        $pageProducts = $query->filter($request)
-            ->whereIn('id', $pageIds)
-            ->with('images')
-            ->get()
-            ->sortBy(fn($p) => array_search($p->id, $pageIds))
-            ->values();
+    // Reset the list on page 1 (new run), or if missing
+    if ($page === 1) {
+        session()->forget($sessionKey);
+    }
 
-        // Build paginator
-        $products = new \Illuminate\Pagination\LengthAwarePaginator(
-            $pageProducts,
-            $total,
-            $per_page,
-            $page,
+    // Generate and cache the randomized ID list once per fingerprint
+    if (!session()->has($sessionKey)) {
+        // DISTINCT id list for the current filtered dataset
+        $idsQuery = (clone $base)->filter($request)
+            ->select('products.id')
+            ->distinct();
+
+        $allIds = $idsQuery->pluck('products.id')->all();
+
+        // extra safety in case of weird joins
+        $allIds = array_values(array_unique($allIds));
+
+        shuffle($allIds); // randomize once
+        session([$sessionKey => $allIds]);
+    }
+
+    $allIds = session($sessionKey, []);
+    $total  = count($allIds);
+
+    // If page overflow (e.g., filters changed mid-session), fallback to last slice
+    $offset   = ($page - 1) * $perPage;
+    if ($offset >= $total && $total > 0) {
+        $page = (int) ceil($total / $perPage);
+        $offset = max(0, ($page - 1) * $perPage);
+    }
+
+    // Slice the IDs for this page
+    $pageIds = array_slice($allIds, $offset, $perPage);
+
+    // If no results at all, return empty paginator cleanly
+    if (empty($pageIds)) {
+        $empty = collect();
+        $paginator = new \Illuminate\Pagination\LengthAwarePaginator(
+            $empty, 0, $perPage, $page,
             ['path' => $request->url(), 'query' => $request->query()]
         );
+        $paginator->appends($request->all());
+        return $paginator;
     }
 
-    $products->load('images');
-    $products->appends($request->all());
+    // Fetch models for this page, preserving the randomized order via FIELD(...)
+    // (MySQL/MariaDB support FIELD; if using Postgres, use CASE expression instead.)
+    $idsCsv = implode(',', $pageIds);
+
+    $pageProducts = (clone $base)->filter($request)
+        ->whereIn('products.id', $pageIds)
+        ->orderByRaw("FIELD(products.id, $idsCsv)")
+        ->with('images')
+        ->get();
+
+    // Build paginator with correct total
+    $products = new \Illuminate\Pagination\LengthAwarePaginator(
+        $pageProducts,
+        $total,
+        $perPage,
+        $page,
+        ['path' => $request->url(), 'query' => $request->query()]
+    );
+
+    $products->appends($request->all()); // keep query string
 
     return $products;
 }
+
 
 
 
