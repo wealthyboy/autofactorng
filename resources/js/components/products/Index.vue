@@ -98,7 +98,7 @@
                 </template>
 
                 <template v-if="!productIsLoading && products.length">
-                    <product v-for="product in products" :key="product.id" :product="product" :list="list" :showFitText="search_filters.search_type.search ==
+                    <product v-for="product in randomizedProducts" :key="product.id" :product="product" :list="list" :showFitText="search_filters.search_type.search ==
                         'make_model_year'
                         ? true
                         : false
@@ -202,6 +202,27 @@ export default {
             showFitString: "showFitString",
             showSearch: "showSearch",
         }),
+        hasCategory() {
+            // Example: /products/tyres → true, /products → false
+            const path = window.location.pathname; 
+            const parts = path.split("/").filter(Boolean); 
+            // ["products", "tyres"] → length > 1 means category exists
+            return parts.length > 1 && parts[0] === "products";
+        },
+        randomizedProducts() {
+        let stored = sessionStorage.getItem("randomized_products");
+        if (stored) {
+            return JSON.parse(stored);
+        }
+
+        // Shuffle once
+        let shuffled = [...this.products].sort(() => Math.random() - 0.5);
+
+        // Save to session storage
+        sessionStorage.setItem("randomized_products", JSON.stringify(shuffled));
+
+        return shuffled;
+      }
     },
 
     created() {
