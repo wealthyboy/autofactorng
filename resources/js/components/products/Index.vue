@@ -9,9 +9,6 @@
 
             <div class="underline w-100"></div>
 
-            <p>Total products: {{ products.length }}</p>
-<p>Total randomized: {{ randomizedProducts.length }}</p>
-
             <search-string v-if="!productIsLoading && showFitString && fitString" @remove:vehicle="shopWithoutVehicle"
                 :searchText="fitString" class="" />
             <div v-if="!productIsLoading && !showFitString && !searchMode" class="cta-border cta-bg light mb-4">
@@ -212,11 +209,11 @@ export default {
             // ["products", "tyres"] → length > 1 means category exists
             return parts.length > 1 && parts[0] === "products";
         },
-         randomizedProducts() {
-    return this.products && this.products.length 
-      ? [...this.products].sort(() => Math.random() - 0.5) 
-      : [];
-  }
+        randomizedProducts() {
+            return this.products && this.products.length 
+            ? [...this.products].sort(() => Math.random() - 0.5) 
+            : [];
+        }
     },
 
     created() {
