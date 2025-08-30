@@ -257,8 +257,6 @@ class ProductsController extends Controller
     } else {
         // ✅ Random pagination without duplicates across pages
         $page = $request->get('page', 1);
-
-        // Key is unique per search request (ignores only page param)
         $sessionKey = 'random_products_' . md5($request->fullUrlWithoutQuery('page'));
 
         // If not cached yet, generate randomized ID order once
@@ -274,11 +272,12 @@ class ProductsController extends Controller
         // Slice IDs for current page
         $pageIds = array_slice($allIds, ($page - 1) * $per_page, $per_page);
 
-        // Fetch products in that randomized order
-        $pageProducts = Product::whereIn('id', $pageIds)
+        // ⚡ Corrected: apply same filters + whereIn
+        $pageProducts = $query->filter($request)
+            ->whereIn('id', $pageIds)
             ->with('images')
             ->get()
-            ->sortBy(fn($p) => array_search($p->id, $pageIds)) // keep order
+            ->sortBy(fn($p) => array_search($p->id, $pageIds))
             ->values();
 
         // Build paginator
@@ -296,6 +295,7 @@ class ProductsController extends Controller
 
     return $products;
 }
+
 
 
 
