@@ -362,6 +362,7 @@ class ProductsController extends Controller
 
 
 
+
     public function filterPrices()
     {
         $collection = collect([
