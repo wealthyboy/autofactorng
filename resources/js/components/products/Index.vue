@@ -98,7 +98,7 @@
                 </template>
 
                 <template v-if="!productIsLoading && products.length">
-                    <product v-for="product in randomizedProducts" :key="product.id" :product="product" :list="list" :showFitText="search_filters.search_type.search ==
+                    <product v-for="product in products" :key="product.id" :product="product" :list="list" :showFitText="search_filters.search_type.search ==
                         'make_model_year'
                         ? true
                         : false
