@@ -18,8 +18,8 @@ class ViewServiceProvider extends ServiceProvider
     {
         //
       
-        view()->composer('*',NavComposer::class);
-        view()->composer('admin.*',NavComposer::class);
+        // view()->composer('*',NavComposer::class);
+        // view()->composer('admin.*',NavComposer::class);
     }
 
     /**
