@@ -418,13 +418,14 @@ class ProductsController extends Controller
                 ->toArray();
 
 
-            $normalizedSearch = strtoupper(str_replace(['-', '/', 'R'], '', $request->q));
             
 
+            $normalizedSearch = strtoupper(str_replace(['-', '/', 'r', 'R'], '', $request->q));
+
             $products = Product::whereRaw(
-                "REPLACE(REPLACE(REPLACE(UPPER(name), '-', ''), '/', ''), 'R', '') LIKE ?",
-                ['%' . $normalizedSearch . '%']
-              )->take(10)
+                    "REPLACE(REPLACE(REPLACE(UPPER(name), '-', ''), '/', ''), 'R', '') LIKE ?",
+                    ['%' . $normalizedSearch . '%']
+                )->take(10)
                 ->get();
 
 

@@ -14,7 +14,7 @@ class Admin
 	 * @return mixed
 	 */
 	public function handle($request, Closure $next)
-	{.  
+	{ 
 		
 		$user = $request->user();
 
