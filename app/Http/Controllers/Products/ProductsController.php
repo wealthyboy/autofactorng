@@ -419,7 +419,6 @@ class ProductsController extends Controller
 
 
             $normalizedSearch = strtoupper(str_replace(['-', '/', 'R'], '', $request->q));
-
             
 
             $products = Product::whereRaw(

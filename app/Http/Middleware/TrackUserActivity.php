@@ -18,6 +18,8 @@ class TrackUserActivity
     {
 
          $response = $next($request);
+
+         return  $response;
          
         // Skip admin and ignored AJAX requests
         if (
