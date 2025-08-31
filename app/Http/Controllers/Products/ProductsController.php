@@ -139,8 +139,12 @@ class ProductsController extends Controller
             }
         }
 
+        $normalizedSearch = strtoupper(str_replace(['-', '/', 'r', 'R'], '', $request->q));
 
-        $query = Product::whereRaw("REPLACE(name, '-', '') LIKE ?", ['%' . str_replace('-', '', $request->q) . '%']);
+        $query = Product::whereRaw(
+                    "REPLACE(REPLACE(REPLACE(UPPER(name), '-', ''), '/', ''), 'R', '') LIKE ?",
+                    ['%' . $normalizedSearch . '%']
+        );
 
         $type = $this->getType($request);
 
