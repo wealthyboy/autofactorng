@@ -56,11 +56,16 @@ class WalletsController extends Table
     public function walletBalnce()
     {
         $wallet_balance = auth()->user()->wallet_balance;
-        $total = (int) optional($wallet_balance)->balance + optional($wallet_balance)->auto_credit;
+
+        $balance    = max(0, (int) optional($wallet_balance)->balance);
+        $autoCredit = max(0, (int) optional($wallet_balance)->auto_credit);
+
+        $total = $balance + $autoCredit;
+
         return response()->json([
-            'wallet_balance' => (int) optional($wallet_balance)->balance,
-            'auto_credit' => (int) optional($wallet_balance)->auto_credit,
-            'total' => $total
+            'wallet_balance' => $balance,
+            'auto_credit'    => $autoCredit,
+            'total'          => $total,
         ]);
     }
 

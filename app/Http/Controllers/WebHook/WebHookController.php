@@ -36,55 +36,64 @@ class WebHookController extends Controller
 
     public function payment(Request $request)
     {
-        Log::info($request->all());
+        Log::channel('payments')->info('Webhook received', $request->all());
 
         $input = $request->data['metadata']['custom_fields'][0] ?? null;
+        $reference = $request->data['reference'] ?? null;
 
         if ($input && $input['type'] === 'order_from_paystack') {
-
             try {
                 DB::beginTransaction();
 
-                $user = User::findOrFail($input['customer_id']);
-                $carts = Cart::find($input['cart']);
-
-                if (is_null($carts)) {
+                if ($reference && Order::where('reference', $reference)->exists()) {
+                    Log::channel('payments')->warning('Duplicate webhook ignored', ['reference' => $reference]);
                     DB::rollBack();
                     return http_response_code(200);
                 }
 
+                $user  = User::findOrFail($input['customer_id']);
+                $carts = Cart::find($input['cart']);
+
+                if (is_null($carts)) {
+                    DB::rollBack();
+                    Log::channel('payments')->warning('Cart not found', $input);
+                    return http_response_code(200);
+                }
+
                 $payment_method = $request->data['authorization']['channel'];
-                $ip = $request->data['ip_address'];
+                $ip             = $request->data['ip_address'];
 
-                // Create order
+                // ✅ Save reference with the order
                 $order = Order::checkout($input, $payment_method, $ip, $carts, $user);
+                $order->reference = $reference;
+                $order->save();
 
-                // Deduct wallet balance if used
                 if ($amount = data_get($input, 'wallet')) {
                     WalletBalance::deductFromWallet($amount, $user);
                 }
 
-                $admin_emails = explode(',', $this->settings->alert_email);
-                $sub_total    = Order::subTotal($order);
+                $sub_total = Order::subTotal($order);
 
-                // Handle coupon + mail + voucher
                 Order::getCoupon($order, $sub_total);
                 Order::sendMail($user, $order, $sub_total);
                 Voucher::inValidate($input['coupon']);
 
                 DB::commit();
 
+                Log::channel('payments')->info('Order created successfully', ['order_id' => $order->id, 'reference' => $reference]);
+
                 return http_response_code(200);
             } catch (\Throwable $e) {
                 DB::rollBack();
-                Log::error('Payment transaction failed: '.$e->getMessage(), [
-                    'trace' => $e->getTraceAsString(),
+                Log::channel('payments')->error('Payment transaction failed: '.$e->getMessage(), [
+                    'trace'   => $e->getTraceAsString(),
                     'request' => $request->all(),
                 ]);
                 return response()->json(['error' => 'Payment processing failed'], 500);
             }
         }
 
+        Log::channel('payments')->notice('Webhook ignored', $request->all());
         return http_response_code(200);
     }
 
