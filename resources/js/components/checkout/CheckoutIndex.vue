@@ -240,12 +240,11 @@ export default {
                 alert("Select your shipping")
                 return false;
             }
-            
+
             if (Number(this.walletBalance.wallet_balance) > Number(this.total)){
                 if ( this.checkoutWithWallet ) {
                    return;
                 }
-                console.log("total")
                 this.checkout(e, "Wallet", "Pay with wallet");
                 return
             }
@@ -348,7 +347,7 @@ export default {
                 console.log(res.price)
                 this.ship_price = res.price
                 let oldTotal = this.original_total
-                let total = parseInt(oldTotal) + parseInt(this.ship_price)
+                let total = parseInt(oldTotal) + parseInt(this.ship_price) + parseInt(this.prices.heavy_item_price)
                 this.$store.commit(
                     "setTotal",
                     total
