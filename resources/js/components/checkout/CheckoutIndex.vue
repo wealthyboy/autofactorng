@@ -235,6 +235,12 @@ export default {
 
         checkoutWithWallet: function (e) {
             this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price 
+
+             if (!this.ship_price || this.ship_price < 1) {
+                alert("Select your shipping")
+                return false;
+            }
+            
             if (Number(this.walletBalance.wallet_balance) > Number(this.total)){
                 if ( this.checkoutWithWallet ) {
                    return;
