@@ -46,7 +46,7 @@
                                 <a
                                     href="#"
                                     @click.prevent="checkoutWithCredit"
-                                    class="btn btn-block w-100 mb-2"
+                                    class="btn btn-block btn-dark w-100 mb-2"
                                     :class="{
                                         'btn-dark': total <= parseFloat(walletBalance.auto_credit),
                                         'btn-secondary disabled pe-none': total > parseFloat(walletBalance.auto_credit),
