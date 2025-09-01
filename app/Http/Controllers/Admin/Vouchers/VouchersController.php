@@ -142,7 +142,6 @@ class VouchersController  extends Table
 			'discount'  => 'required',
 		]);
 
-
 		$coupon->code     =  $request->code;
 		$coupon->user_id  = optional(\Auth::user())->id;
 		$coupon->amount   = $request->discount;

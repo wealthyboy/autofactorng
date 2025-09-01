@@ -67,7 +67,7 @@
                   </div>
 
                   <div class="form-check  my-3 mb-3">
-                     <input class="form-check-input" type="radio" name="is_fixed" checked value="1" id="customRadio2">
+                     <input class="form-check-input" type="radio" name="is_fixed" checked value="0" id="customRadio2">
                      <label class="custom-control-label"   role="button"   for="customRadio2" checked>Percentage</label>
                   </div>
 

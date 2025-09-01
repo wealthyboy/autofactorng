@@ -354,12 +354,28 @@ export default {
                 console.log(res.price)
                 this.ship_price = res.price
                 let oldTotal = this.original_total
-                let total = parseInt(oldTotal) + parseInt(this.ship_price) + parseInt(this.prices.heavy_item_price)
+                let total = parseInt(oldTotal) + parseInt(this.ship_price) + parseInt(this.prices.heavy_item_price || 0)
                 this.$store.commit(
                     "setTotal",
                     total
                 );
             }
+
+            console.log(res)
+
+
+            if (res.coupon) {
+                console.log(res.price)
+                this.ship_price = res.price
+                let oldTotal = this.original_total
+                let total = parseInt(oldTotal) + parseInt(this.ship_price) + parseInt(this.prices.heavy_item_price || 0)
+                this.$store.commit(
+                    "setTotal",
+                    total
+                );
+            }
+
+
             
         },
 

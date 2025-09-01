@@ -195,10 +195,6 @@ class CheckoutController extends Controller
             return response()->json($error, 422);
         }
 
-
-       
-
-
         if ($cart_total < $coupon->from_value) {
             $error['error'] = 'You can only use this coupon when your purchase is above  '  . $coupon->from_value;
             return response()->json($error, 422);
@@ -221,7 +217,6 @@ class CheckoutController extends Controller
                 $new_total = $cart_total - $coupon->amount;
                 $total['sub_total'] = round($new_total, 0);
                 $total['actual_total'] = round($cart_total, 0);
-
                 $request->session()->put(['new_total' => $new_total]);
                 $request->session()->put(['coupon_total' => $new_total]);
                 $request->session()->put(['coupon' => $request->coupon]);
@@ -237,11 +232,15 @@ class CheckoutController extends Controller
             $request->session()->put(['coupon_total' => $new_total]);
             $request->session()->put(['coupon' => $request->coupon]);
             $total['percent'] = $coupon->amount . '%  percent off';
+            $total['perceneet2'] = $coupon->amount . '%  percent off';
+
             return response()->json($total, 200);
         } else if (!empty($coupon->from_value) && $cart_total < $coupon->from_value) {
             $error['error'] = 'Coupon is invalid ';
             return response()->json($error, 422);
         } else {
+
+
             if ($coupon->is_fixed) {
                 $new_total = $cart_total - $coupon->amount;
                 $total['sub_total'] = round($new_total, 0);
@@ -249,6 +248,7 @@ class CheckoutController extends Controller
                 $request->session()->put(['coupon_total' => $new_total]);
                 $request->session()->put(['coupon' => $request->coupon]);
                 $total['percent'] = $coupon->amount . '%  percent off';
+                $total['percednt2'] = $coupon->amount . '%  percent off';
                 return response()->json($total, 200);
             }
 
@@ -262,6 +262,8 @@ class CheckoutController extends Controller
             $request->session()->put(['coupon_total' => $new_total]);
             $request->session()->put(['coupon' => $request->coupon]);
             $total['percent'] = $coupon->amount . '%  percent off';
+            $total['percent2'] = $coupon->amount . '%  percent off';
+
             return response()->json($total, 200);
         }
     }
