@@ -16,11 +16,8 @@ class TrackUserActivity
 {
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
 
          $response = $next($request);
-
-         return  $response;
          
         // Skip admin and ignored AJAX requests
         if (
