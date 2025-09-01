@@ -46,12 +46,22 @@
                                 <a
                                     href="#"
                                     @click.prevent="checkoutWithCredit"
-                                    
-                                    class="btn btn-block btn-dark w-100 mb-2"
+                                    class="btn btn-block w-100 mb-2"
+                                    :class="{
+                                        'btn-dark': total <= parseFloat(walletBalance.auto_credit),
+                                        'btn-secondary disabled pe-none': total > parseFloat(walletBalance.auto_credit),
+                                    }"
                                 >
                                     Pay with auto credits
-                                    <i class="fa fa-arrow-right"></i
-                                ></a>
+                                    <span class="bold">
+                                        {{
+                                            "(Credit balance: " +
+                                                $filters.formatNumber(walletBalance.auto_credit) +
+                                                ")"
+                                        }}
+                                    </span>
+                                    <i class="fa fa-arrow-right"></i>
+                                </a>
 
                                 <a
                                     v-if="walletBalance"
@@ -178,6 +188,8 @@ export default {
             showZero: false,
             error: null,
             scriptLoaded: null,
+            checkoutWallet: null,
+            autoCredit: null,
             submiting: false,
             coupon_error: null,
             checkoutLagos: null,
@@ -242,8 +254,9 @@ export default {
             }
 
             if (Number(this.walletBalance.wallet_balance) > Number(this.total)){
-                if ( this.checkoutWithWallet ) {
-                   return;
+                if ( this.checkoutWallet ) {
+                    console.log(this.checkoutWallet)
+                    return;
                 }
                 this.checkout(e, "Wallet", "Pay with wallet");
                 return
@@ -446,17 +459,28 @@ export default {
         },
         checkout: function (e, type = null, text) {
             this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price 
-          
+    
 
             if (!this.ship_price || this.ship_price < 1) {
                 alert("Select your shipping")
                 return false;
             }
 
-              e.target.innerText = "Please wait.......";
+            e.target.innerText = "Please wait.......";
             e.target.classList.add("disabled");
-            this.checkoutLagos = true
-            this.checkoutWithWallet = true
+            if (type === "Wallet") {
+                this.checkoutWallet = true
+            }
+
+            if (type === "auto_credit") {
+                this.autoCredit = true
+            }
+
+            if (type === "payment_on_delivery") {
+               this.checkoutLagos = true
+            }
+
+
             axios
                 .post("/checkout/confirm", {
                     coupon: this.coupon_code,
