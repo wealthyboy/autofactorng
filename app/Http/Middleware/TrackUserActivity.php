@@ -16,6 +16,7 @@ class TrackUserActivity
 {
     public function handle(Request $request, Closure $next)
     {
+        return $next($request);
 
          $response = $next($request);
 
