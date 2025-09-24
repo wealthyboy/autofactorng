@@ -34,8 +34,8 @@
                <div itemprop="offers" itemscope itemtype="https://schema.org/AggregateOffer" class="price-box mt-2">
                   @if($product->discounted_price)
                   <div>
-                     <span itemprop="Price" class="old-price bold">{{ $product->currency }}{{ $product->formatted_sale_price }}</span>
-                     <span itemprop="Price" class="product-price bold">{{ $product->currency }}{{ $product->formatted_price }}</span>
+                     <span itemprop="Price" class="old-price bold">{{ $product->currency }}{{ $product->formatted_price }}</span>
+                     <span itemprop="Price" class="product-price bold">{{ $product->currency }}{{ $product->formatted_sale_price }}</span>
                   </div>
                   @else
                   <div>
