@@ -25,6 +25,10 @@ return [
         'secret' => env('MAILCHIMP_SECRET'),
         'list' => env('MAILCHIMP_LISTID'),
     ],
+    'zepto' => [
+        'api_key' => env('ZEPTO_API_KEY'),
+        'api_url' => env('ZEPTO_API_URL', 'https://api.zeptomail.com/v1.1/email'),
+    ],
 
 
     'postmark' => [
