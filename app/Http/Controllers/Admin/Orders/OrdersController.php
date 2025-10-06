@@ -226,7 +226,7 @@ class OrdersController extends Table
 
 			//dd($order);
 
-			try {
+			//try {
 				$user = User::find(1);
 				$when = now()->addMinutes(5);
 				$order->full_name = $request->first_name;
@@ -239,7 +239,7 @@ class OrdersController extends Table
 				// $err = new Error();
 				// $err->error = $th->getMessage();
 				// $err->save();
-			}
+			//}
 
 			// Send Mail
 			(new Activity)->put("Added a new order with email and phone number  " . $request->email . ' and ' . $request->phone_number);
@@ -251,7 +251,7 @@ class OrdersController extends Table
 			//dd($th);
 			//DB::rollBack();
 			return  redirect()->route('admin.orders.index')->with('errors', 'Something went wrong');
-		}
+		
 	}
 
 
