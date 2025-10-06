@@ -162,7 +162,7 @@ class OrdersController extends Table
 
 				//dd($spreedSheetData);
 
-				//Order::appendOrderRow($spreedSheetData, "!A1:Z1000");
+				Order::appendOrderRow($spreedSheetData, "!A1:Z1000");
 			}
 
 			$sub_total = array_sum($total);
