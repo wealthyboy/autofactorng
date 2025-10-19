@@ -308,7 +308,6 @@ export default {
                     "payment_method": ["card", "account", "transfer", "wallet", "ussd"],
                     "confetti": true,
                     // Replace with your actual logo URL or Base64 string
-                    "logo": "https://placehold.co/100x50/3498db/ffffff?text=Your+Logo", 
                 }
                 // ==========================================
 
