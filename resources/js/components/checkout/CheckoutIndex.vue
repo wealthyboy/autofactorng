@@ -110,13 +110,6 @@
                                     <i class="fa fa-arrow-right"></i
                                 ></a>
 
-                                <a
-                                    href="#"
-                                    @click.prevent="paywithSeerbit"
-                                    class="btn btn-block btn-dark w-100 mb-1"
-                                >
-                                    Pay now with seerbit<i class="fa fa-arrow-right"></i
-                                ></a>
 
                                                                 <a
                                     href="#"
@@ -124,6 +117,14 @@
                                     class="btn btn-block btn-dark w-100"
                                 >
                                     Pay now with paystack <i class="fa fa-arrow-right"></i
+                                ></a>
+
+                                <a
+                                    href="#"
+                                    @click.prevent="paywithSeerbit"
+                                    class="btn btn-block btn-dark w-100 mb-1"
+                                >
+                                    Pay now with seerbit<i class="fa fa-arrow-right"></i
                                 ></a>
                                 <div class="text-dark mt-4">
                                     <div class="bold m-0">Note</div>
