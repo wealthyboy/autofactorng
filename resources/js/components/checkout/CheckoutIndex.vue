@@ -8,6 +8,15 @@
         <page-loader :loading="loading" />
     </div>
 
+    <div v-if="payment_is_processing" class="payment-overlay">
+  <div class="overlay-content text-center">
+    <div class="spinner-border text-light mb-3" role="status">
+      <span class="sr-only">Processing...</span>
+    </div>
+    <h4 class="text-light">Payment is processing...  Do not leave the brower</h4>
+  </div>
+</div>
+
     <div v-if="!loading && !paymentIsComplete" class="container">
         <div class="row align-items-start">
             <div class="col-md-7">
@@ -273,14 +282,8 @@ export default {
 
             let form = document.getElementById("checkout-form-2");
             this.order_text = "Please wait. We are almost done......";
-            this.payment_is_processing = true;
             this.payment_method = "card";
-            // This context variable holds placeholder data needed for the call.
-            // In a real application, 'context.total' and 'context.cart_meta.user.email' 
-            // would be available in your scope (e.g., in a Vue/React component or global object).
-            
-
-            // Assuming SeerbitPay is globally available, here is the modified invocation:
+           
             SeerbitPay ({
                 "close_on_success": true, 
                 
@@ -306,8 +309,6 @@ export default {
                         "button_color": "#000000"  // Adjusted to include '#'
                     }, 
                     "payment_method": ["card", "account", "transfer", "wallet", "ussd"],
-                    "confetti": true,
-                    // Replace with your actual logo URL or Base64 string
                 }
                 // ==========================================
 
@@ -315,6 +316,7 @@ export default {
                         
             // The Callback function (Success handler)
             function callback(response, closeModal) {
+                context.payment_is_processing = true;
                 console.log("Transaction Callback Response:", response); 
                 axios
                     .post("/checkout/confirm", {
@@ -326,11 +328,15 @@ export default {
                     })
                     .then((response) => {
                         context.paymentIsComplete = true;
+                        context.payment_is_processing = false;
+
                     })
                     .catch((error) => {
                         // Handle confirmation error
                         e.target.innerText = text;
                         e.target.classList.remove("disabled");
+                        context.payment_is_processing = false;
+
                     });
             },
 
@@ -599,3 +605,28 @@ export default {
     },
 };
 </script>
+<style scoped>
+.payment-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* semi-transparent black */
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment-overlay .overlay-content {
+  text-align: center;
+}
+
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+}
+
+</style>
+
