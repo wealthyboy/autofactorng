@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="/css/app.css">
 
     <script src="https://js.paystack.co/v1/inline.js"></script>
+    <script src="https://checkout.seerbitapi.com/api/v2/seerbit.js"></script>
+
 
 
 </head>
