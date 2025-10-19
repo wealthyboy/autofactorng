@@ -103,10 +103,18 @@
 
                                 <a
                                     href="#"
+                                    @click.prevent="paywithSeerbit"
+                                    class="btn btn-block btn-dark w-100 mb-1"
+                                >
+                                    Pay now with seerbit<i class="fa fa-arrow-right"></i
+                                ></a>
+
+                                                                <a
+                                    href="#"
                                     @click.prevent="makePayment"
                                     class="btn btn-block btn-dark w-100"
                                 >
-                                    Pay Now<i class="fa fa-arrow-right"></i
+                                    Pay now with paystack <i class="fa fa-arrow-right"></i
                                 ></a>
                                 <div class="text-dark mt-4">
                                     <div class="bold m-0">Note</div>
@@ -245,6 +253,94 @@ export default {
             updateCartMeta: "updateCartMeta",
         }),
 
+        paywithSeerbit: function () {
+            let context = this;
+            var cartIds = [];
+            this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price;
+            this.carts.forEach(function (cart, key) {
+                cartIds.push(cart.id);
+            });
+
+            if (!this.addresses.length) {
+                this.error =  "You need to save your address before placing your order";
+                return false;
+            }
+
+            if (!this.ship_price || this.ship_price < 1) {
+                alert("Select your shipping")
+                return false;
+            }
+
+            let form = document.getElementById("checkout-form-2");
+            this.order_text = "Please wait. We are almost done......";
+            this.payment_is_processing = true;
+            this.payment_method = "card";
+            // This context variable holds placeholder data needed for the call.
+            // In a real application, 'context.total' and 'context.cart_meta.user.email' 
+            // would be available in your scope (e.g., in a Vue/React component or global object).
+            
+
+            // Assuming SeerbitPay is globally available, here is the modified invocation:
+            SeerbitPay ({
+                "close_on_success": true, 
+                
+                "public_key": "SBPUBK_LD5CFQZHSMJZNQHL3ODOTWTJPCIA4MNY", 
+                "tranref": new Date().getTime(), 
+                "currency": "NGN",
+                "country": "NG",
+                "amount": context.total,
+                "email": context.cart_meta.user.email,
+                "mobile_no":context.cart_meta.user.phone_number,
+                "productId": "", 
+                "description": "", 
+                "setAmountByCustomer": false, 
+                "full_name": context.cart_meta.user.name, 
+                "tokenize" : false, 
+                "pocketReference" : "", 
+                "splitCode" : "", 
+
+                "customization": {
+                    "theme": {
+                        "border_color": "#000000", // Adjusted to include '#'
+                        "background_color": "#ECECEC",
+                        "button_color": "#000000"  // Adjusted to include '#'
+                    }, 
+                    "payment_method": ["card", "account", "transfer", "wallet", "ussd"],
+                    "confetti": true,
+                    // Replace with your actual logo URL or Base64 string
+                    "logo": "https://placehold.co/100x50/3498db/ffffff?text=Your+Logo", 
+                }
+                // ==========================================
+
+            },
+                        
+            // The Callback function (Success handler)
+            function callback(response, closeModal) {
+                console.log("Transaction Callback Response:", response); 
+                axios
+                    .post("/checkout/confirm", {
+                        coupon: context.coupon_code,
+                        payment_method: "seerbit",
+                        shipping_price: context.ship_price,
+                        heavy_item_price: context.prices?.heavy_item_price || 0,
+                        total: context.total,
+                    })
+                    .then((response) => {
+                        context.paymentIsComplete = true;
+                    })
+                    .catch((error) => {
+                        // Handle confirmation error
+                        e.target.innerText = text;
+                        e.target.classList.remove("disabled");
+                    });
+            },
+
+            // The Close function (User manually closes or transaction is aborted)
+            function close(close) {
+                console.log("Transaction Closed Event:", close); 
+            });
+        },
+
         checkoutWithWallet: function (e) {
             this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price 
 
@@ -361,6 +457,7 @@ export default {
             
             this.checkout(e, "auto_credit", "Pay with auto credit");
         },
+
 
         priceSelected(res){
             if (!res.coupon) {
