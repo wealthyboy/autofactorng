@@ -122,7 +122,7 @@
                                 <a
                                     href="#"
                                     @click.prevent="paywithSeerbit"
-                                    class="btn btn-block btn-dark w-100 mb-1"
+                                    class="btn btn-block btn-dark w-100 mt-2"
                                 >
                                     Pay now with seerbit<i class="fa fa-arrow-right"></i
                                 ></a>
