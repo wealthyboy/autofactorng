@@ -119,13 +119,13 @@
                                     Pay now with paystack <i class="fa fa-arrow-right"></i
                                 ></a>
 
-                                <!-- <a
+                                <a
                                     href="#"
                                     @click.prevent="paywithSeerbit"
                                     class="btn btn-block btn-dark w-100 mt-2"
                                 >
                                     Pay now with seerbit<i class="fa fa-arrow-right"></i
-                                ></a> -->
+                                ></a>
                                 <div class="text-dark mt-4">
                                     <div class="bold m-0">Note</div>
                                     <div class="m-0">
@@ -298,7 +298,7 @@ export default {
                 "productId": "", 
                 "description": "", 
                 "setAmountByCustomer": false, 
-                "full_name": context.cart_meta.user.name, 
+                "full_name": context.cart_meta.user.name + " " + context.cart_meta.user.last_name, 
                 "tokenize" : false, 
                 "pocketReference" : "", 
                 "splitCode" : "", 
