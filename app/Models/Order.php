@@ -40,8 +40,6 @@ class Order extends Model
 	public function ordered_products()
 	{
 		return $this->hasMany(OrderedProduct::class);
-
-		
 	}
 
 	public function user()
@@ -92,7 +90,7 @@ class Order extends Model
 				if ($status === 'Cancelled') {
 					continue; // Skip this status
 				}
-				
+
 				$order_status = new OrderStatus();
 				$order_status->is_updated = false;
 				$order_status->status = $status;
@@ -140,7 +138,6 @@ class Order extends Model
 
 					// Reset context after save to avoid affecting other updates
 					ProductObserver::$context = [];
-
 				}
 
 				$spreedSheetData = [
@@ -152,12 +149,15 @@ class Order extends Model
 					'location' => optional(optional($user->active_address)->address_state)->name
 				];
 
+				self::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
+
 				self::appendOrderRow($spreedSheetData, "!A1:Z1000");
+
 
 				OrderedProduct::Insert($insert);
 				$cart->status = 'paid';
 
-			    AbandonedCart::where('user_id', $user->id)->delete();
+				AbandonedCart::where('user_id', $user->id)->delete();
 
 				$cart->delete();
 			}
@@ -227,12 +227,73 @@ class Order extends Model
 						]
 					]
 				]
-		]);
+			]);
 
 		return $response->json($response);
 	}
 
 
+	static function appendPendingOrderRow(
+		array  $data,
+		string $sheetName = 'Pending Payment NEW!A:G',
+		string $valueInputOption = 'RAW',
+		string $insertDataOption = 'OVERWRITE'
+	) {
+
+
+		$row = [
+			Carbon::now()->format('Y-m-d'),
+			$data['customer_name'] ?? '',
+			$data['invoice_number'] ?? '',
+			$data['unit_price'] ?? '',
+			null,
+			null,
+			null
+		];
+
+
+		/* ----------------------------------------------------------
+     | 2. Boot the Google Sheets client (service‑account JSON)
+     * ----------------------------------------------------------*/
+		$client = new Google_Client();
+		$client->setApplicationName('My Sheets App');
+		$client->setScopes([Google_Service_Sheets::SPREADSHEETS]);
+		$client->setAuthConfig(storage_path('app/google/credentials.json'));
+
+		$service = new Google_Service_Sheets($client);
+
+		/* ----------------------------------------------------------
+     | 3. Append the row
+     * ----------------------------------------------------------*/
+		$spreadsheetId = config('services.sheets.client_id_2'); // add this key to services.php
+
+		//dd($spreadsheetId);
+
+		$body   = new Google_Service_Sheets_ValueRange([
+			'values' => [$row],          // MUST be 2‑D
+		]);
+
+
+
+		$params = [
+			'valueInputOption' => $valueInputOption,  // RAW or USER_ENTERED
+			'insertDataOption' => $insertDataOption,  // OVERWRITE or INSERT_ROWS
+		];
+
+
+
+		try {
+			$response = $service->spreadsheets_values
+				->append($spreadsheetId, $sheetName, $body, $params);
+			logger()->info('Append response', (array) $response);
+		} catch (\Exception $e) {
+			dd($e->getMessage());
+		}
+
+		// Using the sheet (tab) name as the range is fine for append()
+		//$service->spreadsheets_values
+		//->append($spreadsheetId, $sheetName, $body, $params);
+	}
 
 
 	static function appendOrderRow(
