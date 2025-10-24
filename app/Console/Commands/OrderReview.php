@@ -50,7 +50,7 @@ class OrderReview extends Command
                 if ($order->created_at->diffInWeeks($week) >= 1) {
                     Notification::route('mail', optional($order->user)->email)
                         ->notify(new ProductReviewNotification($order->user, $order));
-                    $order->allow_review = false;
+                    $order->allow_review = 0;
                     $order->save();
                 }
             }
