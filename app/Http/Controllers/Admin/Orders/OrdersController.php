@@ -163,9 +163,9 @@ class OrdersController extends Table
 			//dd($spreedSheetData);
 
 			Order::appendOrderRow($spreedSheetData, "!A1:Z1000");
-			$turned = Order::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
+			//$turned = Order::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
 
-			dd($turned);
+			//dd($turned);
 		}
 
 		$sub_total = array_sum($total);
