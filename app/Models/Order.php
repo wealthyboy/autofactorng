@@ -149,7 +149,7 @@ class Order extends Model
 					'location' => optional(optional($user->active_address)->address_state)->name
 				];
 
-				//self::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
+				self::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
 
 				self::appendOrderRow($spreedSheetData, "!A1:Z1000");
 

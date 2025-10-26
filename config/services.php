@@ -37,6 +37,7 @@ return [
     'sheets' => [
         'service_account_credentials_json' => env('GOOGLE_APPLICATION_CREDENTIALS'),
         'client_id' => env('GOOGLE_SPREADSHEET_ID'),
+        'client_id_2' => env('GOOGLE_SHEET_ID'),
     ],
 
     'ses' => [
