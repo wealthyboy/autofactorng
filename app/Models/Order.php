@@ -233,47 +233,62 @@ class Order extends Model
 	}
 
 
-	static function appendPendingOrderRow(
-		array $data,
-		string $sheetName = 'Pending Payment NEW!A:G',
-		string $valueInputOption = 'RAW',
-		string $insertDataOption = 'INSERT_ROWS'
-	) {
-		$row = [
-			Carbon::now()->format('Y-m-d'),
-			$data['customer_name'] ?? '',
-			$data['invoice_number'] ?? '',
-			$data['total'] ?? '',
-			null,
-			null,
-			null
-		];
+	use Google\Service\Sheets\ValueRange;
+use Carbon\Carbon;
+use Google\Client as Google_Client;
+use Google\Service\Sheets as Google_Service_Sheets;
 
-		$client = new Google_Client();
-		$client->setApplicationName('My Sheets App');
-		$client->setScopes([Google_Service_Sheets::SPREADSHEETS]);
-		$client->setAuthConfig(storage_path('app/google/credentials.json'));
+static function appendPendingOrderRow(
+    array $data,
+    string $sheetName = 'Pending Payment NEW!A:G',
+    string $valueInputOption = 'RAW'
+) {
+    $client = new Google_Client();
+    $client->setApplicationName('My Sheets App');
+    $client->setScopes([Google_Service_Sheets::SPREADSHEETS]);
+    $client->setAuthConfig(storage_path('app/google/credentials.json'));
 
-		$service = new Google_Service_Sheets($client);
-		$spreadsheetId = config('services.sheets.client_id_2');
+    $service = new Google_Service_Sheets($client);
+    $spreadsheetId = config('services.sheets.client_id_2');
 
-		$body = new Google_Service_Sheets_ValueRange([
-			'values' => [$row],
-		]);
+    // 1️⃣ Get the sheet name (without !A:G)
+    $sheetTab = explode('!', $sheetName)[0];
 
-		$params = [
-			'valueInputOption' => $valueInputOption,
-			'insertDataOption' => $insertDataOption, // use INSERT_ROWS
-		];
+    // 2️⃣ Get existing values in the sheet (column A)
+    $range = $sheetTab . '!A:A';
+    $existing = $service->spreadsheets_values->get($spreadsheetId, $range)->getValues();
 
-		try {
-			$response = $service->spreadsheets_values
-				->append($spreadsheetId, $sheetName, $body, $params);
-			logger()->info('Append response', (array) $response);
-		} catch (\Exception $e) {
-			logger()->error('Google Sheets append error: ' . $e->getMessage());
-		}
-	}
+    // 3️⃣ Count how many rows exist (including header)
+    $nextRow = count($existing) + 1;
+
+    // 4️⃣ Prepare your row
+    $row = [
+        Carbon::now()->format('Y-m-d'),
+        $data['customer_name'] ?? '',
+        $data['invoice_number'] ?? '',
+        $data['total'] ?? '',
+        null,
+        null,
+        null,
+    ];
+
+    $updateRange = $sheetTab . "!A{$nextRow}:G{$nextRow}";
+
+    $body = new Google_Service_Sheets_ValueRange([
+        'values' => [$row],
+    ]);
+
+    $params = ['valueInputOption' => $valueInputOption];
+
+    try {
+        $service->spreadsheets_values->update($spreadsheetId, $updateRange, $body, $params);
+        logger()->info("Appended at row {$nextRow}");
+    } catch (\Exception $e) {
+        logger()->error('Google Sheets append error: ' . $e->getMessage());
+        dd($e->getMessage());
+    }
+}
+
 
 
 
