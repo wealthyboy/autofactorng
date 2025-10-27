@@ -234,66 +234,47 @@ class Order extends Model
 
 
 	static function appendPendingOrderRow(
-		array  $data,
+		array $data,
 		string $sheetName = 'Pending Payment NEW!A:G',
 		string $valueInputOption = 'RAW',
-		string $insertDataOption = 'OVERWRITE'
+		string $insertDataOption = 'INSERT_ROWS'
 	) {
-
-
 		$row = [
 			Carbon::now()->format('Y-m-d'),
 			$data['customer_name'] ?? '',
 			$data['invoice_number'] ?? '',
-			$data['unit_price'] ?? '',
+			$data['total'] ?? '',
 			null,
 			null,
 			null
 		];
 
-
-		/* ----------------------------------------------------------
-     | 2. Boot the Google Sheets client (service‑account JSON)
-     * ----------------------------------------------------------*/
 		$client = new Google_Client();
 		$client->setApplicationName('My Sheets App');
 		$client->setScopes([Google_Service_Sheets::SPREADSHEETS]);
 		$client->setAuthConfig(storage_path('app/google/credentials.json'));
 
 		$service = new Google_Service_Sheets($client);
+		$spreadsheetId = config('services.sheets.client_id_2');
 
-		/* ----------------------------------------------------------
-     | 3. Append the row
-     * ----------------------------------------------------------*/
-		$spreadsheetId = config('services.sheets.client_id_2'); // add this key to services.php
-
-		//dd($spreadsheetId);
-
-		$body   = new Google_Service_Sheets_ValueRange([
-			'values' => [$row],          // MUST be 2‑D
+		$body = new Google_Service_Sheets_ValueRange([
+			'values' => [$row],
 		]);
 
-
-
 		$params = [
-			'valueInputOption' => $valueInputOption,  // RAW or USER_ENTERED
-			'insertDataOption' => $insertDataOption,  // OVERWRITE or INSERT_ROWS
+			'valueInputOption' => $valueInputOption,
+			'insertDataOption' => $insertDataOption, // use INSERT_ROWS
 		];
-
-
 
 		try {
 			$response = $service->spreadsheets_values
 				->append($spreadsheetId, $sheetName, $body, $params);
 			logger()->info('Append response', (array) $response);
 		} catch (\Exception $e) {
-			dd($e->getMessage());
+			logger()->error('Google Sheets append error: ' . $e->getMessage());
 		}
-
-		// Using the sheet (tab) name as the range is fine for append()
-		//$service->spreadsheets_values
-		//->append($spreadsheetId, $sheetName, $body, $params);
 	}
+
 
 
 	static function appendOrderRow(
