@@ -173,7 +173,7 @@ class OrdersController extends Table
 		];
 
 
-		$turned = Order::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
+		//$turned = Order::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
 
 
 		$sub_total = array_sum($total);
