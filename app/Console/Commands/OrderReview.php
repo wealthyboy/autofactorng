@@ -51,6 +51,7 @@ class OrderReview extends Command
         $orders = Order::query()
             ->has('user')
             ->where('allow_review', 1)
+            ->where('email', 'damilola@autofactorng.com')
             ->whereDate('created_at', $today)
             ->get();
 
