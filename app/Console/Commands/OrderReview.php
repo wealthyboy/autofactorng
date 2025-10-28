@@ -43,17 +43,30 @@ class OrderReview extends Command
      */
     public function handle()
     {
-        $week = Carbon::now();
-        $orders = Order::has('user')->where('allow_review', 1)->get();
-        if (null !== $orders) {
-            foreach ($orders as  $order) {
-                if ($order->created_at->diffInWeeks($week) >= 1) {
+        $now = Carbon::now();
+
+        $today = Carbon::today();
+
+
+        $orders = Order::query()
+            ->has('user')
+            ->where('allow_review', 1)
+            ->whereDate('created_at', $today)
+            ->get();
+
+        foreach ($orders as $order) {
+            \DB::transaction(function () use ($order) {
+                $order->lockForUpdate();
+
+                if ($order->allow_review == 1) {
                     Notification::route('mail', optional($order->user)->email)
                         ->notify(new ProductReviewNotification($order->user, $order));
-                    $order->allow_review = 0;
-                    $order->save();
+
+                    $order->update([
+                        'allow_review' => 0,
+                    ]);
                 }
-            }
+            });
         }
     }
 }
