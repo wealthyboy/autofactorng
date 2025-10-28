@@ -20,10 +20,15 @@ use Revolution\Google\Sheets\Facades\Sheets;
 use Carbon\Carbon;
 use Google_Client;
 use Google_Service_Sheets;
-use Google_Service_Sheets_ValueRange;
 use App\Observers\ProductObserver;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\ProductReviewNotification;
+
+use Google\Service\Sheets\BatchUpdateSpreadsheetRequest;
+use Google\Service\Sheets\Request as Google_Service_Sheets_Request;
+use Google\Service\Sheets\InsertDimensionRequest as Google_Service_Sheets_InsertDimensionRequest;
+use Google\Service\Sheets\DimensionRange as Google_Service_Sheets_DimensionRange;
+use Google\Service\Sheets\ValueRange as Google_Service_Sheets_ValueRange;
 
 use Google\Service\Sheets\ValueRange;
 
@@ -153,7 +158,6 @@ class Order extends Model
 					'location' => optional(optional($user->active_address)->address_state)->name
 				];
 
-				self::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
 
 				self::appendOrderRow($spreedSheetData, "!A1:Z1000");
 
@@ -168,6 +172,17 @@ class Order extends Model
 
 			//self::sendWhatsApMessage(2349081155505, $order->first_name);
 		}
+
+
+		$spreedSheetData = [
+			'invoice_number' => $order->invoice,
+			'customer_name' => $order->first_name . ' ' . $order->last_name,
+			'total' => $order->total,
+		];
+
+
+		self::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
+
 
 
 		try {
@@ -238,12 +253,25 @@ class Order extends Model
 
 
 
-
 	static function appendPendingOrderRow(
 		array $data,
-		string $sheetName = 'Pending Payment NEW!A:G',
+		string $sheetName = 'Pending Payment NEW',
 		string $valueInputOption = 'RAW'
-	) {
+	): void {
+
+		$row = [
+			Carbon::now()->format('Y-m-d'),
+			$data['customer_name'] ?? '',
+			$data['invoice_number'] ?? '',
+			$data['total'] ?? '',
+			null,
+			null,
+			null
+		];
+
+		// ----------------------------------------------------------
+		// 1. Boot the Google Sheets client
+		// ----------------------------------------------------------
 		$client = new Google_Client();
 		$client->setApplicationName('My Sheets App');
 		$client->setScopes([Google_Service_Sheets::SPREADSHEETS]);
@@ -252,43 +280,61 @@ class Order extends Model
 		$service = new Google_Service_Sheets($client);
 		$spreadsheetId = config('services.sheets.client_id_2');
 
-		// 1️⃣ Get the sheet name (without !A:G)
-		$sheetTab = explode('!', $sheetName)[0];
-
-		// 2️⃣ Get existing values in the sheet (column A)
-		$range = $sheetTab . '!A:A';
-		$existing = $service->spreadsheets_values->get($spreadsheetId, $range)->getValues();
-
-		// 3️⃣ Count how many rows exist (including header)
-		$nextRow = count($existing) + 1;
-
-		// 4️⃣ Prepare your row
-		$row = [
-			Carbon::now()->format('Y-m-d'),
-			$data['customer_name'] ?? '',
-			$data['invoice_number'] ?? '',
-			$data['total'] ?? '',
-			null,
-			null,
-			null,
-		];
-
-		$updateRange = $sheetTab . "!A{$nextRow}:G{$nextRow}";
-
-		$body = new Google_Service_Sheets_ValueRange([
-			'values' => [$row],
-		]);
-
-		$params = ['valueInputOption' => $valueInputOption];
-
 		try {
-			$service->spreadsheets_values->update($spreadsheetId, $updateRange, $body, $params);
-			logger()->info("Appended at row {$nextRow}");
+			// ----------------------------------------------------------
+			// 2. Get last filled row in column A
+			// ----------------------------------------------------------
+			$range = "{$sheetName}!A:A";
+			$response = $service->spreadsheets_values->get($spreadsheetId, $range);
+			$values = $response->getValues();
+			$lastRow = count($values) > 0 ? count($values) + 1 : 1; // next available row
+
+			// ----------------------------------------------------------
+			// 3. Ensure sheet has enough rows (expand grid if needed)
+			// ----------------------------------------------------------
+			$spreadsheet = $service->spreadsheets->get($spreadsheetId);
+			$sheet = collect($spreadsheet->getSheets())
+				->firstWhere('properties.title', $sheetName);
+			$sheetId = $sheet->getProperties()->getSheetId();
+			$gridRows = $sheet->getProperties()->getGridProperties()->getRowCount();
+
+			if ($lastRow > $gridRows) {
+				$addRowsRequest = new Google_Service_Sheets_BatchUpdateSpreadsheetRequest([
+					'requests' => [
+						new Google_Service_Sheets_Request([
+							'insertDimension' => new Google_Service_Sheets_InsertDimensionRequest([
+								'range' => new Google_Service_Sheets_DimensionRange([
+									'sheetId' => $sheetId,
+									'dimension' => 'ROWS',
+									'startIndex' => $gridRows,
+									'endIndex' => $lastRow,
+								]),
+								'inheritFromBefore' => true,
+							])
+						])
+					]
+				]);
+				$service->spreadsheets->batchUpdate($spreadsheetId, $addRowsRequest);
+			}
+
+			// ----------------------------------------------------------
+			// 4. Write data neatly below last row
+			// ----------------------------------------------------------
+			$targetRange = "{$sheetName}!A{$lastRow}:G{$lastRow}";
+			$body = new Google_Service_Sheets_ValueRange([
+				'values' => [$row],
+			]);
+
+			$params = ['valueInputOption' => $valueInputOption];
+			$service->spreadsheets_values->update($spreadsheetId, $targetRange, $body, $params);
+
+			logger()->info("✅ Row appended successfully to {$targetRange}");
 		} catch (\Exception $e) {
-			logger()->error('Google Sheets append error: ' . $e->getMessage());
+			logger()->error('❌ Google Sheets append error: ' . $e->getMessage());
 			dd($e->getMessage());
 		}
 	}
+
 
 
 
