@@ -167,7 +167,7 @@ class Order extends Model
 		$spreedSheetData = [
 			'invoice_number' => $order->invoice,
 			'customer_name' => $order->first_name . ' ' . $order->last_name,
-			'total' => 40000,
+			'total' => $input['total'],
 		];
 
 		self::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
