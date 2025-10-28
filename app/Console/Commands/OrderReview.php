@@ -43,31 +43,23 @@ class OrderReview extends Command
      */
     public function handle()
     {
-        $now = Carbon::now();
-
-        $today = Carbon::today();
-
-
         $orders = Order::query()
             ->has('user')
             ->where('allow_review', 1)
             ->where('email', 'damilola@autofactorng.com')
-            ->whereDate('created_at', $today)
+            ->whereDate('created_at', \Carbon::today())
+            ->lockForUpdate()
             ->get();
 
-        foreach ($orders as $order) {
-            \DB::transaction(function () use ($order) {
-                $order->lockForUpdate();
-
+        \DB::transaction(function () use ($orders) {
+            foreach ($orders as $order) {
                 if ($order->allow_review == 1) {
                     Notification::route('mail', optional($order->user)->email)
                         ->notify(new ProductReviewNotification($order->user, $order));
 
-                    $order->update([
-                        'allow_review' => 0,
-                    ]);
+                    $order->update(['allow_review' => 0]);
                 }
-            });
-        }
+            }
+        });
     }
 }
