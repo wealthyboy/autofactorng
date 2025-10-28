@@ -166,14 +166,7 @@ class OrdersController extends Table
 		}
 
 
-		$spreedSheetData = [
-			'invoice_number' => $order->invoice,
-			'customer_name' => $request->first_name,
-			'total' => $order->total,
-		];
 
-
-		//$turned = Order::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
 
 
 		$sub_total = array_sum($total);
@@ -206,6 +199,16 @@ class OrdersController extends Table
 
 		$order->total = is_array($total) ? array_sum($total)  : $total;
 		$order->save();
+
+
+		$spreedSheetData = [
+			'invoice_number' => $order->invoice,
+			'customer_name' => $request->first_name,
+			'total' => 	$order->total
+		];
+
+
+		$turned = Order::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
 
 
 		$order->heavy_item_price = $request->heavy_item_price ?? '---';
