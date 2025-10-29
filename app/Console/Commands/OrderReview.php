@@ -50,15 +50,13 @@ class OrderReview extends Command
             ->whereDate('created_at', \Carbon::today())
             ->get();
 
-        \DB::transaction(function () use ($orders) {
-            foreach ($orders as $order) {
-                if ($order->allow_review == 1) {
-                    Notification::route('mail', $order->email)
-                        ->notify(new ProductReviewNotification($order->user, $order));
+        foreach ($orders as $order) {
+            if ($order->allow_review == 1) {
+                Notification::route('mail', $order->email)
+                    ->notify(new ProductReviewNotification($order->user, $order));
 
-                    $order->update(['allow_review' => 0]);
-                }
+                $order->update(['allow_review' => 0]);
             }
-        });
+        }
     }
 }
