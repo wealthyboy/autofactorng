@@ -46,12 +46,11 @@ class OrderReview extends Command
         $orders = Order::query()
             ->has('user')
             ->where('allow_review', 1)
-            ->whereDate('created_at', Carbon::today())
             ->get();
 
         foreach ($orders as $order) {
-            if ($order->allow_review == 1) {
-                Notification::route('mail', $order->email)
+            if ($order->created_at->diffInDays(Carbon::now()) >= 7) {
+                Notification::route('mail', optional($order->user)->email)
                     ->notify(new ProductReviewNotification($order->user, $order));
 
                 $order->update(['allow_review' => 0]);
