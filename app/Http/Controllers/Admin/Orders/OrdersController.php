@@ -51,17 +51,19 @@ class OrdersController extends Table
 
 		$orders = Order::has('ordered_products')->orderBy('created_at', 'desc')->paginate(150);
 		$orders = $this->getColumnListings(request(), $orders);
+		if (request()->debug) {
+			dd(
+				$orders = Order::query()
+					->has('user')
+					->where('allow_review', 1)
+					->where('email', 'damilola@autofactorng.com')
+					->whereDate('created_at', \Carbon::today())
+					->get()
+			);
+		}
 
-		dd(
-			$orders = Order::query()
-            ->has('user')
-            ->where('allow_review', 1)
-            ->where('email', 'damilola@autofactorng.com')
-            ->whereDate('created_at', \Carbon::today())
-            ->get()
-		);
 
-		
+
 		return view('admin.orders.index', compact('orders'));
 	}
 
