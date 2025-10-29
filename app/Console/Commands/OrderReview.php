@@ -49,7 +49,7 @@ class OrderReview extends Command
             ->get();
 
         foreach ($orders as $order) {
-            if ($order->created_at->diffInDays(Carbon::now()) >= 7) {
+            if ($order->allow_review && $order->created_at->diffInDays(Carbon::now()) >= 7) {
                 Notification::route('mail', $order->email)
                     ->notify(new ProductReviewNotification($order->user, $order));
 
