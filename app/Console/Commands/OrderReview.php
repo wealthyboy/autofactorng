@@ -46,15 +46,13 @@ class OrderReview extends Command
         $orders = Order::query()
             ->has('user')
             ->where('allow_review', 1)
-            ->where('email', 'damilola@autofactorng.com')
             ->whereDate('created_at', \Carbon::today())
-            ->lockForUpdate()
             ->get();
 
         \DB::transaction(function () use ($orders) {
             foreach ($orders as $order) {
                 if ($order->allow_review == 1) {
-                    Notification::route('mail', optional($order->user)->email)
+                    Notification::route('mail', $order->email)
                         ->notify(new ProductReviewNotification($order->user, $order));
 
                     $order->update(['allow_review' => 0]);
