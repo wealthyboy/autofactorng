@@ -57,7 +57,7 @@ class OrdersController extends Table
 					->has('user')
 					->where('allow_review', 1)
 					->where('email', 'damilola@autofactorng.com')
-					->whereDate('created_at', \Carbon::today())
+					->whereDate('created_at', Carbon::today())
 					->get()
 			);
 		}
