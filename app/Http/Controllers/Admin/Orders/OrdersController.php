@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Observers\ProductObserver;
+use Carbon\Carbon;
 
 
 class OrdersController extends Table
@@ -56,7 +57,7 @@ class OrdersController extends Table
 				->has('user')
 				->where('allow_review', 1)
 				->where('email', 'damilola@autofactorng.com')
-				->whereDate('created_at', \Carbon::today())
+				->whereDate('created_at', Carbon::today())
 				->lockForUpdate()
 				->get());
 		}
