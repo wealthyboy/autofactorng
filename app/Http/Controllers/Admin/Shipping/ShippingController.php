@@ -161,7 +161,7 @@ class ShippingController extends Table
             // $shipping->zones()->delete();
 
             foreach ($shipping->zones as $zone) {
-                //$zone->delete();
+                $zone->delete();
             }
 
             $r = [];
