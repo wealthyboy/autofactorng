@@ -114,7 +114,11 @@ class ShippingController extends Table
         //
         User::canTakeAction(User::canEdit);
 
+
+
         $shipping = Shipping::with('zones')->findOrFail($id);
+
+        // dd($shipping);
         $shippings = Shipping::parents()->get();
         $locations = Location::parents()->get();
         return view('admin.shipping.edit', compact('locations', 'shipping', 'shippings'));
@@ -150,13 +154,20 @@ class ShippingController extends Table
         $shipping->zones()->delete();
 
 
-         if ($request->has('zones')) {
+        if ($request->has('zones')) {
 
+            // dd($request->zones);
 
+            // $shipping->zones()->delete();
 
+            foreach ($shipping->zones as $zone) {
+                //$zone->delete();
+            }
+
+            $r = [];
             foreach ($request->zones as $zoneData) {
+                // dd($zoneData);
                 if (!empty($zoneData['zone']) || !empty($zoneData['price'])) {
-
                     $shipping->zones()->create([
                         'zone' => $zoneData['zone'] ?? null,
                         'description' => $zoneData['description'] ?? null,
@@ -165,6 +176,7 @@ class ShippingController extends Table
                 }
             }
         }
+
         //Log Activity
         // (new Activity)->Log("Updated  Shipping {$request->name} ");
         (new Activity)->put("Updated shipping for " . optional($shipping->location)->name);
