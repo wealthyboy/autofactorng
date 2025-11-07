@@ -560,7 +560,7 @@
                                                                <td class="header2TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="scl" data-color="SectionCaptionTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="scl"></a>Invoice Total</td>
                                                             </tr>
                                                             <tr>
-                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>{{ $order->currency }}{{ $order->get_total() }}</td>
+                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="sil" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: bold;text-align: left;line-height: 23px;" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="sil"></a>₦{{ $order->get_total() }}</td>
                                                             </tr>
                                                             <tr>
                                                                <td colspan="3" style="font-size:0;line-height:0;" height="25">&nbsp;</td>
@@ -741,7 +741,7 @@
                                                       </tr>
                                                       <tr>
 
-                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ number_format($ordered_product->total)}}</td>
+                                                         <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>₦{{ number_format($ordered_product->total)}}</td>
 
                                                       </tr>
                                                       <tr>
@@ -811,7 +811,7 @@
                                                       <td class="wz2" height="10" width="30"></td>
                                                    </tr>
                                                    <tr>
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ number_format($sub_total) }}</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ '₦' }}{{ number_format($sub_total) }}</td>
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" height="10" width="30"></td>
@@ -910,7 +910,7 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" width="30"><br></td>
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ $order->currency }}{{ number_format($order->shipping_price)  }}</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>₦{{ number_format($order->shipping_price)  }}</td>
                                                       <td class="wz2" width="30"><br></td>
                                                    </tr>
                                                    <tr>
@@ -942,7 +942,7 @@
                                                       <td class="wz2" height="10" width="30"></td>
                                                    </tr>
                                                    <tr>
-                                                      <td data-bgcolor="ThemeColorBG" class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: rgb(255, 255, 255); font-family: sans-serif; font-size: 15px; text-align: center; line-height: 27px; font-weight: bold; background-color: rgb(0, 0, 0, 1);" bgcolor="#67bffd"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>{{ $order->currency }}{{ $order->get_total() }}</td>
+                                                      <td data-bgcolor="ThemeColorBG" class="header5TD" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="InvoiceCaptionsLink" data-color="InvoiceCaptionsTXT" style="color: rgb(255, 255, 255); font-family: sans-serif; font-size: 15px; text-align: center; line-height: 27px; font-weight: bold; background-color: rgb(0, 0, 0, 1);" bgcolor="#67bffd"><a href="#" target="_blank" data-color="InvoiceCaptionsLink" style="text-decoration: none;color: #ffffff;"></a>₦{{ $order->get_total() }}</td>
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" height="10" width="30"></td>
