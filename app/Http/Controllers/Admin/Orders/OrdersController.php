@@ -51,18 +51,6 @@ class OrdersController extends Table
 
 		$orders = Order::has('ordered_products')->orderBy('created_at', 'desc')->paginate(150);
 		$orders = $this->getColumnListings(request(), $orders);
-		if (request()->debug) {
-			dd(
-				$orders = Order::query()
-					->has('user')
-					->where('allow_review', 1)
-					->where('email', 'damilola@autofactorng.com')
-					->whereDate('created_at', Carbon::today())
-					->get()
-			);
-		}
-
-
 
 		return view('admin.orders.index', compact('orders'));
 	}
@@ -144,10 +132,7 @@ class OrdersController extends Table
 			$OrderedProduct->total = $input['products']['price'][$key] * $input['products']['quantity'][$key];
 			$total[] = $input['products']['price'][$key] * $input['products']['quantity'][$key];
 			$OrderedProduct->save();
-
 			$name = $input['products']['product_name'][$key];
-
-
 			$qty = $input['products']['quantity'][$key];
 			$v = str_slug($v);
 			$product = Product::where('slug', $v)->first();
@@ -155,8 +140,6 @@ class OrdersController extends Table
 			if (null !== $product && $product->quantity > 0) {
 				$newQuantity = $product->quantity - $qty;
 				$product->quantity = $newQuantity >= 0 ? $newQuantity : 0;
-
-
 				ProductObserver::$context = [
 					'order_id' => $order->invoice,
 					'user_id'  => auth()->id()
@@ -204,6 +187,11 @@ class OrdersController extends Table
 			$new_total = $sub_total - $new_total;
 			$total = $new_total + $shipping;
 			$total = $total + $heavy_or_large_item;
+		}
+
+		if ($request->percentage_type == 'fixed') {
+			$total = array_sum($total) + $shipping  + $heavy_or_large_item;
+			$total = $total - $request->discount;
 		}
 
 		if (!$request->filled('percentage_type')) {
