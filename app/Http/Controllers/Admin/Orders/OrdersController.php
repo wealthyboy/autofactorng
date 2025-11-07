@@ -162,10 +162,6 @@ class OrdersController extends Table
 			Order::appendOrderRow($spreedSheetData, "!A1:Z1000");
 		}
 
-
-
-
-
 		$sub_total = array_sum($total);
 		$shipping = $request->shipping_price;
 		$heavy_or_large_item = $request->heavy_item_price;
@@ -190,7 +186,7 @@ class OrdersController extends Table
 		}
 
 		if ($request->percentage_type == 'fixed') {
-			$total = array_sum($total) + $shipping  + $heavy_or_large_item;
+			$total = $sub_total + $shipping  + $heavy_or_large_item;
 			$total = $total - $request->discount;
 		}
 
