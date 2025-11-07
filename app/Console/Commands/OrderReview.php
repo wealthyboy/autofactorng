@@ -43,23 +43,21 @@ class OrderReview extends Command
      */
     public function handle()
     {
-        $orders = \App\Models\Order::query()
-            ->with('user')
-            ->where('allow_review', 1)
-            ->whereDate('created_at', '<=', now()->subDays(7))
-            ->get();
+        $orders = Order::query()->has('user')->where('allow_review', 1)->get();
 
         foreach ($orders as $order) {
-            if ($order->user) {
-                // ✅ Use user directly — avoids double send
-                $order->user->notify(new \App\Notifications\ProductReviewNotification($order->user, $order));
-            } else {
-                // ✅ Only pass the order if user doesn't exist
-                Notification::route('mail', $order->email)
-                    ->notify(new \App\Notifications\ProductReviewNotification(null, $order));
-            }
+            if ($order->allow_review && $order->created_at->diffInDays(Carbon::now()) >= 7) {
+                if ($order->user) {
+                    // ✅ Use user directly — avoids double send
+                    $order->user->notify(new \App\Notifications\ProductReviewNotification($order->user, $order));
+                } else {
+                    // ✅ Only pass the order if user doesn't exist
+                    Notification::route('mail', $order->email)
+                        ->notify(new \App\Notifications\ProductReviewNotification(null, $order));
+                }
 
-            $order->update(['allow_review' => 0]);
+                $order->update(['allow_review' => 0]);
+            }
         }
 
         $this->info('✅ Product review notifications sent successfully.');
