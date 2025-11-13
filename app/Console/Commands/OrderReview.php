@@ -3,12 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Notifications\ProductReviewNotification;
-use App\Models\Order;
-use App\Models\User;
+use App\Models\PendingReview;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Notification;
-
+use App\Notifications\ProductReviewNotification;
 
 class OrderReview extends Command
 {
@@ -24,42 +21,44 @@ class OrderReview extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
-
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
+    protected $description = 'Send product review notifications for completed orders.';
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
     public function handle()
     {
-        $orders = Order::query()->has('user')->where('allow_review', 1)->get();
+        // ✅ Fetch pending reviews with related user and order
+        $pendingReviews = PendingReview::with(['user', 'order'])
+            ->whereHas('user')
+            ->whereHas('order')
+            ->get();
 
-        foreach ($orders as $order) {
-            if ($order->allow_review && $order->created_at->diffInDays(Carbon::now()) >= 7) {
-                if ($order->user) {
-                    // ✅ Use user directly — avoids double send
-                    $order->user->notify(new \App\Notifications\ProductReviewNotification($order->user, $order));
-                } else {
-                    // ✅ Only pass the order if user doesn't exist
-                    Notification::route('mail', $order->email)
-                        ->notify(new \App\Notifications\ProductReviewNotification(null, $order));
+        if ($pendingReviews->isEmpty()) {
+            $this->info('ℹ️ No pending reviews found.');
+            return 0;
+        }
+
+        foreach ($pendingReviews as $pending) {
+
+            try {
+                if ($pending->created_at->diffInDays(Carbon::now()) >= 7) {
+
+                    $pending->user->notify(
+                        new ProductReviewNotification($pending->user, $pending->order)
+                    );
+
+                    // ✅ Delete after notification sent
+                    $pending->delete();
+
+                    $this->info("✅ Review request sent for Order #{$pending->order->id}");
                 }
-
-                $order->update(['allow_review' => 0]);
+            } catch (\Exception $e) {
+                $this->error("❌ Failed for Order #{$pending->order->id}: " . $e->getMessage());
             }
         }
 
-        $this->info('✅ Product review notifications sent successfully.');
+        $this->info('🎉 All eligible product review notifications sent successfully.');
+        return 0;
     }
 }

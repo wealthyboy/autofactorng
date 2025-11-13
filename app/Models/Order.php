@@ -7,6 +7,9 @@ use App\Jobs\ReviewProduct;
 use App\Mail\OrderReceipt;
 use App\Models\AbandonedCart;
 
+use App\Models\PendingReview;
+
+
 use App\Traits\ColumnFillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -37,6 +40,10 @@ class Order extends Model
 		"Delivered" => "Delivered",
 	];
 
+	protected $fillable = [
+		'allow_review',
+	];
+
 	public function ordered_products()
 	{
 		return $this->hasMany(OrderedProduct::class);
@@ -46,6 +53,13 @@ class Order extends Model
 	{
 		return $this->belongsTo(User::class);
 	}
+
+
+	public function pending_reviews()
+	{
+		return $this->hasMany(PendingReview::class);
+	}
+
 
 	public function address()
 	{
@@ -85,6 +99,13 @@ class Order extends Model
 		$order->state = optional(optional($user->active_address)->address_state)->name;
 		$order->ip = $ip;
 		if ($order->save()) {
+
+			$pending_review = new PendingReview;
+			$pending_review->user_id = $order->user_id;
+			$pending_review->order_id = $order->id;
+			$pending_review->save();
+
+
 
 			foreach (Order::$statuses as $key => $status) {
 				if ($status === 'Cancelled') {
