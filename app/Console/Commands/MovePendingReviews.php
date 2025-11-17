@@ -47,10 +47,11 @@ class MovePendingReviews extends Command
             if ($exists) {
                 continue;
             }
-
+            PendingReview::truncate();
             PendingReview::create([
                 'user_id'  => $order->user_id,
                 'order_id' => $order->id,
+                'created_at' => $order->created_at
             ]);
 
             $count++;
