@@ -9,7 +9,7 @@ class PendingReview extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'order_id'];
+    protected $fillable = ['user_id', 'order_id', 'created_at'];
 
     public function user()
     {
