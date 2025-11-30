@@ -29,34 +29,32 @@ class OrderReview extends Command
     public function handle()
     {
         // ✅ Fetch pending reviews with related user and order
-        $pendingReviews = PendingReview::with(['user', 'order'])
+        $pendingReview = PendingReview::with(['user', 'order'])
             ->whereHas('user')
             ->whereHas('order')
-            ->get();
+            ->first();
 
-        if ($pendingReviews->isEmpty()) {
+        if ($pendingReview->isEmpty()) {
             $this->info('ℹ️ No pending reviews found.');
             return 0;
         }
 
-        foreach ($pendingReviews as $pending) {
 
-            try {
-                if ($pending->created_at->diffInDays(Carbon::now()) >= 7) {
+        try {
+            if ($pendingReview->created_at->diffInDays(Carbon::now()) >= 7) {
 
-                    $pending->user->notify(
-                        new ProductReviewNotification($pending->user, $pending->order)
-                    );
+                $pendingReview->user->notify(
+                    new ProductReviewNotification($pendingReview->user, $pendingReview->order)
+                );
 
-                    // ✅ Delete after notification sent
-                    $pending->delete();
+                $pendingReview->delete();
 
-                    $this->info("✅ Review request sent for Order #{$pending->order->id}");
-                }
-            } catch (\Exception $e) {
-                $this->error("❌ Failed for Order #{$pending->order->id}: " . $e->getMessage());
+                $this->info("✅ Review request sent for Order #{$pendingReview->order->id}");
             }
+        } catch (\Exception $e) {
+            $this->error("❌ Failed for Order #{$pendingReview->order->id}: " . $e->getMessage());
         }
+
 
         $this->info('🎉 All eligible product review notifications sent successfully.');
         return 0;
