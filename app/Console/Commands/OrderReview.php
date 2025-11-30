@@ -34,7 +34,7 @@ class OrderReview extends Command
             ->whereHas('order')
             ->first();
 
-        if ($pendingReview->isEmpty()) {
+        if (null !== $pendingReview) {
             $this->info('ℹ️ No pending reviews found.');
             return 0;
         }
