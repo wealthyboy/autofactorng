@@ -43,16 +43,8 @@ class SendAbandonedCartEmail implements ShouldQueue
         if ($carts->isNotEmpty()) {
             foreach ($carts as $cart) {
                 $user = $cart->user;
-                if (
-                    $cart->user &&
-                    $cart->user->email &&
-                    $cart->items &&
-                    $cart->items->isNotEmpty()
-                ) {
-
-                    Mail::to($cart->user->email)
-                        ->send(new AbandonedCartMail($cart->user, $cart));
-
+                if ($user && $user->email && null !== $cart->items && $cart->items->count()) {
+                    Mail::to($user->email)->send(new AbandonedCartMail($user, $cart));
                     $cart->delete();
                 }
             }
