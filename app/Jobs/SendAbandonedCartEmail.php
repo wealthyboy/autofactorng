@@ -12,6 +12,7 @@ use App\Models\AbandonedCart;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AbandonedCartMail;
 use App\Notifications\AbandonedCartFailed;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Notification;
 
 
@@ -41,6 +42,7 @@ class SendAbandonedCartEmail implements ShouldQueue
             $carts = AbandonedCart::with(['user', 'items'])
                 ->where('recovered', false)
                 ->where('checkout_started_at', '<=', now()->subHour())
+                ->whereHas('items')  // ⬅️ must have related items
                 ->get();
 
             if ($carts->isNotEmpty()) {
@@ -49,6 +51,8 @@ class SendAbandonedCartEmail implements ShouldQueue
                     try {
 
                         $user = $cart->user;
+
+                        Log::info($cart->items);
                         if ($user && $user->email && $cart->items) {
                             Mail::to($user->email)->send(new AbandonedCartMail($user, $cart));
                             $cart->delete();

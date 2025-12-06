@@ -176,11 +176,11 @@ class Order extends Model
 				OrderedProduct::Insert($insert);
 				$cart->status = 'paid';
 
-				AbandonedCart::where('user_id', $user->id)->delete();
 
 				$cart->delete();
 			}
 
+			AbandonedCart::where('user_id', $user->id)->delete();
 			//self::sendWhatsApMessage(2349081155505, $order->first_name);
 		}
 
