@@ -31,7 +31,6 @@ class ReviewOrder extends Command
         $pendingReview = PendingReview::with(['user', 'order'])
             ->whereHas('user')
             ->whereHas('order')
-            ->where('created_at', '2025-12-06 03:41:36')
             ->first();
 
         if (null == $pendingReview) {
@@ -41,15 +40,15 @@ class ReviewOrder extends Command
 
 
         try {
-            //if ($pendingReview->created_at->diffInDays(Carbon::now()) >= 7) {
-            $pendingReview->user->notify(
-                new ProductReviewNotification($pendingReview->user, $pendingReview->order)
-            );
+            if ($pendingReview->created_at->diffInDays(Carbon::now()) >= 7) {
+                $pendingReview->user->notify(
+                    new ProductReviewNotification($pendingReview->user, $pendingReview->order)
+                );
 
-            $pendingReview->delete();
+                $pendingReview->delete();
 
-            $this->info("✅ Review request sent for Order #{$pendingReview->order->id}");
-            // }
+                $this->info("✅ Review request sent for Order #{$pendingReview->order->id}");
+            }
         } catch (\Exception $e) {
             $this->error("❌ Failed for Order #{$pendingReview->order->id}: " . $e->getMessage());
         }
