@@ -23,7 +23,9 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('send:autocreditexpiry')->twiceDaily();
         $schedule->command('send:autocreditreminder')->twiceDaily();
-        $schedule->command('order:review')->everyMinute();
+        // $schedule->command('order:review')->everyMinute();
+        $schedule->command('review:order')->everyTenMinutes();
+
         $schedule->job(new SendAbandonedCartEmail)->everyTenMinutes();
     }
 
