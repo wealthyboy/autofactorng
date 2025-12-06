@@ -11,6 +11,8 @@ use Illuminate\Queue\SerializesModels;
 use App\Models\AbandonedCart;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\AbandonedCartMail;
+use App\Notifications\AbandonedCartFailed;
+use Illuminate\Support\Facades\Notification;
 
 
 
@@ -27,7 +29,6 @@ class SendAbandonedCartEmail implements ShouldQueue
     {
         //
     }
-
     /**
      * Execute the job.
      *
@@ -35,19 +36,40 @@ class SendAbandonedCartEmail implements ShouldQueue
      */
     public function handle()
     {
-        $carts = AbandonedCart::with(['user', 'items'])
-            ->where('recovered', false)
-            ->where('checkout_started_at', '<=', now()->subHour())
-            ->get();
+        try {
 
-        if ($carts->isNotEmpty()) {
-            foreach ($carts as $cart) {
-                $user = $cart->user;
-                if ($user && $user->email && null !== $cart->items && $cart->items->count()) {
-                    Mail::to($user->email)->send(new AbandonedCartMail($user, $cart));
-                    $cart->delete();
+            $carts = AbandonedCart::with(['user', 'items'])
+                ->where('recovered', false)
+                ->where('checkout_started_at', '<=', now()->subHour())
+                ->get();
+
+            if ($carts->isNotEmpty()) {
+
+                foreach ($carts as $cart) {
+                    try {
+
+                        $user = $cart->user;
+                        if ($user && $user->email && $cart->items) {
+                            Mail::to($user->email)->send(new AbandonedCartMail($user, $cart));
+                            $cart->delete();
+                        }
+                    } catch (\Throwable $e) {
+
+                        dd($e->getMessage());
+
+
+                        // Notification::route('mail', 'jacob.atam@gmail.com')
+                        //     ->notify(new AbandonedCartFailed($e, $cart));
+                    }
                 }
             }
+        } catch (\Throwable $e) {
+
+            dd($e->getMessage());
+
+            // send global job failure notification
+            // Notification::route('mail', config('mail.from.address'))
+            //     ->notify(new AbandonedCartFailed($e));
         }
     }
 }
