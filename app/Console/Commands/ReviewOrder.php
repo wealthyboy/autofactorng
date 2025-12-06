@@ -6,6 +6,8 @@ use Illuminate\Console\Command;
 use App\Models\PendingReview;
 use Carbon\Carbon;
 use App\Notifications\ProductReviewNotification;
+use Illuminate\Support\Facades\Cache;
+
 
 class ReviewOrder extends Command
 {
@@ -28,35 +30,25 @@ class ReviewOrder extends Command
      */
     public function handle()
     {
-        // ✅ Fetch pending reviews with related user and order
-        $pendingReview = PendingReview::with(['user', 'order'])
-            ->whereHas('user')
-            ->whereHas('order')
-            ->first();
+        $pendingReviews = PendingReview::where('created_at', '<=', now()->subDays(7))->get();
 
-        if (null == $pendingReview) {
-            $this->info('ℹ️ No pending reviews found.');
-            return 0;
+        foreach ($pendingReviews as $pendingReview) {
+
+            $lock = Cache::lock("review-{$pendingReview->id}", 30);
+
+            if (! $lock->get()) {
+                continue;
+            }
+
+            try {
+                $pendingReview->user->notify(
+                    new ProductReviewNotification($pendingReview->user, $pendingReview->order)
+                );
+
+                $pendingReview->delete();
+            } finally {
+                $lock->release();
+            }
         }
-
-
-        try {
-            //if ($pendingReview->created_at->diffInDays(Carbon::now()) >= 7) {
-
-            $pendingReview->user->notify(
-                new ProductReviewNotification($pendingReview->user, $pendingReview->order)
-            );
-
-            $pendingReview->delete();
-
-            $this->info("✅ Review request sent for Order #{$pendingReview->order->id}");
-            // }
-        } catch (\Exception $e) {
-            $this->error("❌ Failed for Order #{$pendingReview->order->id}: " . $e->getMessage());
-        }
-
-
-        $this->info('🎉 All eligible product review notifications sent successfully.');
-        return 0;
     }
 }
