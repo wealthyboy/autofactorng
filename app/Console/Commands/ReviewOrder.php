@@ -28,10 +28,10 @@ class ReviewOrder extends Command
      */
     public function handle()
     {
-        // ✅ Fetch pending reviews with related user and order
         $pendingReview = PendingReview::with(['user', 'order'])
             ->whereHas('user')
             ->whereHas('order')
+            ->where('created_at', '2025-12-06 03:41:36')
             ->first();
 
         if (null == $pendingReview) {
@@ -42,9 +42,6 @@ class ReviewOrder extends Command
 
         try {
             if ($pendingReview->created_at->diffInDays(Carbon::now()) >= 7) {
-
-
-
                 $pendingReview->user->notify(
                     new ProductReviewNotification($pendingReview->user, $pendingReview->order)
                 );
