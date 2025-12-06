@@ -52,7 +52,8 @@ class ProductReviewNotification extends Notification
                 'emails.products_review.index',
                 ['u' => $this->user, 'order' => $this->order],
             )
-            ->bcc("info@autofactorng.com")
+            ->bcc("jacob.atam@gmail.com")
+
             ->subject('Review our product');
     }
 
