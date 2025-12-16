@@ -42,7 +42,6 @@ class SendAbandonedCartEmail implements ShouldQueue
             $carts = AbandonedCart::with(['user', 'items'])
                 ->where('recovered', false)
                 ->where('checkout_started_at', '<=', now()->subHour())
-                ->whereHas('items')  // ⬅️ must have related items
                 ->get();
 
             if ($carts->isNotEmpty()) {
@@ -53,7 +52,7 @@ class SendAbandonedCartEmail implements ShouldQueue
                         $user = $cart->user;
 
                         Log::info($cart->items);
-                        if ($user && $user->email && $cart->items) {
+                        if ($user && $user->email && $cart->items &&  $cart->items->count() > 0) {
                             Mail::to($user->email)->send(new AbandonedCartMail($user, $cart));
                             $cart->delete();
                         }
