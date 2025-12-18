@@ -90,7 +90,6 @@ class OrdersController extends Table
 
 	public function store(Request $request)
 	{
-		dd($request->all());
 		//try {
 		//DB::beginTransaction();
 		$inv = substr(rand(100000, time()), 0, 7);
@@ -190,6 +189,8 @@ class OrdersController extends Table
 
 		$order->total = is_array($total) ? array_sum($total)  : $total;
 		$order->save();
+
+		dd($order);
 
 		$spreedSheetData = [
 			'invoice_number' => $order->invoice,
