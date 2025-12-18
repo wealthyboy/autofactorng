@@ -34,7 +34,6 @@
 
 <body class="g-sidenav-show bg-gray-200">
 
-
    <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark" id="sidenav-main">
       <div class="sidenav-header">
          <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -147,6 +146,13 @@
                         <a class="nav-link text-white {{ $helper->active_link(['reviews']) }}" href="/admin/reviews">
                            <span class="sidenav-mini-icon"> R </span>
                            <span class="sidenav-normal  ms-2  ps-1"> Reviews <b class="caret"></b></span>
+                        </a>
+                     </li>
+
+                     <li class="nav-item ">
+                        <a class="nav-link text-white {{ $helper->active_link(['stocks']) }}" href="/admin/stocks">
+                           <span class="sidenav-mini-icon"> S </span>
+                           <span class="sidenav-normal  ms-2  ps-1"> Stocks <b class="caret"></b></span>
                         </a>
                      </li>
 
