@@ -106,7 +106,7 @@ class OrdersController extends Table
 		$order->fill($input);
 		$order->save();
 
-		\Mail::to('info@autofactorng.com')
+		\Mail::to('jacob.atam@gmail.com')
 			->queue(new \App\Mail\TestMail());
 
 		dd(true);
