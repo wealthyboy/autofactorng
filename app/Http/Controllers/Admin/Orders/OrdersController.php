@@ -106,8 +106,7 @@ class OrdersController extends Table
 		$order->fill($input);
 		$order->save();
 
-		\Mail::to('jacob.atam@gmail.com')
-			->queue(new \App\Mail\TestMail());
+
 
 
 		foreach (Order::$statuses as $key => $status) {
@@ -145,7 +144,9 @@ class OrdersController extends Table
 			$v = str_slug($v);
 			$product = Product::where('slug', $v)->first();
 
+
 			if (null !== $product && $product->quantity > 0) {
+
 				$newQuantity = $product->quantity - $qty;
 				$product->quantity = $newQuantity >= 0 ? $newQuantity : 0;
 				ProductObserver::$context = [
@@ -167,7 +168,7 @@ class OrdersController extends Table
 
 			//dd($spreedSheetData);
 
-			Order::appendOrderRow($spreedSheetData, "!A1:Z1000");
+			\Dispatch(new \App\Jobs\AppendOrderRowJob($spreedSheetData, "!A1:Z1000"));
 		}
 
 
@@ -207,7 +208,8 @@ class OrdersController extends Table
 		];
 
 
-		$turned = Order::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
+		\Dispatch(new \App\Jobs\AppendPendingOrderRow($spreedSheetData, "!A1:Z1000"));
+
 
 
 		$order->heavy_item_price = $request->heavy_item_price ?? '---';
@@ -238,9 +240,9 @@ class OrdersController extends Table
 			$user = User::find(1);
 			$when = now()->addMinutes(5);
 			$order->full_name = $request->first_name;
-			// Mail::to($request->email)
-			// 	->bcc('order@autofactorng.com')
-			// 	->send(new OrderReceipt($order, null, null, $sub_total));
+			Mail::to($request->email)
+				->bcc('order@autofactorng.com')
+				->queue(new OrderReceipt($order, null, null, $sub_total));
 		} catch (\Throwable $th) {
 
 			dd($th);

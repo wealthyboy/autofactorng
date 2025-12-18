@@ -171,17 +171,17 @@ class Order extends Model
 				];
 
 
-				//self::appendOrderRow($spreedSheetData, "!A1:Z1000");
+
+				\Dispatch(new \App\Jobs\AppendOrderRowJob($spreedSheetData, "!A1:Z1000"));
+
 
 				OrderedProduct::Insert($insert);
+
 				$cart->status = 'paid';
-
-
 				$cart->delete();
 			}
 
 			AbandonedCart::where('user_id', $user->id)->delete();
-			//self::sendWhatsApMessage(2349081155505, $order->first_name);
 		}
 
 
@@ -191,7 +191,8 @@ class Order extends Model
 			'total' => $input['total'],
 		];
 
-		//self::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
+
+		\Dispatch(new \App\Jobs\AppendPendingOrderRow($spreedSheetData, "!A1:Z1000"));
 
 
 		try {
