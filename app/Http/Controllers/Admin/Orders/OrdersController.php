@@ -90,7 +90,7 @@ class OrdersController extends Table
 
 	public function store(Request $request)
 	{
-
+		dd($request->all());
 		//try {
 		//DB::beginTransaction();
 		$inv = substr(rand(100000, time()), 0, 7);
@@ -166,12 +166,6 @@ class OrdersController extends Table
 		$shipping = $request->shipping_price;
 		$heavy_or_large_item = $request->heavy_item_price;
 
-		if ($request->percentage_type == 'fixed') {
-			$new_total = $sub_total - $request->discount;
-			$total = $new_total + $shipping;
-			$total = $total + $heavy_or_large_item;
-		}
-
 
 		if ($request->filled('percentage_type') && !$request->filled('discount')) {
 			dd("Please enter a discount");
@@ -194,11 +188,8 @@ class OrdersController extends Table
 			$total = array_sum($total) + $shipping  + $heavy_or_large_item;
 		}
 
-
-
 		$order->total = is_array($total) ? array_sum($total)  : $total;
 		$order->save();
-
 
 		$spreedSheetData = [
 			'invoice_number' => $order->invoice,
