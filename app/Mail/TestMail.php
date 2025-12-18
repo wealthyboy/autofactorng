@@ -14,7 +14,14 @@ class TestMail extends Mailable
 
     public function build()
     {
-        return $this->subject('✅ Server Mail Test')
-            ->view('emails.test');
+
+
+        try {
+            return $this->subject('✅ Server Mail Test')
+                ->view('emails.test');
+        } catch (\Exception $e) {
+            \Log::error('Mail build failed: ' . $e->getMessage());
+            throw $e;
+        }
     }
 }
