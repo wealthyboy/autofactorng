@@ -168,6 +168,13 @@
                </a>
             </li>
 
+            <li class=" nav-item">
+               <a class="nav-link text-white {{ $helper->active_link(['stocks']) }}" href="/admin/stocks">
+                  <i class="material-symbols-outlined opacity-10">shopping_cart</i>
+                  <span class="nav-link-text ms-2 ps-1"> Stock </span>
+               </a>
+            </li>
+
 
             <li class="nav-item">
                <a data-bs-toggle="collapse" href="settings.html#Forum" class="nav-link text-white {{ $helper->active_link(['forum','car_reviews']) }}" aria-controls="Forum" role="button" aria-expanded="false">
