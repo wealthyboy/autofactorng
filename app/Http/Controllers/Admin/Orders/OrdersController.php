@@ -110,6 +110,8 @@ class OrdersController extends Table
 			->bcc('jacob.atam@gmail.com')
 			->send(new TestMail());
 
+		dd(true);
+
 		foreach (Order::$statuses as $key => $status) {
 			$order_status = new OrderStatus();
 			$order_status->is_updated = false;
