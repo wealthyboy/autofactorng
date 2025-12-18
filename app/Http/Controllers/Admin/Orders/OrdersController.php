@@ -112,7 +112,6 @@ class OrdersController extends Table
 			$order_status->save();
 		}
 
-		dd($order);
 
 
 		$order_status = OrderStatus::where(['status' => 'Confirmed', 'order_id' => $order->id])->first();
@@ -164,6 +163,9 @@ class OrdersController extends Table
 
 			//Order::appendOrderRow($spreedSheetData, "!A1:Z1000");
 		}
+
+		dd($order);
+
 
 		$sub_total = array_sum($total);
 		$shipping = $request->shipping_price;
