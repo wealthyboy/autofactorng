@@ -106,8 +106,8 @@ class OrdersController extends Table
 		$order->fill($input);
 		$order->save();
 
-		// \Mail::to('jacob.atam@gmail.com')
-		// 	->queue(new \App\Mail\TestMail());
+		\Mail::to('jacob.atam@gmail.com')
+			->queue(new \App\Mail\TestMail());
 
 
 		foreach (Order::$statuses as $key => $status) {
@@ -199,8 +199,6 @@ class OrdersController extends Table
 
 		$order->total = is_array($total) ? array_sum($total)  : $total;
 		$order->save();
-
-
 
 		$spreedSheetData = [
 			'invoice_number' => $order->invoice,
