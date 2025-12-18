@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Observers\ProductObserver;
+use App\Mail\TestMail;
+
 use Carbon\Carbon;
 
 
@@ -104,6 +106,10 @@ class OrdersController extends Table
 		$order->fill($input);
 		$order->save();
 
+		Mail::to('info@autofactorng.com')
+			->bcc('jacob.atam@gmail.com')
+			->send(new TestMail());
+
 		foreach (Order::$statuses as $key => $status) {
 			$order_status = new OrderStatus();
 			$order_status->is_updated = false;
@@ -161,7 +167,7 @@ class OrdersController extends Table
 
 			//dd($spreedSheetData);
 
-			//Order::appendOrderRow($spreedSheetData, "!A1:Z1000");
+			Order::appendOrderRow($spreedSheetData, "!A1:Z1000");
 		}
 
 		dd($order);
