@@ -171,7 +171,7 @@ class Order extends Model
 				];
 
 
-				self::appendOrderRow($spreedSheetData, "!A1:Z1000");
+				//self::appendOrderRow($spreedSheetData, "!A1:Z1000");
 
 				OrderedProduct::Insert($insert);
 				$cart->status = 'paid';
@@ -191,7 +191,7 @@ class Order extends Model
 			'total' => $input['total'],
 		];
 
-		self::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
+		//self::appendPendingOrderRow($spreedSheetData, "!A1:Z1000");
 
 
 		try {
@@ -410,9 +410,9 @@ class Order extends Model
 
 		try {
 			$when = now()->addMinutes(5);
-			Mail::to($user->email)
-				->bcc('order@autofactorng.com')
-				->send(new OrderReceipt($order, null, null, $sub_total));
+			// Mail::to($user->email)
+			// 	->bcc('order@autofactorng.com')
+			// 	->send(new OrderReceipt($order, null, null, $sub_total));
 		} catch (\Throwable $th) {
 			Log::info("Mail error :" . $th);
 			$err = new Error();

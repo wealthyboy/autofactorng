@@ -106,10 +106,9 @@ class OrdersController extends Table
 		$order->fill($input);
 		$order->save();
 
-		\Mail::to('jacob.atam@gmail.com')
-			->queue(new \App\Mail\TestMail());
+		// \Mail::to('jacob.atam@gmail.com')
+		// 	->queue(new \App\Mail\TestMail());
 
-		dd(true);
 
 		foreach (Order::$statuses as $key => $status) {
 			$order_status = new OrderStatus();
@@ -171,8 +170,6 @@ class OrdersController extends Table
 			Order::appendOrderRow($spreedSheetData, "!A1:Z1000");
 		}
 
-		dd($order);
-
 
 		$sub_total = array_sum($total);
 		$shipping = $request->shipping_price;
@@ -203,7 +200,7 @@ class OrdersController extends Table
 		$order->total = is_array($total) ? array_sum($total)  : $total;
 		$order->save();
 
-		dd($order);
+
 
 		$spreedSheetData = [
 			'invoice_number' => $order->invoice,
@@ -243,9 +240,9 @@ class OrdersController extends Table
 			$user = User::find(1);
 			$when = now()->addMinutes(5);
 			$order->full_name = $request->first_name;
-			Mail::to($request->email)
-				->bcc('order@autofactorng.com')
-				->send(new OrderReceipt($order, null, null, $sub_total));
+			// Mail::to($request->email)
+			// 	->bcc('order@autofactorng.com')
+			// 	->send(new OrderReceipt($order, null, null, $sub_total));
 		} catch (\Throwable $th) {
 
 			dd($th);
