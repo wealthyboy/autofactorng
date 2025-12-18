@@ -104,7 +104,6 @@ class OrdersController extends Table
 		$order->fill($input);
 		$order->save();
 
-		dd($order);
 		foreach (Order::$statuses as $key => $status) {
 			$order_status = new OrderStatus();
 			$order_status->is_updated = false;
@@ -112,6 +111,9 @@ class OrdersController extends Table
 			$order_status->order_id = $order->id;
 			$order_status->save();
 		}
+
+		dd($order);
+
 
 		$order_status = OrderStatus::where(['status' => 'Confirmed', 'order_id' => $order->id])->first();
 
