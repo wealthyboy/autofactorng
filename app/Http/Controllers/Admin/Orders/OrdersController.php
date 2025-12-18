@@ -106,9 +106,8 @@ class OrdersController extends Table
 		$order->fill($input);
 		$order->save();
 
-		Mail::to('info@autofactorng.com')
-			->bcc('jacob.atam@gmail.com')
-			->send(new TestMail());
+		\Mail::to('info@autofactorng.com')
+			->queue(new \App\Mail\TestMail());
 
 		dd(true);
 
