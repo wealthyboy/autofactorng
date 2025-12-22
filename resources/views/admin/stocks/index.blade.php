@@ -2,7 +2,40 @@
 
 @section('content')
 <div class="row">
+
+
     <div class="col-12">
+        <form method="GET" action="{{ route('admin.stocks.index') }}" class="mb-3">
+            <div class="form-row">
+                <div class="col-md-4">
+                    <label>From Date</label>
+                    <input type="date"
+                        name="from_date"
+                        class="form-control"
+                        value="{{ request('from_date') }}">
+                </div>
+
+                <div class="col-md-4">
+                    <label>To Date</label>
+                    <input type="date"
+                        name="to_date"
+                        class="form-control"
+                        value="{{ request('to_date') }}">
+                </div>
+
+                <div class="col-md-4 d-flex align-items-end">
+                    <button class="btn btn-primary mr-2" type="submit">
+                        Filter
+                    </button>
+
+                    <a href="{{ route('admin.stocks.index') }}"
+                        class="btn btn-secondary">
+                        Reset
+                    </a>
+                </div>
+            </div>
+        </form>
+
         <div class="card shadow-sm">
             <div class="card-header text-white">
                 <h4 class="mb-0">Stocks</h4>
@@ -32,6 +65,10 @@
                         @endforelse
                     </tbody>
                 </table>
+
+                <div class="d-flex justify-content-center mt-3">
+                    {{ $stocks->links('pagination::bootstrap-4') }}
+                </div>
             </div>
         </div>
     </div>
