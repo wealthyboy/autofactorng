@@ -5,7 +5,7 @@
 
 
     <div class="col-12">
-        <form method="GET" action="{{ route('admin.stocks.index') }}" class="mb-3">
+        <form method="GET" action="" class="mb-3">
             <div class="form-row">
                 <div class="col-md-4">
                     <label>From Date</label>
