@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin\Stocks;
 
+use Illuminate\Http\Request;
+
 use App\Models\Stock;
 
 class StocksController
