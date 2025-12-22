@@ -9,7 +9,7 @@
 
         <div class="card shadow-sm">
             {{-- ✅ Filter Card --}}
-            <div class="col-md-12">
+            <div class="col-md-12 mb-4">
                 <div class="card">
 
                     <!-- Header Icon -->
