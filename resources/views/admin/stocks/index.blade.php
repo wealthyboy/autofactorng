@@ -5,38 +5,60 @@
 
 
     <div class="col-12">
-        <form method="GET" action="" class="mb-3">
-            <div class="form-row">
-                <div class="col-md-4">
-                    <label>From Date</label>
-                    <input type="date"
-                        name="from_date"
-                        class="form-control"
-                        value="{{ request('from_date') }}">
-                </div>
 
-                <div class="col-md-4">
-                    <label>To Date</label>
-                    <input type="date"
-                        name="to_date"
-                        class="form-control"
-                        value="{{ request('to_date') }}">
-                </div>
-
-                <div class="col-md-4 d-flex align-items-end">
-                    <button class="btn btn-primary mr-2" type="submit">
-                        Filter
-                    </button>
-
-                    <a href=""
-                        class="btn btn-secondary">
-                        Reset
-                    </a>
-                </div>
-            </div>
-        </form>
 
         <div class="card shadow-sm">
+            {{-- ✅ Filter Card --}}
+            <div class="col-md-12">
+                <div class="card">
+
+                    <!-- Header Icon -->
+
+
+                    <div class="card-content p-4 mb-4">
+                        <h4 class="card-title">Filter </h4>
+
+                        <form action="" method="GET">
+
+                            <!-- FILTER FIELDS -->
+                            <div class="row">
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Start Date</label>
+                                        <input type="date" class="form-control" name="from_date" value="{{ request('from_date') }}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>End Date</label>
+                                        <input type="date" class="form-control" name="to_date" value="{{ request('to_date') }}">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 mt-4">
+                                    <button type="submit" class="btn btn-primary btn-block">
+                                        Apply Filter
+                                    </button>
+                                </div>
+
+
+
+
+                            </div>
+
+
+
+                            <hr>
+
+
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div class="card-header text-white">
                 <h4 class="mb-0">Stocks</h4>
             </div>
