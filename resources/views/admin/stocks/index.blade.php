@@ -28,7 +28,7 @@
                         Filter
                     </button>
 
-                    <a href="{{ route('admin.stocks.index') }}"
+                    <a href=""
                         class="btn btn-secondary">
                         Reset
                     </a>
