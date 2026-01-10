@@ -16,7 +16,6 @@
 
    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
-   <link rel="preload" href="https://vinnexservices.com/css/app.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 
 
 
@@ -511,7 +510,7 @@
    </div>
 
    <div class="watsapp me-3">
-      <a data-track="whatsapp" class="chat-on-watsapp d-flex justify-content-between align-items-center" target="_blank" href="https://wa.me/+23409081155505">
+      <a data-track="whatsapp" class="chat-on-watsapp d-flex justify-content-between align-items-center" target="_blank" href="https://api.whatsapp.com/send?phone=2349081155505&text=Hello%2C+I’m+contacting+you+from+your+Website.">
          <span class="d-flex flex-column me-2">
             <span class="fs-6">Need Help?</span>
             <span class="fs-5">Chat with us</span>
