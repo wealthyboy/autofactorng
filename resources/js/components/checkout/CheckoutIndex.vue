@@ -20,16 +20,15 @@
     <div v-if="!loading && !paymentIsComplete" class="container">
         <div class="row align-items-start">
             <div class="col-md-7">
+                    <div style="background-color: #F57F2A;" class="info border py-4 mb-3   text-white bold px-4">
+                        Your item(s) are eligible for return within 12days from the date it is delivered to you.
+                    </div>
                 <div class="card border-0">
                     <div class="col-md-12 px-4 bg-white mb-2">
                         <div class="head border-bottom mb-3 py-4">
                             <h3 class="mb-0 fs-3">1. SHIPPING ADDRESSS</h3>
                         </div>
                         <ship-address />
-
-
-
-                        
                     </div>
                 </div>
 

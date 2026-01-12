@@ -24,6 +24,17 @@
          @endforeach
 
          <div class="col-6 col-sm-4 col-md-3 col-lg-2">
+            <a href="/returns" class="icon-box nounderline">
+               <i class="fas fa-reply text-main left"></i>
+               <h5 class="porto-sicon-title mx-2">Returns</h5>
+
+               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  @csrf
+               </form>
+            </a>
+         </div>
+
+         <div class="col-6 col-sm-4 col-md-3 col-lg-2">
             <a href="#" class="icon-box nounderline" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
                <i class="fas fa-sign-out-alt left"></i>

@@ -23,6 +23,14 @@ class PagesController extends Controller
         return view('pages.index', compact('information', 'page_title'));
     }
 
+
+
+    public function  returns(Request $request)
+    {
+        $page_title = 'Returns';
+        return view('pages.returns', compact('page_title'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

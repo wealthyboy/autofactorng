@@ -230,5 +230,7 @@ Route::post('webhook/payment/zilla',     'WebHook\WebHookController@zilla');
 //Route::post('contact/store',     'Contact\ContactController@store');
 Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
 Route::get('pages/{information}', 'Pages\PagesController@index');
+Route::get('returns', 'Pages\PagesController@returns');
+
 
 Route::post('/emailapi-service', 'EmailApiController@sendReceiptEmail');
