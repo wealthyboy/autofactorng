@@ -37,7 +37,7 @@
 
             <p>Please click the link below to learn more about our Return, Refund, and Wallet Policy.
             <h2 style="font-style: italic;"><span style="font-family: Tahoma, Geneva, sans-serif; font-size: medium;"><ins><strong><a href="https://autofactorng.com/pages/return-policy"><span style="color: rgb(52, 152, 219);">Learn More</span></a></strong></ins></span></h2>
-            =
+
             </p>
 
             <div class="margin-top-35"></div>
