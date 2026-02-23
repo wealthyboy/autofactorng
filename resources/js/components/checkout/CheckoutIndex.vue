@@ -9,20 +9,26 @@
     </div>
 
     <div v-if="payment_is_processing" class="payment-overlay">
-  <div class="overlay-content text-center">
-    <div class="spinner-border text-light mb-3" role="status">
-      <span class="sr-only">Processing...</span>
+        <div class="overlay-content text-center">
+            <div class="spinner-border text-light mb-3" role="status">
+                <span class="sr-only">Processing...</span>
+            </div>
+            <h4 class="text-light">
+                Payment is processing... Do not leave the browser
+            </h4>
+        </div>
     </div>
-    <h4 class="text-light">Payment is processing...  Do not leave the brower</h4>
-  </div>
-</div>
 
     <div v-if="!loading && !paymentIsComplete" class="container">
         <div class="row align-items-start">
             <div class="col-md-7">
-                    <div style="background-color: #F57F2A;" class="info border py-4 mb-3   text-white bold px-4">
-                        Your item(s) are eligible for return within 12days from the date it is delivered to you.
-                    </div>
+                <div
+                    style="background-color: #f57f2a"
+                    class="info border py-4 mb-3 text-white bold px-4"
+                >
+                    Your item(s) are eligible for return within 12days from the
+                    date it is delivered to you.
+                </div>
                 <div class="card border-0">
                     <div class="col-md-12 px-4 bg-white mb-2">
                         <div class="head border-bottom mb-3 py-4">
@@ -42,7 +48,10 @@
                         </div>
 
                         <div v-if="addresses.length">
-                            <cart-summary @price-selected="priceSelected" :showCoupon="!false" />
+                            <cart-summary
+                                @price-selected="priceSelected"
+                                :showCoupon="!false"
+                            />
                             <total
                                 :voucher="voucher"
                                 :total="prices.total"
@@ -56,16 +65,26 @@
                                     @click.prevent="checkoutWithCredit"
                                     class="btn btn-block btn-dark w-100 mb-2"
                                     :class="{
-                                        'btn-dark': total <= parseFloat(walletBalance.auto_credit),
-                                        'btn-secondary disabled pe-none': total > parseFloat(walletBalance.auto_credit),
+                                        'btn-dark':
+                                            total <=
+                                            parseFloat(
+                                                walletBalance.auto_credit,
+                                            ),
+                                        'btn-secondary disabled pe-none':
+                                            total >
+                                            parseFloat(
+                                                walletBalance.auto_credit,
+                                            ),
                                     }"
                                 >
                                     Pay with auto credits
                                     <span class="bold">
                                         {{
                                             "(Credit balance: " +
-                                                $filters.formatNumber(walletBalance.auto_credit) +
-                                                ")"
+                                            $filters.formatNumber(
+                                                walletBalance.auto_credit,
+                                            ) +
+                                            ")"
                                         }}
                                     </span>
                                     <i class="fa fa-arrow-right"></i>
@@ -76,21 +95,26 @@
                                     href="#"
                                     @click.prevent="checkoutWithWallet($event)"
                                     class="btn btn-block btn-dark w-100 mb-2"
-                                    :class="{
-                                    }" 
+                                    :class="{}"
                                 >
                                     Pay with wallet
                                     <span class="bold">
                                         {{
-                                            parseFloat(walletBalance.wallet_balance) >= total
+                                            parseFloat(
+                                                walletBalance.wallet_balance,
+                                            ) >= total
                                                 ? "(Wallet balance: " +
-                                                $filters.formatNumber(walletBalance.wallet_balance) +
-                                                ")"
+                                                  $filters.formatNumber(
+                                                      walletBalance.wallet_balance,
+                                                  ) +
+                                                  ")"
                                                 : "Add " +
-                                                $filters.formatNumber(
-                                                    total - parseFloat(walletBalance.wallet_balance)
-                                                ) 
-                                                
+                                                  $filters.formatNumber(
+                                                      total -
+                                                          parseFloat(
+                                                              walletBalance.wallet_balance,
+                                                          ),
+                                                  )
                                         }}
                                     </span>
                                     <i class="fa fa-arrow-right"></i>
@@ -109,13 +133,13 @@
                                     <i class="fa fa-arrow-right"></i
                                 ></a>
 
-
-                                                                <a
+                                <a
                                     href="#"
                                     @click.prevent="makePayment"
                                     class="btn btn-block btn-dark w-100"
                                 >
-                                    Pay now with paystack <i class="fa fa-arrow-right"></i
+                                    Pay now with paystack
+                                    <i class="fa fa-arrow-right"></i
                                 ></a>
 
                                 <a
@@ -123,7 +147,9 @@
                                     @click.prevent="paywithSeerbit"
                                     class="btn btn-block btn-dark w-100 mt-2"
                                 >
-                                    Pay now with seerbit<i class="fa fa-arrow-right"></i
+                                    Pay now with seerbit<i
+                                        class="fa fa-arrow-right"
+                                    ></i
                                 ></a>
                                 <div class="text-dark mt-4">
                                     <div class="bold m-0">Note</div>
@@ -216,7 +242,7 @@ export default {
             paymentIsComplete: false,
             loading: true,
             t: null,
-            ship_price: 0
+            ship_price: 0,
         };
     },
     computed: {
@@ -229,7 +255,7 @@ export default {
             walletBalance: "walletBalance",
             total: "total",
             coupon_code: "coupon_code",
-            original_total: "original_total"
+            original_total: "original_total",
         }),
 
         activeAddress() {},
@@ -247,8 +273,7 @@ export default {
             this.loading = false;
         });
     },
-    mounted(){
-    },
+    mounted() {},
     methods: {
         ...mapActions({
             createAddress: "createAddress",
@@ -265,106 +290,119 @@ export default {
         paywithSeerbit: function () {
             let context = this;
             var cartIds = [];
-            this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price;
+            this.ship_price = this.prices.zones
+                ? this.ship_price
+                : this.prices.ship_price;
             this.carts.forEach(function (cart, key) {
                 cartIds.push(cart.id);
             });
 
             if (!this.addresses.length) {
-                this.error =  "You need to save your address before placing your order";
+                this.error =
+                    "You need to save your address before placing your order";
                 return false;
             }
 
             if (!this.ship_price || this.ship_price < 1) {
-                alert("Select your shipping")
+                alert("Select your shipping");
                 return false;
             }
 
             let form = document.getElementById("checkout-form-2");
             this.order_text = "Please wait. We are almost done......";
             this.payment_method = "card";
-           
-            SeerbitPay ({
-                "close_on_success": true, 
-                
-                "public_key": "SBPUBK_LD5CFQZHSMJZNQHL3ODOTWTJPCIA4MNY", 
-                "tranref": new Date().getTime(), 
-                "currency": "NGN",
-                "country": "NG",
-                "amount": context.total,
-                "email": context.cart_meta.user.email,
-                "mobile_no":context.cart_meta.user.phone_number,
-                "productId": "", 
-                "description": "", 
-                "setAmountByCustomer": false, 
-                "full_name": context.cart_meta.user.name + " " + context.cart_meta.user.last_name, 
-                "tokenize" : false, 
-                "pocketReference" : "", 
-                "splitCode" : "", 
 
-                "customization": {
-                    "theme": {
-                        "border_color": "#000000", // Adjusted to include '#'
-                        "background_color": "#ECECEC",
-                        "button_color": "#000000"  // Adjusted to include '#'
-                    }, 
-                    "payment_method": ["card", "account", "transfer", "wallet", "ussd"],
-                }
-                // ==========================================
+            SeerbitPay(
+                {
+                    close_on_success: true,
 
-            },
-                        
-            // The Callback function (Success handler)
-            function callback(response, closeModal) {
-                context.payment_is_processing = true;
-                console.log("Transaction Callback Response:", response); 
-                axios
-                    .post("/checkout/confirm", {
-                        coupon: context.coupon_code,
-                        payment_method: "seerbit",
-                        shipping_price: context.ship_price,
-                        heavy_item_price: context.prices?.heavy_item_price || 0,
-                        total: context.total,
-                    })
-                    .then((response) => {
-                        context.paymentIsComplete = true;
-                        context.payment_is_processing = false;
+                    public_key: "SBPUBK_LD5CFQZHSMJZNQHL3ODOTWTJPCIA4MNY",
+                    tranref: new Date().getTime(),
+                    currency: "NGN",
+                    country: "NG",
+                    amount: context.total,
+                    email: context.cart_meta.user.email,
+                    mobile_no: context.cart_meta.user.phone_number,
+                    productId: "",
+                    description: "",
+                    setAmountByCustomer: false,
+                    full_name:
+                        context.cart_meta.user.name +
+                        " " +
+                        context.cart_meta.user.last_name,
+                    tokenize: false,
+                    pocketReference: "",
+                    splitCode: "",
 
-                    })
-                    .catch((error) => {
-                        // Handle confirmation error
-                        e.target.innerText = text;
-                        e.target.classList.remove("disabled");
-                        context.payment_is_processing = false;
+                    customization: {
+                        theme: {
+                            border_color: "#000000", // Adjusted to include '#'
+                            background_color: "#ECECEC",
+                            button_color: "#000000", // Adjusted to include '#'
+                        },
+                        payment_method: [
+                            "card",
+                            "account",
+                            "transfer",
+                            "wallet",
+                            "ussd",
+                        ],
+                    },
+                    // ==========================================
+                },
 
-                    });
-            },
+                // The Callback function (Success handler)
+                function callback(response, closeModal) {
+                    context.payment_is_processing = true;
+                    console.log("Transaction Callback Response:", response);
+                    axios
+                        .post("/checkout/confirm", {
+                            coupon: context.coupon_code,
+                            payment_method: "seerbit",
+                            shipping_price: context.ship_price,
+                            heavy_item_price:
+                                context.prices?.heavy_item_price || 0,
+                            total: context.total,
+                        })
+                        .then((response) => {
+                            context.paymentIsComplete = true;
+                            context.payment_is_processing = false;
+                        })
+                        .catch((error) => {
+                            // Handle confirmation error
+                            e.target.innerText = text;
+                            e.target.classList.remove("disabled");
+                            context.payment_is_processing = false;
+                        });
+                },
 
-            // The Close function (User manually closes or transaction is aborted)
-            function close(close) {
-                console.log("Transaction Closed Event:", close); 
-            });
+                // The Close function (User manually closes or transaction is aborted)
+                function close(close) {
+                    console.log("Transaction Closed Event:", close);
+                },
+            );
         },
 
         checkoutWithWallet: function (e) {
-            this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price 
+            this.ship_price = this.prices.zones
+                ? this.ship_price
+                : this.prices.ship_price;
 
-             if (!this.ship_price || this.ship_price < 1) {
-                alert("Select your shipping")
+            if (!this.ship_price || this.ship_price < 1) {
+                alert("Select your shipping");
                 return false;
             }
 
-            if (Number(this.walletBalance.wallet_balance) > Number(this.total)){
-                if ( this.checkoutWallet ) {
-                    console.log(this.checkoutWallet)
+            if (
+                Number(this.walletBalance.wallet_balance) > Number(this.total)
+            ) {
+                if (this.checkoutWallet) {
+                    console.log(this.checkoutWallet);
                     return;
                 }
                 this.checkout(e, "Wallet", "Pay with wallet");
-                return
+                return;
             }
-
-            
-           
 
             if (parseInt(this.walletBalance.wallet_balance) <= this.total) {
                 let total =
@@ -372,7 +410,7 @@ export default {
 
                 let gatewayAmount = Math.round(total * 100);
 
-                console.log(gatewayAmount)
+                console.log(gatewayAmount);
 
                 let context = this;
                 var cartIds = [];
@@ -434,70 +472,69 @@ export default {
         },
 
         checkoutWithLagos: function (e) {
-     
             if (this.total >= 300000) {
-                alert("No Payment On Delivery On Orders Above ₦300,000.\nKindly Use The Pay Now Option.");
+                alert(
+                    "No Payment On Delivery On Orders Above ₦300,000.\nKindly Use The Pay Now Option.",
+                );
                 return;
             }
 
-            if ( this.checkoutLagos ) {
+            if (this.checkoutLagos) {
                 return;
             }
-            
 
             this.checkout(
                 e,
                 "payment_on_delivery",
-                "Pay on delivery (Lagos only)"
+                "Pay on delivery (Lagos only)",
             );
         },
 
         checkoutWithCredit: function (e) {
-            this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price 
+            this.ship_price = this.prices.zones
+                ? this.ship_price
+                : this.prices.ship_price;
 
             if (!this.ship_price || this.ship_price < 1) {
-                alert("Select your shipping")
+                alert("Select your shipping");
                 return false;
             }
-            
+
             this.checkout(e, "auto_credit", "Pay with auto credit");
         },
 
-
-        priceSelected(res){
+        priceSelected(res) {
             if (!res.coupon) {
-                console.log(res.price)
-                this.ship_price = res.price
-                let oldTotal = this.original_total
-                let total = parseInt(oldTotal) + parseInt(this.ship_price) + parseInt(this.prices.heavy_item_price || 0)
-                this.$store.commit(
-                    "setTotal",
-                    total
-                );
+                console.log(res.price);
+                this.ship_price = res.price;
+                let oldTotal = this.original_total;
+                let total =
+                    parseInt(oldTotal) +
+                    parseInt(this.ship_price) +
+                    parseInt(this.prices.heavy_item_price || 0);
+                this.$store.commit("setTotal", total);
             }
 
-            console.log(res)
-
+            console.log(res);
 
             if (res.coupon) {
-                console.log(res.price)
-                this.ship_price = res.price
-                let oldTotal = this.original_total
-                let total = parseInt(oldTotal) + parseInt(this.ship_price) + parseInt(this.prices.heavy_item_price || 0)
-                this.$store.commit(
-                    "setTotal",
-                    total
-                );
+                console.log(res.price);
+                this.ship_price = res.price;
+                let oldTotal = this.original_total;
+                let total =
+                    parseInt(oldTotal) +
+                    parseInt(this.ship_price) +
+                    parseInt(this.prices.heavy_item_price || 0);
+                this.$store.commit("setTotal", total);
             }
-
-
-            
         },
 
         makePayment: function (e) {
             let context = this;
             var cartIds = [];
-            this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price;
+            this.ship_price = this.prices.zones
+                ? this.ship_price
+                : this.prices.ship_price;
             this.carts.forEach(function (cart, key) {
                 cartIds.push(cart.id);
             });
@@ -509,7 +546,7 @@ export default {
             }
 
             if (!this.ship_price || this.ship_price < 1) {
-                alert("Select your shipping")
+                alert("Select your shipping");
                 return false;
             }
 
@@ -560,28 +597,28 @@ export default {
             console.log(c);
         },
         checkout: function (e, type = null, text) {
-            this.ship_price = this.prices.zones ? this.ship_price : this.prices.ship_price 
-    
+            this.ship_price = this.prices.zones
+                ? this.ship_price
+                : this.prices.ship_price;
 
             if (!this.ship_price || this.ship_price < 1) {
-                alert("Select your shipping")
+                alert("Select your shipping");
                 return false;
             }
 
             e.target.innerText = "Please wait.......";
             e.target.classList.add("disabled");
             if (type === "Wallet") {
-                this.checkoutWallet = true
+                this.checkoutWallet = true;
             }
 
             if (type === "auto_credit") {
-                this.autoCredit = true
+                this.autoCredit = true;
             }
 
             if (type === "payment_on_delivery") {
-               this.checkoutLagos = true
+                this.checkoutLagos = true;
             }
-
 
             axios
                 .post("/checkout/confirm", {
@@ -607,26 +644,24 @@ export default {
 </script>
 <style scoped>
 .payment-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* semi-transparent black */
-  z-index: 9999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* semi-transparent black */
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .payment-overlay .overlay-content {
-  text-align: center;
+    text-align: center;
 }
 
 .spinner-border {
-  width: 3rem;
-  height: 3rem;
+    width: 3rem;
+    height: 3rem;
 }
-
 </style>
-
