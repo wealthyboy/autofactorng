@@ -107,8 +107,6 @@ class OrdersController extends Table
 		$order->save();
 
 
-
-
 		foreach (Order::$statuses as $key => $status) {
 			$order_status = new OrderStatus();
 			$order_status->is_updated = false;
@@ -208,7 +206,10 @@ class OrdersController extends Table
 		];
 
 
-		\Dispatch(new \App\Jobs\AppendPendingOrderRow($spreedSheetData, "!A1:Z1000"));
+		//\Dispatch(new \App\Jobs\AppendPendingOrderRow($spreedSheetData, "!A1:Z1000"));
+
+		Order::appendPendingOrderRow($spreedSheetData,  "!A1:Z1000");
+
 
 
 
