@@ -206,11 +206,7 @@ class OrdersController extends Table
 		];
 
 
-		//\Dispatch(new \App\Jobs\AppendPendingOrderRow($spreedSheetData, "!A1:Z1000"));
-
-		Order::appendPendingOrderRow($spreedSheetData,  "!A1:Z1000");
-
-
+		\Dispatch(new \App\Jobs\AppendPendingOrderRow($spreedSheetData, "!A1:Z1000"));
 
 
 		$order->heavy_item_price = $request->heavy_item_price ?? '---';
