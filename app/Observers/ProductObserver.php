@@ -66,7 +66,7 @@ class ProductObserver
             ]);
 
 
-            Notification::route('mail', ['autofactorng@gmail.com', 'damilola@autoglass.ng', 'felabright11@gmail.com'])
+            Notification::route('mail', ['autofactorng@gmail.com', 'rec@autofactorng.com'])
                 ->notify(new ProductUpdated($product, $changes, $context));
         }
     }
