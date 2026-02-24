@@ -61,11 +61,12 @@ class WebHookController extends Controller
                 }
 
                 $payment_method = $request->data['authorization']['channel'];
-                $ip             = $request->data['ip_address'];
+                $ip  = $request->data['ip_address'];
 
                 // ✅ Save reference with the order
                 $order = Order::checkout($input, $payment_method, $ip, $carts, $user);
                 $order->reference = $reference;
+
                 $order->save();
 
                 if ($amount = data_get($input, 'wallet')) {
@@ -75,6 +76,8 @@ class WebHookController extends Controller
                 $sub_total = Order::subTotal($order);
 
                 Order::getCoupon($order, $sub_total);
+                $order->discount = $order->coupon_value;
+
                 Order::sendMail($user, $order, $sub_total);
                 Voucher::inValidate($input['coupon']);
 
@@ -85,7 +88,7 @@ class WebHookController extends Controller
                 return http_response_code(200);
             } catch (\Throwable $e) {
                 DB::rollBack();
-                Log::channel('payments')->error('Payment transaction failed: '.$e->getMessage(), [
+                Log::channel('payments')->error('Payment transaction failed: ' . $e->getMessage(), [
                     'trace'   => $e->getTraceAsString(),
                     'request' => $request->all(),
                 ]);
