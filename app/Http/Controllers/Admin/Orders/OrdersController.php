@@ -95,6 +95,8 @@ class OrdersController extends Table
 		//try {
 		//DB::beginTransaction();
 		$inv = substr(rand(100000, time()), 0, 7);
+
+		//dd($request->all());
 		$email = explode(',', $request->email);
 		$user = User::where('email', $email[0])->first();
 		$input = $request->except('_token');
@@ -142,14 +144,13 @@ class OrdersController extends Table
 			$v = str_slug($v);
 			$product = Product::where('slug', $v)->first();
 
-
 			if (null !== $product && $product->quantity > 0) {
 
 				$newQuantity = $product->quantity - $qty;
 				$product->quantity = $newQuantity >= 0 ? $newQuantity : 0;
 				ProductObserver::$context = [
 					'order_id' => $order->invoice,
-					'user_id'  => auth()->id()
+					'user_id' => auth()->id()
 				];
 
 				$product->save();
@@ -206,7 +207,7 @@ class OrdersController extends Table
 		];
 
 
-		\Dispatch(new \App\Jobs\AppendPendingOrderRow($spreedSheetData, "!A1:Z1000"));
+		\Dispatch(new \App\Jobs\AppendPendingOrderRow($spreedSheetData, "!A 1:Z1000"));
 
 
 		$order->heavy_item_price = $request->heavy_item_price ?? '---';
@@ -220,10 +221,10 @@ class OrdersController extends Table
 			if ($order->discount) {
 				if ($order->percentage_type == 'percentage') {
 					$order->coupon = $order->discount . '% Discount';
-					$order->coupon_value = '-' . number_format(($order->discount  / 100) * $sub_total);
+					$order->coupon_value = number_format(($order->discount  / 100) * $sub_total);
 				} else {
 					$order->coupon = 'Discount';
-					$order->coupon_value = '-' . number_format($order->discount);
+					$order->coupon_value = number_format($order->discount);
 				}
 			} else {
 				$order->coupon = 'Coupon';
@@ -231,7 +232,8 @@ class OrdersController extends Table
 			}
 		}
 
-		//dd($order);
+		$order->discount = $order->coupon_value;
+
 
 		try {
 			$user = User::find(1);
@@ -241,14 +243,14 @@ class OrdersController extends Table
 				->bcc('order@autofactorng.com')
 				->queue(new OrderReceipt($order, null, null, $sub_total));
 		} catch (\Throwable $th) {
-
-			dd($th);
 			Log::info("Mail error :" . $th);
 			Log::info("Custom error :" . $th);
 			$err = new Error();
 			$err->error = $th->getMessage();
 			$err->save();
 		}
+
+
 
 		// Send Mail
 		(new Activity)->put("Added a new order with email and phone number  " . $request->email . ' and ' . $request->phone_number);

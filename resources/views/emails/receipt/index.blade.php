@@ -878,7 +878,7 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="rt5td" data-link-style="text-decoration:none;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;">
-                                                         <div href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;"> {{ $order->coupon_value }} </div>
+                                                         <div href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;"> {{ $order->coupon_value  ?? $order->discount }} </div>
                                                       </td>
                                                    </tr>
                                                    <tr>
