@@ -147,9 +147,9 @@ class Order extends Model
 				$product = Product::find($cart->product_id);
 
 				if ($product->quantity > 0) {
+
 					$newQuantity = $product->quantity - $cart->quantity;
 					$product->quantity = $newQuantity >= 0 ? $newQuantity : 0;
-
 					ProductObserver::$context = [
 						'order_id' => $order->invoice,
 						'user_id'  => $user->id, // or auth()->id() if available
@@ -174,9 +174,7 @@ class Order extends Model
 
 				\Dispatch(new \App\Jobs\AppendOrderRowJob($spreedSheetData, "!A1:Z1000"));
 
-
 				OrderedProduct::Insert($insert);
-
 				$cart->status = 'paid';
 				$cart->delete();
 			}
@@ -406,14 +404,14 @@ class Order extends Model
 	}
 
 
-	public static function sendMail(User $user, Order $order, $sub_total)
+	public static function sendMail(User $user, Order $order, $sub_total,  $coupon_value  = null)
 	{
 
 		try {
 			$when = now()->addMinutes(5);
 			Mail::to($user->email)
 				->bcc('order@autofactorng.com')
-				->queue(new OrderReceipt($order, null, null, $sub_total));
+				->queue(new OrderReceipt($order, null, null, $sub_total, $coupon_value));
 		} catch (\Throwable $th) {
 			Log::info("Mail error :" . $th);
 			$err = new Error();

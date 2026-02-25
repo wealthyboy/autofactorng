@@ -35,16 +35,16 @@ class CheckoutController extends Controller
         $carts =  Cart::all_items_in_cart();
 
         $user = Auth::user();
-        $cartItems = Cart::with('product')->where('user_id', $user->id)->get(); 
+        $cartItems = Cart::with('product')->where('user_id', $user->id)->get();
 
 
-        $items = $cartItems->map(function ($cart)  {
+        $items = $cartItems->map(function ($cart) {
             return [
                 'product_id' => $cart->product_id,
                 'name' => $cart->product->name ?? 'Unknown Product',
                 'image_url' => $cart->product->image_m ?? '',
                 'price' => $cart->product->price ?? 0,
-              
+
             ];
         });
 
@@ -54,7 +54,7 @@ class CheckoutController extends Controller
         );
 
         // Prepare and insert abandoned cart items
-       
+
 
         // Optional: delete existing items before re-inserting (if you want fresh snapshot)
         $abandonedCart->items()->delete();
@@ -103,10 +103,13 @@ class CheckoutController extends Controller
             }
 
             $sub_total = Order::subTotal($order);
-
             Order::getCoupon($order, $sub_total);
 
-            Order::sendMail($user, $order, $sub_total);
+            $order->discount = $order->coupon_value;
+
+            $coupon_value = $order->coupon_value != "" ? $order->coupon_value : "₦0.0";
+
+            Order::sendMail($user, $order, $sub_total,  $coupon_value);
 
             Voucher::inValidate($code);
 
@@ -183,7 +186,7 @@ class CheckoutController extends Controller
             $error['error'] = 'Coupon has expired';
             return response()->json($error, 422);
         }
-        
+
 
         if ($coupon->belongs_to_user && $coupon->user_id !== optional(auth()->user())->id) {
             $error['error'] = 'Coupon does not belongs to you';
@@ -199,7 +202,6 @@ class CheckoutController extends Controller
             $error['error'] = 'You can only use this coupon when your purchase is above  '  . $coupon->from_value;
             return response()->json($error, 422);
         }
-
 
         if (!$coupon->is_valid()) {
             $error['error'] = 'Coupon is invalid ';
@@ -252,7 +254,7 @@ class CheckoutController extends Controller
                 return response()->json($total, 200);
             }
 
-           // dd("wwww");
+            // dd("wwww");
 
 
             $new_total = ($coupon->amount * $cart_total) / 100;

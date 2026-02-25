@@ -233,6 +233,8 @@ class OrdersController extends Table
 		}
 
 		$order->discount = $order->coupon_value;
+		$coupon_value = $order->coupon_value != "" ? $order->coupon_value : "₦0.0";
+
 
 
 		try {
@@ -241,7 +243,7 @@ class OrdersController extends Table
 			$order->full_name = $request->first_name;
 			Mail::to($request->email)
 				->bcc('order@autofactorng.com')
-				->queue(new OrderReceipt($order, null, null, $sub_total));
+				->queue(new OrderReceipt($order, null, null, $sub_total, $coupon_value));
 		} catch (\Throwable $th) {
 			Log::info("Mail error :" . $th);
 			Log::info("Custom error :" . $th);

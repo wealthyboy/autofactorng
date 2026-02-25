@@ -76,13 +76,11 @@ class WebHookController extends Controller
                 $sub_total = Order::subTotal($order);
 
                 Order::getCoupon($order, $sub_total);
-                $order->discount = $order->coupon_value;
 
-                Order::sendMail($user, $order, $sub_total);
+                $coupon_value = $order->coupon_value != "" ? $order->coupon_value : "₦0.0";
+                Order::sendMail($user, $order, $sub_total, $coupon_value);
                 Voucher::inValidate($input['coupon']);
-
                 DB::commit();
-
                 Log::channel('payments')->info('Order created successfully', ['order_id' => $order->id, 'reference' => $reference]);
 
                 return http_response_code(200);
