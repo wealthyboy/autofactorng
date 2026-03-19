@@ -167,7 +167,7 @@ class Order extends Model
 					'item' => optional($cart->product)->name,
 					'quantity' => $cart->quantity,
 					'unit_price' => $cart->price,
-					'order_type' => 'offline',
+					'order_type' => 'online',
 					'customer_level' => self::isReturningCustomer($order) ? 'Returning' : 'New',
 					'location' => optional(optional($user->active_address)->address_state)->name
 				];
