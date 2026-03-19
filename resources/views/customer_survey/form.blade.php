@@ -91,7 +91,7 @@
                         @endforeach
                     </div>
 
-                    <h5 class="mt-4">Section 3: Order & Delivery Experience</h5>
+                    <h5 class="mt-4">Section 2: Order & Delivery Experience</h5>
 
                     <div class="mb-3">
                         <label class="form-label">1. How satisfied are you with your order delivery experience?</label>
@@ -133,7 +133,7 @@
                         @endforeach
                     </div>
 
-                    <h5 class="mt-4">Section 4: Overall Experience</h5>
+                    <h5 class="mt-4">Section 3: Overall Experience</h5>
 
                     <div class="mb-3">
                         <label class="form-label">1. Overall, how satisfied are you with your purchase?</label>
