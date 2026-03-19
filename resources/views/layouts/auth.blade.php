@@ -20,6 +20,11 @@
 	<link rel="stylesheet" type="text/css" href="/vendor/fontawesome-free/css/all.min.css">
 
 	<link rel="stylesheet" href="/css/app.css">
+	<style>
+		.cursor-pointer {
+			cursor: pointer;
+		}
+	</style>
 </head>
 
 <script type="application/ld+json" class="yoast-schema-graph">
@@ -124,6 +129,9 @@
 	<!-- Plugins JS File -->
 	<script src="/js/jquery.min.js"></script>
 	<script src="/js/app.js?id={{ rand(1,2000)}}"></script>
+
+	@yield('page-scripts')
+
 
 </body>
 
