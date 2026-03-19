@@ -101,6 +101,10 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::resource('trackings', 'Admin\Tracking\TrackingController', ['names' => 'trackings']);
     Route::resource('car-reviews', 'Admin\CarReviews\CarReviewsController', ['names' => 'admin.car_reviews']);
     Route::resource('forum-category', 'Admin\ForumCategory\ForumCategoryController', ['names' => 'admin.forum-category']);
+
+    // Customer survey admin pages (view submissions)
+    Route::get('customer-surveys', 'CustermerSurvey\CustermerSurveyController@index')->name('admin.customer-surveys.index');
+    Route::get('customer-surveys/{survey}', 'CustermerSurvey\CustermerSurveyController@show')->name('admin.customer-surveys.show');
 });
 
 Route::post('password/reset/link',           'Auth\ForgotPasswordController@sendResetLinkEmail');
@@ -184,6 +188,10 @@ Route::group(['middleware' => ['tracking']], function () {
     Route::get('checkout', 'Checkout\CheckoutController@index')->name('checkout');
     Route::post('checkout/confirm', 'Checkout\CheckoutController@confirm');
     Route::post('checkout/coupon', 'Checkout\CheckoutController@coupon');
+
+    // Customer Satisfaction Survey
+    Route::get('customer-survey', 'CustermerSurvey\CustermerSurveyController@create')->name('customer-survey');
+    Route::post('customer-survey', 'CustermerSurvey\CustermerSurveyController@store')->name('customer-survey.submit');
 });
 
 

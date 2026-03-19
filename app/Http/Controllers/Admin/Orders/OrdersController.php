@@ -162,6 +162,8 @@ class OrdersController extends Table
 				'item' => $v,
 				'quantity' => $qty,
 				'unit_price' => $OrderedProduct->price,
+				'order_type' => 'offline',
+				'customer_level' => Order::isReturningCustomer($order) ? 'Returning' : 'New',
 				'location' => $request->address
 			];
 

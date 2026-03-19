@@ -167,9 +167,10 @@ class Order extends Model
 					'item' => optional($cart->product)->name,
 					'quantity' => $cart->quantity,
 					'unit_price' => $cart->price,
+					'order_type' => 'offline',
+					'customer_level' => self::isReturningCustomer($order) ? 'Returning' : 'New',
 					'location' => optional(optional($user->active_address)->address_state)->name
 				];
-
 
 
 				\Dispatch(new \App\Jobs\AppendOrderRowJob($spreedSheetData, "!A1:Z1000"));
@@ -331,6 +332,8 @@ class Order extends Model
 			$data['item'] ?? '',
 			(int) ($data['quantity'] ?? 0),
 			(float) ($data['unit_price'] ?? 0),
+			$data['order_type'] ?? '',
+			$data['customer_level'] ?? '',
 			$data['location'] ?? '',
 		];
 
@@ -486,6 +489,7 @@ class Order extends Model
 						"Ip Address" => $order->ip,
 						"Coupon" => $order->coupon,
 						"Type" => 'offline',
+						"Customer Type" => self::isReturningCustomer($order) ? 'Returning' : 'New',
 						"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 						"Dispatch" => array_merge($d, ['selected' => $order->dispatch ?? 'Select dispatch']),
 						"Total" => Helper::currencyWrapper($order->total),
@@ -501,6 +505,7 @@ class Order extends Model
 					"Ip Address" => $order->ip,
 					"Coupon" => $order->coupon,
 					"Type" => $order->order_type,
+					"Customer Type" => self::isReturningCustomer($order) ? 'Returning' : 'New',
 					"Dispatch" => array_merge($d, ['selected' => $order->dispatch ?? 'Select Dispatch']),
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 					"Total" => Helper::currencyWrapper($order->total),
@@ -611,5 +616,16 @@ class Order extends Model
 	public  function shipfullname()
 	{
 		return ucfirst($this->ship_name) . ' ' . ucfirst($this->ship_last_name);
+	}
+
+	public static function isReturningCustomer($order)
+	{
+		if ($order->user_id) {
+			// Registered user: check if they have more than 1 order
+			return self::where('user_id', $order->user_id)->count() > 1;
+		} else {
+			// Guest order: check if email has more than 1 order
+			return self::where('email', $order->email)->count() > 1;
+		}
 	}
 }
