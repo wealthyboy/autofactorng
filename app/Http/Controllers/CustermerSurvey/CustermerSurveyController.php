@@ -30,7 +30,7 @@ class CustermerSurveyController extends Controller
             'service_satisfaction' => 'nullable|string|max:50',
             'resolved_promptly' => 'nullable|string|max:50',
             'response_time' => 'nullable|string|max:50',
-            'support_staff' => 'sometimes|array',
+            'support_staff' => 'sometimes|string',
             'support_staff.*' => 'string|max:100',
 
             'delivery_satisfaction' => 'nullable|string|max:50',
