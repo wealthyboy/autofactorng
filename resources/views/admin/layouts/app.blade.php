@@ -211,6 +211,13 @@
                </a>
             </li>
 
+            <li class=" nav-item">
+               <a class="nav-link text-white {{ $helper->active_link(['trackings']) }}" href="/admin/customer-surveys">
+                  <i class="material-symbols-outlined opacity-10">track_changes</i>
+                  <span class="nav-link-text ms-2 ps-1"> Survey </span>
+               </a>
+            </li>
+
 
 
 
