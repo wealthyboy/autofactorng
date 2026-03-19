@@ -56,7 +56,7 @@
                         @foreach (['Very Satisfied','Satisfied','Neutral','Dissatisfied','Very Dissatisfied'] as $option)
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="service_satisfaction" id="service_satisfaction_{{ \Illuminate\Support\Str::slug($option) }}" value="{{ $option }}" {{ old('service_satisfaction') === $option ? 'checked' : '' }}>
-                            <label class="form-check-label" for="service_satisfaction_{{ \Illuminate\Support\Str::slug($option) }}">{{ $option }}</label>
+                            <label class="form-check-label  cursor-pointer" for="service_satisfaction_{{ \Illuminate\Support\Str::slug($option) }}">{{ $option }}</label>
                         </div>
                         @endforeach
                     </div>
@@ -66,7 +66,7 @@
                         @foreach (['Yes, completely','Partially','Not resolved'] as $option)
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="resolved_promptly" id="resolved_promptly_{{ \Illuminate\Support\Str::slug($option) }}" value="{{ $option }}" {{ old('resolved_promptly') === $option ? 'checked' : '' }}>
-                            <label class="form-check-label" for="resolved_promptly_{{ \Illuminate\Support\Str::slug($option) }}">{{ $option }}</label>
+                            <label class="form-check-label  cursor-pointer" for="resolved_promptly_{{ \Illuminate\Support\Str::slug($option) }}">{{ $option }}</label>
                         </div>
                         @endforeach
                     </div>
