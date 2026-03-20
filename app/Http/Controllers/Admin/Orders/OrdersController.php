@@ -205,7 +205,9 @@ class OrdersController extends Table
 		$spreedSheetData = [
 			'invoice_number' => $order->invoice,
 			'customer_name' => $request->first_name,
-			'total' => 	$order->total
+			'total' => 	$order->total,
+			'order_type' => 'online',
+			'customer_level' => Order::isReturningCustomer($order) ? 'Returning' : 'New',
 		];
 
 

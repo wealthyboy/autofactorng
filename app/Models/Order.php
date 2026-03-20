@@ -188,6 +188,8 @@ class Order extends Model
 			'invoice_number' => $order->invoice,
 			'customer_name' => $order->first_name . ' ' . $order->last_name,
 			'total' => $input['total'],
+			'order_type' => 'online',
+			'customer_level' => self::isReturningCustomer($order) ? 'Returning'	: 'New',
 		];
 
 
@@ -292,8 +294,8 @@ class Order extends Model
 			$data['customer_name'] ?? '',
 			$data['invoice_number'] ?? '',
 			$data['total'] ?? '',
-			null,
-			null,
+			$data['order_type'] ?? '',
+			$data['customer_level'] ?? '',
 			null,
 		];
 
@@ -360,8 +362,6 @@ class Order extends Model
 			'valueInputOption' => $valueInputOption,  // RAW or USER_ENTERED
 			'insertDataOption' => $insertDataOption,  // OVERWRITE or INSERT_ROWS
 		];
-
-
 
 		// Using the sheet (tab) name as the range is fine for append()
 		$service->spreadsheets_values
