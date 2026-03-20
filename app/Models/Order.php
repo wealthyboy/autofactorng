@@ -167,8 +167,6 @@ class Order extends Model
 					'item' => optional($cart->product)->name,
 					'quantity' => $cart->quantity,
 					'unit_price' => $cart->price,
-					'order_type' => 'online',
-					'customer_level' => self::isReturningCustomer($order) ? 'Returning' : 'New',
 					'location' => optional(optional($user->active_address)->address_state)->name
 				];
 
@@ -334,8 +332,7 @@ class Order extends Model
 			$data['item'] ?? '',
 			(int) ($data['quantity'] ?? 0),
 			(float) ($data['unit_price'] ?? 0),
-			$data['order_type'] ?? '',
-			$data['customer_level'] ?? '',
+
 			$data['location'] ?? '',
 		];
 
