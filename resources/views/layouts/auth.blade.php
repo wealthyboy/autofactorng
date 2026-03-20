@@ -6,11 +6,21 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>Login | Autofactor</title>
+	<title>{{ isset($page_title) ? $page_title .'   '.config('app.name') :  $system_settings->meta_title  }}</title>
+	<meta property="og:title" content="{{ isset($seo['page_title']) ? $seo['page_title'] : optional($system_settings)->meta_title }}">
+	<meta name="description" content="{{ isset($seo['page_meta_description'])  ? $seo['page_meta_description'] : optional($system_settings)->meta_description }}">
+	<meta name="keywords" content="" />
+	<link rel="canonical" href="{{ Config('app.url') }}">
+	<meta name="author" content="Autofactorng">
 
-	<meta name="keywords" content="Autofactor" />
-	<meta name="description" content="Autofactor">
-	<meta name="author" content="SW-THEMES">
+	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+	<!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="/images/favicon_io/favicon-32x32.png">
+	<link rel="shortcut icon" type="image/x-icon" href="/images/favicon_io/favicon.ico">
+	<link rel="icon" href="/images/favicon_io/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon" href="/images/favicon_io/favicon-96x96.png">
+	<!-- Main CSS File -->
 
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 

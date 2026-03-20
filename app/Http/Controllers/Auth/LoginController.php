@@ -53,7 +53,10 @@ class LoginController extends Controller
         if ($token  && hash_equals(csrf_token(), $token)) {
             session()->put('forum', true);
         }
-        return view('auth.login');
+
+        $page_title = 'Login | AutoFactorNG';
+
+        return view('auth.login', compact('page_title'));
     }
 
 
