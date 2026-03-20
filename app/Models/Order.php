@@ -193,7 +193,6 @@ class Order extends Model
 
 		\Dispatch(new \App\Jobs\AppendPendingOrderRow($spreedSheetData, "!A1:Z1000"));
 
-
 		try {
 			$delay = now()->addMinutes(10);
 		} catch (\Throwable $th) {
