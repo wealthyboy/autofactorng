@@ -210,8 +210,6 @@ class OrdersController extends Table
 
 
 		\Dispatch(new \App\Jobs\AppendPendingOrderRow($spreedSheetData, "!A 1:Z1000"));
-
-
 		$order->heavy_item_price = $request->heavy_item_price ?? '---';
 
 		if ($order->coupon) {
