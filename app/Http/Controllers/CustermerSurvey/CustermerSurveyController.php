@@ -16,7 +16,7 @@ class CustermerSurveyController extends Controller
     public function create()
     {
 
-        $page_title = 'Customer Survey | AutoFactorNG';
+        $page_title = 'Customer Survey ';
 
         return view('customer_survey.form', compact('page_title'));
     }

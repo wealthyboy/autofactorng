@@ -54,7 +54,7 @@ class LoginController extends Controller
             session()->put('forum', true);
         }
 
-        $page_title = 'Login | AutoFactorNG';
+        $page_title = 'Login';
 
         return view('auth.login', compact('page_title'));
     }
