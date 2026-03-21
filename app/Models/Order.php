@@ -167,7 +167,12 @@ class Order extends Model
 					'item' => optional($cart->product)->name,
 					'quantity' => $cart->quantity,
 					'unit_price' => $cart->price,
-					'location' => optional(optional($user->active_address)->address_state)->name
+					'location' => optional(optional($user->active_address)->address_state)->name,
+					'customer_care' => '',
+					'procurment' => '',
+					'order_status' => '',
+					'delivery_type' => '',
+					'delivery_date' => '',
 				];
 
 
@@ -187,11 +192,11 @@ class Order extends Model
 			'customer_name' => $order->first_name . ' ' . $order->last_name,
 			'total' => $input['total'],
 			'order_type' => 'online',
-			'customer_level' => self::isReturningCustomer($order) ? 'Returning'	: 'New',
+			'customer_level' => self::isReturningCustomer($order) ? 'Returning' : 'New',
 		];
 
-
 		\Dispatch(new \App\Jobs\AppendPendingOrderRow($spreedSheetData, "!A1:Z1000"));
+
 
 		try {
 			$delay = now()->addMinutes(10);
@@ -294,6 +299,8 @@ class Order extends Model
 			$data['order_type'] ?? '',
 			$data['customer_level'] ?? '',
 			null,
+			null,
+			null,
 		];
 
 		$updateRange = $sheetTab . "!A{$nextRow}:G{$nextRow}";
@@ -325,14 +332,19 @@ class Order extends Model
 
 
 		$row = [
-			Carbon::now()->format('Y-m-d'),
+			Carbon::now()->format('Y-m-d'), //date
 			$data['invoice_number'] ?? '',
 			$data['customer_name'] ?? '',
 			$data['item'] ?? '',
 			(int) ($data['quantity'] ?? 0),
 			(float) ($data['unit_price'] ?? 0),
-
 			$data['location'] ?? '',
+			null,
+			null,
+			null,
+			null,
+			null,
+			null
 		];
 
 		/* ----------------------------------------------------------
@@ -358,6 +370,8 @@ class Order extends Model
 			'valueInputOption' => $valueInputOption,  // RAW or USER_ENTERED
 			'insertDataOption' => $insertDataOption,  // OVERWRITE or INSERT_ROWS
 		];
+
+
 
 		// Using the sheet (tab) name as the range is fine for append()
 		$service->spreadsheets_values
