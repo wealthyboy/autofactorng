@@ -162,14 +162,18 @@ class OrdersController extends Table
 				'item' => $v,
 				'quantity' => $qty,
 				'unit_price' => $OrderedProduct->price,
-
+				'location' => $request->address,
+				'customer_care' => '',
+				'procurment' => '',
+				'order_status' => '',
+				'Delivery_type' => '',
+				'delivery_date' => '',
 			];
 
 			//dd($spreedSheetData);
 
 			\Dispatch(new \App\Jobs\AppendOrderRowJob($spreedSheetData, "!A1:Z1000"));
 		}
-
 
 		$sub_total = array_sum($total);
 		$shipping = $request->shipping_price;
@@ -204,7 +208,7 @@ class OrdersController extends Table
 			'invoice_number' => $order->invoice,
 			'customer_name' => $request->first_name,
 			'total' => 	$order->total,
-			'order_type' => 'online',
+			'order_type' => 'offline',
 			'customer_level' => Order::isReturningCustomer($order) ? 'Returning' : 'New',
 		];
 
@@ -235,8 +239,6 @@ class OrdersController extends Table
 		$order->discount = $order->coupon_value;
 		$coupon_value = $order->coupon_value != "" ? $order->coupon_value : "₦0.0";
 
-
-
 		try {
 			$user = User::find(1);
 			$when = now()->addMinutes(5);
@@ -245,7 +247,7 @@ class OrdersController extends Table
 				->bcc('order@autofactorng.com')
 				->queue(new OrderReceipt($order, null, null, $sub_total, $coupon_value));
 		} catch (\Throwable $th) {
-			Log::info("Mail error :" . $th);
+			Log::info("Mail erghror :" . $th);
 			Log::info("Custom error :" . $th);
 			$err = new Error();
 			$err->error = $th->getMessage();
@@ -299,6 +301,14 @@ class OrdersController extends Table
 			(int) ($data['quantity'] ?? 0),   // Qty → E
 			(float) ($data['unit_price']  ?? 0),   // Price → F
 			$data['location']      ?? '',    // Location  → G
+			null,
+			null,
+			null,
+			null,
+			null,
+			null,
+
+
 		];
 
 		/* ----------------------------------------------------------
