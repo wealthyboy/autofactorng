@@ -14,79 +14,80 @@ use Illuminate\Support\Facades\Session;
 
 class TrackUserActivity
 {
+    /**
+     * Store the current request so we can track it after response.
+     *
+     * @var Request|null
+     */
+    protected $request = null;
+
     public function handle(Request $request, Closure $next)
     {
+        $this->request = $request;
 
-         $response = $next($request);
-         
-        // Skip admin and ignored AJAX requests
-        if (
-            $request->ajax() && $request->ignore === "true" ||
-            Str::contains($request->path(), 'admin')
-        ) {
-            return $response;
+        return $next($request);
+    }
+
+    public function terminate(Request $request, $response)
+    {
+        if ($this->shouldSkipTracking($request)) {
+            return;
         }
 
-        $sessionId = session()->getId();
+        $sessionId = $request->session()->getId();
         $path = $request->fullUrl();
         $user = auth()->user();
 
-        // Throttle or defer this logic if needed (e.g. using queues)
-        $trackingData = [
-            'session_id' => $sessionId,
-            'page_url' => $path,
-            'ip_address' => $request->ip(),
-            'user_agent' => $this->detectDevice($request),
-            'referer' => $request->headers->get('referer'),
-            'user_id' => optional($user)->id,
-            'first_name' => optional($user)->name,
-            'last_name' => optional($user)->last_name,
-            'visited_at' => now(),
-            'method' => $request->method(),
-            'product_id' => $request->routeIs('products.show') ? optional($request->route('product'))->id : null,
-            'action' => $request->input('action', 'viewed'),
-            'created_at' => now(),
-        ];
+        $cacheKey = 'user_tracking_' . $sessionId . '_' . md5($path);
 
-        // Cache per session to avoid multiple writes per session per second
-        
-        $cacheKey = "user_tracking_{$sessionId}_{$path}";
-        if (!Cache::has($cacheKey)) {
-            UserTracking::updateOrInsert(
-                ['session_id' => $sessionId, 'page_url' => $path],
-                $trackingData
-            );
-            Cache::put($cacheKey, true, 30); // 30 seconds debounce to avoid overloading
-        }
-
-    // Track ID just once
-    if (!Session::has('tracking_id')) {
-        $lastId = Cache::remember('last_tracking_id', 30, function () {
-            return UserTracking::latest('id')->value('id');
+        Cache::remember($cacheKey, 30, function () use ($request, $sessionId, $path, $user) {
+            UserTracking::create([
+                'session_id' => $sessionId,
+                'page_url' => $path,
+                'ip_address' => $request->ip(),
+                'device_type' => $this->detectDevice($request),
+                'user_agent' => $request->header('User-Agent'),
+                'referer' => $request->headers->get('referer'),
+                'user_id' => optional($user)->id,
+                'first_name' => optional($user)->name,
+                'last_name' => optional($user)->last_name,
+                'visited_at' => now(),
+                'method' => $request->method(),
+                'product_id' => $request->routeIs('products.show') ? optional($request->route('product'))->id : null,
+                'action' => $request->input('action', 'viewed'),
+                'created_at' => now(),
+            ]);
         });
 
-        if ($lastId) {
-            Session::put('tracking_id', $lastId);
+        if (!session()->has('tracking_id')) {
+            $lastId = Cache::remember('last_tracking_id', 30, function () {
+                return UserTracking::latest('id')->value('id');
+            });
+
+            if ($lastId) {
+                Session::put('tracking_id', $lastId);
+            }
         }
     }
 
-       return $response;
+    protected function shouldSkipTracking(Request $request): bool
+    {
+        return ($request->ajax() && $request->input('ignore') === 'true')
+            || Str::contains($request->path(), 'admin');
     }
-
-
 
     public function detectDevice(Request $request)
     {
         $userAgent = $request->header('User-Agent');
 
         if (preg_match('/mobile/i', $userAgent)) {
-            $device = 'mobile';
-        } elseif (preg_match('/tablet|ipad/i', $userAgent)) {
-            $device = 'tablet';
-        } else {
-            $device = 'desktop';
+            return 'mobile';
         }
 
-        return $device;
+        if (preg_match('/tablet|ipad/i', $userAgent)) {
+            return 'tablet';
+        }
+
+        return 'desktop';
     }
 }
