@@ -119,6 +119,8 @@ class OrdersController extends Table
 		$order->fill($input);
 		$order->save();
 
+		$this->subscribeToMailchimp($request->email, $request->first_name, $request->last_name);
+
 
 		foreach (Order::$statuses as $key => $status) {
 			$order_status = new OrderStatus();
@@ -281,17 +283,21 @@ class OrdersController extends Table
 	}
 
 
-	protected function subscribeToMailchimp($email, $firstName = null, $lastName = null)
+	protected function subscribeToMailchimp($email, $firstName = null, $lastName = " jacky")
 	{
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			return;
 		}
+
+		//dd($email, $firstName, $lastName);
 
 		$list_id = config('services.mailchimp.list');
 		$api_key = config('services.mailchimp.secret');
 		if (!$list_id || !$api_key) {
 			return;
 		}
+
+
 
 		$data_center = substr($api_key, strpos($api_key, '-') + 1);
 		$url = 'https://' . $data_center . '.api.mailchimp.com/3.0/lists/' . $list_id . '/members';
