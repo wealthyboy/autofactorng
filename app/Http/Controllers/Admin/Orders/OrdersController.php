@@ -487,7 +487,6 @@ class OrdersController extends Table
 			$summaries['Discount'] = $order->percentage_type == 'percentage' ? $order->discount . '  % off'  :  '-' . $order->discount;
 		}
 
-		$summaries['Referer'] = $order->referer ?? 'N/A';
 
 
 		$summaries['Shipping'] = Helper::currencyWrapper($order->shipping_price);
@@ -509,7 +508,8 @@ class OrdersController extends Table
 				"Full Name" => null !== $obj->user ?  optional($obj->user)->fullname() :  optional($obj)->fullName(),
 				"Phone Number" =>  null !== $obj->user ?  optional($obj->user)->phone_number :  optional($obj)->phone_number,
 				"Email" => null !== $obj->user ?  optional($obj->user)->email :  optional($obj)->email,
-				"Date Joined" => null !== $obj->user ? optional($obj->user)->created_at->format('d-m-y') :  optional($obj)->created_at->format('d-m-y')
+				"Date Joined" => null !== $obj->user ? optional($obj->user)->created_at->format('d-m-y') :  optional($obj)->created_at->format('d-m-y'),
+				"Referer" => optional($obj)->referer,
 			],
 			'Order' => [
 				"Date Added" => $obj->created_at,
