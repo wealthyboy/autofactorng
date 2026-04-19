@@ -448,6 +448,9 @@
                                                                   <br />Phone number: {{ $order->phone_number }}&nbsp;
                                                                   <br />
                                                                   <div class="date">Payment Type: {{ ucfirst(implode(' ',explode('_',$order->payment_type))) ?? 'Payment on delivery'}}</div>
+
+                                                                  <br />
+                                                                  <div class="date">Order Type: {{ $order->order_type }}</div>
                                                                </td>
                                                             </tr>
                                                             <tr>
