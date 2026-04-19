@@ -487,6 +487,9 @@ class OrdersController extends Table
 			$summaries['Discount'] = $order->percentage_type == 'percentage' ? $order->discount . '  % off'  :  '-' . $order->discount;
 		}
 
+		$summaries['Referer'] = $order->referer ?? 'N/A';
+
+
 		$summaries['Shipping'] = Helper::currencyWrapper($order->shipping_price);
 		$summaries['Heavy Item Charge'] = Helper::currencyWrapper($order->heavy_item_price);
 		$summaries['Total'] = Helper::currencyWrapper($order->total);
