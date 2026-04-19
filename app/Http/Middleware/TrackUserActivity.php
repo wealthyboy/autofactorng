@@ -37,17 +37,23 @@ class TrackUserActivity
         $sessionId = $request->session()->getId();
         $path = $request->fullUrl();
         $user = auth()->user();
+        $referer = $request->headers->get('referer');
+
+        // Store the original referer in session (only once on first visit)
+        if (!session()->has('original_referer') && $referer) {
+            Session::put('original_referer', $referer);
+        }
 
         $cacheKey = 'user_tracking_' . $sessionId . '_' . md5($path);
 
-        Cache::remember($cacheKey, 30, function () use ($request, $sessionId, $path, $user) {
+        Cache::remember($cacheKey, 30, function () use ($request, $sessionId, $path, $user, $referer) {
             UserTracking::create([
                 'session_id' => $sessionId,
                 'page_url' => $path,
                 'ip_address' => $request->ip(),
                 'device_type' => $this->detectDevice($request),
                 'user_agent' => $request->header('User-Agent'),
-                'referer' => $request->headers->get('referer'),
+                'referer' => $referer,
                 'user_id' => optional($user)->id,
                 'first_name' => optional($user)->name,
                 'last_name' => optional($user)->last_name,

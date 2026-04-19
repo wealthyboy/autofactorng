@@ -64,7 +64,6 @@
     </div>
 
     <p v-if="addresses.length" class="pt-3 pb-1 d-flex justify-content-between">
-
         <span class="text-muted" style="font-size: 18px">Subtotal</span>
         <span class="bold float-right">
             <template v-if="v">
@@ -85,51 +84,58 @@
             </template>
         </span>
     </p>
-    <div v-if="showCoupon"> 
-       <div v-if="!prices.zones" class="border-top border-bottom pb-3 pt-3 d-flex justify-content-between fs-4">
-            <span  class="text-muted">Shipping</span>
-            <span  class="float-right bold"><small>
-                {{ $filters.formatNumber(prices.ship_price) }}</small
-            ></span>
-       </div>
-       
+    <div v-if="showCoupon">
+        <div
+            v-if="!prices.zones"
+            class="border-top border-bottom pb-3 pt-3 d-flex justify-content-between fs-4"
+        >
+            <span class="text-muted">Shipping</span>
+            <span class="float-right bold"
+                ><small>
+                    {{ $filters.formatNumber(prices.ship_price) }}</small
+                ></span
+            >
+        </div>
 
-       <div  v-if="prices.zones"  class="card">
-        <div class="card-body">
-            <h5 class="mb-3 font-weight-bold">Shipping Options</h5>
+        <div v-if="prices.zones" class="card">
+            <div class="card-body">
+                <h5 class="mb-3 font-weight-bold">Shipping Options</h5>
 
-            <div class="list-group">
-            <label   
-                    :for="`shipping-${index}-${method.zone.replace(/\s+/g, '-').toLowerCase()}`"
-                    v-for="(method, index) in prices.zones"
-                    :key="index" class="list-group-item d-flex justify-content-between align-items-center">
-                <div>
-                <input       
-                    :id="`shipping-${index}-${method.zone.replace(/\s+/g, '-').toLowerCase()}`"
-                    @change="emitPrice(method)"
-                     type="radio" name="shipping" class="custom-control-input">
-                <span class="font-weight-bold">{{ method.zone }}</span>
-                <div class="text-muted small">
-                     {{ method.description }}
+                <div class="list-group">
+                    <label
+                        :for="`shipping-${index}-${method.zone.replace(/\s+/g, '-').toLowerCase()}`"
+                        v-for="(method, index) in prices.zones"
+                        :key="index"
+                        class="list-group-item d-flex justify-content-between align-items-center"
+                    >
+                        <div>
+                            <input
+                                :id="`shipping-${index}-${method.zone.replace(/\s+/g, '-').toLowerCase()}`"
+                                @change="emitPrice(method)"
+                                type="radio"
+                                name="shipping"
+                                class="custom-control-input"
+                            />
+                            <span class="font-weight-bold">{{
+                                method.zone
+                            }}</span>
+                            <div class="text-muted small">
+                                {{ method.description }}
+                            </div>
+                        </div>
+                        <span class="font-weight-bold"
+                            >₦{{ method.price.toLocaleString() }}</span
+                        >
+                    </label>
                 </div>
-                </div>
-                <span class="font-weight-bold">₦{{ method.price.toLocaleString() }}</span>
-            </label>
-
-
-          
             </div>
         </div>
-        </div>
-     
     </div>
-
-
-    
 
     <p
         v-if="prices.heavy_item_price && showCoupon"
-        class="border-top border-bottom pb-3 pt-3 d-flex justify-content-between fs-4">
+        class="border-top border-bottom pb-3 pt-3 d-flex justify-content-between fs-4"
+    >
         <span class="text-muted">Heavy/Large Items Charge</span>
         <span class="float-right bold">
             <small>
@@ -143,7 +149,7 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
     props: ["amount", "showCoupon"],
-    emits: ["price-selected"], 
+    emits: ["price-selected"],
 
     data() {
         return {
@@ -152,7 +158,7 @@ export default {
             submiting: false,
             coupon_error: null,
             v: null,
-            selectedMethod: 0
+            selectedMethod: 0,
         };
     },
     computed: {
@@ -171,12 +177,16 @@ export default {
         }),
         emitPrice(method) {
             this.selectedMethod = method.price;
-            if ( this.coupon_code ) {
+            if (this.coupon_code) {
                 this.coupon = this.coupon_code;
-                this.applyCoupon()
-            } 
-            
-            this.$emit("price-selected", { price: method.price, coupon: this.coupon_code}); 
+                this.applyCoupon();
+            }
+
+            this.$emit("price-selected", {
+                price: method.price,
+                coupon: this.coupon_code,
+                zone: method.zone,
+            });
         },
 
         applyCoupon: function () {
@@ -200,14 +210,18 @@ export default {
                     this.coupon = "";
                     this.voucher = [];
                     this.v = response.data;
-                    let hp = typeof this.prices.heavy_item_price !== 'undefined' ? this.prices.heavy_item_price  : 0;
+                    let hp =
+                        typeof this.prices.heavy_item_price !== "undefined"
+                            ? this.prices.heavy_item_price
+                            : 0;
 
-                    let ship_price = !this.prices.zones ? parseFloat(this.prices.ship_price) : parseFloat( this.selectedMethod);
-
+                    let ship_price = !this.prices.zones
+                        ? parseFloat(this.prices.ship_price)
+                        : parseFloat(this.selectedMethod);
 
                     this.$store.commit(
                         "setTotal",
-                        response.data.sub_total + ship_price  + hp 
+                        response.data.sub_total + ship_price + hp,
                     );
 
                     this.$store.commit("setCouponCode", this.coupon_code);
@@ -226,42 +240,42 @@ export default {
 </script>
 
 <style scoped>
-
 .list-group-item {
-  cursor: pointer;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  margin-bottom: 8px;
-  padding: 15px;
-  transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    padding: 15px;
+    transition: all 0.2s ease-in-out;
 }
 
 .list-group-item:hover {
-  border-color: #007bff;
+    border-color: #007bff;
 }
 
 .list-group-item input[type="radio"] {
-  margin-right: 10px;
+    margin-right: 10px;
 }
 
 .list-group-item.active,
 .list-group-item input[type="radio"]:checked + span {
-  background-color: #f0f7ff;
-  border-color: #007bff;
+    background-color: #f0f7ff;
+    border-color: #007bff;
 }
-
 
 .shipping-option {
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 .shipping-option.active {
-  border: 2px solid #0d6efd !important; /* Bootstrap primary */
-  background-color: #f8f9ff;
+    border: 2px solid #0d6efd !important; /* Bootstrap primary */
+    background-color: #f8f9ff;
 }
 .shipping-option:hover {
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
 }
 
-.cursor-pointer{ cursor: pointer};
+.cursor-pointer {
+    cursor: pointer;
+}
 </style>

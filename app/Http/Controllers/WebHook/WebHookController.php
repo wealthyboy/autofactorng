@@ -66,6 +66,7 @@ class WebHookController extends Controller
                 // ✅ Save reference with the order
                 $order = Order::checkout($input, $payment_method, $ip, $carts, $user);
                 $order->reference = $reference;
+                $order->referer = data_get($input, 'referer');  // ← Ensure referer is saved
 
                 $order->save();
 

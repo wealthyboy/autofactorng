@@ -245,6 +245,7 @@
         <div class="date">Date of Invoice: {{ $order->created_at->format('d/m/y') }}</div>
         <div class="date">Invoice No: {{ $order->invoice }}</div>
         <div class="date">Payment Type: {{ ucfirst(implode(' ',explode('_',$order->payment_type))) ?? 'Payment on delivery'}}</div>
+        <div class="date">Order Type: {{ $order->order_type }}</div>
 
 
       </div>
@@ -287,7 +288,7 @@
         </tr>
         <tr>
           <td colspan="2"></td>
-          <td colspan="2">Discount</td>
+          <td colspan="2">{{$summaries['discount_value'] }}</td>
           <td>{{ $summaries['Discount']  }}</td>
         </tr>
         <tr>

@@ -16,6 +16,7 @@ use App\Services\Newsletter\Contracts\NewsletterContract;
 use App\Services\Newsletter\Exceptions\UserAlreadySubscribedException;
 use App\Services\Newsletter\MailChimpNewsletter;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 use Mailchimp;
 use Mailchimp_Lists;
 
@@ -76,7 +77,56 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone_number' => ['required', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'g-recaptcha-response' => ['required', 'string'],
         ]);
+    }
+
+    protected function verifyRecaptcha($token)
+    {
+        $secret = config('services.recaptcha.secret');
+        if (!$secret || !$token) {
+            Log::warning('reCAPTCHA verification prerequisites missing', [
+                'has_secret' => (bool) $secret,
+                'has_token' => (bool) $token,
+            ]);
+            return false;
+        }
+
+        $requestIp = request()->ip();
+
+        try {
+            $response = Http::asForm()
+                ->timeout(10)
+                ->post('https://www.google.com/recaptcha/api/siteverify', [
+                    'secret' => $secret,
+                    'response' => $token,
+                    'remoteip' => $requestIp,
+                ]);
+
+            Log::info($response);
+            if (!$response->ok()) {
+                Log::warning('reCAPTCHA verification HTTP failure', [
+                    'status' => $response->status(),
+                ]);
+                return false;
+            }
+
+            $body = $response->json();
+            $isSuccess = isset($body['success']) && $body['success'] === true;
+
+            if (!$isSuccess) {
+                Log::warning('reCAPTCHA rejected by Google', [
+                    'error_codes' => $body['error-codes'] ?? [],
+                    'hostname' => $body['hostname'] ?? null,
+                    'client_ip' => $requestIp,
+                ]);
+            }
+
+            return $isSuccess;
+        } catch (\Throwable $exception) {
+            Log::info($exception);
+            return false;
+        }
     }
 
     /**
@@ -87,6 +137,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // Verify reCAPTCHA before creating user
+        if (!$this->verifyRecaptcha($data['g-recaptcha-response'] ?? '')) {
+            throw new \Exception('reCAPTCHA verification failed');
+        }
 
         $user = User::create([
             'name' => $data['first_name'],

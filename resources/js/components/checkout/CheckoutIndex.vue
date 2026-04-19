@@ -243,6 +243,8 @@ export default {
             loading: true,
             t: null,
             ship_price: 0,
+            zone: "",
+            referer: null,
         };
     },
     computed: {
@@ -269,6 +271,7 @@ export default {
     created() {
         this.getCart();
         this.getWalletBalance();
+        this.fetchReferer();
         this.getAddresses().then((res) => {
             this.loading = false;
         });
@@ -286,6 +289,17 @@ export default {
             applyVoucher: "applyVoucher",
             updateCartMeta: "updateCartMeta",
         }),
+
+        fetchReferer: function () {
+            axios
+                .get("/checkout/referer")
+                .then((response) => {
+                    this.referer = response.data.referer || null;
+                })
+                .catch((error) => {
+                    console.error("Error fetching referer:", error);
+                });
+        },
 
         paywithSeerbit: function () {
             let context = this;
@@ -315,7 +329,6 @@ export default {
             SeerbitPay(
                 {
                     close_on_success: true,
-
                     public_key: "SBPUBK_LD5CFQZHSMJZNQHL3ODOTWTJPCIA4MNY",
                     tranref: new Date().getTime(),
                     currency: "NGN",
@@ -323,6 +336,7 @@ export default {
                     amount: context.total,
                     email: context.cart_meta.user.email,
                     mobile_no: context.cart_meta.user.phone_number,
+                    zone: context.zone,
                     productId: "",
                     description: "",
                     setAmountByCustomer: false,
@@ -363,6 +377,7 @@ export default {
                             heavy_item_price:
                                 context.prices?.heavy_item_price || 0,
                             total: context.total,
+                            referer: context.referer,
                         })
                         .then((response) => {
                             context.paymentIsComplete = true;
@@ -410,8 +425,6 @@ export default {
 
                 let gatewayAmount = Math.round(total * 100);
 
-                console.log(gatewayAmount);
-
                 let context = this;
                 var cartIds = [];
                 this.carts.forEach(function (cart, key) {
@@ -440,7 +453,7 @@ export default {
                                 display_name: context.cart_meta.user.name,
                                 customer_id: context.cart_meta.user.id,
                                 coupon: context.coupon_code,
-                                type: "order_from_paystack",
+                                type: "wallet and paystack",
                                 wallet: context.walletBalance.wallet_balance,
                                 shipping_id: context.shipping_id,
                                 shipping_price: context.ship_price,
@@ -448,6 +461,8 @@ export default {
                                     context.prices.heavy_item_price,
                                 cart: cartIds,
                                 total: context.total,
+                                zone: context.zone,
+                                referer: context.referer,
                             },
                         ],
                     },
@@ -472,7 +487,7 @@ export default {
         },
 
         checkoutWithLagos: function (e) {
-            if (this.total >= 300000) {
+            if (this.total >= 100000) {
                 alert(
                     "No Payment On Delivery On Orders Above ₦300,000.\nKindly Use The Pay Now Option.",
                 );
@@ -515,7 +530,7 @@ export default {
                 this.$store.commit("setTotal", total);
             }
 
-            console.log(res);
+            this.zone = res.zone;
 
             if (res.coupon) {
                 console.log(res.price);
@@ -572,6 +587,7 @@ export default {
                             heavy_item_price: context.prices.heavy_item_price,
                             cart: cartIds,
                             total: context.total,
+                            referer: context.referer,
                         },
                     ],
                 },
@@ -627,6 +643,8 @@ export default {
                     shipping_price: this.ship_price,
                     heavy_item_price: this.prices.heavy_item_price || 0,
                     total: this.total,
+                    zone: this.zone,
+                    referer: this.referer,
                 })
                 .then((response) => {
                     this.paymentIsComplete = true;

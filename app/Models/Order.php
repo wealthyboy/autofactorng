@@ -97,6 +97,8 @@ class Order extends Model
 		$order->address = optional($user->active_address)->address;
 		$order->city = optional($user->active_address)->city;
 		$order->state = optional(optional($user->active_address)->address_state)->name;
+		$order->zone = data_get($input, 'zone');
+		$order->referer = data_get($input, 'referer');
 		$order->ip = $ip;
 		if ($order->save()) {
 
@@ -436,9 +438,24 @@ class Order extends Model
 	public static function getCoupon(Order $order, $sub_total)
 	{
 		if ($order->coupon) {
-			$order->coupon_value = '-₦' . number_format(
-				(optional($order->voucher())->amount / 100) * $sub_total
-			);
+
+
+
+			$coupon = $order->voucher();
+
+
+			if ($coupon && !$coupon->is_fixed && $order->coupon) {
+
+				$order->coupon_value = '-₦' . number_format(
+					(optional($order->voucher())->amount / 100) * $sub_total
+				);
+			}
+
+			if ($coupon && $coupon->is_fixed && $order->coupon) {
+				$order->coupon_value = '-₦' . number_format($order->voucher()->amount);
+			}
+
+
 			$order->coupon = optional($order->voucher())->amount . '% Discount';
 		} else {
 			$order->coupon = 'Discount';
@@ -589,7 +606,7 @@ class Order extends Model
 			return $voucher;
 		}
 
-		return false;
+		return null;
 	}
 
 

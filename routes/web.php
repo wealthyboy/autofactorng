@@ -186,6 +186,7 @@ Route::group(['middleware' => ['tracking']], function () {
     Route::post('tracking', 'TrackOrder\TrackOrdersController@getOrderStatus');
     Route::resource('address', 'Address\AddressController', ['names' => 'address']);
     Route::get('checkout', 'Checkout\CheckoutController@index')->name('checkout');
+    Route::get('checkout/referer', 'Checkout\CheckoutController@getReferer');
     Route::post('checkout/confirm', 'Checkout\CheckoutController@confirm');
     Route::post('checkout/coupon', 'Checkout\CheckoutController@coupon');
 
