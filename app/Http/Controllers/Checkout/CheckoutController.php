@@ -91,12 +91,6 @@ class CheckoutController extends Controller
             $ip = $request->ip();
             $user = Auth::user();
             $carts = Cart::all_items_in_cart();
-            
-            // Add original referer to input (from session tracking or current request)
-            if (!isset($input['referer'])) {
-                $input['referer'] = session('original_referer');
-            }
-            
             $order = Order::checkout($input, $payment_method,  $ip, $carts, $user);
             $code = trim(session('coupon'));
 
@@ -112,6 +106,11 @@ class CheckoutController extends Controller
             Order::getCoupon($order, $sub_total);
 
             $order->discount = $order->coupon_value;
+
+            $order->reference = session('original_reference');
+
+            $order->save();
+
 
             $coupon_value = $order->coupon_value != "" ? $order->coupon_value : "₦0.0";
 
@@ -147,18 +146,25 @@ class CheckoutController extends Controller
         // ], 200);
     }
 
-    /**
-     * Get the original referer from session (e.g., Google, Instagram, etc.)
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
-     */
+
     public function getReferer(Request $request)
     {
         return response()->json([
             'referer' => session('original_referer')
         ]);
     }
+
+
+    protected function coupon(Request $request)
+    {
+
+        $cart_total  = Cart::sum_items_in_cart();
+
+        if (!$cart_total) {
+            $error['error'] = 'We cannot process your voucher';
+            return response()->json($error, 422);
+        }
+
 
         $user  =  \Auth::user();
         // Build the input for validation
