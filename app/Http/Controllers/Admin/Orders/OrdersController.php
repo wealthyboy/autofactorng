@@ -281,53 +281,53 @@ class OrdersController extends Table
 	}
 
 
-protected function subscribeToMailchimp($email, $firstName = null, $lastName = null)
-    {
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return;
-        }
+	protected function subscribeToMailchimp($email, $firstName = null, $lastName = null)
+	{
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			return;
+		}
 
-        $list_id = config('services.mailchimp.list');
-        $api_key = config('services.mailchimp.secret');
-        if (!$list_id || !$api_key) {
-            return;
-        }
+		$list_id = config('services.mailchimp.list');
+		$api_key = config('services.mailchimp.secret');
+		if (!$list_id || !$api_key) {
+			return;
+		}
 
-        $data_center = substr($api_key, strpos($api_key, '-') + 1);
-        $url = 'https://' . $data_center . '.api.mailchimp.com/3.0/lists/' . $list_id . '/members';
+		$data_center = substr($api_key, strpos($api_key, '-') + 1);
+		$url = 'https://' . $data_center . '.api.mailchimp.com/3.0/lists/' . $list_id . '/members';
 
-        $json = json_encode([
-            'email_address' => $email,
-            'status' => 'subscribed',
-            'merge_fields' => [
-                'FNAME' => $firstName ?: '',
-                'LNAME' => $lastName ?: '',
-            ],
-        ]);
+		$json = json_encode([
+			'email_address' => $email,
+			'status' => 'subscribed',
+			'merge_fields' => [
+				'FNAME' => $firstName ?: '',
+				'LNAME' => $lastName ?: '',
+			],
+		]);
 
-        try {
-            $ch = curl_init($url);
-            curl_setopt($ch, CURLOPT_USERPWD, 'user:' . $api_key);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
-            $result = curl_exec($ch);
-            $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            curl_close($ch);
+		try {
+			$ch = curl_init($url);
+			curl_setopt($ch, CURLOPT_USERPWD, 'user:' . $api_key);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/json']);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $json);
+			$result = curl_exec($ch);
+			$status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+			curl_close($ch);
 
-            // Ignore already subscribed errors and continue
-            if ($status_code === 400 && str_contains($result, 'is already a list member')) {
-                return;
-            }
-        } catch (\Throwable $e) {
-            Log::info('Mailchimp subscribe failed: ' . $e->getMessage());
-        }
-    }
+			// Ignore already subscribed errors and continue
+			if ($status_code === 400 && str_contains($result, 'is already a list member')) {
+				return;
+			}
+		} catch (\Throwable $e) {
+			Log::info('Mailchimp subscribe failed: ' . $e->getMessage());
+		}
+	}
 
-    public function normalise($s)
+	public function normalise($s)
 	{
 		// 1. convert to plain ASCII spaces
 		$s = str_replace("\u{00A0}", ' ', $s);   // non‑breaking space -> space
