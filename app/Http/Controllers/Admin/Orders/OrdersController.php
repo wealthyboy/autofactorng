@@ -509,7 +509,7 @@ class OrdersController extends Table
 				"Phone Number" =>  null !== $obj->user ?  optional($obj->user)->phone_number :  optional($obj)->phone_number,
 				"Email" => null !== $obj->user ?  optional($obj->user)->email :  optional($obj)->email,
 				"Date Joined" => null !== $obj->user ? optional($obj->user)->created_at->format('d-m-y') :  optional($obj)->created_at->format('d-m-y'),
-				"Referer" => optional($obj)->referer,
+				"Referer" => optional($obj)->referer ?? '',
 			],
 			'Order' => [
 				"Date Added" => $obj->created_at,
