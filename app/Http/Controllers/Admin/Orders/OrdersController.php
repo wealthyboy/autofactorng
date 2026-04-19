@@ -538,9 +538,7 @@ class OrdersController extends Table
 		Order::whereIn('status', ['0'])->delete();
 
 		//status == delivered
-
-
-		if ($request->value === 'Cancelled') {
+		if ($request->value == 'Cancelled') {
 			$order = Order::find($request->id);
 			$order->is_cancelled = true;
 			$order->status = $request->value;
