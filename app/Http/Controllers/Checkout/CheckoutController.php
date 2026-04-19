@@ -91,6 +91,7 @@ class CheckoutController extends Controller
             $ip = $request->ip();
             $user = Auth::user();
             $carts = Cart::all_items_in_cart();
+            $input['referer'] = session('original_referer');  // ← Capture referer from session
             $order = Order::checkout($input, $payment_method,  $ip, $carts, $user);
             $code = trim(session('coupon'));
 
@@ -107,9 +108,7 @@ class CheckoutController extends Controller
 
             $order->discount = $order->coupon_value;
 
-            $order->reference = session('original_reference');
 
-            $order->save();
 
 
             $coupon_value = $order->coupon_value != "" ? $order->coupon_value : "₦0.0";
