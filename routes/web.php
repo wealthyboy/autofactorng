@@ -222,10 +222,12 @@ Route::get('errors',                  'Errors\ErrorsController@index');
 
 
 
-Route::controller(Products\ProductsController::class)->group(function () {
-    Route::get('products/{category}', 'index');
-    Route::get('clear-cookies', 'clearMMYCookies');
-});
+Route::controller(Products\ProductsController::class)
+    ->middleware('tracking')
+    ->group(function () {
+        Route::get('products/{category}', 'index');
+        Route::get('clear-cookies', 'clearMMYCookies');
+    });
 
 Route::get('reviews/{id}', 'Api\Reviews\ReviewsController@index');
 Route::post('reviews/store',  'Api\Reviews\ReviewsController@store');
