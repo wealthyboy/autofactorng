@@ -185,6 +185,7 @@ class RegisterController extends Controller
             Log::info($e);
         }
 
+        $this->sendToTermii($data, $user);
 
         $coupon = new Voucher;
         $coupon->code = str_random(6);
@@ -211,6 +212,69 @@ class RegisterController extends Controller
      * @param  mixed  $user
      * @return mixed
      */
+    protected function sendToTermii(array $data, User $user)
+    {
+        $apiKey = config('services.termii.api_key');
+        $phonebookId = config('services.termii.phonebook_id');
+
+        if (!$apiKey || !$phonebookId) {
+            Log::warning('Termii config missing; skipping Termii contact creation.', [
+                'api_key_set' => (bool) $apiKey,
+                'phonebook_id_set' => (bool) $phonebookId,
+            ]);
+            return;
+        }
+
+        $phoneNumber = $this->normalizePhoneNumber($data['phone_number']);
+
+        $payload = [
+            'api_key' => $apiKey,
+            'phone_number' => $phoneNumber,
+            'email_address' => $data['email'],
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'company' => config('services.termii.company'),
+            'country_code' => config('services.termii.country_code'),
+        ];
+
+        $url = 'https://termii.com/api/phonebooks/' . $phonebookId . '/contacts';
+
+        try {
+            $response = Http::timeout(10)
+                ->withHeaders(['Content-Type' => 'application/json'])
+                ->post($url, $payload);
+
+            if (!$response->successful()) {
+                Log::warning('Termii contact creation failed', [
+                    'url' => $url,
+                    'payload' => $payload,
+                    'status' => $response->status(),
+                    'body' => $response->body(),
+                ]);
+            }
+        } catch (\Throwable $e) {
+            Log::warning('Termii contact creation error', [
+                'message' => $e->getMessage(),
+                'payload' => $payload,
+            ]);
+        }
+    }
+
+    protected function normalizePhoneNumber(string $number): string
+    {
+        $digits = preg_replace('/\D+/', '', $number);
+
+        if (strlen($digits) === 11 && substr($digits, 0, 1) === '0') {
+            return substr($digits, 1);
+        }
+
+        if (strlen($digits) === 13 && substr($digits, 0, 3) === '234') {
+            return substr($digits, 3);
+        }
+
+        return $digits;
+    }
+
     protected function registered(Request $request, $user)
     {
         if ($request->ajax()) {
