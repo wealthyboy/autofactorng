@@ -369,6 +369,12 @@ label.container {
     .category-content {
         height: 220px !important;
     }
+
+    .product-default .out-of-stock {
+        position: absolute;
+        right: 35px;
+        top: 0.8rem;
+    }
 }
 
 .fit-string {
