@@ -44,6 +44,8 @@ class TrackUserActivity
             Session::put('original_referer', $referer);
         }
 
+        \Log::info("Tracking user activity: session_id={$sessionId}, path={$path}, referer={$referer}");
+
         $cacheKey = 'user_tracking_' . $sessionId . '_' . md5($path);
 
         Cache::remember($cacheKey, 30, function () use ($request, $sessionId, $path, $user, $referer) {
