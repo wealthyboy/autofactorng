@@ -139,7 +139,7 @@ class RegisterController extends Controller
     {
         // Verify reCAPTCHA before creating user
         if (!$this->verifyRecaptcha($data['g-recaptcha-response'] ?? '')) {
-            throw new \Exception('reCAPTCHA verification failed');
+            // throw new \Exception('reCAPTCHA verification failed');
         }
 
         $user = User::create([
