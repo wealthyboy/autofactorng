@@ -25,6 +25,12 @@ return [
         'secret' => env('MAILCHIMP_SECRET'),
         'list' => env('MAILCHIMP_LISTID'),
     ],
+    'termii' => [
+        'api_key' => env('TERMII_API_KEY'),
+        'phonebook_id' => env('TERMII_PHONEBOOK_ID'),
+        'company' => env('TERMII_COMPANY', 'AutofactorNG'),
+        'country_code' => env('TERMII_COUNTRY_CODE', '234'),
+    ],
     'zepto' => [
         'api_key' => env('ZEPTO_API_KEY'),
         'api_url' => env('ZEPTO_API_URL', 'https://api.zeptomail.com/v1.1/email'),
@@ -38,6 +44,10 @@ return [
         'service_account_credentials_json' => env('GOOGLE_APPLICATION_CREDENTIALS'),
         'client_id' => env('GOOGLE_SPREADSHEET_ID'),
         'client_id_2' => env('GOOGLE_SHEET_ID'),
+    ],
+    'recaptcha' => [
+        'site_key' => env('RECAPTCHA_SITE_KEY', env('MIX_RECAPTCHA_SITE_KEY')),
+        'secret' => env('RECAPTCHA_SECRET_KEY'),
     ],
 
     'ses' => [
