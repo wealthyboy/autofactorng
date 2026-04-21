@@ -17,10 +17,10 @@
         <li><strong>Service satisfaction:</strong> {{ $survey->service_satisfaction ?? 'N/A' }}</li>
         <li><strong>Resolved promptly:</strong> {{ $survey->resolved_promptly ?? 'N/A' }}</li>
         <li><strong>Response time:</strong> {{ $survey->response_time ?? 'N/A' }}</li>
-        <li><strong>Support staff:</strong> {{ is_array($survey->support_staff) ? implode(', ', $survey->support_staff) : ($survey->support_staff ?? 'N/A') }}</li>
+        <li><strong>Support staff:</strong> {{ $survey->support_staff ?? 'N/A' }}</li>
     </ul>
 
-    <h2>Section 3: Order & Delivery Experience</h2>
+    <h2>Section 2: Order & Delivery Experience</h2>
     <ul>
         <li><strong>Delivery satisfaction:</strong> {{ $survey->delivery_satisfaction ?? 'N/A' }}</li>
         <li><strong>Delivered on time:</strong> {{ $survey->delivered_on_time ?? 'N/A' }}</li>

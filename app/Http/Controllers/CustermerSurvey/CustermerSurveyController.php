@@ -27,26 +27,25 @@ class CustermerSurveyController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'customer_name' => 'nullable|string|max:255',
-            'email' => 'nullable|email|max:255',
+            'customer_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
 
-            'service_satisfaction' => 'nullable|string|max:50',
-            'resolved_promptly' => 'nullable|string|max:50',
-            'response_time' => 'nullable|string|max:50',
-            'support_staff' => 'sometimes|string',
-            'support_staff.*' => 'string|max:100',
+            'service_satisfaction' => 'required|string|max:50',
+            'resolved_promptly' => 'required|string|max:50',
+            'response_time' => 'required|string|max:50',
+            'support_staff' => 'required|string|max:100',
 
-            'delivery_satisfaction' => 'nullable|string|max:50',
-            'delivered_on_time' => 'nullable|string|max:50',
-            'condition' => 'nullable|string|max:50',
-            'accurate_description' => 'nullable|string|max:50',
+            'delivery_satisfaction' => 'required|string|max:50',
+            'delivered_on_time' => 'required|string|max:50',
+            'condition' => 'required|string|max:50',
+            'accurate_description' => 'required|string|max:50',
 
-            'overall_satisfaction' => 'nullable|string|max:50',
-            'likely_to_purchase_again' => 'nullable|string|max:50',
+            'overall_satisfaction' => 'required|string|max:50',
+            'likely_to_purchase_again' => 'required|string|max:50',
             'improvement_suggestions' => 'nullable|string|max:2000',
         ]);
 
-        $data['support_staff'] = $request->input('support_staff', []);
+
 
         $survey = CustomerSurvey::create($data);
 
