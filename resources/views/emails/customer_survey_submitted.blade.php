@@ -28,7 +28,7 @@
         <li><strong>Accurate description:</strong> {{ $survey->accurate_description ?? 'N/A' }}</li>
     </ul>
 
-    <h2>Section 4: Overall Experience</h2>
+    <h2>Section 3: Overall Experience</h2>
     <ul>
         <li><strong>Overall satisfaction:</strong> {{ $survey->overall_satisfaction ?? 'N/A' }}</li>
         <li><strong>Likelihood to purchase again:</strong> {{ $survey->likely_to_purchase_again ?? 'N/A' }}</li>
