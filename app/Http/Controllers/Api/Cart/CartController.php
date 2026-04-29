@@ -69,6 +69,7 @@ class CartController  extends Controller
 			$cart->total = $price * $request->quantity;
 			$cart->make = $make;
 			$cart->model = $model;
+			$cart->referer = session('original_referer');
 			$cart->user_id = optional($request->user())->id;
 			$cart->year = $year;
 			$cart->engine = $engine;
@@ -99,11 +100,11 @@ class CartController  extends Controller
 
 			if (auth()->check()) {
 
-				
-				$cartItems = Cart::with('product')->where('user_id', $user->id)->get(); 
 
-                $items = $cartItems->map(function ($cart)  {
-				    return [
+				$cartItems = Cart::with('product')->where('user_id', $user->id)->get();
+
+				$items = $cartItems->map(function ($cart) {
+					return [
 						'product_id' => $cart->product_id,
 						'name' => $cart->product->name ?? 'Unknown Product',
 						'image_url' => $cart->product->image_m ?? '',
@@ -141,6 +142,8 @@ class CartController  extends Controller
 			$cart->model = $model;
 			$cart->year = $year;
 			$cart->engine = $engine;
+			$cart->referer = session('original_referer');
+
 			$cart->user_id = optional($request->user())->id;
 			$cart->save();
 			$carts = Cart::all_items_in_cart();
@@ -148,10 +151,10 @@ class CartController  extends Controller
 			$sub_total =  $total[0]->items_total;
 
 			if (auth()->check()) {
-				$cartItems = Cart::with('product')->where('user_id', $user->id)->get(); 
+				$cartItems = Cart::with('product')->where('user_id', $user->id)->get();
 
-                $items = $cartItems->map(function ($cart)  {
-				    return [
+				$items = $cartItems->map(function ($cart) {
+					return [
 						'product_id' => $cart->product_id,
 						'name' => $cart->product->name ?? 'Unknown Product',
 						'image_url' => $cart->product->image_m ?? '',
@@ -168,7 +171,7 @@ class CartController  extends Controller
 
 
 
-			
+
 
 			return response()->json([
 				'data' => [
@@ -218,8 +221,8 @@ class CartController  extends Controller
 	}
 
 	public function destroy(Request $request, $cart_id)
-	{ 
-		
+	{
+
 
 		if ($request->ajax()) {
 			$cart =  Cart::find($cart_id);
@@ -228,10 +231,10 @@ class CartController  extends Controller
 			}
 
 			$user = $request->user();
-           if (auth()->check()) {
-				$cartItems = Cart::with('product')->where('user_id', $user->id)->get(); 
-                $items = $cartItems->map(function ($cart)  {
-				    return [
+			if (auth()->check()) {
+				$cartItems = Cart::with('product')->where('user_id', $user->id)->get();
+				$items = $cartItems->map(function ($cart) {
+					return [
 						'product_id' => $cart->product_id,
 						'name' => $cart->product->name ?? 'Unknown Product',
 						'image_url' => $cart->product->image_m ?? '',
@@ -246,12 +249,12 @@ class CartController  extends Controller
 
 				$carts = Cart::all_items_in_cart();
 
-				if ( $carts->isEmpty() ) {
+				if ($carts->isEmpty()) {
 					AbandonedCart::where('user_id', $user->id)->delete();
 				}
 			}
 
-			
+
 
 			return $this->loadCart($request);
 		}

@@ -25,10 +25,12 @@ class TrackUserActivity
     {
         $this->request = $request;
 
+        $this->terminate($request);
+
         return $next($request);
     }
 
-    public function terminate(Request $request, $response)
+    public function terminate(Request $request, $response = null)
     {
         if ($this->shouldSkipTracking($request)) {
             return;
@@ -43,6 +45,7 @@ class TrackUserActivity
         if (!session()->has('original_referer') && $referer) {
             Session::put('original_referer', $referer);
         }
+
 
 
         $cacheKey = 'user_tracking_' . $sessionId . '_' . md5($path);
