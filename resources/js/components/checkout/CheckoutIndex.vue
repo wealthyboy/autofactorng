@@ -467,6 +467,8 @@ export default {
                         ],
                     },
                     callback: function (response) {
+                        console.log("Transaction Callback Response:", response);
+
                         if (response.status == "success") {
                             context.paymentIsComplete = true;
                         } else {
