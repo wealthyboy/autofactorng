@@ -69,6 +69,29 @@ class CustermerSurveyController extends Controller
     }
 
     /**
+     * Remove selected survey responses.
+     */
+    public function destroySelected(Request $request)
+    {
+        $validator = \Validator::make($request->all(), [
+            '_token' => 'required',
+            'selected' => 'required|array',
+            'selected.*' => 'integer|exists:customer_surveys,id',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        CustomerSurvey::destroy($request->selected);
+
+        return redirect()->route('admin.customer-surveys.index')
+            ->with('status', 'Selected survey submissions deleted.');
+    }
+
+    /**
      * Admin show details for a single survey.
      */
     public function show(CustomerSurvey $survey)
