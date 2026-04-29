@@ -1,6 +1,23 @@
 @extends('layouts.auth')
 
 @section('content')
+<style>
+    .is-invalid {
+        border-color: #dc3545 !important;
+        background-color: #fff5f5;
+    }
+
+    .is-invalid:focus {
+        border-color: #dc3545 !important;
+        box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+    }
+
+    #survey-validation-error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border-color: #f5c6cb;
+    }
+</style>
 <div class="container-fluid px-0">
     <div class="row justify-content-center align-items-start">
         <div class="col-xl-6 col-lg-7 col-md-10 col-12">
@@ -16,6 +33,7 @@
                 <div class="mb-4">
                     <h1 class="mb-2">Customer Satisfaction Survey</h1>
                     <p>Please take 1 minute to rate your experience. Thank you for shopping with us!</p>
+                    <p class="text-muted small"><span class="text-danger">*</span> All fields are required</p>
                 </div>
 
                 @if (session('success'))
@@ -124,7 +142,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">4. Was the product exactly as described on our website?</label>
+                        <label class="form-label">3. Was the product exactly as described on our website?</label>
                         @foreach (['Yes','No'] as $option)
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="accurate_description" id="accurate_description_{{ \Illuminate\Support\Str::slug($option) }}" value="{{ $option }}" {{ old('accurate_description') === $option ? 'checked' : '' }} required>
@@ -161,7 +179,7 @@
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center mt-4">
-                        <button type="submit" class="btn btn-primary">Submit Survey</button>
+                        <button type="submit" id="customer-survey-submit" class="btn btn-primary">Submit Survey</button>
                         <a href="/" class="text-muted">Back to store</a>
                     </div>
                 </form>
@@ -174,57 +192,107 @@
 @section('page-scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        var form = document.getElementById('customer-survey-form');
-        var errorBox = document.getElementById('survey-validation-error');
+                var form = document.getElementById('customer-survey-form');
+                var errorBox = document.getElementById('survey-validation-error');
+                var submitButton = document.getElementById('customer-survey-submit');
 
-        form.addEventListener('submit', function(e) {
-            errorBox.classList.add('d-none');
-            var errors = [];
+                form.addEventListener('submit', function(e) {
+                    errorBox.classList.add('d-none');
+                    var errors = [];
 
-            // Check customer name
-            if (form.customer_name.value.trim() === '') {
-                errors.push('Customer name is required');
-            }
+                    // Check customer name
+                    if (form.customer_name.value.trim() === '') {
+                        errors.push('✗ Customer name is required');
+                        form.customer_name.classList.add('is-invalid');
+                    } else {
+                        form.customer_name.classList.remove('is-invalid');
+                    }
 
-            // Check email
-            if (form.email.value.trim() === '') {
-                errors.push('Email is required');
-            } else if (!form.email.value.includes('@')) {
-                errors.push('Please enter a valid email address');
-            }
+                    // Check email
+                    if (form.email.value.trim() === '') {
+                        errors.push('✗ Email is required');
+                        form.email.classList.add('is-invalid');
+                    } else if (!form.email.value.includes('@')) {
+                        errors.push('✗ Please enter a valid email address');
+                        form.email.classList.add('is-invalid');
+                    } else {
+                        form.email.classList.remove('is-invalid');
+                    }
 
-            // Check all required radio button groups
-            var requiredGroups = [
-                { name: 'service_satisfaction', label: 'Service satisfaction' },
-                { name: 'resolved_promptly', label: 'Resolved promptly' },
-                { name: 'response_time', label: 'Response time' },
-                { name: 'support_staff', label: 'Support staff rating' },
-                { name: 'delivery_satisfaction', label: 'Delivery satisfaction' },
-                { name: 'delivered_on_time', label: 'Delivered on time' },
-                { name: 'condition', label: 'Condition of item' },
-                { name: 'accurate_description', label: 'Accurate description' },
-                { name: 'overall_satisfaction', label: 'Overall satisfaction' },
-                { name: 'likely_to_purchase_again', label: 'Likelihood to purchase again' }
-            ];
+                    // Check all required radio button groups
+                    var requiredGroups = [{
+                            name: 'service_satisfaction',
+                            label: 'Service satisfaction'
+                        },
+                        {
+                            name: 'resolved_promptly',
+                            label: 'Resolved promptly'
+                        },
+                        {
+                            name: 'response_time',
+                            label: 'Response time'
+                        },
+                        {
+                            name: 'support_staff',
+                            label: 'Support staff rating'
+                        },
+                        {
+                            name: 'delivery_satisfaction',
+                            label: 'Delivery satisfaction'
+                        },
+                        {
+                            name: 'delivered_on_time',
+                            label: 'Delivered on time'
+                        },
+                        {
+                            name: 'condition',
+                            label: 'Condition of item'
+                        },
+                        {
+                            name: 'accurate_description',
+                            label: 'Accurate description'
+                        },
+                        {
+                            name: 'overall_satisfaction',
+                            label: 'Overall satisfaction'
+                        },
+                        {
+                            name: 'likely_to_purchase_again',
+                            label: 'Likelihood to purchase again'
+                        }
+                    ];
 
-            requiredGroups.forEach(function(group) {
-                var isChecked = form.querySelector('input[name="' + group.name + '"]:checked') !== null;
-                if (!isChecked) {
-                    errors.push(group.label + ' - Please select an option');
-                }
-            });
+                    requiredGroups.forEach(function(group) {
+                        var isChecked = form.querySelector('input[name="' + group.name + '"]:checked') !== null;
+                        if (!isChecked) {
+                            errors.push('✗ ' + group.label + ' - Please select an option');
+                        }
+                    });
 
-            if (errors.length > 0) {
-                e.preventDefault();
-                errorBox.innerHTML = '<strong>Please fix the following errors:</strong><ul class="mb-0"><li>' + 
-                                   errors.join('</li><li>') + '</li></ul>';
-                errorBox.classList.remove('d-none');
-                errorBox.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'center'
+                    if (errors.length > 0) {
+                        e.preventDefault();
+                        errorBox.innerHTML = '<strong style="font-size: 1.1em;">⚠️ Please fix the following errors:</strong><ul class="mb-0 mt-2" style="line-height: 1.8;">' +
+                            errors.map(err => '<li>' + err + '</li>').join('') + '</ul>';
+                        errorBox.classList.remove('d-none');
+                        errorBox.style.borderLeft = '4px solid #dc3545';
+                        errorBox.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                        return;
+                    }
+
+                    submitButton.disabled = true;
+                    submitButton.innerText = 'Submitting...';
                 });
-            }
-        });
-    });
+
+                // Remove error styling when user starts typing
+                form.customer_name.addEventListener('input', function() {
+                    this.classList.remove('is-invalid');
+                });
+                form.email.addEventListener('input', function() {
+                    this.classList.remove('is-invalid');
+                });
+            });
 </script>
 @endsection
