@@ -41,7 +41,7 @@ class WebHookController extends Controller
         $input = $request->data['metadata']['custom_fields'][0] ?? null;
         $reference = $request->data['reference'] ?? null;
 
-        if ($input && $input['type'] === 'order_from_paystack') {
+        if ($input && $input['type'] === 'order_from_paystack' || $input['type'] === 'wallet_and_paystack') {
             try {
                 DB::beginTransaction();
 
