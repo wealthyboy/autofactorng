@@ -453,7 +453,7 @@ export default {
                                 display_name: context.cart_meta.user.name,
                                 customer_id: context.cart_meta.user.id,
                                 coupon: context.coupon_code,
-                                type: "wallet and paystack",
+                                type: "wallet_and_paystack",
                                 wallet: context.walletBalance.wallet_balance,
                                 shipping_id: context.shipping_id,
                                 shipping_price: context.ship_price,
@@ -471,6 +471,7 @@ export default {
 
                         if (response.status == "success") {
                             context.paymentIsComplete = true;
+                            this.payment_is_processing = false;
                         } else {
                             this.error = "We could not complete your payment";
                             context.order_text = "Place Order";
