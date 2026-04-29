@@ -60,7 +60,7 @@ class WebHookController extends Controller
                     return http_response_code(200);
                 }
 
-                $payment_method = $request->data['authorization']['channel'];
+                $payment_method = $input['type'] === 'wallet_and_paystack' ? $request->data['authorization']['channel'] . '- wallet_and_paystack' :  $request->data['authorization']['channel'];
                 $ip  = $request->data['ip_address'];
 
                 // ✅ Save reference with the order
