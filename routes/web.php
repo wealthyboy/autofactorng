@@ -104,6 +104,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
     // Customer survey admin pages (view submissions)
     Route::get('customer-surveys', 'CustermerSurvey\CustermerSurveyController@index')->name('admin.customer-surveys.index');
+    Route::delete('customer-surveys/delete', 'CustermerSurvey\CustermerSurveyController@destroySelected')->name('admin.customer-surveys.destroy-selected');
     Route::get('customer-surveys/{survey}', 'CustermerSurvey\CustermerSurveyController@show')->name('admin.customer-surveys.show');
 });
 
