@@ -1,6 +1,18 @@
 @extends('admin.layouts.app')
 
 @section('content')
+<style>
+    .survey-checkbox {
+        appearance: auto !important;
+        -webkit-appearance: checkbox !important;
+        width: 16px;
+        height: 16px;
+        border: 1px solid #444 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        cursor: pointer;
+    }
+</style>
 <div class="container-fluid py-4">
     <div class="row">
         <div class="col-12">
@@ -28,7 +40,7 @@
 
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <label class="form-check mb-0">
-                                    <input class="form-check-input" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" type="checkbox">
+                                    <input class="survey-checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" type="checkbox">
                                     <span class="form-check-label">Select All</span>
                                 </label>
 
@@ -52,7 +64,7 @@
                                     @forelse($surveys as $survey)
                                     <tr>
                                         <td>
-                                            <input class="form-check-input" value="{{ $survey->id }}" name="selected[]" type="checkbox">
+                                            <input class="survey-checkbox" value="{{ $survey->id }}" name="selected[]" type="checkbox">
                                         </td>
                                         <td>{{ $survey->customer_name ?? '—' }}</td>
                                         <td>{{ $survey->email ?? '—' }}</td>
