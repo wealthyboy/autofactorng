@@ -518,7 +518,7 @@ class Order extends Model
 						"Type" => 'offline',
 						"Customer Type" => self::isReturningCustomer($order) ? 'Returning' : 'New',
 						"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
-						"Dispatch" => array_merge($d, ['selected' => $order->dispatch ?? 'Select dispatch']),
+						"Referer" => $order->referer,
 						"Total" => Helper::currencyWrapper($order->total),
 						"Date" => $order->created_at->format('d-m-y'),
 					];
@@ -533,7 +533,7 @@ class Order extends Model
 					"Coupon" => $order->coupon,
 					"Type" => $order->order_type,
 					"Customer Type" => self::isReturningCustomer($order) ? 'Returning' : 'New',
-					"Dispatch" => array_merge($d, ['selected' => $order->dispatch ?? 'Select Dispatch']),
+					"Referer" => $order->referer,
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 					"Total" => Helper::currencyWrapper($order->total),
 					"Date" => $order->created_at->format('d-m-y'),
