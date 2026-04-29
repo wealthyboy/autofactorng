@@ -489,7 +489,7 @@ export default {
         checkoutWithLagos: function (e) {
             if (this.total >= 100000) {
                 alert(
-                    "No Payment On Delivery On Orders Above ₦300,000.\nKindly Use The Pay Now Option.",
+                    "No Payment On Delivery On Orders Above ₦100,000.\nKindly Use The Pay Now Option.",
                 );
                 return;
             }
@@ -566,7 +566,7 @@ export default {
             }
 
             let form = document.getElementById("checkout-form-2");
-            this.order_text = "Please wait. We are almost done......";
+            this.order_text = "Please wait. We are a lmost done......";
             this.payment_is_processing = true;
             this.payment_method = "card";
             var handler = PaystackPop.setup({
@@ -591,7 +591,9 @@ export default {
                         },
                     ],
                 },
+
                 callback: function (response) {
+                    console.log("Transaction Callback Response:", response);
                     if (response.status == "success") {
                         context.paymentIsComplete = true;
                     } else {
@@ -656,6 +658,7 @@ export default {
         },
         updateCartTotal: function (obj) {
             this.updateCartMeta(obj);
+            //update cart meta with new total
         },
     },
 };
