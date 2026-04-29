@@ -471,9 +471,10 @@ export default {
 
                         if (response.status == "success") {
                             context.paymentIsComplete = true;
-                            this.payment_is_processing = false;
+                            context.payment_is_processing = false;
                         } else {
-                            this.error = "We could not complete your payment";
+                            context.error =
+                                "We could not complete your payment";
                             context.order_text = "Place Order";
                         }
                     },
