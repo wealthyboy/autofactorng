@@ -25,6 +25,12 @@
 
                                 <div class="col-md-3">
                                     <div class="form-group">
+                                        <label>Product Name</label>
+                                        <input type="text" class="form-control" name="product_name" value="{{ request('product_name') }}" placeholder="Search product name">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
                                         <label>Start Date</label>
                                         <input type="date" class="form-control" name="from_date" value="{{ request('from_date') }}">
                                     </div>
