@@ -25,9 +25,30 @@ class TrackUserActivity
     {
         $this->request = $request;
 
+        $this->captureIndriveReferral($request);
+
         $this->terminate($request);
 
         return $next($request);
+    }
+
+    protected function captureIndriveReferral(Request $request): void
+    {
+        if (! $request->boolean('isindrive')) {
+            return;
+        }
+
+        Session::put('is_indrive_customer', true);
+        Session::put('acquisition_source', 'indrive');
+        Session::put('acquisition_source_at', now()->toDateTimeString());
+
+        if ($request->user()) {
+            $request->user()->forceFill([
+                'is_indrive_customer' => true,
+                'acquisition_source' => $request->user()->acquisition_source ?: 'indrive',
+                'acquisition_source_at' => $request->user()->acquisition_source_at ?: now(),
+            ])->save();
+        }
     }
 
     public function terminate(Request $request, $response = null)
@@ -65,6 +86,8 @@ class TrackUserActivity
                 'method' => $request->method(),
                 'product_id' => $request->routeIs('products.show') ? optional($request->route('product'))->id : null,
                 'action' => $request->input('action', 'viewed'),
+                'is_indrive' => (bool) session('is_indrive_customer'),
+                'source_channel' => session('acquisition_source'),
                 'created_at' => now(),
             ]);
         });

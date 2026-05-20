@@ -38,6 +38,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
 
 
     Route::resource('customers', 'Admin\Customers\CustomersController', ['name' => 'customers']);
+    Route::get('indrive-customers', 'Admin\InDrive\InDriveCustomersController@index')->name('admin.indrive-customers.index');
+    Route::get('indrive-customers/export', 'Admin\InDrive\InDriveCustomersController@export')->name('admin.indrive-customers.export');
 
 
     Route::get('orders/invoice/{id}', 'Admin\Orders\OrdersController@invoice')->name('order.invoice');

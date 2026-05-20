@@ -4,7 +4,7 @@
 
 <div class="row">
     <form method="GET" class="row g-3 mb-4">
-         <div class="col-md-3">
+        <div class="col-md-3">
             <div class="input-group input-group-outline">
                 <label class="form-label">Ip</label>
                 <input type="text" name="ip" class="form-control" value="{{ request('ip') }}">
@@ -52,7 +52,7 @@
                         <h4 class="card-category"><a href="?referer=youtube">Youtube</a></h4>
                         <h3 class="card-title">{{$sourceCounts['youtube']}}</h3>
                     </div>
-                    
+
                 </div>
             </div>
             <div class="col-lg-2 col-md-6 col-sm-6" bis_skin_checked="1">
@@ -175,18 +175,6 @@
 
                         <tbody>
                             @foreach($trackings as $tracking)
-
-                            @php
-                                // If current record has no first_name, try to fetch one from same IP
-                                $firstName = $tracking->first_name;
-
-                                if (empty($firstName)) {
-                                    $firstName = \App\Models\UserTracking::where('ip_address', $tracking->ip_address)
-                                        ->whereNotNull('first_name')
-                                        ->orderBy('id') // you can also use ->latest('id') if you prefer last
-                                        ->value('first_name');
-                                }
-                            @endphp
                             <tr class="table-body">
 
                                 <td class="">
@@ -196,7 +184,7 @@
                                 </td>
                                 <td class="">
                                     <div class="align-middle  text-sm">
-                                        <h6>{{ $firstName }}</h6>
+                                        <h6>{{ $tracking->display_first_name }}</h6>
                                     </div>
                                 </td>
                                 <td class="">

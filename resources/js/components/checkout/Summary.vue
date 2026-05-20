@@ -78,9 +78,17 @@
                 <p class="fs-6">{{ v.percent }}</p>
             </template>
             <template v-else>
-                <span class="fs-2">
-                    {{ $filters.formatNumber(cart_meta.sub_total) }}</span
+                <span
+                    v-if="prices.internal_coupon"
+                    class="text-danger fs-4 me-3"
                 >
+                    <del>{{ $filters.formatNumber(prices.original_sub_total) }}</del>
+                </span>
+                <span class="fs-2">
+                    {{ $filters.formatNumber(prices.sub_total) }}</span>
+                <p v-if="prices.internal_coupon" class="fs-6">
+                    {{ prices.internal_coupon.label }}
+                </p>
             </template>
         </span>
     </p>
@@ -100,6 +108,25 @@
         <div v-if="prices.zones" class="card">
             <div class="card-body">
                 <h5 class="mb-3 font-weight-bold">Shipping Options</h5>
+
+                <label
+                    class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                    <div>
+                        <input
+                            id="shipping-pickup"
+                            @change="selectPickup"
+                            type="radio"
+                            name="shipping"
+                            class="custom-control-input"
+                        />
+                        <span class="font-weight-bold">Pickup</span>
+                        <div class="text-muted small">
+                            Pick up your order from AutofactorNG.
+                        </div>
+                    </div>
+                    <span class="font-weight-bold">₦0</span>
+                </label>
 
                 <div class="list-group">
                     <label
@@ -186,6 +213,23 @@ export default {
                 price: method.price,
                 coupon: this.coupon_code,
                 zone: method.zone,
+                pickup: false,
+            });
+        },
+
+        selectPickup() {
+            this.selectedMethod = 0;
+            this.$store.commit(
+                "setTotal",
+                parseInt(this.prices.sub_total) +
+                    parseInt(this.prices.heavy_item_price || 0),
+            );
+
+            this.$emit("price-selected", {
+                price: 0,
+                coupon: this.coupon_code,
+                zone: "Pickup",
+                pickup: true,
             });
         },
 

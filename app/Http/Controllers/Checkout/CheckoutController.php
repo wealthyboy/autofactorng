@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Models\AbandonedCart;
 use App\Models\AbandonedCartItem;
+use App\Services\InDriveCouponService;
 
 
 class CheckoutController extends Controller
@@ -84,6 +85,7 @@ class CheckoutController extends Controller
     {
 
         $input = $request->all();
+        $indriveCoupon = app(InDriveCouponService::class);
 
         try {
             DB::beginTransaction();
@@ -91,9 +93,19 @@ class CheckoutController extends Controller
             $ip = $request->ip();
             $user = Auth::user();
             $carts = Cart::all_items_in_cart();
+            if ($indriveCoupon->isProtectedCoupon($input['coupon'] ?? null)) {
+                return response()->json(['error' => 'Coupon is invalid'], 422);
+            }
+
+            if ($indriveCoupon->isInDriveUser($user) && $indriveCoupon->applyToSubtotal((float) Cart::sum_items_in_cart())['code']) {
+                $input['coupon'] = InDriveCouponService::CODE;
+            }
+
             $input['referer'] = session('original_referer');  // ← Capture referer from session
             $order = Order::checkout($input, $payment_method,  $ip, $carts, $user);
-            $code = trim(session('coupon'));
+            $code = $indriveCoupon->isInDriveUser($user) && $indriveCoupon->applyToSubtotal((float) Cart::sum_items_in_cart())['code']
+                ? InDriveCouponService::CODE
+                : trim(session('coupon'));
 
             if ($request->payment_method == 'Wallet') {
                 WalletBalance::deductFromWallet($request->total);
@@ -115,12 +127,17 @@ class CheckoutController extends Controller
 
             Order::sendMail($user, $order, $sub_total,  $coupon_value);
 
-            Voucher::inValidate($code);
+            if (! $indriveCoupon->isProtectedCoupon($code)) {
+                Voucher::inValidate($code);
+            }
 
             DB::commit();
 
             $request->session()->forget('coupon');
             $request->session()->forget('coupon_total');
+            $request->session()->forget('is_indrive_customer');
+            $request->session()->forget('acquisition_source');
+            $request->session()->forget('acquisition_source_at');
             Cookie::queue(Cookie::forget('cart'));
             return response()->json([
                 'status' => 'Order pLaced'
@@ -156,6 +173,11 @@ class CheckoutController extends Controller
 
     protected function coupon(Request $request)
     {
+        if (app(InDriveCouponService::class)->isProtectedCoupon($request->coupon)) {
+            return response()->json([
+                'error' => 'Coupon is invalid',
+            ], 422);
+        }
 
         $cart_total  = Cart::sum_items_in_cart();
 

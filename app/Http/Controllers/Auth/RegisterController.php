@@ -77,7 +77,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone_number' => ['required', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'g-recaptcha-response' => ['required', 'string'],
+            // 'g-recaptcha-response' => ['required', 'string'],
         ]);
     }
 
@@ -138,9 +138,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         // Verify reCAPTCHA before creating user
-        if (!$this->verifyRecaptcha($data['g-recaptcha-response'] ?? '')) {
-            // throw new \Exception('reCAPTCHA verification failed');
-        }
+        // if (!$this->verifyRecaptcha($data['g-recaptcha-response'] ?? '')) {
+        // throw new \Exception('reCAPTCHA verification failed');
+        // }
 
         $user = User::create([
             'name' => $data['first_name'],
@@ -148,7 +148,10 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'type' => 'subscriber',
             'password' => Hash::make($data['password']),
-            'phone_number' => $data['phone_number']
+            'phone_number' => $data['phone_number'],
+            'is_indrive_customer' => (bool) session('is_indrive_customer'),
+            'acquisition_source' => session('acquisition_source'),
+            'acquisition_source_at' => session('acquisition_source_at') ? now() : null,
         ]);
 
 
@@ -185,21 +188,24 @@ class RegisterController extends Controller
             Log::info($e);
         }
 
-        $this->sendToTermii($data, $user);
+        $res = $this->sendToTermii($data, $user);
 
-        $coupon = new Voucher;
-        $coupon->code = str_random(6);
-        $coupon->user_id = $user->id;
-        $coupon->amount = 5;
-        $coupon->type = 'specific';
-        $coupon->expires = now()->addDays(365);
-        $coupon->from_value = null;
-        $coupon->is_fixed = 0;
-        $coupon->status = 1;
-        $coupon->belongs_to_user = 1;
-        $coupon->save();
-        $user->coupon = $coupon->code;
-        $user->save();
+        if (! $user->is_indrive_customer) {
+            $coupon = new Voucher;
+            $coupon->code = str_random(6);
+            $coupon->user_id = $user->id;
+            $coupon->amount = 5;
+            $coupon->type = 'specific';
+            $coupon->expires = now()->addDays(365);
+            $coupon->from_value = null;
+            $coupon->is_fixed = 0;
+            $coupon->status = 1;
+            $coupon->belongs_to_user = 1;
+            $coupon->save();
+            $user->coupon = $coupon->code;
+            $user->save();
+        }
+
         $user->notify(new WelcomeNotification($user));
 
         return $user;
@@ -216,6 +222,8 @@ class RegisterController extends Controller
     {
         $apiKey = config('services.termii.api_key');
         $phonebookId = config('services.termii.phonebook_id');
+
+        // dd($apiKey, $phonebookId);
 
         if (!$apiKey || !$phonebookId) {
             Log::warning('Termii config missing; skipping Termii contact creation.', [
@@ -239,25 +247,26 @@ class RegisterController extends Controller
 
         $url = 'https://termii.com/api/phonebooks/' . $phonebookId . '/contacts';
 
-        try {
-            $response = Http::timeout(10)
-                ->withHeaders(['Content-Type' => 'application/json'])
-                ->post($url, $payload);
+        // try {
+        $response = Http::timeout(10)
+            ->withHeaders(['Content-Type' => 'application/json'])
+            ->post($url, $payload);
 
-            if (!$response->successful()) {
-                Log::warning('Termii contact creation failed', [
-                    'url' => $url,
-                    'payload' => $payload,
-                    'status' => $response->status(),
-                    'body' => $response->body(),
-                ]);
-            }
-        } catch (\Throwable $e) {
-            Log::warning('Termii contact creation error', [
-                'message' => $e->getMessage(),
+
+        if (!$response->successful()) {
+            Log::warning('Termii contact creation failed', [
+                'url' => $url,
                 'payload' => $payload,
+                'status' => $response->status(),
+                'body' => $response->body(),
             ]);
         }
+        // } catch (\Throwable $e) {
+        //     Log::warning('Termii contact creation error', [
+        //         'message' => $e->getMessage(),
+        //         'payload' => $payload,
+        //     ]);
+        // }
     }
 
     protected function normalizePhoneNumber(string $number): string

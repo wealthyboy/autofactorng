@@ -26,6 +26,7 @@ class Cart extends Model
         'model',
         'year',
         'engine',
+        'referer',
     ];
 
     public $appends = [

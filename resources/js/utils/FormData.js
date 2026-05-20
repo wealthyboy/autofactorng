@@ -1,5 +1,4 @@
 export const registerData = () => {
-
     let data = {
         email: "",
         password: "",
@@ -7,25 +6,22 @@ export const registerData = () => {
         last_name: null,
         password_confirmation: null,
         phone_number: null,
-
+        "g-recaptcha-response": "",
     };
 
-    return data
-}
+    return data;
+};
 
 export const resetData = () => {
-
     let data = {
         password: "",
         password_confirmation: null,
     };
 
-    return data
-}
-
+    return data;
+};
 
 export const subscribeData = () => {
-
     let data = {
         email: "",
         password: "",
@@ -34,16 +30,13 @@ export const subscribeData = () => {
         password_confirmation: null,
         phone_number: null,
         amount: null,
-        auto_credit: 1
-
+        auto_credit: 1,
     };
 
-    return data
-}
-
+    return data;
+};
 
 export const addressData = (location) => {
-
     let data = {
         first_name: location ? location.first_name : null,
         last_name: location ? location.last_name : null,
@@ -51,11 +44,10 @@ export const addressData = (location) => {
         address_2: location ? location.address_2 : null,
         city: location ? location.city : null,
         state_id: location ? location.state_id : "0",
-    }
+    };
 
-    return data
-}
-
+    return data;
+};
 
 export const accountData = (user) => {
     let data = {
@@ -65,18 +57,16 @@ export const accountData = (user) => {
         phone_number: user.phone_number,
     };
 
-    return data
-}
-
+    return data;
+};
 
 export const trackingData = () => {
     let data = {
         invoice: null,
     };
 
-    return data
-}
-
+    return data;
+};
 
 export const changePasswordData = (user) => {
     let data = {
@@ -85,5 +75,5 @@ export const changePasswordData = (user) => {
         password_confirmation: "",
     };
 
-    return data
-}
+    return data;
+};

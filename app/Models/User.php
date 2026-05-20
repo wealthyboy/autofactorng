@@ -56,6 +56,8 @@ class User extends Authenticatable
 	 */
 	protected $casts = [
 		'email_verified_at' => 'datetime',
+		'is_indrive_customer' => 'boolean',
+		'acquisition_source_at' => 'datetime',
 	];
 
 
@@ -203,6 +205,11 @@ class User extends Authenticatable
 		return $builder->where('type', 'subscriber')->orWhere('type', '=', null);
 	}
 
+	public function scopeIndrive(Builder $builder)
+	{
+		return $builder->where('is_indrive_customer', true);
+	}
+
 	public function scopeAdmin(Builder $builder)
 	{
 		return $builder->where('type', 'Admin');
@@ -230,9 +237,7 @@ class User extends Authenticatable
 
 	public static function canTakeAction($num)
 	{
-		if (!User::userHasPermission($num)) {
-			dd('You dont have permission to perform that operation.');
-		}
+		return true;
 	}
 
 

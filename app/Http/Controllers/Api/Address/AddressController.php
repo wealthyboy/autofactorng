@@ -19,6 +19,7 @@ use App\Http\Resources\AddressResource;
 use Illuminate\Http\Request;
 use App\Http\Resources\LocationResource;
 use App\Models\Cart;
+use App\Services\InDriveCouponService;
 use Illuminate\Database\Eloquent\Builder;
 
 class AddressController extends Controller
@@ -88,9 +89,23 @@ class AddressController extends Controller
             $prices['heavy_item_price'] = $hp;
         }
 
+        $indriveCoupon = app(InDriveCouponService::class);
+        $internalCoupon = $indriveCoupon->isInDriveUser($user)
+            ? $indriveCoupon->applyToSubtotal((float) $sub_total)
+            : null;
+        $pricedSubTotal = $internalCoupon && $internalCoupon['code']
+            ? $internalCoupon['subtotal']
+            : $sub_total;
+
         $prices['ship_price'] = $ship_price;
-        $prices['total'] = $sub_total + $ship_price + $hp;
-        $prices['sub_total'] = $sub_total;
+        $prices['total'] = $pricedSubTotal + $ship_price + $hp;
+        $prices['sub_total'] = $pricedSubTotal;
+        $prices['original_sub_total'] = $sub_total;
+        $prices['internal_coupon'] = $internalCoupon && $internalCoupon['code'] ? [
+            'code' => $internalCoupon['code'],
+            'discount' => $internalCoupon['discount'],
+            'label' => $internalCoupon['label'],
+        ] : null;
         $prices['zones'] = $zones;
 
 

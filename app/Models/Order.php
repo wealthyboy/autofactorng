@@ -32,6 +32,10 @@ class Order extends Model
 
 	public $appends = ['ship_price'];
 
+	protected $casts = [
+		'is_indrive_order' => 'boolean',
+	];
+
 	public static $statuses = [
 		"Confirmed" => "Confirmed",
 		"Cancelled" => "Cancelled",
@@ -52,6 +56,11 @@ class Order extends Model
 	public function user()
 	{
 		return $this->belongsTo(User::class);
+	}
+
+	public function scopeIndrive($query)
+	{
+		return $query->where('is_indrive_order', true);
 	}
 
 
@@ -80,7 +89,7 @@ class Order extends Model
 
 		$order->user_id = $user->id;
 		$order->address_id = $user->active_address->id;
-		$order->coupon = $input['coupon'];
+		$order->coupon = $input['coupon'] ?? null;
 		$order->heavy_item_price = isset($input['heavy_item_price']) ? $input['heavy_item_price'] : null;
 		$order->status = 'Confirmed';
 		$order->shipping_price = data_get($input, 'shipping_price');
@@ -93,6 +102,9 @@ class Order extends Model
 		$order->email = $user->email;
 		$order->tracking = rand(100000, time());
 		$order->order_type = "Online";
+		$order->order_from = session('acquisition_source') ?: null;
+		$order->is_indrive_order = (bool) ($user->is_indrive_customer || session('is_indrive_customer'));
+		$order->source_channel = $order->is_indrive_order ? 'indrive' : session('acquisition_source');
 		$order->phone_number = $user->phone_number;
 		$order->address = optional($user->active_address)->address;
 		$order->city = optional($user->active_address)->city;

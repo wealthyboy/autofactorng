@@ -49,6 +49,7 @@ class HomeController extends Controller
         $products = Product::where('is_featured', 1)->orderBy('created_at', 'DESC')->take(8)->get();
 
 
+
         $schema = [
 
             "@context" => "https://schema.org",
@@ -156,8 +157,6 @@ class HomeController extends Controller
      */
     public function test()
     {
-
-
         $featured_categories = Category::where('is_featured', true)->get();
         $brands = Brand::where('is_featured', true)->get();
         $sliders = Banner::where(['type' => 'slider', 'device' => 'd-none d-lg-block d-xl-block'])->orderBy('sort_order', 'asc')->get();

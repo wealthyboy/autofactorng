@@ -244,6 +244,7 @@ export default {
             t: null,
             ship_price: 0,
             zone: "",
+            pickupSelected: false,
             referer: null,
         };
     },
@@ -317,7 +318,7 @@ export default {
                 return false;
             }
 
-            if (!this.ship_price || this.ship_price < 1) {
+            if (!this.pickupSelected && (!this.ship_price || this.ship_price < 1)) {
                 alert("Select your shipping");
                 return false;
             }
@@ -325,77 +326,79 @@ export default {
             let form = document.getElementById("checkout-form-2");
             this.order_text = "Please wait. We are almost done......";
             this.payment_method = "card";
+            this.payment_is_processing = true;
 
-            SeerbitPay(
-                {
-                    close_on_success: true,
-                    public_key: "SBPUBK_LD5CFQZHSMJZNQHL3ODOTWTJPCIA4MNY",
-                    tranref: new Date().getTime(),
-                    currency: "NGN",
-                    country: "NG",
-                    amount: context.total,
-                    email: context.cart_meta.user.email,
-                    mobile_no: context.cart_meta.user.phone_number,
-                    zone: context.zone,
-                    productId: "",
-                    description: "",
-                    setAmountByCustomer: false,
-                    full_name:
-                        context.cart_meta.user.name +
-                        " " +
-                        context.cart_meta.user.last_name,
-                    tokenize: false,
-                    pocketReference: "",
-                    splitCode: "",
+            setTimeout(() => {
+                SeerbitPay(
+                    {
+                        close_on_success: true,
+                        public_key: "SBPUBK_LD5CFQZHSMJZNQHL3ODOTWTJPCIA4MNY",
+                        tranref: new Date().getTime(),
+                        currency: "NGN",
+                        country: "NG",
+                        amount: context.total,
+                        email: context.cart_meta.user.email,
+                        mobile_no: context.cart_meta.user.phone_number,
+                        zone: context.zone,
+                        productId: "",
+                        description: "",
+                        setAmountByCustomer: false,
+                        full_name:
+                            context.cart_meta.user.name +
+                            " " +
+                            context.cart_meta.user.last_name,
+                        tokenize: false,
+                        pocketReference: "",
+                        splitCode: "",
 
-                    customization: {
-                        theme: {
-                            border_color: "#000000", // Adjusted to include '#'
-                            background_color: "#ECECEC",
-                            button_color: "#000000", // Adjusted to include '#'
+                        customization: {
+                            theme: {
+                                border_color: "#000000", // Adjusted to include '#'
+                                background_color: "#ECECEC",
+                                button_color: "#000000", // Adjusted to include '#'
+                            },
+                            payment_method: [
+                                "card",
+                                "account",
+                                "transfer",
+                                "wallet",
+                                "ussd",
+                            ],
                         },
-                        payment_method: [
-                            "card",
-                            "account",
-                            "transfer",
-                            "wallet",
-                            "ussd",
-                        ],
+                        // ==========================================
                     },
-                    // ==========================================
-                },
 
-                // The Callback function (Success handler)
-                function callback(response, closeModal) {
-                    context.payment_is_processing = true;
-                    console.log("Transaction Callback Response:", response);
-                    axios
-                        .post("/checkout/confirm", {
-                            coupon: context.coupon_code,
-                            payment_method: "seerbit",
-                            shipping_price: context.ship_price,
-                            heavy_item_price:
-                                context.prices?.heavy_item_price || 0,
-                            total: context.total,
-                            referer: context.referer,
-                        })
-                        .then((response) => {
-                            context.paymentIsComplete = true;
-                            context.payment_is_processing = false;
-                        })
-                        .catch((error) => {
-                            // Handle confirmation error
-                            e.target.innerText = text;
-                            e.target.classList.remove("disabled");
-                            context.payment_is_processing = false;
-                        });
-                },
+                    // The Callback function (Success handler)
+                    function callback(response, closeModal) {
+                        context.payment_is_processing = true;
+                        console.log("Transaction Callback Response:", response);
+                        axios
+                            .post("/checkout/confirm", {
+                                coupon: context.coupon_code,
+                                payment_method: "seerbit",
+                                shipping_price: context.ship_price,
+                                heavy_item_price:
+                                    context.prices?.heavy_item_price || 0,
+                                total: context.total,
+                                referer: context.referer,
+                            })
+                            .then((response) => {
+                                context.paymentIsComplete = true;
+                                context.payment_is_processing = false;
+                            })
+                            .catch((error) => {
+                                e.target.innerText = text;
+                                e.target.classList.remove("disabled");
+                                context.payment_is_processing = false;
+                            });
+                    },
 
-                // The Close function (User manually closes or transaction is aborted)
-                function close(close) {
-                    console.log("Transaction Closed Event:", close);
-                },
-            );
+                    // The Close function (User manually closes or transaction is aborted)
+                    function close(close) {
+                        console.log("Transaction Closed Event:", close);
+                    },
+                );
+            }, 2000);
         },
 
         checkoutWithWallet: function (e) {
@@ -403,7 +406,7 @@ export default {
                 ? this.ship_price
                 : this.prices.ship_price;
 
-            if (!this.ship_price || this.ship_price < 1) {
+            if (!this.pickupSelected && (!this.ship_price || this.ship_price < 1)) {
                 alert("Select your shipping");
                 return false;
             }
@@ -514,7 +517,7 @@ export default {
                 ? this.ship_price
                 : this.prices.ship_price;
 
-            if (!this.ship_price || this.ship_price < 1) {
+            if (!this.pickupSelected && (!this.ship_price || this.ship_price < 1)) {
                 alert("Select your shipping");
                 return false;
             }
@@ -523,6 +526,20 @@ export default {
         },
 
         priceSelected(res) {
+            this.pickupSelected = !!res.pickup;
+
+            if (this.pickupSelected) {
+                this.ship_price = 0;
+                this.zone = res.zone;
+                return;
+            }
+
+            if (res.price === null) {
+                this.ship_price = "";
+                this.zone = "";
+                return;
+            }
+
             if (!res.coupon) {
                 console.log(res.price);
                 this.ship_price = res.price;
@@ -564,7 +581,7 @@ export default {
                 return false;
             }
 
-            if (!this.ship_price || this.ship_price < 1) {
+            if (!this.pickupSelected && (!this.ship_price || this.ship_price < 1)) {
                 alert("Select your shipping");
                 return false;
             }
@@ -623,7 +640,7 @@ export default {
                 ? this.ship_price
                 : this.prices.ship_price;
 
-            if (!this.ship_price || this.ship_price < 1) {
+            if (!this.pickupSelected && (!this.ship_price || this.ship_price < 1)) {
                 alert("Select your shipping");
                 return false;
             }
