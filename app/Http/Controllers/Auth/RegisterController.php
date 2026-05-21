@@ -152,6 +152,7 @@ class RegisterController extends Controller
             'is_indrive_customer' => (bool) session('is_indrive_customer'),
             'acquisition_source' => session('acquisition_source'),
             'acquisition_source_at' => session('acquisition_source_at') ? now() : null,
+            'indrive_session_id' => session('indrive_session_id'),
         ]);
 
 

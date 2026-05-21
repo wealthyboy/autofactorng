@@ -169,6 +169,13 @@
             </li>
 
             <li class=" nav-item">
+               <a class="nav-link text-white {{ $helper->active_link(['indrive-orders','indrive-customers']) }}" href="{{ route('admin.indrive-orders.index') }}">
+                  <i class="material-symbols-outlined opacity-10">local_taxi</i>
+                  <span class="nav-link-text ms-2 ps-1"> inDrive </span>
+               </a>
+            </li>
+
+            <li class=" nav-item">
                <a class="nav-link text-white {{ $helper->active_link(['stocks']) }}" href="/admin/stocks">
                   <i class="material-symbols-outlined opacity-10">shopping_cart</i>
                   <span class="nav-link-text ms-2 ps-1"> Stock </span>
@@ -222,11 +229,11 @@
 
 
             <li class="nav-item">
-               <a data-bs-toggle="collapse" href="a#Users" class="nav-link text-white  {{ $helper->active_link(['users','customers','indrive-customers']) }}" aria-controls="Users" role="button" aria-expanded="false">
+               <a data-bs-toggle="collapse" href="a#Users" class="nav-link text-white  {{ $helper->active_link(['users','customers','indrive-customers','indrive-orders']) }}" aria-controls="Users" role="button" aria-expanded="false">
                   <i class="material-symbols-outlined">manage_accounts</i>
                   <span class="nav-link-text ms-2 ps-1">Users</span>
                </a>
-               <div class="collapse   {{ $helper->active_link(['users','customers','indrive-customers']) ? 'show' : ''}}" id="Users">
+               <div class="collapse   {{ $helper->active_link(['users','customers','indrive-customers','indrive-orders']) ? 'show' : ''}}" id="Users">
                   <ul class="nav ">
                      <li class="nav-item ">
                         <a class="nav-link text-white {{ $helper->active_link(['users']) }}" href="{{ route('admin.users.index') }}">
@@ -250,6 +257,12 @@
                         <a class="nav-link text-white  {{ $helper->active_link(['indrive-customers']) }}" href="{{ route('admin.indrive-customers.index') }}">
                            <span class="sidenav-mini-icon"> I </span>
                            <span class="sidenav-normal  ms-2  ps-1"> inDrive </span>
+                        </a>
+                     </li>
+                     <li class="nav-item ">
+                        <a class="nav-link text-white  {{ $helper->active_link(['indrive-orders']) }}" href="{{ route('admin.indrive-orders.index') }}">
+                           <span class="sidenav-mini-icon"> O </span>
+                           <span class="sidenav-normal  ms-2  ps-1"> inDrive Orders </span>
                         </a>
                      </li>
 

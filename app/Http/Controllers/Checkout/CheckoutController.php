@@ -138,6 +138,7 @@ class CheckoutController extends Controller
             $request->session()->forget('is_indrive_customer');
             $request->session()->forget('acquisition_source');
             $request->session()->forget('acquisition_source_at');
+            $request->session()->forget('indrive_session_id');
             Cookie::queue(Cookie::forget('cart'));
             return response()->json([
                 'status' => 'Order pLaced'
