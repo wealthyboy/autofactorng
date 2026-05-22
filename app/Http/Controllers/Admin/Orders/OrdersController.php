@@ -513,13 +513,14 @@ class OrdersController extends Table
 	public function showData($id)
 	{
 		$obj =  $this->builder->find($id);
+		$user = optional($obj)->user;
 
 		return [
 			'customer' => [
-				"Full Name" => null !== $obj->user ?  optional($obj->user)->fullname() :  optional($obj)->fullName(),
-				"Phone Number" =>  null !== $obj->user ?  optional($obj->user)->phone_number :  optional($obj)->phone_number,
-				"Email" => null !== $obj->user ?  optional($obj->user)->email :  optional($obj)->email,
-				"Date Joined" => null !== $obj->user ? optional($obj->user)->created_at->format('d-m-y') :  optional($obj)->created_at->format('d-m-y'),
+				"Full Name" => null !== $user ?  optional($user)->fullname() :  optional($obj)->fullName(),
+				"Phone Number" =>  null !== $user ?  optional($user)->phone_number :  optional($obj)->phone_number,
+				"Email" => null !== $user ?  optional($user)->email :  optional($obj)->email,
+				"Date Joined" => optional(null !== $user ? $user->created_at : optional($obj)->created_at)->format('d-m-y') ?? '---',
 				"Referer" => optional($obj)->referer ?? '---',
 			],
 			'Order' => [
