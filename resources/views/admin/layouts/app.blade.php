@@ -86,7 +86,7 @@
 
 
             <li class="nav-item">
-               <a data-bs-toggle="collapse" href="settings.html#ecommerceExamples" class="nav-link text-white {{ $helper->active_link(['reviews','brands','products','category','discounts','attributes','vouchers']) }}" aria-controls="ecommerceExamples" role="button" aria-expanded="false">
+               <a data-bs-toggle="collapse" href="#ecommerceExamples" class="nav-link text-white {{ $helper->active_link(['reviews','brands','products','category','discounts','attributes','vouchers']) }}" aria-controls="ecommerceExamples" role="button" aria-expanded="false">
                   <i class="material-symbols-outlined">inventory_2</i>
                   <span class="nav-link-text ms-2 ps-1">Products</span>
                </a>
@@ -162,7 +162,7 @@
             </li>
 
             <li class="nav-item">
-               <a data-bs-toggle="collapse" href="a#Orders" class="nav-link text-white {{ $helper->active_link(['orders','indrive-orders']) }}" aria-controls="Orders" role="button" aria-expanded="false">
+               <a data-bs-toggle="collapse" href="#Orders" class="nav-link text-white {{ $helper->active_link(['orders','indrive-orders']) }}" aria-controls="Orders" role="button" aria-expanded="false">
                   <i class="material-symbols-outlined opacity-10">shopping_cart</i>
                   <span class="nav-link-text ms-2 ps-1">Orders</span>
                </a>
@@ -193,7 +193,7 @@
 
 
             <li class="nav-item">
-               <a data-bs-toggle="collapse" href="settings.html#Forum" class="nav-link text-white {{ $helper->active_link(['forum','car_reviews']) }}" aria-controls="Forum" role="button" aria-expanded="false">
+               <a data-bs-toggle="collapse" href="#Forum" class="nav-link text-white {{ $helper->active_link(['forum','car_reviews']) }}" aria-controls="Forum" role="button" aria-expanded="false">
                   <i class="material-symbols-outlined">question_answer</i>
                   <span class="nav-link-text ms-2 ps-1">Forum</span>
                </a>
@@ -238,7 +238,7 @@
 
 
             <li class="nav-item">
-               <a data-bs-toggle="collapse" href="a#Users" class="nav-link text-white  {{ $helper->active_link(['users','customers','indrive-customers']) }}" aria-controls="Users" role="button" aria-expanded="false">
+               <a data-bs-toggle="collapse" href="#Users" class="nav-link text-white  {{ $helper->active_link(['users','customers','indrive-customers']) }}" aria-controls="Users" role="button" aria-expanded="false">
                   <i class="material-symbols-outlined">manage_accounts</i>
                   <span class="nav-link-text ms-2 ps-1">Users</span>
                </a>
@@ -283,7 +283,7 @@
 
 
             <li class="nav-item">
-               <a data-bs-toggle="collapse" href="a#design" class="nav-link text-white  {{ $helper->active_link(['banners','pages','promos']) }}" aria-controls="design" role="button" aria-expanded="false">
+               <a data-bs-toggle="collapse" href="#design" class="nav-link text-white  {{ $helper->active_link(['banners','pages','promos']) }}" aria-controls="design" role="button" aria-expanded="false">
                   <i class="material-symbols-outlined">padding</i>
                   <span class="nav-link-text ms-2 ps-1">Design</span>
                </a>
@@ -315,7 +315,7 @@
             </li>
 
             <li class="nav-item mb-5">
-               <a data-bs-toggle="collapse" href="a#settings" class="nav-link text-white  {{ $helper->active_link(['settings','permissions','location']) }}" aria-controls="settings" role="button" aria-expanded="false">
+               <a data-bs-toggle="collapse" href="#settings" class="nav-link text-white  {{ $helper->active_link(['settings','permissions','location']) }}" aria-controls="settings" role="button" aria-expanded="false">
                   <i class="material-symbols-outlined">settings</i>
                   <span class="nav-link-text ms-2 ps-1">Settings</span>
                </a>

@@ -32144,3 +32144,21 @@ tr.table-heading th:last-child{
 tr.table-body td:last-child{
     text-align: end; 
 }
+
+.navbar-vertical .navbar-nav .nav-link[data-bs-toggle=collapse]::after {
+    content: "";
+    width: 0.55rem;
+    height: 0.55rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    margin-left: auto;
+    transform: rotate(45deg);
+    transform-origin: center;
+    color: rgba(206, 212, 218, .7);
+    transition: transform .2s ease-in-out, color .2s ease-in-out;
+}
+
+.navbar-vertical .navbar-nav .nav-link[data-bs-toggle=collapse][aria-expanded=true]::after {
+    color: #ced4da;
+    transform: rotate(225deg);
+}
