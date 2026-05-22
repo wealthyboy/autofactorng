@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-md-3 col-12 mb-3">
                             <div class="input-group input-group-outline is-filled">
-                                <label class="form-label">Driver / Email / Phone</label>
+                                <label class="form-label">Driver / ID / Email / Phone</label>
                                 <input name="q" type="text" value="{{ $filters['q'] ?? '' }}" class="form-control">
                             </div>
                         </div>
@@ -93,6 +93,7 @@
                     <thead>
                         <tr>
                             <th><h6 class="mb-0 text-xs">Name</h6></th>
+                            <th><h6 class="mb-0 text-xs">Driver ID</h6></th>
                             <th><h6 class="mb-0 text-xs">Clicks</h6></th>
                             <th><h6 class="mb-0 text-xs">Website Visits</h6></th>
                             <th><h6 class="mb-0 text-xs">Location</h6></th>
@@ -111,6 +112,7 @@
                                     <h6 class="mb-0 text-xs">{{ $row['driver']->fullname() }}</h6>
                                     <p class="text-xs text-secondary mb-0">{{ $row['driver']->email }}</p>
                                 </td>
+                                <td><h6 class="mb-0 text-xs">{{ $row['driver']->indrive_driver_id ?: '---' }}</h6></td>
                                 <td><h6 class="mb-0 text-xs">{{ $row['clicks'] }}</h6></td>
                                 <td><h6 class="mb-0 text-xs">{{ $row['website_visits'] }}</h6></td>
                                 <td><h6 class="mb-0 text-xs">{{ $row['location'] }}</h6></td>
@@ -127,7 +129,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="10" class="text-center py-4">
+                                <td colspan="11" class="text-center py-4">
                                     <h6 class="mb-0 text-xs">No inDrive order data found.</h6>
                                 </td>
                             </tr>

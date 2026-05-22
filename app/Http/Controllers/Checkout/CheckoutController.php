@@ -93,6 +93,11 @@ class CheckoutController extends Controller
             $ip = $request->ip();
             $user = Auth::user();
             $carts = Cart::all_items_in_cart();
+
+            if (($input['zone'] ?? null) === 'Pickup' && (int) optional($user->active_address)->state_id !== 30) {
+                return response()->json(['error' => 'Pickup is only available for Lagos addresses'], 422);
+            }
+
             if ($indriveCoupon->isProtectedCoupon($input['coupon'] ?? null)) {
                 return response()->json(['error' => 'Coupon is invalid'], 422);
             }
@@ -133,12 +138,16 @@ class CheckoutController extends Controller
 
             DB::commit();
 
+
+
             $request->session()->forget('coupon');
             $request->session()->forget('coupon_total');
             $request->session()->forget('is_indrive_customer');
             $request->session()->forget('acquisition_source');
             $request->session()->forget('acquisition_source_at');
             $request->session()->forget('indrive_session_id');
+            $request->session()->forget('indrive_driver_id');
+            $request->session()->forget('indrive_verified');
             Cookie::queue(Cookie::forget('cart'));
             return response()->json([
                 'status' => 'Order pLaced'

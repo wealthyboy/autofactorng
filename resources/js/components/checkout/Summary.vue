@@ -110,6 +110,7 @@
                 <h5 class="mb-3 font-weight-bold">Shipping Options</h5>
 
                 <label
+                    v-if="prices.can_pickup"
                     class="list-group-item d-flex justify-content-between align-items-center"
                 >
                     <div>

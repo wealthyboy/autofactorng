@@ -56,13 +56,14 @@ class AddressController extends Controller
         $carts = Cart::all_items_in_cart();
         $ship_price = $default_address ? optional(optional($default_address->address_state)->shipping)->price : null;
         $large_item_price = [];
-        $is_lagos = null !== $default_address && optional($default_address)->state == 'Lagos' ? 1 : 0;
+        $is_lagos = null !== $default_address && (int) $default_address->state_id === 30 ? 1 : 0;
         $location = Location::where('name', optional($default_address)->state)->first() ?? null;
          $zones = null !== $location ? optional($location->shipping)->zones : null;
         $zones = optional(optional( optional($location)->shipping)->zones)->count() ?  optional(optional($location)->shipping)->zones :  null;
 
         $prices['isLagos'] = $is_lagos;
         $prices['is_zones'] = $is_lagos;
+        $prices['can_pickup'] = $is_lagos;
  
         foreach ($carts as $key => $cart) {
             if ($cart->product->condition_is_present) {

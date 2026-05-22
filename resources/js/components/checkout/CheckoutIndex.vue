@@ -277,6 +277,17 @@ export default {
             this.loading = false;
         });
     },
+    watch: {
+        "prices.can_pickup"(canPickup) {
+            if (canPickup || !this.pickupSelected) {
+                return;
+            }
+
+            this.pickupSelected = false;
+            this.ship_price = "";
+            this.zone = "";
+        },
+    },
     mounted() {},
     methods: {
         ...mapActions({

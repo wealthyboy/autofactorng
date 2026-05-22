@@ -22684,6 +22684,16 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       _this.loading = false;
     });
   },
+  watch: {
+    "prices.can_pickup": function pricesCan_pickup(canPickup) {
+      if (canPickup || !this.pickupSelected) {
+        return;
+      }
+      this.pickupSelected = false;
+      this.ship_price = "";
+      this.zone = "";
+    }
+  },
   mounted: function mounted() {},
   methods: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_8__.mapActions)({
     createAddress: "createAddress",
@@ -27775,6 +27785,7 @@ var _hoisted_27 = {
   "class": "card-body"
 };
 var _hoisted_28 = {
+  key: 0,
   "class": "list-group-item d-flex justify-content-between align-items-center"
 };
 var _hoisted_29 = {
@@ -27843,7 +27854,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "text-muted"
   }, "Shipping", -1 /* HOISTED */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("small", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(_ctx.$filters.formatNumber(_ctx.prices.ship_price)), 1 /* TEXT */)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _ctx.prices.zones ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [_cache[13] || (_cache[13] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
     "class": "mb-3 font-weight-bold"
-  }, "Shipping Options", -1 /* HOISTED */)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, "Shipping Options", -1 /* HOISTED */)), _ctx.prices.can_pickup ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     id: "shipping-pickup",
     onChange: _cache[2] || (_cache[2] = function () {
       return $options.selectPickup && $options.selectPickup.apply($options, arguments);
@@ -27857,7 +27868,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "text-muted small"
   }, " Pick up your order from AutofactorNG. ", -1 /* HOISTED */))]), _cache[12] || (_cache[12] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "font-weight-bold"
-  }, "₦0", -1 /* HOISTED */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.prices.zones, function (method, index) {
+  }, "₦0", -1 /* HOISTED */))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.prices.zones, function (method, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("label", {
       "for": "shipping-".concat(index, "-").concat(method.zone.replace(/\s+/g, '-').toLowerCase()),
       key: index,

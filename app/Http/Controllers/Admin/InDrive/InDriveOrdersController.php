@@ -76,6 +76,7 @@ class InDriveOrdersController extends Controller
                 'Name',
                 'Email',
                 'Phone',
+                'inDrive Driver ID',
                 'Clicks',
                 'Website Visits',
                 'Location',
@@ -98,6 +99,7 @@ class InDriveOrdersController extends Controller
                             $driver->fullname(),
                             $driver->email,
                             $driver->phone_number,
+                            $driver->indrive_driver_id,
                             $row['clicks'],
                             $row['website_visits'],
                             $row['location'],
@@ -131,6 +133,7 @@ class InDriveOrdersController extends Controller
                 $q->where('name', 'like', "%{$search}%")
                     ->orWhere('last_name', 'like', "%{$search}%")
                     ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('indrive_driver_id', 'like', "%{$search}%")
                     ->orWhere('phone_number', 'like', "%{$search}%");
             });
         }
@@ -295,6 +298,10 @@ class InDriveOrdersController extends Controller
 
                 if ($driver->indrive_session_id) {
                     $q->orWhere('session_id', $driver->indrive_session_id);
+                }
+
+                if ($driver->indrive_driver_id) {
+                    $q->orWhere('indrive_driver_id', $driver->indrive_driver_id);
                 }
             });
     }

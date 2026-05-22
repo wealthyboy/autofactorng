@@ -8,6 +8,7 @@
                 <div>
                     <h4 class="m-0">{{ $driver->fullname() }}</h4>
                     <p class="text-sm mb-0">{{ $driver->email }} {{ $driver->phone_number ? ' • '.$driver->phone_number : '' }}</p>
+                    <p class="text-sm mb-0">inDrive Driver ID: {{ $driver->indrive_driver_id ?: '---' }}</p>
                 </div>
                 <a href="{{ route('admin.indrive-orders.index', request()->query()) }}" class="btn btn-outline-secondary btn-sm mb-0">Back</a>
             </div>

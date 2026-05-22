@@ -39,6 +39,7 @@ class InDriveCustomersController extends Controller
                 'Last Name',
                 'Email',
                 'Phone Number',
+                'inDrive Driver ID',
                 'Orders',
                 'Acquisition Source',
                 'Acquisition Source At',
@@ -55,6 +56,7 @@ class InDriveCustomersController extends Controller
                             $user->last_name,
                             $user->email,
                             $user->phone_number,
+                            $user->indrive_driver_id,
                             $user->orders_count,
                             $user->acquisition_source,
                             optional($user->acquisition_source_at)->format('Y-m-d H:i:s'),
@@ -84,6 +86,7 @@ class InDriveCustomersController extends Controller
                 $q->where('name', 'like', "%{$search}%")
                     ->orWhere('last_name', 'like', "%{$search}%")
                     ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('indrive_driver_id', 'like', "%{$search}%")
                     ->orWhere('phone_number', 'like', "%{$search}%");
             });
         }

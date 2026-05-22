@@ -49,6 +49,9 @@ return [
         'site_key' => env('RECAPTCHA_SITE_KEY', env('MIX_RECAPTCHA_SITE_KEY')),
         'secret' => env('RECAPTCHA_SECRET_KEY'),
     ],
+    'indrive' => [
+        'token' => env('INDRIVE_TRACKING_TOKEN', 'inDrive_autofactorng_static_tracking_token_9e4c83b7f2d64a7eb9b8e5a0d6c3f1a29c7e8d5b4a1f0c6e3d2b9a8f7c5e4d3b2a1'),
+    ],
 
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),

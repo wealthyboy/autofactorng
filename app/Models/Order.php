@@ -105,6 +105,7 @@ class Order extends Model
 		$order->order_from = session('acquisition_source') ?: null;
 		$order->is_indrive_order = (bool) ($user->is_indrive_customer || session('is_indrive_customer'));
 		$order->source_channel = $order->is_indrive_order ? 'indrive' : session('acquisition_source');
+		$order->indrive_driver_id = $order->is_indrive_order ? ($user->indrive_driver_id ?: session('indrive_driver_id')) : null;
 		$order->phone_number = $user->phone_number;
 		$order->address = optional($user->active_address)->address;
 		$order->city = optional($user->active_address)->city;

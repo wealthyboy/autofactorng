@@ -64,6 +64,7 @@
                             <th><h6 class="mb-0 text-xs">Name</h6></th>
                             <th><h6 class="mb-0 text-xs">Email</h6></th>
                             <th><h6 class="mb-0 text-xs">Phone</h6></th>
+                            <th><h6 class="mb-0 text-xs">Driver ID</h6></th>
                             <th><h6 class="mb-0 text-xs">Orders</h6></th>
                             <th><h6 class="mb-0 text-xs">Source</h6></th>
                             <th><h6 class="mb-0 text-xs">Joined</h6></th>
@@ -76,13 +77,14 @@
                                 <td><h6 class="mb-0 text-xs">{{ $customer->fullname() }}</h6></td>
                                 <td><h6 class="mb-0 text-xs">{{ $customer->email }}</h6></td>
                                 <td><h6 class="mb-0 text-xs">{{ $customer->phone_number }}</h6></td>
+                                <td><h6 class="mb-0 text-xs">{{ $customer->indrive_driver_id ?: '---' }}</h6></td>
                                 <td><h6 class="mb-0 text-xs">{{ $customer->orders_count }}</h6></td>
                                 <td><h6 class="mb-0 text-xs">{{ $customer->acquisition_source ?: 'indrive' }}</h6></td>
                                 <td><h6 class="mb-0 text-xs">{{ optional($customer->created_at)->format('d-m-y') }}</h6></td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center py-4">
+                                <td colspan="8" class="text-center py-4">
                                     <h6 class="mb-0 text-xs">No inDrive customers found.</h6>
                                 </td>
                             </tr>

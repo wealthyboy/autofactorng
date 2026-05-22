@@ -38,18 +38,41 @@ class TrackUserActivity
             return;
         }
 
+        if (! $this->hasValidIndriveToken($request)) {
+            return;
+        }
+
+        $driverId = $request->query('driver_id');
+
         Session::put('is_indrive_customer', true);
         Session::put('acquisition_source', 'indrive');
         Session::put('acquisition_source_at', now()->toDateTimeString());
+        Session::put('indrive_session_id', $request->session()->getId());
+        Session::put('indrive_driver_id', $driverId);
+        Session::put('indrive_verified', true);
 
         if ($request->user()) {
             $request->user()->forceFill([
                 'is_indrive_customer' => true,
                 'acquisition_source' => $request->user()->acquisition_source ?: 'indrive',
                 'acquisition_source_at' => $request->user()->acquisition_source_at ?: now(),
+                'indrive_session_id' => $request->user()->indrive_session_id ?: $request->session()->getId(),
+                'indrive_driver_id' => $request->user()->indrive_driver_id ?: $driverId,
             ])->save();
         }
     }
+
+    protected function hasValidIndriveToken(Request $request): bool
+    {
+        $expectedToken = (string) config('services.indrive.token');
+        $providedToken = (string) ($request->query('indrive_token') ?: $request->query('token'));
+
+        return $expectedToken !== ''
+            && $providedToken !== ''
+            && hash_equals($expectedToken, $providedToken);
+    }
+
+
 
     public function terminate(Request $request, $response = null)
     {
@@ -88,6 +111,8 @@ class TrackUserActivity
                 'action' => $request->input('action', 'viewed'),
                 'is_indrive' => (bool) session('is_indrive_customer'),
                 'source_channel' => session('acquisition_source'),
+                'indrive_driver_id' => session('indrive_driver_id'),
+                'indrive_verified' => (bool) session('indrive_verified'),
                 'created_at' => now(),
             ]);
         });
