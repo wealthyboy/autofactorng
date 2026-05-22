@@ -510,8 +510,29 @@ class Order extends Model
 
 	public function getListingData($collection)
 	{
+		$orders = collect(method_exists($collection, 'items') ? $collection->items() : $collection);
+		$userIds = $orders->pluck('user_id')->filter()->unique()->values();
+		$emails = $orders->whereNull('user_id')->pluck('email')->filter()->unique()->values();
+		$userOrderCounts = $userIds->isEmpty()
+			? collect()
+			: self::query()
+				->select('user_id', DB::raw('COUNT(*) as orders_count'))
+				->whereIn('user_id', $userIds)
+				->groupBy('user_id')
+				->pluck('orders_count', 'user_id');
+		$emailOrderCounts = $emails->isEmpty()
+			? collect()
+			: self::query()
+				->select('email', DB::raw('COUNT(*) as orders_count'))
+				->whereIn('email', $emails)
+				->groupBy('email')
+				->pluck('orders_count', 'email');
 
-		return  $collection->map(function ($order) {
+		return  $collection->map(function ($order) use ($userOrderCounts, $emailOrderCounts) {
+			$isReturningCustomer = $order->user_id
+				? (int) ($userOrderCounts[$order->user_id] ?? 0) > 1
+				: (int) ($emailOrderCounts[$order->email] ?? 0) > 1;
+
 			if (str_contains(request()->path(), 'admin')) {
 				$d =  $this->dispatch();
 				if (($key = array_search($order->dispatch, $this->dispatch())) !== false) {
@@ -529,7 +550,7 @@ class Order extends Model
 						"Ip Address" => $order->ip,
 						"Coupon" => $order->coupon,
 						"Type" => 'offline',
-						"Customer Type" => self::isReturningCustomer($order) ? 'Returning' : 'New',
+						"Customer Type" => $isReturningCustomer ? 'Returning' : 'New',
 						"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 						"Referer" => $order->referer,
 						"Total" => Helper::currencyWrapper($order->total),
@@ -545,7 +566,7 @@ class Order extends Model
 					"Ip Address" => $order->ip,
 					"Coupon" => $order->coupon,
 					"Type" => $order->order_type,
-					"Customer Type" => self::isReturningCustomer($order) ? 'Returning' : 'New',
+					"Customer Type" => $isReturningCustomer ? 'Returning' : 'New',
 					"Referer" => $order->referer,
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 					"Total" => Helper::currencyWrapper($order->total),

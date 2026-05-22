@@ -45,13 +45,18 @@ class OrdersController extends Table
 
 	public function builder()
 	{
-		return Order::query();
+		return Order::with([
+			'user:id,name,last_name,email,phone_number',
+			'orderEmail:id,order_id,fullname,email',
+		])->has('ordered_products');
 	}
 
 	public function index()
 	{
 
-		$orders = Order::has('ordered_products')->orderBy('created_at', 'desc')->paginate(150);
+		$orders = $this->builder()
+			->latest('created_at')
+			->paginate(150);
 		$orders = $this->getColumnListings(request(), $orders);
 
 		return view('admin.orders.index', compact('orders'));
