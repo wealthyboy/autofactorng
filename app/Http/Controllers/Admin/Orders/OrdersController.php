@@ -521,12 +521,13 @@ class OrdersController extends Table
 				"Phone Number" =>  null !== $user ?  optional($user)->phone_number :  optional($obj)->phone_number,
 				"Email" => null !== $user ?  optional($user)->email :  optional($obj)->email,
 				"Date Joined" => optional(null !== $user ? $user->created_at : optional($obj)->created_at)->format('d-m-y') ?? '---',
-				"Referer" => optional($obj)->referer ?? '---',
 			],
 			'Order' => [
 				"Date Added" => $obj->created_at,
 				"Payment Type" => $obj->payment_type,
 				"Shipping" => Helper::currencyWrapper($obj->shipping_price),
+				"Ip Address" => optional($obj)->ip ?? '---',
+				"Referer" => optional($obj)->referer ?? '---',
 			],
 		];
 	}
