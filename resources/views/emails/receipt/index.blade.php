@@ -816,7 +816,7 @@
                                                       <td class="wz2" height="10" width="30"></td>
                                                    </tr>
                                                    <tr>
-                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ '₦' }}{{ number_format($sub_total) }}</td>
+                                                      <td class="rt5td" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;"><a href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;color: #67bffd;"></a>{{ '₦' }}{{ number_format($sub_total ?? $order->ordered_products->sum('total')) }}</td>
                                                    </tr>
                                                    <tr>
                                                       <td class="wz2" height="10" width="30"></td>
@@ -883,7 +883,7 @@
                                                    </tr>
                                                    <tr>
                                                       <td class="rt5td" data-link-style="text-decoration:none;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;font-weight: lighter;text-align: center;line-height: 23px;">
-                                                         <div href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;">{{ $coupon_value }} </div>
+                                                         <div href="#" target="_blank" data-color="RegularLink" style="text-decoration: none;">{{ $coupon_value ?? $order->coupon_value ?? '₦0.0' }} </div>
                                                       </td>
                                                    </tr>
                                                    <tr>
