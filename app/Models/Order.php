@@ -557,6 +557,7 @@ class Order extends Model
 						"Email" => optional($order->orderEmail)->email,
 						"Payment Type" => $order->payment,
 						"Coupon" => $order->coupon,
+						"Category" => ucfirst($order->category ?: 'general'),
 						"Type" => 'offline',
 						"Customer Type" => $isReturningCustomer ? 'Returning' : 'New',
 						"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
@@ -571,6 +572,7 @@ class Order extends Model
 					"Email" => $order->email,
 					"Payment Type" => $order->payment_type,
 					"Coupon" => $order->coupon,
+					"Category" => ucfirst($order->category ?: 'general'),
 					"Type" => $order->order_type,
 					"Customer Type" => $isReturningCustomer ? 'Returning' : 'New',
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
@@ -596,6 +598,7 @@ class Order extends Model
 			"Customer" => 'first_name',
 			"Email" => 'email',
 			"Coupon" => 'coupon',
+			"Category" => 'category',
 			"Total" => 'total',
 			"Date Added" => 'created_at',
 		];
