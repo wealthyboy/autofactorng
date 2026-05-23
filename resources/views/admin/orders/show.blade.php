@@ -24,7 +24,7 @@
                   <td class="text-left" data-link-style="text-decoration:none; color:#67bffd;">
                      @if($order->isPickup())
                         {{ $order->first_name }} {{ $order->last_name }} <br />
-                        Customer selected pickup for this order.
+                        {{ $order->pickupAddress() }}
                      @else
                         {{ $order->first_name }} {{ $order->last_name }} <br />
                         {{ $order->address }}<br /> {{ $order->city }} &nbsp;

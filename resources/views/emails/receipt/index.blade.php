@@ -444,7 +444,7 @@
                                                                <td colspan="3" class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="margin-left: 3px;color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;line-height: 23px;">
                                                                   {{ ucfirst($order->first_name) }} {{ ucfirst($order->last_name) }} <br />
                                                                   @if($order->isPickup())
-                                                                  Customer selected pickup for this order.&nbsp;
+                                                                  {{ $order->pickupAddress() }}&nbsp;
                                                                   @else
                                                                   {{ $order->address }}<br /> {{ $order->city }} &nbsp;
                                                                   <br /> {{ $order->state }}&nbsp;

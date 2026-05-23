@@ -52,7 +52,8 @@
                                             Pick up
                                         </span>
                                         <span class="delivery-option-text">
-                                            Pick up your order from AutofactorNG.
+                                            Tapa house, imam Dauda street, off
+                                            Eric Moore surulere Lagos.
                                         </span>
                                     </span>
                                     <span class="delivery-option-price">₦0</span>

@@ -30,6 +30,8 @@ class Order extends Model
 {
 	use HasFactory, ColumnFillable;
 
+	public const PICKUP_ADDRESS = 'Tapa house, imam Dauda street, off Eric Moore surulere Lagos';
+
 	public $appends = ['ship_price'];
 
 	protected $casts = [
@@ -81,6 +83,11 @@ class Order extends Model
 	public function isPickup()
 	{
 		return $this->zone === 'Pickup';
+	}
+
+	public function pickupAddress()
+	{
+		return self::PICKUP_ADDRESS;
 	}
 
 	public static function orderReviewNotiication($order)

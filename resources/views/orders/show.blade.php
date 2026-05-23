@@ -21,7 +21,7 @@
                                 <h3>{{ $order->isPickup() ? 'Pickup' : 'Shipping Address' }}</h3>
                                 <span id="">{{ $order->first_name }} {{ $order->last_name }}</span>
                                 @if($order->isPickup())
-                                    <br />Customer selected pickup for this order.
+                                    <br />{{ $order->pickupAddress() }}
                                 @else
                                     <br />{{ $order->address }}
                                     <br /> {{ $order->city }} &nbsp;

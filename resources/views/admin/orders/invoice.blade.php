@@ -237,7 +237,7 @@
         <h2 class="name">{{ $order->first_name  .' '.  $order->last_name }}</h2>
         <div class="address">
           @if($order->isPickup())
-            Pickup
+            {{ $order->pickupAddress() }}
           @else
             {{ $order->address }}, {{ $order->city }} {{ $order->state }}
           @endif
