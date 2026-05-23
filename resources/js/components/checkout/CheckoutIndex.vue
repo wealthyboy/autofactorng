@@ -52,8 +52,8 @@
                                             Pick up
                                         </span>
                                         <span class="delivery-option-text">
-                                            Tapa house, imam Dauda street, off
-                                            Eric Moore surulere Lagos.
+                                            Tapa House, Imam Dauda Street, Off
+                                            Eric Moore, Surulere Lagos.
                                         </span>
                                     </span>
                                     <span class="delivery-option-price">₦0</span>
@@ -508,6 +508,7 @@ export default {
                                 heavy_item_price:
                                     context.prices?.heavy_item_price || 0,
                                 total: context.total,
+                                zone: context.zone,
                                 referer: context.referer,
                             })
                             .then((response) => {
@@ -515,15 +516,16 @@ export default {
                                 context.payment_is_processing = false;
                             })
                             .catch((error) => {
-                                e.target.innerText = text;
-                                e.target.classList.remove("disabled");
                                 context.payment_is_processing = false;
+                                context.order_text = "Place Order";
                             });
                     },
 
                     // The Close function (User manually closes or transaction is aborted)
                     function close(close) {
                         console.log("Transaction Closed Event:", close);
+                        context.payment_is_processing = false;
+                        context.order_text = "Place Order";
                     },
                 );
             }, 2000);

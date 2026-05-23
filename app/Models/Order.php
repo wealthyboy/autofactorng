@@ -30,7 +30,7 @@ class Order extends Model
 {
 	use HasFactory, ColumnFillable;
 
-	public const PICKUP_ADDRESS = 'Tapa house, imam Dauda street, off Eric Moore surulere Lagos';
+	public const PICKUP_ADDRESS = 'Tapa House, Imam Dauda Street, Off Eric Moore, Surulere Lagos.';
 
 	public $appends = ['ship_price'];
 
