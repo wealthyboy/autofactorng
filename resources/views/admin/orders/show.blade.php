@@ -16,15 +16,20 @@
          <table class="table table-bordered">
             <thead>
                <tr>
-                  <h4 class="card-title">Shipping Address</h4>
+                  <h4 class="card-title">{{ $order->isPickup() ? 'Pickup' : 'Shipping Address' }}</h4>
                </tr>
             </thead>
             <tbody>
                <tr>
                   <td class="text-left" data-link-style="text-decoration:none; color:#67bffd;">
-                     {{ $order->first_name }} {{ $order->last_name }} <br />
-                     {{ $order->address }}<br /> {{ $order->city }} &nbsp;
-                     <br />{{ $order->state }}&nbsp;
+                     @if($order->isPickup())
+                        {{ $order->first_name }} {{ $order->last_name }} <br />
+                        Customer selected pickup for this order.
+                     @else
+                        {{ $order->first_name }} {{ $order->last_name }} <br />
+                        {{ $order->address }}<br /> {{ $order->city }} &nbsp;
+                        <br />{{ $order->state }}&nbsp;
+                     @endif
                   </td>
                </tr>
             </tbody>

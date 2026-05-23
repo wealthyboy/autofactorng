@@ -92,7 +92,7 @@
             </template>
         </span>
     </p>
-    <div v-if="showCoupon">
+    <div v-if="showCoupon && deliveryOption === 'delivery'">
         <div
             v-if="!prices.zones"
             class="border-top border-bottom pb-3 pt-3 d-flex justify-content-between fs-4"
@@ -108,26 +108,6 @@
         <div v-if="prices.zones" class="card">
             <div class="card-body">
                 <h5 class="mb-3 font-weight-bold">Shipping Options</h5>
-
-                <label
-                    v-if="prices.can_pickup"
-                    class="list-group-item d-flex justify-content-between align-items-center"
-                >
-                    <div>
-                        <input
-                            id="shipping-pickup"
-                            @change="selectPickup"
-                            type="radio"
-                            name="shipping"
-                            class="custom-control-input"
-                        />
-                        <span class="font-weight-bold">Pickup</span>
-                        <div class="text-muted small">
-                            Pick up your order from AutofactorNG.
-                        </div>
-                    </div>
-                    <span class="font-weight-bold">₦0</span>
-                </label>
 
                 <div class="list-group">
                     <label
@@ -176,7 +156,7 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-    props: ["amount", "showCoupon"],
+    props: ["amount", "showCoupon", "deliveryOption"],
     emits: ["price-selected"],
 
     data() {
@@ -218,22 +198,6 @@ export default {
             });
         },
 
-        selectPickup() {
-            this.selectedMethod = 0;
-            this.$store.commit(
-                "setTotal",
-                parseInt(this.prices.sub_total) +
-                    parseInt(this.prices.heavy_item_price || 0),
-            );
-
-            this.$emit("price-selected", {
-                price: 0,
-                coupon: this.coupon_code,
-                zone: "Pickup",
-                pickup: true,
-            });
-        },
-
         applyCoupon: function () {
             if (!this.coupon) {
                 this.coupon_error = "Enter a coupon code";
@@ -260,9 +224,12 @@ export default {
                             ? this.prices.heavy_item_price
                             : 0;
 
-                    let ship_price = !this.prices.zones
-                        ? parseFloat(this.prices.ship_price)
-                        : parseFloat(this.selectedMethod);
+                    let ship_price =
+                        this.deliveryOption === "pickup"
+                            ? 0
+                            : !this.prices.zones
+                              ? parseFloat(this.prices.ship_price)
+                              : parseFloat(this.selectedMethod);
 
                     this.$store.commit(
                         "setTotal",

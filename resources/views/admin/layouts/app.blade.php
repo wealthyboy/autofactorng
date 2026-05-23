@@ -162,11 +162,11 @@
             </li>
 
             <li class="nav-item">
-               <a data-bs-toggle="collapse" href="#Orders" class="nav-link text-white {{ $helper->active_link(['orders','indrive-orders']) }}" aria-controls="Orders" role="button" aria-expanded="false">
+               <a data-bs-toggle="collapse" href="#Orders" class="nav-link text-white {{ $helper->active_link(['orders']) }}" aria-controls="Orders" role="button" aria-expanded="false">
                   <i class="material-symbols-outlined opacity-10">shopping_cart</i>
                   <span class="nav-link-text ms-2 ps-1">Orders</span>
                </a>
-               <div class="collapse {{ $helper->active_link(['orders','indrive-orders']) ? 'show' : ''}}" id="Orders">
+               <div class="collapse {{ $helper->active_link(['orders']) ? 'show' : ''}}" id="Orders">
                   <ul class="nav">
                      <li class="nav-item ">
                         <a class="nav-link text-white {{ $helper->active_link(['orders']) }}" href="{{ route('admin.orders.index') }}">
@@ -174,14 +174,15 @@
                            <span class="sidenav-normal  ms-2  ps-1"> Orders </span>
                         </a>
                      </li>
-                     <li class="nav-item ">
-                        <a class="nav-link text-white {{ $helper->active_link(['indrive-orders']) }}" href="{{ route('admin.indrive-orders.index') }}">
-                           <span class="sidenav-mini-icon"> I </span>
-                           <span class="sidenav-normal  ms-2  ps-1"> inDrive Orders </span>
-                        </a>
-                     </li>
                   </ul>
                </div>
+            </li>
+
+            <li class=" nav-item">
+               <a class="nav-link text-white {{ $helper->active_link(['indrive-orders']) }}" href="{{ route('admin.indrive-orders.index') }}">
+                  <i class="material-symbols-outlined opacity-10">analytics</i>
+                  <span class="nav-link-text ms-2 ps-1"> In Drive Analytics </span>
+               </a>
             </li>
 
             <li class=" nav-item">

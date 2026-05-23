@@ -94,8 +94,8 @@ class CheckoutController extends Controller
             $user = Auth::user();
             $carts = Cart::all_items_in_cart();
 
-            if (($input['zone'] ?? null) === 'Pickup' && (int) optional($user->active_address)->state_id !== 30) {
-                return response()->json(['error' => 'Pickup is only available for Lagos addresses'], 422);
+            if (($input['zone'] ?? null) === 'Pickup' && $payment_method === 'payment_on_delivery') {
+                return response()->json(['error' => 'Pay on delivery is not available for pickup orders'], 422);
             }
 
             if ($indriveCoupon->isProtectedCoupon($input['coupon'] ?? null)) {

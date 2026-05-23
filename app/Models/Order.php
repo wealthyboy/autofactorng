@@ -60,7 +60,10 @@ class Order extends Model
 
 	public function scopeIndrive($query)
 	{
-		return $query->where('is_indrive_order', true);
+		return $query->where(function ($q) {
+			$q->where('category', 'indrive')
+				->orWhere('is_indrive_order', true);
+		});
 	}
 
 
@@ -73,6 +76,11 @@ class Order extends Model
 	public function address()
 	{
 		return $this->belongsTo(Address::class);
+	}
+
+	public function isPickup()
+	{
+		return $this->zone === 'Pickup';
 	}
 
 	public static function orderReviewNotiication($order)
@@ -88,7 +96,7 @@ class Order extends Model
 		$inv = substr(rand(100000, time()), 0, 7);
 
 		$order->user_id = $user->id;
-		$order->address_id = $user->active_address->id;
+		$order->address_id = optional($user->active_address)->id;
 		$order->coupon = $input['coupon'] ?? null;
 		$order->heavy_item_price = isset($input['heavy_item_price']) ? $input['heavy_item_price'] : null;
 		$order->status = 'Confirmed';
@@ -104,6 +112,7 @@ class Order extends Model
 		$order->order_type = "Online";
 		$order->order_from = session('acquisition_source') ?: null;
 		$order->is_indrive_order = (bool) ($user->is_indrive_customer || session('is_indrive_customer'));
+		$order->category = $order->is_indrive_order ? 'indrive' : 'general';
 		$order->source_channel = $order->is_indrive_order ? 'indrive' : session('acquisition_source');
 		$order->indrive_driver_id = $order->is_indrive_order ? ($user->indrive_driver_id ?: session('indrive_driver_id')) : null;
 		$order->phone_number = $user->phone_number;

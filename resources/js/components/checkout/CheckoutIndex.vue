@@ -29,10 +29,66 @@
                     Your item(s) are eligible for return within 12days from the
                     date it is delivered to you.
                 </div>
-                <div class="card border-0">
+                <div class="card border-0 mb-3">
                     <div class="col-md-12 px-4 bg-white mb-2">
                         <div class="head border-bottom mb-3 py-4">
-                            <h3 class="mb-0 fs-3">1. SHIPPING ADDRESSS</h3>
+                            <h3 class="mb-0 fs-3">1. DELIVERY OPTIONS</h3>
+                        </div>
+                        <div class="row g-3 pb-4">
+                            <div class="col-md-6">
+                                <label
+                                    class="delivery-option-card"
+                                    :class="{ active: isPickup }"
+                                >
+                                    <input
+                                        v-model="deliveryOption"
+                                        @change="selectDeliveryOption('pickup')"
+                                        type="radio"
+                                        name="delivery_option"
+                                        value="pickup"
+                                    />
+                                    <span class="delivery-option-content">
+                                        <span class="delivery-option-title">
+                                            Pick up
+                                        </span>
+                                        <span class="delivery-option-text">
+                                            Pick up your order from AutofactorNG.
+                                        </span>
+                                    </span>
+                                    <span class="delivery-option-price">₦0</span>
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label
+                                    class="delivery-option-card"
+                                    :class="{ active: isDelivery }"
+                                >
+                                    <input
+                                        v-model="deliveryOption"
+                                        @change="selectDeliveryOption('delivery')"
+                                        type="radio"
+                                        name="delivery_option"
+                                        value="delivery"
+                                    />
+                                    <span class="delivery-option-content">
+                                        <span class="delivery-option-title">
+                                            Delivery
+                                        </span>
+                                        <span class="delivery-option-text">
+                                            Send this order to your selected
+                                            shipping address.
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div v-show="isDelivery" class="card border-0">
+                    <div class="col-md-12 px-4 bg-white mb-2">
+                        <div class="head border-bottom mb-3 py-4">
+                            <h3 class="mb-0 fs-3">2. SHIPPING ADDRESSS</h3>
                         </div>
                         <ship-address />
                     </div>
@@ -44,13 +100,14 @@
                             <span class="float-right">
                                 <div class="payment-icons mt-1 d-flex"></div>
                             </span>
-                            <h4 class="mb-0 mb-3 fs-3">2. REVIEW & PAYMENT</h4>
+                            <h4 class="mb-0 mb-3 fs-3">3. REVIEW & PAYMENT</h4>
                         </div>
 
-                        <div v-if="addresses.length">
+                        <div v-if="canReviewPayment">
                             <cart-summary
                                 @price-selected="priceSelected"
                                 :showCoupon="!false"
+                                :deliveryOption="deliveryOption"
                             />
                             <total
                                 :voucher="voucher"
@@ -121,6 +178,7 @@
                                 </a>
 
                                 <a
+                                    v-if="isDelivery"
                                     href="#"
                                     :class="{
                                         'pe-none': !prices.isLagos,
@@ -162,6 +220,12 @@
                                 </div>
                             </div>
                         </div>
+                        <div
+                            v-else
+                            class="border rounded bg-light px-4 py-3 mb-4 text-muted"
+                        >
+                            Select a delivery option to continue.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -177,7 +241,10 @@
                                     <h3 class="mb-0 fs-3">SUMMARY</h3>
                                 </div>
 
-                                <cart-summary :showCoupon="!true" />
+                                <cart-summary
+                                    :showCoupon="!true"
+                                    :deliveryOption="deliveryOption"
+                                />
 
                                 <total
                                     :showTotal="showTotal"
@@ -245,6 +312,7 @@ export default {
             ship_price: 0,
             zone: "",
             pickupSelected: false,
+            deliveryOption: "",
             referer: null,
         };
     },
@@ -267,6 +335,18 @@ export default {
                 this.prices.total - parseInt(this.walletBalance.wallet_balance)
             );
         },
+        isPickup() {
+            return this.deliveryOption === "pickup";
+        },
+        isDelivery() {
+            return this.deliveryOption === "delivery";
+        },
+        canReviewPayment() {
+            return (
+                !!this.deliveryOption &&
+                (this.isPickup || this.addresses.length > 0)
+            );
+        },
     },
 
     created() {
@@ -277,17 +357,7 @@ export default {
             this.loading = false;
         });
     },
-    watch: {
-        "prices.can_pickup"(canPickup) {
-            if (canPickup || !this.pickupSelected) {
-                return;
-            }
-
-            this.pickupSelected = false;
-            this.ship_price = "";
-            this.zone = "";
-        },
-    },
+    watch: {},
     mounted() {},
     methods: {
         ...mapActions({
@@ -313,15 +383,42 @@ export default {
                 });
         },
 
-        paywithSeerbit: function () {
-            let context = this;
-            var cartIds = [];
-            this.ship_price = this.prices.zones
-                ? this.ship_price
-                : this.prices.ship_price;
-            this.carts.forEach(function (cart, key) {
-                cartIds.push(cart.id);
-            });
+        baseOrderTotal() {
+            return (
+                parseInt(this.prices.sub_total || this.original_total || 0) +
+                parseInt(this.prices.heavy_item_price || 0)
+            );
+        },
+
+        selectDeliveryOption(option) {
+            this.deliveryOption = option;
+
+            if (this.isPickup) {
+                this.pickupSelected = true;
+                this.ship_price = 0;
+                this.zone = "Pickup";
+                this.$store.commit("setTotal", this.baseOrderTotal());
+                return;
+            }
+
+            this.pickupSelected = false;
+            this.ship_price = "";
+            this.zone = "";
+            this.$store.commit("setTotal", this.baseOrderTotal());
+        },
+
+        prepareCheckoutShipping() {
+            if (!this.deliveryOption) {
+                alert("Select pickup or delivery");
+                return false;
+            }
+
+            if (this.isPickup) {
+                this.pickupSelected = true;
+                this.ship_price = 0;
+                this.zone = "Pickup";
+                return true;
+            }
 
             if (!this.addresses.length) {
                 this.error =
@@ -329,8 +426,27 @@ export default {
                 return false;
             }
 
-            if (!this.pickupSelected && (!this.ship_price || this.ship_price < 1)) {
+            this.pickupSelected = false;
+            this.ship_price = this.prices.zones
+                ? this.ship_price
+                : this.prices.ship_price;
+
+            if (!this.ship_price || this.ship_price < 1) {
                 alert("Select your shipping");
+                return false;
+            }
+
+            return true;
+        },
+
+        paywithSeerbit: function () {
+            let context = this;
+            var cartIds = [];
+            this.carts.forEach(function (cart, key) {
+                cartIds.push(cart.id);
+            });
+
+            if (!this.prepareCheckoutShipping()) {
                 return false;
             }
 
@@ -413,12 +529,7 @@ export default {
         },
 
         checkoutWithWallet: function (e) {
-            this.ship_price = this.prices.zones
-                ? this.ship_price
-                : this.prices.ship_price;
-
-            if (!this.pickupSelected && (!this.ship_price || this.ship_price < 1)) {
-                alert("Select your shipping");
+            if (!this.prepareCheckoutShipping()) {
                 return false;
             }
 
@@ -444,12 +555,6 @@ export default {
                 this.carts.forEach(function (cart, key) {
                     cartIds.push(cart.id);
                 });
-
-                if (!this.addresses.length) {
-                    this.error =
-                        "You need to save your address before placing your order";
-                    return false;
-                }
 
                 let form = document.getElementById("checkout-form-2");
                 this.order_text = "Please wait. We are almost done......";
@@ -524,12 +629,7 @@ export default {
         },
 
         checkoutWithCredit: function (e) {
-            this.ship_price = this.prices.zones
-                ? this.ship_price
-                : this.prices.ship_price;
-
-            if (!this.pickupSelected && (!this.ship_price || this.ship_price < 1)) {
-                alert("Select your shipping");
+            if (!this.prepareCheckoutShipping()) {
                 return false;
             }
 
@@ -540,6 +640,7 @@ export default {
             this.pickupSelected = !!res.pickup;
 
             if (this.pickupSelected) {
+                this.deliveryOption = "pickup";
                 this.ship_price = 0;
                 this.zone = res.zone;
                 return;
@@ -579,21 +680,11 @@ export default {
         makePayment: function (e) {
             let context = this;
             var cartIds = [];
-            this.ship_price = this.prices.zones
-                ? this.ship_price
-                : this.prices.ship_price;
             this.carts.forEach(function (cart, key) {
                 cartIds.push(cart.id);
             });
 
-            if (!this.addresses.length) {
-                this.error =
-                    "You need to save your address before placing your order";
-                return false;
-            }
-
-            if (!this.pickupSelected && (!this.ship_price || this.ship_price < 1)) {
-                alert("Select your shipping");
+            if (!this.prepareCheckoutShipping()) {
                 return false;
             }
 
@@ -647,12 +738,7 @@ export default {
             console.log(c);
         },
         checkout: function (e, type = null, text) {
-            this.ship_price = this.prices.zones
-                ? this.ship_price
-                : this.prices.ship_price;
-
-            if (!this.pickupSelected && (!this.ship_price || this.ship_price < 1)) {
-                alert("Select your shipping");
+            if (!this.prepareCheckoutShipping()) {
                 return false;
             }
 
@@ -716,5 +802,72 @@ export default {
 .spinner-border {
     width: 3rem;
     height: 3rem;
+}
+
+.delivery-option-card {
+    min-height: 118px;
+    border: 1px solid #d9dde3;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    gap: 14px;
+    height: 100%;
+    padding: 18px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.delivery-option-card:hover {
+    border-color: #f57f2a;
+}
+
+.delivery-option-card.active {
+    background-color: #fff8f2;
+    border-color: #f57f2a;
+    box-shadow: 0 0 0 1px rgba(245, 127, 42, 0.15);
+}
+
+.delivery-option-card.disabled {
+    background-color: #f8f9fa;
+    color: #8b9198;
+    cursor: not-allowed;
+}
+
+.delivery-option-card input {
+    flex: 0 0 auto;
+    margin-top: 5px;
+}
+
+.delivery-option-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.delivery-option-title {
+    color: #24282d;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.delivery-option-text,
+.delivery-option-note {
+    color: #6d737b;
+    font-size: 13px;
+    line-height: 1.35;
+}
+
+.delivery-option-note {
+    color: #f57f2a;
+    font-weight: 600;
+}
+
+.delivery-option-price {
+    align-self: center;
+    color: #24282d;
+    font-weight: 700;
 }
 </style>

@@ -437,14 +437,18 @@
                                                          <table class="tableTxt" width="252" cellspacing="0" cellpadding="0" border="0" align="left">
 
                                                             <tr>
-                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="SectionInfoLink" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 18px;font-weight: bold;text-align: left;line-height: 23px;" width="179" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="SectionInfoLink"></a>Shipping Address</td>
+                                                               <td class="RegularText4TD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="SectionInfoLink" data-color="SectionInfoTXT" style="color: #425065;font-family: sans-serif;font-size: 18px;font-weight: bold;text-align: left;line-height: 23px;" width="179" valign="top" align="left"><a href="#" target="_blank" style="text-decoration: none;color: #67bffd;font-weight: bold;" data-color="SectionInfoLink"></a>{{ $order->isPickup() ? 'Pickup' : 'Shipping Address' }}</td>
                                                             </tr>
 
                                                             <tr>
                                                                <td colspan="3" class="RegularTextTD" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="margin-left: 3px;color: #727e8d;font-family: sans-serif;font-size: 13px;font-weight: lighter;line-height: 23px;">
                                                                   {{ ucfirst($order->first_name) }} {{ ucfirst($order->last_name) }} <br />
+                                                                  @if($order->isPickup())
+                                                                  Customer selected pickup for this order.&nbsp;
+                                                                  @else
                                                                   {{ $order->address }}<br /> {{ $order->city }} &nbsp;
                                                                   <br /> {{ $order->state }}&nbsp;
+                                                                  @endif
                                                                   <br />Phone number: {{ $order->phone_number }}&nbsp;
                                                                   <br />
                                                                   <div class="date">Payment Type: {{ ucfirst(implode(' ',explode('_',$order->payment_type))) ?? 'Payment on delivery'}}</div>

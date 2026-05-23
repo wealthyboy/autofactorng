@@ -118,6 +118,9 @@ class OrdersController extends Table
 		$input = $request->except('_token');
 		$input['invoice'] = $inv;
 		$input['order_type'] = "Offline";
+		$input['category'] = in_array($request->category, ['general', 'indrive'], true) ? $request->category : 'general';
+		$input['is_indrive_order'] = $input['category'] === 'indrive';
+		$input['source_channel'] = $input['category'] === 'indrive' ? 'indrive' : null;
 		$input['user_id'] = null !== $user ? $user->id : null;
 		$input['status'] = "Confirmed";
 		$order = new Order;
@@ -525,6 +528,8 @@ class OrdersController extends Table
 			'Order' => [
 				"Date Added" => $obj->created_at,
 				"Payment Type" => $obj->payment_type,
+				"Category" => ucfirst($obj->category ?: 'general'),
+				"Fulfillment" => optional($obj)->isPickup() ? 'Pickup' : 'Delivery',
 				"Shipping" => Helper::currencyWrapper($obj->shipping_price),
 				"Ip Address" => optional($obj)->ip ?? '---',
 				"Referer" => optional($obj)->referer ?? '---',

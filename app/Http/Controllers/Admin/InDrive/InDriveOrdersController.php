@@ -148,7 +148,7 @@ class InDriveOrdersController extends Controller
     protected function ordersQuery(Request $request)
     {
         return $this->applyOrderFilters(
-            Order::query()->where('is_indrive_order', true),
+            Order::query()->indrive(),
             $request
         );
     }

@@ -26,6 +26,17 @@
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
+                        <select class="form-control" name="category" required>
+                           <option value="general" {{ old('category', isset($order) ? $order->category : 'general') === 'general' ? 'selected' : '' }}>General</option>
+                           <option value="indrive" {{ old('category', isset($order) ? $order->category : null) === 'indrive' ? 'selected' : '' }}>InDrive</option>
+                        </select>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
+                     <div class="input-group input-group-outline">
                         <label class="form-label"> Subject</label>
                         <input type="text" value="{{ 'Confirmation Of Order' }}" class="form-control" name="subject" required>
                      </div>

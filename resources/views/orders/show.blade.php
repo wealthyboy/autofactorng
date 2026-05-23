@@ -18,11 +18,15 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-4">
-                                <h3>Shipping Address</h3>
+                                <h3>{{ $order->isPickup() ? 'Pickup' : 'Shipping Address' }}</h3>
                                 <span id="">{{ $order->first_name }} {{ $order->last_name }}</span>
-                                <br />{{ $order->address }}
-                                <br /> {{ $order->city }} &nbsp;
-                                <br /> {{ $order->state }}
+                                @if($order->isPickup())
+                                    <br />Customer selected pickup for this order.
+                                @else
+                                    <br />{{ $order->address }}
+                                    <br /> {{ $order->city }} &nbsp;
+                                    <br /> {{ $order->state }}
+                                @endif
                                 <br /> <b>Email: </b>{{ $order->email }}
 
                                 <br /> <b>Phone Number: </b> {{ $order->phone_number }}

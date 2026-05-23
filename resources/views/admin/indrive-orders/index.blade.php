@@ -8,7 +8,7 @@
                 <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
                     <i class="material-symbols-outlined">filter_alt</i>
                 </div>
-                <h6 class="mb-0">Filter inDrive Orders</h6>
+                <h6 class="mb-0">Filter In Drive Analytics</h6>
             </div>
             <div class="card-body pt-0">
                 <form action="{{ route('admin.indrive-orders.index') }}" method="get">
@@ -83,7 +83,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center ps-3">
                 <div>
-                    <h4 class="m-0">inDrive Orders & Drivers</h4>
+                    <h4 class="m-0">In Drive Analytics</h4>
                     <p class="text-sm mb-0">{{ $drivers->total() }} drivers found</p>
                 </div>
                 <a href="{{ route('admin.indrive-orders.export', request()->query()) }}" class="btn btn-outline-primary btn-sm mb-0">Export</a>
