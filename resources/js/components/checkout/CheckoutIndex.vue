@@ -509,6 +509,7 @@ export default {
                                     context.prices?.heavy_item_price || 0,
                                 total: context.total,
                                 zone: context.zone,
+                                delivery_option: context.deliveryOption,
                                 referer: context.referer,
                             })
                             .then((response) => {
@@ -584,6 +585,7 @@ export default {
                                 cart: cartIds,
                                 total: context.total,
                                 zone: context.zone,
+                                delivery_option: context.deliveryOption,
                                 referer: context.referer,
                             },
                         ],
@@ -714,6 +716,7 @@ export default {
                             cart: cartIds,
                             total: context.total,
                             zone: context.zone,
+                            delivery_option: context.deliveryOption,
                             referer: context.referer,
                         },
                     ],
@@ -770,6 +773,7 @@ export default {
                     heavy_item_price: this.prices.heavy_item_price || 0,
                     total: this.total,
                     zone: this.zone,
+                    delivery_option: this.deliveryOption,
                     referer: this.referer,
                 })
                 .then((response) => {

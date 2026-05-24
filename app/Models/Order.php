@@ -82,7 +82,10 @@ class Order extends Model
 
 	public function isPickup()
 	{
-		return $this->zone === 'Pickup';
+		$zone = strtolower(trim((string) $this->zone));
+
+		return $zone === 'pickup'
+			|| ($zone === '' && strtolower((string) $this->order_type) === 'online' && (float) $this->shipping_price === 0.0);
 	}
 
 	public function pickupAddress()
@@ -127,6 +130,9 @@ class Order extends Model
 		$order->city = optional($user->active_address)->city;
 		$order->state = optional(optional($user->active_address)->address_state)->name;
 		$order->zone = data_get($input, 'zone');
+		if (! $order->zone && (float) data_get($input, 'shipping_price', 0) === 0.0 && data_get($input, 'delivery_option') === 'pickup') {
+			$order->zone = 'Pickup';
+		}
 		$order->referer = $carts->first()->referer ?? null;
 		$order->ip = $ip;
 		if ($order->save()) {
@@ -565,6 +571,7 @@ class Order extends Model
 						"Payment Type" => $order->payment,
 						"Coupon" => $order->coupon,
 						"Category" => ucfirst($order->category ?: 'general'),
+						"Fulfillment" => $order->isPickup() ? 'Pickup' : 'Delivery',
 						"Type" => 'offline',
 						"Customer Type" => $isReturningCustomer ? 'Returning' : 'New',
 						"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
@@ -580,6 +587,7 @@ class Order extends Model
 					"Payment Type" => $order->payment_type,
 					"Coupon" => $order->coupon,
 					"Category" => ucfirst($order->category ?: 'general'),
+					"Fulfillment" => $order->isPickup() ? 'Pickup' : 'Delivery',
 					"Type" => $order->order_type,
 					"Customer Type" => $isReturningCustomer ? 'Returning' : 'New',
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
