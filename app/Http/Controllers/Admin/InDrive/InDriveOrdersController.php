@@ -346,6 +346,7 @@ class InDriveOrdersController extends Controller
                     ->orWhere('zone', '!=', 'Pickup');
             })->count(),
             'top_driver' => $topDriver ? $topDriver->fullname() : '---',
+            'daily_clicks' => $this->dailyClicks(),
             'top_item' => $orderIds->isEmpty()
                 ? '---'
                 : OrderedProduct::query()
@@ -355,6 +356,21 @@ class InDriveOrdersController extends Controller
                     ->orderByDesc('qty')
                     ->value('product_name'),
         ];
+    }
+
+    protected function dailyClicks(): int
+    {
+        return UserTracking::query()
+            ->where('is_indrive', true)
+            ->whereBetween('visited_at', [
+                now()->startOfDay(),
+                now()->endOfDay(),
+            ])
+            ->where(function ($q) {
+                $q->where('page_url', 'like', '%isindrive%')
+                    ->orWhere('action', '!=', 'viewed');
+            })
+            ->count();
     }
 
     protected function locationFromOrder(?Order $order): string

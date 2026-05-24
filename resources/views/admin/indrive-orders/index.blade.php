@@ -67,6 +67,7 @@
                 'Pickups' => $stats['pickup_orders'],
                 'Deliveries' => $stats['delivery_orders'],
                 'Top Driver' => $stats['top_driver'],
+                'Daily Clicks' => $stats['daily_clicks'],
                 'Top Item' => $stats['top_item'],
             ] as $label => $value)
                 <div class="col-lg-3 col-md-4 col-12 mb-3">
