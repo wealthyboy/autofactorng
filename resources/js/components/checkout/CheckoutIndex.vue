@@ -49,7 +49,7 @@
                                     />
                                     <span class="delivery-option-content">
                                         <span class="delivery-option-title">
-                                            Pick up
+                                            Pick-Up (Lagos Only)
                                         </span>
                                         <span class="delivery-option-text">
                                             Tapa House, Imam Dauda Street, Off
@@ -73,7 +73,7 @@
                                     />
                                     <span class="delivery-option-content">
                                         <span class="delivery-option-title">
-                                            Delivery
+                                            Delivery (Nationwide)
                                         </span>
                                         <span class="delivery-option-text">
                                             Send this order to your selected
@@ -713,6 +713,7 @@ export default {
                             heavy_item_price: context.prices.heavy_item_price,
                             cart: cartIds,
                             total: context.total,
+                            zone: context.zone,
                             referer: context.referer,
                         },
                     ],
@@ -722,9 +723,11 @@ export default {
                     console.log("Transaction Callback Response:", response);
                     if (response.status == "success") {
                         context.paymentIsComplete = true;
+                        context.payment_is_processing = false;
                     } else {
                         this.error = "We could not complete your payment";
                         context.order_text = "Place Order";
+                        context.payment_is_processing = false;
                     }
                 },
                 onClose: function () {
