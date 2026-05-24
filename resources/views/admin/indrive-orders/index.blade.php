@@ -15,7 +15,7 @@
                     <div class="row">
                         <div class="col-md-3 col-12 mb-3">
                             <div class="input-group input-group-outline is-filled">
-                                <label class="form-label">Driver Id</label>
+                                <label class="form-label">Driver ID / Email / Phone</label>
                                 <input name="q" type="text" value="{{ $filters['q'] ?? '' }}" class="form-control">
                             </div>
                         </div>
