@@ -17,6 +17,7 @@ use App\Services\Newsletter\Exceptions\UserAlreadySubscribedException;
 use App\Services\Newsletter\MailChimpNewsletter;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\RateLimiter;
 use Mailchimp;
 use Mailchimp_Lists;
 
@@ -66,19 +67,119 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        $user = User::where('email', 'jacobanusa@gmail.com')->first();
-
-        if ($user) {
-            $user->delete();
-        }
-        return Validator::make($data, [
+        $validator = Validator::make($data, [
             'last_name' => ['required', 'string', 'max:255'],
             'first_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone_number' => ['required', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'website' => ['nullable', 'string', 'max:255'],
+            'registration_started_at' => ['nullable', 'integer'],
             // 'g-recaptcha-response' => ['required', 'string'],
         ]);
+
+        $validator->after(function ($validator) use ($data) {
+            if ($this->isBotRegistration($data, request())) {
+                $validator->errors()->add(
+                    'registration',
+                    'We could not verify this registration. Please refresh the page and try again.'
+                );
+            }
+        });
+
+        return $validator;
+    }
+
+    protected function isBotRegistration(array $data, Request $request): bool
+    {
+        $rateLimitKey = 'register:' . sha1($request->ip() . '|' . strtolower($data['email'] ?? ''));
+
+        if (RateLimiter::tooManyAttempts($rateLimitKey, 5)) {
+            Log::warning('Registration blocked by rate limit', [
+                'ip' => $request->ip(),
+                'email' => $data['email'] ?? null,
+            ]);
+
+            return true;
+        }
+
+        RateLimiter::hit($rateLimitKey, 900);
+
+        $riskScore = 0;
+        $reasons = [];
+
+        if (!empty($data['website'])) {
+            $riskScore += 100;
+            $reasons[] = 'honeypot_filled';
+        }
+
+        $startedAt = isset($data['registration_started_at'])
+            ? (int) $data['registration_started_at']
+            : null;
+
+        if (!$startedAt) {
+            $riskScore += 30;
+            $reasons[] = 'missing_form_timer';
+        } else {
+            $elapsedSeconds = (int) floor(((int) round(microtime(true) * 1000) - $startedAt) / 1000);
+
+            if ($elapsedSeconds < 3) {
+                $riskScore += 70;
+                $reasons[] = 'submitted_too_fast';
+            }
+
+            if ($elapsedSeconds > 7200) {
+                $riskScore += 20;
+                $reasons[] = 'stale_form';
+            }
+        }
+
+        if (!$request->userAgent()) {
+            $riskScore += 50;
+            $reasons[] = 'missing_user_agent';
+        }
+
+        if ($this->looksLikeSpamInput($data)) {
+            $riskScore += 40;
+            $reasons[] = 'spam_input_pattern';
+        }
+
+        $recaptchaToken = $data['g-recaptcha-response'] ?? '';
+        if ($recaptchaToken && !$this->verifyRecaptcha($recaptchaToken)) {
+            $riskScore += 40;
+            $reasons[] = 'recaptcha_failed';
+        }
+
+        if ($riskScore >= 60) {
+            Log::warning('Registration blocked by backend bot check', [
+                'ip' => $request->ip(),
+                'email' => $data['email'] ?? null,
+                'score' => $riskScore,
+                'reasons' => $reasons,
+            ]);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    protected function looksLikeSpamInput(array $data): bool
+    {
+        $fields = [
+            $data['first_name'] ?? '',
+            $data['last_name'] ?? '',
+            $data['email'] ?? '',
+            $data['phone_number'] ?? '',
+        ];
+
+        foreach ($fields as $field) {
+            if (preg_match('/https?:\/\/|<a\s|<\/a>|<script|<\/script>/i', (string) $field)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     protected function verifyRecaptcha($token)

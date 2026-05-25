@@ -3,6 +3,16 @@
         <message :message="post_server_error" />
 
         <form method="POST" @submit.prevent="register">
+            <input
+                v-model="form.website"
+                type="text"
+                name="website"
+                tabindex="-1"
+                autocomplete="off"
+                class="registration-website-field"
+                aria-hidden="true"
+            />
+
             <div class="row">
                 <div class="form-group p-1 col-6">
                     <div class="form-floating">
@@ -224,6 +234,8 @@ export default {
         }
 
         onMounted(() => {
+            form.registration_started_at = Date.now();
+
             if (!getRecaptchaSiteKey()) {
                 captcha_error.value =
                     "reCAPTCHA is not configured. Contact support.";
@@ -297,3 +309,12 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+.registration-website-field {
+    position: absolute;
+    left: -10000px;
+    opacity: 0;
+    pointer-events: none;
+}
+</style>
