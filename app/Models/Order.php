@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Schema;
 use Revolution\Google\Sheets\Facades\Sheets;
 use Carbon\Carbon;
 use Google_Client;
@@ -63,8 +64,12 @@ class Order extends Model
 	public function scopeIndrive($query)
 	{
 		return $query->where(function ($q) {
-			$q->where('category', 'indrive')
-				->orWhere('is_indrive_order', true);
+			if (Schema::hasColumn('orders', 'category')) {
+				$q->where('category', 'indrive')
+					->orWhere('is_indrive_order', true);
+			} else {
+				$q->where('is_indrive_order', true);
+			}
 		});
 	}
 

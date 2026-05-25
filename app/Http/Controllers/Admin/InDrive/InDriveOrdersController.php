@@ -8,8 +8,10 @@ use App\Models\Order;
 use App\Models\OrderedProduct;
 use App\Models\User;
 use App\Models\UserTracking;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class InDriveOrdersController extends Controller
@@ -18,18 +20,13 @@ class InDriveOrdersController extends Controller
     {
         User::canTakeAction(User::canAccessAdminUsers);
 
-        $drivers = $this->driversQuery($request)
-            ->latest('users.created_at')
-            ->paginate(50)
-            ->appends($request->query());
-
-        $driverRows = $this->driverRows($drivers->getCollection(), $request);
-        $drivers->setCollection($driverRows);
+        $filters = $this->filters($request);
+        $dailyRows = $this->dailyRows($request);
 
         return view('admin.indrive-orders.index', [
-            'drivers' => $drivers,
-            'filters' => $request->only(['q', 'from', 'to', 'fulfillment', 'status']),
+            'filters' => $filters,
             'stats' => $this->overviewStats($request),
+            'dailyRows' => $dailyRows,
         ]);
     }
 
@@ -72,46 +69,26 @@ class InDriveOrdersController extends Controller
             $handle = fopen('php://output', 'w');
 
             fputcsv($handle, [
-                'Driver ID',
-                'Name',
-                'Email',
-                'Phone',
-                'inDrive Driver ID',
+                'Date',
                 'Clicks',
                 'Website Visits',
-                'Location',
+                'Orders',
+                'Order Value',
                 'Delivery Orders',
                 'Pickup Orders',
-                'Order Count',
-                'Order Value',
-                'Top Purchased Item',
-                'Returned Items',
             ]);
 
-            $this->driversQuery($request)
-                ->latest('users.created_at')
-                ->chunk(250, function ($drivers) use ($handle, $request) {
-                    foreach ($this->driverRows($drivers, $request) as $row) {
-                        $driver = $row['driver'];
-
-                        fputcsv($handle, [
-                            $driver->id,
-                            $driver->fullname(),
-                            $driver->email,
-                            $driver->phone_number,
-                            $driver->indrive_driver_id,
-                            $row['clicks'],
-                            $row['website_visits'],
-                            $row['location'],
-                            $row['delivery_orders'],
-                            $row['pickup_orders'],
-                            $row['order_count'],
-                            $row['order_value_raw'],
-                            $row['top_purchased_item'],
-                            $row['returned_items'],
-                        ]);
-                    }
-                });
+            foreach ($this->dailyRows($request) as $row) {
+                fputcsv($handle, [
+                    $row['date'],
+                    $row['clicks'],
+                    $row['website_visits'],
+                    $row['orders'],
+                    $row['order_value_raw'],
+                    $row['delivery_orders'],
+                    $row['pickup_orders'],
+                ]);
+            }
 
             fclose($handle);
         }, $filename, [
@@ -119,7 +96,7 @@ class InDriveOrdersController extends Controller
         ]);
     }
 
-    protected function driversQuery(Request $request)
+    protected function driversQuery(Request $request, bool $defaultToday = false)
     {
         $query = User::query()
             ->where('is_indrive_customer', true)
@@ -133,49 +110,95 @@ class InDriveOrdersController extends Controller
                 $q->where('name', 'like', "%{$search}%")
                     ->orWhere('last_name', 'like', "%{$search}%")
                     ->orWhere('email', 'like', "%{$search}%")
-                    ->orWhere('indrive_driver_id', 'like', "%{$search}%")
                     ->orWhere('phone_number', 'like', "%{$search}%");
+
+                if (Schema::hasColumn('users', 'indrive_driver_id')) {
+                    $q->orWhere('indrive_driver_id', 'like', "%{$search}%");
+                }
             });
         }
 
-        if ($this->hasOrderFilters($request)) {
-            $query->whereHas('orders', fn ($q) => $this->applyOrderFilters($q, $request));
+        if ($defaultToday || $this->hasOrderFilters($request)) {
+            $query->whereHas('orders', fn ($q) => $this->applyOrderFilters($q, $request, $defaultToday));
         }
 
         return $query;
     }
 
-    protected function ordersQuery(Request $request)
+    protected function ordersQuery(Request $request, bool $defaultToday = false)
     {
         return $this->applyOrderFilters(
             Order::query()->indrive(),
-            $request
+            $request,
+            $defaultToday
         );
     }
 
-    protected function trackingQuery(Request $request)
+    protected function trackingQuery(Request $request, bool $defaultToday = false)
     {
         $query = UserTracking::query()->where('is_indrive', true);
+        [$from, $to] = $this->dateRange($request, $defaultToday);
 
-        if ($from = $request->get('from')) {
+        if ($from) {
             $query->where('visited_at', '>=', $from . ' 00:00:00');
         }
 
-        if ($to = $request->get('to')) {
+        if ($to) {
             $query->where('visited_at', '<=', $to . ' 23:59:59');
+        }
+
+        if ($search = $request->get('q')) {
+            $matchingDriverIds = $this->matchingDriversQuery($search)->pluck('id');
+
+            $query->where(function ($q) use ($search, $matchingDriverIds) {
+                if ($matchingDriverIds->isNotEmpty()) {
+                    $q->whereIn('user_id', $matchingDriverIds);
+                } else {
+                    $q->whereRaw('1 = 0');
+                }
+
+                if (Schema::hasColumn('user_trackings', 'indrive_driver_id')) {
+                    $q->orWhere('indrive_driver_id', 'like', "%{$search}%");
+                }
+
+                $q->orWhere('session_id', 'like', "%{$search}%");
+            });
         }
 
         return $query;
     }
 
-    protected function applyOrderFilters($query, Request $request)
+    protected function applyOrderFilters($query, Request $request, bool $defaultToday = false)
     {
-        if ($from = $request->get('from')) {
+        [$from, $to] = $this->dateRange($request, $defaultToday);
+
+        if ($from) {
             $query->where('created_at', '>=', $from . ' 00:00:00');
         }
 
-        if ($to = $request->get('to')) {
+        if ($to) {
             $query->where('created_at', '<=', $to . ' 23:59:59');
+        }
+
+        if ($search = $request->get('q')) {
+            $query->where(function ($q) use ($search) {
+                if (Schema::hasColumn('orders', 'indrive_driver_id')) {
+                    $q->where('indrive_driver_id', 'like', "%{$search}%");
+                } else {
+                    $q->whereRaw('1 = 0');
+                }
+
+                $q->orWhereHas('user', function ($userQuery) use ($search) {
+                    $userQuery->where('name', 'like', "%{$search}%")
+                        ->orWhere('last_name', 'like', "%{$search}%")
+                        ->orWhere('email', 'like', "%{$search}%")
+                        ->orWhere('phone_number', 'like', "%{$search}%");
+
+                    if (Schema::hasColumn('users', 'indrive_driver_id')) {
+                        $userQuery->orWhere('indrive_driver_id', 'like', "%{$search}%");
+                    }
+                });
+            });
         }
 
         if ($status = $request->get('status')) {
@@ -324,8 +347,8 @@ class InDriveOrdersController extends Controller
 
     protected function overviewStats(Request $request): array
     {
-        $orders = $this->ordersQuery($request);
-        $drivers = $this->driversQuery($request);
+        $orders = $this->ordersQuery($request, true);
+        $drivers = $this->driversQuery($request, true);
         $orderIds = (clone $orders)->pluck('id');
         $driverOrderStats = (clone $orders)
             ->select('user_id', DB::raw('COUNT(*) as order_count'), DB::raw('SUM(CAST(total AS DECIMAL(12,2))) as order_value'))
@@ -346,7 +369,7 @@ class InDriveOrdersController extends Controller
                     ->orWhere('zone', '!=', 'Pickup');
             })->count(),
             'top_driver' => $topDriver ? $topDriver->fullname() : '---',
-            'daily_clicks' => $this->dailyClicks(),
+            'daily_clicks' => $this->dailyClicks($request),
             'top_item' => $orderIds->isEmpty()
                 ? '---'
                 : OrderedProduct::query()
@@ -358,19 +381,126 @@ class InDriveOrdersController extends Controller
         ];
     }
 
-    protected function dailyClicks(): int
+    protected function dailyClicks(Request $request): int
     {
-        return UserTracking::query()
-            ->where('is_indrive', true)
-            ->whereBetween('visited_at', [
-                now()->startOfDay(),
-                now()->endOfDay(),
-            ])
+        return $this->trackingQuery($request, true)
             ->where(function ($q) {
                 $q->where('page_url', 'like', '%isindrive%')
                     ->orWhere('action', '!=', 'viewed');
             })
             ->count();
+    }
+
+    protected function dailyRows(Request $request)
+    {
+        $ordersByDay = (clone $this->ordersQuery($request, true))
+            ->selectRaw('DATE(created_at) as day')
+            ->selectRaw('COUNT(*) as order_count')
+            ->selectRaw('SUM(CAST(total AS DECIMAL(12,2))) as order_value')
+            ->selectRaw("SUM(CASE WHEN zone = 'Pickup' THEN 1 ELSE 0 END) as pickup_orders")
+            ->selectRaw("SUM(CASE WHEN zone IS NULL OR zone != 'Pickup' THEN 1 ELSE 0 END) as delivery_orders")
+            ->groupBy(DB::raw('DATE(created_at)'))
+            ->get()
+            ->keyBy('day');
+
+        $trackingByDay = (clone $this->trackingQuery($request, true))
+            ->selectRaw('DATE(visited_at) as day')
+            ->selectRaw('COUNT(*) as website_visits')
+            ->selectRaw("SUM(CASE WHEN page_url LIKE '%isindrive%' OR action != 'viewed' THEN 1 ELSE 0 END) as clicks")
+            ->groupBy(DB::raw('DATE(visited_at)'))
+            ->get()
+            ->keyBy('day');
+
+        return $ordersByDay
+            ->keys()
+            ->merge($trackingByDay->keys())
+            ->unique()
+            ->sortDesc()
+            ->values()
+            ->map(function ($day) use ($ordersByDay, $trackingByDay) {
+                $orders = $ordersByDay->get($day);
+                $tracking = $trackingByDay->get($day);
+                $orderValue = (float) optional($orders)->order_value;
+
+                return [
+                    'date' => $day,
+                    'clicks' => (int) optional($tracking)->clicks,
+                    'website_visits' => (int) optional($tracking)->website_visits,
+                    'orders' => (int) optional($orders)->order_count,
+                    'order_value' => Helper::currencyWrapper($orderValue),
+                    'order_value_raw' => $orderValue,
+                    'pickup_orders' => (int) optional($orders)->pickup_orders,
+                    'delivery_orders' => (int) optional($orders)->delivery_orders,
+                ];
+            });
+    }
+
+    protected function filters(Request $request): array
+    {
+        $filters = $request->only(['q', 'from', 'to', 'fulfillment', 'status']);
+        [$from, $to] = $this->dateRange($request, true);
+
+        $filters['from'] = $from;
+        $filters['to'] = $to;
+
+        return $filters;
+    }
+
+    protected function dateRange(Request $request, bool $defaultToday = false): array
+    {
+        $from = $request->get('from');
+        $to = $request->get('to');
+
+        if (! $from && ! $to && $defaultToday) {
+            $today = now()->toDateString();
+
+            return [$today, $today];
+        }
+
+        if ($from && ! $to) {
+            $to = $from;
+        }
+
+        if ($to && ! $from) {
+            $from = $to;
+        }
+
+        if ($from && $to) {
+            try {
+                $fromDate = Carbon::parse($from);
+                $toDate = Carbon::parse($to);
+
+                if ($fromDate->gt($toDate)) {
+                    return [$toDate->format('Y-m-d'), $fromDate->format('Y-m-d')];
+                }
+
+                return [$fromDate->format('Y-m-d'), $toDate->format('Y-m-d')];
+            } catch (\Throwable $exception) {
+                return [null, null];
+            }
+        }
+
+        return [$from, $to];
+    }
+
+    protected function matchingDriversQuery(string $search)
+    {
+        return User::query()
+            ->where('is_indrive_customer', true)
+            ->where(function ($q) {
+                $q->where('type', 'subscriber')
+                    ->orWhereNull('type');
+            })
+            ->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('last_name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('phone_number', 'like', "%{$search}%");
+
+                if (Schema::hasColumn('users', 'indrive_driver_id')) {
+                    $q->orWhere('indrive_driver_id', 'like', "%{$search}%");
+                }
+            });
     }
 
     protected function locationFromOrder(?Order $order): string

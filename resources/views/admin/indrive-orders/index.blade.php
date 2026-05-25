@@ -67,7 +67,7 @@
                 'Pickups' => $stats['pickup_orders'],
                 'Deliveries' => $stats['delivery_orders'],
                 'Top Driver' => $stats['top_driver'],
-                'Daily Clicks' => $stats['daily_clicks'],
+                'Clicks' => $stats['daily_clicks'],
                 'Top Item' => $stats['top_item'],
             ] as $label => $value)
                 <div class="col-lg-3 col-md-4 col-12 mb-3">
@@ -84,8 +84,8 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between align-items-center ps-3">
                 <div>
-                    <h4 class="m-0">In Drive Analytics</h4>
-                    <p class="text-sm mb-0">{{ $drivers->total() }} drivers found</p>
+                    <h4 class="m-0">Daily In Drive Analytics</h4>
+                    <p class="text-sm mb-0">{{ $dailyRows->count() }} days found</p>
                 </div>
                 <a href="{{ route('admin.indrive-orders.export', request()->query()) }}" class="btn btn-outline-primary btn-sm mb-0">Export</a>
             </div>
@@ -93,53 +93,33 @@
                 <table class="table table-flush align-items-center mb-0">
                     <thead>
                         <tr>
-                            <th><h6 class="mb-0 text-xs">Name</h6></th>
-                            <th><h6 class="mb-0 text-xs">Driver ID</h6></th>
+                            <th><h6 class="mb-0 text-xs">Date</h6></th>
                             <th><h6 class="mb-0 text-xs">Clicks</h6></th>
                             <th><h6 class="mb-0 text-xs">Website Visits</h6></th>
-                            <th><h6 class="mb-0 text-xs">Location</h6></th>
-                            <th><h6 class="mb-0 text-xs">Delivery / Pickup</h6></th>
-                            <th><h6 class="mb-0 text-xs">Order Count</h6></th>
+                            <th><h6 class="mb-0 text-xs">Orders</h6></th>
                             <th><h6 class="mb-0 text-xs">Order Value</h6></th>
-                            <th><h6 class="mb-0 text-xs">Top Item</h6></th>
-                            <th><h6 class="mb-0 text-xs">Returned Items</h6></th>
-                            <th></th>
+                            <th><h6 class="mb-0 text-xs">Delivery / Pickup</h6></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($drivers as $row)
+                        @forelse($dailyRows as $row)
                             <tr>
-                                <td>
-                                    <h6 class="mb-0 text-xs">{{ $row['driver']->fullname() }}</h6>
-                                    <p class="text-xs text-secondary mb-0">{{ $row['driver']->email }}</p>
-                                </td>
-                                <td><h6 class="mb-0 text-xs">{{ $row['driver']->indrive_driver_id ?: '---' }}</h6></td>
+                                <td><h6 class="mb-0 text-xs">{{ $row['date'] }}</h6></td>
                                 <td><h6 class="mb-0 text-xs">{{ $row['clicks'] }}</h6></td>
                                 <td><h6 class="mb-0 text-xs">{{ $row['website_visits'] }}</h6></td>
-                                <td><h6 class="mb-0 text-xs">{{ $row['location'] }}</h6></td>
-                                <td><h6 class="mb-0 text-xs">{{ $row['delivery_orders'] }} / {{ $row['pickup_orders'] }}</h6></td>
-                                <td><h6 class="mb-0 text-xs">{{ $row['order_count'] }}</h6></td>
+                                <td><h6 class="mb-0 text-xs">{{ $row['orders'] }}</h6></td>
                                 <td><h6 class="mb-0 text-xs">{{ $row['order_value'] }}</h6></td>
-                                <td><h6 class="mb-0 text-xs">{{ $row['top_purchased_item'] }}</h6></td>
-                                <td><h6 class="mb-0 text-xs">{{ $row['returned_items'] }}</h6></td>
-                                <td>
-                                    <a href="{{ route('admin.indrive-orders.show', array_merge(['user' => $row['driver']->id], request()->query())) }}" data-bs-toggle="tooltip" data-bs-original-title="View">
-                                        <i class="material-symbols-outlined text-secondary position-relative text-lg">preview</i>
-                                    </a>
-                                </td>
+                                <td><h6 class="mb-0 text-xs">{{ $row['delivery_orders'] }} / {{ $row['pickup_orders'] }}</h6></td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="11" class="text-center py-4">
-                                    <h6 class="mb-0 text-xs">No inDrive order data found.</h6>
+                                <td colspan="6" class="text-center py-4">
+                                    <h6 class="mb-0 text-xs">No daily inDrive analytics found.</h6>
                                 </td>
                             </tr>
                         @endforelse
                     </tbody>
                 </table>
-            </div>
-            <div class="card-footer">
-                {{ $drivers->links() }}
             </div>
         </div>
     </div>
