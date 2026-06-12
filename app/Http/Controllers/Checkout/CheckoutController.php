@@ -94,6 +94,11 @@ class CheckoutController extends Controller
             $user = Auth::user();
             $carts = Cart::all_items_in_cart();
 
+            if ($payment_method === 'Wallet' && (int) optional($user->wallet_balance)->balance < 1) {
+                DB::rollBack();
+                return response()->json(['error' => 'Your wallet balance is insufficient'], 422);
+            }
+
             if (($input['zone'] ?? null) === 'Pickup' && $payment_method === 'payment_on_delivery') {
                 return response()->json(['error' => 'Pay on delivery is not available for pickup orders'], 422);
             }

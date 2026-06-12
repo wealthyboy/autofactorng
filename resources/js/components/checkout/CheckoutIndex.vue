@@ -153,14 +153,23 @@
                                     href="#"
                                     @click.prevent="checkoutWithWallet($event)"
                                     class="btn btn-block btn-dark w-100 mb-2"
-                                    :class="{}"
+                                    :class="{
+                                        'btn-secondary disabled pe-none':
+                                            walletIsUnavailable,
+                                    }"
+                                    :aria-disabled="walletIsUnavailable"
+                                    :tabindex="walletIsUnavailable ? -1 : 0"
                                 >
                                     Pay with wallet
                                     <span class="bold">
                                         {{
-                                            parseFloat(
-                                                walletBalance.wallet_balance,
-                                            ) >= total
+                                            walletIsUnavailable
+                                                ? "(Wallet balance: " +
+                                                  $filters.formatNumber(0) +
+                                                  ")"
+                                                : parseFloat(
+                                                        walletBalance.wallet_balance,
+                                                    ) >= total
                                                 ? "(Wallet balance: " +
                                                   $filters.formatNumber(
                                                       walletBalance.wallet_balance,
@@ -335,6 +344,9 @@ export default {
             return (
                 this.prices.total - parseInt(this.walletBalance.wallet_balance)
             );
+        },
+        walletIsUnavailable() {
+            return Number(this.walletBalance?.wallet_balance || 0) < 1;
         },
         isPickup() {
             return this.deliveryOption === "pickup";
@@ -533,6 +545,10 @@ export default {
         },
 
         checkoutWithWallet: function (e) {
+            if (this.walletIsUnavailable) {
+                return false;
+            }
+
             if (!this.prepareCheckoutShipping()) {
                 return false;
             }
