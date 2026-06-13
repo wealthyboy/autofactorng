@@ -190,10 +190,6 @@
                                 <a
                                     v-if="isDelivery"
                                     href="#"
-                                    :class="{
-                                        'pe-none': !prices.isLagos,
-                                        disabled: !prices.isLagos,
-                                    }"
                                     @click.prevent="checkoutWithLagos($event)"
                                     class="btn btn-block btn-dark w-100 mb-2"
                                 >
@@ -633,9 +629,16 @@ export default {
         checkoutWithLagos: function (e) {
             if (this.total >= 100000) {
                 alert(
-                    "No Payment On Delivery On Orders Above ₦100,000.\nKindly Use The Pay Now Option.",
+                    "Payment on delivery is only available for orders below ₦100,000.",
                 );
-                return;
+                return false;
+            }
+
+            if (!this.prices.isLagos) {
+                alert(
+                    "Payment on delivery is available for Lagos deliveries only.",
+                );
+                return false;
             }
 
             if (this.checkoutLagos) {
