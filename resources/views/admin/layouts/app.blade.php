@@ -78,7 +78,7 @@
                </a>
             </li>
             <li class=" nav-item">
-               <a class="nav-link text-white {{ $helper->active_link(['indrive-orders']) }}" href="{{ route('admin.indrive-orders.index') }}">
+               <a class="nav-link text-white {{ $helper->active_link(['indrive-orders']) }}" href="/admin/indrive-orders">
                   <i class="material-symbols-outlined opacity-10">analytics</i>
                   <span class="nav-link-text ms-2 ps-1"> In Drive Analytics </span>
                </a>
