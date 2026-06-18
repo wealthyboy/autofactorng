@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\StockSnapshots;
 
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use App\Models\StockSnapshot;
 use Illuminate\Http\Request;
 
@@ -27,8 +28,8 @@ class StockSnapshotController extends Controller
             });
         }
 
-        if ($request->filled('product_id')) {
-            $query->where('product_id', $request->product_id);
+        if ($request->filled('id')) {
+            $query->where('id', $request->id);
         }
 
         if ($request->filled('from_date')) {
@@ -39,9 +40,31 @@ class StockSnapshotController extends Controller
             $query->whereDate('created_at', '<=', $request->to_date);
         }
 
+        if ($request->boolean('migrate')) {
+            $updated = 0;
+            $missing = 0;
+
+            (clone $query)
+                ->select('id', 'quantity')
+                ->orderBy('id')
+                ->chunkById(200, function ($snapshots) use (&$updated, &$missing) {
+                    foreach ($snapshots as $snapshot) {
+                        $affected = Product::where('id', $snapshot->id)->update([
+                            'quantity' => $snapshot->quantity,
+                        ]);
+
+                        $affected ? $updated++ : $missing++;
+                    }
+                });
+
+            return redirect()
+                ->route('admin.stock-snapshots.index', $request->except('migrate'))
+                ->with('message', "Product quantities migrated from stock snapshots. Updated: {$updated}. Missing products: {$missing}.");
+        }
+
         $snapshots = $query
             ->orderBy('created_at', 'desc')
-            ->orderBy('product_id')
+            ->orderBy('id')
             ->paginate(50)
             ->withQueryString();
 

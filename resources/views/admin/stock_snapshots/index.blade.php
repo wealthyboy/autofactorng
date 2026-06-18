@@ -27,8 +27,8 @@
 
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label>Product ID</label>
-                                        <input type="number" class="form-control" name="product_id" value="{{ request('product_id') }}" placeholder="Product ID">
+                                        <label>ID</label>
+                                        <input type="number" class="form-control" name="id" value="{{ request('id') }}" placeholder="Product ID">
                                     </div>
                                 </div>
 
@@ -75,13 +75,29 @@
             </div>
 
             <div class="card-body table-responsive">
+                @if (session('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
+
+                <div class="mb-3">
+                    <a
+                        href="{{ route('admin.stock-snapshots.index', array_merge(request()->except('page'), ['migrate' => 'true'])) }}"
+                        class="btn btn-warning"
+                        onclick="return confirm('This will update product quantities from the currently filtered stock snapshots. Continue?')"
+                    >
+                        Migrate Quantities From These Snapshots
+                    </a>
+                </div>
+
                 <table class="table table-bordered table-hover table-striped">
                     <thead class="thead-light">
                         <tr>
                             <th>Date</th>
                             <th>Batch ID</th>
                             <th>Source</th>
-                            <th>Product ID</th>
+                            <th>ID</th>
                             <th>Product Name</th>
                             <th>Quantity</th>
                         </tr>
@@ -92,7 +108,7 @@
                             <td>{{ optional($snapshot->created_at)->format('Y-m-d H:i') }}</td>
                             <td>{{ $snapshot->batch_id }}</td>
                             <td>{{ $snapshot->source ?: '-' }}</td>
-                            <td>{{ $snapshot->product_id }}</td>
+                            <td>{{ $snapshot->id }}</td>
                             <td>{{ $snapshot->name ?: $snapshot->product_name }}</td>
                             <td>{{ number_format($snapshot->quantity) }}</td>
                         </tr>
