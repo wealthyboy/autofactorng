@@ -42,6 +42,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::post('orders/status', 'Admin\Orders\OrdersController@updateStatus');
 
     Route::get('orders/dispatch/{id}', 'Admin\Orders\OrdersController@dispatchNote')->name('order.dispatch.note');
+    Route::get('indrive-orders', 'Admin\InDrive\InDriveOrdersController@index')->name('admin.indrive-orders.index');
+    Route::get('indrive-orders/export', 'Admin\InDrive\InDriveOrdersController@export')->name('admin.indrive-orders.export');
+    Route::get('indrive-orders/{id}', 'Admin\InDrive\InDriveOrdersController@show')->name('admin.indrive-orders.show');
+    Route::get('indrive-customers', 'Admin\InDrive\InDriveCustomersController@index')->name('admin.indrive-customers.index');
+    Route::get('indrive-customers/export', 'Admin\InDrive\InDriveCustomersController@export')->name('admin.indrive-customers.export');
     Route::resource('location', 'Admin\Location\LocationController', ['names' => 'location']);
     Route::resource('engines', 'Admin\Engines\EnginesController', ['names' => 'engines']);
     Route::get('stocks', 'Admin\\Stocks\\StocksController@index')->name('admin.stocks.index');
