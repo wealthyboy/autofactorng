@@ -66,8 +66,8 @@ class ProductObserver
         //     ]);
 
 
-            // Notification::route('mail', ['autofactorng@gmail.com', 'rec@autofactorng.com'])
-            //     ->notify(new ProductUpdated($product, $changes, $context));
-        }
+        // Notification::route('mail', ['autofactorng@gmail.com', 'rec@autofactorng.com'])
+        //     ->notify(new ProductUpdated($product, $changes, $context));
+        // }
     }
 }
