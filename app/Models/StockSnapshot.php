@@ -13,7 +13,7 @@ class StockSnapshot extends Model
         'batch_id',
         'source',
         'product_id',
-        'product_name',
+        'name',
         'quantity',
     ];
 }

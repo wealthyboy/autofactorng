@@ -35,7 +35,7 @@
                                 <div class="col-md-3">
                                     <div class="form-group">
                                         <label>Product Name</label>
-                                        <input type="text" class="form-control" name="product_name" value="{{ request('product_name') }}" placeholder="Search product name">
+                                        <input type="text" class="form-control" name="name" value="{{ request('name') }}" placeholder="Search product name">
                                     </div>
                                 </div>
 
@@ -93,7 +93,7 @@
                             <td>{{ $snapshot->batch_id }}</td>
                             <td>{{ $snapshot->source ?: '-' }}</td>
                             <td>{{ $snapshot->product_id }}</td>
-                            <td>{{ $snapshot->product_name }}</td>
+                            <td>{{ $snapshot->name ?: $snapshot->product_name }}</td>
                             <td>{{ number_format($snapshot->quantity) }}</td>
                         </tr>
                         @empty

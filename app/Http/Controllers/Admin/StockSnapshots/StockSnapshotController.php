@@ -20,8 +20,11 @@ class StockSnapshotController extends Controller
             $query->where('source', 'like', '%' . $request->source . '%');
         }
 
-        if ($request->filled('product_name')) {
-            $query->where('product_name', 'like', '%' . $request->product_name . '%');
+        if ($request->filled('name')) {
+            $query->where(function ($query) use ($request) {
+                $query->where('name', 'like', '%' . $request->name . '%')
+                    ->orWhere('product_name', 'like', '%' . $request->name . '%');
+            });
         }
 
         if ($request->filled('product_id')) {

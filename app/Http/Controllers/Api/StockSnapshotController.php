@@ -47,7 +47,7 @@ class StockSnapshotController extends Controller
                 ],
                 [
                     'source' => $request->input('source'),
-                    'product_name' => $product['name'],
+                    'name' => $product['name'],
                     'quantity' => $product['quantity'],
                 ]
             );
