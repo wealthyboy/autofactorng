@@ -32,8 +32,6 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::post('customers/wallet/{id}', 'Admin\Customers\CustomersController@fundWallet');
     Route::post('/update/status', 'Admin\Orders\OrdersController@updateStatus');
     Route::resource('credits',  'Admin\AutoCredit\AutoCreditController', ['names' => 'admin.credits']);
-    Route::get('stock-snapshots', 'Admin\\StockSnapshots\\StockSnapshotController@index')->name('admin.stock-snapshots.index');
-
 
     Route::resource('blogs',  'Admin\Blog\BlogController', ['names' => 'blogs']);
 
@@ -46,6 +44,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('orders/dispatch/{id}', 'Admin\Orders\OrdersController@dispatchNote')->name('order.dispatch.note');
     Route::resource('location', 'Admin\Location\LocationController', ['names' => 'location']);
     Route::resource('engines', 'Admin\Engines\EnginesController', ['names' => 'engines']);
+    Route::get('stocks', 'Admin\\Stocks\\StocksController@index')->name('admin.stocks.index');
 
 
     //Route::post('register','Admin\Users\UsersController@create')->name('create.admin.users');
