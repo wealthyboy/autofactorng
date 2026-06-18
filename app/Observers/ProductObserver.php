@@ -20,54 +20,54 @@ class ProductObserver
 
         $changes = [];
 
-        if ($original['price'] != $product->price) {
-            $changes['price'] = [
-                'old' => $original['price'],
-                'new' => $product->price
-            ];
-        }
+        // if ($original['price'] != $product->price) {
+        //     $changes['price'] = [
+        //         'old' => $original['price'],
+        //         'new' => $product->price
+        //     ];
+        // }
 
-        if ($original['quantity'] != $product->quantity) {
-            $changes['quantity'] = [
-                'old' => $original['quantity'],
-                'new' => $product->quantity
-            ];
-        }
+        // if ($original['quantity'] != $product->quantity) {
+        //     $changes['quantity'] = [
+        //         'old' => $original['quantity'],
+        //         'new' => $product->quantity
+        //     ];
+        // }
 
-        if (!empty($changes)) {
-            $context = self::$context;
+        // if (!empty($changes)) {
+        //     $context = self::$context;
 
-            $user = !empty(self::$context['user_id'])
-                ? User::find(self::$context['user_id'])
-                : auth()->user();
+        //     $user = !empty(self::$context['user_id'])
+        //         ? User::find(self::$context['user_id'])
+        //         : auth()->user();
 
-            $userName  = $user ? $user->name : 'System';
-            $userEmail = $user ? $user->email : 'system@example.com';
+        //     $userName  = $user ? $user->name : 'System';
+        //     $userEmail = $user ? $user->email : 'system@example.com';
 
-            // Build action string dynamically
-            $actionParts = [];
-            if (isset($changes['price'])) {
-                $actionParts[] = "price from {$changes['price']['old']} → {$changes['price']['new']}";
-            }
-            if (isset($changes['quantity'])) {
-                $actionParts[] = "quantity from {$changes['quantity']['old']} → {$changes['quantity']['new']}";
-            }
+        //     // Build action string dynamically
+        //     $actionParts = [];
+        //     if (isset($changes['price'])) {
+        //         $actionParts[] = "price from {$changes['price']['old']} → {$changes['price']['new']}";
+        //     }
+        //     if (isset($changes['quantity'])) {
+        //         $actionParts[] = "quantity from {$changes['quantity']['old']} → {$changes['quantity']['new']}";
+        //     }
 
-            $action = $userName . ' updated ' . implode(', ', $actionParts);
-
-
-            // Save to stocks table
-            Stock::create([
-                'product_name' => $product->name,
-                'action' => $action,
-                'user_email' => $userEmail,
-                'old_quantity' => $original['quantity'],
-                'new_quantity' => $product->quantity,
-            ]);
+        //     $action = $userName . ' updated ' . implode(', ', $actionParts);
 
 
-            Notification::route('mail', ['autofactorng@gmail.com', 'rec@autofactorng.com'])
-                ->notify(new ProductUpdated($product, $changes, $context));
+        //     // Save to stocks table
+        //     Stock::create([
+        //         'product_name' => $product->name,
+        //         'action' => $action,
+        //         'user_email' => $userEmail,
+        //         'old_quantity' => $original['quantity'],
+        //         'new_quantity' => $product->quantity,
+        //     ]);
+
+
+            // Notification::route('mail', ['autofactorng@gmail.com', 'rec@autofactorng.com'])
+            //     ->notify(new ProductUpdated($product, $changes, $context));
         }
     }
 }
