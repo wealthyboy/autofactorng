@@ -15,7 +15,7 @@ class AlterStockSnapshotsChange extends Migration
     {
         Schema::table('stock_snapshots', function (Blueprint $table) {
             $table->string('product_name')->nullable()->change();
-            $table->string('name')->nullable()->change();
+            $table->string('name')->nullable();
         });
     }
 
