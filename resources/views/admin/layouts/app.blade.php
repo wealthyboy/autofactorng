@@ -260,7 +260,7 @@
                         </a>
                      </li>
                      <li class="nav-item ">
-                        <a class="nav-link text-white  {{ $helper->active_link(['indrive-customers']) }}" href="{{ route('admin.indrive-customers.index') }}">
+                        <a class="nav-link text-white  {{ $helper->active_link(['indrive-customers']) }}" href="/admin/indrive-customers">
                            <span class="sidenav-mini-icon"> I </span>
                            <span class="sidenav-normal  ms-2  ps-1"> inDrive </span>
                         </a>
