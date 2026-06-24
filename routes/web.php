@@ -148,7 +148,10 @@ Route::post('change/password', 'ChangePassword\ChangePasswordController@changePa
 Route::get('wallet-balance', 'Wallets\WalletsController@walletBalnce');
 Route::get('video-tips', 'HowTo\HowToController@index');
 
-Route::post('reset/password',                'Auth\ResetPasswordController@reset');
+Route::get('forum', 'Forum\ForumController@index')->name('forum.index');
+Route::get('forum/{id}', 'Forum\ForumController@show')->whereNumber('id')->name('forum.show');
+
+Route::post('reset/password', 'Auth\ResetPasswordController@reset');
 
 Route::resource('wallets', 'Wallets\WalletsController', ['names' => 'wallets']);
 
@@ -188,7 +191,6 @@ Route::group(['prefix' => '/api'], function () {
 Route::get('errors',                  'Errors\ErrorsController@index');
 
 
-
 Route::controller(Products\ProductsController::class)->group(function () {
     Route::get('products/{category}', 'index');
     Route::get('clear-cookies', 'clearMMYCookies');
@@ -203,6 +205,6 @@ Route::post('reviews/store',  'Api\Reviews\ReviewsController@store');
 Route::post('webhook/payment',     'WebHook\WebHookController@payment');
 Route::post('webhook/payment/zilla',     'WebHook\WebHookController@zilla');
 
-//Route::post('contact/store',     'Contact\ContactController@store');
-Route::post('webhook/github',      'WebHook\WebHookController@gitHub');
+//Route::post('contact/store',  'Contact\ContactController@store');
+Route::post('webhook/github',   'WebHook\WebHookController@gitHub');
 Route::get('pages/{information}', 'Pages\PagesController@index');
