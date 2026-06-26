@@ -120,8 +120,8 @@ class Order extends Model
 		$order->payment_type = $payment_method;
 		$order->allow_review = 1;
 		$order->total = $input['total'];
-		$order->first_name = optional($user->active_address)->first_name;
-		$order->last_name = optional($user->active_address)->last_name;
+		$order->first_name = optional($user->active_address)->first_name ?: $user->name;
+		$order->last_name = optional($user->active_address)->last_name ?: $user->last_name;
 		$order->email = $user->email;
 		$order->tracking = rand(100000, time());
 		$order->order_type = "Online";
