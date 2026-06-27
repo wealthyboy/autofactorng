@@ -87,6 +87,9 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::post('category/delete/image', 'Admin\Category\CategoryController@undo');
     Route::resource('reviews',  'Admin\Reviews\ReviewsController', ['names' => 'admin.reviews']);
     Route::resource('orders', 'Admin\Orders\OrdersController', ['names' => 'admin.orders']);
+    Route::get('customer-surveys', 'CustermerSurvey\CustermerSurveyController@index')->name('admin.customer-surveys.index');
+    Route::get('customer-surveys/{survey}', 'CustermerSurvey\CustermerSurveyController@show')->name('admin.customer-surveys.show');
+    Route::post('customer-surveys/destroy-selected', 'CustermerSurvey\CustermerSurveyController@destroySelected')->name('admin.customer-surveys.destroy-selected');
     Route::resource('brands', 'Admin\Brand\BrandsController', ['names' => 'brands']);
     Route::resource('promos', 'Admin\Promo\PromoController', ['names' => 'promos']);
     Route::get('promo-text/create/{id}', 'Admin\PromoText\PromoTextController@create')->name('create.promo.text');
@@ -117,6 +120,8 @@ Route::get('/test', [App\Http\Controllers\HomeController::class, 'test']);
 
 Route::get('plans', [App\Http\Controllers\Plans\PlansController::class, 'index']);
 Route::get('buy-now-pay-later', [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index']);
+Route::get('customer-survey', 'CustermerSurvey\CustermerSurveyController@create')->name('customer-survey');
+Route::post('customer-survey', 'CustermerSurvey\CustermerSurveyController@store')->name('customer-survey.submit');
 
 
 Route::get('subscribe', [App\Http\Controllers\Subscribe\SubscribeController::class, 'index']);
