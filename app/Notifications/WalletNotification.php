@@ -56,6 +56,7 @@ class WalletNotification extends Notification
             ->bcc("care@autofactorng.com")
             ->bcc("damilola@autofactorng.com")
             ->bcc("abiola@autofactorng.com")
+            ->bcc("justine@autofactorng.com")
             ->subject("Wallet Notification");
     }
 

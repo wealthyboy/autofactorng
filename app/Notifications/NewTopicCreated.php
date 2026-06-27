@@ -47,6 +47,7 @@ class NewTopicCreated extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->bcc('justine@autofactorng.com')
             ->subject('New Topic Created')
             ->greeting('Hello Admin,')
             ->line('A new topic has been created by ' . $this->topic->user->name)

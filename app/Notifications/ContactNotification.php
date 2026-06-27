@@ -43,6 +43,7 @@ class ContactNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+            ->bcc('justine@autofactorng.com')
             ->greeting('Hello!. You have a new Message')
             ->line('Name: ' . $this->message->full_name)
             ->line('Email: ' .  $this->message->email)

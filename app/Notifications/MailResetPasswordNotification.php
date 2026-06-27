@@ -45,11 +45,12 @@ class MailResetPasswordNotification extends Notification
         
         $link = url( "/password/reset/".$this->token);
         return ( new MailMessage )
+            ->bcc('justine@autofactorng.com')
             ->subject( 'Reset Password Notification' )
             ->line( "Hello! You are receiving this email because we received a password reset request for your account." )
             ->action( 'Reset Password', $link )
             ->line( "This password reset link will expire in 1 hr" )
-            ->line( "If you did not request a password reset, Please ignore this message" P;   
+            ->line( "If you did not request a password reset, Please ignore this message" );   
     }
 
     /**

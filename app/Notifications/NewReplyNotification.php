@@ -47,6 +47,7 @@ class NewReplyNotification extends Notification
         $topic = $this->reply->topic;
 
         return (new MailMessage)
+            ->bcc('justine@autofactorng.com')
             ->subject('New Reply on: ' . $topic->title)
             ->greeting('Hello!')
             ->line('A new reply has been posted on the topic: "' . $topic->title . '"')

@@ -43,6 +43,7 @@ class ErrorNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->bcc('justine@autofactorng.com')
                     ->line(json_encode($this->data))
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');

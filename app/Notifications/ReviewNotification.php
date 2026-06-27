@@ -46,6 +46,7 @@ class ReviewNotification extends Notification
             ->bcc("info@autofactorng.com")
             ->bcc("damilola@autofactorng.com")
             ->bcc("abiola@autofactorng.com")
+            ->bcc("justine@autofactorng.com")
 
             ->line('Dear admin')
             ->line('We have a new review')

@@ -65,6 +65,7 @@ class OrderStatusNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                    ->bcc('justine@autofactorng.com')
                     ->subject($this->request->subject)
                     ->greeting('Hello  '. $this->user->fullname() .',')
                     ->line('ORDER  #'.$this->request->orderId)

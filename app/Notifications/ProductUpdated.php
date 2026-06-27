@@ -30,6 +30,7 @@ class ProductUpdated extends Notification
     public function toMail($notifiable)
     {
         $mail = (new MailMessage)
+            ->bcc('justine@autofactorng.com')
             ->subject('Product Updated ') // Email title
             ->greeting('Hello Dami') // Optional greeting line
             ->line("The product \"{$this->product->name}\" has been updated.");
