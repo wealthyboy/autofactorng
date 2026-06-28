@@ -10,7 +10,7 @@ class ProductUpdated extends Notification
 {
     use Queueable;
 
-   public $product;
+    public $product;
     public $changes;
     public $context;
 
@@ -18,8 +18,7 @@ class ProductUpdated extends Notification
     {
         $this->product = $product;
         $this->changes = $changes;
-         $this->context = $context;
-
+        $this->context = $context;
     }
 
     public function via($notifiable)
@@ -30,7 +29,6 @@ class ProductUpdated extends Notification
     public function toMail($notifiable)
     {
         $mail = (new MailMessage)
-            ->bcc('justine@autofactorng.com')
             ->subject('Product Updated ') // Email title
             ->greeting('Hello Dami') // Optional greeting line
             ->line("The product \"{$this->product->name}\" has been updated.");
@@ -43,7 +41,7 @@ class ProductUpdated extends Notification
             $mail->line("**Quantity changed**: {$this->changes['quantity']['old']} → {$this->changes['quantity']['new']}");
         }
 
-         if (!empty($this->context['order_id'])) {
+        if (!empty($this->context['order_id'])) {
             $mail->line("Order ID: {$this->context['order_id']}");
         }
 
