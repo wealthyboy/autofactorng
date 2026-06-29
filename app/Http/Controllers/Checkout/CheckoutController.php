@@ -36,7 +36,7 @@ class CheckoutController extends Controller
         $carts =  Cart::all_items_in_cart();
 
         $user = Auth::user();
-        $cartItems = Cart::with('product')->where('user_id', $user->id)->get();
+        $cartItems = $carts;
 
 
         $items = $cartItems->map(function ($cart) {
@@ -94,6 +94,34 @@ class CheckoutController extends Controller
             $user = Auth::user();
             $carts = Cart::all_items_in_cart();
 
+            Log::info('checkout.confirm.snapshot', [
+                'user_id' => optional($user)->id,
+                'cookie' => $request->cookie('cart'),
+                'request' => $request->only([
+                    'coupon',
+                    'payment_method',
+                    'shipping_price',
+                    'heavy_item_price',
+                    'total',
+                    'zone',
+                    'delivery_option',
+                    'referer',
+                ]),
+                'cart_rows' => $carts->map(function ($cart) {
+                    return [
+                        'id' => $cart->id,
+                        'product_id' => $cart->product_id,
+                        'quantity' => $cart->quantity,
+                        'price' => $cart->price,
+                        'total' => $cart->total,
+                        'remember_token' => $cart->remember_token,
+                        'user_id' => $cart->user_id,
+                    ];
+                })->values()->all(),
+                'cart_count' => $carts->count(),
+                'cart_sub_total' => Cart::sum_items_in_cart(),
+            ]);
+
             if ($payment_method === 'Wallet' && (int) optional($user->wallet_balance)->balance < 1) {
                 DB::rollBack();
                 return response()->json(['error' => 'Your wallet balance is insufficient'], 422);
@@ -135,7 +163,7 @@ class CheckoutController extends Controller
 
             $coupon_value = $order->coupon_value != "" ? $order->coupon_value : "₦0.0";
 
-            Order::sendMail($user, $order, $sub_total,  $coupon_value);
+            Order::sendMail($user, $order, $sub_total,  $coupon_value, $payment_method === 'payment_on_delivery');
 
             if (! $indriveCoupon->isProtectedCoupon($code)) {
                 Voucher::inValidate($code);

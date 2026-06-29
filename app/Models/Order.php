@@ -140,9 +140,48 @@ class Order extends Model
 		}
 		$order->referer = $carts->first()->referer ?? null;
 		$order->ip = $ip;
-		if ($order->save()) {
+			if ($order->save()) {
 
-			$pending_review = new PendingReview;
+					$staleOrderedProducts = $order->ordered_products()->get([
+						'id',
+						'order_id',
+						'product_id',
+						'product_name',
+						'quantity',
+						'price',
+						'total',
+					]);
+
+					if ($staleOrderedProducts->isNotEmpty()) {
+						Log::warning('order.checkout.clearing_stale_ordered_products', [
+							'order_id' => $order->id,
+							'invoice' => $order->invoice,
+							'stale_ordered_products' => $staleOrderedProducts->toArray(),
+						]);
+
+						$order->ordered_products()->delete();
+					}
+
+					Log::info('order.checkout.started', [
+						'order_id' => $order->id,
+						'invoice' => $order->invoice,
+					'user_id' => $user->id,
+					'payment_method' => $payment_method,
+					'input_total' => $input['total'] ?? null,
+					'cart_rows' => $carts->map(function ($cart) {
+						return [
+							'id' => $cart->id,
+							'product_id' => $cart->product_id,
+							'quantity' => $cart->quantity,
+							'price' => $cart->price,
+							'total' => $cart->total,
+							'remember_token' => $cart->remember_token,
+							'user_id' => $cart->user_id,
+						];
+					})->values()->all(),
+				]);
+	
+				$pending_review = new PendingReview;
 			$pending_review->user_id = $order->user_id;
 			$pending_review->order_id = $order->id;
 			$pending_review->save();
@@ -220,12 +259,33 @@ class Order extends Model
 
 				\Dispatch(new \App\Jobs\AppendOrderRowJob($spreedSheetData, "!A1:Z1000"));
 
-				OrderedProduct::Insert($insert);
-				$cart->status = 'paid';
-				$cart->delete();
-			}
+					Log::info('order.checkout.insert_ordered_product', [
+						'order_id' => $order->id,
+						'invoice' => $order->invoice,
+						'cart_id' => $cart->id,
+						'insert' => $insert,
+					]);
 
-			AbandonedCart::where('user_id', $user->id)->delete();
+					OrderedProduct::Insert($insert);
+					$cart->status = 'paid';
+					$cart->delete();
+				}
+
+				Log::info('order.checkout.completed', [
+					'order_id' => $order->id,
+					'invoice' => $order->invoice,
+					'ordered_products' => $order->ordered_products()->get([
+						'id',
+						'order_id',
+						'product_id',
+						'product_name',
+						'quantity',
+						'price',
+						'total',
+					])->toArray(),
+				]);
+	
+				AbandonedCart::where('user_id', $user->id)->delete();
 		}
 
 
@@ -459,14 +519,20 @@ class Order extends Model
 	}
 
 
-	public static function sendMail(User $user, Order $order, $sub_total,  $coupon_value  = null)
+	public static function sendMail(User $user, Order $order, $sub_total,  $coupon_value  = null, $sendNow = false)
 	{
 
 		try {
 			$when = now()->addMinutes(5);
-			Mail::to($user->email)
-				->bcc('order@autofactorng.com')
-				->queue(new OrderReceipt($order, null, null, $sub_total, $coupon_value));
+			$mail = Mail::to($user->email)->bcc('order@autofactorng.com');
+			$receipt = new OrderReceipt($order, null, null, $sub_total, $coupon_value);
+
+			if ($sendNow) {
+				$mail->send($receipt);
+				return;
+			}
+
+			$mail->queue($receipt);
 		} catch (\Throwable $th) {
 			Log::info("Mail error :" . $th);
 			$err = new Error();

@@ -19,6 +19,7 @@ use App\Http\Resources\CartResource;
 use App\Http\Helper;
 use App\Models\Attribute;
 use App\Models\Engine;
+use Illuminate\Support\Facades\Log;
 
 class CartController  extends Controller
 {
@@ -42,11 +43,7 @@ class CartController  extends Controller
 		$product = Product::find($request->product_id);
 
 
-		$cart = new Cart;
-		if (\Auth::check()) {
-			$cart->user_id    = optional($request->user())->id;
-		}
-		$price = null !== $product->discounted_price ?  $product->discounted_price :  $product->price;
+		$price = $product->current_price;
 		$make = session('make');
 		$model = session('model');
 		$year = session('year');
@@ -54,151 +51,105 @@ class CartController  extends Controller
 
 		$user = $request->user();
 
+		$cookie = null;
+		$remember_token = \Cookie::get('cart');
+
+		if ($remember_token === null) {
+			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
+			session()->put('cart', $value);
+			$cookie = cookie('cart', $value, 60 * 60 * 7);
+			$remember_token = $cookie->getValue();
+		}
 
 		//$engine = optional(Engine::find(session('engine_id')))->name;
-		if (\Cookie::get('cart') !== null) {
+		$cart = Cart::query()
+			->where('product_id', $request->product_id)
+			->where('remember_token', $remember_token)
+			->latest('id')
+			->first() ?: new Cart;
 
-			$remember_token  = \Cookie::get('cart');
-			$cart = Cart::firstOrNew(
-				['product_id' => $request->product_id, 'remember_token' => $remember_token]
-			);
+		$cart->product_id = $request->product_id;
+		$cart->quantity = $request->quantity;
+		$cart->price = $product->current_price;
+		$cart->total = $price * $request->quantity;
+		$cart->make = $make;
+		$cart->model = $model;
+		$cart->referer = session('original_referer');
+		$cart->user_id = optional($user)->id;
+		$cart->year = $year;
+		$cart->engine = $engine;
+		$cart->remember_token = $remember_token;
+		$cart->save();
 
-			$cart->product_id = $request->product_id;
-			$cart->quantity = $request->quantity;
-			$cart->price = $product->current_price;
-			$cart->total = $price * $request->quantity;
-			$cart->make = $make;
-			$cart->model = $model;
-			$cart->referer = session('original_referer');
-			$cart->user_id = optional($request->user())->id;
-			$cart->year = $year;
-			$cart->engine = $engine;
-			$cart->remember_token = $remember_token;
-			$cart->save();
+		$carts = Cart::all_items_in_cart($remember_token);
+		$sub_total = Cart::sum_items_in_cart($remember_token);
 
-			$carts = Cart::with(["product"])->where(['remember_token' => $remember_token])->get();
-			$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $remember_token)->get();
-			$sub_total =  $total[0]->items_total;
-
-			$cart = $carts->map(function ($cart) {
+		Log::info('cart.store.snapshot', [
+			'user_id' => optional($user)->id,
+			'cookie' => $remember_token,
+			'request' => $request->only(['product_id', 'quantity']),
+			'cart_rows' => $carts->map(function ($cart) {
 				return [
 					'id' => $cart->id,
 					'product_id' => $cart->product_id,
-					'product' => $cart->product,
-					'image' => optional($cart->product)->image_m,
 					'quantity' => $cart->quantity,
-					'price' => Cart::ConvertCurrencyRate($cart->price),
-					'currency' => optional($cart->product)->currency,
-					'product_name' => optional($cart->product)->name,
-					'link' => optional($cart->product)->link,
-					'year' => optional($cart)->year,
-					'model' => optional($cart)->model,
+					'price' => $cart->price,
+					'total' => $cart->total,
+					'remember_token' => $cart->remember_token,
+					'user_id' => $cart->user_id,
+				];
+			})->values()->all(),
+			'sub_total' => $sub_total,
+		]);
 
+		$cartData = $carts->map(function ($cart) {
+			return [
+				'id' => $cart->id,
+				'cart_id' => $cart->id,
+				'product_id' => $cart->product_id,
+				'product' => $cart->product,
+				'image' => optional($cart->product)->image_m,
+				'quantity' => $cart->quantity,
+				'price' => Cart::ConvertCurrencyRate($cart->price),
+				'currency' => optional($cart->product)->currency,
+				'product_name' => optional($cart->product)->name,
+				'link' => optional($cart->product)->link,
+				'year' => optional($cart)->year,
+				'model' => optional($cart)->model,
+				'make' => optional($cart)->make,
+				'engine' => optional($cart)->engine,
+			];
+		});
+
+		if (auth()->check()) {
+			$cartItems = Cart::all_items_in_cart($remember_token);
+
+			$items = $cartItems->map(function ($cart) {
+				return [
+					'product_id' => $cart->product_id,
+					'name' => $cart->product->name ?? 'Unknown Product',
+					'image_url' => $cart->product->image_m ?? '',
+					'price' => $cart->product->price ?? 0,
 				];
 			});
 
-
-			if (auth()->check()) {
-
-
-				$cartItems = Cart::with('product')->where('user_id', $user->id)->get();
-
-				$items = $cartItems->map(function ($cart) {
-					return [
-						'product_id' => $cart->product_id,
-						'name' => $cart->product->name ?? 'Unknown Product',
-						'image_url' => $cart->product->image_m ?? '',
-						'price' => $cart->product->price ?? 0,
-					];
-				});
-
-				$abandonedCart = AbandonedCart::updateOrCreate(
-					['user_id' => $user->id],
-					['checkout_started_at' => now(), 'recovered' => false, 'cart_items' =>  $items]
-				);
-			}
-
-
-
-			return response()->json([
-				'data' => $cart,
-				'meta' => [
-					'sub_total' => $sub_total,
-					'currency' => '₦',
-					'currency_code' => '₦',
-					'user' => $request->user()
-				],
-			]);
-		} else {
-			$value = bcrypt('^%&#*$((j1a2c3o4b5@+-40');
-			session()->put('cart', $value);
-			$cookie = cookie('cart', session()->get('cart'), 60 * 60 * 7);
-			$cart->product_id = $request->product_id;
-			$cart->quantity = $request->quantity;
-			$cart->price = $product->current_price;
-			$cart->total = $price * $request->quantity;
-			$cart->remember_token = $cookie->getValue();
-			$cart->make = $make;
-			$cart->model = $model;
-			$cart->year = $year;
-			$cart->engine = $engine;
-			$cart->referer = session('original_referer');
-
-			$cart->user_id = optional($request->user())->id;
-			$cart->save();
-			$carts = Cart::all_items_in_cart();
-			$total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $cookie->getValue())->get();
-			$sub_total =  $total[0]->items_total;
-
-			if (auth()->check()) {
-				$cartItems = Cart::with('product')->where('user_id', $user->id)->get();
-
-				$items = $cartItems->map(function ($cart) {
-					return [
-						'product_id' => $cart->product_id,
-						'name' => $cart->product->name ?? 'Unknown Product',
-						'image_url' => $cart->product->image_m ?? '',
-						'price' => $cart->product->price ?? 0,
-					];
-				});
-
-				$abandonedCart = AbandonedCart::updateOrCreate(
-					['user_id' => $user->id],
-					['checkout_started_at' => now(), 'recovered' => false, 'cart_items' =>  $items]
-				);
-			}
-
-
-
-
-
-
-			return response()->json([
-				'data' => [
-
-					0 => [
-						'cart_id' => $cart->id,
-						'product_id' => $cart->product_id,
-						'image' => optional($cart->product)->image_m,
-						'quantity' => $cart->quantity,
-						'price' => $cart->price,
-						'product_name' => optional($cart->product)->name,
-						'link' => optional($cart->product)->name,
-						'make' => $make,
-						'model' => $model,
-						'year' => $year,
-						'engine' => $engine
-
-					]
-				],
-				'meta' => [
-					'sub_total' => $sub_total,
-					'currency' => '₦',
-					'currency_code' => '₦',
-					'user' => $request->user()
-				],
-			])->withCookie($cookie);
+			AbandonedCart::updateOrCreate(
+				['user_id' => $user->id],
+				['checkout_started_at' => now(), 'recovered' => false, 'cart_items' =>  $items]
+			);
 		}
+
+		$response = response()->json([
+			'data' => $cartData,
+			'meta' => [
+				'sub_total' => $sub_total,
+				'currency' => '₦',
+				'currency_code' => '₦',
+				'user' => $request->user()
+			],
+		]);
+
+		return $cookie ? $response->withCookie($cookie) : $response;
 	}
 
 	public function loadCart(Request $request)
@@ -209,6 +160,22 @@ class CartController  extends Controller
 		$carts = Cart::all_items_in_cart();
 		$sub_total = Cart::sum_items_in_cart();
 		$rate = \Cookie::get('rate');
+		Log::info('cart.load.snapshot', [
+			'user_id' => optional($request->user())->id,
+			'cookie' => \Cookie::get('cart'),
+			'cart_rows' => $carts->map(function ($cart) {
+				return [
+					'id' => $cart->id,
+					'product_id' => $cart->product_id,
+					'quantity' => $cart->quantity,
+					'price' => $cart->price,
+					'total' => $cart->total,
+					'remember_token' => $cart->remember_token,
+					'user_id' => $cart->user_id,
+				];
+			})->values()->all(),
+			'sub_total' => $sub_total,
+		]);
 		return  CartIndexResource::collection($carts)->additional([
 			'meta' => [
 				'sub_total' => $sub_total,
@@ -230,12 +197,12 @@ class CartController  extends Controller
 				$cart->delete();
 			}
 
-			$user = $request->user();
-			if (auth()->check()) {
-				$cartItems = Cart::with('product')->where('user_id', $user->id)->get();
-				$items = $cartItems->map(function ($cart) {
-					return [
-						'product_id' => $cart->product_id,
+				$user = $request->user();
+				if (auth()->check()) {
+					$cartItems = Cart::all_items_in_cart();
+					$items = $cartItems->map(function ($cart) {
+						return [
+							'product_id' => $cart->product_id,
 						'name' => $cart->product->name ?? 'Unknown Product',
 						'image_url' => $cart->product->image_m ?? '',
 						'price' => $cart->product->price ?? 0,

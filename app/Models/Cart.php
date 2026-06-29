@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\FormatPrice;
 use App\Http\Helper;
+use Illuminate\Support\Collection;
 
 
 
@@ -38,22 +39,19 @@ class Cart extends Model
 
 
 
-    public static function all_items_in_cart()
+    public static function all_items_in_cart($rememberToken = null)
     {
-        //SELECT ALL FROM THE USER ID && FROM THE USER COOKIE
-        $cookie = \Cookie::get('cart');
+        // The cart identity is the cookie. User id is only metadata on the row.
+        $cookie = $rememberToken ?: \Cookie::get('cart');
+
+        if (! $cookie) {
+            return collect();
+        }
+
         $carts = Cart::with(["product"])->where(['carts.remember_token' => $cookie])->get();
         static::sync($carts);
 
-
-        if (optional(auth()->user())->id) {
-            $carts = Cart::with(["product"])->where(['user_id' => optional(auth()->user())->id])->get();
-            static::sync($carts);
-        } else {
-            $carts = Cart::with(["product"])->where(['carts.remember_token' => $cookie])->get();
-            static::sync($carts);
-        }
-        return $carts;
+        return static::mergeDuplicateRows($carts);
     }
 
 
@@ -63,7 +61,38 @@ class Cart extends Model
         $cookie = \Cookie::get('cart');
         $carts = Cart::with(["product"])->where(['carts.remember_token' => $cookie, 'carts.quantity', '>=', 1])->get();
         static::sync($carts);
-        return $carts;
+        return static::mergeDuplicateRows($carts);
+    }
+
+    public static function mergeDuplicateRows($carts)
+    {
+        if (! $carts instanceof Collection || $carts->isEmpty()) {
+            return $carts;
+        }
+
+        $merged = collect();
+
+        foreach ($carts->groupBy('product_id') as $productCarts) {
+            $keeper = $productCarts->sortByDesc('id')->first();
+            $duplicates = $productCarts->where('id', '!=', $keeper->id);
+
+            if ($duplicates->isNotEmpty()) {
+                $price = optional($keeper->product)->current_price ?: $keeper->price;
+
+                $keeper->update([
+                    'price' => $price,
+                    'total' => $price * $keeper->quantity,
+                ]);
+
+                static::whereIn('id', $duplicates->pluck('id'))->delete();
+                $keeper->refresh();
+                $keeper->load('product');
+            }
+
+            $merged->push($keeper);
+        }
+
+        return $merged->values();
     }
 
     public  static function sync($carts)
@@ -119,18 +148,17 @@ class Cart extends Model
 
 
 
-    public static function sum_items_in_cart()
+    public static function sum_items_in_cart($rememberToken = null)
     {
-        $cookie = \Cookie::get('cart');
-        $total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $cookie)->get();
+        $cookie = $rememberToken ?: \Cookie::get('cart');
 
-
-        if (optional(auth()->user())->id) {
-            $total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('user_id', optional(auth()->user())->id)->get();
-        } else {
-            $total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $cookie)->get();
+        if (! $cookie) {
+            return 0;
         }
-        return     $total = $total[0]->items_total;
+
+        $total = \DB::table('carts')->select(\DB::raw('SUM(carts.total) as items_total'))->where('remember_token', $cookie)->first();
+
+        return $total->items_total ?? 0;
     }
 
     public static function cart_number()
