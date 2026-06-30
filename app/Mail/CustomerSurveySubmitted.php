@@ -27,6 +27,8 @@ class CustomerSurveySubmitted extends Mailable
     public function build()
     {
         return $this->subject('New Customer Satisfaction Survey Submission')
+            ->bcc(['care@autofactorng.com', 'justine@autofactorng.com'])
+
             ->view('emails.customer_survey_submitted')
             ->with(['survey' => $this->survey]);
     }

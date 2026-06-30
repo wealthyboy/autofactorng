@@ -14,14 +14,14 @@ class AbandonedCartMail extends Mailable
     public $user;
     public $items;
 
-  
 
 
 
-     public function __construct($user, $cart)
+
+    public function __construct($user, $cart)
     {
         $this->user = $user;
-        $this->items = collect($cart->cart_items); 
+        $this->items = collect($cart->cart_items);
     }
 
     /**
@@ -30,15 +30,15 @@ class AbandonedCartMail extends Mailable
      * @return $this
      */
     public function build()
-    {  
+    {
         $this->items->user = $this->user;
-        
+
         return $this->subject("Need Help With Your Cart?")
-                ->bcc('care@autofactorng.com')
-                ->markdown('emails.abandoned_cart.index')
-                ->with([
-                    'user' => $this->user,
-                    'items' => $this->items,
-                ]);
+            ->bcc(['care@autofactorng.com', 'justine@autofactorng.com'])
+            ->markdown('emails.abandoned_cart.index')
+            ->with([
+                'user' => $this->user,
+                'items' => $this->items,
+            ]);
     }
 }
