@@ -21,8 +21,6 @@ use Laravel\Ui\Presets\React;
 
 class ProductsController extends Controller
 {
-    private const LEADING_FEATURED_PRODUCTS = 10;
-
     public $settings;
 
     public function __construct()
@@ -255,82 +253,17 @@ class ProductsController extends Controller
             $query->where('amphere', $request->amphere);
         }
 
-        $query->filter($request);
-        $this->applyCategoryProductOrder($query, $request, $category);
+        if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
+            $products = $query->filter($request)->latest()->paginate($per_page);
+        } else {
 
-        $products = $query->paginate($per_page);
+            $products = $query->filter($request)->latest()->paginate($per_page);
+        }
 
         $products->load('images');
         $products->appends(request()->all());
 
         return $products;
-    }
-
-    /**
-     * Put up to ten products selected by an administrator first, then keep the
-     * rest in a stable shuffled order for this browser session. A stable order
-     * prevents products repeating as the customer moves between pages.
-     */
-    private function applyCategoryProductOrder(Builder $query, Request $request, Category $category): void
-    {
-        if ($request->filled('sort_by')) {
-            return;
-        }
-
-        $featuredProductIds = (clone $query)
-            ->reorder()
-            ->where('products.is_featured', true)
-            ->orderByDesc('products.updated_at')
-            ->orderByDesc('products.id')
-            ->limit(self::LEADING_FEATURED_PRODUCTS)
-            ->pluck('products.id')
-            ->values();
-
-        $query->reorder();
-
-        if ($featuredProductIds->isNotEmpty()) {
-            $cases = [];
-            $bindings = [];
-
-            foreach ($featuredProductIds as $position => $productId) {
-                $cases[] = 'WHEN ? THEN ?';
-                $bindings[] = $productId;
-                $bindings[] = $position;
-            }
-
-            $bindings[] = self::LEADING_FEATURED_PRODUCTS;
-
-            $query->orderByRaw(
-                'CASE products.id ' . implode(' ', $cases) . ' ELSE ? END',
-                $bindings
-            );
-        }
-
-        $seed = $this->categoryProductSequenceSeed($request, $category);
-
-        $query
-            ->orderByRaw('((products.id * 1103515245 + ?) % 2147483647)', [$seed])
-            ->orderBy('products.id');
-    }
-
-    private function categoryProductSequenceSeed(Request $request, Category $category): int
-    {
-        $filters = $request->query();
-
-        foreach (['page', 'get', 't', 'search'] as $transientParameter) {
-            unset($filters[$transientParameter]);
-        }
-
-        ksort($filters);
-
-        $filterSignature = sha1($category->id . '|' . json_encode($filters));
-        $sessionKey = 'category_product_sequences.' . $filterSignature;
-
-        if (!$request->session()->has($sessionKey)) {
-            $request->session()->put($sessionKey, random_int(1, 2147483646));
-        }
-
-        return (int) $request->session()->get($sessionKey);
     }
 
 
