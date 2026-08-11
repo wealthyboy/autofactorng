@@ -55,6 +55,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('delete/upload', 'Admin\Uploads\UploadsController@destroy');
     Route::resource('users',  'Admin\Users\UsersController', ['names' => 'admin.users']);
     Route::post('/products/update-price/{id}', 'Admin\Product\ProductController@updatePrice');
+    Route::post('/products/{id}/featured', 'Admin\Product\ProductController@updateFeatured')->name('products.featured');
 
 
 

@@ -341,6 +341,7 @@ class ProductController extends Table
         $product->keywords = $request->keywords;
         $product->meta_description = $request->meta_description;
         $product->condition_is_present = $request->condition_is_present ? 1 : 0;
+        $product->is_featured = $request->is_featured ? 1 : 0;
         $product->description = $request->description;
         $product->phy_desc = $request->phy_desc;
         $product->save();
@@ -529,6 +530,30 @@ class ProductController extends Table
         $product = Product::find($id);
         $product->price = $request->price;
         $product->save();
+    }
+
+    public function updateFeatured(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'is_featured' => ['required', 'boolean'],
+        ]);
+
+        $product = Product::findOrFail($id);
+        $product->is_featured = (bool) $validated['is_featured'];
+        $product->save();
+
+        (new Activity)->put(
+            ($product->is_featured ? 'Marked ' : 'Removed ') .
+            $product->name .
+            ($product->is_featured ? ' as a featured product' : ' from featured products')
+        );
+
+        return response()->json([
+            'message' => $product->is_featured
+                ? 'Product is now featured.'
+                : 'Product removed from featured products.',
+            'is_featured' => (bool) $product->is_featured,
+        ]);
     }
 
 
