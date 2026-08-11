@@ -143,7 +143,23 @@
 
                                     <div class="align-middle text-center  text-sm">
 
-                                        @if(is_array($v))
+                                        @if($name === 'Products' && $k === 'Featured')
+                                        <div class="product-featured-control d-flex align-items-center justify-content-center gap-2">
+                                            <label class="product-featured-switch mb-0" title="Prioritize this product in category listings">
+                                                <input
+                                                    type="checkbox"
+                                                    class="js-product-featured-toggle"
+                                                    data-product-id="{{ $models['items'][0][$key]['Id'] }}"
+                                                    aria-label="Toggle featured status for {{ $models['items'][0][$key]['Name'] }}"
+                                                    {{ $v ? 'checked' : '' }}
+                                                >
+                                                <span class="product-featured-slider" aria-hidden="true"></span>
+                                            </label>
+                                            <span class="js-product-featured-label text-xs text-secondary">
+                                                {{ $v ? 'Featured' : 'Standard' }}
+                                            </span>
+                                        </div>
+                                        @elseif(is_array($v))
                                         <select name="" style="width: 100px;" class="form-control  change-status border px-1 text-xs" data-column="{{$k}}" data-id="{{ isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null }}" data-model="Order" name="[]">
                                             @foreach($v as $l => $lv)
                                             @if($l == 'selected')

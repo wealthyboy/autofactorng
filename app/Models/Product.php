@@ -243,6 +243,7 @@ class Product extends Model
                 "Name" => $product->name,
                 "Quantity" => $product->quantity,
                 "Category" => implode(', ', $product->categories->pluck('name')->toArray()),
+                "Featured" => (bool) $product->is_featured,
                 "Price" => $price,
                 "Date Added" => $product->created_at->format('d-m-y'),
             ];
@@ -261,6 +262,7 @@ class Product extends Model
             "Name" => 'product_name',
             "Quantity" => 'quantity',
             "Category" => 'brand_id',
+            "Featured" => 'is_featured',
             "Price" => 'price',
             "Date Added" => 'created_at',
         ];
