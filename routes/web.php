@@ -134,6 +134,7 @@ Route::get('plans', [App\Http\Controllers\Plans\PlansController::class, 'index']
 Route::get('buy-now-pay-later', [App\Http\Controllers\BuyNowPayLater\BuyNowPayLaterController::class, 'index']);
 Route::get('customer-survey', 'CustermerSurvey\CustermerSurveyController@create')->name('customer-survey');
 Route::post('customer-survey', 'CustermerSurvey\CustermerSurveyController@store')->name('customer-survey.submit');
+Route::post('analytics/visit-duration', 'Tracking\VisitDurationController@store')->name('analytics.visit-duration');
 
 
 Route::get('subscribe', [App\Http\Controllers\Subscribe\SubscribeController::class, 'index']);

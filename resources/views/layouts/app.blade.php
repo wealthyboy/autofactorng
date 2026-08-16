@@ -620,6 +620,30 @@
          $(".coverlay").removeClass("d-block").addClass("d-none");
       })
    </script>
+   <script>
+      (function () {
+         const startedAt = Date.now();
+         let lastSent = 0;
+         const endpoint = @json(route('analytics.visit-duration'));
+         const token = document.querySelector('meta[name="csrf-token"]');
+
+         function reportVisitDuration() {
+            const seconds = Math.floor((Date.now() - startedAt) / 1000);
+            if (!token || seconds < 1 || seconds === lastSent) return;
+            lastSent = seconds;
+            const data = new FormData();
+            data.append('_token', token.content);
+            data.append('page_url', window.location.href.split('#')[0]);
+            data.append('seconds', seconds);
+            navigator.sendBeacon(endpoint, data);
+         }
+
+         window.addEventListener('pagehide', reportVisitDuration);
+         document.addEventListener('visibilitychange', function () {
+            if (document.visibilityState === 'hidden') reportVisitDuration();
+         });
+      })();
+   </script>
 
 </body>
 

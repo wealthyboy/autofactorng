@@ -179,7 +179,8 @@ class AnalyticsController extends Controller
     {
         [$from, $to] = $this->dateRange($request);
         $visits = UserTracking::whereBetween('created_at', [$from, $to]);
-        $visitorCount = (clone $visits)->whereNotNull('session_id')->distinct()->count('session_id');
+        $visitSummary = (clone $visits)->selectRaw('COUNT(DISTINCT session_id) as visitors, AVG(time_spent) as average_time')->first();
+        $visitorCount = (int) $visitSummary->visitors;
         $returning = DB::query()->fromSub((clone $visits)->whereNotNull('session_id')->select('session_id')
             ->groupBy('session_id')->havingRaw('COUNT(*) > 1'), 'returning_sessions')->count();
         $abandoned = AbandonedCart::whereBetween('checkout_started_at', [$from, $to])->where('recovered', false)->count();
@@ -193,7 +194,7 @@ class AnalyticsController extends Controller
                 ['label' => 'Abandoned cart rate', 'value' => number_format(($abandoned + $orders) ? $abandoned / ($abandoned + $orders) * 100 : 0, 1) . '%', 'hint' => 'Abandoned checkouts vs carts resolved'],
                 ['label' => 'Returning visitors', 'value' => number_format($returning), 'hint' => 'Sessions with repeat visits'],
                 ['label' => 'New visitors', 'value' => number_format(max($visitorCount - $returning, 0)), 'hint' => 'Single-visit sessions in period'],
-                ['label' => 'Average time', 'value' => $this->duration((clone $visits)->whereNotNull('time_spent')->avg('time_spent')), 'hint' => 'From recorded visit duration'],
+                ['label' => 'Average time', 'value' => $this->duration($visitSummary->average_time), 'hint' => 'From recorded visit duration'],
             ],
             'chart' => $this->monthlyVisitorTrend($to),
             'sources' => (clone $visits)->selectRaw(
@@ -298,13 +299,22 @@ class AnalyticsController extends Controller
 
     private function monthlyVisitorTrend(Carbon $to): array
     {
+        $from = $to->copy()->subMonths(5)->startOfMonth();
+        $sessionRows = UserTracking::whereBetween('created_at', [$from, $to->copy()->endOfMonth()])
+            ->whereNotNull('session_id')
+            ->selectRaw("DATE_FORMAT(created_at, '%Y-%m') as month, session_id, COUNT(*) as visits")
+            ->groupBy('month', 'session_id');
+        $rows = DB::query()->fromSub($sessionRows, 'monthly_sessions')
+            ->selectRaw('month, COUNT(*) as visitors, SUM(CASE WHEN visits > 1 THEN 1 ELSE 0 END) as returning_visitors')
+            ->groupBy('month')->get()->keyBy('month');
+
         $labels = $visitors = $returning = [];
         for ($i = 5; $i >= 0; $i--) {
             $month = $to->copy()->subMonths($i);
-            $query = UserTracking::whereBetween('created_at', [$month->copy()->startOfMonth(), $month->copy()->endOfMonth()]);
+            $row = $rows->get($month->format('Y-m'));
             $labels[] = $month->format('M Y');
-            $visitors[] = (clone $query)->distinct()->count('session_id');
-            $returning[] = (clone $query)->whereNotNull('user_id')->distinct()->count('user_id');
+            $visitors[] = $row ? (int) $row->visitors : 0;
+            $returning[] = $row ? (int) $row->returning_visitors : 0;
         }
         return ['labels' => $labels, 'datasets' => [
             ['label' => 'Visitors', 'data' => $visitors, 'color' => '#e91e63'],

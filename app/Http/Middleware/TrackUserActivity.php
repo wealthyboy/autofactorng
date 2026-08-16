@@ -27,8 +27,6 @@ class TrackUserActivity
 
         $this->captureIndriveReferral($request);
 
-        $this->terminate($request);
-
         return $next($request);
     }
 
@@ -94,7 +92,7 @@ class TrackUserActivity
 
         $cacheKey = 'user_tracking_' . $sessionId . '_' . md5($path);
 
-        Cache::remember($cacheKey, 30, function () use ($request, $sessionId, $path, $user, $referer) {
+        if (Cache::add($cacheKey, true, 30)) {
             UserTracking::create([
                 'session_id' => $sessionId,
                 'page_url' => $path,
@@ -110,12 +108,12 @@ class TrackUserActivity
                 'product_id' => $request->routeIs('products.show') ? optional($request->route('product'))->id : null,
                 'action' => $request->input('action', 'viewed'),
                 'is_indrive' => (bool) session('is_indrive_customer'),
-                'source_channel' => session('acquisition_source'),
+                'source_channel' => session('acquisition_source') ?: $this->sourceFromReferer($referer),
                 'indrive_driver_id' => session('indrive_driver_id'),
                 'indrive_verified' => (bool) session('indrive_verified'),
                 'created_at' => now(),
             ]);
-        });
+        }
 
         if (!session()->has('tracking_id')) {
             $lastId = Cache::remember('last_tracking_id', 30, function () {
@@ -130,8 +128,9 @@ class TrackUserActivity
 
     protected function shouldSkipTracking(Request $request): bool
     {
-        return ($request->ajax() && $request->input('ignore') === 'true')
-            || Str::contains($request->path(), 'admin');
+        return $request->ajax()
+            || ! in_array($request->method(), ['GET', 'HEAD'], true)
+            || Str::startsWith($request->path(), ['admin', 'api']);
     }
 
     public function detectDevice(Request $request)
@@ -147,5 +146,21 @@ class TrackUserActivity
         }
 
         return 'desktop';
+    }
+
+    protected function sourceFromReferer(?string $referer): string
+    {
+        if (! $referer) {
+            return 'direct';
+        }
+
+        $host = strtolower((string) parse_url($referer, PHP_URL_HOST));
+        foreach (['google', 'facebook', 'instagram', 'twitter', 'youtube', 'tiktok', 'linkedin'] as $source) {
+            if (Str::contains($host, $source)) {
+                return $source;
+            }
+        }
+
+        return $host ?: 'referral';
     }
 }
