@@ -74,24 +74,17 @@ class OrdersController extends Table
 			'q' => ['required', 'string', 'min:2', 'max:100'],
 		]);
 		$term = trim($validated['q']);
-		$tokens = collect(preg_split('/\s+/', $term))->filter()->flatMap(function ($token) {
-			$variants = [$token];
-			if (strlen($token) >= 5 && strtolower(substr($token, -1)) === 'e') {
-				$variants[] = substr($token, 0, -1);
-			}
-			return $variants;
-		})->unique()->values();
+		$tokens = collect(preg_split('/\s+/', $term))->filter()->unique()->values();
 
 		$products = Product::query()
 			->where(function ($query) use ($tokens) {
 				foreach ($tokens as $token) {
-					$query->orWhere('name', 'like', "%{$token}%")
-						->orWhere('product_name', 'like', "%{$token}%")
-						->orWhere('generic_name', 'like', "%{$token}%")
-						->orWhere('sku', 'like', "%{$token}%")
-						->orWhere('barcode', 'like', "%{$token}%")
-						->orWhere('keywords', 'like', "%{$token}%")
-						->orWhere('title', 'like', "%{$token}%");
+					$query->where(function ($match) use ($token) {
+						$match->where('name', 'like', "%{$token}%")
+							->orWhere('product_name', 'like', "%{$token}%")
+							->orWhere('sku', 'like', "%{$token}%")
+							->orWhere('barcode', 'like', "%{$token}%");
+					});
 				}
 			})
 			->select('id', 'name', 'product_name', 'sku', 'barcode', 'quantity', 'price', 'sale_price')
