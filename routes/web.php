@@ -90,6 +90,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::resource('orders', 'Admin\Orders\OrdersController', ['names' => 'admin.orders']);
     Route::get('tickets/order-preview', 'Admin\Tickets\TicketsController@orderPreview')->name('admin.tickets.order-preview');
     Route::post('tickets/{ticket}/comments', 'Admin\Tickets\TicketsController@addComment')->name('admin.tickets.comments.store');
+    Route::post('tickets/{ticket}/close', 'Admin\Tickets\TicketsController@close')->name('admin.tickets.close');
     Route::resource('tickets', 'Admin\Tickets\TicketsController')->only(['index', 'create', 'store', 'show'])->names('admin.tickets');
     Route::get('customer-surveys', 'CustermerSurvey\CustermerSurveyController@index')->name('admin.customer-surveys.index');
     Route::get('customer-surveys/{survey}', 'CustermerSurvey\CustermerSurveyController@show')->name('admin.customer-surveys.show');

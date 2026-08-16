@@ -79,17 +79,19 @@ class AnalyticsController extends Controller
                 ->selectRaw('SUM(ordered_products.quantity) as units, SUM(ordered_products.total) as sales')
                 ->groupBy('name')->orderByDesc('units')->limit(15)->get(),
             'lowStock' => Product::select('id', 'name', 'sku', 'quantity')
-                ->where('quantity', '<=', 5)->orderBy('quantity')->orderBy('name')->limit(15)->get(),
+                ->where('quantity', '<=', 5)->whereBetween('updated_at', [$from, $to])
+                ->orderBy('quantity')->orderBy('name')->limit(15)->get(),
             'slowProducts' => Product::select('products.id', 'products.name', 'products.sku')
-                ->whereNotExists(function ($query) {
+                ->where('products.created_at', '<=', $to)
+                ->whereNotExists(function ($query) use ($from, $to) {
                     $query->select(DB::raw(1))->from('ordered_products')
                         ->join('orders', 'orders.id', '=', 'ordered_products.order_id')
                         ->whereColumn('ordered_products.product_id', 'products.id')
                         ->where('orders.status', '!=', 'Cancelled')
-                        ->where('orders.created_at', '>=', now()->subDays(60));
+                        ->whereBetween('orders.created_at', [$from, $to]);
                 })->limit(15)->get(),
             'fastProducts' => OrderedProduct::query()->join('orders', 'orders.id', '=', 'ordered_products.order_id')
-                ->where('orders.status', '!=', 'Cancelled')->where('orders.created_at', '>=', now()->startOfMonth())
+                ->where('orders.status', '!=', 'Cancelled')->whereBetween('orders.created_at', [$from, $to])
                 ->selectRaw("COALESCE(NULLIF(ordered_products.product_name, ''), 'Unnamed product') as name")
                 ->selectRaw('SUM(ordered_products.quantity) as units')->groupBy('name')
                 ->havingRaw('SUM(ordered_products.quantity) > 5')->orderByDesc('units')->limit(15)->get(),
@@ -140,14 +142,14 @@ class AnalyticsController extends Controller
             'from' => $from,
             'to' => $to,
             'stats' => [
-                ['label' => 'Total customers', 'value' => number_format(User::customers()->count()), 'hint' => 'All registered customers'],
+                ['label' => 'Total customers', 'value' => number_format(User::customers()->where('created_at', '<=', $to)->count()), 'hint' => 'Registered by end of period'],
                 ['label' => 'New customers', 'value' => number_format($newCustomers), 'hint' => 'Joined in selected period'],
                 ['label' => 'Customer growth', 'value' => number_format($growth, 1) . '%', 'hint' => 'Against previous equal period'],
                 ['label' => 'Customers who ordered', 'value' => number_format(Order::whereBetween('created_at', [$from, $to])->whereNotNull('user_id')->distinct()->count('user_id')), 'hint' => 'Unique registered buyers'],
             ],
-            'chart' => $this->monthlyCustomerTrend($to),
+            'chart' => $this->customerTrend($from, $to),
             'topCustomers' => Order::query()
-                ->where('status', '!=', 'Cancelled')
+                ->whereBetween('created_at', [$from, $to])->where('status', '!=', 'Cancelled')
                 ->selectRaw("COALESCE(NULLIF(email, ''), CONCAT('Customer #', user_id)) as customer")
                 ->selectRaw('COUNT(*) as orders, SUM(total) as spent')
                 ->groupBy('customer')->orderByDesc('spent')->limit(15)->get(),
@@ -169,7 +171,9 @@ class AnalyticsController extends Controller
                 ['label' => 'Inventory sold', 'value' => number_format((clone $soldItems)->sum('ordered_products.quantity')), 'hint' => 'Units sold in selected period'],
                 ['label' => 'Recently reached zero', 'value' => number_format(Product::where('quantity', '<=', 0)->whereBetween('updated_at', [$from, $to])->count()), 'hint' => 'Zero-stock products updated in period'],
             ],
-            'outOfStock' => Product::select('id', 'name', 'sku', 'quantity', 'updated_at')->where('quantity', '<=', 0)->latest('updated_at')->limit(20)->get(),
+            'outOfStock' => Product::select('id', 'name', 'sku', 'quantity', 'updated_at')
+                ->where('quantity', '<=', 0)->whereBetween('updated_at', [$from, $to])
+                ->latest('updated_at')->limit(20)->get(),
             'recentlySold' => (clone $soldItems)->selectRaw("COALESCE(NULLIF(ordered_products.product_name, ''), 'Unnamed product') as name")
                 ->selectRaw('SUM(ordered_products.quantity) as units')->groupBy('name')->orderByDesc('units')->limit(15)->get(),
         ]);
@@ -196,7 +200,7 @@ class AnalyticsController extends Controller
                 ['label' => 'New visitors', 'value' => number_format(max($visitorCount - $returning, 0)), 'hint' => 'Single-visit sessions in period'],
                 ['label' => 'Average time', 'value' => $this->duration($visitSummary->average_time), 'hint' => 'From recorded visit duration'],
             ],
-            'chart' => $this->monthlyVisitorTrend($to),
+            'chart' => $this->visitorTrend($from, $to),
             'sources' => (clone $visits)->selectRaw(
                 (Schema::hasColumn('user_trackings', 'source_channel')
                     ? "COALESCE(NULLIF(source_channel, ''), NULLIF(referer, ''), 'Direct / unknown')"
@@ -286,35 +290,59 @@ class AnalyticsController extends Controller
         return $seconds ? sprintf('%dm %02ds', intdiv($seconds, 60), $seconds % 60) : 'Not recorded';
     }
 
-    private function monthlyCustomerTrend(Carbon $to): array
+    private function customerTrend(Carbon $from, Carbon $to): array
     {
+        $monthly = $from->diffInDays($to) > 62;
+        $bucketSql = $monthly ? "DATE_FORMAT(created_at, '%Y-%m')" : 'DATE(created_at)';
+        $rows = User::customers()->whereBetween('created_at', [$from, $to])
+            ->selectRaw($bucketSql . ' as bucket, COUNT(*) as total')
+            ->groupBy('bucket')->get()->keyBy('bucket');
         $labels = $new = [];
-        for ($i = 5; $i >= 0; $i--) {
-            $month = $to->copy()->subMonths($i);
-            $labels[] = $month->format('M Y');
-            $new[] = User::customers()->whereBetween('created_at', [$month->copy()->startOfMonth(), $month->copy()->endOfMonth()])->count();
+
+        if ($monthly) {
+            for ($cursor = $from->copy()->startOfMonth(); $cursor <= $to; $cursor->addMonth()) {
+                $key = $cursor->format('Y-m');
+                $labels[] = $cursor->format('M Y');
+                $new[] = (int) optional($rows->get($key))->total;
+            }
+        } else {
+            foreach (CarbonPeriod::create($from->copy()->startOfDay(), $to->copy()->startOfDay()) as $day) {
+                $key = $day->format('Y-m-d');
+                $labels[] = $day->format('d M');
+                $new[] = (int) optional($rows->get($key))->total;
+            }
         }
+
         return ['labels' => $labels, 'datasets' => [['label' => 'New customers', 'data' => $new, 'color' => '#e91e63']]];
     }
 
-    private function monthlyVisitorTrend(Carbon $to): array
+    private function visitorTrend(Carbon $from, Carbon $to): array
     {
-        $from = $to->copy()->subMonths(5)->startOfMonth();
-        $sessionRows = UserTracking::whereBetween('created_at', [$from, $to->copy()->endOfMonth()])
+        $monthly = $from->diffInDays($to) > 62;
+        $bucketSql = $monthly ? "DATE_FORMAT(created_at, '%Y-%m')" : 'DATE(created_at)';
+        $sessionRows = UserTracking::whereBetween('created_at', [$from, $to])
             ->whereNotNull('session_id')
-            ->selectRaw("DATE_FORMAT(created_at, '%Y-%m') as month, session_id, COUNT(*) as visits")
-            ->groupBy('month', 'session_id');
+            ->selectRaw($bucketSql . ' as bucket, session_id, COUNT(*) as visits')
+            ->groupBy('bucket', 'session_id');
         $rows = DB::query()->fromSub($sessionRows, 'monthly_sessions')
-            ->selectRaw('month, COUNT(*) as visitors, SUM(CASE WHEN visits > 1 THEN 1 ELSE 0 END) as returning_visitors')
-            ->groupBy('month')->get()->keyBy('month');
+            ->selectRaw('bucket, COUNT(*) as visitors, SUM(CASE WHEN visits > 1 THEN 1 ELSE 0 END) as returning_visitors')
+            ->groupBy('bucket')->get()->keyBy('bucket');
 
         $labels = $visitors = $returning = [];
-        for ($i = 5; $i >= 0; $i--) {
-            $month = $to->copy()->subMonths($i);
-            $row = $rows->get($month->format('Y-m'));
-            $labels[] = $month->format('M Y');
-            $visitors[] = $row ? (int) $row->visitors : 0;
-            $returning[] = $row ? (int) $row->returning_visitors : 0;
+        if ($monthly) {
+            for ($cursor = $from->copy()->startOfMonth(); $cursor <= $to; $cursor->addMonth()) {
+                $row = $rows->get($cursor->format('Y-m'));
+                $labels[] = $cursor->format('M Y');
+                $visitors[] = $row ? (int) $row->visitors : 0;
+                $returning[] = $row ? (int) $row->returning_visitors : 0;
+            }
+        } else {
+            foreach (CarbonPeriod::create($from->copy()->startOfDay(), $to->copy()->startOfDay()) as $day) {
+                $row = $rows->get($day->format('Y-m-d'));
+                $labels[] = $day->format('d M');
+                $visitors[] = $row ? (int) $row->visitors : 0;
+                $returning[] = $row ? (int) $row->returning_visitors : 0;
+            }
         }
         return ['labels' => $labels, 'datasets' => [
             ['label' => 'Visitors', 'data' => $visitors, 'color' => '#e91e63'],

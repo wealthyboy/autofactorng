@@ -125,6 +125,32 @@ class TicketsController extends Controller
         return redirect()->route('admin.tickets.show', $ticket)->with('success', 'Ticket updated.');
     }
 
+    public function close(Ticket $ticket)
+    {
+        if ($ticket->status === 'Closed') {
+            return redirect()->route('admin.tickets.show', $ticket)->with('success', 'This ticket is already closed.');
+        }
+
+        $comment = 'Your complaint has been reviewed and this ticket is now closed. If you still need help, please contact AutoFactorNG Customer Care.';
+
+        DB::transaction(function () use ($ticket, $comment) {
+            $ticket->update(['status' => 'Closed']);
+            $ticket->comments()->create([
+                'comment' => $comment,
+                'customer_visible' => true,
+                'created_by' => Auth::id(),
+            ]);
+        });
+
+        $notified = $this->notifyCustomer($ticket->load('order'), $comment);
+        (new Activity)->put('Closed ticket ' . $ticket->ticket_number);
+
+        return redirect()->route('admin.tickets.show', $ticket)->with(
+            'success',
+            $notified ? 'Ticket closed and the customer was notified.' : 'Ticket closed, but the customer email could not be sent.'
+        );
+    }
+
     private function findOrder(string $reference): Order
     {
         return Order::where('id', trim($reference))->orWhere('invoice', trim($reference))->firstOrFail();

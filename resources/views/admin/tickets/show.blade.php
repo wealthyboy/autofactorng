@@ -7,7 +7,13 @@
 @section('content')
 <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
     <div><h4 class="mb-1">{{ $ticket->ticket_number }}</h4><p class="text-sm text-secondary mb-0">Created {{ optional($ticket->created_at)->format('d M Y, h:i A') }} by {{ optional($ticket->creator)->name ?: 'Admin' }}</p></div>
-    <div><a href="{{ route('admin.tickets.create', ['order' => $ticket->order_id]) }}" class="btn btn-outline-dark mb-0 me-2">New ticket for order</a><a href="{{ route('admin.tickets.index') }}" class="btn bg-gradient-dark mb-0">All tickets</a></div>
+    <div class="d-flex flex-wrap gap-2">
+        @if($ticket->status !== 'Closed')
+        <form method="post" action="{{ route('admin.tickets.close', $ticket) }}" onsubmit="return confirm('Close this ticket and notify the customer?')">@csrf<button class="btn bg-gradient-danger mb-0">Close ticket</button></form>
+        @endif
+        <a href="{{ route('admin.tickets.create', ['order' => $ticket->order_id]) }}" class="btn btn-outline-dark mb-0">New ticket for order</a>
+        <a href="{{ route('admin.tickets.index') }}" class="btn bg-gradient-dark mb-0">All tickets</a>
+    </div>
 </div>
 @if(session('success'))<div class="alert alert-success text-white">{{ session('success') }}</div>@endif
 
