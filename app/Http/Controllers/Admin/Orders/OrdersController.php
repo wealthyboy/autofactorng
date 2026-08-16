@@ -77,6 +77,7 @@ class OrdersController extends Table
 		$tokens = collect(preg_split('/\s+/', $term))->filter()->unique()->values();
 
 		$products = Product::query()
+			->with('categories.discount')
 			->where(function ($query) use ($tokens) {
 				foreach ($tokens as $token) {
 					$query->where(function ($match) use ($token) {
@@ -87,7 +88,18 @@ class OrdersController extends Table
 					});
 				}
 			})
-			->select('id', 'name', 'product_name', 'sku', 'barcode', 'quantity', 'price', 'sale_price')
+			->select(
+				'id',
+				'name',
+				'product_name',
+				'sku',
+				'barcode',
+				'quantity',
+				'price',
+				'sale_price',
+				'sale_price_starts',
+				'sale_price_ends'
+			)
 			->orderByRaw('CASE WHEN name LIKE ? OR product_name LIKE ? THEN 0 ELSE 1 END', [$term . '%', $term . '%'])
 			->orderBy('name')->limit(20)->get()
 			->map(function ($product) {
@@ -96,7 +108,7 @@ class OrdersController extends Table
 					'name' => $product->name ?: $product->product_name ?: 'Unnamed product',
 					'sku' => $product->sku ?: $product->barcode,
 					'quantity' => (int) $product->quantity,
-					'price' => (float) ($product->sale_price ?: $product->price),
+					'price' => (float) $product->current_price,
 					'catalogue' => true,
 				];
 			});
