@@ -17,6 +17,7 @@
             <thead>
                <tr>
                   <h4 class="card-title">{{ $order->isPickup() ? 'Pickup' : 'Shipping Address' }}</h4>
+                  <p class="text-sm text-secondary mb-0">Zone: <strong>{{ $order->isPickup() ? 'Pickup' : ($order->zone ?: 'Not recorded') }}</strong></p>
                </tr>
             </thead>
             <tbody>

@@ -23,6 +23,7 @@ use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Schema;
 use App\Observers\ProductObserver;
 use App\Mail\TestMail;
 
@@ -45,8 +46,13 @@ class OrdersController extends Table
 
 	public function builder()
 	{
+		$userColumns = ['id', 'name', 'last_name', 'email'];
+		if (Schema::hasColumn('users', 'phone_number')) {
+			$userColumns[] = 'phone_number';
+		}
+
 		return Order::with([
-			'user:id,name,last_name,email,phone_number',
+			'user:' . implode(',', $userColumns),
 			'orderEmail:id,order_id,fullname,email',
 		])->has('ordered_products');
 	}
@@ -535,6 +541,7 @@ class OrdersController extends Table
 				"Payment Type" => $obj->payment_type,
 				"Category" => ucfirst($obj->category ?: 'general'),
 				"Fulfillment" => optional($obj)->isPickup() ? 'Pickup' : 'Delivery',
+				"Shipping Zone" => optional($obj)->isPickup() ? 'Pickup' : ($obj->zone ?: 'Not recorded'),
 				"Shipping" => Helper::currencyWrapper($obj->shipping_price),
 				"Ip Address" => optional($obj)->ip ?? '---',
 				"Referer" => optional($obj)->referer ?? '---',
