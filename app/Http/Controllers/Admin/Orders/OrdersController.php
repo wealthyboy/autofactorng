@@ -71,11 +71,10 @@ class OrdersController extends Table
 	public function invoice($id)
 	{
 		$order = Order::find($id);
-		// ensure ordered products and product relations are loaded for images
-		$order->loadMissing('ordered_products.product');
+		$order->loadMissing('ordered_products');
 		$setting = Setting::first();
 		$sub_total = $this->subTotal($order);
-		$ordered_products = $order->ordered_products()->with('product')->paginate(20);
+		$ordered_products = $order->ordered_products()->paginate(20);
 		$ordered_products = (new OrderedProduct())->getListingData($ordered_products);
 		$summaries = [];
 		$summaries['Sub-Total'] = Helper::currencyWrapper($sub_total);
