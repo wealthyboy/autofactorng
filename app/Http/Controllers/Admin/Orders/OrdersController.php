@@ -108,33 +108,6 @@ class OrdersController extends Table
 				];
 			});
 
-		if ($products->count() < 20) {
-			$catalogueNames = $products->pluck('name')->map(function ($name) {
-				return strtolower(trim($name));
-			});
-			$previousItems = OrderedProduct::query()
-				->whereNotNull('product_name')->where(function ($query) use ($tokens) {
-					foreach ($tokens as $token) {
-						$query->orWhere('product_name', 'like', "%{$token}%");
-					}
-				})
-				->select('product_name')->selectRaw('MAX(price) as price, MAX(created_at) as last_ordered')
-				->groupBy('product_name')->orderByDesc('last_ordered')->limit(20 - $products->count())->get()
-				->reject(function ($item) use ($catalogueNames) {
-					return $catalogueNames->contains(strtolower(trim($item->product_name)));
-				})->map(function ($item) {
-					return [
-						'id' => null,
-						'name' => $item->product_name,
-						'sku' => 'Previously ordered · not in catalogue',
-						'quantity' => null,
-						'price' => (float) $item->price,
-						'catalogue' => false,
-					];
-				});
-			$products = $products->concat($previousItems)->take(20)->values();
-		}
-
 		return response()->json($products)->header('Cache-Control', 'no-store, no-cache, must-revalidate');
 	}
 

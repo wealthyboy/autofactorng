@@ -33,16 +33,12 @@
             var option = document.createElement('button');
             option.type = 'button';
             option.className = 'product-autocomplete-option';
-            var productMeta = product.catalogue
-                ? escapeHtml(product.sku || 'No SKU') + ' · ' + product.quantity + ' in stock'
-                : escapeHtml(product.sku);
+            var productMeta = escapeHtml(product.sku || 'No SKU') + ' · ' + product.quantity + ' in stock';
             option.innerHTML = '<span><strong>' + escapeHtml(product.name) + '</strong><br><small class="text-muted">' + productMeta + '</small></span><strong>' + money(product.price) + '</strong>';
             option.addEventListener('click', function () {
                 picker.querySelector('.order-product-search').value = product.name;
-                picker.querySelector('.order-product-id').value = product.id || '';
-                picker.querySelector('.product-selection-status').textContent = product.catalogue
-                    ? 'Catalogue product selected · ' + product.quantity + ' currently in stock'
-                    : 'Previous order item selected · this will be saved as an unlisted item';
+                picker.querySelector('.order-product-id').value = product.id;
+                picker.querySelector('.product-selection-status').textContent = 'Catalogue product selected · ' + product.quantity + ' currently in stock';
                 var row = picker.closest('.product-items');
                 var price = row ? row.querySelector('input[name="products[price][]"]') : null;
                 if (price) price.value = product.price;
