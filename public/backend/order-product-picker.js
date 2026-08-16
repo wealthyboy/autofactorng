@@ -24,7 +24,7 @@
         panel.innerHTML = '';
 
         if (!products.length) {
-            panel.innerHTML = '<div class="product-autocomplete-empty">No catalogue match. Use “Enter custom item” to type it manually.</div>';
+            panel.innerHTML = '<div class="product-autocomplete-empty">No catalogue match. The name you typed will be saved as an unlisted item.</div>';
             panel.classList.remove('d-none');
             return;
         }
@@ -55,7 +55,7 @@
         var picker = input.closest('[data-product-picker]');
         var panel = picker.querySelector('.product-autocomplete-results');
         picker.querySelector('.order-product-id').value = '';
-        picker.querySelector('.product-selection-status').textContent = 'Typing a custom item until a catalogue result is selected.';
+        picker.querySelector('.product-selection-status').textContent = 'Select a catalogue result, or keep this name as an unlisted item.';
         clearTimeout(timers.get(input));
 
         if (input.value.trim().length < 2) {
@@ -77,16 +77,6 @@
     });
 
     document.addEventListener('click', function (event) {
-        var customButton = event.target.closest('.custom-product-toggle');
-        if (customButton) {
-            var picker = customButton.closest('[data-product-picker]');
-            picker.querySelector('.order-product-id').value = '';
-            picker.querySelector('.order-product-search').focus();
-            picker.querySelector('.product-selection-status').textContent = 'Custom item mode — enter the exact item name and price.';
-            picker.querySelector('.product-autocomplete-results').classList.add('d-none');
-            return;
-        }
-
         closeAll(event.target.closest('.product-autocomplete-results'));
     });
 })();

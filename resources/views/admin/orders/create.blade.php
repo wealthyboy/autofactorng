@@ -120,9 +120,8 @@
                         <input type="hidden" class="order-product-id" name="products[product_id][]">
                      </div>
                      <div class="product-autocomplete-results d-none"></div>
-                     <div class="d-flex justify-content-between mt-1 px-1">
-                        <small class="text-muted product-selection-status">Search the catalogue or enter a custom item.</small>
-                        <button type="button" class="btn btn-link text-dark p-0 m-0 custom-product-toggle">Enter custom item</button>
+                     <div class="mt-1 px-1">
+                        <small class="text-muted product-selection-status">Select a catalogue result, or type the full name for an unlisted item.</small>
                      </div>
                   </div>
                   <div class="col-sm-3 col-12">
