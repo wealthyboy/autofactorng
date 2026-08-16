@@ -165,8 +165,8 @@
 @section('page-scripts')
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
-<script src="{{ asset('backend/products.js') }}"></script>
-<script src="{{ asset('backend/order-product-picker.js') }}"></script>
+<script src="{{ asset('backend/products.js') }}?v={{ filemtime(public_path('backend/products.js')) }}"></script>
+<script src="{{ asset('backend/order-product-picker.js') }}?v={{ filemtime(public_path('backend/order-product-picker.js')) }}"></script>
 @stop
 @section('page-styles')
 <style>

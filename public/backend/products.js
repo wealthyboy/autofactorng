@@ -524,7 +524,7 @@ function addRowOutSideLagos() {
 var row = 0;
 
 function addProductRow() {
-    let html = '<div id="out_row-' + row + '" class="row product-items my-3 ">';
+    let html = '<div id="order-product-row-' + row + '" class="row product-items align-items-start my-3">';
     html += '<div class="col-sm-5 col-12">';
     html += '<div class="product-picker position-relative" data-product-picker>';
     html += '<div class="input-group input-group-outline">';
@@ -532,7 +532,7 @@ function addProductRow() {
     html += '<input type="hidden" class="order-product-id" name="products[product_id][]">';
     html += '</div>';
     html += '<div class="product-autocomplete-results d-none"></div>';
-    html += '<div class="d-flex justify-content-between mt-1"><small class="text-muted product-selection-status">Search catalogue or enter custom.</small><button type="button" class="btn btn-link text-dark p-0 m-0 custom-product-toggle">Custom item</button></div>';
+    html += '<div class="mt-1 px-1"><small class="text-muted product-selection-status">Select a catalogue result, or type the full name for an unlisted item.</small></div>';
     html += '</div>';
     html += '</div>';
     html += '<div class="col-sm-3 col-12">';
@@ -546,10 +546,11 @@ function addProductRow() {
     html += '</div>';
     html += '</div>';
     html += '<div class="col-sm-1">';
-    html += '<button onclick="$(\'#out_row-' + row + '\').remove();"  class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button" ><i class="fa fa-trash"></i> </button>';
+    html += '<button onclick="document.getElementById(\'order-product-row-' + row + '\').remove();" class="remove-section-lagos btn btn-outline-primary btn-sm mb-0" type="button" aria-label="Remove product"><i class="fa fa-trash"></i></button>';
     html += '</div>';
     html += '</div>';
     $("div.product-items:last").after(html);
+    document.querySelector('#order-product-row-' + row + ' .order-product-search').focus();
     row++;
 }
 
