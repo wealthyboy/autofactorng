@@ -84,4 +84,13 @@
     document.addEventListener('click', function (event) {
         closeAll(event.target.closest('.product-autocomplete-results'));
     });
+
+    document.addEventListener('submit', function (event) {
+        var productRows = event.target.querySelectorAll('.product-items');
+
+        productRows.forEach(function (row, position) {
+            var positionInput = row.querySelector('.order-product-sort-order');
+            if (positionInput) positionInput.value = position;
+        });
+    });
 })();

@@ -208,12 +208,13 @@ class OrdersController extends Table
 
 		foreach ($input['products']['product_name'] as $key => $v) {
 			$productId = $input['products']['product_id'][$key] ?? null;
+			$sortOrder = $input['products']['sort_order'][$key] ?? $key;
 			$product = $productId ? Product::find($productId) : null;
 			$OrderedProduct = new OrderedProduct;
 			$OrderedProduct->product_name = $v;
 			$OrderedProduct->order_id = $order->id;
 			$OrderedProduct->product_id = optional($product)->id;
-			$OrderedProduct->sort_order = $key;
+			$OrderedProduct->sort_order = (int) $sortOrder;
 			$OrderedProduct->quantity = $input['products']['quantity'][$key];
 			$OrderedProduct->tracker = rand(100000, time());
 			$OrderedProduct->price = $input['products']['price'][$key];
@@ -325,7 +326,7 @@ class OrdersController extends Table
 			$order->full_name = $request->first_name;
 			Mail::to($request->email)
 				->bcc('order@autofactorng.com')
-				->queue(new OrderReceipt($order, null, null, $sub_total, $coupon_value));
+				->send(new OrderReceipt($order, null, null, $sub_total, $coupon_value));
 		} catch (\Throwable $th) {
 			Log::info("Mail erghror :" . $th);
 			Log::info("Custom error :" . $th);

@@ -765,7 +765,15 @@
       </tr>
    </table>
    <div class="pofbg"></div>
-   <?php foreach ($order->ordered_products as $ordered_product) { ?>
+   <?php
+      $receiptOrderedProducts = $order->ordered_products->sort(function ($left, $right) {
+         $leftPosition = $left->sort_order === null ? PHP_INT_MAX : (int) $left->sort_order;
+         $rightPosition = $right->sort_order === null ? PHP_INT_MAX : (int) $right->sort_order;
+
+         return $leftPosition <=> $rightPosition ?: $left->id <=> $right->id;
+      })->values();
+   ?>
+   <?php foreach ($receiptOrderedProducts as $ordered_product) { ?>
       <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="InvoiceItemDetailsModule" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
          <tr>
             <td align="center">

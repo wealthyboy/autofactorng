@@ -118,6 +118,7 @@
                         <label class="form-label">Search product name, SKU or barcode</label>
                         <input type="text" class="form-control order-product-search" autocomplete="off" required name="products[product_name][]">
                         <input type="hidden" class="order-product-id" name="products[product_id][]">
+                        <input type="hidden" class="order-product-sort-order" name="products[sort_order][]" value="0">
                      </div>
                      <div class="product-autocomplete-results d-none"></div>
                      <div class="mt-1 px-1">
