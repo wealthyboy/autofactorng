@@ -66,6 +66,24 @@
             </li>
 
             <li class="nav-item">
+               <a data-bs-toggle="collapse" href="#analyticsExamples" class="nav-link text-white {{ request()->routeIs('admin.analytics.*') ? 'active' : '' }}" aria-controls="analyticsExamples" role="button" aria-expanded="{{ request()->routeIs('admin.analytics.*') ? 'true' : 'false' }}">
+                  <i class="material-symbols-outlined">bar_chart</i>
+                  <span class="nav-link-text ms-2 ps-1">Analytics</span>
+               </a>
+               <div class="collapse {{ request()->routeIs('admin.analytics.*') ? 'show' : '' }}" id="analyticsExamples">
+                  <ul class="nav">
+                     <li class="nav-item"><a class="nav-link text-white {{ request()->routeIs('admin.analytics.all') ? 'active' : '' }}" href="{{ route('admin.analytics.all') }}"><span class="sidenav-mini-icon">A</span><span class="sidenav-normal ms-2 ps-1">Overview</span></a></li>
+                     <li class="nav-item"><a class="nav-link text-white {{ request()->routeIs('admin.analytics.orders') ? 'active' : '' }}" href="{{ route('admin.analytics.orders') }}"><span class="sidenav-mini-icon">O</span><span class="sidenav-normal ms-2 ps-1">Orders</span></a></li>
+                     <li class="nav-item"><a class="nav-link text-white {{ request()->routeIs('admin.analytics.products') ? 'active' : '' }}" href="{{ route('admin.analytics.products') }}"><span class="sidenav-mini-icon">P</span><span class="sidenav-normal ms-2 ps-1">Products</span></a></li>
+                     <li class="nav-item"><a class="nav-link text-white {{ request()->routeIs('admin.analytics.customers') ? 'active' : '' }}" href="{{ route('admin.analytics.customers') }}"><span class="sidenav-mini-icon">C</span><span class="sidenav-normal ms-2 ps-1">Customers</span></a></li>
+                     <li class="nav-item"><a class="nav-link text-white {{ request()->routeIs('admin.analytics.inventory') ? 'active' : '' }}" href="{{ route('admin.analytics.inventory') }}"><span class="sidenav-mini-icon">I</span><span class="sidenav-normal ms-2 ps-1">Inventory</span></a></li>
+                     <li class="nav-item"><a class="nav-link text-white {{ request()->routeIs('admin.analytics.marketing') ? 'active' : '' }}" href="{{ route('admin.analytics.marketing') }}"><span class="sidenav-mini-icon">M</span><span class="sidenav-normal ms-2 ps-1">Marketing</span></a></li>
+                     <li class="nav-item"><a class="nav-link text-white {{ request()->routeIs('admin.analytics.search') ? 'active' : '' }}" href="{{ route('admin.analytics.search') }}"><span class="sidenav-mini-icon">S</span><span class="sidenav-normal ms-2 ps-1">Search</span></a></li>
+                  </ul>
+               </div>
+            </li>
+
+            <li class="nav-item">
                <a class="nav-link text-white  $helper->active_link(['maintainance']) }}" href="{{ route('maintainance') }}">
                   <i class="material-symbols-outlined">power_settings_new</i>
                   <span class="nav-link-text ms-2 ps-1"> Disable/Enable Site </span>
@@ -276,24 +294,6 @@
                   <span class="nav-link-text ms-2 ps-1"> Blog </span>
                </a>
             </li>
-            <li class="nav-item">
-               <a data-bs-toggle="collapse" href="#analyticsExamples" class="nav-link text-white {{ request()->routeIs('admin.analytics.*') ? 'active' : '' }}" aria-controls="analyticsExamples" role="button" aria-expanded="{{ request()->routeIs('admin.analytics.*') ? 'true' : 'false' }}">
-                  <i class="material-symbols-outlined">bar_chart</i>
-                  <span class="nav-link-text ms-2 ps-1">Analytics</span>
-               </a>
-               <div class="collapse {{ request()->routeIs('admin.analytics.*') ? 'show' : '' }}" id="analyticsExamples">
-                  <ul class="nav">
-                     <li class="nav-item"><a class="nav-link text-white {{ request()->routeIs('admin.analytics.all') ? 'active' : '' }}" href="{{ route('admin.analytics.all') }}"><span class="sidenav-mini-icon">A</span><span class="sidenav-normal ms-2 ps-1">Overview</span></a></li>
-                     <li class="nav-item"><a class="nav-link text-white {{ request()->routeIs('admin.analytics.orders') ? 'active' : '' }}" href="{{ route('admin.analytics.orders') }}"><span class="sidenav-mini-icon">O</span><span class="sidenav-normal ms-2 ps-1">Orders</span></a></li>
-                     <li class="nav-item"><a class="nav-link text-white {{ request()->routeIs('admin.analytics.products') ? 'active' : '' }}" href="{{ route('admin.analytics.products') }}"><span class="sidenav-mini-icon">P</span><span class="sidenav-normal ms-2 ps-1">Products</span></a></li>
-                     <li class="nav-item"><a class="nav-link text-white {{ request()->routeIs('admin.analytics.customers') ? 'active' : '' }}" href="{{ route('admin.analytics.customers') }}"><span class="sidenav-mini-icon">C</span><span class="sidenav-normal ms-2 ps-1">Customers</span></a></li>
-                     <li class="nav-item"><a class="nav-link text-white {{ request()->routeIs('admin.analytics.inventory') ? 'active' : '' }}" href="{{ route('admin.analytics.inventory') }}"><span class="sidenav-mini-icon">I</span><span class="sidenav-normal ms-2 ps-1">Inventory</span></a></li>
-                     <li class="nav-item"><a class="nav-link text-white {{ request()->routeIs('admin.analytics.marketing') ? 'active' : '' }}" href="{{ route('admin.analytics.marketing') }}"><span class="sidenav-mini-icon">M</span><span class="sidenav-normal ms-2 ps-1">Marketing</span></a></li>
-                     <li class="nav-item"><a class="nav-link text-white {{ request()->routeIs('admin.analytics.search') ? 'active' : '' }}" href="{{ route('admin.analytics.search') }}"><span class="sidenav-mini-icon">S</span><span class="sidenav-normal ms-2 ps-1">Search</span></a></li>
-                  </ul>
-               </div>
-            </li>
-
             <li class="nav-item">
                <a data-bs-toggle="collapse" href="#design" class="nav-link text-white  {{ $helper->active_link(['banners','pages','promos']) }}" aria-controls="design" role="button" aria-expanded="false">
                   <i class="material-symbols-outlined">padding</i>

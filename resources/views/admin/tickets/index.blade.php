@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('page-styles')
+@include('admin.tickets._styles')
+@endsection
+
 @section('content')
 <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
     <div><h4 class="mb-1">Customer tickets</h4><p class="text-sm text-secondary mb-0">Complaints, returned items and order-related issues.</p></div>
@@ -8,10 +12,10 @@
 
 @if(session('success'))<div class="alert alert-success text-white">{{ session('success') }}</div>@endif
 
-<div class="card mb-4"><div class="card-body p-3">
+<div class="card ticket-form-card mb-4"><div class="card-body p-3">
     <form method="get" class="row g-2 align-items-end">
-        <div class="col-md-6"><label class="form-label text-xs mb-1">Search ticket, order ID or invoice</label><input name="q" value="{{ request('q') }}" class="form-control" placeholder="TKT-..., order ID or invoice"></div>
-        <div class="col-md-3"><label class="form-label text-xs mb-1">Status</label><select name="status" class="form-control"><option value="">All statuses</option>@foreach(\App\Models\Ticket::STATUSES as $status)<option value="{{ $status }}" @if(request('status') === $status) selected @endif>{{ $status }}</option>@endforeach</select></div>
+        <div class="col-md-6"><label class="ticket-form-label">Search ticket, order ID or invoice</label><input name="q" value="{{ request('q') }}" class="form-control ticket-control" placeholder="TKT-..., order ID or invoice"></div>
+        <div class="col-md-3"><label class="ticket-form-label">Status</label><select name="status" class="form-control ticket-control"><option value="">All statuses</option>@foreach(\App\Models\Ticket::STATUSES as $status)<option value="{{ $status }}" @if(request('status') === $status) selected @endif>{{ $status }}</option>@endforeach</select></div>
         <div class="col-md-3"><button class="btn bg-gradient-dark mb-0">Filter</button> <a href="{{ route('admin.tickets.index') }}" class="btn btn-outline-secondary mb-0">Reset</a></div>
     </form>
 </div></div>

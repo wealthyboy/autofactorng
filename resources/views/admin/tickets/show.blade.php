@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('page-styles')
+@include('admin.tickets._styles')
+@endsection
+
 @section('content')
 <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
     <div><h4 class="mb-1">{{ $ticket->ticket_number }}</h4><p class="text-sm text-secondary mb-0">Created {{ optional($ticket->created_at)->format('d M Y, h:i A') }} by {{ optional($ticket->creator)->name ?: 'Admin' }}</p></div>
@@ -32,11 +36,11 @@
                 </div>
             @empty<p class="text-sm text-secondary">No comments yet.</p>@endforelse
         </div></div>
-        <div class="card"><div class="card-header pb-0"><h6>Add update</h6></div><div class="card-body">
+        <div class="card ticket-form-card"><div class="card-header pb-0"><h6>Add update</h6></div><div class="card-body">
             @include('errors.errors')
             <form method="post" action="{{ route('admin.tickets.comments.store', $ticket) }}">@csrf
-                <div class="row"><div class="col-md-4 mb-3"><label class="form-label">Status</label><select name="status" class="form-control">@foreach(\App\Models\Ticket::STATUSES as $status)<option value="{{ $status }}" @if($ticket->status === $status) selected @endif>{{ $status }}</option>@endforeach</select></div></div>
-                <label class="form-label">Comment</label><textarea name="comment" rows="5" class="form-control" required placeholder="Write an update about this complaint…">{{ old('comment') }}</textarea>
+                <div class="row"><div class="col-md-4 mb-3"><label class="ticket-form-label" for="ticketStatus">Status</label><select id="ticketStatus" name="status" class="form-control ticket-control">@foreach(\App\Models\Ticket::STATUSES as $status)<option value="{{ $status }}" @if($ticket->status === $status) selected @endif>{{ $status }}</option>@endforeach</select></div></div>
+                <label class="ticket-form-label" for="ticketComment">Comment</label><textarea id="ticketComment" name="comment" rows="5" class="form-control ticket-control" required placeholder="Write an update about this complaint…">{{ old('comment') }}</textarea>
                 <input type="hidden" name="customer_visible" value="0"><div class="form-check mt-3"><input class="form-check-input" type="checkbox" name="customer_visible" value="1" id="customerVisible" checked><label class="form-check-label text-sm" for="customerVisible">Email this update to the customer</label></div>
                 <button class="btn bg-gradient-dark float-end mt-3 mb-0">Save update</button>
             </form>
