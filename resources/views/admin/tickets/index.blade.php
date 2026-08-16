@@ -1,0 +1,33 @@
+@extends('admin.layouts.app')
+
+@section('content')
+<div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
+    <div><h4 class="mb-1">Customer tickets</h4><p class="text-sm text-secondary mb-0">Complaints, returned items and order-related issues.</p></div>
+    <a href="{{ route('admin.tickets.create') }}" class="btn bg-gradient-dark mb-0"><i class="material-symbols-outlined text-sm me-1">add</i> New ticket</a>
+</div>
+
+@if(session('success'))<div class="alert alert-success text-white">{{ session('success') }}</div>@endif
+
+<div class="card mb-4"><div class="card-body p-3">
+    <form method="get" class="row g-2 align-items-end">
+        <div class="col-md-6"><label class="form-label text-xs mb-1">Search ticket, order ID or invoice</label><input name="q" value="{{ request('q') }}" class="form-control" placeholder="TKT-..., order ID or invoice"></div>
+        <div class="col-md-3"><label class="form-label text-xs mb-1">Status</label><select name="status" class="form-control"><option value="">All statuses</option>@foreach(\App\Models\Ticket::STATUSES as $status)<option value="{{ $status }}" @if(request('status') === $status) selected @endif>{{ $status }}</option>@endforeach</select></div>
+        <div class="col-md-3"><button class="btn bg-gradient-dark mb-0">Filter</button> <a href="{{ route('admin.tickets.index') }}" class="btn btn-outline-secondary mb-0">Reset</a></div>
+    </form>
+</div></div>
+
+<div class="card"><div class="card-body px-0 pb-2"><div class="table-responsive"><table class="table align-items-center mb-0">
+    <thead><tr><th>Ticket</th><th>Order</th><th>Reason</th><th>Status</th><th>Comments</th><th>Created</th><th></th></tr></thead>
+    <tbody>@forelse($tickets as $ticket)
+        <tr>
+            <td class="px-4"><a class="text-sm font-weight-bold" href="{{ route('admin.tickets.show', $ticket) }}">{{ $ticket->ticket_number }}</a></td>
+            <td><a class="text-sm" href="{{ route('admin.orders.show', $ticket->order_id) }}">{{ optional($ticket->order)->invoice ?: '#' . $ticket->order_id }}</a></td>
+            <td><span class="text-sm">{{ $ticket->reason }}</span></td>
+            <td><span class="badge bg-gradient-{{ in_array($ticket->status, ['Resolved', 'Closed']) ? 'success' : ($ticket->status === 'In Progress' ? 'info' : 'warning') }}">{{ $ticket->status }}</span></td>
+            <td><span class="text-sm">{{ $ticket->comments_count }}</span></td>
+            <td><span class="text-sm">{{ optional($ticket->created_at)->format('d M Y') }}</span></td>
+            <td class="text-end px-4"><a href="{{ route('admin.tickets.show', $ticket) }}" class="btn btn-sm btn-outline-dark mb-0">View</a></td>
+        </tr>
+    @empty<tr><td colspan="7" class="text-center text-secondary py-5">No tickets found.</td></tr>@endforelse</tbody>
+</table></div><div class="px-4 pt-3">{{ $tickets->links() }}</div></div></div>
+@endsection

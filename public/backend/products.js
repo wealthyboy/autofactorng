@@ -526,8 +526,13 @@ var row = 0;
 function addProductRow() {
     let html = '<div id="out_row-' + row + '" class="row product-items my-3 ">';
     html += '<div class="col-sm-5 col-12">';
+    html += '<div class="product-picker position-relative" data-product-picker>';
     html += '<div class="input-group input-group-outline">';
-    html += '<input type="text" required class="form-control" placeholder="Product Name" name="products[product_name][]">';
+    html += '<input type="text" required autocomplete="off" class="form-control order-product-search" placeholder="Search product, SKU or barcode" name="products[product_name][]">';
+    html += '<input type="hidden" class="order-product-id" name="products[product_id][]">';
+    html += '</div>';
+    html += '<div class="product-autocomplete-results d-none"></div>';
+    html += '<div class="d-flex justify-content-between mt-1"><small class="text-muted product-selection-status">Search catalogue or enter custom.</small><button type="button" class="btn btn-link text-dark p-0 m-0 custom-product-toggle">Custom item</button></div>';
     html += '</div>';
     html += '</div>';
     html += '<div class="col-sm-3 col-12">';

@@ -2,6 +2,27 @@
 
 @section('content')
 
+<div class="card mb-4">
+   <div class="card-body p-3">
+      <div class="d-flex flex-wrap justify-content-between align-items-end gap-3">
+         <div>
+            <h6 class="mb-1">Dashboard period</h6>
+            <div class="text-xs">
+               <a class="me-2" href="{{ route('admin_home', ['from' => now()->subDays(6)->format('Y-m-d'), 'to' => now()->format('Y-m-d')]) }}">7 days</a>
+               <a class="me-2" href="{{ route('admin_home', ['from' => now()->subDays(29)->format('Y-m-d'), 'to' => now()->format('Y-m-d')]) }}">30 days</a>
+               <a class="me-2" href="{{ route('admin_home', ['from' => now()->subDays(89)->format('Y-m-d'), 'to' => now()->format('Y-m-d')]) }}">90 days</a>
+               <a href="{{ route('admin_home', ['from' => now()->startOfYear()->format('Y-m-d'), 'to' => now()->format('Y-m-d')]) }}">This year</a>
+            </div>
+         </div>
+         <form method="get" action="{{ route('admin_home') }}" class="row g-2 align-items-end">
+            <div class="col-auto"><label class="form-label text-xs mb-1">From</label><input type="date" name="from" value="{{ $from->format('Y-m-d') }}" class="form-control"></div>
+            <div class="col-auto"><label class="form-label text-xs mb-1">To</label><input type="date" name="to" value="{{ $to->format('Y-m-d') }}" class="form-control"></div>
+            <div class="col-auto"><button class="btn bg-gradient-dark mb-0">Apply filter</button></div>
+         </form>
+      </div>
+   </div>
+</div>
+
 <div class="row">
    @foreach($stats as $key => $stat)
 
@@ -17,16 +38,7 @@
                   </h5>
                </div>
                <div class="col-5">
-                  <div class="dropdown text-end">
-                     <a href="javascript:;" class="cursor-pointer text-secondary" id="dropdownUsers2" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="text-xs text-secondary">{{ $key == 'Customers' ? 'Total' : date("F", strtotime(date("Y") ."-". date('m') ."-01"))}}</span>
-                     </a>
-                     <ul class="dropdown-menu dropdown-menu-end px-2 py-3" aria-labelledby="dropdownUsers2">
-                        <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 7 days</a></li>
-                        <li><a class="dropdown-item border-radius-md" href="javascript:;">Last week</a></li>
-                        <li><a class="dropdown-item border-radius-md" href="javascript:;">Last 30 days</a></li>
-                     </ul>
-                  </div>
+                  <div class="text-end"><span class="text-xs text-secondary">Selected period</span></div>
                </div>
             </div>
          </div>
@@ -34,6 +46,14 @@
    </div>
    @endforeach
 
+</div>
+
+<div class="card mt-4 mb-4">
+   <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+      <div><h6 class="mb-1">Orders and revenue</h6><p class="text-xs text-secondary mb-0">{{ $from->format('d M Y') }} – {{ $to->format('d M Y') }}, excluding cancelled orders</p></div>
+      <a href="{{ route('admin.analytics.orders', ['from' => $from->format('Y-m-d'), 'to' => $to->format('Y-m-d')]) }}" class="text-sm">View order analytics</a>
+   </div>
+   <div class="card-body"><div style="height: 320px"><canvas id="dashboardOrderTrend"></canvas></div></div>
 </div>
 
 <!-- Step 1: Create the containing elements. -->
@@ -226,7 +246,26 @@
 
 @endsection
 
+@section('page-scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+@endsection
+
 @section('inline-scripts')
+
+const dashboardOrderCanvas = document.getElementById('dashboardOrderTrend');
+if (dashboardOrderCanvas && typeof Chart !== 'undefined') {
+   new Chart(dashboardOrderCanvas, {
+      type: 'line',
+      data: {
+         labels: @json($statistics['order_trend']['labels']),
+         datasets: [
+            { label: 'Revenue (₦)', data: @json($statistics['order_trend']['revenue']), borderColor: '#e91e63', backgroundColor: 'rgba(233,30,99,.08)', yAxisID: 'revenue', tension: .35, fill: true },
+            { label: 'Orders', data: @json($statistics['order_trend']['orders']), borderColor: '#344767', backgroundColor: '#344767', yAxisID: 'orders', tension: .35 }
+         ]
+      },
+      options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false }, scales: { revenue: { beginAtZero: true }, orders: { beginAtZero: true, position: 'right', grid: { drawOnChartArea: false }, ticks: { precision: 0 } } } }
+   });
+}
 
 gapi.analytics.ready(function() {
 

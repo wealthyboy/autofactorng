@@ -56,6 +56,11 @@ class Order extends Model
 		return $this->hasMany(OrderedProduct::class);
 	}
 
+	public function tickets()
+	{
+		return $this->hasMany(Ticket::class);
+	}
+
 	public function user()
 	{
 		return $this->belongsTo(User::class);
@@ -113,9 +118,10 @@ class Order extends Model
 		$order->user_id = $user->id;
 		$order->address_id = optional($user->active_address)->id;
 		$order->coupon = $input['coupon'] ?? null;
-		$order->heavy_item_price = isset($input['heavy_item_price']) ? $input['heavy_item_price'] : null;
+		$isPickup = data_get($input, 'delivery_option') === 'pickup' || data_get($input, 'zone') === 'Pickup';
+		$order->heavy_item_price = $isPickup ? 0 : data_get($input, 'heavy_item_price');
 		$order->status = 'Confirmed';
-		$order->shipping_price = data_get($input, 'shipping_price');
+		$order->shipping_price = $isPickup ? 0 : data_get($input, 'shipping_price');
 		$order->invoice = $inv;
 		$order->payment_type = $payment_method;
 		$order->allow_review = 1;

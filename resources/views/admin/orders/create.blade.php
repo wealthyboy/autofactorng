@@ -110,13 +110,19 @@
 
                <hr class="horizontal dark">
 
-               <div id="product-items" class="row mt-3 product-items">
+               <div id="product-items" class="row mt-3 product-items align-items-start">
 
                   <h6>Product</h6>
-                  <div class="col-sm-6 col-12">
+                  <div class="col-sm-6 col-12 product-picker position-relative" data-product-picker>
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> Product Name</label>
-                        <input type="text" class="form-control" required name="products[product_name][]">
+                        <label class="form-label">Search product name, SKU or barcode</label>
+                        <input type="text" class="form-control order-product-search" autocomplete="off" required name="products[product_name][]">
+                        <input type="hidden" class="order-product-id" name="products[product_id][]">
+                     </div>
+                     <div class="product-autocomplete-results d-none"></div>
+                     <div class="d-flex justify-content-between mt-1 px-1">
+                        <small class="text-muted product-selection-status">Search the catalogue or enter a custom item.</small>
+                        <button type="button" class="btn btn-link text-dark p-0 m-0 custom-product-toggle">Enter custom item</button>
                      </div>
                   </div>
                   <div class="col-sm-3 col-12">
@@ -161,6 +167,16 @@
 <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
 <script src="{{ asset('backend/products.js') }}"></script>
+<script src="{{ asset('backend/order-product-picker.js') }}"></script>
+@stop
+@section('page-styles')
+<style>
+   .product-autocomplete-results { position:absolute; z-index:1050; top:52px; left:12px; right:12px; max-height:300px; overflow-y:auto; background:#fff; border:1px solid #e2e6ed; border-radius:12px; box-shadow:0 18px 36px rgba(31,41,55,.14); }
+   .product-autocomplete-option { width:100%; border:0; border-bottom:1px solid #f0f1f4; background:#fff; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; text-align:left; cursor:pointer; }
+   .product-autocomplete-option:hover { background:#f8f9fb; }
+   .product-autocomplete-option:last-child { border-bottom:0; }
+   .product-autocomplete-empty { padding:14px; color:#6b7280; }
+</style>
 @stop
 @section('inline-scripts')
 

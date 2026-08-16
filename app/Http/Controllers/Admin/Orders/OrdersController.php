@@ -65,9 +65,11 @@ class OrdersController extends Table
 	public function invoice($id)
 	{
 		$order = Order::find($id);
+		// ensure ordered products and product relations are loaded for images
+		$order->loadMissing('ordered_products.product');
 		$setting = Setting::first();
 		$sub_total = $this->subTotal($order);
-		$ordered_products = $order->ordered_products()->paginate(20);
+		$ordered_products = $order->ordered_products()->with('product')->paginate(20);
 		$ordered_products = (new OrderedProduct())->getListingData($ordered_products);
 		$summaries = [];
 		$summaries['Sub-Total'] = Helper::currencyWrapper($sub_total);
@@ -476,9 +478,11 @@ class OrdersController extends Table
 	{
 
 		$order = Order::find($id);
+		// load product relation for ordered products so admin table can show images
+		$order->loadMissing('ordered_products.product');
 		$statuses = static::order_status();
 		$sub_total = $this->subTotal($order);
-		$ordered_products = $order->ordered_products()->paginate(200);
+		$ordered_products = $order->ordered_products()->with('product')->paginate(200);
 		$orders = (new OrderedProduct())->getListingData($ordered_products);
 		$summaries = [];
 		$summaries['Sub-Total'] =  Helper::currencyWrapper($sub_total);
@@ -521,6 +525,7 @@ class OrdersController extends Table
 		return [
 			'customer' => [
 				"Full Name" => null !== $user ?  optional($user)->fullname() :  optional($obj)->fullName(),
+				"Customer Class" => null !== $user ? optional($user)->customer_class : '---',
 				"Phone Number" =>  null !== $user ?  optional($user)->phone_number :  optional($obj)->phone_number,
 				"Email" => null !== $user ?  optional($user)->email :  optional($obj)->email,
 				"Date Joined" => optional(null !== $user ? $user->created_at : optional($obj)->created_at)->format('d-m-y') ?? '---',

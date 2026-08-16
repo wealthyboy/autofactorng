@@ -141,7 +141,7 @@
     </div>
 
     <p
-        v-if="prices.heavy_item_price && showCoupon"
+        v-if="prices.heavy_item_price && showCoupon && deliveryOption !== 'pickup'"
         class="border-top border-bottom pb-3 pt-3 d-flex justify-content-between fs-4"
     >
         <span class="text-muted">Heavy/Large Items Charge</span>
@@ -220,6 +220,7 @@ export default {
                     this.voucher = [];
                     this.v = response.data;
                     let hp =
+                        this.deliveryOption !== "pickup" &&
                         typeof this.prices.heavy_item_price !== "undefined"
                             ? this.prices.heavy_item_price
                             : 0;

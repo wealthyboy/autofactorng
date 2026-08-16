@@ -350,6 +350,11 @@ export default {
         isDelivery() {
             return this.deliveryOption === "delivery";
         },
+        effectiveHeavyItemPrice() {
+            return this.isPickup
+                ? 0
+                : parseInt(this.prices.heavy_item_price || 0);
+        },
         canReviewPayment() {
             return (
                 !!this.deliveryOption &&
@@ -395,7 +400,7 @@ export default {
         baseOrderTotal() {
             return (
                 parseInt(this.prices.sub_total || this.original_total || 0) +
-                parseInt(this.prices.heavy_item_price || 0)
+                this.effectiveHeavyItemPrice
             );
         },
 
@@ -514,7 +519,7 @@ export default {
                                 payment_method: "seerbit",
                                 shipping_price: context.ship_price,
                                 heavy_item_price:
-                                    context.prices?.heavy_item_price || 0,
+                                    context.effectiveHeavyItemPrice,
                                 total: context.total,
                                 zone: context.zone,
                                 delivery_option: context.deliveryOption,
@@ -593,7 +598,7 @@ export default {
                                 shipping_id: context.shipping_id,
                                 shipping_price: context.ship_price,
                                 heavy_item_price:
-                                    context.prices.heavy_item_price,
+                                    context.effectiveHeavyItemPrice,
                                 cart: cartIds,
                                 total: context.total,
                                 zone: context.zone,
@@ -683,7 +688,7 @@ export default {
                 let total =
                     parseInt(oldTotal) +
                     parseInt(this.ship_price) +
-                    parseInt(this.prices.heavy_item_price || 0);
+                    this.effectiveHeavyItemPrice;
                 this.$store.commit("setTotal", total);
             }
 
@@ -696,7 +701,7 @@ export default {
                 let total =
                     parseInt(oldTotal) +
                     parseInt(this.ship_price) +
-                    parseInt(this.prices.heavy_item_price || 0);
+                    this.effectiveHeavyItemPrice;
                 this.$store.commit("setTotal", total);
             }
         },
@@ -731,7 +736,7 @@ export default {
                             type: "order_from_paystack",
                             shipping_id: context.shipping_id,
                             shipping_price: context.ship_price,
-                            heavy_item_price: context.prices.heavy_item_price,
+                            heavy_item_price: context.effectiveHeavyItemPrice,
                             cart: cartIds,
                             total: context.total,
                             zone: context.zone,
@@ -789,7 +794,7 @@ export default {
                     coupon: this.coupon_code,
                     payment_method: type,
                     shipping_price: this.ship_price,
-                    heavy_item_price: this.prices.heavy_item_price || 0,
+                    heavy_item_price: this.effectiveHeavyItemPrice,
                     total: this.total,
                     zone: this.zone,
                     delivery_option: this.deliveryOption,

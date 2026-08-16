@@ -139,6 +139,27 @@ class CheckoutController extends Controller
                 $input['coupon'] = InDriveCouponService::CODE;
             }
 
+            // Pickup orders never incur delivery or heavy/large-item charges.
+            // Calculate this again on the server so altered browser payloads cannot
+            // reintroduce either fee after pickup has been selected.
+            if (($input['delivery_option'] ?? null) === 'pickup' || ($input['zone'] ?? null) === 'Pickup') {
+                $input['delivery_option'] = 'pickup';
+                $input['zone'] = 'Pickup';
+                $input['shipping_price'] = 0;
+                $input['heavy_item_price'] = 0;
+
+                $baseTotal = (float) (session('coupon_total') ?? Cart::sum_items_in_cart());
+                $inDriveDiscount = $indriveCoupon->isInDriveUser($user)
+                    ? $indriveCoupon->applyToSubtotal((float) Cart::sum_items_in_cart())
+                    : null;
+
+                if (is_array($inDriveDiscount) && ($inDriveDiscount['code'] ?? null)) {
+                    $baseTotal = (float) ($inDriveDiscount['subtotal'] ?? $baseTotal);
+                }
+
+                $input['total'] = $baseTotal;
+            }
+
             $input['referer'] = session('original_referer');  // ← Capture referer from session
             $order = Order::checkout($input, $payment_method,  $ip, $carts, $user);
             $code = $indriveCoupon->isInDriveUser($user) && $indriveCoupon->applyToSubtotal((float) Cart::sum_items_in_cart())['code']
@@ -146,11 +167,11 @@ class CheckoutController extends Controller
                 : trim(session('coupon'));
 
             if ($request->payment_method == 'Wallet') {
-                WalletBalance::deductFromWallet($request->total);
+                WalletBalance::deductFromWallet($input['total']);
             }
 
             if ($request->payment_method == 'auto_credit') {
-                WalletBalance::deductFromCredit($request->total);
+                WalletBalance::deductFromCredit($input['total']);
             }
 
             $sub_total = Order::subTotal($order);
@@ -186,8 +207,16 @@ class CheckoutController extends Controller
                 'status' => 'Order pLaced'
             ], 200);
         } catch (\Throwable $th) {
-            //throw $th;
-            dd($th);
+            DB::rollBack();
+            Log::error('checkout.confirm.failed', [
+                'user_id' => optional(Auth::user())->id,
+                'message' => $th->getMessage(),
+                'exception' => get_class($th),
+            ]);
+
+            return response()->json([
+                'error' => 'We could not complete your order. Please try again.',
+            ], 500);
         }
 
 

@@ -86,7 +86,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::resource('category', 'Admin\Category\CategoryController', ['name' => 'category']);
     Route::post('category/delete/image', 'Admin\Category\CategoryController@undo');
     Route::resource('reviews',  'Admin\Reviews\ReviewsController', ['names' => 'admin.reviews']);
+    Route::get('orders/products/search', 'Admin\Orders\OrdersController@searchProducts')->name('admin.orders.products.search');
     Route::resource('orders', 'Admin\Orders\OrdersController', ['names' => 'admin.orders']);
+    Route::get('tickets/order-preview', 'Admin\Tickets\TicketsController@orderPreview')->name('admin.tickets.order-preview');
+    Route::post('tickets/{ticket}/comments', 'Admin\Tickets\TicketsController@addComment')->name('admin.tickets.comments.store');
+    Route::resource('tickets', 'Admin\Tickets\TicketsController')->only(['index', 'create', 'store', 'show'])->names('admin.tickets');
     Route::get('customer-surveys', 'CustermerSurvey\CustermerSurveyController@index')->name('admin.customer-surveys.index');
     Route::get('customer-surveys/{survey}', 'CustermerSurvey\CustermerSurveyController@show')->name('admin.customer-surveys.show');
     Route::post('customer-surveys/destroy-selected', 'CustermerSurvey\CustermerSurveyController@destroySelected')->name('admin.customer-surveys.destroy-selected');
@@ -98,6 +102,14 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::post('promo-text/create/{id}', 'Admin\PromoText\PromoTextController@store');
     Route::get('promo-text/delete/{id}', 'Admin\PromoText\PromoTextController@destroy')->name('delete.promo.text');
     Route::resource('discounts', 'Admin\Discounts\DiscountsController', ['names' => 'discounts']);
+
+    Route::get('analytics/products', 'Admin\Analytics\AnalyticsController@products')->name('admin.analytics.products');
+    Route::get('analytics/orders', 'Admin\Analytics\AnalyticsController@orders')->name('admin.analytics.orders');
+    Route::get('analytics/customers', 'Admin\Analytics\AnalyticsController@customers')->name('admin.analytics.customers');
+    Route::get('analytics/inventory', 'Admin\Analytics\AnalyticsController@inventory')->name('admin.analytics.inventory');
+    Route::get('analytics/marketing', 'Admin\Analytics\AnalyticsController@marketing')->name('admin.analytics.marketing');
+    Route::get('analytics/search', 'Admin\Analytics\AnalyticsController@search')->name('admin.analytics.search');
+    Route::get('analytics/all', 'Admin\Analytics\AnalyticsController@all')->name('admin.analytics.all');
 });
 
 

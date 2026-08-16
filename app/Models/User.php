@@ -85,6 +85,7 @@ class User extends Authenticatable
 				return [
 					"Id" =>  $user->id,
 					"Full Name" =>  $user->fullname(),
+					"Customer Class" =>  $user->customer_class,
 					"Email" => $user->email,
 					"Phone Number" => $user->phone_number,
 					"Wallet Balance" => (int) optional($user->wallet_balance)->balance,
@@ -101,6 +102,23 @@ class User extends Authenticatable
 				];
 			}
 		});
+	}
+
+	public function getCustomerClassAttribute()
+	{
+		$count = null;
+		if (isset($this->orders_count)) {
+			$count = (int) $this->orders_count;
+		} else {
+			$count = $this->orders()->count();
+		}
+
+		if ($count > 100) return 'Platinum Customer';
+		if ($count > 60) return 'Black Customer';
+		if ($count > 35) return 'Gold Customer';
+		if ($count > 25) return 'Silver Customer';
+
+		return 'Regular';
 	}
 
 	public function sortKeys($key)
@@ -202,7 +220,9 @@ class User extends Authenticatable
 
 	public function scopeCustomers(Builder $builder)
 	{
-		return $builder->where('type', 'subscriber')->orWhere('type', '=', null);
+		return $builder->where(function (Builder $query) {
+			$query->where('type', 'subscriber')->orWhereNull('type');
+		});
 	}
 
 	public function scopeIndrive(Builder $builder)

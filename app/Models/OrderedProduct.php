@@ -31,6 +31,7 @@ class OrderedProduct extends Model
             'items' => [
                 $collection->map(function ($ordered_product) {
                     return [
+                        "Image" => optional($ordered_product->product)->image_m,
                         "Product" => $ordered_product->product_name,
                         "Price" =>  Helper::currencyWrapper($ordered_product->price),
                         "Quantity" => $ordered_product->quantity,
