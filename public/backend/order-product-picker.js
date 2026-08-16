@@ -34,7 +34,10 @@
             option.type = 'button';
             option.className = 'product-autocomplete-option';
             var productMeta = escapeHtml(product.sku || 'No SKU') + ' · ' + product.quantity + ' in stock';
-            option.innerHTML = '<span><strong>' + escapeHtml(product.name) + '</strong><br><small class="text-muted">' + productMeta + '</small></span><strong>' + money(product.price) + '</strong>';
+            var image = product.image
+                ? '<img class="product-autocomplete-image" src="' + escapeHtml(product.image) + '" alt="">'
+                : '';
+            option.innerHTML = '<span class="product-autocomplete-details">' + image + '<span><strong>' + escapeHtml(product.name) + '</strong><br><small class="text-muted">' + productMeta + '</small></span></span><strong>' + money(product.price) + '</strong>';
             option.addEventListener('click', function () {
                 picker.querySelector('.order-product-search').value = product.name;
                 picker.querySelector('.order-product-id').value = product.id;

@@ -77,7 +77,7 @@ class OrdersController extends Table
 		$tokens = collect(preg_split('/\s+/', $term))->filter()->unique()->values();
 
 		$products = Product::query()
-			->with('categories.discount')
+			->with(['categories.discount', 'images'])
 			->where(function ($query) use ($tokens) {
 				foreach ($tokens as $token) {
 					$query->where(function ($match) use ($token) {
@@ -109,6 +109,7 @@ class OrdersController extends Table
 					'sku' => $product->sku ?: $product->barcode,
 					'quantity' => (int) $product->quantity,
 					'price' => (float) $product->current_price,
+					'image' => $product->images->isNotEmpty() ? $product->image_m : null,
 					'catalogue' => true,
 				];
 			});
@@ -206,9 +207,12 @@ class OrdersController extends Table
 
 
 		foreach ($input['products']['product_name'] as $key => $v) {
+			$productId = $input['products']['product_id'][$key] ?? null;
+			$product = $productId ? Product::find($productId) : null;
 			$OrderedProduct = new OrderedProduct;
 			$OrderedProduct->product_name = $v;
 			$OrderedProduct->order_id = $order->id;
+			$OrderedProduct->product_id = optional($product)->id;
 			$OrderedProduct->quantity = $input['products']['quantity'][$key];
 			$OrderedProduct->tracker = rand(100000, time());
 			$OrderedProduct->price = $input['products']['price'][$key];
@@ -218,7 +222,6 @@ class OrdersController extends Table
 			$name = $input['products']['product_name'][$key];
 			$qty = $input['products']['quantity'][$key];
 			$v = str_slug($v);
-			$product = Product::where('slug', $v)->first();
 
 			if (null !== $product && $product->quantity > 0) {
 

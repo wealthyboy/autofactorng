@@ -793,9 +793,11 @@
                                                       <tr>
                                                          <td class="wz2" width="30"></td>
                                                          <td class="header2TD invoice-cell invoice-product-name" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="RegularLink" data-color="RegularTXT" style="color: #425065;font-family: sans-serif;font-size: 14px;text-align: left;line-height: 19px;font-weight: lighter;">
-                                                            <div class="invoice-product-image" style="width: 86px;max-height: 96px;overflow: hidden;display: block;margin: 0 auto 8px;">
-                                                               <img style="outline: 0 none;max-width: 100%;display:block;height:auto;" src="{{ optional($ordered_product->product)->image_m }}" />
-                                                            </div>
+                                                            @if($ordered_product->product && $ordered_product->product->images->isNotEmpty())
+                                                               <div class="invoice-product-image" style="width: 86px;max-height: 96px;overflow: hidden;display: block;margin: 0 auto 8px;">
+                                                                  <img style="outline: 0 none;max-width: 100%;display:block;height:auto;" src="{{ $ordered_product->product->image_m }}" alt="{{ $ordered_product->product_name }}" />
+                                                               </div>
+                                                            @endif
 
                                                             <div> {{ $ordered_product->product_name }}</div>
                                                          </td>

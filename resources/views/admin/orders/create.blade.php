@@ -172,6 +172,8 @@
 <style>
    .product-autocomplete-results { position:absolute; z-index:1050; top:52px; left:12px; right:12px; max-height:300px; overflow-y:auto; background:#fff; border:1px solid #e2e6ed; border-radius:12px; box-shadow:0 18px 36px rgba(31,41,55,.14); }
    .product-autocomplete-option { width:100%; border:0; border-bottom:1px solid #f0f1f4; background:#fff; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; text-align:left; cursor:pointer; }
+   .product-autocomplete-details { display:flex; align-items:center; gap:12px; min-width:0; }
+   .product-autocomplete-image { width:48px; height:48px; flex:0 0 48px; border-radius:8px; object-fit:cover; border:1px solid #eceef2; }
    .product-autocomplete-option:hover { background:#f8f9fb; }
    .product-autocomplete-option:last-child { border-bottom:0; }
    .product-autocomplete-empty { padding:14px; color:#6b7280; }

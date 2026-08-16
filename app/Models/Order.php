@@ -53,7 +53,7 @@ class Order extends Model
 
 	public function ordered_products()
 	{
-		return $this->hasMany(OrderedProduct::class);
+		return $this->hasMany(OrderedProduct::class)->orderBy('id');
 	}
 
 	public function tickets()
