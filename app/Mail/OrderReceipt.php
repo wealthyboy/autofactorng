@@ -41,12 +41,7 @@ class OrderReceipt extends Mailable
 
         $originalProducts = $this->order->ordered_products;
         $receiptProducts = $originalProducts
-            ->sortByDesc('id')
-            ->unique(function ($product) {
-                $productName = strtolower(trim((string) $product->product_name));
-
-                return $productName !== '' ? 'name:' . $productName : 'product:' . $product->product_id;
-            })
+            ->sortBy('id')
             ->values();
 
         $this->order->setRelation('ordered_products', $receiptProducts);
