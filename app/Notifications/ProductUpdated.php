@@ -39,6 +39,17 @@ class ProductUpdated extends Notification
 
         if (isset($this->changes['quantity'])) {
             $mail->line("**Quantity changed**: {$this->changes['quantity']['old']} → {$this->changes['quantity']['new']}");
+
+            if (!empty($this->context['inventory_reason'])) {
+                $reason = ucwords(str_replace('_', ' ', $this->context['inventory_reason']));
+                $operation = ucfirst($this->context['inventory_operation'] ?? 'adjustment');
+                $adjustment = (int) ($this->context['inventory_adjustment'] ?? 0);
+
+                $mail->line("**Reason**: {$reason}");
+                if ($adjustment > 0) {
+                    $mail->line("**Stock adjustment**: {$operation} by {$adjustment}");
+                }
+            }
         }
 
         if (!empty($this->context['order_id'])) {
