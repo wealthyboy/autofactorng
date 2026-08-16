@@ -20,13 +20,7 @@
                         Current quantity: <strong id="stock-adjustment-current-quantity">0</strong>
                     </div>
                     <input type="hidden" id="stock-adjustment-product-id">
-                    <div class="mb-3">
-                        <label class="form-label" for="stock-adjustment-operation">Adjustment</label>
-                        <select class="form-control border rounded-3 px-3" id="stock-adjustment-operation" name="operation" required>
-                            <option value="increase">Increase quantity</option>
-                            <option value="decrease">Reduce quantity</option>
-                        </select>
-                    </div>
+                    <input type="hidden" id="stock-adjustment-operation" name="operation" value="increase">
                     <div class="mb-3">
                         <label class="form-label" for="stock-adjustment-quantity">Quantity</label>
                         <input class="form-control border rounded-3 px-3" id="stock-adjustment-quantity" name="quantity" type="number" min="1" step="1" required>

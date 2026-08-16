@@ -263,7 +263,7 @@ class ProductController extends Table
     public function adjustStock(Request $request, Product $product)
     {
         $validated = $request->validate([
-            'operation' => ['required', Rule::in(['increase', 'decrease'])],
+            'operation' => ['required', Rule::in(['increase'])],
             'quantity' => ['required', 'integer', 'min:1'],
             'reason' => ['required', Rule::in(['stock_purchase', 'returned_item'])],
         ]);
@@ -272,13 +272,7 @@ class ProductController extends Table
             $lockedProduct = Product::query()->lockForUpdate()->findOrFail($product->id);
             $oldQuantity = (int) $lockedProduct->quantity;
             $adjustment = (int) $validated['quantity'];
-            $newQuantity = $validated['operation'] === 'increase'
-                ? $oldQuantity + $adjustment
-                : $oldQuantity - $adjustment;
-
-            if ($newQuantity < 0) {
-                abort(422, 'You cannot reduce stock below zero.');
-            }
+            $newQuantity = $oldQuantity + $adjustment;
 
             ProductObserver::$context = [
                 'order_id' => null,
