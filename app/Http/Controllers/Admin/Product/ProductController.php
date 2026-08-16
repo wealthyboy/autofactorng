@@ -260,7 +260,7 @@ class ProductController extends Table
         ];
     }
 
-    public function adjustStock(Request $request, Product $product)
+    public function adjustStock(Request $request, $id)
     {
         $validated = $request->validate([
             'operation' => ['required', Rule::in(['increase'])],
@@ -268,11 +268,16 @@ class ProductController extends Table
             'reason' => ['required', Rule::in(['stock_purchase', 'returned_item'])],
         ]);
 
-        $updatedProduct = DB::transaction(function () use ($product, $validated) {
-            $lockedProduct = Product::query()->lockForUpdate()->findOrFail($product->id);
+        $updatedProduct = DB::transaction(function () use ($id, $validated) {
+            $lockedProduct = Product::query()->lockForUpdate()->findOrFail($id);
             $oldQuantity = (int) $lockedProduct->quantity;
-            $adjustment = (int) $validated['quantity'];
-            $newQuantity = $oldQuantity + $adjustment;
+            $newQuantity = (int) $validated['quantity'];
+
+            if ($newQuantity <= $oldQuantity) {
+                abort(422, 'New quantity must be greater than the current quantity.');
+            }
+
+            $adjustment = $newQuantity - $oldQuantity;
 
             ProductObserver::$context = [
                 'order_id' => null,

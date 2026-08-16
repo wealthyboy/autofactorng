@@ -22,7 +22,7 @@
                     <input type="hidden" id="stock-adjustment-product-id">
                     <input type="hidden" id="stock-adjustment-operation" name="operation" value="increase">
                     <div class="mb-3">
-                        <label class="form-label" for="stock-adjustment-quantity">Quantity</label>
+                        <label class="form-label" for="stock-adjustment-quantity">New quantity</label>
                         <input class="form-control border rounded-3 px-3" id="stock-adjustment-quantity" name="quantity" type="number" min="1" step="1" required>
                     </div>
                     <div class="mb-2">
@@ -74,7 +74,11 @@ document.addEventListener('click', function (event) {
     document.getElementById('stock-adjustment-product-id').value = button.dataset.productId;
     document.getElementById('stock-adjustment-product-name').textContent = button.dataset.productName;
     document.getElementById('stock-adjustment-current-quantity').textContent = button.dataset.productQuantity;
-    document.getElementById('stock-adjustment-quantity').value = '';
+    const quantityInput = document.getElementById('stock-adjustment-quantity');
+    const minimumQuantity = Number(button.dataset.productQuantity) + 1;
+    quantityInput.value = '';
+    quantityInput.min = minimumQuantity;
+    quantityInput.setCustomValidity('');
     document.getElementById('stock-adjustment-reason').value = '';
     document.getElementById('stock-adjustment-operation').value = 'increase';
     document.getElementById('stock-adjustment-error').classList.add('d-none');
@@ -87,6 +91,16 @@ document.getElementById('stock-adjustment-form')?.addEventListener('submit', fun
     const submitButton = document.getElementById('stock-adjustment-submit');
     const errorBox = document.getElementById('stock-adjustment-error');
     const payload = new FormData(event.target);
+    const quantityInput = document.getElementById('stock-adjustment-quantity');
+    const currentQuantity = Number(activeStockButton.dataset.productQuantity);
+
+    if (Number(quantityInput.value) <= currentQuantity) {
+        quantityInput.setCustomValidity('New quantity must be greater than the current quantity.');
+        quantityInput.reportValidity();
+        return;
+    }
+
+    quantityInput.setCustomValidity('');
 
     submitButton.disabled = true;
     errorBox.classList.add('d-none');
@@ -109,6 +123,13 @@ document.getElementById('stock-adjustment-form')?.addEventListener('submit', fun
     }).finally(function () {
         submitButton.disabled = false;
     });
+});
+
+document.getElementById('stock-adjustment-quantity')?.addEventListener('input', function () {
+    const currentQuantity = Number(activeStockButton?.dataset.productQuantity || 0);
+    this.setCustomValidity(Number(this.value) > currentQuantity
+        ? ''
+        : 'New quantity must be greater than the current quantity.');
 });
 
 $("#make_id").on('change', function(e) {
