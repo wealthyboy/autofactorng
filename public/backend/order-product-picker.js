@@ -33,11 +33,16 @@
             var option = document.createElement('button');
             option.type = 'button';
             option.className = 'product-autocomplete-option';
-            option.innerHTML = '<span><strong>' + escapeHtml(product.name) + '</strong><br><small class="text-muted">' + escapeHtml(product.sku || 'No SKU') + ' · ' + product.quantity + ' in stock</small></span><strong>' + money(product.price) + '</strong>';
+            var productMeta = product.catalogue
+                ? escapeHtml(product.sku || 'No SKU') + ' · ' + product.quantity + ' in stock'
+                : escapeHtml(product.sku);
+            option.innerHTML = '<span><strong>' + escapeHtml(product.name) + '</strong><br><small class="text-muted">' + productMeta + '</small></span><strong>' + money(product.price) + '</strong>';
             option.addEventListener('click', function () {
                 picker.querySelector('.order-product-search').value = product.name;
-                picker.querySelector('.order-product-id').value = product.id;
-                picker.querySelector('.product-selection-status').textContent = 'Catalogue product selected · ' + product.quantity + ' currently in stock';
+                picker.querySelector('.order-product-id').value = product.id || '';
+                picker.querySelector('.product-selection-status').textContent = product.catalogue
+                    ? 'Catalogue product selected · ' + product.quantity + ' currently in stock'
+                    : 'Previous order item selected · this will be saved as an unlisted item';
                 var row = picker.closest('.product-items');
                 var price = row ? row.querySelector('input[name="products[price][]"]') : null;
                 if (price) price.value = product.price;
@@ -65,7 +70,8 @@
 
         timers.set(input, setTimeout(function () {
             fetch('/admin/orders/products/search?q=' + encodeURIComponent(input.value.trim()), {
-                headers: { 'Accept': 'application/json' }
+                headers: { 'Accept': 'application/json' },
+                cache: 'no-store'
             })
                 .then(function (response) { return response.json(); })
                 .then(function (products) { renderResults(picker, products); })

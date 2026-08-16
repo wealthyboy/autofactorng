@@ -68,6 +68,76 @@ class OrdersController extends Table
 		return view('admin.orders.index', compact('orders'));
 	}
 
+	public function searchProducts(Request $request)
+	{
+		$validated = $request->validate([
+			'q' => ['required', 'string', 'min:2', 'max:100'],
+		]);
+		$term = trim($validated['q']);
+		$tokens = collect(preg_split('/\s+/', $term))->filter()->flatMap(function ($token) {
+			$variants = [$token];
+			if (strlen($token) >= 5 && strtolower(substr($token, -1)) === 'e') {
+				$variants[] = substr($token, 0, -1);
+			}
+			return $variants;
+		})->unique()->values();
+
+		$products = Product::query()
+			->where(function ($query) use ($tokens) {
+				foreach ($tokens as $token) {
+					$query->orWhere('name', 'like', "%{$token}%")
+						->orWhere('product_name', 'like', "%{$token}%")
+						->orWhere('generic_name', 'like', "%{$token}%")
+						->orWhere('sku', 'like', "%{$token}%")
+						->orWhere('barcode', 'like', "%{$token}%")
+						->orWhere('keywords', 'like', "%{$token}%")
+						->orWhere('title', 'like', "%{$token}%");
+				}
+			})
+			->select('id', 'name', 'product_name', 'sku', 'barcode', 'quantity', 'price', 'sale_price')
+			->orderByRaw('CASE WHEN name LIKE ? OR product_name LIKE ? THEN 0 ELSE 1 END', [$term . '%', $term . '%'])
+			->orderBy('name')->limit(20)->get()
+			->map(function ($product) {
+				return [
+					'id' => $product->id,
+					'name' => $product->name ?: $product->product_name ?: 'Unnamed product',
+					'sku' => $product->sku ?: $product->barcode,
+					'quantity' => (int) $product->quantity,
+					'price' => (float) ($product->sale_price ?: $product->price),
+					'catalogue' => true,
+				];
+			});
+
+		if ($products->count() < 20) {
+			$catalogueNames = $products->pluck('name')->map(function ($name) {
+				return strtolower(trim($name));
+			});
+			$previousItems = OrderedProduct::query()
+				->whereNotNull('product_name')->where(function ($query) use ($tokens) {
+					foreach ($tokens as $token) {
+						$query->orWhere('product_name', 'like', "%{$token}%");
+					}
+				})
+				->select('product_name')->selectRaw('MAX(price) as price, MAX(created_at) as last_ordered')
+				->groupBy('product_name')->orderByDesc('last_ordered')->limit(20 - $products->count())->get()
+				->reject(function ($item) use ($catalogueNames) {
+					return $catalogueNames->contains(strtolower(trim($item->product_name)));
+				})->map(function ($item) {
+					return [
+						'id' => null,
+						'name' => $item->product_name,
+						'sku' => 'Previously ordered · not in catalogue',
+						'quantity' => null,
+						'price' => (float) $item->price,
+						'catalogue' => false,
+					];
+				});
+			$products = $products->concat($previousItems)->take(20)->values();
+		}
+
+		return response()->json($products)->header('Cache-Control', 'no-store, no-cache, must-revalidate');
+	}
+
 	public function invoice($id)
 	{
 		$order = Order::find($id);
