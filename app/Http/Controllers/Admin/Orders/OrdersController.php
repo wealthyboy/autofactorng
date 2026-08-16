@@ -213,6 +213,7 @@ class OrdersController extends Table
 			$OrderedProduct->product_name = $v;
 			$OrderedProduct->order_id = $order->id;
 			$OrderedProduct->product_id = optional($product)->id;
+			$OrderedProduct->sort_order = $key;
 			$OrderedProduct->quantity = $input['products']['quantity'][$key];
 			$OrderedProduct->tracker = rand(100000, time());
 			$OrderedProduct->price = $input['products']['price'][$key];

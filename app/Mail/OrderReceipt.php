@@ -41,7 +41,12 @@ class OrderReceipt extends Mailable
 
         $originalProducts = $this->order->ordered_products;
         $receiptProducts = $originalProducts
-            ->sortBy('id')
+            ->sort(function ($left, $right) {
+                $leftPosition = $left->sort_order === null ? PHP_INT_MAX : (int) $left->sort_order;
+                $rightPosition = $right->sort_order === null ? PHP_INT_MAX : (int) $right->sort_order;
+
+                return $leftPosition <=> $rightPosition ?: $left->id <=> $right->id;
+            })
             ->values();
 
         $this->order->setRelation('ordered_products', $receiptProducts);

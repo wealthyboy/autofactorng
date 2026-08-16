@@ -53,7 +53,10 @@ class Order extends Model
 
 	public function ordered_products()
 	{
-		return $this->hasMany(OrderedProduct::class)->orderBy('id');
+		return $this->hasMany(OrderedProduct::class)
+			->orderByRaw('CASE WHEN sort_order IS NULL THEN 1 ELSE 0 END')
+			->orderBy('sort_order')
+			->orderBy('id');
 	}
 
 	public function tickets()

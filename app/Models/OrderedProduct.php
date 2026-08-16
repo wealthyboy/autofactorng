@@ -19,7 +19,7 @@ class OrderedProduct extends Model
         'model',
         'year',
         'engine',
-        'product_id', 'price', 'total', 'quantity', 'product_name'
+        'product_id', 'sort_order', 'price', 'total', 'quantity', 'product_name'
     ];
 
 
