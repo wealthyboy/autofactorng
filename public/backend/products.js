@@ -530,7 +530,7 @@ function addProductRow() {
     html += '<div class="input-group input-group-outline">';
     html += '<input type="text" required autocomplete="off" class="form-control order-product-search" placeholder="Search product, SKU or barcode" name="products[product_name][]">';
     html += '<input type="hidden" class="order-product-id" name="products[product_id][]">';
-    html += '<input type="hidden" class="order-product-sort-order" name="products[sort_order][]">';
+    html += '<input type="hidden" class="order-product-sort-order" name="products[sort_order][]" value="' + (row + 1) + '">';
     html += '</div>';
     html += '<div class="product-autocomplete-results d-none"></div>';
     html += '<div class="mt-1 px-1"><small class="text-muted product-selection-status">Select a catalogue result, or type the full name for an unlisted item.</small></div>';

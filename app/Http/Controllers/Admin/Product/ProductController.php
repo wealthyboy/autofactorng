@@ -36,6 +36,7 @@ use Illuminate\Support\Facades\Response;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use RecursiveIteratorIterator;
 use RecursiveDirectoryIterator;
@@ -254,8 +255,60 @@ class ProductController extends Table
             'export' => true,
             'product' => true,
             'download' => true,
+            'inventory_adjustment' => true,
             'export_name' => 'ProductsExport'
         ];
+    }
+
+    public function adjustStock(Request $request, Product $product)
+    {
+        $validated = $request->validate([
+            'operation' => ['required', Rule::in(['increase', 'decrease'])],
+            'quantity' => ['required', 'integer', 'min:1'],
+            'reason' => ['required', Rule::in(['stock_purchase', 'returned_item'])],
+        ]);
+
+        $updatedProduct = DB::transaction(function () use ($product, $validated) {
+            $lockedProduct = Product::query()->lockForUpdate()->findOrFail($product->id);
+            $oldQuantity = (int) $lockedProduct->quantity;
+            $adjustment = (int) $validated['quantity'];
+            $newQuantity = $validated['operation'] === 'increase'
+                ? $oldQuantity + $adjustment
+                : $oldQuantity - $adjustment;
+
+            if ($newQuantity < 0) {
+                abort(422, 'You cannot reduce stock below zero.');
+            }
+
+            ProductObserver::$context = [
+                'order_id' => null,
+                'user_id' => auth()->id(),
+                'inventory_operation' => $validated['operation'],
+                'inventory_adjustment' => $adjustment,
+                'inventory_reason' => $validated['reason'],
+            ];
+
+            $lockedProduct->quantity = $newQuantity;
+            $lockedProduct->in_stock = $newQuantity > 0 ? 1 : 0;
+            $lockedProduct->save();
+
+            (new Activity)->put(sprintf(
+                '%s stock for %s by %d (%s): %d → %d',
+                ucfirst($validated['operation']),
+                $lockedProduct->name,
+                $adjustment,
+                str_replace('_', ' ', $validated['reason']),
+                $oldQuantity,
+                $newQuantity
+            ));
+
+            return $lockedProduct;
+        });
+
+        return response()->json([
+            'message' => 'Stock quantity updated successfully.',
+            'quantity' => (int) $updatedProduct->quantity,
+        ]);
     }
 
 

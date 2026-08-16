@@ -154,6 +154,15 @@
                                             @endif
                                             @endforeach
                                         </select>
+                                        @elseif($k == 'Quantity' && !empty($models['unique']['inventory_adjustment']))
+                                        <button type="button"
+                                            class="btn btn-outline-secondary btn-sm mb-0 adjust-stock-button"
+                                            data-product-id="{{ $models['items'][0][$key]['Id'] ?? '' }}"
+                                            data-product-name="{{ $models['items'][0][$key]['Name'] ?? 'Product' }}"
+                                            data-product-quantity="{{ $v }}">
+                                            <span class="stock-quantity-value">{{ $v }}</span>
+                                            <span class="material-symbols-outlined align-middle ms-1" style="font-size:16px">tune</span>
+                                        </button>
                                         @else
                                         <h6 data-price="{{ $k == 'Price' ? $v  : '' }}" data-price="{{ $k == 'Quantity' ? $v  : '' }}" data-id="{{ isset( $models['items'][0][$key]['Id']) ?   $models['items'][0][$key]['Id'] : null }}" class=" text-center  <?php echo  $k == 'Quantity' ?  'update_quantity' : '' ?>  <?php echo  $k == 'Price' ?  'update_price' : '' ?> mb-0 text-xs" {{ $k == 'Quantity'  ? 'contenteditable' : null }} {{ $k == 'Price'  ? 'contenteditable' : null }}>{{ $v }}</h6>
                                         @endif

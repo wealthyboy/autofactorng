@@ -54,6 +54,12 @@ class ProductObserver
             }
 
             $action = $userName . ' updated ' . implode(', ', $actionParts);
+            if (!empty($context['inventory_reason'])) {
+                $reason = ucwords(str_replace('_', ' ', $context['inventory_reason']));
+                $operation = ucfirst($context['inventory_operation'] ?? 'adjustment');
+                $adjustment = (int) ($context['inventory_adjustment'] ?? 0);
+                $action .= " ({$operation} {$adjustment}; reason: {$reason})";
+            }
 
 
             // Save to stocks table
