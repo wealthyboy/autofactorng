@@ -4,10 +4,10 @@
 @section('content')
 <div class="row mb-3">
    <div class="col-md-6">
-      @include('admin._partials.single', ['collections' => $objs['customer'], 'name' => 'Order Details'])
+      @include('admin._partials.single', ['collections' => $objs['customer'], 'name' => 'Customer'])
    </div>
    <div class="col-md-6">
-      @include('admin._partials.single', ['collections' => $objs['Order'], 'name' => 'Customer'])
+      @include('admin._partials.single', ['collections' => $objs['Order'], 'name' => 'Order Details'])
    </div>
 </div>
 <div class="row mb-2">

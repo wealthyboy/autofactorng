@@ -118,7 +118,7 @@ class User extends Authenticatable
 		if ($count > 35) return 'Gold Customer';
 		if ($count > 25) return 'Silver Customer';
 
-		return 'Regular';
+		return 'Regular Customer';
 	}
 
 	public function sortKeys($key)
