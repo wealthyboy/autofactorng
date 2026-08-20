@@ -19,14 +19,15 @@ class CustomerClassTest extends TestCase
     public function customerClassProvider(): array
     {
         return [
-            '25 is regular' => [25, 'Regular Customer'],
-            '26 is silver' => [26, 'Silver Customer'],
-            '35 is silver' => [35, 'Silver Customer'],
-            '36 is gold' => [36, 'Gold Customer'],
-            '60 is gold' => [60, 'Gold Customer'],
-            '61 is black' => [61, 'Black Customer'],
-            '100 is black' => [100, 'Black Customer'],
-            '101 is platinum' => [101, 'Platinum Customer'],
+            'zero is silver' => [0, 'Silver Customer'],
+            '19 is silver' => [19, 'Silver Customer'],
+            '20 is silver' => [20, 'Silver Customer'],
+            '30 is silver' => [30, 'Silver Customer'],
+            '31 is gold' => [31, 'Gold Customer'],
+            '50 is gold' => [50, 'Gold Customer'],
+            '51 is black' => [51, 'Black Customer'],
+            '80 is black' => [80, 'Black Customer'],
+            '81 is platinum' => [81, 'Platinum Customer'],
         ];
     }
 }

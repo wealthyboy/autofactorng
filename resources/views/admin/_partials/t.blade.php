@@ -79,9 +79,15 @@
 
 
 
+        @if (!empty($models['unique']['customer_classes']))
+        @include('admin._partials.search')
+        @endif
+
         @if(!empty($models['items'][0][0]))
 
+        @if (empty($models['unique']['customer_classes']))
         @include('admin._partials.search')
+        @endif
 
 
 
@@ -106,7 +112,7 @@
                                 @endif
                                 @foreach($models['items'][0][0] as $key => $value)
                                 <th data-sortable="" class="{{ isset($models['meta']['sort']) ?  $models['meta']['sort'] : 'desc ' }}  text-center">
-                                    <a href="{{ request()->url() }}?key={{ $key }}&sort={{ $models['meta']['sort'] }}{{ $models['meta']['q'] }}" class="{{ isset($no_card) ? '' : 'dataTable-sorter' }} text-center">
+                                    <a href="{{ request()->fullUrlWithQuery(['key' => $key, 'sort' => $models['meta']['sort'], 'page' => 1]) }}" class="{{ isset($no_card) ? '' : 'dataTable-sorter' }} text-center">
                                         <h6 class="mb-0 text-xs">
                                             {{ $key }}
                                         </h6>

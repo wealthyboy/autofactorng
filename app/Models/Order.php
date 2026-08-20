@@ -631,9 +631,11 @@ class Order extends Model
 				->pluck('orders_count', 'email');
 
 		return  $collection->map(function ($order) use ($userOrderCounts, $emailOrderCounts) {
-			$isReturningCustomer = $order->user_id
-				? (int) ($userOrderCounts[$order->user_id] ?? 0) > 1
-				: (int) ($emailOrderCounts[$order->email] ?? 0) > 1;
+			$customerOrderCount = $order->user_id
+				? (int) ($userOrderCounts[$order->user_id] ?? 0)
+				: (int) ($emailOrderCounts[$order->email] ?? 0);
+			$isReturningCustomer = $customerOrderCount > 1;
+			$customerClass = User::customerClassForOrderCount($customerOrderCount);
 
 			if (str_contains(request()->path(), 'admin')) {
 				$d =  $this->dispatch();
@@ -654,6 +656,7 @@ class Order extends Model
 						"Fulfillment" => $order->isPickup() ? 'Pickup' : 'Delivery',
 						"Type" => 'offline',
 						"Customer Type" => $isReturningCustomer ? 'Returning' : 'New',
+						"Customer Class" => $customerClass,
 						"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 						"Total" => Helper::currencyWrapper($order->total),
 						"Date" => $order->created_at->format('d-m-y'),
@@ -670,6 +673,7 @@ class Order extends Model
 					"Fulfillment" => $order->isPickup() ? 'Pickup' : 'Delivery',
 					"Type" => $order->order_type,
 					"Customer Type" => $isReturningCustomer ? 'Returning' : 'New',
+					"Customer Class" => $customerClass,
 					"Status" => array_merge(self::$statuses, ['selected' => $order->status]),
 					"Total" => Helper::currencyWrapper($order->total),
 					"Date" => $order->created_at->format('d-m-y'),

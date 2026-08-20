@@ -26,7 +26,10 @@ class CustomersController extends Table
 
     public function builder()
     {
-        return User::query();
+        return User::query()
+            ->customers()
+            ->withCount('orders')
+            ->ofCustomerClass(request('customer_class'));
     }
 
 
@@ -37,7 +40,10 @@ class CustomersController extends Table
      */
     public function index()
     {
-        $users = (new User())->customers()->withCount('orders')->orderBy('id', 'DESC')->paginate(100);
+        $users = $this->builder()
+            ->orderBy('id', 'DESC')
+            ->paginate(100)
+            ->appends(request()->query());
         $users = $this->getColumnListings(request(), $users);
         return   view('admin.customers.index', compact('users'));
     }
@@ -106,7 +112,8 @@ class CustomersController extends Table
             'add' => false,
             'destroy' => true,
             'export' => true,
-            'export_name' => 'CustomerExport'
+            'export_name' => 'CustomerExport',
+            'customer_classes' => User::CUSTOMER_CLASSES,
         ];
     }
 

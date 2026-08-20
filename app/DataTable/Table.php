@@ -188,7 +188,7 @@ abstract class Table extends Controller
 
         if ($request->filled('key')) {
             return $query
-                ->orderBy(strtolower($request->key), $request->sort)
+                ->orderBy($builder->getModel()->sortKeys($request->key), $request->sort)
                 ->paginate(100)
                 ->appends(request()->all());
         } else {
