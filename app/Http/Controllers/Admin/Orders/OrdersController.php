@@ -23,7 +23,6 @@ use App\Models\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Schema;
 use App\Observers\ProductObserver;
 use App\Mail\TestMail;
 
@@ -46,13 +45,8 @@ class OrdersController extends Table
 
 	public function builder()
 	{
-		$userColumns = ['id', 'name', 'last_name', 'email'];
-		if (Schema::hasColumn('users', 'phone_number')) {
-			$userColumns[] = 'phone_number';
-		}
-
 		return Order::with([
-			'user:' . implode(',', $userColumns),
+			'user:id,name,last_name,email,phone_number',
 			'orderEmail:id,order_id,fullname,email',
 		])->has('ordered_products');
 	}
@@ -68,62 +62,14 @@ class OrdersController extends Table
 		return view('admin.orders.index', compact('orders'));
 	}
 
-	public function searchProducts(Request $request)
-	{
-		$validated = $request->validate([
-			'q' => ['required', 'string', 'min:2', 'max:100'],
-		]);
-		$term = trim($validated['q']);
-		$tokens = collect(preg_split('/\s+/', $term))->filter()->unique()->values();
-
-		$products = Product::query()
-			->with(['categories.discount', 'images'])
-			->where(function ($query) use ($tokens) {
-				foreach ($tokens as $token) {
-					$query->where(function ($match) use ($token) {
-						$match->where('name', 'like', "%{$token}%")
-							->orWhere('product_name', 'like', "%{$token}%")
-							->orWhere('sku', 'like', "%{$token}%")
-							->orWhere('barcode', 'like', "%{$token}%");
-					});
-				}
-			})
-			->select(
-				'id',
-				'name',
-				'product_name',
-				'sku',
-				'barcode',
-				'quantity',
-				'price',
-				'sale_price',
-				'sale_price_starts',
-				'sale_price_ends'
-			)
-			->orderByRaw('CASE WHEN name LIKE ? OR product_name LIKE ? THEN 0 ELSE 1 END', [$term . '%', $term . '%'])
-			->orderBy('name')->limit(20)->get()
-			->map(function ($product) {
-				return [
-					'id' => $product->id,
-					'name' => $product->name ?: $product->product_name ?: 'Unnamed product',
-					'sku' => $product->sku ?: $product->barcode,
-					'quantity' => (int) $product->quantity,
-					'price' => (float) $product->current_price,
-					'image' => $product->images->isNotEmpty() ? $product->image_m : null,
-					'catalogue' => true,
-				];
-			});
-
-		return response()->json($products)->header('Cache-Control', 'no-store, no-cache, must-revalidate');
-	}
-
 	public function invoice($id)
 	{
 		$order = Order::find($id);
-		$order->loadMissing('ordered_products');
+		// ensure ordered products and product relations are loaded for images
+		$order->loadMissing('ordered_products.product');
 		$setting = Setting::first();
 		$sub_total = $this->subTotal($order);
-		$ordered_products = $order->ordered_products()->paginate(20);
+		$ordered_products = $order->ordered_products()->with('product')->paginate(20);
 		$ordered_products = (new OrderedProduct())->getListingData($ordered_products);
 		$summaries = [];
 		$summaries['Sub-Total'] = Helper::currencyWrapper($sub_total);
@@ -207,14 +153,9 @@ class OrdersController extends Table
 
 
 		foreach ($input['products']['product_name'] as $key => $v) {
-			$productId = $input['products']['product_id'][$key] ?? null;
-			$sortOrder = $input['products']['sort_order'][$key] ?? $key;
-			$product = $productId ? Product::find($productId) : null;
 			$OrderedProduct = new OrderedProduct;
 			$OrderedProduct->product_name = $v;
 			$OrderedProduct->order_id = $order->id;
-			$OrderedProduct->product_id = optional($product)->id;
-			$OrderedProduct->sort_order = (int) $sortOrder;
 			$OrderedProduct->quantity = $input['products']['quantity'][$key];
 			$OrderedProduct->tracker = rand(100000, time());
 			$OrderedProduct->price = $input['products']['price'][$key];
@@ -224,6 +165,7 @@ class OrdersController extends Table
 			$name = $input['products']['product_name'][$key];
 			$qty = $input['products']['quantity'][$key];
 			$v = str_slug($v);
+			$product = Product::where('slug', $v)->first();
 
 			if (null !== $product && $product->quantity > 0) {
 
@@ -326,7 +268,7 @@ class OrdersController extends Table
 			$order->full_name = $request->first_name;
 			Mail::to($request->email)
 				->bcc('order@autofactorng.com')
-				->send(new OrderReceipt($order, null, null, $sub_total, $coupon_value));
+				->queue(new OrderReceipt($order, null, null, $sub_total, $coupon_value));
 		} catch (\Throwable $th) {
 			Log::info("Mail erghror :" . $th);
 			Log::info("Custom error :" . $th);
@@ -593,7 +535,6 @@ class OrdersController extends Table
 				"Payment Type" => $obj->payment_type,
 				"Category" => ucfirst($obj->category ?: 'general'),
 				"Fulfillment" => optional($obj)->isPickup() ? 'Pickup' : 'Delivery',
-				"Shipping Zone" => optional($obj)->isPickup() ? 'Pickup' : ($obj->zone ?: 'Not recorded'),
 				"Shipping" => Helper::currencyWrapper($obj->shipping_price),
 				"Ip Address" => optional($obj)->ip ?? '---',
 				"Referer" => optional($obj)->referer ?? '---',

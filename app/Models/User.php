@@ -16,13 +16,6 @@ class User extends Authenticatable
 {
 	use HasApiTokens, HasFactory, Notifiable, ColumnFillable;
 
-	public const CUSTOMER_CLASSES = [
-		'platinum' => 'Platinum Customer',
-		'black' => 'Black Customer',
-		'gold' => 'Gold Customer',
-		'silver' => 'Silver Customer',
-	];
-
 	//Code: 1 Account ,2 Create , 3 Read , 4 Update ,5 Delete, 6 Reports, 7 Users, 8 Activity, 9 Enable/Disble
 
 	const canCreate = 2;
@@ -93,7 +86,6 @@ class User extends Authenticatable
 					"Id" =>  $user->id,
 					"Full Name" =>  $user->fullname(),
 					"Customer Class" =>  $user->customer_class,
-					"Orders" => (int) $user->orders_count,
 					"Email" => $user->email,
 					"Phone Number" => $user->phone_number,
 					"Wallet Balance" => (int) optional($user->wallet_balance)->balance,
@@ -112,15 +104,6 @@ class User extends Authenticatable
 		});
 	}
 
-	public static function customerClassForOrderCount(int $count): string
-	{
-		if ($count > 80) return self::CUSTOMER_CLASSES['platinum'];
-		if ($count > 50) return self::CUSTOMER_CLASSES['black'];
-		if ($count > 30) return self::CUSTOMER_CLASSES['gold'];
-
-		return self::CUSTOMER_CLASSES['silver'];
-	}
-
 	public function getCustomerClassAttribute()
 	{
 		$count = null;
@@ -130,27 +113,12 @@ class User extends Authenticatable
 			$count = $this->orders()->count();
 		}
 
-		return self::customerClassForOrderCount($count);
-	}
+		if ($count > 100) return 'Platinum Customer';
+		if ($count > 60) return 'Black Customer';
+		if ($count > 35) return 'Gold Customer';
+		if ($count > 25) return 'Silver Customer';
 
-	public function scopeOfCustomerClass(Builder $builder, $customerClass): Builder
-	{
-		if (!is_string($customerClass)) {
-			return $builder;
-		}
-
-		switch ($customerClass) {
-			case 'platinum':
-				return $builder->has('orders', '>', 80);
-			case 'black':
-				return $builder->has('orders', '>', 50)->has('orders', '<=', 80);
-			case 'gold':
-				return $builder->has('orders', '>', 30)->has('orders', '<=', 50);
-			case 'silver':
-				return $builder->has('orders', '<=', 30);
-			default:
-				return $builder;
-		}
+		return 'Regular';
 	}
 
 	public function sortKeys($key)
@@ -158,8 +126,6 @@ class User extends Authenticatable
 		$sort =  [
 			"Id" => 'id',
 			"Full Name" => 'name',
-			"Customer Class" => 'orders_count',
-			"Orders" => 'orders_count',
 			"Email" => 'email',
 			"Phone Number" => 'phone_number',
 			"Wallet Balance" => 'id',
@@ -254,9 +220,7 @@ class User extends Authenticatable
 
 	public function scopeCustomers(Builder $builder)
 	{
-		return $builder->where(function (Builder $query) {
-			$query->where('type', 'subscriber')->orWhereNull('type');
-		});
+		return $builder->where('type', 'subscriber')->orWhere('type', '=', null);
 	}
 
 	public function scopeIndrive(Builder $builder)

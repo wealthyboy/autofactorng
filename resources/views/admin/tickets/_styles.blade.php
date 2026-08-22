@@ -29,19 +29,31 @@
         min-height: 150px;
         resize: vertical;
     }
-    select.ticket-control {
-        cursor: pointer;
-    }
-    .ticket-order-group .ticket-control {
-        border-radius: .65rem 0 0 .65rem !important;
-    }
-    .ticket-order-group .btn {
-        border-radius: 0 .65rem .65rem 0;
-        min-height: 44px;
-    }
+    select.ticket-control { cursor: pointer; }
+    .ticket-order-group .ticket-control { border-radius: .65rem 0 0 .65rem !important; }
+    .ticket-order-group .btn { border-radius: 0 .65rem .65rem 0; min-height: 44px; }
     .ticket-preview {
         background: #f8f9fa;
         border: 1px solid #e9ecef !important;
         border-radius: .75rem !important;
     }
+    .ticket-return-item {
+        background: #fff;
+        border: 1px solid #e9ecef;
+        border-radius: .7rem;
+    }
+    .ticket-return-item .ticket-control { min-height: 38px; padding: .4rem .6rem !important; }
+    .ticket-return-total {
+        background: #eef2ff;
+        border: 1px solid #dfe5ff;
+        border-radius: .7rem;
+        color: #344767;
+    }
+    .ticket-dynamic-panel,
+    .ticket-email-preview {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: .75rem;
+    }
+    .ticket-dynamic-panel { padding: 1rem; }
 </style>

@@ -27,6 +27,7 @@ class TicketsController extends Controller
                 $query->where(function ($ticketQuery) use ($term) {
                     $ticketQuery->where('ticket_number', 'like', "%{$term}%")
                         ->orWhere('reason', 'like', "%{$term}%")
+                        ->orWhere('category', 'like', "%{$term}%")
                         ->orWhereHas('order', function ($orderQuery) use ($term) {
                             $orderQuery->where('id', $term)->orWhere('invoice', 'like', "%{$term}%");
                         });
@@ -51,13 +52,27 @@ class TicketsController extends Controller
         return response()->json([
             'id' => $order->id,
             'invoice' => $order->invoice,
-            'customer' => trim($order->fullName()) ?: optional($order->user)->fullname(),
+            'customer' => $this->customerName($order),
             'email' => $this->customerEmail($order),
             'status' => $order->status ?: 'Unknown',
             'total' => '₦' . number_format((float) $order->total, 2),
             'date' => optional($order->created_at)->format('d M Y, h:i A'),
             'items' => $order->ordered_products->map(function ($item) {
-                return ['name' => $item->product_name ?: 'Unnamed product', 'quantity' => (int) $item->quantity];
+                $quantity = max(1, (int) $item->quantity);
+                $unitPrice = (float) $item->price;
+
+                if ($unitPrice <= 0 && (float) $item->total > 0) {
+                    $unitPrice = (float) $item->total / $quantity;
+                }
+
+                return [
+                    'id' => $item->id,
+                    'name' => $item->product_name ?: 'Unnamed product',
+                    'quantity' => $quantity,
+                    'unit_price' => round($unitPrice, 2),
+                    'unit_price_formatted' => '₦' . number_format($unitPrice, 2),
+                    'line_total' => round($unitPrice * $quantity, 2),
+                ];
             })->values(),
             'show_url' => route('admin.orders.show', $order->id),
         ]);
@@ -67,29 +82,62 @@ class TicketsController extends Controller
     {
         $validated = $request->validate([
             'order_reference' => ['required', 'string', 'max:100'],
-            'reason' => ['required', 'string', 'max:255'],
-            'comment' => ['required', 'string', 'max:5000'],
+            'department' => ['required', Rule::in(Ticket::DEPARTMENTS)],
+            'reason' => ['required', Rule::in(Ticket::REASONS)],
+            'category' => ['required', Rule::in(Ticket::CATEGORIES)],
+            'items' => ['required', 'array'],
+            'account_name' => ['nullable', 'required_if:category,Refund', 'string', 'max:255'],
+            'account_number' => ['nullable', 'required_if:category,Refund', 'string', 'max:50'],
+            'bank_name' => ['nullable', 'required_if:category,Refund', 'string', 'max:255'],
+            'wallet_source' => ['nullable', 'required_if:category,Wallet', Rule::in(Ticket::WALLET_SOURCES)],
         ]);
-        $order = $this->findOrder($validated['order_reference']);
 
-        $ticket = DB::transaction(function () use ($validated, $order) {
+        $order = $this->findOrder($validated['order_reference']);
+        $order->load('ordered_products');
+
+        $selectedItems = $this->selectedItems($order, $request->input('items', []));
+
+        if (empty($selectedItems)) {
+            return back()->withErrors(['items' => 'Select at least one item the customer is returning.'])->withInput();
+        }
+
+        $returnTotal = collect($selectedItems)->sum('total');
+
+        $ticket = DB::transaction(function () use ($validated, $order, $selectedItems, $returnTotal) {
             $ticket = Ticket::create([
                 'order_id' => $order->id,
+                'department' => $validated['department'],
                 'reason' => $validated['reason'],
+                'category' => $validated['category'],
                 'status' => 'Open',
+                'return_total' => $returnTotal,
+                'account_name' => $validated['category'] === 'Refund' ? $validated['account_name'] : null,
+                'account_number' => $validated['category'] === 'Refund' ? $validated['account_number'] : null,
+                'bank_name' => $validated['category'] === 'Refund' ? $validated['bank_name'] : null,
+                'wallet_source' => $validated['category'] === 'Wallet' ? $validated['wallet_source'] : null,
                 'created_by' => Auth::id(),
             ]);
-            $ticket->update(['ticket_number' => 'TKT-' . now()->format('Y') . '-' . str_pad($ticket->id, 6, '0', STR_PAD_LEFT)]);
+
+            $ticket->update([
+                'ticket_number' => 'TKT-' . now()->format('Y') . '-' . str_pad($ticket->id, 6, '0', STR_PAD_LEFT),
+            ]);
+
+            foreach ($selectedItems as $item) {
+                $ticket->items()->create($item);
+            }
+
+            $customerMessage = TicketCustomerNotification::messageFor($ticket, 'created');
             $ticket->comments()->create([
-                'comment' => $validated['comment'],
+                'comment' => $customerMessage,
                 'customer_visible' => true,
                 'created_by' => Auth::id(),
             ]);
-            return $ticket->load('order');
+
+            return $ticket->load(['order', 'items']);
         });
 
-        $notified = $this->notifyCustomer($ticket, $validated['comment']);
-        (new Activity)->put('Created ticket ' . $ticket->ticket_number . ' for order #' . $order->id);
+        $notified = $this->notifyCustomer($ticket, 'created');
+        (new Activity)->put('Created ' . strtolower($ticket->category) . ' ticket ' . $ticket->ticket_number . ' for order #' . $order->id);
 
         return redirect()->route('admin.tickets.show', $ticket)->with(
             'success',
@@ -99,7 +147,7 @@ class TicketsController extends Controller
 
     public function show(Ticket $ticket)
     {
-        $ticket->load(['order.user', 'order.orderEmail', 'order.ordered_products', 'comments.creator', 'creator']);
+        $ticket->load(['order.user', 'order.orderEmail', 'order.ordered_products', 'items', 'comments.creator', 'creator']);
         return view('admin.tickets.show', compact('ticket'));
     }
 
@@ -110,16 +158,22 @@ class TicketsController extends Controller
             'status' => ['required', Rule::in(Ticket::STATUSES)],
             'customer_visible' => ['nullable', 'boolean'],
         ]);
+
         $visible = $request->boolean('customer_visible');
+        $resolved = in_array($validated['status'], ['Resolved', 'Closed']);
+        $comment = $visible && $resolved
+            ? TicketCustomerNotification::messageFor($ticket, 'resolved')
+            : $validated['comment'];
+
         $ticket->update(['status' => $validated['status']]);
         $ticket->comments()->create([
-            'comment' => $validated['comment'],
+            'comment' => $comment,
             'customer_visible' => $visible,
             'created_by' => Auth::id(),
         ]);
 
         if ($visible) {
-            $this->notifyCustomer($ticket->load('order'), $validated['comment']);
+            $this->notifyCustomer($ticket->load('order'), $resolved ? 'resolved' : 'update', $comment);
         }
 
         return redirect()->route('admin.tickets.show', $ticket)->with('success', 'Ticket updated.');
@@ -131,7 +185,7 @@ class TicketsController extends Controller
             return redirect()->route('admin.tickets.show', $ticket)->with('success', 'This ticket is already closed.');
         }
 
-        $comment = 'Your complaint has been reviewed and this ticket is now closed. If you still need help, please contact AutoFactorNG Customer Care.';
+        $comment = TicketCustomerNotification::messageFor($ticket, 'resolved');
 
         DB::transaction(function () use ($ticket, $comment) {
             $ticket->update(['status' => 'Closed']);
@@ -142,13 +196,48 @@ class TicketsController extends Controller
             ]);
         });
 
-        $notified = $this->notifyCustomer($ticket->load('order'), $comment);
+        $notified = $this->notifyCustomer($ticket->load('order'), 'resolved');
         (new Activity)->put('Closed ticket ' . $ticket->ticket_number);
 
         return redirect()->route('admin.tickets.show', $ticket)->with(
             'success',
             $notified ? 'Ticket closed and the customer was notified.' : 'Ticket closed, but the customer email could not be sent.'
         );
+    }
+
+    private function selectedItems(Order $order, array $submittedItems): array
+    {
+        $selected = [];
+        $products = $order->ordered_products->keyBy('id');
+
+        foreach ($submittedItems as $orderedProductId => $submitted) {
+            if (! is_array($submitted) || empty($submitted['selected'])) {
+                continue;
+            }
+
+            $orderedProduct = $products->get((int) $orderedProductId);
+            if (! $orderedProduct) {
+                continue;
+            }
+
+            $orderedQuantity = max(1, (int) $orderedProduct->quantity);
+            $quantity = max(1, min((int) ($submitted['quantity'] ?? 1), $orderedQuantity));
+            $unitPrice = (float) $orderedProduct->price;
+
+            if ($unitPrice <= 0 && (float) $orderedProduct->total > 0) {
+                $unitPrice = (float) $orderedProduct->total / $orderedQuantity;
+            }
+
+            $selected[] = [
+                'ordered_product_id' => $orderedProduct->id,
+                'product_name' => $orderedProduct->product_name ?: 'Unnamed product',
+                'quantity' => $quantity,
+                'unit_price' => round($unitPrice, 2),
+                'total' => round($unitPrice * $quantity, 2),
+            ];
+        }
+
+        return $selected;
     }
 
     private function findOrder(string $reference): Order
@@ -161,19 +250,33 @@ class TicketsController extends Controller
         return $order->email ?: optional($order->orderEmail)->email ?: optional($order->user)->email;
     }
 
-    private function notifyCustomer(Ticket $ticket, string $comment): bool
+    private function customerName(Order $order): string
     {
+        $name = trim((string) $order->fullName());
+        if (! $name && $order->user) {
+            $name = trim((string) $order->user->fullname());
+        }
+        return $name ?: 'Valued Customer';
+    }
+
+    private function notifyCustomer(Ticket $ticket, string $phase = 'created', ?string $message = null): bool
+    {
+        $ticket->loadMissing('order.user', 'order.orderEmail');
         $email = $this->customerEmail($ticket->order);
+
         if (! $email) {
             Log::warning('Ticket customer email unavailable.', ['ticket_id' => $ticket->id]);
             return false;
         }
 
         try {
-            Notification::route('mail', $email)->notify(new TicketCustomerNotification($ticket, $comment));
+            Notification::route('mail', $email)->notify(new TicketCustomerNotification($ticket, $phase, $message));
             return true;
         } catch (\Throwable $exception) {
-            Log::error('Ticket customer notification failed.', ['ticket_id' => $ticket->id, 'error' => $exception->getMessage()]);
+            Log::error('Ticket customer notification failed.', [
+                'ticket_id' => $ticket->id,
+                'error' => $exception->getMessage(),
+            ]);
             return false;
         }
     }
