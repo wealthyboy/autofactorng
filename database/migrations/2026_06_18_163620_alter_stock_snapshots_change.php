@@ -13,10 +13,10 @@ class AlterStockSnapshotsChange extends Migration
      */
     public function up()
     {
-        Schema::table('stock_snapshots', function (Blueprint $table) {
-            $table->string('product_name')->nullable()->change();
-            $table->string('name')->nullable();
-        });
+       // Schema::table('stock_snapshots', function (Blueprint $table) {
+           // $table->string('product_name')->nullable()->change();
+           // $table->string('name')->nullable();
+       // });
     }
 
     /**

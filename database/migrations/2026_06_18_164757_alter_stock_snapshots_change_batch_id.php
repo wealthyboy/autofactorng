@@ -14,7 +14,7 @@ class AlterStockSnapshotsChangeBatchId extends Migration
     public function up()
     {
         Schema::table('stock_snapshots', function (Blueprint $table) {
-            $table->string('batch_id')->nullable()->change();
+           // $table->string('batch_id')->nullable()->change();
         });
     }
 

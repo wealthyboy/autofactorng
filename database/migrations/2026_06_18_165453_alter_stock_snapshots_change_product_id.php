@@ -14,7 +14,7 @@ class AlterStockSnapshotsChangeProductId extends Migration
     public function up()
     {
         Schema::table('stock_snapshots', function (Blueprint $table) {
-            $table->unsignedBigInteger('product_id')->nullable()->change();
+           // $table->unsignedBigInteger('product_id')->nullable()->change();
         });
     }
 
