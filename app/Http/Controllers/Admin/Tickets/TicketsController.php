@@ -162,7 +162,7 @@ class TicketsController extends Controller
         return view('admin.tickets.show', compact('ticket'));
     }
 
-    public function approvePayment(Ticket $ticket)
+    public function approvePayment(Request $request, Ticket $ticket)
     {
         if (! $ticket->requiresPaymentApproval()) {
             return redirect()->route('admin.tickets.show', $ticket)
@@ -174,8 +174,12 @@ class TicketsController extends Controller
                 ->with('success', 'This payment has already been approved.');
         }
 
+        $validated = $request->validate([
+            'approval_date' => ['required', 'date'],
+        ]);
+
         $ticket->update([
-            'approved_at' => now(),
+            'approved_at' => $validated['approval_date'],
             'approved_by' => Auth::id(),
         ]);
 

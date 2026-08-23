@@ -78,12 +78,23 @@
             </div>
             <div class="card-body">
                 @if($ticket->approved_at)
-                    <p class="text-sm mb-2"><strong>Approval Date:</strong> {{ $ticket->approved_at->format('d M Y, h:i A') }}</p>
+                    <p class="text-sm mb-2"><strong>Approval Date:</strong> {{ $ticket->approved_at->format('d M Y') }}</p>
                     <p class="text-sm mb-0"><strong>Approved By:</strong> {{ optional($ticket->approver)->name ?: 'Admin' }}</p>
                 @else
-                    <p class="text-sm text-secondary">This payment is awaiting approval.</p>
-                    <form method="post" action="{{ route('admin.tickets.approve-payment', $ticket) }}" onsubmit="return confirm('Approve this payment? The approval date and approving admin will be recorded.')">
+                    <p class="text-sm text-secondary">This payment is awaiting approval. Select the approval date before approving.</p>
+                    <form method="post" action="{{ route('admin.tickets.approve-payment', $ticket) }}" onsubmit="return confirm('Approve this payment using the selected approval date?')">
                         @csrf
+                        <div class="mb-3">
+                            <label class="ticket-form-label" for="approvalDate">Approval Date</label>
+                            <input
+                                id="approvalDate"
+                                type="date"
+                                name="approval_date"
+                                value="{{ old('approval_date', now()->format('Y-m-d')) }}"
+                                class="form-control ticket-control"
+                                required
+                            >
+                        </div>
                         <button class="btn bg-gradient-success mb-0">Approve Payment</button>
                     </form>
                 @endif
