@@ -65,14 +65,14 @@ class TicketCustomerNotification extends Notification
         }
 
         if ($category === 'Refund') {
-            return "Your refund request has been submitted to our Finance Team for processing. Once approved, the refund will be credited to your account within 3–5 working days.\n\nYou will receive a confirmation email once the refund is processed.";
+            return "Thank you for contacting AutofactorNG.\n\nWe have received your refund request under ticket {$ticketNumber}, and it has been forwarded to our Finance Team for review and processing.\n\nOnce approved, the refund will be credited to the account details provided within 3–5 working days.\n\nWe will send you a confirmation email as soon as the refund has been successfully processed.\n\nIf you have any questions or require further assistance, please feel free to contact our Customer Support Team.";
         }
 
         if ($category === 'Wallet') {
-            return "Thank you for your patience.\n\nWe wish to inform you that your wallet credit request has been submitted to our Finance Team for processing. Once approved, the value of the item will be credited to your store wallet.\n\nYou will receive a confirmation email once the wallet credit has been successfully applied to your account.\n\nIf you have any questions or require further assistance, please feel free to contact our Customer Support Team.";
+            return "Thank you for contacting AutofactorNG.\n\nWe have received your wallet credit request under ticket {$ticketNumber}, and it has been forwarded to our Finance Team for processing.\n\nOnce approved, the applicable amount will be credited to your store wallet.\n\nWe will send you a confirmation email as soon as the wallet credit has been successfully applied.\n\nIf you have any questions or require further assistance, please feel free to contact our Customer Support Team.";
         }
 
-        return "Thank you for contacting us.\n\nYour enquiry/complaint has been logged and escalated to the appropriate team for review. We will update you via email once we have an outcome.\n\nYour Ticket Number is {$ticketNumber}.\n\nThank you for your patience and understanding.";
+        return "Thank you for contacting AutofactorNG.\n\nWe have received your enquiry/complaint and created ticket {$ticketNumber}.\n\nYour request has been escalated to the appropriate team for review, and we will update you by email as soon as we have an outcome.\n\nThank you for your patience and understanding. If you require further assistance, please feel free to contact our Customer Support Team.";
     }
 
     private function subjectFor(Ticket $ticket): string
