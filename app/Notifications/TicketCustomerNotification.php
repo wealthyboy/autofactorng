@@ -34,7 +34,7 @@ class TicketCustomerNotification extends Notification
 
         return (new MailMessage)
             ->subject($this->subjectFor($ticket))
-            ->greeting('Dear ' . $this->customerName($ticket) . ',')
+            ->greeting($this->greetingFor($ticket))
             ->line($message)
             ->salutation('Kind regards, Customer Support Team');
     }
@@ -82,6 +82,16 @@ class TicketCustomerNotification extends Notification
         }
 
         return 'Your support ticket - ' . $ticket->ticket_number;
+    }
+
+
+    private function greetingFor(Ticket $ticket): string
+    {
+        if ($ticket->category === 'Escalation') {
+            return 'Dear Valued Customer,';
+        }
+
+        return 'Dear ' . $this->customerName($ticket) . ',';
     }
 
     private function customerName(Ticket $ticket): string
