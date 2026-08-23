@@ -123,6 +123,13 @@ class User extends Authenticatable
 	}
 
 
+	public static function customerClassForOrderCount($orderCount)
+	{
+		return $orderCount > 1
+			? 'Returning Customer'
+			: 'New Customer';
+	}
+
 
 
 	public function orders()
