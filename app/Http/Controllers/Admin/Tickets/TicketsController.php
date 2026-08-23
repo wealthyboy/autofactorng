@@ -18,7 +18,7 @@ class TicketsController extends Controller
 {
     public function index(Request $request)
     {
-        $tickets = Ticket::with(['order', 'creator'])->withCount('comments')
+        $tickets = Ticket::with(['order.user', 'creator'])->withCount('comments')
             ->when($request->filled('status'), function ($query) use ($request) {
                 $query->where('status', $request->status);
             })
@@ -85,6 +85,7 @@ class TicketsController extends Controller
             'department' => ['required', Rule::in(Ticket::DEPARTMENTS)],
             'reason' => ['required', Rule::in(Ticket::REASONS)],
             'category' => ['required', Rule::in(Ticket::CATEGORIES)],
+            'additional_information' => ['nullable', 'string', 'max:10000'],
             'items' => ['required', 'array'],
             'account_name' => ['nullable', 'required_if:category,Refund', 'string', 'max:255'],
             'account_number' => ['nullable', 'required_if:category,Refund', 'string', 'max:50'],
@@ -120,6 +121,7 @@ class TicketsController extends Controller
                 'department' => $validated['department'],
                 'reason' => $validated['reason'],
                 'category' => $validated['category'],
+                'additional_information' => $validated['additional_information'] ?? null,
                 'status' => 'Open',
                 'return_total' => $returnTotal,
                 'account_name' => $validated['category'] === 'Refund' ? $validated['account_name'] : null,

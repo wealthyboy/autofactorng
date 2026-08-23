@@ -21,11 +21,12 @@
 </div></div>
 
 <div class="card"><div class="card-body px-0 pb-2"><div class="table-responsive"><table class="table align-items-center mb-0">
-    <thead><tr><th>Ticket</th><th>Order</th><th>Department</th><th>Reason</th><th>Category</th><th>Return Total</th><th>Status</th><th>Created</th><th></th></tr></thead>
+    <thead><tr><th>Ticket</th><th>Order</th><th>Customer</th><th>Department</th><th>Reason</th><th>Category</th><th>Return Total</th><th>Status</th><th>Created</th><th></th></tr></thead>
     <tbody>@forelse($tickets as $ticket)
         <tr>
             <td class="px-4"><a class="text-sm font-weight-bold" href="{{ route('admin.tickets.show', $ticket) }}">{{ $ticket->ticket_number }}</a></td>
             <td><a class="text-sm" href="{{ route('admin.orders.show', $ticket->order_id) }}">{{ optional($ticket->order)->invoice ?: '#' . $ticket->order_id }}</a></td>
+            <td><span class="text-sm font-weight-bold">{{ $ticket->order ? (trim($ticket->order->fullName()) ?: optional($ticket->order->user)->fullname() ?: '—') : '—' }}</span></td>
             <td><span class="text-sm">{{ $ticket->department ?: '—' }}</span></td>
             <td><span class="text-sm">{{ $ticket->reason }}</span></td>
             <td><span class="text-sm">{{ $ticket->category ?: '—' }}</span></td>
@@ -34,6 +35,6 @@
             <td><span class="text-sm">{{ optional($ticket->created_at)->format('d M Y') }}</span></td>
             <td class="text-end px-4"><a href="{{ route('admin.tickets.show', $ticket) }}" class="btn btn-sm btn-outline-dark mb-0">View</a></td>
         </tr>
-    @empty<tr><td colspan="9" class="text-center text-secondary py-5">No tickets found.</td></tr>@endforelse</tbody>
+    @empty<tr><td colspan="10" class="text-center text-secondary py-5">No tickets found.</td></tr>@endforelse</tbody>
 </table></div><div class="px-4 pt-3">{{ $tickets->links() }}</div></div></div>
 @endsection

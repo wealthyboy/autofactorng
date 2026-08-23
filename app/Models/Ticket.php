@@ -21,6 +21,7 @@ class Ticket extends Model
         'department',
         'reason',
         'category',
+        'additional_information',
         'status',
         'return_total',
         'account_name',

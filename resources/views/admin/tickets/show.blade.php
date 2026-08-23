@@ -34,6 +34,12 @@
                 <p class="text-sm mb-2"><strong>Department:</strong> {{ $ticket->department ?: '—' }}</p>
                 <p class="text-sm mb-2"><strong>Reason:</strong> {{ $ticket->reason }}</p>
                 <p class="text-sm mb-2"><strong>Category:</strong> {{ $ticket->category ?: '—' }}</p>
+                @if($ticket->additional_information)
+                    <div class="mb-3">
+                        <strong class="text-sm">Additional Information:</strong>
+                        <p class="text-sm text-secondary mt-1 mb-0" style="white-space: pre-line">{{ $ticket->additional_information }}</p>
+                    </div>
+                @endif
                 <p class="text-sm mb-0"><strong>Return total:</strong> ₦{{ number_format((float) $ticket->return_total, 2) }}</p>
             </div>
         </div>

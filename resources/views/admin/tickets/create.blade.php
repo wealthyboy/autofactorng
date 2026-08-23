@@ -89,6 +89,9 @@
                     @endforeach
                 </select>
 
+                <label class="ticket-form-label" for="additionalInformation">Additional Information</label>
+                <textarea id="additionalInformation" name="additional_information" rows="4" class="form-control ticket-control mb-3" placeholder="Add any extra information about this ticket...">{{ old('additional_information') }}</textarea>
+
                 <div id="refundFields" class="ticket-dynamic-panel d-none mb-3">
                     <h6 class="text-sm mb-3">Refund details</h6>
                     <div class="row">
