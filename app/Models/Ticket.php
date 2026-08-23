@@ -11,7 +11,7 @@ class Ticket extends Model
 
     public const STATUSES = ['Open', 'In Progress', 'Resolved', 'Closed'];
     public const DEPARTMENTS = ['Accounts', 'Procurement/Operations', 'Management', 'Logistics'];
-    public const REASONS = ['Delayed Delivery', 'Wrong Item Delivered', 'Defective Item', 'No Delivery', 'Customer no longer interested', 'Over Payment'];
+    public const REASONS = ['Delayed Delivery', 'Wrong Item Delivered', 'Defective Item', 'No Delivery', 'Customer no longer interested', 'Over Payment', 'Double Payment'];
     public const CATEGORIES = ['Escalation', 'Refund', 'Wallet'];
     public const WALLET_SOURCES = ['Online', 'Offline'];
 
@@ -65,7 +65,14 @@ class Ticket extends Model
     public function requiresPaymentApproval(): bool
     {
         return $this->category !== 'Wallet'
-            && ($this->category === 'Refund' || $this->reason === 'Over Payment');
+            && ($this->category === 'Refund' || in_array($this->reason, ['Over Payment', 'Double Payment'], true));
+    }
+
+    public function usesCustomAmount(): bool
+    {
+        return $this->category === 'Wallet'
+            || in_array($this->reason, ['Over Payment', 'Double Payment'], true)
+            || $this->category === 'Refund';
     }
 }
 

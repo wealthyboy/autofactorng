@@ -52,7 +52,16 @@
         <div class="card mb-4">
             <div class="card-header pb-0"><h6>Wallet details</h6></div>
             <div class="card-body">
-                <p class="text-sm mb-0"><strong>Order type:</strong> {{ $ticket->wallet_source ?: '—' }}</p>
+                <p class="text-sm mb-2"><strong>Order type:</strong> {{ $ticket->wallet_source ?: '—' }}</p>
+                <p class="text-sm mb-0"><strong>Amount:</strong> ₦{{ number_format((float) $ticket->return_total, 2) }}</p>
+            </div>
+        </div>
+        @elseif(in_array($ticket->reason, ['Over Payment', 'Double Payment']))
+        <div class="card mb-4">
+            <div class="card-header pb-0"><h6>Payment details</h6></div>
+            <div class="card-body">
+                <p class="text-sm mb-2"><strong>Reason:</strong> {{ $ticket->reason }}</p>
+                <p class="text-sm mb-0"><strong>Amount:</strong> ₦{{ number_format((float) $ticket->return_total, 2) }}</p>
             </div>
         </div>
         @endif

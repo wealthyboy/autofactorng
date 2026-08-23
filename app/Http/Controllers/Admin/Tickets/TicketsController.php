@@ -90,6 +90,7 @@ class TicketsController extends Controller
             'account_number' => ['nullable', 'required_if:category,Refund', 'string', 'max:50'],
             'bank_name' => ['nullable', 'required_if:category,Refund', 'string', 'max:255'],
             'wallet_source' => ['nullable', 'required_if:category,Wallet', Rule::in(Ticket::WALLET_SOURCES)],
+            'ticket_amount' => ['nullable', 'numeric', 'min:0'],
         ]);
 
         $order = $this->findOrder($validated['order_reference']);
@@ -101,7 +102,17 @@ class TicketsController extends Controller
             return back()->withErrors(['items' => 'Select at least one item the customer is returning.'])->withInput();
         }
 
-        $returnTotal = collect($selectedItems)->sum('total');
+        $requiresEnteredAmount = $validated['category'] === 'Refund'
+            || $validated['category'] === 'Wallet'
+            || in_array($validated['reason'], ['Over Payment', 'Double Payment'], true);
+
+        if ($requiresEnteredAmount && ! $request->filled('ticket_amount')) {
+            return back()->withErrors(['ticket_amount' => 'Amount is required for this ticket.'])->withInput();
+        }
+
+        $returnTotal = $requiresEnteredAmount
+            ? round((float) $request->input('ticket_amount'), 2)
+            : collect($selectedItems)->sum('total');
 
         $ticket = DB::transaction(function () use ($validated, $order, $selectedItems, $returnTotal) {
             $ticket = Ticket::create([

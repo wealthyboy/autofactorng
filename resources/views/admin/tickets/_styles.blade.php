@@ -29,7 +29,18 @@
         min-height: 150px;
         resize: vertical;
     }
-    select.ticket-control { cursor: pointer; }
+    select.ticket-control {
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23344767' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right .9rem center;
+        background-size: 1rem;
+        padding-right: 2.4rem !important;
+    }
+    select.ticket-control::-ms-expand { display: none; }
     .ticket-order-group .ticket-control { border-radius: .65rem 0 0 .65rem !important; }
     .ticket-order-group .btn { border-radius: 0 .65rem .65rem 0; min-height: 44px; }
     .ticket-preview {

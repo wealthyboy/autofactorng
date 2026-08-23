@@ -104,10 +104,6 @@
                             <label class="ticket-form-label" for="bankName">Bank Name</label>
                             <input id="bankName" name="bank_name" value="{{ old('bank_name') }}" class="form-control ticket-control">
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label class="ticket-form-label" for="refundAmount">Amount</label>
-                            <input id="refundAmount" class="form-control ticket-control" value="₦0.00" disabled>
-                        </div>
                     </div>
                 </div>
 
@@ -120,6 +116,13 @@
                             <option value="{{ $source }}" @if(old('wallet_source') === $source) selected @endif>{{ $source }}</option>
                         @endforeach
                     </select>
+                </div>
+
+                <div id="amountFields" class="ticket-dynamic-panel d-none mb-3">
+                    <h6 class="text-sm mb-3">Amount details</h6>
+                    <label class="ticket-form-label" for="ticketAmount">Amount</label>
+                    <input id="ticketAmount" name="ticket_amount" type="number" step="0.01" min="0" value="{{ old('ticket_amount') }}" class="form-control ticket-control" placeholder="0.00">
+                    <p class="text-xs text-secondary mt-2 mb-0">This defaults to the selected return total, but you can edit it when needed.</p>
                 </div>
 
                 <div id="emailPreviewPanel" class="ticket-email-preview d-none p-3 mb-3">
@@ -145,14 +148,17 @@ const lookupMessage = document.getElementById('orderLookupMessage');
 const preview = document.getElementById('orderPreview');
 const submitButton = document.getElementById('createTicketButton');
 const categorySelect = document.getElementById('ticketCategory');
+const reasonSelect = document.getElementById('ticketReason');
 const refundFields = document.getElementById('refundFields');
 const walletFields = document.getElementById('walletFields');
+const amountFields = document.getElementById('amountFields');
 const emailPreviewPanel = document.getElementById('emailPreviewPanel');
 const emailPreview = document.getElementById('emailPreview');
 const emailCategoryBadge = document.getElementById('emailCategoryBadge');
 const selectedReturnTotal = document.getElementById('selectedReturnTotal');
-const refundAmount = document.getElementById('refundAmount');
+const ticketAmount = document.getElementById('ticketAmount');
 let loadedOrder = null;
+let amountManuallyEdited = ticketAmount.value.trim() !== '';
 
 function setPreviewText(id, value) {
     document.getElementById(id).textContent = value || '—';
@@ -160,6 +166,19 @@ function setPreviewText(id, value) {
 
 function money(value) {
     return '₦' + Number(value || 0).toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+function formattedAmount(value) {
+    return Number(value || 0).toFixed(2);
+}
+
+function needsAmount() {
+    const category = categorySelect.value;
+    const reason = reasonSelect.value;
+
+    return category === 'Refund'
+        || category === 'Wallet'
+        || ['Over Payment', 'Double Payment'].includes(reason);
 }
 
 function selectedTotal() {
@@ -172,7 +191,10 @@ function selectedTotal() {
     });
 
     selectedReturnTotal.textContent = money(total);
-    refundAmount.value = money(total);
+    if (!amountManuallyEdited || !ticketAmount.value) {
+        ticketAmount.value = formattedAmount(total);
+    }
+
     return total;
 }
 
@@ -237,13 +259,21 @@ function customerName() {
 
 function updateCategoryForm() {
     const category = categorySelect.value;
+    const showAmount = needsAmount();
+
     refundFields.classList.toggle('d-none', category !== 'Refund');
     walletFields.classList.toggle('d-none', category !== 'Wallet');
+    amountFields.classList.toggle('d-none', !showAmount);
 
     document.getElementById('accountName').required = category === 'Refund';
     document.getElementById('accountNumber').required = category === 'Refund';
     document.getElementById('bankName').required = category === 'Refund';
     document.getElementById('walletSource').required = category === 'Wallet';
+    ticketAmount.required = showAmount;
+
+    if (showAmount && (!ticketAmount.value || !amountManuallyEdited)) {
+        ticketAmount.value = formattedAmount(selectedTotal());
+    }
 
     if (!category) {
         emailPreviewPanel.classList.add('d-none');
@@ -254,11 +284,40 @@ function updateCategoryForm() {
     let message = '';
 
     if (category === 'Refund') {
-        message = `Dear ${name},\n\nYour refund request has been submitted to our Finance Team for processing. Once approved, the refund will be credited to your account within 3–5 working days.\n\nYou will receive a confirmation email once the refund is processed.\n\nKind regards,\nCustomer Support Team`;
+        message = `Dear ${name},
+
+Your refund request has been submitted to our Finance Team for processing. Once approved, the refund will be credited to your account within 3–5 working days.
+
+You will receive a confirmation email once the refund is processed.
+
+Kind regards,
+Customer Support Team`;
     } else if (category === 'Wallet') {
-        message = `Dear ${name},\n\nThank you for your patience.\n\nWe wish to inform you that your wallet credit request has been submitted to our Finance Team for processing. Once approved, the value of the item will be credited to your store wallet.\n\nYou will receive a confirmation email once the wallet credit has been successfully applied to your account.\n\nIf you have any questions or require further assistance, please feel free to contact our Customer Support Team.\n\nKind regards,\nCustomer Support Team`;
+        message = `Dear ${name},
+
+Thank you for your patience.
+
+We wish to inform you that your wallet credit request has been submitted to our Finance Team for processing. Once approved, the value of the item will be credited to your store wallet.
+
+You will receive a confirmation email once the wallet credit has been successfully applied to your account.
+
+If you have any questions or require further assistance, please feel free to contact our Customer Support Team.
+
+Kind regards,
+Customer Support Team`;
     } else {
-        message = `Dear ${name},\n\nThank you for contacting us.\n\nYour enquiry/complaint has been logged and escalated to the appropriate team for review. We will update you via email once we have an outcome.\n\nYour Ticket Number will be inserted automatically.\n\nThank you for your patience and understanding.\n\nKind regards,\nCustomer Support Team`;
+        message = `Dear ${name},
+
+Thank you for contacting us.
+
+Your enquiry/complaint has been logged and escalated to the appropriate team for review. We will update you via email once we have an outcome.
+
+Your Ticket Number will be inserted automatically.
+
+Thank you for your patience and understanding.
+
+Kind regards,
+Customer Support Team`;
     }
 
     emailCategoryBadge.textContent = category;
@@ -266,6 +325,7 @@ function updateCategoryForm() {
     emailPreviewPanel.classList.remove('d-none');
     selectedTotal();
 }
+
 
 async function findTicketOrder() {
     const reference = orderReference.value.trim();
@@ -311,6 +371,10 @@ async function findTicketOrder() {
 
 document.getElementById('findOrder').addEventListener('click', findTicketOrder);
 categorySelect.addEventListener('change', updateCategoryForm);
+reasonSelect.addEventListener('change', updateCategoryForm);
+ticketAmount.addEventListener('input', function () {
+    amountManuallyEdited = ticketAmount.value.trim() !== '';
+});
 orderReference.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         event.preventDefault();
