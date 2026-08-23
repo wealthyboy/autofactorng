@@ -73,19 +73,19 @@
                     @endforeach
                 </select>
 
-                <label class="ticket-form-label" for="ticketReason">Reason</label>
-                <select id="ticketReason" name="reason" class="form-control ticket-control mb-3" required>
-                    <option value="">Select reason</option>
-                    @foreach(\App\Models\Ticket::REASONS as $reason)
-                        <option value="{{ $reason }}" @if(old('reason') === $reason) selected @endif>{{ $reason }}</option>
-                    @endforeach
-                </select>
-
                 <label class="ticket-form-label" for="ticketCategory">Category</label>
                 <select id="ticketCategory" name="category" class="form-control ticket-control mb-3" required>
                     <option value="">Select category</option>
                     @foreach(\App\Models\Ticket::CATEGORIES as $category)
                         <option value="{{ $category }}" @if(old('category') === $category) selected @endif>{{ $category }}</option>
+                    @endforeach
+                </select>
+
+                <label class="ticket-form-label" for="ticketReason">Reason</label>
+                <select id="ticketReason" name="reason" class="form-control ticket-control mb-3" required>
+                    <option value="">Select reason</option>
+                    @foreach(\App\Models\Ticket::REASONS as $reason)
+                        <option value="{{ $reason }}" @if(old('reason') === $reason) selected @endif>{{ $reason }}</option>
                     @endforeach
                 </select>
 

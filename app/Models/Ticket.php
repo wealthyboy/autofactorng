@@ -11,7 +11,7 @@ class Ticket extends Model
 
     public const STATUSES = ['Open', 'In Progress', 'Resolved', 'Closed'];
     public const DEPARTMENTS = ['Accounts', 'Procurement/Operations', 'Management', 'Logistics'];
-    public const REASONS = ['Delayed Delivery', 'Wrong Item Delivered', 'Defective Item', 'No Delivery', 'Customer no longer interested'];
+    public const REASONS = ['Delayed Delivery', 'Wrong Item Delivered', 'Defective Item', 'No Delivery', 'Customer no longer interested', 'Over Payment'];
     public const CATEGORIES = ['Escalation', 'Refund', 'Wallet'];
     public const WALLET_SOURCES = ['Online', 'Offline'];
 
@@ -27,11 +27,14 @@ class Ticket extends Model
         'account_number',
         'bank_name',
         'wallet_source',
+        'approved_at',
+        'approved_by',
         'created_by',
     ];
 
     protected $casts = [
         'return_total' => 'decimal:2',
+        'approved_at' => 'datetime',
     ];
 
     public function order()
@@ -53,4 +56,16 @@ class Ticket extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    public function approver()
+    {
+        return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    public function requiresPaymentApproval(): bool
+    {
+        return $this->category !== 'Wallet'
+            && ($this->category === 'Refund' || $this->reason === 'Over Payment');
+    }
 }
+

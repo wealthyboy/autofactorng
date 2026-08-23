@@ -23,6 +23,7 @@
 </div>
 
 @if(session('success'))<div class="alert alert-success text-white">{{ session('success') }}</div>@endif
+@if(session('error'))<div class="alert alert-danger text-white">{{ session('error') }}</div>@endif
 
 <div class="row">
     <div class="col-lg-5 mb-4">
@@ -52,6 +53,31 @@
             <div class="card-header pb-0"><h6>Wallet details</h6></div>
             <div class="card-body">
                 <p class="text-sm mb-0"><strong>Order type:</strong> {{ $ticket->wallet_source ?: '—' }}</p>
+            </div>
+        </div>
+        @endif
+
+        @if($ticket->requiresPaymentApproval())
+        <div class="card mb-4">
+            <div class="card-header pb-0 d-flex justify-content-between align-items-center">
+                <h6 class="mb-0">Payment approval</h6>
+                @if($ticket->approved_at)
+                    <span class="badge bg-gradient-success">Approved</span>
+                @else
+                    <span class="badge bg-gradient-warning">Pending approval</span>
+                @endif
+            </div>
+            <div class="card-body">
+                @if($ticket->approved_at)
+                    <p class="text-sm mb-2"><strong>Approval Date:</strong> {{ $ticket->approved_at->format('d M Y, h:i A') }}</p>
+                    <p class="text-sm mb-0"><strong>Approved By:</strong> {{ optional($ticket->approver)->name ?: 'Admin' }}</p>
+                @else
+                    <p class="text-sm text-secondary">This payment is awaiting approval.</p>
+                    <form method="post" action="{{ route('admin.tickets.approve-payment', $ticket) }}" onsubmit="return confirm('Approve this payment? The approval date and approving admin will be recorded.')">
+                        @csrf
+                        <button class="btn bg-gradient-success mb-0">Approve Payment</button>
+                    </form>
+                @endif
             </div>
         </div>
         @endif

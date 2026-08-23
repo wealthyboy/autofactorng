@@ -147,8 +147,31 @@ class TicketsController extends Controller
 
     public function show(Ticket $ticket)
     {
-        $ticket->load(['order.user', 'order.orderEmail', 'order.ordered_products', 'items', 'comments.creator', 'creator']);
+        $ticket->load(['order.user', 'order.orderEmail', 'order.ordered_products', 'items', 'comments.creator', 'creator', 'approver']);
         return view('admin.tickets.show', compact('ticket'));
+    }
+
+    public function approvePayment(Ticket $ticket)
+    {
+        if (! $ticket->requiresPaymentApproval()) {
+            return redirect()->route('admin.tickets.show', $ticket)
+                ->with('error', 'Payment approval is not required for this ticket.');
+        }
+
+        if ($ticket->approved_at) {
+            return redirect()->route('admin.tickets.show', $ticket)
+                ->with('success', 'This payment has already been approved.');
+        }
+
+        $ticket->update([
+            'approved_at' => now(),
+            'approved_by' => Auth::id(),
+        ]);
+
+        (new Activity)->put('Approved payment for ticket ' . $ticket->ticket_number);
+
+        return redirect()->route('admin.tickets.show', $ticket)
+            ->with('success', 'Payment approved successfully.');
     }
 
     public function addComment(Request $request, Ticket $ticket)
