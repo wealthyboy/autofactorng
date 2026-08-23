@@ -36,6 +36,10 @@ class TicketCustomerNotification extends Notification
             ->subject($this->subjectFor($ticket))
             ->greeting($this->greetingFor($ticket));
 
+        foreach ($this->ccRecipients($ticket) as $copyAddress) {
+            $mail->cc($copyAddress);
+        }
+
         foreach (preg_split('/\R{2,}/', trim($message)) as $paragraph) {
             $paragraph = trim($paragraph);
 
@@ -116,6 +120,28 @@ class TicketCustomerNotification extends Notification
         }
 
         return 'Dear ' . $this->customerName($ticket) . ',';
+    }
+
+    private function ccRecipients(Ticket $ticket): array
+    {
+        $departmentCopies = [
+            'Procurement/Operations' => 'operations@autofactorng.com',
+            'Accounts' => 'account@autofactorng.com',
+            'Account' => 'account@autofactorng.com',
+            'Customer service' => 'care@autofactorng.com',
+            'Customer Service' => 'care@autofactorng.com',
+        ];
+
+        $copies = [
+            'justine@autofactorng.com',
+            'd@autofactorng.com',
+        ];
+
+        if (isset($departmentCopies[$ticket->department])) {
+            array_unshift($copies, $departmentCopies[$ticket->department]);
+        }
+
+        return array_values(array_unique($copies));
     }
 
     private function customerName(Ticket $ticket): string
