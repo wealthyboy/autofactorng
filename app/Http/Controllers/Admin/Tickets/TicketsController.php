@@ -193,17 +193,18 @@ class TicketsController extends Controller
 
     public function addComment(Request $request, Ticket $ticket)
     {
+        $allowedStatuses = $ticket->status === 'Closed'
+            ? ['Closed']
+            : array_values(array_diff(Ticket::STATUSES, ['Closed']));
+
         $validated = $request->validate([
             'comment' => ['required', 'string', 'max:5000'],
-            'status' => ['required', Rule::in(Ticket::STATUSES)],
+            'status' => ['required', Rule::in($allowedStatuses)],
             'customer_visible' => ['nullable', 'boolean'],
         ]);
 
         $visible = $request->boolean('customer_visible');
-        $resolved = in_array($validated['status'], ['Resolved', 'Closed']);
-        $comment = $visible && $resolved
-            ? TicketCustomerNotification::messageFor($ticket, 'resolved')
-            : $validated['comment'];
+        $comment = $validated['comment'];
 
         $ticket->update(['status' => $validated['status']]);
         $ticket->comments()->create([
@@ -213,7 +214,7 @@ class TicketsController extends Controller
         ]);
 
         if ($visible) {
-            $this->notifyCustomer($ticket->load('order'), $resolved ? 'resolved' : 'update', $comment);
+            $this->notifyCustomer($ticket->load('order'), 'update', $comment);
         }
 
         return redirect()->route('admin.tickets.show', $ticket)->with('success', 'Ticket updated.');

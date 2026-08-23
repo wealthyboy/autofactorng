@@ -34,13 +34,14 @@
                 <p class="text-sm mb-2"><strong>Department:</strong> {{ $ticket->department ?: '—' }}</p>
                 <p class="text-sm mb-2"><strong>Reason:</strong> {{ $ticket->reason }}</p>
                 <p class="text-sm mb-2"><strong>Category:</strong> {{ $ticket->category ?: '—' }}</p>
-                @if($ticket->additional_information)
-                    <div class="mb-3">
-                        <strong class="text-sm">Additional Information:</strong>
-                        <p class="text-sm text-secondary mt-1 mb-0" style="white-space: pre-line">{{ $ticket->additional_information }}</p>
-                    </div>
-                @endif
                 <p class="text-sm mb-0"><strong>Return total:</strong> ₦{{ number_format((float) $ticket->return_total, 2) }}</p>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header pb-0"><h6>Additional Information</h6></div>
+            <div class="card-body">
+                <p class="text-sm text-secondary mb-0" style="white-space: pre-line">{{ $ticket->additional_information ?: 'No additional information was provided.' }}</p>
             </div>
         </div>
 
@@ -169,11 +170,18 @@
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <label class="ticket-form-label" for="ticketStatus">Status</label>
-                            <select id="ticketStatus" name="status" class="form-control ticket-control">
-                                @foreach(\App\Models\Ticket::STATUSES as $status)
-                                    <option value="{{ $status }}" @if($ticket->status === $status) selected @endif>{{ $status }}</option>
-                                @endforeach
-                            </select>
+                            @if($ticket->status === 'Closed')
+                                <input type="hidden" name="status" value="Closed">
+                                <select id="ticketStatus" class="form-control ticket-control" disabled>
+                                    <option selected>Closed</option>
+                                </select>
+                            @else
+                                <select id="ticketStatus" name="status" class="form-control ticket-control">
+                                    @foreach(array_values(array_diff(\App\Models\Ticket::STATUSES, ['Closed'])) as $status)
+                                        <option value="{{ $status }}" @if($ticket->status === $status) selected @endif>{{ $status }}</option>
+                                    @endforeach
+                                </select>
+                            @endif
                         </div>
                     </div>
 
@@ -184,7 +192,7 @@
                         <input class="form-check-input" type="checkbox" name="customer_visible" value="1" id="customerVisible" checked>
                         <label class="form-check-label text-sm" for="customerVisible">Email this update to the customer</label>
                     </div>
-                    <p class="text-xs text-secondary mt-2 mb-0">If the status is Resolved or Closed and customer email is enabled, the {{ $ticket->category ?: 'ticket' }} resolution template will be sent automatically.</p>
+                    <p class="text-xs text-secondary mt-2 mb-0">Customer-visible updates are emailed as ticket updates. To close the ticket and send the final resolution email, use the Close ticket button at the top of this page.</p>
                     <button class="btn bg-gradient-dark float-end mt-3 mb-0">Save update</button>
                 </form>
             </div>

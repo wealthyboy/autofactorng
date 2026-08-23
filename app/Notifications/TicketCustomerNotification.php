@@ -48,7 +48,7 @@ class TicketCustomerNotification extends Notification
             }
         }
 
-        return $mail->salutation('Kind regards, Customer Support Team');
+        return $mail->salutation("Kind regards,  \nCustomer Support Team");
     }
 
     public static function messageFor(Ticket $ticket, string $phase = 'created'): string
@@ -81,6 +81,22 @@ class TicketCustomerNotification extends Notification
 
     private function subjectFor(Ticket $ticket): string
     {
+        if ($this->phase === 'update') {
+            if ($ticket->category === 'Refund') {
+                return 'Update on your refund request - ' . $ticket->ticket_number;
+            }
+
+            if ($ticket->category === 'Wallet') {
+                return 'Update on your wallet credit request - ' . $ticket->ticket_number;
+            }
+
+            if (in_array($ticket->reason, ['Over Payment', 'Double Payment'], true)) {
+                return 'Update on your payment issue - ' . $ticket->ticket_number;
+            }
+
+            return 'Update on your support request - ' . $ticket->ticket_number;
+        }
+
         if ($this->phase === 'resolved') {
             if ($ticket->category === 'Refund') {
                 return 'Your refund has been processed - ' . $ticket->ticket_number;
@@ -130,6 +146,7 @@ class TicketCustomerNotification extends Notification
             'Account' => 'account@autofactorng.com',
             'Customer service' => 'care@autofactorng.com',
             'Customer Service' => 'care@autofactorng.com',
+            'Logistics' => 'operations@autofactorng.com',
         ];
 
         $copies = [
