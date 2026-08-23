@@ -175,6 +175,13 @@
                </a>
             </li>
 
+            <li class="nav-item">
+               <a class="nav-link text-white {{ $helper->active_link(['tickets']) }}" href="{{ route('admin.tickets.index') }}">
+                  <i class="material-symbols-outlined opacity-10">confirmation_number</i>
+                  <span class="nav-link-text ms-2 ps-1">Tickets</span>
+               </a>
+            </li>
+
             <li class=" nav-item">
                <a class="nav-link text-white {{ $helper->active_link(['stocks']) }}" href="/admin/stocks">
                   <i class="material-symbols-outlined opacity-10">shopping_cart</i>
