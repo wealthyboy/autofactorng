@@ -32,11 +32,19 @@ class TicketCustomerNotification extends Notification
         $ticket = $this->ticket->loadMissing('order.user');
         $message = $this->message ?: static::messageFor($ticket, $this->phase);
 
-        return (new MailMessage)
+        $mail = (new MailMessage)
             ->subject($this->subjectFor($ticket))
-            ->greeting($this->greetingFor($ticket))
-            ->line($message)
-            ->salutation('Kind regards, Customer Support Team');
+            ->greeting($this->greetingFor($ticket));
+
+        foreach (preg_split('/\R{2,}/', trim($message)) as $paragraph) {
+            $paragraph = trim($paragraph);
+
+            if ($paragraph !== '') {
+                $mail->line($paragraph);
+            }
+        }
+
+        return $mail->salutation('Kind regards, Customer Support Team');
     }
 
     public static function messageFor(Ticket $ticket, string $phase = 'created'): string
@@ -70,7 +78,19 @@ class TicketCustomerNotification extends Notification
     private function subjectFor(Ticket $ticket): string
     {
         if ($this->phase === 'resolved') {
-            return 'Ticket resolved - ' . $ticket->ticket_number;
+            if ($ticket->category === 'Refund') {
+                return 'Your refund has been processed - ' . $ticket->ticket_number;
+            }
+
+            if ($ticket->category === 'Wallet') {
+                return 'Your wallet credit has been processed - ' . $ticket->ticket_number;
+            }
+
+            if (in_array($ticket->reason, ['Over Payment', 'Double Payment'], true)) {
+                return 'Your payment issue has been resolved - ' . $ticket->ticket_number;
+            }
+
+            return 'Your enquiry/complaint has been resolved - ' . $ticket->ticket_number;
         }
 
         if ($ticket->category === 'Refund') {
@@ -81,7 +101,11 @@ class TicketCustomerNotification extends Notification
             return 'Wallet credit request received - ' . $ticket->ticket_number;
         }
 
-        return 'Your support ticket - ' . $ticket->ticket_number;
+        if (in_array($ticket->reason, ['Over Payment', 'Double Payment'], true)) {
+            return 'Payment issue received - ' . $ticket->ticket_number;
+        }
+
+        return 'Support request received - ' . $ticket->ticket_number;
     }
 
 
