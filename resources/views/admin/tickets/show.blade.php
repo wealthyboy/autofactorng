@@ -178,10 +178,11 @@
                             <label class="ticket-form-label" for="ticketStatus">Status</label>
                             @if($ticket->status === 'Closed')
                                 <input type="hidden" name="status" value="Closed">
-                                <select id="ticketStatus" class="form-control ticket-control" disabled>
-                                    <option selected>Closed</option>
-                                </select>
+                                <div class="pt-2">
+                                    <span class="badge bg-gradient-success">Closed</span>
+                                </div>
                             @else
+                                {{-- Closing is intentionally available only from the top action button. --}}
                                 <select id="ticketStatus" name="status" class="form-control ticket-control">
                                     @foreach(array_values(array_diff(\App\Models\Ticket::STATUSES, ['Closed'])) as $status)
                                         <option value="{{ $status }}" @if($ticket->status === $status) selected @endif>{{ $status }}</option>
@@ -198,7 +199,7 @@
                         <input class="form-check-input" type="checkbox" name="customer_visible" value="1" id="customerVisible" checked>
                         <label class="form-check-label text-sm" for="customerVisible">Email this update to the customer</label>
                     </div>
-                    <p class="text-xs text-secondary mt-2 mb-0">Customer-visible updates are emailed as ticket updates. To close the ticket and send the final resolution email, use the Close ticket button at the top of this page.</p>
+                    <p class="text-xs text-secondary mt-2 mb-0">Customer-visible updates are emailed as ticket updates.</p>
                     <button class="btn bg-gradient-dark float-end mt-3 mb-0">Save update</button>
                 </form>
             </div>
