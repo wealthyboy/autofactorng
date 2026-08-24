@@ -146,7 +146,7 @@ class TicketCustomerNotification extends Notification
             'Account' => 'account@autofactorng.com',
             'Customer service' => 'care@autofactorng.com',
             'Customer Service' => 'care@autofactorng.com',
-            'Logistics' => 'operations@autofactorng.com',
+            'Logistics' => 'logistics@autofactorng.com',
         ];
 
         $copies = [
