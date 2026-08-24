@@ -40,7 +40,11 @@
                     <div class="text-sm"><strong>Email:</strong> <span id="previewEmail"></span></div>
                     <div class="text-sm"><strong>Status:</strong> <span id="previewStatus"></span></div>
                     <div class="text-sm"><strong>Order total:</strong> <span id="previewTotal"></span></div>
+                    <div id="previewDiscountRow" class="text-sm d-none"><strong>Coupon/discount:</strong> <span id="previewDiscount"></span></div>
+                    <div id="previewPaidSubtotalRow" class="text-sm d-none"><strong>Product value after discount:</strong> <span id="previewPaidSubtotal"></span></div>
                     <div class="text-sm"><strong>Date:</strong> <span id="previewDate"></span></div>
+
+                    <div id="previewDiscountNote" class="alert alert-info text-white text-sm py-2 px-3 mt-3 mb-0 d-none">Return values below already include the coupon/discount applied to the order.</div>
 
                     <div class="mt-3">
                         <div class="d-flex justify-content-between align-items-center mb-2">
@@ -171,6 +175,12 @@ function money(value) {
     return '₦' + Number(value || 0).toLocaleString('en-NG', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
+function escapeHtml(value) {
+    const element = document.createElement('div');
+    element.textContent = value == null ? '' : String(value);
+    return element.innerHTML;
+}
+
 function formattedAmount(value) {
     return Number(value || 0).toFixed(2);
 }
@@ -221,18 +231,22 @@ function renderItems(items) {
             options += '<option value="' + quantity + '">' + quantity + '</option>';
         }
 
+        const unitPriceText = item.discounted
+            ? `Paid unit value: ${escapeHtml(item.unit_price_formatted)} <span class="ms-1" style="text-decoration: line-through; opacity: .7;">${escapeHtml(item.original_unit_price_formatted)}</span>`
+            : `Unit price: ${escapeHtml(item.unit_price_formatted)}`;
+
         row.innerHTML = `
             <div class="d-flex align-items-start">
                 <div class="form-check me-3 mt-1">
-                    <input class="form-check-input ticket-item-checkbox" type="checkbox" name="items[${item.id}][selected]" value="1" id="ticketItem${item.id}">
+                    <input class="form-check-input ticket-item-checkbox" type="checkbox" name="items[${Number(item.id)}][selected]" value="1" id="ticketItem${Number(item.id)}">
                 </div>
                 <div class="flex-grow-1">
-                    <label for="ticketItem${item.id}" class="text-sm font-weight-bold mb-1 d-block">${item.name}</label>
-                    <div class="text-xs text-secondary">Ordered: ${item.quantity} &nbsp;•&nbsp; Unit price: ${item.unit_price_formatted}</div>
+                    <label for="ticketItem${Number(item.id)}" class="text-sm font-weight-bold mb-1 d-block">${escapeHtml(item.name)}</label>
+                    <div class="text-xs text-secondary">Ordered: ${Number(item.quantity)} &nbsp;•&nbsp; ${unitPriceText}</div>
                 </div>
                 <div class="ms-3" style="min-width: 90px;">
                     <label class="text-xs text-secondary mb-1">Return qty</label>
-                    <select name="items[${item.id}][quantity]" class="form-control ticket-control ticket-return-quantity" disabled>${options}</select>
+                    <select name="items[${Number(item.id)}][quantity]" class="form-control ticket-control ticket-return-quantity" disabled>${options}</select>
                 </div>
             </div>`;
 
@@ -359,6 +373,22 @@ async function findTicketOrder() {
         setPreviewText('previewTotal', order.total);
         setPreviewText('previewDate', order.date);
         document.getElementById('previewLink').href = order.show_url;
+
+        const discountRow = document.getElementById('previewDiscountRow');
+        const paidSubtotalRow = document.getElementById('previewPaidSubtotalRow');
+        const discountNote = document.getElementById('previewDiscountNote');
+
+        if (order.discount) {
+            setPreviewText('previewDiscount', order.discount.label + ' · ' + order.discount.amount_formatted);
+            setPreviewText('previewPaidSubtotal', order.discount.product_subtotal_formatted);
+            discountRow.classList.remove('d-none');
+            paidSubtotalRow.classList.remove('d-none');
+            discountNote.classList.remove('d-none');
+        } else {
+            discountRow.classList.add('d-none');
+            paidSubtotalRow.classList.add('d-none');
+            discountNote.classList.add('d-none');
+        }
 
         renderItems(order.items || []);
         updateCategoryForm();

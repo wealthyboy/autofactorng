@@ -48,6 +48,7 @@ class TicketsController extends Controller
         $request->validate(['order' => ['required', 'string', 'max:100']]);
         $order = $this->findOrder($request->order);
         $order->load(['user', 'orderEmail', 'ordered_products']);
+        $pricing = $this->orderProductPricing($order);
 
         return response()->json([
             'id' => $order->id,
@@ -57,20 +58,26 @@ class TicketsController extends Controller
             'status' => $order->status ?: 'Unknown',
             'total' => '₦' . number_format((float) $order->total, 2),
             'date' => optional($order->created_at)->format('d M Y, h:i A'),
-            'items' => $order->ordered_products->map(function ($item) {
+            'discount' => $pricing['discount_amount'] > 0 ? [
+                'label' => $pricing['label'],
+                'amount' => $pricing['discount_amount'],
+                'amount_formatted' => '-₦' . number_format($pricing['discount_amount'], 2),
+                'product_subtotal_formatted' => '₦' . number_format($pricing['paid_subtotal'], 2),
+            ] : null,
+            'items' => $order->ordered_products->map(function ($item) use ($pricing) {
                 $quantity = max(1, (int) $item->quantity);
-                $unitPrice = (float) $item->price;
-
-                if ($unitPrice <= 0 && (float) $item->total > 0) {
-                    $unitPrice = (float) $item->total / $quantity;
-                }
+                $originalUnitPrice = $this->orderedProductUnitPrice($item);
+                $unitPrice = round($originalUnitPrice * $pricing['factor'], 2);
 
                 return [
                     'id' => $item->id,
                     'name' => $item->product_name ?: 'Unnamed product',
                     'quantity' => $quantity,
-                    'unit_price' => round($unitPrice, 2),
+                    'unit_price' => $unitPrice,
                     'unit_price_formatted' => '₦' . number_format($unitPrice, 2),
+                    'original_unit_price' => round($originalUnitPrice, 2),
+                    'original_unit_price_formatted' => '₦' . number_format($originalUnitPrice, 2),
+                    'discounted' => abs($unitPrice - $originalUnitPrice) >= 0.01,
                     'line_total' => round($unitPrice * $quantity, 2),
                 ];
             })->values(),
@@ -161,7 +168,9 @@ class TicketsController extends Controller
     public function show(Ticket $ticket)
     {
         $ticket->load(['order.user', 'order.orderEmail', 'order.ordered_products', 'items', 'comments.creator', 'creator', 'approver']);
-        return view('admin.tickets.show', compact('ticket'));
+        $orderPricing = $this->orderProductPricing($ticket->order);
+
+        return view('admin.tickets.show', compact('ticket', 'orderPricing'));
     }
 
     public function approvePayment(Request $request, Ticket $ticket)
@@ -250,6 +259,7 @@ class TicketsController extends Controller
     {
         $selected = [];
         $products = $order->ordered_products->keyBy('id');
+        $pricing = $this->orderProductPricing($order);
 
         foreach ($submittedItems as $orderedProductId => $submitted) {
             if (! is_array($submitted) || empty($submitted['selected'])) {
@@ -263,22 +273,82 @@ class TicketsController extends Controller
 
             $orderedQuantity = max(1, (int) $orderedProduct->quantity);
             $quantity = max(1, min((int) ($submitted['quantity'] ?? 1), $orderedQuantity));
-            $unitPrice = (float) $orderedProduct->price;
-
-            if ($unitPrice <= 0 && (float) $orderedProduct->total > 0) {
-                $unitPrice = (float) $orderedProduct->total / $orderedQuantity;
-            }
+            $unitPrice = round($this->orderedProductUnitPrice($orderedProduct) * $pricing['factor'], 2);
 
             $selected[] = [
                 'ordered_product_id' => $orderedProduct->id,
                 'product_name' => $orderedProduct->product_name ?: 'Unnamed product',
                 'quantity' => $quantity,
-                'unit_price' => round($unitPrice, 2),
+                'unit_price' => $unitPrice,
                 'total' => round($unitPrice * $quantity, 2),
             ];
         }
 
         return $selected;
+    }
+
+    private function orderedProductUnitPrice($orderedProduct): float
+    {
+        $quantity = max(1, (int) $orderedProduct->quantity);
+        $unitPrice = (float) $orderedProduct->price;
+
+        if ($unitPrice <= 0 && (float) $orderedProduct->total > 0) {
+            $unitPrice = (float) $orderedProduct->total / $quantity;
+        }
+
+        return max(0, $unitPrice);
+    }
+
+    private function orderProductPricing(Order $order): array
+    {
+        $subTotal = (float) $order->ordered_products->sum(function ($item) {
+            return $this->orderedProductUnitPrice($item) * max(1, (int) $item->quantity);
+        });
+
+        $discountAmount = 0.0;
+        $label = null;
+        $couponCode = trim((string) $order->coupon);
+
+        if ($couponCode !== '') {
+            $voucher = $order->voucher();
+
+            if ($voucher) {
+                $voucherAmount = max(0, (float) $voucher->amount);
+
+                if ((bool) $voucher->is_fixed) {
+                    $discountAmount = min($subTotal, $voucherAmount);
+                    $label = 'Coupon ' . $couponCode . ' (₦' . number_format($voucherAmount, 2) . ' off)';
+                } else {
+                    $percentage = min(100, $voucherAmount);
+                    $discountAmount = min($subTotal, ($percentage / 100) * $subTotal);
+                    $label = 'Coupon ' . $couponCode . ' (' . rtrim(rtrim(number_format($percentage, 2, '.', ''), '0'), '.') . '% off)';
+                }
+            }
+        }
+
+        if ($discountAmount <= 0 && (float) $order->discount > 0) {
+            $orderDiscount = max(0, (float) $order->discount);
+
+            if ($order->percentage_type === 'percentage') {
+                $percentage = min(100, $orderDiscount);
+                $discountAmount = min($subTotal, ($percentage / 100) * $subTotal);
+                $label = 'Order discount (' . rtrim(rtrim(number_format($percentage, 2, '.', ''), '0'), '.') . '% off)';
+            } else {
+                $discountAmount = min($subTotal, $orderDiscount);
+                $label = 'Order discount (₦' . number_format($orderDiscount, 2) . ' off)';
+            }
+        }
+
+        $paidSubtotal = max(0, $subTotal - $discountAmount);
+        $factor = $subTotal > 0 ? $paidSubtotal / $subTotal : 1;
+
+        return [
+            'subtotal' => round($subTotal, 2),
+            'discount_amount' => round($discountAmount, 2),
+            'paid_subtotal' => round($paidSubtotal, 2),
+            'factor' => max(0, min(1, $factor)),
+            'label' => $label,
+        ];
     }
 
     private function findOrder(string $reference): Order

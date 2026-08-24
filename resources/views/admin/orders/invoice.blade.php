@@ -260,10 +260,8 @@
       <thead>
         <tr>
           <th class="desc">ITEM</th>
-          <th class="desc">IMAGE</th>
           <th class="desc">PRICE</th>
           <th class="qty">QUANTITY</th>
-          <th class="qty"></th>
           <th class="qty">TOTAL</th>
 
         </tr>
@@ -277,13 +275,9 @@
       <td class="desc">
         <h3>{{ $ordered_product->product_name }}</h3>
       </td>
-      <td class="desc">
-        <img style="max-width:60px;height:auto;display:block;" src="{{ optional($ordered_product->product)->image_m }}" alt="{{ $ordered_product->product_name }}" />
-      </td>
-      <td class="desc">{{ $order->currency }}₦{{ number_format( $ordered_product->price) }}</td>
-      <td class="qty ">{{ $ordered_product->quantity }}</td>
-      <td class="desc"></td>
-      <td class="desc text-center">{{ $order->currency }}₦{{ number_format( $ordered_product->price *  $ordered_product->quantity) }}</td>
+      <td class="desc">{{ $order->currency }}₦{{ number_format($ordered_product->price) }}</td>
+      <td class="qty">{{ $ordered_product->quantity }}</td>
+      <td class="desc text-center">{{ $order->currency }}₦{{ number_format($ordered_product->price * $ordered_product->quantity) }}</td>
 
       </tr>
 
@@ -292,29 +286,29 @@
       </tbody>
       <tfoot class="mb-4">
         <tr>
-          <td colspan="3"></td>
-          <td colspan="2">SUBTOTAL</td>
+          <td colspan="2"></td>
+          <td>SUBTOTAL</td>
           <td>{{ $order->currency }}₦{{ number_format($sub_total) }}</td>
         </tr>
         <tr>
-          <td colspan="3"></td>
-          <td colspan="2">{{$summaries['discount_value'] }}</td>
+          <td colspan="2"></td>
+          <td>{{$summaries['discount_value'] }}</td>
           <td>{{ $summaries['Discount']  }}</td>
         </tr>
         <tr>
-          <td colspan="3"></td>
-          <td colspan="2">Shipping</td>
+          <td colspan="2"></td>
+          <td>Shipping</td>
           <td>{{ $order->currency }}{{$summaries['Shipping'] }}</td>
         </tr>
 
         <tr>
-          <td colspan="3"></td>
-          <td colspan="2">Heavy/Large item charge</td>
+          <td colspan="2"></td>
+          <td>Heavy/Large item charge</td>
           <td>{{ $order->currency }}{{ $summaries['Heavy Item Charge']  }}</td>
         </tr>
         <tr>
-          <td colspan="3"></td>
-          <td colspan="2">TOTAL</td>
+          <td colspan="2"></td>
+          <td>TOTAL</td>
           <td>{{ $summaries['Total'] }}</td>
         </tr>
       </tfoot>

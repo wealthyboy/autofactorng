@@ -131,7 +131,13 @@
                 <p class="text-sm mt-3 mb-1"><strong>Customer:</strong> {{ trim($ticket->order->fullName()) ?: optional($ticket->order->user)->fullname() }}</p>
                 <p class="text-sm mb-1"><strong>Email:</strong> {{ $ticket->order->email ?: optional($ticket->order->orderEmail)->email ?: optional($ticket->order->user)->email ?: 'Not available' }}</p>
                 <p class="text-sm mb-1"><strong>Order status:</strong> {{ $ticket->order->status }}</p>
-                <p class="text-sm mb-3"><strong>Order total:</strong> ₦{{ number_format((float) $ticket->order->total, 2) }}</p>
+                <p class="text-sm mb-1"><strong>Order total:</strong> ₦{{ number_format((float) $ticket->order->total, 2) }}</p>
+                @if(($orderPricing['discount_amount'] ?? 0) > 0)
+                    <p class="text-sm mb-1"><strong>Coupon/discount:</strong> {{ $orderPricing['label'] }} (−₦{{ number_format((float) $orderPricing['discount_amount'], 2) }})</p>
+                    <p class="text-sm mb-3"><strong>Product value after discount:</strong> ₦{{ number_format((float) $orderPricing['paid_subtotal'], 2) }}</p>
+                @else
+                    <div class="mb-3"></div>
+                @endif
                 <strong class="text-sm">Order items</strong>
                 <ul class="text-sm ps-4 mb-0">
                     @foreach($ticket->order->ordered_products as $item)

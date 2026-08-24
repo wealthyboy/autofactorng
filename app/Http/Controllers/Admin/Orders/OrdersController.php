@@ -64,13 +64,9 @@ class OrdersController extends Table
 
 	public function invoice($id)
 	{
-		$order = Order::find($id);
-		// ensure ordered products and product relations are loaded for images
-		$order->loadMissing('ordered_products.product');
+		$order = Order::with('ordered_products')->findOrFail($id);
 		$setting = Setting::first();
 		$sub_total = $this->subTotal($order);
-		$ordered_products = $order->ordered_products()->with('product')->paginate(20);
-		$ordered_products = (new OrderedProduct())->getListingData($ordered_products);
 		$summaries = [];
 		$summaries['Sub-Total'] = Helper::currencyWrapper($sub_total);
 		$summaries['Discount'] = '';
@@ -78,23 +74,22 @@ class OrdersController extends Table
 
 
 		if ($order->coupon) {
-			$summaries['Discount'] = '';
 			$coupon = $order->voucher();
 
-			if (!$coupon->is_fixed) {
-				$summaries['Discount'] =  '-%' . $order->voucher()->amount;
-			}
-
-			if ($coupon->is_fixed) {
-				$summaries['Discount'] =  '-₦' .  number_format($order->voucher()->amount);
+			if ($coupon) {
+				if ($coupon->is_fixed) {
+					$summaries['Discount'] = '-₦' . number_format((float) $coupon->amount);
+				} else {
+					$summaries['Discount'] = '-₦' . number_format(((float) $coupon->amount / 100) * (float) $sub_total);
+				}
 			}
 		}
 
 		if ($order->discount) {
 			if ($order->percentage_type == 'percentage') {
-				$summaries['Discount'] =  '-₦' . number_format(($order->discount / 100) * $sub_total);
+				$summaries['Discount'] = '-₦' . number_format(((float) $order->discount / 100) * (float) $sub_total);
 			} else {
-				$summaries['Discount'] = number_format($order->discount);
+				$summaries['Discount'] = '-₦' . number_format((float) $order->discount);
 			}
 		}
 
@@ -103,7 +98,7 @@ class OrdersController extends Table
 		$summaries['Heavy Item Charge'] = Helper::currencyWrapper($order->heavy_item_price);
 		$summaries['Total'] = Helper::currencyWrapper($order->total);
 		$objs = $this->showData($id);
-		return view('admin.orders.invoice', compact('no_card', 'summaries', 'objs', 'sub_total', 'setting', 'order', 'ordered_products'));
+		return view('admin.orders.invoice', compact('no_card', 'summaries', 'objs', 'sub_total', 'setting', 'order'));
 	}
 
 
@@ -153,8 +148,16 @@ class OrdersController extends Table
 
 
 		foreach ($input['products']['product_name'] as $key => $v) {
+			$selectedProductId = data_get($input, 'products.product_id.' . $key);
+			$product = $selectedProductId ? Product::find($selectedProductId) : null;
+
+			if (! $product) {
+				$product = Product::where('slug', str_slug($v))->first();
+			}
+
 			$OrderedProduct = new OrderedProduct;
 			$OrderedProduct->product_name = $v;
+			$OrderedProduct->product_id = optional($product)->id;
 			$OrderedProduct->order_id = $order->id;
 			$OrderedProduct->quantity = $input['products']['quantity'][$key];
 			$OrderedProduct->tracker = rand(100000, time());
@@ -164,8 +167,6 @@ class OrdersController extends Table
 			$OrderedProduct->save();
 			$name = $input['products']['product_name'][$key];
 			$qty = $input['products']['quantity'][$key];
-			$v = str_slug($v);
-			$product = Product::where('slug', $v)->first();
 
 			if (null !== $product && $product->quantity > 0) {
 
@@ -547,6 +548,42 @@ class OrdersController extends Table
 	{
 		User::canTakeAction(User::canCreate);
 		return view('admin.orders.create');
+	}
+
+	public function searchProducts(Request $request)
+	{
+		$term = trim((string) $request->query('q', ''));
+
+		if (mb_strlen($term) < 2) {
+			return response()->json([]);
+		}
+
+		$products = Product::query()
+			->with(['images', 'categories.discount'])
+			->where(function ($query) use ($term) {
+				$query->where('name', 'like', '%' . $term . '%')
+					->orWhere('product_name', 'like', '%' . $term . '%')
+					->orWhere('sku', 'like', '%' . $term . '%')
+					->orWhere('barcode', 'like', '%' . $term . '%');
+
+				if (ctype_digit($term)) {
+					$query->orWhere('id', (int) $term);
+				}
+			})
+			->orderBy('name')
+			->limit(20)
+			->get();
+
+		return response()->json($products->map(function (Product $product) {
+			return [
+				'id' => $product->id,
+				'name' => $product->name ?: $product->product_name ?: 'Unnamed product',
+				'sku' => $product->sku ?: $product->barcode,
+				'quantity' => max(0, (int) $product->quantity),
+				'price' => round((float) $product->current_price, 2),
+				'image' => $product->image_m,
+			];
+		})->values());
 	}
 
 

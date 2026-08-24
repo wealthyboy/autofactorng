@@ -131,10 +131,6 @@ class TicketCustomerNotification extends Notification
 
     private function greetingFor(Ticket $ticket): string
     {
-        if ($ticket->category === 'Escalation') {
-            return 'Dear Valued Customer,';
-        }
-
         return 'Dear ' . $this->customerName($ticket) . ',';
     }
 
