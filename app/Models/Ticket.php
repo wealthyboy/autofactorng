@@ -10,7 +10,7 @@ class Ticket extends Model
     use HasFactory;
 
     public const STATUSES = ['Open', 'In Progress', 'Resolved', 'Closed'];
-    public const DEPARTMENTS = ['Accounts', 'Procurement/Operations', 'Customer service', 'Management', 'Logistics'];
+    public const DEPARTMENTS = ['Accounts', 'Procurement/Operations', 'Management', 'Logistics'];
     public const REASONS = ['Delayed Delivery', 'Wrong Item Delivered', 'Defective Item', 'No Delivery', 'Customer no longer interested', 'Over Payment', 'Double Payment'];
     public const CATEGORIES = ['Escalation', 'Refund', 'Wallet'];
     public const WALLET_SOURCES = ['Online', 'Offline'];
@@ -65,8 +65,9 @@ class Ticket extends Model
 
     public function requiresPaymentApproval(): bool
     {
-        return $this->category !== 'Wallet'
-            && ($this->category === 'Refund' || in_array($this->reason, ['Over Payment', 'Double Payment'], true));
+        return $this->category === 'Wallet'
+            || $this->category === 'Refund'
+            || in_array($this->reason, ['Over Payment', 'Double Payment'], true);
     }
 
     public function usesCustomAmount(): bool
