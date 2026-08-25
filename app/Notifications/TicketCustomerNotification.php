@@ -142,6 +142,7 @@ class TicketCustomerNotification extends Notification
             'Account' => 'account@autofactorng.com',
             'Customer service' => 'care@autofactorng.com',
             'Customer Service' => 'care@autofactorng.com',
+            'Customer Support' => 'care@autofactorng.com',
             'Logistics' => 'logistics@autofactorng.com',
         ];
 

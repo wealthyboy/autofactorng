@@ -10,7 +10,7 @@ class Ticket extends Model
     use HasFactory;
 
     public const STATUSES = ['Open', 'In Progress', 'Resolved', 'Closed'];
-    public const DEPARTMENTS = ['Accounts', 'Procurement/Operations', 'Management', 'Logistics'];
+    public const DEPARTMENTS = ['Accounts', 'Procurement/Operations', 'Management', 'Logistics', 'Customer Support'];
     public const REASONS = ['Delayed Delivery', 'Wrong Item Delivered', 'Defective Item', 'No Delivery', 'Customer no longer interested', 'Over Payment', 'Double Payment'];
     public const CATEGORIES = ['Escalation', 'Refund', 'Wallet'];
     public const WALLET_SOURCES = ['Online', 'Offline'];
