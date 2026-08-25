@@ -36,8 +36,8 @@ class TicketCustomerNotification extends Notification
             ->subject($this->subjectFor($ticket))
             ->greeting($this->greetingFor($ticket));
 
-        foreach ($this->ccRecipients($ticket) as $copyAddress) {
-            $mail->cc($copyAddress);
+        foreach ($this->bccRecipients($ticket) as $copyAddress) {
+            $mail->bcc($copyAddress);
         }
 
         foreach (preg_split('/\R{2,}/', trim($message)) as $paragraph) {
@@ -134,7 +134,7 @@ class TicketCustomerNotification extends Notification
         return 'Dear ' . $this->customerName($ticket) . ',';
     }
 
-    private function ccRecipients(Ticket $ticket): array
+    private function bccRecipients(Ticket $ticket): array
     {
         $departmentCopies = [
             'Procurement/Operations' => 'operations@autofactorng.com',
