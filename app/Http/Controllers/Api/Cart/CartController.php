@@ -11,6 +11,7 @@ use App\Models\Cart;
 use App\Models\User;
 use App\Models\Setting;
 use App\Models\AbandonedCart;
+use App\Models\PaymentOnDeliveryExemption;
 
 
 use Storage;
@@ -145,7 +146,8 @@ class CartController  extends Controller
 				'sub_total' => $sub_total,
 				'currency' => '₦',
 				'currency_code' => '₦',
-				'user' => $request->user()
+				'user' => $request->user(),
+				'payment_on_delivery_exempt' => PaymentOnDeliveryExemption::isExempt(optional($request->user())->email)
 			],
 		]);
 
@@ -182,7 +184,8 @@ class CartController  extends Controller
 				'currency' => '₦',
 				'currency_code' => '₦',
 				'user' => $request->user(),
-				'isAdmin' => null !== $request->user() ? $request->user()->isAdmin() : false
+				'isAdmin' => null !== $request->user() ? $request->user()->isAdmin() : false,
+				'payment_on_delivery_exempt' => PaymentOnDeliveryExemption::isExempt(optional($request->user())->email)
 			],
 		]);
 	}

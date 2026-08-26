@@ -361,6 +361,9 @@ export default {
                 (this.isPickup || this.addresses.length > 0)
             );
         },
+        paymentOnDeliveryExempt() {
+            return !!this.cart_meta?.payment_on_delivery_exempt;
+        },
     },
 
     created() {
@@ -632,7 +635,7 @@ export default {
         },
 
         checkoutWithLagos: function (e) {
-            if (this.total >= 100000) {
+            if (this.total >= 100000 && !this.paymentOnDeliveryExempt) {
                 alert(
                     "Payment on delivery is only available for orders below ₦100,000.",
                 );

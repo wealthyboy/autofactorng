@@ -68,6 +68,9 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::resource('banners', 'Admin\Design\BannersController', ['names' => 'banners']);
     Route::resource('pages', 'Admin\Information\InformationController', ['names' => 'pages']);
     Route::resource('settings', 'Admin\Settings\SettingsController', ['names' => 'settings']);
+    Route::get('payment-on-delivery-exemptions', 'Admin\Settings\PaymentOnDeliveryExemptionsController@index')->name('admin.payment-on-delivery-exemptions.index');
+    Route::post('payment-on-delivery-exemptions', 'Admin\Settings\PaymentOnDeliveryExemptionsController@store')->name('admin.payment-on-delivery-exemptions.store');
+    Route::delete('payment-on-delivery-exemptions/{exemption}', 'Admin\Settings\PaymentOnDeliveryExemptionsController@destroy')->name('admin.payment-on-delivery-exemptions.destroy');
 
     Route::resource('shipping', 'Admin\Shipping\ShippingController', ['names' => 'shipping']);
     Route::resource('location', 'Admin\Location\LocationController', ['names' => 'location']);

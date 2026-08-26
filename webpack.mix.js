@@ -1,5 +1,8 @@
 const mix = require('laravel-mix');
 
+// Keep builds independent of platform-specific desktop notifier binaries.
+mix.disableNotifications();
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management

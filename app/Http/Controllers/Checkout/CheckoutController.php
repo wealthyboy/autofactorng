@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use App\Models\AbandonedCart;
 use App\Models\AbandonedCartItem;
+use App\Models\PaymentOnDeliveryExemption;
 use App\Services\InDriveCouponService;
 
 
@@ -125,6 +126,17 @@ class CheckoutController extends Controller
             if ($payment_method === 'Wallet' && (int) optional($user->wallet_balance)->balance < 1) {
                 DB::rollBack();
                 return response()->json(['error' => 'Your wallet balance is insufficient'], 422);
+            }
+
+            if (
+                $payment_method === 'payment_on_delivery'
+                && (float) ($input['total'] ?? Cart::sum_items_in_cart()) >= 100000
+                && ! PaymentOnDeliveryExemption::isExempt(optional($user)->email)
+            ) {
+                DB::rollBack();
+                return response()->json([
+                    'error' => 'Payment on delivery is only available for orders below ₦100,000.',
+                ], 422);
             }
 
             if (($input['zone'] ?? null) === 'Pickup' && $payment_method === 'payment_on_delivery') {

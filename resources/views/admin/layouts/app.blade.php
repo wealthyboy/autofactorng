@@ -311,12 +311,65 @@
                </div>
             </li>
 
+            <li class="nav-item">
+               <a data-bs-toggle="collapse" href="#analyticsMenu" class="nav-link text-white {{ $helper->active_link(['analytics']) }}" aria-controls="analyticsMenu" role="button" aria-expanded="false">
+                  <i class="material-symbols-outlined">bar_chart</i>
+                  <span class="nav-link-text ms-2 ps-1">Analytics</span>
+               </a>
+               <div class="collapse {{ $helper->active_link(['analytics']) ? 'show' : '' }}" id="analyticsMenu">
+                  <ul class="nav">
+                     <li class="nav-item">
+                        <a class="nav-link text-white {{ request()->is('admin/analytics/orders*') ? 'active' : '' }}" href="{{ route('admin.analytics.orders') }}">
+                           <span class="sidenav-mini-icon"> O </span>
+                           <span class="sidenav-normal ms-2 ps-1"> Orders </span>
+                        </a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link text-white {{ request()->is('admin/analytics/products*') ? 'active' : '' }}" href="{{ route('admin.analytics.products') }}">
+                           <span class="sidenav-mini-icon"> P </span>
+                           <span class="sidenav-normal ms-2 ps-1"> Products </span>
+                        </a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link text-white {{ request()->is('admin/analytics/customers*') ? 'active' : '' }}" href="{{ route('admin.analytics.customers') }}">
+                           <span class="sidenav-mini-icon"> C </span>
+                           <span class="sidenav-normal ms-2 ps-1"> Customers </span>
+                        </a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link text-white {{ request()->is('admin/analytics/inventory*') ? 'active' : '' }}" href="{{ route('admin.analytics.inventory') }}">
+                           <span class="sidenav-mini-icon"> I </span>
+                           <span class="sidenav-normal ms-2 ps-1"> Inventory </span>
+                        </a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link text-white {{ request()->is('admin/analytics/marketing*') ? 'active' : '' }}" href="{{ route('admin.analytics.marketing') }}">
+                           <span class="sidenav-mini-icon"> M </span>
+                           <span class="sidenav-normal ms-2 ps-1"> Marketing </span>
+                        </a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link text-white {{ request()->is('admin/analytics/search*') ? 'active' : '' }}" href="{{ route('admin.analytics.search') }}">
+                           <span class="sidenav-mini-icon"> S </span>
+                           <span class="sidenav-normal ms-2 ps-1"> Search </span>
+                        </a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link text-white {{ request()->is('admin/analytics/all*') ? 'active' : '' }}" href="{{ route('admin.analytics.all') }}">
+                           <span class="sidenav-mini-icon"> A </span>
+                           <span class="sidenav-normal ms-2 ps-1"> All </span>
+                        </a>
+                     </li>
+                  </ul>
+               </div>
+            </li>
+
             <li class="nav-item mb-5">
-               <a data-bs-toggle="collapse" href="#settings" class="nav-link text-white  {{ $helper->active_link(['settings','permissions','location']) }}" aria-controls="settings" role="button" aria-expanded="false">
+               <a data-bs-toggle="collapse" href="#settings" class="nav-link text-white  {{ $helper->active_link(['settings','permissions','location','payment-on-delivery-exemptions']) }}" aria-controls="settings" role="button" aria-expanded="false">
                   <i class="material-symbols-outlined">settings</i>
                   <span class="nav-link-text ms-2 ps-1">Settings</span>
                </a>
-               <div class="collapse   {{ $helper->active_link(['settings','permissions','location', 'shipping']) ? 'show' : '' }}" id="settings">
+               <div class="collapse   {{ $helper->active_link(['settings','permissions','location','shipping','payment-on-delivery-exemptions']) ? 'show' : '' }}" id="settings">
                   <ul class="nav ">
                      <li class="nav-item ">
                         <a class="nav-link text-white  {{ $helper->active_link(['settings']) }}" href="{{ route('settings.index') }}">
@@ -341,6 +394,12 @@
                         <a class="nav-link text-white   {{ $helper->active_link(['shipping']) }}" href="{{ route('shipping.index') }}">
                            <span class="sidenav-mini-icon"> S </span>
                            <span class="sidenav-normal  ms-2  ps-1"> Shipping </span>
+                        </a>
+                     </li>
+                     <li class="nav-item ">
+                        <a class="nav-link text-white {{ request()->is('admin/payment-on-delivery-exemptions*') ? 'active' : '' }}" href="{{ route('admin.payment-on-delivery-exemptions.index') }}">
+                           <span class="sidenav-mini-icon"> P </span>
+                           <span class="sidenav-normal ms-2 ps-1"> Pay on Delivery </span>
                         </a>
                      </li>
 
@@ -376,40 +435,11 @@
                   </li>
                   <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Pages</a></li>
                   <li class="breadcrumb-item text-sm text-dark active" aria-current="page">{{-- request()->path() --}}</li>
-                  </ul>
-               </div>
-
-
-            </li>
-
-            <li class="nav-item">
-               <a data-bs-toggle="collapse" href="#analyticsExamples" class="nav-link text-white {{ $helper->active_link(['analytics','analytics/products','analytics/orders','analytics/all']) }}" aria-controls="analyticsExamples" role="button" aria-expanded="false">
-                  <i class="material-symbols-outlined">bar_chart</i>
-                  <span class="nav-link-text ms-2 ps-1">Analytics</span>
-               </a>
-               <div class="collapse  {{ $helper->active_link(['analytics','analytics/products','analytics/orders','analytics/all']) ? 'show' : ''}}" id="analyticsExamples">
-                  <ul class="nav">
-                     <li class="nav-item ">
-                        <a class="nav-link text-white {{ $helper->active_link(['analytics/products']) }}" href="{{ url('/admin/analytics/products') }}">
-                           <span class="sidenav-mini-icon"> P </span>
-                           <span class="sidenav-normal  ms-2  ps-1"> Products <b class="caret"></b></span>
-                        </a>
-                     </li>
-                     <li class="nav-item ">
-                        <a class="nav-link text-white {{ $helper->active_link(['analytics/orders']) }}" href="{{ url('/admin/analytics/orders') }}">
-                           <span class="sidenav-mini-icon"> O </span>
-                           <span class="sidenav-normal  ms-2  ps-1"> Orders <b class="caret"></b></span>
-                        </a>
-                     </li>
-                     <li class="nav-item ">
-                        <a class="nav-link text-white {{ $helper->active_link(['analytics/all']) }}" href="{{ url('/admin/analytics/all') }}">
-                           <span class="sidenav-mini-icon"> A </span>
-                           <span class="sidenav-normal  ms-2  ps-1"> All <b class="caret"></b></span>
-                        </a>
-                     </li>
-                  </ul>
-               </div>
-            </li>
+               </ol>
+               <h6 class="font-weight-bolder mb-0">{{-- request()->path() --}}</h6>
+            </nav>
+            <div class="sidenav-toggler sidenav-toggler-inner d-xl-block d-none ">
+               <a href="javascript:;" class="nav-link p-0 text-body">
                   <div class="sidenav-toggler-inner">
                      <i class="sidenav-toggler-line"></i>
                      <i class="sidenav-toggler-line"></i>
