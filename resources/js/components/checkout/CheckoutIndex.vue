@@ -191,7 +191,12 @@
                                     v-if="isDelivery"
                                     href="#"
                                     @click.prevent="checkoutWithLagos($event)"
-                                    class="btn btn-block btn-dark w-100 mb-2"
+                                    class="btn btn-block w-100 mb-2"
+                                    :class="{
+                                        'btn-secondary': paymentOnDeliveryUnavailable,
+                                        'btn-dark': !paymentOnDeliveryUnavailable,
+                                    }"
+                                    :aria-disabled="paymentOnDeliveryUnavailable"
                                 >
                                     Pay on delivery (Lagos only)
                                     <i class="fa fa-arrow-right"></i
@@ -363,6 +368,9 @@ export default {
         },
         paymentOnDeliveryExempt() {
             return !!this.cart_meta?.payment_on_delivery_exempt;
+        },
+        paymentOnDeliveryUnavailable() {
+            return this.total >= 100000 && !this.paymentOnDeliveryExempt;
         },
     },
 
@@ -635,7 +643,7 @@ export default {
         },
 
         checkoutWithLagos: function (e) {
-            if (this.total >= 100000 && !this.paymentOnDeliveryExempt) {
+            if (this.paymentOnDeliveryUnavailable) {
                 alert(
                     "Payment on delivery is only available for orders below ₦100,000.",
                 );
