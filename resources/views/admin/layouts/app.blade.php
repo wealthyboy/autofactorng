@@ -71,6 +71,7 @@
                   <span class="nav-link-text ms-2 ps-1"> Disable/Enable Site </span>
                </a>
             </li>
+            @include('admin.layouts._analytics_nav')
             <li class=" nav-item">
                <a class="nav-link text-white {{ $helper->active_link(['activities']) }}" href="/admin/activities">
                   <i class="material-symbols-outlined">browse_activity</i>
@@ -305,59 +306,6 @@
                         <a class="nav-link text-white {{ $helper->active_link(['promos']) }}" href="{{ route('promos.index') }}">
                            <span class="sidenav-mini-icon"> P </span>
                            <span class="sidenav-normal  ms-2  ps-1"> Promo Text </span>
-                        </a>
-                     </li>
-                  </ul>
-               </div>
-            </li>
-
-            <li class="nav-item">
-               <a data-bs-toggle="collapse" href="#analyticsMenu" class="nav-link text-white {{ $helper->active_link(['analytics']) }}" aria-controls="analyticsMenu" role="button" aria-expanded="false">
-                  <i class="material-symbols-outlined">bar_chart</i>
-                  <span class="nav-link-text ms-2 ps-1">Analytics</span>
-               </a>
-               <div class="collapse {{ $helper->active_link(['analytics']) ? 'show' : '' }}" id="analyticsMenu">
-                  <ul class="nav">
-                     <li class="nav-item">
-                        <a class="nav-link text-white {{ request()->is('admin/analytics/orders*') ? 'active' : '' }}" href="{{ route('admin.analytics.orders') }}">
-                           <span class="sidenav-mini-icon"> O </span>
-                           <span class="sidenav-normal ms-2 ps-1"> Orders </span>
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link text-white {{ request()->is('admin/analytics/products*') ? 'active' : '' }}" href="{{ route('admin.analytics.products') }}">
-                           <span class="sidenav-mini-icon"> P </span>
-                           <span class="sidenav-normal ms-2 ps-1"> Products </span>
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link text-white {{ request()->is('admin/analytics/customers*') ? 'active' : '' }}" href="{{ route('admin.analytics.customers') }}">
-                           <span class="sidenav-mini-icon"> C </span>
-                           <span class="sidenav-normal ms-2 ps-1"> Customers </span>
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link text-white {{ request()->is('admin/analytics/inventory*') ? 'active' : '' }}" href="{{ route('admin.analytics.inventory') }}">
-                           <span class="sidenav-mini-icon"> I </span>
-                           <span class="sidenav-normal ms-2 ps-1"> Inventory </span>
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link text-white {{ request()->is('admin/analytics/marketing*') ? 'active' : '' }}" href="{{ route('admin.analytics.marketing') }}">
-                           <span class="sidenav-mini-icon"> M </span>
-                           <span class="sidenav-normal ms-2 ps-1"> Marketing </span>
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link text-white {{ request()->is('admin/analytics/search*') ? 'active' : '' }}" href="{{ route('admin.analytics.search') }}">
-                           <span class="sidenav-mini-icon"> S </span>
-                           <span class="sidenav-normal ms-2 ps-1"> Search </span>
-                        </a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link text-white {{ request()->is('admin/analytics/all*') ? 'active' : '' }}" href="{{ route('admin.analytics.all') }}">
-                           <span class="sidenav-mini-icon"> A </span>
-                           <span class="sidenav-normal ms-2 ps-1"> All </span>
                         </a>
                      </li>
                   </ul>
