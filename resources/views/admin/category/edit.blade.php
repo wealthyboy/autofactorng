@@ -184,7 +184,6 @@
 @stop
 
 @section('inline-scripts')
-<script>
 document.addEventListener('DOMContentLoaded', function () {
    var form = document.getElementById('category-edit-form');
    var pageSize = document.getElementById('curated-page-size');
@@ -266,7 +265,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
    refreshSelection();
 });
-</script>
 
 @include('admin._partials.image_js',['folder' => 'category'])
 
