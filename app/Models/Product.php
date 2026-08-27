@@ -134,7 +134,7 @@ class Product extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class)->withPivot('category_id');
+        return $this->belongsToMany(Category::class)->withPivot(['category_id', 'curated_position']);
     }
 
     public function engines()

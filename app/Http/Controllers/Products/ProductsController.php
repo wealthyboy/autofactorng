@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use App\Http\Helper;
 use App\Models\Image;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Str;
 use Laravel\Ui\Presets\React;
 
 //use Illuminate\Support\Facades\Cookie;
@@ -226,7 +227,9 @@ class ProductsController extends Controller
         $type = $this->getType($request);
 
 
-        $per_page = $request->per_page ?? $this->settings->products_items_per_page;
+        $per_page = $category->curated_page_size
+            ?? $request->per_page
+            ?? $this->settings->products_items_per_page;
 
         if ($this->getCategory($category)) {
             if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
@@ -253,17 +256,46 @@ class ProductsController extends Controller
             $query->where('amphere', $request->amphere);
         }
 
-        if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
-            $products = $query->filter($request)->latest()->paginate($per_page);
-        } else {
+        $query = $query->filter($request);
 
-            $products = $query->filter($request)->latest()->paginate($per_page);
+        if ($category->curated_page_size) {
+            $shuffleSeed = $this->categoryShuffleSeed($request, $category);
+            $positionSql = '(SELECT cp.curated_position FROM category_product cp'
+                .' WHERE cp.category_id = ? AND cp.product_id = products.id LIMIT 1)';
+
+            // Curated categories always keep page 1 under admin control. Clearing
+            // any filter-provided ordering also keeps the remaining pages in one
+            // stable shuffled order, so pagination cannot repeat products.
+            $query->reorder()
+                ->orderByRaw('CASE WHEN '.$positionSql.' IS NULL THEN 1 ELSE 0 END', [$category->id])
+                ->orderByRaw($positionSql.' ASC', [$category->id])
+                ->orderByRaw('MD5(CONCAT(products.id, ?)) ASC', [$shuffleSeed]);
+        } else {
+            $query->latest();
         }
+
+        $products = $query->orderBy('products.id')->paginate($per_page);
 
         $products->load('images');
         $products->appends(request()->all());
 
         return $products;
+    }
+
+    private function categoryShuffleSeed(Request $request, Category $category)
+    {
+        $requestSeed = preg_replace('/[^A-Za-z0-9_-]/', '', (string) $request->query('shuffle_seed', ''));
+        $sessionKey = 'product_shuffle_seed.'.$category->id;
+        $shuffleSeed = $requestSeed ?: $request->session()->get($sessionKey);
+
+        if (! $shuffleSeed) {
+            $shuffleSeed = Str::random(20);
+            $request->session()->put($sessionKey, $shuffleSeed);
+        }
+
+        $request->merge(['shuffle_seed' => $shuffleSeed]);
+
+        return $shuffleSeed;
     }
 
 

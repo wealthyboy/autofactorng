@@ -11,7 +11,7 @@ class Category extends Model
 {
     use HasChildren;
 
-    protected $fillable = ['name', 'description', 'slug', 'parent_id', 'sort_order', 'allow'];
+    protected $fillable = ['name', 'description', 'slug', 'parent_id', 'sort_order', 'curated_page_size', 'allow'];
 
 
     public function children()
@@ -52,7 +52,9 @@ class Category extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class)->where('allow', true);
+        return $this->belongsToMany(Product::class)
+            ->withPivot('curated_position')
+            ->where('allow', true);
     }
 
 

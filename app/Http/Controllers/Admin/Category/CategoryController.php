@@ -13,6 +13,9 @@ use App\Models\User;
 use Illuminate\Validation\Rule;
 use App\Models\Attribute;
 use App\Models\BrandCategory;
+use App\Models\Product;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\ValidationException;
 
 class CategoryController extends Table
 {
@@ -150,7 +153,20 @@ class CategoryController extends Table
         User::canTakeAction(User::canUpdate);
         $cat = Category::find($id);
         $categories = Category::parents()->get();
-        return view('admin.category.edit', compact('cat', 'categories'));
+        $categoryProducts = Product::query()
+            ->select(['id', 'name', 'product_name'])
+            ->whereHas('categories', function ($query) use ($cat) {
+                $query->where('categories.id', $cat->id);
+            })
+            ->orderByRaw('COALESCE(product_name, name)')
+            ->get();
+        $curatedPositions = DB::table('category_product')
+            ->where('category_id', $cat->id)
+            ->whereNotNull('curated_position')
+            ->orderBy('curated_position')
+            ->pluck('curated_position', 'product_id');
+
+        return view('admin.category.edit', compact('cat', 'categories', 'categoryProducts', 'curatedPositions'));
     }
 
     /**
@@ -165,6 +181,29 @@ class CategoryController extends Table
         //
 
         $category = Category::find($id);
+
+        $this->validate($request, [
+            'curated_page_size' => 'nullable|integer|in:10,20,30,40,50,100',
+            'curated_products' => 'nullable|array|max:100',
+            'curated_products.*' => 'integer|distinct|exists:products,id',
+            'curated_positions' => 'nullable|array',
+            'curated_positions.*' => 'nullable|integer|min:1|max:100',
+        ]);
+
+        $selectedCuratedCount = collect($request->input('curated_products', []))->unique()->count();
+        $curatedPageSize = (int) $request->input('curated_page_size');
+
+        if ($selectedCuratedCount && ! $curatedPageSize) {
+            throw ValidationException::withMessages([
+                'curated_page_size' => 'Choose a products-per-page size when selecting curated products.',
+            ]);
+        }
+
+        if ($curatedPageSize && $selectedCuratedCount !== $curatedPageSize) {
+            throw ValidationException::withMessages([
+                'curated_products' => 'Select exactly '.$curatedPageSize.' curated products so page 1 contains only the selected products.',
+            ]);
+        }
 
         if ($request->filled('parent_id')) {
             $categoryId = Category::find($request->parent_id);
@@ -192,27 +231,73 @@ class CategoryController extends Table
 
 
         $slug = $this->makeSlug($request->parent_id, $request->name);
-        $category->name = $request->name;
-        $category->sort_order = $request->sort_order;
-        $category->banner_image = $request->banner_image;
-        $category->link = $request->link;
-        $category->is_active = $request->is_active ? 1 : 0;
-        $category->parent_id = $request->parent_id;
-        $category->description = $request->description;
-        $category->image_custom_link = $request->image_custom_link;
-        $category->image = $request->image;
-        $category->text_color = $request->text_color;
-        $category->meta_description = $request->meta_description;
-        $category->search_type = $request->search_type;
-        $category->keywords = $request->keywords;
-        $category->title = $request->meta_title;
-        $category->is_featured = $request->is_featured ? 1 : 0;
-        $category->slug = $slug;
-        $category->save();
+        DB::transaction(function () use ($request, $category, $slug) {
+            $category->name = $request->name;
+            $category->sort_order = $request->sort_order;
+            $category->curated_page_size = $request->curated_page_size ?: null;
+            $category->banner_image = $request->banner_image;
+            $category->link = $request->link;
+            $category->is_active = $request->is_active ? 1 : 0;
+            $category->parent_id = $request->parent_id;
+            $category->description = $request->description;
+            $category->image_custom_link = $request->image_custom_link;
+            $category->image = $request->image;
+            $category->text_color = $request->text_color;
+            $category->meta_description = $request->meta_description;
+            $category->search_type = $request->search_type;
+            $category->keywords = $request->keywords;
+            $category->title = $request->meta_title;
+            $category->is_featured = $request->is_featured ? 1 : 0;
+            $category->slug = $slug;
+            $category->save();
+
+            $this->saveCuratedProducts($request, $category);
+        });
         //Log Activity
         // (new Activity)->Log("Updated  Category {$request->name} ");
 
         return redirect()->action('Admin\Category\CategoryController@index');
+    }
+
+    private function saveCuratedProducts(Request $request, Category $category)
+    {
+        $selectedIds = collect($request->input('curated_products', []))
+            ->map(function ($id) {
+                return (int) $id;
+            })
+            ->unique()
+            ->values();
+
+        $validIds = DB::table('category_product')
+            ->where('category_id', $category->id)
+            ->whereIn('product_id', $selectedIds)
+            ->pluck('product_id')
+            ->map(function ($id) {
+                return (int) $id;
+            });
+
+        if ($validIds->count() !== $selectedIds->count()) {
+            throw ValidationException::withMessages([
+                'curated_products' => 'Every curated product must belong to this category.',
+            ]);
+        }
+
+        $requestedPositions = $request->input('curated_positions', []);
+        $orderedIds = $selectedIds->sortBy(function ($productId) use ($requestedPositions) {
+            $position = isset($requestedPositions[$productId]) ? (int) $requestedPositions[$productId] : 999;
+            return sprintf('%03d-%010d', $position > 0 ? $position : 999, $productId);
+        })->values();
+
+        DB::table('category_product')
+            ->where('category_id', $category->id)
+            ->update(['curated_position' => null]);
+
+        foreach ($orderedIds as $index => $productId) {
+            DB::table('category_product')
+                ->where('category_id', $category->id)
+                ->where('product_id', $productId)
+                ->update(['curated_position' => $index + 1]);
+        }
     }
 
 

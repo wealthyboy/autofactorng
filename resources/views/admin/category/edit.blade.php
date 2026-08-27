@@ -33,6 +33,51 @@
                </div>
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
+                     <label class="form-label">Products per category page</label>
+                     <select class="form-control" name="curated_page_size">
+                        <option value="">Use global setting</option>
+                        @foreach([10, 20, 30, 40, 50, 100] as $pageSize)
+                        <option value="{{ $pageSize }}" {{ (int) $cat->curated_page_size === $pageSize ? 'selected' : '' }}>{{ $pageSize }}</option>
+                        @endforeach
+                     </select>
+                     <small class="text-muted">The selected products below occupy the first positions on page 1. Remaining products use a stable random order on later pages.</small>
+                  </div>
+               </div>
+               <div class="row mt-4">
+                  <div class="col-12">
+                     <h6 class="mb-1">Curated first-page products</h6>
+                     <p class="text-sm text-muted">Tick products and set their order. A product can have a different position in every category.</p>
+                     <div class="table-responsive" style="max-height: 460px; overflow-y: auto;">
+                        <table class="table table-sm align-items-center mb-0">
+                           <thead class="position-sticky top-0 bg-white" style="z-index: 1;">
+                              <tr>
+                                 <th style="width: 80px;">Show</th>
+                                 <th style="width: 90px;">Position</th>
+                                 <th>Product</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              @forelse($categoryProducts as $product)
+                              @php($savedPosition = $curatedPositions->get($product->id))
+                              <tr>
+                                 <td>
+                                    <input type="checkbox" name="curated_products[]" value="{{ $product->id }}" {{ $savedPosition ? 'checked' : '' }}>
+                                 </td>
+                                 <td>
+                                    <input class="form-control form-control-sm" type="number" min="1" max="100" name="curated_positions[{{ $product->id }}]" value="{{ $savedPosition }}">
+                                 </td>
+                                 <td class="text-sm">{{ $product->product_name ?: $product->name }}</td>
+                              </tr>
+                              @empty
+                              <tr><td colspan="3" class="text-center text-muted py-4">No products currently belong to this category.</td></tr>
+                              @endforelse
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+               <div class="row mt-3">
+                  <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         <label class="form-label"> Custom Link</label>
                         <input type="text" class="form-control" name="custom_link" type="text" value="{{ $cat->link }}">
