@@ -75,18 +75,18 @@
                            <tbody>
                               @forelse($categoryProducts->sortBy(function ($product) use ($curatedPositions) {
                                  $position = $curatedPositions->get($product->id);
-                                 return sprintf('%03d-%s', $position ?: 999, strtolower($product->product_name ?: $product->name));
+                                 return sprintf('%03d-%s', $position ?: 999, strtolower($product->name ?: $product->product_name));
                               }) as $product)
                               @php($savedPosition = $curatedPositions->get($product->id))
                               @php($selectedPosition = old('curated_positions.'.$product->id, $savedPosition))
-                              <tr data-product-row data-product-name="{{ strtolower($product->product_name ?: $product->name) }}">
+                              <tr data-product-row data-product-name="{{ strtolower($product->name ?: $product->product_name) }}">
                                  <td>
                                     <input class="curated-product-checkbox" type="checkbox" name="curated_products[]" value="{{ $product->id }}" {{ $selectedCuratedIds->contains((int) $product->id) ? 'checked' : '' }}>
                                  </td>
                                  <td>
                                     <input class="form-control form-control-sm curated-product-position" style="max-width: 75px;" type="number" min="1" max="100" name="curated_positions[{{ $product->id }}]" value="{{ $selectedPosition }}" readonly tabindex="-1">
                                  </td>
-                                 <td class="text-sm">{{ $product->product_name ?: $product->name }}</td>
+                                 <td class="text-sm">{{ $product->name ?: $product->product_name }}</td>
                               </tr>
                               @empty
                               <tr><td colspan="3" class="text-center text-muted py-4">No products belong to this category yet. Edit a product and assign it to this category first.</td></tr>

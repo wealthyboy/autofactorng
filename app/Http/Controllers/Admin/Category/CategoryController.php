@@ -158,7 +158,7 @@ class CategoryController extends Table
             ->whereHas('categories', function ($query) use ($cat) {
                 $query->where('categories.id', $cat->id);
             })
-            ->orderByRaw('COALESCE(product_name, name)')
+            ->orderByRaw("COALESCE(NULLIF(name, ''), product_name)")
             ->get();
         $curatedPositions = DB::table('category_product')
             ->where('category_id', $cat->id)
