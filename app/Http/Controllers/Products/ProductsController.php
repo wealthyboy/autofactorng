@@ -227,9 +227,15 @@ class ProductsController extends Controller
         $type = $this->getType($request);
 
 
-        $per_page = $category->curated_page_size
-            ?? $request->per_page
-            ?? $this->settings->products_items_per_page;
+        // A visitor's "Show" selection takes precedence over the category's
+        // configured first-page size. The category value is only the default.
+        $requestedPerPage = (int) $request->query('per_page', 0);
+        $allowedPageSizes = [10, 20, 30, 40, 50, 100];
+        $per_page = in_array($requestedPerPage, $allowedPageSizes, true)
+            ? $requestedPerPage
+            : ($category->curated_page_size
+                ?? optional($this->settings)->products_items_per_page
+                ?? 30);
 
         if ($this->getCategory($category)) {
             if (null !== $request->cookie('engine_id') &&  $request->type !== 'clear') {
@@ -263,13 +269,23 @@ class ProductsController extends Controller
             $positionSql = '(SELECT cp.curated_position FROM category_product cp'
                 .' WHERE cp.category_id = ? AND cp.product_id = products.id LIMIT 1)';
 
-            // Curated categories always keep page 1 under admin control. Clearing
-            // any filter-provided ordering also keeps the remaining pages in one
-            // stable shuffled order, so pagination cannot repeat products.
+            // Every filter is applied before this ordering. Matching curated
+            // products therefore remain first, followed by matching catalogue
+            // products. Reapply the selected sort because reorder() intentionally
+            // clears the order added by SortByFilter.
             $query->reorder()
                 ->orderByRaw('CASE WHEN '.$positionSql.' IS NULL THEN 1 ELSE 0 END', [$category->id])
-                ->orderByRaw($positionSql.' ASC', [$category->id])
-                ->orderByRaw('MD5(CONCAT(products.id, ?)) ASC', [$shuffleSeed]);
+                ->orderByRaw($positionSql.' ASC', [$category->id]);
+
+            $sort = explode(',', (string) $request->query('sort_by', ''));
+            $sortColumn = $sort[0] ?? null;
+            $sortDirection = strtolower($sort[1] ?? '');
+
+            if ($sortColumn === 'price' && in_array($sortDirection, ['asc', 'desc'], true)) {
+                $query->orderBy('products.price', $sortDirection);
+            } else {
+                $query->orderByRaw('MD5(CONCAT(products.id, ?)) ASC', [$shuffleSeed]);
+            }
         } else {
             $query->latest();
         }

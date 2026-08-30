@@ -244,7 +244,12 @@ export default {
         },
         filter(o) {
             this.searchText = o.text;
-            this.getProducts(this.url);
+            const url = new URL(location.href);
+            url.searchParams.delete("page");
+            url.searchParams.set("t", new Date().getTime());
+            window.history.pushState({}, "", url);
+            this.showClearFilter = true;
+            this.getProducts(url.toString());
         },
         shopWithoutVehicle() {
             this.searchText = null;
@@ -272,6 +277,7 @@ export default {
             if (typeof q !== "undefined") {
                 url.searchParams.set("q", q);
             }
+            url.searchParams.delete("page");
             url.searchParams.set("t", new Date().getTime());
             window.history.pushState({}, "", url);
             this.showClearFilter = true;
@@ -279,6 +285,7 @@ export default {
         },
         handleTyreFilter(data) {
             const url = new URL(location.href);
+            url.searchParams.delete("page");
             url.searchParams.set("rim", data.rim);
             url.searchParams.set("width", data.width);
             url.searchParams.set("profile", data.profile);
@@ -293,6 +300,7 @@ export default {
         },
         handleBatteryFilter(data) {
             const url = new URL(location.href);
+            url.searchParams.delete("page");
             url.searchParams.set("amphere", data.amphere);
             url.searchParams.set("type", data.type);
             url.searchParams.set("t", new Date().getTime());
@@ -302,6 +310,7 @@ export default {
         },
         perPage(filter) {
             const url = new URL(location.href);
+            url.searchParams.delete("page");
             url.searchParams.set("per_page", filter.per_page);
             url.searchParams.set("search", "true");
             url.searchParams.set("t", new Date().getTime());
@@ -312,6 +321,7 @@ export default {
         },
         sort(filter) {
             const url = new URL(location.href);
+            url.searchParams.delete("page");
             url.searchParams.set("sort_by", filter.sort_by);
             url.searchParams.set("search", "true");
             url.searchParams.set("t", new Date().getTime());
