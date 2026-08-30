@@ -50,16 +50,9 @@
 
                 <div class="select-custom">
                     <select name="count" class="form-control per_page" @change="per_page" v-model="perpage">
-                        <template v-if="products.length < 30">
-                            <option :value="products.length">
-                                {{ products.length }}
-                            </option>
-                        </template>
-                        <template v-else>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
-                        </template>
+                        <option :value="20">20</option>
+                        <option :value="30">30</option>
+                        <option :value="50">50</option>
                     </select>
                 </div>
                 <!-- End .select-custom -->
@@ -94,10 +87,7 @@ export default {
         const listing = ref("List");
         const store = useStore();
         const products = computed(() => store.getters.products);
-        console.log(products.value.length);
-        const perpage = ref(
-            products.value.length >= 30 ? 30 : products.value.length
-        );
+        const perpage = ref(Number(props.meta.per_page) || 20);
 
         function toggleSideBar() {
             $("body").toggleClass("sidebar-opened");
@@ -105,9 +95,7 @@ export default {
 
         function sort(e) {
             let sort_by = $(".orderby").val();
-            if (sort_by !== "") {
-                emit("handle:sorting", { sort_by });
-            }
+            emit("handle:sorting", { sort_by });
         }
 
         function list(t) {

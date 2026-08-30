@@ -274,17 +274,21 @@ class ProductsController extends Controller
             // products. Reapply the selected sort because reorder() intentionally
             // clears the order added by SortByFilter.
             $query->reorder()
-                ->orderByRaw('CASE WHEN '.$positionSql.' IS NULL THEN 1 ELSE 0 END', [$category->id])
-                ->orderByRaw($positionSql.' ASC', [$category->id]);
+                ->orderByRaw('CASE WHEN '.$positionSql.' IS NULL THEN 1 ELSE 0 END', [$category->id]);
 
             $sort = explode(',', (string) $request->query('sort_by', ''));
             $sortColumn = $sort[0] ?? null;
             $sortDirection = strtolower($sort[1] ?? '');
 
             if ($sortColumn === 'price' && in_array($sortDirection, ['asc', 'desc'], true)) {
+                // Keep curated products as the first group, while respecting the
+                // visitor's selected sort within both result groups.
                 $query->orderBy('products.price', $sortDirection);
             } else {
-                $query->orderByRaw('MD5(CONCAT(products.id, ?)) ASC', [$shuffleSeed]);
+                // Default mode preserves the admin's curated positions and then
+                // fills the page with a stable random selection.
+                $query->orderByRaw($positionSql.' ASC', [$category->id])
+                    ->orderByRaw('MD5(CONCAT(products.id, ?)) ASC', [$shuffleSeed]);
             }
         } else {
             $query->latest();
