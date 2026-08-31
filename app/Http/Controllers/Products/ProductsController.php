@@ -169,6 +169,7 @@ class ProductsController extends Controller
         //}
 
         $products = $query->filter($request)->orderBy('is_available', 'desc')->latest()->paginate($per_page);
+        $request->attributes->set('analytics_search_results_count', $products->total());
         $products->load('images');
         $products->appends(request()->all());
         $category = null;

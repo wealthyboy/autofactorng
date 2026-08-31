@@ -6,6 +6,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use App\Models\UserTracking;
+use App\Models\Product;
+use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
@@ -91,6 +93,10 @@ class TrackUserActivity
 
 
         $cacheKey = 'user_tracking_' . $sessionId . '_' . md5($path);
+        $routeProduct = $request->route('product');
+        $routeCategory = $request->route('category');
+        $productId = $routeProduct instanceof Product ? $routeProduct->id : null;
+        $action = $this->trackingAction($request, $productId, $routeCategory);
 
         if (Cache::add($cacheKey, true, 30)) {
             UserTracking::create([
@@ -105,8 +111,8 @@ class TrackUserActivity
                 'last_name' => optional($user)->last_name,
                 'visited_at' => now(),
                 'method' => $request->method(),
-                'product_id' => $request->routeIs('products.show') ? optional($request->route('product'))->id : null,
-                'action' => $request->input('action', 'viewed'),
+                'product_id' => $productId,
+                'action' => $action,
                 'is_indrive' => (bool) session('is_indrive_customer'),
                 'source_channel' => session('acquisition_source') ?: $this->sourceFromReferer($referer),
                 'indrive_driver_id' => session('indrive_driver_id'),
@@ -124,6 +130,29 @@ class TrackUserActivity
                 Session::put('tracking_id', $lastId);
             }
         }
+    }
+
+    protected function trackingAction(Request $request, $productId, $routeCategory): string
+    {
+        if ($request->is('search')) {
+            $resultCount = $request->attributes->get('analytics_search_results_count');
+
+            if ($resultCount !== null && (int) $resultCount === 0) {
+                return 'search_no_results';
+            }
+
+            return 'search';
+        }
+
+        if ($productId) {
+            return 'product_view';
+        }
+
+        if ($routeCategory instanceof Category && $request->is('products/*')) {
+            return 'category_view';
+        }
+
+        return (string) $request->input('action', 'viewed');
     }
 
     protected function shouldSkipTracking(Request $request): bool

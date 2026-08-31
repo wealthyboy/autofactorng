@@ -7,7 +7,7 @@ use App\Models\Order;
 use App\Models\OrderedProduct;
 use App\Models\Product;
 use App\Models\AbandonedCart;
-use App\Models\CategorySearch;
+use App\Models\Category;
 use App\Models\User;
 use App\Models\UserTracking;
 use Carbon\Carbon;
@@ -86,10 +86,18 @@ class AnalyticsController extends Controller
                 ->whereNotExists(function ($query) use ($from, $to) {
                     $query->select(DB::raw(1))->from('ordered_products')
                         ->join('orders', 'orders.id', '=', 'ordered_products.order_id')
-                        ->whereColumn('ordered_products.product_id', 'products.id')
+                        ->where(function ($match) {
+                            $match->whereColumn('ordered_products.product_id', 'products.id')
+                                ->orWhere(function ($legacyMatch) {
+                                    $legacyMatch->whereNull('ordered_products.product_id')
+                                        ->whereColumn('ordered_products.product_name', 'products.name');
+                                });
+                        })
                         ->where('orders.status', '!=', 'Cancelled')
                         ->whereBetween('orders.created_at', [$from, $to]);
-                })->limit(15)->get(),
+                })
+                ->orderBy('products.name')
+                ->limit(15)->get(),
             'fastProducts' => OrderedProduct::query()->join('orders', 'orders.id', '=', 'ordered_products.order_id')
                 ->where('orders.status', '!=', 'Cancelled')->whereBetween('orders.created_at', [$from, $to])
                 ->selectRaw("COALESCE(NULLIF(ordered_products.product_name, ''), 'Unnamed product') as name")
@@ -131,20 +139,17 @@ class AnalyticsController extends Controller
     public function customers(Request $request)
     {
         [$from, $to] = $this->dateRange($request);
-        $days = max($from->diffInDays($to), 1);
-        $previousFrom = $from->copy()->subDays($days + 1);
-        $previousTo = $from->copy()->subSecond();
         $newCustomers = User::customers()->whereBetween('created_at', [$from, $to])->count();
-        $previousCustomers = User::customers()->whereBetween('created_at', [$previousFrom, $previousTo])->count();
-        $growth = $previousCustomers ? (($newCustomers - $previousCustomers) / $previousCustomers) * 100 : ($newCustomers ? 100 : 0);
+        $totalCustomers = User::customers()->where('created_at', '<=', $to)->count();
+        $growth = $totalCustomers ? ($newCustomers / $totalCustomers) * 100 : 0;
 
         return view('admin.analytics.customers', [
             'from' => $from,
             'to' => $to,
             'stats' => [
-                ['label' => 'Total customers', 'value' => number_format(User::customers()->where('created_at', '<=', $to)->count()), 'hint' => 'Registered by end of period'],
+                ['label' => 'Total customers', 'value' => number_format($totalCustomers), 'hint' => 'Registered by end of period'],
                 ['label' => 'New customers', 'value' => number_format($newCustomers), 'hint' => 'Joined in selected period'],
-                ['label' => 'Customer growth', 'value' => number_format($growth, 1) . '%', 'hint' => 'Against previous equal period'],
+                ['label' => 'Customer growth', 'value' => number_format($growth, 1) . '%', 'hint' => 'New customers as a share of total customers'],
                 ['label' => 'Customers who ordered', 'value' => number_format(Order::whereBetween('created_at', [$from, $to])->whereNotNull('user_id')->distinct()->count('user_id')), 'hint' => 'Unique registered buyers'],
             ],
             'chart' => $this->customerTrend($from, $to),
@@ -169,11 +174,11 @@ class AnalyticsController extends Controller
                 ['label' => 'Total stock value', 'value' => $this->money(Product::selectRaw('SUM(quantity * price) as value')->value('value')), 'hint' => 'Current quantity × selling price'],
                 ['label' => 'Out of stock', 'value' => number_format(Product::where('quantity', '<=', 0)->count()), 'hint' => 'Products with no quantity'],
                 ['label' => 'Inventory sold', 'value' => number_format((clone $soldItems)->sum('ordered_products.quantity')), 'hint' => 'Units sold in selected period'],
-                ['label' => 'Recently reached zero', 'value' => number_format(Product::where('quantity', '<=', 0)->whereBetween('updated_at', [$from, $to])->count()), 'hint' => 'Zero-stock products updated in period'],
+                ['label' => 'Items with 1 remaining', 'value' => number_format(Product::where('quantity', 1)->count()), 'hint' => 'Products with exactly one unit left'],
             ],
-            'outOfStock' => Product::select('id', 'name', 'sku', 'quantity', 'updated_at')
-                ->where('quantity', '<=', 0)->whereBetween('updated_at', [$from, $to])
-                ->latest('updated_at')->limit(20)->get(),
+            'oneRemaining' => Product::select('id', 'name', 'sku', 'quantity')
+                ->where('quantity', 1)
+                ->orderBy('name')->limit(20)->get(),
             'recentlySold' => (clone $soldItems)->selectRaw("COALESCE(NULLIF(ordered_products.product_name, ''), 'Unnamed product') as name")
                 ->selectRaw('SUM(ordered_products.quantity) as units')->groupBy('name')->orderByDesc('units')->limit(15)->get(),
         ]);
@@ -188,14 +193,13 @@ class AnalyticsController extends Controller
         $returning = DB::query()->fromSub((clone $visits)->whereNotNull('session_id')->select('session_id')
             ->groupBy('session_id')->havingRaw('COUNT(*) > 1'), 'returning_sessions')->count();
         $abandoned = AbandonedCart::whereBetween('checkout_started_at', [$from, $to])->where('recovered', false)->count();
-        $orders = Order::whereBetween('created_at', [$from, $to])->count();
 
         return view('admin.analytics.marketing', [
             'from' => $from,
             'to' => $to,
             'stats' => [
                 ['label' => 'Website visitors', 'value' => number_format($visitorCount), 'hint' => 'Unique tracked sessions'],
-                ['label' => 'Abandoned cart rate', 'value' => number_format(($abandoned + $orders) ? $abandoned / ($abandoned + $orders) * 100 : 0, 1) . '%', 'hint' => 'Abandoned checkouts vs carts resolved'],
+                ['label' => 'Abandoned carts', 'value' => number_format($abandoned), 'hint' => 'Unrecovered checkouts in selected period'],
                 ['label' => 'Returning visitors', 'value' => number_format($returning), 'hint' => 'Sessions with repeat visits'],
                 ['label' => 'New visitors', 'value' => number_format(max($visitorCount - $returning, 0)), 'hint' => 'Single-visit sessions in period'],
                 ['label' => 'Average time', 'value' => $this->duration($visitSummary->average_time), 'hint' => 'From recorded visit duration'],
@@ -214,28 +218,179 @@ class AnalyticsController extends Controller
     public function search(Request $request)
     {
         [$from, $to] = $this->dateRange($request);
-        $searches = UserTracking::whereBetween('created_at', [$from, $to])->where('page_url', 'like', '%/search%')->get(['page_url']);
-        $terms = $searches->map(function ($visit) {
-            parse_str((string) parse_url($visit->page_url, PHP_URL_QUERY), $query);
-            return trim((string) ($query['q'] ?? ''));
-        })->filter()->countBy()->sortDesc()->take(20);
+        $searchRows = UserTracking::whereBetween('created_at', [$from, $to])
+            ->where('page_url', 'like', '%/search%')
+            ->select('page_url', 'action')
+            ->selectRaw('COUNT(*) as visits')
+            ->groupBy('page_url', 'action')
+            ->get();
+
+        $termCounts = collect();
+        foreach ($searchRows as $row) {
+            parse_str((string) parse_url($row->page_url, PHP_URL_QUERY), $query);
+            $term = trim((string) ($query['q'] ?? ''));
+
+            if ($term === '') {
+                continue;
+            }
+
+            $termCounts->put($term, (int) $termCounts->get($term, 0) + (int) $row->visits);
+        }
+
+        $termCounts = $termCounts->sortDesc();
+        $productViews = $this->productViewAnalytics($from, $to);
+        $categoryViews = $this->categoryViewAnalytics($from, $to);
+        $searchCount = (int) $searchRows->sum('visits');
+        $noResultSearches = (int) $searchRows->where('action', 'search_no_results')->sum('visits');
 
         return view('admin.analytics.search', [
             'from' => $from,
             'to' => $to,
             'stats' => [
-                ['label' => 'Searches', 'value' => number_format($searches->count()), 'hint' => 'Tracked search page visits'],
-                ['label' => 'Unique terms', 'value' => number_format($terms->count()), 'hint' => 'Distinct recorded queries'],
-                ['label' => 'Product views', 'value' => number_format(UserTracking::whereBetween('created_at', [$from, $to])->whereNotNull('product_id')->count()), 'hint' => 'Tracked product visits'],
-                ['label' => 'No-result searches', 'value' => 'Not recorded', 'hint' => 'Requires result-count tracking'],
+                ['label' => 'Searches', 'value' => number_format($searchCount), 'hint' => 'Tracked search page visits'],
+                ['label' => 'Unique terms', 'value' => number_format($termCounts->count()), 'hint' => 'Distinct recorded queries'],
+                ['label' => 'Product views', 'value' => number_format($productViews->sum('views')), 'hint' => 'Tracked product detail views'],
+                ['label' => 'No-result searches', 'value' => number_format($noResultSearches), 'hint' => 'Searches that returned no products'],
             ],
-            'terms' => $terms,
-            'products' => UserTracking::query()->join('products', 'products.id', '=', 'user_trackings.product_id')
-                ->whereBetween('user_trackings.created_at', [$from, $to])->select('products.name')->selectRaw('COUNT(*) as views')
-                ->groupBy('products.id', 'products.name')->orderByDesc('views')->limit(15)->get(),
-            'categories' => CategorySearch::query()->whereBetween('created_at', [$from, $to])->select('name')->selectRaw('COUNT(*) as visits')
-                ->groupBy('name')->orderByDesc('visits')->limit(15)->get(),
+            'terms' => $termCounts->take(20),
+            'products' => $productViews->take(15),
+            'categories' => $categoryViews->take(15),
         ]);
+    }
+
+    private function productViewAnalytics(Carbon $from, Carbon $to)
+    {
+        $directRows = UserTracking::query()
+            ->whereBetween('created_at', [$from, $to])
+            ->whereNotNull('product_id')
+            ->select('product_id')
+            ->selectRaw('COUNT(*) as views')
+            ->groupBy('product_id')
+            ->get();
+
+        $legacyRows = UserTracking::query()
+            ->whereBetween('created_at', [$from, $to])
+            ->whereNull('product_id')
+            ->where('page_url', 'like', '%/product/%')
+            ->select('page_url')
+            ->selectRaw('COUNT(*) as views')
+            ->groupBy('page_url')
+            ->get();
+
+        $productIds = $directRows->pluck('product_id')->filter()->unique()->values();
+        $productSlugs = $legacyRows->map(function ($row) {
+            return $this->lastPathSegment($row->page_url);
+        })->filter()->unique()->values();
+
+        if ($productIds->isEmpty() && $productSlugs->isEmpty()) {
+            return collect();
+        }
+
+        $products = Product::query()
+            ->where(function ($query) use ($productIds, $productSlugs) {
+                if ($productIds->isNotEmpty()) {
+                    $query->whereIn('id', $productIds);
+                }
+
+                if ($productSlugs->isNotEmpty()) {
+                    $method = $productIds->isNotEmpty() ? 'orWhereIn' : 'whereIn';
+                    $query->{$method}('slug', $productSlugs);
+                }
+            })
+            ->get(['id', 'name', 'slug']);
+
+        $productsById = $products->keyBy('id');
+        $productsBySlug = $products->keyBy('slug');
+        $counts = [];
+
+        foreach ($directRows as $row) {
+            $product = $productsById->get((int) $row->product_id);
+
+            if (! $product) {
+                continue;
+            }
+
+            $counts[$product->id] = (object) [
+                'id' => $product->id,
+                'name' => $product->name,
+                'views' => (int) $row->views,
+            ];
+        }
+
+        foreach ($legacyRows as $row) {
+            $product = $productsBySlug->get($this->lastPathSegment($row->page_url));
+
+            if (! $product) {
+                continue;
+            }
+
+            if (! isset($counts[$product->id])) {
+                $counts[$product->id] = (object) [
+                    'id' => $product->id,
+                    'name' => $product->name,
+                    'views' => 0,
+                ];
+            }
+
+            $counts[$product->id]->views += (int) $row->views;
+        }
+
+        return collect($counts)->sortByDesc('views')->values();
+    }
+
+    private function categoryViewAnalytics(Carbon $from, Carbon $to)
+    {
+        $rows = UserTracking::query()
+            ->whereBetween('created_at', [$from, $to])
+            ->where('page_url', 'like', '%/products/%')
+            ->select('page_url')
+            ->selectRaw('COUNT(*) as visits')
+            ->groupBy('page_url')
+            ->get();
+
+        $slugs = $rows->map(function ($row) {
+            return $this->lastPathSegment($row->page_url);
+        })->filter()->unique()->values();
+
+        if ($slugs->isEmpty()) {
+            return collect();
+        }
+
+        $categories = Category::whereIn('slug', $slugs)->get(['id', 'name', 'slug'])->keyBy('slug');
+        $counts = [];
+
+        foreach ($rows as $row) {
+            $category = $categories->get($this->lastPathSegment($row->page_url));
+
+            if (! $category) {
+                continue;
+            }
+
+            if (! isset($counts[$category->id])) {
+                $counts[$category->id] = (object) [
+                    'id' => $category->id,
+                    'name' => $category->name,
+                    'visits' => 0,
+                ];
+            }
+
+            $counts[$category->id]->visits += (int) $row->visits;
+        }
+
+        return collect($counts)->sortByDesc('visits')->values();
+    }
+
+    private function lastPathSegment($url): string
+    {
+        $path = trim((string) parse_url((string) $url, PHP_URL_PATH), '/');
+
+        if ($path === '') {
+            return '';
+        }
+
+        $segments = explode('/', $path);
+
+        return urldecode((string) end($segments));
     }
 
     private function dateRange(Request $request): array
