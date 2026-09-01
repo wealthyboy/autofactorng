@@ -167,6 +167,15 @@ class AnalyticsController extends Controller
         $soldItems = OrderedProduct::query()->join('orders', 'orders.id', '=', 'ordered_products.order_id')
             ->whereBetween('orders.created_at', [$from, $to])->where('orders.status', '!=', 'Cancelled');
 
+        $oneRemainingBatchSize = 50;
+        $oneRemainingTotal = Product::where('quantity', 1)->count();
+        $oneRemaining = Product::select('id', 'name', 'sku', 'quantity')
+            ->where('quantity', 1)
+            ->orderBy('name')
+            ->orderBy('id')
+            ->limit($oneRemainingBatchSize)
+            ->get();
+
         return view('admin.analytics.inventory', [
             'from' => $from,
             'to' => $to,
@@ -174,13 +183,45 @@ class AnalyticsController extends Controller
                 ['label' => 'Total stock value', 'value' => $this->money(Product::selectRaw('SUM(quantity * price) as value')->value('value')), 'hint' => 'Current quantity × selling price'],
                 ['label' => 'Out of stock', 'value' => number_format(Product::where('quantity', '<=', 0)->count()), 'hint' => 'Products with no quantity'],
                 ['label' => 'Inventory sold', 'value' => number_format((clone $soldItems)->sum('ordered_products.quantity')), 'hint' => 'Units sold in selected period'],
-                ['label' => 'Items with 1 remaining', 'value' => number_format(Product::where('quantity', 1)->count()), 'hint' => 'Products with exactly one unit left'],
+                ['label' => 'Items with 1 remaining', 'value' => number_format($oneRemainingTotal), 'hint' => 'Products with exactly one unit left'],
             ],
-            'oneRemaining' => Product::select('id', 'name', 'sku', 'quantity')
-                ->where('quantity', 1)
-                ->orderBy('name')->limit(20)->get(),
+            'oneRemaining' => $oneRemaining,
+            'oneRemainingTotal' => $oneRemainingTotal,
+            'oneRemainingBatchSize' => $oneRemainingBatchSize,
             'recentlySold' => (clone $soldItems)->selectRaw("COALESCE(NULLIF(ordered_products.product_name, ''), 'Unnamed product') as name")
                 ->selectRaw('SUM(ordered_products.quantity) as units')->groupBy('name')->orderByDesc('units')->limit(15)->get(),
+        ]);
+    }
+
+    public function inventoryOneRemaining(Request $request)
+    {
+        $offset = max(0, (int) $request->query('offset', 0));
+        $limit = max(10, min((int) $request->query('limit', 50), 100));
+
+        $products = Product::select('id', 'name', 'sku', 'quantity')
+            ->where('quantity', 1)
+            ->orderBy('name')
+            ->orderBy('id')
+            ->skip($offset)
+            ->take($limit + 1)
+            ->get();
+
+        $hasMore = $products->count() > $limit;
+        $items = $products->take($limit)->values()->map(function ($product) {
+            return [
+                'id' => $product->id,
+                'name' => $product->name ?: 'Unnamed product',
+                'sku' => $product->sku ?: 'No SKU',
+                'quantity' => (int) $product->quantity,
+                'edit_url' => route('products.edit', $product->id),
+            ];
+        });
+
+        return response()->json([
+            'items' => $items,
+            'next_offset' => $offset + $items->count(),
+            'has_more' => $hasMore,
+            'total' => Product::where('quantity', 1)->count(),
         ]);
     }
 
@@ -226,6 +267,8 @@ class AnalyticsController extends Controller
             ->get();
 
         $termCounts = collect();
+        $noResultTermCounts = collect();
+
         foreach ($searchRows as $row) {
             parse_str((string) parse_url($row->page_url, PHP_URL_QUERY), $query);
             $term = trim((string) ($query['q'] ?? ''));
@@ -234,10 +277,19 @@ class AnalyticsController extends Controller
                 continue;
             }
 
-            $termCounts->put($term, (int) $termCounts->get($term, 0) + (int) $row->visits);
+            $visits = (int) $row->visits;
+            $termCounts->put($term, (int) $termCounts->get($term, 0) + $visits);
+
+            if ($row->action === 'search_no_results') {
+                $noResultTermCounts->put(
+                    $term,
+                    (int) $noResultTermCounts->get($term, 0) + $visits
+                );
+            }
         }
 
         $termCounts = $termCounts->sortDesc();
+        $noResultTermCounts = $noResultTermCounts->sortDesc();
         $productViews = $this->productViewAnalytics($from, $to);
         $categoryViews = $this->categoryViewAnalytics($from, $to);
         $searchCount = (int) $searchRows->sum('visits');
@@ -255,6 +307,7 @@ class AnalyticsController extends Controller
             'terms' => $termCounts->take(20),
             'products' => $productViews->take(15),
             'categories' => $categoryViews->take(15),
+            'noResultTerms' => $noResultTermCounts->take(50),
         ]);
     }
 

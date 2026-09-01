@@ -113,6 +113,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('analytics/orders', 'Admin\Analytics\AnalyticsController@orders')->name('admin.analytics.orders');
     Route::get('analytics/customers', 'Admin\Analytics\AnalyticsController@customers')->name('admin.analytics.customers');
     Route::get('analytics/inventory', 'Admin\Analytics\AnalyticsController@inventory')->name('admin.analytics.inventory');
+    Route::get('analytics/inventory/one-remaining', 'Admin\Analytics\AnalyticsController@inventoryOneRemaining')->name('admin.analytics.inventory.one-remaining');
     Route::get('analytics/marketing', 'Admin\Analytics\AnalyticsController@marketing')->name('admin.analytics.marketing');
     Route::get('analytics/search', 'Admin\Analytics\AnalyticsController@search')->name('admin.analytics.search');
     Route::get('analytics/all', 'Admin\Analytics\AnalyticsController@all')->name('admin.analytics.all');

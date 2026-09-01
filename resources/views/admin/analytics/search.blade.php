@@ -142,5 +142,43 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-12 mb-4">
+            <div class="card analytics-search-card">
+                <div class="card-header pb-0">
+                    <h6>No-result searches</h6>
+                    <p class="text-xs text-secondary mb-0">Search terms that returned zero products in the selected period</p>
+                </div>
+
+                <div class="card-body px-0">
+                    <table class="table mb-0 analytics-search-table">
+                        <thead>
+                            <tr>
+                                <th class="analytics-label-column">Search term</th>
+                                <th class="text-end analytics-count-column">Searches</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($noResultTerms as $term => $count)
+                                <tr>
+                                    <td class="px-4 text-sm analytics-label-column">
+                                        <span class="analytics-search-label">{{ $term }}</span>
+                                    </td>
+                                    <td class="text-end px-4 analytics-count-column">
+                                        {{ number_format($count) }}
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="2" class="text-center py-4">
+                                        No searches returned zero products in this period.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
