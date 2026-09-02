@@ -94,11 +94,11 @@
 
 
             <li class="nav-item">
-               <a data-bs-toggle="collapse" href="#ecommerceExamples" class="nav-link text-white {{ $helper->active_link(['reviews','brands','products','category','discounts','attributes','vouchers']) }}" aria-controls="ecommerceExamples" role="button" aria-expanded="false">
+               <a data-bs-toggle="collapse" href="#ecommerceExamples" class="nav-link text-white {{ $helper->active_link(['reviews','brands','products','category','discounts','attributes','vouchers','out-of-stock-products']) }}" aria-controls="ecommerceExamples" role="button" aria-expanded="false">
                   <i class="material-symbols-outlined">inventory_2</i>
                   <span class="nav-link-text ms-2 ps-1">Products</span>
                </a>
-               <div class="collapse  {{ $helper->active_link(['brands','engines','products','reviews','category','discounts','attributes','vouchers']) ? 'show' : ''}}" id="ecommerceExamples">
+               <div class="collapse  {{ $helper->active_link(['brands','engines','products','reviews','category','discounts','attributes','vouchers','out-of-stock-products']) ? 'show' : ''}}" id="ecommerceExamples">
                   <ul class="nav">
 
                      <li class="nav-item ">
@@ -147,6 +147,13 @@
                         <a class="nav-link text-white {{ $helper->active_link(['vouchers']) }}" href="{{ route('vouchers.index') }}">
                            <span class="sidenav-mini-icon"> C </span>
                            <span class="sidenav-normal  ms-2  ps-1"> Vouchers <b class="caret"></b></span>
+                        </a>
+                     </li>
+
+                     <li class="nav-item ">
+                        <a class="nav-link text-white {{ $helper->active_link(['out-of-stock-products']) }}" href="{{ route('admin.out-of-stock-products.index') }}">
+                           <span class="sidenav-mini-icon"> O </span>
+                           <span class="sidenav-normal ms-2 ps-1"> Out of Stock Products <b class="caret"></b></span>
                         </a>
                      </li>
 

@@ -78,6 +78,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::resource('payments', 'Admin\Payments\PaymentController', ['name' => 'payments']);
     Route::resource('rates', 'Admin\CurrencyRates\CurrencyRatesController', ['name' => 'rates']);
     Route::resource('vouchers', 'Admin\Vouchers\VouchersController', ['names' => 'vouchers']);
+    Route::get('out-of-stock-products', 'Admin\Inventory\OutOfStockProductsController@index')->name('admin.out-of-stock-products.index');
     Route::get('products/search/makemodelyear', 'Admin\Product\ProductController@makeModelYearSearch');
     Route::get('/related/products', 'Admin\Product\ProductController@getRelatedProducts');
     Route::delete('/related_products/{id}', 'Admin\RelatedProducts\RelatedProductsController@destroy');
