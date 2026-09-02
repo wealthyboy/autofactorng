@@ -18,7 +18,7 @@ class OutOfStockProductsController extends Controller
             ? (int) $request->query('per_page', 50)
             : 50;
 
-        $baseQuery = Product::query()->whereNull('deleted_at')->where('quantity', '<=', 0);
+        $baseQuery = Product::query()->whereNull('deleted_at')->where('in_stock', 0);
 
         $totalOutOfStock = (clone $baseQuery)->count();
         $activeOutOfStock = (clone $baseQuery)->where('allow', true)->count();
@@ -27,7 +27,7 @@ class OutOfStockProductsController extends Controller
         $categoryCounts = DB::table('categories')
             ->join('category_product', 'categories.id', '=', 'category_product.category_id')
             ->join('products', 'products.id', '=', 'category_product.product_id')
-            ->where('products.quantity', '<=', 0)
+            ->where('products.in_stock', 0)
             ->whereNull('products.deleted_at')
             ->select(
                 'categories.id',
@@ -52,7 +52,7 @@ class OutOfStockProductsController extends Controller
                     'categories:id,name',
                 ])
                 ->whereNull('deleted_at')
-                ->where('quantity', '<=', 0);
+                ->where('in_stock', 0);
 
             if ($request->filled('q')) {
                 $search = trim($request->query('q'));
