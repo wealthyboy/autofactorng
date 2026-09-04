@@ -146,9 +146,7 @@
                                  <label class="form-label fw-bold">Filter name</label>
                                  <input class="form-control product-filter-group-name" type="text" name="product_filters[{{ $groupIndex }}][name]" value="{{ $group['name'] ?? '' }}" placeholder="e.g. Viscosity or Color">
                               </div>
-                              <button type="button" class="btn btn-outline-danger btn-sm mt-4 mb-0 remove-product-filter-group" title="Remove filter">
-                                 <i class="fa fa-trash"></i>
-                              </button>
+                              <button type="button" class="btn btn-outline-danger btn-sm mt-4 mb-0 remove-product-filter-group" title="Delete filter">Delete</button>
                            </div>
 
                            <div class="mt-3">
@@ -165,7 +163,7 @@
                                     <input type="hidden" name="product_filters[{{ $groupIndex }}][options][{{ $optionIndex }}][id]" value="{{ $option['id'] }}">
                                     @endif
                                     <input class="form-control" type="text" name="product_filters[{{ $groupIndex }}][options][{{ $optionIndex }}][name]" value="{{ $option['name'] ?? '' }}" placeholder="e.g. 5W-30">
-                                    <button type="button" class="btn btn-outline-danger btn-sm mb-0 remove-product-filter-option" title="Remove value"><i class="fa fa-times"></i></button>
+                                    <button type="button" class="btn btn-outline-danger btn-sm mb-0 remove-product-filter-option" title="Delete value">Delete</button>
                                  </div>
                                  @endforeach
                               </div>
@@ -390,7 +388,7 @@ document.addEventListener('DOMContentLoaded', function () {
       row.className = 'd-flex gap-2 align-items-center mb-2 product-filter-option';
       row.dataset.optionIndex = optionIndex;
       row.innerHTML = '<input class="form-control" type="text" name="product_filters[' + groupIndex + '][options][' + optionIndex + '][name]" value="' + escapeHtml(value || '') + '" placeholder="e.g. 5W-30">' +
-         '<button type="button" class="btn btn-outline-danger btn-sm mb-0 remove-product-filter-option" title="Remove value"><i class="fa fa-times"></i></button>';
+         '<button type="button" class="btn btn-outline-danger btn-sm mb-0 remove-product-filter-option" title="Delete value">Delete</button>';
       optionsContainer.appendChild(row);
       row.querySelector('input').focus();
    }
@@ -403,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function () {
       group.innerHTML = '<div class="d-flex gap-2 align-items-start">' +
          '<div class="flex-grow-1"><label class="form-label fw-bold">Filter name</label>' +
          '<input class="form-control product-filter-group-name" type="text" name="product_filters[' + groupIndex + '][name]" placeholder="e.g. Viscosity or Color"></div>' +
-         '<button type="button" class="btn btn-outline-danger btn-sm mt-4 mb-0 remove-product-filter-group" title="Remove filter"><i class="fa fa-trash"></i></button>' +
+         '<button type="button" class="btn btn-outline-danger btn-sm mt-4 mb-0 remove-product-filter-group" title="Delete filter">Delete</button>' +
          '</div>' +
          '<div class="mt-3"><div class="d-flex justify-content-between align-items-center mb-2">' +
          '<label class="form-label fw-bold mb-0">Values</label>' +
