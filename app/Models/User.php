@@ -23,6 +23,11 @@ class User extends Authenticatable
 		'silver' => 'Silver Customer',
 	];
 
+	public const CUSTOMER_STATUSES = [
+		'private' => 'Private',
+		'business' => 'Business',
+	];
+
 	//Code: 1 Account ,2 Create , 3 Read , 4 Update ,5 Delete, 6 Reports, 7 Users, 8 Activity, 9 Enable/Disble
 
 	const canCreate = 2;
@@ -93,6 +98,7 @@ class User extends Authenticatable
 					"Id" =>  $user->id,
 					"Full Name" =>  $user->fullname(),
 					"Customer Class" =>  $user->customer_class,
+					"Status" => self::CUSTOMER_STATUSES[$user->customer_status ?: 'private'] ?? 'Private',
 					"Email" => $user->email,
 					"Phone Number" => $user->phone_number,
 					"Wallet Balance" => (int) optional($user->wallet_balance)->balance,
@@ -160,6 +166,7 @@ class User extends Authenticatable
 			"Id" => 'id',
 			"Full Name" => 'name',
 			"Customer Class" => 'orders_count',
+			"Status" => 'customer_status',
 			"Email" => 'email',
 			"Phone Number" => 'phone_number',
 			"Wallet Balance" => 'id',

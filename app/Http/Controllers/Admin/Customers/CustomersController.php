@@ -13,6 +13,7 @@ use App\Models\WalletBalance;
 use App\Notifications\AutoCreditNotification;
 use App\Notifications\ReminderNotification;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Validation\Rule;
 
 
 class CustomersController extends Table
@@ -106,8 +107,27 @@ class CustomersController extends Table
             'add' => false,
             'destroy' => true,
             'export' => true,
-            'export_name' => 'CustomerExport'
+            'export_name' => 'CustomerExport',
+            'customer_status' => true
         ];
+    }
+
+
+    public function updateStatus(Request $request)
+    {
+        $validated = $request->validate([
+            'id' => ['required', 'integer', 'exists:users,id'],
+            'status' => ['required', Rule::in(array_keys(User::CUSTOMER_STATUSES))],
+        ]);
+
+        $user = User::customers()->findOrFail($validated['id']);
+        $user->customer_status = $validated['status'];
+        $user->save();
+
+        return response()->json([
+            'message' => 'Customer status updated.',
+            'status' => User::CUSTOMER_STATUSES[$user->customer_status] ?? 'Private',
+        ]);
     }
 
 

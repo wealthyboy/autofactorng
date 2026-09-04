@@ -115,7 +115,11 @@ class OrdersController extends Table
 		$input = $request->except('_token');
 		$input['invoice'] = $inv;
 		$input['order_type'] = "Offline";
-		$input['category'] = in_array($request->category, ['general', 'indrive'], true) ? $request->category : 'general';
+		$requestedCategory = strtolower((string) $request->category);
+		if ($requestedCategory === 'general') {
+			$requestedCategory = 'private';
+		}
+		$input['category'] = in_array($requestedCategory, ['private', 'business', 'indrive'], true) ? $requestedCategory : 'private';
 		$input['is_indrive_order'] = $input['category'] === 'indrive';
 		$input['source_channel'] = $input['category'] === 'indrive' ? 'indrive' : null;
 		$input['user_id'] = null !== $user ? $user->id : null;
@@ -534,7 +538,7 @@ class OrdersController extends Table
 			'Order' => [
 				"Date Added" => $obj->created_at,
 				"Payment Type" => $obj->payment_type,
-				"Category" => ucfirst($obj->category ?: 'general'),
+				"Category" => ucfirst($obj->category ?: 'private'),
 				"Fulfillment" => optional($obj)->isPickup() ? 'Pickup' : 'Delivery',
 				"Shipping" => Helper::currencyWrapper($obj->shipping_price),
 				"Ip Address" => optional($obj)->ip ?? '---',

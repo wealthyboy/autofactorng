@@ -149,7 +149,20 @@
 
                                     <div class="align-middle text-center  text-sm">
 
-                                        @if(is_array($v))
+                                        @if($k === 'Status' && !empty($models['unique']['customer_status']))
+                                        @php
+                                            $customerStatusValue = strtolower((string) $v);
+                                            $customerStatusValue = in_array($customerStatusValue, ['private', 'business'], true) ? $customerStatusValue : 'private';
+                                        @endphp
+                                        <select
+                                            class="form-control border px-2 text-xs customer-status-select"
+                                            style="min-width: 110px;"
+                                            data-id="{{ $models['items'][0][$key]['Id'] ?? '' }}"
+                                            data-previous="{{ $customerStatusValue }}">
+                                            <option value="private" {{ $customerStatusValue === 'private' ? 'selected' : '' }}>Private</option>
+                                            <option value="business" {{ $customerStatusValue === 'business' ? 'selected' : '' }}>Business</option>
+                                        </select>
+                                        @elseif(is_array($v))
                                         <select name="" style="width: 100px;" class="form-control  change-status border px-1 text-xs" data-column="{{$k}}" data-id="{{ isset($models['items'][0][$key]['Id']) ?  $models['items'][0][$key]['Id'] : null }}" data-model="Order" name="[]">
                                             @foreach($v as $l => $lv)
                                             @if($l == 'selected')

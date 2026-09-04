@@ -30,6 +30,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('reports', 'Admin\Account\AccountsController@index');
     Route::get('account/filter', 'Admin\Account\AccountsController@index')->name('filter_sales');
     Route::post('customers/wallet/{id}', 'Admin\Customers\CustomersController@fundWallet');
+    Route::post('customers/status', 'Admin\Customers\CustomersController@updateStatus')->name('admin.customers.status');
     Route::post('/update/status', 'Admin\Orders\OrdersController@updateStatus');
     Route::resource('credits',  'Admin\AutoCredit\AutoCreditController', ['names' => 'admin.credits']);
 

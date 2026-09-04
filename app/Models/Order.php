@@ -136,7 +136,9 @@ class Order extends Model
 		$order->order_type = "Online";
 		$order->order_from = session('acquisition_source') ?: null;
 		$order->is_indrive_order = (bool) ($user->is_indrive_customer || session('is_indrive_customer'));
-		$order->category = $order->is_indrive_order ? 'indrive' : 'general';
+		$order->category = $order->is_indrive_order
+			? 'indrive'
+			: (in_array($user->customer_status, ['private', 'business'], true) ? $user->customer_status : 'private');
 		$order->source_channel = $order->is_indrive_order ? 'indrive' : session('acquisition_source');
 		$order->indrive_driver_id = $order->is_indrive_order ? ($user->indrive_driver_id ?: session('indrive_driver_id')) : null;
 		$order->phone_number = $user->phone_number;
@@ -652,7 +654,7 @@ class Order extends Model
 						"Email" => optional($order->orderEmail)->email,
 						"Payment Type" => $order->payment,
 						"Coupon" => $order->coupon,
-						"Category" => ucfirst($order->category ?: 'general'),
+						"Category" => ucfirst($order->category ?: 'private'),
 						"Fulfillment" => $order->isPickup() ? 'Pickup' : 'Delivery',
 						"Type" => 'offline',
 						"Customer Type" => $isReturningCustomer ? 'Returning' : 'New',
@@ -669,7 +671,7 @@ class Order extends Model
 					"Email" => $order->email,
 					"Payment Type" => $order->payment_type,
 					"Coupon" => $order->coupon,
-					"Category" => ucfirst($order->category ?: 'general'),
+					"Category" => ucfirst($order->category ?: 'private'),
 					"Fulfillment" => $order->isPickup() ? 'Pickup' : 'Delivery',
 					"Type" => $order->order_type,
 					"Customer Type" => $isReturningCustomer ? 'Returning' : 'New',

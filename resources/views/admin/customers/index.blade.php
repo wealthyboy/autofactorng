@@ -7,4 +7,29 @@
 </div>
 @endsection
 @section('inline-scripts')
+<script>
+   $(document).on('change', '.customer-status-select', function () {
+      const select = $(this);
+      const previous = select.data('previous');
+
+      select.prop('disabled', true);
+
+      $.ajax({
+         type: 'POST',
+         url: '{{ route('admin.customers.status') }}',
+         data: {
+            _token: '{{ csrf_token() }}',
+            id: select.data('id'),
+            status: select.val()
+         }
+      }).done(function () {
+         select.data('previous', select.val());
+      }).fail(function () {
+         select.val(previous);
+         alert('Customer status update failed.');
+      }).always(function () {
+         select.prop('disabled', false);
+      });
+   });
+</script>
 @stop

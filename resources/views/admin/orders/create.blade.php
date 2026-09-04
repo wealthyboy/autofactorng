@@ -26,9 +26,14 @@
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
+                        @php
+                           $selectedCategory = old('category', isset($order) ? $order->category : 'private');
+                           $selectedCategory = $selectedCategory === 'general' ? 'private' : $selectedCategory;
+                        @endphp
                         <select class="form-control" name="category" required>
-                           <option value="general" {{ old('category', isset($order) ? $order->category : 'general') === 'general' ? 'selected' : '' }}>General</option>
-                           <option value="indrive" {{ old('category', isset($order) ? $order->category : null) === 'indrive' ? 'selected' : '' }}>InDrive</option>
+                           <option value="private" {{ $selectedCategory === 'private' ? 'selected' : '' }}>Private</option>
+                           <option value="business" {{ $selectedCategory === 'business' ? 'selected' : '' }}>Business</option>
+                           <option value="indrive" {{ $selectedCategory === 'indrive' ? 'selected' : '' }}>InDrive</option>
                         </select>
                      </div>
                   </div>
