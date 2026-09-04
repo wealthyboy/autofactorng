@@ -1,7 +1,15 @@
 @extends('admin.layouts.app')
 @section('content')
-@php($selectedCuratedIds = collect(old('curated_products', $curatedPositions->keys()->all()))->map(fn ($id) => (int) $id))
 @php
+   // Keep this edit page safe when older/live controller paths do not supply
+   // the optional curation/filter collections. This also avoids relying on an
+   // inline Blade assignment for $selectedCuratedIds.
+   $curatedPositions = collect($curatedPositions ?? []);
+   $categoryProducts = collect($categoryProducts ?? []);
+   $productFilterGroups = collect($productFilterGroups ?? []);
+   $selectedCuratedIds = collect(old('curated_products', $curatedPositions->keys()->all()))
+      ->map(function ($id) { return (int) $id; });
+
    $defaultProductFilters = $productFilterGroups->map(function ($group) {
       return [
          'id' => $group->id,
