@@ -63,6 +63,13 @@ class Category extends Model
         return $this->belongsToMany(Brand::class);
     }
 
+    public function productFilterGroups()
+    {
+        return $this->hasMany(ProductFilterGroup::class)
+            ->orderBy('sort_order')
+            ->orderBy('name');
+    }
+
 
     public function scopeParents($query, $order = null, $desc = null)
     {

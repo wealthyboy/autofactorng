@@ -83,6 +83,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('/related/products', 'Admin\Product\ProductController@getRelatedProducts');
     Route::delete('/related_products/{id}', 'Admin\RelatedProducts\RelatedProductsController@destroy');
 
+    Route::get('products/category-filters/options', 'Admin\Product\ProductController@categoryFilterOptions')->name('products.category-filters.options');
+
     Route::resource('products', 'Admin\Product\ProductController', ['names' => 'products']);
 
     Route::get('/download-products', 'Admin\Product\ProductController@downloadProducts');

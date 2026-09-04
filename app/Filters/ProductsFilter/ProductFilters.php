@@ -12,6 +12,7 @@ use App\Filters\ProductsFilter\TotalFilter;
 use App\Filters\ProductsFilter\AttributesFilter;
 use App\Filters\ProductsFilter\BrandsFilter;
 use App\Filters\ProductsFilter\SortByFilter;
+use App\Filters\ProductsFilter\DynamicFiltersFilter;
 
 
 
@@ -29,6 +30,7 @@ class ProductFilters extends AbstractFilters
         'sort_by' => SortByFilter::class,
         'prices' => TotalFilter::class,
         'brands' => BrandsFilter::class,
-        'hprices' => PriceFromFilter::class
+        'hprices' => PriceFromFilter::class,
+        'filters' => DynamicFiltersFilter::class
     ];
 }

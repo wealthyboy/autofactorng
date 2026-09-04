@@ -18,6 +18,8 @@ use App\Observers\ProductObserver;
 
 use App\Models\Image;
 use App\Models\Product;
+use App\Models\ProductFilterGroup;
+use App\Models\ProductFilterOption;
 use App\Models\Setting;
 use App\Models\Category;
 use App\Models\Attribute;
@@ -168,6 +170,46 @@ class ProductController extends Table
 
 
 
+
+    public function categoryFilterOptions(Request $request)
+    {
+        $categoryIds = collect((array) $request->input('category_ids', []))
+            ->map(function ($id) {
+                return (int) $id;
+            })
+            ->filter()
+            ->unique()
+            ->values();
+
+        $selectedOptionIds = collect((array) $request->input('selected_option_ids', []))
+            ->map(function ($id) {
+                return (int) $id;
+            })
+            ->filter()
+            ->unique();
+
+        $groups = ProductFilterGroup::query()
+            ->with(['category:id,name', 'options' => function ($query) {
+                $query->where('is_active', true)
+                    ->orderBy('sort_order')
+                    ->orderBy('name');
+            }])
+            ->whereIn('category_id', $categoryIds)
+            ->where('is_active', true)
+            ->orderBy('sort_order')
+            ->orderBy('name')
+            ->get();
+
+        // Never preserve an option that belongs to a category that is no longer selected.
+        $validOptionIds = $groups->flatMap(function ($group) {
+            return $group->options->pluck('id');
+        })->map(function ($id) {
+            return (int) $id;
+        });
+        $selectedOptionIds = $selectedOptionIds->intersect($validOptionIds)->values();
+
+        return view('admin.products.category_filters', compact('groups', 'selectedOptionIds'));
+    }
 
     public function loadAttr(Request $request)
     {
@@ -459,6 +501,8 @@ class ProductController extends Table
             $product->categories()->sync($request->category_id);
         }
 
+        $this->syncProductFilterOptions($product, $request);
+
         if (!empty($request->engine_id)) {
             $data = [];
             foreach ($request->engine_id as $key => $engines) {
@@ -682,6 +726,8 @@ class ProductController extends Table
             $product->categories()->sync($request->category_id);
         }
 
+        $this->syncProductFilterOptions($product, $request);
+
         //Delete prwvious record
         if (null !== $product->product_engines) {
             $product->product_engines()->delete();
@@ -794,4 +840,40 @@ class ProductController extends Table
 
         return response()->json($product);
     }
+
+    private function syncProductFilterOptions(Product $product, Request $request)
+    {
+        $categoryIds = collect((array) $request->input('category_id', []))
+            ->map(function ($id) {
+                return (int) $id;
+            })
+            ->filter()
+            ->unique()
+            ->values();
+
+        $requestedOptionIds = collect((array) $request->input('product_filter_options', []))
+            ->map(function ($id) {
+                return (int) $id;
+            })
+            ->filter()
+            ->unique()
+            ->values();
+
+        if ($categoryIds->isEmpty() || $requestedOptionIds->isEmpty()) {
+            $product->filterOptions()->sync([]);
+            return;
+        }
+
+        $validOptionIds = ProductFilterOption::query()
+            ->whereIn('id', $requestedOptionIds)
+            ->where('is_active', true)
+            ->whereHas('group', function ($query) use ($categoryIds) {
+                $query->whereIn('category_id', $categoryIds)
+                    ->where('is_active', true);
+            })
+            ->pluck('id');
+
+        $product->filterOptions()->sync($validOptionIds->all());
+    }
+
 }

@@ -436,6 +436,24 @@
             </div>
          </div>
 
+         <div class="card mt-4" id="category-filter-card">
+            <div class="card-header p-3 pt-2">
+               <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
+                  <i class="material-symbols-outlined">filter_alt</i>
+               </div>
+               <div>
+                  <h6 class="mb-0">Category Filters</h6>
+                  <small class="text-muted">Options change automatically when you select a category.</small>
+               </div>
+            </div>
+            <div id="category-filter-options-container">
+               <div class="text-center py-4 px-3 text-muted">
+                  <p class="text-sm mb-0">Select a category to see its product filters.</p>
+               </div>
+            </div>
+         </div>
+
+
          <div class="card mt-4">
             <div class="card-header p-3 pt-2">
                <div class="icon icon-lg icon-shape bg-gradient-dark shadow text-center border-radius-xl mt-n4 me-3 float-start">
@@ -509,6 +527,8 @@
 <script src="{{ asset('backend/products.js') }}"></script>
 @stop
 @section('inline-scripts')
+
+@include('admin.products.category_filter_script', ['product' => $product])
 
 if (document.getElementById('editor')) {
 var quill = new Quill('#editor', {

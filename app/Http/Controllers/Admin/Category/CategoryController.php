@@ -14,7 +14,9 @@ use Illuminate\Validation\Rule;
 use App\Models\Attribute;
 use App\Models\BrandCategory;
 use App\Models\Product;
+use App\Models\ProductFilterGroup;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
 
 class CategoryController extends Table
@@ -165,8 +167,11 @@ class CategoryController extends Table
             ->whereNotNull('curated_position')
             ->orderBy('curated_position')
             ->pluck('curated_position', 'product_id');
+        $productFilterGroups = $cat->productFilterGroups()
+            ->with('options')
+            ->get();
 
-        return view('admin.category.edit', compact('cat', 'categories', 'categoryProducts', 'curatedPositions'));
+        return view('admin.category.edit', compact('cat', 'categories', 'categoryProducts', 'curatedPositions', 'productFilterGroups'));
     }
 
     /**
@@ -188,6 +193,12 @@ class CategoryController extends Table
             'curated_products.*' => 'integer|distinct|exists:products,id',
             'curated_positions' => 'nullable|array',
             'curated_positions.*' => 'nullable|integer|min:1|max:100',
+            'product_filters' => 'nullable|array',
+            'product_filters.*.id' => 'nullable|integer',
+            'product_filters.*.name' => 'nullable|string|max:100',
+            'product_filters.*.options' => 'nullable|array',
+            'product_filters.*.options.*.id' => 'nullable|integer',
+            'product_filters.*.options.*.name' => 'nullable|string|max:100',
         ]);
 
         $selectedCuratedCount = collect($request->input('curated_products', []))->unique()->count();
@@ -252,6 +263,7 @@ class CategoryController extends Table
             $category->save();
 
             $this->saveCuratedProducts($request, $category);
+            $this->saveProductFilters($request, $category);
         });
         //Log Activity
         // (new Activity)->Log("Updated  Category {$request->name} ");
@@ -298,6 +310,120 @@ class CategoryController extends Table
                 ->where('product_id', $productId)
                 ->update(['curated_position' => $index + 1]);
         }
+    }
+
+
+    private function saveProductFilters(Request $request, Category $category)
+    {
+        if (! $request->boolean('product_filters_managed')) {
+            return;
+        }
+
+        $rows = collect($request->input('product_filters', []))
+            ->filter(function ($row) {
+                return trim((string) ($row['name'] ?? '')) !== '';
+            })
+            ->values();
+
+        $groupSlugs = [];
+        foreach ($rows as $index => $row) {
+            $slug = Str::slug((string) $row['name']);
+            if ($slug === '') {
+                throw ValidationException::withMessages([
+                    'product_filters.'.$index.'.name' => 'Enter a valid filter name.',
+                ]);
+            }
+            if (isset($groupSlugs[$slug])) {
+                throw ValidationException::withMessages([
+                    'product_filters.'.$index.'.name' => 'Filter names must be unique within a category.',
+                ]);
+            }
+            $groupSlugs[$slug] = true;
+        }
+
+        $keptGroupIds = [];
+
+        foreach ($rows as $groupPosition => $row) {
+            $groupId = isset($row['id']) ? (int) $row['id'] : 0;
+            $groupName = trim((string) $row['name']);
+            $groupSlug = Str::slug($groupName);
+            $group = $groupId
+                ? ProductFilterGroup::where('category_id', $category->id)->where('id', $groupId)->first()
+                : ProductFilterGroup::where('category_id', $category->id)->where('slug', $groupSlug)->first();
+
+            if (! $group) {
+                $group = new ProductFilterGroup;
+                $group->category_id = $category->id;
+            }
+
+            $group->name = $groupName;
+            $group->slug = $groupSlug;
+            $group->sort_order = $groupPosition;
+            $group->is_active = 1;
+            $group->save();
+            $keptGroupIds[] = $group->id;
+
+            $optionRows = collect($row['options'] ?? [])
+                ->filter(function ($option) {
+                    return trim((string) ($option['name'] ?? '')) !== '';
+                })
+                ->values();
+
+            $optionSlugs = [];
+            foreach ($optionRows as $optionIndex => $optionRow) {
+                $slug = Str::slug((string) $optionRow['name']);
+                if ($slug === '') {
+                    throw ValidationException::withMessages([
+                        'product_filters.'.$groupPosition.'.options.'.$optionIndex.'.name' => 'Enter a valid filter value.',
+                    ]);
+                }
+                if (isset($optionSlugs[$slug])) {
+                    throw ValidationException::withMessages([
+                        'product_filters.'.$groupPosition.'.options.'.$optionIndex.'.name' => 'Filter values must be unique within a filter group.',
+                    ]);
+                }
+                $optionSlugs[$slug] = true;
+            }
+
+            $keptOptionIds = [];
+            foreach ($optionRows as $optionPosition => $optionRow) {
+                $optionId = isset($optionRow['id']) ? (int) $optionRow['id'] : 0;
+                $optionName = trim((string) $optionRow['name']);
+                $optionSlug = Str::slug($optionName);
+                $option = $optionId
+                    ? $group->options()->where('id', $optionId)->first()
+                    : $group->options()->where('slug', $optionSlug)->first();
+
+                if (! $option) {
+                    $option = $group->options()->make();
+                }
+
+                $option->name = $optionName;
+                $option->slug = $optionSlug;
+                $option->sort_order = $optionPosition;
+                $option->is_active = 1;
+                $option->save();
+                $keptOptionIds[] = $option->id;
+            }
+
+            $group->options()
+                ->when(! empty($keptOptionIds), function ($query) use ($keptOptionIds) {
+                    $query->whereNotIn('id', $keptOptionIds);
+                })
+                ->when(empty($keptOptionIds), function ($query) {
+                    return $query;
+                })
+                ->delete();
+        }
+
+        $category->productFilterGroups()
+            ->when(! empty($keptGroupIds), function ($query) use ($keptGroupIds) {
+                $query->whereNotIn('id', $keptGroupIds);
+            })
+            ->when(empty($keptGroupIds), function ($query) {
+                return $query;
+            })
+            ->delete();
     }
 
 

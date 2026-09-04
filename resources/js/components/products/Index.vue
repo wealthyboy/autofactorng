@@ -143,6 +143,11 @@
                         " :name="'brands'" :objs="search_filters.brand.items" :model="brands"
                         @handle:filter="handleFilter" :clearFilters="clearFilters"></filters>
 
+                    <filters v-for="group in dynamicFilterGroups" :key="'dynamic-filter-' + group.id"
+                        :name="'filters[' + group.id + ']'" :label="group.name" :objs="group.options"
+                        :model="dynamicFilters[group.id] || dynamicFilters[String(group.id)] || []" value-key="id"
+                        @handle:filter="handleFilter" :clearFilters="clearFilters"></filters>
+
                     <filters :model="prices" :name="'prices'" :objs="search_filters.price.items"
                         @handle:filter="handleFilter" :clearFilters="clearFilters"></filters>
                 </form>
@@ -161,7 +166,6 @@ import axios from "axios";
 import Search from "../search/MakeModelYear";
 import Tyre from "../search/Tyre";
 import Battery from "../search/Battery";
-import queryString from "query-string";
 import ProductNav from "./Nav";
 import SearchString from "./SearchString";
 import Filters from "./Filters";
@@ -178,7 +182,7 @@ export default {
         Tyre,
         Battery,
     },
-    props: ["search_filters", "years", "brands", "prices"],
+    props: ["search_filters", "years", "brands", "prices", "dynamicFilters"],
     data() {
         return {
             has_filters: 0,
@@ -202,6 +206,11 @@ export default {
             showFitString: "showFitString",
             showSearch: "showSearch",
         }),
+        dynamicFilterGroups() {
+            return this.search_filters && this.search_filters.dynamic
+                ? (this.search_filters.dynamic.items || [])
+                : [];
+        },
         hasCategory() {
             // Example: /products/tyres → true, /products → false
             const path = window.location.pathname; 
@@ -270,18 +279,26 @@ export default {
                 });
         },
         handleFilter(filter) {
-            let url = new URL(location.href);
-            let q = queryString.parse(location.search).q;
-            window.history.pushState({}, "", filter.filterString);
-            url = new URL(location.href);
-            if (typeof q !== "undefined") {
-                url.searchParams.set("q", q);
-            }
+            const url = new URL(location.href);
+            const filterParams = new URLSearchParams(String(filter.filterString || "").replace(/^\?/, ""));
+
+            // Replace only storefront filter parameters. Keep sorting, page size,
+            // vehicle-fit parameters and search text intact.
+            Array.from(url.searchParams.keys()).forEach((key) => {
+                if (key === "brands[]" || key === "prices[]" || key.indexOf("filters[") === 0) {
+                    url.searchParams.delete(key);
+                }
+            });
+
+            filterParams.forEach((value, key) => {
+                url.searchParams.append(key, value);
+            });
+
             url.searchParams.delete("page");
             url.searchParams.set("t", new Date().getTime());
             window.history.pushState({}, "", url);
             this.showClearFilter = true;
-            this.getProducts(location.href);
+            this.getProducts(url.toString());
         },
         handleTyreFilter(data) {
             const url = new URL(location.href);

@@ -110,6 +110,12 @@ class Product extends Model
         return $this->belongsToMany(Attribute::class);
     }
 
+    public function filterOptions()
+    {
+        return $this->belongsToMany(ProductFilterOption::class, 'product_filter_option_product')
+            ->withTimestamps();
+    }
+
 
     public function brand()
     {

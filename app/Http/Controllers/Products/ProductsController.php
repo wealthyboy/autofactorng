@@ -73,6 +73,7 @@ class ProductsController extends Controller
 
         $brands = $request->brands;
         $prices = $request->prices;
+        $dynamicFilters = $request->input('filters', []);
 
 
         // dd($brands);
@@ -84,6 +85,7 @@ class ProductsController extends Controller
             'search_filters',
             'brands',
             'prices',
+            'dynamicFilters',
             'meta_tag_keywords',
             'meta_tag_keywords',
             'page_title',
@@ -205,6 +207,7 @@ class ProductsController extends Controller
 
         $brands = $request->brands;
         $prices = $request->prices;
+        $dynamicFilters = $request->input('filters', []);
 
 
         return  view('products.index', compact(
@@ -212,7 +215,8 @@ class ProductsController extends Controller
             'page_title',
             'search_filters',
             'brands',
-            'prices'
+            'prices',
+            'dynamicFilters'
         ));
     }
 
@@ -340,10 +344,12 @@ class ProductsController extends Controller
         $profiles = Product::getFilterForCategory($category, 'height');
         $ampheres = Product::getFilterForCategory($category, 'amphere');
         $brands = $category->brands;
+        $dynamicFilters = $this->dynamicProductFilters($category);
 
         $search = collect([
             ['name' => 'price', 'items' => $this->filterPrices()],
             ['name' => 'brand', 'items' => $brands],
+            ['name' => 'dynamic', 'items' => $dynamicFilters],
             ['name' => 'rim', 'items' => $rims],
             ['name' => 'width', 'items'  => $widths],
             ['name' => 'profile', 'items' => $profiles],
@@ -356,6 +362,41 @@ class ProductsController extends Controller
         return $search->keyBy('name');
     }
 
+
+    private function dynamicProductFilters(Category $category)
+    {
+        return $category->productFilterGroups()
+            ->where('is_active', true)
+            ->with(['options' => function ($query) use ($category) {
+                $query->where('is_active', true)
+                    ->whereHas('products', function ($productQuery) use ($category) {
+                        $productQuery->whereHas('categories', function ($categoryQuery) use ($category) {
+                            $categoryQuery->where('categories.id', $category->id);
+                        });
+                    })
+                    ->orderBy('sort_order')
+                    ->orderBy('name');
+            }])
+            ->get()
+            ->filter(function ($group) {
+                return $group->options->isNotEmpty();
+            })
+            ->map(function ($group) {
+                return [
+                    'id' => $group->id,
+                    'name' => $group->name,
+                    'slug' => $group->slug,
+                    'options' => $group->options->map(function ($option) {
+                        return [
+                            'id' => $option->id,
+                            'name' => $option->name,
+                            'slug' => $option->slug,
+                        ];
+                    })->values(),
+                ];
+            })
+            ->values();
+    }
 
     public function makeModelYearSearch(Request $request)
     {

@@ -1,6 +1,18 @@
 @extends('admin.layouts.app')
 @section('content')
 @php($selectedCuratedIds = collect(old('curated_products', $curatedPositions->keys()->all()))->map(fn ($id) => (int) $id))
+@php
+   $defaultProductFilters = $productFilterGroups->map(function ($group) {
+      return [
+         'id' => $group->id,
+         'name' => $group->name,
+         'options' => $group->options->map(function ($option) {
+            return ['id' => $option->id, 'name' => $option->name];
+         })->values()->all(),
+      ];
+   })->values()->all();
+   $productFilterRows = collect(old('product_filters', $defaultProductFilters));
+@endphp
 <div class="row">
    @include('admin.errors.errors')
 
@@ -16,6 +28,7 @@
             <form action="{{ route('category.update',['category' => $cat->id ]) }}" method="post" id="category-edit-form">
                @csrf
                @method('PATCH')
+               <input type="hidden" name="product_filters_managed" value="1">
                <div class="row">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
@@ -97,6 +110,69 @@
                      <div class="alert alert-danger text-white text-sm mt-3 mb-0 d-none" id="curated-selection-error"></div>
                   </div>
                </div>
+               <div class="card border mt-4 mb-4" id="category-product-filters-card">
+                  <div class="card-header pb-0">
+                     <div class="d-flex flex-wrap justify-content-between align-items-start gap-2">
+                        <div>
+                           <h5 class="mb-1">Dynamic product filters</h5>
+                           <p class="text-sm text-muted mb-0">Create filters that belong only to <strong>{{ $cat->name }}</strong>. Example: <strong>Viscosity</strong> with values 0W-20, 5W-30 and 5W-40.</p>
+                        </div>
+                        <button type="button" class="btn btn-sm bg-gradient-dark mb-0" id="add-product-filter-group">
+                           <i class="fa fa-plus me-1"></i> Add filter
+                        </button>
+                     </div>
+                  </div>
+                  <div class="card-body pt-3">
+                     <div class="alert alert-light border text-dark text-sm" role="note">
+                        These filters appear automatically when an admin assigns a product to this category, and on the customer product-listing page alongside Brand and Price.
+                     </div>
+
+                     <div id="product-filter-groups">
+                        @foreach($productFilterRows as $groupIndex => $group)
+                        <div class="border rounded p-3 mb-3 product-filter-group" data-group-index="{{ $groupIndex }}">
+                           @if(!empty($group['id']))
+                           <input type="hidden" name="product_filters[{{ $groupIndex }}][id]" value="{{ $group['id'] }}">
+                           @endif
+                           <div class="d-flex gap-2 align-items-start">
+                              <div class="flex-grow-1">
+                                 <label class="form-label fw-bold">Filter name</label>
+                                 <input class="form-control product-filter-group-name" type="text" name="product_filters[{{ $groupIndex }}][name]" value="{{ $group['name'] ?? '' }}" placeholder="e.g. Viscosity or Color">
+                              </div>
+                              <button type="button" class="btn btn-outline-danger btn-sm mt-4 mb-0 remove-product-filter-group" title="Remove filter">
+                                 <i class="fa fa-trash"></i>
+                              </button>
+                           </div>
+
+                           <div class="mt-3">
+                              <div class="d-flex justify-content-between align-items-center mb-2">
+                                 <label class="form-label fw-bold mb-0">Values</label>
+                                 <button type="button" class="btn btn-outline-dark btn-sm mb-0 add-product-filter-option">
+                                    <i class="fa fa-plus me-1"></i> Add value
+                                 </button>
+                              </div>
+                              <div class="product-filter-options">
+                                 @foreach(collect($group['options'] ?? []) as $optionIndex => $option)
+                                 <div class="d-flex gap-2 align-items-center mb-2 product-filter-option" data-option-index="{{ $optionIndex }}">
+                                    @if(!empty($option['id']))
+                                    <input type="hidden" name="product_filters[{{ $groupIndex }}][options][{{ $optionIndex }}][id]" value="{{ $option['id'] }}">
+                                    @endif
+                                    <input class="form-control" type="text" name="product_filters[{{ $groupIndex }}][options][{{ $optionIndex }}][name]" value="{{ $option['name'] ?? '' }}" placeholder="e.g. 5W-30">
+                                    <button type="button" class="btn btn-outline-danger btn-sm mb-0 remove-product-filter-option" title="Remove value"><i class="fa fa-times"></i></button>
+                                 </div>
+                                 @endforeach
+                              </div>
+                           </div>
+                        </div>
+                        @endforeach
+                     </div>
+
+                     <div class="text-center border rounded py-4 px-3 {{ $productFilterRows->count() ? 'd-none' : '' }}" id="product-filter-empty-state">
+                        <p class="text-sm text-muted mb-2">No dynamic filters are configured for this category yet.</p>
+                        <button type="button" class="btn btn-outline-dark btn-sm mb-0" id="add-first-product-filter">Add the first filter</button>
+                     </div>
+                  </div>
+               </div>
+
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
@@ -264,6 +340,97 @@ document.addEventListener('DOMContentLoaded', function () {
    });
 
    refreshSelection();
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+   var groupsContainer = document.getElementById('product-filter-groups');
+   var addGroupButton = document.getElementById('add-product-filter-group');
+   var addFirstButton = document.getElementById('add-first-product-filter');
+   var emptyState = document.getElementById('product-filter-empty-state');
+
+   if (!groupsContainer || !addGroupButton) {
+      return;
+   }
+
+   var nextGroupIndex = Array.prototype.slice.call(groupsContainer.querySelectorAll('.product-filter-group'))
+      .reduce(function (max, group) {
+         return Math.max(max, parseInt(group.dataset.groupIndex || '-1', 10));
+      }, -1) + 1;
+
+   function escapeHtml(value) {
+      return String(value || '')
+         .replace(/&/g, '&amp;')
+         .replace(/</g, '&lt;')
+         .replace(/>/g, '&gt;')
+         .replace(/"/g, '&quot;')
+         .replace(/'/g, '&#039;');
+   }
+
+   function refreshEmptyState() {
+      if (!emptyState) return;
+      emptyState.classList.toggle('d-none', groupsContainer.querySelectorAll('.product-filter-group').length > 0);
+   }
+
+   function addOption(group, value) {
+      var groupIndex = group.dataset.groupIndex;
+      var optionsContainer = group.querySelector('.product-filter-options');
+      var optionIndexes = Array.prototype.slice.call(optionsContainer.querySelectorAll('.product-filter-option')).map(function (option) {
+         return parseInt(option.dataset.optionIndex || '-1', 10);
+      });
+      var optionIndex = optionIndexes.length ? Math.max.apply(Math, optionIndexes) + 1 : 0;
+      var row = document.createElement('div');
+      row.className = 'd-flex gap-2 align-items-center mb-2 product-filter-option';
+      row.dataset.optionIndex = optionIndex;
+      row.innerHTML = '<input class="form-control" type="text" name="product_filters[' + groupIndex + '][options][' + optionIndex + '][name]" value="' + escapeHtml(value || '') + '" placeholder="e.g. 5W-30">' +
+         '<button type="button" class="btn btn-outline-danger btn-sm mb-0 remove-product-filter-option" title="Remove value"><i class="fa fa-times"></i></button>';
+      optionsContainer.appendChild(row);
+      row.querySelector('input').focus();
+   }
+
+   function addGroup() {
+      var groupIndex = nextGroupIndex++;
+      var group = document.createElement('div');
+      group.className = 'border rounded p-3 mb-3 product-filter-group';
+      group.dataset.groupIndex = groupIndex;
+      group.innerHTML = '<div class="d-flex gap-2 align-items-start">' +
+         '<div class="flex-grow-1"><label class="form-label fw-bold">Filter name</label>' +
+         '<input class="form-control product-filter-group-name" type="text" name="product_filters[' + groupIndex + '][name]" placeholder="e.g. Viscosity or Color"></div>' +
+         '<button type="button" class="btn btn-outline-danger btn-sm mt-4 mb-0 remove-product-filter-group" title="Remove filter"><i class="fa fa-trash"></i></button>' +
+         '</div>' +
+         '<div class="mt-3"><div class="d-flex justify-content-between align-items-center mb-2">' +
+         '<label class="form-label fw-bold mb-0">Values</label>' +
+         '<button type="button" class="btn btn-outline-dark btn-sm mb-0 add-product-filter-option"><i class="fa fa-plus me-1"></i> Add value</button>' +
+         '</div><div class="product-filter-options"></div></div>';
+      groupsContainer.appendChild(group);
+      addOption(group, '');
+      group.querySelector('.product-filter-group-name').focus();
+      refreshEmptyState();
+   }
+
+   addGroupButton.addEventListener('click', addGroup);
+   if (addFirstButton) addFirstButton.addEventListener('click', addGroup);
+
+   groupsContainer.addEventListener('click', function (event) {
+      var addOptionButton = event.target.closest('.add-product-filter-option');
+      if (addOptionButton) {
+         addOption(addOptionButton.closest('.product-filter-group'), '');
+         return;
+      }
+
+      var removeOptionButton = event.target.closest('.remove-product-filter-option');
+      if (removeOptionButton) {
+         removeOptionButton.closest('.product-filter-option').remove();
+         return;
+      }
+
+      var removeGroupButton = event.target.closest('.remove-product-filter-group');
+      if (removeGroupButton) {
+         removeGroupButton.closest('.product-filter-group').remove();
+         refreshEmptyState();
+      }
+   });
+
+   refreshEmptyState();
 });
 
 @include('admin._partials.image_js',['folder' => 'category'])

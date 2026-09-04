@@ -19,7 +19,7 @@
         <div class="">
             <h1 class="text-uppercase p-0">{{ optional($category)->name }}</h1>
         </div>
-        <products-items :brands="{{ collect($brands) }}" :prices="{{ collect($prices) }}" :search_filters="{{ $search_filters }}" />
+        <products-items :brands="{{ collect($brands) }}" :prices="{{ collect($prices) }}" :dynamic-filters="{{ collect($dynamicFilters ?? []) }}" :search_filters="{{ $search_filters }}" />
     </div>
 </section>
 
