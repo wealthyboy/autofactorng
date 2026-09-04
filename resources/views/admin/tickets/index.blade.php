@@ -34,11 +34,15 @@
             <td>
                 @if(! $ticket->requiresPaymentApproval())
                     <span class="badge bg-gradient-secondary">Not required</span>
-                @elseif($ticket->approved_at)
+                @elseif($ticket->paymentApprovalStatus() === 'Approved')
                     <span class="badge bg-gradient-success">Approved</span>
-                    <span class="d-block text-xs text-secondary mt-1">{{ $ticket->approved_at->format('d M Y') }}</span>
+                    @if($ticket->approved_at)
+                        <span class="d-block text-xs text-secondary mt-1">{{ $ticket->approved_at->format('d M Y') }}</span>
+                    @endif
+                @elseif($ticket->paymentApprovalStatus() === 'Not Approved')
+                    <span class="badge bg-gradient-danger">Not Approved</span>
                 @else
-                    <span class="badge bg-gradient-warning">Pending approval</span>
+                    <span class="badge bg-gradient-warning">Pending</span>
                 @endif
             </td>
             <td><span class="badge bg-gradient-{{ in_array($ticket->status, ['Resolved', 'Closed']) ? 'success' : ($ticket->status === 'In Progress' ? 'info' : 'warning') }}">{{ $ticket->status }}</span></td>

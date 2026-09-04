@@ -74,39 +74,68 @@
         @endif
 
         @if($ticket->requiresPaymentApproval())
+        @php($approvalStatus = $ticket->paymentApprovalStatus())
         <div class="card mb-4">
             <div class="card-header pb-0 d-flex justify-content-between align-items-center">
                 <h6 class="mb-0">Payment approval</h6>
-                @if($ticket->approved_at)
+                @if($approvalStatus === 'Approved')
                     <span class="badge bg-gradient-success">Approved</span>
+                @elseif($approvalStatus === 'Not Approved')
+                    <span class="badge bg-gradient-danger">Not Approved</span>
                 @else
-                    <span class="badge bg-gradient-warning">Pending approval</span>
+                    <span class="badge bg-gradient-warning">Pending</span>
                 @endif
             </div>
             <div class="card-body">
-                @if($ticket->approved_at)
+                @if($approvalStatus === 'Approved' && $ticket->approved_at)
                     <p class="text-sm mb-2"><strong>Approval Date:</strong> {{ $ticket->approved_at->format('d M Y') }}</p>
-                    <p class="text-sm mb-0"><strong>Approved By:</strong> {{ optional($ticket->approver)->name ?: 'Admin' }}</p>
+                    <p class="text-sm mb-3"><strong>Approved By:</strong> {{ optional($ticket->approver)->name ?: 'Admin' }}</p>
                 @else
-                    <p class="text-sm text-secondary">This payment is awaiting approval. Select the approval date before approving.</p>
-                    <form method="post" action="{{ route('admin.tickets.approve-payment', $ticket) }}" onsubmit="return confirm('Approve this payment using the selected approval date?')">
-                        @csrf
-                        <div class="mb-3">
-                            <label class="ticket-form-label" for="approvalDate">Approval Date</label>
-                            <input
-                                id="approvalDate"
-                                type="date"
-                                name="approval_date"
-                                value="{{ old('approval_date', now()->format('Y-m-d')) }}"
-                                class="form-control ticket-control"
-                                required
-                            >
-                        </div>
-                        <button class="btn bg-gradient-success mb-0">Approve Payment</button>
-                    </form>
+                    <p class="text-sm text-secondary mb-3">Wallet and refund approvals begin as Pending. Update the status when management has made a decision.</p>
                 @endif
+
+                <form method="post" action="{{ route('admin.tickets.approve-payment', $ticket) }}" id="ticketApprovalForm">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="ticket-form-label" for="approvalStatus">Approval Status</label>
+                        <select id="approvalStatus" name="approval_status" class="form-control ticket-control" required>
+                            @foreach(\App\Models\Ticket::APPROVAL_STATUSES as $status)
+                                <option value="{{ $status }}" @if(old('approval_status', $approvalStatus) === $status) selected @endif>{{ $status }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3" id="approvalDateWrap">
+                        <label class="ticket-form-label" for="approvalDate">Approval Date</label>
+                        <input
+                            id="approvalDate"
+                            type="date"
+                            name="approval_date"
+                            value="{{ old('approval_date', optional($ticket->approved_at)->format('Y-m-d') ?: now()->format('Y-m-d')) }}"
+                            class="form-control ticket-control"
+                        >
+                    </div>
+                    <button class="btn bg-gradient-dark mb-0">Update Approval</button>
+                </form>
             </div>
         </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var status = document.getElementById('approvalStatus');
+                var dateWrap = document.getElementById('approvalDateWrap');
+                var dateInput = document.getElementById('approvalDate');
+
+                if (!status || !dateWrap || !dateInput) return;
+
+                function syncApprovalDate() {
+                    var approved = status.value === 'Approved';
+                    dateWrap.style.display = approved ? '' : 'none';
+                    dateInput.required = approved;
+                }
+
+                status.addEventListener('change', syncApprovalDate);
+                syncApprovalDate();
+            });
+        </script>
         @endif
 
         <div class="card mb-4">

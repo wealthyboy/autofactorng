@@ -135,6 +135,7 @@ class TicketsController extends Controller
                 'account_number' => $validated['category'] === 'Refund' ? $validated['account_number'] : null,
                 'bank_name' => $validated['category'] === 'Refund' ? $validated['bank_name'] : null,
                 'wallet_source' => $validated['category'] === 'Wallet' ? $validated['wallet_source'] : null,
+                'approval_status' => ($validated['category'] === 'Wallet' || $validated['category'] === 'Refund' || in_array($validated['reason'], ['Over Payment', 'Double Payment'], true)) ? 'Pending' : null,
                 'created_by' => Auth::id(),
             ]);
 
@@ -180,24 +181,29 @@ class TicketsController extends Controller
                 ->with('error', 'Payment approval is not required for this ticket.');
         }
 
-        if ($ticket->approved_at) {
-            return redirect()->route('admin.tickets.show', $ticket)
-                ->with('success', 'This payment has already been approved.');
+        $validated = $request->validate([
+            'approval_status' => ['required', Rule::in(Ticket::APPROVAL_STATUSES)],
+            'approval_date' => ['nullable', 'required_if:approval_status,Approved', 'date'],
+        ]);
+
+        $status = $validated['approval_status'];
+        $updates = [
+            'approval_status' => $status,
+            'approved_at' => null,
+            'approved_by' => null,
+        ];
+
+        if ($status === 'Approved') {
+            $updates['approved_at'] = $validated['approval_date'];
+            $updates['approved_by'] = Auth::id();
         }
 
-        $validated = $request->validate([
-            'approval_date' => ['required', 'date'],
-        ]);
+        $ticket->update($updates);
 
-        $ticket->update([
-            'approved_at' => $validated['approval_date'],
-            'approved_by' => Auth::id(),
-        ]);
-
-        (new Activity)->put('Approved payment for ticket ' . $ticket->ticket_number);
+        (new Activity)->put($status . ' payment approval for ticket ' . $ticket->ticket_number);
 
         return redirect()->route('admin.tickets.show', $ticket)
-            ->with('success', 'Payment approved successfully.');
+            ->with('success', 'Payment approval updated to ' . $status . '.');
     }
 
     public function addComment(Request $request, Ticket $ticket)

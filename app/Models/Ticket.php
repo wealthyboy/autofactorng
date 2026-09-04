@@ -14,6 +14,7 @@ class Ticket extends Model
     public const REASONS = ['Delayed Delivery', 'Wrong Item Delivered', 'Defective Item', 'No Delivery', 'Customer no longer interested', 'Over Payment', 'Double Payment'];
     public const CATEGORIES = ['Escalation', 'Refund', 'Wallet'];
     public const WALLET_SOURCES = ['Online', 'Offline'];
+    public const APPROVAL_STATUSES = ['Pending', 'Not Approved', 'Approved'];
 
     protected $fillable = [
         'ticket_number',
@@ -28,6 +29,7 @@ class Ticket extends Model
         'account_number',
         'bank_name',
         'wallet_source',
+        'approval_status',
         'approved_at',
         'approved_by',
         'created_by',
@@ -68,6 +70,19 @@ class Ticket extends Model
         return $this->category === 'Wallet'
             || $this->category === 'Refund'
             || in_array($this->reason, ['Over Payment', 'Double Payment'], true);
+    }
+
+    public function paymentApprovalStatus(): string
+    {
+        if (! $this->requiresPaymentApproval()) {
+            return 'Not required';
+        }
+
+        if (in_array($this->approval_status, self::APPROVAL_STATUSES, true)) {
+            return $this->approval_status;
+        }
+
+        return $this->approved_at ? 'Approved' : 'Pending';
     }
 
     public function usesCustomAmount(): bool
