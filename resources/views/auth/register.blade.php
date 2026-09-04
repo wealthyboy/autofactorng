@@ -21,6 +21,25 @@
                         Welcome to AutoFactor
                         .</span>
                 </div>
+                @php
+                    $registrationDiscount = isset($global_promo) && $global_promo
+                        ? (int) ($global_promo->coupon_percent ?: 5)
+                        : 5;
+                @endphp
+
+                @if(!session('is_indrive_customer'))
+                <div class="mb-4" style="background:#fff7ed;border:2px solid #f26522;border-radius:12px;padding:16px 18px;box-shadow:0 8px 22px rgba(242,101,34,.12);">
+                    <div class="d-flex align-items-start">
+                        <div class="me-3 d-flex align-items-center justify-content-center" style="width:42px;height:42px;border-radius:50%;background:#f26522;color:#fff;flex:0 0 42px;font-size:20px;font-weight:800;">%</div>
+                        <div>
+                            <div class="text-uppercase bold" style="color:#c2410c;font-size:12px;letter-spacing:.08em;">New customer welcome gift</div>
+                            <div class="bold mt-1" style="color:#111827;font-size:20px;line-height:1.25;">Get {{ $registrationDiscount }}% OFF your next order</div>
+                            <div class="mt-1" style="color:#4b5563;font-size:14px;line-height:1.5;">Complete your registration and we’ll send your personal {{ $registrationDiscount }}% discount coupon code straight to your email.</div>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
                 <register></register>
 
 

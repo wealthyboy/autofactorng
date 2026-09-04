@@ -30,9 +30,12 @@ class   NavComposer
             return Information::with('children')->parents()->get();
         });
 
-        // Cache promo for 30 minutes
+        // Cache the active homepage welcome offer. Admin changes clear this key immediately.
         $global_promo = Cache::remember('global_promo', now()->addMinutes(30), function () {
-            return Promo::first();
+            return Promo::query()
+                ->where('is_active', true)
+                ->latest('updated_at')
+                ->first();
         });
 
         // Cache settings for 5 minutes (shorter in case it changes often)

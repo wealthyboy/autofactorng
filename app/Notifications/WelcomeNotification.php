@@ -3,17 +3,17 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Models\User;
+use App\Models\Voucher;
 
 class WelcomeNotification extends Notification
 {
     use Queueable;
 
-
     public $user;
+
     /**
      * Create a new notification instance.
      *
@@ -43,13 +43,30 @@ class WelcomeNotification extends Notification
      */
     public function toMail($notifiable)
     {
+        $discountPercent = null;
+
+        if (! empty($this->user->coupon)) {
+            $discountPercent = Voucher::query()
+                ->where('code', $this->user->coupon)
+                ->value('amount');
+        }
+
+        $discountPercent = $discountPercent ? (int) $discountPercent : null;
+
+        $subject = $discountPercent
+            ? "Welcome to AutofactorNG — Enjoy {$discountPercent}% OFF Your Next Order!"
+            : 'Welcome to AutofactorNG!';
+
         return (new MailMessage)
             ->view(
                 'emails.registration.index',
-                ['u' => $this->user],
+                [
+                    'u' => $this->user,
+                    'discountPercent' => $discountPercent,
+                ]
             )
-            ->bcc(["info@autofactorng.com", "justine@autofactorng.com"])
-            ->subject('Thanks for registering');
+            ->bcc(['info@autofactorng.com', 'justine@autofactorng.com'])
+            ->subject($subject);
     }
 
     /**
@@ -60,8 +77,6 @@ class WelcomeNotification extends Notification
      */
     public function toArray($notifiable)
     {
-        return [
-            //
-        ];
+        return [];
     }
 }

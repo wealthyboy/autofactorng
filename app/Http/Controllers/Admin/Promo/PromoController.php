@@ -4,103 +4,94 @@ namespace App\Http\Controllers\Admin\Promo;
 
 use App\DataTable\Table;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use App\Models\Promo;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 
 class PromoController extends Table
 {
-
     public $deleted_names = 'name';
-
     public $deleted_specific = 'promos with color';
-
 
     public function builder()
     {
         return Promo::query();
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $promos =  Promo::all();
+        $promos = Promo::latest('updated_at')->get();
+
         return view('admin.promo.index', compact('promos'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         User::canTakeAction(User::canCreate);
+
         return view('admin.promo.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $promo = new Promo;
-        $promo->bgcolor = $request->background_color;
-        $promo->is_active = $request->is_active ? 1 : 0;
-        $promo->save();
-        (new Activity)->put("Created a new Promo with bg color {$request->background_color}", null);
+        $data = $this->validatedPromoData($request);
+
+        $promo = Promo::create($data);
+
+        Cache::forget('global_promo');
+        (new Activity)->put("Created homepage welcome promo {$promo->title}", null);
 
         return redirect('admin/promos');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         User::canTakeAction(User::canUpdate);
-        $promo = Promo::find($id);
+        $promo = Promo::findOrFail($id);
+
         return view('admin.promo.edit', compact('promo'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        $promo = Promo::find($id);
-        $promo->bgcolor = $request->background_color;
-        $promo->is_active = $request->is_active ? 1 : 0;
-        $promo->save();
-        (new Activity)->put("Updated a  Promo with bg color {$request->background_color}", null);
+        $promo = Promo::findOrFail($id);
+        $promo->update($this->validatedPromoData($request));
 
+        Cache::forget('global_promo');
+        (new Activity)->put("Updated homepage welcome promo {$promo->title}", null);
 
         return redirect('admin/promos');
+    }
+
+    protected function validatedPromoData(Request $request): array
+    {
+        $validated = $request->validate([
+            'background_color' => ['required', 'regex:/^#[0-9A-Fa-f]{6}$/'],
+            'text_color' => ['required', 'regex:/^#[0-9A-Fa-f]{6}$/'],
+            'accent_color' => ['required', 'regex:/^#[0-9A-Fa-f]{6}$/'],
+            'title' => ['required', 'string', 'max:120'],
+            'message' => ['required', 'string', 'max:500'],
+            'cta_text' => ['nullable', 'string', 'max:60'],
+            'cta_url' => ['nullable', 'string', 'max:255'],
+            'coupon_percent' => ['required', 'integer', 'min:1', 'max:100'],
+        ]);
+
+        return [
+            'bgcolor' => $validated['background_color'],
+            'text_color' => $validated['text_color'],
+            'accent_color' => $validated['accent_color'],
+            'title' => $validated['title'],
+            'message' => $validated['message'],
+            'cta_text' => $validated['cta_text'] ?: 'CREATE ACCOUNT',
+            'cta_url' => $validated['cta_url'] ?: '/register',
+            'coupon_percent' => (int) $validated['coupon_percent'],
+            'is_active' => $request->boolean('is_active'),
+        ];
     }
 }

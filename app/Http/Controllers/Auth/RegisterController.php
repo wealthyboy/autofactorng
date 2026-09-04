@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Voucher;
+use App\Models\Promo;
 use App\Notifications\WelcomeNotification;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
@@ -294,10 +295,18 @@ class RegisterController extends Controller
         $res = $this->sendToTermii($data, $user);
 
         if (! $user->is_indrive_customer) {
+            $welcomePromo = Promo::query()
+                ->where('is_active', true)
+                ->latest('updated_at')
+                ->first();
+
+            $welcomeDiscountPercent = (int) ($welcomePromo->coupon_percent ?? 5);
+            $welcomeDiscountPercent = max(1, min(100, $welcomeDiscountPercent));
+
             $coupon = new Voucher;
             $coupon->code = str_random(6);
             $coupon->user_id = $user->id;
-            $coupon->amount = 5;
+            $coupon->amount = $welcomeDiscountPercent;
             $coupon->type = 'specific';
             $coupon->expires = now()->addDays(365);
             $coupon->from_value = null;
