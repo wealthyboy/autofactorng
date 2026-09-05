@@ -1,4 +1,4 @@
-@if(isset($global_promo) && $global_promo)
+@if(isset($global_promo) && $global_promo && (bool) $global_promo->is_active)
     @php
         $promoBackground = $global_promo->bgcolor ?: '#f26522';
         $promoTextColor = $global_promo->text_color ?: '#ffffff';
