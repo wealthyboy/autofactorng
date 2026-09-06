@@ -10,26 +10,30 @@
     @endphp
 
     @if($promoPlacement === 'mobile')
-        <div class="d-lg-none w-100 text-center" aria-label="New customer offer"
-             style="background:{{ $promoBackground }};color:{{ $promoTextColor }};border-bottom:1px solid rgba(0,0,0,.08);padding:8px 14px;">
-            <div style="font-size:12px;line-height:1.25;font-weight:800;letter-spacing:.025em;text-transform:uppercase;">
-                {{ $promoTitle }}
-            </div>
-            <div style="margin-top:2px;font-size:10.5px;line-height:1.3;font-weight:600;">
-                {{ $promoMessage }}
-                @guest
-                    @if($promoCtaText)
-                        <a href="{{ $promoCtaUrl }}" style="color:inherit;text-decoration:underline;font-weight:800;white-space:nowrap;margin-left:3px;">
-                            {{ $promoCtaText }}
-                        </a>
-                    @endif
-                @endguest
-            </div>
+        <div class="d-lg-none w-100" aria-label="New customer offer"
+             style="background:{{ $promoBackground }};color:{{ $promoTextColor }};border-bottom:1px solid rgba(0,0,0,.08);">
+            <a href="{{ $promoCtaUrl }}"
+               style="display:block;color:inherit;text-decoration:none;text-align:left;padding:8px 20px;">
+                <div style="font-size:12px;line-height:1.25;font-weight:800;letter-spacing:.025em;text-transform:uppercase;">
+                    {{ $promoTitle }}
+                </div>
+                <div style="margin-top:2px;font-size:10.5px;line-height:1.3;font-weight:600;">
+                    {{ $promoMessage }}
+                    @guest
+                        @if($promoCtaText)
+                            <span style="text-decoration:underline;font-weight:800;white-space:nowrap;margin-left:3px;">
+                                {{ $promoCtaText }}
+                            </span>
+                        @endif
+                    @endguest
+                </div>
+            </a>
         </div>
     @else
-        <div class="d-none d-lg-flex flex-grow-1 align-items-center justify-content-center px-4" style="min-width:0;">
-            <div aria-label="New customer offer"
-                 style="max-width:650px;background:{{ $promoBackground }};color:{{ $promoTextColor }};padding:8px 16px;text-align:left;">
+        <div class="d-none d-lg-flex flex-grow-1 align-items-center justify-content-start"
+             style="min-width:0;padding-left:clamp(70px,5.75vw,118px);padding-right:24px;">
+            <a href="{{ $promoCtaUrl }}" aria-label="New customer offer"
+               style="display:block;max-width:650px;background:{{ $promoBackground }};color:{{ $promoTextColor }};padding:8px 16px;text-align:left;text-decoration:none;">
                 <div style="font-size:13px;line-height:1.2;font-weight:800;letter-spacing:.025em;text-transform:uppercase;">
                     {{ $promoTitle }}
                 </div>
@@ -37,13 +41,13 @@
                     {{ $promoMessage }}
                     @guest
                         @if($promoCtaText)
-                            <a href="{{ $promoCtaUrl }}" style="color:inherit;text-decoration:underline;font-weight:800;white-space:nowrap;margin-left:4px;">
+                            <span style="text-decoration:underline;font-weight:800;white-space:nowrap;margin-left:4px;">
                                 {{ $promoCtaText }}
-                            </a>
+                            </span>
                         @endif
                     @endguest
                 </div>
-            </div>
+            </a>
         </div>
     @endif
 @endif
