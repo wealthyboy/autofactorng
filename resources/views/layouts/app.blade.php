@@ -29,6 +29,28 @@
 
    <link rel="stylesheet" href="/css/app.css?id={{ rand(10, 3000) }}">
 
+   <style>
+      /* Keep the homepage offer above the mobile logo/menu row, including when
+         the header becomes sticky. Desktop keeps its existing inline placement. */
+      @media (max-width: 991.98px) {
+         .header-middle.home-promo-header {
+            flex-direction: column;
+            align-items: stretch;
+            padding: 0;
+         }
+
+         .header-middle.home-promo-header.fixed {
+            height: auto;
+         }
+
+         .header-middle.home-promo-header .mobile-header-main-row {
+            width: 100%;
+            padding-top: 2.7rem;
+            padding-bottom: 2.7rem;
+         }
+      }
+   </style>
+
    <meta property="og:locale" content="en_US">
    <meta property="og:type" content="{{ isset($seo['type']) ? $seo['type'] : 'website' }}">
    <meta property="og:site_name" content="Autofactorng">
@@ -118,11 +140,11 @@
 
 
       <header class="header ">
-         @if(request()->is('/'))
-            @include('_partials.header_promo', ['promoPlacement' => 'mobile'])
-         @endif
+         <div class="header-middle sticky-header{{ request()->is('/') ? ' home-promo-header' : '' }}" data-sticky-options="{'mobile': true}">
+            @if(request()->is('/'))
+               @include('_partials.header_promo', ['promoPlacement' => 'mobile'])
+            @endif
 
-         <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
             <div class=" d-none d-lg-block d-xl-block w-100">
 
                <div class="container-fluid justify-content-end ">
@@ -187,7 +209,7 @@
                   <!-- End .header-right -->
                </div>
             </div>
-            <div class="container-fluid w-100  d-md-block d-lg-none d-sm-block">
+            <div class="container-fluid w-100 d-md-block d-lg-none d-sm-block mobile-header-main-row">
 
 
                <div class="header-lefts  d-flex justify-content-between align-items-center w-100">
