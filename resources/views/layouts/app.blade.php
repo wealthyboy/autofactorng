@@ -29,6 +29,56 @@
 
    <link rel="stylesheet" href="/css/app.css?id={{ rand(10, 3000) }}">
 
+   <style>
+      /* Mobile homepage promo is a separate strip ABOVE the header.
+         Kept here so this Blade-only change needs no asset rebuild. */
+      .autofactor-mobile-promo-strip {
+         display: none;
+      }
+
+      @media (max-width: 991.98px) {
+         .autofactor-mobile-promo-strip {
+            display: block !important;
+            position: relative;
+            z-index: 1101;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+         }
+
+         .autofactor-mobile-promo-strip > a {
+            display: block !important;
+            width: 100%;
+            margin: 0;
+            padding: 8px 16px 9px;
+            text-align: left;
+            text-decoration: none !important;
+         }
+
+         .autofactor-mobile-promo-strip .promo-title {
+            display: block !important;
+            margin: 0;
+            font-size: 12px !important;
+            line-height: 1.2 !important;
+            font-weight: 800 !important;
+            letter-spacing: .02em;
+            text-transform: uppercase;
+            opacity: 1 !important;
+            visibility: visible !important;
+         }
+
+         .autofactor-mobile-promo-strip .promo-message {
+            display: block !important;
+            margin: 2px 0 0;
+            font-size: 10.5px !important;
+            line-height: 1.25 !important;
+            font-weight: 600 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+         }
+      }
+   </style>
+
    <meta property="og:locale" content="en_US">
    <meta property="og:type" content="{{ isset($seo['type']) ? $seo['type'] : 'website' }}">
    <meta property="og:site_name" content="Autofactorng">
@@ -117,9 +167,24 @@
    <div id="app" class="page-wrapper">
 
 
-      @if(request()->is('/'))
-         {{-- Mobile promo is a standalone strip above the header, not part of the sticky header. --}}
-         @include('_partials.header_promo', ['promoPlacement' => 'mobile'])
+      @if(request()->is('/') && isset($global_promo) && $global_promo && (bool) $global_promo->is_active)
+         @php
+            $mobilePromoBackground = $global_promo->bgcolor ?: '#ffffff';
+            $mobilePromoTextColor = $global_promo->text_color ?: '#111111';
+            $mobilePromoTitle = $global_promo->displayTitle();
+            $mobilePromoMessage = $global_promo->displayMessage();
+            $mobilePromoUrl = $global_promo->cta_url ?: '/register';
+         @endphp
+
+         {{-- A true standalone mobile promo strip, directly above <header>. --}}
+         <div class="autofactor-mobile-promo-strip"
+              aria-label="New customer offer"
+              style="background:{{ $mobilePromoBackground }};color:{{ $mobilePromoTextColor }};border-bottom:1px solid rgba(0,0,0,.10);">
+            <a href="{{ $mobilePromoUrl }}" style="color:{{ $mobilePromoTextColor }} !important;">
+               <strong class="promo-title" style="color:{{ $mobilePromoTextColor }} !important;">{{ $mobilePromoTitle }}</strong>
+               <span class="promo-message" style="color:{{ $mobilePromoTextColor }} !important;">{{ $mobilePromoMessage }}</span>
+            </a>
+         </div>
       @endif
 
       <header class="header ">
