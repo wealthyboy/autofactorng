@@ -53,7 +53,7 @@
             width: 100%;
             margin: 0;
             padding: 0;
-            background-color: #ddd !important;
+            background-color: #f2f2f2 !important;
          }
 
          .autofactor-mobile-promo-strip > a {
@@ -179,7 +179,7 @@
 
       @if(request()->is('/') && isset($global_promo) && $global_promo && (bool) $global_promo->is_active)
          @php
-            $mobilePromoBackground = '#ddd';
+            $mobilePromoBackground = '#f2f2f2';
             $mobilePromoTextColor = $global_promo->text_color ?: '#111111';
             $mobilePromoTitle = $global_promo->displayTitle();
             $mobilePromoMessage = $global_promo->displayMessage();
