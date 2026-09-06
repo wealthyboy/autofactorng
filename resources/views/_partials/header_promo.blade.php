@@ -5,7 +5,6 @@
         $promoTextColor = $global_promo->text_color ?: '#ffffff';
         $promoTitle = $global_promo->displayTitle();
         $promoMessage = $global_promo->displayMessage();
-        $promoCtaText = $global_promo->cta_text ?: 'CREATE ACCOUNT';
         $promoCtaUrl = $global_promo->cta_url ?: '/register';
     @endphp
 
@@ -19,19 +18,12 @@
                 </div>
                 <div style="margin-top:2px;font-size:10.5px;line-height:1.3;font-weight:600;">
                     {{ $promoMessage }}
-                    @guest
-                        @if($promoCtaText)
-                            <span style="text-decoration:underline;font-weight:800;white-space:nowrap;margin-left:3px;">
-                                {{ $promoCtaText }}
-                            </span>
-                        @endif
-                    @endguest
                 </div>
             </a>
         </div>
     @else
         <div class="d-none d-lg-flex flex-grow-1 align-items-center justify-content-start"
-             style="min-width:0;padding-left:clamp(70px,5.75vw,118px);padding-right:24px;">
+             style="min-width:0;padding-left:clamp(55px,.75vw,118px);padding-right:24px;">
             <a href="{{ $promoCtaUrl }}" aria-label="New customer offer"
                style="display:block;max-width:650px;background:{{ $promoBackground }};color:{{ $promoTextColor }};padding:8px 16px;text-align:left;text-decoration:none;">
                 <div style="font-size:13px;line-height:1.2;font-weight:800;letter-spacing:.025em;text-transform:uppercase;">
@@ -39,13 +31,6 @@
                 </div>
                 <div style="margin-top:2px;font-size:11px;line-height:1.3;font-weight:600;">
                     {{ $promoMessage }}
-                    @guest
-                        @if($promoCtaText)
-                            <span style="text-decoration:underline;font-weight:800;white-space:nowrap;margin-left:4px;">
-                                {{ $promoCtaText }}
-                            </span>
-                        @endif
-                    @endguest
                 </div>
             </a>
         </div>

@@ -2,10 +2,8 @@
     $isEdit = isset($promo);
     $backgroundColor = old('background_color', $isEdit ? ($promo->bgcolor ?: '#f26522') : '#f26522');
     $textColor = old('text_color', $isEdit ? ($promo->text_color ?: '#ffffff') : '#ffffff');
-    $accentColor = old('accent_color', $isEdit ? ($promo->accent_color ?: '#111827') : '#111827');
     $title = old('title', $isEdit ? ($promo->title ?: 'NEW CUSTOMER OFFER') : 'NEW CUSTOMER OFFER');
     $message = old('message', $isEdit ? ($promo->message ?: 'Create an account today and get {discount}% OFF your next order. Your personal coupon code will be sent to your email after registration.') : 'Create an account today and get {discount}% OFF your next order. Your personal coupon code will be sent to your email after registration.');
-    $ctaText = old('cta_text', $isEdit ? ($promo->cta_text ?: 'CREATE ACCOUNT') : 'CREATE ACCOUNT');
     $ctaUrl = old('cta_url', $isEdit ? ($promo->cta_url ?: '/register') : '/register');
     $couponPercent = old('coupon_percent', $isEdit ? ($promo->coupon_percent ?: 5) : 5);
     $isActive = old('is_active', $isEdit ? (bool) $promo->is_active : true);
@@ -37,35 +35,25 @@
                         <textarea class="form-control" name="message" rows="3" required maxlength="500">{{ $message }}</textarea>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label class="form-label">Background color</label>
                         <div class="d-flex align-items-center gap-2">
                             <input type="color" class="form-control form-control-color" value="{{ $backgroundColor }}" oninput="this.nextElementSibling.value=this.value">
                             <input type="text" class="form-control" name="background_color" value="{{ $backgroundColor }}" pattern="#[0-9A-Fa-f]{6}" required>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label class="form-label">Text color</label>
                         <div class="d-flex align-items-center gap-2">
                             <input type="color" class="form-control form-control-color" value="{{ $textColor }}" oninput="this.nextElementSibling.value=this.value">
                             <input type="text" class="form-control" name="text_color" value="{{ $textColor }}" pattern="#[0-9A-Fa-f]{6}" required>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <label class="form-label">Button color</label>
-                        <div class="d-flex align-items-center gap-2">
-                            <input type="color" class="form-control form-control-color" value="{{ $accentColor }}" oninput="this.nextElementSibling.value=this.value">
-                            <input type="text" class="form-control" name="accent_color" value="{{ $accentColor }}" pattern="#[0-9A-Fa-f]{6}" required>
-                        </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <label class="form-label">Button text</label>
-                        <input type="text" class="form-control" name="cta_text" value="{{ $ctaText }}" maxlength="60">
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Button link</label>
-                        <input type="text" class="form-control" name="cta_url" value="{{ $ctaUrl }}" maxlength="255">
+                    <div class="col-12">
+                        <label class="form-label">Promo link</label>
+                        <input type="text" class="form-control" name="cta_url" value="{{ $ctaUrl }}" maxlength="255" placeholder="/register">
+                        <small class="text-secondary">The promo text itself is clickable. Leave this as <code>/register</code> for the default registration link.</small>
                     </div>
 
                     <div class="col-12">

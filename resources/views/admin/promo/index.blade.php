@@ -26,12 +26,9 @@
                                     <div class="d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
                                         <div class="flex-grow-1">
                                             <div class="rounded-2 px-3 py-3" style="background:{{ $promo->bgcolor ?: '#f26522' }};color:{{ $promo->text_color ?: '#ffffff' }};">
-                                                <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-2">
-                                                    <div>
-                                                        <strong class="d-block">{{ $promo->displayTitle() }}</strong>
-                                                        <span class="text-sm">{{ $promo->displayMessage() }}</span>
-                                                    </div>
-                                                    <span class="badge" style="background:{{ $promo->accent_color ?: '#111827' }};color:#fff;">{{ $promo->cta_text ?: 'CREATE ACCOUNT' }}</span>
+                                                <div>
+                                                    <strong class="d-block">{{ $promo->displayTitle() }}</strong>
+                                                    <span class="text-sm">{{ $promo->displayMessage() }}</span>
                                                 </div>
                                             </div>
                                             <div class="d-flex flex-wrap gap-3 mt-2 text-xs text-secondary">

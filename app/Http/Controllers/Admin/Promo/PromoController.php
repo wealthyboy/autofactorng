@@ -74,10 +74,8 @@ class PromoController extends Table
         $validated = $request->validate([
             'background_color' => ['required', 'regex:/^#[0-9A-Fa-f]{6}$/'],
             'text_color' => ['required', 'regex:/^#[0-9A-Fa-f]{6}$/'],
-            'accent_color' => ['required', 'regex:/^#[0-9A-Fa-f]{6}$/'],
             'title' => ['required', 'string', 'max:120'],
             'message' => ['required', 'string', 'max:500'],
-            'cta_text' => ['nullable', 'string', 'max:60'],
             'cta_url' => ['nullable', 'string', 'max:255'],
             'coupon_percent' => ['required', 'integer', 'min:1', 'max:100'],
         ]);
@@ -85,10 +83,8 @@ class PromoController extends Table
         return [
             'bgcolor' => $validated['background_color'],
             'text_color' => $validated['text_color'],
-            'accent_color' => $validated['accent_color'],
             'title' => $validated['title'],
             'message' => $validated['message'],
-            'cta_text' => $validated['cta_text'] ?: 'CREATE ACCOUNT',
             'cta_url' => $validated['cta_url'] ?: '/register',
             'coupon_percent' => (int) $validated['coupon_percent'],
             'is_active' => $request->boolean('is_active'),
