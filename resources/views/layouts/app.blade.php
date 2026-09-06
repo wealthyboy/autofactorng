@@ -36,16 +36,6 @@
          display: none;
       }
 
-      @media (max-width: 767.98px) {
-         /* Mobile-only storefront background. Desktop remains unchanged. */
-         html,
-         body,
-         #app.page-wrapper,
-         main.main {
-            background-color: #eef2f7 !important;
-         }
-      }
-
       @media (max-width: 991.98px) {
          /* The mobile menu must cover every header layer, including the promo strip. */
          .mobile-menu-overlay {
@@ -63,6 +53,7 @@
             width: 100%;
             margin: 0;
             padding: 0;
+            background-color: #ccc !important;
          }
 
          .autofactor-mobile-promo-strip > a {
@@ -188,7 +179,7 @@
 
       @if(request()->is('/') && isset($global_promo) && $global_promo && (bool) $global_promo->is_active)
          @php
-            $mobilePromoBackground = $global_promo->bgcolor ?: '#ffffff';
+            $mobilePromoBackground = '#ccc';
             $mobilePromoTextColor = $global_promo->text_color ?: '#111111';
             $mobilePromoTitle = $global_promo->displayTitle();
             $mobilePromoMessage = $global_promo->displayMessage();
