@@ -1,11 +1,5 @@
 @extends('admin.layouts.app')
 @section('content')
-<div id="customer-status-success-alert"
-     class="alert alert-success d-none"
-     role="alert"
-     aria-live="polite"
-     style="position:fixed;top:20px;right:20px;z-index:2000;min-width:280px;max-width:420px;box-shadow:0 8px 24px rgba(0,0,0,.16);">
-</div>
 <div class="row">
    @include('admin.errors.message')
    @include('admin._partials.customer_class_guide')
@@ -13,28 +7,6 @@
 </div>
 @endsection
 @section('inline-scripts')
-let customerStatusAlertTimer = null;
-
-function showCustomerStatusSuccess(message) {
-   const successAlert = $('#customer-status-success-alert');
-
-   successAlert
-      .stop(true, true)
-      .text(message)
-      .removeClass('d-none')
-      .fadeIn(150);
-
-   if (customerStatusAlertTimer) {
-      clearTimeout(customerStatusAlertTimer);
-   }
-
-   customerStatusAlertTimer = setTimeout(function () {
-      successAlert.fadeOut(250, function () {
-         successAlert.addClass('d-none').show();
-      });
-   }, 3000);
-}
-
 $(document).on('change', '.customer-status-select', function () {
    const select = $(this);
    const previous = select.data('previous');
@@ -61,7 +33,7 @@ $(document).on('change', '.customer-status-select', function () {
          ? response.status
          : (nextStatus.charAt(0).toUpperCase() + nextStatus.slice(1));
 
-      showCustomerStatusSuccess('Customer status updated to ' + savedStatus + ' successfully.');
+      alert('Customer status updated to ' + savedStatus + ' successfully.');
    }).fail(function (xhr) {
       select.val(previous);
 
