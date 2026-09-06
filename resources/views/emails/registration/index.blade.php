@@ -26,7 +26,8 @@
                     <td style="padding:34px 34px 12px;">
                         <div style="font-size:13px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#f26522;margin-bottom:8px;">Welcome to AutofactorNG</div>
                         <h1 style="margin:0 0 18px;font-size:28px;line-height:1.25;color:#111827;">Dear {{ $customerName }},</h1>
-                        <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#4b5563;">Welcome to AutofactorNG! 🎉 Your account has been successfully created, and we’re excited to have you with us.</p>
+                        <p style="margin:0 0 6px;font-size:16px;line-height:1.7;color:#4b5563;">Welcome to AutofactorNG! 🎉</p>
+                        <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#4b5563;">Your account has been successfully created, and we’re excited to have you with us.</p>
 
                         @if(!empty($u->coupon) && $discountPercent)
                             <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="margin:24px 0;background:#fff7ed;border:2px solid #f26522;border-radius:12px;">

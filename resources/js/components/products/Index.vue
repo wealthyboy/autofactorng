@@ -148,8 +148,6 @@
                         :model="dynamicFilters[group.id] || dynamicFilters[String(group.id)] || []" value-key="id"
                         @handle:filter="handleFilter" :clearFilters="clearFilters"></filters>
 
-                    <filters :model="prices" :name="'prices'" :objs="search_filters.price.items"
-                        @handle:filter="handleFilter" :clearFilters="clearFilters"></filters>
                 </form>
             </div>
             <!-- End .sidebar-wrapper -->
