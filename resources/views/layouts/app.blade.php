@@ -29,28 +29,6 @@
 
    <link rel="stylesheet" href="/css/app.css?id={{ rand(10, 3000) }}">
 
-   <style>
-      /* Keep the homepage offer above the mobile logo/menu row, including when
-         the header becomes sticky. Desktop keeps its existing inline placement. */
-      @media (max-width: 991.98px) {
-         .header-middle.home-promo-header {
-            flex-direction: column;
-            align-items: stretch;
-            padding: 0;
-         }
-
-         .header-middle.home-promo-header.fixed {
-            height: auto;
-         }
-
-         .header-middle.home-promo-header .mobile-header-main-row {
-            width: 100%;
-            padding-top: 2.7rem;
-            padding-bottom: 2.7rem;
-         }
-      }
-   </style>
-
    <meta property="og:locale" content="en_US">
    <meta property="og:type" content="{{ isset($seo['type']) ? $seo['type'] : 'website' }}">
    <meta property="og:site_name" content="Autofactorng">
@@ -139,12 +117,13 @@
    <div id="app" class="page-wrapper">
 
 
-      <header class="header ">
-         <div class="header-middle sticky-header{{ request()->is('/') ? ' home-promo-header' : '' }}" data-sticky-options="{'mobile': true}">
-            @if(request()->is('/'))
-               @include('_partials.header_promo', ['promoPlacement' => 'mobile'])
-            @endif
+      @if(request()->is('/'))
+         {{-- Mobile promo is a standalone strip above the header, not part of the sticky header. --}}
+         @include('_partials.header_promo', ['promoPlacement' => 'mobile'])
+      @endif
 
+      <header class="header ">
+         <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
             <div class=" d-none d-lg-block d-xl-block w-100">
 
                <div class="container-fluid justify-content-end ">
