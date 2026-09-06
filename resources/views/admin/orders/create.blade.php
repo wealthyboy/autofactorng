@@ -179,45 +179,78 @@
 @stop
 @section('page-styles')
 <style>
-   /* Orders use clear, always-visible labels instead of Material's floating-label treatment. */
+   /* Keep labels visible without adding a full extra line above every field. */
    .order-admin-form .input-group.input-group-outline {
-      display: block;
       position: relative;
+      display: block;
+      min-height: 0 !important;
+      margin: 0 !important;
       border: 0 !important;
    }
-   .order-admin-form .input-group.input-group-outline .form-label {
-      position: static !important;
-      display: block !important;
+   .order-admin-form .input-group.input-group-outline .form-label,
+   .order-admin-form .input-group.input-group-outline.is-filled .form-label,
+   .order-admin-form .input-group.input-group-outline.is-focused .form-label {
+      position: absolute !important;
+      top: -0.38rem !important;
+      left: 0.65rem !important;
+      z-index: 3;
+      display: inline-block !important;
       width: auto !important;
       height: auto !important;
-      margin: 0 0 6px 2px !important;
-      padding: 0 !important;
+      margin: 0 !important;
+      padding: 0 0.3rem !important;
       transform: none !important;
-      font-size: 0.8rem !important;
-      line-height: 1.25 !important;
+      background: #fff !important;
+      font-size: 0.72rem !important;
+      line-height: 1 !important;
       font-weight: 700 !important;
       color: #344767 !important;
       opacity: 1 !important;
       visibility: visible !important;
-      pointer-events: auto !important;
+      pointer-events: none !important;
+   }
+   .order-admin-form .input-group.input-group-outline .form-label::before,
+   .order-admin-form .input-group.input-group-outline .form-label::after {
+      content: none !important;
+      display: none !important;
    }
    .order-admin-form .input-group.input-group-outline .form-control {
       width: 100%;
-      min-height: 44px;
-      padding: 0.65rem 0.75rem !important;
+      min-height: 40px !important;
+      height: 40px;
+      padding: 0.5rem 0.7rem !important;
       background: #fff !important;
       border: 1px solid #d2d6da !important;
-      border-radius: 0.5rem !important;
+      border-radius: 0.45rem !important;
+      box-shadow: none !important;
+      line-height: 1.2 !important;
+   }
+   .order-admin-form .input-group.input-group-outline.is-filled .form-label + .form-control,
+   .order-admin-form .input-group.input-group-outline.is-focused .form-label + .form-control {
+      border-color: #d2d6da !important;
+      border-top-color: #d2d6da !important;
       box-shadow: none !important;
    }
    .order-admin-form .input-group.input-group-outline .form-control:focus {
       border-color: #344767 !important;
-      box-shadow: 0 0 0 2px rgba(52, 71, 103, 0.08) !important;
+      box-shadow: 0 0 0 2px rgba(52, 71, 103, 0.06) !important;
    }
    .order-admin-form select.form-control {
       cursor: pointer;
    }
-   .product-autocomplete-results { position:absolute; z-index:1050; top:76px; left:12px; right:12px; max-height:300px; overflow-y:auto; background:#fff; border:1px solid #e2e6ed; border-radius:12px; box-shadow:0 18px 36px rgba(31,41,55,.14); }
+
+   /* The order form is intentionally compact; labels must not double its vertical height. */
+   .order-admin-form .row.mt-3 {
+      margin-top: 0.7rem !important;
+   }
+   .order-admin-form .col-sm-12.mt-3,
+   .order-admin-form .col-12.mt-3 {
+      margin-top: 0.7rem !important;
+   }
+   .order-admin-form hr.horizontal {
+      margin: 1rem 0 !important;
+   }
+   .product-autocomplete-results { position:absolute; z-index:1050; top:50px; left:12px; right:12px; max-height:300px; overflow-y:auto; background:#fff; border:1px solid #e2e6ed; border-radius:12px; box-shadow:0 18px 36px rgba(31,41,55,.14); }
    .product-autocomplete-option { width:100%; border:0; border-bottom:1px solid #f0f1f4; background:#fff; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; text-align:left; cursor:pointer; }
    .product-autocomplete-details { display:flex; align-items:center; gap:12px; min-width:0; }
    .product-autocomplete-image { width:48px; height:48px; flex:0 0 48px; border-radius:8px; object-fit:cover; border:1px solid #eceef2; }
