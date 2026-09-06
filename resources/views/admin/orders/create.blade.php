@@ -185,15 +185,16 @@
       display: block;
       min-height: 0 !important;
       margin: 0 !important;
+      padding-top: 0.45rem !important;
       border: 0 !important;
    }
    .order-admin-form .input-group.input-group-outline .form-label,
    .order-admin-form .input-group.input-group-outline.is-filled .form-label,
    .order-admin-form .input-group.input-group-outline.is-focused .form-label {
       position: absolute !important;
-      top: -0.38rem !important;
+      top: 0 !important;
       left: 0.65rem !important;
-      z-index: 3;
+      z-index: 20 !important;
       display: inline-block !important;
       width: auto !important;
       height: auto !important;
@@ -202,7 +203,7 @@
       transform: none !important;
       background: #fff !important;
       font-size: 0.72rem !important;
-      line-height: 1 !important;
+      line-height: 1.05 !important;
       font-weight: 700 !important;
       color: #344767 !important;
       opacity: 1 !important;
@@ -224,6 +225,8 @@
       border-radius: 0.45rem !important;
       box-shadow: none !important;
       line-height: 1.2 !important;
+      position: relative !important;
+      z-index: 1 !important;
    }
    .order-admin-form .input-group.input-group-outline.is-filled .form-label + .form-control,
    .order-admin-form .input-group.input-group-outline.is-focused .form-label + .form-control {
