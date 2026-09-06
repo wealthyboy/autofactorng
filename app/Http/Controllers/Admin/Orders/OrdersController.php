@@ -242,6 +242,7 @@ class OrdersController extends Table
 			'total' => 	$order->total,
 			'order_type' => 'offline',
 			'customer_level' => Order::isReturningCustomer($order) ? 'Returning' : 'New',
+			'customer_type' => ucfirst($order->category ?: 'private'),
 		];
 
 

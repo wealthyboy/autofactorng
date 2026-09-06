@@ -306,6 +306,7 @@ class Order extends Model
 			'total' => $input['total'],
 			'order_type' => 'online',
 			'customer_level' => self::isReturningCustomer($order) ? 'Returning' : 'New',
+			'customer_type' => ucfirst($order->category ?: 'private'),
 		];
 
 		\Dispatch(new \App\Jobs\AppendPendingOrderRow($spreedSheetData, "!A1:Z1000"));
@@ -411,9 +412,7 @@ class Order extends Model
 			$data['total'] ?? '',
 			$data['order_type'] ?? '',
 			$data['customer_level'] ?? '',
-			null,
-			null,
-			null,
+			$data['customer_type'] ?? '',
 		];
 
 		$updateRange = $sheetTab . "!A{$nextRow}:G{$nextRow}";
