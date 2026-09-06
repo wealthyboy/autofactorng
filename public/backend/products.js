@@ -528,6 +528,7 @@ function addProductRow() {
     html += '<div class="col-sm-5 col-12">';
     html += '<div class="product-picker position-relative" data-product-picker>';
     html += '<div class="input-group input-group-outline">';
+    html += '<label class="form-label">Product</label>';
     html += '<input type="text" required autocomplete="off" class="form-control order-product-search" placeholder="Search product, SKU or barcode" name="products[product_name][]">';
     html += '<input type="hidden" class="order-product-id" name="products[product_id][]">';
     html += '<input type="hidden" class="order-product-sort-order" name="products[sort_order][]" value="' + (row + 1) + '">';
@@ -538,11 +539,13 @@ function addProductRow() {
     html += '</div>';
     html += '<div class="col-sm-3 col-12">';
     html += '<div class="input-group input-group-outline">';
-    html += '<input type="number"  required class="form-control" placeholder="Quantity" name="products[quantity][]">';
+    html += '<label class="form-label">Quantity</label>';
+    html += '<input type="number" required class="form-control" placeholder="Quantity" name="products[quantity][]">';
     html += '</div>';
     html += '</div>';
     html += '<div class="col-sm-3 col-12">';
     html += '<div class="input-group input-group-outline">';
+    html += '<label class="form-label">Price</label>';
     html += '<input type="number" required class="form-control" placeholder="Price" name="products[price][]">';
     html += '</div>';
     html += '</div>';
@@ -686,3 +689,110 @@ var Img = {
         }
     },
 };
+
+// Category-owned product filters (e.g. Engine Oil -> Viscosity -> 5W-30).
+// Definitions are embedded by the create/edit Blade views so category changes
+// update instantly without another admin request.
+$(document).ready(function () {
+    const definitionsNode = document.getElementById('category-filter-definitions');
+    const selectedNode = document.getElementById('selected-category-filter-options');
+    const filtersCard = document.getElementById('dynamic-product-filters-card');
+    const filtersContainer = document.getElementById('dynamic-product-filters');
+
+    if (!definitionsNode || !selectedNode || !filtersCard || !filtersContainer) {
+        return;
+    }
+
+    let definitions = {};
+    let selectedOptionIds = new Set();
+
+    try {
+        definitions = JSON.parse(definitionsNode.textContent || '{}') || {};
+        selectedOptionIds = new Set(
+            (JSON.parse(selectedNode.textContent || '[]') || []).map(function (id) {
+                return String(id);
+            })
+        );
+    } catch (error) {
+        console.error('Could not load category product filters.', error);
+        return;
+    }
+
+    function escapeHtml(value) {
+        return String(value == null ? '' : value)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+    }
+
+    function checkedCategoryIds() {
+        return $('input[name="category_id[]"]:checked').map(function () {
+            return String(this.value);
+        }).get();
+    }
+
+    function renderCategoryProductFilters() {
+        const categoryIds = checkedCategoryIds();
+        const renderedGroupIds = new Set();
+        const groups = [];
+
+        categoryIds.forEach(function (categoryId) {
+            (definitions[categoryId] || []).forEach(function (group) {
+                const groupId = String(group.id);
+                if (!renderedGroupIds.has(groupId) && Array.isArray(group.options) && group.options.length) {
+                    renderedGroupIds.add(groupId);
+                    groups.push(group);
+                }
+            });
+        });
+
+        if (!groups.length) {
+            filtersCard.classList.add('d-none');
+            filtersContainer.innerHTML = '<p class="text-sm text-muted mb-0">The selected categories do not have dynamic product filters configured.</p>';
+            return;
+        }
+
+        const html = groups.map(function (group) {
+            const options = group.options.map(function (option) {
+                const optionId = String(option.id);
+                const checked = selectedOptionIds.has(optionId) ? ' checked' : '';
+                const inputId = 'category-filter-option-' + optionId;
+
+                return '<div class="col-sm-6 col-12 mb-2">' +
+                    '<div class="form-check border rounded-3 px-3 py-2 h-100">' +
+                        '<input class="form-check-input ms-0 me-2" type="checkbox" name="filter_option_ids[]" value="' + escapeHtml(optionId) + '" id="' + escapeHtml(inputId) + '"' + checked + '>' +
+                        '<label class="form-check-label text-sm fw-bold" for="' + escapeHtml(inputId) + '">' + escapeHtml(option.name) + '</label>' +
+                    '</div>' +
+                '</div>';
+            }).join('');
+
+            const categoryLabel = group.category_name
+                ? '<span class="text-xs text-muted ms-2">' + escapeHtml(group.category_name) + '</span>'
+                : '';
+
+            return '<div class="mb-3 pb-3 border-bottom dynamic-filter-group">' +
+                '<div class="d-flex align-items-center mb-2">' +
+                    '<h6 class="mb-0">' + escapeHtml(group.name) + '</h6>' + categoryLabel +
+                '</div>' +
+                '<div class="row">' + options + '</div>' +
+            '</div>';
+        }).join('');
+
+        filtersContainer.innerHTML = html;
+        filtersCard.classList.remove('d-none');
+    }
+
+    $(document).on('change', 'input[name="filter_option_ids[]"]', function () {
+        const optionId = String(this.value);
+        if (this.checked) {
+            selectedOptionIds.add(optionId);
+        } else {
+            selectedOptionIds.delete(optionId);
+        }
+    });
+
+    $('input[name="category_id[]"]').on('change', renderCategoryProductFilters);
+    renderCategoryProductFilters();
+});

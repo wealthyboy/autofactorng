@@ -107,6 +107,13 @@ class OrdersController extends Table
 	{
 		//try {
 		//DB::beginTransaction();
+		$validated = $request->validate([
+			'category' => 'required|in:private,business,indrive',
+		], [
+			'category.required' => 'Please choose a customer type.',
+			'category.in' => 'Please choose a valid customer type.',
+		]);
+
 		$inv = substr(rand(100000, time()), 0, 7);
 
 		//dd($request->all());
@@ -115,11 +122,8 @@ class OrdersController extends Table
 		$input = $request->except('_token');
 		$input['invoice'] = $inv;
 		$input['order_type'] = "Offline";
-		$requestedCategory = strtolower((string) $request->category);
-		if ($requestedCategory === 'general') {
-			$requestedCategory = 'private';
-		}
-		$input['category'] = in_array($requestedCategory, ['private', 'business', 'indrive'], true) ? $requestedCategory : 'private';
+		$requestedCategory = strtolower((string) $validated['category']);
+		$input['category'] = $requestedCategory;
 		$input['is_indrive_order'] = $input['category'] === 'indrive';
 		$input['source_channel'] = $input['category'] === 'indrive' ? 'indrive' : null;
 		$input['user_id'] = null !== $user ? $user->id : null;

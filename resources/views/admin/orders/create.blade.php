@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
-<form action="{{ route('admin.orders.store') }}" class="" method="post">
+<form action="{{ route('admin.orders.store') }}" class="order-admin-form" method="post">
    @csrf
    <div class="row">
       <div class="col-md-10">
@@ -17,7 +17,7 @@
                <div class="row">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> To</label>
+                        <label class="form-label" for="to">Customer Email</label>
                         <input type="text" class="form-control" value="{{ isset($order) ? $order->email : null }}" name="email" required id="to">
                      </div>
                   </div>
@@ -27,10 +27,12 @@
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
                         @php
-                           $selectedCategory = old('category', isset($order) ? $order->category : 'private');
+                           $selectedCategory = old('category', isset($order) ? $order->category : '');
                            $selectedCategory = $selectedCategory === 'general' ? 'private' : $selectedCategory;
                         @endphp
-                        <select class="form-control" name="category" required>
+                        <label class="form-label" for="order-customer-type">Customer Type</label>
+                        <select class="form-control" name="category" id="order-customer-type" required>
+                           <option value="" disabled {{ $selectedCategory === '' ? 'selected' : '' }}>Choose one</option>
                            <option value="private" {{ $selectedCategory === 'private' ? 'selected' : '' }}>Private</option>
                            <option value="business" {{ $selectedCategory === 'business' ? 'selected' : '' }}>Business</option>
                            <option value="indrive" {{ $selectedCategory === 'indrive' ? 'selected' : '' }}>InDrive</option>
@@ -42,27 +44,27 @@
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> Subject</label>
-                        <input type="text" value="{{ 'Confirmation Of Order' }}" class="form-control" name="subject" required>
+                        <label class="form-label" for="order-subject">Subject</label>
+                        <input id="order-subject" type="text" value="{{ 'Confirmation Of Order' }}" class="form-control" name="subject" required>
                      </div>
                   </div>
 
                   <div class="col-sm-12 mt-3 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label">Full name</label>
-                        <input type="text" value="{{ isset($order) ? $order->first_name : null }}" class="form-control" required name="first_name">
+                        <label class="form-label" for="order-full-name">Full Name</label>
+                        <input id="order-full-name" type="text" value="{{ isset($order) ? $order->first_name : null }}" class="form-control" required name="first_name">
                      </div>
                   </div>
                   <div class="col-sm-12 col-12 mt-3">
                      <div class="input-group input-group-outline">
-                        <label class="form-label">Phone Number</label>
-                        <input name="phone_number" value="{{ isset($order) ? $order->phone_number : null }}" class="form-control " type="text" required>
+                        <label class="form-label" for="order-phone-number">Phone Number</label>
+                        <input id="order-phone-number" name="phone_number" value="{{ isset($order) ? $order->phone_number : null }}" class="form-control " type="text" required>
                      </div>
                   </div>
                   <div class="col-sm-12 col-12 mt-3">
                      <div class="input-group input-group-outline">
-                        <label class="form-label">Payment</label>
-                        <input name="payment_type" value="{{  isset($order) ? $order->payment_type : null }}" class="form-control" type="text" required>
+                        <label class="form-label" for="order-payment-type">Payment Type</label>
+                        <input id="order-payment-type" name="payment_type" value="{{  isset($order) ? $order->payment_type : null }}" class="form-control" type="text" required>
                      </div>
                   </div>
                </div>
@@ -70,7 +72,7 @@
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> Address</label>
+                        <label class="form-label" for="address">Address</label>
                         <input type="text" value="{{ isset($order) ? $order->address : null }}" class="form-control" name="address" id="address" required>
                      </div>
                   </div>
@@ -81,8 +83,9 @@
                <div class="row mt-3">
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
-                        <select class="form-control" name="percentage_type" id="">
-                           <option value="">--Type--</option>
+                        <label class="form-label" for="order-discount-type">Discount Type</label>
+                        <select class="form-control" name="percentage_type" id="order-discount-type">
+                           <option value="">Choose one</option>
                            <option value="percentage">Percentage</option>
                            <option value="fixed">Fixed</option>
 
@@ -92,20 +95,20 @@
 
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> Discount</label>
+                        <label class="form-label">Discount</label>
                         <input type="number" class="form-control" name="discount">
                      </div>
                   </div>
 
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> Shipping</label>
+                        <label class="form-label">Shipping</label>
                         <input type="number" class="form-control" required name="shipping_price">
                      </div>
                   </div>
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> Heavy/Large Item</label>
+                        <label class="form-label">Heavy/Large Item Charge</label>
                         <input type="number" class="form-control" name="heavy_item_price">
                      </div>
                   </div>
@@ -120,7 +123,7 @@
                   <h6>Product</h6>
                   <div class="col-sm-6 col-12 product-picker position-relative" data-product-picker>
                      <div class="input-group input-group-outline">
-                        <label class="form-label">Search product name, SKU or barcode</label>
+                        <label class="form-label">Product</label>
                         <input type="text" class="form-control order-product-search" autocomplete="off" required name="products[product_name][]">
                         <input type="hidden" class="order-product-id" name="products[product_id][]">
                         <input type="hidden" class="order-product-sort-order" name="products[sort_order][]" value="0">
@@ -132,7 +135,7 @@
                   </div>
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> Quantity</label>
+                        <label class="form-label">Quantity</label>
                         <input type="number" class="form-control" required name="products[quantity][]">
                      </div>
                   </div>
@@ -176,7 +179,45 @@
 @stop
 @section('page-styles')
 <style>
-   .product-autocomplete-results { position:absolute; z-index:1050; top:52px; left:12px; right:12px; max-height:300px; overflow-y:auto; background:#fff; border:1px solid #e2e6ed; border-radius:12px; box-shadow:0 18px 36px rgba(31,41,55,.14); }
+   /* Orders use clear, always-visible labels instead of Material's floating-label treatment. */
+   .order-admin-form .input-group.input-group-outline {
+      display: block;
+      position: relative;
+      border: 0 !important;
+   }
+   .order-admin-form .input-group.input-group-outline .form-label {
+      position: static !important;
+      display: block !important;
+      width: auto !important;
+      height: auto !important;
+      margin: 0 0 6px 2px !important;
+      padding: 0 !important;
+      transform: none !important;
+      font-size: 0.8rem !important;
+      line-height: 1.25 !important;
+      font-weight: 700 !important;
+      color: #344767 !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+   }
+   .order-admin-form .input-group.input-group-outline .form-control {
+      width: 100%;
+      min-height: 44px;
+      padding: 0.65rem 0.75rem !important;
+      background: #fff !important;
+      border: 1px solid #d2d6da !important;
+      border-radius: 0.5rem !important;
+      box-shadow: none !important;
+   }
+   .order-admin-form .input-group.input-group-outline .form-control:focus {
+      border-color: #344767 !important;
+      box-shadow: 0 0 0 2px rgba(52, 71, 103, 0.08) !important;
+   }
+   .order-admin-form select.form-control {
+      cursor: pointer;
+   }
+   .product-autocomplete-results { position:absolute; z-index:1050; top:76px; left:12px; right:12px; max-height:300px; overflow-y:auto; background:#fff; border:1px solid #e2e6ed; border-radius:12px; box-shadow:0 18px 36px rgba(31,41,55,.14); }
    .product-autocomplete-option { width:100%; border:0; border-bottom:1px solid #f0f1f4; background:#fff; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; text-align:left; cursor:pointer; }
    .product-autocomplete-details { display:flex; align-items:center; gap:12px; min-width:0; }
    .product-autocomplete-image { width:48px; height:48px; flex:0 0 48px; border-radius:8px; object-fit:cover; border:1px solid #eceef2; }
