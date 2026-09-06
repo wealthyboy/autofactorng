@@ -7,29 +7,38 @@
 </div>
 @endsection
 @section('inline-scripts')
-<script>
-   $(document).on('change', '.customer-status-select', function () {
-      const select = $(this);
-      const previous = select.data('previous');
+$(document).on('change', '.customer-status-select', function () {
+   const select = $(this);
+   const previous = select.data('previous');
+   const nextStatus = select.val();
 
-      select.prop('disabled', true);
+   select.prop('disabled', true);
 
-      $.ajax({
-         type: 'POST',
-         url: '{{ route('admin.customers.status') }}',
-         data: {
-            _token: '{{ csrf_token() }}',
-            id: select.data('id'),
-            status: select.val()
-         }
-      }).done(function () {
-         select.data('previous', select.val());
-      }).fail(function () {
-         select.val(previous);
-         alert('Customer status update failed.');
-      }).always(function () {
-         select.prop('disabled', false);
-      });
+   $.ajax({
+      type: 'POST',
+      url: '{{ route('admin.customers.status') }}',
+      headers: {
+         'Accept': 'application/json'
+      },
+      data: {
+         _token: '{{ csrf_token() }}',
+         id: select.data('id'),
+         status: nextStatus
+      }
+   }).done(function () {
+      // Only treat the new value as saved after the server confirms it.
+      select.data('previous', nextStatus);
+   }).fail(function (xhr) {
+      select.val(previous);
+
+      let message = 'Customer status update failed.';
+      if (xhr.responseJSON && xhr.responseJSON.message) {
+         message += ' ' + xhr.responseJSON.message;
+      }
+
+      alert(message);
+   }).always(function () {
+      select.prop('disabled', false);
    });
-</script>
+});
 @stop

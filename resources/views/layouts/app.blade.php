@@ -37,6 +37,15 @@
       }
 
       @media (max-width: 991.98px) {
+         /* The mobile menu must cover every header layer, including the promo strip. */
+         .mobile-menu-overlay {
+            z-index: 1200 !important;
+         }
+
+         .mobile-menu-container {
+            z-index: 1201 !important;
+         }
+
          .autofactor-mobile-promo-strip {
             display: block !important;
             position: relative;
