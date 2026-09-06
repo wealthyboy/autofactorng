@@ -235,6 +235,17 @@
       border-color: #344767 !important;
       box-shadow: 0 0 0 2px rgba(52, 71, 103, 0.06) !important;
    }
+   /* Keep browser autofill from painting saved values blue/yellow. */
+   .order-admin-form input.form-control:-webkit-autofill,
+   .order-admin-form input.form-control:-webkit-autofill:hover,
+   .order-admin-form input.form-control:-webkit-autofill:focus,
+   .order-admin-form input.form-control:-webkit-autofill:active {
+      -webkit-text-fill-color: #344767 !important;
+      -webkit-box-shadow: 0 0 0 1000px #fff inset !important;
+      box-shadow: 0 0 0 1000px #fff inset !important;
+      background-color: #fff !important;
+      transition: background-color 9999s ease-out 0s;
+   }
    .order-admin-form select.form-control {
       cursor: pointer;
    }
