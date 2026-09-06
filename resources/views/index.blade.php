@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-@include('_partials.top_banner')
+@unless(isset($global_promo) && $global_promo && (bool) $global_promo->is_active)
+    @include('_partials.top_banner')
+@endunless
 
 <div class="class">
     <div class="container-fluid mt-3">

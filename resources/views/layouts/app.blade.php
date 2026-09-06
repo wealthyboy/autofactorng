@@ -118,6 +118,10 @@
 
 
       <header class="header ">
+         @if(request()->is('/'))
+            @include('_partials.header_promo', ['promoPlacement' => 'mobile'])
+         @endif
+
          <div class="header-middle sticky-header" data-sticky-options="{'mobile': true}">
             <div class=" d-none d-lg-block d-xl-block w-100">
 
@@ -133,6 +137,10 @@
                   </div>
 
                   <!-- End .header-left -->
+
+                  @if(request()->is('/'))
+                     @include('_partials.header_promo', ['promoPlacement' => 'desktop'])
+                  @endif
 
                   <div class="header-right w-lg-max">
                      <div class="header-icon header-search header-search-inline header-search-category w-lg-max text-right mt-0"></div>
