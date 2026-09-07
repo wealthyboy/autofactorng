@@ -265,6 +265,12 @@
             color: white;
             border-color: #d25500;
         }
+
+        @media (max-width: 767px) {
+            .margin-top-35.custom-pagination {
+                margin-top: 150px;
+            }
+        }
     </style>
 </head>
 
