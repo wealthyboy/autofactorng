@@ -30,7 +30,7 @@
    <link rel="stylesheet" href="/css/app.css?id={{ rand(10, 3000) }}">
 
    <style>
-      /* Mobile homepage promo is a separate strip ABOVE the header.
+      /* Mobile global promo is a separate strip ABOVE the header.
          Kept here so this Blade-only change needs no asset rebuild. */
       .autofactor-mobile-promo-strip {
          display: none;
@@ -177,7 +177,29 @@
    <div id="app" class="page-wrapper">
 
 
-      @if(request()->is('/') && isset($global_promo) && $global_promo && (bool) $global_promo->is_active)
+      @php
+         // Account-area pages live under several frontend route prefixes, not only /account.
+         $isCustomerAccountSection =
+            request()->is('account*') ||
+            request()->is('address*') ||
+            request()->is('orders*') ||
+            request()->is('tracking*') ||
+            request()->is('wallets*') ||
+            request()->is('wallet-balance*') ||
+            request()->is('change/password*') ||
+            request()->is('returns*');
+
+         // Show the global promo on home, product listing/show pages and the whole
+         // customer account area. Explicitly keep it off checkout and nested checkout pages.
+         $showGlobalHeaderPromo = !request()->is('checkout*') && (
+            request()->is('/') ||
+            request()->is('products/*') ||
+            request()->is('product/*/*') ||
+            $isCustomerAccountSection
+         );
+      @endphp
+
+      @if($showGlobalHeaderPromo && isset($global_promo) && $global_promo && (bool) $global_promo->is_active)
          @php
             $mobilePromoBackground = '#f2f2f2';
             $mobilePromoTextColor = $global_promo->text_color ?: '#111111';
@@ -214,7 +236,7 @@
 
                   <!-- End .header-left -->
 
-                  @if(request()->is('/'))
+                  @if($showGlobalHeaderPromo)
                      @include('_partials.header_promo', ['promoPlacement' => 'desktop'])
                   @endif
 
