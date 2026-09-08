@@ -16,7 +16,7 @@
                 <div style="font-size:12px;line-height:1.25;font-weight:800;letter-spacing:.025em;text-transform:uppercase;">
                     {{ $promoTitle }}
                 </div>
-                <div style="margin-top:2px;font-size:10.5px;line-height:1.3;font-weight:600;">
+                <div style="margin-top:2px;font-size:13px !important;line-height:1.3;font-weight:600;">
                     {{ $promoMessage }}
                 </div>
             </a>
@@ -29,7 +29,7 @@
                 <div style="font-size:13px;line-height:1.2;font-weight:800;letter-spacing:.025em;text-transform:uppercase;">
                     {{ $promoTitle }}
                 </div>
-                <div style="margin-top:2px;font-size:13px;line-height:1.3;font-weight:600;">
+                <div style="margin-top:2px;font-size:13px !important;line-height:1.3;font-weight:600;">
                     {{ $promoMessage }}
                 </div>
             </a>

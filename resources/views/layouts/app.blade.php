@@ -80,7 +80,7 @@
          .autofactor-mobile-promo-strip .promo-message {
             display: block !important;
             margin: 2px 0 0;
-            font-size: 10.5px !important;
+            font-size: 13px !important;
             line-height: 1.25 !important;
             font-weight: 600 !important;
             opacity: 1 !important;
@@ -178,25 +178,9 @@
 
 
       @php
-         // Account-area pages live under several frontend route prefixes, not only /account.
-         $isCustomerAccountSection =
-            request()->is('account*') ||
-            request()->is('address*') ||
-            request()->is('orders*') ||
-            request()->is('tracking*') ||
-            request()->is('wallets*') ||
-            request()->is('wallet-balance*') ||
-            request()->is('change/password*') ||
-            request()->is('returns*');
-
-         // Show the global promo on home, product listing/show pages and the whole
-         // customer account area. Explicitly keep it off checkout and nested checkout pages.
-         $showGlobalHeaderPromo = !request()->is('checkout*') && (
-            request()->is('/') ||
-            request()->is('products/*') ||
-            request()->is('product/*/*') ||
-            $isCustomerAccountSection
-         );
+         // Show the global promo throughout the storefront.
+         // Checkout and all nested checkout pages intentionally remain distraction-free.
+         $showGlobalHeaderPromo = !request()->is('checkout*');
       @endphp
 
       @if($showGlobalHeaderPromo && isset($global_promo) && $global_promo && (bool) $global_promo->is_active)
