@@ -125,7 +125,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('analytics/inventory', 'Admin\Analytics\AnalyticsController@inventory')->name('admin.analytics.inventory');
     Route::get('analytics/inventory/one-remaining', 'Admin\Analytics\AnalyticsController@inventoryOneRemaining')->name('admin.analytics.inventory.one-remaining');
     Route::get('analytics/marketing', 'Admin\Analytics\AnalyticsController@marketing')->name('admin.analytics.marketing');
-    Route::get('analytics/search', 'Admin\Analytics\AnalyticsController@search')->name('admin.analytics.search');
+    Route::get('analytics/search/section/{section}', 'Admin\Analytics\SearchAnalyticsController@section')->name('admin.analytics.search.section');
+    Route::get('analytics/search', 'Admin\Analytics\SearchAnalyticsController@index')->name('admin.analytics.search');
     Route::get('analytics/all', 'Admin\Analytics\AnalyticsController@all')->name('admin.analytics.all');
 });
 

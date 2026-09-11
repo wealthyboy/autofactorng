@@ -1,184 +1,144 @@
 @extends('admin.layouts.app')
 
 @section('content')
-    <style>
-        .analytics-search-card {
-            min-width: 0;
-            overflow: hidden;
-        }
+@include('admin.analytics._header', [
+    'title' => 'Search analytics',
+    'description' => 'Search demand and the products and categories visitors explore.',
+    'stats' => [],
+])
 
-        .analytics-search-table {
-            width: 100%;
-            table-layout: fixed;
-        }
-
-        .analytics-search-table td {
-            vertical-align: top;
-            white-space: normal !important;
-        }
-
-        .analytics-search-table .analytics-label-column {
-            width: auto;
-            min-width: 0;
-        }
-
-        .analytics-search-table .analytics-count-column {
-            width: 82px;
-            white-space: nowrap !important;
-        }
-
-        .analytics-search-label {
-            display: block;
-            width: 100%;
-            max-width: 100%;
-            min-width: 0;
-            white-space: normal !important;
-            overflow-wrap: anywhere;
-            word-break: break-word;
-            line-height: 1.4;
-        }
-
-        @media (max-width: 575.98px) {
-            .analytics-search-table .analytics-count-column {
-                width: 64px;
-            }
-
-            .analytics-search-table td {
-                padding-left: 1rem !important;
-                padding-right: 1rem !important;
-            }
-        }
-    </style>
-
-    @include('admin.analytics._header', [
-        'title' => 'Search analytics',
-        'description' => 'Search demand and the products and categories visitors explore.'
-    ])
-
-    <div class="row">
-        <div class="col-lg-4 mb-4">
-            <div class="card h-100 analytics-search-card">
-                <div class="card-header pb-0">
-                    <h6>Most searched terms</h6>
-                </div>
-
-                <div class="card-body px-0">
-                    <table class="table mb-0 analytics-search-table">
-                        <tbody>
-                            @forelse($terms as $term => $count)
-                                <tr>
-                                    <td class="px-4 text-sm analytics-label-column">
-                                        <span class="analytics-search-label">{{ $term }}</span>
-                                    </td>
-                                    <td class="text-end px-4 analytics-count-column">
-                                        {{ number_format($count) }}
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="2" class="text-center py-4">No search terms recorded.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+<div id="search-analytics-summary"
+     data-url="{{ route('admin.analytics.search.section', ['section' => 'summary', 'from' => $from->format('Y-m-d'), 'to' => $to->format('Y-m-d')]) }}"
+     class="row mb-4 analytics-async-section">
+    @for($i = 0; $i < 4; $i++)
+        <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card h-100">
+                <div class="card-body p-3 d-flex align-items-center justify-content-center" style="min-height: 118px;">
+                    <div class="text-center text-secondary">
+                        <div class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></div>
+                        <div class="text-xs mt-2">Loading summary...</div>
+                    </div>
                 </div>
             </div>
         </div>
+    @endfor
+</div>
 
-        <div class="col-lg-4 mb-4">
-            <div class="card h-100 analytics-search-card">
-                <div class="card-header pb-0">
-                    <h6>Most viewed products</h6>
-                </div>
-
-                <div class="card-body px-0">
-                    <table class="table mb-0 analytics-search-table">
-                        <tbody>
-                            @forelse($products as $product)
-                                <tr>
-                                    <td class="px-4 text-sm analytics-label-column">
-                                        <span class="analytics-search-label">{{ $product->name }}</span>
-                                    </td>
-                                    <td class="text-end px-4 analytics-count-column">
-                                        {{ number_format($product->views) }}
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="2" class="text-center py-4">No product views recorded.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4 mb-4">
-            <div class="card h-100 analytics-search-card">
-                <div class="card-header pb-0">
-                    <h6>Top categories explored</h6>
-                </div>
-
-                <div class="card-body px-0">
-                    <table class="table mb-0 analytics-search-table">
-                        <tbody>
-                            @forelse($categories as $category)
-                                <tr>
-                                    <td class="px-4 text-sm analytics-label-column">
-                                        <span class="analytics-search-label">{{ $category->name }}</span>
-                                    </td>
-                                    <td class="text-end px-4 analytics-count-column">
-                                        {{ number_format($category->visits) }}
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="2" class="text-center py-4">No category activity recorded.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 mb-4">
-            <div class="card analytics-search-card">
-                <div class="card-header pb-0">
-                    <h6>No-result searches</h6>
-                    <p class="text-xs text-secondary mb-0">Search terms that returned zero products in the selected period</p>
-                </div>
-
-                <div class="card-body px-0">
-                    <table class="table mb-0 analytics-search-table">
-                        <thead>
-                            <tr>
-                                <th class="analytics-label-column">Search term</th>
-                                <th class="text-end analytics-count-column">Searches</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($noResultTerms as $term => $count)
-                                <tr>
-                                    <td class="px-4 text-sm analytics-label-column">
-                                        <span class="analytics-search-label">{{ $term }}</span>
-                                    </td>
-                                    <td class="text-end px-4 analytics-count-column">
-                                        {{ number_format($count) }}
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="2" class="text-center py-4">
-                                        No searches returned zero products in this period.
-                                    </td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
+<div class="row">
+    <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+            <div class="card-header pb-0"><h6>Most searched terms</h6></div>
+            <div id="search-analytics-terms"
+                 data-url="{{ route('admin.analytics.search.section', ['section' => 'terms', 'from' => $from->format('Y-m-d'), 'to' => $to->format('Y-m-d')]) }}"
+                 class="analytics-async-section">
+                @include('admin.analytics.search_sections._loader', ['label' => 'search terms'])
             </div>
         </div>
     </div>
+
+    <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+            <div class="card-header pb-0"><h6>Most viewed products</h6></div>
+            <div id="search-analytics-products"
+                 data-url="{{ route('admin.analytics.search.section', ['section' => 'products', 'from' => $from->format('Y-m-d'), 'to' => $to->format('Y-m-d')]) }}"
+                 class="analytics-async-section">
+                @include('admin.analytics.search_sections._loader', ['label' => 'product views'])
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+            <div class="card-header pb-0"><h6>Top categories explored</h6></div>
+            <div id="search-analytics-categories"
+                 data-url="{{ route('admin.analytics.search.section', ['section' => 'categories', 'from' => $from->format('Y-m-d'), 'to' => $to->format('Y-m-d')]) }}"
+                 class="analytics-async-section">
+                @include('admin.analytics.search_sections._loader', ['label' => 'category activity'])
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('page-scripts')
+<script>
+(function () {
+    'use strict';
+
+    function showError(target) {
+        target.innerHTML = [
+            '<div class="card-body text-center py-5">',
+            '<p class="text-sm text-secondary mb-3">This section could not be loaded.</p>',
+            '<button type="button" class="btn btn-sm bg-gradient-dark mb-0 analytics-retry">Retry</button>',
+            '</div>'
+        ].join('');
+
+        var retry = target.querySelector('.analytics-retry');
+        if (retry) {
+            retry.addEventListener('click', function () {
+                loadSection(target);
+            });
+        }
+    }
+
+    function loadSection(target) {
+        if (!target || !target.dataset.url) {
+            return Promise.resolve();
+        }
+
+        var controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+        var timeout = controller ? setTimeout(function () { controller.abort(); }, 45000) : null;
+        var options = {
+            headers: {
+                'Accept': 'text/html',
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            cache: 'no-store',
+            credentials: 'same-origin'
+        };
+
+        if (controller) {
+            options.signal = controller.signal;
+        }
+
+        return fetch(target.dataset.url, options)
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Analytics request failed with HTTP ' + response.status);
+                }
+                return response.text();
+            })
+            .then(function (html) {
+                target.innerHTML = html;
+            })
+            .catch(function () {
+                showError(target);
+            })
+            .finally(function () {
+                if (timeout) {
+                    clearTimeout(timeout);
+                }
+            });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var summary = document.getElementById('search-analytics-summary');
+        var detailSections = [
+            document.getElementById('search-analytics-terms'),
+            document.getElementById('search-analytics-products'),
+            document.getElementById('search-analytics-categories')
+        ];
+
+        // Load the small KPI summary first, then progressively fill the three
+        // report cards. The page itself is already usable while these run.
+        loadSection(summary).finally(function () {
+            detailSections.forEach(function (section, index) {
+                setTimeout(function () {
+                    loadSection(section);
+                }, index * 150);
+            });
+        });
+    });
+})();
+</script>
 @endsection
