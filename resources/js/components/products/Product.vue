@@ -30,7 +30,7 @@
                 <h4 :class="{ title: product.str_len > 30 }" class="product-title mb-3 fs-5 Grid">
                     <a :href="product.link">{{ product.name }}</a>
                 </h4>
-                <div class="mb-3 fs-5 fw-bold text-black product-note Grid">
+                <div v-if="product.note" class="mb-3 fs-5 fw-bold text-black product-note Grid">
                     {{ product.note }}
                 </div>
 
@@ -221,3 +221,37 @@ export default {
     },
 };
 </script>
+
+<style scoped>
+@media (max-width: 575.98px) {
+    /* Keep mobile grid cards compact when a product has a long name, note and reviews. */
+    h4.product-title.Grid,
+    h4.product-title.Grid.title {
+        height: auto !important;
+        min-height: 2.7em;
+        max-height: 2.7em;
+        overflow: hidden;
+    }
+
+    h4.product-title.Grid > a {
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
+
+    .product-note.Grid {
+        height: auto !important;
+        min-height: 0;
+        max-height: 2.8em;
+        overflow: hidden;
+        display: -webkit-box;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
+}
+</style>

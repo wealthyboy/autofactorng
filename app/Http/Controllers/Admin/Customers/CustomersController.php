@@ -27,7 +27,10 @@ class CustomersController extends Table
 
     public function builder()
     {
-        return User::query();
+        // Customer tables need the order count for both display and sorting.
+        // Keep the customer scope here so Table::getRecords() does not lose
+        // it when a column sort/search rebuilds the query.
+        return User::query()->customers()->withCount('orders');
     }
 
 
@@ -38,7 +41,7 @@ class CustomersController extends Table
      */
     public function index()
     {
-        $users = (new User())->customers()->withCount('orders')->orderBy('id', 'DESC')->paginate(100);
+        $users = $this->builder()->orderBy('id', 'DESC')->paginate(100);
         $users = $this->getColumnListings(request(), $users);
         return   view('admin.customers.index', compact('users'));
     }

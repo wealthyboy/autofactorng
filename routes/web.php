@@ -27,6 +27,12 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
     Route::get('/maintainance/mode', 'Admin\Live\LiveController@index')->name('maintainance');
     Route::get('live', 'Admin\Live\LiveController@activate');
     Route::resource('activities', 'Admin\Activity\ActivityController', ['names' => 'admin.activities']);
+    Route::resource('trackings', 'Admin\Tracking\TrackingController')
+        ->only(['index', 'show'])
+        ->names([
+            'index' => 'trackings.index',
+            'show' => 'trackings.show',
+        ]);
     Route::get('reports', 'Admin\Account\AccountsController@index');
     Route::get('account/filter', 'Admin\Account\AccountsController@index')->name('filter_sales');
     Route::post('customers/wallet/{id}', 'Admin\Customers\CustomersController@fundWallet');
