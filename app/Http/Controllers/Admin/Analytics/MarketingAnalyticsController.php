@@ -94,34 +94,60 @@ class MarketingAnalyticsController extends Controller
 
     private function checkoutStats(Carbon $from, Carbon $to): array
     {
-        $base = AbandonedCart::query()->whereBetween('checkout_started_at', [$from, $to]);
-        $abandonmentCutoff = now()->subHour();
+        /*
+         * A checkout becomes abandoned one hour after checkout_started_at.
+         * Report the abandonment in the period in which that one-hour point
+         * actually falls, rather than classifying it against the current time
+         * and then attaching it to the checkout's original start date.
+         *
+         * Example: checkout starts Aug 12 at 23:30 and remains unrecovered.
+         * It becomes abandoned Aug 13 at 00:30, so it belongs to an Aug 13
+         * report, not Aug 12.
+         */
+        $now = now();
+        $effectiveTo = $to->lt($now) ? $to->copy() : $now;
 
-        // A checkout that was started less than one hour ago is still active,
-        // not abandoned. The reminder job uses the same one-hour threshold.
         $abandoned = 0;
-        if ($from->lte($abandonmentCutoff)) {
-            $effectiveCutoff = $to->lt($abandonmentCutoff) ? $to : $abandonmentCutoff;
-            $abandoned = (clone $base)
+        if ($from->lte($effectiveTo)) {
+            $abandoned = AbandonedCart::query()
                 ->where('recovered', false)
-                ->where('checkout_started_at', '<=', $effectiveCutoff)
+                ->whereNotNull('checkout_started_at')
+                ->whereBetween(
+                    'checkout_started_at',
+                    [
+                        $from->copy()->subHour(),
+                        $effectiveTo->copy()->subHour(),
+                    ]
+                )
                 ->count();
         }
 
-        $recovered = (clone $base)->where('recovered', true)->count();
-        $active = (clone $base)
-            ->where('recovered', false)
-            ->where('checkout_started_at', '>', $abandonmentCutoff)
-            ->count();
+        // Recovered checkouts continue to be grouped by the checkout attempt's
+        // selected period so the existing dashboard meaning is preserved.
+        $periodCheckouts = AbandonedCart::query()
+            ->whereBetween('checkout_started_at', [$from, $to]);
+
+        $recovered = (clone $periodCheckouts)->where('recovered', true)->count();
+
+        // Active checkouts are only meaningful for a range that reaches the
+        // present. Historical ranges should not show old checkouts as active.
+        $active = 0;
+        if ($to->gte($now)) {
+            $active = (clone $periodCheckouts)
+                ->where('recovered', false)
+                ->where('checkout_started_at', '>', $now->copy()->subHour())
+                ->where('checkout_started_at', '<=', $now)
+                ->count();
+        }
 
         $resolvedAttempts = $abandoned + $recovered;
         $rate = $resolvedAttempts ? ($abandoned / $resolvedAttempts) * 100 : 0;
 
         return [
-            ['label' => 'Abandoned Carts', 'value' => number_format($abandoned), 'hint' => 'Checkout inactive for 1+ hour and not recovered'],
+            ['label' => 'Abandoned Carts', 'value' => number_format($abandoned), 'hint' => 'Became abandoned within selected period'],
             ['label' => 'Recovered Checkouts', 'value' => number_format($recovered), 'hint' => 'Checkout attempts that became orders'],
             ['label' => 'Abandoned Cart Rate', 'value' => number_format($rate, 1) . '%', 'hint' => 'Abandoned vs resolved checkout attempts'],
-            ['label' => 'Active Checkouts', 'value' => number_format($active), 'hint' => 'Started within the last hour'],
+            ['label' => 'Active Checkouts', 'value' => number_format($active), 'hint' => 'Currently active checkouts in selected period'],
         ];
     }
 
