@@ -122,23 +122,9 @@ class CartController  extends Controller
 			];
 		});
 
-		if (auth()->check()) {
-			$cartItems = Cart::all_items_in_cart($remember_token);
-
-			$items = $cartItems->map(function ($cart) {
-				return [
-					'product_id' => $cart->product_id,
-					'name' => $cart->product->name ?? 'Unknown Product',
-					'image_url' => $cart->product->image_m ?? '',
-					'price' => $cart->product->price ?? 0,
-				];
-			});
-
-			AbandonedCart::updateOrCreate(
-				['user_id' => $user->id],
-				['checkout_started_at' => now(), 'recovered' => false, 'cart_items' =>  $items]
-			);
-		}
+		// Do not create abandoned checkouts while a customer is simply adding
+		// products to the cart. Abandonment tracking begins only when the
+		// authenticated customer actually opens the checkout page.
 
 		$response = response()->json([
 			'data' => $cartData,
@@ -202,28 +188,43 @@ class CartController  extends Controller
 
 				$user = $request->user();
 				if (auth()->check()) {
-					$cartItems = Cart::all_items_in_cart();
-					$items = $cartItems->map(function ($cart) {
-						return [
-							'product_id' => $cart->product_id,
-						'name' => $cart->product->name ?? 'Unknown Product',
-						'image_url' => $cart->product->image_m ?? '',
-						'price' => $cart->product->price ?? 0,
-					];
-				});
+					$carts = Cart::all_items_in_cart();
+					$cartToken = \Cookie::get('cart');
 
-				$abandonedCart = AbandonedCart::updateOrCreate(
-					['user_id' => $user->id],
-					['checkout_started_at' => now(), 'recovered' => false, 'cart_items' =>  $items]
-				);
+					// Only update a checkout record that already exists. Removing a
+					// product on the normal cart page must not create a new abandonment.
+					$activeCheckout = AbandonedCart::query()
+						->where('user_id', $user->id)
+						->where('recovered', false)
+						->when($cartToken, function ($query) use ($cartToken) {
+							$query->where(function ($tokenQuery) use ($cartToken) {
+								$tokenQuery->where('cart_token', $cartToken)
+									->orWhereNull('cart_token');
+							});
+						})
+						->latest('id')
+						->first();
 
-				$carts = Cart::all_items_in_cart();
+					if ($activeCheckout) {
+						if ($carts->isEmpty()) {
+							// A deliberately emptied cart should not stay queued for an
+							// abandoned-cart reminder.
+							$activeCheckout->delete();
+						} else {
+							$items = $carts->map(function ($cart) {
+								return [
+									'product_id' => $cart->product_id,
+									'name' => $cart->product->name ?? 'Unknown Product',
+									'image_url' => $cart->product->image_m ?? '',
+									'price' => $cart->product->price ?? 0,
+								];
+							});
 
-				if ($carts->isEmpty()) {
-					AbandonedCart::where('user_id', $user->id)->delete();
+							$activeCheckout->cart_items = $items->values()->all();
+							$activeCheckout->save();
+						}
+					}
 				}
-			}
-
 
 
 			return $this->loadCart($request);

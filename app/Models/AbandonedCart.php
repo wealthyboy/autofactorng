@@ -12,12 +12,18 @@ class AbandonedCart extends Model
     protected $casts = [
         'checkout_started_at' => 'datetime',
         'cart_items' => 'array',
+        'recovered' => 'boolean',
+        'reminder_sent_at' => 'datetime',
+        'recovered_at' => 'datetime',
     ];
 
     protected $fillable = [
         'user_id',
+        'cart_token',
         'checkout_started_at',
         'recovered',
+        'reminder_sent_at',
+        'recovered_at',
         'cart_items',
     ];
 

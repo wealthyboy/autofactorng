@@ -34,39 +34,54 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        $carts =  Cart::all_items_in_cart();
+        $carts = Cart::all_items_in_cart();
+
+        // An empty cart is not a checkout attempt. The old flow created an
+        // abandoned-cart row before this check, which produced false positives
+        // in Marketing Analytics.
+        if (! $carts->count()) {
+            return redirect()->to('/cart');
+        }
 
         $user = Auth::user();
-        $cartItems = $carts;
-
-
-        $items = $cartItems->map(function ($cart) {
+        $items = $carts->map(function ($cart) {
             return [
                 'product_id' => $cart->product_id,
                 'name' => $cart->product->name ?? 'Unknown Product',
                 'image_url' => $cart->product->image_m ?? '',
                 'price' => $cart->product->price ?? 0,
-
             ];
         });
 
-        $abandonedCart = AbandonedCart::updateOrCreate(
-            ['user_id' => $user->id],
-            ['checkout_started_at' => now(), 'recovered' => false, 'cart_items' =>  $items]
-        );
+        $cartToken = optional($carts->first())->remember_token ?: Cookie::get('cart');
 
-        // Prepare and insert abandoned cart items
+        // Keep one active record for the current cart/checkout. A recovered
+        // record is retained as history, so a later checkout creates a new row
+        // instead of overwriting the old conversion result.
+        $activeCheckout = AbandonedCart::query()
+            ->where('user_id', $user->id)
+            ->where('recovered', false)
+            ->when($cartToken, function ($query) use ($cartToken) {
+                $query->where(function ($tokenQuery) use ($cartToken) {
+                    $tokenQuery->where('cart_token', $cartToken)
+                        ->orWhereNull('cart_token');
+                });
+            })
+            ->latest('id')
+            ->first();
 
-
-        // Optional: delete existing items before re-inserting (if you want fresh snapshot)
-        $abandonedCart->items()->delete();
-
-        // Insert new items
-        AbandonedCartItem::insert($items->toArray());
-
-        if (!$carts->count()) {
-            return redirect()->to('/cart');
+        if (! $activeCheckout) {
+            $activeCheckout = new AbandonedCart();
+            $activeCheckout->user_id = $user->id;
         }
+
+        $activeCheckout->cart_token = $cartToken;
+        $activeCheckout->checkout_started_at = now();
+        $activeCheckout->recovered = false;
+        $activeCheckout->recovered_at = null;
+        $activeCheckout->cart_items = $items->values()->all();
+        $activeCheckout->save();
+
         return view('checkout.index');
     }
 

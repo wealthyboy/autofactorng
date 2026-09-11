@@ -296,7 +296,23 @@ class Order extends Model
 					])->toArray(),
 				]);
 	
-				AbandonedCart::where('user_id', $user->id)->delete();
+				$abandonedQuery = AbandonedCart::query()
+					->where('user_id', $user->id)
+					->where('recovered', false);
+
+				$checkoutCartToken = optional($carts->first())->remember_token;
+				if ($checkoutCartToken) {
+					$abandonedQuery->where(function ($query) use ($checkoutCartToken) {
+						$query->where('cart_token', $checkoutCartToken)
+							->orWhereNull('cart_token');
+					});
+				}
+
+				// Keep the checkout row as recovered history instead of deleting it.
+				$abandonedQuery->update([
+					'recovered' => true,
+					'recovered_at' => now(),
+				]);
 		}
 
 

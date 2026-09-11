@@ -42,6 +42,7 @@ class SendAbandonedCartEmail implements ShouldQueue
             $carts = AbandonedCart::with(['user', 'items'])
                 ->where('recovered', false)
                 ->where('checkout_started_at', '<=', now()->subHour())
+                ->whereNull('reminder_sent_at')
                 ->get();
 
             \Log::info($carts);
@@ -56,11 +57,19 @@ class SendAbandonedCartEmail implements ShouldQueue
                         Log::info($cart->cart_items);
                         if ($user && $user->email) {
                             Mail::to($user->email)->send(new AbandonedCartMail($user, $cart));
-                            $cart->delete();
+
+                            // Preserve the row for analytics/history. The previous job
+                            // deleted it immediately after sending the reminder, making
+                            // abandoned-cart reporting undercount old checkouts.
+                            $cart->reminder_sent_at = now();
+                            $cart->save();
                         }
                     } catch (\Throwable $e) {
 
-                        dd($e->getMessage());
+                        Log::error('abandoned-cart reminder failed', [
+                            'cart_id' => optional($cart)->id,
+                            'message' => $e->getMessage(),
+                        ]);
 
 
                         // Notification::route('mail', 'jacob.atam@gmail.com')
@@ -70,7 +79,9 @@ class SendAbandonedCartEmail implements ShouldQueue
             }
         } catch (\Throwable $e) {
 
-            dd($e->getMessage());
+            Log::error('abandoned-cart reminder job failed', [
+                'message' => $e->getMessage(),
+            ]);
 
             // send global job failure notification
             // Notification::route('mail', config('mail.from.address'))
