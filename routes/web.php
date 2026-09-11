@@ -33,6 +33,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
             'index' => 'trackings.index',
             'show' => 'trackings.show',
         ]);
+    Route::get('abandoned-carts', 'Admin\AbandonedCarts\AbandonedCartsController@index')->name('admin.abandoned-carts.index');
     Route::get('reports', 'Admin\Account\AccountsController@index');
     Route::get('account/filter', 'Admin\Account\AccountsController@index')->name('filter_sales');
     Route::post('customers/wallet/{id}', 'Admin\Customers\CustomersController@fundWallet');
