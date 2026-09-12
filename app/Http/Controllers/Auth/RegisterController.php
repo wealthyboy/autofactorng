@@ -159,10 +159,10 @@ class RegisterController extends Controller
                 'reasons' => $reasons,
             ]);
 
-            return true;
+            return false;
         }
 
-        return true;
+        return false;
     }
 
     protected function looksLikeSpamInput(array $data): bool
