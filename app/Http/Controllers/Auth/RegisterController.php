@@ -125,7 +125,9 @@ class RegisterController extends Controller
             $elapsedSeconds = (int) floor(((int) round(microtime(true) * 1000) - $startedAt) / 1000);
 
             if ($elapsedSeconds < 3) {
-                $riskScore += 70;
+                // Autofill and password managers can complete a genuine form in
+                // under three seconds, so timing alone must not reject a user.
+                $riskScore += 10;
                 $reasons[] = 'submitted_too_fast';
             }
 
