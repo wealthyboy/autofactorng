@@ -162,7 +162,7 @@ class RegisterController extends Controller
             return true;
         }
 
-        return false;
+        return true;
     }
 
     protected function looksLikeSpamInput(array $data): bool
