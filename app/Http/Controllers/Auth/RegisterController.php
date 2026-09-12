@@ -161,7 +161,7 @@ class RegisterController extends Controller
                 'reasons' => $reasons,
             ]);
 
-            return true;
+            return false;
         }
 
         return false;
