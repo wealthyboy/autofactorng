@@ -224,34 +224,62 @@ export default {
 
 <style scoped>
 @media (max-width: 575.98px) {
-    /* Keep mobile grid cards compact when a product has a long name, note and reviews. */
+    /* Keep mobile product cards level when one product has a long title, note and reviews. */
+    .product-default {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .product-default .product-details {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+    }
+
     h4.product-title.Grid,
     h4.product-title.Grid.title {
         height: auto !important;
         min-height: 2.7em;
         max-height: 2.7em;
+        margin-bottom: 0.75rem !important;
         overflow: hidden;
     }
 
     h4.product-title.Grid > a {
-        display: -webkit-box;
+        display: -webkit-box !important;
         overflow: hidden;
         text-overflow: ellipsis;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
         line-clamp: 2;
+        word-break: break-word;
     }
 
     .product-note.Grid {
-        height: auto !important;
         min-height: 0;
         max-height: 2.8em;
+        margin-bottom: 0.75rem !important;
         overflow: hidden;
-        display: -webkit-box;
+        display: -webkit-box !important;
         text-overflow: ellipsis;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
         line-clamp: 2;
+        word-break: break-word;
+    }
+
+    .product-default .product-rating {
+        min-height: 24px;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .product-default .price-box {
+        margin-top: auto;
+    }
+
+    .product-default .product-action {
+        margin-top: 0.75rem;
     }
 }
 </style>
