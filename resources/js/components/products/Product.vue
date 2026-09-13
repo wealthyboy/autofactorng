@@ -28,17 +28,22 @@
 
             <div class="product-details">
                 <h4 :class="{ title: product.str_len > 30 }" class="product-title mb-3 fs-5 Grid">
-                    <a :href="product.link">{{ product.name }}</a>
+                    <a :href="product.link">
+                        <span class="product-name-desktop">{{ product.name }}</span>
+                        <span class="product-name-mobile">{{ mobileProductName(product.name) }}</span>
+                    </a>
                 </h4>
                 <div v-if="product.note" class="mb-3 fs-5 fw-bold text-black product-note Grid">
                     {{ product.note }}
                 </div>
+                <div v-else class="product-note-placeholder Grid" aria-hidden="true">&nbsp;</div>
 
                 <div itemprop="rating" v-if="product.average_rating_count >= 1" class="product-rating mb-2">
                     <rating :active="true" v-for="x in product.average_rating / 20" />
                     <rating :active="false" v-for="x in (100 - product.average_rating) / 20" />
                     <!-- End .ratings -->
                 </div>
+                <div v-else class="product-rating-placeholder" aria-hidden="true">&nbsp;</div>
                 <!-- End .product-container -->
 
                 <p v-if="product.show_fit_text" class="product-description mt-2 w-100">
@@ -187,6 +192,16 @@ export default {
     created() { },
 
     methods: {
+        mobileProductName(name) {
+            if (!name || name.length <= 22) return name;
+
+            const clipped = name.slice(0, 22).trim();
+            const lastSpace = clipped.lastIndexOf(" ");
+            const clean = lastSpace > 12 ? clipped.slice(0, lastSpace) : clipped;
+
+            return `${clean}...`;
+        },
+
         ...mapActions({
             addProductToCart: "addProductToCart",
         }),
@@ -223,63 +238,68 @@ export default {
 </script>
 
 <style scoped>
+.product-name-mobile {
+    display: none;
+}
+
 @media (max-width: 575.98px) {
-    /* Keep mobile product cards level when one product has a long title, note and reviews. */
-    .product-default {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
+    .product-name-desktop {
+        display: none;
     }
 
-    .product-default .product-details {
-        display: flex;
-        flex-direction: column;
-        flex: 1 1 auto;
+    .product-name-mobile {
+        display: inline;
     }
 
+    /* Keep every mobile grid card on the same content rhythm. */
     h4.product-title.Grid,
     h4.product-title.Grid.title {
-        height: auto !important;
-        min-height: 2.7em;
-        max-height: 2.7em;
+        height: 2.7em !important;
+        min-height: 2.7em !important;
+        max-height: 2.7em !important;
         margin-bottom: 0.75rem !important;
         overflow: hidden;
     }
 
     h4.product-title.Grid > a {
-        display: -webkit-box !important;
+        display: block !important;
         overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        word-break: break-word;
+        line-height: 1.35;
+    }
+
+    .product-note.Grid,
+    .product-note-placeholder.Grid {
+        height: 2.8em !important;
+        min-height: 2.8em !important;
+        max-height: 2.8em !important;
+        margin-bottom: 0.75rem !important;
+        overflow: hidden;
+        line-height: 1.4;
     }
 
     .product-note.Grid {
-        min-height: 0;
-        max-height: 2.8em;
-        margin-bottom: 0.75rem !important;
-        overflow: hidden;
         display: -webkit-box !important;
         text-overflow: ellipsis;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
         line-clamp: 2;
-        word-break: break-word;
     }
 
-    .product-default .product-rating {
-        min-height: 24px;
+    .product-note-placeholder.Grid {
+        visibility: hidden;
+    }
+
+    .product-rating,
+    .product-rating-placeholder {
+        height: 24px !important;
+        min-height: 24px !important;
+        max-height: 24px !important;
         margin-bottom: 0.5rem !important;
+        overflow: hidden;
     }
 
-    .product-default .price-box {
-        margin-top: auto;
-    }
-
-    .product-default .product-action {
-        margin-top: 0.75rem;
+    .product-rating-placeholder {
+        visibility: hidden;
     }
 }
 </style>
