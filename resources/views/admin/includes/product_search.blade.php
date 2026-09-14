@@ -1,21 +1,46 @@
 <form action="{{  route('products.index') }}" class="filter-form" method="get">
     @csrf
-    <div class="row">
+    <div class="row g-3 align-items-end">
 
-        <div class="col-sm-6 col-12">
-            <div class="input-group input-group-outline">
-                <label class="form-label">Product Name</label>
-                <input name="product_name" type="text" class="form-control" placeholder="">
+        <div class="col-md-5 col-12">
+            <div class="mb-0">
+                <label for="product-filter-name" class="form-label mb-1">Product Name</label>
+                <input
+                    id="product-filter-name"
+                    name="product_name"
+                    type="text"
+                    class="form-control border rounded-3 px-3 py-2"
+                    value="{{ request('product_name') }}"
+                    placeholder="Enter product name"
+                >
             </div>
         </div>
-        <div class="col-sm-6 col-5">
-            <select name="category_id" class="form-select  mb-3 border p-2 ps-2" aria-label=".form-select-lg example">
-                <option selected value=""> Select Category</option>
+
+        <div class="col-md-4 col-12">
+            <label for="product-filter-category" class="form-label mb-1">Category</label>
+            <select id="product-filter-category" name="category_id" class="form-select border rounded-3 px-3 py-2" aria-label="Select category">
+                <option value="">Select Category</option>
                 @foreach($categories as $category)
-                <option class="" value="{{ $category->id }}">{{ $category->name }} </option>
+                <option class="" value="{{ $category->id }}" {{ (string) request('category_id') === (string) $category->id ? 'selected' : '' }}>{{ $category->name }} </option>
                 @include('includes.children_options',['obj'=>$category,'space'=>'&nbsp;&nbsp;'])
                 @endforeach
             </select>
+        </div>
+
+        <div class="col-md-3 col-12">
+            <div class="mb-0">
+                <label for="product-filter-stock-count" class="form-label mb-1">Stock Count</label>
+                <input
+                    id="product-filter-stock-count"
+                    name="stock_count"
+                    type="number"
+                    min="0"
+                    step="1"
+                    class="form-control border rounded-3 px-3 py-2"
+                    value="{{ request('stock_count') }}"
+                    placeholder="e.g. 0, 5, 20"
+                >
+            </div>
         </div>
 
     </div>
