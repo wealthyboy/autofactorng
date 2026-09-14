@@ -1,6 +1,6 @@
 <template>
-    <div v-if="list == 'Grid'" class="col-6 border col-sm-4 col-md-3">
-        <div itemscope itemtype="https://schema.org/Product" class="product-default">
+    <div v-if="list == 'Grid'" class="col-6 border col-sm-4 col-md-3 product-grid-column">
+        <div itemscope itemtype="https://schema.org/Product" class="product-default product-grid-card">
             <div itemscope itemtype="https://schema.org/AggregateOffer" class="position-relative product-info-box">
                 <figure class="product-image-box-h position-relative">
                     <a :title="product.name" :href="product.link" class="product-image-grid">
@@ -26,24 +26,20 @@
                 </a>
             </div>
 
-            <div class="product-details">
-                <h4 :class="{ title: product.str_len > 30 }" class="product-title mb-3 fs-5 Grid">
-                    <a :href="product.link">
-                        <span class="product-name-desktop">{{ product.name }}</span>
-                        <span class="product-name-mobile">{{ mobileProductName(product.name) }}</span>
-                    </a>
+            <div class="product-details product-grid-details">
+                <h4 :class="{ title: product.str_len > 30 }" class="product-title mb-3 fs-5 Grid product-grid-title">
+                    <a :href="product.link">{{ product.name }}</a>
                 </h4>
-                <div v-if="product.note" class="mb-3 fs-5 fw-bold text-black product-note Grid">
+
+                <div v-if="product.note" class="mb-3 fs-5 fw-bold text-black product-note Grid product-grid-note">
                     {{ product.note }}
                 </div>
-                <div v-else class="product-note-placeholder Grid" aria-hidden="true">&nbsp;</div>
 
-                <div itemprop="rating" v-if="product.average_rating_count >= 1" class="product-rating mb-2">
+                <div itemprop="rating" v-if="product.average_rating_count >= 1" class="product-rating mb-2 product-grid-rating">
                     <rating :active="true" v-for="x in product.average_rating / 20" />
                     <rating :active="false" v-for="x in (100 - product.average_rating) / 20" />
                     <!-- End .ratings -->
                 </div>
-                <div v-else class="product-rating-placeholder" aria-hidden="true">&nbsp;</div>
                 <!-- End .product-container -->
 
                 <p v-if="product.show_fit_text" class="product-description mt-2 w-100">
@@ -192,16 +188,6 @@ export default {
     created() { },
 
     methods: {
-        mobileProductName(name) {
-            if (!name || name.length <= 22) return name;
-
-            const clipped = name.slice(0, 22).trim();
-            const lastSpace = clipped.lastIndexOf(" ");
-            const clean = lastSpace > 12 ? clipped.slice(0, lastSpace) : clipped;
-
-            return `${clean}...`;
-        },
-
         ...mapActions({
             addProductToCart: "addProductToCart",
         }),
@@ -238,68 +224,93 @@ export default {
 </script>
 
 <style scoped>
-.product-name-mobile {
-    display: none;
+/*
+ * Grid-card layout override.
+ * The legacy theme gives title/note/review blocks different natural heights.
+ * Make each Bootstrap column a flex item and let the price/action anchor to the
+ * bottom of the card so Add To Cart remains level across each row.
+ */
+.product-grid-column {
+    display: flex;
+    align-self: stretch;
+}
+
+.product-grid-card {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0 !important;
+}
+
+.product-grid-card .product-grid-details {
+    display: flex !important;
+    flex: 1 1 auto;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    width: 100%;
+}
+
+.product-grid-card .product-grid-title,
+.product-grid-card .product-grid-title > a {
+    width: 100%;
+}
+
+.product-grid-card .product-grid-title > a {
+    white-space: normal !important;
+}
+
+.product-grid-card .price-box {
+    width: 100%;
+    margin-top: auto !important;
+}
+
+.product-grid-card .product-action {
+    width: 100%;
+    margin-top: 0.75rem;
+}
+
+.product-grid-card .product-action .btn-add-cart {
+    justify-content: center;
 }
 
 @media (max-width: 575.98px) {
-    .product-name-desktop {
-        display: none;
-    }
-
-    .product-name-mobile {
-        display: inline;
-    }
-
-    /* Keep every mobile grid card on the same content rhythm. */
-    h4.product-title.Grid,
-    h4.product-title.Grid.title {
+    /* Mobile titles are always exactly a two-line slot and truncate with an ellipsis. */
+    .product-grid-card h4.product-grid-title,
+    .product-grid-card h4.product-grid-title.title {
         height: 2.7em !important;
         min-height: 2.7em !important;
         max-height: 2.7em !important;
         margin-bottom: 0.75rem !important;
-        overflow: hidden;
+        overflow: hidden !important;
     }
 
-    h4.product-title.Grid > a {
-        display: block !important;
-        overflow: hidden;
-        line-height: 1.35;
-    }
-
-    .product-note.Grid,
-    .product-note-placeholder.Grid {
-        height: 2.8em !important;
-        min-height: 2.8em !important;
-        max-height: 2.8em !important;
-        margin-bottom: 0.75rem !important;
-        overflow: hidden;
-        line-height: 1.4;
-    }
-
-    .product-note.Grid {
+    .product-grid-card h4.product-grid-title > a {
         display: -webkit-box !important;
-        text-overflow: ellipsis;
+        height: 2.7em !important;
+        max-height: 2.7em !important;
+        overflow: hidden !important;
+        white-space: normal !important;
+        text-overflow: ellipsis !important;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
         line-clamp: 2;
+        line-height: 1.35 !important;
+        word-break: break-word;
     }
 
-    .product-note-placeholder.Grid {
-        visibility: hidden;
-    }
-
-    .product-rating,
-    .product-rating-placeholder {
-        height: 24px !important;
-        min-height: 24px !important;
-        max-height: 24px !important;
-        margin-bottom: 0.5rem !important;
-        overflow: hidden;
-    }
-
-    .product-rating-placeholder {
-        visibility: hidden;
+    /* Notes may use up to two lines, but never push the price/button lower. */
+    .product-grid-card .product-grid-note {
+        display: -webkit-box !important;
+        max-height: 2.8em !important;
+        margin-bottom: 0.75rem !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+        line-height: 1.4 !important;
     }
 }
 </style>
