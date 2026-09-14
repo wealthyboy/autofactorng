@@ -275,6 +275,15 @@ export default {
     justify-content: center;
 }
 
+/*
+ * Do not rely on the global Bootstrap/theme .mb-2 utility here.
+ * AutofactorNG currently has competing .mb-2 definitions, so keep the
+ * product-grid review spacing local and deterministic.
+ */
+.product-grid-card .product-rating.product-grid-rating {
+    margin-bottom: 2rem !important;
+}
+
 @media (max-width: 575.98px) {
     /* Mobile titles are always exactly a two-line slot and truncate with an ellipsis. */
     .product-grid-card h4.product-grid-title,
