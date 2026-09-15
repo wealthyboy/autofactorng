@@ -3,16 +3,6 @@
         <message :message="post_server_error" />
 
         <form method="POST" @submit.prevent="register">
-            <input
-                v-model="form.fax_number"
-                type="text"
-                name="fax_number"
-                tabindex="-1"
-                autocomplete="off"
-                class="registration-website-field"
-                aria-hidden="true"
-            />
-
             <div class="row">
                 <div class="form-group p-1 col-6">
                     <div class="form-floating">
@@ -241,8 +231,6 @@ export default {
         }
 
         onMounted(() => {
-            form.registration_started_at = Date.now();
-
             if (!getRecaptchaSiteKey()) {
                 captcha_error.value =
                     "reCAPTCHA is not configured. Contact support.";
@@ -315,11 +303,11 @@ export default {
                         captcha_error.value = registrationErrors[0];
                     }
 
-                    // Only force a fresh challenge when the server rejected the
-                    // verification/bot check. Ordinary field errors should not
-                    // make the customer solve reCAPTCHA again unnecessarily.
+                    // Google response tokens are single-use and expire quickly. Reset
+                    // only when the server rejected reCAPTCHA; ordinary field
+                    // errors should not make the customer solve it again.
                     if (
-                        (captchaErrors.length || registrationErrors.length) &&
+                        captchaErrors.length &&
                         window.grecaptcha &&
                         recaptchaWidgetId.value !== null
                     ) {
@@ -343,11 +331,3 @@ export default {
 };
 </script>
 
-<style scoped>
-.registration-website-field {
-    position: absolute;
-    left: -10000px;
-    opacity: 0;
-    pointer-events: none;
-}
-</style>

@@ -7,9 +7,6 @@ export const registerData = () => {
         password_confirmation: null,
         phone_number: null,
         "g-recaptcha-response": "",
-        website: "",
-        fax_number: "",
-        registration_started_at: null,
     };
 
     return data;

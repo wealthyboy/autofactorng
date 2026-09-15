@@ -17,7 +17,7 @@ use App\Services\Newsletter\Contracts\NewsletterContract;
 use App\Services\Newsletter\Exceptions\UserAlreadySubscribedException;
 use App\Services\Newsletter\MailChimpNewsletter;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Http;
 use Mailchimp;
 use Mailchimp_Lists;
 
@@ -73,30 +73,41 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone_number' => ['required', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'website' => ['nullable', 'string', 'max:255'],
-            'fax_number' => ['nullable', 'string', 'max:255'],
-            // These two fields are produced by the real registration UI.
-            // They are deliberately validated locally; Google siteverify is not
-            // used because the production server-side Google call was unreliable.
-            'registration_started_at' => ['required', 'integer'],
-            // We do not call Google's siteverify endpoint in production, but
-            // a genuine v2 browser token is substantially longer than a hand-made
-            // placeholder. This remains only one signal in the local verifier.
-            'g-recaptcha-response' => ['required', 'string', 'min:80'],
+            'g-recaptcha-response' => ['required', 'string'],
         ]);
 
         $validator->after(function ($validator) use ($data) {
-            // Do not consume anti-bot attempts when ordinary form validation
-            // already failed (duplicate email, password confirmation, etc.).
-            // A genuine customer must be able to correct a field and resubmit.
+            // Do not call Google when the normal registration fields already
+            // contain errors. The customer should be able to fix those fields
+            // without unnecessarily consuming a one-time reCAPTCHA token.
             if ($validator->errors()->count() > 0) {
                 return;
             }
 
-            if ($this->isBotRegistration($data, request())) {
+            // Keep a tiny local sanity check, but let Google be the authority on
+            // whether the visible challenge is genuine. Do not use timing, user
+            // agent, proxy/IP or hidden-field scoring to reject real customers.
+            if ($this->looksLikeSpamInput($data)) {
+                Log::warning('Registration blocked by obvious spam input', [
+                    'ip' => request()->ip(),
+                    'email' => $data['email'] ?? null,
+                ]);
+
                 $validator->errors()->add(
                     'registration',
-                    'We could not verify this registration. Please complete the verification again and try once more.'
+                    'We could not verify this registration. Please review your details and try again.'
+                );
+                return;
+            }
+
+            $verification = $this->verifyRecaptcha(
+                (string) ($data['g-recaptcha-response'] ?? '')
+            );
+
+            if (!$verification['success']) {
+                $validator->errors()->add(
+                    'g-recaptcha-response',
+                    $verification['message']
                 );
             }
         });
@@ -104,117 +115,130 @@ class RegisterController extends Controller
         return $validator;
     }
 
-    protected function isBotRegistration(array $data, Request $request): bool
+    /**
+     * Verify a reCAPTCHA v2 token with Google.
+     *
+     * Google response tokens are short-lived and single-use. The client resets
+     * the widget whenever verification fails so a genuine customer can solve a
+     * fresh challenge without losing the rest of the registration form.
+     */
+    protected function verifyRecaptcha(string $token): array
     {
-        // Keep the anti-bot decision local to AutofactorNG. Google siteverify is
-        // intentionally NOT called because that production request was unreliable.
-        $ip = (string) $request->ip();
-        $email = strtolower(trim((string) ($data['email'] ?? '')));
-        $phone = preg_replace('/\D+/', '', (string) ($data['phone_number'] ?? ''));
+        $token = trim($token);
+        $secret = trim((string) config('services.recaptcha.secret'));
 
-        // v3 starts clean after the earlier limiter/risk-score false positives.
-        $ipKey = 'register:v3:ip:' . sha1($ip);
-        $emailKey = 'register:v3:email:' . sha1($email);
-        $phoneKey = 'register:v3:phone:' . sha1($phone);
-
-        $hardReasons = [];
-        $softReasons = [];
-
-        // New honeypot name is deliberately unrelated to normal browser profile
-        // fields. The old `website` honeypot was vulnerable to autofill and is now
-        // only logged as a legacy signal instead of blocking a genuine customer.
-        if (!empty($data['fax_number'])) {
-            $hardReasons[] = 'honeypot_filled';
+        if ($token === '') {
+            return [
+                'success' => false,
+                'message' => 'Please complete the reCAPTCHA verification.',
+                'code' => 'missing-token',
+            ];
         }
 
-        if (!empty($data['website'])) {
-            $softReasons[] = 'legacy_honeypot_filled';
+        if ($secret === '') {
+            Log::error('reCAPTCHA server verification is not configured: RECAPTCHA_SECRET_KEY is missing.');
+
+            return [
+                'success' => false,
+                'message' => 'The verification service is not configured correctly. Please try again later.',
+                'code' => 'missing-secret',
+            ];
         }
 
-        $startedAt = isset($data['registration_started_at'])
-            ? (int) $data['registration_started_at']
-            : 0;
-        $nowMs = (int) round(microtime(true) * 1000);
-
-        // Timing is diagnostic only. Device clocks, cached tabs and autofill must
-        // never be enough to reject an otherwise valid registration.
-        if ($startedAt <= 0 || $startedAt > ($nowMs + 300000)) {
-            $softReasons[] = 'invalid_form_timer';
-        } else {
-            $elapsedSeconds = (int) floor(($nowMs - $startedAt) / 1000);
-            if ($elapsedSeconds < 2) {
-                $softReasons[] = 'submitted_too_fast';
-            }
-        }
-
-        // Some proxies/privacy tools can alter request headers, so missing UA is
-        // logged but is not a single-point blocker.
-        if (!$request->userAgent()) {
-            $softReasons[] = 'missing_user_agent';
-        }
-
-        // Active HTML/script/URL payloads in identity fields are strong evidence
-        // that this is not a normal customer registration.
-        if ($this->looksLikeSpamInput($data)) {
-            $hardReasons[] = 'spam_input_pattern';
-        }
-
-        // The Vue form requires completion of the visible challenge. This is not
-        // a substitute for Google server verification; it is one local layer.
-        $recaptchaToken = trim((string) ($data['g-recaptcha-response'] ?? ''));
-        if (strlen($recaptchaToken) < 80) {
-            $hardReasons[] = 'missing_browser_challenge';
-        }
-
-        // Only repeated attempts against the SAME identity can hard-block. Normal
-        // Laravel field errors do not consume these counters (see validator()).
-        if ($email !== '' && RateLimiter::tooManyAttempts($emailKey, 20)) {
-            $hardReasons[] = 'email_rate_limit';
-        }
-
-        if ($phone !== '' && RateLimiter::tooManyAttempts($phoneKey, 20)) {
-            $hardReasons[] = 'phone_rate_limit';
-        }
-
-        // IP activity is useful for diagnostics, but mobile carriers, offices and
-        // proxies can place many genuine customers behind one address. Never block
-        // a customer on IP volume alone.
-        if ($ip !== '' && RateLimiter::tooManyAttempts($ipKey, 100)) {
-            $softReasons[] = 'ip_rate_limit';
-        }
-
-        if (!empty($hardReasons)) {
-            Log::warning('Registration blocked by custom bot check', [
-                'ip' => $ip,
-                'email' => $data['email'] ?? null,
-                'hard_reasons' => $hardReasons,
-                'soft_reasons' => $softReasons,
+        try {
+            // remoteip is intentionally omitted. Google documents it as optional,
+            // and AutofactorNG can sit behind proxies/mobile carrier NAT where the
+            // application-visible IP may not reliably represent the browser.
+            $response = Http::asForm()
+                ->timeout(10)
+                ->post('https://www.google.com/recaptcha/api/siteverify', [
+                    'secret' => $secret,
+                    'response' => $token,
+                ]);
+        } catch (\Throwable $exception) {
+            Log::error('reCAPTCHA request to Google failed', [
+                'message' => $exception->getMessage(),
+                'exception' => get_class($exception),
             ]);
 
-            return true;
+            return [
+                'success' => false,
+                'message' => 'Google reCAPTCHA could not be reached. Please try again in a moment.',
+                'code' => 'transport-error',
+            ];
         }
 
-        if (!empty($softReasons)) {
-            Log::info('Registration passed with soft bot signals', [
-                'ip' => $ip,
-                'email' => $data['email'] ?? null,
-                'reasons' => $softReasons,
+        if (!$response->successful()) {
+            Log::error('reCAPTCHA Google endpoint returned an HTTP error', [
+                'status' => $response->status(),
+                'body' => mb_substr($response->body(), 0, 500),
             ]);
+
+            return [
+                'success' => false,
+                'message' => 'Google reCAPTCHA could not be reached. Please try again in a moment.',
+                'code' => 'http-error',
+            ];
         }
 
-        // Count only syntactically valid registrations that passed the hard bot
-        // checks. Field-validation failures never burn these attempts.
-        if ($ip !== '') {
-            RateLimiter::hit($ipKey, 900);
-        }
-        if ($email !== '') {
-            RateLimiter::hit($emailKey, 900);
-        }
-        if ($phone !== '') {
-            RateLimiter::hit($phoneKey, 900);
+        $body = $response->json();
+        $errorCodes = array_values((array) ($body['error-codes'] ?? []));
+        $success = isset($body['success']) && $body['success'] === true;
+
+        if ($success) {
+            Log::info('reCAPTCHA registration verification passed', [
+                'hostname' => $body['hostname'] ?? null,
+                'challenge_ts' => $body['challenge_ts'] ?? null,
+            ]);
+
+            return [
+                'success' => true,
+                'message' => null,
+                'code' => null,
+            ];
         }
 
-        return false;
+        Log::warning('reCAPTCHA registration verification rejected by Google', [
+            'error_codes' => $errorCodes,
+            'hostname' => $body['hostname'] ?? null,
+            'challenge_ts' => $body['challenge_ts'] ?? null,
+        ]);
+
+        if (in_array('timeout-or-duplicate', $errorCodes, true)) {
+            return [
+                'success' => false,
+                'message' => 'reCAPTCHA expired or was already used. Please check “I’m not a robot” again.',
+                'code' => 'timeout-or-duplicate',
+            ];
+        }
+
+        if (
+            in_array('missing-input-secret', $errorCodes, true) ||
+            in_array('invalid-input-secret', $errorCodes, true)
+        ) {
+            return [
+                'success' => false,
+                'message' => 'The verification service is not configured correctly. Please try again later.',
+                'code' => 'invalid-secret',
+            ];
+        }
+
+        if (
+            in_array('missing-input-response', $errorCodes, true) ||
+            in_array('invalid-input-response', $errorCodes, true)
+        ) {
+            return [
+                'success' => false,
+                'message' => 'Google could not verify the challenge. Please complete reCAPTCHA again.',
+                'code' => 'invalid-response',
+            ];
+        }
+
+        return [
+            'success' => false,
+            'message' => 'Google could not verify the challenge. Please complete reCAPTCHA again.',
+            'code' => 'verification-failed',
+        ];
     }
 
     protected function looksLikeSpamInput(array $data): bool
