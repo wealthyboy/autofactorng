@@ -216,7 +216,7 @@
                     <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-2">
                         <div>
                             <h5 class="mb-1">{{ $view === 'category' && $selectedCategoryName ? $selectedCategoryName . ' - Out of Stock' : 'All Out of Stock Items' }}</h5>
-                            <p class="text-sm text-muted mb-0">Search, filter and restock products without leaving this report.</p>
+                            <p class="text-sm text-muted mb-0">Search and filter out-of-stock products from this report.</p>
                         </div>
                         @if($view === 'category' && $selectedCategory)
                             <a href="{{ route('admin.out-of-stock-products.index', ['view' => 'category']) }}" class="btn btn-outline-secondary btn-sm mb-0">Back to Categories</a>
@@ -277,7 +277,10 @@
                                     <tr>
                                         <td>
                                             <div class="d-flex flex-column">
-                                                <span class="text-sm font-weight-bold text-dark">{{ $product->name ?: $product->product_name ?: 'Unnamed product' }}</span>
+                                                <a href="{{ route('products.edit', ['product' => $product->id]) }}"
+                                                   class="text-sm font-weight-bold text-dark text-decoration-none">
+                                                    {{ $product->name ?: $product->product_name ?: 'Unnamed product' }}
+                                                </a>
                                                 <span class="text-xs text-muted">ID #{{ $product->id }}</span>
                                             </div>
                                         </td>
@@ -299,13 +302,6 @@
                                             @endif
                                         </td>
                                         <td class="text-end text-nowrap">
-                                            <button type="button"
-                                                class="btn btn-sm bg-gradient-dark mb-0 restock-button"
-                                                data-product-id="{{ $product->id }}"
-                                                data-product-name="{{ $product->name ?: $product->product_name ?: 'Product' }}"
-                                                data-product-quantity="{{ (int) $product->quantity }}">
-                                                Restock
-                                            </button>
                                             <a href="{{ route('products.edit', ['product' => $product->id]) }}" class="btn btn-sm btn-outline-secondary mb-0">Edit</a>
                                         </td>
                                     </tr>
@@ -334,110 +330,4 @@
     </div>
 </div>
 
-<div class="modal fade" id="restockModal" tabindex="-1" aria-labelledby="restockModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content border-0 shadow-lg" style="border-radius:18px;">
-            <form id="restock-form">
-                @csrf
-                <div class="modal-header border-0 px-4 pt-4">
-                    <div>
-                        <h5 class="modal-title" id="restockModalLabel">Restock Product</h5>
-                        <p class="text-sm text-muted mb-0" id="restock-product-name"></p>
-                    </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body px-4">
-                    <div class="rounded-3 bg-light p-3 mb-3">
-                        Current quantity: <strong id="restock-current-quantity">0</strong>
-                    </div>
-                    <input type="hidden" name="operation" value="increase">
-                    <input type="hidden" id="restock-product-id">
-                    <div class="mb-3">
-                        <label class="form-label" for="restock-quantity">New quantity</label>
-                        <input type="number" class="form-control border rounded-3 px-3" id="restock-quantity" name="quantity" min="1" step="1" required>
-                    </div>
-                    <div class="mb-2">
-                        <label class="form-label" for="restock-reason">Reason</label>
-                        <select class="form-control border rounded-3 px-3" id="restock-reason" name="reason" required>
-                            <option value="">Select a reason</option>
-                            <option value="stock_purchase">Stock purchase</option>
-                            <option value="returned_item">Returned item</option>
-                        </select>
-                    </div>
-                    <div class="alert alert-danger d-none mt-3 mb-0" id="restock-error"></div>
-                </div>
-                <div class="modal-footer border-0 px-4 pb-4">
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn bg-gradient-dark" id="restock-submit">Update Stock</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-@endsection
-
-@section('inline-scripts')
-document.addEventListener('DOMContentLoaded', function () {
-    const modalElement = document.getElementById('restockModal');
-    const modal = modalElement ? new bootstrap.Modal(modalElement) : null;
-    const form = document.getElementById('restock-form');
-    let currentQuantity = 0;
-
-    document.addEventListener('click', function (event) {
-        const button = event.target.closest('.restock-button');
-        if (!button || !modal) return;
-
-        currentQuantity = Number(button.dataset.productQuantity || 0);
-        document.getElementById('restock-product-id').value = button.dataset.productId;
-        document.getElementById('restock-product-name').textContent = button.dataset.productName;
-        document.getElementById('restock-current-quantity').textContent = currentQuantity;
-        document.getElementById('restock-quantity').value = '';
-        document.getElementById('restock-reason').value = '';
-        document.getElementById('restock-error').classList.add('d-none');
-        modal.show();
-    });
-
-    form?.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const productId = document.getElementById('restock-product-id').value;
-        const quantityInput = document.getElementById('restock-quantity');
-        const errorBox = document.getElementById('restock-error');
-        const submitButton = document.getElementById('restock-submit');
-        const newQuantity = Number(quantityInput.value);
-
-        if (newQuantity <= currentQuantity || newQuantity < 1) {
-            quantityInput.setCustomValidity('New quantity must be at least 1 and greater than the current quantity.');
-            quantityInput.reportValidity();
-            return;
-        }
-
-        quantityInput.setCustomValidity('');
-        errorBox.classList.add('d-none');
-        submitButton.disabled = true;
-        submitButton.textContent = 'Updating...';
-
-        fetch('/admin/products/' + productId + '/adjust-stock', {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-        }).then(async function (response) {
-            const data = await response.json().catch(function () { return {}; });
-            if (!response.ok) {
-                throw new Error(data.message || Object.values(data.errors || {}).flat()[0] || 'Stock could not be updated.');
-            }
-            return data;
-        }).then(function () {
-            window.location.reload();
-        }).catch(function (error) {
-            errorBox.textContent = error.message;
-            errorBox.classList.remove('d-none');
-            submitButton.disabled = false;
-            submitButton.textContent = 'Update Stock';
-        });
-    });
-
-    document.getElementById('restock-quantity')?.addEventListener('input', function () {
-        this.setCustomValidity('');
-    });
-});
 @endsection
