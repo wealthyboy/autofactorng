@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Analytics;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\CategorySearch;
 use App\Models\SearchQueryLog;
 use App\Models\UserTracking;
@@ -36,7 +37,7 @@ class SearchAnalyticsController extends Controller
 
         [$from, $to] = $this->dateRange($request);
         $cacheKey = sprintf(
-            'admin:search-analytics:%s:%s:%s:v3',
+            'admin:search-analytics:%s:%s:%s:v4',
             $section,
             $from->format('Ymd'),
             $to->format('Ymd')
@@ -178,6 +179,72 @@ class SearchAnalyticsController extends Controller
 
     private function topCategories(Carbon $from, Carbon $to): array
     {
+        // CategorySearch is a legacy table and the current storefront no longer
+        // writes category visits into it. UserTracking already records every
+        // public category-page request, so use that as the source of truth.
+        //
+        // Frontend category URLs are /products/{category-slug}. Product detail
+        // pages use /product/... (singular), so this pattern only counts actual
+        // category exploration and does not inflate the report with product views.
+        $slugExpression = "LOWER(NULLIF(TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(SUBSTRING_INDEX(page_url, '/products/', -1), '?', 1), '#', 1)), ''))";
+
+        $rows = UserTracking::query()
+            ->whereBetween('created_at', [$from, $to])
+            ->where('page_url', 'like', '%/products/%')
+            ->selectRaw("{$slugExpression} as slug, COUNT(*) as visits")
+            ->groupBy(DB::raw($slugExpression))
+            ->orderByDesc('visits')
+            ->limit(50)
+            ->get();
+
+        if ($rows->isNotEmpty()) {
+            $slugs = $rows->pluck('slug')
+                ->filter()
+                ->map(function ($slug) {
+                    return strtolower(trim((string) $slug, '/'));
+                })
+                ->filter()
+                ->unique()
+                ->values();
+
+            $categories = Category::query()
+                ->whereIn('slug', $slugs->all())
+                ->get(['slug', 'name'])
+                ->keyBy(function ($category) {
+                    return strtolower((string) $category->slug);
+                });
+
+            $result = $rows
+                ->map(function ($row) use ($categories) {
+                    $slug = strtolower(trim((string) $row->slug, '/'));
+                    $category = $categories->get($slug);
+
+                    // Ignore stale URLs for categories that no longer exist.
+                    if (! $category) {
+                        return null;
+                    }
+
+                    return [
+                        'name' => $category->name,
+                        'visits' => (int) $row->visits,
+                    ];
+                })
+                ->filter()
+                ->take(15)
+                ->values()
+                ->all();
+
+            if (! empty($result)) {
+                return $result;
+            }
+        }
+
+        // Keep the old table as a compatibility fallback for any historical
+        // installations that populated it before URL tracking became reliable.
+        if (! Schema::hasTable('category_searches')) {
+            return [];
+        }
+
         return CategorySearch::query()
             ->whereBetween('created_at', [$from, $to])
             ->select('name')
