@@ -75,6 +75,7 @@ class ProductsController extends Controller
 
         $brands = $request->brands;
         $prices = $request->prices;
+        $dynamicFilters = $this->selectedDynamicFilters($request);
 
 
         // dd($brands);
@@ -86,6 +87,7 @@ class ProductsController extends Controller
             'search_filters',
             'brands',
             'prices',
+            'dynamicFilters',
             'meta_tag_keywords',
             'meta_tag_keywords',
             'page_title',
@@ -234,6 +236,7 @@ class ProductsController extends Controller
 
         $brands = $request->brands;
         $prices = $request->prices;
+        $dynamicFilters = $this->selectedDynamicFilters($request);
 
 
         return  view('products.index', compact(
@@ -241,7 +244,8 @@ class ProductsController extends Controller
             'page_title',
             'search_filters',
             'brands',
-            'prices'
+            'prices',
+            'dynamicFilters'
         ));
     }
 
@@ -370,9 +374,39 @@ class ProductsController extends Controller
         $ampheres = Product::getFilterForCategory($category, 'amphere');
         $brands = $category->brands;
 
+        // Dynamic filters are configured per category in the admin (for
+        // example Engine Oil -> Viscosity or Coolants -> Color). Keep the
+        // storefront payload deliberately small and only expose active groups
+        // and active values for the category being viewed.
+        $dynamicFilters = $category->productFilterGroups()
+            ->where('is_active', true)
+            ->with(['options' => function ($query) {
+                $query->where('is_active', true);
+            }])
+            ->get()
+            ->map(function ($group) {
+                return [
+                    'id' => (int) $group->id,
+                    'name' => $group->name,
+                    'slug' => $group->slug,
+                    'options' => $group->options->map(function ($option) {
+                        return [
+                            'id' => (int) $option->id,
+                            'name' => $option->name,
+                            'slug' => $option->slug,
+                        ];
+                    })->values(),
+                ];
+            })
+            ->filter(function ($group) {
+                return $group['options']->isNotEmpty();
+            })
+            ->values();
+
         $search = collect([
             ['name' => 'price', 'items' => $this->filterPrices()],
             ['name' => 'brand', 'items' => $brands],
+            ['name' => 'dynamic', 'items' => $dynamicFilters],
             ['name' => 'rim', 'items' => $rims],
             ['name' => 'width', 'items'  => $widths],
             ['name' => 'profile', 'items' => $profiles],
@@ -383,6 +417,31 @@ class ProductsController extends Controller
         ]);
 
         return $search->keyBy('name');
+    }
+
+
+    private function selectedDynamicFilters(Request $request)
+    {
+        return collect((array) $request->input('filters', []))
+            ->mapWithKeys(function ($optionIds, $groupId) {
+                $groupId = (int) $groupId;
+
+                if ($groupId <= 0) {
+                    return [];
+                }
+
+                $optionIds = collect((array) $optionIds)
+                    ->map(function ($optionId) {
+                        return (int) $optionId;
+                    })
+                    ->filter()
+                    ->unique()
+                    ->values()
+                    ->all();
+
+                return $optionIds ? [(string) $groupId => $optionIds] : [];
+            })
+            ->all();
     }
 
 

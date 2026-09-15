@@ -140,7 +140,12 @@
                 <form action="" method="get" id="filter-form">
                     <filters v-if="search_filters.brand &&
                         search_filters.brand.items.length
-                        " :name="'brands'" :objs="search_filters.brand.items" :model="brands"
+                        " :name="'brands'" :label="'Brand'" :objs="search_filters.brand.items" :model="brands"
+                        @handle:filter="handleFilter" :clearFilters="clearFilters"></filters>
+
+                    <filters v-if="search_filters.price &&
+                        search_filters.price.items.length
+                        " :name="'prices'" :label="'Price'" :objs="search_filters.price.items" :model="prices"
                         @handle:filter="handleFilter" :clearFilters="clearFilters"></filters>
 
                     <filters v-for="group in dynamicFilterGroups" :key="'dynamic-filter-' + group.id"
