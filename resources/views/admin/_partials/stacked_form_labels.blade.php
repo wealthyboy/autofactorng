@@ -8,6 +8,21 @@
       display: flex !important;
       flex-direction: column !important;
       align-items: stretch !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+   }
+
+   /*
+    * Material Dashboard builds part of the outline with pseudo-elements.
+    * Once the label is stacked above the field those pieces leave a gap in
+    * the top edge. Remove them and draw one complete outline on the control.
+    */
+   .admin-stacked-labels .input-group.input-group-outline::before,
+   .admin-stacked-labels .input-group.input-group-outline::after {
+      display: none !important;
+      content: none !important;
+      border: 0 !important;
    }
 
    .admin-stacked-labels .input-group.input-group-outline > .form-label {
@@ -38,21 +53,27 @@
    .admin-stacked-labels .input-group.input-group-outline > textarea.form-control {
       width: 100% !important;
       margin-left: 0 !important;
-      border: 1px solid #a8b3c7 !important;
+      border: 0 !important;
       border-radius: .5rem !important;
-      border-top-color: #a8b3c7 !important;
-      box-shadow: none !important;
+      background-color: #fff !important;
+      background-image: none !important;
+      box-shadow: inset 0 0 0 1px #a8b3c7 !important;
+      outline: 0 !important;
    }
 
    .admin-stacked-labels .input-group.input-group-outline.is-filled > .form-control,
-   .admin-stacked-labels .input-group.input-group-outline.is-focused > .form-control,
    .admin-stacked-labels .input-group.input-group-outline.is-filled > select.form-control,
+   .admin-stacked-labels .input-group.input-group-outline.is-filled > textarea.form-control {
+      box-shadow: inset 0 0 0 1px #a8b3c7 !important;
+   }
+
+   .admin-stacked-labels .input-group.input-group-outline.is-focused > .form-control,
    .admin-stacked-labels .input-group.input-group-outline.is-focused > select.form-control,
-   .admin-stacked-labels .input-group.input-group-outline.is-filled > textarea.form-control,
-   .admin-stacked-labels .input-group.input-group-outline.is-focused > textarea.form-control {
-      border-color: #344767 !important;
-      border-top-color: #344767 !important;
-      box-shadow: none !important;
+   .admin-stacked-labels .input-group.input-group-outline.is-focused > textarea.form-control,
+   .admin-stacked-labels .input-group.input-group-outline > .form-control:focus,
+   .admin-stacked-labels .input-group.input-group-outline > select.form-control:focus,
+   .admin-stacked-labels .input-group.input-group-outline > textarea.form-control:focus {
+      box-shadow: inset 0 0 0 2px #fb8c00, 0 0 0 .2rem rgba(251, 140, 0, .12) !important;
    }
 
    .admin-stacked-labels .form-group.label-floating > .control-label {
@@ -66,8 +87,16 @@
    }
 
    .admin-stacked-labels .form-group.label-floating > .form-control {
-      border: 1px solid #a8b3c7 !important;
+      border: 0 !important;
       border-radius: .5rem !important;
       padding: .625rem .75rem !important;
+      background-color: #fff !important;
+      background-image: none !important;
+      box-shadow: inset 0 0 0 1px #a8b3c7 !important;
+   }
+
+   .admin-stacked-labels .form-group.label-floating > .form-control:focus {
+      box-shadow: inset 0 0 0 2px #fb8c00, 0 0 0 .2rem rgba(251, 140, 0, .12) !important;
+      outline: 0 !important;
    }
 </style>
