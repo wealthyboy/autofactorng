@@ -58,6 +58,24 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="card-header pb-0 d-flex flex-wrap justify-content-between align-items-center">
+                <div>
+                    <h6 class="mb-1">No-result searches</h6>
+                    <p class="text-xs text-secondary mb-0">What customers searched for when no products were returned.</p>
+                </div>
+            </div>
+            <div id="search-analytics-no-results"
+                 data-url="{{ route('admin.analytics.search.section', ['section' => 'no-results', 'from' => $from->format('Y-m-d'), 'to' => $to->format('Y-m-d')]) }}"
+                 class="analytics-async-section">
+                @include('admin.analytics.search_sections._loader', ['label' => 'no-result searches'])
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('page-scripts')
@@ -126,10 +144,11 @@
         var detailSections = [
             document.getElementById('search-analytics-terms'),
             document.getElementById('search-analytics-products'),
-            document.getElementById('search-analytics-categories')
+            document.getElementById('search-analytics-categories'),
+            document.getElementById('search-analytics-no-results')
         ];
 
-        // Load the small KPI summary first, then progressively fill the three
+        // Load the small KPI summary first, then progressively fill the
         // report cards. The page itself is already usable while these run.
         loadSection(summary).finally(function () {
             detailSections.forEach(function (section, index) {

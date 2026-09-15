@@ -36,7 +36,7 @@ class MarketingAnalyticsController extends Controller
 
         [$from, $to] = $this->dateRange($request);
         $cacheKey = sprintf(
-            'admin:marketing-analytics:%s:%s:%s:v2',
+            'admin:marketing-analytics:%s:%s:%s:v3',
             $section,
             $from->format('Ymd'),
             $to->format('Ymd')
@@ -95,58 +95,73 @@ class MarketingAnalyticsController extends Controller
     private function checkoutStats(Carbon $from, Carbon $to): array
     {
         /*
-         * A checkout becomes abandoned one hour after checkout_started_at.
-         * Report the abandonment in the period in which that one-hour point
-         * actually falls, rather than classifying it against the current time
-         * and then attaching it to the checkout's original start date.
+         * A checkout becomes abandoned one hour after checkout_started_at,
+         * but a checkout that became an order before that one-hour point was
+         * never abandoned. A later recovery does not erase the fact that the
+         * checkout first became abandoned.
          *
-         * Example: checkout starts Aug 12 at 23:30 and remains unrecovered.
-         * It becomes abandoned Aug 13 at 00:30, so it belongs to an Aug 13
-         * report, not Aug 12.
+         * This means an abandoned cart that later converts can appear in both
+         * "Abandoned Carts" and "Recovered Checkouts". The recovery number is
+         * intentionally a subset of abandoned carts, while the abandonment
+         * rate compares abandoned outcomes with checkouts completed before the
+         * one-hour abandonment threshold.
          */
         $now = now();
         $effectiveTo = $to->lt($now) ? $to->copy() : $now;
 
-        $abandoned = 0;
-        if ($from->lte($effectiveTo)) {
-            $abandoned = AbandonedCart::query()
+        $abandonedBase = AbandonedCart::query()
+            ->whereNotNull('checkout_started_at')
+            ->whereBetween('checkout_started_at', [
+                $from->copy()->subHour(),
+                $effectiveTo->copy()->subHour(),
+            ])
+            ->where(function ($query) {
+                $query->where('recovered', false)
+                    ->orWhereNull('recovered_at')
+                    ->orWhereRaw('recovered_at >= DATE_ADD(checkout_started_at, INTERVAL 1 HOUR)');
+            });
+
+        $abandoned = $from->lte($effectiveTo)
+            ? (clone $abandonedBase)->count()
+            : 0;
+
+        $recovered = $from->lte($effectiveTo)
+            ? (clone $abandonedBase)
+                ->where('recovered', true)
+                ->whereNotNull('recovered_at')
+                ->count()
+            : 0;
+
+        // These are checkout attempts that completed before ever reaching the
+        // abandonment threshold. They form the other side of the abandonment
+        // rate denominator and are grouped by the time they converted.
+        $completedBeforeAbandonment = AbandonedCart::query()
+            ->where('recovered', true)
+            ->whereNotNull('checkout_started_at')
+            ->whereNotNull('recovered_at')
+            ->whereBetween('recovered_at', [$from, $to])
+            ->whereRaw('recovered_at < DATE_ADD(checkout_started_at, INTERVAL 1 HOUR)')
+            ->count();
+
+        // Active checkouts are only meaningful when the selected range reaches
+        // the present. Historical ranges should not show old checkouts as active.
+        $active = 0;
+        if ($from->lte($now) && $to->gte($now)) {
+            $active = AbandonedCart::query()
                 ->where('recovered', false)
                 ->whereNotNull('checkout_started_at')
-                ->whereBetween(
-                    'checkout_started_at',
-                    [
-                        $from->copy()->subHour(),
-                        $effectiveTo->copy()->subHour(),
-                    ]
-                )
-                ->count();
-        }
-
-        // Recovered checkouts continue to be grouped by the checkout attempt's
-        // selected period so the existing dashboard meaning is preserved.
-        $periodCheckouts = AbandonedCart::query()
-            ->whereBetween('checkout_started_at', [$from, $to]);
-
-        $recovered = (clone $periodCheckouts)->where('recovered', true)->count();
-
-        // Active checkouts are only meaningful for a range that reaches the
-        // present. Historical ranges should not show old checkouts as active.
-        $active = 0;
-        if ($to->gte($now)) {
-            $active = (clone $periodCheckouts)
-                ->where('recovered', false)
                 ->where('checkout_started_at', '>', $now->copy()->subHour())
                 ->where('checkout_started_at', '<=', $now)
                 ->count();
         }
 
-        $resolvedAttempts = $abandoned + $recovered;
+        $resolvedAttempts = $abandoned + $completedBeforeAbandonment;
         $rate = $resolvedAttempts ? ($abandoned / $resolvedAttempts) * 100 : 0;
 
         return [
-            ['label' => 'Abandoned Carts', 'value' => number_format($abandoned), 'hint' => 'Became abandoned within selected period'],
-            ['label' => 'Recovered Checkouts', 'value' => number_format($recovered), 'hint' => 'Checkout attempts that became orders'],
-            ['label' => 'Abandoned Cart Rate', 'value' => number_format($rate, 1) . '%', 'hint' => 'Abandoned vs resolved checkout attempts'],
+            ['label' => 'Abandoned Carts', 'value' => number_format($abandoned), 'hint' => 'Checkouts that reached the 1-hour abandonment point'],
+            ['label' => 'Recovered Checkouts', 'value' => number_format($recovered), 'hint' => 'Abandoned checkouts that later became orders'],
+            ['label' => 'Abandoned Cart Rate', 'value' => number_format($rate, 1) . '%', 'hint' => 'Abandoned vs completed-before-abandonment outcomes'],
             ['label' => 'Active Checkouts', 'value' => number_format($active), 'hint' => 'Currently active checkouts in selected period'],
         ];
     }

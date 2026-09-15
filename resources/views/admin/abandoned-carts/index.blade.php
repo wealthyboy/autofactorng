@@ -4,7 +4,7 @@
 <div class="d-flex flex-wrap justify-content-between align-items-center mb-4">
     <div>
         <h4 class="mb-1">Abandoned Carts</h4>
-        <p class="text-sm text-secondary mb-0">Unrecovered checkouts that became abandoned during the selected period.</p>
+        <p class="text-sm text-secondary mb-0">Checkout attempts that crossed the one-hour abandonment threshold in the selected period.</p>
     </div>
     <a href="{{ route('admin.analytics.marketing', ['from' => $from->format('Y-m-d'), 'to' => $to->format('Y-m-d')]) }}" class="btn btn-outline-secondary mb-0">
         Marketing analytics
@@ -43,12 +43,30 @@
 </div>
 
 <div class="row mb-3">
-    <div class="col-lg-3 col-md-5 col-sm-6">
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
         <div class="card h-100">
             <div class="card-body p-3">
-                <p class="text-sm font-weight-bold mb-1">Abandoned Carts</p>
-                <h5 class="font-weight-bolder mb-1">{{ number_format($carts->total()) }}</h5>
-                <span class="text-xs text-secondary">Became abandoned within selected period</span>
+                <p class="text-sm font-weight-bold mb-1">Abandoned Attempts</p>
+                <h5 class="font-weight-bolder mb-1">{{ number_format($totalAbandoned) }}</h5>
+                <span class="text-xs text-secondary">Reached the one-hour abandonment point</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+        <div class="card h-100">
+            <div class="card-body p-3">
+                <p class="text-sm font-weight-bold mb-1">Still Abandoned</p>
+                <h5 class="font-weight-bolder mb-1">{{ number_format($unrecoveredCount) }}</h5>
+                <span class="text-xs text-secondary">No completed order yet</span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+        <div class="card h-100">
+            <div class="card-body p-3">
+                <p class="text-sm font-weight-bold mb-1">Recovered</p>
+                <h5 class="font-weight-bolder mb-1">{{ number_format($recoveredCount) }}</h5>
+                <span class="text-xs text-secondary">Later converted to an order</span>
             </div>
         </div>
     </div>
@@ -65,7 +83,9 @@
                         <th>Cart Items</th>
                         <th>Checkout Started</th>
                         <th>Abandoned At</th>
+                        <th>Status</th>
                         <th>Reminder</th>
+                        <th>Recovered At</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,7 +93,9 @@
                         @php
                             $items = collect($cart->cart_items ?: []);
                             $user = $cart->user;
-                            $abandonedAt = optional($cart->checkout_started_at)->copy()?->addHour();
+                            $abandonedAt = $cart->checkout_started_at
+                                ? $cart->checkout_started_at->copy()->addHour()
+                                : null;
                         @endphp
                         <tr>
                             <td class="px-4">
@@ -97,21 +119,31 @@
                                 @endif
                             </td>
                             <td><span class="text-sm">{{ optional($cart->checkout_started_at)->format('d M Y, H:i') ?: '—' }}</span></td>
+                            <td><span class="text-sm font-weight-bold">{{ $abandonedAt ? $abandonedAt->format('d M Y, H:i') : '—' }}</span></td>
                             <td>
-                                <span class="text-sm font-weight-bold">{{ $abandonedAt ? $abandonedAt->format('d M Y, H:i') : '—' }}</span>
+                                @if($cart->recovered)
+                                    <span class="badge bg-gradient-success">Recovered</span>
+                                @else
+                                    <span class="badge bg-gradient-danger">Abandoned</span>
+                                @endif
                             </td>
                             <td>
                                 @if($cart->reminder_sent_at)
                                     <span class="badge bg-gradient-success">Sent</span>
                                     <span class="text-xs text-secondary d-block mt-1">{{ $cart->reminder_sent_at->format('d M Y, H:i') }}</span>
+                                @elseif($cart->recovered)
+                                    <span class="badge bg-gradient-secondary">Not sent</span>
                                 @else
                                     <span class="badge bg-gradient-warning">Pending</span>
                                 @endif
                             </td>
+                            <td>
+                                <span class="text-sm">{{ optional($cart->recovered_at)->format('d M Y, H:i') ?: '—' }}</span>
+                            </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center text-secondary py-5">No abandoned carts found in this date range.</td>
+                            <td colspan="8" class="text-center text-secondary py-5">No abandoned carts found in this date range.</td>
                         </tr>
                     @endforelse
                 </tbody>

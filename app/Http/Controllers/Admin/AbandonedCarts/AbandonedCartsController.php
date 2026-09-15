@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 class AbandonedCartsController extends Controller
 {
     /**
-     * Show unrecovered checkout attempts that became abandoned during the
-     * selected date range. A checkout becomes abandoned one hour after
-     * checkout_started_at, matching the Marketing Analytics definition.
+     * Show checkout attempts that actually crossed the one-hour abandonment
+     * threshold during the selected period. A later order does not remove the
+     * attempt from this history; it is shown as Recovered instead.
      */
     public function index(Request $request)
     {
@@ -32,27 +32,44 @@ class AbandonedCartsController extends Controller
         $now = now();
         $effectiveTo = $to->lt($now) ? $to->copy() : $now;
 
-        $query = AbandonedCart::query()
+        $baseQuery = AbandonedCart::query()
             ->with(['user:id,name,last_name,email,phone_number'])
-            ->where('recovered', false)
             ->whereNotNull('checkout_started_at');
 
         if ($from->lte($effectiveTo)) {
-            $query->whereBetween('checkout_started_at', [
-                $from->copy()->subHour(),
-                $effectiveTo->copy()->subHour(),
-            ]);
+            $baseQuery
+                ->whereBetween('checkout_started_at', [
+                    $from->copy()->subHour(),
+                    $effectiveTo->copy()->subHour(),
+                ])
+                ->where(function ($query) {
+                    // Unrecovered carts are abandoned once the one-hour point
+                    // is crossed. Recovered carts stay in the historical list
+                    // only when recovery happened after that point.
+                    $query->where('recovered', false)
+                        ->orWhereNull('recovered_at')
+                        ->orWhereRaw('recovered_at >= DATE_ADD(checkout_started_at, INTERVAL 1 HOUR)');
+                });
         } else {
-            // A future-only range cannot contain a checkout that is already
-            // abandoned. Keep the query empty without doing a broad scan.
-            $query->whereRaw('1 = 0');
+            $baseQuery->whereRaw('1 = 0');
         }
 
-        $carts = $query
+        $totalAbandoned = (clone $baseQuery)->count();
+        $recoveredCount = (clone $baseQuery)->where('recovered', true)->count();
+        $unrecoveredCount = max($totalAbandoned - $recoveredCount, 0);
+
+        $carts = (clone $baseQuery)
             ->orderByDesc('checkout_started_at')
             ->paginate(30)
             ->withQueryString();
 
-        return view('admin.abandoned-carts.index', compact('carts', 'from', 'to'));
+        return view('admin.abandoned-carts.index', compact(
+            'carts',
+            'from',
+            'to',
+            'totalAbandoned',
+            'recoveredCount',
+            'unrecoveredCount'
+        ));
     }
 }

@@ -73,12 +73,16 @@ class CheckoutController extends Controller
         if (! $activeCheckout) {
             $activeCheckout = new AbandonedCart();
             $activeCheckout->user_id = $user->id;
+            $activeCheckout->checkout_started_at = now();
+            $activeCheckout->recovered = false;
+            $activeCheckout->recovered_at = null;
+            $activeCheckout->reminder_sent_at = null;
         }
 
+        // Do not restart the abandonment clock when the customer revisits or
+        // refreshes checkout. Once a checkout reaches the one-hour threshold,
+        // that historical event must remain stable for analytics and recovery.
         $activeCheckout->cart_token = $cartToken;
-        $activeCheckout->checkout_started_at = now();
-        $activeCheckout->recovered = false;
-        $activeCheckout->recovered_at = null;
         $activeCheckout->cart_items = $items->values()->all();
         $activeCheckout->save();
 

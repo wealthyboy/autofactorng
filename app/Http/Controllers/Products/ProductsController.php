@@ -10,12 +10,14 @@ use App\Models\Engine;
 use App\Models\MakeModelYearEngine;
 use App\Models\Product;
 use App\Models\Setting;
+use App\Models\SearchQueryLog;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use App\Http\Helper;
 use App\Models\Image;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use Laravel\Ui\Presets\React;
 
 //use Illuminate\Support\Facades\Cookie;
@@ -73,7 +75,6 @@ class ProductsController extends Controller
 
         $brands = $request->brands;
         $prices = $request->prices;
-        $dynamicFilters = $request->input('filters', []);
 
 
         // dd($brands);
@@ -85,7 +86,6 @@ class ProductsController extends Controller
             'search_filters',
             'brands',
             'prices',
-            'dynamicFilters',
             'meta_tag_keywords',
             'meta_tag_keywords',
             'page_title',
@@ -171,7 +171,34 @@ class ProductsController extends Controller
         //}
 
         $products = $query->filter($request)->orderBy('is_available', 'desc')->latest()->paginate($per_page);
-        $request->attributes->set('analytics_search_results_count', $products->total());
+
+        // Record one search outcome for the initial page request. The Vue
+        // product grid immediately makes a second AJAX request for the same
+        // URL, so excluding AJAX requests prevents double-counting.
+        if (! $request->ajax() && (int) $request->query('page', 1) === 1) {
+            $searchText = trim((string) preg_replace('/\s+/', ' ', (string) $request->q));
+
+            if ($searchText !== '') {
+                try {
+                    SearchQueryLog::create([
+                        'query' => mb_substr($searchText, 0, 255),
+                        'normalized_query' => mb_substr(mb_strtolower($searchText), 0, 191),
+                        'result_count' => (int) $products->total(),
+                        'session_id' => $request->session()->getId(),
+                        'user_id' => optional($request->user())->id,
+                        'ip_address' => $request->ip(),
+                    ]);
+                } catch (\Throwable $e) {
+                    // Search analytics must never prevent a customer from
+                    // receiving their actual product search results.
+                    Log::warning('search-query analytics could not be recorded', [
+                        'query' => $searchText,
+                        'message' => $e->getMessage(),
+                    ]);
+                }
+            }
+        }
+
         $products->load('images');
         $products->appends(request()->all());
         $category = null;
@@ -207,7 +234,6 @@ class ProductsController extends Controller
 
         $brands = $request->brands;
         $prices = $request->prices;
-        $dynamicFilters = $request->input('filters', []);
 
 
         return  view('products.index', compact(
@@ -215,8 +241,7 @@ class ProductsController extends Controller
             'page_title',
             'search_filters',
             'brands',
-            'prices',
-            'dynamicFilters'
+            'prices'
         ));
     }
 
@@ -344,12 +369,10 @@ class ProductsController extends Controller
         $profiles = Product::getFilterForCategory($category, 'height');
         $ampheres = Product::getFilterForCategory($category, 'amphere');
         $brands = $category->brands;
-        $dynamicFilters = $this->dynamicProductFilters($category);
 
         $search = collect([
             ['name' => 'price', 'items' => $this->filterPrices()],
             ['name' => 'brand', 'items' => $brands],
-            ['name' => 'dynamic', 'items' => $dynamicFilters],
             ['name' => 'rim', 'items' => $rims],
             ['name' => 'width', 'items'  => $widths],
             ['name' => 'profile', 'items' => $profiles],
@@ -362,41 +385,6 @@ class ProductsController extends Controller
         return $search->keyBy('name');
     }
 
-
-    private function dynamicProductFilters(Category $category)
-    {
-        return $category->productFilterGroups()
-            ->where('is_active', true)
-            ->with(['options' => function ($query) use ($category) {
-                $query->where('is_active', true)
-                    ->whereHas('products', function ($productQuery) use ($category) {
-                        $productQuery->whereHas('categories', function ($categoryQuery) use ($category) {
-                            $categoryQuery->where('categories.id', $category->id);
-                        });
-                    })
-                    ->orderBy('sort_order')
-                    ->orderBy('name');
-            }])
-            ->get()
-            ->filter(function ($group) {
-                return $group->options->isNotEmpty();
-            })
-            ->map(function ($group) {
-                return [
-                    'id' => $group->id,
-                    'name' => $group->name,
-                    'slug' => $group->slug,
-                    'options' => $group->options->map(function ($option) {
-                        return [
-                            'id' => $option->id,
-                            'name' => $option->name,
-                            'slug' => $option->slug,
-                        ];
-                    })->values(),
-                ];
-            })
-            ->values();
-    }
 
     public function makeModelYearSearch(Request $request)
     {

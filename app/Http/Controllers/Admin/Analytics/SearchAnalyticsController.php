@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin\Analytics;
 
 use App\Http\Controllers\Controller;
 use App\Models\CategorySearch;
+use App\Models\SearchQueryLog;
 use App\Models\UserTracking;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class SearchAnalyticsController extends Controller
 {
@@ -29,12 +31,12 @@ class SearchAnalyticsController extends Controller
      */
     public function section(Request $request, string $section)
     {
-        $allowed = ['summary', 'terms', 'products', 'categories'];
+        $allowed = ['summary', 'terms', 'products', 'categories', 'no-results'];
         abort_unless(in_array($section, $allowed, true), 404);
 
         [$from, $to] = $this->dateRange($request);
         $cacheKey = sprintf(
-            'admin:search-analytics:%s:%s:%s',
+            'admin:search-analytics:%s:%s:%s:v3',
             $section,
             $from->format('Ymd'),
             $to->format('Ymd')
@@ -53,6 +55,8 @@ class SearchAnalyticsController extends Controller
                     return ['products' => $this->topProducts($from, $to)];
                 case 'categories':
                     return ['categories' => $this->topCategories($from, $to)];
+                case 'no-results':
+                    return ['searches' => $this->noResultSearches($from, $to)];
             }
 
             return [];
@@ -79,11 +83,18 @@ class SearchAnalyticsController extends Controller
             ->whereNotNull('product_id')
             ->count();
 
+        $noResultSearches = Schema::hasTable('search_query_logs')
+            ? SearchQueryLog::query()
+                ->whereBetween('created_at', [$from, $to])
+                ->where('result_count', 0)
+                ->count()
+            : 0;
+
         return [
             ['label' => 'Searches', 'value' => number_format($searchCount), 'hint' => 'Tracked search page visits'],
             ['label' => 'Unique terms', 'value' => number_format($uniqueTerms), 'hint' => 'Distinct recorded queries'],
             ['label' => 'Product views', 'value' => number_format($productViews), 'hint' => 'Tracked product visits'],
-            ['label' => 'No-result searches', 'value' => 'Not recorded', 'hint' => 'Requires result-count tracking'],
+            ['label' => 'No-result searches', 'value' => number_format($noResultSearches), 'hint' => 'Searches that returned zero products'],
         ];
     }
 
@@ -91,10 +102,8 @@ class SearchAnalyticsController extends Controller
     {
         $termExpression = $this->searchTermExpression();
 
-        // The previous implementation loaded every matching tracking row into
-        // PHP and then parsed it. On a large user_trackings table that can
-        // exhaust the request time/memory. Aggregate in MySQL first and only
-        // return the highest-frequency terms to PHP.
+        // Aggregate in MySQL first and only return the highest-frequency terms
+        // to PHP so a large tracking table cannot exhaust request time/memory.
         $rows = $this->searchTrackingQuery($from, $to)
             ->where('page_url', 'like', '%q=%')
             ->selectRaw("{$termExpression} as term, COUNT(*) as total")
@@ -118,6 +127,33 @@ class SearchAnalyticsController extends Controller
         arsort($terms);
 
         return array_slice($terms, 0, 20, true);
+    }
+
+    private function noResultSearches(Carbon $from, Carbon $to): array
+    {
+        if (! Schema::hasTable('search_query_logs')) {
+            return [];
+        }
+
+        return SearchQueryLog::query()
+            ->whereBetween('created_at', [$from, $to])
+            ->where('result_count', 0)
+            ->selectRaw('normalized_query, MIN(query) as query, COUNT(*) as attempts, MAX(created_at) as last_searched_at')
+            ->groupBy('normalized_query')
+            ->orderByDesc('attempts')
+            ->orderByDesc('last_searched_at')
+            ->limit(100)
+            ->get()
+            ->map(function ($search) {
+                return [
+                    'query' => $search->query ?: $search->normalized_query,
+                    'attempts' => (int) $search->attempts,
+                    'last_searched_at' => $search->last_searched_at
+                        ? Carbon::parse($search->last_searched_at)
+                        : null,
+                ];
+            })
+            ->all();
     }
 
     private function topProducts(Carbon $from, Carbon $to): array

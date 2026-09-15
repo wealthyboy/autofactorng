@@ -207,9 +207,16 @@ class CartController  extends Controller
 
 					if ($activeCheckout) {
 						if ($carts->isEmpty()) {
-							// A deliberately emptied cart should not stay queued for an
-							// abandoned-cart reminder.
-							$activeCheckout->delete();
+							$alreadyAbandoned = $activeCheckout->reminder_sent_at
+								|| ($activeCheckout->checkout_started_at
+									&& $activeCheckout->checkout_started_at->lte(now()->subHour()));
+
+							if (! $alreadyAbandoned) {
+								// A cart deliberately emptied before it ever became
+								// abandoned is not useful analytics history. Once it has
+								// crossed the threshold or received a reminder, preserve it.
+								$activeCheckout->delete();
+							}
 						} else {
 							$items = $carts->map(function ($cart) {
 								return [
