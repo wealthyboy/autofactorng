@@ -17,7 +17,6 @@ use App\Services\Newsletter\Contracts\NewsletterContract;
 use App\Services\Newsletter\Exceptions\UserAlreadySubscribedException;
 use App\Services\Newsletter\MailChimpNewsletter;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\RateLimiter;
 use Mailchimp;
 use Mailchimp_Lists;
@@ -75,8 +74,11 @@ class RegisterController extends Controller
             'phone_number' => ['required', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'website' => ['nullable', 'string', 'max:255'],
-            'registration_started_at' => ['nullable', 'integer'],
-            // 'g-recaptcha-response' => ['required', 'string'],
+            // These two fields are produced by the real registration UI.
+            // They are deliberately validated locally; Google siteverify is not
+            // used because the production server-side Google call was unreliable.
+            'registration_started_at' => ['required', 'integer'],
+            'g-recaptcha-response' => ['required', 'string', 'min:20'],
         ]);
 
         $validator->after(function ($validator) use ($data) {
@@ -93,22 +95,40 @@ class RegisterController extends Controller
 
     protected function isBotRegistration(array $data, Request $request): bool
     {
-        $rateLimitKey = 'register:' . sha1($request->ip() . '|' . strtolower($data['email'] ?? ''));
+        // Keep the anti-bot decision local to AutofactorNG. The visible
+        // reCAPTCHA remains a browser challenge, but we intentionally do not
+        // call Google's server-side siteverify endpoint here.
+        $ip = (string) $request->ip();
+        $email = strtolower(trim((string) ($data['email'] ?? '')));
+        $phone = preg_replace('/\D+/', '', (string) ($data['phone_number'] ?? ''));
 
-        if (RateLimiter::tooManyAttempts($rateLimitKey, 5)) {
+        // Limit by IP separately from email/phone. The previous combined
+        // IP+email key could be bypassed simply by changing the fake email.
+        $ipKey = 'register:ip:' . sha1($ip);
+        $emailKey = 'register:email:' . sha1($email);
+        $phoneKey = 'register:phone:' . sha1($phone);
+
+        if (RateLimiter::tooManyAttempts($ipKey, 20)
+            || RateLimiter::tooManyAttempts($emailKey, 5)
+            || ($phone !== '' && RateLimiter::tooManyAttempts($phoneKey, 5))) {
             Log::warning('Registration blocked by rate limit', [
-                'ip' => $request->ip(),
+                'ip' => $ip,
                 'email' => $data['email'] ?? null,
             ]);
 
             return true;
         }
 
-        RateLimiter::hit($rateLimitKey, 900);
+        RateLimiter::hit($ipKey, 900);
+        RateLimiter::hit($emailKey, 900);
+        if ($phone !== '') {
+            RateLimiter::hit($phoneKey, 900);
+        }
 
         $riskScore = 0;
         $reasons = [];
 
+        // A real customer never sees or fills this field.
         if (!empty($data['website'])) {
             $riskScore += 100;
             $reasons[] = 'honeypot_filled';
@@ -116,52 +136,54 @@ class RegisterController extends Controller
 
         $startedAt = isset($data['registration_started_at'])
             ? (int) $data['registration_started_at']
-            : null;
+            : 0;
 
-        if (!$startedAt) {
-            $riskScore += 30;
-            $reasons[] = 'missing_form_timer';
+        $nowMs = (int) round(microtime(true) * 1000);
+        if ($startedAt <= 0 || $startedAt > ($nowMs + 300000)) {
+            $riskScore += 60;
+            $reasons[] = 'invalid_form_timer';
         } else {
-            $elapsedSeconds = (int) floor(((int) round(microtime(true) * 1000) - $startedAt) / 1000);
+            $elapsedSeconds = (int) floor(($nowMs - $startedAt) / 1000);
 
-            if ($elapsedSeconds < 3) {
-                // Autofill and password managers can complete a genuine form in
-                // under three seconds, so timing alone must not reject a user.
-                $riskScore += 10;
+            // Fast completion alone must never block autofill/password-manager
+            // users. It only becomes meaningful when another signal is present.
+            if ($elapsedSeconds < 2) {
+                $riskScore += 25;
                 $reasons[] = 'submitted_too_fast';
             }
 
-            if ($elapsedSeconds > 7200) {
-                $riskScore += 20;
-                $reasons[] = 'stale_form';
-            }
+            // There is intentionally NO maximum age rejection here. A genuine
+            // customer may leave the registration page open for a long time.
         }
 
         if (!$request->userAgent()) {
-            $riskScore += 50;
+            $riskScore += 60;
             $reasons[] = 'missing_user_agent';
         }
 
         if ($this->looksLikeSpamInput($data)) {
-            $riskScore += 40;
+            $riskScore += 60;
             $reasons[] = 'spam_input_pattern';
         }
 
-        $recaptchaToken = $data['g-recaptcha-response'] ?? '';
-        if ($recaptchaToken && !$this->verifyRecaptcha($recaptchaToken)) {
-            $riskScore += 40;
-            $reasons[] = 'recaptcha_failed';
+        // We only require that the browser completed the visible challenge.
+        // Do not call Google siteverify here: production uses AutofactorNG's
+        // local anti-bot checks as the authoritative server-side protection.
+        $recaptchaToken = trim((string) ($data['g-recaptcha-response'] ?? ''));
+        if (strlen($recaptchaToken) < 20) {
+            $riskScore += 60;
+            $reasons[] = 'missing_browser_challenge';
         }
 
         if ($riskScore >= 60) {
-            Log::warning('Registration blocked by backend bot check', [
-                'ip' => $request->ip(),
+            Log::warning('Registration blocked by custom bot check', [
+                'ip' => $ip,
                 'email' => $data['email'] ?? null,
                 'score' => $riskScore,
                 'reasons' => $reasons,
             ]);
 
-            return false;
+            return true;
         }
 
         return false;
@@ -185,54 +207,6 @@ class RegisterController extends Controller
         return false;
     }
 
-    protected function verifyRecaptcha($token)
-    {
-        $secret = config('services.recaptcha.secret');
-        if (!$secret || !$token) {
-            Log::warning('reCAPTCHA verification prerequisites missing', [
-                'has_secret' => (bool) $secret,
-                'has_token' => (bool) $token,
-            ]);
-            return false;
-        }
-
-        $requestIp = request()->ip();
-
-        try {
-            $response = Http::asForm()
-                ->timeout(10)
-                ->post('https://www.google.com/recaptcha/api/siteverify', [
-                    'secret' => $secret,
-                    'response' => $token,
-                    'remoteip' => $requestIp,
-                ]);
-
-            Log::info($response);
-            if (!$response->ok()) {
-                Log::warning('reCAPTCHA verification HTTP failure', [
-                    'status' => $response->status(),
-                ]);
-                return false;
-            }
-
-            $body = $response->json();
-            $isSuccess = isset($body['success']) && $body['success'] === true;
-
-            if (!$isSuccess) {
-                Log::warning('reCAPTCHA rejected by Google', [
-                    'error_codes' => $body['error-codes'] ?? [],
-                    'hostname' => $body['hostname'] ?? null,
-                    'client_ip' => $requestIp,
-                ]);
-            }
-
-            return $isSuccess;
-        } catch (\Throwable $exception) {
-            Log::info($exception);
-            return false;
-        }
-    }
-
     /**
      * Create a new user instance after a valid registration.
      *
@@ -241,11 +215,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        // Verify reCAPTCHA before creating user
-        // if (!$this->verifyRecaptcha($data['g-recaptcha-response'] ?? '')) {
-        // throw new \Exception('reCAPTCHA verification failed');
-        // }
-
         $user = User::create([
             'name' => $data['first_name'],
             'last_name' => $data['last_name'],

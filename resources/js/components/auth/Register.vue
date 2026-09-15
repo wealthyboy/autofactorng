@@ -198,6 +198,13 @@ export default {
                     },
                     "expired-callback": function () {
                         form["g-recaptcha-response"] = "";
+                        captcha_error.value =
+                            "Verification expired. Please complete reCAPTCHA again.";
+                    },
+                    "error-callback": function () {
+                        form["g-recaptcha-response"] = "";
+                        captcha_error.value =
+                            "Verification could not load. Please try reCAPTCHA again.";
                     },
                 },
             );
@@ -258,9 +265,17 @@ export default {
                     "";
             }
 
+            if (!window.grecaptcha || recaptchaWidgetId.value === null) {
+                captcha_error.value =
+                    "Verification is still loading. Please wait a moment and try again.";
+                return;
+            }
+
             if (!form["g-recaptcha-response"]) {
-                //captcha_error.value = "Please complete reCAPTCHA.";
-                //return;
+                captcha_error.value =
+                    "Please complete reCAPTCHA before creating your account.";
+                window.grecaptcha.reset(recaptchaWidgetId.value);
+                return;
             }
 
             const postData = {
@@ -273,8 +288,6 @@ export default {
                 method: "post",
             };
 
-            console.log(true);
-
             makePost(postData)
                 .then((res) => {
                     if (props.reload) {
@@ -285,11 +298,31 @@ export default {
                     window.location.href = res.data.url;
                 })
                 .catch((error) => {
-                    console.log(error);
-                    server_errors.value = error.response.data.errors;
+                    const errors =
+                        error && error.response && error.response.data
+                            ? error.response.data.errors || {}
+                            : {};
+
+                    server_errors.value = errors;
                     clearErr(server_errors);
 
-                    if (window.grecaptcha && recaptchaWidgetId.value !== null) {
+                    const captchaErrors = errors["g-recaptcha-response"] || [];
+                    const registrationErrors = errors.registration || [];
+
+                    if (captchaErrors.length) {
+                        captcha_error.value = captchaErrors[0];
+                    } else if (registrationErrors.length) {
+                        captcha_error.value = registrationErrors[0];
+                    }
+
+                    // Only force a fresh challenge when the server rejected the
+                    // verification/bot check. Ordinary field errors should not
+                    // make the customer solve reCAPTCHA again unnecessarily.
+                    if (
+                        (captchaErrors.length || registrationErrors.length) &&
+                        window.grecaptcha &&
+                        recaptchaWidgetId.value !== null
+                    ) {
                         window.grecaptcha.reset(recaptchaWidgetId.value);
                         form["g-recaptcha-response"] = "";
                     }
