@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
-<form action="{{ route('products.store') }}" class="" method="post" data-method="POST" enctype="multipart/form-data" id="form-product">
+@include('admin._partials.stacked_form_labels')
+<form action="{{ route('products.store') }}" class="admin-stacked-labels" method="post" data-method="POST" enctype="multipart/form-data" id="form-product">
    @csrf
    <div class="row">
       <div class="col-md-7">
@@ -23,7 +24,7 @@
                   </div>
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label mt-4 ms-0"> </label>
+                        <label class="form-label">Brand</label>
                         <select class="form-control" name="brand_id" id="">
                            <option value="">--Brand--</option>
                            @foreach($brands as $brand)
@@ -91,7 +92,7 @@
                   </div>
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label mt-4 ms-0"> </label>
+                        <label class="form-label">Battery Ampere</label>
                         <select class="form-control" name="amphere" id="">
                            <option value="">--Battery Amphere--</option>
                            @foreach($amps as $amp)
@@ -203,7 +204,7 @@
                   <h6>Lagos</h6>
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> </label>
+                        <label class="form-label">Field</label>
                         <select name="condition[lagos][tag][]" id="" class="form-control">
                            <option value="quantity">Quantity</option>
                         </select>
@@ -211,7 +212,7 @@
                   </div>
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> </label>
+                        <label class="form-label">Condition</label>
                         <select name="condition[lagos][condition][]" id="" class="form-control">
                            <option value=">">greater than</option>
                            <option value="=">Equal to</option>
@@ -220,7 +221,7 @@
                   </div>
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> </label>
+                        <label class="form-label">Value</label>
                         <select name="condition[lagos][tag_value][]" id="" class="form-control">
                            <option value="1">1</option>
                            <option value="2">2</option>
@@ -251,7 +252,7 @@
                   <h6 class="my-3">Outside Lagos</h6>
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> </label>
+                        <label class="form-label">Field</label>
                         <select name="condition[out_side_lagos][tag][]" id="" class="form-control">
                            <option value="quantity">Quantity</option>
                         </select>
@@ -259,7 +260,7 @@
                   </div>
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> </label>
+                        <label class="form-label">Condition</label>
                         <select name="condition[out_side_lagos][condition][]" id="" class="form-control">
                            <option value=">">is greater than</option>
                            <option value="=">Equal to</option>
@@ -268,7 +269,7 @@
                   </div>
                   <div class="col-sm-3 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> </label>
+                        <label class="form-label">Value</label>
                         <select name="condition[out_side_lagos][tag_value][]" id="" class="form-control">
                            <option value="1">1</option>
                            <option value="2">2</option>

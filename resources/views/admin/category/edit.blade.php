@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('content')
+@include('admin._partials.stacked_form_labels')
 @php
    // Keep this edit page safe when older/live controller paths do not supply
    // the optional curation/filter collections. This also avoids relying on an
@@ -33,7 +34,7 @@
             <h6 class="mb-0">Edit </h6>
          </div>
          <div class="card-body pt-0">
-            <form action="{{ route('category.update',['category' => $cat->id ]) }}" method="post" id="category-edit-form">
+            <form action="{{ route('category.update',['category' => $cat->id ]) }}" method="post" id="category-edit-form" class="admin-stacked-labels">
                @csrf
                @method('PATCH')
                <input type="hidden" name="product_filters_managed" value="1">
@@ -217,7 +218,7 @@
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label mt-4 ms-0"> </label>
+                        <label class="form-label">Parent Category</label>
                         <select class="form-control" name="parent_id" id="">
                            <option value="">--Choose Parent--</option>
                            @foreach($categories as $category)
@@ -237,7 +238,7 @@
                <div class="row mt-3">
                   <div class="col-sm-12 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label mt-4 ms-0"> </label>
+                        <label class="form-label">Search Type</label>
                         <select class="form-control" name="search_type" id="">
                            <option value="">--Choose Search-- </option>
                            <option {{ $cat->search_type == 'make_model_year' ? 'selected' :  ""}} value="make_model_year">Make Model Year</option>

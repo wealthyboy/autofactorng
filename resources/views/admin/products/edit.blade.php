@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 @section('content')
-<form action="{{ route('products.update',['product'=>$product->id])  }}" class="" method="post" data-method="POST" enctype="multipart/form-data" id="form-product">
+@include('admin._partials.stacked_form_labels')
+<form action="{{ route('products.update',['product'=>$product->id])  }}" class="admin-stacked-labels" method="post" data-method="POST" enctype="multipart/form-data" id="form-product">
    @method('PATCH')
    @csrf
 
@@ -24,7 +25,7 @@
                   </div>
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label mt-4 ms-0"> </label>
+                        <label class="form-label">Brand</label>
                         <select class="form-control" name="brand_id" id="">
                            <option value="">--Brand--</option>
                            @foreach($brands as $brand)
@@ -98,7 +99,7 @@
                   </div>
                   <div class="col-sm-6 col-12">
                      <div class="input-group input-group-outline">
-                        <label class="form-label mt-4 ms-0"> </label>
+                        <label class="form-label">Battery Ampere</label>
                         <select class="form-control" name="amphere" id="">
                            <option value="">--Battery Amphere--</option>
                            @foreach($amps as $amp)
@@ -232,7 +233,7 @@
 
                   <div class="col-sm-3">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> </label>
+                        <label class="form-label">Field</label>
                         <select name="condition[lagos][tag][]" id="" class="form-control">
                            <option value="quantity">Quantity</option>
                         </select>
@@ -240,7 +241,7 @@
                   </div>
                   <div class="col-sm-3">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> </label>
+                        <label class="form-label">Condition</label>
                         <select name="condition[lagos][condition][]" id="" class="form-control">
                            <option {{ $heavy_item->condition == '>' ? 'selected' : null }} value=">">greater than</option>
                            <option {{ $heavy_item->condition == '=' ? 'selected' : null }} value="=">Equal to</option>
@@ -249,7 +250,7 @@
                   </div>
                   <div class="col-sm-2">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> </label>
+                        <label class="form-label">Value</label>
                         <select name="condition[lagos][tag_value][]" id="" class="form-control">
                            <option {{ $heavy_item->tag_value == '1' ? 'selected' : null }} value="1">1</option>
                            <option {{ $heavy_item->tag_value == '2' ? 'selected' : null }} value="2">2</option>
@@ -261,7 +262,7 @@
                   </div>
                   <div class="col-sm-3">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"></label>
+                        <label class="form-label">Price</label>
                         <input type="text" class="form-control" value="{{ $heavy_item->price }}" placeholder="Price" name="condition[lagos][price][]">
                      </div>
                   </div>
@@ -286,7 +287,7 @@
 
                   <div class="col-sm-3">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> </label>
+                        <label class="form-label">Field</label>
                         <select name="condition[out_side_lagos][tag][]" id="" class="form-control">
                            <option value="quantity">Quantity {{ $heavy_item->quantity }}</option>
                         </select>
@@ -294,7 +295,7 @@
                   </div>
                   <div class="col-sm-3">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> </label>
+                        <label class="form-label">Condition</label>
                         <select name="condition[out_side_lagos][condition][]" id="" class="form-control">
                            <option {{ $heavy_item->condition == '>' ? 'selected' : null }} value=">">greater than</option>
                            <option {{ $heavy_item->condition == '=' ? 'selected' : null }} value="=">Equal to</option>
@@ -303,7 +304,7 @@
                   </div>
                   <div class="col-sm-2">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"> </label>
+                        <label class="form-label">Value</label>
                         <select name="condition[out_side_lagos][tag_value][]" id="" class="form-control">
                            <option {{ $heavy_item->tag_value == '1' ? 'selected' : null }} value="1">1</option>
                            <option {{ $heavy_item->tag_value == '2' ? 'selected' : null }} value="2">2</option>
@@ -315,7 +316,7 @@
                   </div>
                   <div class="col-sm-3">
                      <div class="input-group input-group-outline">
-                        <label class="form-label"></label>
+                        <label class="form-label">Price</label>
                         <input type="text" class="form-control" value="{{ $heavy_item->price }}" placeholder="Price" name="condition[out_side_lagos][price][]">
                      </div>
                   </div>

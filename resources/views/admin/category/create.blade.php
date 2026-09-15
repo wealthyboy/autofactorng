@@ -2,18 +2,19 @@
 @extends('admin.layouts.app')
 
 @section('content')
+@include('admin._partials.stacked_form_labels')
 
 <div class="row">
     <div class="col-md-10">
         @include('admin.errors.errors')
         <div class="card">
-            <form id="" action="" method="post">
+            <form id="" action="" method="post" class="admin-stacked-labels">
             
                 <div class="card-content">
                     <h4 class="card-title">Add Category</h4>
                     <div class="form-group label-floating">
                         <label class="control-label">
-                            Catergory Name
+                            Category Name
                             <small>*</small>
                         </label>
                         <input class="form-control"
