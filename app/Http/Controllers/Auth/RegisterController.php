@@ -74,6 +74,7 @@ class RegisterController extends Controller
             'phone_number' => ['required', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'website' => ['nullable', 'string', 'max:255'],
+            'fax_number' => ['nullable', 'string', 'max:255'],
             // These two fields are produced by the real registration UI.
             // They are deliberately validated locally; Google siteverify is not
             // used because the production server-side Google call was unreliable.
@@ -111,94 +112,101 @@ class RegisterController extends Controller
         $email = strtolower(trim((string) ($data['email'] ?? '')));
         $phone = preg_replace('/\D+/', '', (string) ($data['phone_number'] ?? ''));
 
-        // v2 intentionally starts fresh. The earlier limiter counted ordinary
-        // validation retries and could leave genuine customers locked out.
-        $ipKey = 'register:v2:ip:' . sha1($ip);
-        $emailKey = 'register:v2:email:' . sha1($email);
-        $phoneKey = 'register:v2:phone:' . sha1($phone);
+        // v3 starts clean after the earlier limiter/risk-score false positives.
+        $ipKey = 'register:v3:ip:' . sha1($ip);
+        $emailKey = 'register:v3:email:' . sha1($email);
+        $phoneKey = 'register:v3:phone:' . sha1($phone);
 
-        $riskScore = 0;
-        $reasons = [];
+        $hardReasons = [];
+        $softReasons = [];
 
-        // Honeypot is a strong bot signal.
-        if (!empty($data['website'])) {
-            $riskScore += 100;
-            $reasons[] = 'honeypot_filled';
+        // New honeypot name is deliberately unrelated to normal browser profile
+        // fields. The old `website` honeypot was vulnerable to autofill and is now
+        // only logged as a legacy signal instead of blocking a genuine customer.
+        if (!empty($data['fax_number'])) {
+            $hardReasons[] = 'honeypot_filled';
         }
 
-        // Client time is useful as a supporting signal only. It must never be a
-        // single-point failure because device clocks can be wrong.
+        if (!empty($data['website'])) {
+            $softReasons[] = 'legacy_honeypot_filled';
+        }
+
         $startedAt = isset($data['registration_started_at'])
             ? (int) $data['registration_started_at']
             : 0;
         $nowMs = (int) round(microtime(true) * 1000);
 
+        // Timing is diagnostic only. Device clocks, cached tabs and autofill must
+        // never be enough to reject an otherwise valid registration.
         if ($startedAt <= 0 || $startedAt > ($nowMs + 300000)) {
-            $riskScore += 20;
-            $reasons[] = 'invalid_form_timer';
+            $softReasons[] = 'invalid_form_timer';
         } else {
             $elapsedSeconds = (int) floor(($nowMs - $startedAt) / 1000);
-
             if ($elapsedSeconds < 2) {
-                $riskScore += 15;
-                $reasons[] = 'submitted_too_fast';
+                $softReasons[] = 'submitted_too_fast';
             }
-
-            // No maximum form age: customers may browse or leave the page open.
         }
 
+        // Some proxies/privacy tools can alter request headers, so missing UA is
+        // logged but is not a single-point blocker.
         if (!$request->userAgent()) {
-            $riskScore += 100;
-            $reasons[] = 'missing_user_agent';
+            $softReasons[] = 'missing_user_agent';
         }
 
+        // Active HTML/script/URL payloads in identity fields are strong evidence
+        // that this is not a normal customer registration.
         if ($this->looksLikeSpamInput($data)) {
-            $riskScore += 100;
-            $reasons[] = 'spam_input_pattern';
+            $hardReasons[] = 'spam_input_pattern';
         }
 
-        // The browser must have completed the visible challenge. We do not claim
-        // this is cryptographic verification without Google siteverify; it is one
-        // layer alongside the honeypot, timing and local rate controls.
+        // The Vue form requires completion of the visible challenge. This is not
+        // a substitute for Google server verification; it is one local layer.
         $recaptchaToken = trim((string) ($data['g-recaptcha-response'] ?? ''));
         if (strlen($recaptchaToken) < 80) {
-            $riskScore += 100;
-            $reasons[] = 'missing_browser_challenge';
+            $hardReasons[] = 'missing_browser_challenge';
         }
 
-        // Identity limits are stronger than IP limits because a shared office,
-        // mobile carrier or proxy can legitimately put many people behind one IP.
-        if ($email !== '' && RateLimiter::tooManyAttempts($emailKey, 10)) {
-            $riskScore += 100;
-            $reasons[] = 'email_rate_limit';
+        // Only repeated attempts against the SAME identity can hard-block. Normal
+        // Laravel field errors do not consume these counters (see validator()).
+        if ($email !== '' && RateLimiter::tooManyAttempts($emailKey, 20)) {
+            $hardReasons[] = 'email_rate_limit';
         }
 
-        if ($phone !== '' && RateLimiter::tooManyAttempts($phoneKey, 10)) {
-            $riskScore += 100;
-            $reasons[] = 'phone_rate_limit';
+        if ($phone !== '' && RateLimiter::tooManyAttempts($phoneKey, 20)) {
+            $hardReasons[] = 'phone_rate_limit';
         }
 
-        // A noisy IP is only a supporting signal. It cannot block a customer by
-        // itself, which avoids the false-positive shown on shared/proxied networks.
-        if ($ip !== '' && RateLimiter::tooManyAttempts($ipKey, 40)) {
-            $riskScore += 25;
-            $reasons[] = 'ip_rate_limit';
+        // IP activity is useful for diagnostics, but mobile carriers, offices and
+        // proxies can place many genuine customers behind one address. Never block
+        // a customer on IP volume alone.
+        if ($ip !== '' && RateLimiter::tooManyAttempts($ipKey, 100)) {
+            $softReasons[] = 'ip_rate_limit';
         }
 
-        if ($riskScore >= 80) {
+        if (!empty($hardReasons)) {
             Log::warning('Registration blocked by custom bot check', [
                 'ip' => $ip,
                 'email' => $data['email'] ?? null,
-                'score' => $riskScore,
-                'reasons' => $reasons,
+                'hard_reasons' => $hardReasons,
+                'soft_reasons' => $softReasons,
             ]);
 
             return true;
         }
 
-        // Count only requests that made it through normal Laravel validation and
-        // the local bot decision. Failed field validation no longer burns attempts.
-        RateLimiter::hit($ipKey, 900);
+        if (!empty($softReasons)) {
+            Log::info('Registration passed with soft bot signals', [
+                'ip' => $ip,
+                'email' => $data['email'] ?? null,
+                'reasons' => $softReasons,
+            ]);
+        }
+
+        // Count only syntactically valid registrations that passed the hard bot
+        // checks. Field-validation failures never burn these attempts.
+        if ($ip !== '') {
+            RateLimiter::hit($ipKey, 900);
+        }
         if ($email !== '') {
             RateLimiter::hit($emailKey, 900);
         }

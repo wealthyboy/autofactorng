@@ -4,9 +4,9 @@
 
         <form method="POST" @submit.prevent="register">
             <input
-                v-model="form.website"
+                v-model="form.fax_number"
                 type="text"
-                name="website"
+                name="fax_number"
                 tabindex="-1"
                 autocomplete="off"
                 class="registration-website-field"
