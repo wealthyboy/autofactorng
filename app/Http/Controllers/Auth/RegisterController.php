@@ -78,14 +78,24 @@ class RegisterController extends Controller
             // They are deliberately validated locally; Google siteverify is not
             // used because the production server-side Google call was unreliable.
             'registration_started_at' => ['required', 'integer'],
-            'g-recaptcha-response' => ['required', 'string', 'min:20'],
+            // We do not call Google's siteverify endpoint in production, but
+            // a genuine v2 browser token is substantially longer than a hand-made
+            // placeholder. This remains only one signal in the local verifier.
+            'g-recaptcha-response' => ['required', 'string', 'min:80'],
         ]);
 
         $validator->after(function ($validator) use ($data) {
+            // Do not consume anti-bot attempts when ordinary form validation
+            // already failed (duplicate email, password confirmation, etc.).
+            // A genuine customer must be able to correct a field and resubmit.
+            if ($validator->errors()->count() > 0) {
+                return;
+            }
+
             if ($this->isBotRegistration($data, request())) {
                 $validator->errors()->add(
                     'registration',
-                    'We could not verify this registration. Please refresh the page and try again.'
+                    'We could not verify this registration. Please complete the verification again and try once more.'
                 );
             }
         });
@@ -95,87 +105,87 @@ class RegisterController extends Controller
 
     protected function isBotRegistration(array $data, Request $request): bool
     {
-        // Keep the anti-bot decision local to AutofactorNG. The visible
-        // reCAPTCHA remains a browser challenge, but we intentionally do not
-        // call Google's server-side siteverify endpoint here.
+        // Keep the anti-bot decision local to AutofactorNG. Google siteverify is
+        // intentionally NOT called because that production request was unreliable.
         $ip = (string) $request->ip();
         $email = strtolower(trim((string) ($data['email'] ?? '')));
         $phone = preg_replace('/\D+/', '', (string) ($data['phone_number'] ?? ''));
 
-        // Limit by IP separately from email/phone. The previous combined
-        // IP+email key could be bypassed simply by changing the fake email.
-        $ipKey = 'register:ip:' . sha1($ip);
-        $emailKey = 'register:email:' . sha1($email);
-        $phoneKey = 'register:phone:' . sha1($phone);
-
-        if (RateLimiter::tooManyAttempts($ipKey, 20)
-            || RateLimiter::tooManyAttempts($emailKey, 5)
-            || ($phone !== '' && RateLimiter::tooManyAttempts($phoneKey, 5))) {
-            Log::warning('Registration blocked by rate limit', [
-                'ip' => $ip,
-                'email' => $data['email'] ?? null,
-            ]);
-
-            return true;
-        }
-
-        RateLimiter::hit($ipKey, 900);
-        RateLimiter::hit($emailKey, 900);
-        if ($phone !== '') {
-            RateLimiter::hit($phoneKey, 900);
-        }
+        // v2 intentionally starts fresh. The earlier limiter counted ordinary
+        // validation retries and could leave genuine customers locked out.
+        $ipKey = 'register:v2:ip:' . sha1($ip);
+        $emailKey = 'register:v2:email:' . sha1($email);
+        $phoneKey = 'register:v2:phone:' . sha1($phone);
 
         $riskScore = 0;
         $reasons = [];
 
-        // A real customer never sees or fills this field.
+        // Honeypot is a strong bot signal.
         if (!empty($data['website'])) {
             $riskScore += 100;
             $reasons[] = 'honeypot_filled';
         }
 
+        // Client time is useful as a supporting signal only. It must never be a
+        // single-point failure because device clocks can be wrong.
         $startedAt = isset($data['registration_started_at'])
             ? (int) $data['registration_started_at']
             : 0;
-
         $nowMs = (int) round(microtime(true) * 1000);
+
         if ($startedAt <= 0 || $startedAt > ($nowMs + 300000)) {
-            $riskScore += 60;
+            $riskScore += 20;
             $reasons[] = 'invalid_form_timer';
         } else {
             $elapsedSeconds = (int) floor(($nowMs - $startedAt) / 1000);
 
-            // Fast completion alone must never block autofill/password-manager
-            // users. It only becomes meaningful when another signal is present.
             if ($elapsedSeconds < 2) {
-                $riskScore += 25;
+                $riskScore += 15;
                 $reasons[] = 'submitted_too_fast';
             }
 
-            // There is intentionally NO maximum age rejection here. A genuine
-            // customer may leave the registration page open for a long time.
+            // No maximum form age: customers may browse or leave the page open.
         }
 
         if (!$request->userAgent()) {
-            $riskScore += 60;
+            $riskScore += 100;
             $reasons[] = 'missing_user_agent';
         }
 
         if ($this->looksLikeSpamInput($data)) {
-            $riskScore += 60;
+            $riskScore += 100;
             $reasons[] = 'spam_input_pattern';
         }
 
-        // We only require that the browser completed the visible challenge.
-        // Do not call Google siteverify here: production uses AutofactorNG's
-        // local anti-bot checks as the authoritative server-side protection.
+        // The browser must have completed the visible challenge. We do not claim
+        // this is cryptographic verification without Google siteverify; it is one
+        // layer alongside the honeypot, timing and local rate controls.
         $recaptchaToken = trim((string) ($data['g-recaptcha-response'] ?? ''));
-        if (strlen($recaptchaToken) < 20) {
-            $riskScore += 60;
+        if (strlen($recaptchaToken) < 80) {
+            $riskScore += 100;
             $reasons[] = 'missing_browser_challenge';
         }
 
-        if ($riskScore >= 60) {
+        // Identity limits are stronger than IP limits because a shared office,
+        // mobile carrier or proxy can legitimately put many people behind one IP.
+        if ($email !== '' && RateLimiter::tooManyAttempts($emailKey, 10)) {
+            $riskScore += 100;
+            $reasons[] = 'email_rate_limit';
+        }
+
+        if ($phone !== '' && RateLimiter::tooManyAttempts($phoneKey, 10)) {
+            $riskScore += 100;
+            $reasons[] = 'phone_rate_limit';
+        }
+
+        // A noisy IP is only a supporting signal. It cannot block a customer by
+        // itself, which avoids the false-positive shown on shared/proxied networks.
+        if ($ip !== '' && RateLimiter::tooManyAttempts($ipKey, 40)) {
+            $riskScore += 25;
+            $reasons[] = 'ip_rate_limit';
+        }
+
+        if ($riskScore >= 80) {
             Log::warning('Registration blocked by custom bot check', [
                 'ip' => $ip,
                 'email' => $data['email'] ?? null,
@@ -184,6 +194,16 @@ class RegisterController extends Controller
             ]);
 
             return true;
+        }
+
+        // Count only requests that made it through normal Laravel validation and
+        // the local bot decision. Failed field validation no longer burns attempts.
+        RateLimiter::hit($ipKey, 900);
+        if ($email !== '') {
+            RateLimiter::hit($emailKey, 900);
+        }
+        if ($phone !== '') {
+            RateLimiter::hit($phoneKey, 900);
         }
 
         return false;
