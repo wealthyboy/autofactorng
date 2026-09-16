@@ -111,7 +111,7 @@
                 <a :href="product.link">{{ product.name }} </a>
             </h4>
             <div class="mb-3 fs-5 fw-bold text-black product-note">{{ product.note }}</div>
-            <div v-if="product.average_rating_count >= 1" class="product-ratings mb-2">
+            <div v-if="product.average_rating_count >= 1" class="product-ratings product-rating-spacing">
                 <rating :active="true" v-for="x in product.average_rating / 20" />
                 <rating :active="false" v-for="x in (100 - product.average_rating) / 20" />
 
@@ -224,6 +224,10 @@ export default {
 </script>
 
 <style scoped>
+.product-rating-spacing {
+    margin-bottom: 2rem !important;
+}
+
 /*
  * Grid-card layout override.
  * The legacy theme gives title/note/review blocks different natural heights.
