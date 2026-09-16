@@ -35,7 +35,7 @@
                     {{ product.note }}
                 </div>
 
-                <div itemprop="rating" v-if="product.average_rating_count >= 1" class="product-rating mb-2 product-grid-rating">
+                <div itemprop="rating" v-if="product.average_rating_count >= 1" class="product-rating product-rating-spacing product-grid-rating">
                     <rating :active="true" v-for="x in product.average_rating / 20" />
                     <rating :active="false" v-for="x in (100 - product.average_rating) / 20" />
                     <!-- End .ratings -->
@@ -225,7 +225,8 @@ export default {
 
 <style scoped>
 .product-rating-spacing {
-    margin-bottom: 2rem !important;
+    margin-bottom: 1.5rem !important;
+    margin-top: 1.5rem;
 }
 
 /*
@@ -286,8 +287,9 @@ export default {
      * pushed to the bottom by the flex layout above.
      */
     .product-grid-card .product-grid-details {
+        position: relative !important;
         min-width: 0;
-        padding: 0.75rem 0.65rem 1rem !important;
+        padding: 0.75rem 0.65rem 10.25rem !important;
     }
 
     h4.product-title.title {
@@ -335,15 +337,19 @@ export default {
         margin: 0.35rem 0 0 !important;
     }
 
-    /* Price and action are the card footer. The price consumes remaining space. */
+    /* Mobile footer: keep the price and Add to Cart aligned at the bottom of every card. */
     .product-grid-card .price-box {
+        position: absolute !important;
+        left: 0.65rem;
+        right: 0.65rem;
+        bottom: 5.65rem;
         display: flex;
         align-items: baseline;
         flex-wrap: wrap;
         gap: 0.3rem 0.45rem;
-        margin-top: auto !important;
-        margin-bottom: 0.65rem !important;
-        padding-top: 0.55rem;
+        width: auto;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     .product-grid-card .price-box .old-price {
@@ -351,6 +357,11 @@ export default {
     }
 
     .product-grid-card .product-action {
+        position: absolute !important;
+        left: 0.65rem;
+        right: 0.65rem;
+        bottom: 1rem;
+        width: auto;
         margin: 0 !important;
     }
 
