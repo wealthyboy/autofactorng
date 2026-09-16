@@ -290,21 +290,15 @@ export default {
         padding: 0.75rem 0.65rem 1rem !important;
     }
 
-    .product-grid-card h4.product-grid-title,
-    .product-grid-card h4.product-grid-title.title {
-        height: auto !important;
-        min-height: 0 !important;
-        max-height: none !important;
-        margin: 0 0 0.5rem !important;
+    h4.product-title.title {
+        height: 42px !important;
+        max-height: 42px !important;
         overflow: hidden !important;
-        line-height: 1.3 !important;
     }
 
-    /* Product name: at most two natural lines, then ellipsis. */
-    .product-grid-card h4.product-grid-title > a {
+    /* Mobile product names: never more than two lines. */
+    h4.product-title > a {
         display: -webkit-box !important;
-        height: auto !important;
-        max-height: none !important;
         overflow: hidden !important;
         white-space: normal !important;
         text-overflow: ellipsis !important;
@@ -312,7 +306,6 @@ export default {
         -webkit-line-clamp: 2;
         line-clamp: 2;
         line-height: 1.3 !important;
-        overflow-wrap: anywhere;
     }
 
     /* Product note: one compact line on listing cards. */
