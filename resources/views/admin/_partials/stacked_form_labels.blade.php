@@ -93,14 +93,14 @@
    .admin-stacked-labels .input-group.input-group-outline > .form-control:focus,
    .admin-stacked-labels .input-group.input-group-outline > select.form-control:focus,
    .admin-stacked-labels .input-group.input-group-outline > textarea.form-control:focus {
-      border-width: 2px !important;
+      border-width: 1px !important;
       border-style: solid !important;
-      border-color: #fb8c00 !important;
-      border-top-color: #fb8c00 !important;
-      border-right-color: #fb8c00 !important;
-      border-bottom-color: #fb8c00 !important;
-      border-left-color: #fb8c00 !important;
-      box-shadow: 0 0 0 .2rem rgba(251, 140, 0, .12) !important;
+      border-color: #a8b3c7 !important;
+      border-top-color: #a8b3c7 !important;
+      border-right-color: #a8b3c7 !important;
+      border-bottom-color: #a8b3c7 !important;
+      border-left-color: #a8b3c7 !important;
+      box-shadow: none !important;
       outline: 0 !important;
    }
 
@@ -160,9 +160,9 @@
    }
 
    .admin-stacked-labels .form-group.label-floating > .form-control:focus {
-      border: 2px solid #fb8c00 !important;
-      border-top-color: #fb8c00 !important;
-      box-shadow: 0 0 0 .2rem rgba(251, 140, 0, .12) !important;
+      border: 1px solid #a8b3c7 !important;
+      border-top-color: #a8b3c7 !important;
+      box-shadow: none !important;
       outline: 0 !important;
    }
 </style>
