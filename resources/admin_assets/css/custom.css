@@ -385,28 +385,28 @@ tr.table-body td:last-child{
 
 /* ============================================================
  * ADMIN FORM CLARITY
- * Keep every backend field visually distinct without changing
- * storefront forms or application behaviour.
+ * Simple, stable backend forms: labels above controls, one border,
+ * no floating notches, no glow, and no focus movement.
  * ============================================================ */
 body.g-sidenav-show {
     --af-admin-field-border: #98a2b3;
-    --af-admin-field-border-hover: #667085;
-    --af-admin-field-focus: #f96302;
     --af-admin-field-bg: #ffffff;
     --af-admin-field-disabled: #f2f4f7;
+    --af-admin-label: #344054;
 }
 
-/* Standard controls, including controls not wrapped by Material input groups. */
+/* Standard admin controls: same appearance at rest, hover and focus. */
 body.g-sidenav-show .form-control,
 body.g-sidenav-show .form-select,
 body.g-sidenav-show select.form-control,
 body.g-sidenav-show textarea.form-control,
 body.g-sidenav-show .choices .choices__inner {
     background-color: var(--af-admin-field-bg) !important;
-    border: 1.5px solid var(--af-admin-field-border) !important;
+    border: 1px solid var(--af-admin-field-border) !important;
     border-radius: .55rem !important;
     box-shadow: none !important;
-    transition: border-color .18s ease, box-shadow .18s ease, background-color .18s ease;
+    outline: 0 !important;
+    transition: none !important;
 }
 
 body.g-sidenav-show .form-control:not(.form-control-sm),
@@ -421,23 +421,20 @@ body.g-sidenav-show textarea.form-control {
     resize: vertical;
 }
 
-body.g-sidenav-show .form-control:hover:not(:disabled):not([readonly]),
+body.g-sidenav-show .form-control:hover:not(:disabled),
 body.g-sidenav-show .form-select:hover:not(:disabled),
 body.g-sidenav-show select.form-control:hover:not(:disabled),
-body.g-sidenav-show textarea.form-control:hover:not(:disabled):not([readonly]),
-body.g-sidenav-show .choices:hover .choices__inner {
-    border-color: var(--af-admin-field-border-hover) !important;
-}
-
+body.g-sidenav-show textarea.form-control:hover:not(:disabled),
 body.g-sidenav-show .form-control:focus,
 body.g-sidenav-show .form-select:focus,
 body.g-sidenav-show select.form-control:focus,
 body.g-sidenav-show textarea.form-control:focus,
 body.g-sidenav-show .choices.is-focused .choices__inner,
-body.g-sidenav-show .choices.is-open .choices__inner {
-    border-color: var(--af-admin-field-focus) !important;
-    box-shadow: 0 0 0 3px rgba(249, 99, 2, .14) !important;
-    outline: 0;
+body.g-sidenav-show .choices.is-open .choices__inner,
+body.g-sidenav-show .choices:hover .choices__inner {
+    border-color: var(--af-admin-field-border) !important;
+    box-shadow: none !important;
+    outline: 0 !important;
 }
 
 body.g-sidenav-show .form-control:disabled,
@@ -450,104 +447,169 @@ body.g-sidenav-show select.form-control:disabled {
     opacity: 1;
 }
 
-/* Material Dashboard outline fields: keep the floating-label notch, but make it obvious. */
-body.g-sidenav-show .input-group.input-group-outline .form-control {
-    background-color: var(--af-admin-field-bg) !important;
-    border-color: var(--af-admin-field-border) !important;
-    border-width: 1.5px !important;
-}
-
-body.g-sidenav-show .input-group.input-group-outline .form-label {
-    color: #475467;
-    font-weight: 600;
-}
-
-body.g-sidenav-show .input-group.input-group-outline.is-filled:not(.is-focused) .form-control {
-    border-color: var(--af-admin-field-border) !important;
-    border-top-color: transparent !important;
-    box-shadow: inset 1.5px 0 var(--af-admin-field-border),
-                inset -1.5px 0 var(--af-admin-field-border),
-                inset 0 -1.5px var(--af-admin-field-border) !important;
-}
-
-body.g-sidenav-show .input-group.input-group-outline.is-filled:not(.is-focused) .form-label {
-    color: #475467 !important;
-}
-
-body.g-sidenav-show .input-group.input-group-outline.is-filled:not(.is-focused) .form-label:before,
-body.g-sidenav-show .input-group.input-group-outline.is-filled:not(.is-focused) .form-label:after {
-    border-top-color: var(--af-admin-field-border) !important;
-}
-
-body.g-sidenav-show .input-group.input-group-outline.is-focused .form-control {
-    border-color: var(--af-admin-field-focus) !important;
-    border-top-color: transparent !important;
-    box-shadow: inset 1.5px 0 var(--af-admin-field-focus),
-                inset -1.5px 0 var(--af-admin-field-focus),
-                inset 0 -1.5px var(--af-admin-field-focus),
-                0 0 0 3px rgba(249, 99, 2, .14) !important;
-}
-
-body.g-sidenav-show .input-group.input-group-outline.is-focused .form-label {
-    color: var(--af-admin-field-focus) !important;
-}
-
-body.g-sidenav-show .input-group.input-group-outline.is-focused .form-label:before,
-body.g-sidenav-show .input-group.input-group-outline.is-focused .form-label:after {
-    border-top-color: var(--af-admin-field-focus) !important;
-}
-
-/* Make labels easier to scan on dense admin forms. */
-body.g-sidenav-show form .form-label,
-body.g-sidenav-show form > label,
-body.g-sidenav-show form .col-form-label {
-    font-weight: 600;
-    color: #344054;
-}
-
-/* Checkboxes/radios should also have a visible edge. */
-body.g-sidenav-show .form-check-input {
-    border: 1.5px solid #667085 !important;
+/* Material Dashboard outline groups become ordinary stacked fields globally. */
+body.g-sidenav-show .input-group.input-group-outline {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    border: 0 !important;
+    background: transparent !important;
     box-shadow: none !important;
 }
 
+body.g-sidenav-show .input-group.input-group-outline::before,
+body.g-sidenav-show .input-group.input-group-outline::after {
+    display: none !important;
+    content: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+body.g-sidenav-show .input-group.input-group-outline > .form-label,
+body.g-sidenav-show .input-group.input-group-outline.is-filled > .form-label,
+body.g-sidenav-show .input-group.input-group-outline.is-focused > .form-label,
+body.g-sidenav-show .input-group.input-group-outline.is-valid > .form-label,
+body.g-sidenav-show .input-group.input-group-outline.is-invalid > .form-label {
+    position: static !important;
+    inset: auto !important;
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 0 .4rem .1rem !important;
+    padding: 0 !important;
+    transform: none !important;
+    line-height: 1.35 !important;
+    color: var(--af-admin-label) !important;
+    font-size: .875rem !important;
+    font-weight: 600 !important;
+    pointer-events: auto !important;
+}
+
+body.g-sidenav-show .input-group.input-group-outline > .form-label::before,
+body.g-sidenav-show .input-group.input-group-outline > .form-label::after,
+body.g-sidenav-show .input-group.input-group-outline.is-filled > .form-label::before,
+body.g-sidenav-show .input-group.input-group-outline.is-filled > .form-label::after,
+body.g-sidenav-show .input-group.input-group-outline.is-focused > .form-label::before,
+body.g-sidenav-show .input-group.input-group-outline.is-focused > .form-label::after,
+body.g-sidenav-show .input-group.input-group-outline.is-valid > .form-label::before,
+body.g-sidenav-show .input-group.input-group-outline.is-valid > .form-label::after,
+body.g-sidenav-show .input-group.input-group-outline.is-invalid > .form-label::before,
+body.g-sidenav-show .input-group.input-group-outline.is-invalid > .form-label::after {
+    display: none !important;
+    content: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+body.g-sidenav-show .input-group.input-group-outline > .form-control,
+body.g-sidenav-show .input-group.input-group-outline > select.form-control,
+body.g-sidenav-show .input-group.input-group-outline > textarea.form-control,
+body.g-sidenav-show .input-group.input-group-outline.is-filled > .form-control,
+body.g-sidenav-show .input-group.input-group-outline.is-focused > .form-control,
+body.g-sidenav-show .input-group.input-group-outline.is-valid > .form-control,
+body.g-sidenav-show .input-group.input-group-outline.is-invalid > .form-control {
+    width: 100% !important;
+    margin-left: 0 !important;
+    border: 1px solid var(--af-admin-field-border) !important;
+    border-top-color: var(--af-admin-field-border) !important;
+    border-right-color: var(--af-admin-field-border) !important;
+    border-bottom-color: var(--af-admin-field-border) !important;
+    border-left-color: var(--af-admin-field-border) !important;
+    border-radius: .55rem !important;
+    background-color: var(--af-admin-field-bg) !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    outline: 0 !important;
+    transition: none !important;
+}
+
+body.g-sidenav-show .input-group.input-group-outline > .form-control:focus,
+body.g-sidenav-show .input-group.input-group-outline > select.form-control:focus,
+body.g-sidenav-show .input-group.input-group-outline > textarea.form-control:focus,
+body.g-sidenav-show .input-group.input-group-outline.is-focused > .form-control,
+body.g-sidenav-show .input-group.input-group-outline.is-filled > .form-control:focus {
+    border: 1px solid var(--af-admin-field-border) !important;
+    border-top-color: var(--af-admin-field-border) !important;
+    box-shadow: none !important;
+    outline: 0 !important;
+}
+
+/* Legacy floating-label forms use the same stacked-label treatment. */
+body.g-sidenav-show .form-group.label-floating > .control-label {
+    position: static !important;
+    display: block !important;
+    margin: 0 0 .4rem .1rem !important;
+    padding: 0 !important;
+    color: var(--af-admin-label) !important;
+    font-size: .875rem !important;
+    font-weight: 600 !important;
+    transform: none !important;
+}
+
+body.g-sidenav-show .form-group.label-floating > .form-control,
+body.g-sidenav-show .form-group.label-floating > .form-control:focus {
+    border: 1px solid var(--af-admin-field-border) !important;
+    border-radius: .55rem !important;
+    padding: .625rem .75rem !important;
+    background-color: var(--af-admin-field-bg) !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    outline: 0 !important;
+}
+
+/* Ordinary labels outside Material groups. */
+body.g-sidenav-show form .form-label,
+body.g-sidenav-show form > label,
+body.g-sidenav-show form .col-form-label,
+body.g-sidenav-show form .control-label {
+    font-weight: 600;
+    color: var(--af-admin-label);
+}
+
+/* Checkbox/radio focus should not add a glow. */
+body.g-sidenav-show .form-check-input,
 body.g-sidenav-show .form-check-input:focus {
-    border-color: var(--af-admin-field-focus) !important;
-    box-shadow: 0 0 0 3px rgba(249, 99, 2, .14) !important;
+    border: 1px solid #667085 !important;
+    box-shadow: none !important;
+    outline: 0 !important;
 }
 
 body.g-sidenav-show .form-check-input:checked {
-    background-color: var(--af-admin-field-focus) !important;
-    border-color: var(--af-admin-field-focus) !important;
+    background-color: #f96302 !important;
+    border-color: #f96302 !important;
 }
 
-/* Input groups that use prepend/append labels should read as one bordered control. */
+/* Input addons and rich-text editors keep the same plain border language. */
 body.g-sidenav-show .input-group:not(.input-group-outline) > .input-group-text {
     background-color: #f8fafc;
     border-color: var(--af-admin-field-border) !important;
-    border-width: 1.5px !important;
+    border-width: 1px !important;
+    box-shadow: none !important;
 }
 
-/* Rich-text editors are forms too; make their boundaries explicit. */
 body.g-sidenav-show .ql-toolbar.ql-snow {
     background: #f8fafc;
-    border: 1.5px solid var(--af-admin-field-border) !important;
+    border: 1px solid var(--af-admin-field-border) !important;
     border-radius: .55rem .55rem 0 0;
+    box-shadow: none !important;
 }
 
 body.g-sidenav-show .ql-container.ql-snow {
     background: #fff;
-    border: 1.5px solid var(--af-admin-field-border) !important;
+    border: 1px solid var(--af-admin-field-border) !important;
     border-top: 0 !important;
     border-radius: 0 0 .55rem .55rem;
+    box-shadow: none !important;
 }
 
-/* Preserve Bootstrap validation feedback over the global border treatment. */
+/* Validation may change the border colour, but never adds a focus glow. */
 body.g-sidenav-show .form-control.is-invalid,
 body.g-sidenav-show .form-select.is-invalid,
 body.g-sidenav-show .was-validated .form-control:invalid,
 body.g-sidenav-show .was-validated .form-select:invalid {
     border-color: #dc3545 !important;
+    box-shadow: none !important;
 }
 
 body.g-sidenav-show .form-control.is-valid,
@@ -555,4 +617,5 @@ body.g-sidenav-show .form-select.is-valid,
 body.g-sidenav-show .was-validated .form-control:valid,
 body.g-sidenav-show .was-validated .form-select:valid {
     border-color: #198754 !important;
+    box-shadow: none !important;
 }
