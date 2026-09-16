@@ -276,41 +276,94 @@ export default {
 }
 
 @media (max-width: 575.98px) {
-    /* Mobile titles are always exactly a two-line slot and truncate with an ellipsis. */
-    .product-grid-card h4.product-grid-title,
-    .product-grid-card h4.product-grid-title.title {
-        height: 2.7em !important;
-        min-height: 2.7em !important;
-        max-height: 2.7em !important;
-        margin-bottom: 0.75rem !important;
-        overflow: hidden !important;
+    /*
+     * Mobile product cards should align by layout, not by giving the title a
+     * fake fixed height. Text stays compact while the price/action area is
+     * pushed to the bottom by the flex layout above.
+     */
+    .product-grid-card .product-grid-details {
+        min-width: 0;
+        padding: 0.75rem 0.65rem 1rem !important;
     }
 
+    .product-grid-card h4.product-grid-title,
+    .product-grid-card h4.product-grid-title.title {
+        height: auto !important;
+        min-height: 0 !important;
+        max-height: none !important;
+        margin: 0 0 0.5rem !important;
+        overflow: hidden !important;
+        line-height: 1.3 !important;
+    }
+
+    /* Product name: at most two natural lines, then ellipsis. */
     .product-grid-card h4.product-grid-title > a {
         display: -webkit-box !important;
-        height: 2.7em !important;
-        max-height: 2.7em !important;
+        height: auto !important;
+        max-height: none !important;
         overflow: hidden !important;
         white-space: normal !important;
         text-overflow: ellipsis !important;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
         line-clamp: 2;
-        line-height: 1.35 !important;
-        word-break: break-word;
+        line-height: 1.3 !important;
+        overflow-wrap: anywhere;
     }
 
-    /* Notes may use up to two lines, but never push the price/button lower. */
+    /* Product note: one compact line on listing cards. */
     .product-grid-card .product-grid-note {
-        display: -webkit-box !important;
-        max-height: 2.8em !important;
-        margin-bottom: 0.75rem !important;
+        display: block !important;
+        min-width: 0;
+        max-width: 100%;
+        margin: 0 0 0.45rem !important;
         overflow: hidden !important;
+        white-space: nowrap !important;
         text-overflow: ellipsis !important;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        line-clamp: 2;
-        line-height: 1.4 !important;
+        line-height: 1.3 !important;
+    }
+
+    /* Reviews stay on a single compact row instead of changing card height. */
+    .product-grid-card .product-grid-rating {
+        display: flex;
+        align-items: center;
+        flex-wrap: nowrap;
+        max-width: 100%;
+        margin: 0 0 0.45rem !important;
+        overflow: hidden;
+        line-height: 1;
+    }
+
+    .product-grid-card .product-description {
+        margin: 0.35rem 0 0 !important;
+    }
+
+    /* Price and action are the card footer. The price consumes remaining space. */
+    .product-grid-card .price-box {
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 0.3rem 0.45rem;
+        margin-top: auto !important;
+        margin-bottom: 0.65rem !important;
+        padding-top: 0.55rem;
+    }
+
+    .product-grid-card .price-box .old-price {
+        margin-right: 0 !important;
+    }
+
+    .product-grid-card .product-action {
+        margin: 0 !important;
+    }
+
+    .product-grid-card .product-action .btn-add-cart {
+        width: 100%;
+        min-height: 3.8rem;
+        padding: 0.2rem 0.6rem !important;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
     }
 }
 </style>
