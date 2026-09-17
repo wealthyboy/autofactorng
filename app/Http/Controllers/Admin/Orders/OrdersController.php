@@ -545,6 +545,7 @@ class OrdersController extends Table
 				"Payment Type" => $obj->payment_type,
 				"Category" => ucfirst($obj->category ?: 'private'),
 				"Fulfillment" => optional($obj)->isPickup() ? 'Pickup' : 'Delivery',
+				"Zone" => optional($obj)->isPickup() ? 'Pickup' : (optional($obj)->zone ?: 'Not recorded'),
 				"Shipping" => Helper::currencyWrapper($obj->shipping_price),
 				"Ip Address" => optional($obj)->ip ?? '---',
 				"Referer" => optional($obj)->referer ?? '---',
