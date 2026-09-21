@@ -478,9 +478,73 @@ class OrdersController extends Table
 	public function edit($id)
 	{
 		User::canTakeAction(User::canCreate);
-		$order = Order::find($id);
+
+		// The edit action is used as a quick way to create another order for the
+		// same customer. Always prefill the form from the canonical customer
+		// record shown in the order list, rather than stale order snapshot data.
+		$order = Order::with(['user.active_address', 'orderEmail'])->findOrFail($id);
+		$customerDetails = $this->customerDetailsForOrder($order);
+
+		// The create form already reads these attributes from $order. Override the
+		// in-memory values only (nothing is saved) so the repeat-order form always
+		// matches the customer shown on the order/customer record.
+		$order->email = $customerDetails['email'];
+		$order->first_name = $customerDetails['full_name'];
+		$order->last_name = '';
+		$order->phone_number = $customerDetails['phone_number'];
+		$order->address = $customerDetails['address'];
+		$order->payment_type = $customerDetails['payment_type'];
+		$order->category = $customerDetails['category'];
+
 		$statuses = static::order_status();
+
 		return view('admin.orders.create', compact('order', 'statuses'));
+	}
+
+	private function customerDetailsForOrder(Order $order): array
+	{
+		$user = $order->user;
+		$orderEmail = $order->orderEmail;
+
+		if ($user) {
+			$fullName = trim((string) $user->name . ' ' . (string) $user->last_name);
+			$category = $order->category ?: 'private';
+
+			if ($user->is_indrive_customer) {
+				$category = 'indrive';
+			} elseif (in_array($user->customer_status, ['private', 'business'], true)) {
+				$category = $user->customer_status;
+			}
+
+			return [
+				'email' => $user->email ?: $order->email,
+				'full_name' => $fullName !== '' ? $fullName : trim((string) $order->fullName()),
+				'phone_number' => $user->phone_number ?: $order->phone_number,
+				'address' => optional($user->active_address)->address ?: $order->address,
+				'payment_type' => $order->payment_type ?: optional($orderEmail)->payment,
+				'category' => $category,
+			];
+		}
+
+		if ($orderEmail) {
+			return [
+				'email' => $orderEmail->email ?: $order->email,
+				'full_name' => $orderEmail->fullname ?: trim((string) $order->fullName()),
+				'phone_number' => $orderEmail->phone ?: $order->phone_number,
+				'address' => $orderEmail->address ?: $order->address,
+				'payment_type' => $orderEmail->payment ?: $order->payment_type,
+				'category' => $order->category ?: 'private',
+			];
+		}
+
+		return [
+			'email' => $order->email,
+			'full_name' => trim((string) $order->fullName()),
+			'phone_number' => $order->phone_number,
+			'address' => $order->address,
+			'payment_type' => $order->payment_type,
+			'category' => $order->category ?: 'private',
+		];
 	}
 
 
