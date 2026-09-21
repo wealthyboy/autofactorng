@@ -27,10 +27,18 @@ class CustomersController extends Table
 
     public function builder()
     {
-        // Customer tables need the order count for both display and sorting.
-        // Keep the customer scope here so Table::getRecords() does not lose
-        // it when a column sort/search rebuilds the query.
-        return User::query()->customers()->withCount('orders');
+        // Customer tables need the order count for display, sorting and the
+        // customer-class filter. Keep the filter on the builder itself so it
+        // remains active when Table::getRecords() rebuilds the query for
+        // searching or sorting.
+        $query = User::query()->customers()->withCount('orders');
+
+        $customerClass = request('customer_class');
+        if (is_string($customerClass) && array_key_exists($customerClass, User::CUSTOMER_CLASSES)) {
+            $query->ofCustomerClass($customerClass);
+        }
+
+        return $query;
     }
 
 
@@ -41,7 +49,10 @@ class CustomersController extends Table
      */
     public function index()
     {
-        $users = $this->builder()->orderBy('id', 'DESC')->paginate(100);
+        $users = $this->builder()
+            ->orderBy('id', 'DESC')
+            ->paginate(100)
+            ->appends(request()->all());
         $users = $this->getColumnListings(request(), $users);
         return   view('admin.customers.index', compact('users'));
     }
@@ -111,7 +122,8 @@ class CustomersController extends Table
             'destroy' => true,
             'export' => true,
             'export_name' => 'CustomerExport',
-            'customer_status' => true
+            'customer_status' => true,
+            'customer_classes' => User::CUSTOMER_CLASSES
         ];
     }
 
