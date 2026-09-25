@@ -135,15 +135,36 @@
         </div>
     </div>
 
-    @if ( optional($product->related_products)->count() )
+    @php
+        // Related-product rows can outlive the product they point to.  Never let
+        // an orphaned row break the storefront page.
+        $validRelatedProducts = optional($product->related_products)
+            ? $product->related_products->filter(function ($item) {
+                return $item->product !== null;
+            })
+            : collect();
+    @endphp
+
+    @if ($validRelatedProducts->isNotEmpty())
     <div class="products-section container-fluid pt-0 mt-4">
         <h2 class="section-title">Related Products</h2>
         <div class="products-slider owl-carousel owl-theme dots-top dots-small">
-            @foreach( $product->related_products as $related_product)
+            @foreach($validRelatedProducts as $related_product)
+            @php
+                $related = $related_product->product;
+                $relatedCategorySlug = optional(optional($related->categories)->first())->slug ?: $category_slug;
+
+                // Build the storefront URL manually instead of depending on the
+                // computed `link` attribute.  If the product has no category at
+                // all, fall back to search rather than generating a broken URL.
+                $relatedLink = $relatedCategorySlug && $related->slug
+                    ? url('/product/' . $relatedCategorySlug . '/' . $related->slug)
+                    : url('/search?q=' . urlencode($related->name));
+            @endphp
             <div class="product-default">
                 <div class="product-default  p d-flex flex-column justify-content-center align-items-center px-2">
-                    <a class="d-block" href="{{$related_product->product->link }}">
-                        <img src="{{ $related_product->product->image_m }}" alt="product">
+                    <a class="d-block" href="{{ $relatedLink }}">
+                        <img src="{{ $related->image_m }}" alt="{{ $related->name }}">
                     </a>
                     <div class="label-group">
                         <!-- <div class="product-label label-hot">HOT</div>
@@ -154,21 +175,21 @@
                 <div class="product-details">
 
 
-                    <h6 class="fs-5"> <a href="{{$related_product->product->link }}">{{ $related_product->product->name }}</a> </h6>
+                    <h6 class="fs-5"> <a href="{{ $relatedLink }}">{{ $related->name }}</a> </h6>
 
                     <div class="ratings-container">
                         @include('_partials.ratings')
                     </div>
                     <!-- End .product-container -->
                     <div class="price-box">
-                        @if($related_product->product->discounted_price)
+                        @if($related->discounted_price)
                         <div>
-                            <span class="old-price">{{ $related_product->product->currency }}{{ $related_product->product->formatted_sale_price }}</span>
-                            <span class="product-price">{{ $related_product->product->currency }}{{ $related_product->product->formatted_price }}</span>
+                            <span class="old-price">{{ $related->currency }}{{ $related->formatted_sale_price }}</span>
+                            <span class="product-price">{{ $related->currency }}{{ $related->formatted_price }}</span>
                         </div>
                         @else
                         <div>
-                            <span class="product-price">{{ $related_product->product->currency }}{{ $related_product->product->formatted_price }}</span>
+                            <span class="product-price">{{ $related->currency }}{{ $related->formatted_price }}</span>
                         </div>
                         @endif
                     </div>
