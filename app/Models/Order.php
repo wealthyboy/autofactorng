@@ -256,6 +256,7 @@ class Order extends Model
 				$spreedSheetData = [
 					'invoice_number' => $inv,
 					'customer_name' => $order->first_name . ' ' . $order->last_name,
+					'order_type' => self::sheetOrderType($order->order_type),
 					'item' => optional($cart->product)->name,
 					'quantity' => $cart->quantity,
 					'unit_price' => $cart->price,
@@ -451,6 +452,12 @@ class Order extends Model
 
 
 
+	/** Canonical source classification for the OMS Order Type column. */
+	public static function sheetOrderType(?string $orderType): string
+	{
+		return strtolower(trim((string) $orderType)) === 'offline' ? 'Offline' : 'Online';
+	}
+
 	static function appendOrderRow(
 		array  $data,
 		string $sheetName = 'Sheet1!A:D',
@@ -467,7 +474,7 @@ class Order extends Model
 			(int) ($data['quantity'] ?? 0),
 			(float) ($data['unit_price'] ?? 0),
 			$data['location'] ?? '',
-			null,
+			self::sheetOrderType($data['order_type'] ?? null), // OMS column H: Order Type
 			null,
 			null,
 			null,

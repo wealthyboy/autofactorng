@@ -191,6 +191,7 @@ class OrdersController extends Table
 			$spreedSheetData = [
 				'invoice_number' => $inv,
 				'customer_name' => $request->first_name,
+				'order_type' => Order::sheetOrderType($order->order_type),
 				'item' => $v,
 				'quantity' => $qty,
 				'unit_price' => $OrderedProduct->price,
